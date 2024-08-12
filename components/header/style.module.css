@@ -1,0 +1,25 @@
+.container {
+    max-width: calc(var(--vp-layout-max-width) - 64px);
+}
+
+.menuLink {
+  color: var(--vp-c-text-1);
+  transition: color 0.25s;
+}
+
+.menuLink.active {
+  color: var(--vp-c-brand-1);
+}
+
+.menuLink:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.socialLinks::before {
+    margin-right: 8px;
+    margin-left: 8px;
+    width: 1px;
+    height: 24px;
+    background-color: var(--vp-c-divider);
+    content: "";
+}
