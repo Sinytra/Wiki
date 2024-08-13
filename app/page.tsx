@@ -8,11 +8,11 @@ export default function Home() {
         <p className="text-4xl text-blue-500">Welcome to Sinytra's Modded MC Wiki Prototype</p>
       </div>
 
-      <ModSearch />
-      
-      <hr className="w-[45rem] border-gray-600 h-1" />
-      
-      <DevStarter />
+      <ModSearch/>
+
+      <hr className="w-[45rem] border-gray-600 h-1"/>
+
+      <DevStarter/>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
         <a

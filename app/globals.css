@@ -16,6 +16,11 @@
     }
 }
 
+html {
+    overflow: auto;
+    scrollbar-gutter: stable;
+}
+
 body {
     color: rgb(var(--foreground-rgb));
     background: var(--vp-c-bg);
@@ -23,6 +28,19 @@ body {
 
 .page-wrapper {
     padding-top: calc(var(--vp-nav-height) + 1rem);
+}
+
+.prose img {
+    display: inline;
+    margin: 0;
+}
+
+.prose a {
+    text-decoration: none;
+}
+
+.prose hr {
+    margin: 20px 0;
 }
 
 @layer utilities {

@@ -6,10 +6,6 @@ export default async function Mod({ params }: { params: { slug: string } }) {
 
   return (
     <div>
-      <p>My Post: {params.slug}</p>
-      
-      <p>The Project: {data.title}</p>
-      
       <MarkdownContent content={data.body} />
     </div>
   )

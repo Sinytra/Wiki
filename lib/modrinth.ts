@@ -8,14 +8,30 @@ interface ModrinthProject {
   body: string;
 }
 
+interface ModrinthUser {
+  username: string;
+  avatar_url: string;
+}
+
 async function getProject(slug: string): Promise<ModrinthProject> {
   return fetchModrinthApi(`/project/${slug}`);
 }
 
-async function fetchModrinthApi<T>(path: string): Promise<T> {
+async function getUserProjects(username: string): Promise<ModrinthProject[]> {
+  return fetchModrinthApi(`/user/${username}/projects`)
+}
+
+async function getUserProfile(authToken: string): Promise<ModrinthUser> {
+  return fetchModrinthApi('/user', {
+    Authorization: authToken
+  });
+}
+
+async function fetchModrinthApi<T>(path: string, headers?: any): Promise<T> {
   const response = await fetch(modrinthApiBaseUrl + path, {
     headers: {
-      'User-Agent': userAgent
+      'User-Agent': userAgent,
+      ...headers
     },
     next: {
       tags: ['modrinth'],
@@ -30,7 +46,9 @@ async function fetchModrinthApi<T>(path: string): Promise<T> {
 }
 
 const modrinth = {
-  getProject
+  getProject,
+  getUserProjects,
+  getUserProfile
 }
 
 export default modrinth;

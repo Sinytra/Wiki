@@ -13,6 +13,7 @@ const config: Config = {
         'secondary': 'var(--vp-c-text-2)'
       },
       backgroundColor: {
+        'primary': 'var(--vp-c-bg)',
         'alt': 'var(--vp-c-bg-alt)'
       },
       backgroundImage: {
