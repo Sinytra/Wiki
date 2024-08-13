@@ -10,6 +10,7 @@ interface ModrinthProject {
 
 interface ModrinthUser {
   username: string;
+  bio: string;
   avatar_url: string;
 }
 
