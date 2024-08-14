@@ -13,8 +13,10 @@ export default async function Mod({ params }: { params: { slug: string } }) {
   const data = await modrinth.getProject(params.slug);
 
   return (
-    <div>
-      <MarkdownContent content={data.description} />
+    <div className="flex w-full">
+      <div className="mx-auto">
+        <MarkdownContent content={data.description} />
+      </div>
     </div>
   )
 }

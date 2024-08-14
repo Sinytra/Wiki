@@ -7,6 +7,7 @@ export interface ModrinthProject {
   name: string;
   summary: string;
   description: string;
+  icon_url: string;
 }
 
 export interface ModrinthUser {
@@ -22,6 +23,10 @@ export interface ModrinthOrganization {
   icon_url: string;
 }
 
+interface SearchResponse {
+  hits: ModrinthProject[];
+}
+
 async function getProject(slug: string): Promise<ModrinthProject> {
   return fetchModrinthApiExperimental(`/project/${slug}`);
 }
@@ -34,6 +39,11 @@ async function getUserProfile(authToken: string): Promise<ModrinthUser> {
   return fetchModrinthApi('/user', {
     Authorization: authToken
   });
+}
+
+async function searchProjects(query: string): Promise<ModrinthProject[]> {
+  const resp = await fetchModrinthApiExperimental(`/search?query=${query}`) as SearchResponse;
+  return resp.hits;
 }
 
 async function getUserOrganizations(username: string): Promise<ModrinthOrganization[]> {
@@ -75,7 +85,8 @@ const modrinth = {
   getUserProjects,
   getUserProfile,
   getUserOrganizations,
-  getOrganizationProjects
+  getOrganizationProjects,
+  searchProjects
 }
 
 export default modrinth;
