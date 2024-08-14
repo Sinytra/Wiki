@@ -1,9 +1,9 @@
-import ModSearch from "@/components/mod-search";
-import DevStarter from "@/components/dev-starter";
+import ModSearch from "../components/landing/mod-search";
+import DevStarter from "../components/landing/dev-starter";
 
-export default function Home() {
+export default async function Home() {
   return <>
-    <main className="flex min-h-screen flex-col items-center justify-between pb-24">
+    <main className="flex max-w-5xl mx-auto min-h-screen flex-col items-center justify-between pb-24">
       <div className="z-10 w-full items-center justify-center text-2xl lg:flex">
         <p className="text-4xl text-blue-500">Welcome to Sinytra's Modded MC Wiki Prototype</p>
       </div>
@@ -16,7 +16,7 @@ export default function Home() {
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
         <a
-          href="/mod/forgified-fabric-api"
+          href="/mod/mffs"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           rel="noopener noreferrer"
         >

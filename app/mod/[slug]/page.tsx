@@ -1,21 +1,18 @@
 import modrinth from "@/lib/modrinth";
-import MarkdownContent from "@/components/markdown/MarkdownContent";
-import database from "@/lib/database";
-import {redirect, RedirectType} from "next/navigation";
+import MarkdownContent from "@/components/docs/markdown/MarkdownContent";
 
 export default async function Mod({ params }: { params: { slug: string } }) {
-  const project = await database.getProject(params.slug);
-
-  if (project == null) {
-    redirect('/', RedirectType.replace);
-  }
-
-  const data = await modrinth.getProject(params.slug);
+  const project = await modrinth.getProject(params.slug);
 
   return (
-    <div className="flex w-full">
-      <div className="mx-auto">
-        <MarkdownContent content={data.description} />
+    <div className="flex flex-col">
+      <div>
+        <h1 className="text-foreground text-2xl">{project.name}</h1>
+        <hr className="mt-4 border-neutral-600" />
+      </div>
+
+      <div>
+        <MarkdownContent content={project.description} />
       </div>
     </div>
   )

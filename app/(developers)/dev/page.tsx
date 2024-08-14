@@ -1,7 +1,7 @@
 import {auth} from "@/lib/auth";
 import modrinth, {ModrinthProject} from "@/lib/modrinth";
 import database from "@/lib/database";
-import ProfileSelect from "@/components/profile-select";
+import ProfileSelect from "../../../components/dev/profile-select";
 import {Session} from "next-auth";
 import {ActiveDevProfile, AvailableProfiles, DevProfile, SelectableProfile} from "@/lib/types/dev";
 import {revalidatePath} from "next/cache";

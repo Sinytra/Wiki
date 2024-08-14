@@ -59,6 +59,11 @@
   }
 }
 
+html {
+    overflow: auto;
+    scrollbar-gutter: stable;
+}
+
 .page-wrapper {
     padding-top: calc(var(--vp-nav-height) + 1rem);
 }

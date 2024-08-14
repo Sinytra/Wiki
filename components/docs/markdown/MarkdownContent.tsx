@@ -8,8 +8,8 @@ export default async function MarkdownContent({content}: Props) {
   const htmlContent = await markdown.renderMarkdown(content);
 
   return (
-    <div className="prose dark:prose-invert">
+    <article className="prose !max-w-3xl prose-h2:mt-8 dark:prose-invert">
       <div dangerouslySetInnerHTML={({__html: htmlContent})} />
-    </div>
+    </article>
   );
 }
