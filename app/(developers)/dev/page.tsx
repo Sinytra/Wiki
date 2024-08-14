@@ -31,7 +31,7 @@ function Profile({name, desc, avatar_url, projects, statuses}: {
         <div className="flex flex-col gap-2">
           <p className="font-medium text-2xl font-mono">{name}</p>
 
-          <p className="text-secondary">{desc || ''}</p>
+          <p className="text-muted-foreground">{desc || ''}</p>
         </div>
         <img className="rounded-md" src={avatar_url} alt="Avatar" width={96} height={96}/>
       </div>
@@ -42,13 +42,13 @@ function Profile({name, desc, avatar_url, projects, statuses}: {
         {projects.map(p => (
           <div className="flex flex-row justify-between items-center gap-4" key={p.slug}>
             <div className="py-3 flex flex-col gap-2">
-              <p className="text-primary font-medium">{p.name}</p>
-              <p className="text-secondary font-normal">{p.summary}</p>
+              <p className="text-foreground font-medium">{p.name}</p>
+              <p className="text-muted-foreground font-normal">{p.summary}</p>
             </div>
 
             {statuses.includes(p.slug)
               ?
-              <span className="text-secondary select-none whitespace-nowrap">
+              <span className="text-muted-foreground select-none whitespace-nowrap">
                 ✅ Enabled
               </span>
               :

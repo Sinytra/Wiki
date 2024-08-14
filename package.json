@@ -11,8 +11,13 @@
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
+    "@radix-ui/react-select": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
     "@vercel/postgres": "^0.9.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "kysely": "^0.27.4",
+    "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",
     "prisma": "^5.18.0",
@@ -24,6 +29,8 @@
     "remark": "^15.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
     "unified": "^11.0.5",
     "use-debounce": "^10.0.2"
   },

@@ -3,16 +3,21 @@
 }
 
 .menuLink {
-  color: var(--vp-c-text-1);
-  transition: color 0.25s;
+    transition: color 0.25s;
 }
 
 .menuLink.active {
-  color: var(--vp-c-brand-1);
+    color: var(--vp-c-brand-1);
 }
 
 .menuLink:hover {
-  color: var(--vp-c-brand-1);
+    color: var(--vp-c-brand-1);
+}
+
+.socialLinks {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .socialLinks::before {

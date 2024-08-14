@@ -21,11 +21,11 @@ export default function ModSearch() {
 
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
-      <span className="text-primary text-lg">Browse mod documentation</span>
+      <span className="text-foreground text-lg">Browse mod documentation</span>
 
       <div className="relative">
         <input type="text"
-               className="bg-alt text-base text-center placeholder:text-gray-500 w-96 p-3 rounded-sm focus:outline-none"
+               className="bg-muted text-base text-center placeholder:text-gray-500 w-96 p-3 rounded-sm focus:outline-none"
                onChange={(e) => {
                  handleSearch(e.target.value);
                }}
@@ -34,12 +34,12 @@ export default function ModSearch() {
           <div className="absolute top-full bg-neutral-800 flex flex-col last:rounded-b-sm w-96 border-t border-gray-600 text-center">
             {results.length === 0
               ?
-              <div>
+              <div className="p-2 w-full h-full">
                 <span>No results</span>
               </div>
               :
               results.map(r => (
-                <Link href={`/mod/${r.id}`} key={r.id} className="p-2 hover:bg-alt w-full h-full">
+                <Link href={`/mod/${r.id}`} key={r.id} className="p-2 hover:bg-muted w-full h-full">
                   {r.name}
                 </Link>
               ))}
