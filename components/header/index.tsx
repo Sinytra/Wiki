@@ -1,12 +1,13 @@
 import {ReactNode} from "react";
 import styles from './style.module.css';
 import {auth} from "@/lib/auth";
+import Link from "next/link";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <a href={href} className={`${styles.menuLink} text-primary font-medium px-3`}>
+    <Link href={href} className={`${styles.menuLink} text-primary font-medium px-3`}>
       {children}
-    </a>
+    </Link>
   )
 }
 
@@ -16,9 +17,9 @@ export default async function Header() {
   return (
     <header className="fixed left-0 w-[100vw] bg-primary z-50">
       <div className={`${styles.container} flex flex-row justify-between items-center px-8 h-16 mx-auto`}>
-        <a href="/">
+        <Link href="/">
           <span className="text-base font-medium text-primary">📖 Sinytra Wiki</span>
-        </a>
+        </Link>
 
         <div className="flex flex-row items-center">
           <nav className="flex flex-row">

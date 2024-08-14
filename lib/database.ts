@@ -32,9 +32,18 @@ async function getProjectStatuses(slugs: string[]) {
   return projects.map(p => p.id);
 }
 
+async function getProject(slug: string) {
+  return prisma.mod.findUnique({
+    where: {
+      id: slug
+    }
+  });
+}
+
 const database = {
   enableProject,
-  getProjectStatuses
+  getProjectStatuses,
+  getProject
 };
 
 export default database;

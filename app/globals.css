@@ -26,6 +26,10 @@ body {
     background: var(--vp-c-bg);
 }
 
+select {
+    background-color: var(--vp-c-bg-soft);
+}
+
 .page-wrapper {
     padding-top: calc(var(--vp-nav-height) + 1rem);
 }

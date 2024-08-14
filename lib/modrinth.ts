@@ -1,25 +1,33 @@
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0';
 const modrinthApiBaseUrl: string = 'https://api.modrinth.com/v2'
+const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3'
 
-interface ModrinthProject {
+export interface ModrinthProject {
   slug: string;
-  title: string;
+  name: string;
+  summary: string;
   description: string;
-  body: string;
 }
 
-interface ModrinthUser {
+export interface ModrinthUser {
   username: string;
   bio: string;
   avatar_url: string;
 }
 
+export interface ModrinthOrganization {
+  name: string;
+  slug: string;
+  description: string;
+  icon_url: string;
+}
+
 async function getProject(slug: string): Promise<ModrinthProject> {
-  return fetchModrinthApi(`/project/${slug}`);
+  return fetchModrinthApiExperimental(`/project/${slug}`);
 }
 
 async function getUserProjects(username: string): Promise<ModrinthProject[]> {
-  return fetchModrinthApi(`/user/${username}/projects`)
+  return fetchModrinthApiExperimental(`/user/${username}/projects`)
 }
 
 async function getUserProfile(authToken: string): Promise<ModrinthUser> {
@@ -28,8 +36,24 @@ async function getUserProfile(authToken: string): Promise<ModrinthUser> {
   });
 }
 
+async function getUserOrganizations(username: string): Promise<ModrinthOrganization[]> {
+  return fetchModrinthApiExperimental(`/user/${username}/organizations`);
+}
+
+async function getOrganizationProjects(slug: string): Promise<ModrinthProject[]> {
+  return fetchModrinthApiExperimental(`/organization/${slug}/projects`);
+}
+
 async function fetchModrinthApi<T>(path: string, headers?: any): Promise<T> {
-  const response = await fetch(modrinthApiBaseUrl + path, {
+  return fetchModrinthApiInternal(modrinthApiBaseUrl, path, headers);
+}
+
+async function fetchModrinthApiExperimental<T>(path: string, headers?: any): Promise<T> {
+  return fetchModrinthApiInternal(modrinthApiBaseUrlV3, path, headers);
+}
+
+async function fetchModrinthApiInternal<T>(basePath: string, path: string, headers?: any): Promise<T> {
+  const response = await fetch(basePath + path, {
     headers: {
       'User-Agent': userAgent,
       ...headers
@@ -49,7 +73,9 @@ async function fetchModrinthApi<T>(path: string, headers?: any): Promise<T> {
 const modrinth = {
   getProject,
   getUserProjects,
-  getUserProfile
+  getUserProfile,
+  getUserOrganizations,
+  getOrganizationProjects
 }
 
 export default modrinth;
