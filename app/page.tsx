@@ -3,7 +3,7 @@ import DevStarter from "../components/landing/dev-starter";
 
 export default async function Home() {
   return <>
-    <main className="flex max-w-5xl mx-auto min-h-screen flex-col items-center justify-between pb-24">
+    <main className="flex max-w-5xl mx-auto flex-col items-center justify-start gap-28">
       <div className="z-10 w-full items-center justify-center text-2xl lg:flex">
         <p className="text-4xl text-blue-500">Welcome to Sinytra's Modded MC Wiki Prototype</p>
       </div>

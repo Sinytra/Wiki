@@ -32,6 +32,8 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
 TODO Change
  */
 :root {
+  --modrinth-brand: #1bd96a;
+
   --vp-c-blue-1: #1662c5;
   --vp-c-blue-2: #2275da;
   --vp-c-blue-3: #5c9de4;
@@ -261,9 +263,6 @@ TODO Change
   --vp-c-brand-2: var(--vp-c-indigo-2);
   --vp-c-brand-3: var(--vp-c-indigo-3);
   --vp-c-brand-soft: var(--vp-c-indigo-soft);
-
-  /* DEPRECATED: Use `--vp-c-brand-1` instead. */
-  --vp-c-brand: var(--vp-c-brand-1);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
   --vp-c-tip-2: var(--vp-c-brand-2);

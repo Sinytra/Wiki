@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type {Metadata} from "next";
+import {Inter} from "next/font/google";
 import "./globals.css";
 import "./colors.css";
-import Header from "@/components/header";
+import Header from "../components/navigation/header";
+import Providers from "@/components/navigation/nav-progress-bar";
+import Footer from "@/components/navigation/footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: 'Sinytra Modded MC Wiki',
@@ -12,19 +14,23 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} dark`}>
-        <Header />
-      
-        <div className="page-wrapper flex">
-          {children}
-        </div>
-      </body>
+    <body className={`${inter.className} dark flex flex-col min-h-screen`}>
+    <Providers>
+      <Header/>
+
+      <div className="page-wrapper flex flex-1 min-h-[100vh]">
+        {children}
+      </div>
+
+      <Footer />
+    </Providers>
+    </body>
     </html>
   );
 }
