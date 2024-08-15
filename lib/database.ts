@@ -1,8 +1,22 @@
 import prisma from "@/lib/prisma";
+import modrinth, {ModrinthProject} from "@/lib/modrinth";
+import {auth} from "@/lib/auth";
 
 // TODO Caching DB requests
 
-async function enableProject(slug: string, name: string) {
+async function enableProject(project: ModrinthProject): Promise<boolean> {
+  const session = await auth();
+
+  if (session?.user && modrinth.isValidProject(project) && await modrinth.isProjectMember(session.user.id!, project)) {
+    await registerProject(project.slug);
+    return true;
+  }
+
+  // TODO Show error
+  return false;
+}
+
+async function registerProject(slug: string) {
   const existing = await prisma.mod.findUnique({
     where: {
       id: slug
@@ -11,8 +25,7 @@ async function enableProject(slug: string, name: string) {
   if (!existing) {
     await prisma.mod.create({
       data: {
-        id: slug,
-        name: name
+        id: slug
       }
     })
   }

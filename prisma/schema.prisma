@@ -13,6 +13,5 @@ datasource db {
 
 model Mod {
   id        String   @id
-  name      String   // TODO Remove
   createdAt DateTime @default(now())
 }

@@ -44,12 +44,12 @@ export default async function ModInfo({mod}: Props) {
         <Image className="m-4 mx-auto rounded-sm" src={mod.icon_url} alt="Logo" width={128} height={128}/>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         <span className="text-center font-medium text-lg">{mod.name}</span>
         <span className="text-sm text-muted-foreground text-center">{mod.summary}</span>
       </div>
 
-      <div className="mx-1 mt-4">
+      <div className="mx-1 mt-6">
         <div
           className="w-full grid grid-flow-row gap-y-3 text-sm [&>div]:inline-flex [&>div]:items-start [&>div]:justify-between [&_div:last-child]:font-light [&>div:last-child]:text-end">
           <div>

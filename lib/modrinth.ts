@@ -12,6 +12,7 @@ export interface ModrinthProject {
   game_versions: string[];
   license: ModrinthProjectLicense;
   organization?: string;
+  project_types: string[];
 }
 
 export interface ModrinthProjectLicense {
@@ -20,7 +21,7 @@ export interface ModrinthProjectLicense {
   url: string | null;
 }
 
-export interface ModrinthProjectMember {
+export interface ModrinthMember {
   user: ModrinthUser;
 }
 
@@ -36,6 +37,7 @@ export interface ModrinthOrganization {
   slug: string;
   description: string;
   icon_url: string;
+  members: ModrinthMember[];
 }
 
 interface SearchResponse {
@@ -50,7 +52,7 @@ async function getProjectOrganization(slug: string): Promise<ModrinthOrganizatio
   return fetchModrinthApiExperimental(`/project/${slug}/organization`);
 }
 
-async function getProjectMembers(slug: string): Promise<ModrinthProjectMember[]> {
+async function getProjectMembers(slug: string): Promise<ModrinthMember[]> {
   return fetchModrinthApiExperimental(`/project/${slug}/members`);
 }
 
@@ -111,6 +113,26 @@ function getUserURL(user: ModrinthUser) {
   return `https://modrinth.com/user/${user.username}`;
 }
 
+async function isProjectMember(username: string, project: ModrinthProject): Promise<boolean> {
+  if (project.organization) {
+    const org = await modrinth.getProjectOrganization(project.slug);
+    if (org.members.some(m => m.user.username === username)) {
+      return true;
+    }
+  } else {
+    const members = await modrinth.getProjectMembers(project.slug);
+    if (members.some(m => m.user.username === username)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function isValidProject(project: ModrinthProject): boolean {
+  return project.project_types.includes('mod');
+}
+
 const modrinth = {
   getProject,
   getProjectOrganization,
@@ -121,7 +143,9 @@ const modrinth = {
   getOrganizationProjects,
   searchProjects,
   getOrganizationURL,
-  getUserURL
+  getUserURL,
+  isProjectMember,
+  isValidProject
 }
 
 export default modrinth;

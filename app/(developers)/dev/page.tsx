@@ -18,11 +18,9 @@ function Profile({name, desc, avatar_url, projects, statuses}: {
     'use server'
 
     const project = await modrinth.getProject(slug);
-
-    // TODO Ensure project belongs to user
-
-    await database.enableProject(slug, project.name);
-    revalidatePath('/dev');
+    if (await database.enableProject(project)) {
+      revalidatePath('/dev');
+    }
   }
 
   return (
@@ -110,7 +108,9 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
 
   const selectableProfiles: SelectableProfile[] = [availableProfiles.userProfile, ...availableProfiles.organizations]
     .map(p => ({id: p.id, name: p.name}));
-  const projects = profile.projects.sort((a, b) => a.name.localeCompare(b.name));
+  const projects = profile.projects
+    .filter(modrinth.isValidProject)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const slugs = profile.projects.map(p => p.slug);
   const statuses = await database.getProjectStatuses(slugs);
