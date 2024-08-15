@@ -96,3 +96,12 @@ html {
         text-wrap: balance;
     }
 }
+
+.myItems *:not(:first-child):before {
+  content: ' ';
+  white-space: pre;
+}
+
+.myItems *:not(:last-child):after {
+  content: ',';
+}

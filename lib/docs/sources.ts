@@ -56,10 +56,16 @@ function enableLocalSources() {
   return process.env.LOCAL_DOCS_ROOTS !== undefined;
 }
 
+async function isLocalSource(slug: string): Promise<boolean> {
+  const source = await getProjectSource(slug);
+  return source.type === 'local';
+}
+
 const sources = {
   getLocalDocumentationSources,
   getProjectSource,
-  readFileTree: readDocsTree
+  readDocsTree,
+  isLocalSource
 };
 
 export default sources;

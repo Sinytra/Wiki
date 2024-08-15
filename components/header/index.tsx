@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 import styles from './style.module.css';
-import {auth} from "@/lib/auth";
+import {auth, signOut} from "@/lib/auth";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
@@ -26,7 +26,7 @@ export default async function Header() {
         <div className="flex flex-row items-center">
           <nav className="flex flex-row">
             <HeaderLink href="/">Home</HeaderLink>
-            <HeaderLink href="/">Browse</HeaderLink>
+            <HeaderLink href="/browse">Browse</HeaderLink>
           </nav>
 
           {session == null
@@ -40,11 +40,16 @@ export default async function Header() {
                 <HeaderLink href="/dev">Dashboard</HeaderLink>
               </div>
               <div className={`${styles.socialLinks}`}>
-                <Button variant="ghost" size="icon">
-                  <Link href="/auth/logout">
+                <form
+                  action={async () => {
+                    "use server"
+                    await signOut({ redirectTo: '/' })
+                  }}
+                >
+                  <Button type="submit" variant="ghost" size="icon">
                     <LogOutIcon className="h-4 w-4"/>
-                  </Link>
-                </Button>
+                  </Button>
+                </form>
               </div>
             </>
           }

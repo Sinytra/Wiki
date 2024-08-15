@@ -8,9 +8,24 @@ export interface ModrinthProject {
   summary: string;
   description: string;
   icon_url: string;
+  categories: string[];
+  game_versions: string[];
+  license: ModrinthProjectLicense;
+  organization?: string;
+}
+
+export interface ModrinthProjectLicense {
+  id: string;
+  name: string | null;
+  url: string | null;
+}
+
+export interface ModrinthProjectMember {
+  user: ModrinthUser;
 }
 
 export interface ModrinthUser {
+  name: string;
   username: string;
   bio: string;
   avatar_url: string;
@@ -29,6 +44,14 @@ interface SearchResponse {
 
 async function getProject(slug: string): Promise<ModrinthProject> {
   return fetchModrinthApiExperimental(`/project/${slug}`);
+}
+
+async function getProjectOrganization(slug: string): Promise<ModrinthOrganization> {
+  return fetchModrinthApiExperimental(`/project/${slug}/organization`);
+}
+
+async function getProjectMembers(slug: string): Promise<ModrinthProjectMember[]> {
+  return fetchModrinthApiExperimental(`/project/${slug}/members`);
 }
 
 async function getUserProjects(username: string): Promise<ModrinthProject[]> {
@@ -80,13 +103,25 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
   return body as T;
 }
 
+function getOrganizationURL(org: ModrinthOrganization) {
+  return `https://modrinth.com/organization/${org.slug}`;
+}
+
+function getUserURL(user: ModrinthUser) {
+  return `https://modrinth.com/user/${user.username}`;
+}
+
 const modrinth = {
   getProject,
+  getProjectOrganization,
+  getProjectMembers,
   getUserProjects,
   getUserProfile,
   getUserOrganizations,
   getOrganizationProjects,
-  searchProjects
+  searchProjects,
+  getOrganizationURL,
+  getUserURL
 }
 
 export default modrinth;

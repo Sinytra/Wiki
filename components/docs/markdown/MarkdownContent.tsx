@@ -9,7 +9,7 @@ export default async function MarkdownContent({content}: Props) {
 
   return (
     <article className="prose !max-w-3xl prose-h2:mt-8 dark:prose-invert">
-      <div dangerouslySetInnerHTML={({__html: htmlContent})} />
+      <div className="[&>_:first-child]:!mt-0" dangerouslySetInnerHTML={({__html: htmlContent})} />
     </article>
   );
 }
