@@ -6,6 +6,9 @@ import Link from "next/link";
 import {getModProjectInformation, ModTagIcons} from "@/components/docs/mod-info/modInfo";
 import SidebarTitle from "@/components/docs/sidebar-title";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
+import LinkTextButton from "@/components/ui/link-text-button";
+import MetadataGrid from "@/components/docs/mod-metadata/MetadataGrid";
+import MetadataRowKey from "@/components/docs/mod-metadata/MetadataRowKey";
 
 interface Props {
   mod: ModrinthProject;
@@ -40,7 +43,7 @@ export default async function ModInfo({mod}: Props) {
         Mod information
       </SidebarTitle>
 
-      <div className="mb-6 border border-accent m-2">
+      <div className="mb-6 border border-accent m-2 rounded-sm">
         <Image className="m-4 mx-auto rounded-sm" src={mod.icon_url} alt="Logo" width={128} height={128}/>
       </div>
 
@@ -50,42 +53,31 @@ export default async function ModInfo({mod}: Props) {
       </div>
 
       <div className="mx-1 mt-6">
-        <div
-          className="w-full grid grid-flow-row gap-y-3 text-sm [&>div]:inline-flex [&>div]:items-start [&>div]:justify-between [&_div:last-child]:font-light [&>div:last-child]:text-end">
-          <div>
-            <IconRow icon={UserIcon}>Author</IconRow>
+        <MetadataGrid>
+          <MetadataRowKey icon={UserIcon} title="Author">
             <div className="myItems flex flex-row flex-wrap justify-end">
               {info.authors.map((a, i) => (
-                <div>
-                  <Button key={a.name} variant="link" asChild className="p-0 h-fit font-light text-foreground">
-                    <Link href={a.url} target="_blank">{a.name}</Link>
-                  </Button>
+                <div key={a.name}>
+                  <LinkTextButton href={a.url} target="_blank">{a.name}</LinkTextButton>
                 </div>
               ))}
             </div>
-          </div>
-          <div>
-            <IconRow icon={TagIcon}>Tags</IconRow>
-            <div>
-              <ModTags tags={mod.categories}/>
-            </div>
-          </div>
-          <div>
-            <IconRow icon={MilestoneIcon}>Latest version</IconRow>
-            <div>{info.latest_version}</div>
-          </div>
-          <div>
-            <IconRow icon={CopyrightIcon}>License</IconRow>
+          </MetadataRowKey>
+          <MetadataRowKey icon={TagIcon} title="Tags">
+            <ModTags tags={mod.categories}/>
+          </MetadataRowKey>
+          <MetadataRowKey icon={MilestoneIcon} title="Latest version">
+            {info.latest_version}
+          </MetadataRowKey>
+          <MetadataRowKey icon={CopyrightIcon} title="License">
             {mod.license.url
               ?
-              <Button variant="link" asChild className="p-0 h-fit font-light text-foreground">
-                <Link href={mod.license.url} target="_blank">{info.license.name}</Link>
-              </Button>
+              <LinkTextButton href={mod.license.url}>{info.license.name}</LinkTextButton>
               :
-              <div>{info.license.name}</div>
+              <>{info.license.name}</>
             }
-          </div>
-        </div>
+          </MetadataRowKey>
+        </MetadataGrid>
       </div>
     </div>
   )

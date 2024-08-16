@@ -1,6 +1,6 @@
 import {promises as fs} from 'fs';
 import database from "@/lib/database";
-import {Dirent} from "node:fs";
+import dirTee, {DirectoryTree} from "directory-tree";
 
 const metadataFile = 'sinytra-wiki.json';
 
@@ -15,8 +15,18 @@ interface LocalDocumentationSource extends DocumentationSource {
   path: string;
 }
 
-async function readDocsTree(root: string): Promise<Dirent[]> {
-  return fs.readdir(`${process.cwd()}/${root}`, { withFileTypes: true });
+async function readDocsFile(source: DocumentationSource, path: string[]) {
+  if (!('path' in source)) {
+    throw Error('Remote paths are not yet implemented');
+  }
+
+  const filePath = `${process.cwd()}/${source.path}/${path.join('/')}.mdx`;
+  return await fs.readFile(filePath, 'utf8');
+}
+
+// TODO MUST BE CACHED NO MATTER WHAT (use file watcher?)
+async function readDocsTree(root: string): Promise<DirectoryTree> {
+  return dirTee(`${process.cwd()}/${root}`, { attributes: ['type'] });
 }
 
 async function getProjectSource(slug: string): Promise<DocumentationSource> {
@@ -65,7 +75,8 @@ const sources = {
   getLocalDocumentationSources,
   getProjectSource,
   readDocsTree,
-  isLocalSource
+  isLocalSource,
+  readDocsFile
 };
 
 export default sources;

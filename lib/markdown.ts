@@ -5,6 +5,8 @@ import rehypeStringify from "rehype-stringify";
 import rehypeSanitize, {defaultSchema} from 'rehype-sanitize';
 import rehypeRaw from "rehype-raw";
 import {Schema} from "hast-util-sanitize";
+import remarkFrontmatter from 'remark-frontmatter';
+import {matter} from 'vfile-matter';
 
 // Try to provide the same features as MR
 // https://support.modrinth.com/en/articles/8801962-advanced-markdown-formatting
@@ -174,6 +176,31 @@ const schema: Schema = {
   ]
 };
 
+export interface DocumentationMarkdown {
+  content: string;
+  metadata: Record<string, any>;
+}
+
+async function renderDocumentationMarkdown(content: string): Promise<DocumentationMarkdown> {
+  const file = await unified()
+    .use(remarkParse)
+    // .use(remarkGfm)
+    .use(remarkRehype, {allowDangerousHtml: true})
+    .use(rehypeRaw)
+    .use(rehypeSanitize, schema)
+    .use(rehypeStringify)
+    .use(remarkFrontmatter, ['yaml'])
+    .use(() => (_, file) => {
+      matter(file)
+    })
+    .process(content);
+
+  return {
+    content: String(file),
+    metadata: file.data.matter as Record<string, any>
+  };
+}
+
 async function renderMarkdown(content: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
@@ -189,7 +216,8 @@ async function renderMarkdown(content: string): Promise<string> {
 }
 
 const markdown = {
-  renderMarkdown
+  renderMarkdown,
+  renderDocumentationMarkdown
 };
 
 export default markdown;

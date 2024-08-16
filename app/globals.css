@@ -64,6 +64,11 @@ html {
     scrollbar-gutter: stable;
 }
 
+/*Prevent added margin when opening select*/
+html body[data-scroll-locked] {
+    margin-right: 0 !important;
+}
+
 .page-wrapper {
     padding-top: calc(var(--vp-nav-height) + 1rem);
     padding-bottom: 3.5rem;
