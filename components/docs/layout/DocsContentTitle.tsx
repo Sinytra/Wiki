@@ -1,8 +1,8 @@
 import {Badge} from "@/components/ui/badge";
 
-export default function ContentTitle({ isLocal, children }: { isLocal: boolean, children?: any }) {
+export default function DocsContentTitle({ isLocal, children }: { isLocal?: boolean, children?: any }) {
   return (
-    <div>
+    <div className="not-prose">
       <div className="flex flex-row justify-between items-end">
         <h1 className="text-foreground text-2xl">
           {children}

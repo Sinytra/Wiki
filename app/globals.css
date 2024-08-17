@@ -74,19 +74,18 @@ html body[data-scroll-locked] {
     padding-bottom: 3.5rem;
 }
 
-.prose img {
+.prose :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     display: inline;
     margin: 0;
 }
 
-.prose a {
+.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     text-decoration: none;
 }
 
-.prose hr {
+.prose :where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     margin: 20px 0;
 }
-
 
 @layer base {
     * {
@@ -95,6 +94,10 @@ html body[data-scroll-locked] {
 
     body {
         @apply bg-background text-foreground;
+    }
+
+    .prose :where(h2,h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        @apply !text-foreground !font-medium;
     }
 }
 

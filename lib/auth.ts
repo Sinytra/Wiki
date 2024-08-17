@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import type {Provider} from "@auth/core/providers";
-import modrinth from "@/lib/modrinth";
+import modrinth from "@/lib/platforms/modrinth";
 
 declare module "next-auth" {
   interface Session {

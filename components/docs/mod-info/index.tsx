@@ -1,26 +1,15 @@
-import {ModrinthProject} from "@/lib/modrinth";
 import Image from "next/image";
 import {CopyrightIcon, ExternalLinkIcon, MilestoneIcon, TagIcon, UserIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import Link from "next/link";
 import {getModProjectInformation, ModTagIcons} from "@/components/docs/mod-info/modInfo";
-import SidebarTitle from "@/components/docs/sidebar-title";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
 import LinkTextButton from "@/components/ui/link-text-button";
 import MetadataGrid from "@/components/docs/mod-metadata/MetadataGrid";
 import MetadataRowKey from "@/components/docs/mod-metadata/MetadataRowKey";
+import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
+import {ModProject} from "@/lib/platforms";
 
 interface Props {
-  mod: ModrinthProject;
-}
-
-function IconRow({icon: Icon, children}: { icon: any, children: any }) {
-  return (
-    <div className="inline-flex items-center whitespace-nowrap gap-2">
-      <Icon className="w-4 h-4"/>
-      <span className="font-medium text-foreground">{children}</span>
-    </div>
-  )
+  mod: ModProject;
 }
 
 function ModTags({tags}: { tags: string[] }) {
@@ -39,9 +28,9 @@ export default async function ModInfo({mod}: Props) {
 
   return (
     <div className="flex flex-col">
-      <SidebarTitle extra={<MutedLinkIconButton icon={ExternalLinkIcon} href={`https://modrinth.com/mod/${mod.slug}`} />}>
+      <DocsSidebarTitle extra={<MutedLinkIconButton icon={ExternalLinkIcon} href={`https://modrinth.com/mod/${mod.slug}`} />}>
         Mod information
-      </SidebarTitle>
+      </DocsSidebarTitle>
 
       <div className="mb-6 border border-accent m-2 rounded-sm">
         <Image className="m-4 mx-auto rounded-sm" src={mod.icon_url} alt="Logo" width={128} height={128}/>

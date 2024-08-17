@@ -27,6 +27,7 @@ export default async function Header() {
           <nav className="flex flex-row">
             <HeaderLink href="/">Home</HeaderLink>
             <HeaderLink href="/browse">Browse</HeaderLink>
+            <HeaderLink href="/about">About</HeaderLink>
           </nav>
 
           {session == null

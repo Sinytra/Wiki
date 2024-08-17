@@ -1,18 +1,12 @@
-import {unified} from "unified";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-import rehypeSanitize, {defaultSchema} from 'rehype-sanitize';
-import rehypeRaw from "rehype-raw";
-import {Schema} from "hast-util-sanitize";
-import remarkFrontmatter from 'remark-frontmatter';
-import {matter} from 'vfile-matter';
 
 // Try to provide the same features as MR
 // https://support.modrinth.com/en/articles/8801962-advanced-markdown-formatting
 
 // https://github.com/leizongmin/js-xss/blob/master/dist/xss.js#L12
-const schema: Schema = {
+import {Schema} from "hast-util-sanitize";
+import {defaultSchema} from "rehype-sanitize";
+
+export const markdownRehypeSchema: Schema = {
   ...defaultSchema,
   attributes: {
     a: ['target', 'href', 'title'],
@@ -175,49 +169,3 @@ const schema: Schema = {
     'video'
   ]
 };
-
-export interface DocumentationMarkdown {
-  content: string;
-  metadata: Record<string, any>;
-}
-
-async function renderDocumentationMarkdown(content: string): Promise<DocumentationMarkdown> {
-  const file = await unified()
-    .use(remarkParse)
-    // .use(remarkGfm)
-    .use(remarkRehype, {allowDangerousHtml: true})
-    .use(rehypeRaw)
-    .use(rehypeSanitize, schema)
-    .use(rehypeStringify)
-    .use(remarkFrontmatter, ['yaml'])
-    .use(() => (_, file) => {
-      matter(file)
-    })
-    .process(content);
-
-  return {
-    content: String(file),
-    metadata: file.data.matter as Record<string, any>
-  };
-}
-
-async function renderMarkdown(content: string): Promise<string> {
-  const file = await unified()
-    .use(remarkParse)
-    // .use(remarkFrontmatter)
-    // .use(remarkGfm)
-    .use(remarkRehype, {allowDangerousHtml: true})
-    .use(rehypeRaw)
-    .use(rehypeSanitize, schema)
-    .use(rehypeStringify)
-    .process(content);
-
-  return String(file);
-}
-
-const markdown = {
-  renderMarkdown,
-  renderDocumentationMarkdown
-};
-
-export default markdown;

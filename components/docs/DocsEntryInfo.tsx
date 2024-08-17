@@ -1,13 +1,13 @@
-import SidebarTitle from "@/components/docs/sidebar-title";
 import MetadataGrid from "@/components/docs/mod-metadata/MetadataGrid";
 import MetadataRowKey from "@/components/docs/mod-metadata/MetadataRowKey";
 import LinkTextButton from "@/components/ui/link-text-button";
-import {ModrinthProject} from "@/lib/modrinth";
 import {DocsEntryMetadata, ModContentType} from "@/lib/docs/metadata";
 import {BoxIcon} from "lucide-react";
+import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
+import {ModProject} from "@/lib/platforms";
 
 interface Props {
-  project: ModrinthProject;
+  project: ModProject;
   metadata: DocsEntryMetadata;
 }
 
@@ -21,9 +21,9 @@ const typeNames: { [key in ModContentType]: string } = {
 export default function DocsEntryInfo({ project, metadata }: Props) {
   return (
     <div className="flex flex-col mb-2">
-      <SidebarTitle>
+      <DocsSidebarTitle>
         Information
-      </SidebarTitle>
+      </DocsSidebarTitle>
 
       <div className="mb-6 border border-accent m-2 rounded-sm">
         <BoxIcon strokeWidth={1} className="m-4 mx-auto text-muted-foreground opacity-20" width={128} height={128}/>
@@ -36,7 +36,7 @@ export default function DocsEntryInfo({ project, metadata }: Props) {
             <LinkTextButton href={`/mod/${project.slug}`}>{project.name}</LinkTextButton>
           </MetadataRowKey>
           <MetadataRowKey title="ID">{metadata.id || 'Unknown'}</MetadataRowKey>
-          <MetadataRowKey title="Type">{typeNames[metadata.type] || typeNames['other']}</MetadataRowKey>
+          <MetadataRowKey title="Type">{metadata.type && typeNames[metadata.type] || typeNames['other']}</MetadataRowKey>
         </MetadataGrid>
       </div>
 

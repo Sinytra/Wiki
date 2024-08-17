@@ -1,4 +1,4 @@
-export default function SidebarTitle({ children, extra }: { children: any, extra?: any }) {
+export default function DocsSidebarTitle({ children, extra }: { children: any, extra?: any }) {
   return (
     <div>
       <div className="h-10 flex flex-row items-center justify-between">

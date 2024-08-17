@@ -1,8 +1,10 @@
+import {ModAuthor, ModProject, ModPlatformProvider} from "./universal";
+
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0';
 const modrinthApiBaseUrl: string = 'https://api.modrinth.com/v2'
 const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3'
 
-export interface ModrinthProject {
+interface ModrinthProject {
   slug: string;
   name: string;
   summary: string;
@@ -15,24 +17,24 @@ export interface ModrinthProject {
   project_types: string[];
 }
 
-export interface ModrinthProjectLicense {
+interface ModrinthProjectLicense {
   id: string;
   name: string | null;
   url: string | null;
 }
 
-export interface ModrinthMember {
+interface ModrinthMember {
   user: ModrinthUser;
 }
 
-export interface ModrinthUser {
+interface ModrinthUser {
   name: string;
   username: string;
   bio: string;
   avatar_url: string;
 }
 
-export interface ModrinthOrganization {
+interface ModrinthOrganization {
   name: string;
   slug: string;
   description: string;
@@ -44,8 +46,42 @@ interface SearchResponse {
   hits: ModrinthProject[];
 }
 
-async function getProject(slug: string): Promise<ModrinthProject> {
-  return fetchModrinthApiExperimental(`/project/${slug}`);
+async function getProject(slug: string): Promise<ModProject> {
+  const mrProject = await getModrinthProject(slug);
+  return {
+    slug: mrProject.slug,
+    name: mrProject.name,
+    summary: mrProject.summary,
+    description: mrProject.description,
+    icon_url: mrProject.icon_url,
+    categories: mrProject.categories,
+    game_versions: mrProject.game_versions,
+    license: {
+      id: mrProject.license.id,
+      name: mrProject.license.name,
+      url: mrProject.license.url
+    },
+    source: 'modrinth'
+  }
+}
+
+async function getProjectAuthors(slug: string): Promise<ModAuthor[]> {
+  const project = await getModrinthProject(slug);
+
+  if (project.organization) {
+    const org = await getProjectOrganization(project.slug);
+    return [{name: org.name, url: modrinth.getOrganizationURL(org)}];
+  }
+
+  const members = await getProjectMembers(project.slug);
+  return members.map(member => ({
+    name: member.user.name,
+    url: modrinth.getUserURL(member.user)
+  }));
+}
+
+async function getModrinthProject(slug: string): Promise<ModrinthProject> {
+  return fetchModrinthApiExperimental<ModrinthProject>(`/project/${slug}`);
 }
 
 async function getProjectOrganization(slug: string): Promise<ModrinthOrganization> {
@@ -115,12 +151,12 @@ function getUserURL(user: ModrinthUser) {
 
 async function isProjectMember(username: string, project: ModrinthProject): Promise<boolean> {
   if (project.organization) {
-    const org = await modrinth.getProjectOrganization(project.slug);
+    const org = await getProjectOrganization(project.slug);
     if (org.members.some(m => m.user.username === username)) {
       return true;
     }
   } else {
-    const members = await modrinth.getProjectMembers(project.slug);
+    const members = await getProjectMembers(project.slug);
     if (members.some(m => m.user.username === username)) {
       return true;
     }
@@ -133,10 +169,13 @@ function isValidProject(project: ModrinthProject): boolean {
   return project.project_types.includes('mod');
 }
 
+export const modrinthModPlatform: ModPlatformProvider = {
+  getProject,
+  getProjectAuthors
+}
+
 const modrinth = {
   getProject,
-  getProjectOrganization,
-  getProjectMembers,
   getUserProjects,
   getUserProfile,
   getUserOrganizations,

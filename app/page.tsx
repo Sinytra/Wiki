@@ -1,5 +1,5 @@
-import ModSearch from "../components/landing/mod-search";
-import DevStarter from "../components/landing/dev-starter";
+import DevStarter from "@/components/landing/DevStarter";
+import ModSearch from "@/components/landing/ModSearch";
 
 export default async function Home() {
   return <>

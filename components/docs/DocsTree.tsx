@@ -1,8 +1,13 @@
+import sources from "@/lib/docs/sources";
+import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import {DirectoryTree} from "directory-tree";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import LinkTextButton from "@/components/ui/link-text-button";
-import {Button} from "@/components/ui/button";
-import {HomeIcon} from "lucide-react";
+import ModHomepageLink from "@/components/docs/ModHomepageLink";
+
+interface Props {
+  slug: string;
+}
 
 function DirectoryTreeView({slug, tree, level, basePath}: {
   slug: string;
@@ -47,7 +52,7 @@ function DirectoryTreeView({slug, tree, level, basePath}: {
   )
 }
 
-export default function DocsFileTree({slug, tree, level, basePath}: {
+function DocsFileTree({slug, tree, level, basePath}: {
   slug: string;
   tree: DirectoryTree[];
   level: number;
@@ -61,10 +66,34 @@ export default function DocsFileTree({slug, tree, level, basePath}: {
 
     {availableFiles.map(file => (
       <div key={`${basePath}/${file.name}`} className="capitalize ml-[0.75rem] w-full pt-4 px-1">
+        {/*TODO Show active state*/}
         <LinkTextButton href={`/mod/${slug}/docs${basePath}/${file.name.split('.')[0]}`}>
           {file.name.split('.')[0].replace('_', ' ')}
         </LinkTextButton>
       </div>
     ))}
   </>
+}
+
+export default async function DocsTree({slug}: Props) {
+  const source = await sources.getProjectSource(slug);
+
+  const docsTree = await sources.readDocsTree(source);
+  const tree = (docsTree.children || []).filter(c => c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('('));
+
+  return (
+    <div className="flex flex-col">
+      <DocsSidebarTitle>
+        Documentation
+      </DocsSidebarTitle>
+
+      <ModHomepageLink slug={slug} />
+
+      <hr className="mt-2"/>
+
+      <div className="flex flex-col">
+        <DocsFileTree slug={slug} tree={tree} level={0} basePath={''}/>
+      </div>
+    </div>
+  );
 }

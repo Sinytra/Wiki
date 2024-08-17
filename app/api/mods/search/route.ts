@@ -1,5 +1,5 @@
 import {NextRequest} from "next/server";
-import modrinth from "@/lib/modrinth";
+import modrinth from "@/lib/platforms/modrinth";
 import database from "@/lib/database";
 import {ModSearchResult} from "@/lib/types/search";
 

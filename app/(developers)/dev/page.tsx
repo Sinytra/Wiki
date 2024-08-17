@@ -1,28 +1,17 @@
 import {auth} from "@/lib/auth";
-import modrinth, {ModrinthProject} from "@/lib/modrinth";
-import database from "@/lib/database";
-import ProfileSelect from "../../../components/dev/profile-select";
+import modrinth from "@/lib/platforms/modrinth";
 import {Session} from "next-auth";
-import {ActiveDevProfile, AvailableProfiles, DevProfile, SelectableProfile} from "@/lib/types/dev";
-import {revalidatePath} from "next/cache";
-import {redirect, RedirectType} from "next/navigation";
+import {AvailableProfiles, DevProfile} from "@/lib/types/dev";
+import {ProjectRegisterForm} from "@/components/dev/ProjectRegisterForm";
+import {ModProject} from "@/lib/platforms";
 
 function Profile({name, desc, avatar_url, projects, statuses}: {
   name: string,
   desc: string,
   avatar_url: string,
-  projects: ModrinthProject[],
+  projects: ModProject[],
   statuses: string[]
 }) {
-  async function enableProject(slug: string) {
-    'use server'
-
-    const project = await modrinth.getProject(slug);
-    if (await database.enableProject(project)) {
-      revalidatePath('/dev');
-    }
-  }
-
   return (
     <div>
       <div className="my-5 flex flex-row justify-between w-full">
@@ -50,10 +39,7 @@ function Profile({name, desc, avatar_url, projects, statuses}: {
                 ✅ Enabled
               </span>
               :
-              <form action={enableProject.bind(null, p.slug)}>
-                {/*TODO Show loading state*/}
-                <button type="submit">Enable</button>
-              </form>
+              <ProjectRegisterForm />
             }
           </div>
         ))}
@@ -85,35 +71,35 @@ async function getAvailableProfiles(session: Session): Promise<AvailableProfiles
   };
 }
 
-async function selectProfile(profiles: AvailableProfiles, profileId: string | null): Promise<ActiveDevProfile> {
-  if (profileId) {
-    const selectedOrg = profiles.organizations.find(o => o.id === profileId);
-    if (selectedOrg) {
-      const projects = await modrinth.getOrganizationProjects(selectedOrg.id);
-      return {...selectedOrg, projects};
-    } else {
-      redirect('/dev', RedirectType.replace);
-    }
-  }
-  const projects = await modrinth.getUserProjects(profiles.userProfile.id);
-  return {...profiles.userProfile, projects};
-}
+// async function selectProfile(profiles: AvailableProfiles, profileId: string | null): Promise<ActiveDevProfile> {
+//   if (profileId) {
+//     const selectedOrg = profiles.organizations.find(o => o.id === profileId);
+//     if (selectedOrg) {
+//       const projects = await modrinth.getOrganizationProjects(selectedOrg.id);
+//       return {...selectedOrg, projects};
+//     } else {
+//       redirect('/dev', RedirectType.replace);
+//     }
+//   }
+//   const projects = await modrinth.getUserProjects(profiles.userProfile.id);
+//   return {...profiles.userProfile, projects};
+// }
 
 export default async function Dev({searchParams}: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const session = (await auth())!;
 
   const availableProfiles = await getAvailableProfiles(session);
   const profileId = searchParams['profile'] as string | null;
-  const profile = await selectProfile(availableProfiles, profileId);
+  // const profile = await selectProfile(availableProfiles, profileId);
 
-  const selectableProfiles: SelectableProfile[] = [availableProfiles.userProfile, ...availableProfiles.organizations]
-    .map(p => ({id: p.id, name: p.name}));
-  const projects = profile.projects
-    .filter(modrinth.isValidProject)
-    .sort((a, b) => a.name.localeCompare(b.name));
+  // const selectableProfiles: SelectableProfile[] = [availableProfiles.userProfile, ...availableProfiles.organizations]
+  //   .map(p => ({id: p.id, name: p.name}));
+  // const projects = profile.projects
+  //   .filter(modrinth.isValidProject)
+    // .sort((a, b) => a.name.localeCompare(b.name));
 
-  const slugs = profile.projects.map(p => p.slug);
-  const statuses = await database.getProjectStatuses(slugs);
+  // const slugs = profile.projects.map(p => p.slug);
+  // const statuses = await database.getProjectStatuses(slugs);
 
   // TODO Stream data / show loading skeleton
   return (
@@ -121,13 +107,12 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
       <div className="flex flex-row justify-between">
         Project management dashboard
 
-        <ProfileSelect value={profile.id} defaultValue={availableProfiles.userProfile.id} options={selectableProfiles}/>
+        {/*<ProfileSelect value={profile.id} defaultValue={availableProfiles.userProfile.id} options={selectableProfiles}/>*/}
       </div>
 
       <hr className="my-2 border-neutral-600"/>
 
-      <Profile name={profile.name} desc={profile.description} avatar_url={profile.avatar_url} projects={projects}
-               statuses={statuses}/>
+      {/*<Profile name={profile.name} desc={profile.description} avatar_url={profile.avatar_url} projects={projects} statuses={statuses}/>*/}
 
       <hr className="my-2 border-neutral-600"/>
     </div>

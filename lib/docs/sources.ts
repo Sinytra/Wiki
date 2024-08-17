@@ -1,6 +1,7 @@
 import {promises as fs} from 'fs';
 import database from "@/lib/database";
 import dirTee, {DirectoryTree} from "directory-tree";
+import {ModPlatform} from "@/lib/platforms";
 
 const metadataFile = 'sinytra-wiki.json';
 
@@ -8,6 +9,8 @@ type SourceType = 'local' | 'github';
 
 interface DocumentationSource {
   id: string;
+  platform: ModPlatform;
+  slug: string;
   type: SourceType;
 }
 
@@ -25,7 +28,13 @@ async function readDocsFile(source: DocumentationSource, path: string[]) {
 }
 
 // TODO MUST BE CACHED NO MATTER WHAT (use file watcher?)
-async function readDocsTree(root: string): Promise<DirectoryTree> {
+async function readDocsTree(source: DocumentationSource): Promise<DirectoryTree> {
+  if (!('path' in source)) {
+    throw Error('Remote paths are not yet implemented');
+  }
+
+  const root = source.path;
+
   return dirTee(`${process.cwd()}/${root}`, { attributes: ['type'] });
 }
 
@@ -41,7 +50,7 @@ async function getProjectSource(slug: string): Promise<DocumentationSource> {
 
   const project = await database.getProject(slug);
   if (project) {
-    return {id: project.id, type: 'github'};
+    return {id: project.id, platform: project.source as ModPlatform, slug: project.slug, type: 'github'};
   }
 
   throw Error(`Project source not found for ${slug}`);
@@ -58,7 +67,7 @@ async function getLocalDocumentationSources(): Promise<DocumentationSource[]> {
     const file = await fs.readFile(`${process.cwd()}/${root}/${metadataFile}`, 'utf8');
     const data = JSON.parse(file);
 
-    return {id: data.id, type: 'local', path: root} satisfies LocalDocumentationSource;
+    return {id: data.id, platform: data.platform, slug: data.slug, type: 'local', path: root} satisfies LocalDocumentationSource;
   }));
 }
 

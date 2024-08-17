@@ -12,6 +12,12 @@ datasource db {
 }
 
 model Mod {
-  id        String   @id
-  createdAt DateTime @default(now())
+  id         String   @id
+  name       String
+  platform   String   @db.VarChar(50)
+  slug       String
+  source_url String   @unique
+  createdAt  DateTime @default(now())
+
+  @@index([name])
 }

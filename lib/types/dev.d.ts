@@ -1,5 +1,3 @@
-import {ModrinthProject} from "@/lib/modrinth";
-
 export interface SelectableProfile {
   id: string;
   name: string;
@@ -13,7 +11,7 @@ export interface DevProfile {
 }
 
 export interface ActiveDevProfile extends DevProfile {
-  projects: ModrinthProject[];
+  
 }
 
 export interface AvailableProfiles {

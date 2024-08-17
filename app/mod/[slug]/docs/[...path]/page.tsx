@@ -1,13 +1,13 @@
 import sources from "@/lib/docs/sources";
-import DocsMarkdownContent from "@/components/docs/docs-markdown-content";
-import ContentTitle from "@/components/docs/content-title";
-import markdown from "@/lib/markdown";
-import DocsTree from "@/components/docs/docs-tree";
 import ModInfo from "@/components/docs/mod-info";
-import ModDocsLayout from "@/components/docs/ModDocsLayout";
-import modrinth from "@/lib/modrinth";
+import ModDocsLayout from "@/components/docs/layout/ModDocsLayout";
+import modrinth from "@/lib/platforms/modrinth";
 import DocsEntryInfo from "@/components/docs/DocsEntryInfo";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
+import markdown from "@/lib/markdown";
+import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
+import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent";
+import DocsTree from "@/components/docs/DocsTree";
 
 export default async function ModDocsPage({params}: { params: { slug: string; path: string[] } }) {
   const project = await modrinth.getProject(params.slug);
@@ -27,9 +27,9 @@ export default async function ModDocsPage({params}: { params: { slug: string; pa
       }
     >
       <div className="flex flex-col">
-        <ContentTitle isLocal={source.type === 'local'}>
+        <DocsContentTitle isLocal={source.type === 'local'}>
           {markdownFile.metadata.title || 'MODID HERE'}
-        </ContentTitle>
+        </DocsContentTitle>
 
         <div>
           <DocsMarkdownContent htmlContent={markdownFile.content}/>
