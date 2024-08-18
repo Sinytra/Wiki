@@ -1,4 +1,5 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
+import tailwindScrollbar from 'tailwind-scrollbar';
 
 const config = {
   darkMode: ["class"],
@@ -21,7 +22,7 @@ const config = {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
+        ring: "var(--ring)",
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
@@ -33,7 +34,7 @@ const config = {
           foreground: "var(--secondary-foreground)",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
+          DEFAULT: "var(--destructive)",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
@@ -74,7 +75,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+    tailwindScrollbar({ nocompatible: true, preferredStrategy: 'pseudoelements' })
+  ],
 } satisfies Config
 
 export default config

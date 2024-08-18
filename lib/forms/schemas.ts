@@ -1,5 +1,8 @@
 import {z} from "zod";
 
 export const projectRegisterSchema = z.object({
-  source_url: z.string().url()
+  owner: z.string(),
+  repo: z.string(),
+  branch: z.string(),
+  path: z.string()
 });

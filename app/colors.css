@@ -586,18 +586,6 @@ TODO Change
 }
 
 /**
- * Component: Carbon Ads
- * -------------------------------------------------------------------------- */
-
-:root {
-  --vp-carbon-ads-text-color: var(--vp-c-text-1);
-  --vp-carbon-ads-poweredby-color: var(--vp-c-text-2);
-  --vp-carbon-ads-bg-color: var(--vp-c-bg-soft);
-  --vp-carbon-ads-hover-text-color: var(--vp-c-brand-1);
-  --vp-carbon-ads-hover-poweredby-color: var(--vp-c-text-1);
-}
-
-/**
   * Component: Local Search
   * -------------------------------------------------------------------------- */
 

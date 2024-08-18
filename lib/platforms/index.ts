@@ -24,11 +24,11 @@ async function getPlatformProject(source: ModPlatform, slug: string): Promise<Mo
 }
 
 async function getProject(mod: Mod): Promise<ModProject> {
-  return getPlatformProject(mod.source as ModPlatform, mod.id);
+  return getPlatformProject(mod.platform as ModPlatform, mod.id);
 }
 
 async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
-  return getModSourcePlatform(mod.source).getProjectAuthors(mod.slug);
+  return getModSourcePlatform(mod.platform).getProjectAuthors(mod.slug);
 }
 
 export default {

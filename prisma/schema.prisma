@@ -12,12 +12,20 @@ datasource db {
 }
 
 model Mod {
-  id         String   @id
-  name       String
-  platform   String   @db.VarChar(50)
-  slug       String
-  source_url String   @unique
-  createdAt  DateTime @default(now())
+  // Unique mod id, used internally to identify projects
+  id            String   @id
+  // Mod project name, used for search
+  name          String
+  // The mod distribution platform
+  platform      String   @db.VarChar(50)
+  // Unique identifier used by the mod platform
+  slug          String
+  // Documentation source url
+  source_repo   String
+  source_branch String
+  source_path   String
+  createdAt     DateTime @default(now())
 
+  @@unique([source_repo, source_path])
   @@index([name])
 }

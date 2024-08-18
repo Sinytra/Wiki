@@ -1,16 +1,19 @@
 import {auth} from "@/lib/auth";
-import modrinth from "@/lib/platforms/modrinth";
-import {Session} from "next-auth";
-import {AvailableProfiles, DevProfile} from "@/lib/types/dev";
 import {ProjectRegisterForm} from "@/components/dev/ProjectRegisterForm";
-import {ModProject} from "@/lib/platforms";
+import github from "@/lib/github/github";
 
-function Profile({name, desc, avatar_url, projects, statuses}: {
+interface ProfileProject {
+  id: string;
+  name: string;
+  description: string;
+  active: boolean;
+}
+
+function Profile({name, desc, avatar_url, projects}: {
   name: string,
-  desc: string,
+  desc?: string,
   avatar_url: string,
-  projects: ModProject[],
-  statuses: string[]
+  projects: ProfileProject[]
 }) {
   return (
     <div>
@@ -27,20 +30,18 @@ function Profile({name, desc, avatar_url, projects, statuses}: {
 
       <div className="flex flex-col divide-y divide-neutral-600">
         {projects.map(p => (
-          <div className="flex flex-row justify-between items-center gap-4" key={p.slug}>
+          <div className="flex flex-row justify-between items-center gap-4" key={p.id}>
             <div className="py-3 flex flex-col gap-2">
               <p className="text-foreground font-medium">{p.name}</p>
-              <p className="text-muted-foreground font-normal">{p.summary}</p>
+              <p className="text-muted-foreground font-normal min-h-6">{p.description}</p>
             </div>
 
-            {statuses.includes(p.slug)
-              ?
-              <span className="text-muted-foreground select-none whitespace-nowrap">
-                ✅ Enabled
-              </span>
-              :
-              <ProjectRegisterForm />
-            }
+            {/*{p.active*/}
+            {/*  ?*/}
+            {/*  <span className="text-muted-foreground select-none whitespace-nowrap">✅ Enabled</span>*/}
+            {/*  :*/}
+            {/*  <ProjectRegisterForm />*/}
+            {/*}*/}
           </div>
         ))}
       </div>
@@ -48,73 +49,31 @@ function Profile({name, desc, avatar_url, projects, statuses}: {
   )
 }
 
-async function getAvailableProfiles(session: Session): Promise<AvailableProfiles> {
-  const rawUser = await modrinth.getUserProfile(session.access_token);
-  const rawOrganizations = await modrinth.getUserOrganizations(session.user!.name!);
-
-  const userProfile: DevProfile = {
-    id: rawUser.username,
-    name: rawUser.username,
-    description: rawUser.bio,
-    avatar_url: rawUser.avatar_url
-  };
-  const organizations: DevProfile[] = rawOrganizations.map(o => ({
-    id: o.slug,
-    name: o.name,
-    description: o.description,
-    avatar_url: o.icon_url
-  }));
-
-  return {
-    userProfile,
-    organizations
-  };
-}
-
-// async function selectProfile(profiles: AvailableProfiles, profileId: string | null): Promise<ActiveDevProfile> {
-//   if (profileId) {
-//     const selectedOrg = profiles.organizations.find(o => o.id === profileId);
-//     if (selectedOrg) {
-//       const projects = await modrinth.getOrganizationProjects(selectedOrg.id);
-//       return {...selectedOrg, projects};
-//     } else {
-//       redirect('/dev', RedirectType.replace);
-//     }
-//   }
-//   const projects = await modrinth.getUserProjects(profiles.userProfile.id);
-//   return {...profiles.userProfile, projects};
-// }
-
 export default async function Dev({searchParams}: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const session = (await auth())!;
 
-  const availableProfiles = await getAvailableProfiles(session);
-  const profileId = searchParams['profile'] as string | null;
-  // const profile = await selectProfile(availableProfiles, profileId);
+  const profile = await github.getUserProfile(session.access_token);
 
-  // const selectableProfiles: SelectableProfile[] = [availableProfiles.userProfile, ...availableProfiles.organizations]
-  //   .map(p => ({id: p.id, name: p.name}));
-  // const projects = profile.projects
-  //   .filter(modrinth.isValidProject)
-    // .sort((a, b) => a.name.localeCompare(b.name));
+  const state = searchParams['setup_action'] !== undefined && searchParams['state'] !== undefined
+    ? JSON.parse(atob(searchParams['state'] as string))
+    : undefined;
+  const defaultValues = { owner: profile.login };
 
-  // const slugs = profile.projects.map(p => p.slug);
-  // const statuses = await database.getProjectStatuses(slugs);
+  const projects = [] as ProfileProject[];
 
-  // TODO Stream data / show loading skeleton
   return (
     <div>
       <div className="flex flex-row justify-between">
         Project management dashboard
 
-        {/*<ProfileSelect value={profile.id} defaultValue={availableProfiles.userProfile.id} options={selectableProfiles}/>*/}
+        <ProjectRegisterForm defaultValues={defaultValues} state={state} />
       </div>
 
       <hr className="my-2 border-neutral-600"/>
 
-      {/*<Profile name={profile.name} desc={profile.description} avatar_url={profile.avatar_url} projects={projects} statuses={statuses}/>*/}
+      <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url} projects={projects}/>
 
-      <hr className="my-2 border-neutral-600"/>
+      {projects.length > 0 && <hr className="my-2 border-neutral-600"/>}
     </div>
   )
 }

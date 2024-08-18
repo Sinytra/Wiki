@@ -18,7 +18,7 @@
         --muted-foreground: var(--vp-c-text-2);
         --accent: 240 4.8% 95.9%;
         --accent-foreground: 240 5.9% 10%;
-        --destructive: 0 84.2% 60.2%;
+        --destructive: var(--vp-c-danger-3);
         --destructive-foreground: 0 0% 98%;
         --border: 240 5.9% 90%;
         --input: 240 5.9% 90%;
@@ -46,11 +46,11 @@
         --muted-foreground: var(--vp-c-text-2);
         --accent: 240 3.7% 15.9%;
         --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
+        --destructive: var(--vp-c-danger-3);
         --destructive-foreground: 0 0% 98%;
         --border: 240 3.7% 15.9%;
         --input: 240 3.7% 15.9%;
-        --ring: 240 4.9% 83.9%;
+        --ring: var(--vp-c-text-3);
         --chart-1: 220 70% 50%;
         --chart-2: 160 60% 45%;
         --chart-3: 30 80% 55%;
@@ -98,6 +98,10 @@ html body[data-scroll-locked] {
 
     .prose :where(h2,h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
         @apply !text-foreground !font-medium;
+    }
+    
+    .slim-scrollbar {
+        @apply scrollbar scrollbar-w-1 scrollbar-thumb-muted-foreground scrollbar-thumb-rounded;
     }
 }
 

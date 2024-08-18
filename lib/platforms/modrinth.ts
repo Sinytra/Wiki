@@ -15,6 +15,11 @@ interface ModrinthProject {
   license: ModrinthProjectLicense;
   organization?: string;
   project_types: string[];
+  link_urls: Record<string, LinkUrl>;
+}
+
+interface LinkUrl {
+  url: string;
 }
 
 interface ModrinthProjectLicense {
@@ -48,6 +53,7 @@ interface SearchResponse {
 
 async function getProject(slug: string): Promise<ModProject> {
   const mrProject = await getModrinthProject(slug);
+
   return {
     slug: mrProject.slug,
     name: mrProject.name,
@@ -61,7 +67,9 @@ async function getProject(slug: string): Promise<ModProject> {
       name: mrProject.license.name,
       url: mrProject.license.url
     },
-    source: 'modrinth'
+    source_url: mrProject.link_urls?.source.url,
+
+    platform: 'modrinth'
   }
 }
 
@@ -94,12 +102,6 @@ async function getProjectMembers(slug: string): Promise<ModrinthMember[]> {
 
 async function getUserProjects(username: string): Promise<ModrinthProject[]> {
   return fetchModrinthApiExperimental(`/user/${username}/projects`)
-}
-
-async function getUserProfile(authToken: string): Promise<ModrinthUser> {
-  return fetchModrinthApi('/user', {
-    Authorization: authToken
-  });
 }
 
 async function searchProjects(query: string): Promise<ModrinthProject[]> {
@@ -176,8 +178,6 @@ export const modrinthModPlatform: ModPlatformProvider = {
 
 const modrinth = {
   getProject,
-  getUserProjects,
-  getUserProfile,
   getUserOrganizations,
   getOrganizationProjects,
   searchProjects,

@@ -14,8 +14,9 @@ export interface ModProject {
   categories: string[];
   game_versions: string[];
   license: ModProjectLicense;
+  source_url?: string;
 
-  source: ModPlatform;
+  platform: ModPlatform;
 }
 
 export interface ModProjectLicense {

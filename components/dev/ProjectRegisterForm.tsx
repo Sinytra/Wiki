@@ -6,7 +6,6 @@ import {z} from "zod"
 
 import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
 import {
   Dialog,
   DialogContent,
@@ -19,9 +18,11 @@ import {
 import {handleEnableProjectForm} from "@/lib/forms/actions";
 import {useFormStatus} from 'react-dom';
 import {Loader2Icon} from "lucide-react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
+import {Input} from "@/components/ui/input";
+import LinkTextButton from "@/components/ui/link-text-button";
 
 function SubmitButton() {
   const {pending} = useFormStatus();
@@ -34,21 +35,26 @@ function SubmitButton() {
   );
 }
 
-export function ProjectRegisterForm() {
-  const [open, setOpen] = useState(false);
+export function ProjectRegisterForm({defaultValues, state}: { defaultValues: any, state?: any }) {
+  const openDefault = state !== undefined;
+  const [open, setOpen] = useState(openDefault);
 
   const form = useForm<z.infer<typeof projectRegisterSchema>>({
-    resolver: zodResolver(projectRegisterSchema)
+    resolver: zodResolver(projectRegisterSchema),
+    defaultValues: defaultValues
   });
   const action: () => void = form.handleSubmit(async (data) => {
     const resp = await handleEnableProjectForm(data);
     if (resp.success) {
       setOpen(false);
-      form.reset();
       toast.success('Project registered successfully', {
         description: 'You can now navigate to the project\'s mod page'
-      })
-    } else {
+      });
+    } else if (resp.installation_url) {
+      form.setError('root.not_installed', {message: resp.installation_url})
+    } else if (resp.error) {
+      form.setError('root.custom', {message: resp.error});
+    } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-ignore
         form.setError(key, {message: resp.errors[key][0]});
@@ -57,9 +63,31 @@ export function ProjectRegisterForm() {
     return resp;
   });
 
+  useEffect(() => {
+    if (open) {
+      form.reset();
+    }
+  }, [open]);
+
+  // Prints a warning in console. Might wanna find a better way that doesn't re-add the values every time the modal opens
+  if (openDefault) {
+    useEffect(() => {
+      setTimeout(() => {
+        for (const value in state) {
+          // @ts-ignore
+          form.setValue(value, state[value]);
+        }
+      });
+    }, []);
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>Enable</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button variant="outline" size="sm">
+          Add Project
+        </Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Register project</DialogTitle>
@@ -69,34 +97,63 @@ export function ProjectRegisterForm() {
         </DialogHeader>
 
         <Form {...form}>
-          <form tabIndex={0} action={action} className="space-y-6">
-            {/*<FormField
+          <form tabIndex={0} action={action} className="focus:outline-none space-y-6">
+            <div className="flex flex-row items-center gap-2 w-full">
+              <FormField
+                control={form.control}
+                name="owner"
+                render={({field}) => (
+                  <FormItem>
+                    <FormLabel>Owner</FormLabel>
+                    <FormControl>
+                      <Input placeholder="ExampleUser" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      User / organization name.
+                    </FormDescription>
+                    <FormMessage/>
+                  </FormItem>
+                )}
+              />
+              <span>/</span>
+              <FormField
+                control={form.control}
+                name="repo"
+                render={({field}) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="ExampleMod" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      Repository name.
+                    </FormDescription>
+                    <FormMessage/>
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {form.formState.errors?.root?.not_installed?.message &&
+                <p className="text-destructive text-sm">
+                    Please first install our GitHub app on your repository <LinkTextButton
+                    className="!text-destructive !font-medium underline"
+                    href={form.formState.errors.root.not_installed.message}>here</LinkTextButton>.
+                </p>
+            }
+
+            <FormField
               control={form.control}
-              name="source"
+              name="branch"
               render={({field}) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>Source Platform</FormLabel>
+                <FormItem>
+                  <FormLabel>Branch</FormLabel>
                   <FormControl>
-                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value}
-                                className="flex flex-row gap-8">
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="modrinth"/>
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          Modrinth
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem disabled value="curseforge"/>
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          CurseForge
-                        </FormLabel>
-                      </FormItem>
-                    </RadioGroup>
+                    <Input placeholder="main" {...field} />
                   </FormControl>
+                  <FormDescription>
+                    Primary branch ref. You can specify additional branches to include in your metadata file.
+                  </FormDescription>
                   <FormMessage/>
                 </FormItem>
               )}
@@ -104,38 +161,24 @@ export function ProjectRegisterForm() {
 
             <FormField
               control={form.control}
-              name="slug"
+              name="path"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Project ID</FormLabel>
+                  <FormLabel>Path to documentation root</FormLabel>
                   <FormControl>
-                    <Input placeholder="examplemod" {...field} />
+                    <Input placeholder="/docs" {...field} />
                   </FormControl>
                   <FormDescription>
-                    The selected platform project's ID / slug.
-                  </FormDescription>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            />*/}
-
-            {/*TODO Replace with repo, branch and path selector*/}
-            <FormField
-              control={form.control}
-              name="source_url"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Project ID</FormLabel>
-                  <FormControl>
-                    <Input placeholder="https://github.com/Example/ExampleMod/tree/main/docs" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    The documentation source root. Must be a valid GitHub tree URL.
+                    Path to the folder containing the metadata file.
                   </FormDescription>
                   <FormMessage/>
                 </FormItem>
               )}
             />
+
+            {form.formState.errors.root?.custom?.message &&
+                <p className="text-destructive text-sm">{form.formState.errors.root.custom.message}</p>
+            }
 
             <DialogFooter>
               <SubmitButton/>
