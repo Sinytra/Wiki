@@ -26,14 +26,27 @@ async function unregisterProject(id: string) {
 }
 
 async function getProjects(repoNames: string[]) {
-  const projects = await prisma.mod.findMany({
+  return prisma.mod.findMany({
     where: {
       source_repo: {
         in: repoNames
       }
     }
   });
-  return projects;
+}
+
+async function searchProjects(query: string) {
+  return prisma.mod.findMany({
+    where: {
+      name: {
+        search: query.split(' ').map(v => v + ':*').join(' &#124; '),
+      }
+    },
+    select: {
+      id: true,
+      name: true
+    }
+  });
 }
 
 async function getProjectStatuses(slugs: string[]) {
@@ -63,7 +76,8 @@ const database = {
   getProjectStatuses,
   getProject,
   getProjects,
-  unregisterProject
+  unregisterProject,
+  searchProjects
 };
 
 export default database;
