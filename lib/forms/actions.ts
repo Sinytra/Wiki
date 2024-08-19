@@ -19,7 +19,7 @@ export async function handleEnableProjectForm(rawData: any) {
   }
 
   const data = validatedFields.data;
-  
+
   // Ensure app is installed on repository
   const installation = await githubApp.getInstallation(data.owner, data.repo, data.branch, data.path);
   // Prompt user to install app
@@ -32,14 +32,14 @@ export async function handleEnableProjectForm(rawData: any) {
 
   const branches = await githubApp.getRepoBranches(octokit, data.owner, data.repo);
   if (!branches.some(b => b.name === data.branch)) {
-    return {success: false, errors: { branch: ['Branch does not exist'] }};
-  } 
+    return {success: false, errors: {branch: ['Branch does not exist']}};
+  }
 
   // Read docs path
   const content = await githubApp.getRepoContents(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
 
   if (content === null) {
-    return {success: false, errors: { path: ['Invalid path provided'] }};
+    return {success: false, errors: {path: ['Invalid path provided']}};
   }
 
   // Parse metadata file
@@ -56,6 +56,15 @@ export async function handleEnableProjectForm(rawData: any) {
   }
 
   await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path);
+  revalidatePath('/dev');
+
+  return {success: true};
+}
+
+export async function handleDeleteProjectForm(id: string) {
+
+  await database.unregisterProject(id);
+
   revalidatePath('/dev');
 
   return {success: true};

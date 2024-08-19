@@ -25,7 +25,8 @@ async function getUserProfile(token: string): Promise<GitHubUserProfile> {
 }
 
 async function getUserRepositories(token: string): Promise<GitHubRepository[]> {
-  return await getPaginatedData(token, '/user/repos');
+  const octokit = new Octokit({auth: token});
+  return await getPaginatedData(octokit, '/user/repos');
 }
 
 async function getRepositoryFileContents(token: string, repo: string, path: string) {
@@ -45,6 +46,17 @@ async function makeApiRequestRaw(token: string, path: string, ...options: any[])
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
+    request: {
+      fetch: (...args: any[]) => {
+        return fetch(args[0], {
+          next: {
+            revalidate: 3600,
+            tags: ['github']
+          },
+          ...args[1]
+        })
+      }
+    },
     ...options
   });
   if (resp.status === 200) {
@@ -53,13 +65,13 @@ async function makeApiRequestRaw(token: string, path: string, ...options: any[])
   throw new Error('Error fetching github api');
 }
 
-async function getPaginatedData(token: string, url: string) {
+async function getPaginatedData(instance: Octokit, url: string) {
   const nextPattern = /(?<=<)([\S]*)(?=>; rel="Next")/i;
   let pagesRemaining: boolean = true;
   let data: any[] = [];
 
   while (pagesRemaining) {
-    const response = await makeApiRequestRaw(token, `GET ${url}`, {
+    const response = await instance.request(url, {
       per_page: 100
     });
 
@@ -105,7 +117,8 @@ function parseData(data: any) {
 const github = {
   getUserProfile,
   getUserRepositories,
-  getRepositoryFileContents
+  getRepositoryFileContents,
+  getPaginatedData
 };
 
 export default github;

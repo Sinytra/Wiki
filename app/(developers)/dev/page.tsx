@@ -1,19 +1,38 @@
 import {auth} from "@/lib/auth";
-import {ProjectRegisterForm} from "@/components/dev/ProjectRegisterForm";
 import github from "@/lib/github/github";
+import githubApp from "@/lib/github/githubApp";
+import database from "@/lib/database";
+import {Suspense} from "react";
+import ProfileProject from "@/components/dev/ProfileProject";
+import {ProjectRegisterForm} from "@/components/dev/ProjectRegisterForm";
 
-interface ProfileProject {
-  id: string;
-  name: string;
-  description: string;
-  active: boolean;
+async function ProfileProjects({owner}: { owner: string }) {
+  const repos = await githubApp.getAvailableRepositories(owner);
+  const projects = await database.getProjects(repos.map(r => r.full_name));
+
+  return (
+    <>
+      {projects.map(p => (
+        <Suspense key={p.id} fallback={<p>Loading profile...</p>}>
+          <ProfileProject mod={p}/>
+        </Suspense>
+      ))}
+      {projects.length === 0 &&
+          <div
+              className="w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 h-48 gap-3">
+              <span className="text-foreground font-medium">Looks like you haven't registered any projects yet</span>
+              <span className="text-muted-foreground">Start by adding a project from the top bar</span>
+          </div>
+      }
+    </>
+  )
 }
 
-function Profile({name, desc, avatar_url, projects}: {
+function Profile({name, desc, avatar_url, children}: {
   name: string,
   desc?: string,
   avatar_url: string,
-  projects: ProfileProject[]
+  children?: any
 }) {
   return (
     <div>
@@ -29,21 +48,7 @@ function Profile({name, desc, avatar_url, projects}: {
       <p className="text-xl border-b border-neutral-400 pb-2">Projects</p>
 
       <div className="flex flex-col divide-y divide-neutral-600">
-        {projects.map(p => (
-          <div className="flex flex-row justify-between items-center gap-4" key={p.id}>
-            <div className="py-3 flex flex-col gap-2">
-              <p className="text-foreground font-medium">{p.name}</p>
-              <p className="text-muted-foreground font-normal min-h-6">{p.description}</p>
-            </div>
-
-            {/*{p.active*/}
-            {/*  ?*/}
-            {/*  <span className="text-muted-foreground select-none whitespace-nowrap">✅ Enabled</span>*/}
-            {/*  :*/}
-            {/*  <ProjectRegisterForm />*/}
-            {/*}*/}
-          </div>
-        ))}
+        {children}
       </div>
     </div>
   )
@@ -57,23 +62,23 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
   const state = searchParams['setup_action'] !== undefined && searchParams['state'] !== undefined
     ? JSON.parse(atob(searchParams['state'] as string))
     : undefined;
-  const defaultValues = { owner: profile.login };
-
-  const projects = [] as ProfileProject[];
+  const defaultValues = {owner: profile.login};
 
   return (
     <div>
       <div className="flex flex-row justify-between">
         Project management dashboard
 
-        <ProjectRegisterForm defaultValues={defaultValues} state={state} />
+        <ProjectRegisterForm defaultValues={defaultValues} state={state}/>
       </div>
 
       <hr className="my-2 border-neutral-600"/>
 
-      <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url} projects={projects}/>
-
-      {projects.length > 0 && <hr className="my-2 border-neutral-600"/>}
+      <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url}>
+        <Suspense fallback={(<div>Loading profile projects...</div>)}>
+          <ProfileProjects owner={profile.login}/>
+        </Suspense>
+      </Profile>
     </div>
   )
 }

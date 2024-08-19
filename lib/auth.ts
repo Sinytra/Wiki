@@ -10,7 +10,7 @@ declare module "next-auth" {
 export const {handlers, signIn, signOut, auth} = NextAuth({
   providers: [GitHub({
     authorization: {
-      params: { scope: 'read:user user:email read:org' }
+      params: { scope: 'read:user read:org' }
     }
   })],
   callbacks: {

@@ -17,6 +17,25 @@ async function registerProject(id: string, name: string, platform: ModPlatform, 
   }
 }
 
+async function unregisterProject(id: string) {
+  return prisma.mod.delete({
+    where: {
+      id
+    }
+  });
+}
+
+async function getProjects(repoNames: string[]) {
+  const projects = await prisma.mod.findMany({
+    where: {
+      source_repo: {
+        in: repoNames
+      }
+    }
+  });
+  return projects;
+}
+
 async function getProjectStatuses(slugs: string[]) {
   const projects = await prisma.mod.findMany({
     select: {
@@ -42,7 +61,9 @@ async function getProject(slug: string) {
 const database = {
   registerProject,
   getProjectStatuses,
-  getProject
+  getProject,
+  getProjects,
+  unregisterProject
 };
 
 export default database;

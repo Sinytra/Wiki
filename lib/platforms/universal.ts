@@ -17,6 +17,7 @@ export interface ModProject {
   source_url?: string;
 
   platform: ModPlatform;
+  project_url: string;
 }
 
 export interface ModProjectLicense {

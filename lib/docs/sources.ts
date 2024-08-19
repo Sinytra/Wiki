@@ -50,7 +50,7 @@ async function getProjectSource(slug: string): Promise<DocumentationSource> {
 
   const project = await database.getProject(slug);
   if (project) {
-    return {id: project.id, platform: project.source as ModPlatform, slug: project.slug, type: 'github'};
+    return {id: project.id, platform: project.platform as ModPlatform, slug: project.slug, type: 'github'};
   }
 
   throw Error(`Project source not found for ${slug}`);

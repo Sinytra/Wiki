@@ -1,4 +1,4 @@
-import {ModAuthor, ModProject, ModPlatformProvider} from "./universal";
+import {ModAuthor, ModPlatformProvider, ModProject} from "./universal";
 
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0';
 const modrinthApiBaseUrl: string = 'https://api.modrinth.com/v2'
@@ -69,7 +69,8 @@ async function getProject(slug: string): Promise<ModProject> {
     },
     source_url: mrProject.link_urls?.source.url,
 
-    platform: 'modrinth'
+    platform: 'modrinth',
+    project_url: getProjectURL(mrProject.slug)
   }
 }
 
@@ -78,13 +79,13 @@ async function getProjectAuthors(slug: string): Promise<ModAuthor[]> {
 
   if (project.organization) {
     const org = await getProjectOrganization(project.slug);
-    return [{name: org.name, url: modrinth.getOrganizationURL(org)}];
+    return [{name: org.name, url: getOrganizationURL(org)}];
   }
 
   const members = await getProjectMembers(project.slug);
   return members.map(member => ({
     name: member.user.name,
-    url: modrinth.getUserURL(member.user)
+    url: getUserURL(member.user)
   }));
 }
 
@@ -151,22 +152,11 @@ function getUserURL(user: ModrinthUser) {
   return `https://modrinth.com/user/${user.username}`;
 }
 
-async function isProjectMember(username: string, project: ModrinthProject): Promise<boolean> {
-  if (project.organization) {
-    const org = await getProjectOrganization(project.slug);
-    if (org.members.some(m => m.user.username === username)) {
-      return true;
-    }
-  } else {
-    const members = await getProjectMembers(project.slug);
-    if (members.some(m => m.user.username === username)) {
-      return true;
-    }
-  }
-
-  return false;
+function getProjectURL(slug: string) {
+  return `https://modrinth.com/mod/${slug}`;
 }
 
+// TODO Validate type
 function isValidProject(project: ModrinthProject): boolean {
   return project.project_types.includes('mod');
 }
@@ -175,16 +165,3 @@ export const modrinthModPlatform: ModPlatformProvider = {
   getProject,
   getProjectAuthors
 }
-
-const modrinth = {
-  getProject,
-  getUserOrganizations,
-  getOrganizationProjects,
-  searchProjects,
-  getOrganizationURL,
-  getUserURL,
-  isProjectMember,
-  isValidProject
-}
-
-export default modrinth;
