@@ -17,6 +17,21 @@ const appInstance = new App({
   privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
 });
 
+async function getExistingInstallation(owner: string, repo: string): Promise<number> {
+  const app = new App({
+    appId: process.env.APP_AUTH_GITHUB_ID!,
+    privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
+  });
+  const appOctokit: Octokit = app.octokit;
+  try {
+    const response = await appOctokit.rest.apps.getRepoInstallation({owner, repo});
+
+    return response.data.id;
+  } catch (e: any) {
+    throw new Error(`Error getting app installation on repository ${owner}/${repo}`)
+  }
+}
+
 async function getInstallation(owner: string, repo: string, branch: string, path: string) {
   const app = new App({
     appId: process.env.APP_AUTH_GITHUB_ID!,
@@ -91,7 +106,8 @@ const githubApp = {
   getRepoContents,
   getRepoBranches,
   createInstance,
-  getAvailableRepositories
+  getAvailableRepositories,
+  getExistingInstallation
 };
 
 export default githubApp;

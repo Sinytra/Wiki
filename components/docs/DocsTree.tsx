@@ -22,13 +22,12 @@ function DirectoryTreeView({slug, tree, level, basePath}: {
   // const [values, setValues] = useState<string[]>([]);
 
   return (
-    <Accordion defaultValue={defaultValues} type="multiple"
-               style={{marginLeft: `${((level - 1) * 0.5)}rem`}} /*onValueChange={setValues}*/>
+    <Accordion defaultValue={defaultValues} type="multiple" style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
       {tree.map(dir => {
         const newBasePath = `${basePath}/${dir.path}`;
         return (
           <AccordionItem key={newBasePath} value={newBasePath} className="!border-none">
-            <AccordionTrigger className="capitalize border-b border-accent [&_svg]:text-muted-foreground">
+            <AccordionTrigger className="px-1 capitalize border-b border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none rounded-sm">
               {/*<span className="flex flex-row items-center gap-4 text-[15px]">
                     <div className="w-fit">
                       {values.includes(newBasePath)
@@ -81,7 +80,7 @@ export default async function DocsTree({slug}: Props) {
   const docsTree = await sources.readDocsTree(source);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-muted rounded-md px-2 pb-2">
       <DocsSidebarTitle>
         Documentation
       </DocsSidebarTitle>

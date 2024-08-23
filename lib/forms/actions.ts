@@ -7,6 +7,11 @@ import metadata from "@/lib/docs/metadata";
 import platforms, {ModProject} from "@/lib/platforms";
 import {Octokit} from "octokit";
 import database from "@/lib/database";
+import {signOut} from "@/lib/auth";
+
+export async function handleSignOut() {
+  await signOut({redirectTo: '/'});
+}
 
 export async function handleEnableProjectForm(rawData: any) {
   const validatedFields = projectRegisterSchema.safeParse(rawData)

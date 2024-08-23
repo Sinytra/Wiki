@@ -1,8 +1,9 @@
 import {promises as fs} from 'fs';
 import database from "@/lib/database";
-import dirTee, {DirectoryTree} from "directory-tree";
 import {ModPlatform} from "@/lib/platforms";
 import {unstable_cache} from "next/cache";
+import {localDocsSource} from "@/lib/docs/sources/localSource";
+import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 
 const metadataFile = 'sinytra-wiki.json';
 export const folderMetaFile = '_meta.json';
@@ -13,11 +14,24 @@ interface DocumentationSource {
   id: string;
   platform: ModPlatform;
   slug: string;
+
+  path: string;
   type: SourceType;
 }
 
-interface LocalDocumentationSource extends DocumentationSource {
-  path: string;
+export interface DocumentationSourceProvider<T extends DocumentationSource> {
+  readFileContents: (source: T, path: string) => Promise<string>;
+  readFileTree: (source: T) => Promise<FileTreeNode[]>;
+}
+
+export interface LocalDocumentationSource extends DocumentationSource {
+  type: 'local';
+}
+
+export interface RemoteDocumentationSource extends DocumentationSource {
+  type: 'github';
+  repo: string;
+  branch: string;
 }
 
 export interface FileTreeNode {
@@ -27,46 +41,72 @@ export interface FileTreeNode {
   children: FileTreeNode[]
 }
 
+const documentationProviders: { [key in SourceType]: DocumentationSourceProvider<any> } = {
+  local: localDocsSource,
+  github: githubDocsSource
+}
+
+function getDocumentationSourceProvider<T extends DocumentationSource>(source: DocumentationSource): DocumentationSourceProvider<T> {
+  const provider = documentationProviders[source.type];
+  if (!provider) {
+    throw new Error(`Unknown documentation source type '${source.type}'`);
+  }
+  return provider;
+}
+
 async function readDocsFile(source: DocumentationSource, path: string[]) {
-  if (!('path' in source)) {
-    throw Error('Remote paths are not yet implemented');
+  const provider = getDocumentationSourceProvider(source);
+  const content = await provider.readFileContents(source, `${path.join('/')}.mdx`);
+
+  if (!content) {
+    throw new Error(`Documentation file at ${path} not found`);
   }
 
-  const filePath = `${process.cwd()}/${source.path}/${path.join('/')}.mdx`;
-  return await fs.readFile(filePath, 'utf8');
+  return content;
 }
 
 async function readMetadataFile(source: DocumentationSource, path: string): Promise<Record<string, string>> {
-  if (!('path' in source)) {
-    throw Error('Remote paths are not yet implemented');
+  const provider = getDocumentationSourceProvider(source);
+  const content = await provider.readFileContents(source, path);
+
+  if (!content) {
+    throw new Error(`Metadata file at ${path} not found`);
   }
 
-  const filePath = `${process.cwd()}/${source.path}/${path}`;
   try {
-    const content = await fs.readFile(filePath, 'utf8');
     return JSON.parse(content);
   } catch (e) {
     return {};
   }
 }
 
-// TODO MUST BE CACHED NO MATTER WHAT (use file watcher?)
 async function readDocsTree(source: DocumentationSource): Promise<FileTreeNode[]> {
-  if (!('path' in source)) {
-    throw Error('Remote paths are not yet implemented');
+  // Do not cache local trees
+  if (source.type === 'local') {
+    return resolveDocsTree(source);
   }
 
-  const root = source.path;
+  const cache = unstable_cache(
+    async () => resolveDocsTree(source),
+    ['source', source.id],
+    {
+      tags: ['mod_source:' + source.id]
+    }
+  );
+  return await cache();
+}
 
-  const tree = dirTee(`${process.cwd()}/${root}`, {attributes: ['type']});
-  const filtered = (tree.children || [])
-    .filter(c =>
-      c.type === 'file' && c.name !== 'sinytra-wiki.json' && (c.name === folderMetaFile || c.name.endsWith('.mdx'))
-      || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
+async function resolveDocsTree(source: DocumentationSource): Promise<FileTreeNode[]> {
+  const provider = getDocumentationSourceProvider(source);
+  const converted = await provider.readFileTree(source);
+
+  const filtered = converted.filter(c =>
+    c.type === 'file' && c.name !== metadataFile && (c.name === folderMetaFile || c.name.endsWith('.mdx'))
+    || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
   return processFileTree(source, '', filtered);
 }
 
-async function processFileTree(source: DocumentationSource, root: string, tree: DirectoryTree[]): Promise<FileTreeNode[]> {
+async function processFileTree(source: DocumentationSource, root: string, tree: FileTreeNode[]): Promise<FileTreeNode[]> {
   const metaFile = tree.find(t => t.type === 'file' && t.name === folderMetaFile);
   const metadata = metaFile ? await readMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name) : undefined;
   const order = Object.keys(metadata || {});
@@ -75,9 +115,8 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
     .sort((a, b) => {
       if (!metadata) {
         // Show folders followed by files
-        return a.type.localeCompare(b.type); 
-      }
-      else if (!order.includes(a.name) || !order.includes(b.name)) {
+        return a.type.localeCompare(b.type);
+      } else if (!order.includes(a.name) || !order.includes(b.name)) {
         return 0;
       }
       return order.indexOf(a.name) - order.indexOf(b.name);
@@ -115,7 +154,15 @@ async function findProjectSource(slug: string): Promise<DocumentationSource> {
 
   const project = await database.getProject(slug);
   if (project) {
-    return {id: project.id, platform: project.platform as ModPlatform, slug: project.slug, type: 'github'};
+    return {
+      id: project.id,
+      platform: project.platform as ModPlatform,
+      slug: project.slug,
+      type: 'github',
+      repo: project.source_repo,
+      branch: project.source_branch,
+      path: project.source_path
+    } as RemoteDocumentationSource;
   }
 
   throw Error(`Project source not found for ${slug}`);
@@ -146,18 +193,11 @@ function enableLocalSources() {
   return process.env.LOCAL_DOCS_ROOTS !== undefined;
 }
 
-async function isLocalSource(slug: string): Promise<boolean> {
-  const source = await getProjectSource(slug);
-  return source.type === 'local';
-}
-
-const sources = {
-  getLocalDocumentationSources,
+const index = {
   getProjectSource,
   readDocsTree,
-  isLocalSource,
   readDocsFile,
   readMetadataFile
 };
 
-export default sources;
+export default index;

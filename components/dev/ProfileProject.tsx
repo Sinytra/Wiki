@@ -1,8 +1,9 @@
 import {DevProject} from "@/lib/types/dev";
 import platforms from "@/lib/platforms";
-import {BookMarkedIcon, GitBranchIcon, GlobeIcon, ServerIcon} from "lucide-react";
+import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon, ServerIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
+import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
 
 function Property({icon: Icon, children}: { icon: any, children: any }) {
   return (
@@ -24,7 +25,7 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
           <p className="text-muted-foreground font-normal min-h-6">{project.summary}</p>
         </div>
 
-        <img src={project.icon_url} alt="Project icon" width={96} height={96}/>
+        <img className="rounded-md" src={project.icon_url} alt="Project icon" width={96} height={96}/>
       </div>
 
       <hr/>
@@ -39,7 +40,10 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
           </Property>
         </div>
 
-        <ProjectDeletion id={mod.id} />
+        <div className="flex flex-row gap-4 items-center">
+          <MutedLinkIconButton variant="secondary" icon={ExternalLinkIcon} href={`/mod/${mod.id}`} />
+          <ProjectDeletion id={mod.id} />
+        </div>
       </div>
     </div>
     <hr className="border-neutral-600"/>
