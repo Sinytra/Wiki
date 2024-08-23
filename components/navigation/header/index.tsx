@@ -30,12 +30,7 @@ export default async function Header() {
             <HeaderLink href="/about">About</HeaderLink>
           </nav>
 
-          {session == null
-            ?
-            <div className={`${styles.socialLinks}`}>
-              <HeaderLink href="/auth/login">Login</HeaderLink>
-            </div>
-            :
+          {session !== null &&
             <>
               <div className={`${styles.socialLinks}`}>
                 <HeaderLink href="/dev">Dashboard</HeaderLink>
