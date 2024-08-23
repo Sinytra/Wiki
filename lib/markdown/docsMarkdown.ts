@@ -1,14 +1,10 @@
-import {unified} from "unified";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
-import rehypeStringify from "rehype-stringify";
-import remarkFrontmatter from "remark-frontmatter";
-import {matter} from "vfile-matter";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 
 import {markdownRehypeSchema} from "./contentFilter";
+import {compileMDX} from "next-mdx-remote/rsc";
+import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
+import {ReactElement} from "react";
 
 declare module 'vfile' {
   interface DataMap {
@@ -17,24 +13,36 @@ declare module 'vfile' {
 }
 
 export interface DocumentationMarkdown {
-  content: string;
+  content: ReactElement;
   metadata: DocsEntryMetadata;
 }
 
-async function renderDocumentationMarkdown(content: string): Promise<DocumentationMarkdown> {
-  const file = await unified()
-    .use(remarkParse)
-    .use(remarkRehype, {allowDangerousHtml: true})
-    .use(rehypeRaw)
-    .use(rehypeSanitize, markdownRehypeSchema)
-    .use(rehypeStringify)
-    .use(remarkFrontmatter, ['yaml'])
-    .use(() => (_, file) => matter(file))
-    .process(content);
+async function renderDocumentationMarkdown(source: string): Promise<DocumentationMarkdown> {
+  const components = {CraftingRecipe};
+
+  const {content, frontmatter} = await compileMDX({
+    source,
+    options: {
+      mdxOptions: {
+        rehypePlugins: [
+          [() => (tree: any) => {
+            const sanitizer = rehypeSanitize(markdownRehypeSchema);
+            const newTree = {...tree};
+            // TODO Ensure this is safe
+            // @ts-ignore
+            newTree.children = newTree.children.map((c: any) => c.type === 'mdxJsxFlowElement' && components[c.name] !== undefined ? c : sanitizer(c));
+            return newTree;
+          }, {}]
+        ]
+      },
+      parseFrontmatter: true
+    },
+    components
+  });
 
   return {
-    content: String(file),
-    metadata: file.data.matter || {}
+    content,
+    metadata: frontmatter || {}
   };
 }
 

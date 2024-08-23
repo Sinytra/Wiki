@@ -26,7 +26,7 @@ export default function RootLayout({
     <Providers>
       <Header/>
 
-      <div className="page-wrapper flex flex-1 min-h-[100vh]">
+      <div className="page-wrapper flex flex-1 min-h-[100vh] mx-2">
         {children}
       </div>
 

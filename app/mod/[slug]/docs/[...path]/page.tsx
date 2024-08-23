@@ -1,40 +1,28 @@
-import sources from "@/lib/docs/sources";
-import ModInfo from "@/components/docs/mod-info";
-import ModDocsLayout from "@/components/docs/layout/ModDocsLayout";
-import DocsEntryInfo from "@/components/docs/DocsEntryInfo";
-import {DocsEntryMetadata} from "@/lib/docs/metadata";
-import markdown from "@/lib/markdown";
-import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
-import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent";
-import DocsTree from "@/components/docs/DocsTree";
+import {Suspense} from "react";
+import DocsEntryPage from "@/components/docs/DocsEntryPage";
+import DocsLoadingSkeleton from "@/components/docs/DocsLoadingSkeleton";
+import {Metadata, ResolvingMetadata} from "next";
+import sources, {folderMetaFile} from "@/lib/docs/sources";
 import platforms from "@/lib/platforms";
 
-export default async function ModDocsPage({params}: { params: { slug: string; path: string[] } }) {
+export async function generateMetadata({ params }: { params: { slug: string; path: string[] } }, parent: ResolvingMetadata): Promise<Metadata> {
   const source = await sources.getProjectSource(params.slug);
   const project = await platforms.getPlatformProject(source.platform, source.slug);
 
-  const file = await sources.readDocsFile(source, params.path);
-  const markdownFile = await markdown.renderDocumentationMarkdown(file);
+  const folderPath = params.path.slice(0, params.path.length - 1);
+  const file = await sources.readMetadataFile(source, folderPath.join('/') + '/' + folderMetaFile);
+  const fileName = params.path[params.path.length - 1] + '.mdx';
+  const pageTitle = file[fileName];
 
+  return {
+    title: pageTitle ? `${pageTitle} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`
+  }
+}
+
+export default function ModDocsPage({params}: { params: { slug: string; path: string[] } }) {
   return (
-    <ModDocsLayout
-      leftPanel={<DocsTree slug={project.slug}/>}
-      rightPanel={
-        <div>
-          <DocsEntryInfo project={project} metadata={markdownFile.metadata as DocsEntryMetadata} />
-          <ModInfo mod={project}/>
-        </div>
-      }
-    >
-      <div className="flex flex-col">
-        <DocsContentTitle isLocal={source.type === 'local'}>
-          {markdownFile.metadata.title || 'MODID HERE'}
-        </DocsContentTitle>
-
-        <div>
-          <DocsMarkdownContent htmlContent={markdownFile.content}/>
-        </div>
-      </div>
-    </ModDocsLayout>
+    <Suspense fallback={<DocsLoadingSkeleton/>}>
+      <DocsEntryPage slug={params.slug} path={params.path} />
+    </Suspense>
   )
 }

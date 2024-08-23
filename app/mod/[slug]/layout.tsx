@@ -1,4 +1,6 @@
 import {redirect, RedirectType} from "next/navigation";
+import ModDocsBaseLayout from "@/components/docs/layout/ModDocsBaseLayout";
+import DocsTree from "@/components/docs/DocsTree";
 import sources from "@/lib/docs/sources";
 
 export default async function ModLayout({children, params}: Readonly<{
@@ -8,7 +10,11 @@ export default async function ModLayout({children, params}: Readonly<{
   try {
     await sources.getProjectSource(params.slug);
 
-    return <>{children}</>;
+    return (
+      <ModDocsBaseLayout leftPanel={<DocsTree slug={params.slug}/>}>
+        {children}
+      </ModDocsBaseLayout>
+    )
   } catch (e) {
     redirect('/', RedirectType.replace);
   }

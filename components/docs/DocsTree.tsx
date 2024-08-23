@@ -1,9 +1,8 @@
-import sources from "@/lib/docs/sources";
+import sources, {FileTreeNode} from "@/lib/docs/sources";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
-import {DirectoryTree} from "directory-tree";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
-import LinkTextButton from "@/components/ui/link-text-button";
 import ModHomepageLink from "@/components/docs/ModHomepageLink";
+import DocsEntryLink from "@/components/docs/DocsEntryLink";
 
 interface Props {
   slug: string;
@@ -11,7 +10,7 @@ interface Props {
 
 function DirectoryTreeView({slug, tree, level, basePath}: {
   slug: string;
-  tree: DirectoryTree[];
+  tree: FileTreeNode[];
   level: number;
   basePath: string
 }) {
@@ -19,13 +18,14 @@ function DirectoryTreeView({slug, tree, level, basePath}: {
     return <></>
   }
 
-  const defaultValues = tree.map(dir => `${basePath}/${dir.name}`);
+  const defaultValues = tree.map(dir => `${basePath}/${dir.path}`);
   // const [values, setValues] = useState<string[]>([]);
 
   return (
-    <Accordion defaultValue={defaultValues} type="multiple" style={{marginLeft: `${(level * 0.5)}rem`}} /*onValueChange={setValues}*/>
+    <Accordion defaultValue={defaultValues} type="multiple"
+               style={{marginLeft: `${((level - 1) * 0.5)}rem`}} /*onValueChange={setValues}*/>
       {tree.map(dir => {
-        const newBasePath = `${basePath}/${dir.name}`;
+        const newBasePath = `${basePath}/${dir.path}`;
         return (
           <AccordionItem key={newBasePath} value={newBasePath} className="!border-none">
             <AccordionTrigger className="capitalize border-b border-accent [&_svg]:text-muted-foreground">
@@ -54,23 +54,23 @@ function DirectoryTreeView({slug, tree, level, basePath}: {
 
 function DocsFileTree({slug, tree, level, basePath}: {
   slug: string;
-  tree: DirectoryTree[];
+  tree: FileTreeNode[];
   level: number;
   basePath: string
 }) {
-  const availableDirs = tree.filter(t => t.type === 'directory' && t.children);
-  const availableFiles = tree.filter(t => t.type === 'file');
-  
-  return <>
-    <DirectoryTreeView slug={slug} tree={availableDirs} level={level} basePath={basePath}/>
+  const offset = level > 0 ? '0.6rem' : 0;
 
-    {availableFiles.map(file => (
-      <div key={`${basePath}/${file.name}`} className="capitalize ml-[0.75rem] w-full pt-4 px-1">
-        {/*TODO Show active state*/}
-        <LinkTextButton href={`/mod/${slug}/docs${basePath}/${file.name.split('.')[0]}`}>
-          {file.name.split('.')[0].replace('_', ' ')}
-        </LinkTextButton>
-      </div>
+  return <>
+    {tree.map(file => (
+      file.type === 'directory'
+        ? <DirectoryTreeView key={`${basePath}/${file.path}`} slug={slug} tree={[file]} level={level + 1} basePath={basePath}/>
+        :
+        <div key={`${basePath}/${file.path}`} className="capitalize w-full pt-2"
+             style={{marginLeft: offset, paddingRight: offset}}>
+          <DocsEntryLink href={`/mod/${slug}/docs${basePath}/${file.path.split('.')[0]}`}>
+            {file.name.split('.')[0].replace('_', ' ')}
+          </DocsEntryLink>
+        </div>
     ))}
   </>
 }
@@ -79,7 +79,6 @@ export default async function DocsTree({slug}: Props) {
   const source = await sources.getProjectSource(slug);
 
   const docsTree = await sources.readDocsTree(source);
-  const tree = (docsTree.children || []).filter(c => c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('('));
 
   return (
     <div className="flex flex-col">
@@ -87,12 +86,12 @@ export default async function DocsTree({slug}: Props) {
         Documentation
       </DocsSidebarTitle>
 
-      <ModHomepageLink slug={slug} />
+      <ModHomepageLink slug={slug}/>
 
       <hr className="mt-2"/>
 
       <div className="flex flex-col">
-        <DocsFileTree slug={slug} tree={tree} level={0} basePath={''}/>
+        <DocsFileTree slug={slug} tree={docsTree} level={0} basePath={''}/>
       </div>
     </div>
   );
