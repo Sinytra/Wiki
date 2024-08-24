@@ -4,6 +4,7 @@ import {ModPlatform} from "@/lib/platforms";
 import {unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
+import cacheUtil from "@/lib/cacheUtil";
 
 const metadataFile = 'sinytra-wiki.json';
 export const folderMetaFile = '_meta.json';
@@ -90,7 +91,7 @@ async function readDocsTree(source: DocumentationSource): Promise<FileTreeNode[]
     async () => resolveDocsTree(source),
     ['source', source.id],
     {
-      tags: ['mod_source:' + source.id]
+      tags: [cacheUtil.getModDocsTreeCacheId(source.id)]
     }
   );
   return await cache();
@@ -136,7 +137,7 @@ async function getProjectSource(slug: string): Promise<DocumentationSource> {
     async () => findProjectSource(slug),
     [slug],
     {
-      tags: ['mod:' + slug]
+      tags: [cacheUtil.getModDocsSourceCacheId(slug)]
     }
   );
   return await cache();

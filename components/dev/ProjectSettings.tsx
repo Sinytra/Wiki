@@ -15,14 +15,15 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
-import {handleEnableProjectForm} from "@/lib/forms/actions";
+import {handleEditProjectForm} from "@/lib/forms/actions";
 import {useFormStatus} from 'react-dom';
-import {Loader2Icon} from "lucide-react";
+import {Loader2Icon, SettingsIcon} from "lucide-react";
 import {useEffect, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
 import LinkTextButton from "@/components/ui/link-text-button";
+import {DevProject} from "@/lib/types/dev";
 
 function SubmitButton() {
   const {pending} = useFormStatus();
@@ -30,25 +31,31 @@ function SubmitButton() {
   return (
     <Button type="submit" disabled={pending}>
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
-      Submit
+      Edit
     </Button>
   );
 }
 
-export default function ProjectRegisterForm({defaultValues, state}: { defaultValues: any, state?: any }) {
-  const openDefault = state !== undefined;
-  const [open, setOpen] = useState(openDefault);
+export default function ProjectSettings({mod}: { mod: DevProject }) {
+  const [open, setOpen] = useState(false);
 
+  const parts = mod.source_repo.split('/');
+  const defaultValues = {
+    owner: parts[0],
+    repo: parts[1],
+    branch: mod.source_branch,
+    path: mod.source_path
+  };
   const form = useForm<z.infer<typeof projectRegisterSchema>>({
     resolver: zodResolver(projectRegisterSchema),
     defaultValues: defaultValues
   });
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await handleEnableProjectForm(data) as any;
+    const resp = await handleEditProjectForm(data) as any;
     if (resp.success) {
       setOpen(false);
-      toast.success('Project registered successfully', {
-        description: 'You can now navigate to the project\'s mod page'
+      toast.success('Project updated successfully', {
+        description: 'You can now navigate to the updated project\'s mod page'
       });
     } else if (resp.installation_url) {
       form.setError('root.not_installed', {message: resp.installation_url})
@@ -69,30 +76,18 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
     }
   }, [open]);
 
-  // Prints a warning in console. Might wanna find a better way that doesn't re-add the values every time the modal opens
-  if (openDefault) {
-    useEffect(() => {
-      setTimeout(() => {
-        for (const value in state) {
-          // @ts-ignore
-          form.setValue(value, state[value]);
-        }
-      });
-    }, []);
-  }
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          Add Project
+        <Button variant="secondary" size="icon">
+          <SettingsIcon className="w-4 h-4" />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Register project</DialogTitle>
+          <DialogTitle>Edit project</DialogTitle>
           <DialogDescription>
-            Register a new project to the wiki.
+            Edit an existing project's settings.
           </DialogDescription>
         </DialogHeader>
 

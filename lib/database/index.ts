@@ -17,6 +17,15 @@ async function registerProject(id: string, name: string, platform: ModPlatform, 
   }
 }
 
+async function updateProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string) {
+  return prisma.mod.update({
+    where: {
+      id
+    },
+    data: {name, platform, slug, source_repo, source_branch, source_path}
+  });
+}
+
 async function unregisterProject(id: string) {
   return prisma.mod.delete({
     where: {
@@ -77,7 +86,8 @@ const database = {
   getProject,
   getProjects,
   unregisterProject,
-  searchProjects
+  searchProjects,
+  updateProject
 };
 
 export default database;

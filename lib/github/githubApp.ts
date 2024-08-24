@@ -2,6 +2,7 @@ import {App, Octokit} from "octokit";
 import {Api} from "@octokit/plugin-rest-endpoint-methods";
 import github from "@/lib/github/github";
 import {revalidateTag, unstable_cache} from "next/cache";
+import cacheUtil from "@/lib/cacheUtil";
 
 export interface RepoInstallationState {
   owner: string;
@@ -80,7 +81,7 @@ const getCachedAppOctokitInstance = unstable_cache(
   [],
   {
     revalidate: 6000,
-    tags: ['github_app_install']
+    tags: [cacheUtil.githubAppInstallId]
   }
 );
 
@@ -91,7 +92,7 @@ async function getAvailableRepositories(owner: string) {
 
     return await github.getPaginatedData(instance, 'GET /installation/repositories');
   } catch (e) {
-    revalidateTag('github_app_install');
+    revalidateTag(cacheUtil.githubAppInstallId);
     console.error(e);
     return [];
   }

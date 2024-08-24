@@ -1,9 +1,10 @@
 import {DevProject} from "@/lib/types/dev";
 import platforms from "@/lib/platforms";
-import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon, ServerIcon} from "lucide-react";
+import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon, ServerIcon, SettingsIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
+import ProjectSettings from "@/components/dev/ProjectSettings";
 
 function Property({icon: Icon, children}: { icon: any, children: any }) {
   return (
@@ -41,7 +42,8 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
         </div>
 
         <div className="flex flex-row gap-4 items-center">
-          <MutedLinkIconButton variant="secondary" icon={ExternalLinkIcon} href={`/mod/${mod.id}`} />
+          <MutedLinkIconButton variant="outline" icon={ExternalLinkIcon} href={`/mod/${mod.id}`} />
+          <ProjectSettings mod={mod} />
           <ProjectDeletion id={mod.id} />
         </div>
       </div>

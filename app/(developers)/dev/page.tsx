@@ -4,7 +4,7 @@ import githubApp from "@/lib/github/githubApp";
 import database from "@/lib/database";
 import {Suspense} from "react";
 import ProfileProject from "@/components/dev/ProfileProject";
-import {ProjectRegisterForm} from "@/components/dev/ProjectRegisterForm";
+import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
 
 async function ProfileProjects({owner}: { owner: string }) {
   const repos = await githubApp.getAvailableRepositories(owner);

@@ -8,12 +8,48 @@ import platforms, {ModProject} from "@/lib/platforms";
 import {Octokit} from "octokit";
 import database from "@/lib/database";
 import {signOut} from "@/lib/auth";
+import cacheUtil from "@/lib/cacheUtil";
 
 export async function handleSignOut() {
   await signOut({redirectTo: '/'});
 }
 
 export async function handleEnableProjectForm(rawData: any) {
+  const validated = await validateProjectFormData(rawData);
+  if ('success' in validated) {
+    return validated;
+  }
+  const {metadata, project, data} = validated;
+
+  await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path);
+  revalidatePath('/dev');
+
+  return {success: true};
+}
+
+export async function handleDeleteProjectForm(id: string) {
+
+  await database.unregisterProject(id);
+
+  revalidatePath('/dev');
+
+  return {success: true};
+}
+
+export async function handleEditProjectForm(rawData: any) {
+  const validated = await validateProjectFormData(rawData);
+  if ('success' in validated) {
+    return validated;
+  }
+  const {metadata, project, data} = validated;
+  await database.updateProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path);
+  revalidatePath('/dev');
+  cacheUtil.clearModCaches(metadata.id);
+
+  return {success: true};
+}
+
+async function validateProjectFormData(rawData: any) {
   const validatedFields = projectRegisterSchema.safeParse(rawData)
 
   if (!validatedFields.success) {
@@ -60,19 +96,7 @@ export async function handleEnableProjectForm(rawData: any) {
     return {success: false, error: 'Failed to verify project ownership'};
   }
 
-  await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path);
-  revalidatePath('/dev');
-
-  return {success: true};
-}
-
-export async function handleDeleteProjectForm(id: string) {
-
-  await database.unregisterProject(id);
-
-  revalidatePath('/dev');
-
-  return {success: true};
+  return {metadata, project, data};
 }
 
 function verifyProjectOwnership(project: ModProject, owner: string, repo: string): boolean {
