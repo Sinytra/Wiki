@@ -18,6 +18,33 @@ const appInstance = new App({
   privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
 });
 
+async function isRepositoryPublic(repo: string): Promise<boolean> {
+  const app = new App({
+    appId: process.env.APP_AUTH_GITHUB_ID!,
+    privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
+  });
+  const appOctokit: Octokit = app.octokit;
+
+  try {
+    const parts = repo.split('/');
+    const data = (await appOctokit.rest.repos.get({ owner: parts[0], repo: parts[1] })).data;
+    return !data.private && data.visibility === 'public';
+  } catch (e) {
+    // Private / not found
+  }
+
+  return false;
+}
+
+async function getFileModifiedDate(octokit: Octokit, owner: string, repo: string, branch: string, path: string): Promise<Date | null> {
+  const commits = await octokit.rest.repos.listCommits({ owner, repo, sha: branch, path, page: 1, per_page: 1 });
+  if (commits.data.length > 0 && commits.data[0].commit.committer?.date) {
+    return new Date(commits.data[0].commit.committer.date);
+  }
+
+  return null;
+}
+
 async function getExistingInstallation(owner: string, repo: string): Promise<number> {
   const app = new App({
     appId: process.env.APP_AUTH_GITHUB_ID!,
@@ -108,7 +135,9 @@ const githubApp = {
   getRepoBranches,
   createInstance,
   getAvailableRepositories,
-  getExistingInstallation
+  getExistingInstallation,
+  isRepositoryPublic,
+  getFileModifiedDate
 };
 
 export default githubApp;

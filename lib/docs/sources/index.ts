@@ -5,6 +5,7 @@ import {unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import cacheUtil from "@/lib/cacheUtil";
+import githubApp from "@/lib/github/githubApp";
 
 const metadataFile = 'sinytra-wiki.json';
 export const folderMetaFile = '_meta.json';
@@ -20,8 +21,14 @@ interface DocumentationSource {
   type: SourceType;
 }
 
+export interface DocumentationFile {
+  content: string;
+  edit_url: string | null;
+  updated_at: Date | null;
+}
+
 export interface DocumentationSourceProvider<T extends DocumentationSource> {
-  readFileContents: (source: T, path: string) => Promise<string>;
+  readFileContents: (source: T, path: string) => Promise<DocumentationFile>;
   readFileTree: (source: T) => Promise<FileTreeNode[]>;
 }
 
@@ -33,6 +40,7 @@ export interface RemoteDocumentationSource extends DocumentationSource {
   type: 'github';
   repo: string;
   branch: string;
+  editable: boolean;
 }
 
 export interface FileTreeNode {
@@ -55,7 +63,7 @@ function getDocumentationSourceProvider<T extends DocumentationSource>(source: D
   return provider;
 }
 
-async function readDocsFile(source: DocumentationSource, path: string[]) {
+async function readDocsFile(source: DocumentationSource, path: string[]): Promise<DocumentationFile> {
   const provider = getDocumentationSourceProvider(source);
   const content = await provider.readFileContents(source, `${path.join('/')}.mdx`);
 
@@ -68,14 +76,14 @@ async function readDocsFile(source: DocumentationSource, path: string[]) {
 
 async function readMetadataFile(source: DocumentationSource, path: string): Promise<Record<string, string>> {
   const provider = getDocumentationSourceProvider(source);
-  const content = await provider.readFileContents(source, path);
+  const file = await provider.readFileContents(source, path);
 
-  if (!content) {
+  if (!file) {
     throw new Error(`Metadata file at ${path} not found`);
   }
 
   try {
-    return JSON.parse(content);
+    return JSON.parse(file.content);
   } catch (e) {
     return {};
   }
@@ -155,6 +163,8 @@ async function findProjectSource(slug: string): Promise<DocumentationSource> {
 
   const project = await database.getProject(slug);
   if (project) {
+    const editable = await githubApp.isRepositoryPublic(project.source_repo); 
+
     return {
       id: project.id,
       platform: project.platform as ModPlatform,
@@ -162,7 +172,8 @@ async function findProjectSource(slug: string): Promise<DocumentationSource> {
       type: 'github',
       repo: project.source_repo,
       branch: project.source_branch,
-      path: project.source_path
+      path: project.source_path,
+      editable
     } as RemoteDocumentationSource;
   }
 

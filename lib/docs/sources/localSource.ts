@@ -1,5 +1,10 @@
 import dirTee, {DirectoryTree} from "directory-tree";
-import {DocumentationSourceProvider, FileTreeNode, LocalDocumentationSource} from "@/lib/docs/sources";
+import {
+  DocumentationFile,
+  DocumentationSourceProvider,
+  FileTreeNode,
+  LocalDocumentationSource
+} from "@/lib/docs/sources";
 import {promises as fs} from 'fs';
 
 async function readLocalDirectoryTree(source: LocalDocumentationSource): Promise<FileTreeNode[]> {
@@ -16,9 +21,11 @@ function convertDirectoryTree(tree: DirectoryTree[]): FileTreeNode[] {
   }));
 }
 
-async function readFileContents(source: LocalDocumentationSource, path: string): Promise<string> {
+async function readFileContents(source: LocalDocumentationSource, path: string): Promise<DocumentationFile> {
   const filePath = `${process.cwd()}/${source.path}/${path}`;
-  return fs.readFile(filePath, 'utf8');
+  const content = await fs.readFile(filePath, 'utf8');
+  const stat = await fs.stat(filePath);
+  return { content, edit_url: null, updated_at: stat.mtime }
 }
 
 export const localDocsSource: DocumentationSourceProvider<LocalDocumentationSource> = {

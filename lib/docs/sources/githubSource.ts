@@ -1,5 +1,10 @@
-import {DocumentationSourceProvider, FileTreeNode, RemoteDocumentationSource} from "@/lib/docs/sources";
-import githubApp, {RepositoryContent} from "@/lib/github/githubApp";
+import {
+  DocumentationFile,
+  DocumentationSourceProvider,
+  FileTreeNode,
+  RemoteDocumentationSource
+} from "@/lib/docs/sources";
+import githubApp from "@/lib/github/githubApp";
 
 async function readGitHubDirectoryTree(source: RemoteDocumentationSource): Promise<FileTreeNode[]> {
   const repoParts = source.repo.split('/');
@@ -18,20 +23,19 @@ async function readGitHubDirectoryTree(source: RemoteDocumentationSource): Promi
   });
 }
 
-async function readFileContents(source: RemoteDocumentationSource, path: string): Promise<string> {
-  const file = await readRepositoryContents(source as RemoteDocumentationSource, path);
-  if (file && 'content' in file) {
-    return Buffer.from(file.content, 'base64').toString('utf-8');
-  }
-  throw new Error(`Invalid file at path ${path}`);
-}
-
-async function readRepositoryContents(source: RemoteDocumentationSource, path?: string): Promise<RepositoryContent | null> {
+async function readFileContents(source: RemoteDocumentationSource, path: string): Promise<DocumentationFile> {
   const repoParts = source.repo.split('/');
   const installationId = await githubApp.getExistingInstallation(repoParts[0], repoParts[1]);
   const octokit = await githubApp.createInstance(installationId);
+  const filePath = source.path + (path ? '/' + path : '');
 
-  return await githubApp.getRepoContents(octokit, repoParts[0], repoParts[1], source.branch, source.path + (path ? '/' + path : ''));
+  const file = await githubApp.getRepoContents(octokit, repoParts[0], repoParts[1], source.branch, filePath);
+  if (file && 'content' in file) {
+    const content = Buffer.from(file.content, 'base64').toString('utf-8');
+    const updated_at = await githubApp.getFileModifiedDate(octokit, repoParts[0], repoParts[1], source.branch, filePath);
+    return { content, edit_url: file.html_url, updated_at };
+  }
+  throw new Error(`Invalid file at path ${path}`);
 }
 
 async function convertRepositoryContents(root: string, files: any[], contentGetter: (path: string) => Promise<any[]>): Promise<FileTreeNode[]> {
