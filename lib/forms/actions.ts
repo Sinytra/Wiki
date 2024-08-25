@@ -49,6 +49,7 @@ export async function handleEditProjectForm(rawData: any) {
   return {success: true};
 }
 
+// TODO Associate validation with user
 async function validateProjectFormData(rawData: any) {
   const validatedFields = projectRegisterSchema.safeParse(rawData)
 
