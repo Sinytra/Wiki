@@ -2,7 +2,7 @@ import {NextRequest} from "next/server";
 import cacheUtil from "@/lib/cacheUtil";
 import database from "@/lib/database";
 import {getHttpErrorDetailsURL} from "@/lib/utils";
-import verification from "@/lib/forms/verification";
+import verification from "@/lib/github/verification";
 
 export async function POST(request: NextRequest, { params }: { params: { slug: string } }) {
   // Expect authorization using GitHub user token
@@ -16,7 +16,8 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
     return Response.json({ message: 'Not found', details: getHttpErrorDetailsURL(404) }, { status: 404 });
   }
 
-  if (!(await verification.verifyProjectOwnership(mod, auth))) {
+  const parts = mod.source_repo.split('/');
+  if (!(await verification.verifyRepositoryOwnership(parts[0], parts[1], auth))) {
     return Response.json({ message: 'Verification error' }, { status: 401 });
   }
 

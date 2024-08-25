@@ -39,7 +39,7 @@ export default async function Header() {
                 <form
                   action={async () => {
                     "use server"
-                    await signOut({ redirectTo: '/' })
+                    await signOut({ redirectTo: '/' });
                   }}
                 >
                   <Button type="submit" variant="ghost" size="icon">

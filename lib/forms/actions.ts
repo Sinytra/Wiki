@@ -7,12 +7,10 @@ import metadata from "@/lib/docs/metadata";
 import platforms, {ModProject} from "@/lib/platforms";
 import {Octokit} from "octokit";
 import database from "@/lib/database";
-import {signOut} from "@/lib/auth";
+import {auth} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
-
-export async function handleSignOut() {
-  await signOut({redirectTo: '/'});
-}
+import verification from "@/lib/github/verification";
+import github from "@/lib/github/github";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -20,16 +18,22 @@ export async function handleEnableProjectForm(rawData: any) {
     return validated;
   }
   const {metadata, project, data} = validated;
+  const sourceRepo = `${data.owner}/${data.repo}`;
 
-  await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path);
+  const existing = await database.findExistingProject(metadata.id, sourceRepo, data.path);
+  if (existing != null) {
+    return {success: false, error: 'Project already exists.'};
+  }
+
+  await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, sourceRepo, data.branch, data.path);
   revalidatePath('/dev');
 
   return {success: true};
 }
 
 export async function handleDeleteProjectForm(id: string) {
-
   await database.unregisterProject(id);
+  cacheUtil.clearModCaches(id);
 
   revalidatePath('/dev');
 
@@ -42,14 +46,15 @@ export async function handleEditProjectForm(rawData: any) {
     return validated;
   }
   const {metadata, project, data} = validated;
+
   await database.updateProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path);
+
   revalidatePath('/dev');
   cacheUtil.clearModCaches(metadata.id);
 
   return {success: true};
 }
 
-// TODO Associate validation with user
 async function validateProjectFormData(rawData: any) {
   const validatedFields = projectRegisterSchema.safeParse(rawData)
 
@@ -61,6 +66,18 @@ async function validateProjectFormData(rawData: any) {
   }
 
   const data = validatedFields.data;
+
+  // Get authenticated GitHub user
+  const session = await auth();
+  if (session == null) {
+    return {success: false, error: 'Unauthenticated'};
+  }
+  const user = await github.getUserProfile(session.access_token);
+
+  // Validate user repository access
+  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
+    return {success: false, validation_error: 'User does not have access to repository.'};
+  }
 
   // Ensure app is installed on repository
   const installation = await githubApp.getInstallation(data.owner, data.repo, data.branch, data.path);
@@ -92,7 +109,6 @@ async function validateProjectFormData(rawData: any) {
 
   const project = await platforms.getPlatformProject(metadata.platform, metadata.slug);
 
-  // TODO Validate ownership n' stuff
   if (!process.env.NODE_ENV && !verifyProjectOwnership(project, data.owner, data.repo)) {
     return {success: false, error: 'Failed to verify project ownership'};
   }

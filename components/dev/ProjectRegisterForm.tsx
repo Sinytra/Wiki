@@ -16,24 +16,13 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import {handleEnableProjectForm} from "@/lib/forms/actions";
-import {useFormStatus} from 'react-dom';
-import {Loader2Icon} from "lucide-react";
+import * as React from "react";
 import {useEffect, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
 import LinkTextButton from "@/components/ui/link-text-button";
-
-function SubmitButton() {
-  const {pending} = useFormStatus();
-
-  return (
-    <Button type="submit" disabled={pending}>
-      {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
-      Submit
-    </Button>
-  );
-}
+import SubmitButton from "@/components/dev/SubmitButton";
 
 export default function ProjectRegisterForm({defaultValues, state}: { defaultValues: any, state?: any }) {
   const openDefault = state !== undefined;
@@ -51,7 +40,9 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
         description: 'You can now navigate to the project\'s mod page'
       });
     } else if (resp.installation_url) {
-      form.setError('root.not_installed', {message: resp.installation_url})
+      form.setError('root.not_installed', {message: resp.installation_url});
+    } else if (resp.validation_error) {
+      form.setError('root.validation_error', {message: resp.validation_error});
     } else if (resp.error) {
       form.setError('root.custom', {message: resp.error});
     } else if (resp.errors) {
@@ -133,6 +124,10 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
                 )}
               />
             </div>
+
+            {form.formState.errors?.root?.validation_error?.message &&
+              <p className="text-sm font-medium text-destructive">{form.formState.errors.root.validation_error.message}</p>
+            }
 
             {form.formState.errors?.root?.not_installed?.message &&
                 <p className="text-destructive text-sm">

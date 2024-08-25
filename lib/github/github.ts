@@ -7,30 +7,8 @@ export interface GitHubUserProfile {
   login: string;
 }
 
-export interface GitHubRepository {
-  name: string;
-  full_name: string;
-  description: string;
-  permissions: GitHubRepositoryPermissions;
-}
-
-export interface GitHubRepositoryPermissions {
-  admin: boolean;
-  push: boolean;
-  pull: boolean;
-}
-
 async function getUserProfile(token: string): Promise<GitHubUserProfile> {
   return makeApiRequest(token, 'GET /user');
-}
-
-async function getUserRepositories(token: string): Promise<GitHubRepository[]> {
-  const octokit = new Octokit({auth: token});
-  return await getPaginatedData(octokit, '/user/repos');
-}
-
-async function getRepositoryFileContents(token: string, repo: string, path: string) {
-  return makeApiRequest(token, `GET /repos/${repo}/contents/${path}`);
 }
 
 async function makeApiRequest<T>(token: string, path: string, ...options: any[]) {
@@ -116,8 +94,6 @@ function parseData(data: any) {
 
 const github = {
   getUserProfile,
-  getUserRepositories,
-  getRepositoryFileContents,
   getPaginatedData
 };
 

@@ -34,6 +34,17 @@ async function unregisterProject(id: string) {
   });
 }
 
+async function findExistingProject(id: string, source_repo: string, source_path: string) {
+  return prisma.mod.findFirst({
+    where: {
+      OR: [
+        {id},
+        {source_repo, source_path}
+      ]
+    }
+  });
+}
+
 async function getProjects(repoNames: string[]) {
   return prisma.mod.findMany({
     where: {
@@ -58,20 +69,6 @@ async function searchProjects(query: string) {
   });
 }
 
-async function getProjectStatuses(slugs: string[]) {
-  const projects = await prisma.mod.findMany({
-    select: {
-      id: true
-    },
-    where: {
-      id: {
-        in: slugs
-      }
-    }
-  });
-  return projects.map(p => p.id);
-}
-
 async function getProject(slug: string) {
   return prisma.mod.findUnique({
     where: {
@@ -82,12 +79,12 @@ async function getProject(slug: string) {
 
 const database = {
   registerProject,
-  getProjectStatuses,
   getProject,
   getProjects,
   unregisterProject,
   searchProjects,
-  updateProject
+  updateProject,
+  findExistingProject
 };
 
 export default database;
