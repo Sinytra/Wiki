@@ -6,6 +6,7 @@ import {localDocsSource} from "@/lib/docs/sources/localSource";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import cacheUtil from "@/lib/cacheUtil";
 import githubApp from "@/lib/github/githubApp";
+import localPreview from "@/lib/docs/localPreview";
 
 const metadataFile = 'sinytra-wiki.json';
 export const folderMetaFile = '_meta.json';
@@ -142,17 +143,17 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
 
 async function getProjectSource(slug: string): Promise<DocumentationSource> {
   const cache = unstable_cache(
-    async () => findProjectSource(slug),
-    [slug],
+    async (id: string, enableLocal: boolean) => findProjectSource(id, enableLocal),
+    [],
     {
       tags: [cacheUtil.getModDocsSourceCacheId(slug)]
     }
   );
-  return await cache();
+  return await cache(slug, enableLocalSources());
 }
 
-async function findProjectSource(slug: string): Promise<DocumentationSource> {
-  if (enableLocalSources()) {
+async function findProjectSource(slug: string, enableLocal: boolean): Promise<DocumentationSource> {
+  if (enableLocal) {
     const localSources = await getLocalDocumentationSources();
 
     const local = localSources.find(s => s.id === slug);
@@ -161,34 +162,44 @@ async function findProjectSource(slug: string): Promise<DocumentationSource> {
     }
   }
 
-  const project = await database.getProject(slug);
-  if (project) {
-    const editable = await githubApp.isRepositoryPublic(project.source_repo); 
+  // Disable remote sources in preview
+  if (!localPreview.isEnabled()) {
+    const project = await database.getProject(slug);
+    if (project) {
+      const editable = await githubApp.isRepositoryPublic(project.source_repo);
 
-    return {
-      id: project.id,
-      platform: project.platform as ModPlatform,
-      slug: project.slug,
-      type: 'github',
-      repo: project.source_repo,
-      branch: project.source_branch,
-      path: project.source_path,
-      editable
-    } as RemoteDocumentationSource;
+      return {
+        id: project.id,
+        platform: project.platform as ModPlatform,
+        slug: project.slug,
+        type: 'github',
+        repo: project.source_repo,
+        branch: project.source_branch,
+        path: project.source_path,
+        editable
+      } as RemoteDocumentationSource;
+    }
   }
 
   throw Error(`Project source not found for ${slug}`);
 }
 
 async function getLocalDocumentationSources(): Promise<DocumentationSource[]> {
-  if (!enableLocalSources()) {
-    return [];
-  }
+  const cache = unstable_cache(
+    async (paths: string) => computeLocalDocumentationSources(paths),
+    [],
+    {
+      tags: ['local_sources']
+    }
+  );
+  return await cache(process.env.LOCAL_DOCS_ROOTS!);
+}
 
-  const roots = process.env.LOCAL_DOCS_ROOTS!.split(';');
+async function computeLocalDocumentationSources(paths: string): Promise<DocumentationSource[]> {
+  const roots = paths!.split(';');
 
   return Promise.all(roots.map(async (root) => {
-    const file = await fs.readFile(`${process.cwd()}/${root}/${metadataFile}`, 'utf8');
+    const file = await fs.readFile(`${root}/${metadataFile}`, 'utf8');
     const data = JSON.parse(file);
 
     return {
@@ -209,7 +220,8 @@ const index = {
   getProjectSource,
   readDocsTree,
   readDocsFile,
-  readMetadataFile
+  readMetadataFile,
+  getLocalDocumentationSources
 };
 
 export default index;

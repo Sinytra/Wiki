@@ -8,7 +8,7 @@ import {
 import {promises as fs} from 'fs';
 
 async function readLocalDirectoryTree(source: LocalDocumentationSource): Promise<FileTreeNode[]> {
-  const tree = dirTee(`${process.cwd()}/${source.path}`, {attributes: ['type']});
+  const tree = dirTee(`${source.path}`, {attributes: ['type']});
   return convertDirectoryTree(tree.children || []);
 }
 
@@ -22,7 +22,7 @@ function convertDirectoryTree(tree: DirectoryTree[]): FileTreeNode[] {
 }
 
 async function readFileContents(source: LocalDocumentationSource, path: string): Promise<DocumentationFile> {
-  const filePath = `${process.cwd()}/${source.path}/${path}`;
+  const filePath = `${source.path}/${path}`;
   const content = await fs.readFile(filePath, 'utf8');
   const stat = await fs.stat(filePath);
   return { content, edit_url: null, updated_at: stat.mtime }
