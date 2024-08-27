@@ -13,11 +13,6 @@ export interface RepoInstallationState {
 
 export type RepositoryContent = Awaited<ReturnType<Api['rest']['repos']['getContent']>>['data'];
 
-const appInstance = new App({
-  appId: process.env.APP_AUTH_GITHUB_ID!,
-  privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
-});
-
 async function isRepositoryPublic(repo: string): Promise<boolean> {
   const app = new App({
     appId: process.env.APP_AUTH_GITHUB_ID!,
@@ -27,7 +22,7 @@ async function isRepositoryPublic(repo: string): Promise<boolean> {
 
   try {
     const parts = repo.split('/');
-    const data = (await appOctokit.rest.repos.get({ owner: parts[0], repo: parts[1] })).data;
+    const data = (await appOctokit.rest.repos.get({owner: parts[0], repo: parts[1]})).data;
     return !data.private && data.visibility === 'public';
   } catch (e) {
     // Private / not found
@@ -37,7 +32,7 @@ async function isRepositoryPublic(repo: string): Promise<boolean> {
 }
 
 async function getFileModifiedDate(octokit: Octokit, owner: string, repo: string, branch: string, path: string): Promise<Date | null> {
-  const commits = await octokit.rest.repos.listCommits({ owner, repo, sha: branch, path, page: 1, per_page: 1 });
+  const commits = await octokit.rest.repos.listCommits({owner, repo, sha: branch, path, page: 1, per_page: 1});
   if (commits.data.length > 0 && commits.data[0].commit.committer?.date) {
     return new Date(commits.data[0].commit.committer.date);
   }
@@ -61,10 +56,7 @@ async function getExistingInstallation(owner: string, repo: string): Promise<num
 }
 
 async function getInstallation(owner: string, repo: string, branch: string, path: string) {
-  const app = new App({
-    appId: process.env.APP_AUTH_GITHUB_ID!,
-    privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
-  });
+  const app = createAppInstance();
   const appOctokit: Octokit = app.octokit;
 
   try {
@@ -102,7 +94,7 @@ async function getRepoBranches(octokit: Octokit, owner: string, repo: string) {
 
 const getCachedAppOctokitInstance = unstable_cache(
   async (owner: string) => {
-    const response = await appInstance.octokit.rest.apps.getUserInstallation({username: owner});
+    const response = await createAppInstance().octokit.rest.apps.getUserInstallation({username: owner});
     return response.data.id;
   },
   [],
@@ -126,7 +118,14 @@ async function getAvailableRepositories(owner: string) {
 }
 
 async function createInstance(installationId: number): Promise<Octokit> {
-  return await appInstance.getInstallationOctokit(installationId);
+  return await createAppInstance().getInstallationOctokit(installationId);
+}
+
+function createAppInstance(): App {
+  return new App({
+    appId: process.env.APP_AUTH_GITHUB_ID!,
+    privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
+  });
 }
 
 const githubApp = {

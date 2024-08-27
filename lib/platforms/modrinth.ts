@@ -1,7 +1,7 @@
 import {ModAuthor, ModPlatformProvider, ModProject} from "./universal";
+import localPreview from "@/lib/docs/localPreview";
 
-const userAgent: string = 'Sinytra/modded-wiki/1.0.0';
-const modrinthApiBaseUrl: string = 'https://api.modrinth.com/v2'
+const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (localPreview.isEnabled() ? '/local' : '');
 const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3'
 
 interface ModrinthProject {
@@ -45,10 +45,6 @@ interface ModrinthOrganization {
   description: string;
   icon_url: string;
   members: ModrinthMember[];
-}
-
-interface SearchResponse {
-  hits: ModrinthProject[];
 }
 
 async function getProject(slug: string): Promise<ModProject> {
@@ -99,27 +95,6 @@ async function getProjectOrganization(slug: string): Promise<ModrinthOrganizatio
 
 async function getProjectMembers(slug: string): Promise<ModrinthMember[]> {
   return fetchModrinthApiExperimental(`/project/${slug}/members`);
-}
-
-async function getUserProjects(username: string): Promise<ModrinthProject[]> {
-  return fetchModrinthApiExperimental(`/user/${username}/projects`)
-}
-
-async function searchProjects(query: string): Promise<ModrinthProject[]> {
-  const resp = await fetchModrinthApiExperimental(`/search?query=${query}`) as SearchResponse;
-  return resp.hits;
-}
-
-async function getUserOrganizations(username: string): Promise<ModrinthOrganization[]> {
-  return fetchModrinthApiExperimental(`/user/${username}/organizations`);
-}
-
-async function getOrganizationProjects(slug: string): Promise<ModrinthProject[]> {
-  return fetchModrinthApiExperimental(`/organization/${slug}/projects`);
-}
-
-async function fetchModrinthApi<T>(path: string, headers?: any): Promise<T> {
-  return fetchModrinthApiInternal(modrinthApiBaseUrl, path, headers);
 }
 
 async function fetchModrinthApiExperimental<T>(path: string, headers?: any): Promise<T> {
