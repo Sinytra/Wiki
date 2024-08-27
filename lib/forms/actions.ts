@@ -74,16 +74,16 @@ async function validateProjectFormData(rawData: any) {
   }
   const user = await github.getUserProfile(session.access_token);
 
-  // Validate user repository access
-  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
-    return {success: false, validation_error: 'User does not have access to repository.'};
-  }
-
   // Ensure app is installed on repository
   const installation = await githubApp.getInstallation(data.owner, data.repo, data.branch, data.path);
   // Prompt user to install app
   if (installation && 'url' in installation) {
     return {success: false, installation_url: installation.url};
+  }
+
+  // Validate user repository access
+  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
+    return {success: false, validation_error: 'User does not have access to repository.'};
   }
 
   // Create auth instance

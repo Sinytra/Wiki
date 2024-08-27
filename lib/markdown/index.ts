@@ -20,7 +20,9 @@ async function renderMarkdown(content: string): Promise<string> {
   return String(file);
 }
 
-export default {
+const markdown = {
   renderMarkdown,
   ...docsMarkdown
 };
+
+export default markdown;

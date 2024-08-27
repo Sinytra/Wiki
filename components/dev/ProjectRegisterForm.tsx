@@ -58,19 +58,19 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
     if (open) {
       form.reset();
     }
-  }, [open]);
+  }, [form, open]);
 
   // Prints a warning in console. Might wanna find a better way that doesn't re-add the values every time the modal opens
-  if (openDefault) {
-    useEffect(() => {
+  useEffect(() => {
+    if (openDefault) {
       setTimeout(() => {
         for (const value in state) {
           // @ts-ignore
           form.setValue(value, state[value]);
         }
       });
-    }, []);
-  }
+    }
+  }, [form, openDefault, state]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -126,7 +126,7 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
             </div>
 
             {form.formState.errors?.root?.validation_error?.message &&
-              <p className="text-sm font-medium text-destructive">{form.formState.errors.root.validation_error.message}</p>
+                <p className="text-sm font-medium text-destructive">{form.formState.errors.root.validation_error.message}</p>
             }
 
             {form.formState.errors?.root?.not_installed?.message &&

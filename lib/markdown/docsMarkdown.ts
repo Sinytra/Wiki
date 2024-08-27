@@ -46,6 +46,8 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
   };
 }
 
-export default {
+const docsMarkdown = {
   renderDocumentationMarkdown
-}
+};
+
+export default docsMarkdown;

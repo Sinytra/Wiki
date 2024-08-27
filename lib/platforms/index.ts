@@ -5,12 +5,12 @@ import {modrinthModPlatform} from "./modrinth";
 
 export * from './universal';
 
-const platforms: { [key: string]: ModPlatformProvider } = {
+const providers: { [key: string]: ModPlatformProvider } = {
   modrinth: modrinthModPlatform
 }
 
 function getModSourcePlatform(id: string): ModPlatformProvider {
-  const source: ModPlatformProvider | undefined = platforms[id];
+  const source: ModPlatformProvider | undefined = providers[id];
 
   if (!source) {
     throw new Error(`Unknown mod source ${id}`);
@@ -31,8 +31,10 @@ async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
   return getModSourcePlatform(mod.platform).getProjectAuthors(mod.slug);
 }
 
-export default {
+const platforms = {
   getProject,
   getProjectAuthors,
   getPlatformProject
-}
+};
+
+export default platforms;

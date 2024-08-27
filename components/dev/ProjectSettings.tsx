@@ -66,7 +66,7 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
     if (open) {
       form.reset();
     }
-  }, [open]);
+  }, [form, open]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
