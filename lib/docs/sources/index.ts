@@ -13,7 +13,7 @@ export const folderMetaFile = '_meta.json';
 
 type SourceType = 'local' | 'github';
 
-interface DocumentationSource {
+export interface DocumentationSource {
   id: string;
   platform: ModPlatform;
   slug: string;
@@ -31,6 +31,7 @@ export interface DocumentationFile {
 export interface DocumentationSourceProvider<T extends DocumentationSource> {
   readFileContents: (source: T, path: string) => Promise<DocumentationFile>;
   readFileTree: (source: T) => Promise<FileTreeNode[]>;
+  readShallowFileTree: (source: T, path: string) => Promise<FileTreeNode[]>;
 }
 
 export interface LocalDocumentationSource extends DocumentationSource {
@@ -47,6 +48,7 @@ export interface RemoteDocumentationSource extends DocumentationSource {
 export interface FileTreeNode {
   name: string;
   path: string;
+  url?: string;
   type: 'directory' | 'file';
   children: FileTreeNode[]
 }
@@ -114,6 +116,11 @@ async function resolveDocsTree(source: DocumentationSource): Promise<FileTreeNod
     c.type === 'file' && c.name !== metadataFile && (c.name === folderMetaFile || c.name.endsWith('.mdx'))
     || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
   return processFileTree(source, '', filtered);
+}
+
+async function readShallowFileTree(source: DocumentationSource, path: string): Promise<FileTreeNode[]> {
+  const provider = getDocumentationSourceProvider(source);
+  return await provider.readShallowFileTree(source, path);
 }
 
 async function processFileTree(source: DocumentationSource, root: string, tree: FileTreeNode[]): Promise<FileTreeNode[]> {
@@ -192,7 +199,7 @@ async function getLocalDocumentationSources(): Promise<DocumentationSource[]> {
       tags: ['local_sources']
     }
   );
-  return await cache(process.env.LOCAL_DOCS_ROOTS!);
+  return await cache(process.env.LOCAL_DOCS_ROOTS || '');
 }
 
 async function computeLocalDocumentationSources(paths: string): Promise<DocumentationSource[]> {
@@ -220,6 +227,7 @@ const index = {
   getProjectSource,
   readDocsTree,
   readDocsFile,
+  readShallowFileTree,
   readMetadataFile,
   getLocalDocumentationSources
 };

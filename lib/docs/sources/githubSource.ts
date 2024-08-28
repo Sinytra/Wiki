@@ -6,21 +6,30 @@ import {
 } from "@/lib/docs/sources";
 import githubApp from "@/lib/github/githubApp";
 
-async function readGitHubDirectoryTree(source: RemoteDocumentationSource): Promise<FileTreeNode[]> {
+type FileProcessor = (f: any) => Record<string, any>;
+
+async function readFileTree(source: RemoteDocumentationSource): Promise<FileTreeNode[]> {
+  return readGitHubDirectoryTree(source);
+}
+
+// TODO Cache
+async function readGitHubDirectoryTree(source: RemoteDocumentationSource, path?: string, shallow?: boolean, processor?: FileProcessor): Promise<FileTreeNode[]> {
   const repoParts = source.repo.split('/');
   const installationId = await githubApp.getExistingInstallation(repoParts[0], repoParts[1]);
   const octokit = await githubApp.createInstance(installationId);
 
-  const content = await githubApp.getRepoContents(octokit, repoParts[0], repoParts[1], source.branch, source.path);
+  const contentPath = path ? `${source.path}/${path}` : source.path;
+  const content = await githubApp.getRepoContents(octokit, repoParts[0], repoParts[1], source.branch, contentPath);
   if (content === null || !Array.isArray(content)) {
     return [];
   }
 
-  const root = source.path.startsWith('/') ? source.path.substring(1) : source.path;
-  return convertRepositoryContents(root, content, async (path) => {
+  const root = contentPath.startsWith('/') ? contentPath.substring(1) : contentPath;
+  const recursiveResolver = shallow ? async () => [] : async (path: string) => {
     const c = await githubApp.getRepoContents(octokit, repoParts[0], repoParts[1], source.branch, path);
     return Array.isArray(c) ? c : [];
-  });
+  };
+  return convertRepositoryContents(root, content, recursiveResolver, processor);
 }
 
 async function readFileContents(source: RemoteDocumentationSource, path: string): Promise<DocumentationFile> {
@@ -33,21 +42,27 @@ async function readFileContents(source: RemoteDocumentationSource, path: string)
   if (file && 'content' in file) {
     const content = Buffer.from(file.content, 'base64').toString('utf-8');
     const updated_at = await githubApp.getFileModifiedDate(octokit, repoParts[0], repoParts[1], source.branch, filePath);
-    return { content, edit_url: file.html_url, updated_at };
+    return {content, edit_url: file.html_url, updated_at};
   }
   throw new Error(`Invalid file at path ${path}`);
 }
 
-async function convertRepositoryContents(root: string, files: any[], contentGetter: (path: string) => Promise<any[]>): Promise<FileTreeNode[]> {
+async function convertRepositoryContents(root: string, files: any[], contentGetter: (path: string) => Promise<any[]>, processor?: FileProcessor): Promise<FileTreeNode[]> {
   return Promise.all(files.filter(f => f.type === 'dir' || f.type === 'file').map(async f => ({
     name: f.name,
     path: f.path.substring(root.length),
     type: f.type === 'dir' ? 'directory' : 'file',
-    children: await convertRepositoryContents(root, await contentGetter(f.path), contentGetter)
+    children: await convertRepositoryContents(root, await contentGetter(f.path), contentGetter, processor),
+    ...(processor ? processor(f) : {})
   })));
 }
 
+async function readShallowFileTree(source: RemoteDocumentationSource, path: string): Promise<FileTreeNode[]> {
+  return await readGitHubDirectoryTree(source, path, true);
+}
+
 export const githubDocsSource: DocumentationSourceProvider<RemoteDocumentationSource> = {
-  readFileTree: readGitHubDirectoryTree,
-  readFileContents
+  readFileTree,
+  readFileContents,
+  readShallowFileTree
 };

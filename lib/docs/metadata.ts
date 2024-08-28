@@ -7,6 +7,8 @@ export interface DocsEntryMetadata {
   id?: string;
   type?: ModContentType;
   custom?: Record<string, string>;
+  icon?: string;
+  hide_icon?: boolean;
 }
 
 export interface DocumentationProjectMetadata {

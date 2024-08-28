@@ -75,10 +75,12 @@ async function getInstallation(owner: string, repo: string, branch: string, path
 }
 
 async function getRepoContents(octokit: Octokit, owner: string, repo: string, ref: string, path: string): Promise<RepositoryContent | null> {
+  const normalPath = path.endsWith('/') ? path.substring(0, path.length - 1) : path;
   try {
-    const resp = await octokit.rest.repos.getContent({owner, repo, ref, path});
+    const resp = await octokit.rest.repos.getContent({owner, repo, ref, path: normalPath, mediaType: normalPath.includes('.png') ? { format: 'base64' } : undefined });
     return resp.data;
   } catch (e) {
+    console.error('Error fetching GitHub repo', owner, repo, ref, normalPath, e);
     return null;
   }
 }

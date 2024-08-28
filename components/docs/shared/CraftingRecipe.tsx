@@ -9,10 +9,10 @@ interface Props {
 }
 
 // TODO Counts
-export default function CraftingRecipe({slots, result}: Props) {
+export default async function CraftingRecipe({slots, result}: Props) {
   const displaySlots = slots.slice(0, Math.min(slots.length, 9));
-  const assetSlots = displaySlots.map(slot => slot === null ? null : assets.getAssetURL(slot));
-  const resultAsset = assets.getAssetURL(result);
+  const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : assets.getAssetResource(slot)));
+  const resultAsset = await assets.getAssetResource(result);
 
   return (
     <div className="relative">
