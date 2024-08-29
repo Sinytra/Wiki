@@ -5,6 +5,7 @@ import {markdownRehypeSchema} from "./contentFilter";
 import {compileMDX} from "next-mdx-remote/rsc";
 import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
 import {ReactElement} from "react";
+import remarkGfm from 'remark-gfm';
 
 declare module 'vfile' {
   interface DataMap {
@@ -24,6 +25,7 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
     source,
     options: {
       mdxOptions: {
+        remarkPlugins: [remarkGfm],
         rehypePlugins: [
           [() => (tree: any) => {
             const sanitizer = rehypeSanitize(markdownRehypeSchema);

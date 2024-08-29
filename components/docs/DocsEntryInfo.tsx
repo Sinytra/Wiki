@@ -32,7 +32,8 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
 
       <div className="mb-6 border border-accent m-2 rounded-sm">
         {iconUrl
-          ? <img src={iconUrl.src} alt={resourceLocationToString(iconUrl.id)} width={128} height={128} className="m-4 mx-auto"/>
+          ? <img src={iconUrl.src} alt={resourceLocationToString(iconUrl.id)} width={128} height={128}
+                 className="m-4 mx-auto"/>
           : <BoxIcon strokeWidth={1} className="m-4 mx-auto text-muted-foreground opacity-20" width={128} height={128}/>
         }
       </div>
@@ -43,9 +44,14 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
           <MetadataRowKey title="Source Mod">
             <LinkTextButton href={`/mod/${project.slug}`}>{project.name}</LinkTextButton>
           </MetadataRowKey>
-          <MetadataRowKey title="ID">{metadata.id || 'Unknown'}</MetadataRowKey>
+          <MetadataRowKey title="ID">
+            <code>{metadata.id || 'Unknown'}</code>
+          </MetadataRowKey>
           <MetadataRowKey
             title="Type">{metadata.type && typeNames[metadata.type] || typeNames['other']}</MetadataRowKey>
+          {metadata.custom && Object.entries(metadata.custom).map(e => (
+            <MetadataRowKey key={e[0]} title={e[0]}>{e[1]}</MetadataRowKey>
+          ))}
         </MetadataGrid>
       </div>
 
