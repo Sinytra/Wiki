@@ -1,9 +1,11 @@
 import {unstable_cache} from "next/cache";
-import sources, {DocumentationSource} from "@/lib/docs/sources";
+import sources, {DocumentationSource, RemoteDocumentationSource} from "@/lib/docs/sources";
 import staticAssets from "@/lib/docs/assets/staticAssets";
 import githubAssets from "@/lib/docs/assets/githubAssets";
+import githubApp from "@/lib/github/githubApp";
 
 type SourceType = 'static' | 'github';
+const rawGithubUserContent: string = 'https://raw.githubusercontent.com';
 
 interface AssetSourceRoots {
   [key: string]: AssetSourceRoot
@@ -92,13 +94,21 @@ async function getKnownAssetRoots(): Promise<AssetSourceRoots> {
 
 // TODO Cache
 async function getDocumentationSourceAssets(source: DocumentationSource): Promise<AssetSourceRoots> {
-  const remote = source.type === 'github';
+  const isRemote = source.type === 'github';
+  let baseUrl: string | null = null;
+  if (isRemote) {
+    const remote = source as RemoteDocumentationSource;
+    if (await githubApp.isRepositoryPublic(remote.repo)) {
+      baseUrl = `${rawGithubUserContent}/${remote.repo}/${remote.branch}/${source.path}/`;
+    }
+  }
+
   const sourceAssets = await sources.readShallowFileTree(source, itemAssetBasePath);
   let roots: AssetSourceRoots = {};
   sourceAssets.filter(f => f.type === 'directory').forEach(f =>
     roots[f.name] = {
-      source: remote ? source : f.url!,
-      type: remote ? 'github' : 'static'
+      source: isRemote ? (baseUrl !== null ? baseUrl : source) : f.url!,
+      type: isRemote && baseUrl == null ? 'github' : 'static'
     }
   );
   return roots;
