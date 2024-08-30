@@ -12,7 +12,7 @@ async function resolveAsset(root: AssetSourceRoot<string>, id: ResourceLocation)
   const url = new URL(root.source);
   url.pathname += '/' + itemAssetBasePath + '/' + id.namespace + '/' + id.path + itemAssetExtension;
   const src = url.protocol === 'file:' ? await readLocalImage(url) : normalizeUrl(url.toString());
-  return { id, src };
+  return src === null ? null : { id, src };
 }
 
 const staticAssets: AssetProvider<string> = {

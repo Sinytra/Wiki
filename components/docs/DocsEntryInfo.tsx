@@ -45,7 +45,7 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
             <LinkTextButton href={`/mod/${project.slug}`}>{project.name}</LinkTextButton>
           </MetadataRowKey>
           <MetadataRowKey title="ID">
-            <code>{metadata.id || 'Unknown'}</code>
+            {metadata.id ? <code>{metadata.id}</code> : 'Unknown'} 
           </MetadataRowKey>
           <MetadataRowKey
             title="Type">{metadata.type && typeNames[metadata.type] || typeNames['other']}</MetadataRowKey>

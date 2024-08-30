@@ -1,8 +1,8 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
-import "./globals.css";
-import "./colors.css";
-import Header from "../components/navigation/header";
+import "../globals.css";
+import "../colors.css";
+import Header from "@/components/navigation/header";
 import Providers from "@/components/navigation/nav-progress-bar";
 import Footer from "@/components/navigation/footer";
 import {Toaster} from "@/components/ui/sonner";

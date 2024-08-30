@@ -6,6 +6,7 @@ import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
 import localPreview from "@/lib/docs/localPreview";
 import {Badge} from "@/components/ui/badge";
+import LanguageSelect from "@/components/navigation/LanguageSelect";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -40,12 +41,14 @@ export default async function Header() {
               <HeaderLink href="/about">About</HeaderLink>
             </nav>
 
+            <LanguageSelect />
+
             {session !== null &&
                 <>
-                    <div className={`${styles.socialLinks}`}>
+                    <div className={styles.socialLinks}>
                         <HeaderLink href="/dev">Dashboard</HeaderLink>
                     </div>
-                    <div className={`${styles.socialLinks}`}>
+                    <div className={styles.socialLinks}>
                         <form
                             action={async () => {
                               "use server"

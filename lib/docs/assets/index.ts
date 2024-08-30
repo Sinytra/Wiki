@@ -82,7 +82,11 @@ async function getAssetResource(location: string, source?: DocumentationSource):
   if (root) {
     const provider = assetProviders[root.type];
     if (provider) {
-      return provider.resolveAsset(root, resource);
+      try {
+        return provider.resolveAsset(root, resource);
+      } catch (e) {
+        console.error('Error resolving asset', location, e);
+      }
     }
   }
   return null;

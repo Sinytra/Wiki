@@ -2,9 +2,23 @@ import {NextRequest, NextResponse} from "next/server";
 
 import {auth} from "@/lib/auth";
 import localPreview from "@/lib/docs/localPreview";
+import {createI18nMiddleware} from "next-international/middleware";
+import {getAvailableLocales} from "@/locales/available";
+
+const I18nMiddleware = createI18nMiddleware({
+  locales: Object.keys(getAvailableLocales()),
+  defaultLocale: 'en',
+  urlMappingStrategy: 'rewriteDefault'
+});
+
+const authMiddlewareWrapper = auth((req) => {
+  if (req.auth) {
+    return I18nMiddleware(req);
+  }
+});
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+  matcher: ['/((?!api|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|.*\\.png$).*)'],
 }
 
 export function middleware(request: NextRequest, response: NextResponse) {
@@ -16,8 +30,8 @@ export function middleware(request: NextRequest, response: NextResponse) {
   }
 
   if (request.nextUrl.pathname.startsWith('/dev')) {
-    return auth(request as any, response as any);
+    return authMiddlewareWrapper(request as any, response as any);
   }
 
-  return NextResponse.next();
+  return I18nMiddleware(request);
 }
