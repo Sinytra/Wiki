@@ -66,10 +66,10 @@ function getDocumentationSourceProvider<T extends DocumentationSource>(source: D
   return provider;
 }
 
-async function readDocsFile(source: DocumentationSource, path: string[]): Promise<DocumentationFile> {
+async function readDocsFile(source: DocumentationSource, path: string[], locale?: string): Promise<DocumentationFile> {
   const provider = getDocumentationSourceProvider(source);
-  const content = await provider.readFileContents(source, `${path.join('/')}.mdx`);
 
+  const content = await readLocalizedFile(provider, source, `${path.join('/')}.mdx`, locale);
   if (!content) {
     throw new Error(`Documentation file at ${path} not found`);
   }
@@ -77,45 +77,53 @@ async function readDocsFile(source: DocumentationSource, path: string[]): Promis
   return content;
 }
 
-async function readMetadataFile(source: DocumentationSource, path: string): Promise<Record<string, string>> {
+async function readMetadataFile(source: DocumentationSource, path: string, locale?: string): Promise<Record<string, string>> {
   const provider = getDocumentationSourceProvider(source);
-  const file = await provider.readFileContents(source, path);
-
-  if (!file) {
-    throw new Error(`Metadata file at ${path} not found`);
-  }
 
   try {
+    const file = await readLocalizedFile(provider, source, path, locale);
     return JSON.parse(file.content);
   } catch (e) {
     return {};
   }
 }
 
-async function readDocsTree(source: DocumentationSource): Promise<FileTreeNode[]> {
+async function readLocalizedFile(provider: DocumentationSourceProvider<any>, source: DocumentationSource, path: string, locale?: string): Promise<DocumentationFile> {
+  if (locale) {
+    const localeFolder = `.translated/${locale}_${locale}/`;
+    try {
+      return await provider.readFileContents(source, localeFolder + path);
+    } catch (e) {
+      // fallback to default locale
+    }
+  }
+  return await provider.readFileContents(source, path);
+}
+
+async function readDocsTree(source: DocumentationSource, locale?: string): Promise<FileTreeNode[]> {
   // Do not cache local trees
   if (source.type === 'local') {
-    return resolveDocsTree(source);
+    return resolveDocsTree(source, locale);
   }
 
   const cache = unstable_cache(
-    async () => resolveDocsTree(source),
+    async (locale?: string) => resolveDocsTree(source, locale),
     ['source', source.id],
     {
       tags: [cacheUtil.getModDocsTreeCacheId(source.id)]
     }
   );
-  return await cache();
+  return await cache(locale);
 }
 
-async function resolveDocsTree(source: DocumentationSource): Promise<FileTreeNode[]> {
+async function resolveDocsTree(source: DocumentationSource, locale?: string): Promise<FileTreeNode[]> {
   const provider = getDocumentationSourceProvider(source);
   const converted = await provider.readFileTree(source);
 
   const filtered = converted.filter(c =>
     c.type === 'file' && c.name !== metadataFile && (c.name === folderMetaFile || c.name.endsWith('.mdx'))
     || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
-  return processFileTree(source, '', filtered);
+  return processFileTree(source, '', filtered, locale);
 }
 
 async function readShallowFileTree(source: DocumentationSource, path: string): Promise<FileTreeNode[]> {
@@ -123,9 +131,9 @@ async function readShallowFileTree(source: DocumentationSource, path: string): P
   return await provider.readShallowFileTree(source, path);
 }
 
-async function processFileTree(source: DocumentationSource, root: string, tree: FileTreeNode[]): Promise<FileTreeNode[]> {
+async function processFileTree(source: DocumentationSource, root: string, tree: FileTreeNode[], locale?: string): Promise<FileTreeNode[]> {
   const metaFile = tree.find(t => t.type === 'file' && t.name === folderMetaFile);
-  const metadata = metaFile ? await readMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name) : undefined;
+  const metadata = metaFile ? await readMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name, locale) : undefined;
   const order = Object.keys(metadata || {});
   return Promise.all(tree
     .filter(f => f.type !== 'file' || f.name !== folderMetaFile)
@@ -143,7 +151,7 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
         path: entry.name,
         name: metadata && metadata[entry.name] || entry.name,
         type: entry.type,
-        children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children) : []
+        children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : []
       }
     )));
 }

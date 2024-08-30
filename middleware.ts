@@ -3,7 +3,7 @@ import {NextRequest, NextResponse} from "next/server";
 import {auth} from "@/lib/auth";
 import localPreview from "@/lib/docs/localPreview";
 import {createI18nMiddleware} from "next-international/middleware";
-import {getAvailableLocales} from "@/locales/available";
+import {getAvailableLocales} from "@/lib/locales/available";
 
 const I18nMiddleware = createI18nMiddleware({
   locales: Object.keys(getAvailableLocales()),

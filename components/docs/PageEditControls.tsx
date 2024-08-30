@@ -7,7 +7,7 @@ const LocalDateTime = dynamic(() => import("@/components/util/LocalDateTime"), {
 export default function PageEditControls({edit_url, updated_at}: { edit_url: string | null, updated_at: Date | null }) {
   return (
     <div className="mt-auto">
-      <hr className="my-2 border-neutral-600"/>
+      <hr className="mt-4 mb-2 border-neutral-600"/>
 
       <div className="px-1 py-2 pb-0 flex flex-col items-start gap-3">
         {edit_url &&

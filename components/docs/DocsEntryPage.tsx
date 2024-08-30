@@ -8,12 +8,14 @@ import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent"
 import platforms from "@/lib/platforms";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import PageEditControls from "@/components/docs/PageEditControls";
+import {getCurrentLocale} from "@/lib/locales/server";
 
 export default async function DocsEntryPage({slug, path}: { slug: string; path: string[] }) {
+  const locale = getCurrentLocale();
   const source = await sources.getProjectSource(slug);
   const project = await platforms.getPlatformProject(source.platform, source.slug);
 
-  const file = await sources.readDocsFile(source, path);
+  const file = await sources.readDocsFile(source, path, locale);
   const result = await markdown.renderDocumentationMarkdown(file.content);
   const edit_url = source.type === 'github' || (source as RemoteDocumentationSource).editable ? file.edit_url : null;
 

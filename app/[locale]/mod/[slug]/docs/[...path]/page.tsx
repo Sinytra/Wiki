@@ -4,21 +4,23 @@ import DocsLoadingSkeleton from "@/components/docs/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
 import sources, {folderMetaFile} from "@/lib/docs/sources";
 import platforms from "@/lib/platforms";
+import {getCurrentLocale} from "@/lib/locales/server";
 
 export async function generateMetadata({params}: {
   params: { slug: string; path: string[] }
 }, parent: ResolvingMetadata): Promise<Metadata> {
+  const locale = getCurrentLocale();
   const source = await sources.getProjectSource(params.slug);
   const project = await platforms.getPlatformProject(source.platform, source.slug);
 
   let title: string | undefined = undefined;
   try {
     const folderPath = params.path.slice(0, params.path.length - 1);
-    const file = await sources.readMetadataFile(source, folderPath.join('/') + '/' + folderMetaFile);
+    const file = await sources.readMetadataFile(source, folderPath.join('/') + '/' + folderMetaFile, locale);
     const fileName = params.path[params.path.length - 1] + '.mdx';
     title = file[fileName];
   } catch (e) {
-    
+    // ignored
   }
 
   return {

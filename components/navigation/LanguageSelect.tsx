@@ -1,6 +1,6 @@
 'use client'
 
-import {useChangeLocale, useCurrentLocale} from "@/locales/client";
+import {useChangeLocale, useCurrentLocale} from "@/lib/locales/client";
 import styles from "@/components/navigation/header/style.module.css";
 import {
   NavigationMenu, NavigationMenuContent,
@@ -12,7 +12,7 @@ import {LanguagesIcon} from "lucide-react";
 import CountryFlag from "@/components/util/CountryFlag";
 import {CN, CZ, DE, ES, FR, GB, HU, IT, JP, KR, PL, RU, SE, UA} from "country-flag-icons/react/3x2";
 import {Button} from "@/components/ui/button";
-import {getAvailableLocales} from "@/locales/available";
+import {getAvailableLocales} from "@/lib/locales/available";
 
 function LanguageOption({ id, name, icon, active }: { id: string; name: string, icon: any, active: boolean }) {
   const changeLocale = useChangeLocale();
@@ -57,7 +57,7 @@ export default function LanguageSelect() {
               <NavigationMenuContent className="p-3 whitespace-nowrap flex flex-col justify-start items-start">
                 {...availableLocales.filter(l => localeNames[l] !== undefined).map(l => {
                   const name = localeNames[l];
-                  return <LanguageOption id={l} name={name.name} icon={name.icon} active={locale === l} />
+                  return <LanguageOption key={l} id={l} name={name.name} icon={name.icon} active={locale === l} />
                 })}
               </NavigationMenuContent>
             </NavigationMenuItem>
