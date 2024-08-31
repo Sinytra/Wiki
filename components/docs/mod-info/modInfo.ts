@@ -52,15 +52,18 @@ interface ModDisplayInformation {
   license: { name: string; url: string | null };
 }
 
+export function getLatestVersion(project: ModProject): string {
+  return project.game_versions.length === 0 ? 'N/A' : project.game_versions[project.game_versions.length - 1];
+}
+
 export async function getModProjectInformation(project: ModProject): Promise<ModDisplayInformation> {
   const authors = await platforms.getProjectAuthors(project);
 
-  const latestVersion = project.game_versions.length === 0 ? 'N/A' : project.game_versions[project.game_versions.length - 1];
   const license = project.license.id === ARRNoLicense ? ARR : project.license.id.startsWith('LicenseRef') ? 'Custom' : project.license.id || 'Unknown';
 
   return {
     authors,
-    latest_version: latestVersion,
+    latest_version: getLatestVersion(project),
     license: {name: license, url: project.license.url}
   };
 }

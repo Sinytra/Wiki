@@ -20,7 +20,7 @@ export default function ModSearch() {
   }, 300);
 
   return (
-    <div className="flex flex-col gap-6 justify-center items-center">
+    <div className="flex flex-col gap-14 justify-center items-center">
       <span className="text-foreground text-lg">Browse mod documentation</span>
 
       <div className="relative">

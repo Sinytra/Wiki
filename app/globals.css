@@ -6,6 +6,11 @@
 
 @layer base {
     :root {
+        --modrinth-brand: #00AF5C;
+        --curseforge-brand: #F16436;
+    }
+    
+    :root {
         --background: var(--vp-c-bg);
         --foreground: var(--vp-c-text-1);
         --card: var(--vp-c-bg-alt);

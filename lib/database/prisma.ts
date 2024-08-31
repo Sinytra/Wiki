@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import {pagination} from "prisma-extension-pagination";
+
 
 declare global {
   var prisma: PrismaClient;
@@ -7,10 +9,12 @@ declare global {
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient();
+  //@ts-ignore
+  prisma = new PrismaClient().$extends(pagination());
 } else {
   if (!global.prisma) {
-    global.prisma = new PrismaClient();
+    //@ts-ignore
+    global.prisma = new PrismaClient().$extends(pagination());
   }
   prisma = global.prisma;
 }

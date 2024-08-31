@@ -7,7 +7,6 @@ import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import {ModProject} from "@/lib/platforms";
 import assets, {AssetLocation, resourceLocationToString} from "@/lib/docs/assets";
 import {DocumentationSource} from "@/lib/docs/sources";
-import Image from "next/image";
 
 interface Props {
   source: DocumentationSource;

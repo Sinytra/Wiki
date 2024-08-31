@@ -4,7 +4,7 @@ import LandingWidget from "@/components/landing/LandingWidget";
 
 export default async function Home() {
   return <>
-    <main className="flex max-w-5xl mx-auto flex-col items-center justify-start gap-28">
+    <main className="flex max-w-5xl mx-auto flex-col items-center justify-start gap-24">
       <div className="z-10 w-full items-center justify-center text-2xl lg:flex">
         <p className="text-4xl text-blue-500">Welcome to Sinytra's Modded MC Wiki Prototype</p>
       </div>

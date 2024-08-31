@@ -3,6 +3,7 @@ export type ModPlatform = 'modrinth' | 'curseforge';
 export interface ModPlatformProvider {
   getProject: (slug: string) => Promise<ModProject>;
   getProjectAuthors: (slug: string) => Promise<ModAuthor[]>;
+  getProjectURL: (slug: string) => string;
 }
 
 export interface ModProject {

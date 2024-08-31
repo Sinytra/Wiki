@@ -138,5 +138,6 @@ function isValidProject(project: ModrinthProject): boolean {
 
 export const modrinthModPlatform: ModPlatformProvider = {
   getProject,
-  getProjectAuthors
+  getProjectAuthors,
+  getProjectURL
 }

@@ -55,11 +55,33 @@ async function getProjects(repoNames: string[]) {
   });
 }
 
+async function searchProjectsPaginated(limit: number, query?: string, page?: number) {
+  //@ts-ignore
+  return prisma.mod.paginate({
+    where: {
+      name: {
+        search: query ? query.split(' ').map(v => v + ':*').join(' &#124; ') : undefined,
+      }
+    },
+    select: {
+      id: true,
+      name: true,
+      source_repo: true,
+      platform: true,
+      slug: true
+    }
+  }).withPages({
+    page,
+    limit,
+    includePageCount: true
+  });
+}
+
 async function searchProjects(query: string) {
   return prisma.mod.findMany({
     where: {
       name: {
-        search: query.split(' ').map(v => v + ':*').join(' &#124; '),
+        search: query ? query.split(' ').map(v => v + ':*').join(' &#124; ') : undefined,
       }
     },
     select: {
@@ -84,7 +106,8 @@ const database = {
   unregisterProject,
   searchProjects,
   updateProject,
-  findExistingProject
+  findExistingProject,
+  searchProjectsPaginated
 };
 
 export default database;

@@ -19,7 +19,11 @@ function getModSourcePlatform(id: string): ModPlatformProvider {
   return source;
 }
 
+// TODO Cache ALL OF THIS
 async function getPlatformProject(source: ModPlatform, slug: string): Promise<ModProject> {
+  // await new Promise((res) => {
+  //   setTimeout(() => res(null), 5000);
+  // });
   return getModSourcePlatform(source).getProject(slug);
 }
 
@@ -31,10 +35,15 @@ async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
   return getModSourcePlatform(mod.platform).getProjectAuthors(mod.slug);
 }
 
+function getProjectURL(source: ModPlatform, slug: string): string {
+  return getModSourcePlatform(source).getProjectURL(slug);
+}
+
 const platforms = {
   getProject,
   getProjectAuthors,
-  getPlatformProject
+  getPlatformProject,
+  getProjectURL
 };
 
 export default platforms;
