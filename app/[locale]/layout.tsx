@@ -7,15 +7,19 @@ import Providers from "@/components/navigation/nav-progress-bar";
 import Footer from "@/components/navigation/footer";
 import {Toaster} from "@/components/ui/sonner";
 import {ReactNode} from "react";
-
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: 'Sinytra Modded MC Wiki',
-  description: "The Wiki for all of Modded Minecraft"
+  title: 'Sinytra Modded Wiki',
+  description: 'The Wiki for all of Modded Minecraft',
+  openGraph: {
+    siteName: 'Sinytra Modded Wiki',
+    type: 'website',
+    url: process.env.NEXT_APP_URL
+  }
 };
 
 export default function RootLayout({

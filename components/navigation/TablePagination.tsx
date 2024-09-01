@@ -44,13 +44,13 @@ export default function TablePagination({current, total}: { current: number, tot
             </PaginationItem>
         }
 
-        {...data.map(d => d === '...'
+        {...data.map((d, i) => d === '...'
           ?
-          <PaginationItem>
+          <PaginationItem key={i}>
             <PaginationEllipsis/>
           </PaginationItem>
           :
-          <PaginationItem>
+          <PaginationItem key={i}>
             <PaginationLink href={createPageURL(d)} isActive={current === d}>{d}</PaginationLink>
           </PaginationItem>
         )}

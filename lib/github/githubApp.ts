@@ -102,7 +102,7 @@ const getCachedAppOctokitInstance = unstable_cache(
   [],
   {
     revalidate: 6000,
-    tags: [cacheUtil.githubAppInstallId]
+    tags: [cacheUtil.githubAppInstallCacheId]
   }
 );
 
@@ -113,7 +113,7 @@ async function getAvailableRepositories(owner: string) {
 
     return await github.getPaginatedData(instance, 'GET /installation/repositories');
   } catch (e) {
-    revalidateTag(cacheUtil.githubAppInstallId);
+    revalidateTag(cacheUtil.githubAppInstallCacheId);
     console.error(e);
     return [];
   }

@@ -1,7 +1,7 @@
 import type {MetadataRoute} from 'next';
 import database from "@/lib/database";
 
-export default async function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!process.env.NEXT_APP_URL) {
     return [];
   }

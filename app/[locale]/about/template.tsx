@@ -6,7 +6,7 @@ export default function Template({children}: { children: ReactNode }) {
   return (
     <div className="flex flex-row gap-4 w-full justify-center">
       <aside className="w-64 flex-shrink-0 bg-muted rounded-md px-2 pb-2">
-        <DocsSidebarTitle>Navigation</DocsSidebarTitle>
+        <DocsSidebarTitle offset>Navigation</DocsSidebarTitle>
 
         <MetaDocsNavigation/>
       </aside>

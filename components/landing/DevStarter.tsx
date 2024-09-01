@@ -13,7 +13,7 @@ export default function DevStarter() {
       </>
     }>
       <Link href="/dev">
-        <button className="bg-blue-900 p-3 px-5 rounded-sm">Developer area</button>
+        <button className="bg-blue-900 p-2.5 px-5 rounded-sm">Developer area</button>
       </Link>
     </LandingStarterBase>
   )
