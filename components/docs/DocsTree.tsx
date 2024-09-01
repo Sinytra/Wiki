@@ -82,7 +82,7 @@ export default async function DocsTree({slug}: Props) {
 
   return (
     <div className="flex flex-col bg-muted rounded-md px-2 pb-2">
-      <DocsSidebarTitle>
+      <DocsSidebarTitle offset>
         Documentation
       </DocsSidebarTitle>
 

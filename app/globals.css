@@ -78,7 +78,7 @@ html body[data-scroll-locked] {
 
 .page-wrapper {
     padding-top: calc(var(--vp-nav-height) + 1rem);
-    padding-bottom: 3.5rem;
+    padding-bottom: 2.5rem;
 }
 
 .prose :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {

@@ -7,6 +7,7 @@ import {LogOutIcon} from "lucide-react";
 import localPreview from "@/lib/docs/localPreview";
 import {Badge} from "@/components/ui/badge";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
+import HeaderBase from "@/components/navigation/header/HeaderBase";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -21,13 +22,14 @@ export default async function Header() {
   const preview = localPreview.isEnabled();
 
   return (
-    <header className="fixed left-0 w-[100vw] bg-background z-50">
+    <HeaderBase>
       <div className={`${styles.container} flex flex-row justify-between items-center px-8 h-16 mx-auto`}>
         <div className="flex flex-row items-center gap-4">
           <Link href="/">
             <span className="text-base font-medium text-foreground">📖 Sinytra Wiki</span>
           </Link>
           {preview && <Badge variant="secondary">PREVIEW MODE</Badge>}
+          {!preview && <Badge variant="outline" className="border-neutral-600 text-muted-foreground font-normal">Beta</Badge>}
         </div>
 
         {preview
@@ -41,7 +43,7 @@ export default async function Header() {
               <HeaderLink href="/about">About</HeaderLink>
             </nav>
 
-            <LanguageSelect />
+            <LanguageSelect/>
 
             {session !== null &&
                 <>
@@ -65,6 +67,6 @@ export default async function Header() {
           </div>
         }
       </div>
-    </header>
+    </HeaderBase>
   )
 }

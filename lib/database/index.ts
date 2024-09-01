@@ -107,6 +107,11 @@ async function getAllProjectIDs() {
   });
 }
 
+async function getRandomProjectID(): Promise<string | null> {
+  const ids = await prisma.$queryRaw`SELECT id FROM "Mod" ORDER BY random() LIMIT 1;` as {id: string}[];
+  return ids.length === 0 ? null : ids[0].id;
+}
+
 const database = {
   registerProject,
   getProject,
@@ -116,7 +121,8 @@ const database = {
   updateProject,
   findExistingProject,
   searchProjectsPaginated,
-  getAllProjectIDs
+  getAllProjectIDs,
+  getRandomProjectID
 };
 
 export default database;

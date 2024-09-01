@@ -3,6 +3,7 @@ import {redirect} from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
+import {PencilRulerIcon} from "lucide-react";
 
 export default async function Login() {
   const session = (await auth());
@@ -11,6 +12,7 @@ export default async function Login() {
     return redirect('/dev');
   }
 
+  // TODO Show progress
   return (
     <form
       className="flex w-full h-[50vh] items-center justify-center"
@@ -21,7 +23,10 @@ export default async function Login() {
     >
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl flex flex-row gap-2 items-center">
+            <PencilRulerIcon className="w-6 h-6" strokeWidth={1.8} />
+            Developer Login
+          </CardTitle>
           <CardDescription>
             Login using your GitHub account to access the developer dashboard.
           </CardDescription>
