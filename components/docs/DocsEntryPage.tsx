@@ -8,10 +8,8 @@ import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent"
 import platforms from "@/lib/platforms";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import PageEditControls from "@/components/docs/PageEditControls";
-import {getCurrentLocale} from "@/lib/locales/server";
 
-export default async function DocsEntryPage({slug, path}: { slug: string; path: string[] }) {
-  const locale = getCurrentLocale();
+export default async function DocsEntryPage({slug, path, locale}: { slug: string; path: string[]; locale: string }) {
   const source = await sources.getProjectSource(slug);
   const project = await platforms.getPlatformProject(source.platform, source.slug);
 

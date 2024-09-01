@@ -33,7 +33,7 @@ export default async function ModInfo({mod}: Props) {
       </DocsSidebarTitle>
 
       <div className="mb-6 border border-accent m-2 rounded-sm">
-        <Image className="m-4 mx-auto rounded-sm" src={mod.icon_url} alt="Logo" width={128} height={128}/>
+        <img className="m-4 mx-auto rounded-sm" src={mod.icon_url} alt="Logo" width={128} height={128}/>
       </div>
 
       <div className="flex flex-col gap-3">

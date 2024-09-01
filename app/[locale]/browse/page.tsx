@@ -6,7 +6,7 @@ import LoadingContent from "@/components/util/LoadingContent";
 export default async function Browse({searchParams}: {
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-  const query = searchParams?.query || '';
+  const query = searchParams?.query as string || '';
   const page = Number(searchParams?.page) || 1;
 
   return (

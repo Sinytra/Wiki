@@ -19,11 +19,7 @@ function getModSourcePlatform(id: string): ModPlatformProvider {
   return source;
 }
 
-// TODO Cache ALL OF THIS
 async function getPlatformProject(source: ModPlatform, slug: string): Promise<ModProject> {
-  // await new Promise((res) => {
-  //   setTimeout(() => res(null), 5000);
-  // });
   return getModSourcePlatform(source).getProject(slug);
 }
 

@@ -26,7 +26,7 @@ export default async function Header() {
       <div className={`${styles.container} flex flex-row justify-between items-center px-8 h-16 mx-auto`}>
         <div className="flex flex-row items-center gap-4">
           <Link href="/">
-            <span className="text-base font-medium text-foreground">📖 Sinytra Wiki</span>
+            <span className="text-base font-medium text-foreground">📖 Sinytra Modded Wiki</span>
           </Link>
           {preview && <Badge variant="secondary">PREVIEW MODE</Badge>}
           {!preview && <Badge variant="outline" className="border-neutral-600 text-muted-foreground font-normal">Beta</Badge>}

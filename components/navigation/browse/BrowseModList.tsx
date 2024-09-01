@@ -3,7 +3,7 @@ import BrowseModProject from "@/components/navigation/browse/BrowseModProject";
 import TablePagination from "@/components/navigation/TablePagination";
 import database from "@/lib/database";
 
-export default async function BrowseModList({ query, page }: { query: string; page: string }) {
+export default async function BrowseModList({ query, page }: { query: string; page: number }) {
   const [mods, meta] = await database.searchProjectsPaginated(20, query as any, page);
 
   return <>
