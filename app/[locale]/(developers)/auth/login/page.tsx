@@ -23,7 +23,7 @@ export default async function Login() {
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
-            Login using you GitHub account to access the developer dashboard.
+            Login using your GitHub account to access the developer dashboard.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">

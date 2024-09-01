@@ -12,7 +12,7 @@ const I18nMiddleware = createI18nMiddleware({
 });
 
 export const config = {
-  matcher: ['/((?!api|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|.*\\.png$).*)'],
+  matcher: ['/((?!api|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|favicon.ico|sitemap.xml|.*\\.png$).*)'],
 }
 
 export async function middleware(request: NextRequest, response: NextResponse) {
@@ -31,6 +31,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
     const resp = await auth(request as any, response as any) as any;
     localResp.headers.forEach((val, key) => resp.headers.set(key, val));
+    // @ts-ignore
     resp.cookies = localResp.cookies;
     return resp;
   }

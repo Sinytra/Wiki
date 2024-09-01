@@ -99,6 +99,14 @@ async function getProject(slug: string) {
   });
 }
 
+async function getAllProjectIDs() {
+  return prisma.mod.findMany({
+    select: {
+      id: true
+    }
+  });
+}
+
 const database = {
   registerProject,
   getProject,
@@ -107,7 +115,8 @@ const database = {
   searchProjects,
   updateProject,
   findExistingProject,
-  searchProjectsPaginated
+  searchProjectsPaginated,
+  getAllProjectIDs
 };
 
 export default database;
