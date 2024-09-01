@@ -3,6 +3,7 @@ import cacheUtil from "@/lib/cacheUtil";
 import database from "@/lib/database";
 import {getHttpErrorDetailsURL} from "@/lib/utils";
 import verification from "@/lib/github/verification";
+import {revalidatePath} from "next/cache";
 
 export async function POST(request: NextRequest, { params }: { params: { slug: string } }) {
   // Expect authorization using GitHub user token
@@ -22,6 +23,7 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
   }
 
   cacheUtil.clearModCaches(params.slug);
+  revalidatePath(`/[locale]/mod/${params.slug}/docs`, 'layout');
 
   return Response.json({ message: 'Docs page cache invalidated successfully' });
 }

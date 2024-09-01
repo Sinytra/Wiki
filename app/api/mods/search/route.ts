@@ -10,5 +10,5 @@ export async function GET(request: NextRequest) {
 
   const available = await database.searchProjects(query);
   
-  return Response.json({ data: [...available, ...available, ...available, ...available, ...available, ...available] });
+  return Response.json({ data: available });
 }

@@ -5,6 +5,7 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
 import ProjectSettings from "@/components/dev/ProjectSettings";
+import ProjectRevalidateForm from "@/components/dev/ProjectRevalidateForm";
 
 function Property({icon: Icon, children}: { icon: any, children: any }) {
   return (
@@ -43,6 +44,7 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
 
         <div className="flex flex-row gap-4 items-center">
           <MutedLinkIconButton variant="outline" icon={ExternalLinkIcon} href={`/mod/${mod.id}`} />
+          <ProjectRevalidateForm id={mod.id} />
           <ProjectSettings mod={mod} />
           <ProjectDeletion id={mod.id} />
         </div>

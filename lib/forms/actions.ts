@@ -11,6 +11,7 @@ import {auth} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
 import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
+import {getHttpErrorDetailsURL} from "@/lib/utils";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -51,6 +52,28 @@ export async function handleEditProjectForm(rawData: any) {
 
   revalidatePath('/dev');
   cacheUtil.clearModCaches(metadata.id);
+
+  return {success: true};
+}
+
+export async function handleRevalidateDocs(id: string) {
+  const session = await auth();
+  if (session == null) {
+    return {success: false, error: 'Unauthenticated'};
+  }
+
+  const mod = await database.getProject(id);
+  if (mod === null) {
+    return {success: false, error: 'Not found'};
+  }
+
+  const parts = mod.source_repo.split('/');
+  if (!(await verification.verifyRepositoryOwnership(parts[0], parts[1], session.access_token))) {
+    return {success: false, error: 'Verification error'};
+  }
+
+  cacheUtil.clearModCaches(id);
+  revalidatePath(`/[locale]/mod/${id}/docs`, 'layout');
 
   return {success: true};
 }
