@@ -39,13 +39,13 @@ function ProjectIconPlaceholder() {
   )
 }
 
-async function GitHubProjectLink({ repo }: { repo: string }) {
+async function GitHubProjectLink({repo}: { repo: string }) {
   const isPublic = await githubApp.isRepositoryPublic(repo);
 
   return (
     <Suspense>
       {isPublic && <Button variant="outline" size="icon">
-        <GitHubIcon width={24} height={24}/>
+          <GitHubIcon width={24} height={24}/>
       </Button>}
     </Suspense>
   )
@@ -56,8 +56,8 @@ function ProjectMetaInfo({project}: { project: Promise<ModProject> }) {
   return (
     <div>
       <div className="flex flex-row items-center gap-2 text-muted-foreground">
-        <MilestoneIcon className="w-4 h-4" />
-        <span className="text-sm">{getLatestVersion(projectContent)}</span>
+        <MilestoneIcon className="w-5 h-5"/>
+        <span className="text-base">{getLatestVersion(projectContent)}</span>
       </div>
     </div>
   )
@@ -68,46 +68,46 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
 
   return (
     <div className="flex flex-row items-center border border-neutral-600 rounded-sm w-full p-3 gap-4">
-
       <ErrorBoundary fallback={<ProjectIconPlaceholder/>}>
         <Suspense fallback={<ProjectIconPlaceholder/>}>
           <ProjectIcon project={project}/>
         </Suspense>
       </ErrorBoundary>
 
-      <div className="w-full h-full flex flex-col gap-1.5">
-        <LinkTextButton href={`/mod/${mod.id}`}
-                        className="!w-fit !font-normal flex-shrink-0 text-xl text-foreground">{mod.name}</LinkTextButton>
+      <div className="flex flex-col gap-1 w-full">
+        <div className="w-full h-full flex flex-col gap-1.5">
+          <LinkTextButton href={`/mod/${mod.id}`} className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">{mod.name}</LinkTextButton>
 
-        <ErrorBoundary fallback={<span></span>}>
-          <Suspense fallback={
-            <>
-              <Skeleton className="w-full h-4"/>
-              <Skeleton className="w-full h-4"/>
-            </>
-          }>
-            <ProjectDescription project={project}/>
-          </Suspense>
-        </ErrorBoundary>
-        
-        <ErrorBoundary fallback={<span></span>}>
-          <Suspense>
-            <ProjectMetaInfo project={project} />
-          </Suspense>
-        </ErrorBoundary>
-      </div>
+          <ErrorBoundary fallback={<span></span>}>
+            <Suspense fallback={
+              <>
+                <Skeleton className="w-full h-4"/>
+                <Skeleton className="w-full h-4"/>
+              </>
+            }>
+              <ProjectDescription project={project}/>
+            </Suspense>
+          </ErrorBoundary>
+        </div>
 
-      <div className="flex flex-shrink-0 justify-end items-end mt-auto ml-auto w-24 gap-2 text-muted-foreground">
-        <GitHubProjectLink repo={mod.source_repo} />
-        <Button asChild variant="outline" size="icon"
-                className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
-          <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
-            {mod.platform === 'modrinth'
-              ? <ModrinthIcon width={24} height={24}/>
-              : <CurseForgeIcon width={24} height={24}/>
-            }
-          </NavLink>
-        </Button>
+        <div className="flex flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
+          <ErrorBoundary fallback={<span></span>}>
+            <Suspense>
+              <ProjectMetaInfo project={project}/>
+            </Suspense>
+          </ErrorBoundary>
+
+          <GitHubProjectLink repo={mod.source_repo}/>
+          <Button asChild variant="outline" size="icon"
+                  className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
+            <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
+              {mod.platform === 'modrinth'
+                ? <ModrinthIcon width={24} height={24}/>
+                : <CurseForgeIcon width={24} height={24}/>
+              }
+            </NavLink>
+          </Button>
+        </div>
       </div>
     </div>
   )

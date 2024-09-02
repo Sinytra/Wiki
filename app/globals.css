@@ -77,8 +77,14 @@ html body[data-scroll-locked] {
 }
 
 .page-wrapper {
-    padding-top: calc(var(--vp-nav-height) + 1rem);
+    padding-top: calc(var(--vp-nav-height) + 0.5rem);
     padding-bottom: 2.5rem;
+}
+
+@media screen and (min-width: 768px) {
+    .page-wrapper {
+        padding-top: calc(var(--vp-nav-height) + 1rem);
+    }
 }
 
 .prose :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {

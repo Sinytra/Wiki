@@ -1,5 +1,4 @@
 import {ReactNode} from "react";
-import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import MetaDocsNavigation from "@/components/meta-docs/MetaDocsNavigation";
 import {setContextLocale} from "@/lib/locales/routing";
 
@@ -12,13 +11,11 @@ export default async function AboutLayout({params, children}: Readonly<{
   setContextLocale(params.locale);
 
   return (
-    <div className="flex flex-row gap-4 w-full justify-center">
-      <aside className="w-64 flex-shrink-0 bg-muted rounded-md px-2 pb-2">
-        <DocsSidebarTitle offset>Navigation</DocsSidebarTitle>
-
+    <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center">
+      <aside className="w-full md:w-64 flex-shrink-0 bg-muted rounded-md px-2 mb-2 md:mb-0">
         <MetaDocsNavigation/>
       </aside>
-      <div className="prose dark:prose-invert w-full max-w-[67rem]">
+      <div className="prose dark:prose-invert w-full max-w-[67rem] px-2 md:px-0">
         {children}
       </div>
     </div>

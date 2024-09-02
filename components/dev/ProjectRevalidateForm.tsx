@@ -51,13 +51,17 @@ export default function ProjectRevalidateForm({id}: { id: string }) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Revalidate project?</DialogTitle>
-          <DialogDescription className="!mt-4">
-            All cached documentation pages will be purged and re-rendered lazily on-demand.
+          <DialogDescription asChild className="!mt-4">
+            <div>
+              All cached documentation pages will be purged and re-rendered lazily on-demand.
 
-            <p className="mt-4">This option should only be used upon updating the documentation source itself.</p>
+              <p className="mt-4">This option should only be used upon updating the documentation source itself.</p>
 
-            <p className="mt-4">For your own convenience, we recommend automatically revalidating docs after publication
-              using our <LinkTextButton target="_blank" href="/about" className="!font-normal !text-foreground">Gradle plugin</LinkTextButton> instead.</p>
+              <p className="mt-4">For your own convenience, we recommend automatically revalidating docs after
+                publication
+                using our <LinkTextButton target="_blank" href="/about" className="!font-normal !text-foreground">Gradle
+                  plugin</LinkTextButton> instead.</p>
+            </div>
           </DialogDescription>
         </DialogHeader>
 

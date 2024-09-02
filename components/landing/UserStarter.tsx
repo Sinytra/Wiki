@@ -11,7 +11,7 @@ export default async function UserStarter() {
   return (
     <LandingStarterBase icon={BookTextIcon} title="Documentation"
                         desc={<span className="text-muted-foreground text-lg">Browse mod documentation</span>}>
-      <div className="flex flex-col gap-8 justify-center items-center">
+      <div className="flex flex-col gap-8 justify-center items-center w-full sm:w-fit">
         <ModSearch locale={locale}/>
 
         <Button asChild className="text-primary-foreground">

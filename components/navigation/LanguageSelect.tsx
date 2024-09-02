@@ -61,7 +61,7 @@ export default function LanguageSelect({ locale }: { locale: string }) {
         <NavigationMenu className="[&_div.absolute]:-left-[6.7rem]" value={value} onValueChange={setValue}>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="!px-2">
+              <NavigationMenuTrigger className="p-1 h-fit sm:h-10 sm:!px-2">
                 <LanguagesIcon className="w-5 h-5"/>
               </NavigationMenuTrigger>
               <NavigationMenuContent className="p-3 whitespace-nowrap flex flex-col justify-start items-start">

@@ -22,10 +22,10 @@ export default function ProjectSearch() {
 
   return (
     <div className="flex flex-row w-full pb-4 mb-2 border-b border-neutral-600">
-      <div className="relative text-muted-foreground">
+      <div className="w-full sm:w-fit relative text-muted-foreground">
         <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
         <Input
-          className="w-96 pl-9"
+          className="sm:w-96 pl-9"
           type="text"
           placeholder="Search mods..."
           onChange={(e) => handleSearch(e.target.value)}

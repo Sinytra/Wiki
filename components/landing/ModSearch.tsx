@@ -36,17 +36,17 @@ export default function ModSearch({ locale }: { locale: string }) {
   }, 300);
 
   return (
-    <div className="flex flex-col gap-10 justify-center items-center">
-      <div className="relative">
+    <div className="flex flex-col gap-10 justify-center items-center w-full">
+      <div className="relative w-full">
         <input type="text"
-               className="border border-[var(--vp-c-brand-2)] bg-muted text-base text-center placeholder:text-gray-500 w-96 p-3 rounded-sm focus:outline-none"
+               className="border border-[var(--vp-c-brand-2)] bg-muted text-base text-center placeholder:text-gray-500 w-full sm:w-96 p-3 rounded-sm focus:outline-none"
                onChange={(e) => handleSearch(e.target.value)}
                onFocus={() => setShown(true)}
                onBlur={() => setShown(false)}
                placeholder="Find your favourite mod..."/>
         {loading && (
           <div
-            className="absolute top-full mt-0.5 border border-neutral-700 bg-muted flex flex-col rounded-sm w-96 text-center">
+            className="absolute top-full mt-0.5 border border-neutral-700 bg-muted flex flex-col rounded-sm w-full sm:w-96 text-center">
             <div className="py-3 px-2 bg-muted w-full h-full flex justify-center rounded-sm">
               <LoadingContent/>
             </div>
@@ -54,7 +54,7 @@ export default function ModSearch({ locale }: { locale: string }) {
         )}
         {results && shown && (
           <div
-            className="absolute top-full mt-0.5 border border-neutral-700 bg-muted flex flex-col rounded-sm w-96 text-center divide-y max-h-52 overflow-y-auto slim-scrollbar"
+            className="absolute top-full mt-0.5 border border-neutral-700 bg-muted flex flex-col rounded-sm w-full sm:w-96 text-center divide-y max-h-52 overflow-y-auto slim-scrollbar"
             onMouseDown={(e) => e.preventDefault()}>
             {results.length === 0
               ?

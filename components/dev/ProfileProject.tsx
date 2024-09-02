@@ -32,8 +32,8 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
 
       <hr/>
 
-      <div className="inline-flex justify-between items-center">
-        <div className="inline-flex gap-5">
+      <div className="inline-flex justify-between items-center flex-wrap gap-4">
+        <div className="inline-flex gap-5 flex-wrap">
           <Property icon={BookMarkedIcon}>{mod.source_repo}</Property>
           <Property icon={GitBranchIcon}>{mod.source_branch}</Property>
           <Property icon={ServerIcon}>{mod.platform === 'modrinth' ? 'Modrinth' : 'CurseForge'}</Property>
@@ -42,7 +42,7 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
           </Property>
         </div>
 
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-row gap-4 items-center ml-auto sm:ml-0">
           <MutedLinkIconButton variant="outline" icon={ExternalLinkIcon} href={`/mod/${mod.id}`} />
           <ProjectRevalidateForm id={mod.id} />
           <ProjectSettings mod={mod} />

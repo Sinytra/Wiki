@@ -50,9 +50,9 @@ export default function DocsLoadingSkeleton() {
         </div>
       </div>
     }>
-      <div className="flex flex-col">
-        <DocsContentTitle>
-          <Skeleton className="min-w-[50rem] h-8"/>
+      <div className="flex flex-col animate-out transition-all fade-out-0">
+        <DocsContentTitle titleClassName="w-full">
+          <Skeleton className="w-full max-w-[50rem] h-8"/>
         </DocsContentTitle>
 
         <div>
