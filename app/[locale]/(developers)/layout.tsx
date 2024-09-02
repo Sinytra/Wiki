@@ -1,5 +1,7 @@
+import {ReactNode} from "react";
+
 export default async function ModLayout({children}: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <div className="flex flex-col w-full items-center mx-6">

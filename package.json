@@ -9,6 +9,7 @@
     "lint": "next lint",
     "postinstall": "prisma generate"
   },
+  "type": "module",
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@mdx-js/loader": "^3.0.1",
@@ -38,7 +39,7 @@
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",
-    "next-international": "^1.2.4",
+    "next-intl": "^3.19.0",
     "next-mdx-remote": "^5.0.0",
     "next-nprogress-bar": "^2.3.13",
     "next-themes": "^0.3.0",

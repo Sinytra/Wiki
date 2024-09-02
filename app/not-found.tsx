@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import {Button} from "@/components/ui/button";
 import NotFoundImage from '@/components/assets/not-found.jpg';
 import Image from "next/image";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 export default function NotFound() {
   return (
@@ -16,9 +16,9 @@ export default function NotFound() {
       <p className="text-muted-foreground">Whoops! Could not find the requested resource.</p>
 
       <Button asChild className="mt-4">
-        <Link href="/">
+        <NavLink href="/">
           Return Home
-        </Link>
+        </NavLink>
       </Button>
     </div>
   )

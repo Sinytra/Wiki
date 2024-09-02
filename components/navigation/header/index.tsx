@@ -1,23 +1,23 @@
 import {ReactNode} from "react";
 import styles from './style.module.css';
 import {auth, signOut} from "@/lib/auth";
-import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
 import localPreview from "@/lib/docs/localPreview";
 import {Badge} from "@/components/ui/badge";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <Link href={href} className={`${styles.menuLink} text-foreground font-medium px-3`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink} text-foreground font-medium px-3`}>
       {children}
-    </Link>
+    </LocaleNavLink>
   )
 }
 
-export default async function Header() {
+export default async function Header({ locale }: { locale: string }) {
   const session = await auth();
   const preview = localPreview.isEnabled();
 
@@ -25,9 +25,9 @@ export default async function Header() {
     <HeaderBase>
       <div className={`${styles.container} flex flex-row justify-between items-center px-8 h-16 mx-auto`}>
         <div className="flex flex-row items-center gap-4">
-          <Link href="/">
-            <span className="text-base font-medium text-foreground">📖 Sinytra Wiki</span>
-          </Link>
+          <LocaleNavLink href="/">
+            <span className="text-base font-medium text-foreground">📖 Sinytra Modded Wiki</span>
+          </LocaleNavLink>
           {preview && <Badge variant="secondary">PREVIEW MODE</Badge>}
           {!preview && <Badge variant="outline" className="border-neutral-600 text-muted-foreground font-normal">Beta</Badge>}
         </div>
@@ -43,7 +43,7 @@ export default async function Header() {
               <HeaderLink href="/about">About</HeaderLink>
             </nav>
 
-            <LanguageSelect/>
+            <LanguageSelect locale={locale}/>
 
             {session !== null &&
                 <>

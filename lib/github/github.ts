@@ -1,10 +1,21 @@
 import {Octokit} from "octokit";
+import cacheUtil from "@/lib/cacheUtil";
 
 export interface GitHubUserProfile {
   name: string;
   bio?: string;
   avatar_url: string;
   login: string;
+}
+
+function cachedFetch(...args: any[]) {
+  return fetch(args[0], {
+    ...args[1],
+    next: {
+      revalidate: 6000,
+      tags: [cacheUtil.githubRequestsCacheId]
+    }
+  });
 }
 
 async function getUserProfile(token: string): Promise<GitHubUserProfile> {
@@ -17,23 +28,13 @@ async function makeApiRequest<T>(token: string, path: string, ...options: any[])
 }
 
 async function makeApiRequestRaw(token: string, path: string, ...options: any[]) {
-  const octokit = new Octokit({
-    auth: token,
-  });
+  const octokit = new Octokit({auth: token});
   const resp = await octokit.request(path, {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
     request: {
-      fetch: (...args: any[]) => {
-        return fetch(args[0], {
-          next: {
-            revalidate: 3600,
-            tags: ['github']
-          },
-          ...args[1]
-        })
-      }
+      fetch: cachedFetch
     },
     ...options
   });
@@ -50,7 +51,10 @@ async function getPaginatedData(instance: Octokit, url: string) {
 
   while (pagesRemaining) {
     const response = await instance.request(url, {
-      per_page: 100
+      per_page: 100,
+      request: {
+        fetch: cachedFetch
+      }
     });
 
     const parsedData = parseData(response.data)

@@ -11,7 +11,6 @@ import {auth} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
 import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
-import {getHttpErrorDetailsURL} from "@/lib/utils";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -35,6 +34,7 @@ export async function handleEnableProjectForm(rawData: any) {
 export async function handleDeleteProjectForm(id: string) {
   await database.unregisterProject(id);
   cacheUtil.clearModCaches(id);
+  revalidatePath(`/[locale]/mod/${id}/docs`, 'layout');
 
   revalidatePath('/dev');
 
@@ -52,6 +52,7 @@ export async function handleEditProjectForm(rawData: any) {
 
   revalidatePath('/dev');
   cacheUtil.clearModCaches(metadata.id);
+  revalidatePath(`/[locale]/mod/${metadata.id}/docs`, 'layout');
 
   return {success: true};
 }

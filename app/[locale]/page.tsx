@@ -1,8 +1,13 @@
 import DevStarter from "@/components/landing/DevStarter";
 import LandingWidget from "@/components/landing/LandingWidget";
 import UserStarter from "@/components/landing/UserStarter";
+import {setContextLocale} from "@/lib/locales/routing";
 
-export default async function Home() {
+export const dynamic = 'force-static';
+
+export default async function Home({ params }: { params: { locale: string } }) {
+  setContextLocale(params.locale);
+  
   return <>
     <main className="flex max-w-5xl mx-auto flex-col items-center justify-between">
       <div className="z-10 w-full items-center justify-center text-2xl lg:flex">

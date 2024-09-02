@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import localPreview from "@/lib/docs/localPreview";
 import {cn} from "@/lib/utils";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 function Copyright({ center }: { center: boolean }) {
   return <>
@@ -20,11 +20,11 @@ function LinkEntry({title, href}: { title: string, href: string }) {
   return <>
     <ul>
       <li>
-        <Link
+        <LocaleNavLink
           className="hover:text-secondary-foreground transition-colors rounded-md py-0.5 text-sm text-muted-foreground outline-none"
           href={href}>
           {title}
-        </Link>
+        </LocaleNavLink>
       </li>
     </ul>
   </>

@@ -7,6 +7,7 @@ import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import cacheUtil from "@/lib/cacheUtil";
 import githubApp from "@/lib/github/githubApp";
 import localPreview from "@/lib/docs/localPreview";
+import {redirect, RedirectType} from "next/navigation";
 
 const metadataFile = 'sinytra-wiki.json';
 export const folderMetaFile = '_meta.json';
@@ -156,6 +157,14 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
     )));
 }
 
+async function getProjectSourceOrRedirect(slug: string, locale: string): Promise<DocumentationSource> {
+  try {
+    return await getProjectSource(slug);
+  } catch (e) {
+    redirect(`/${locale}`, RedirectType.replace);
+  }
+}
+
 async function getProjectSource(slug: string): Promise<DocumentationSource> {
   const cache = unstable_cache(
     async (id: string, enableLocal: boolean) => findProjectSource(id, enableLocal),
@@ -237,7 +246,8 @@ const index = {
   readDocsFile,
   readShallowFileTree,
   readMetadataFile,
-  getLocalDocumentationSources
+  getLocalDocumentationSources,
+  getProjectSourceOrRedirect
 };
 
 export default index;

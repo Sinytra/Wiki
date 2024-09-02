@@ -1,5 +1,7 @@
 import {revalidateTag} from "next/cache";
 
+const githubRequestsCacheId = 'github';
+const githubAppRequestsCacheId = 'github_app';
 const githubAppInstallCacheId = 'github_app_install';
 
 function getModDocsTreeCacheId(id: string): string {
@@ -16,6 +18,8 @@ function clearModCaches(id: string) {
 }
 
 const cacheUtil = {
+  githubRequestsCacheId,
+  githubAppRequestsCacheId,
   githubAppInstallCacheId,
   getModDocsTreeCacheId,
   getModDocsSourceCacheId,
