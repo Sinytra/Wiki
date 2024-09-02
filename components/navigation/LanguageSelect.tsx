@@ -2,7 +2,8 @@
 
 import styles from "@/components/navigation/header/style.module.css";
 import {
-  NavigationMenu, NavigationMenuContent,
+  NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger
@@ -12,12 +13,19 @@ import CountryFlag from "@/components/util/CountryFlag";
 import {CN, CZ, DE, ES, FR, GB, HU, IT, JP, KR, PL, RU, SE, UA} from "country-flag-icons/react/3x2";
 import {Button} from "@/components/ui/button";
 import available from "@/lib/locales/available";
-import {usePathname, useRouter} from "@/lib/locales/routing";
+import {usePathname} from "@/lib/locales/routing";
+import {useRouter} from 'next-nprogress-bar';
+import {useState} from "react";
 
-function LanguageOption({ id, name, icon, active }: { id: string; name: string, icon: any, active: boolean }) {
+function LanguageOption({ id, name, icon, active, onNavigate }: { id: string; name: string; icon: any; active: boolean; onNavigate: () => void }) {
   const pathname = usePathname();
   const router = useRouter();
-  const changeLocale = (id: any) => router.replace(pathname, {locale: id});
+  const changeLocale = (id: any) => {
+    const parts = pathname.split('/');
+    parts[0] = id;
+    router.replace('/' + parts.join('/'));
+    onNavigate();
+  };
 
   return (
     <Button variant={active ? 'secondary' : 'ghost'} size="sm" className="w-full inline-flex justify-start items-center gap-3" onClick={() => changeLocale(id)}>
@@ -45,11 +53,12 @@ const localeNames: {[key: string]: {name: string, icon: any}} = {
 
 export default function LanguageSelect({ locale }: { locale: string }) {
   const availableLocales = Object.keys(available.getAvailableLocales());
+  const [value, setValue] = useState('');
 
   return (
     <div className={styles.socialLinks}>
       <div>
-        <NavigationMenu>
+        <NavigationMenu className="[&_div.absolute]:-left-[6.7rem]" value={value} onValueChange={setValue}>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="!px-2">
@@ -58,7 +67,7 @@ export default function LanguageSelect({ locale }: { locale: string }) {
               <NavigationMenuContent className="p-3 whitespace-nowrap flex flex-col justify-start items-start">
                 {...availableLocales.filter(l => localeNames[l] !== undefined).map(l => {
                   const name = localeNames[l];
-                  return <LanguageOption key={l} id={l} name={name.name} icon={name.icon} active={locale === l} />
+                  return <LanguageOption key={l} id={l} name={name.name} icon={name.icon} active={locale === l} onNavigate={() => setValue('')} />
                 })}
               </NavigationMenuContent>
             </NavigationMenuItem>
