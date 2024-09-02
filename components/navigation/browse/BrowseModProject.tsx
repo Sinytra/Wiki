@@ -9,9 +9,9 @@ import {Button} from "@/components/ui/button";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
-import Link from "next/link";
 import githubApp from "@/lib/github/githubApp";
 import {getLatestVersion} from "@/components/docs/mod-info/modInfo";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 function ProjectIcon({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
@@ -101,12 +101,12 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
         <GitHubProjectLink repo={mod.source_repo} />
         <Button asChild variant="outline" size="icon"
                 className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
-          <Link href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
+          <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
             {mod.platform === 'modrinth'
               ? <ModrinthIcon width={24} height={24}/>
               : <CurseForgeIcon width={24} height={24}/>
             }
-          </Link>
+          </NavLink>
         </Button>
       </div>
     </div>

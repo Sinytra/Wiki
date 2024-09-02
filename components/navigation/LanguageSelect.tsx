@@ -1,6 +1,5 @@
 'use client'
 
-import {useChangeLocale, useCurrentLocale} from "@/lib/locales/client";
 import styles from "@/components/navigation/header/style.module.css";
 import {
   NavigationMenu, NavigationMenuContent,
@@ -12,10 +11,13 @@ import {LanguagesIcon} from "lucide-react";
 import CountryFlag from "@/components/util/CountryFlag";
 import {CN, CZ, DE, ES, FR, GB, HU, IT, JP, KR, PL, RU, SE, UA} from "country-flag-icons/react/3x2";
 import {Button} from "@/components/ui/button";
-import {getAvailableLocales} from "@/lib/locales/available";
+import available from "@/lib/locales/available";
+import {usePathname, useRouter} from "@/lib/locales/routing";
 
 function LanguageOption({ id, name, icon, active }: { id: string; name: string, icon: any, active: boolean }) {
-  const changeLocale = useChangeLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const changeLocale = (id: any) => router.replace(pathname, {locale: id});
 
   return (
     <Button variant={active ? 'secondary' : 'ghost'} size="sm" className="w-full inline-flex justify-start items-center gap-3" onClick={() => changeLocale(id)}>
@@ -41,9 +43,8 @@ const localeNames: {[key: string]: {name: string, icon: any}} = {
   cn: { name: '中文', icon: CN }
 };
 
-export default function LanguageSelect() {
-  const locale = useCurrentLocale();
-  const availableLocales = Object.keys(getAvailableLocales());
+export default function LanguageSelect({ locale }: { locale: string }) {
+  const availableLocales = Object.keys(available.getAvailableLocales());
 
   return (
     <div className={styles.socialLinks}>

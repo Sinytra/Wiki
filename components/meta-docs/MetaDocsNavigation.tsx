@@ -1,7 +1,7 @@
 'use client'
 
 import {BookMarkedIcon, HomeIcon, PencilRulerIcon, ShieldIcon} from "lucide-react";
-import SidebarNavLink from "@/components/navigation/SidebarNavLink";
+import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 
 export default function MetaDocsNavigation() {
   return (

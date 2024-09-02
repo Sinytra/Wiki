@@ -2,8 +2,8 @@ import localPreview from "@/lib/docs/localPreview";
 import {notFound} from "next/navigation";
 import sources from "@/lib/docs/sources";
 import {Button} from "@/components/ui/button";
-import Link from "next/link";
 import {FolderOpenIcon, PackageIcon} from "lucide-react";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 export default async function Preview() {
   if (!localPreview.isEnabled()) {
@@ -39,9 +39,9 @@ export default async function Preview() {
               </div>
 
               <Button size="sm" asChild>
-                <Link href={`/mod/${s.id}`}>
+                <NavLink href={`/mod/${s.id}`}>
                   Open
-                </Link>
+                </NavLink>
               </Button>
             </div>
           </div>

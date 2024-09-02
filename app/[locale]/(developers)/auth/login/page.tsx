@@ -4,8 +4,13 @@ import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import {PencilRulerIcon} from "lucide-react";
+import {setContextLocale} from "@/lib/locales/routing";
 
-export default async function Login() {
+export const dynamic = 'force-static';
+
+export default async function Login({params}: { params: { locale: string } }) {
+  setContextLocale(params.locale);
+
   const session = (await auth());
 
   if (session) {

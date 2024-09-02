@@ -3,11 +3,6 @@ import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import ModHomepageLink from "@/components/docs/ModHomepageLink";
 import DocsEntryLink from "@/components/docs/DocsEntryLink";
-import {getCurrentLocale} from "@/lib/locales/server";
-
-interface Props {
-  slug: string;
-}
 
 function DirectoryTreeView({slug, tree, level, basePath}: {
   slug: string;
@@ -75,8 +70,7 @@ function DocsFileTree({slug, tree, level, basePath}: {
   </>
 }
 
-export default async function DocsTree({slug}: Props) {
-  const locale = getCurrentLocale();
+export default async function DocsTree({slug, locale}: { slug: string; locale: string }) {
   const source = await sources.getProjectSource(slug);
   const docsTree = await sources.readDocsTree(source, locale);
 

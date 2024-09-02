@@ -2,20 +2,18 @@ import {NextRequest, NextResponse} from "next/server";
 
 import {auth} from "@/lib/auth";
 import localPreview from "@/lib/docs/localPreview";
-import {createI18nMiddleware} from "next-international/middleware";
-import {getAvailableLocales} from "@/lib/locales/available";
+import createMiddleware from "next-intl/middleware";
+import {routing} from "@/lib/locales/routing";
 
-const I18nMiddleware = createI18nMiddleware({
-  locales: Object.keys(getAvailableLocales()),
-  defaultLocale: 'en',
-  urlMappingStrategy: 'rewriteDefault'
-});
+const handleI18nRouting = createMiddleware(routing);
 
 export const config = {
-  matcher: ['/((?!api|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|favicon.ico|sitemap.xml|.*\\.png$).*)'],
+  matcher: ['/((?:dev).*|(?!api|(?:en|de|fr|es|it|cz|hu|pl|sw|ua|ru|jp|kr|cn)(?:(?!/dev)|$)|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|favicon.ico|sitemap.xml|.*\\.png$).*)'],
 }
 
 export async function middleware(request: NextRequest, response: NextResponse) {
+  console.log('invoking middleware', request.nextUrl.pathname);
+
   if (localPreview.isEnabled()) {
     const resp = localPreview.previewMiddleware(request, response);
     if (resp !== null) {
@@ -24,7 +22,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   }
 
   if (request.nextUrl.pathname.match(/^(\/[^\/]+)?\/dev/)) {
-    const localResp = I18nMiddleware(request);
+    const localResp = handleI18nRouting(request);
     if (localResp.status !== 200) {
       return localResp;
     }
@@ -36,5 +34,5 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     return resp;
   }
 
-  return I18nMiddleware(request);
+  return handleI18nRouting(request);
 }

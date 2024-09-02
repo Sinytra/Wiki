@@ -2,10 +2,14 @@ import BrowseModList from "@/components/navigation/browse/BrowseModList";
 import {Suspense} from "react";
 import ProjectSearch from "@/components/navigation/browse/BrowseSearch";
 import LoadingContent from "@/components/util/LoadingContent";
+import {setContextLocale} from "@/lib/locales/routing";
 
-export default async function Browse({searchParams}: {
+export default async function Browse({params, searchParams}: {
+  params: { locale: string };
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
+  setContextLocale(params.locale);
+
   const query = searchParams?.query as string || '';
   const page = Number(searchParams?.page) || 1;
 

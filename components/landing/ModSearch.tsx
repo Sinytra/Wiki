@@ -3,10 +3,10 @@
 import {useDebouncedCallback} from "use-debounce";
 import {useState} from "react";
 import {ModSearchResult} from "@/lib/types/search";
-import Link from "next/link";
 import LoadingContent from "@/components/util/LoadingContent";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
-export default function ModSearch() {
+export default function ModSearch({ locale }: { locale: string }) {
   const [results, setResults] = useState<ModSearchResult[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [shown, setShown] = useState<boolean>(true);
@@ -63,10 +63,10 @@ export default function ModSearch() {
               </div>
               :
               results.map(r => (
-                <Link href={`/mod/${r.id}`} key={r.id}
+                <NavLink href={`${locale}/mod/${r.id}`} key={r.id}
                       className="first:rounded-t-sm last:rounded-b-sm py-3 px-2 bg-muted hover:bg-accent w-full h-full">
                   {r.name}
-                </Link>
+                </NavLink>
               ))}
           </div>
         )}

@@ -1,7 +1,7 @@
-import Link from "next/link";
 import {PencilRulerIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import LandingStarterBase from "@/components/landing/LandingStarterBase";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 export default function DevStarter() {
   return (
@@ -12,9 +12,9 @@ export default function DevStarter() {
           className="!text-foreground !font-normal !text-lg" href="/about">author guide</LinkTextButton>.</span>
       </>
     }>
-      <Link href="/dev">
+      <LocaleNavLink href="/dev">
         <button className="bg-blue-900 p-2.5 px-5 rounded-sm">Developer area</button>
-      </Link>
+      </LocaleNavLink>
     </LandingStarterBase>
   )
 }

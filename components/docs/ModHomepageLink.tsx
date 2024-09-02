@@ -1,6 +1,6 @@
 'use client'
 
-import SidebarNavLink from "@/components/navigation/SidebarNavLink";
+import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import {HomeIcon} from "lucide-react";
 
 export default function ModHomepageLink({ slug }: { slug: string }) {
