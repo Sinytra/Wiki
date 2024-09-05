@@ -1,3 +1,140 @@
+import GitHubIcon from "../../../../components/ui/icons/GitHubIcon"; 
+import ModrinthIcon from "../../../../components/ui/icons/ModrinthIcon"; 
+import CurseForgeIcon from "../../../../components/ui/icons/CurseForgeIcon";
+
 # Developers
+
+Get started hosting your mod's documentation on our wiki!
+
+This guide provides information on local development and the documentation format.
+For a guide on publishing docs onto our website, please see the [Publishing](./publishing) page instead.
+
+## Prerequisites
+
+In order to start hosting documentation on our wiki, your mod only needs to meet a few minimal requirements: 
+
+- Be hosted on a <GitHubIcon className="inline-block mx-1" width={16} height={16} /> GitHub repository (both private and public repositories work!)
+- Be approved on either <ModrinthIcon className="inline-block mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> Modrinth or <CurseForgeIcon className="inline-block mx-1 text-[var(--curseforge-brand)]" width={16} height={16} /> CurseForge
+- Have the GitHub repository linked as the mod's source code url on the respective hosting website  
+  (this is currently required to verify project ownership)
+
+Additionally, the person registering the project to the wiki should have **Maintain** or **Admin** access to its
+GitHub repository.
+
+## Folder structure
+
+Start by creating a new directory inside your project. This can be located at any path of your choice.  
+For example, you can use `docs/(your modid here)` or simply `docs`, both are equally valid.
+
+<Callout>
+    We also support scenarios where multiple mods' documentation is hosted in a single repository, as long as they're in
+    separate folders.  
+    This is useful if you'd like to host documentation for multiple of your mods in a single place.
+</Callout>
+
+A minimal example folder layout may look like this:
+
+```
+docs
+├── blocks
+│   ├── generator.mds
+│   └── _meta.json
+├── introduction.mdx
+├── _meta.json
+└── sinytra.wiki.json
+```
+
+<details>
+    <summary>Show complete example</summary>
+    
+    Here is a complete example including assets and translations.
+    
+    ```
+    docs
+    ├── .assets
+    │   └── item
+    │       └── examplemod
+    │           └── generator.png
+    ├── .translated
+    │   └── de_de
+    │       └── blocks
+    │           ├── generator.mdx
+    │           └── _meta.json
+    ├── blocks
+    │   ├── generator.mds
+    │   └── _meta.json
+    ├── introduction.mdx
+    ├── _meta.json
+    └── sinytra.wiki.json
+    ```
+</details>
+
+Let's talk about what each of these files does:
+- `sinytra.wiki.json`: The main metadata file, the "heart" of the documentation package, carries information about the
+project. For its content format, see the complete explanation below.
+- `_meta.json`: Can be placed in the root folder as well as each subfolder. Provides display names for files and folders,
+which are shown in the documentation navigation sidebar on the wiki. If not provided, fallback display names are generated automatically.
+- `*.mdx` files: Contain documentation contents. To learn more about the MDX format, please see their [website](https://mdxjs.com/).  
+As MDX compiles to JavaScript, the Wiki imposes certain restrictions on what components and tags can be used in addition to standard Markdown.
+For a complete description, please read below.
+
+### Assets
+
+<Callout>
+    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#gradle-plugin-companion),
+    which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
+</Callout>
+
+Assets are used to display images of items, blocks and other mod content across the website. These can be used as part
+of crafting recipes, sidebar information or custom components.
+
+Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
+in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
+
+Rendered mod assets including **both items and blocks** should be placed under `.assets/item/(modid)` inside the
+documentation directory, where `modid` is the namespace of each texture you wish to provide.
+
+Each asset **must be in `.png` format**. The name of the file is up to your choice.
+
+For example, `examplemod:generator` would point to `(root)/.assets/item/examplemod/generator.png`.
+
+## Documentation format
+
+### Wiki Metadata
+
+```json title="sinytra-wiki.json"
+{
+    "id": "mffs",
+    "platform": "modrinth",
+    "slug": "mffs"
+}
+```
+
+JSON properties explanation:
+
+- `id`: Unique project id used across the wiki. We recommend using your mod id.
+- `platform`: Your mod's distribution platform. Can be either of `modrinth` or `curseforge`.
+- `slug`: The host platform's project slug.
+
+The project slug can be easily extracted from your mod's project page URL as shown in the examples below, where `{slug}`
+is a placeholder for the actual value.
+- For Modrinth projects: `https://modrinth.com/mod/{slug}`  
+- For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+
+### Folder metadata
+
+```json title="_meta.json"
+{
+    "blocks": "Blocks",
+    "items": "Completely custom name",
+    "introduction.mdx": "Introduction"
+}
+```
+
+### Markdown and MDX
+
+Hello
+
+## Gradle plugin companion
 
 ## This is a MDX page

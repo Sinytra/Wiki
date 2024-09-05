@@ -1,6 +1,9 @@
 import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
 import available from "./lib/locales/available.js";
+import remarkGfm from 'remark-gfm';
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
 
 const withNextIntl = createNextIntlPlugin(
     './components/i18n/request.tsx'
@@ -31,7 +34,15 @@ const nextConfig = {
 };
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+    options: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [
+            [rehypePrettyCode, {
+                theme: 'plastic'
+            }],
+            rehypeSlug
+        ]
+    }
 })
 
 export default withNextIntl(withMDX(nextConfig));

@@ -9,7 +9,7 @@ export default function DevStarter() {
       <>
         <span className="text-muted-foreground text-lg">Looking to add your mod as a developer?</span>
         <span className="text-muted-foreground text-lg">Get started by reading our <LinkTextButton
-          className="!text-foreground !font-normal !text-lg" href="/about">author guide</LinkTextButton>.</span>
+          className="!text-foreground !font-normal !text-lg underline" href="/about/devs">author guide</LinkTextButton>.</span>
       </>
     }>
       <LocaleNavLink href="/dev">
