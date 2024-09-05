@@ -24,9 +24,9 @@ export async function generateMetadata({params}: {
   let title: string | undefined = undefined;
   try {
     const folderPath = params.path.slice(0, params.path.length - 1);
-    const file = await sources.readMetadataFile(source, folderPath.join('/') + '/' + folderMetaFile, params.locale);
+    const folderMeta = await sources.parseFolderMetadataFile(source, folderPath.join('/') + '/' + folderMetaFile, params.locale);
     const fileName = params.path[params.path.length - 1] + '.mdx';
-    title = file[fileName];
+    title = folderMeta[fileName];
   } catch (e) {
     // ignored
   }

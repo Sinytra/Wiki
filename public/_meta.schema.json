@@ -1,0 +1,8 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Sinytra Wiki Folder Layout Metadata",
+    "description": "Provides file naming information for a directory",
+    "type": "object",
+    "required": [],
+    "additionalProperties": { "type": "string" }
+}

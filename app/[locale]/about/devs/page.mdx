@@ -1,6 +1,7 @@
 import GitHubIcon from "../../../../components/ui/icons/GitHubIcon"; 
 import ModrinthIcon from "../../../../components/ui/icons/ModrinthIcon"; 
 import CurseForgeIcon from "../../../../components/ui/icons/CurseForgeIcon";
+import GradleIcon from "../../../../components/ui/icons/GradleIcon";
 
 # Developers
 
@@ -13,8 +14,11 @@ For a guide on publishing docs onto our website, please see the [Publishing](./p
 
 In order to start hosting documentation on our wiki, your mod only needs to meet a few minimal requirements: 
 
-- Be hosted on a <GitHubIcon className="inline-block mx-1" width={16} height={16} /> GitHub repository (both private and public repositories work!)
-- Be approved on either <ModrinthIcon className="inline-block mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> Modrinth or <CurseForgeIcon className="inline-block mx-1 text-[var(--curseforge-brand)]" width={16} height={16} /> CurseForge
+- Be hosted on a <GitHubIcon className="inline-block mb-1 mx-1" width={16} height={16} /> GitHub repository
+(both private and public repositories work!)
+- Be approved on either
+<ModrinthIcon className="inline-block mb-1 mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> [Modrinth](https://modrinth.com/) or
+<CurseForgeIcon className="inline-block mb-0.5 mx-1 text-[var(--curseforge-brand)]" width={16} height={16} /> [CurseForge](https://www.curseforge.com/)
 - Have the GitHub repository linked as the mod's source code url on the respective hosting website  
   (this is currently required to verify project ownership)
 
@@ -41,7 +45,7 @@ docs
 │   └── _meta.json
 ├── introduction.mdx
 ├── _meta.json
-└── sinytra.wiki.json
+└── sinytra-wiki.json
 ```
 
 <details>
@@ -65,23 +69,24 @@ docs
     │   └── _meta.json
     ├── introduction.mdx
     ├── _meta.json
-    └── sinytra.wiki.json
+    └── sinytra-wiki.json
     ```
 </details>
 
 Let's talk about what each of these files does:
-- `sinytra.wiki.json`: The main metadata file, the "heart" of the documentation package, carries information about the
+- `sinytra-wiki.json`: The main metadata file, the "heart" of the documentation package, carries information about the
 project. For its content format, see the complete explanation below.
-- `_meta.json`: Can be placed in the root folder as well as each subfolder. Provides display names for files and folders,
-which are shown in the documentation navigation sidebar on the wiki. If not provided, fallback display names are generated automatically.
-- `*.mdx` files: Contain documentation contents. To learn more about the MDX format, please see their [website](https://mdxjs.com/).  
-As MDX compiles to JavaScript, the Wiki imposes certain restrictions on what components and tags can be used in addition to standard Markdown.
-For a complete description, please read below.
+- `_meta.json`: Can be placed in the root folder as well as each subfolder. Provides display names for files and
+folders, which are shown in the documentation navigation sidebar on the wiki, and also specifies the order in which
+they are displayed. If not provided, fallback display names are generated automatically.
+- `*.mdx` files: Contain documentation contents. To learn more about the MDX format, please see their
+[website](https://mdxjs.com/). As MDX compiles to JavaScript, the Wiki imposes certain restrictions on what components
+and tags can be used in addition to standard Markdown. For a complete description, please read below.
 
 ### Assets
 
 <Callout>
-    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#gradle-plugin-companion),
+    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#-gradle-plugin-companion),
     which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
 </Callout>
 
@@ -102,6 +107,10 @@ For example, `examplemod:generator` would point to `(root)/.assets/item/examplem
 
 ### Wiki Metadata
 
+The wiki metadata file specifies project identification information, necessary for the wiki to load the project.
+
+It must be placed in a file called `sinytra-wiki.json` inside the documentation **root directory**.
+
 ```json title="sinytra-wiki.json"
 {
     "id": "mffs",
@@ -110,9 +119,10 @@ For example, `examplemod:generator` would point to `(root)/.assets/item/examplem
 }
 ```
 
-JSON properties explanation:
+The wiki metadata file contains the following properties, all of which are **required**:
 
-- `id`: Unique project id used across the wiki. We recommend using your mod id.
+- `id`: Unique project id used to identify the project across the wiki. We recommend using your mod id
+or hosting platform slug.
 - `platform`: Your mod's distribution platform. Can be either of `modrinth` or `curseforge`.
 - `slug`: The host platform's project slug.
 
@@ -121,7 +131,17 @@ is a placeholder for the actual value.
 - For Modrinth projects: `https://modrinth.com/mod/{slug}`  
 - For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
 
+The JSON Schema specification for this file can be found [here](/sinytra-wiki.schema.json).
+
 ### Folder metadata
+
+Provides additional information for the documentation page navigation sidebar:
+- The **display names** of folders and files. If not provided, the wiki will use automatically generated display names.
+- The **ordering** of sidebar entries. By default, folders are shown first, followed by regular files, all sorted
+alphabetically.
+
+To avoid potential unwanted display errors, we recommend **always** providing complete folder metadata in your
+documentation.
 
 ```json title="_meta.json"
 {
@@ -131,10 +151,26 @@ is a placeholder for the actual value.
 }
 ```
 
-### Markdown and MDX
+The folder metadata json consists of string key-value pairs, where the keys represent the name of a file or a folder,
+and the values are their display name. When specifying a file name, the full name including the extension is required.
 
-Hello
+Folder metadata is contained in a file called `_meta.json` and can be placed **inside any folder** within the
+documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
 
-## Gradle plugin companion
+The JSON Schema specification for this file can be found [here](/_meta.schema.json).
 
-## This is a MDX page
+## <GradleIcon width={32} height={32} className="inline-block mr-1" /> Gradle plugin companion
+
+We provide an excellent wiki companion [Gradle plugin](https://github.com/Sinytra/WikiToolkit) to help you with
+authoring documentation.
+
+Its features include:
+- Local real-time, accurate preview of your documentation in the exact same look as it will have once uploaded to the wiki
+- Automatically generating asset renders of inventory models for all mod items
+- Revalidating documentation after publishing
+
+A complete usage guide can be found on its [GitHub repository](https://github.com/Sinytra/WikiToolkit).
+
+## Next steps
+
+➡️ Learn more about the specifics of the MDX [Documentation format](./format).

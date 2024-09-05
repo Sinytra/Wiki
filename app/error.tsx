@@ -8,6 +8,7 @@ import {NavLink} from "@/components/navigation/link/NavLink";
 export default function Error({error}: { error: Error & { digest?: string }}) {
   useEffect(() => {
     console.error(error);
+    console.error('Error digest', error.digest);
   }, [error]);
 
   return (

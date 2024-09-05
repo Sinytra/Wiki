@@ -8,8 +8,8 @@ import cacheUtil from "@/lib/cacheUtil";
 import githubApp from "@/lib/github/githubApp";
 import localPreview from "@/lib/docs/localPreview";
 import {redirect, RedirectType} from "next/navigation";
+import metadata, {ValidationError} from "@/lib/docs/metadata";
 
-const metadataFile = 'sinytra-wiki.json';
 export const folderMetaFile = '_meta.json';
 
 type SourceType = 'local' | 'github';
@@ -78,13 +78,16 @@ async function readDocsFile(source: DocumentationSource, path: string[], locale?
   return content;
 }
 
-async function readMetadataFile(source: DocumentationSource, path: string, locale?: string): Promise<Record<string, string>> {
+async function parseFolderMetadataFile(source: DocumentationSource, path: string, locale?: string): Promise<Record<string, string>> {
   const provider = getDocumentationSourceProvider(source);
 
   try {
     const file = await readLocalizedFile(provider, source, path, locale);
-    return JSON.parse(file.content);
+    return metadata.parseFolderMetadata(file.content);
   } catch (e) {
+    if (process.env.NODE_ENV !== 'production' && e instanceof ValidationError) {
+      throw e;
+    }
     return {};
   }
 }
@@ -122,7 +125,7 @@ async function resolveDocsTree(source: DocumentationSource, locale?: string): Pr
   const converted = await provider.readFileTree(source);
 
   const filtered = converted.filter(c =>
-    c.type === 'file' && c.name !== metadataFile && (c.name === folderMetaFile || c.name.endsWith('.mdx'))
+    c.type === 'file' && c.name !== metadata.metadataFileName && (c.name === folderMetaFile || c.name.endsWith('.mdx'))
     || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
   return processFileTree(source, '', filtered, locale);
 }
@@ -134,7 +137,7 @@ async function readShallowFileTree(source: DocumentationSource, path: string): P
 
 async function processFileTree(source: DocumentationSource, root: string, tree: FileTreeNode[], locale?: string): Promise<FileTreeNode[]> {
   const metaFile = tree.find(t => t.type === 'file' && t.name === folderMetaFile);
-  const metadata = metaFile ? await readMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name, locale) : undefined;
+  const metadata = metaFile ? await parseFolderMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name, locale) : undefined;
   const order = Object.keys(metadata || {});
   return Promise.all(tree
     .filter(f => f.type !== 'file' || f.name !== folderMetaFile)
@@ -161,6 +164,9 @@ async function getProjectSourceOrRedirect(slug: string, locale: string): Promise
   try {
     return await getProjectSource(slug);
   } catch (e) {
+    if (process.env.NODE_ENV !== 'production' && e instanceof ValidationError) {
+      throw e;
+    }
     redirect(`/${locale}`, RedirectType.replace);
   }
 }
@@ -223,8 +229,9 @@ async function computeLocalDocumentationSources(paths: string): Promise<Document
   const roots = paths!.split(';');
 
   return Promise.all(roots.map(async (root) => {
-    const file = await fs.readFile(`${root}/${metadataFile}`, 'utf8');
+    const file = await fs.readFile(`${root}/${metadata.metadataFileName}`, 'utf8');
     const data = JSON.parse(file);
+    metadata.validateMetadataFile(data);
 
     return {
       id: data.id,
@@ -245,7 +252,7 @@ const index = {
   readDocsTree,
   readDocsFile,
   readShallowFileTree,
-  readMetadataFile,
+  parseFolderMetadataFile,
   getLocalDocumentationSources,
   getProjectSourceOrRedirect
 };

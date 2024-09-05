@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Sinytra Wiki Documentation Metadata",
+    "description": "Provides documentation project meta information",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "Unique project ID that identifies the project across the wiki. We recommend using your modid.",
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 126,
+            "pattern": "^[a-z0-9-]+$"
+        },
+        "platform": {
+            "description": "Your mod's distribution platform.",
+            "enum": ["curseforge", "modrinth"]
+        },
+        "slug": {
+            "description": "The host platform's project slug.",
+            "type": "string"
+        }
+    },
+    "required": ["id", "platform", "slug"]
+}

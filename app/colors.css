@@ -409,6 +409,10 @@ TODO Change
   --vp-code-tab-active-bar-color: var(--vp-c-brand-1);
 }
 
+.dark {
+  --vp-code-block-bg: var(--vp-c-bg-alt);
+}
+
 /**
  * Component: Button
  * -------------------------------------------------------------------------- */

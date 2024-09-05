@@ -8,6 +8,7 @@
     :root {
         --modrinth-brand: #00AF5C;
         --curseforge-brand: #F16436;
+        --gradle-brand: #02303A;
     }
     
     :root {
@@ -100,11 +101,30 @@ html body[data-scroll-locked] {
     margin: 20px 0;
 }
 
+.prose :where(:not(pre)>code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    border-radius: 4px;
+    padding: 3px 6px;
+    background-color: var(--vp-code-bg);
+    font-size: var(--vp-code-font-size);
+    color: var(--vp-code-color);
+    font-family: var(--vp-font-family-mono), ui-monospace;
+}
+.prose :where(a:has(code)):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    text-decoration-color: var(--vp-code-color) !important;
+}
+.prose :where(:not(strong)>code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    font-weight: normal;
+}
 .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
     content: "" !important;
 }
 .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
     content: "" !important;
+}
+
+.prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    background-color: #21252B;
+    color: #A9B2C3;
 }
 
 .prose :where(details):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
@@ -166,7 +186,7 @@ figcaption[data-rehype-pretty-code-title] {
     font-family: monospace;
 }
 
-figure[data-rehype-pretty-code-figure] pre {
+figure[data-rehype-pretty-code-figure] figcaption + pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }

@@ -1,6 +1,14 @@
 'use client'
 
-import {BookMarkedIcon, HelpCircleIcon, HomeIcon, PencilRulerIcon, ShieldIcon, UploadIcon} from "lucide-react";
+import {
+  BookMarkedIcon,
+  FileTypeIcon,
+  HelpCircleIcon,
+  HomeIcon,
+  PencilRulerIcon,
+  ShieldIcon, TypeIcon,
+  UploadIcon
+} from "lucide-react";
 import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 
@@ -19,6 +27,9 @@ export default function MetaDocsNavigation() {
         </SidebarNavLink>
         <SidebarNavLink href="/about/devs" icon={PencilRulerIcon}>
           Developers
+        </SidebarNavLink>
+        <SidebarNavLink href="/about/format" icon={TypeIcon}>
+          Format
         </SidebarNavLink>
         <SidebarNavLink href="/about/publishing" icon={UploadIcon}>
           Publishing

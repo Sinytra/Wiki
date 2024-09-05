@@ -1,0 +1,77 @@
+import CraftingRecipe from "../../../../components/docs/shared/CraftingRecipe";
+
+# Documentation format
+
+The wiki uses [MDX](https://mdxjs.com/) files as its documentation format. In additon, [GitHub Flavored Markdown](https://github.github.com/gfm/)
+(GFM) is also available using [`remark-gfm`](https://github.com/remarkjs/remark-gfm). 
+
+If you're not yet familiar with MDX, don't worry - it is an extension of the simple [Markdown](https://www.markdownguide.org/)
+format with added JSX capabilities, meaning you can include fancy custom components in your documentation,
+such as crafting recipes.
+
+These features are purely optional, and you can always stick to using standard Markdown in your documentation. However,
+the file extension must remain `.mdx`.
+
+#### Limitations
+
+Because MDX can potentially allow unwanted code injection on the server, we sanitize all sources before they're rendered,
+which can result in certain features of MDX being unavailable. That said, if there's a safe feature you'd like to use in
+your documentation that isn't available on the wiki, please open an issue on our
+[GitHub repository](https://github.com/Sinytra/Wiki/issues).
+
+## Custom components
+
+The wiki adds a selection of useful components that you can use in your documentation.
+
+Import statements are not required for built-in wiki components.
+
+### Crafting recipes
+
+- `slots` - Exactly 9 resource location strings (asset names), in order from top-left to bottom-right.
+- `result` - Resource location of the resulting item asset
+- `count` - Optionally, specify the output item amount
+
+※ Images shown in crafting recipes are sourced from documentation assets as described [here](./devs#assets).
+
+```jsx 
+<CraftingRecipe
+    slots={[
+        'flint',
+        'minecraft:flint', // Hint: the namespace is optional for 'minecraft' items
+        'flint',
+        '',
+        'iron_block',
+        '',
+        '',
+        'diamond',
+        ''
+    ]}
+    result="furnace"
+    count={4} // Optional
+/>
+```
+
+Results in:
+
+<CraftingRecipe
+    slots={[
+        'flint',
+        'minecraft:flint',
+        'flint',
+        '',
+        'iron_block',
+        '',
+        '',
+        'diamond',
+        ''
+    ]}
+    result="furnace"
+    count={4}
+/>
+
+## Next steps
+
+Once your documentation folder is set up, and you're satisfied with the looks and content of your documentation,
+it is time to get it published on the wiki.
+
+➡️ See the [Publishing](./publishing) page for more information.

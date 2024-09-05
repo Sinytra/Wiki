@@ -13,6 +13,7 @@ const inter = Inter({subsets: ["latin"]});
 export const metadata: Metadata = {
   title: 'Sinytra Modded Wiki',
   description: 'The Wiki for all of Modded Minecraft',
+  metadataBase: new URL(process.env.NEXT_APP_URL || 'http://localhost:3000'),
   openGraph: {
     siteName: 'Sinytra Modded Wiki',
     type: 'website',
