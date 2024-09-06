@@ -4,6 +4,8 @@ import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import {markdownRehypeSchema} from "./contentFilter";
 import {compileMDX} from "next-mdx-remote/rsc";
 import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
+import Callout from "@/components/docs/shared/Callout";
+import ModAsset from "@/components/docs/shared/ModAsset";
 import {ReactElement} from "react";
 import remarkGfm from 'remark-gfm';
 
@@ -19,7 +21,7 @@ export interface DocumentationMarkdown {
 }
 
 async function renderDocumentationMarkdown(source: string): Promise<DocumentationMarkdown> {
-  const components = {CraftingRecipe};
+  const components = {CraftingRecipe, Callout, ModAsset};
 
   const {content, frontmatter} = await compileMDX({
     source,

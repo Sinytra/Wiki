@@ -25,7 +25,12 @@ The wiki adds a selection of useful components that you can use in your document
 
 Import statements are not required for built-in wiki components.
 
-### Crafting recipes
+<Callout>
+    Didn't find what you were looking for? Head over to our [GitHub repository](https://github.com/Sinytra/Wiki/issues)
+    and open a new issue or pull request proposing your desired component!
+</Callout>
+
+### Crafting recipe
 
 - `slots` - Exactly 9 resource location strings (asset names), in order from top-left to bottom-right.
 - `result` - Resource location of the resulting item asset
@@ -68,6 +73,43 @@ Results in:
     result="furnace"
     count={4}
 />
+
+### Callouts
+
+Draw the reader's attention with callouts.
+
+Available attributes:
+- `variant` Optional; can be either of `default` or `danger`
+
+```jsx
+<Callout>
+    This is a sample callout
+</Callout>
+```
+
+Results in:
+
+<Callout>This is a sample callout</Callout>
+
+Danger variant:
+
+<Callout variant="danger">This is a sample danger callout</Callout>
+
+### Mod Asset
+
+Displays an [asset](./devs#assets) image.
+
+Available attributes:
+- `location` Required, Resource Location of the asset you wish to display
+- All properties of `img` except for `src` are accepted
+
+```jsx
+<ModAsset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
+```
+
+Results in:
+
+<ModAsset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
 
 ## Next steps
 
