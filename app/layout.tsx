@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
-import "./globals.css";
-import "./colors.css";
+import "./styles/globals.css";
+import "./styles/colors.css";
 import Providers from "@/components/navigation/nav-progress-bar";
 import {Toaster} from "@/components/ui/sonner";
 import {ReactNode} from "react";

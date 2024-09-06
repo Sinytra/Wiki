@@ -1,4 +1,4 @@
-@import "ghmd.css";
+@import "./ghmd.css";
 
 @tailwind base;
 @tailwind components;

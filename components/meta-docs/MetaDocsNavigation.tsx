@@ -1,11 +1,10 @@
 'use client'
 
 import {
-  BookMarkedIcon,
-  FileTypeIcon,
+  BookMarkedIcon, CopyrightIcon,
   HelpCircleIcon,
-  HomeIcon,
-  PencilRulerIcon,
+  HomeIcon, LanguagesIcon, LockKeyholeIcon,
+  PencilRulerIcon, ScrollTextIcon,
   ShieldIcon, TypeIcon,
   UploadIcon
 } from "lucide-react";
@@ -25,6 +24,12 @@ export default function MetaDocsNavigation() {
         <SidebarNavLink href="/about/usage" icon={BookMarkedIcon}>
           User guide
         </SidebarNavLink>
+        <SidebarNavLink href="/about/i18n" icon={LanguagesIcon}>
+          Help us translate!
+        </SidebarNavLink>
+
+        <hr/>
+
         <SidebarNavLink href="/about/devs" icon={PencilRulerIcon}>
           Developers
         </SidebarNavLink>
@@ -36,13 +41,21 @@ export default function MetaDocsNavigation() {
         </SidebarNavLink>
 
         <hr/>
-        
+
         <SidebarNavLink href="/about/help" icon={HelpCircleIcon}>
           Get help
         </SidebarNavLink>
-
-        <SidebarNavLink href="/about/privacy" icon={ShieldIcon}>
-          Privacy policy
+        <SidebarNavLink href="/about/tos" icon={ScrollTextIcon}>
+          Terms of Use
+        </SidebarNavLink>
+        <SidebarNavLink href="/about/copyright" icon={CopyrightIcon}>
+          Copyright Policy
+        </SidebarNavLink>
+        <SidebarNavLink href="/about/privacy" icon={LockKeyholeIcon}>
+          Privacy Policy
+        </SidebarNavLink>
+        <SidebarNavLink href="/about/security" icon={ShieldIcon}>
+          Security Policy
         </SidebarNavLink>
       </div>
     </CollapsibleDocsTreeBase>

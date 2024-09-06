@@ -12,8 +12,10 @@ export default async function Home({ params }: { params: { locale: string } }) {
     <main className="flex max-w-5xl mx-auto flex-col items-center justify-between w-full px-2 md:px-0">
       <div className="z-10 w-full items-center justify-center text-2xl md:flex">
         <p className="text-2xl md:text-4xl text-foreground flex flex-col lg:flex-row items-center gap-x-2">
-          <span>Welcome to</span><span
-          className="text-center font-medium bg-gradient-to-b from-blue-400 to-blue-500 bg-clip-text text-transparent">Sinytra's Modded Minecraft Wiki</span>
+          <span>Welcome to the</span><span
+          className="text-center font-medium bg-gradient-to-b from-blue-400 to-blue-500 bg-clip-text text-transparent">
+          Modded Minecraft Wiki
+        </span>
         </p>
       </div>
 
