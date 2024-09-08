@@ -1,7 +1,7 @@
 'use client'
 
 import {
-  BookMarkedIcon, CopyrightIcon,
+  BookMarkedIcon,
   HelpCircleIcon,
   HomeIcon, LanguagesIcon, LockKeyholeIcon,
   PencilRulerIcon, ScrollTextIcon,
@@ -48,14 +48,11 @@ export default function MetaDocsNavigation() {
         <SidebarNavLink href="/about/tos" icon={ScrollTextIcon}>
           Terms of Use
         </SidebarNavLink>
-        <SidebarNavLink href="/about/copyright" icon={CopyrightIcon}>
-          Copyright Policy
-        </SidebarNavLink>
         <SidebarNavLink href="/about/privacy" icon={LockKeyholeIcon}>
           Privacy Policy
         </SidebarNavLink>
         <SidebarNavLink href="/about/security" icon={ShieldIcon}>
-          Security Policy
+          Security Notice
         </SidebarNavLink>
       </div>
     </CollapsibleDocsTreeBase>

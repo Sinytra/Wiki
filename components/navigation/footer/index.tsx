@@ -5,7 +5,7 @@ import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 function Copyright({ center }: { center: boolean }) {
   return <>
-    <div className={cn("flex flex-col items-center sm:basis-96", !center && 'sm:items-start')}>
+    <div className={cn("flex flex-col items-center md:basis-96", !center && 'md:items-start')}>
       <span className="font-medium text-foreground">
         📖 The Modded Minecraft Wiki
       </span>
@@ -42,9 +42,7 @@ function LinkColumn({title, className, children}: { title: string, className?: s
 
 function NavigationColumns() {
   return (
-    <div className="grid w-full ml-auto grid-cols-2 gap-8 lg:grid-cols-4">
-      <div className="hidden lg:block"></div>
-
+    <div className="grid w-full ml-auto grid-cols-4 gap-8 px-8">
       <LinkColumn title="Navigation">
         <LinkEntry title="Homepage" href="/"/>
         <LinkEntry title="Browse" href="/browse"/>
@@ -59,19 +57,25 @@ function NavigationColumns() {
       <LinkColumn title="Community">
         <LinkEntry title="Discord" href="https://discord.sinytra.org"/>
       </LinkColumn>
+      
+      <LinkColumn title="About">
+        <LinkEntry title="Terms of Service" href="/about/tos"/>
+        <LinkEntry title="Privacy Policy" href="/about/privacy"/>
+        <LinkEntry title="Contact" href="/about/help"/>
+      </LinkColumn>
     </div>
   );
 }
 
 export default function Footer() {
   const isPreview = localPreview.isEnabled();
-  
+
   return (
     <footer
       className="w-full bg-muted pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-border">
       <div className="px-8 w-full max-w-[90rem] text-muted-foreground flex flex-col gap-8">
         <div
-          className={cn("flex flex-wrap-reverse sm:flex-nowrap sm:flex-row w-full justify-center gap-y-8", !isPreview && 'sm:justify-between')}>
+          className={cn("flex flex-wrap-reverse md:flex-nowrap md:flex-row w-full justify-center gap-y-8", !isPreview && 'md:justify-between')}>
           <Copyright center={isPreview}/>
 
           { !isPreview && <NavigationColumns /> }
