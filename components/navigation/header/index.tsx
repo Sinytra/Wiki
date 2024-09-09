@@ -1,8 +1,5 @@
 import {ReactNode} from "react";
 import styles from './style.module.css';
-import {auth, signOut} from "@/lib/auth";
-import {Button} from "@/components/ui/button";
-import {LogOutIcon, PencilRulerIcon} from "lucide-react";
 import localPreview from "@/lib/docs/localPreview";
 import {Badge} from "@/components/ui/badge";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
@@ -18,7 +15,6 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
 }
 
 export default async function Header({ locale }: { locale: string }) {
-  const session = await auth();
   const preview = localPreview.isEnabled();
 
   return (
@@ -44,29 +40,6 @@ export default async function Header({ locale }: { locale: string }) {
             </nav>
 
             <LanguageSelect locale={locale}/>
-
-            {session !== null &&
-                <>
-                    <div className={styles.socialLinks}>
-                        <HeaderLink href="/dev">
-                            <span className="hidden sm:block">Dashboard</span>
-                            <PencilRulerIcon className="w-4 h-4 sm:hidden"/>
-                        </HeaderLink>
-                    </div>
-                    <div className={styles.socialLinks}>
-                        <form
-                            action={async () => {
-                              "use server"
-                              await signOut({redirectTo: '/'});
-                            }}
-                        >
-                            <Button type="submit" variant="ghost" size="icon" className="h-6 w-6 sm:h-10 sm:w-10">
-                                <LogOutIcon className="h-4 w-4"/>
-                            </Button>
-                        </form>
-                    </div>
-                </>
-            }
           </div>
         }
       </div>

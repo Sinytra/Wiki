@@ -8,7 +8,7 @@ import {routing} from "@/lib/locales/routing";
 const handleI18nRouting = createMiddleware(routing);
 
 export const config = {
-  matcher: ['/((?:dev).*|(?!api|(?:en|de|fr|es|it|cz|hu|pl|sw|ua|ru|jp|kr|cn)(?:(?!/dev)|$)|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|sinytra-wiki.schema.json|_meta.schema.json|favicon.ico|sitemap.xml|.*\\.png$).*)'],
+  matcher: ['/((?:dev|report).*|(?!api|(?:en|de|fr|es|it|cz|hu|pl|sw|ua|ru|jp|kr|cn)(?:(?!/dev|/report)|$)|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|sinytra-wiki.schema.json|_meta.schema.json|favicon.ico|sitemap.xml|.*\\.png$).*)'],
 }
 
 export async function middleware(request: NextRequest, response: NextResponse) {
@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     }
   }
 
-  if (request.nextUrl.pathname.match(/^(\/[^\/]+)?\/dev/)) {
+  if (request.nextUrl.pathname.match(/^(\/[^\/]+)?\/(?:dev|report)/)) {
     const localResp = handleI18nRouting(request);
     if (localResp.status !== 200) {
       return localResp;

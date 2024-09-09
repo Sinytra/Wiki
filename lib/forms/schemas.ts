@@ -6,3 +6,9 @@ export const projectRegisterSchema = z.object({
   branch: z.string(),
   path: z.string()
 });
+
+export const docsPageReportSchema = z.object({
+  reason: z.string(),
+  content: z.string(),
+  email: z.string().email().optional()
+});

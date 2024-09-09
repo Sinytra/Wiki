@@ -6,6 +6,7 @@ export interface GitHubUserProfile {
   bio?: string;
   avatar_url: string;
   login: string;
+  email?: string;
 }
 
 function cachedFetch(...args: any[]) {
@@ -20,6 +21,10 @@ function cachedFetch(...args: any[]) {
 
 async function getUserProfile(token: string): Promise<GitHubUserProfile> {
   return makeApiRequest(token, 'GET /user');
+}
+
+async function getUserProfileEmails(token: string): Promise<GitHubUserProfile> {
+  return makeApiRequest(token, 'GET /user/emails');
 }
 
 async function makeApiRequest<T>(token: string, path: string, ...options: any[]) {
@@ -98,7 +103,8 @@ function parseData(data: any) {
 
 const github = {
   getUserProfile,
-  getPaginatedData
+  getPaginatedData,
+  getUserProfileEmails
 };
 
 export default github;

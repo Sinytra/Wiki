@@ -2,11 +2,11 @@ import MetadataGrid from "@/components/docs/mod-metadata/MetadataGrid";
 import MetadataRowKey from "@/components/docs/mod-metadata/MetadataRowKey";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {DocsEntryMetadata, ModContentType} from "@/lib/docs/metadata";
-import {BoxIcon} from "lucide-react";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import {ModProject} from "@/lib/platforms";
 import assets, {AssetLocation, resourceLocationToString} from "@/lib/docs/assets";
 import {DocumentationSource} from "@/lib/docs/sources";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 interface Props {
   source: DocumentationSource;
@@ -30,11 +30,7 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
       </DocsSidebarTitle>
 
       <div className="mb-6 border border-accent m-2 rounded-sm">
-        {iconUrl
-          ? <img src={iconUrl.src} alt={resourceLocationToString(iconUrl.id)} width={128} height={128}
-                 className="m-4 mx-auto"/>
-          : <BoxIcon strokeWidth={1} className="m-4 mx-auto text-muted-foreground opacity-20" width={128} height={128}/>
-        }
+        <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="m-4 mx-auto" alt={!iconUrl ? undefined : resourceLocationToString(iconUrl.id)} />
       </div>
 
       <div className="mb-4">

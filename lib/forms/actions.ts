@@ -1,6 +1,6 @@
 'use server'
 
-import {projectRegisterSchema} from "@/lib/forms/schemas";
+import {docsPageReportSchema, projectRegisterSchema} from "@/lib/forms/schemas";
 import {revalidatePath} from "next/cache";
 import githubApp from "@/lib/github/githubApp";
 import metadata from "@/lib/docs/metadata";
@@ -11,6 +11,7 @@ import {auth} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
 import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
+import email from "@/lib/email";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -75,6 +76,35 @@ export async function handleRevalidateDocs(id: string) {
 
   cacheUtil.clearModCaches(id);
   revalidatePath(`/[locale]/mod/${id}/docs`, 'layout');
+
+  return {success: true};
+}
+
+export async function handleReportProjectForm(projectId: string, path: string, rawData: any) {
+  const session = await auth();
+  if (session == null) {
+    return {success: false, error: 'Unauthenticated'};
+  }
+
+  const validatedFields = docsPageReportSchema.safeParse(rawData)
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
+
+  try {
+    const sender = {
+      name: session.user?.name || 'Unknown',
+      email: rawData.email || 'unknown'
+    };
+    // Send asynchronously
+    email.submitReport(projectId, path, sender, rawData.reason, rawData.content);
+  } catch (e) {
+    console.error('Error submitting report', e);
+    return {success: false, error: 'Internal Server Error, please try again later.'};
+  }
 
   return {success: true};
 }

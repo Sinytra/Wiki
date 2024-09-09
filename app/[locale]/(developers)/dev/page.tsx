@@ -1,10 +1,12 @@
-import {auth} from "@/lib/auth";
+import {auth, signOut} from "@/lib/auth";
 import github from "@/lib/github/github";
 import githubApp from "@/lib/github/githubApp";
 import database from "@/lib/database";
 import {Suspense} from "react";
 import ProfileProject from "@/components/dev/ProfileProject";
 import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
+import {Button} from "@/components/ui/button";
+import {LogOutIcon} from "lucide-react";
 
 async function ProfileProjects({owner}: { owner: string }) {
   const repos = await githubApp.getAvailableRepositories(owner);
@@ -69,7 +71,21 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
       <div className="flex flex-row justify-between">
         Project management dashboard
 
-        <ProjectRegisterForm defaultValues={defaultValues} state={state}/>
+        <div className="flex flex-row items-center gap-2">
+          <ProjectRegisterForm defaultValues={defaultValues} state={state}/>
+
+          <form
+            title="Logout"
+            action={async () => {
+              "use server"
+              await signOut({redirectTo: '/'});
+            }}
+          >
+            <Button type="submit" variant="outline" size="icon" className="h-6 w-6 sm:h-9 sm:w-9">
+              <LogOutIcon className="h-4 w-4"/>
+            </Button>
+          </form>
+        </div>
       </div>
 
       <hr className="my-2 border-neutral-600"/>
