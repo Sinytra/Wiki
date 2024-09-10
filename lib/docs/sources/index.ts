@@ -174,7 +174,7 @@ async function getProjectSourceOrRedirect(slug: string, locale: string): Promise
 async function getProjectSource(slug: string): Promise<DocumentationSource> {
   const cache = unstable_cache(
     async (id: string, enableLocal: boolean) => findProjectSource(id, enableLocal),
-    [],
+    [process.env.LOCAL_DOCS_ROOTS || 'no_locals'],
     {
       tags: [cacheUtil.getModDocsSourceCacheId(slug)]
     }
@@ -228,7 +228,7 @@ async function getLocalDocumentationSources(): Promise<DocumentationSource[]> {
 async function computeLocalDocumentationSources(paths: string): Promise<DocumentationSource[]> {
   const roots = paths!.split(';');
 
-  return Promise.all(roots.map(async (root) => {
+  return Promise.all(roots.filter(p => p.length > 0).map(async (root) => {
     const file = await fs.readFile(`${root}/${metadata.metadataFileName}`, 'utf8');
     const data = JSON.parse(file);
     metadata.validateMetadataFile(data);

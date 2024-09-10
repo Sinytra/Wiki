@@ -4,13 +4,16 @@ import dynamic from "next/dynamic";
 import {Button} from "@/components/ui/button";
 import * as React from "react";
 import {Link} from "@/lib/locales/routing";
+import localPreview from "@/lib/docs/localPreview";
 
 const LocalDateTime = dynamic(() => import("@/components/util/LocalDateTime"), {ssr: false})
 
 export default function PageEditControls({edit_url, updated_at, slug, path}: { edit_url: string | null, updated_at: Date | null, slug: string, path: string[] }) {
+  const preview = localPreview.isEnabled();
+
   return (
-    <div className="mt-auto">
-      <hr className="mt-4 mb-2 border-neutral-600"/>
+    <div className="mt-auto pt-3">
+      <hr className="mt-4 mb-2"/>
 
       <div className="px-1 py-2 pb-0 flex flex-col items-start gap-3">
         {edit_url &&
@@ -20,12 +23,14 @@ export default function PageEditControls({edit_url, updated_at, slug, path}: { e
             </LinkTextButton>
         }
 
-        <Button asChild variant="ghost" size="sm" className="p-0 text-muted-foreground hover:bg-transparent h-fit font-normal">
-          <Link href={`/report?slug=${slug}&path=${path.join('/')}`}>
-            <FlagIcon className="w-4 h-4 mr-2"/>
-            Report this page
-          </Link>
-        </Button>
+        {!preview &&
+            <Button asChild variant="ghost" size="sm" className="p-0 text-muted-foreground hover:bg-transparent h-fit font-normal">
+                <Link href={`/report?slug=${slug}&path=${path.join('/')}`}>
+                    <FlagIcon className="w-4 h-4 mr-2"/>
+                    Report this page
+                </Link>
+            </Button>
+        }
 
         {updated_at &&
             <span className="text-muted-foreground text-sm">Last updated: <LocalDateTime dateTime={updated_at}/></span>}

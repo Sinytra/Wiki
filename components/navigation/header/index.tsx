@@ -14,34 +14,38 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   )
 }
 
-export default async function Header({ locale }: { locale: string }) {
+export default async function Header({locale}: { locale: string }) {
   const preview = localPreview.isEnabled();
 
   return (
     <HeaderBase>
       <div className={`${styles.container} flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto`}>
         <div className="flex flex-row items-center gap-4">
-          <LocaleNavLink href="/">
-            <span className="text-base font-medium text-foreground inline-flex gap-1 items-center">📖<span className="hidden md:block"> Sinytra Modded Wiki</span></span>
+          <LocaleNavLink href={preview ? '/preview' : '/'}>
+            <span className="text-base font-medium text-foreground inline-flex gap-1 items-center">📖<span
+              className="hidden md:block"> Sinytra Modded Wiki</span></span>
           </LocaleNavLink>
           {preview && <Badge variant="secondary">PREVIEW MODE</Badge>}
-          {!preview && <Badge variant="outline" className="border-neutral-600 text-muted-foreground font-normal">Beta</Badge>}
+          {!preview &&
+              <Badge variant="outline" className="border-neutral-600 text-muted-foreground font-normal">Beta</Badge>}
         </div>
 
-        {preview
-          ?
-          <HeaderLink href="/preview">Home</HeaderLink>
-          :
-          <div className="flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
-            <nav className="flex flex-row">
-              <HeaderLink href="/">Home</HeaderLink>
-              <HeaderLink href="/browse">Browse</HeaderLink>
-              <HeaderLink href="/about">About</HeaderLink>
-            </nav>
+        <div className="flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
+          <nav className="flex flex-row">
+            {preview
+              ?
+              <HeaderLink href="/preview">Home</HeaderLink>
+              :
+                <>
+                    <HeaderLink href="/">Home</HeaderLink>
+                    <HeaderLink href="/browse">Browse</HeaderLink>
+                    <HeaderLink href="/about">About</HeaderLink>
+                </>
+            }
+          </nav>
 
-            <LanguageSelect locale={locale}/>
-          </div>
-        }
+          <LanguageSelect locale={locale}/>
+        </div>
       </div>
     </HeaderBase>
   )

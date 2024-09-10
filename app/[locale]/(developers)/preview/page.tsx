@@ -16,7 +16,10 @@ export default async function Preview() {
     <div className="flex flex-col">
       <h1 className="text-center text-3xl mb-6">Preview mode is enabled</h1>
       
-      <span className="text-muted-foreground text-center mb-12">Description comes here</span>
+      <span className="text-muted-foreground text-center mb-12">
+        Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before
+        they are published.
+      </span>
       
       <span className="my-2 font-medium">Available local documentation roots</span>
 

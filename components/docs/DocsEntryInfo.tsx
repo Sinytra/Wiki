@@ -50,7 +50,7 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
         </MetadataGrid>
       </div>
 
-      <hr/>
+      <hr className="my-3"/>
     </div>
   )
 }
