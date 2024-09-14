@@ -8,7 +8,7 @@ import {routing} from "@/lib/locales/routing";
 const handleI18nRouting = createMiddleware(routing);
 
 export const config = {
-  matcher: ['/((?:dev|report).*|(?!api|(?:en|de|fr|es|it|cz|hu|pl|sw|ua|ru|jp|kr|cn)(?:(?!/dev|/report)|$)|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|sinytra-wiki.schema.json|_meta.schema.json|favicon.ico|sitemap.xml|.*\\.png$).*)'],
+  matcher: ['/((?:dev|report).*|(?!api|blog|(?:en|de|fr|es|it|cz|hu|pl|sw|ua|ru|jp|kr|cn)(?:(?!/dev|/report)|$)|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|sinytra-wiki.schema.json|_meta.schema.json|favicon.ico|sitemap.xml|.*\\.png$).*)'],
 }
 
 export async function middleware(request: NextRequest, response: NextResponse) {

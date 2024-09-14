@@ -58,7 +58,7 @@ export default function ReportDocsPageForm({projectId, path}: { projectId: strin
         <FormItem>
           <FormLabel>Page path</FormLabel>
           <FormControl>
-            <Input placeholder="/blocks/generator" value={`/${path}`} disabled/>
+            <Input placeholder="/blocks/generator" value={path && `/${path}`} disabled/>
           </FormControl>
           <FormDescription>
             Reported documentation page path.

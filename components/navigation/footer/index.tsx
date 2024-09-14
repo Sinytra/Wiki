@@ -2,6 +2,7 @@ import React from "react";
 import localPreview from "@/lib/docs/localPreview";
 import {cn} from "@/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import Link from "next/link";
 
 function Copyright({ center }: { center: boolean }) {
   return <>
@@ -16,15 +17,15 @@ function Copyright({ center }: { center: boolean }) {
   </>
 }
 
-function LinkEntry({title, href}: { title: string, href: string }) {
+function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { title: string, href: string, component?: any }) {
   return <>
     <ul>
       <li>
-        <LocaleNavLink
+        <LinkComponent
           className="hover:text-secondary-foreground transition-colors rounded-md py-0.5 text-sm text-muted-foreground outline-none"
           href={href}>
           {title}
-        </LocaleNavLink>
+        </LinkComponent>
       </li>
     </ul>
   </>
@@ -50,12 +51,13 @@ function NavigationColumns() {
       </LinkColumn>
 
       <LinkColumn title="Links">
+        <LinkEntry title="Discord" href="https://discord.sinytra.org"/>
         <LinkEntry title="GitHub" href="https://github.com/Sinytra"/>
         <LinkEntry title="OpenCollective" href="https://opencollective.com/sinytra"/>
       </LinkColumn>
 
-      <LinkColumn title="Community">
-        <LinkEntry title="Discord" href="https://discord.sinytra.org"/>
+      <LinkColumn title="Resources">
+        <LinkEntry title="Blog" href="/blog" component={Link}/>
       </LinkColumn>
       
       <LinkColumn title="About">

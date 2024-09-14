@@ -32,7 +32,7 @@ export default async function Image() {
       >
         <img style={{ marginBottom: '1.5rem' }} src="https://sinytra.org/logo.png" width={224} height={224} />
 
-        <span style={{ fontSize: '4rem', marginBottom: '1rem' }}>Sinytra Modded Wiki</span>
+        <span style={{ fontSize: '4rem', marginBottom: '1rem' }}>Modded Minecraft Wiki</span>
         <span style={{ color: '#EBEBF599', fontSize: '2.5rem' }}>The Wiki for all of Modded Minecraft</span>
       </div>
     ),

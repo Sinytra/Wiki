@@ -5,6 +5,7 @@ import {Badge} from "@/components/ui/badge";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {cn} from "@/lib/utils";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -14,16 +15,16 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   )
 }
 
-export default async function Header({locale}: { locale: string }) {
+export default async function Header({locale, minimal, unfix}: { locale: string, minimal?: boolean, unfix?: boolean }) {
   const preview = localPreview.isEnabled();
 
   return (
-    <HeaderBase>
-      <div className={`${styles.container} flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto`}>
+    <HeaderBase unfix={unfix}>
+      <div className={cn(styles.container, 'flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
             <span className="text-base font-medium text-foreground inline-flex gap-1 items-center">📖<span
-              className="hidden md:block"> Sinytra Modded Wiki</span></span>
+              className="hidden md:block"> Modded Minecraft Wiki</span></span>
           </LocaleNavLink>
           {preview && <Badge variant="secondary">PREVIEW MODE</Badge>}
           {!preview &&
@@ -38,13 +39,17 @@ export default async function Header({locale}: { locale: string }) {
               :
                 <>
                     <HeaderLink href="/">Home</HeaderLink>
-                    <HeaderLink href="/browse">Browse</HeaderLink>
-                    <HeaderLink href="/about">About</HeaderLink>
+                    {!minimal &&
+                        <>
+                            <HeaderLink href="/browse">Browse</HeaderLink>
+                            <HeaderLink href="/about">About</HeaderLink>
+                        </>
+                    }
                 </>
             }
           </nav>
 
-          <LanguageSelect locale={locale}/>
+          {!minimal && <LanguageSelect locale={locale}/>}
         </div>
       </div>
     </HeaderBase>

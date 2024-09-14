@@ -3,7 +3,7 @@
 import {useEffect, useRef, useState} from "react";
 import {cn} from "@/lib/utils";
 
-export default function HeaderBase({children}: { children: any }) {
+export default function HeaderBase({unfix, children}: { unfix?: boolean, children: any }) {
   const binding = useRef<HTMLHeadingElement | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -18,7 +18,7 @@ export default function HeaderBase({children}: { children: any }) {
   }, [scrolled]);
   
   return (
-    <header className={cn("fixed left-0 w-[100vw] bg-background transition-shadow motion-reduce:transition-none z-50", scrolled && 'shadow-xl')} ref={binding}>
+    <header className={cn(!unfix && 'fixed left-0 w-[100vw]', 'bg-background z-50', !unfix && scrolled && 'shadow-xl transition-shadow motion-reduce:transition-none')} ref={binding}>
       {children}
     </header>
   )

@@ -1,11 +1,13 @@
 'use client'
 
 import {
-  BookMarkedIcon,
   HelpCircleIcon,
-  HomeIcon, LanguagesIcon, LockKeyholeIcon,
-  PencilRulerIcon, ScrollTextIcon,
-  ShieldIcon, TypeIcon,
+  HomeIcon,
+  LockKeyholeIcon,
+  PencilRulerIcon,
+  ScrollTextIcon,
+  ShieldIcon,
+  TypeIcon,
   UploadIcon
 } from "lucide-react";
 import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
@@ -19,14 +21,10 @@ export default function MetaDocsNavigation() {
           About
         </SidebarNavLink>
 
-        <hr/>
-
-        <SidebarNavLink href="/about/usage" icon={BookMarkedIcon}>
-          User guide
-        </SidebarNavLink>
-        <SidebarNavLink href="/about/i18n" icon={LanguagesIcon}>
-          Help us translate!
-        </SidebarNavLink>
+        {/*<hr/>*/}
+        {/*<SidebarNavLink href="/about/i18n" icon={LanguagesIcon}>*/}
+        {/*  Help us translate!*/}
+        {/*</SidebarNavLink>*/}
 
         <hr/>
 

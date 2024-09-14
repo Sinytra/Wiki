@@ -5,7 +5,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 export const dynamic = 'force-static';
 
 export default async function AboutLayout({params, children}: Readonly<{
-  params: { slug: string; locale: string };
+  params: { locale: string };
   children: ReactNode
 }>) {
   setContextLocale(params.locale);

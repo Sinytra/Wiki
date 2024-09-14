@@ -11,11 +11,11 @@ import {SpeedInsights} from "@vercel/speed-insights/next"
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: 'Sinytra Modded Wiki',
-  description: 'The Wiki for all of Modded Minecraft',
+  title: 'Modded Minecraft Wiki',
+  description: 'The Wiki for all of Modded Minecraft. Presented by Sinytra.',
   metadataBase: new URL(process.env.NEXT_APP_URL || 'http://localhost:3000'),
   openGraph: {
-    siteName: 'Sinytra Modded Wiki',
+    siteName: 'Modded Minecraft Wiki',
     type: 'website',
     url: process.env.NEXT_APP_URL
   }
