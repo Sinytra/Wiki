@@ -1,0 +1,178 @@
+<div
+    style={{
+        fontSize: 128,
+        background: '#1b1b1f',
+        color: '#fffff5db',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        marginBottom: '2.5rem'
+    }}
+>
+    <img style={{marginBottom: '1.5rem'}} src="https://sinytra.org/logo.png" width={124} height={124}/>
+
+    <span style={{fontSize: '2rem', marginBottom: '0.1rem'}}>Modded Minecraft Wiki</span>
+    <span style={{color: '#EBEBF599', fontSize: '1.5rem'}}>The Wiki for all of Modded Minecraft. Presented by Sinytra.</span>
+</div>
+
+# Introducing the new Modded Minecraft Wiki!
+
+**A Modded Minecraft Wiki. By modders, for modders.**
+
+Sinytra is proud to present our latest project, The Modded Minecraft Wiki - a common place for everyone to host
+and share documentation of their mods. We're hoping it will become a favorable choice among the current options
+for writing mod documentation (which both devs and users may find uneasy to use).
+
+## Motivation
+
+### Outdated information
+
+Over the years, we've seen the rise and fall of several modding related wikis. Most of them were hosted using some
+form of dedicated wiki software and relied on user contributions to stay up-to-date.
+
+However, as time passed, user contributions decreased and existing information couldn't be used reliably anymore.
+In addition, due to the lack of version branches in wiki software, the latest information is displayed without any
+kind of hint informing the user that may not be applicable to the current version of the mod anymore.
+
+### Lack of common sources
+
+If you were to look up a block from an arbitrary mod that has received several reworks over time, you can bet there'd be
+several outdated and confusing results.
+
+To demonstate, I tried searching for "Thermal Expansion Pulverizer" and here's the results I got in order,
+along with the referenced mc version:
+- [Pulverizer - Team CoFH](https://teamcofh.com/docs/1.12/thermal-expansion/pulverizer/), 1.12.2
+- [Pulverizer - Feed the Beast Wiki](https://feed-the-beast.fandom.com/wiki/Pulverizer), pre-1.6, not the official FTB wiki
+- [Pulverizer (Thermal Expansion 5) - Official Feed The Beast Wiki](https://ftb.fandom.com/wiki/Pulverizer_(Thermal_Expansion_5)), 1.12.2, the official FTB wiki
+- [Pulverizer - Feed the Beast Wiki](https://ftbwiki.org/Pulverizer), pre-1.6, not the official FTB wiki
+
+It's clear that not only is it difficult to determine which one of these links contains accurace, up-to-date or official
+information, the fact that there are at least 3 fandom pages called "The Feed the Beast Wiki" doesn't help the situation either.
+
+### Present options
+
+In the present, there are several popular ways of documenting mods (or any software in general). Howver, they all come
+with their drawbacks, many of which are critical for modding specifically. Let's take a look:
+
+❌ [GitHub Wiki](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)
+  - Missing versioning
+  - Missing localization
+  - Users cannot contribute
+  - No custom Minecraft elements
+
+❌ **Fandom** - no
+
+❌ [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki)
+  - Missing versioning
+  - Hard to navigate
+  - Requires hosting, high maintenance cost
+
+⚠️ Static documentation websites ([Docusaurus](https://docusaurus.io/), [Nextra](https://nextra.site/), [Vitepress](https://vitepress.dev/))
+  - No custom Minecraft elements
+  - Learning curve
+
+All of these come with great disadvantages, not to mention the time investment in website maintenance.
+
+In addition, traditional wiki software was not made with Minecraft mods in mind. Modding is a kinda specific area where
+we need to pay attention to additional factors when writing or looking up documentation, such as Minecraft versions.
+
+Localization also plays a big role, and while many of the large wiki websites are left untranslated, there's a large
+community of people in modding who help with translating mods into popular languages and would certainly love to help
+out with these mods as well.
+
+### About in-game docs
+
+In-game documentation mods, such as [Patchouli](https://github.com/VazkiiMods/Patchouli) or
+[Lavender](https://github.com/wisp-forest/lavender), are great tools that can make useful guidebooks or progress trackers,
+and they're a huge plus for players!
+
+However, there are certain use cases where a web wiki can be more appropriate. Such in-game documentation tends to be
+kept short and concise for simplicity, and accessing it requires you to be running the game (I mean, makes sense, right?).
+If you're a modpack developer or modder and you need to look up detailed information about a mod's block or item, it's
+probably faster and easier to open the browser than launching an entire modpack. It's exactly in these use cases that
+online wikis come in handy. We can go beyond the limits of guidebooks and provide an entire knowledge base filled with
+detailed information.
+
+## Our approach
+
+The Modded Minecraft Wiki is built to suit the very needs of Minecraft modders and players alike. It comes with
+intuitive navigation, a clean user interface, mod browser and features for authors to make writing documentation
+a piece of cake. These include versioning, localization, custom components (recipes, assets, etc.), gradle integration,
+project management and more.
+
+- 🌐 **Localization**: Translate your docs into world languages
+- 🚹 **Accessible**: Intuitive and responsive user interface
+- 🤝 **Open**: Let your users contribute without any programming knowledge necessary
+- 💸 **Free**: Hosting docs on our website is completely free of charge!
+- 🚧 **Versioning** (soon™): Support multiple versions of your mod at once
+
+### "Centralized"-ish
+
+Unlike traditional wikis, the Modded Minecraft Wiki **does not store any information** itself and uses a database merely
+to keep track of documentation sources. Instead, documentation is sources from mods' **GitHub repositories**
+(public or private) and rendered by the website using an enhanced Markdown format.
+
+While the wiki itself is meant to be a common place to find documentation for mods, the information itself comes from
+various places (currently from GitHub repos). Thanks to this, you can be certain all data remains in your hands,
+and **you are in full control** of what is shown on the website or who can contribute to your docs (via Pull Requests).
+
+## Developers
+
+<Callout>
+    For a complete guide on publishing documentation, please read our [Developer guide](/about/devs).
+</Callout>
+
+We've done our best to ensure writing and maintaining documentation is as easy as possible for both developers and
+community contributors.
+
+Projects can be registered to the wiki by mod developers and repository maintainers in just a few easy steps:
+
+1. Host your mod's source code on GitHub (both public and private repos work!)
+2. Publish your mod on Modrinth or CurseForge\*
+3. Setup documentation directory using our [Developer guide](/about/devs) and push it to the
+GitHub repo. Feel free to make use of the many [useful components](/about/format) we include
+in our Markdown parser.
+4. Register your mod to the Wiki (see the [Publishing](/about/publishing) page for more details)
+5. Share your docs with the world!
+
+**\*Please note that as of the public release of the Wiki, only projects hosted on Modrinth can be registered, with
+CurseForge support coming in the following weeks. This is due to API access limitations by CurseForge.**
+
+## Roadmap
+
+There are a lot more exciting features coming to the Wiki in the near future. Here's a few highlights we think you
+may be interested in:
+
+- 🚧 **Versioning support** - Use branches in your documentation!
+- 🚧 **Wiki UI localization via Crowdin**
+- 🚧 **More components** for authors (please make sure to [submit](https://github.com/Sinytra/Wiki) suggestions!)
+- 🚧 **CurseForge project metadata sources** - for CurseForge exclusive projects
+- ❓ ...and more fancy features!
+
+### Ads
+
+I'd like to give a heads-up in advance as not to cause an unpleasant surprise later on - in the future, we **will** be
+showing ads on the website, which is a necessity to keep it running. Their extent and provider are yet to be
+determinated, but we'll do our best to find a solution that respects users' privacy and isn't overly intrusive.
+
+We're also very open to suggestions and feedback on this topic, so feel free to let us know what you think on our
+[Discord](https://discord.sinytra.org) or [GitHub Discussions](https://github.com/Sinytra/Wiki/discussions).
+
+## Closing thoughts
+
+For a long time, finding a hosting platform for mod documentation was a troubling task with seemingly no favorable
+choices.
+
+Our goal with the Modded Minecraft Wiki is to change this status quo and provide a new place for modders to
+host their mods' documenatation at ease, without having to worry about ever losing their information or locking them
+into a proprietary format.
+
+On top of that, hosting documentation is made available to every mod author free of charge, with first-class
+mod dev Gradle integration available.
+
+We're hoping you'll find the new wiki useful, no matter whether you're a developer or player.
+
+If you have any additional questions about hosting docs or would like to suggest improvements, please make sure to
+[let us know](/about/help)!

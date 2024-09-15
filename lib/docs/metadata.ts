@@ -12,6 +12,7 @@ export interface DocsEntryMetadata {
   custom?: Record<string, string>;
   icon?: string;
   hide_icon?: boolean;
+  hide_meta?: boolean;
 }
 
 export interface DocumentationProjectMetadata {

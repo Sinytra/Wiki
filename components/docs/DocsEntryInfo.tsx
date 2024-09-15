@@ -37,7 +37,7 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
         <MetadataGrid>
           <MetadataRowKey title="Name">{metadata.title || 'Unknown'}</MetadataRowKey>
           <MetadataRowKey title="Source Mod">
-            <LinkTextButton href={`/mod/${project.slug}`}>{project.name}</LinkTextButton>
+            <LinkTextButton href={`/mod/${source.id}`}>{project.name}</LinkTextButton>
           </MetadataRowKey>
           <MetadataRowKey title="ID">
             {metadata.id ? <code>{metadata.id}</code> : 'Unknown'} 

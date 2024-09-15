@@ -21,7 +21,7 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
     <ModDocsEntryPageLayout
       rightPanel={
         <div className="flex flex-col h-full">
-          <DocsEntryInfo project={project} metadata={result.metadata as DocsEntryMetadata} source={source} />
+          {!result.metadata.hide_meta && <DocsEntryInfo project={project} metadata={result.metadata as DocsEntryMetadata} source={source} />}
           <ModInfo mod={project}/>
           {(file.updated_at != null || edit_url != null) && <PageEditControls edit_url={edit_url} updated_at={file.updated_at} slug={slug} path={path} />}
         </div>
