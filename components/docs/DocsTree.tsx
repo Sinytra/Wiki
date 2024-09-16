@@ -4,26 +4,27 @@ import ModHomepageLink from "@/components/docs/ModHomepageLink";
 import DocsEntryLink from "@/components/docs/DocsEntryLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 
-function DirectoryTreeView({slug, tree, level, basePath}: {
+function DirectoryTreeView({slug, tree, level, basePath, open}: {
   slug: string;
   tree: FileTreeNode[];
   level: number;
-  basePath: string
+  basePath: string;
+  open?: boolean;
 }) {
   if (tree.length === 0) {
     return <></>
   }
 
-  const defaultValues = tree.map(dir => `${basePath}/${dir.path}`);
+  const defaultValues = open && tree.length > 0 ? [`${basePath}/${tree[0].path}`] : [];
   // const [values, setValues] = useState<string[]>([]);
 
   return (
-    <Accordion defaultValue={defaultValues} type="multiple" style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
+    <Accordion className="[&:not(:last-child)_.docsAccordeonTrigger]:border-b" defaultValue={defaultValues} type="multiple" style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
       {tree.map(dir => {
         const newBasePath = `${basePath}/${dir.path}`;
         return (
           <AccordionItem key={newBasePath} value={newBasePath} className="!border-none">
-            <AccordionTrigger className="px-1 capitalize border-b border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
+            <AccordionTrigger className="docsAccordeonTrigger px-1 capitalize border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
               {/*<span className="flex flex-row items-center gap-4 text-[15px]">
                     <div className="w-fit">
                       {values.includes(newBasePath)
@@ -56,9 +57,9 @@ function DocsFileTree({slug, tree, level, basePath}: {
   const offset = level > 0 ? '0.6rem' : 0;
 
   return <>
-    {tree.map(file => (
+    {tree.map((file, index) => (
       file.type === 'directory'
-        ? <DirectoryTreeView key={`${basePath}/${file.path}`} slug={slug} tree={[file]} level={level + 1} basePath={basePath}/>
+        ? <DirectoryTreeView key={`${basePath}/${file.path}`} slug={slug} tree={[file]} level={level + 1} basePath={basePath} open={index === 0}/>
         :
         <div key={`${basePath}/${file.path}`} className="capitalize w-full pt-2"
              style={{marginLeft: offset, paddingRight: offset}}>

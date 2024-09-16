@@ -31,7 +31,7 @@ async function readFileContents(source: LocalDocumentationSource, path: string):
 
 async function readShallowFileTree(source: LocalDocumentationSource, path: string): Promise<FileTreeNode[]> {
   const tree = dirTee(`${source.path}/${path}`, {attributes: ['type'], depth: 1});
-  return (tree.children || []).map(f => ({
+  return (tree?.children || []).map(f => ({
     name: f.name,
     path: f.path,
     type: f.type,
