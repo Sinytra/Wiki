@@ -1,8 +1,8 @@
 'use client'
 
 import LinkTextButton from "@/components/ui/link-text-button";
-import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
+import {usePathname} from "@/lib/locales/routing";
 
 export default function DocsEntryLink({href, children}: { href: string, children: any }) {
   const path = usePathname();

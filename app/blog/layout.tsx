@@ -2,6 +2,7 @@ import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import Header from "@/components/navigation/header";
 import {NextIntlClientProvider} from "next-intl";
+import Footer from "@/components/navigation/footer";
 
 export const dynamic = 'force-static';
 
@@ -22,6 +23,7 @@ export default function BlogLayout({children}: Readonly<{ children: ReactNode }>
           </div>
         </div>
 
+        <Footer/>
       </NextIntlClientProvider>
     </>
   )

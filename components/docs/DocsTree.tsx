@@ -52,7 +52,7 @@ function DocsFileTree({slug, tree, level, basePath}: {
   slug: string;
   tree: FileTreeNode[];
   level: number;
-  basePath: string
+  basePath: string;
 }) {
   const offset = level > 0 ? '0.6rem' : 0;
 
