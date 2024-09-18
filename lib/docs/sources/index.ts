@@ -12,6 +12,8 @@ import metadata, {ValidationError} from "@/lib/docs/metadata";
 
 export const folderMetaFile = '_meta.json';
 
+const defaultLocale = 'en';
+
 type SourceType = 'local' | 'github';
 
 export interface DocumentationSource {
@@ -93,21 +95,28 @@ async function parseFolderMetadataFile(source: DocumentationSource, path: string
 }
 
 async function readLocalizedFile(provider: DocumentationSourceProvider<any>, source: DocumentationSource, path: string, locale?: string): Promise<DocumentationFile> {
-  if (locale) {
-    const localeFolder = `.translated/${locale}_${locale}/`;
-    try {
-      return await provider.readFileContents(source, localeFolder + path);
-    } catch (e) {
-      // fallback to default locale
+  if (locale && locale !== defaultLocale) {
+    const availableLocales = await getAvailableLocales(source, provider);
+    if (locale in availableLocales) {
+      const localeFolder = `.translated/${locale}_${locale}/`;
+      try {
+        return await provider.readFileContents(source, localeFolder + path);
+      } catch (e) {
+        // fallback to default locale
+      }
     }
   }
   return await provider.readFileContents(source, path);
 }
 
 async function readDocsTree(source: DocumentationSource, locale?: string): Promise<FileTreeNode[]> {
+  const provider = getDocumentationSourceProvider(source);
+  const availableLocales = await getAvailableLocales(source, provider);
+  const actualLocale = locale === defaultLocale ? undefined : locale && locale in availableLocales ? locale : undefined;
+
   // Do not cache local trees
   if (source.type === 'local') {
-    return resolveDocsTree(source, locale);
+    return resolveDocsTree(source, actualLocale);
   }
 
   const cache = unstable_cache(
@@ -117,7 +126,7 @@ async function readDocsTree(source: DocumentationSource, locale?: string): Promi
       tags: [cacheUtil.getModDocsTreeCacheId(source.id)]
     }
   );
-  return await cache(locale);
+  return await cache(actualLocale);
 }
 
 async function resolveDocsTree(source: DocumentationSource, locale?: string): Promise<FileTreeNode[]> {
@@ -243,6 +252,29 @@ async function computeLocalDocumentationSources(paths: string): Promise<Document
   }));
 }
 
+async function getAvailableLocales(source: DocumentationSource, provider: DocumentationSourceProvider<any>): Promise<string[]> {
+  const cacheId = cacheUtil.getModDocsLocalesCacheId(source.id);
+
+  const cache = unstable_cache(
+    async () => computeAvailableLocales(source, provider),
+    [cacheId],
+    {
+      tags: [cacheId]
+    }
+  );
+  return await cache();
+}
+
+async function computeAvailableLocales(source: DocumentationSource, provider: DocumentationSourceProvider<any>): Promise<string[]> {
+  const localeDirRegex = /^[a-z]{2}_[a-z]{2}$/;
+  try {
+    const translations = await provider.readShallowFileTree(source, '.translated');
+    return translations.filter(t => t.type === 'directory' && t.name.match(localeDirRegex)).map(t => t.name.split('_')[0]);
+  } catch (e) {
+    return [];
+  }
+}
+
 function enableLocalSources() {
   return process.env.LOCAL_DOCS_ROOTS !== undefined;
 }
@@ -254,7 +286,8 @@ const index = {
   readShallowFileTree,
   parseFolderMetadataFile,
   getLocalDocumentationSources,
-  getProjectSourceOrRedirect
+  getProjectSourceOrRedirect,
+  getAvailableLocales
 };
 
 export default index;

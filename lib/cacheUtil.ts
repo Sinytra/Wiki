@@ -12,6 +12,10 @@ function getModDocsSourceCacheId(id: string): string {
   return `mod_source:${id}`;
 }
 
+function getModDocsLocalesCacheId(id: string): string {
+  return `mod_locales:${id}`;
+}
+
 function clearModCaches(id: string) {
   revalidateTag(cacheUtil.getModDocsSourceCacheId(id));
   revalidateTag(cacheUtil.getModDocsTreeCacheId(id));
@@ -23,6 +27,7 @@ const cacheUtil = {
   githubAppInstallCacheId,
   getModDocsTreeCacheId,
   getModDocsSourceCacheId,
+  getModDocsLocalesCacheId,
   clearModCaches
 };
 
