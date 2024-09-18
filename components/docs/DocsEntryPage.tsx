@@ -15,7 +15,7 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
 
   const file = await sources.readDocsFile(source, path, locale);
   const result = await markdown.renderDocumentationMarkdown(file.content);
-  const edit_url = source.type === 'github' || (source as RemoteDocumentationSource).editable ? file.edit_url : null;
+  const edit_url = source.type === 'github' && (source as RemoteDocumentationSource).editable ? file.edit_url : null;
 
   return (
     <ModDocsEntryPageLayout

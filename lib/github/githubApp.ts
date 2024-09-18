@@ -24,15 +24,12 @@ function cachedFetch(...args: any[]) {
 }
 
 async function isRepositoryPublic(repo: string): Promise<boolean> {
-  const app = new App({
-    appId: process.env.APP_AUTH_GITHUB_ID!,
-    privateKey: process.env.APP_AUTH_GITHUB_PRIVATE_KEY!
-  });
-  const appOctokit: Octokit = app.octokit;
-
   try {
     const parts = repo.split('/');
-    const data = (await appOctokit.rest.repos.get({owner: parts[0], repo: parts[1]})).data;
+    const installationId = await githubApp.getExistingInstallation(parts[0], parts[1]);
+    const octokit = await githubApp.createInstance(installationId);
+
+    const data = (await octokit.rest.repos.get({owner: parts[0], repo: parts[1]})).data;
     return !data.private && data.visibility === 'public';
   } catch (e) {
     // Private / not found
