@@ -53,6 +53,7 @@ function validateMetadataFile(obj: any): boolean {
   const errors: JsonError[] = jsonSchema.validate(obj);
 
   if (errors.length > 0) {
+    console.log('found errors is metadata', errors);
     throw new ValidationError(`Error validating documentation metadata:\n${errors.map(e => `- ${e.message}`).join('\n')}`);
   }
 

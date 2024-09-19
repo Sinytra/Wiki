@@ -44,7 +44,8 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
     } else if (resp.validation_error) {
       form.setError('root.validation_error', {message: resp.validation_error});
     } else if (resp.error) {
-      form.setError('root.custom', {message: resp.error});
+      // @ts-ignore
+      form.setError('root.custom', {message: resp.error, details: resp.details});
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-ignore
@@ -173,6 +174,14 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
 
             {form.formState.errors.root?.custom?.message &&
                 <p className="text-destructive text-sm">{form.formState.errors.root.custom.message}</p>
+            }
+            {/*@ts-ignore*/}
+            {form.formState.errors.root?.custom?.details &&
+                <details className="w-fit text-sm text-destructive max-h-20 overflow-y-auto slim-scrollbar">
+                    <summary className="mb-2">Show details</summary>
+                    {/*@ts-ignore*/}
+                    <code>{form.formState.errors.root.custom.details}</code>
+                </details>
             }
 
             <DialogFooter>

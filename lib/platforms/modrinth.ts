@@ -113,7 +113,7 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
     }
   });
   if (!response.ok) {
-    throw new Error('Failed to fetch Modrinth API');
+    throw new Error(`Failed to fetch Modrinth API: ${response.status}`);
   }
   const body = await response.json();
   return body as T;

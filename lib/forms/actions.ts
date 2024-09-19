@@ -3,7 +3,7 @@
 import {docsPageReportSchema, projectRegisterSchema} from "@/lib/forms/schemas";
 import {revalidatePath} from "next/cache";
 import githubApp from "@/lib/github/githubApp";
-import metadata from "@/lib/docs/metadata";
+import metadata, {ValidationError} from "@/lib/docs/metadata";
 import platforms, {ModProject} from "@/lib/platforms";
 import {Octokit} from "octokit";
 import database from "@/lib/database";
@@ -156,12 +156,27 @@ async function validateProjectFormData(rawData: any) {
   }
 
   // Parse metadata file
-  const metadata = await readMetadata(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
+  let metadata = undefined
+  try {
+    metadata = await readMetadata(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
+  } catch (e) {
+    return {success: false, error: 'Metadata file is invalid', details: e instanceof ValidationError ? e.message : undefined};
+  }
   if (metadata === null) {
     return {success: false, error: 'Metadata file not found'};
   }
 
-  const project = await platforms.getPlatformProject(metadata.platform, metadata.slug);
+  // TODO Remove once CF is supported
+  if (metadata.platform === 'curseforge') {
+    return {success: false, error: "Sorry, CurseForge projects are not yet supported, but we're working hard to enable them very soon!"};
+  }
+
+  let project: ModProject;
+  try {
+    project = await platforms.getPlatformProject(metadata.platform, metadata.slug);
+  } catch (e) {
+    return {success: false, error: 'Platform project not found. Please make sure the metadata "slug" field is correct.'};
+  }
 
   if (!process.env.NODE_ENV && !verifyProjectOwnership(project, data.owner, data.repo)) {
     return {success: false, error: 'Failed to verify project ownership'};
