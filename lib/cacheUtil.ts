@@ -23,10 +23,6 @@ function getGithubAppUserInstallCacheId(owner: string): string {
   return `user_install:${owner}`;
 }
 
-function getGithubAppUserReposCacheId(owner: string): string {
-  return `app_user_repos:${owner}`;
-}
-
 function clearModCaches(id: string) {
   revalidateTag(cacheUtil.getModDocsSourceCacheId(id));
   revalidateTag(cacheUtil.getModDocsTreeCacheId(id));
@@ -37,7 +33,6 @@ const cacheUtil = {
   githubAppRequestsCacheId,
   getGithubAppUserInstallCacheId,
   getGithubAppRepoInstallCacheId,
-  getGithubAppUserReposCacheId,
   getModDocsTreeCacheId,
   getModDocsSourceCacheId,
   getModDocsLocalesCacheId,

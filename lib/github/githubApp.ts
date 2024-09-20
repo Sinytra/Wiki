@@ -115,26 +115,17 @@ async function getAvailableRepositories(owner: string, token: string) {
     },
     ['app_user_installations', owner],
     {
+      revalidate: 360,
       tags: [cacheUtil.getGithubAppUserInstallCacheId(owner)]
-    }
-  );
-  const repositoriesForInstallationsCache = unstable_cache(
-    async (installationIds: number[]) => {
-      const repositories = await Promise.all(installationIds.map(async id => github.getAccessibleAppRepositories(token, id)));
-      return repositories.flatMap(a => a).filter(r => verification.hasSufficientAccess(r.permissions));
-    },
-    ['app_user_accessible_repositories'],
-    {
-      tags: [cacheUtil.getGithubAppUserReposCacheId(owner)]
     }
   );
 
   try {
     const installationIds = await installationsForUserCache();
-    return await repositoriesForInstallationsCache(installationIds);
+    const repositories = await Promise.all(installationIds.map(async id => github.getAccessibleAppRepositories(token, id)));
+    return repositories.flatMap(a => a).filter(r => verification.hasSufficientAccess(r.permissions));
   } catch (e) {
     revalidateTag(cacheUtil.getGithubAppUserInstallCacheId(owner));
-    revalidateTag(cacheUtil.getGithubAppUserReposCacheId(owner));
     console.error(e);
     return [];
   }

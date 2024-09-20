@@ -8,6 +8,8 @@ import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
 import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 async function ProfileProjects({owner, access_token}: { owner: string; access_token: string }) {
   const repos = await githubApp.getAvailableRepositories(owner, access_token);
   const projects = await database.getProjects(repos.map(r => r.full_name));
