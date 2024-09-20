@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     siteName: 'Modded Minecraft Wiki',
     type: 'website',
     url: process.env.NEXT_APP_URL
+  },
+  other: {
+    'darkreader-lock': 'true'
   }
 };
 
