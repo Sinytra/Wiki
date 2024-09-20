@@ -1,4 +1,4 @@
-export default function CurseForgeIcon({ width, height, className}: { width: any, height: any, className?: string }) {
+export default function CurseForgeIcon({ width, height, className}: { width?: any, height?: any, className?: string }) {
   return (
     <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width={width} height={height} className={className}><title>CurseForge</title>
       <path

@@ -23,9 +23,9 @@ export default async function Mod({params}: { params: { slug: string; locale: st
         <DocsContentTitle isLocal={isLocal}>
           {project.name}
         </DocsContentTitle>
-        
+
         <div>
-          <MarkdownContent content={project.description}/>
+          <MarkdownContent content={project.description} />
         </div>
       </div>
     </ModDocsEntryPageLayout>

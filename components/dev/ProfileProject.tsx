@@ -6,11 +6,14 @@ import ProjectDeletion from "@/components/dev/ProjectDeletion";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
 import ProjectSettings from "@/components/dev/ProjectSettings";
 import ProjectRevalidateForm from "@/components/dev/ProjectRevalidateForm";
+import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
+import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
+import {cn} from "@/lib/utils";
 
-function Property({icon: Icon, children}: { icon: any, children: any }) {
+function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
     <div className="inline-flex items-center gap-2">
-      <Icon className="w-4 h-4"/>
+      <Icon className={cn("w-4 h-4", iconClass)}/>
       <span className="text-foreground text-sm">{children}</span>
     </div>
   )
@@ -38,7 +41,12 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
             <LinkTextButton href={`https://github.com/${mod.source_repo}`}>{mod.source_repo}</LinkTextButton>
           </Property>
           <Property icon={GitBranchIcon}>{mod.source_branch}</Property>
-          <Property icon={ServerIcon}>{mod.platform === 'modrinth' ? 'Modrinth' : 'CurseForge'}</Property>
+          {mod.platform === 'modrinth'
+            ?
+            <Property icon={ModrinthIcon} iconClass="text-[var(--modrinth-brand)]">Modrinth</Property>
+            : 
+            <Property icon={CurseForgeIcon} iconClass="text-[var(--curseforge-brand)]">CurseForge</Property>
+          }
           <Property icon={GlobeIcon}>
             <LinkTextButton href={project.project_url}>{mod.slug}</LinkTextButton>
           </Property>

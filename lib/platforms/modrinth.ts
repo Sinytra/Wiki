@@ -2,7 +2,7 @@ import {ModAuthor, ModPlatformProvider, ModProject} from "./universal";
 import localPreview from "@/lib/docs/localPreview";
 
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (localPreview.isEnabled() ? '/local' : '');
-const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3'
+const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3';
 
 interface ModrinthProject {
   slug: string;
@@ -70,8 +70,8 @@ async function getProject(slug: string): Promise<ModProject> {
   }
 }
 
-async function getProjectAuthors(slug: string): Promise<ModAuthor[]> {
-  const project = await getModrinthProject(slug);
+async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
+  const project = await getModrinthProject(mod.slug);
 
   if (project.organization) {
     const org = await getProjectOrganization(project.slug);

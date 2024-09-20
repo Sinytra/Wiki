@@ -1,12 +1,11 @@
-import Image from "next/image";
 import {CopyrightIcon, ExternalLinkIcon, MilestoneIcon, TagIcon, UserIcon} from "lucide-react";
-import {getModProjectInformation, ModTagIcons} from "@/components/docs/mod-info/modInfo";
+import {getModProjectInformation, ModCategories} from "@/components/docs/mod-info/modInfo";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
 import LinkTextButton from "@/components/ui/link-text-button";
 import MetadataGrid from "@/components/docs/mod-metadata/MetadataGrid";
 import MetadataRowKey from "@/components/docs/mod-metadata/MetadataRowKey";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
-import {ModProject} from "@/lib/platforms";
+import platforms, {ModProject} from "@/lib/platforms";
 
 interface Props {
   mod: ModProject;
@@ -15,9 +14,13 @@ interface Props {
 function ModTags({tags}: { tags: string[] }) {
   return (
     <div className="flex flex-row items-center justify-end gap-2">
-      {tags.filter(t => ModTagIcons[t] !== undefined).map(tag => {
-        const Component = ModTagIcons[tag];
-        return <Component className="w-4 h-4" key={tag}/>;
+      {tags.filter(t => ModCategories[t] !== undefined).map(tag => {
+        const { name, icon: Component } = ModCategories[tag];
+        return (
+          <div title={name} key={tag}>
+            <Component className="w-4 h-4"/>
+          </div>
+        );
       })}
     </div>
   );
@@ -28,7 +31,7 @@ export default async function ModInfo({mod}: Props) {
 
   return (
     <div className="flex flex-col">
-      <DocsSidebarTitle extra={<MutedLinkIconButton icon={ExternalLinkIcon} href={`https://modrinth.com/mod/${mod.slug}`} />}>
+      <DocsSidebarTitle extra={<MutedLinkIconButton icon={ExternalLinkIcon} href={platforms.getProjectURL(mod.platform, mod.slug)} />}>
         Mod information
       </DocsSidebarTitle>
 
@@ -59,7 +62,7 @@ export default async function ModInfo({mod}: Props) {
             {info.latest_version}
           </MetadataRowKey>
           <MetadataRowKey icon={CopyrightIcon} title="License">
-            {mod.license.url
+            {mod?.license?.url
               ?
               <LinkTextButton href={mod.license.url}>{info.license.name}</LinkTextButton>
               :

@@ -9,7 +9,7 @@ import {defaultSchema} from "rehype-sanitize";
 export const markdownRehypeSchema: Schema = {
   ...defaultSchema,
   attributes: {
-    '*': ['id', 'className'],
+    '*': ['id', 'className', 'style'],
     a: ['data*', 'ariaLabel', 'ariaDescribedBy', 'target', 'href', 'title'],
     abbr: ['title'],
     address: [],

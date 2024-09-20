@@ -166,9 +166,8 @@ async function validateProjectFormData(rawData: any) {
     return {success: false, error: 'Metadata file not found'};
   }
 
-  // TODO Remove once CF is supported
-  if (metadata.platform === 'curseforge') {
-    return {success: false, error: "Sorry, CurseForge projects are not yet supported, but we're working hard to enable them very soon!"};
+  if (!process.env.CF_API_KEY) {
+    return {success: false, error: "Cannot register CurseForge project; missing API key"};
   }
 
   let project: ModProject;

@@ -2,7 +2,7 @@ export type ModPlatform = 'modrinth' | 'curseforge';
 
 export interface ModPlatformProvider {
   getProject: (slug: string) => Promise<ModProject>;
-  getProjectAuthors: (slug: string) => Promise<ModAuthor[]>;
+  getProjectAuthors: (mod: ModProject) => Promise<ModAuthor[]>;
   getProjectURL: (slug: string) => string;
 }
 
@@ -13,12 +13,14 @@ export interface ModProject {
   description: string;
   icon_url: string;
   categories: string[];
+  // Game versions, ascending
   game_versions: string[];
-  license: ModProjectLicense;
+  license?: ModProjectLicense;
   source_url?: string;
 
   platform: ModPlatform;
   project_url: string;
+  extra?: any;
 }
 
 export interface ModProjectLicense {
