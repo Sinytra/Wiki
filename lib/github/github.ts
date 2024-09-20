@@ -23,8 +23,14 @@ async function getUserProfile(token: string): Promise<GitHubUserProfile> {
   return makeApiRequest(token, 'GET /user');
 }
 
-async function getUserProfileEmails(token: string): Promise<GitHubUserProfile> {
-  return makeApiRequest(token, 'GET /user/emails');
+async function getAccessibleInstallations(token: string) {
+  const octokit = new Octokit({auth: token});
+  return octokit.rest.apps.listInstallationsForAuthenticatedUser();
+}
+
+async function getAccessibleAppRepositories(token: string, installationId: number) {
+  const instance = new Octokit({auth: token});
+  return github.getPaginatedData(instance, `GET /user/installations/${installationId}/repositories`);
 }
 
 async function makeApiRequest<T>(token: string, path: string, ...options: any[]) {
@@ -104,7 +110,8 @@ function parseData(data: any) {
 const github = {
   getUserProfile,
   getPaginatedData,
-  getUserProfileEmails
+  getAccessibleInstallations,
+  getAccessibleAppRepositories
 };
 
 export default github;

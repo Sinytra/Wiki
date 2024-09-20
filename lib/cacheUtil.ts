@@ -2,7 +2,6 @@ import {revalidateTag} from "next/cache";
 
 const githubRequestsCacheId = 'github';
 const githubAppRequestsCacheId = 'github_app';
-const githubAppInstallCacheId = 'github_app_install';
 
 function getModDocsTreeCacheId(id: string): string {
   return `mod_tree:${id}`;
@@ -16,6 +15,18 @@ function getModDocsLocalesCacheId(id: string): string {
   return `mod_locales:${id}`;
 }
 
+function getGithubAppRepoInstallCacheId(owner: string): string {
+  return `repo_install:${owner}`;
+}
+
+function getGithubAppUserInstallCacheId(owner: string): string {
+  return `user_install:${owner}`;
+}
+
+function getGithubAppUserReposCacheId(owner: string): string {
+  return `app_user_repos:${owner}`;
+}
+
 function clearModCaches(id: string) {
   revalidateTag(cacheUtil.getModDocsSourceCacheId(id));
   revalidateTag(cacheUtil.getModDocsTreeCacheId(id));
@@ -24,7 +35,9 @@ function clearModCaches(id: string) {
 const cacheUtil = {
   githubRequestsCacheId,
   githubAppRequestsCacheId,
-  githubAppInstallCacheId,
+  getGithubAppUserInstallCacheId,
+  getGithubAppRepoInstallCacheId,
+  getGithubAppUserReposCacheId,
   getModDocsTreeCacheId,
   getModDocsSourceCacheId,
   getModDocsLocalesCacheId,

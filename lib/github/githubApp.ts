@@ -3,6 +3,7 @@ import {Api} from "@octokit/plugin-rest-endpoint-methods";
 import github from "@/lib/github/github";
 import {revalidateTag, unstable_cache} from "next/cache";
 import cacheUtil from "@/lib/cacheUtil";
+import verification from "@/lib/github/verification";
 
 export interface RepoInstallationState {
   owner: string;
@@ -88,46 +89,52 @@ async function getRepoBranches(octokit: Octokit, owner: string, repo: string) {
   }
 }
 
-const getCachedAppOctokitUserInstance = unstable_cache(
-  async (owner: string) => {
-    const response = await createAppInstance().octokit.rest.apps.getUserInstallation({username: owner});
-    return response.data.id;
-  },
-  [],
-  {
-    revalidate: 6000,
-    tags: [cacheUtil.githubAppInstallCacheId]
-  }
-);
-
-const getCachedAppOctokitRepoInstance = unstable_cache(
-  async (owner: string, repo: string) => {
-    try {
-      const response = await createAppInstance().octokit.rest.apps.getRepoInstallation({owner, repo});
-      return response.data.id;
-    } catch (e: any) {
-      throw new Error(`Error getting app installation on repository ${owner}/${repo}`)
-    }
-  },
-  ['app_repo_instance'],
-  {
-    revalidate: 6000,
-    tags: [cacheUtil.githubAppInstallCacheId]
-  }
-);
-
 async function getExistingInstallation(owner: string, repo: string): Promise<number> {
+  const getCachedAppOctokitRepoInstance = unstable_cache(
+    async (owner: string, repo: string) => {
+      try {
+        const response = await createAppInstance().octokit.rest.apps.getRepoInstallation({owner, repo});
+        return response.data.id;
+      } catch (e: any) {
+        throw new Error(`Error getting app installation on repository ${owner}/${repo}`)
+      }
+    },
+    ['app_repo_installation'],
+    {
+      tags: [cacheUtil.getGithubAppRepoInstallCacheId(owner)]
+    }
+  );
   return getCachedAppOctokitRepoInstance(owner, repo);
 }
 
-async function getAvailableRepositories(owner: string) {
-  try {
-    const installationId = await getCachedAppOctokitUserInstance(owner);
-    const instance = await createInstance(installationId);
+async function getAvailableRepositories(owner: string, token: string) {
+  const installationsForUserCache = unstable_cache(
+    async () => {
+      const response = await github.getAccessibleInstallations(token);
+      return response.data.installations.map(i => i.id);
+    },
+    ['app_user_installations', owner],
+    {
+      tags: [cacheUtil.getGithubAppUserInstallCacheId(owner)]
+    }
+  );
+  const repositoriesForInstallationsCache = unstable_cache(
+    async (installationIds: number[]) => {
+      const repositories = await Promise.all(installationIds.map(async id => github.getAccessibleAppRepositories(token, id)));
+      return repositories.flatMap(a => a).filter(r => verification.hasSufficientAccess(r.permissions));
+    },
+    ['app_user_accessible_repositories'],
+    {
+      tags: [cacheUtil.getGithubAppUserReposCacheId(owner)]
+    }
+  );
 
-    return await github.getPaginatedData(instance, 'GET /installation/repositories');
+  try {
+    const installationIds = await installationsForUserCache();
+    return await repositoriesForInstallationsCache(installationIds);
   } catch (e) {
-    revalidateTag(cacheUtil.githubAppInstallCacheId);
+    revalidateTag(cacheUtil.getGithubAppUserInstallCacheId(owner));
+    revalidateTag(cacheUtil.getGithubAppUserReposCacheId(owner));
     console.error(e);
     return [];
   }

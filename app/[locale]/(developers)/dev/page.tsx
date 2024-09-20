@@ -8,8 +8,8 @@ import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
 import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
 
-async function ProfileProjects({owner}: { owner: string }) {
-  const repos = await githubApp.getAvailableRepositories(owner);
+async function ProfileProjects({owner, access_token}: { owner: string; access_token: string }) {
+  const repos = await githubApp.getAvailableRepositories(owner, access_token);
   const projects = await database.getProjects(repos.map(r => r.full_name));
 
   return (
@@ -92,7 +92,7 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
 
       <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url}>
         <Suspense fallback={(<div>Loading profile projects...</div>)}>
-          <ProfileProjects owner={profile.login}/>
+          <ProfileProjects owner={profile.login} access_token={session.access_token}/>
         </Suspense>
       </Profile>
     </div>
