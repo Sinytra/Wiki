@@ -2,6 +2,11 @@ import Header from "@/components/navigation/header";
 import Footer from "@/components/navigation/footer";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
+import available from "@/lib/locales/available";
+
+export async function generateStaticParams() {
+  return Object.keys(available.getAvailableLocales()).map(locale => ({ locale }));
+}
 
 export default function LocaleLayout({params, children}: Readonly<{
   params: { locale: string };
