@@ -3,12 +3,15 @@ import localPreview from "@/lib/docs/localPreview";
 import {cn} from "@/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import Link from "next/link";
+import {useTranslations} from "next-intl";
 
 function Copyright({ center }: { center: boolean }) {
+  const t = useTranslations('NavigationFooter');
+
   return <>
     <div className={cn("flex flex-col items-center md:basis-96", !center && 'md:items-start')}>
       <span className="font-medium text-foreground">
-        📖 The Modded Minecraft Wiki
+        📖 {t('title')}
       </span>
       <p className="mt-6 text-sm">
         © {new Date().getFullYear()} The Sinytra Project.
@@ -42,28 +45,30 @@ function LinkColumn({title, className, children}: { title: string, className?: s
 }
 
 function NavigationColumns() {
+  const t = useTranslations('NavigationFooter');
+
   return (
     <div className="grid w-full ml-auto grid-cols-4 gap-8 px-8">
-      <LinkColumn title="Navigation">
-        <LinkEntry title="Homepage" href="/"/>
-        <LinkEntry title="Browse" href="/browse"/>
-        <LinkEntry title="Developers" href="/dev"/>
+      <LinkColumn title={t('links.navigation.title')}>
+        <LinkEntry title={t('links.navigation.home')} href="/"/>
+        <LinkEntry title={t('links.navigation.browse')} href="/browse"/>
+        <LinkEntry title={t('links.navigation.dev')} href="/dev"/>
       </LinkColumn>
 
-      <LinkColumn title="Links">
+      <LinkColumn title={t('links.links.title')}>
         <LinkEntry title="Discord" href="https://discord.sinytra.org"/>
         <LinkEntry title="GitHub" href="https://github.com/Sinytra"/>
         <LinkEntry title="OpenCollective" href="https://opencollective.com/sinytra"/>
       </LinkColumn>
 
-      <LinkColumn title="Resources">
-        <LinkEntry title="Blog" href="/blog" component={Link}/>
+      <LinkColumn title={t('links.resources.title')}>
+        <LinkEntry title={t('links.resources.blog')} href="/blog" component={Link}/>
       </LinkColumn>
-      
-      <LinkColumn title="About">
-        <LinkEntry title="Terms of Service" href="/about/tos"/>
-        <LinkEntry title="Privacy Policy" href="/about/privacy"/>
-        <LinkEntry title="Contact" href="/about/help"/>
+
+      <LinkColumn title={t('links.about.title')}>
+        <LinkEntry title={t('links.about.tos')} href="/about/tos"/>
+        <LinkEntry title={t('links.about.privacy')} href="/about/privacy"/>
+        <LinkEntry title={t('links.about.contact')} href="/about/help"/>
       </LinkColumn>
     </div>
   );

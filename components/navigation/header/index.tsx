@@ -6,6 +6,7 @@ import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {cn} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -15,37 +16,39 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   )
 }
 
-export default async function Header({locale, minimal, unfix}: { locale: string, minimal?: boolean, unfix?: boolean }) {
+export default function Header({locale, minimal, unfix}: { locale: string, minimal?: boolean, unfix?: boolean }) {
   const preview = localPreview.isEnabled();
+  const t = useTranslations('NavigationHeader');
 
   return (
     <HeaderBase unfix={unfix}>
-      <div className={cn(styles.container, 'flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto', minimal && 'my-2')}>
+      <div
+        className={cn(styles.container, 'flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
-            <span className="text-base font-medium text-foreground inline-flex gap-1 items-center">📖<span
-              className="hidden md:block"> Modded Minecraft Wiki</span></span>
+            <span className="text-base font-medium text-foreground inline-flex gap-1 items-center">📖{t('title')}</span>
           </LocaleNavLink>
-          {preview && <Badge variant="secondary">PREVIEW MODE</Badge>}
+          {preview && <Badge variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&
-              <Badge variant="outline" className="border-neutral-600 text-muted-foreground font-normal">Beta</Badge>}
+              <Badge variant="outline"
+                     className="border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
         </div>
 
         <div className="flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
           <nav className="flex flex-row">
             {preview
               ?
-              <HeaderLink href="/preview">Home</HeaderLink>
+              <HeaderLink href="/preview">{t('link.home')}</HeaderLink>
               :
-                <>
-                    <HeaderLink href="/">Home</HeaderLink>
-                    {!minimal &&
-                        <>
-                            <HeaderLink href="/browse">Browse</HeaderLink>
-                            <HeaderLink href="/about">About</HeaderLink>
-                        </>
-                    }
-                </>
+              <>
+                <HeaderLink href="/">{t('link.home')}</HeaderLink>
+                {!minimal &&
+                    <>
+                        <HeaderLink href="/browse">{t('link.browse')}</HeaderLink>
+                        <HeaderLink href="/about">{t('link.about')}</HeaderLink>
+                    </>
+                }
+              </>
             }
           </nav>
 

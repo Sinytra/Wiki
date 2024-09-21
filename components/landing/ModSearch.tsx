@@ -5,8 +5,9 @@ import {useState} from "react";
 import {ModSearchResult} from "@/lib/types/search";
 import LoadingContent from "@/components/util/LoadingContent";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import {getTranslations} from "next-intl/server";
 
-export default function ModSearch({ locale }: { locale: string }) {
+export default function ModSearch({ locale, placeholder }: { locale: string; placeholder: string }) {
   const [results, setResults] = useState<ModSearchResult[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [shown, setShown] = useState<boolean>(true);
@@ -43,7 +44,7 @@ export default function ModSearch({ locale }: { locale: string }) {
                onChange={(e) => handleSearch(e.target.value)}
                onFocus={() => setShown(true)}
                onBlur={() => setShown(false)}
-               placeholder="Find your favourite mod..."/>
+               placeholder={placeholder}/>
         {loading && (
           <div
             className="absolute top-full mt-0.5 border border-neutral-700 bg-muted flex flex-col rounded-sm w-full sm:w-96 text-center">
