@@ -69,7 +69,9 @@ async function searchProjectsPaginated(limit: number, query?: string, page?: num
       source_repo: true,
       platform: true,
       slug: true
-    }
+    },
+    // @ts-ignore
+    cacheStrategy: { swr: 60, ttl: 60 }
   }).withPages({
     page,
     limit,
@@ -87,7 +89,8 @@ async function searchProjects(query: string) {
     select: {
       id: true,
       name: true
-    }
+    },
+    cacheStrategy: { swr: 60, ttl: 360 }
   });
 }
 
@@ -99,11 +102,21 @@ async function getProject(slug: string) {
   });
 }
 
+async function getProjectCached(slug: string) {
+  return prisma.mod.findUnique({
+    where: {
+      id: slug
+    },
+    cacheStrategy: { swr: 60, ttl: 360 }
+  });
+}
+
 async function getAllProjectIDs() {
   return prisma.mod.findMany({
     select: {
       id: true
-    }
+    },
+    cacheStrategy: { swr: 60, ttl: 60 }
   });
 }
 
@@ -122,7 +135,8 @@ const database = {
   findExistingProject,
   searchProjectsPaginated,
   getAllProjectIDs,
-  getRandomProjectID
+  getRandomProjectID,
+  getProjectCached
 };
 
 export default database;

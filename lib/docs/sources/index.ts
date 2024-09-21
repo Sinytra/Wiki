@@ -203,7 +203,7 @@ async function findProjectSource(slug: string, enableLocal: boolean): Promise<Do
 
   // Disable remote sources in preview
   if (!localPreview.isEnabled()) {
-    const project = await database.getProject(slug);
+    const project = await database.getProjectCached(slug);
     if (project) {
       const editable = await githubApp.isRepositoryPublic(project.source_repo);
 

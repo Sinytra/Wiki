@@ -21,11 +21,6 @@ export default function MetaDocsNavigation() {
           About
         </SidebarNavLink>
 
-        {/*<hr/>*/}
-        {/*<SidebarNavLink href="/about/i18n" icon={LanguagesIcon}>*/}
-        {/*  Help us translate!*/}
-        {/*</SidebarNavLink>*/}
-
         <hr/>
 
         <SidebarNavLink href="/about/devs" icon={PencilRulerIcon}>

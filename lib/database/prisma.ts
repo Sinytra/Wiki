@@ -1,22 +1,19 @@
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
 import {pagination} from "prisma-extension-pagination";
+import {withAccelerate} from '@prisma/extension-accelerate';
 
+const prismaClientSingleton = () => {
+  return new PrismaClient().$extends(pagination()).$extends(withAccelerate());
+}
 
 declare global {
-  var prisma: PrismaClient;
+  var prisma: undefined | ReturnType<typeof prismaClientSingleton>;
 }
 
-let prisma: PrismaClient;
-
-if (process.env.NODE_ENV === 'production') {
-  //@ts-ignore
-  prisma = new PrismaClient().$extends(pagination());
-} else {
-  if (!global.prisma) {
-    //@ts-ignore
-    global.prisma = new PrismaClient().$extends(pagination());
-  }
-  prisma = global.prisma;
-}
+const prisma = globalThis.prisma ?? prismaClientSingleton();
 
 export default prisma;
+
+if (process.env.NODE_ENV !== 'production') {
+  globalThis.prisma = prisma;
+}
