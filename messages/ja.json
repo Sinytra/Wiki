@@ -1,0 +1,73 @@
+{
+    "NavigationHeader": {
+        "title": "Modded Minecraft Wiki",
+        "badge": {
+            "preview": "PREVIEW MODE",
+            "beta": "Beta"
+        },
+        "link": {
+            "home": "Home",
+            "browse": "Browse",
+            "about": "About"
+        }
+    },
+    "NavigationFooter": {
+        "title": "Modded Minecraft Wiki",
+        "links": {
+            "navigation": {
+                "title": "Navigation",
+                "home": "Homepage",
+                "browse": "Browse",
+                "dev": "Developers"
+            },
+            "links": {
+                "title": "Links"
+            },
+            "resources": {
+                "title": "Resources",
+                "blog": "Blog"
+            },
+            "about": {
+                "title": "About",
+                "tos": "Terms of Service",
+                "privacy": "Privacy Policy",
+                "contact": "Contact"
+            }
+        }
+    },
+    "HomePage": {
+        "heading": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "documentation": {
+            "title": "Documentation",
+            "desc": "Browse mod documentation",
+            "search": {
+                "placeholder": "Find your favourite mod..."
+            },
+            "explore": "Explore mods"
+        },
+        "developers": {
+            "title": "Developers",
+            "desc": "Looking to add your mod as a developer?",
+            "guide": "Get started by reading our <guide>author guide</guide>.",
+            "area": "Developer area"
+        },
+        "links": {
+            "browse": {
+                "title": "Browse mods",
+                "desc": "Browse our library of documented mods"
+            },
+            "random": {
+                "title": "Random mod",
+                "desc": "Explore a random mod page"
+            },
+            "about": {
+                "title": "About",
+                "desc": "Learn more about how the wiki operates"
+            },
+            "devs": {
+                "title": "Developers",
+                "desc": "Host your mod's documentation on our wiki"
+            }
+        }
+    }
+}
