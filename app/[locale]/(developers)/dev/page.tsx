@@ -1,5 +1,5 @@
 import {auth, signOut} from "@/lib/auth";
-import github from "@/lib/github/github";
+import github, {GitHubUserProfile} from "@/lib/github/github";
 import githubApp from "@/lib/github/githubApp";
 import database from "@/lib/database";
 import {Suspense} from "react";
@@ -7,6 +7,8 @@ import ProfileProject from "@/components/dev/ProfileProject";
 import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
 import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
+import {Session} from "next-auth";
+import {redirect} from "next/navigation";
 
 export const dynamic = 'force-dynamic';
 
@@ -61,7 +63,15 @@ function Profile({name, desc, avatar_url, children}: {
 export default async function Dev({searchParams}: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const session = (await auth())!;
 
-  const profile = await github.getUserProfile(session.access_token);
+  let profile: GitHubUserProfile;
+  try {
+    profile = await github.getUserProfile(session.access_token);
+  } catch (e: any) {
+    if (e.status === 401) {
+      return redirect('/api/auth/refresh');
+    }
+    throw e;
+  }
 
   const state = searchParams['setup_action'] !== undefined && searchParams['state'] !== undefined
     ? JSON.parse(atob(searchParams['state'] as string))

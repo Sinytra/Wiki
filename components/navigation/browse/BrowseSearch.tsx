@@ -5,7 +5,7 @@ import {Input} from "@/components/ui/input";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from 'use-debounce';
 
-export default function ProjectSearch() {
+export default function ProjectSearch({ placeholder }: { placeholder: string; }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const {replace} = useRouter();
@@ -27,7 +27,7 @@ export default function ProjectSearch() {
         <Input
           className="sm:w-96 pl-9"
           type="text"
-          placeholder="Search mods..."
+          placeholder={placeholder}
           onChange={(e) => handleSearch(e.target.value)}
           defaultValue={searchParams.get('query')?.toString()}
         />

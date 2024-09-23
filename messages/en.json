@@ -69,5 +69,24 @@
                 "desc": "Host your mod's documentation on our wiki"
             }
         }
+    },
+    "BrowsePage": {
+        "search": {
+            "placeholder": "Search mods..."
+        },
+        "no_results": "Search query returned no results!"
+    },
+    "LoadingContent": {
+        "message": "Loading..."
+    },
+    "MetaDocsNavigation": {
+        "about": "About",
+        "devs": "Developers",
+        "format": "Format",
+        "publishing": "Publishing",
+        "help": "Get help",
+        "tos": "Terms of Use",
+        "privacy": "Privacy Policy",
+        "security": "Security Notice"
     }
 }
