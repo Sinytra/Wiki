@@ -18,7 +18,7 @@ import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {Textarea} from "@/components/ui/textarea";
 import {flushSync} from "react-dom";
 
-export default function ReportDocsPageForm({projectId, path}: { projectId: string, path: string }) {
+export default function ReportDocsPageForm({projectId, path, t, submitT}: { projectId: string, path: string, t: any, submitT: any }) {
   const handler = handleReportProjectForm.bind(null, projectId, path);
   const form = useForm<z.infer<typeof docsPageReportSchema>>({
     resolver: zodResolver(docsPageReportSchema),
@@ -45,23 +45,27 @@ export default function ReportDocsPageForm({projectId, path}: { projectId: strin
     <Form {...form}>
       <form tabIndex={0} action={action} className="focus:outline-none space-y-6">
         <FormItem>
-          <FormLabel>Project ID</FormLabel>
+          <FormLabel>
+            {t.id.title}
+          </FormLabel>
           <FormControl>
             <Input placeholder="examplemod" value={projectId} disabled/>
           </FormControl>
           <FormDescription>
-            Reported project ID.
+            {t.id.desc}
           </FormDescription>
           <FormMessage/>
         </FormItem>
 
         <FormItem>
-          <FormLabel>Page path</FormLabel>
+          <FormLabel>
+            {t.path.title}
+          </FormLabel>
           <FormControl>
             <Input placeholder="/blocks/generator" value={path && `/${path}`} disabled/>
           </FormControl>
           <FormDescription>
-            Reported documentation page path.
+            {t.path.desc}
           </FormDescription>
           <FormMessage/>
         </FormItem>
@@ -71,13 +75,14 @@ export default function ReportDocsPageForm({projectId, path}: { projectId: strin
           name="email"
           render={({field}) => (
             <FormItem>
-              <FormLabel>Reply email address</FormLabel>
+              <FormLabel>
+                {t.email.title}
+              </FormLabel>
               <FormControl>
                 <Input placeholder="contact@example.com" {...field} />
               </FormControl>
               <FormDescription>
-                (Optional) Contact email address we can use to inform you about updates on this report, or to request
-                additional information.
+                {t.email.desc}
               </FormDescription>
               <FormMessage/>
             </FormItem>
@@ -89,23 +94,25 @@ export default function ReportDocsPageForm({projectId, path}: { projectId: strin
           name="reason"
           render={({field}) => (
             <FormItem>
-              <FormLabel>Reason*</FormLabel>
+              <FormLabel>
+                {t.reason.title}
+              </FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value ?? ''}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a reason for reporting this page"/>
+                    <SelectValue placeholder={t.reason.placeholder}/>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="spam">Spam</SelectItem>
-                  <SelectItem value="copyright">Copyright Infringement</SelectItem>
-                  <SelectItem value="content_rules_violation">Violates Content Rules</SelectItem>
-                  <SelectItem value="tos_violation">Violates Terms of Service</SelectItem>
-                  <SelectItem value="dislike">I just don't like it</SelectItem>
+                  <SelectItem value="spam">{t.reason.spam}</SelectItem>
+                  <SelectItem value="copyright">{t.reason.copyright}</SelectItem>
+                  <SelectItem value="content_rules_violation">{t.reason.content_rules_violation}</SelectItem>
+                  <SelectItem value="tos_violation">{t.reason.tos_violation}</SelectItem>
+                  <SelectItem value="dislike">{t.reason.dislike}</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>
-                Reason for reporting this page.
+                {t.reason.desc}
               </FormDescription>
               <FormMessage/>
             </FormItem>
@@ -119,17 +126,19 @@ export default function ReportDocsPageForm({projectId, path}: { projectId: strin
                 disabled={!reason}
                 render={({field}) => (
                   <FormItem>
-                    <FormLabel>Details*</FormLabel>
+                    <FormLabel>
+                      {t.details.title}
+                    </FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Please provide more details on why you're reporting this page. Note that empty reports will be ignored."
+                        placeholder={t.details.placeholder}
                         className="resize-none"
                         {...field}
                         value={field.value ?? ''}
                       />
                     </FormControl>
                     <FormDescription>
-                      Additional details about the issue.
+                      {t.details.desc}
                     </FormDescription>
                     <FormMessage/>
                   </FormItem>
@@ -144,21 +153,21 @@ export default function ReportDocsPageForm({projectId, path}: { projectId: strin
         {reason === 'dislike'
           ?
           <div className="flex flex-col text-sm">
-            We understand that you may not like this page, and that's totally okay!
-            Unfortunately, however, it is not a valid reason to report a project.
+            {t.dislike.title}
+            {t.dislike.desc}
             <p className="my-1"/>
-            Would you like to look for something else to read instead?
+            {t.dislike.suggestion}
 
             <Button asChild className="mt-4 ml-auto text-primary-foreground">
               <LocaleNavLink href="/browse">
                 <CompassIcon className="w-4 h-4 mr-2"/>
-                Explore mods
+                {t.dislike.explore}
               </LocaleNavLink>
             </Button>
           </div>
           :
           <DialogFooter>
-            <SubmitButton/>
+            <SubmitButton t={submitT}/>
           </DialogFooter>
         }
       </form>

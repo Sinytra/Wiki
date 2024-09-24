@@ -15,7 +15,7 @@ import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 
 export default function MetaDocsNavigation({ messages }: { messages: any }) {
   return (
-    <CollapsibleDocsTreeBase title="Navigation">
+    <CollapsibleDocsTreeBase title={messages['title']}>
       <div className="flex flex-col gap-2 my-2">
         <SidebarNavLink href="/about" icon={HomeIcon}>
           {messages['about']}

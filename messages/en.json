@@ -1,9 +1,12 @@
 {
+    "Badges": {
+        "local": "Local"
+    },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
         "badge": {
             "preview": "PREVIEW MODE",
-            "beta": "Beta"   
+            "beta": "Beta"
         },
         "link": {
             "home": "Home",
@@ -80,6 +83,7 @@
         "message": "Loading..."
     },
     "MetaDocsNavigation": {
+        "title": "Navigation",
         "about": "About",
         "devs": "Developers",
         "format": "Format",
@@ -88,5 +92,143 @@
         "tos": "Terms of Use",
         "privacy": "Privacy Policy",
         "security": "Security Notice"
+    },
+    "DeveloperPortal": {
+        "title": "Project management dashboard",
+        "logout": "Logout",
+        "projects": {
+            "title": "Projects",
+            "loading_all": "Loading profile projects...",
+            "loading": "Loading profile...",
+            "empty": {
+                "primary": "Looks like you haven't registered any projects yet",
+                "secondary": "Start by adding a project from the top bar"
+            }
+        }
+    },
+    "Login": {
+        "title": "Login required",
+        "desc": "The page you are trying to access requires you to log in.",
+        "prompt": "Please use your GitHub account to continue.",
+        "button": "Log in with GitHub"
+    },
+    "Preview": {
+        "title": "Preview mode is enabled",
+        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
+        "roots": "Available local documentation roots",
+        "open": "Open"
+    },
+    "DocsFileTree": {
+        "title": "Documentation",
+        "homepage": "Mod homepage"
+    },
+    "DocsModInfo": {
+        "title": "Mod information",
+        "author": "Author",
+        "tags": "Tags",
+        "latest": "Latest version",
+        "license": "License"
+    },
+    "ModCategories": {
+        "adventure": "Adventure",
+        "cursed": "Cursed",
+        "decoration": "Decoration",
+        "economy": "Economy",
+        "equipment": "Equipment",
+        "food": "Food",
+        "game-mechanics": "Game Mechanics",
+        "library": "Library",
+        "magic": "Magic",
+        "management": "Management",
+        "minigame": "Minigame",
+        "mobs": "Mobs",
+        "optimization": "Optimization",
+        "social": "Social",
+        "storage": "Storage",
+        "technology": "Technology",
+        "transportation": "Transporation",
+        "utility": "Utility",
+        "worldgen": "Worldgen",
+        "server-utility": "Server Utility",
+        "armor-weapons-tools": "Armor, Tools, and Weapons",
+        "library-api": "API and Library",
+        "adventure-rpg": "Adventure and RPG",
+        "world-gen": "World Gen",
+        "cosmetic": "Cosmetic",
+        "mc-food": "Food",
+        "performance": "Performance",
+        "map-information": "Map and Information",
+        "bug-fixes": "Bug Fixes",
+        "mc-addons": "Addons",
+        "education": "Education",
+        "mc-miscellaneous": "Miscellaneous",
+        "redstone": "Redstone",
+        "utility-qol": "Utility & QoL",
+        "mc-creator": "MCreator"
+    },
+    "PageEditControls": {
+        "edit_gh": "Edit page on GitHub",
+        "report": "Report this page",
+        "last_updated": "Last updated: <date></date>"
+    },
+    "DocsEntryInfo": {
+        "title": "Information",
+        "name": "Name",
+        "source": "Source Mod",
+        "id": "ID",
+        "unknown": "Unknown",
+        "type": {
+            "block": "Block",
+            "item": "Item",
+            "other": "Other"
+        }
+    },
+    "Report": {
+        "title": "Report a documentation page",
+        "desc": "Report content that violates our Terms of Service or Content Rules.",
+        "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
+        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
+        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "form": {
+            "id": {
+                "title": "Project ID",
+                "desc": "Reported project ID."
+            },
+            "path": {
+                "title": "Page path",
+                "desc": "Reported documentation page path."
+            },
+            "email": {
+                "title": "Reply email address",
+                "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
+            },
+            "reason": {
+                "title": "Reason*",
+                "placeholder": "Select a reason for reporting this page",
+                "desc": "Reason for reporting this page.",
+                "spam": "Spam",
+                "copyright": "Copyright Infringement",
+                "content_rules_violation": "Violates Content Rules",
+                "tos_violation": "Violates Terms of Service",
+                "dislike": "I just don't like it"
+            },
+            "details": {
+                "title": "Details*",
+                "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
+                "desc": "Additional details about the issue."
+            },
+            "dislike": {
+                "title": "We understand that you may not like this page, and that's totally okay!",
+                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
+                "suggestion": "Would you like to look for something else to read instead?",
+                "explore": "Explore mods"
+            }
+        }
+    },
+    "SubmitButton": {
+        "title": "Submit"
+    },
+    "Callout": {
+        "title": "Heads up!"
     }
 }

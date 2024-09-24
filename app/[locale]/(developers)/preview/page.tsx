@@ -4,6 +4,7 @@ import sources from "@/lib/docs/sources";
 import {Button} from "@/components/ui/button";
 import {FolderOpenIcon, PackageIcon} from "lucide-react";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import {getTranslations} from "next-intl/server";
 
 export default async function Preview() {
   if (!localPreview.isEnabled()) {
@@ -11,17 +12,21 @@ export default async function Preview() {
   }
 
   const localSources = await sources.getLocalDocumentationSources();
+  const t = await getTranslations('Preview');
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-center text-3xl mb-6">Preview mode is enabled</h1>
+      <h1 className="text-center text-3xl mb-6">
+        {t('title')}
+      </h1>
       
       <span className="text-muted-foreground text-center mb-12">
-        Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before
-        they are published.
+        {t('desc')}
       </span>
       
-      <span className="my-2 font-medium">Available local documentation roots</span>
+      <span className="my-2 font-medium">
+        {t('roots')}
+      </span>
 
       <hr className="my-2 border-neutral-600"/>
 
@@ -43,7 +48,7 @@ export default async function Preview() {
 
               <Button size="sm" asChild>
                 <NavLink href={`/mod/${s.id}`}>
-                  Open
+                  {t('open')}
                 </NavLink>
               </Button>
             </div>

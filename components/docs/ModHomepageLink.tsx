@@ -3,8 +3,10 @@
 import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import {HomeIcon} from "lucide-react";
 
-export default function ModHomepageLink({ slug }: { slug: string }) {
+export default function ModHomepageLink({ text, slug }: { text: string; slug: string }) {
   return (
-    <SidebarNavLink href={`/mod/${slug}`} icon={HomeIcon}>Mod homepage</SidebarNavLink>
+    <SidebarNavLink href={`/mod/${slug}`} icon={HomeIcon}>
+      {text}
+    </SidebarNavLink>
   )
 }

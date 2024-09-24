@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button";
 import {LoaderCircleIcon} from "lucide-react";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 
-export default function LoginSubmitButton() {
+export default function LoginSubmitButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
   return (
@@ -20,7 +20,7 @@ export default function LoginSubmitButton() {
           <GitHubIcon width={16} height={16}/>
         }
       </div>
-      Log in with GitHub
+      {text}
     </Button>
   );
 }

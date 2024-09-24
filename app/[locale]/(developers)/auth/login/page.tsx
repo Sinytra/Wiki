@@ -4,6 +4,7 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 import {PencilRulerIcon} from "lucide-react";
 import {setContextLocale} from "@/lib/locales/routing";
 import LoginSubmitButton from "@/components/util/LoginSubmitButton";
+import {getTranslations} from "next-intl/server";
 
 export default async function Login({params, searchParams}: { params: { locale: string }, searchParams: { [key: string]: string | string[] | undefined } }) {
   setContextLocale(params.locale);
@@ -14,6 +15,8 @@ export default async function Login({params, searchParams}: { params: { locale: 
   if (session) {
     return redirect(callbackUrl || '/dev');
   }
+  
+  const t = await getTranslations('Login');
 
   return (
     <form
@@ -27,18 +30,18 @@ export default async function Login({params, searchParams}: { params: { locale: 
         <CardHeader>
           <CardTitle className="text-2xl flex flex-row gap-2 items-center">
             <PencilRulerIcon className="w-6 h-6" strokeWidth={1.8}/>
-            Login required
+            {t('title')}
           </CardTitle>
           <CardDescription>
-            The page you are trying to access requires you to log in.
-            Please use your GitHub account to continue.
+            {t('desc')}
+            {t('prompt')}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
 
         </CardContent>
         <CardFooter>
-          <LoginSubmitButton/>
+          <LoginSubmitButton text={t('button')} />
         </CardFooter>
       </Card>
     </form>

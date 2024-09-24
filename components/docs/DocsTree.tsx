@@ -3,6 +3,7 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/co
 import ModHomepageLink from "@/components/docs/ModHomepageLink";
 import DocsEntryLink from "@/components/docs/DocsEntryLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
+import {getTranslations} from "next-intl/server";
 
 function DirectoryTreeView({slug, tree, level, basePath, open}: {
   slug: string;
@@ -16,7 +17,6 @@ function DirectoryTreeView({slug, tree, level, basePath, open}: {
   }
 
   const defaultValues = open && tree.length > 0 ? [`${basePath}/${tree[0].path}`] : [];
-  // const [values, setValues] = useState<string[]>([]);
 
   return (
     <Accordion className="[&:not(:last-child)_.docsAccordeonTrigger]:border-b" defaultValue={defaultValues} type="multiple" style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
@@ -25,17 +25,6 @@ function DirectoryTreeView({slug, tree, level, basePath, open}: {
         return (
           <AccordionItem key={newBasePath} value={newBasePath} className="!border-none">
             <AccordionTrigger className="docsAccordeonTrigger px-1 capitalize border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
-              {/*<span className="flex flex-row items-center gap-4 text-[15px]">
-                    <div className="w-fit">
-                      {values.includes(newBasePath)
-                        ?
-                        <FolderOpenIcon className="w-4 h-4"/>
-                        :
-                        <FolderClosedIcon className="w-4 h-4"/>
-                      }
-                    </div>
-                    {dir.name}
-                  </span>*/}
               <span>{dir.name}</span>
             </AccordionTrigger>
             <AccordionContent>
@@ -74,10 +63,11 @@ function DocsFileTree({slug, tree, level, basePath}: {
 export default async function DocsTree({slug, locale}: { slug: string; locale: string }) {
   const source = await sources.getProjectSource(slug);
   const docsTree = await sources.readDocsTree(source, locale);
+  const t = await getTranslations('DocsFileTree');
 
   return (
-    <CollapsibleDocsTreeBase title="Documentation">
-      <ModHomepageLink slug={slug}/>
+    <CollapsibleDocsTreeBase title={t('title')}>
+      <ModHomepageLink text={t('homepage')} slug={slug}/>
 
       <hr className="mt-2"/>
 
