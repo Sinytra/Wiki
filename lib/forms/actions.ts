@@ -23,7 +23,7 @@ export async function handleEnableProjectForm(rawData: any) {
 
   const existing = await database.findExistingProject(metadata.id, sourceRepo, data.path);
   if (existing != null) {
-    return {success: false, error: 'Project already exists.'};
+    return {success: false, error: 'exists'};
   }
 
   await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, sourceRepo, data.branch, data.path);
@@ -61,17 +61,17 @@ export async function handleEditProjectForm(rawData: any) {
 export async function handleRevalidateDocs(id: string) {
   const session = await auth();
   if (session == null) {
-    return {success: false, error: 'Unauthenticated'};
+    return {success: false, error: 'unauthenticated'};
   }
 
   const mod = await database.getProject(id);
   if (mod === null) {
-    return {success: false, error: 'Not found'};
+    return {success: false, error: 'not_found'};
   }
 
   const parts = mod.source_repo.split('/');
   if (!(await verification.verifyRepositoryOwnership(parts[0], parts[1], session.access_token))) {
-    return {success: false, error: 'Verification error'};
+    return {success: false, error: 'verification'};
   }
 
   cacheUtil.clearModCaches(id);
@@ -83,7 +83,7 @@ export async function handleRevalidateDocs(id: string) {
 export async function handleReportProjectForm(projectId: string, path: string, rawData: any) {
   const session = await auth();
   if (session == null) {
-    return {success: false, error: 'Unauthenticated'};
+    return {success: false, error: 'unauthenticated'};
   }
 
   const validatedFields = docsPageReportSchema.safeParse(rawData)
@@ -103,7 +103,7 @@ export async function handleReportProjectForm(projectId: string, path: string, r
     email.submitReport(projectId, path, sender, rawData.reason, rawData.content);
   } catch (e) {
     console.error('Error submitting report', e);
-    return {success: false, error: 'Internal Server Error, please try again later.'};
+    return {success: false, error: 'internal'};
   }
 
   return {success: true};
@@ -124,7 +124,7 @@ async function validateProjectFormData(rawData: any) {
   // Get authenticated GitHub user
   const session = await auth();
   if (session == null) {
-    return {success: false, error: 'Unauthenticated'};
+    return {success: false, error: 'unauthenticated'};
   }
   const user = await github.getUserProfile(session.access_token);
 
@@ -137,7 +137,7 @@ async function validateProjectFormData(rawData: any) {
 
   // Validate user repository access
   if (!(await verification.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
-    return {success: false, validation_error: 'User does not have access to repository.'};
+    return {success: false, validation_error: 'access_denied'};
   }
 
   // Create auth instance
@@ -145,14 +145,14 @@ async function validateProjectFormData(rawData: any) {
 
   const branches = await githubApp.getRepoBranches(octokit, data.owner, data.repo);
   if (!branches.some(b => b.name === data.branch)) {
-    return {success: false, errors: {branch: ['Branch does not exist']}};
+    return {success: false, errors: {branch: ['no_branch']}};
   }
 
   // Read docs path
   const content = await githubApp.getRepoContents(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
 
   if (content === null) {
-    return {success: false, errors: {path: ['Invalid path provided']}};
+    return {success: false, errors: {path: ['invalid_path']}};
   }
 
   // Parse metadata file
@@ -160,25 +160,25 @@ async function validateProjectFormData(rawData: any) {
   try {
     metadata = await readMetadata(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
   } catch (e) {
-    return {success: false, error: 'Metadata file is invalid', details: e instanceof ValidationError ? e.message : undefined};
+    return {success: false, error: 'invalid_meta', details: e instanceof ValidationError ? e.message : undefined};
   }
   if (metadata === null) {
-    return {success: false, error: 'Metadata file not found'};
+    return {success: false, error: 'no_meta'};
   }
 
   if (!process.env.CF_API_KEY) {
-    return {success: false, error: "Cannot register CurseForge project; missing API key"};
+    return {success: false, error: 'no_cf_key'};
   }
 
   let project: ModProject;
   try {
     project = await platforms.getPlatformProject(metadata.platform, metadata.slug);
   } catch (e) {
-    return {success: false, error: 'Platform project not found. Please make sure the metadata "slug" field is correct.'};
+    return {success: false, error: 'no_project'};
   }
 
   if (!process.env.NODE_ENV && !verifyProjectOwnership(project, data.owner, data.repo)) {
-    return {success: false, error: 'Failed to verify project ownership'};
+    return {success: false, error: 'ownership'};
   }
 
   return {metadata, project, data};

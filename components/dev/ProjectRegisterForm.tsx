@@ -23,10 +23,13 @@ import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
 import LinkTextButton from "@/components/ui/link-text-button";
 import SubmitButton from "@/components/dev/SubmitButton";
+import {useTranslations} from "next-intl";
 
 export default function ProjectRegisterForm({defaultValues, state}: { defaultValues: any, state?: any }) {
   const openDefault = state !== undefined;
   const [open, setOpen] = useState(openDefault);
+  const t = useTranslations('ProjectRegisterForm');
+  const u = useTranslations('FormActions');
 
   const form = useForm<z.infer<typeof projectRegisterSchema>>({
     resolver: zodResolver(projectRegisterSchema),
@@ -36,20 +39,19 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
     const resp = await handleEnableProjectForm(data) as any;
     if (resp.success) {
       setOpen(false);
-      toast.success('Project registered successfully', {
-        description: 'You can now navigate to the project\'s mod page'
-      });
+      toast.success(t('success.title'), {description: t('success.desc')});
     } else if (resp.installation_url) {
       form.setError('root.not_installed', {message: resp.installation_url});
     } else if (resp.validation_error) {
-      form.setError('root.validation_error', {message: resp.validation_error});
+      // @ts-ignore
+      form.setError('root.validation_error', {message: u(`errors.${resp.validation_error}`)});
     } else if (resp.error) {
       // @ts-ignore
-      form.setError('root.custom', {message: resp.error, details: resp.details});
+      form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-ignore
-        form.setError(key, {message: resp.errors[key][0]});
+        form.setError(key, {message: u(`errors.${resp.errors[key][0]}`)});
       }
     }
     return resp;
@@ -77,14 +79,16 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
-          Add Project
+          {t('button')}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Register project</DialogTitle>
+          <DialogTitle>
+            {t('title')}
+          </DialogTitle>
           <DialogDescription>
-            Register a new project to the wiki.
+            {t('desc')}
           </DialogDescription>
         </DialogHeader>
 
@@ -96,12 +100,14 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
                 name="owner"
                 render={({field}) => (
                   <FormItem>
-                    <FormLabel>Owner</FormLabel>
+                    <FormLabel>
+                      {t('owner.title')}
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="ExampleUser" {...field} />
+                      <Input placeholder={t('owner.placeholder')} {...field} />
                     </FormControl>
                     <FormDescription>
-                      User / organization name.
+                      {t('owner.desc')}
                     </FormDescription>
                     <FormMessage/>
                   </FormItem>
@@ -113,12 +119,14 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
                 name="repo"
                 render={({field}) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>
+                      {t('repo.title')}
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="ExampleMod" {...field} />
+                      <Input placeholder={t('repo.placeholder')} {...field} />
                     </FormControl>
                     <FormDescription>
-                      Repository name.
+                      {t('repo.title')}
                     </FormDescription>
                     <FormMessage/>
                   </FormItem>
@@ -132,9 +140,14 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
 
             {form.formState.errors?.root?.not_installed?.message &&
                 <p className="text-destructive text-sm">
-                    Please first install our GitHub app on your repository <LinkTextButton
-                    className="!text-destructive !font-medium underline"
-                    href={form.formState.errors.root.not_installed.message}>here</LinkTextButton>.
+                  {t.rich('errors.install_app', {
+                    link: (chunks) => (
+                      <LinkTextButton className="!text-destructive !font-medium underline"
+                                      href={form.formState.errors.root!.not_installed.message!}>
+                        {chunks}
+                      </LinkTextButton>
+                    )
+                  })}
                 </p>
             }
 
@@ -143,12 +156,14 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
               name="branch"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Branch</FormLabel>
+                  <FormLabel>
+                    {t('branch.title')}
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="main" {...field} />
                   </FormControl>
                   <FormDescription>
-                    Primary branch ref. You can specify additional branches to include in your metadata file.
+                    {t('branch.desc')}
                   </FormDescription>
                   <FormMessage/>
                 </FormItem>
@@ -160,12 +175,14 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
               name="path"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Path to documentation root</FormLabel>
+                  <FormLabel>
+                    {t('path.title')}
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="/docs" {...field} />
                   </FormControl>
                   <FormDescription>
-                    Path to the folder containing the metadata file.
+                    {t('path.desc')}
                   </FormDescription>
                   <FormMessage/>
                 </FormItem>
@@ -178,14 +195,16 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
             {/*@ts-ignore*/}
             {form.formState.errors.root?.custom?.details &&
                 <details className="w-fit text-sm text-destructive max-h-20 overflow-y-auto slim-scrollbar">
-                    <summary className="mb-2">Show details</summary>
-                    {/*@ts-ignore*/}
+                    <summary className="mb-2">
+                      {t('errors.details')}
+                    </summary>
+                  {/*@ts-ignore*/}
                     <code>{form.formState.errors.root.custom.details}</code>
                 </details>
             }
 
             <DialogFooter>
-              <SubmitButton/>
+              <SubmitButton t={{title: t('submit')}}/>
             </DialogFooter>
           </form>
         </Form>

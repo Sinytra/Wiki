@@ -8,8 +8,9 @@ import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
 import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
 import {redirect} from "next/navigation";
-import {getTranslations} from "next-intl/server";
-import {useTranslations} from "next-intl";
+import {getMessages, getTranslations} from "next-intl/server";
+import {NextIntlClientProvider, useTranslations} from "next-intl";
+import {pick} from "lodash";
 
 export const dynamic = 'force-dynamic';
 
@@ -84,6 +85,7 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
   const defaultValues = {owner: profile.login};
 
   const t = await getTranslations('DeveloperPortal');
+  const messages = await getMessages();
 
   return (
     <div>
@@ -91,7 +93,9 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
         {t('title')}
 
         <div className="flex flex-row items-center gap-2">
-          <ProjectRegisterForm defaultValues={defaultValues} state={state}/>
+          <NextIntlClientProvider messages={pick(messages, 'ProjectRegisterForm', 'FormActions')}>
+            <ProjectRegisterForm defaultValues={defaultValues} state={state}/>
+          </NextIntlClientProvider>
 
           <form
             title={t('logout')}

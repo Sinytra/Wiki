@@ -16,27 +16,29 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import {useFormStatus} from "react-dom";
+import {useTranslations} from "next-intl";
 
-function DeleteButton() {
+function DeleteButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
   return (
     <Button type="submit" disabled={pending} variant="destructive" className="!text-destructive-foreground !bg-destructive">
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
-      Delete
+      {text}
     </Button>
   );
 }
 
 export default function ProjectDeletion({id}: { id: string }) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations('ProjectDeletionForm');
 
   const actionWithSlug = handleDeleteProjectForm.bind(null, id);
 
   const formAction = async () => {
     await actionWithSlug();
     setOpen(false);
-    toast.success('Project deleted successfully');
+    toast.success(t('success'));
   }
 
   return (
@@ -48,19 +50,22 @@ export default function ProjectDeletion({id}: { id: string }) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>
+            {t('title')}
+          </DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your project and remove all associated data
-            from our servers.
+            {t('desc')}
           </DialogDescription>
         </DialogHeader>
 
         <form tabIndex={0} action={formAction} className="focus:outline-none space-y-6">
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button" variant="secondary">Cancel</Button>
+              <Button type="button" variant="secondary">
+                {t('cancel')}
+              </Button>
             </DialogClose>
-            <DeleteButton />
+            <DeleteButton text={t('submit')} />
           </DialogFooter>
         </form>
       </DialogContent>

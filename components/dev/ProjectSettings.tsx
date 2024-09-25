@@ -3,7 +3,6 @@
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
-
 import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
 import {
@@ -25,9 +24,13 @@ import {Input} from "@/components/ui/input";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {DevProject} from "@/lib/types/dev";
 import SubmitButton from "@/components/dev/SubmitButton";
+import {useTranslations} from "next-intl";
 
 export default function ProjectSettings({mod}: { mod: DevProject }) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations('ProjectSettingsForm');
+  const u = useTranslations('ProjectRegisterForm');
+  const v = useTranslations('FormActions');
 
   const parts = mod.source_repo.split('/');
   const defaultValues = {
@@ -44,19 +47,19 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
     const resp = await handleEditProjectForm(data) as any;
     if (resp.success) {
       setOpen(false);
-      toast.success('Project updated successfully', {
-        description: 'You can now navigate to the updated project\'s mod page'
-      });
+      toast.success(t('success.title'), {description: t('success.desc')});
     } else if (resp.installation_url) {
       form.setError('root.not_installed', {message: resp.installation_url});
     } else if (resp.validation_error) {
-      form.setError('root.validation_error', {message: resp.validation_error});
+      // @ts-ignore
+      form.setError('root.validation_error', {message: v(`errors.${resp.validation_error}`)});
     } else if (resp.error) {
-      form.setError('root.custom', {message: resp.error});
+      // @ts-ignore
+      form.setError('root.custom', {message: v(`errors.${resp.error}`)});
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-ignore
-        form.setError(key, {message: resp.errors[key][0]});
+        form.setError(key, {message: v(`errors.${resp.errors[key][0]}`)});
       }
     }
     return resp;
@@ -77,9 +80,11 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit project</DialogTitle>
+          <DialogTitle>
+            {t('title')}
+          </DialogTitle>
           <DialogDescription>
-            Edit an existing project's settings.
+            {t('desc')}
           </DialogDescription>
         </DialogHeader>
 
@@ -91,12 +96,14 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
                 name="owner"
                 render={({field}) => (
                   <FormItem>
-                    <FormLabel>Owner</FormLabel>
+                    <FormLabel>
+                      {u('owner.title')}
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="ExampleUser" {...field} />
+                      <Input placeholder={u('owner.placeholder')} {...field} />
                     </FormControl>
                     <FormDescription>
-                      User / organization name.
+                      {u('owner.desc')}
                     </FormDescription>
                     <FormMessage/>
                   </FormItem>
@@ -108,12 +115,14 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
                 name="repo"
                 render={({field}) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>
+                      {u('repo.title')}
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="ExampleMod" {...field} />
+                      <Input placeholder={u('repo.placeholder')} {...field} />
                     </FormControl>
                     <FormDescription>
-                      Repository name.
+                      {u('repo.desc')}
                     </FormDescription>
                     <FormMessage/>
                   </FormItem>
@@ -127,9 +136,14 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
 
             {form.formState.errors?.root?.not_installed?.message &&
                 <p className="text-destructive text-sm">
-                    Please first install our GitHub app on your repository <LinkTextButton
-                    className="!text-destructive !font-medium underline"
-                    href={form.formState.errors.root.not_installed.message}>here</LinkTextButton>.
+                  {u.rich('errors.install_app', {
+                    link: (chunks) => (
+                      <LinkTextButton className="!text-destructive !font-medium underline"
+                                      href={form.formState.errors.root!.not_installed.message!}>
+                        {chunks}
+                      </LinkTextButton>
+                    )
+                  })}
                 </p>
             }
 
@@ -138,12 +152,14 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
               name="branch"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Branch</FormLabel>
+                  <FormLabel>
+                    {u('branch.title')}
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="main" {...field} />
                   </FormControl>
                   <FormDescription>
-                    Primary branch ref. You can specify additional branches to include in your metadata file.
+                    {u('branch.desc')}
                   </FormDescription>
                   <FormMessage/>
                 </FormItem>
@@ -155,12 +171,14 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
               name="path"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Path to documentation root</FormLabel>
+                  <FormLabel>
+                    {u('path.title')}
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="/docs" {...field} />
                   </FormControl>
                   <FormDescription>
-                    Path to the folder containing the metadata file.
+                    {u('path.desc')}
                   </FormDescription>
                   <FormMessage/>
                 </FormItem>
@@ -172,7 +190,7 @@ export default function ProjectSettings({mod}: { mod: DevProject }) {
             }
 
             <DialogFooter>
-              <SubmitButton/>
+              <SubmitButton t={{title: u('submit')}}/>
             </DialogFooter>
           </form>
         </Form>

@@ -28,7 +28,8 @@
             },
             "resources": {
                 "title": "Resources",
-                "blog": "Blog"
+                "blog": "Blog",
+                "translate": "Help us translate"
             },
             "about": {
                 "title": "About",
@@ -230,5 +231,78 @@
     },
     "Callout": {
         "title": "Heads up!"
+    },
+    "ProjectRegisterForm": {
+        "button": "Add Project",
+        "title": "Register project",
+        "desc": "Register a new project to the wiki.",
+        "owner": {
+            "title": "Owner",
+            "desc": "User / organization name.",
+            "placeholder": "ExampleUser"
+        },
+        "repo": {
+            "title": "Name",
+            "desc": "Repository name.",
+            "placeholder": "ExampleMod"
+        },
+        "branch": {
+            "title": "Branch",
+            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+        },
+        "path": {
+            "title": "Path to documentation root",
+            "desc": "Path to the folder containing the metadata file."
+        },
+        "errors": {
+            "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
+            "details": "Show details"
+        },
+        "submit": "Submit",
+        "success": {
+            "title": "Project registered successfully",
+            "desc": "You can now navigate to the project's mod page"
+        }
+    },
+    "ProjectSettingsForm": {
+        "title": "Edit project",
+        "desc": "Edit an existing project's settings.",
+        "success": {
+            "title": "Project updated successfully",
+            "desc": "You can now navigate to the updated project's mod page"
+        }
+    },
+    "ProjectDeletionForm": {
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
+    },
+    "ProjectRevalidateForm": {
+        "title": "Revalidate project?",
+        "primary": "All cached documentation pages will be purged and re-rendered lazily on-demand.",
+        "secondary": "This option should only be used upon updating the documentation source itself.",
+        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "cancel": "Cancel",
+        "submit": "Revalidate",
+        "success": "Project successfully revalidated"
+    },
+    "FormActions": {
+        "errors": {
+            "exists": "Project already exists.",
+            "unauthenticated": "Unauthenticated",
+            "access_denied": "User does not have access to repository.",
+            "no_branch": "Branch does not exist",
+            "invalid_path": "Invalid path provided",
+            "invalid_meta": "Metadata file is invalid",
+            "no_meta": "Metadata file not found",
+            "no_cf_key": "Cannot register CurseForge project; missing API key",
+            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
+            "ownership": "Failed to verify project ownership",
+            "internal": "Internal Server Error, please try again later.",
+            "verification": "Verification error",
+            "not_found": "Not found"
+        }
     }
 }

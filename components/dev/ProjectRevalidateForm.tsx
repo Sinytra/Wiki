@@ -18,27 +18,29 @@ import {
 } from "@/components/ui/dialog";
 import {useFormStatus} from "react-dom";
 import LinkTextButton from "@/components/ui/link-text-button";
+import {useTranslations} from "next-intl";
 
-function DeleteButton() {
+function RevalidateButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
   return (
     <Button type="submit" disabled={pending}>
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
-      Revalidate
+      {text}
     </Button>
   );
 }
 
 export default function ProjectRevalidateForm({id}: { id: string }) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations('ProjectRevalidateForm');
 
   const actionWithSlug = handleRevalidateDocs.bind(null, id);
 
   const formAction = async () => {
     await actionWithSlug();
     setOpen(false);
-    toast.success('Project successfully revalidated');
+    toast.success(t('success'));
   }
 
   return (
@@ -50,17 +52,26 @@ export default function ProjectRevalidateForm({id}: { id: string }) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Revalidate project?</DialogTitle>
+          <DialogTitle>
+            {t('title')}
+          </DialogTitle>
           <DialogDescription asChild className="!mt-4">
             <div>
-              All cached documentation pages will be purged and re-rendered lazily on-demand.
+              {t('primary')}
 
-              <p className="mt-4">This option should only be used upon updating the documentation source itself.</p>
+              <p className="mt-4">
+                {t('secondary')}
+              </p>
 
-              <p className="mt-4">For your own convenience, we recommend automatically revalidating docs after
-                publication
-                using our <LinkTextButton target="_blank" href="/about" className="!font-normal !text-foreground">Gradle
-                  plugin</LinkTextButton> instead.</p>
+              <p className="mt-4">
+                {t.rich('tertiary', {
+                  link: (chunks) => (
+                    <LinkTextButton target="_blank" href="/about" className="!font-normal !text-foreground">
+                      {chunks}
+                    </LinkTextButton>
+                  )
+                })}
+              </p>
             </div>
           </DialogDescription>
         </DialogHeader>
@@ -68,9 +79,11 @@ export default function ProjectRevalidateForm({id}: { id: string }) {
         <form tabIndex={0} action={formAction} className="focus:outline-none space-y-6">
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button" variant="secondary">Cancel</Button>
+              <Button type="button" variant="secondary">
+                {t('cancel')}
+              </Button>
             </DialogClose>
-            <DeleteButton/>
+            <RevalidateButton text={t('submit')}/>
           </DialogFooter>
         </form>
       </DialogContent>

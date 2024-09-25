@@ -40,6 +40,7 @@
     "date-fns": "^3.6.0",
     "directory-tree": "^3.5.2",
     "json-schema-library": "^10.0.0-rc2",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",
@@ -78,6 +79,7 @@
   "devDependencies": {
     "@shikijs/rehype": "^1.16.2",
     "@tailwindcss/typography": "^0.5.14",
+    "@types/lodash": "^4.17.9",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",

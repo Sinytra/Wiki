@@ -1,6 +1,6 @@
 import {DevProject} from "@/lib/types/dev";
 import platforms from "@/lib/platforms";
-import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon, ServerIcon, SettingsIcon} from "lucide-react";
+import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
@@ -9,6 +9,9 @@ import ProjectRevalidateForm from "@/components/dev/ProjectRevalidateForm";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
 import {cn} from "@/lib/utils";
+import {getMessages} from "next-intl/server";
+import {NextIntlClientProvider} from "next-intl";
+import {pick} from "lodash";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
@@ -21,6 +24,7 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
 
 export default async function ProfileProject({mod}: { mod: DevProject }) {
   const project = await platforms.getProject(mod);
+  const messages = await getMessages();
 
   return <>
     <div className="flex flex-col justify-between gap-3 py-3">
@@ -54,9 +58,15 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
 
         <div className="flex flex-row gap-4 items-center ml-auto sm:ml-0">
           <MutedLinkIconButton variant="outline" icon={ExternalLinkIcon} href={`/mod/${mod.id}`} />
-          <ProjectRevalidateForm id={mod.id} />
-          <ProjectSettings mod={mod} />
-          <ProjectDeletion id={mod.id} />
+          <NextIntlClientProvider messages={pick(messages, 'ProjectRevalidateForm', 'FormActions')}>
+            <ProjectRevalidateForm id={mod.id} />
+          </NextIntlClientProvider>
+          <NextIntlClientProvider messages={pick(messages, 'ProjectSettingsForm', 'ProjectRegisterForm', 'FormActions')}>
+            <ProjectSettings mod={mod} />
+          </NextIntlClientProvider>
+          <NextIntlClientProvider messages={pick(messages, 'ProjectDeletionForm')}>
+            <ProjectDeletion id={mod.id} />
+          </NextIntlClientProvider>
         </div>
       </div>
     </div>
