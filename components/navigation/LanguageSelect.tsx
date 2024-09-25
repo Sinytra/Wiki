@@ -44,11 +44,11 @@ const localeNames: {[key: string]: {name: string, icon: any}} = {
   hu: { name: 'Magyar', icon: HU },
   pl: { name: 'Polski', icon: PL },
   sv: { name: 'Svenska', icon: SE },
-  ua: { name: 'Українська', icon: UA },
+  uk: { name: 'Українська', icon: UA },
   ru: { name: 'русский', icon: RU },
-  jp: { name: '日本語', icon: JP },
-  kr: { name: '한국어', icon: KR },
-  cn: { name: '中文', icon: CN }
+  ja: { name: '日本語', icon: JP },
+  ko: { name: '한국어', icon: KR },
+  zh: { name: '中文', icon: CN }
 };
 
 export default function LanguageSelect({ locale }: { locale: string }) {
