@@ -1,8 +1,6 @@
 import prisma from "@/lib/database/prisma";
 import {ModPlatform} from "@/lib/platforms";
 
-// TODO Caching DB requests
-
 async function registerProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string) {
   // TODO Throw error on duplicate
   const existing = await prisma.mod.findUnique({
