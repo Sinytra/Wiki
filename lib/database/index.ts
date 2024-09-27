@@ -32,6 +32,17 @@ async function unregisterProject(id: string) {
   });
 }
 
+async function migrateRepository(fromFullName: string, toFullName: string) {
+  return prisma.mod.updateMany({
+    where: {
+      source_repo: fromFullName
+    },
+    data: {
+      source_repo: toFullName
+    }
+  })
+}
+
 async function findExistingProject(id: string, source_repo: string, source_path: string) {
   return prisma.mod.findFirst({
     where: {
@@ -134,7 +145,8 @@ const database = {
   searchProjectsPaginated,
   getAllProjectIDs,
   getRandomProjectID,
-  getProjectCached
+  getProjectCached,
+  migrateRepository
 };
 
 export default database;

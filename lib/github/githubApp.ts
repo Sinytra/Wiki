@@ -8,8 +8,8 @@ import verification from "@/lib/github/verification";
 export interface RepoInstallationState {
   owner: string;
   repo: string;
-  branch: string;
-  path: string;
+  branch: string | null;
+  path: string | null;
 }
 
 export type RepositoryContent = Awaited<ReturnType<Api['rest']['repos']['getContent']>>['data'];
@@ -48,7 +48,7 @@ async function getFileModifiedDate(octokit: Octokit, owner: string, repo: string
   return null;
 }
 
-async function getInstallation(owner: string, repo: string, branch: string, path: string) {
+async function getInstallation(owner: string, repo: string, branch: string | null, path: string | null) {
   const app = createAppInstance();
   const appOctokit: Octokit = app.octokit;
 
@@ -77,6 +77,15 @@ async function getRepoContents(octokit: Octokit, owner: string, repo: string, re
     return resp.data;
   } catch (e) {
     return null;
+  }
+}
+
+async function getRepository(octokit: Octokit, owner: string, repo: string) {
+  try {
+    const resp = await octokit.rest.repos.get({owner, repo});
+    return resp.data;
+  } catch (e) {
+    return [];
   }
 }
 
@@ -150,7 +159,8 @@ const githubApp = {
   getAvailableRepositories,
   getExistingInstallation,
   isRepositoryPublic,
-  getFileModifiedDate
+  getFileModifiedDate,
+  getRepository
 };
 
 export default githubApp;

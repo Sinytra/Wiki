@@ -12,3 +12,9 @@ export const docsPageReportSchema = z.object({
   content: z.string(),
   email: z.string().email().optional()
 });
+
+export const migrateRepositorySchema = z.object({
+  owner: z.string(),
+  repo: z.string(),
+  new_owner: z.string(),
+});

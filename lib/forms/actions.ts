@@ -1,7 +1,7 @@
 'use server'
 
-import {docsPageReportSchema, projectRegisterSchema} from "@/lib/forms/schemas";
-import {revalidatePath} from "next/cache";
+import {docsPageReportSchema, migrateRepositorySchema, projectRegisterSchema} from "@/lib/forms/schemas";
+import {revalidatePath, revalidateTag} from "next/cache";
 import githubApp from "@/lib/github/githubApp";
 import metadata, {ValidationError} from "@/lib/docs/metadata";
 import platforms, {ModProject} from "@/lib/platforms";
@@ -56,6 +56,54 @@ export async function handleEditProjectForm(rawData: any) {
   revalidatePath(`/[locale]/mod/${metadata.id}/docs`, 'layout');
 
   return {success: true};
+}
+
+export async function handleMigrateRepositoryForm(rawData: any) {
+  const validatedFields = migrateRepositorySchema.safeParse(rawData)
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
+
+  const data = validatedFields.data;
+
+  // Get authenticated GitHub user
+  const session = await auth();
+  if (session == null) {
+    return {success: false, error: 'unauthenticated'};
+  }
+  const user = await github.getUserProfile(session.access_token);
+
+  // Ensure app is installed on repository
+  const installation = await githubApp.getInstallation(data.new_owner, data.repo, null, null);
+  // Prompt user to install app
+  if (installation && 'url' in installation) {
+    return {success: false, installation_url: installation.url};
+  }
+
+  // Validate user repository access
+  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.new_owner, data.repo, user.login))) {
+    return {success: false, validation_error: 'access_denied'};
+  }
+
+  // Create auth instance
+  const octokit = await githubApp.createInstance(installation!.id);
+
+  const repo = await githubApp.getRepository(octokit, data.owner, data.repo);
+
+  // Check if repo has moved
+  if ('id' in repo && data.owner.toLowerCase() !== repo.owner.login.toLowerCase() && data.repo.toLowerCase() === repo.name.toLowerCase()) {
+    await database.migrateRepository(`${data.owner}/${data.repo}`, repo.full_name);
+
+    revalidateTag(cacheUtil.getGithubAppUserInstallCacheId(data.owner));
+    revalidatePath('/dev');
+    return {success: true};
+  }
+
+  return {success: false, migrate_error: 'unavailable'};
 }
 
 export async function handleRevalidateDocs(id: string) {

@@ -304,5 +304,51 @@
             "verification": "Verification error",
             "not_found": "Not found"
         }
+    },
+    "GetHelpModal": {
+        "button": "Is your project not showing up?",
+        "title": "Project help",
+        "desc": "Help resolve common issues with project registration.",
+        "app": {
+            "title": "Ensure the GitHub app is installed on your repository",
+            "button": "Install GitHub App"
+        },
+        "moved": {
+            "title": "Has your repository moved?",
+            "button": "Migrate project repository"
+        },
+        "other": {
+            "title": "Other issues",
+            "desc": "Check the troubleshooting section of the documentation Publishing guide.",
+            "link": "Open troubleshooting guide"
+        }
+    },
+    "MigrateRepositoryForm": {
+        "title": "Migrate project repository",
+        "desc": "Update repository data after its location has changed.",
+        "owner": {
+            "title": "Old Owner",
+            "desc": "Old User / organization name.",
+            "placeholder": "ExampleUser"
+        },
+        "repo": {
+            "title": "Old Name",
+            "desc": "Old repository name.",
+            "placeholder": "ExampleMod"
+        },
+        "new_owner": {
+            "title": "New Owner",
+            "desc": "New User / organization name.",
+            "placeholder": "ExampleOrg"
+        },
+        "submit": "Migrate",
+        "success": {
+            "title": "Repository migrated successfully",
+            "desc": "You should now see the migrated projects"
+        },
+        "migrate_error": {
+            "install_app": "Please ensure our GitHub app is <link>installed</link> on the migrated repository.",
+            "unavailable": "No migration available for repository. Is the entered information correct?"
+        }
     }
 }

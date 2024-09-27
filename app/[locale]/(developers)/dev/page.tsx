@@ -11,6 +11,7 @@ import {redirect} from "next/navigation";
 import {getMessages, getTranslations} from "next-intl/server";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
 import {pick} from "lodash";
+import {GetHelpModal} from "@/components/dev/GetHelpModal";
 
 export const dynamic = 'force-dynamic';
 
@@ -19,6 +20,13 @@ async function ProfileProjects({owner, access_token}: { owner: string; access_to
   const projects = await database.getProjects(repos.map(r => r.full_name));
 
   const t = await getTranslations('DeveloperPortal');
+  const messages = await getMessages();
+
+  const HelpModal = () => (
+    <NextIntlClientProvider messages={pick(messages, 'GetHelpModal', 'MigrateRepositoryForm', 'FormActions')}>
+      <GetHelpModal githubAppName={process.env.GITHUB_APP_NAME}/>
+    </NextIntlClientProvider>
+  );
 
   return (
     <>
@@ -27,12 +35,18 @@ async function ProfileProjects({owner, access_token}: { owner: string; access_to
           <ProfileProject mod={p}/>
         </Suspense>
       ))}
-      {projects.length === 0 &&
-          <div
-              className="w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 h-48 gap-3">
-              <span className="text-foreground font-medium">{t('projects.empty.primary')}</span>
-              <span className="text-muted-foreground">{t('projects.empty.secondary')}</span>
-          </div>
+      {projects.length === 0
+        ?
+        <div
+          className="w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 h-48 gap-3">
+          <span className="text-foreground font-medium">{t('projects.empty.primary')}</span>
+          <span className="text-muted-foreground">{t('projects.empty.secondary')}</span>
+          <HelpModal />
+        </div>
+        :
+        <div className="my-2 border-none flex justify-center mx-auto">
+          <HelpModal />
+        </div>
       }
     </>
   )

@@ -30,7 +30,7 @@ async function getAccessibleInstallations(token: string) {
 
 async function getAccessibleAppRepositories(token: string, installationId: number) {
   const instance = new Octokit({auth: token});
-  return github.getPaginatedData(instance, `GET /user/installations/${installationId}/repositories`);
+  return github.getPaginatedData(instance, `GET /user/installations/${installationId}/repositories`, true);
 }
 
 async function makeApiRequest<T>(token: string, path: string, ...options: any[]) {
@@ -55,7 +55,7 @@ async function makeApiRequestRaw(token: string, path: string, ...options: any[])
   throw new Error('Error fetching github api');
 }
 
-async function getPaginatedData(instance: Octokit, url: string) {
+async function getPaginatedData(instance: Octokit, url: string, disableCache?: boolean) {
   const nextPattern = /(?<=<)([\S]*)(?=>; rel="Next")/i;
   let pagesRemaining: boolean = true;
   let data: any[] = [];
@@ -63,9 +63,7 @@ async function getPaginatedData(instance: Octokit, url: string) {
   while (pagesRemaining) {
     const response = await instance.request(url, {
       per_page: 100,
-      request: {
-        fetch: cachedFetch
-      }
+      request: !disableCache ? {fetch: cachedFetch} : undefined
     });
 
     const parsedData = parseData(response.data)
