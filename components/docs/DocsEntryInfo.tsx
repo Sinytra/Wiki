@@ -37,11 +37,14 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
           <MetadataRowKey title={t('source')}>
             <LinkTextButton href={`/mod/${source.id}`}>{project.name}</LinkTextButton>
           </MetadataRowKey>
-          <MetadataRowKey title={t('id')}>
-            {metadata.id ? <code>{metadata.id}</code> : t('unknown')} 
+          {metadata.id &&
+              <MetadataRowKey title={t('id')}>
+                {metadata.id}
+              </MetadataRowKey>
+          }
+          <MetadataRowKey title={t('tags')}>
+            {t(`type.${metadata.type && metadata.type in types ? metadata.type : 'other'}`)}
           </MetadataRowKey>
-          <MetadataRowKey
-            title="Type">{t(`type.${metadata.type && metadata.type in types ? metadata.type : 'other'}`)}</MetadataRowKey>
           {metadata.custom && Object.entries(metadata.custom).map(e => (
             <MetadataRowKey key={e[0]} title={e[0]}>{e[1]}</MetadataRowKey>
           ))}

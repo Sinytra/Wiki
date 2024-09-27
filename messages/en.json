@@ -127,8 +127,16 @@
         "title": "Mod information",
         "author": "Author",
         "tags": "Tags",
-        "latest": "Latest version",
-        "license": "License"
+        "latest": {
+            "title": "Latest version",
+            "unknown": "N/A"
+        },
+        "license": {
+            "title": "License",
+            "custom": "Custom",
+            "unknown": "Unknown",
+            "arr": "All Rights Reserved"
+        }
     },
     "ModCategories": {
         "adventure": "Adventure",
@@ -176,6 +184,7 @@
         "title": "Information",
         "name": "Name",
         "source": "Source Mod",
+        "tags": "Tags",
         "id": "ID",
         "unknown": "Unknown",
         "type": {

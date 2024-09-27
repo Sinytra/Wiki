@@ -63,10 +63,10 @@ export default async function ModInfo({mod}: Props) {
           <MetadataRowKey icon={TagIcon} title={t('tags')}>
             <ModTags tags={mod.categories}/>
           </MetadataRowKey>
-          <MetadataRowKey icon={MilestoneIcon} title={t('latest')}>
+          <MetadataRowKey icon={MilestoneIcon} title={t('latest.title')}>
             {info.latest_version}
           </MetadataRowKey>
-          <MetadataRowKey icon={CopyrightIcon} title={t('license')}>
+          <MetadataRowKey icon={CopyrightIcon} title={t('license.title')}>
             {mod?.license?.url
               ?
               <LinkTextButton href={mod.license.url}>{info.license.name}</LinkTextButton>

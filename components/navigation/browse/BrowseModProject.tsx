@@ -13,6 +13,7 @@ import githubApp from "@/lib/github/githubApp";
 import {getLatestVersion} from "@/components/docs/mod-info/modInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
+import {useTranslations} from "next-intl";
 
 function ProjectIcon({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
@@ -58,11 +59,12 @@ async function GitHubProjectLink({repo}: { repo: string }) {
 
 function ProjectMetaInfo({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
+  const t = useTranslations('DocsModInfo.latest');
   return (
     <div>
       <div className="flex flex-row items-center gap-2 text-muted-foreground">
         <MilestoneIcon className="w-5 h-5"/>
-        <span className="text-base">{getLatestVersion(projectContent)}</span>
+        <span className="text-base">{getLatestVersion(projectContent) || t('unknown')}</span>
       </div>
     </div>
   )
