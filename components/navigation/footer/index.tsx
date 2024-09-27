@@ -4,14 +4,16 @@ import {cn} from "@/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
+import {BookMarkedIcon} from "lucide-react";
 
 function Copyright({ center }: { center: boolean }) {
   const t = useTranslations('NavigationFooter');
 
   return <>
     <div className={cn("flex flex-col items-center md:basis-96", !center && 'md:items-start')}>
-      <span className="font-medium text-foreground">
-        📖 {t('title')}
+      <span className="inline-flex items-center font-medium text-foreground">
+        <BookMarkedIcon className="mr-2 w-4 h-4" />
+        {t('title')}
       </span>
       <p className="mt-6 text-sm">
         © {new Date().getFullYear()} The Sinytra Project.
@@ -48,7 +50,7 @@ function NavigationColumns() {
   const t = useTranslations('NavigationFooter');
 
   return (
-    <div className="grid w-full ml-auto grid-cols-4 gap-8 px-8">
+    <div className="grid w-full ml-auto grid-cols-4 gap-8 sm:px-8">
       <LinkColumn title={t('links.navigation.title')}>
         <LinkEntry title={t('links.navigation.home')} href="/"/>
         <LinkEntry title={t('links.navigation.browse')} href="/browse"/>
@@ -80,10 +82,10 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full bg-muted pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-border">
+      className="w-full bg-muted pt-10 sm:pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-border">
       <div className="px-8 w-full max-w-[90rem] text-muted-foreground flex flex-col gap-8">
         <div
-          className={cn("flex flex-wrap-reverse md:flex-nowrap md:flex-row w-full justify-center gap-y-8", !isPreview && 'md:justify-between')}>
+          className={cn("flex flex-wrap md:flex-nowrap md:flex-row w-full justify-center gap-y-10 sm:gap-y-8", !isPreview && 'md:justify-between')}>
           <Copyright center={isPreview}/>
 
           { !isPreview && <NavigationColumns /> }

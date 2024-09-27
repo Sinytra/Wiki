@@ -19,8 +19,8 @@ export default async function UserStarter() {
         <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
           <ModSearch locale={locale} placeholder={t('documentation.search.placeholder')}/>
         </NextIntlClientProvider>
-          
-        <Button asChild className="text-primary-foreground">
+
+        <Button variant="outline" asChild className="!border-[var(--vp-c-brand-1)]">
           <LocaleNavLink href="/browse">
             <CompassIcon className="w-4 h-4 mr-2"/>
             {t('documentation.explore')}

@@ -4,6 +4,7 @@
     },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
+        "title_short": "Wiki",
         "badge": {
             "preview": "PREVIEW MODE",
             "beta": "Beta"

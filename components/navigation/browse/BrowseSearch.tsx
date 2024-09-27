@@ -21,11 +21,11 @@ export default function ProjectSearch({ placeholder }: { placeholder: string; })
   }, 300);
 
   return (
-    <div className="flex flex-row w-full pb-4 mb-2 border-b border-neutral-600">
+    <div className="flex flex-row w-full pb-4 mb-2 border-b border-neutral-700">
       <div className="w-full sm:w-fit relative text-muted-foreground">
         <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
         <Input
-          className="sm:w-96 pl-9"
+          className="sm:w-96 pl-9 border-neutral-600"
           type="text"
           placeholder={placeholder}
           onChange={(e) => handleSearch(e.target.value)}

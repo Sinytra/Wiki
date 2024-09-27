@@ -12,8 +12,8 @@ export default function Home({ params }: { params: { locale: string } }) {
 
   return <>
     <main className="flex max-w-5xl mx-auto flex-col items-center justify-between w-full px-2 md:px-0">
-      <div className="z-10 w-full items-center justify-center text-2xl md:flex">
-        <p className="text-2xl md:text-4xl text-foreground flex flex-col lg:flex-row items-center gap-x-2">
+      <div className="mb-6 sm:mb-0 z-10 w-full items-center justify-center text-2xl md:flex">
+        <p className="text-3xl md:text-4xl text-foreground flex flex-col lg:flex-row items-center gap-x-2">
           {t.rich('heading', {
             highlight: (chunks) => (
               <span className="text-center font-medium bg-gradient-to-b from-blue-400 to-blue-500 bg-clip-text text-transparent">
@@ -24,7 +24,7 @@ export default function Home({ params }: { params: { locale: string } }) {
         </p>
       </div>
 
-      <div className="flex flex-col h-full justify-evenly gap-10 md:gap-0 mt-10 md:mt-0">
+      <div className="flex flex-col h-full justify-evenly gap-12 sm:gap-10 md:gap-0 mt-10 md:mt-0">
         <UserStarter/>
 
         <hr className="md:w-[45rem] border-gray-600 h-1"/>

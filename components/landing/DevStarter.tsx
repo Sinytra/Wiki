@@ -1,8 +1,9 @@
-import {PencilRulerIcon} from "lucide-react";
+import {CompassIcon, HammerIcon, HomeIcon, PencilIcon, PencilRulerIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import LandingStarterBase from "@/components/landing/LandingStarterBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {useTranslations} from "next-intl";
+import {Button} from "@/components/ui/button";
 
 export default function DevStarter() {
   const t = useTranslations('HomePage');
@@ -23,7 +24,10 @@ export default function DevStarter() {
       </>
     }>
       <LocaleNavLink href="/dev">
-        <button className="bg-blue-900 p-2.5 px-5 rounded-sm">{t('developers.area')}</button>
+        <Button variant="outline" className="!border-muted-foreground">
+          <HammerIcon className="w-4 h-4 mr-2"/>
+          {t('developers.area')}
+        </Button>
       </LocaleNavLink>
     </LandingStarterBase>
   )

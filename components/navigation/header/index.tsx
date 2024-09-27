@@ -7,6 +7,7 @@ import HeaderBase from "@/components/navigation/header/HeaderBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
+import {BookMarkedIcon, BookTextIcon} from "lucide-react";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -24,9 +25,16 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
     <HeaderBase unfix={unfix}>
       <div
         className={cn(styles.container, 'flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto', minimal && 'my-2')}>
-        <div className="flex flex-row items-center gap-4">
+        <div className="flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
-            <span className="text-base font-medium text-foreground inline-flex gap-1 items-center">📖{t('title')}</span>
+            <span className="hidden sm:inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
+              <BookMarkedIcon className="mr-1 w-4 h-4" />
+              {t('title')}
+            </span>
+            <span className="sm:hidden text-base font-medium text-foreground inline-flex gap-1 items-center align-bottom">
+              <BookMarkedIcon className="mr-1 w-4 h-4" />
+              <span>{t('title_short')}</span>
+            </span>
           </LocaleNavLink>
           {preview && <Badge variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&

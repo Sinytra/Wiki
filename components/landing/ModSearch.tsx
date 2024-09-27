@@ -40,7 +40,7 @@ export default function ModSearch({ locale, placeholder }: { locale: string; pla
     <div className="flex flex-col gap-10 justify-center items-center w-full">
       <div className="relative w-full">
         <input type="text"
-               className="border border-[var(--vp-c-brand-2)] bg-muted text-base text-center placeholder:text-gray-500 w-full sm:w-96 p-3 rounded-sm focus:outline-none"
+               className="border border-muted-foreground bg-muted text-base text-center placeholder:text-gray-500 w-full sm:w-96 p-3 rounded-sm"
                onChange={(e) => handleSearch(e.target.value)}
                onFocus={() => setShown(true)}
                onBlur={() => setShown(false)}
