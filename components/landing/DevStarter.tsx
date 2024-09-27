@@ -23,7 +23,7 @@ export default function DevStarter() {
       </>
     }>
       <LocaleNavLink href="/dev">
-        <button className="bg-blue-900 p-2.5 px-5 rounded-sm">{t('developers.area')})</button>
+        <button className="bg-blue-900 p-2.5 px-5 rounded-sm">{t('developers.area')}</button>
       </LocaleNavLink>
     </LandingStarterBase>
   )
