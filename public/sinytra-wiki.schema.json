@@ -9,7 +9,7 @@
             "type": "string",
             "minLength": 2,
             "maxLength": 126,
-            "pattern": "^[a-z0-9-]+$"
+            "pattern": "^[a-z]+[a-z0-9-]+$"
         },
         "platform": {
             "description": "Your mod's distribution platform.",

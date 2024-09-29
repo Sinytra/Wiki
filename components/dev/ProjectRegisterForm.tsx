@@ -24,8 +24,13 @@ import {Input} from "@/components/ui/input";
 import LinkTextButton from "@/components/ui/link-text-button";
 import SubmitButton from "@/components/dev/SubmitButton";
 import {useTranslations} from "next-intl";
+import {Switch} from "@/components/ui/switch";
 
-export default function ProjectRegisterForm({defaultValues, state}: { defaultValues: any, state?: any }) {
+export default function ProjectRegisterForm({defaultValues, state, isAdmin}: {
+  defaultValues: any,
+  state?: any,
+  isAdmin: boolean
+}) {
   const openDefault = state !== undefined;
   const [open, setOpen] = useState(openDefault);
   const t = useTranslations('ProjectRegisterForm');
@@ -188,6 +193,31 @@ export default function ProjectRegisterForm({defaultValues, state}: { defaultVal
                 </FormItem>
               )}
             />
+
+            {isAdmin &&
+                <div className="mt-2 flex flex-col gap-4">
+                    <FormLabel className="text-base">
+                      {t('admin')}
+                    </FormLabel>
+
+                    <FormField
+                        control={form.control}
+                        name="is_community"
+                        render={({field}) => (
+                          <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3">
+                            <div>
+                              <FormLabel>
+                                {t('is_community.title')}
+                              </FormLabel>
+                            </div>
+                            <FormControl>
+                              <Switch className="!mt-0" checked={field.value} onCheckedChange={field.onChange}/>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                    />
+                </div>
+            }
 
             {form.formState.errors.root?.custom?.message &&
                 <p className="text-destructive text-sm">{form.formState.errors.root.custom.message}</p>

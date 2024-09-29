@@ -25,6 +25,7 @@ model Mod {
   source_repo   String
   source_branch String
   source_path   String
+  is_community  Boolean  @default(false)
   createdAt     DateTime @default(now())
 
   @@unique([source_repo, source_path])

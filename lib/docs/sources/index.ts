@@ -1,7 +1,7 @@
 import {promises as fs} from 'fs';
 import database from "@/lib/database";
 import {ModPlatform} from "@/lib/platforms";
-import {unstable_cache} from "next/cache";
+import {revalidateTag, unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import cacheUtil from "@/lib/cacheUtil";
@@ -23,6 +23,7 @@ export interface DocumentationSource {
 
   path: string;
   type: SourceType;
+  is_community: boolean;
 }
 
 export interface DocumentationFile {
@@ -215,6 +216,7 @@ async function findProjectSource(slug: string, enableLocal: boolean): Promise<Do
         repo: project.source_repo,
         branch: project.source_branch,
         path: project.source_path,
+        is_community: project.is_community,
         editable
       } as RemoteDocumentationSource;
     }
@@ -247,7 +249,8 @@ async function computeLocalDocumentationSources(paths: string): Promise<Document
       platform: data.platform,
       slug: data.slug,
       type: 'local',
-      path: root
+      path: root,
+      is_community: false
     } satisfies LocalDocumentationSource;
   }));
 }

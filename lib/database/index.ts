@@ -1,7 +1,7 @@
 import prisma from "@/lib/database/prisma";
 import {ModPlatform} from "@/lib/platforms";
 
-async function registerProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string) {
+async function registerProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string, is_community: boolean) {
   // TODO Throw error on duplicate
   const existing = await prisma.mod.findUnique({
     where: {
@@ -10,17 +10,17 @@ async function registerProject(id: string, name: string, platform: ModPlatform, 
   });
   if (!existing) {
     await prisma.mod.create({
-      data: {id, name, platform, slug, source_repo, source_branch, source_path}
+      data: {id, name, platform, slug, source_repo, source_branch, source_path, is_community}
     })
   }
 }
 
-async function updateProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string) {
+async function updateProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string, is_community: boolean) {
   return prisma.mod.update({
     where: {
       id
     },
-    data: {name, platform, slug, source_repo, source_branch, source_path}
+    data: {name, platform, slug, source_repo, source_branch, source_path, is_community}
   });
 }
 
@@ -64,6 +64,14 @@ async function getProjects(repoNames: string[]) {
   });
 }
 
+async function getCommunityProjects() {
+  return prisma.mod.findMany({
+    where: {
+      is_community: true
+    }
+  });
+}
+
 async function searchProjectsPaginated(limit: number, query?: string, page?: number) {
   //@ts-ignore
   return prisma.mod.paginate({
@@ -77,7 +85,8 @@ async function searchProjectsPaginated(limit: number, query?: string, page?: num
       name: true,
       source_repo: true,
       platform: true,
-      slug: true
+      slug: true,
+      is_community: true
     },
     // @ts-ignore
     cacheStrategy: { swr: 60, ttl: 60 }
@@ -146,7 +155,8 @@ const database = {
   getAllProjectIDs,
   getRandomProjectID,
   getProjectCached,
-  migrateRepository
+  migrateRepository,
+  getCommunityProjects
 };
 
 export default database;

@@ -12,6 +12,7 @@ import {cn} from "@/lib/utils";
 import {getMessages} from "next-intl/server";
 import {NextIntlClientProvider} from "next-intl";
 import {pick} from "lodash";
+import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
@@ -54,6 +55,7 @@ export default async function ProfileProject({mod}: { mod: DevProject }) {
           <Property icon={GlobeIcon}>
             <LinkTextButton href={project.project_url}>{mod.slug}</LinkTextButton>
           </Property>
+          {mod.is_community && <CommunityDocsBadge bright />}
         </div>
 
         <div className="flex flex-row gap-4 items-center ml-auto sm:ml-0">

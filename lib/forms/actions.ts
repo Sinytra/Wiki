@@ -12,6 +12,7 @@ import cacheUtil from "@/lib/cacheUtil";
 import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
 import email from "@/lib/email";
+import users from "@/lib/users";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -26,7 +27,7 @@ export async function handleEnableProjectForm(rawData: any) {
     return {success: false, error: 'exists'};
   }
 
-  await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, sourceRepo, data.branch, data.path);
+  await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, sourceRepo, data.branch, data.path, data.is_community || false);
   revalidatePath('/dev');
 
   return {success: true};
@@ -49,7 +50,7 @@ export async function handleEditProjectForm(rawData: any) {
   }
   const {metadata, project, data} = validated;
 
-  await database.updateProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path);
+  await database.updateProject(metadata.id, project.name, metadata.platform, project.slug, `${data.owner}/${data.repo}`, data.branch, data.path, data.is_community || false);
 
   revalidatePath('/dev');
   cacheUtil.clearModCaches(metadata.id);
@@ -175,6 +176,10 @@ async function validateProjectFormData(rawData: any) {
     return {success: false, error: 'unauthenticated'};
   }
   const user = await github.getUserProfile(session.access_token);
+
+  if (rawData.is_community !== undefined && !users.isWikiAdmin(user.login)) {
+    return {success: false, error: 'insufficient_perms'};
+  }
 
   // Ensure app is installed on repository
   const installation = await githubApp.getInstallation(data.owner, data.repo, data.branch, data.path);

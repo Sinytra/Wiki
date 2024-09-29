@@ -12,12 +12,18 @@ import {getMessages, getTranslations} from "next-intl/server";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
 import {pick} from "lodash";
 import {GetHelpModal} from "@/components/dev/GetHelpModal";
+import users from "@/lib/users";
 
 export const dynamic = 'force-dynamic';
 
 async function ProfileProjects({owner, access_token}: { owner: string; access_token: string }) {
   const repos = await githubApp.getAvailableRepositories(owner, access_token);
-  const projects = await database.getProjects(repos.map(r => r.full_name));
+  let projects = await database.getProjects(repos.map(r => r.full_name));
+
+  if (users.isWikiAdmin(owner)) {
+    const communityProjects = await database.getCommunityProjects();
+    projects.push(...communityProjects.filter(p => !projects.some(t => p.id === t.id)));
+  }
 
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
@@ -71,9 +77,9 @@ function Profile({name, desc, avatar_url, children}: {
         <img className="rounded-md" src={avatar_url} alt="Avatar" width={96} height={96}/>
       </div>
 
-      <p className="text-xl border-b border-neutral-400 pb-2">{t('projects.title')}</p>
+      <p className="text-xl border-b border-neutral-600 pb-2">{t('projects.title')}</p>
 
-      <div className="flex flex-col divide-y divide-neutral-600">
+      <div className="flex flex-col divide-y divide-neutral-600 my-2">
         {children}
       </div>
     </div>
@@ -100,15 +106,16 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
 
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
+  const isAdmin = session.user?.name !== undefined && session.user.name !== null && users.isWikiAdmin(session.user.name);
 
   return (
     <div>
       <div className="flex flex-row justify-between">
-        {t('title')}
+        <span className="text-foreground text-lg">{t('title')}</span>
 
         <div className="flex flex-row items-center gap-2">
           <NextIntlClientProvider messages={pick(messages, 'ProjectRegisterForm', 'FormActions')}>
-            <ProjectRegisterForm defaultValues={defaultValues} state={state}/>
+            <ProjectRegisterForm defaultValues={defaultValues} state={state} isAdmin={isAdmin}/>
           </NextIntlClientProvider>
 
           <form

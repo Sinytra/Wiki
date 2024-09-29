@@ -9,4 +9,5 @@ interface PartialMod {
   source_repo: string;
   platform: string;
   slug: string;
+  is_community: boolean;
 }

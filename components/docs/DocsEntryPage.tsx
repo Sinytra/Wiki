@@ -28,7 +28,7 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
       }
     >
       <div className="flex flex-col">
-        <DocsContentTitle isLocal={source.type === 'local'}>
+        <DocsContentTitle isLocal={source.type === 'local'} isCommunity={source.is_community}>
           {result.metadata.title || project.name}
         </DocsContentTitle>
 

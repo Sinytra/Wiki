@@ -14,6 +14,7 @@ import {getLatestVersion} from "@/components/docs/mod-info/modInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
+import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 
 function ProjectIcon({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
@@ -83,8 +84,13 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
 
       <div className="flex flex-col gap-1 w-full">
         <div className="w-full h-full flex flex-col gap-1.5">
-          <LinkTextButton href={`/mod/${mod.id}`}
-                          className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">{mod.name}</LinkTextButton>
+          <div className="w-full inline-flex gap-2">
+            <LinkTextButton href={`/mod/${mod.id}`} className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">
+              {mod.name}
+            </LinkTextButton>
+
+            {mod.is_community && <CommunityDocsBadge small />}
+          </div>
 
           <ErrorBoundary fallback={<span></span>}>
             <Suspense fallback={

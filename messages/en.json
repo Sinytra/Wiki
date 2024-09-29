@@ -264,6 +264,10 @@
             "title": "Path to documentation root",
             "desc": "Path to the folder containing the metadata file."
         },
+        "admin": "Wiki admin settings",
+        "is_community": {
+            "title": "Community-maintained project"
+        },
         "errors": {
             "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
             "details": "Show details"
@@ -312,7 +316,8 @@
             "ownership": "Failed to verify project ownership",
             "internal": "Internal Server Error, please try again later.",
             "verification": "Verification error",
-            "not_found": "Not found"
+            "not_found": "Not found",
+            "insufficient_perms": "Insufficient permissions to create community project"
         }
     },
     "GetHelpModal": {
@@ -360,5 +365,9 @@
             "install_app": "Please ensure our GitHub app is <link>installed</link> on the migrated repository.",
             "unavailable": "No migration available for repository. Is the entered information correct?"
         }
+    },
+    "CommunityBadge": {
+        "title": "Community",
+        "desc": "Unofficial documentation maintained by the community"
     }
 }

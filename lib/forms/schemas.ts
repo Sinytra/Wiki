@@ -4,7 +4,8 @@ export const projectRegisterSchema = z.object({
   owner: z.string(),
   repo: z.string(),
   branch: z.string(),
-  path: z.string()
+  path: z.string(),
+  is_community: z.boolean().optional()
 });
 
 export const docsPageReportSchema = z.object({
