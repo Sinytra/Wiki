@@ -369,5 +369,8 @@
     "CommunityBadge": {
         "title": "Community",
         "desc": "Unofficial documentation maintained by the community"
+    },
+    "TranslateBanner": {
+        
     }
 }

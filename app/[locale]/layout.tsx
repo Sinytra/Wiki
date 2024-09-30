@@ -17,9 +17,7 @@ export default function LocaleLayout({params, children}: Readonly<{
   return (<>
     <Header locale={params.locale}/>
 
-    <div className="page-wrapper flex flex-1 min-h-[100vh] mx-4 sm:mx-2">
-      {children}
-    </div>
+    {children}
 
     <Footer/>
   </>)

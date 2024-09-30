@@ -10,12 +10,12 @@ import {
 } from "@/components/ui/navigation-menu";
 import {LanguagesIcon} from "lucide-react";
 import CountryFlag from "@/components/util/CountryFlag";
-import {CN, CZ, DE, ES, FR, GB, HU, IT, JP, KR, PL, RU, SE, UA} from "country-flag-icons/react/3x2";
 import {Button} from "@/components/ui/button";
 import available from "@/lib/locales/available";
 import {usePathname} from "@/lib/locales/routing";
 import {useRouter} from 'next-nprogress-bar';
 import {useState} from "react";
+import {Language} from "@/lib/types/available";
 
 function LanguageOption({ id, name, icon, active, onNavigate }: { id: string; name: string; icon: any; active: boolean; onNavigate: () => void }) {
   const pathname = usePathname();
@@ -34,25 +34,8 @@ function LanguageOption({ id, name, icon, active, onNavigate }: { id: string; na
   )
 }
 
-const localeNames: {[key: string]: {name: string, icon: any}} = {
-  en: { name: 'English', icon: GB },
-  de: { name: 'Deutsch', icon: DE },
-  fr: { name: 'Français', icon: FR },
-  es: { name: 'Español', icon: ES },
-  it: { name: 'Italiano', icon: IT },
-  cs: { name: 'Čeština', icon: CZ },
-  hu: { name: 'Magyar', icon: HU },
-  pl: { name: 'Polski', icon: PL },
-  sv: { name: 'Svenska', icon: SE },
-  uk: { name: 'Українська', icon: UA },
-  ru: { name: 'русский', icon: RU },
-  ja: { name: '日本語', icon: JP },
-  ko: { name: '한국어', icon: KR },
-  zh: { name: '中文', icon: CN }
-};
-
 export default function LanguageSelect({ locale }: { locale: string }) {
-  const availableLocales = Object.keys(available.getAvailableLocales());
+  const availableLocales = available.getAvailableLocales() as {[key: string]: Language};
   const [value, setValue] = useState('');
 
   return (
@@ -65,8 +48,8 @@ export default function LanguageSelect({ locale }: { locale: string }) {
                 <LanguagesIcon className="w-5 h-5"/>
               </NavigationMenuTrigger>
               <NavigationMenuContent className="p-3 whitespace-nowrap flex flex-col justify-start items-start">
-                {...availableLocales.filter(l => localeNames[l] !== undefined).map(l => {
-                  const name = localeNames[l];
+                {...Object.keys(availableLocales).filter(l => availableLocales[l] !== undefined).map(l => {
+                  const name = availableLocales[l];
                   return <LanguageOption key={l} id={l} name={name.name} icon={name.icon} active={locale === l} onNavigate={() => setValue('')} />
                 })}
               </NavigationMenuContent>

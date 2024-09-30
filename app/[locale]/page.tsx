@@ -3,22 +3,24 @@ import LandingWidget from "@/components/landing/LandingWidget";
 import UserStarter from "@/components/landing/UserStarter";
 import {setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from 'next-intl';
+import {cn} from "@/lib/utils";
+import TranslateBanner from "@/components/landing/TranslateBanner";
 
 export const dynamic = 'force-static';
 
-export default function Home({ params }: { params: { locale: string } }) {
-  setContextLocale(params.locale);
+function HomePageContent() {
   const t = useTranslations('HomePage');
 
-  return <>
+  return (
     <main className="flex max-w-5xl mx-auto flex-col items-center justify-between w-full px-2 md:px-0">
       <div className="mb-6 sm:mb-0 z-10 w-full items-center justify-center text-2xl md:flex">
         <p className="text-3xl md:text-4xl text-foreground flex flex-col lg:flex-row items-center gap-x-2">
           {t.rich('heading', {
             highlight: (chunks) => (
-              <span className="text-center font-medium bg-gradient-to-b from-blue-400 to-blue-500 bg-clip-text text-transparent">
-                {chunks}
-              </span>
+              <span
+                className="text-center font-medium bg-gradient-to-b from-blue-400 to-blue-500 bg-clip-text text-transparent">
+                    {chunks}
+                  </span>
             )
           })}
         </p>
@@ -52,5 +54,21 @@ export default function Home({ params }: { params: { locale: string } }) {
         </LandingWidget>
       </div>
     </main>
+  );
+}
+
+export default function Home({params}: { params: { locale: string } }) {
+  setContextLocale(params.locale);
+
+  return <>
+    {params.locale !== 'en' &&
+        <div className="page-wrapper max-w-5xl mx-auto w-full px-5">
+            <TranslateBanner locale={params.locale}/>
+        </div>
+    }
+
+    <div className={cn(params.locale !== 'en' && '!pt-0', "page-wrapper flex flex-1 min-h-[100vh] mx-4 sm:mx-2")}>
+      <HomePageContent/>
+    </div>
   </>
 }
