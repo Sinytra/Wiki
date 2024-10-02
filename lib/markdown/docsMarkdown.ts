@@ -8,6 +8,7 @@ import Callout from "@/components/docs/shared/Callout";
 import ModAsset from "@/components/docs/shared/ModAsset";
 import {ReactElement} from "react";
 import remarkGfm from 'remark-gfm';
+import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 
 declare module 'vfile' {
   interface DataMap {
@@ -29,14 +30,16 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
-          [() => (tree: any) => {
-            const sanitizer = rehypeSanitize(markdownRehypeSchema);
-            const newTree = {...tree};
-            // TODO Ensure this is safe
-            // @ts-ignore
-            newTree.children = newTree.children.map((c: any) => c.type === 'mdxJsxFlowElement' && components[c.name] !== undefined ? c : sanitizer(c));
-            return newTree;
-          }, {}]
+          [
+            rehypeMarkdownHeadings,
+            () => (tree: any) => {
+              const sanitizer = rehypeSanitize(markdownRehypeSchema);
+              const newTree = {...tree};
+              // @ts-ignore
+              newTree.children = newTree.children.map((c: any) => c.type === 'mdxJsxFlowElement' && components[c.name] !== undefined ? c : sanitizer(c));
+              return newTree;
+            }
+          ]
         ]
       },
       parseFrontmatter: true

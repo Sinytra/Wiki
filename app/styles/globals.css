@@ -70,6 +70,7 @@
 html {
     overflow: auto;
     scrollbar-gutter: stable;
+    scroll-padding-top: 58px;
 }
 
 /*Prevent added margin when opening select*/
@@ -85,6 +86,9 @@ html body[data-scroll-locked] {
 @media screen and (min-width: 768px) {
     .page-wrapper {
         padding-top: calc(var(--vp-nav-height) + 1rem);
+    }
+    html {
+        scroll-padding-top: 72px;
     }
 }
 

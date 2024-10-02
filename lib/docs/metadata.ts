@@ -3,7 +3,13 @@ import metadataJsonSchema from '@/public/sinytra-wiki.schema.json';
 import folderMetadataJsonSchema from '@/public/_meta.schema.json';
 import {Draft, Draft2019, JsonError} from "json-schema-library";
 
-export type ModContentType = 'block' | 'item' | 'other'; 
+export type ModContentType = 'block' | 'item' | 'other';
+
+export interface FileHeading {
+  depth: number;
+  value: string;
+  id: string;
+}
 
 export interface DocsEntryMetadata {
   title?: string;
@@ -13,6 +19,8 @@ export interface DocsEntryMetadata {
   icon?: string;
   hide_icon?: boolean;
   hide_meta?: boolean;
+
+  _headings?: FileHeading[];
 }
 
 export interface DocumentationProjectMetadata {

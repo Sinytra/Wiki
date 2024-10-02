@@ -1,5 +1,4 @@
 import sources, {RemoteDocumentationSource} from "@/lib/docs/sources";
-import ModInfo from "@/components/docs/mod-info";
 import DocsEntryInfo from "@/components/docs/DocsEntryInfo";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import markdown from "@/lib/markdown";
@@ -8,6 +7,7 @@ import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent"
 import platforms from "@/lib/platforms";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import PageEditControls from "@/components/docs/PageEditControls";
+import DocsTableOfContents from "@/components/docs/DocsTableOfContents";
 
 export default async function DocsEntryPage({slug, path, locale}: { slug: string; path: string[]; locale: string }) {
   const source = await sources.getProjectSource(slug);
@@ -22,7 +22,7 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
       rightPanel={
         <div className="flex flex-col h-full">
           {!result.metadata.hide_meta && <DocsEntryInfo project={project} metadata={result.metadata as DocsEntryMetadata} source={source} />}
-          <ModInfo mod={project}/>
+          {result.metadata.hide_meta && result.metadata._headings && <DocsTableOfContents headings={result.metadata._headings}/>}
           {(file.updated_at != null || edit_url != null) && <PageEditControls edit_url={edit_url} updated_at={file.updated_at} slug={slug} path={path} />}
         </div>
       }
