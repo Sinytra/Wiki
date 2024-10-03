@@ -36,7 +36,7 @@ function HomePageContent() {
         <hr className="md:hidden border-gray-600 h-1"/>
       </div>
 
-      <div className="mt-6 md:mt-0 grid text-center md:mb-0 md:w-full md:max-w-5xl md:grid-cols-4 md:text-left">
+      <div className="mt-6 md:mt-0 grid text-center md:mb-0 md:w-full md:max-w-5xl md:grid-cols-4 md:text-left gap-4">
         <LandingWidget title={t('links.browse.title')} href="/browse">
           {t('links.browse.desc')}
         </LandingWidget>

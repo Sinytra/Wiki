@@ -51,10 +51,10 @@
             "explore": "Explore mods"
         },
         "developers": {
-            "title": "Developers",
-            "desc": "Looking to add your mod as a developer?",
+            "title": "Authors & Developers",
+            "desc": "Looking to write documentation for a mod?",
             "guide": "Get started by reading our <guide>author guide</guide>.",
-            "area": "Developer area"
+            "area": "Project dashboard"
         },
         "links": {
             "browse": {
@@ -70,7 +70,7 @@
                 "desc": "Learn more about how the wiki operates"
             },
             "devs": {
-                "title": "Developers",
+                "title": "Authors",
                 "desc": "Host your mod's documentation on our wiki"
             }
         }
@@ -370,7 +370,11 @@
         "title": "Community",
         "desc": "Unofficial documentation maintained by the community"
     },
-    "TranslateBanner": {
-        
+    "DocsPageNotFoundError": {
+        "title": "We lost this page",
+        "desc": "The requested documentation page is not available at the moment.",
+        "suggestion": "Please try again later or report this issue to the mod author.",
+        "submit": "Submit issue",
+        "return": "Return Home"
     }
 }

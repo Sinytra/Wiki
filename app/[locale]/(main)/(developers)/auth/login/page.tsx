@@ -29,7 +29,7 @@ export default async function Login({params, searchParams}: {
         await signIn('github', {redirectTo: callbackUrl || '/dev'})
       }}
     >
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-sm shadow-md">
         <CardHeader>
           <CardTitle className="text-2xl flex flex-row items-center">
             <KeyRoundIcon className="mr-2 w-6 h-6" strokeWidth={1.8}/>

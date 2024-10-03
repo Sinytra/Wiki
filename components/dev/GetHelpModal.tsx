@@ -16,6 +16,7 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import {MigrateRepositoryModal} from "@/components/dev/MigrateRepositoryModal";
 import {useState} from "react";
 import {useTranslations} from "next-intl";
+import PrimaryButton from "@/components/ui/custom/PrimaryButton";
 
 export function GetHelpModal({githubAppName}: { githubAppName?: string }) {
   const [open, setOpen] = useState(false);
@@ -50,12 +51,12 @@ export function GetHelpModal({githubAppName}: { githubAppName?: string }) {
                       {t('app.title')}
                     </Label>
 
-                    <Button type="button" size="sm" asChild className="w-fit">
+                    <PrimaryButton variant="muted" type="button" size="sm" asChild className="w-fit">
                         <LocaleNavLink href={link}>
                             <HardDriveDownloadIcon className="mr-2 h-4 w-4"/>
                           {t('app.button')}
                         </LocaleNavLink>
-                    </Button>
+                    </PrimaryButton>
                 </div>
             }
 
@@ -64,13 +65,13 @@ export function GetHelpModal({githubAppName}: { githubAppName?: string }) {
                 {t('moved.title')}
               </Label>
 
-              <Button type="button" size="sm" className="w-fit" onClick={() => {
+              <PrimaryButton variant="muted" type="button" size="sm" className="w-fit" onClick={() => {
                 setMigrateOpen(true);
                 setOpen(false);
               }}>
                 <PackageIcon className="mr-2 h-4 w-4"/>
                 {t('moved.button')}
-              </Button>
+              </PrimaryButton>
             </div>
           </div>
 

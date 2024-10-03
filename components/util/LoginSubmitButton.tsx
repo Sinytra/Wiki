@@ -10,8 +10,9 @@ export default function LoginSubmitButton({ text }: { text: string }) {
 
   return (
     <Button type="submit"
+            variant="outline"
             disabled={pending}
-            className="w-full gap-2 bg-black disabled:bg-neutral-950 disbled:!opacity-70 transition-opacity !opacity-90 hover:bg-neutral-950 hover:!opacity-70 rounded-sm text-white">
+            className="w-full gap-2 bg-black disabled:bg-neutral-950 disabled:!opacity-70 transition-opacity !opacity-90 hover:bg-neutral-950 hover:!opacity-70 rounded-sm text-white">
       <div className="text-white">
         {pending
           ?
