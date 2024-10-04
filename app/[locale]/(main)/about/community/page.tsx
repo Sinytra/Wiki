@@ -1,8 +1,8 @@
 import MetaDocsPage from "@/components/meta-docs/MetaDocsPage";
 import {setContextLocale} from "@/lib/locales/routing";
 
-export default async function AboutPage({params}: { params: { locale: string } }) {
+export default async function DevsPage({params}: { params: { locale: string } }) {
   setContextLocale(params.locale);
 
-  return <MetaDocsPage name="about" locale={params.locale} />;
+  return <MetaDocsPage name="community" locale={params.locale} />;
 }

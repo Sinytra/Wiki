@@ -8,7 +8,7 @@ import {
   ScrollTextIcon,
   ShieldIcon,
   TypeIcon,
-  UploadIcon
+  UploadIcon, UsersIcon
 } from "lucide-react";
 import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
@@ -31,6 +31,9 @@ export default function MetaDocsNavigation({ messages }: { messages: any }) {
         </SidebarNavLink>
         <SidebarNavLink href="/about/publishing" icon={UploadIcon}>
           {messages['publishing']}
+        </SidebarNavLink>
+        <SidebarNavLink href="/about/community" icon={UsersIcon}>
+          {messages['community']}
         </SidebarNavLink>
 
         <hr/>

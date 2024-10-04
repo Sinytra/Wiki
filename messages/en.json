@@ -93,11 +93,13 @@
         "help": "Get help",
         "tos": "Terms of Use",
         "privacy": "Privacy Policy",
-        "security": "Security Notice"
+        "security": "Security Notice",
+        "community": "Community Docs"
     },
     "DeveloperPortal": {
         "title": "Project management dashboard",
         "logout": "Logout",
+        "get_started": "Get started",
         "projects": {
             "title": "Projects",
             "loading_all": "Loading profile projects...",
@@ -376,5 +378,22 @@
         "suggestion": "Please try again later or report this issue to the mod author.",
         "submit": "Submit issue",
         "return": "Return Home"
+    },
+    "GetStartedButton": {
+        "title": "Get started"
+    },
+    "GetStartedModal": {
+        "button": "Add project",
+        "title": "I'd like to write documentation for...",
+        "dev": {
+            "title": "My own mod",
+            "desc": "Author your own documentation and control who can make changes to it.",
+            "button": "Create project"
+        },
+        "community": {
+            "title": "Someone else's mod",
+            "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
+            "button": "Read guide"
+        }
     }
 }

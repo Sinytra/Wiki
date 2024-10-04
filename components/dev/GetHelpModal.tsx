@@ -31,7 +31,7 @@ export function GetHelpModal({githubAppName}: { githubAppName?: string }) {
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="link" className="text-muted-foreground underline">
+          <Button variant="link" className="py-0 h-fit text-muted-foreground underline">
             {t('button')}
           </Button>
         </DialogTrigger>

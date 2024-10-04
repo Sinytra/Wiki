@@ -3,8 +3,6 @@
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
-
-import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
 import {
   Dialog,
@@ -12,12 +10,11 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-  DialogTrigger
+  DialogTitle
 } from "@/components/ui/dialog";
 import {handleEnableProjectForm} from "@/lib/forms/actions";
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
@@ -26,13 +23,17 @@ import SubmitButton from "@/components/dev/SubmitButton";
 import {useTranslations} from "next-intl";
 import {Switch} from "@/components/ui/switch";
 
-export default function ProjectRegisterForm({defaultValues, state, isAdmin}: {
-  defaultValues: any,
-  state?: any,
-  isAdmin: boolean
-}) {
+export interface ProjectRegisterFormProps {
+  defaultValues: any;
+  state?: any;
+  isAdmin: boolean;
+  open: boolean;
+  setOpen: (v: boolean) => void;
+}
+
+export default function ProjectRegisterForm({open, setOpen, defaultValues, state, isAdmin}: ProjectRegisterFormProps) {
   const openDefault = state !== undefined;
-  const [open, setOpen] = useState(openDefault);
+
   const t = useTranslations('ProjectRegisterForm');
   const u = useTranslations('FormActions');
 
@@ -63,6 +64,10 @@ export default function ProjectRegisterForm({defaultValues, state, isAdmin}: {
   });
 
   useEffect(() => {
+    setOpen(openDefault);
+  }, []);
+
+  useEffect(() => {
     if (open) {
       form.reset();
     }
@@ -82,11 +87,6 @@ export default function ProjectRegisterForm({defaultValues, state, isAdmin}: {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          {t('button')}
-        </Button>
-      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>

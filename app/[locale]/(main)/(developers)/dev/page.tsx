@@ -2,9 +2,9 @@ import {auth, signOut} from "@/lib/auth";
 import github, {GitHubUserProfile} from "@/lib/github/github";
 import githubApp from "@/lib/github/githubApp";
 import database from "@/lib/database";
+import * as React from "react";
 import {Suspense} from "react";
 import ProfileProject from "@/components/dev/ProfileProject";
-import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
 import {Button} from "@/components/ui/button";
 import {LogOutIcon} from "lucide-react";
 import {redirect} from "next/navigation";
@@ -13,8 +13,34 @@ import {NextIntlClientProvider, useTranslations} from "next-intl";
 import {pick} from "lodash";
 import {GetHelpModal} from "@/components/dev/GetHelpModal";
 import users from "@/lib/users";
+import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
+import {Skeleton} from "@/components/ui/skeleton";
+import LoadingContent from "@/components/util/LoadingContent";
+import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
+import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 
 export const dynamic = 'force-dynamic';
+
+function ProfileProjectsLoading() {
+  return (
+    <div className="w-full flex justify-center items-center h-[185px] border-none">
+      <LoadingContent/>
+    </div>
+  );
+}
+
+function ProfileProjectSkeleton() {
+  return (
+    <div className="flex flex-col border border-none w-full py-3 gap-3">
+      <div className="flex flex-row justify-between h-24 gap-3">
+        <Skeleton className="w-full"/>
+        <Skeleton className="w-24 flex-shrink-0"/>
+      </div>
+      <hr/>
+      <Skeleton className="h-[40px]"/>
+    </div>
+  )
+}
 
 async function ProfileProjects({owner, access_token}: { owner: string; access_token: string }) {
   const repos = await githubApp.getAvailableRepositories(owner, access_token);
@@ -37,21 +63,26 @@ async function ProfileProjects({owner, access_token}: { owner: string; access_to
   return (
     <>
       {projects.map(p => (
-        <Suspense key={p.id} fallback={<p>{t('projects.loading')}</p>}>
+        <Suspense key={p.id} fallback={<ProfileProjectSkeleton />}>
           <ProfileProject mod={p}/>
         </Suspense>
       ))}
       {projects.length === 0
         ?
         <div
-          className="w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 h-48 gap-3">
+          className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 gap-4">
           <span className="text-foreground font-medium">{t('projects.empty.primary')}</span>
           <span className="text-muted-foreground">{t('projects.empty.secondary')}</span>
-          <HelpModal />
+
+          <NextIntlClientProvider messages={pick(messages, 'GetStartedButton')}>
+            <GetStartedButton />
+          </NextIntlClientProvider>
+
+          <HelpModal/>
         </div>
         :
-        <div className="my-2 border-none flex justify-center mx-auto">
-          <HelpModal />
+        <div className="mt-4 border-none flex justify-center mx-auto">
+          <HelpModal/>
         </div>
       }
     </>
@@ -109,36 +140,40 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
   const isAdmin = session.user?.name !== undefined && session.user.name !== null && users.isWikiAdmin(session.user.name);
 
   return (
-    <div>
-      <div className="flex flex-row justify-between">
-        <span className="text-foreground text-lg">{t('title')}</span>
+    <GetStartedContextProvider>
+      <div>
+        <div className="flex flex-row justify-between">
+          <span className="text-foreground text-lg">
+            {t('title')}
+          </span>
 
-        <div className="flex flex-row items-center gap-2">
-          <NextIntlClientProvider messages={pick(messages, 'ProjectRegisterForm', 'FormActions')}>
-            <ProjectRegisterForm defaultValues={defaultValues} state={state} isAdmin={isAdmin}/>
-          </NextIntlClientProvider>
+          <div className="flex flex-row items-center gap-2">
+            <NextIntlClientProvider messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions')}>
+              <GetStartedModal defaultValues={defaultValues} state={state} isAdmin={isAdmin} />
+            </NextIntlClientProvider>
 
-          <form
-            title={t('logout')}
-            action={async () => {
-              "use server"
-              await signOut({redirectTo: '/'});
-            }}
-          >
-            <Button type="submit" variant="outline" size="icon" className="h-6 w-6 sm:h-9 sm:w-9">
-              <LogOutIcon className="h-4 w-4"/>
-            </Button>
-          </form>
+            <form
+              title={t('logout')}
+              action={async () => {
+                "use server"
+                await signOut({redirectTo: '/'});
+              }}
+            >
+              <Button type="submit" variant="outline" size="icon" className="h-9 w-9">
+                <LogOutIcon className="h-4 w-4"/>
+              </Button>
+            </form>
+          </div>
         </div>
+
+        <hr className="my-2 border-neutral-600"/>
+
+        <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url}>
+          <Suspense fallback={<ProfileProjectsLoading />}>
+            <ProfileProjects owner={profile.login} access_token={session.access_token}/>
+          </Suspense>
+        </Profile>
       </div>
-
-      <hr className="my-2 border-neutral-600"/>
-
-      <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url}>
-        <Suspense fallback={(<div>{t('projects.loading_all')}</div>)}>
-          <ProfileProjects owner={profile.login} access_token={session.access_token}/>
-        </Suspense>
-      </Profile>
-    </div>
+    </GetStartedContextProvider>
   )
 }
