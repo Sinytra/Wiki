@@ -19,12 +19,14 @@ function DirectoryTreeView({slug, tree, level, basePath, open}: {
   const defaultValues = open && tree.length > 0 ? [`${basePath}/${tree[0].path}`] : [];
 
   return (
-    <Accordion className="[&:not(:last-child)_.docsAccordeonTrigger]:border-b" defaultValue={defaultValues} type="multiple" style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
+    <Accordion className="[&:not(:last-child)_.docsAccordeonTrigger]:border-b" defaultValue={defaultValues}
+               type="multiple" style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
       {tree.map(dir => {
         const newBasePath = `${basePath}/${dir.path}`;
         return (
           <AccordionItem key={newBasePath} value={newBasePath} className="!border-none">
-            <AccordionTrigger className="docsAccordeonTrigger px-1 capitalize border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
+            <AccordionTrigger
+              className="docsAccordeonTrigger px-1 capitalize border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
               <span>{dir.name}</span>
             </AccordionTrigger>
             <AccordionContent>
@@ -48,7 +50,8 @@ function DocsFileTree({slug, tree, level, basePath}: {
   return <>
     {tree.map((file, index) => (
       file.type === 'directory'
-        ? <DirectoryTreeView key={`${basePath}/${file.path}`} slug={slug} tree={[file]} level={level + 1} basePath={basePath} open={index === 0}/>
+        ? <DirectoryTreeView key={`${basePath}/${file.path}`} slug={slug} tree={[file]} level={level + 1}
+                             basePath={basePath} open={index === 0}/>
         :
         <div key={`${basePath}/${file.path}`} className="capitalize w-full pt-2"
              style={{marginLeft: offset, paddingRight: offset}}>
@@ -71,7 +74,7 @@ export default async function DocsTree({slug, locale}: { slug: string; locale: s
 
       <hr className="mt-2"/>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col overflow-y-scroll slim-scrollbar h-full">
         <DocsFileTree slug={slug} tree={docsTree} level={0} basePath={''}/>
       </div>
     </CollapsibleDocsTreeBase>
