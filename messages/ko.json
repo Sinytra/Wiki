@@ -1,6 +1,7 @@
 {
     "Badges": {
-        "local": "Local"
+        "local": "Local",
+        "latest": "Latest"
     },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
@@ -51,26 +52,26 @@
             "explore": "Explore mods"
         },
         "developers": {
-            "title": "Developers",
-            "desc": "Looking to add your mod as a developer?",
+            "title": "Authors & Developers",
+            "desc": "Looking to write documentation for a mod?",
             "guide": "Get started by reading our <guide>author guide</guide>.",
-            "area": "Developer area"
+            "area": "Project dashboard"
         },
         "links": {
             "browse": {
                 "title": "Browse mods",
                 "desc": "Browse our library of documented mods"
             },
-            "random": {
-                "title": "Random mod",
-                "desc": "Explore a random mod page"
+            "blog": {
+                "title": "Blog",
+                "desc": "Read about the latest wiki updates"
             },
             "about": {
                 "title": "About",
                 "desc": "Learn more about how the wiki operates"
             },
             "devs": {
-                "title": "Developers",
+                "title": "Authors",
                 "desc": "Host your mod's documentation on our wiki"
             }
         }
@@ -93,11 +94,13 @@
         "help": "Get help",
         "tos": "Terms of Use",
         "privacy": "Privacy Policy",
-        "security": "Security Notice"
+        "security": "Security Notice",
+        "community": "Community Docs"
     },
     "DeveloperPortal": {
         "title": "Project management dashboard",
         "logout": "Logout",
+        "get_started": "Get started",
         "projects": {
             "title": "Projects",
             "loading_all": "Loading profile projects...",
@@ -264,6 +267,10 @@
             "title": "Path to documentation root",
             "desc": "Path to the folder containing the metadata file."
         },
+        "admin": "Wiki admin settings",
+        "is_community": {
+            "title": "Community-maintained project"
+        },
         "errors": {
             "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
             "details": "Show details"
@@ -312,7 +319,8 @@
             "ownership": "Failed to verify project ownership",
             "internal": "Internal Server Error, please try again later.",
             "verification": "Verification error",
-            "not_found": "Not found"
+            "not_found": "Not found",
+            "insufficient_perms": "Insufficient permissions to create community project"
         }
     },
     "GetHelpModal": {
@@ -359,6 +367,34 @@
         "migrate_error": {
             "install_app": "Please ensure our GitHub app is <link>installed</link> on the migrated repository.",
             "unavailable": "No migration available for repository. Is the entered information correct?"
+        }
+    },
+    "CommunityBadge": {
+        "title": "Community",
+        "desc": "Unofficial documentation maintained by the community"
+    },
+    "DocsPageNotFoundError": {
+        "title": "We lost this page",
+        "desc": "The requested documentation page is not available at the moment.",
+        "suggestion": "Please try again later or report this issue to the mod author.",
+        "submit": "Submit issue",
+        "return": "Return Home"
+    },
+    "GetStartedButton": {
+        "title": "Get started"
+    },
+    "GetStartedModal": {
+        "button": "Add project",
+        "title": "I'd like to write documentation for...",
+        "dev": {
+            "title": "My own mod",
+            "desc": "Author your own documentation and control who can make changes to it.",
+            "button": "Create project"
+        },
+        "community": {
+            "title": "Someone else's mod",
+            "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
+            "button": "Read guide"
         }
     }
 }
