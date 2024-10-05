@@ -1,6 +1,7 @@
 {
     "Badges": {
-        "local": "Local"
+        "local": "Local",
+        "latest": "Latest"
     },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
@@ -61,9 +62,9 @@
                 "title": "Browse mods",
                 "desc": "Browse our library of documented mods"
             },
-            "random": {
-                "title": "Random mod",
-                "desc": "Explore a random mod page"
+            "blog": {
+                "title": "Blog",
+                "desc": "Read about the latest wiki updates"
             },
             "about": {
                 "title": "About",

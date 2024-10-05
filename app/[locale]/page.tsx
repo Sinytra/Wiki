@@ -5,6 +5,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from 'next-intl';
 import {cn} from "@/lib/utils";
 import TranslateBanner from "@/components/landing/TranslateBanner";
+import Link from "next/link";
 
 export const dynamic = 'force-static';
 
@@ -37,20 +38,20 @@ function HomePageContent() {
       </div>
 
       <div className="mt-6 md:mt-0 grid text-center md:mb-0 md:w-full md:max-w-5xl md:grid-cols-4 md:text-left gap-4">
-        <LandingWidget title={t('links.browse.title')} href="/browse">
-          {t('links.browse.desc')}
-        </LandingWidget>
-
-        <LandingWidget title={t('links.random.title')} href="/random">
-          {t('links.browse.desc')}
-        </LandingWidget>
-
         <LandingWidget title={t('links.about.title')} href="/about">
           {t('links.about.desc')}
         </LandingWidget>
 
+        <LandingWidget title={t('links.browse.title')} href="/browse">
+          {t('links.browse.desc')}
+        </LandingWidget>
+
         <LandingWidget title={t('links.devs.title')} href="/about/devs">
           {t('links.devs.desc')}
+        </LandingWidget>
+
+        <LandingWidget title={t('links.blog.title')} href="/blog" link={Link}>
+          {t('links.blog.desc')}
         </LandingWidget>
       </div>
     </main>
