@@ -80,7 +80,7 @@ async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
 
   const members = await getProjectMembers(project.slug);
   return members.map(member => ({
-    name: member.user.name,
+    name: member.user.username,
     url: getUserURL(member.user)
   }));
 }

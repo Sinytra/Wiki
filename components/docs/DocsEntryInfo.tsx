@@ -33,15 +33,11 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
 
       <div className="mb-4">
         <MetadataGrid>
-          <MetadataRowKey title={t('name')}>{metadata.title || t('unknown')}</MetadataRowKey>
+          {metadata.title && <MetadataRowKey title={t('name')}>{metadata.title}</MetadataRowKey>}
           <MetadataRowKey title={t('source')}>
             <LinkTextButton href={`/mod/${source.id}`}>{project.name}</LinkTextButton>
           </MetadataRowKey>
-          {metadata.id &&
-              <MetadataRowKey title={t('id')}>
-                {metadata.id}
-              </MetadataRowKey>
-          }
+          {metadata.id && <MetadataRowKey title={t('id')}>{metadata.id}</MetadataRowKey>}
           <MetadataRowKey title={t('tags')}>
             {t(`type.${metadata.type && metadata.type in types ? metadata.type : 'other'}`)}
           </MetadataRowKey>
