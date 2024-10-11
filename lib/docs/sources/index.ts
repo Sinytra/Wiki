@@ -182,6 +182,10 @@ async function getProjectSourceOrRedirect(slug: string, locale: string): Promise
 }
 
 async function getProjectSource(slug: string): Promise<DocumentationSource> {
+  if (localPreview.isEnabled()) {
+    return findProjectSource(slug, enableLocalSources()); 
+  }
+
   const cache = unstable_cache(
     async (id: string, enableLocal: boolean) => findProjectSource(id, enableLocal),
     [process.env.LOCAL_DOCS_ROOTS || 'no_locals'],
@@ -226,6 +230,12 @@ async function findProjectSource(slug: string, enableLocal: boolean): Promise<Do
 }
 
 async function getLocalDocumentationSources(): Promise<DocumentationSource[]> {
+  const localPaths = process.env.LOCAL_DOCS_ROOTS || '';
+
+  if (localPreview.isEnabled()) {
+    return computeLocalDocumentationSources(localPaths);
+  }  
+
   const cache = unstable_cache(
     async (paths: string) => computeLocalDocumentationSources(paths),
     [],
@@ -233,7 +243,7 @@ async function getLocalDocumentationSources(): Promise<DocumentationSource[]> {
       tags: ['local_sources']
     }
   );
-  return await cache(process.env.LOCAL_DOCS_ROOTS || '');
+  return await cache(localPaths);
 }
 
 async function computeLocalDocumentationSources(paths: string): Promise<DocumentationSource[]> {

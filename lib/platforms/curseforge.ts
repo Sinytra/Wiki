@@ -1,4 +1,5 @@
 import {ModAuthor, ModPlatformProvider, ModProject} from "@/lib/platforms/universal";
+import localPreview from "@/lib/docs/localPreview";
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
@@ -46,6 +47,28 @@ interface PaginatedResults<T> {
 }
 
 async function getProject(slug: string): Promise<ModProject> {
+  // CF API is not public, so we provide placeholder metadata in local previews
+  if (!process.env.CF_API_KEY && localPreview.isEnabled()) {
+    return {
+      slug,
+      name: slug,
+      summary: '',
+      description: '',
+      icon_url: '',
+      categories: [],
+      game_versions: [],
+      license: undefined,
+      source_url: '',
+
+      platform: 'curseforge',
+      project_url: getProjectURL(slug),
+      extra: {
+        authors: []
+      },
+      is_placeholder: true
+    }
+  }
+
   const project = await getCurseForgeProject(slug);
   const description = await getProjectDescription(project.id);
 
@@ -63,7 +86,7 @@ async function getProject(slug: string): Promise<ModProject> {
     platform: 'curseforge',
     project_url: getProjectURL(project.slug),
     extra: {
-      authors: project.authors.map(a => ({ name: a.name, url: a.url } satisfies ModAuthor))
+      authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies ModAuthor))
     }
   }
 }
@@ -90,6 +113,10 @@ async function getProjectDescription(id: number): Promise<string> {
 }
 
 async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promise<T> {
+  if (!process.env.CF_API_KEY) {
+    throw new Error(`Missing CurseForge API (CF_API_KEY)`);
+  }
+
   const response = await fetch(curseForgeApiBaseUrlV1 + path, {
     headers: {
       'x-api-key': process.env.CF_API_KEY,

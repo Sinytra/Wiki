@@ -21,6 +21,8 @@ export interface ModProject {
   platform: ModPlatform;
   project_url: string;
   extra?: any;
+  // For local preview CF projects
+  is_placeholder?: boolean;
 }
 
 export interface ModProjectLicense {

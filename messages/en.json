@@ -396,5 +396,14 @@
             "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
             "button": "Read guide"
         }
+    },
+    "ModDocsPlaceholder": {
+        "summary": "(Placeholder)",
+        "description": "(Placeholder)"
+    },
+    "DocsHomepagePlaceholder": {
+        "title": "Homepage placeholder",
+        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
+        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
     }
 }

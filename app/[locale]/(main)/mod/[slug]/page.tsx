@@ -5,6 +5,7 @@ import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import platforms from "@/lib/platforms";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import {setContextLocale} from "@/lib/locales/routing";
+import DocsHomepagePlaceholder from "@/components/docs/DocsHomepagePlaceholder";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -24,9 +25,14 @@ export default async function Mod({params}: { params: { slug: string; locale: st
           {project.name}
         </DocsContentTitle>
 
-        <div>
-          <MarkdownContent content={project.description} />
-        </div>
+        {project.is_placeholder
+          ?
+          <DocsHomepagePlaceholder/>
+          :
+          <div>
+            <MarkdownContent content={project.description}/>
+          </div>
+        }
       </div>
     </ModDocsEntryPageLayout>
   );
