@@ -13,7 +13,7 @@ import {
 import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 
-export default function MetaDocsNavigation({ messages }: { messages: any }) {
+export default function MetaDocsNavigation({messages, docsOnly}: { messages: any, docsOnly?: boolean }) {
   return (
     <CollapsibleDocsTreeBase title={messages['title']}>
       <div className="flex flex-col gap-2 my-2">
@@ -41,15 +41,17 @@ export default function MetaDocsNavigation({ messages }: { messages: any }) {
         <SidebarNavLink href="/about/help" icon={HelpCircleIcon}>
           {messages['help']}
         </SidebarNavLink>
-        <SidebarNavLink href="/about/tos" icon={ScrollTextIcon}>
-          {messages['tos']}
-        </SidebarNavLink>
-        <SidebarNavLink href="/about/privacy" icon={LockKeyholeIcon}>
-          {messages['privacy']}
-        </SidebarNavLink>
-        <SidebarNavLink href="/about/security" icon={ShieldIcon}>
-          {messages['security']}
-        </SidebarNavLink>
+        {!docsOnly && <>
+            <SidebarNavLink href="/about/tos" icon={ScrollTextIcon}>
+              {messages['tos']}
+            </SidebarNavLink>
+            <SidebarNavLink href="/about/privacy" icon={LockKeyholeIcon}>
+              {messages['privacy']}
+            </SidebarNavLink>
+            <SidebarNavLink href="/about/security" icon={ShieldIcon}>
+              {messages['security']}
+            </SidebarNavLink>
+        </>}
       </div>
     </CollapsibleDocsTreeBase>
   )

@@ -9,7 +9,7 @@ import {useTranslations} from "next-intl";
 
 const LocalDateTime = dynamic(() => import("@/components/util/LocalDateTime"), {ssr: false})
 
-export default function PageEditControls({edit_url, updated_at, slug, path}: { edit_url: string | null, updated_at: Date | null, slug: string, path: string[] }) {
+export default function PageEditControls({edit_url, updated_at, slug, path}: { edit_url?: string, updated_at: Date | null, slug: string, path: string[] }) {
   const preview = localPreview.isEnabled();
   const t = useTranslations('PageEditControls');
 

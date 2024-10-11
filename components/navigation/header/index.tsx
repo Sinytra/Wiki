@@ -7,7 +7,7 @@ import HeaderBase from "@/components/navigation/header/HeaderBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
-import {BookMarkedIcon, BookTextIcon} from "lucide-react";
+import {BookMarkedIcon} from "lucide-react";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -46,7 +46,10 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           <nav className="flex flex-row">
             {preview
               ?
-              <HeaderLink href="/preview">{t('link.home')}</HeaderLink>
+              <>
+                <HeaderLink href="/preview">{t('link.home')}</HeaderLink>
+                <HeaderLink href="/about">{t('link.about')}</HeaderLink>
+              </>
               :
               <>
                 <HeaderLink href="/">{t('link.home')}</HeaderLink>

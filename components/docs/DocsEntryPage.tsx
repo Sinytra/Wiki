@@ -1,4 +1,4 @@
-import sources, {RemoteDocumentationSource} from "@/lib/docs/sources";
+import sources from "@/lib/docs/sources";
 import DocsEntryInfo from "@/components/docs/DocsEntryInfo";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import markdown from "@/lib/markdown";
@@ -16,9 +16,7 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
   const source = await sources.getProjectSource(slug);
   const project = await platforms.getPlatformProject(source.platform, source.slug);
 
-  const file = await sources.readDocsFile(source, path, locale);
-  const result = await markdown.renderDocumentationMarkdown(file.content);
-  const edit_url = source.type === 'github' && (source as RemoteDocumentationSource).editable ? file.edit_url : null;
+  const {file, content, edit_url} = await markdown.renderDocumentationFile(source, path, locale);
 
   const messages = await getMessages();
 
@@ -26,10 +24,10 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
     <ModDocsEntryPageLayout
       rightPanel={
         <div className="flex flex-col h-full">
-          {!result.metadata.hide_meta && <DocsEntryInfo project={project} metadata={result.metadata as DocsEntryMetadata} source={source} />}
-          {result.metadata.hide_meta && result.metadata._headings &&
+          {!content.metadata.hide_meta && <DocsEntryInfo project={project} metadata={content.metadata as DocsEntryMetadata} source={source} />}
+          {content.metadata.hide_meta && content.metadata._headings &&
             <NextIntlClientProvider messages={pick(messages, 'DocsTableOfContents')}>
-                <DocsTableOfContents headings={result.metadata._headings}/>
+                <DocsTableOfContents headings={content.metadata._headings}/>
             </NextIntlClientProvider>
           }
           {(file.updated_at != null || edit_url != null) && <PageEditControls edit_url={edit_url} updated_at={file.updated_at} slug={slug} path={path} />}
@@ -38,12 +36,10 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
     >
       <div className="flex flex-col">
         <DocsContentTitle isLocal={source.type === 'local'} isCommunity={source.is_community}>
-          {result.metadata.title || project.name}
+          {content.metadata.title || project.name}
         </DocsContentTitle>
 
-        <div>
-          <DocsMarkdownContent content={result.content}/>
-        </div>
+        <DocsMarkdownContent content={content.content}/>
       </div>
     </ModDocsEntryPageLayout>
   )

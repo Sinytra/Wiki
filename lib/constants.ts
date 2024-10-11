@@ -1,0 +1,1 @@
+export const HOMEPAGE_FILE_PATH = '_homepage';
