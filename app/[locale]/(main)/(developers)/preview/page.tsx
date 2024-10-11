@@ -5,8 +5,11 @@ import {Button} from "@/components/ui/button";
 import {FolderOpenIcon, PackageIcon} from "lucide-react";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import {getTranslations} from "next-intl/server";
+import {setContextLocale} from "@/lib/locales/routing";
 
-export default async function Preview() {
+export default async function Preview({params}: { params: { locale: string } }) {
+  setContextLocale(params.locale);
+
   if (!localPreview.isEnabled()) {
     return notFound();
   }

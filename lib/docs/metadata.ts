@@ -31,8 +31,6 @@ export interface DocumentationProjectMetadata {
 
 export interface DocumentationFolderMetadata extends Record<string, string>{}
 
-const metadataFileName = 'sinytra-wiki.json';
-
 function parseMetadata(source: string): DocumentationProjectMetadata {
   const meta = JSON.parse(source);
 
@@ -81,7 +79,6 @@ function validateFolderMetadataFile(obj: any): boolean {
 
 const metadata = {
   parseMetadata,
-  metadataFileName,
   validateMetadataFile,
   parseFolderMetadata
 };

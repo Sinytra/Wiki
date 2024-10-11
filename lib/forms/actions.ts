@@ -13,6 +13,7 @@ import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
 import email from "@/lib/email";
 import users from "@/lib/users";
+import {DOCS_METADATA_FILE_NAME} from "@/lib/constants";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -243,7 +244,7 @@ function verifyProjectOwnership(project: ModProject, owner: string, repo: string
 }
 
 async function readMetadata(octokit: Octokit, owner: string, repo: string, branch: string, root: string) {
-  const metadataPath = root + '/' + metadata.metadataFileName;
+  const metadataPath = root + '/' + DOCS_METADATA_FILE_NAME;
   const metaFile = await githubApp.getRepoContents(octokit, owner, repo, branch, metadataPath);
 
   if (metaFile && 'content' in metaFile) {

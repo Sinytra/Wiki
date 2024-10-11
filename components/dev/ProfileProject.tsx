@@ -1,4 +1,3 @@
-import {DevProject} from "@/lib/types/dev";
 import platforms from "@/lib/platforms";
 import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
@@ -13,6 +12,7 @@ import {getMessages} from "next-intl/server";
 import {NextIntlClientProvider} from "next-intl";
 import {pick} from "lodash";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
+import {Mod} from "@prisma/client";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
@@ -23,7 +23,7 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
   )
 }
 
-export default async function ProfileProject({mod}: { mod: DevProject }) {
+export default async function ProfileProject({mod}: { mod: Mod }) {
   const project = await platforms.getProject(mod);
   const messages = await getMessages();
 

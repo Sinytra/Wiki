@@ -22,11 +22,11 @@ import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
 import LinkTextButton from "@/components/ui/link-text-button";
-import {DevProject} from "@/lib/types/dev";
 import SubmitButton from "@/components/dev/SubmitButton";
 import {useTranslations} from "next-intl";
+import {Mod} from "@prisma/client";
 
-export default function ProjectSettings({mod}: { mod: DevProject }) {
+export default function ProjectSettings({mod}: { mod: Mod }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations('ProjectSettingsForm');
   const u = useTranslations('ProjectRegisterForm');

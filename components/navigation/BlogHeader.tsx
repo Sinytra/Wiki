@@ -15,9 +15,11 @@ export default function BlogHeader() {
         marginBottom: '2.5rem'
       }}
     >
-      <img style={{marginBottom: '1.5rem'}} src="https://sinytra.org/logo.png" width={124} height={124}/>
+      <img style={{marginBottom: '1.5rem'}} src="https://sinytra.org/logo.png" width={124} height={124}
+           alt="Sinytra logo"/>
 
-      <a href="/blog" className="text-foreground !no-underline flex flex-col sm:flex-row items-center" style={{fontSize: '2rem', marginBottom: '0.1rem'}}>
+      <a href="/blog" className="text-foreground !no-underline flex flex-col sm:flex-row items-center"
+         style={{fontSize: '2rem', marginBottom: '0.1rem'}}>
         Modded Minecraft Wiki
         <Badge className="ml-3 text-lg" variant="secondary">Blog</Badge>
       </a>

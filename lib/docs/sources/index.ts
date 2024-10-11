@@ -9,8 +9,7 @@ import githubApp from "@/lib/github/githubApp";
 import localPreview from "@/lib/docs/localPreview";
 import {redirect, RedirectType} from "next/navigation";
 import metadata, {ValidationError} from "@/lib/docs/metadata";
-
-export const folderMetaFile = '_meta.json';
+import {DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME} from "@/lib/constants";
 
 const defaultLocale = 'en';
 
@@ -135,7 +134,7 @@ async function resolveDocsTree(source: DocumentationSource, locale?: string): Pr
   const converted = await provider.readFileTree(source);
 
   const filtered = converted.filter(c =>
-    c.type === 'file' && c.name !== metadata.metadataFileName && (c.name === folderMetaFile || c.name.endsWith('.mdx'))
+    c.type === 'file' && c.name !== DOCS_METADATA_FILE_NAME && (c.name === FOLDER_METADATA_FILE_NAME || c.name.endsWith('.mdx'))
     || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
   return processFileTree(source, '', filtered, locale);
 }
@@ -146,11 +145,11 @@ async function readShallowFileTree(source: DocumentationSource, path: string): P
 }
 
 async function processFileTree(source: DocumentationSource, root: string, tree: FileTreeNode[], locale?: string): Promise<FileTreeNode[]> {
-  const metaFile = tree.find(t => t.type === 'file' && t.name === folderMetaFile);
+  const metaFile = tree.find(t => t.type === 'file' && t.name === FOLDER_METADATA_FILE_NAME);
   const metadata = metaFile ? await parseFolderMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name, locale) : undefined;
   const order = Object.keys(metadata || {});
   return Promise.all(tree
-    .filter(f => f.type !== 'file' || f.name !== folderMetaFile)
+    .filter(f => f.type !== 'file' || f.name !== FOLDER_METADATA_FILE_NAME)
     .sort((a, b) => {
       if (!metadata) {
         // Show folders followed by files
@@ -250,7 +249,7 @@ async function computeLocalDocumentationSources(paths: string): Promise<Document
   const roots = paths!.split(';');
 
   return Promise.all(roots.filter(p => p.length > 0).map(async (root) => {
-    const file = await fs.readFile(`${root}/${metadata.metadataFileName}`, 'utf8');
+    const file = await fs.readFile(`${root}/${DOCS_METADATA_FILE_NAME}`, 'utf8');
     const data = JSON.parse(file);
     metadata.validateMetadataFile(data);
 
@@ -299,8 +298,7 @@ const index = {
   readShallowFileTree,
   parseFolderMetadataFile,
   getLocalDocumentationSources,
-  getProjectSourceOrRedirect,
-  getAvailableLocales
+  getProjectSourceOrRedirect
 };
 
 export default index;

@@ -6,8 +6,20 @@ import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from "rehype-raw";
 
 import {markdownRehypeSchema} from "./contentFilter";
-import docsMarkdown, {DocumentationMarkdown} from "./docsMarkdown";
 import sources, {DocumentationFile, DocumentationSource, RemoteDocumentationSource} from "@/lib/docs/sources";
+import {ReactElement} from "react";
+import {DocsEntryMetadata} from "@/lib/docs/metadata";
+import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
+import Callout from "@/components/docs/shared/Callout";
+import ModAsset from "@/components/docs/shared/ModAsset";
+import {compileMDX} from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
+import rehypeMarkdownHeadings from "@/lib/markdown/headings";
+
+export interface DocumentationMarkdown {
+  content: ReactElement;
+  metadata: DocsEntryMetadata;
+}
 
 interface RenderedFile {
   file: DocumentationFile;
@@ -27,9 +39,41 @@ async function renderMarkdown(content: string): Promise<string> {
   return String(file);
 }
 
+async function renderDocumentationMarkdown(source: string): Promise<DocumentationMarkdown> {
+  const components = {CraftingRecipe, Callout, ModAsset};
+
+  const {content, frontmatter} = await compileMDX({
+    source,
+    options: {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [
+          [
+            rehypeMarkdownHeadings,
+            () => (tree: any) => {
+              const sanitizer = rehypeSanitize(markdownRehypeSchema);
+              const newTree = {...tree};
+              // @ts-ignore
+              newTree.children = newTree.children.map((c: any) => c.type === 'mdxJsxFlowElement' && components[c.name] !== undefined ? c : sanitizer(c));
+              return newTree;
+            }
+          ]
+        ]
+      },
+      parseFrontmatter: true
+    },
+    components
+  });
+
+  return {
+    content,
+    metadata: frontmatter || {}
+  };
+}
+
 async function renderDocumentationFile(source: DocumentationSource, path: string[], locale: string): Promise<RenderedFile> {
   const file = await sources.readDocsFile(source, path, locale);
-  const content = await markdown.renderDocumentationMarkdown(file.content);
+  const content = await renderDocumentationMarkdown(file.content);
   const edit_url = source.type === 'github' && (source as RemoteDocumentationSource).editable ? file.edit_url : null;
 
   return {
@@ -41,8 +85,7 @@ async function renderDocumentationFile(source: DocumentationSource, path: string
 
 const markdown = {
   renderMarkdown,
-  renderDocumentationFile,
-  ...docsMarkdown
+  renderDocumentationFile
 };
 
 export default markdown;

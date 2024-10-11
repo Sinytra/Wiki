@@ -2,9 +2,10 @@ import {Suspense} from "react";
 import DocsEntryPage from "@/components/docs/DocsEntryPage";
 import DocsLoadingSkeleton from "@/components/docs/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
-import sources, {DocumentationSource, folderMetaFile} from "@/lib/docs/sources";
+import sources, {DocumentationSource} from "@/lib/docs/sources";
 import platforms from "@/lib/platforms";
 import {setContextLocale} from "@/lib/locales/routing";
+import {FOLDER_METADATA_FILE_NAME} from "@/lib/constants";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -24,7 +25,7 @@ export async function generateMetadata({params}: {
   let title: string | undefined = undefined;
   try {
     const folderPath = params.path.slice(0, params.path.length - 1);
-    const folderMeta = await sources.parseFolderMetadataFile(source, folderPath.join('/') + '/' + folderMetaFile, params.locale);
+    const folderMeta = await sources.parseFolderMetadataFile(source, folderPath.join('/') + '/' + FOLDER_METADATA_FILE_NAME, params.locale);
     const fileName = params.path[params.path.length - 1] + '.mdx';
     title = folderMeta[fileName];
   } catch (e) {
