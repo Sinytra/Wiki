@@ -4,6 +4,7 @@ import {FileHeading} from "@/lib/docs/metadata";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import {useEffect, useRef, useState} from "react";
 import {cn} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 // Inspired by https://github.com/shuding/nextra/blob/main/packages/nextra-theme-docs/src/contexts/active-anchor.tsx
 export default function DocsTableOfContents({headings}: { headings: FileHeading[] }) {
@@ -82,10 +83,12 @@ export default function DocsTableOfContents({headings}: { headings: FileHeading[
     }
   }, []);
 
+  const t = useTranslations('DocsTableOfContents');
+
   return (
     <nav className="flex flex-col">
       <DocsSidebarTitle>
-        On this page
+        {t('title')}
       </DocsSidebarTitle>
 
       <div className="flex flex-col gap-2 w-64">

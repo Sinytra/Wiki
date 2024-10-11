@@ -405,5 +405,8 @@
         "title": "Homepage placeholder",
         "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
         "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+    },
+    "DocsTableOfContents": {
+        "title": "On this page"
     }
 }

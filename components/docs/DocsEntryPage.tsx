@@ -8,6 +8,9 @@ import platforms from "@/lib/platforms";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import PageEditControls from "@/components/docs/PageEditControls";
 import DocsTableOfContents from "@/components/docs/DocsTableOfContents";
+import {NextIntlClientProvider} from "next-intl";
+import {getMessages} from "next-intl/server";
+import {pick} from "lodash";
 
 export default async function DocsEntryPage({slug, path, locale}: { slug: string; path: string[]; locale: string }) {
   const source = await sources.getProjectSource(slug);
@@ -17,12 +20,18 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
   const result = await markdown.renderDocumentationMarkdown(file.content);
   const edit_url = source.type === 'github' && (source as RemoteDocumentationSource).editable ? file.edit_url : null;
 
+  const messages = await getMessages();
+
   return (
     <ModDocsEntryPageLayout
       rightPanel={
         <div className="flex flex-col h-full">
           {!result.metadata.hide_meta && <DocsEntryInfo project={project} metadata={result.metadata as DocsEntryMetadata} source={source} />}
-          {result.metadata.hide_meta && result.metadata._headings && <DocsTableOfContents headings={result.metadata._headings}/>}
+          {result.metadata.hide_meta && result.metadata._headings &&
+            <NextIntlClientProvider messages={pick(messages, 'DocsTableOfContents')}>
+                <DocsTableOfContents headings={result.metadata._headings}/>
+            </NextIntlClientProvider>
+          }
           {(file.updated_at != null || edit_url != null) && <PageEditControls edit_url={edit_url} updated_at={file.updated_at} slug={slug} path={path} />}
         </div>
       }
