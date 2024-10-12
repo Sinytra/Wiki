@@ -9,7 +9,7 @@ import githubApp from "@/lib/github/githubApp";
 import localPreview from "@/lib/docs/localPreview";
 import {redirect, RedirectType} from "next/navigation";
 import metadata, {ValidationError} from "@/lib/docs/metadata";
-import {DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME} from "@/lib/constants";
+import {DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from "@/lib/constants";
 
 const defaultLocale = 'en';
 
@@ -134,7 +134,7 @@ async function resolveDocsTree(source: DocumentationSource, locale?: string): Pr
   const converted = await provider.readFileTree(source);
 
   const filtered = converted.filter(c =>
-    c.type === 'file' && c.name !== DOCS_METADATA_FILE_NAME && (c.name === FOLDER_METADATA_FILE_NAME || c.name.endsWith('.mdx'))
+    c.type === 'file' && c.name !== DOCS_METADATA_FILE_NAME && c.name !== `${HOMEPAGE_FILE_PATH}.mdx` && (c.name === FOLDER_METADATA_FILE_NAME || c.name.endsWith('.mdx'))
     || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
   return processFileTree(source, '', filtered, locale);
 }
