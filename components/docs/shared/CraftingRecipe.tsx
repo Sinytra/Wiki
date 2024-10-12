@@ -1,5 +1,5 @@
 import assets from "@/lib/docs/assets";
-import ItemDisplay from "@/components/docs/shared/ItemDisplay";
+import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import Image from "next/image";
 import CraftingBackground from '@/components/assets/crafting_background.png';
 import '@south-paw/typeface-minecraft';

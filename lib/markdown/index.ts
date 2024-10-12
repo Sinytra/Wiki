@@ -48,16 +48,14 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
-          [
-            rehypeMarkdownHeadings,
-            () => (tree: any) => {
-              const sanitizer = rehypeSanitize(markdownRehypeSchema);
-              const newTree = {...tree};
-              // @ts-ignore
-              newTree.children = newTree.children.map((c: any) => c.type === 'mdxJsxFlowElement' && components[c.name] !== undefined ? c : sanitizer(c));
-              return newTree;
-            }
-          ]
+          rehypeMarkdownHeadings,
+          () => (tree: any) => {
+            const sanitizer = rehypeSanitize(markdownRehypeSchema);
+            const newTree = {...tree};
+            // @ts-ignore
+            newTree.children = newTree.children.map((c: any) => c.type === 'mdxJsxFlowElement' && (components[c.name] !== undefined || markdownRehypeSchema.tagNames!.includes(c.name)) ? c : sanitizer(c));
+            return newTree;
+          }
         ]
       },
       parseFrontmatter: true
