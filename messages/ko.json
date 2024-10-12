@@ -4,50 +4,50 @@
         "latest": "Latest"
     },
     "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
-        "title_short": "Wiki",
+        "title": "마인크래프트 모드 위키",
+        "title_short": "위키",
         "badge": {
             "preview": "PREVIEW MODE",
-            "beta": "Beta"
+            "beta": "베타"
         },
         "link": {
-            "home": "Home",
+            "home": "홈",
             "browse": "Browse",
-            "about": "About"
+            "about": "소개"
         }
     },
     "NavigationFooter": {
-        "title": "Modded Minecraft Wiki",
+        "title": "마인크래프트 모드 위키",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
+                "title": "탐색",
+                "home": "홈페이지",
                 "browse": "Browse",
-                "dev": "Developers"
+                "dev": "개발자 페이지"
             },
             "links": {
-                "title": "Links"
+                "title": "링크"
             },
             "resources": {
-                "title": "Resources",
-                "blog": "Blog",
-                "translate": "Help us translate"
+                "title": "자료",
+                "blog": "블로그",
+                "translate": "번역 참여하기"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "소개",
+                "tos": "이용약관",
+                "privacy": "개인정보 처리방침",
+                "contact": "문의하기"
             }
         }
     },
     "HomePage": {
-        "heading": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "heading": "<highlight>마인크래프트 모드 위키</highlight>에 오신 것을 환영합니다",
         "documentation": {
-            "title": "Documentation",
-            "desc": "Browse mod documentation",
+            "title": "문서",
+            "desc": "모드 문서를 검색하세요",
             "search": {
-                "placeholder": "Find your favourite mod..."
+                "placeholder": "좋아하는 모드를 찾아보세요..."
             },
             "explore": "Explore mods"
         },
@@ -83,26 +83,26 @@
         "no_results": "Search query returned no results!"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "불러오는 중..."
     },
     "MetaDocsNavigation": {
         "title": "Navigation",
-        "about": "About",
+        "about": "소개",
         "devs": "Developers",
         "format": "Format",
         "publishing": "Publishing",
         "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
+        "tos": "이용약관",
+        "privacy": "개인정보 처리방침",
         "security": "Security Notice",
-        "community": "Community Docs"
+        "community": "커뮤니티 문서"
     },
     "DeveloperPortal": {
-        "title": "Project management dashboard",
-        "logout": "Logout",
-        "get_started": "Get started",
+        "title": "프로젝트 관리 대시보드",
+        "logout": "로그아웃",
+        "get_started": "시작하기",
         "projects": {
-            "title": "Projects",
+            "title": "프로젝트",
             "loading_all": "Loading profile projects...",
             "loading": "Loading profile...",
             "empty": {
@@ -112,9 +112,9 @@
         }
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
+        "title": "먼저 로그인하세요",
+        "desc": "이 페이지에 접근하려면 먼저 로그인해야 합니다.",
+        "prompt": "계속하려면 GitHub 계정으로 로그인해주세요.",
         "button": "Log in with GitHub"
     },
     "Preview": {
@@ -124,77 +124,77 @@
         "open": "Open"
     },
     "DocsFileTree": {
-        "title": "Documentation",
-        "homepage": "Mod homepage"
+        "title": "문서",
+        "homepage": "모드 홈페이지"
     },
     "DocsModInfo": {
-        "title": "Mod information",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "모드 정보",
+        "author": "원작자",
+        "tags": "태그",
         "latest": {
-            "title": "Latest version",
+            "title": "최신 버전",
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
+            "title": "라이선스",
+            "custom": "커스텀",
+            "unknown": "알 수 없음",
             "arr": "All Rights Reserved"
         }
     },
     "ModCategories": {
-        "adventure": "Adventure",
+        "adventure": "모험",
         "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
+        "decoration": "꾸미기",
+        "economy": "경제",
+        "equipment": "장비",
+        "food": "음식",
         "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
+        "library": "라이브러리",
+        "magic": "마법",
+        "management": "관리",
+        "minigame": "미니게임",
+        "mobs": "몹",
+        "optimization": "최적화",
         "social": "Social",
         "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
+        "technology": "기술",
+        "transportation": "운송",
         "utility": "Utility",
-        "worldgen": "Worldgen",
+        "worldgen": "세계 생성",
         "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
+        "armor-weapons-tools": "갑옷, 도구, 무기",
+        "library-api": "API 및 라이브러리",
+        "adventure-rpg": "모험 및 RPG",
+        "world-gen": "월드 생성",
         "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
+        "mc-food": "음식",
+        "performance": "성능",
+        "map-information": "지도 및 정보",
+        "bug-fixes": "버그 수정",
+        "mc-addons": "애드온",
+        "education": "교육",
+        "mc-miscellaneous": "기타",
+        "redstone": "레드스톤",
         "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit page on GitHub",
-        "report": "Report this page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "GitHub에서 이 페이지 편집하기",
+        "report": "이 페이지 신고하기",
+        "last_updated": "<date></date>에 마지막으로 업데이트됨"
     },
     "DocsEntryInfo": {
-        "title": "Information",
-        "name": "Name",
-        "source": "Source Mod",
-        "tags": "Tags",
+        "title": "정보",
+        "name": "이름",
+        "source": "원본 모드",
+        "tags": "태그",
         "id": "ID",
-        "unknown": "Unknown",
+        "unknown": "알 수 없음",
         "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
+            "block": "블록",
+            "item": "아이템",
+            "other": "기타"
         }
     },
     "Report": {
@@ -205,62 +205,62 @@
         "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "프로젝트 ID",
+                "desc": "신고하려는 프로젝트의 ID입니다."
             },
             "path": {
-                "title": "Page path",
-                "desc": "Reported documentation page path."
+                "title": "페이지 경로",
+                "desc": "신고하려는 페이지의 경로입니다."
             },
             "email": {
                 "title": "Reply email address",
                 "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
             },
             "reason": {
-                "title": "Reason*",
-                "placeholder": "Select a reason for reporting this page",
-                "desc": "Reason for reporting this page.",
-                "spam": "Spam",
-                "copyright": "Copyright Infringement",
-                "content_rules_violation": "Violates Content Rules",
-                "tos_violation": "Violates Terms of Service",
-                "dislike": "I just don't like it"
+                "title": "사유*",
+                "placeholder": "이 페이지를 신고하는 사유를 선택해주세요",
+                "desc": "이 페이지를 신고하는 사유입니다.",
+                "spam": "스팸",
+                "copyright": "저작권 침해",
+                "content_rules_violation": "콘텐츠 규칙 위반",
+                "tos_violation": "이용약관 위반",
+                "dislike": "그냥 마음에 들지 않습니다"
             },
             "details": {
-                "title": "Details*",
+                "title": "세부 정보*",
                 "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "desc": "문제 상황에 대한 세부 정보입니다."
             },
             "dislike": {
-                "title": "We understand that you may not like this page, and that's totally okay!",
+                "title": "이 페이지가 마음에 드시지 않는다는 걸 이해합니다. 그럴 수도 있죠!",
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
                 "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "Explore mods"
+                "explore": "모드 탐색하기"
             }
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "제출하기"
     },
     "Callout": {
         "title": "Heads up!"
     },
     "ProjectRegisterForm": {
-        "button": "Add Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "button": "프로젝트 추가하기",
+        "title": "모드 등록하기",
+        "desc": "새 프로젝트를 위키에 등록합니다.",
         "owner": {
-            "title": "Owner",
-            "desc": "User / organization name.",
+            "title": "소유자",
+            "desc": "유저 / 조직의 이름.",
             "placeholder": "ExampleUser"
         },
         "repo": {
-            "title": "Name",
-            "desc": "Repository name.",
+            "title": "이름",
+            "desc": "리포지토리의 이름.",
             "placeholder": "ExampleMod"
         },
         "branch": {
-            "title": "Branch",
+            "title": "브랜치",
             "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
         },
         "path": {
@@ -275,7 +275,7 @@
             "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
             "details": "Show details"
         },
-        "submit": "Submit",
+        "submit": "제출하기",
         "success": {
             "title": "Project registered successfully",
             "desc": "You can now navigate to the project's mod page"
@@ -389,12 +389,24 @@
         "dev": {
             "title": "My own mod",
             "desc": "Author your own documentation and control who can make changes to it.",
-            "button": "Create project"
+            "button": "프로젝트 만들기"
         },
         "community": {
             "title": "Someone else's mod",
             "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
             "button": "Read guide"
         }
+    },
+    "ModDocsPlaceholder": {
+        "summary": "(Placeholder)",
+        "description": "(Placeholder)"
+    },
+    "DocsHomepagePlaceholder": {
+        "title": "Homepage placeholder",
+        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
+        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+    },
+    "DocsTableOfContents": {
+        "title": "On this page"
     }
 }
