@@ -151,9 +151,13 @@ html body[data-scroll-locked] {
     .prose :where(h2,h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
         @apply !text-foreground !font-medium;
     }
-    
+
     .slim-scrollbar {
         @apply scrollbar scrollbar-w-1 scrollbar-thumb-muted-foreground scrollbar-thumb-rounded;
+    }
+    
+    .slim-scrollbar-muted {
+        @apply scrollbar scrollbar-w-1 scrollbar-thumb-[#404043] scrollbar-thumb-rounded;
     }
 }
 

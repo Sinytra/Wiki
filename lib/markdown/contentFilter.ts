@@ -8,6 +8,7 @@ import {defaultSchema} from "rehype-sanitize";
 
 export const markdownRehypeSchema: Schema = {
   ...defaultSchema,
+  clobber: ['ariaDescribedBy', 'ariaLabelledBy', /*'id', */'name'],
   attributes: {
     '*': ['id', 'className', 'style'],
     a: ['data*', 'ariaLabel', 'ariaDescribedBy', 'target', 'href', 'title'],

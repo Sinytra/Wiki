@@ -13,7 +13,8 @@ export default function DocsTableOfContents({headings}: { headings: FileHeading[
 
   const slugs = new WeakMap();
   // @ts-ignore
-  const activeSlug = Object.entries(activeAnchor).find(([, {isActive}]) => isActive)?.[0]
+  const activeSlug = Object.entries(activeAnchor).find(([, {isActive}]) => isActive)?.[0];
+  const visibleHeadings = headings.filter((h, i) => i === 0 || h.depth > 1);
 
   useEffect(() => {
     const options = {
@@ -70,7 +71,7 @@ export default function DocsTableOfContents({headings}: { headings: FileHeading[
       },
       options
     );
-    headings.forEach((h, i) => {
+    visibleHeadings.forEach((h, i) => {
       const el = document.getElementById(h.id);
       if (el) {
         slugs.set(el, [h.id, i + 1]);
@@ -85,16 +86,28 @@ export default function DocsTableOfContents({headings}: { headings: FileHeading[
 
   const t = useTranslations('DocsTableOfContents');
 
+  const headingStyles: { [key: number]: string } = {
+    2: 'font-medium',
+    3: 'font-normal pl-4',
+    4: 'font-light pl-8',
+    5: 'font-light pl-12',
+    6: 'font-light pl-16'
+  };
+
   return (
-    <nav className="flex flex-col">
+    <nav className="flex flex-col h-full">
       <DocsSidebarTitle>
         {t('title')}
       </DocsSidebarTitle>
 
-      <div className="flex flex-col gap-2 w-64">
-        {headings.map((h, index) => (
+      <div className="flex flex-col gap-2 w-64 overflow-y-scroll slim-scrollbar-muted">
+        {visibleHeadings.map((h, index) => (
           <a key={index}
-             className={cn('font-medium text-ellipsis whitespace-nowrap overflow-hidden', activeSlug === h.id ? 'text-blue-500' : 'text-muted-foreground')}
+             className={cn(
+               'flex-shrink-0 text-ellipsis whitespace-nowrap overflow-hidden subpixel-antialiased transition-colors',
+               headingStyles[h.depth],
+               activeSlug === h.id ? 'text-blue-500' : 'hover:text-foreground text-muted-foreground'
+             )}
              href={`#${h.id}`}>
             {h.value}
           </a>
