@@ -10,7 +10,7 @@ import githubApp from "@/lib/github/githubApp";
 
 // TODO use static resource for public repos
 async function resolveAsset(root: AssetSourceRoot<RemoteDocumentationSource>, id: ResourceLocation): Promise<AssetLocation | null> {
-  const path = root.source.path + '/' + itemAssetBasePath + '/' + id.namespace + '/' + id.path + itemAssetExtension;
+  const path = root.source.path + '/' + itemAssetBasePath + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
   const repoParts = root.source.repo.split('/');
   const installationId = await githubApp.getExistingInstallation(repoParts[0], repoParts[1]);
   const octokit = await githubApp.createInstance(installationId);

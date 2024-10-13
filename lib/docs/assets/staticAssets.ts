@@ -10,7 +10,7 @@ import normalizeUrl from "normalize-url";
 
 async function resolveAsset(root: AssetSourceRoot<string>, id: ResourceLocation): Promise<AssetLocation | null> {
   const url = new URL(root.source);
-  url.pathname += '/' + itemAssetBasePath + '/' + id.namespace + '/' + id.path + itemAssetExtension;
+  url.pathname += '/' + itemAssetBasePath + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
   const src = url.protocol === 'file:' ? await readLocalImage(url) : normalizeUrl(url.toString());
   return src === null ? null : { id, src };
 }
