@@ -3,9 +3,8 @@
 import {docsPageReportSchema, migrateRepositorySchema, projectRegisterSchema} from "@/lib/forms/schemas";
 import {revalidatePath, revalidateTag} from "next/cache";
 import githubApp from "@/lib/github/githubApp";
-import metadata, {ValidationError} from "@/lib/docs/metadata";
+import {ValidationError} from "@/lib/docs/metadata";
 import platforms, {ModProject} from "@/lib/platforms";
-import {Octokit} from "octokit";
 import database from "@/lib/database";
 import {auth} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
@@ -13,7 +12,7 @@ import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
 import email from "@/lib/email";
 import users from "@/lib/users";
-import {DOCS_METADATA_FILE_NAME} from "@/lib/constants";
+import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -37,7 +36,7 @@ export async function handleEnableProjectForm(rawData: any) {
 export async function handleDeleteProjectForm(id: string) {
   await database.unregisterProject(id);
   cacheUtil.clearModCaches(id);
-  revalidatePath(`/[locale]/mod/${id}/docs`, 'layout');
+  revalidatePath(`/[locale]/mod/${id}/[version]`, 'layout');
 
   revalidatePath('/dev');
 
@@ -55,7 +54,7 @@ export async function handleEditProjectForm(rawData: any) {
 
   revalidatePath('/dev');
   cacheUtil.clearModCaches(metadata.id);
-  revalidatePath(`/[locale]/mod/${metadata.id}/docs`, 'layout');
+  revalidatePath(`/[locale]/mod/${metadata.id}/[version]`, 'layout');
 
   return {success: true};
 }
@@ -125,7 +124,8 @@ export async function handleRevalidateDocs(id: string) {
   }
 
   cacheUtil.clearModCaches(id);
-  revalidatePath(`/[locale]/mod/${id}/docs`, 'layout');
+  revalidatePath(`/[locale]/mod/${id}`, 'layout');
+  revalidatePath(`/[locale]/mod/${id}/[version]`, 'layout');
 
   return {success: true};
 }
@@ -212,7 +212,7 @@ async function validateProjectFormData(rawData: any) {
   // Parse metadata file
   let metadata = undefined
   try {
-    metadata = await readMetadata(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
+    metadata = await githubDocsSource.readRemoteMetadata(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
   } catch (e) {
     return {success: false, error: 'invalid_meta', details: e instanceof ValidationError ? e.message : undefined};
   }
@@ -241,16 +241,4 @@ async function validateProjectFormData(rawData: any) {
 function verifyProjectOwnership(project: ModProject, owner: string, repo: string): boolean {
   const baseUrl: string = `https://github.com/${owner}/${repo}`;
   return project.source_url !== undefined && project.source_url.startsWith(baseUrl);
-}
-
-async function readMetadata(octokit: Octokit, owner: string, repo: string, branch: string, root: string) {
-  const metadataPath = root + '/' + DOCS_METADATA_FILE_NAME;
-  const metaFile = await githubApp.getRepoContents(octokit, owner, repo, branch, metadataPath);
-
-  if (metaFile && 'content' in metaFile) {
-    const content = Buffer.from(metaFile.content, 'base64').toString('utf-8');
-    return metadata.parseMetadata(content);
-  }
-
-  return null;
 }

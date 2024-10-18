@@ -23,7 +23,7 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
   }
 
   cacheUtil.clearModCaches(params.slug);
-  revalidatePath(`/[locale]/mod/${params.slug}/docs`, 'layout');
+  revalidatePath(`/[locale]/mod/${params.slug}/[version]`, 'layout');
 
   return Response.json({ message: 'Docs page cache invalidated successfully' });
 }

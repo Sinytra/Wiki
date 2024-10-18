@@ -18,6 +18,11 @@
         "slug": {
             "description": "The host platform's project slug.",
             "type": "string"
+        },
+        "versions": {
+            "description": "A map of additional minecraft versions to git branch names to make available.",
+            "type": "object",
+            "additionalProperties": { "type": "string" }
         }
     },
     "required": ["id", "platform", "slug"]

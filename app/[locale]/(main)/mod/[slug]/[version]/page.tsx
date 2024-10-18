@@ -14,9 +14,9 @@ export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
 async function ModHomepage({source, project, locale}: {
-  source: DocumentationSource,
-  project: ModProject,
-  locale: string
+  source: DocumentationSource;
+  project: ModProject;
+  locale: string;
 }) {
   // Attempt to resolve custom homepage
   try {
@@ -39,18 +39,16 @@ async function ModHomepage({source, project, locale}: {
   );
 }
 
-export default async function Mod({params}: { params: { slug: string; locale: string } }) {
+export default async function Mod({params}: { params: { slug: string; version: string; locale: string } }) {
   setContextLocale(params.locale);
 
-  const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale);
-
+  const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
   const project = await platforms.getPlatformProject(source.platform, source.slug);
-  const isLocal = source.type === 'local';
 
   return (
     <ModDocsEntryPageLayout rightPanel={<ModInfo mod={project}/>}>
       <div className="flex flex-col">
-        <DocsContentTitle isLocal={isLocal}>
+        <DocsContentTitle source={source} version={params.version}>
           {project.name}
         </DocsContentTitle>
 

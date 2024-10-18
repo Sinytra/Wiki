@@ -12,8 +12,8 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 
-export default async function DocsEntryPage({slug, path, locale}: { slug: string; path: string[]; locale: string }) {
-  const source = await sources.getProjectSource(slug);
+export default async function DocsEntryPage({slug, path, locale, version}: { slug: string; path: string[]; locale: string; version: string }) {
+  const source = await sources.getBranchedProjectSource(slug, version);
   const project = await platforms.getPlatformProject(source.platform, source.slug);
 
   const {file, content, edit_url} = await markdown.renderDocumentationFile(source, path, locale);
@@ -35,7 +35,7 @@ export default async function DocsEntryPage({slug, path, locale}: { slug: string
       }
     >
       <div className="flex flex-col">
-        <DocsContentTitle isLocal={source.type === 'local'} isCommunity={source.is_community}>
+        <DocsContentTitle source={source} version={version}>
           {content.metadata.title || project.name}
         </DocsContentTitle>
 

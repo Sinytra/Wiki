@@ -48,7 +48,7 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
             </Button>
         }
         <PrimaryButton asChild>
-          <NavLink href="/">
+          <NavLink href="/public">
             <HouseIcon className="mr-2 w-4 h-4" strokeWidth={2.5} />
             {t('return')}
           </NavLink>
@@ -60,16 +60,16 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
 
 export default async function ModLayout({children, params}: Readonly<{
   children: ReactNode;
-  params: { slug: string; locale: string }
+  params: { slug: string; version: string; locale: string }
 }>) {
-  const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale);
+  const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
   const isPublic = 'repo' in source && (await githubApp.isRepositoryPublic(source.repo as string));
 
   setContextLocale(params.locale);
 
   return (
     <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={isPublic ? getIssueCreationLink(source.repo) : undefined}/>}>
-      <ModDocsBaseLayout leftPanel={<DocsTree slug={params.slug} locale={params.locale}/>}>
+      <ModDocsBaseLayout leftPanel={<DocsTree source={source} locale={params.locale} version={params.version} />}>
         {children}
       </ModDocsBaseLayout>
     </ErrorBoundary>

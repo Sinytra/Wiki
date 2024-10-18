@@ -5,8 +5,17 @@ import {
   RemoteDocumentationSource
 } from "@/lib/docs/sources";
 import githubApp from "@/lib/github/githubApp";
+import {Octokit} from "octokit";
+import {DOCS_METADATA_FILE_NAME} from "@/lib/constants";
+import metadata, {DocumentationProjectMetadata} from "@/lib/docs/metadata";
 
 type FileProcessor = (f: any) => Record<string, any>;
+
+
+interface RemoteDocumentationSourceProvider extends DocumentationSourceProvider<RemoteDocumentationSource> {
+  readMetadata: (repo: string, branch: string, root: string) => Promise<DocumentationProjectMetadata | null>;
+  readRemoteMetadata: (octokit: Octokit, owner: string, repo: string, branch: string, root: string) => Promise<DocumentationProjectMetadata | null>;
+}
 
 async function readFileTree(source: RemoteDocumentationSource): Promise<FileTreeNode[]> {
   return readGitHubDirectoryTree(source);
@@ -61,8 +70,35 @@ async function readShallowFileTree(source: RemoteDocumentationSource, path: stri
   return await readGitHubDirectoryTree(source, path, true);
 }
 
-export const githubDocsSource: DocumentationSourceProvider<RemoteDocumentationSource> = {
+async function readMetadata(repo: string, branch: string, root: string) {
+  try {
+    const parts = repo.split('/');
+    const installationId = await githubApp.getExistingInstallation(parts[0], parts[1]);
+    const octokit = await githubApp.createInstance(installationId);
+
+    return readRemoteMetadata(octokit, parts[0], parts[1], branch, root);
+  } catch (e) {
+    return null;
+  }
+}
+
+async function readRemoteMetadata(octokit: Octokit, owner: string, repo: string, branch: string, root: string) {
+  const metadataPath = root + '/' + DOCS_METADATA_FILE_NAME;
+  const metaFile = await githubApp.getRepoContents(octokit, owner, repo, branch, metadataPath);
+
+  if (metaFile && 'content' in metaFile) {
+    const content = Buffer.from(metaFile.content, 'base64').toString('utf-8');
+    return metadata.parseMetadata(content);
+  }
+
+  return null;
+}
+
+export const githubDocsSource: RemoteDocumentationSourceProvider = {
   readFileTree,
   readFileContents,
-  readShallowFileTree
+  readShallowFileTree,
+
+  readMetadata,
+  readRemoteMetadata
 };

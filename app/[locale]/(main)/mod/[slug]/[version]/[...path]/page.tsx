@@ -11,11 +11,11 @@ export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
 export async function generateMetadata({params}: {
-  params: { slug: string; path: string[]; locale: string }
+  params: { slug: string; path: string[]; locale: string; version: string }
 }, parent: ResolvingMetadata): Promise<Metadata> {
   let source: DocumentationSource | undefined = undefined;
   try {
-    source = await sources.getProjectSource(params.slug);
+    source = await sources.getBranchedProjectSource(params.slug, params.version);
   } catch (e) {
     return { title: (await parent).title?.absolute };
   }
@@ -37,13 +37,13 @@ export async function generateMetadata({params}: {
   }
 }
 
-export default async function ModDocsPage({params}: { params: { slug: string; path: string[]; locale: string } }) {
+export default async function ModDocsPage({params}: { params: { slug: string; path: string[]; locale: string; version: string; } }) {
   setContextLocale(params.locale);
-  await sources.getProjectSourceOrRedirect(params.slug, params.locale);
+  await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
 
   return (
     <Suspense fallback={<DocsLoadingSkeleton/>}>
-      <DocsEntryPage slug={params.slug} path={params.path} locale={params.locale}/>
+      <DocsEntryPage slug={params.slug} path={params.path} locale={params.locale} version={params.version}/>
     </Suspense>
   )
 }

@@ -1,12 +1,13 @@
-import sources, {FileTreeNode} from "@/lib/docs/sources";
+import sources, {DocumentationSource, FileTreeNode} from "@/lib/docs/sources";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import ModHomepageLink from "@/components/docs/ModHomepageLink";
 import DocsEntryLink from "@/components/docs/DocsEntryLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 import {getTranslations} from "next-intl/server";
 
-function DirectoryTreeView({slug, tree, level, basePath, open}: {
+function DirectoryTreeView({slug, version, tree, level, basePath, open}: {
   slug: string;
+  version: string;
   tree: FileTreeNode[];
   level: number;
   basePath: string;
@@ -30,7 +31,7 @@ function DirectoryTreeView({slug, tree, level, basePath, open}: {
               <span>{dir.name}</span>
             </AccordionTrigger>
             <AccordionContent>
-              <DocsFileTree slug={slug} tree={dir.children!} level={level + 1} basePath={newBasePath}/>
+              <DocsFileTree slug={slug} version={version} tree={dir.children!} level={level + 1} basePath={newBasePath}/>
             </AccordionContent>
           </AccordionItem>
         );
@@ -39,8 +40,9 @@ function DirectoryTreeView({slug, tree, level, basePath, open}: {
   )
 }
 
-function DocsFileTree({slug, tree, level, basePath}: {
+function DocsFileTree({slug, version, tree, level, basePath}: {
   slug: string;
+  version: string;
   tree: FileTreeNode[];
   level: number;
   basePath: string;
@@ -50,12 +52,12 @@ function DocsFileTree({slug, tree, level, basePath}: {
   return <>
     {tree.map((file, index) => (
       file.type === 'directory'
-        ? <DirectoryTreeView key={`${basePath}/${file.path}`} slug={slug} tree={[file]} level={level + 1}
-                             basePath={basePath} open={index === 0}/>
+        ? <DirectoryTreeView key={`${basePath}/${file.path}`} slug={slug} version={version} tree={[file]}
+                             level={level + 1} basePath={basePath} open={index === 0}/>
         :
         <div key={`${basePath}/${file.path}`} className="capitalize w-full pt-2"
              style={{marginLeft: offset, paddingRight: offset}}>
-          <DocsEntryLink href={`/mod/${slug}/docs${basePath}/${file.path.split('.')[0]}`}>
+          <DocsEntryLink href={`/mod/${slug}/${version}${basePath}/${file.path.split('.')[0]}`}>
             {file.name.split('.')[0].replace('_', ' ')}
           </DocsEntryLink>
         </div>
@@ -63,19 +65,18 @@ function DocsFileTree({slug, tree, level, basePath}: {
   </>
 }
 
-export default async function DocsTree({slug, locale}: { slug: string; locale: string }) {
-  const source = await sources.getProjectSource(slug);
+export default async function DocsTree({source, locale, version}: { source: DocumentationSource; locale: string; version: string; }) {
   const docsTree = await sources.readDocsTree(source, locale);
   const t = await getTranslations('DocsFileTree');
 
   return (
     <CollapsibleDocsTreeBase title={t('title')}>
-      <ModHomepageLink text={t('homepage')} slug={slug}/>
+      <ModHomepageLink text={t('homepage')} slug={source.id} version={version}/>
 
       <hr className="mt-2"/>
 
       <div className="flex flex-col overflow-y-scroll slim-scrollbar h-full">
-        <DocsFileTree slug={slug} tree={docsTree} level={0} basePath={''}/>
+        <DocsFileTree slug={source.id} version={version} tree={docsTree} level={0} basePath={''}/>
       </div>
     </CollapsibleDocsTreeBase>
   );

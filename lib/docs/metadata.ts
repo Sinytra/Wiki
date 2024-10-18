@@ -11,6 +11,7 @@ export interface FileHeading {
   id: string;
 }
 
+// Frontmatter
 export interface DocsEntryMetadata {
   title?: string;
   id?: string;
@@ -23,12 +24,15 @@ export interface DocsEntryMetadata {
   _headings?: FileHeading[];
 }
 
+// sinytra-wiki.json
 export interface DocumentationProjectMetadata {
   id: string;
   platform: ModPlatform;
   slug: string;
+  versions?: Record<string, string>;
 }
 
+// _meta.json
 export interface DocumentationFolderMetadata extends Record<string, string>{}
 
 function parseMetadata(source: string): DocumentationProjectMetadata {
@@ -77,10 +81,8 @@ function validateFolderMetadataFile(obj: any): boolean {
   return true;
 }
 
-const metadata = {
+export default {
   parseMetadata,
   validateMetadataFile,
   parseFolderMetadata
 };
-
-export default metadata;
