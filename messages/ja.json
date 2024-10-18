@@ -7,93 +7,93 @@
         "title": "Modded Minecraft Wiki",
         "title_short": "Wiki",
         "badge": {
-            "preview": "PREVIEW MODE",
-            "beta": "Beta"
+            "preview": "プレビューモード",
+            "beta": "ベータ"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "ホーム",
+            "browse": "閲覧",
+            "about": "概要"
         }
     },
     "NavigationFooter": {
         "title": "Modded Minecraft Wiki",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "ナビゲーション",
+                "home": "ホームページ",
+                "browse": "閲覧",
+                "dev": "開発者向け"
             },
             "links": {
-                "title": "Links"
+                "title": "リンク"
             },
             "resources": {
-                "title": "Resources",
-                "blog": "Blog",
-                "translate": "Help us translate"
+                "title": "リソース",
+                "blog": "ブログ",
+                "translate": "翻訳を手伝う"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "概要",
+                "tos": "サービス利用規約",
+                "privacy": "プライバシーポリシー",
+                "contact": "お問い合わせ"
             }
         }
     },
     "HomePage": {
-        "heading": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "heading": "<highlight>Modded Minecraft Wiki</highlight>へようこそ",
         "documentation": {
-            "title": "Documentation",
-            "desc": "Browse mod documentation",
+            "title": "ドキュメント",
+            "desc": "Modのドキュメントを見る",
             "search": {
-                "placeholder": "Find your favourite mod..."
+                "placeholder": "お気に入りの Mod を見つける..."
             },
-            "explore": "Explore mods"
+            "explore": "Modを探す"
         },
         "developers": {
-            "title": "Authors & Developers",
-            "desc": "Looking to write documentation for a mod?",
-            "guide": "Get started by reading our <guide>author guide</guide>.",
-            "area": "Project dashboard"
+            "title": "執筆者＆開発者",
+            "desc": "Modのドキュメントを書こうと思っていますか？",
+            "guide": "<guide>執筆者ガイド</guide>を読んで始めましょう",
+            "area": "プロジェクトダッシュボード"
         },
         "links": {
             "browse": {
-                "title": "Browse mods",
-                "desc": "Browse our library of documented mods"
+                "title": "Modを見る",
+                "desc": "Modのドキュメントを閲覧する"
             },
             "blog": {
-                "title": "Blog",
-                "desc": "Read about the latest wiki updates"
+                "title": "ブログ",
+                "desc": "Wikiの最新の更新について見る"
             },
             "about": {
-                "title": "About",
-                "desc": "Learn more about how the wiki operates"
+                "title": "概要",
+                "desc": "Wikiの運用について詳しく知る"
             },
             "devs": {
-                "title": "Authors",
-                "desc": "Host your mod's documentation on our wiki"
+                "title": "執筆者",
+                "desc": "あなたのModドキュメントをこのWikiに投稿しましょう"
             }
         }
     },
     "BrowsePage": {
         "search": {
-            "placeholder": "Search mods..."
+            "placeholder": "Modを検索..."
         },
-        "no_results": "Search query returned no results!"
+        "no_results": "検索結果はありません！"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "読み込み中..."
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
-        "about": "About",
-        "devs": "Developers",
-        "format": "Format",
-        "publishing": "Publishing",
-        "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
+        "title": "ナビゲーション",
+        "about": "概要",
+        "devs": "開発者",
+        "format": "書式",
+        "publishing": "公開",
+        "help": "助けがいる場合",
+        "tos": "利用規約",
+        "privacy": "プライバシーポリシー",
         "security": "Security Notice",
         "community": "Community Docs"
     },
@@ -396,5 +396,21 @@
             "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
             "button": "Read guide"
         }
+    },
+    "ModDocsPlaceholder": {
+        "summary": "(Placeholder)",
+        "description": "(Placeholder)"
+    },
+    "DocsHomepagePlaceholder": {
+        "title": "Homepage placeholder",
+        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
+        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+    },
+    "DocsTableOfContents": {
+        "title": "On this page"
+    },
+    "DocsBranchSelector": {
+        "title": "Versions",
+        "latest": "Latest"
     }
 }
