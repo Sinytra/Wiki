@@ -185,6 +185,26 @@ documentation directory, **including the root** directory itself (e.g. at the sa
 
 The JSON Schema specification for this file can be found [here](/_meta.schema.json).
 
+### Versioning
+
+You can show multiple versions of your mod's documentation on the wiki by adding a `versions` property to your
+docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector
+as well as in the URL paths) to git branch names.
+
+The documentation folder structure remains the same across all branches with contents being isolated per branch,
+including assets and localization. **Documentation metadata files (`sinytra-wiki.json`) from other branches are ignored**,
+as all necessary information is already contained in the default branch's file.
+
+```json title="sinytra-wiki.json"
+{
+    ...
+    "versions": {
+        "1.19.2": "my-git-branch-name",
+        "1.18.2": "another-branch"
+    }
+}
+```
+
 ## <GradleIcon width={32} height={32} className="inline-block mr-1" /> Gradle plugin companion
 
 We provide an excellent wiki companion [Gradle plugin](https://github.com/Sinytra/WikiToolkit) to help you with

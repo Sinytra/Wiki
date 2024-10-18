@@ -21,15 +21,17 @@ export default function DocsContentTitle({ source, children, titleClassName, ver
 
   return (
     <div className="not-prose">
-      <div className="flex flex-row justify-between items-end">
-        <h1 className={cn("text-foreground text-2xl", titleClassName)}>
+      <div className="flex flex-row flex-wrap md:flex-nowrap justify-between md:items-end gap-2">
+        <h1 className={cn("text-ellipsis md:overflow-hidden md:whitespace-nowrap text-foreground text-2xl", titleClassName)}>
           {children}
         </h1>
-        {isLocal && <Badge variant="destructive">{t('local')}</Badge>}
-        {isCommunity && <CommunityDocsBadge />}
-        {hasBranches && <DocsBranchSelector branch={version} branches={(source as RemoteDocumentationSource).branches} />}
+        <div className={cn("flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", hasBranches ? 'items-center' : 'items-end')}>
+          {isLocal && <Badge variant="destructive">{t('local')}</Badge>}
+          {isCommunity && <CommunityDocsBadge />}
+          {hasBranches && <DocsBranchSelector branch={version} branches={(source as RemoteDocumentationSource).branches} />}
+        </div>
       </div>
-      <hr className="mt-3 mb-6 border-neutral-600"/>
+      <hr className="mt-4 mb-6 border-neutral-600"/>
     </div>
   )
 }

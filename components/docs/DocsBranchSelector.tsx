@@ -10,7 +10,7 @@ export default function DocsBranchSelector({branch, branches}: { branch: string;
   return (
     <div>
       <DocsVersionSelectWrapper value={branch} defaultValue={DEFAULT_DOCS_VERSION}>
-        <SelectTrigger className="w-36 h-9 [&>span]:text-ellipsis [&>span]:max-w-16 [&>span]:block">
+        <SelectTrigger className="w-32 h-8 [&>span]:text-ellipsis [&>span]:max-w-16 [&>span]:block">
           <GitBranchIcon className="w-4 h-4"/>
           <SelectValue placeholder="Latest"/>
         </SelectTrigger>
