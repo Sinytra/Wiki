@@ -408,5 +408,9 @@
     },
     "DocsTableOfContents": {
         "title": "On this page"
+    },
+    "DocsBranchSelector": {
+        "title": "Versions",
+        "latest": "Latest"
     }
 }
