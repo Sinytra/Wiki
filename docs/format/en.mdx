@@ -175,6 +175,26 @@ Results in:
 
 <ModAsset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
 
+### Icons
+
+The entire collection of [Lucide icons](https://lucide.dev/icons/) is available to use in documentation files via
+React components.
+
+Names of icon components consist of an icon's "component name" (which you can find on the website or make an educated
+guess by converting the icon id to PascalCase (e.g. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`)
+and the `Icon` suffix. All properties supported by [Lucide React](https://lucide.dev/guide/packages/lucide-react) are
+available as well.
+
+For example:
+
+```jsx
+<SquirrelIcon width={64} height={64} strokeWidth={1.5} />
+```
+
+Results in:
+
+<SquirrelIcon width={64} height={64} strokeWidth={1.5} />
+
 ## Next steps
 
 Once your documentation folder is set up, and you're satisfied with the looks and content of your documentation,

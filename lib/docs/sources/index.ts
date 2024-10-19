@@ -60,7 +60,8 @@ export interface FileTreeNode {
   path: string;
   url?: string;
   type: 'directory' | 'file';
-  children: FileTreeNode[]
+  children: FileTreeNode[];
+  icon?: string;
 }
 
 const documentationProviders: { [key in SourceType]: DocumentationSourceProvider<any> } = {
@@ -169,9 +170,10 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
     .map(async (entry) => (
       {
         path: entry.name,
-        name: metadata && metadata[entry.name] || entry.name,
+        name: metadata?.[entry.name]?.name || entry.name,
         type: entry.type,
-        children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : []
+        children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : [],
+        icon: metadata?.[entry.name]?.icon
       }
     )));
 }
@@ -184,7 +186,7 @@ async function getProjectSourceOrRedirect(slug: string, locale: string, version:
       if (source.type !== 'github' || (source as any).branches == undefined || !(version in (source as any).branches)) {
         return redirect(`/mod/${slug}/docs`);
       }
-      return { ...source, branch: (source as RemoteDocumentationSource).branches![version] } as RemoteDocumentationSource; 
+      return {...source, branch: (source as RemoteDocumentationSource).branches![version]} as RemoteDocumentationSource;
     }
 
     return source;
@@ -214,7 +216,10 @@ async function getProjectSource(slug: string): Promise<DocumentationSource> {
 
 async function getBranchedProjectSource(slug: string, version: string): Promise<DocumentationSource> {
   const source = await getProjectSource(slug);
-  return source.type === 'github' && version != DEFAULT_DOCS_VERSION ? { ...source, branch: (source as RemoteDocumentationSource).branches![version] } as RemoteDocumentationSource : source;
+  return source.type === 'github' && version != DEFAULT_DOCS_VERSION ? {
+    ...source,
+    branch: (source as RemoteDocumentationSource).branches![version]
+  } as RemoteDocumentationSource : source;
 }
 
 async function findProjectSource(slug: string, enableLocal: boolean): Promise<DocumentationSource> {

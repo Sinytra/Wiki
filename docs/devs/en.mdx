@@ -185,6 +185,23 @@ documentation directory, **including the root** directory itself (e.g. at the sa
 
 The JSON Schema specification for this file can be found [here](/_meta.schema.json).
 
+#### Icons
+
+You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
+and supplying the icon's name as shown below.
+
+The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
+More information on icon names can be found on the [Format](./format#icons) page.
+
+```json title="_meta.json"
+{
+    "blocks": {
+        "name": "Blocks",
+        "icon": "Box"
+    }
+}
+```
+
 ### Versioning
 
 You can show multiple versions of your mod's documentation on the wiki by adding a `versions` property to your

@@ -10,7 +10,7 @@ export default function DocsEntryLink({href, children}: { href: string, children
 
   return (
     <LinkTextButton href={href}
-                    className={cn('w-full justify-start !p-2 hover:bg-accent', active && 'bg-accent')}>
+                    className={cn('inline-flex items-center gap-2 w-full justify-start !p-2 hover:bg-accent', active && 'bg-accent')}>
       {children}
     </LinkTextButton>
   )

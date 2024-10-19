@@ -33,7 +33,14 @@ export interface DocumentationProjectMetadata {
 }
 
 // _meta.json
-export interface DocumentationFolderMetadata extends Record<string, string>{}
+export interface RawDocumentationFolderMetadata extends Record<string, string | DocumentationFolderMetadataEntry> {}
+
+export interface DocumentationFolderMetadata extends Record<string, DocumentationFolderMetadataEntry> {}
+
+export interface DocumentationFolderMetadataEntry {
+  name: string;
+  icon?: string;
+}
 
 function parseMetadata(source: string): DocumentationProjectMetadata {
   const meta = JSON.parse(source);
@@ -48,7 +55,14 @@ function parseFolderMetadata(source: string): DocumentationFolderMetadata {
 
   validateFolderMetadataFile(meta);
 
-  return meta as DocumentationFolderMetadata;
+  const validated = meta as RawDocumentationFolderMetadata;
+  return Object.keys(validated)
+    .reduce((obj, key) => {
+      const value = validated[key];
+      // @ts-ignore
+      obj[key] = typeof value === 'object' ? value : {name: value};
+      return obj;
+    }, {});
 }
 
 export class ValidationError extends Error {

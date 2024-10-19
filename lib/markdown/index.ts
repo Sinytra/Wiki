@@ -16,6 +16,7 @@ import {compileMDX} from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 import rehypePrettyCode from "rehype-pretty-code";
+import * as LucideReact from "lucide-react";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -41,7 +42,14 @@ async function renderMarkdown(content: string): Promise<string> {
 }
 
 async function renderDocumentationMarkdown(source: string): Promise<DocumentationMarkdown> {
-  const components = {CraftingRecipe, Callout, ModAsset};
+  const icons = Object.keys(LucideReact)
+    .filter(key => key.endsWith('Icon'))
+    .reduce((obj, key) => {
+      // @ts-ignore
+      obj[key] = LucideReact[key];
+      return obj;
+    }, {});
+  const components = {CraftingRecipe, Callout, ModAsset, ...icons};
 
   const {content, frontmatter} = await compileMDX({
     source,
@@ -54,9 +62,7 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
           () => (tree: any) => {
             const sanitizer = rehypeSanitize(markdownRehypeSchema);
             const newTree = {...tree};
-            // @ts-ignore
-            newTree.children = newTree.children.map((c: any) => c.type === 'mdxJsxFlowElement' && (components[c.name] !== undefined || markdownRehypeSchema.tagNames!.includes(c.name)) ? c : sanitizer(c));
-            return newTree;
+            return sanitizeHastTree(newTree, sanitizer, components);
           }
         ]
       },
@@ -69,6 +75,20 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
     content,
     metadata: frontmatter || {}
   };
+}
+
+const mdxElemets = ['mdxJsxFlowElement', 'mdxJsxTextElement'];
+
+function sanitizeHastTree(tree: any, sanitizer: (tree: any) => any, components: any) {
+  if (tree.children) {
+    tree.children = tree.children.map((c: any) => sanitizeHastTree(c, sanitizer, components));
+  }
+
+  if (mdxElemets.includes(tree.type) && (components[tree.name] !== undefined || markdownRehypeSchema.tagNames!.includes(tree.name))) {
+    return tree;
+  }
+
+  return tree.children ? tree : sanitizer(tree);
 }
 
 async function renderDocumentationFile(source: DocumentationSource, path: string[], locale: string): Promise<RenderedFile> {

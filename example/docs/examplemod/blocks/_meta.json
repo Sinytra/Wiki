@@ -1,3 +1,6 @@
 {
-    "generator.mdx": "Generator"
+    "projector.mdx": {
+        "name": "Projector",
+        "icon": "Projector"
+    }
 }

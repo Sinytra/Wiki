@@ -4,5 +4,25 @@
     "description": "Provides file naming information for a directory",
     "type": "object",
     "required": [],
-    "additionalProperties": { "type": "string" }
+    "additionalProperties": {
+        "oneOf": [
+            {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Page display name"
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "Display icon name"
+                    }
+                },
+                "required": ["name"]
+            },
+            {
+                "type": "string"
+            }
+        ]
+    }
 }
