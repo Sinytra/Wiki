@@ -15,6 +15,7 @@ import ModAsset from "@/components/docs/shared/ModAsset";
 import {compileMDX} from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
+import rehypePrettyCode from "rehype-pretty-code";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -48,6 +49,7 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
+          [rehypePrettyCode, {theme: 'plastic'}],
           rehypeMarkdownHeadings,
           () => (tree: any) => {
             const sanitizer = rehypeSanitize(markdownRehypeSchema);
@@ -81,9 +83,7 @@ async function renderDocumentationFile(source: DocumentationSource, path: string
   }
 }
 
-const markdown = {
+export default {
   renderMarkdown,
   renderDocumentationFile
 };
-
-export default markdown;
