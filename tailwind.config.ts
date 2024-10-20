@@ -36,6 +36,11 @@ const config = {
         destructive: {
           DEFAULT: "var(--destructive)",
           foreground: "hsl(var(--destructive-foreground))",
+          border: "var(--destructive-border)"
+        },
+        warning: {
+          DEFAULT: "var(--warning)",
+          border: "var(--warning-border)"
         },
         muted: {
           DEFAULT: "var(--muted)",
