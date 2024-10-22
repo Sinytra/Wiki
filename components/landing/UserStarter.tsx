@@ -16,7 +16,7 @@ export default async function UserStarter() {
     <LandingStarterBase icon={BookTextIcon} title={t('documentation.title')}
                         desc={<span className="text-muted-foreground text-lg">{t('documentation.desc')}</span>}>
       <div className="flex flex-col gap-8 justify-center items-center w-full sm:w-fit">
-        <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
+        <NextIntlClientProvider messages={pick(messages, 'LoadingContent', 'BrowsePage')}>
           <ModSearch locale={locale} placeholder={t('documentation.search.placeholder')}/>
         </NextIntlClientProvider>
 

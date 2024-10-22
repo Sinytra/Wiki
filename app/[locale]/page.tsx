@@ -6,6 +6,7 @@ import {useTranslations} from 'next-intl';
 import {cn} from "@/lib/utils";
 import TranslateBanner from "@/components/landing/TranslateBanner";
 import Link from "next/link";
+import crowdin from "@/lib/locales/crowdin";
 
 export const dynamic = 'force-static';
 
@@ -58,17 +59,19 @@ function HomePageContent() {
   );
 }
 
-export default function Home({params}: { params: { locale: string } }) {
+export default async function Home({params}: { params: { locale: string } }) {
   setContextLocale(params.locale);
 
+  const showBanner = params.locale !== 'en' && await crowdin.getCrowdinTranslationStatus(params.locale) < 50;
+
   return <>
-    {params.locale !== 'en' &&
+    {showBanner &&
         <div className="page-wrapper max-w-5xl mx-auto w-full px-5">
             <TranslateBanner locale={params.locale}/>
         </div>
     }
 
-    <div className={cn(params.locale !== 'en' && '!pt-0', "page-wrapper flex flex-1 min-h-[100vh] mx-4 sm:mx-2")}>
+    <div className={cn(showBanner && '!pt-0', "page-wrapper flex flex-1 min-h-[100vh] mx-4 sm:mx-2")}>
       <HomePageContent/>
     </div>
   </>

@@ -5,12 +5,13 @@ import {useState} from "react";
 import {ModSearchResult} from "@/lib/types/search";
 import LoadingContent from "@/components/util/LoadingContent";
 import {NavLink} from "@/components/navigation/link/NavLink";
-import {getTranslations} from "next-intl/server";
+import {useTranslations} from "next-intl";
 
 export default function ModSearch({ locale, placeholder }: { locale: string; placeholder: string }) {
   const [results, setResults] = useState<ModSearchResult[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [shown, setShown] = useState<boolean>(true);
+  const t = useTranslations('BrowsePage');
 
   const handleSearch = useDebouncedCallback(async (term) => {
     if (!term) {
@@ -60,7 +61,9 @@ export default function ModSearch({ locale, placeholder }: { locale: string; pla
             {results.length === 0
               ?
               <div className="py-3 px-2 w-full h-full">
-                <span>No results</span>
+                <span>
+                  {t('no_results')}
+                </span>
               </div>
               :
               results.map(r => (
