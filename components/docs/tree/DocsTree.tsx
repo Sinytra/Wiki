@@ -1,10 +1,11 @@
 import sources, {DocumentationSource, FileTreeNode} from "@/lib/docs/sources";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
+import {AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import ModHomepageLink from "@/components/docs/ModHomepageLink";
 import DocsEntryLink from "@/components/docs/DocsEntryLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 import {getTranslations} from "next-intl/server";
 import * as LucideIcons from 'lucide-react';
+import DirectoryTreeViewBase from "@/components/docs/tree/DirectoryTreeViewBase";
 
 function FileIcon<T extends { file: FileTreeNode } & Record<string, any>>({file, ...props}: T) {
   if (file.icon) {
@@ -25,13 +26,10 @@ function DirectoryTreeView({slug, version, file, level, basePath, open}: {
   basePath: string;
   open?: boolean;
 }) {
-  const defaultValues = open ? [`${basePath}/${file.path}`] : [];
   const newBasePath = `${basePath}/${file.path}`;
 
-
   return (
-    <Accordion className="[&:not(:last-child)_.docsAccordeonTrigger]:border-b" defaultValue={defaultValues}
-               type="multiple" style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
+    <DirectoryTreeViewBase level={level} defaultValue={newBasePath} open={open}>
       <AccordionItem key={newBasePath} value={newBasePath} className="!border-none">
         <AccordionTrigger
           className="docsAccordeonTrigger px-1 capitalize border-accent [&>svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
@@ -44,7 +42,7 @@ function DirectoryTreeView({slug, version, file, level, basePath, open}: {
                         basePath={newBasePath}/>
         </AccordionContent>
       </AccordionItem>
-    </Accordion>
+    </DirectoryTreeViewBase>
   )
 }
 

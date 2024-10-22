@@ -1,5 +1,5 @@
 import ModDocsBaseLayout from "@/components/docs/layout/ModDocsBaseLayout";
-import DocsTree from "@/components/docs/DocsTree";
+import DocsTree from "@/components/docs/tree/DocsTree";
 import sources from "@/lib/docs/sources";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
