@@ -6,13 +6,14 @@ import githubApp from "@/lib/github/githubApp";
 import {ValidationError} from "@/lib/docs/metadata";
 import platforms, {ModProject} from "@/lib/platforms";
 import database from "@/lib/database";
-import {auth} from "@/lib/auth";
+import {auth, isModrinthOAuthAvailable, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
 import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
 import email from "@/lib/email";
 import users from "@/lib/users";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
+import modrinth from "@/lib/platforms/modrinth";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -160,7 +161,7 @@ export async function handleReportProjectForm(projectId: string, path: string, r
 }
 
 async function validateProjectFormData(rawData: any) {
-  const validatedFields = projectRegisterSchema.safeParse(rawData)
+  const validatedFields = projectRegisterSchema.safeParse(rawData);
 
   if (!validatedFields.success) {
     return {
@@ -231,14 +232,38 @@ async function validateProjectFormData(rawData: any) {
     return {success: false, error: 'no_project'};
   }
 
-  if (!process.env.NODE_ENV && !verifyProjectOwnership(project, data.owner, data.repo)) {
-    return {success: false, error: 'ownership'};
+  if (/*!process.env.NODE_ENV &&*/ !(await verifyProjectOwnership(project, data.owner, data.repo, data.mr_code))) {
+    return {success: false, error: 'ownership', canVerifyModrinth: metadata.platform === 'modrinth' && isModrinthOAuthAvailable()};
   }
 
   return {metadata, project, data};
 }
 
-function verifyProjectOwnership(project: ModProject, owner: string, repo: string): boolean {
+async function verifyProjectOwnership(project: ModProject, owner: string, repo: string, mr_code: string | null | undefined): Promise<boolean> {
   const baseUrl: string = `https://github.com/${owner}/${repo}`;
-  return project.source_url !== undefined && project.source_url.startsWith(baseUrl);
+  if (project.source_url !== undefined && project.source_url.startsWith(baseUrl)) {
+    return true;
+  }
+
+  if (mr_code && isModrinthOAuthAvailable()) {
+    try {
+      const oauth2Token = await modrinthOAuthClient.authorizationCode.getToken({
+        code: mr_code,
+        redirectUri: modrinthCallbackURL
+      });
+
+      const response = await fetch('https://api.modrinth.com/v3/user', {
+        headers: {
+          Authorization: oauth2Token.accessToken
+        }
+      });
+      const body = await response.json();
+
+      return await modrinth.isProjectMember(project, body.username);
+    } catch (e) {
+      console.error('Error fetching modrinth to verify project ownership', e);
+    }
+  }
+
+  return false;
 }

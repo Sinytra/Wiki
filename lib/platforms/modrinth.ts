@@ -70,6 +70,24 @@ async function getProject(slug: string): Promise<ModProject> {
   }
 }
 
+async function isProjectMember(mod: ModProject, username: string): Promise<boolean> {
+  const project = await getModrinthProject(mod.slug);
+
+  const members = await getProjectMembers(project.slug);
+  if (members.some(m => m.user.username === username)) {
+    return true;
+  }
+
+  if (project.organization) {
+    const org = await getProjectOrganization(project.slug);
+    if (org.members.some(m => m.user.username === username)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
   const project = await getModrinthProject(mod.slug);
 
@@ -134,6 +152,10 @@ function getProjectURL(slug: string) {
 // TODO Validate type
 function isValidProject(project: ModrinthProject): boolean {
   return project.project_types.includes('mod');
+}
+
+export default {
+  isProjectMember
 }
 
 export const modrinthModPlatform: ModPlatformProvider = {

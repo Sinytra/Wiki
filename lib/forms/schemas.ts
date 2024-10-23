@@ -5,7 +5,9 @@ export const projectRegisterSchema = z.object({
   repo: z.string(),
   branch: z.string(),
   path: z.string(),
-  is_community: z.boolean().optional()
+  is_community: z.boolean().optional(),
+
+  mr_code: z.string().nullish()
 });
 
 export const docsPageReportSchema = z.object({

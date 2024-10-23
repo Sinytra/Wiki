@@ -130,10 +130,14 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
     throw e;
   }
 
-  const state = searchParams['setup_action'] !== undefined && searchParams['state'] !== undefined
+  const autoSubmit = searchParams['code'] !== undefined;
+  const state = (searchParams['setup_action'] !== undefined || autoSubmit) && searchParams['state'] !== undefined
     ? JSON.parse(atob(searchParams['state'] as string))
     : undefined;
-  const defaultValues = {owner: profile.login};
+  let defaultValues: any = {owner: profile.login};
+  if (autoSubmit) {
+    defaultValues.mr_code = searchParams['code'];
+  }
 
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
@@ -149,7 +153,7 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
 
           <div className="flex flex-row items-center gap-2">
             <NextIntlClientProvider messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions')}>
-              <GetStartedModal defaultValues={defaultValues} state={state} isAdmin={isAdmin} />
+              <GetStartedModal defaultValues={defaultValues} state={state} isAdmin={isAdmin} autoSubmit={autoSubmit} />
             </NextIntlClientProvider>
 
             <form

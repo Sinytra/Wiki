@@ -54,13 +54,19 @@ function DocumentationOption({title, desc, button, buttonIcon: ButtonIcon, icon:
   )
 }
 
-export default function GetStartedModal({defaultValues, state, isAdmin}: Omit<ProjectRegisterFormProps, 'open' | 'setOpen'>) {
+export default function GetStartedModal({
+                                          defaultValues,
+                                          state,
+                                          isAdmin,
+                                          autoSubmit
+                                        }: Omit<ProjectRegisterFormProps, 'open' | 'setOpen'>) {
   const {open, setOpen} = useContext(GetStartedContext)!;
   const [registerOpen, setRegisterOpen] = useState(false);
   const t = useTranslations('GetStartedModal');
 
   return (<>
-    <ProjectRegisterForm open={registerOpen} setOpen={setRegisterOpen} defaultValues={defaultValues} state={state} isAdmin={isAdmin}/>
+    <ProjectRegisterForm open={registerOpen} setOpen={setRegisterOpen} defaultValues={defaultValues} state={state}
+                         isAdmin={isAdmin} autoSubmit={autoSubmit}/>
 
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
