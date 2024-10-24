@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
 
     return {
-      url: `${process.env.NEXT_APP_URL}/en/mod/${m.id}`,
+      url: `${process.env.NEXT_APP_URL}/en/mod/${m.id}/docs`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       alternates: {

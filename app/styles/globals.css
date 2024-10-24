@@ -4,6 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.accordion-body {
+  display: grid; 
+  grid-template-rows: 0fr;
+  transition: 250ms grid-template-rows ease;
+}
+
+.accordion.open .accordion-body {
+  grid-template-rows: 1fr;
+}
+
+.accordion-body > div {
+  overflow: hidden;
+}
+
 @layer base {
     :root {
         --modrinth-brand: #00AF5C;

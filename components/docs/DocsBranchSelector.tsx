@@ -4,7 +4,7 @@ import {useTranslations} from "next-intl";
 import DocsVersionSelectWrapper from "@/components/docs/versions/DocsVersionSelectWrapper";
 import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 
-export default function DocsBranchSelector({branch, branches}: { branch: string; branches?: Record<string, string> }) {
+export default function DocsBranchSelector({branch, branches}: { branch?: string; branches?: Record<string, string> }) {
   const t = useTranslations('DocsBranchSelector');
 
   return (

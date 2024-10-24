@@ -9,7 +9,7 @@ interface Props {
   source?: DocumentationSource;
   children?: any;
   titleClassName?: string;
-  version: string;
+  version?: string;
 }
 
 export default function DocsContentTitle({ source, children, titleClassName, version }: Props) {

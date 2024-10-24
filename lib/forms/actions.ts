@@ -232,7 +232,7 @@ async function validateProjectFormData(rawData: any) {
     return {success: false, error: 'no_project'};
   }
 
-  if (/*!process.env.NODE_ENV &&*/ !(await verifyProjectOwnership(project, data.owner, data.repo, data.mr_code))) {
+  if (!process.env.NODE_ENV && !(await verifyProjectOwnership(project, data.owner, data.repo, data.mr_code))) {
     return {success: false, error: 'ownership', canVerifyModrinth: metadata.platform === 'modrinth' && isModrinthOAuthAvailable()};
   }
 
