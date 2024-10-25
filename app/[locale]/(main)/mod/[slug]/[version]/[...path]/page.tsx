@@ -33,7 +33,11 @@ export async function generateMetadata({params}: {
   }
 
   return {
-    title: title ? `${title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`
+    title: title ? `${title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
+    other: {
+      docs_source_mod: project.name,
+      docs_source_icon: project.icon_url
+    }
   }
 }
 

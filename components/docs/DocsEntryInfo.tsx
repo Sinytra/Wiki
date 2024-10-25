@@ -28,7 +28,8 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
       </DocsSidebarTitle>
 
       <div className="mb-6 border border-accent m-2 rounded-sm">
-        <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="m-4 mx-auto" alt={!iconUrl ? undefined : resourceLocationToString(iconUrl.id)} />
+        <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto"
+                           alt={!iconUrl ? undefined : resourceLocationToString(iconUrl.id)}/>
       </div>
 
       <div className="mb-4">

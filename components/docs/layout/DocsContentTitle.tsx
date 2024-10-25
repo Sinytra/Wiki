@@ -22,7 +22,7 @@ export default function DocsContentTitle({ source, children, titleClassName, ver
   return (
     <div className="not-prose">
       <div className="flex flex-row flex-wrap md:flex-nowrap justify-between md:items-end gap-2">
-        <h1 className={cn("text-ellipsis md:overflow-hidden md:whitespace-nowrap text-foreground text-2xl", titleClassName)}>
+        <h1 className={cn("docsContentTitle text-ellipsis md:overflow-hidden md:whitespace-nowrap text-foreground text-2xl", titleClassName)}>
           {children}
         </h1>
         <div className={cn("flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", hasBranches ? 'items-center' : 'items-end')}>

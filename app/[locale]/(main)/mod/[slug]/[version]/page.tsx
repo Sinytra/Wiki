@@ -9,9 +9,32 @@ import DocsHomepagePlaceholder from "@/components/docs/DocsHomepagePlaceholder";
 import markdown from "@/lib/markdown";
 import {HOMEPAGE_FILE_PATH} from "@/lib/constants";
 import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent";
+import {Metadata, ResolvingMetadata} from "next";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
+
+export async function generateMetadata({params}: {
+  params: { slug: string; locale: string; version: string }
+}, parent: ResolvingMetadata): Promise<Metadata> {
+  let source: DocumentationSource | undefined = undefined;
+  try {
+    source = await sources.getBranchedProjectSource(params.slug, params.version);
+  } catch (e) {
+    return { title: (await parent).title?.absolute };
+  }
+
+  const project = await platforms.getPlatformProject(source.platform, source.slug);
+
+  return {
+    title: `${project.name} - ${(await parent).title?.absolute}`,
+    other: {
+      docs_source_mod: project.name,
+      docs_source_icon: project.icon_url
+    }
+  }
+}
+
 
 async function ModHomepage({source, project, locale}: {
   source: DocumentationSource;
