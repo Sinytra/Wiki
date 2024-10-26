@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GitHub from "@auth/core/providers/github";
 import {OAuth2Client} from "@badgateway/oauth2-client";
+import {getProcessURL} from "@/lib/utils";
 
 declare module "next-auth" {
   interface Session {
@@ -37,7 +38,7 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
   }
 });
 
-export const modrinthCallbackURL = `${process.env.NEXT_APP_URL || 'http://localhost:3000'}/dev`;
+export const modrinthCallbackURL = `${getProcessURL()}/dev`;
 
 export const modrinthAuthScopes = ['USER_READ'];
 

@@ -5,17 +5,17 @@
 @tailwind utilities;
 
 .accordion-body {
-  display: grid; 
-  grid-template-rows: 0fr;
-  transition: 250ms grid-template-rows ease;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 250ms grid-template-rows ease;
 }
 
 .accordion.open .accordion-body {
-  grid-template-rows: 1fr;
+    grid-template-rows: 1fr;
 }
 
 .accordion-body > div {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 @layer base {
@@ -24,7 +24,7 @@
         --curseforge-brand: #F16436;
         --gradle-brand: #02303A;
     }
-    
+
     :root {
         --background: var(--vp-c-bg);
         --foreground: var(--vp-c-text-1);
@@ -107,6 +107,7 @@ html body[data-scroll-locked] {
     .page-wrapper {
         padding-top: calc(var(--vp-nav-height) + 1rem);
     }
+
     html {
         scroll-padding-top: 72px;
     }
@@ -133,15 +134,19 @@ html body[data-scroll-locked] {
     color: var(--vp-code-color);
     font-family: var(--vp-font-family-mono), ui-monospace;
 }
+
 .prose :where(a:has(code)):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     text-decoration-color: var(--vp-code-color) !important;
 }
+
 .prose :where(:not(strong)>code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     font-weight: normal;
 }
+
 .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
     content: "" !important;
 }
+
 .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
     content: "" !important;
 }
@@ -175,9 +180,17 @@ html body[data-scroll-locked] {
     .slim-scrollbar {
         @apply scrollbar scrollbar-w-1 scrollbar-thumb-muted-foreground scrollbar-thumb-rounded;
     }
-    
+
     .slim-scrollbar-muted {
         @apply scrollbar scrollbar-w-1 scrollbar-thumb-[#404043] scrollbar-thumb-rounded;
+    }
+
+    .scrollLock {
+        /*@apply lg:m-0 lg:h-full lg:overflow-hidden; TODO*/
+    }
+
+    kbd {
+        @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-sm;
     }
 }
 

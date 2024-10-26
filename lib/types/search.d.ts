@@ -11,3 +11,18 @@ interface PartialMod {
   slug: string;
   is_community: boolean;
 }
+
+interface WikiSearchResults {
+  total: number;
+  hits: WikiSearchResult[];
+}
+
+interface WikiSearchResult {
+  title: string;
+  mod: string;
+  url: string;
+  icon?: string;
+  mod_icon: string;
+  mod_desc?: string;
+  path?: string;
+}

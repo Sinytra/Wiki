@@ -50,7 +50,7 @@ export default async function ModInfo({mod}: Props) {
 
       <div className="flex flex-col gap-3">
         <span className="text-center font-medium text-lg">{mod.name}</span>
-        <span className="text-sm text-muted-foreground text-center">{summary}</span>
+        <span className="docsSourceDesc text-sm text-muted-foreground text-center">{summary}</span>
       </div>
 
       <div className="mx-1 mt-6">

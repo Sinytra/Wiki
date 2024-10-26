@@ -7,13 +7,14 @@ import {Toaster} from "@/components/ui/sonner";
 import {ReactNode} from "react";
 import {Analytics} from '@vercel/analytics/react';
 import {SpeedInsights} from "@vercel/speed-insights/next"
+import {getProcessURL} from "@/lib/utils";
 
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: 'Modded Minecraft Wiki',
   description: 'The Wiki for all of Modded Minecraft. Presented by Sinytra.',
-  metadataBase: new URL(process.env.NEXT_APP_URL || 'http://localhost:3000'),
+  metadataBase: new URL(getProcessURL()),
   openGraph: {
     siteName: 'Modded Minecraft Wiki',
     type: 'website',

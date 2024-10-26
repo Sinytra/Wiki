@@ -1,6 +1,7 @@
 import {NextRequest} from "next/server";
 import database from "@/lib/database";
 
+// TODO Replace with simple function call
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('query');

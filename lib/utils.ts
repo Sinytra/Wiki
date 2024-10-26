@@ -8,3 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function getHttpErrorDetailsURL(status: number): string {
   return `https://http.cat/${status}`;
 }
+
+export function getProcessURL(): string {
+  return process.env.NEXT_APP_URL || 'http://localhost:3000';
+}

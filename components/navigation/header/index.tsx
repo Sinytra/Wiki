@@ -8,10 +8,11 @@ import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
+import DocsSearchBar from "@/components/navigation/DocsSearchBar";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <LocaleNavLink href={href} className={`${styles.menuLink} text-foreground font-medium px-1 sm:px-3`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink} text-foreground font-medium first:pl-0 px-1 sm:px-2 lg:px-3`}>
       {children}
     </LocaleNavLink>
   )
@@ -24,7 +25,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn(styles.container, 'flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto', minimal && 'my-2')}>
+        className={cn(styles.container, 'flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
             <span className="hidden sm:inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
@@ -41,6 +42,8 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
               <Badge variant="outline"
                      className="border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
         </div>
+
+        <DocsSearchBar />
 
         <div className="flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
           <nav className="flex flex-row">
