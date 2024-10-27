@@ -9,6 +9,7 @@ import {FileTextIcon, LoaderCircleIcon, SearchIcon} from "lucide-react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 function SearchResult({result}: { result: WikiSearchResult }) {
   const icon = !result.path ? result.mod_icon : result.icon;
@@ -37,36 +38,51 @@ function SearchResult({result}: { result: WikiSearchResult }) {
 }
 
 function NoSearchResults() {
+  const t = useTranslations('DocsSearchBar');
+
   return (
     <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted font-light px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm">
-      No results found!
+      {t('no_results')}
     </div>
   )
 }
 
 function LoadingSearchState() {
+  const t = useTranslations('DocsSearchBar');
+
   return (
     <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted font-light px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm">
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
-      Finding the perfect results...
+      {t('loading')}
     </div>
   )
 }
 
 function SearchOverlayFooter({visible, total}: { visible: number; total: number }) {
+  const t = useTranslations('DocsSearchBar');
+
   return (
     <div className="text-muted-foreground w-full bg-muted flex flex-row justify-between items-center p-2 rounded-b-sm">
       <div className="text-sm font-light">
-        Showing <span className="font-normal">{visible}</span> of <span className="font-normal">{total}</span> results
+        {t.rich('results', {
+          highlight: (chunks) => (
+            <span className="font-normal">
+              {chunks}
+            </span>
+          ),
+          count: visible,
+          total
+        })}
       </div>
       <span className="text-sm">
-        <kbd>ESC</kbd> to close
+        {t.rich('close', {kbd: (chunks) => (<kbd>{chunks}</kbd>)})}
       </span>
     </div>
   )
 }
 
 export default function DocsSearchBar() {
+  const t = useTranslations('DocsSearchBar');
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<WikiSearchResults | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -170,7 +186,7 @@ export default function DocsSearchBar() {
                           focus:outline focus:outline-muted-foreground bg-muted text-sm text-center
                           placeholder:text-neutral-500 p-1.5 rounded-sm w-full"
                onChange={(e) => handleSearch(e.target.value)}
-               placeholder="Search wiki contents..."
+               placeholder={t('placeholder')}
                onFocus={onFocus}
                onBlur={onBlur}
                onKeyDown={onKeyDown}

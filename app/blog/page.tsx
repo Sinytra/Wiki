@@ -50,11 +50,18 @@ export default async function Blog() {
 
       <div className="flex flex-col gap-6">
         <BlogPost
+          id="2024-10-27-search"
+          name="The search & versions update"
+          desc="Global search, versioned documentation and new customization options!"
+          date="2024-10-27"
+          latest
+        />
+        
+        <BlogPost
           id="2024-10-05-community-docs"
           name="The community wiki update"
           desc="In the first major wiki update, we're introducing community docs and UI localization"
           date="2024-10-05"
-          latest
         />
 
         <BlogPost

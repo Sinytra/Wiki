@@ -413,5 +413,12 @@
     "DocsBranchSelector": {
         "title": "Versions",
         "latest": "Latest"
+    },
+    "DocsSearchBar": {
+        "placeholder": "Search wiki contents...",
+        "no_results": "No results found!",
+        "loading": "Finding the perfect results...",
+        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
+        "close": "<kbd>ESC</kbd> to close"
     }
 }

@@ -6,9 +6,10 @@ import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {cn} from "@/lib/utils";
-import {useTranslations} from "next-intl";
+import {NextIntlClientProvider, useMessages, useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
 import DocsSearchBar from "@/components/navigation/DocsSearchBar";
+import {pick} from "lodash";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -21,6 +22,7 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
 export default function Header({locale, minimal, unfix}: { locale: string, minimal?: boolean, unfix?: boolean }) {
   const preview = localPreview.isEnabled();
   const t = useTranslations('NavigationHeader');
+  const messages = useMessages();
 
   return (
     <HeaderBase unfix={unfix}>
@@ -43,7 +45,11 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
                      className="border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
         </div>
 
-        {!minimal && !preview && <DocsSearchBar />}
+        {!minimal && !preview &&
+          <NextIntlClientProvider messages={pick(messages, 'DocsSearchBar')}>
+              <DocsSearchBar />
+          </NextIntlClientProvider>  
+        }
 
         <div className="flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
           <nav className="flex flex-row">
