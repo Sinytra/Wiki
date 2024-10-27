@@ -1,5 +1,3 @@
 files:
   - source: /messages/en.json
     translation: /messages/%two_letters_code%.json
-  - source: /docs/*/en.mdx
-    translation: /%original_path%/%two_letters_code%.%file_extension%
