@@ -22,7 +22,7 @@ export default function DirectoryTreeView({level, newBasePath, trigger, children
       <div className="border-b !border-none">
         <h3 className="flex">
           <button onClick={() => setOpen(!isOpen)}
-                  className="border-b docsAccordeonTrigger flex flex-1 items-center justify-between py-4 font-medium hover:underline [&[data-state=open]>svg]:rotate-180 docsAccordeonTrigger px-1 capitalize border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
+                  className="border-b docsAccordeonTrigger flex flex-1 items-center justify-between py-4 font-medium hover:underline [&[data-state=open]>svg]:rotate-180 docsAccordeonTrigger px-1 border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
             {trigger}
             <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200"/>
           </button>

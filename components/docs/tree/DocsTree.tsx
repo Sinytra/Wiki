@@ -41,10 +41,10 @@ function DocsFileTree({slug, version, tree, level, basePath}: {
                         basePath={`${basePath}/${file.path}`}/>
         </DirectoryTreeView>
         :
-        <div key={`${basePath}/${file.path}`} className="capitalize w-full pt-2"
+        <div key={`${basePath}/${file.path}`} className="w-full pt-2"
              style={{marginLeft: offset, paddingRight: offset}}>
           <DocsEntryLink href={`/mod/${slug}/${version}${basePath}/${file.path.split('.')[0]}`}>
-            <FileIcon file={file} width="18" height="18" strokeWidth={1.8} /> {file.name.split('.')[0].replace('_', ' ')}
+            <FileIcon file={file} width="18" height="18" strokeWidth={1.8}/> {file.name.split('.')[0].replace('_', ' ')}
           </DocsEntryLink>
         </div>
     ))}

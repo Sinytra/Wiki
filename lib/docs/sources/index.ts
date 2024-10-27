@@ -170,7 +170,7 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
     .map(async (entry) => (
       {
         path: entry.name,
-        name: metadata?.[entry.name]?.name || entry.name,
+        name: metadata?.[entry.name]?.name || capitalizeDefaultEntryName(entry.name),
         type: entry.type,
         children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : [],
         icon: metadata?.[entry.name]?.icon
@@ -332,6 +332,14 @@ async function getRemoteRepositoryCachedMetadata(id: string, repo: string, branc
   );
 
   return await cache(repo, branch, root);
+}
+
+function capitalizeDefaultEntryName(str: string) {
+  const words = str.split('.')[0].replaceAll(/[_\-]/g, ' ').split(' ');
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+  }
+  return words.join(' ');
 }
 
 export default {
