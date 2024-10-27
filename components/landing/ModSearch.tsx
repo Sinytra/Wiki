@@ -6,6 +6,7 @@ import {ModSearchResult} from "@/lib/types/search";
 import LoadingContent from "@/components/util/LoadingContent";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import {useTranslations} from "next-intl";
+import {searchModsServer} from "@/lib/search/serverSearch";
 
 export default function ModSearch({ locale, placeholder }: { locale: string; placeholder: string }) {
   const [results, setResults] = useState<ModSearchResult[] | null>(null);
@@ -13,8 +14,8 @@ export default function ModSearch({ locale, placeholder }: { locale: string; pla
   const [shown, setShown] = useState<boolean>(true);
   const t = useTranslations('BrowsePage');
 
-  const handleSearch = useDebouncedCallback(async (term) => {
-    if (!term) {
+  const handleSearch = useDebouncedCallback(async (query) => {
+    if (!query) {
       setResults(null);
       return;
     }
@@ -28,9 +29,8 @@ export default function ModSearch({ locale, placeholder }: { locale: string; pla
     }, 500);
 
     try {
-      const resp = await fetch(`/api/mods/search?query=${term}`);
-      const body = await resp.json();
-      setResults(body.data);
+      const resp = await searchModsServer(query);
+      setResults(resp);
     } finally {
       pending = false;
       setLoading(false);

@@ -1,11 +1,12 @@
 'use server'
 
-import {WikiSearchResult, WikiSearchResults} from "@/lib/types/search";
+import {ModSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/types/search";
 import {getProcessURL} from "@/lib/utils";
+import database from "@/lib/database";
 
 export async function searchWikiServer(query: string): Promise<WikiSearchResults> {
   if (!process.env.SEARCH_ENDPOINT || !process.env.SEARCH_INDEX || !process.env.SEARCH_API_KEY) {
-    return { total: 0, hits: [] };
+    return {total: 0, hits: []};
   }
 
   try {
@@ -69,5 +70,13 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
     console.error('Error running search', e);
   }
 
-  return { total: 0, hits: [] };
+  return {total: 0, hits: []};
+}
+
+export async function searchModsServer(query: string): Promise<ModSearchResult[]> {
+  if (!query || query.length === 0) {
+    return [];
+  }
+
+  return await database.searchProjects(query);
 }

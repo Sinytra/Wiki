@@ -18,6 +18,7 @@ import {Skeleton} from "@/components/ui/skeleton";
 import LoadingContent from "@/components/util/LoadingContent";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
+import LinkTextButton from "@/components/ui/link-text-button";
 
 export const dynamic = 'force-dynamic';
 
@@ -72,7 +73,15 @@ async function ProfileProjects({owner, access_token}: { owner: string; access_to
         <div
           className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 gap-4">
           <span className="text-foreground font-medium">{t('projects.empty.primary')}</span>
-          <span className="text-muted-foreground">{t('projects.empty.secondary')}</span>
+          <span className="text-muted-foreground">
+            {t.rich('projects.empty.secondary', {
+              guide: (chunks) => (
+                <LinkTextButton className="!text-foreground !text-base !font-normal underline" href="/about/devs">
+                  {chunks}
+                </LinkTextButton>
+              )
+            })}
+          </span>
 
           <NextIntlClientProvider messages={pick(messages, 'GetStartedButton')}>
             <GetStartedButton />

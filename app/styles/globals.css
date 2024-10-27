@@ -192,6 +192,10 @@ html body[data-scroll-locked] {
     kbd {
         @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-sm;
     }
+    
+    .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        @apply scrollbar-thin scrollbar-thumb-[#404043] scrollbar-thumb-rounded;
+    }
 }
 
 @layer utilities {

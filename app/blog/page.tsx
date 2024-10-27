@@ -3,6 +3,7 @@ import BlogHeader from "@/components/navigation/BlogHeader";
 import {cn} from "@/lib/utils";
 import {Badge} from "@/components/ui/badge";
 import {useTranslations} from "next-intl";
+import {setContextLocale} from "@/lib/locales/routing";
 
 export const dynamic = 'force-static';
 
@@ -38,7 +39,9 @@ function BlogPost({id, name, desc, date, latest}: {
   )
 }
 
-export default async function Preview() {
+export default async function Blog() {
+  setContextLocale('en');
+
   return (
     <div className="flex flex-col">
       <BlogHeader/>

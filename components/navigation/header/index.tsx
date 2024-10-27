@@ -43,7 +43,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
                      className="border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
         </div>
 
-        <DocsSearchBar />
+        {!minimal && !preview && <DocsSearchBar />}
 
         <div className="flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
           <nav className="flex flex-row">
