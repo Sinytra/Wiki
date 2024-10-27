@@ -100,14 +100,13 @@
     "DeveloperPortal": {
         "title": "Projektmanagement-Dashboard",
         "logout": "Abmelden",
-        "get_started": "Loslegen",
         "projects": {
             "title": "Projekte",
             "loading_all": "Lade alle Projekte...",
             "loading": "Lade Profil...",
             "empty": {
                 "primary": "Es scheint, dass du noch keine Projekte registriert hast",
-                "secondary": "Beginne, indem du ein Projekt aus der oberen Leiste hinzufügst"
+                "secondary": "Get started by reading our <guide>author guide</guide>."
             }
         }
     },
@@ -383,7 +382,7 @@
         "return": "Zurück zur Startseite"
     },
     "GetStartedButton": {
-        "title": "Loslegen"
+        "title": "Add project"
     },
     "GetStartedModal": {
         "button": "Projekt hinzufügen",
@@ -414,5 +413,12 @@
     "DocsBranchSelector": {
         "title": "Versionen",
         "latest": "Neueste"
+    },
+    "DocsSearchBar": {
+        "placeholder": "Search wiki contents...",
+        "no_results": "No results found!",
+        "loading": "Finding the perfect results...",
+        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
+        "close": "<kbd>ESC</kbd> to close"
     }
 }
