@@ -279,7 +279,9 @@
         "success": {
             "title": "Project registered successfully",
             "desc": "You can now navigate to the project's mod page"
-        }
+        },
+        "submitting": "Submitting...",
+        "verify_modrinth": "Verify using Modrinth"
     },
     "ProjectSettingsForm": {
         "title": "Edit project",
