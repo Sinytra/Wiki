@@ -1,0 +1,48 @@
+# Community Mod-Dokumentation
+
+**🌐 Das zentrale Repository für Community-Dokumentationen findest du [hier](https://github.com/Sinytra/CommunityWikiDocs).**
+
+Das README des Repositories wird unten angezeigt:
+
+---
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Sinytra/CommunityWikiDocs?quickstart=1)
+
+Eine Sammlung von Community-Dokumentationen für das [Modded Minecraft Wiki](https://moddedmc.org/).
+
+📖 Dieses Repository dient als Quelle für inoffizielle Dokumentationen von Minecraft-Mods, die von der Community beigetragen und vom Entwicklerteam des Modded Minecraft Wiki / Sinytra gepflegt werden.
+
+📂 Jedes Unterverzeichnis (mit Ausnahme von `gradle`) enthält ein Wiki-Projekt mit Dokumentationsdateien und Metadaten. 
+Die Registrierung von Projekten im Wiki erfolgt automatisch.
+
+## 🤝 Mitwirken
+
+Wir freuen uns über alle Beiträge – es sind keine Programmierkenntnisse erforderlich!
+
+1. Beginne damit, das Repository in deinem bevorzugten Editor oder deiner IDE zu öffnen.\
+   Du kannst auch [GitHub Codespaces](https://codespaces.new/Sinytra/CommunityWikiDocs?quickstart=1) im Browser verwenden, um schnell loszulegen (unterstützt auch Live-Vorschauen!).
+
+2. Starte eine lokale Vorschau, indem du `./gradlew previewDocs` im Terminal ausführst und wartest, bis die Umgebung vollständig eingerichtet ist.
+
+3. Sobald die Vorschau bereit ist, wirst du im Editor aufgefordert, sie in einem neuen Tab zu öffnen. Klicke auf `Open in Browser`.\
+   Alternativ findest du einen Link im `PORTS`-Tab neben dem Terminal.
+
+4. Jetzt kannst du mit dem Bearbeiten der Dokumentation loslegen! 🎉
+
+Weitere Informationen zum verwendeten Dokumentationsdateiformat findest du [auf dieser Seite](https://moddedmc.org/en/about/format).
+
+### Bestehende Projekte
+
+Änderungen an bestehenden Projekten sind ganz einfach. Finde das Projekt, das du aktualisieren möchtest, und nimm die gewünschten Änderungen an den Dokumentationsdateien vor. Sobald du fertig bist, committe deinen Arbeitsstand und [erstelle einen Pull Request](https://github.com/Sinytra/CommunityWikiDocs/compare) mit deinen Änderungen.
+
+### Neue Projekte
+
+Das Hinzufügen neuer Projekte erfolgt in zwei einfachen Schritten:
+
+1. Erstelle ein Unterverzeichnis für die Mod, die du dokumentieren möchtest. Der Name dieses Verzeichnisses sollte dem Wert des Feldes `id` in der [Metadatendatei](https://moddedmc.org/en/about/devs#wiki-metadata) des Projekts entsprechen.
+
+2. Füge den Namen des Unterverzeichnisses zur Eigenschaft `documentation_roots` in der Datei `gradle.properties` hinzu.
+
+## ✍️ Werde ein Editor
+
+(Registrierung bald verfügbar, bleib dran!)

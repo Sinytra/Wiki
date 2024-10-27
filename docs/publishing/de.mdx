@@ -1,0 +1,118 @@
+import {RefreshCwIcon, SettingsIcon, TrashIcon} from "lucide-react";
+
+# Veröffentlichen
+
+Lerne, wie du deine Dokumentation auf unserer Website veröffentlichst!
+
+## Entwickler-Portal
+
+Du kannst auf unser [Entwickler-Portal](../dev) zugreifen, indem du auf der Startseite oder im Footer auf den Button `Entwickler` klickst.
+
+### Erster Login
+
+Wenn du dich zum ersten Mal anmeldest, wirst du zur Login-Seite weitergeleitet, wo du dich mit deinem **GitHub-Konto** anmelden kannst.
+
+GitHub wird dich bitten, unserer GitHub-App die Erlaubnis zu geben, auf dein Konto zuzugreifen. Sie benötigt nur minimale Berechtigungen, um deine Identität und Repository-Zugriffsrechte zu überprüfen. Nach der Genehmigung wirst du automatisch zum Entwickler-Portal weitergeleitet.
+
+## Projekte registrieren
+
+Um ein neues Projekt im Wiki hinzuzufügen, klicke auf den Button `Projekt hinzufügen`. Ein Dialogfenster wird geöffnet, in dem du folgende Informationen ausfüllen musst:
+
+- `Besitzer` - GitHub-Repository-Besitzer (Benutzer oder Organisation)
+- `Name` - Name des GitHub-Repositories
+- `Branch` - Name des Branches, in dem sich die Dokumentation befindet
+- `Pfad zum Stammverzeichnis der Dokumentation` - Pfad zum Dokumentations-Stammordner im Repository.
+  Sollte mit `/` beginnen.
+
+Nachdem du alles ausgefüllt hast, klicke auf `Einreichen`, um den Registrierungsprozess abzuschließen.
+
+Wenn alles erfolgreich abgeschlossen wurde, bist du fertig! Du kannst das Projekt im Wiki öffnen und das gerenderte Ergebnis sehen.
+
+**Solltest du auf Fehler stoßen, sieh dir bitte den Abschnitt Fehlerbehebung unten an. Wenn das Problem weiterhin besteht, [kontaktiere uns](./help).**
+
+<Callout>
+    Da die Wiki-Inhalte verzögert geladen werden, kann es beim ersten Besuch einer Seite zu leicht erhöhten Ladezeiten kommen.
+    Danach werden die Seiten jedoch für alle Besucher **zwischengespeichert**,
+    sodass nahezu sofortige Navigationszeiten erreicht werden.
+</Callout>
+
+( Lass auch deine Nutzer wissen, dass sie die Dokumentation für deine Mod nun hier finden! :) )
+
+<Callout>
+    Wenn du deinen Standard-Branch auf GitHub änderst (z. B. beim Portieren deiner Mod auf neuere Versionen), vergiss nicht,
+    den Quell-Branch in den Wiki-Projekteinstellungen zu aktualisieren,
+    damit die Website weiterhin die neueste Version der Dokumentation anzeigen kann.
+</Callout>
+
+#### Fehlerbehebung
+
+> Bitte installiere zuerst unsere GitHub-App auf deinem Repository (hier).
+
+1. **Mögliche Ursache:** Die Wiki-GitHub-App ist nicht auf dem GitHub-Repository des Projekts installiert und kann daher nicht darauf zugreifen.\
+   **Lösung:** Folge dem Link in der Fehlermeldung und erteile der Wiki-GitHub-App Zugriff auf dein Repository.
+   Es reicht, wenn du ihr nur Zugriff auf das jeweilige Projekt-Repository gewährst.\
+   Keine Sorge, die eingegebenen Informationen werden gespeichert und wiederhergestellt, wenn du zurückkommst.
+
+2. **Mögliche Ursache:** Das angegebene GitHub-Repository existiert nicht.\
+   **Lösung:** Stelle sicher, dass du die Felder `Besitzer` und `Name` korrekt ausgefüllt hast. Diese sollten mit dem `owner/name`-Paar der Repository-URL übereinstimmen, z. B. `https://github.com/Sinytra/Wiki`würde `Sinytra` als Besitzer und `Wiki` als Name verwenden.
+
+> Verifizierungsfehler
+
+- **Mögliche Ursache:** Das Hosting-Plattform-Projekt deiner Mod (siehe [Dokumentations-Metadaten](./devs#wiki-metadata)) bietet keinen Quellcode-Link, der auf das GitHub-Repository der Mod verweist.\
+  **Lösung:** Ändere vorübergehend die Quellcode-URL deines Projekts, sodass sie der GitHub-Repository-URL entspricht.
+
+<details>
+    <summary>Hilfe für Modrinth-Projekte anzeigen</summary>
+    
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Tab `Links`.
+    3. Gib die GitHub-Repository-URL im Feld `Source code` ein.
+    4. Wende die Änderungen an.
+    
+    ![](/meta-docs-assets/mr_src_url.png)
+</details>
+<p/>
+<details>
+    <summary>Hilfe für CurseForge-Projekte anzeigen</summary>
+    
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Tab `Source`.
+    3. Gib die GitHub-Repository-URL im Feld `Repository URL` ein.
+    4. Wende die Änderungen an.
+
+```
+![](/meta-docs-assets/cf_src_url.png)
+```
+
+</details>
+
+> Der Benutzer hat keinen Zugriff auf das Repository.
+
+Deine Repository-Zugriffsrechte sind unzureichend, um es im Wiki zu registrieren. Stelle sicher, dass du mindestens über **Maintain**- oder **Admin**-Zugriff verfügst.
+
+> Ungültiger Pfad angegeben
+
+Der angegebene Pfad existiert nicht oder ist eine normale Datei. Stelle sicher, dass der Pfad auf ein vorhandenes Verzeichnis im Repository verweist. Es ist nicht erforderlich, den Pfad mit einem Branch- oder Tag-Namen zu versehen.
+
+Dieses Feld ist identisch mit dem `path`-Parameter der GitHub-REST-API-Route "[Get repository content](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content)".
+
+## Projektverwaltung
+
+In deinem Entwickler-Dashboard findest du einige Optionen zur Verwaltung deines Mod-Projekts. Diese werden unten beschrieben.
+
+### <RefreshCwIcon className="inline-block mr-1 w-5 h-5"/> Projekt neu validieren
+
+Löscht alle zwischengespeicherten Dokumentationsseiten und erzwingt deren erneutes Rendern bei Bedarf.
+Diese Option sollte nur verwendet werden, wenn die Dokumentationsquelle selbst aktualisiert wurde.
+
+Zu deiner eigenen Bequemlichkeit empfehlen wir, die Dokumentation nach der Veröffentlichung automatisch mit unserem [Gradle-Plugin](./devs#-gradle-plugin-companion) neu zu validieren.
+
+### <SettingsIcon className="inline-block mr-1 w-5 h-5"/> Projekt bearbeiten
+
+Bearbeite die während der Registrierung festgelegten Parameter des Projekts. Die Projektinhaberschaft wird während eines Updates erneut validiert.
+
+### <TrashIcon className="inline-block mr-1 w-5 h-5"/> Projekt löschen
+
+Löscht das Projekt dauerhaft und entfernt alle zugehörigen Daten von unseren Servern. Der Cache für die Dokumentationsseiten wird ebenfalls sofort gelöscht, es kann jedoch etwas dauern, bis sich dies auf das CDN und die Browser-Clients auswirkt.
+
+**Dies ist eine nicht umkehrbare Aktion.**

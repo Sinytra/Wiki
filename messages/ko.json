@@ -100,14 +100,13 @@
     "DeveloperPortal": {
         "title": "프로젝트 관리 대시보드",
         "logout": "로그아웃",
-        "get_started": "시작하기",
         "projects": {
             "title": "프로젝트",
             "loading_all": "Loading profile projects...",
             "loading": "Loading profile...",
             "empty": {
                 "primary": "Looks like you haven't registered any projects yet",
-                "secondary": "Start by adding a project from the top bar"
+                "secondary": "Get started by reading our <guide>author guide</guide>."
             }
         }
     },
@@ -279,7 +278,9 @@
         "success": {
             "title": "Project registered successfully",
             "desc": "You can now navigate to the project's mod page"
-        }
+        },
+        "submitting": "Submitting...",
+        "verify_modrinth": "Verify using Modrinth"
     },
     "ProjectSettingsForm": {
         "title": "Edit project",
@@ -381,7 +382,7 @@
         "return": "Return Home"
     },
     "GetStartedButton": {
-        "title": "Get started"
+        "title": "Add project"
     },
     "GetStartedModal": {
         "button": "Add project",
@@ -412,5 +413,12 @@
     "DocsBranchSelector": {
         "title": "Versions",
         "latest": "Latest"
+    },
+    "DocsSearchBar": {
+        "placeholder": "Search wiki contents...",
+        "no_results": "No results found!",
+        "loading": "Finding the perfect results...",
+        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
+        "close": "<kbd>ESC</kbd> to close"
     }
 }
