@@ -87,7 +87,7 @@
     },
     "MetaDocsNavigation": {
         "title": "Navigation",
-        "about": "Über",
+        "about": "Über uns",
         "devs": "Entwickler",
         "format": "Format",
         "publishing": "Veröffentlichen",
@@ -279,7 +279,9 @@
         "success": {
             "title": "Projekt erfolgreich registriert",
             "desc": "Du kannst jetzt zur Mod-Seite des Projekts navigieren"
-        }
+        },
+        "submitting": "Submitting...",
+        "verify_modrinth": "Verify using Modrinth"
     },
     "ProjectSettingsForm": {
         "title": "Projekt bearbeiten",
