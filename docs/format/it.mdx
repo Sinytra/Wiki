@@ -144,17 +144,31 @@ Draw the reader's attention with callouts.
 
 Available attributes:
 
-- `variant` Optional; can be either of `default` or `danger`
+- `variant` Optional; can be either of [`default`, `info`, `warning`, `danger`] (default: `default`)
 
 ```jsx
 <Callout>
     This is a sample callout
 </Callout>
+
+<Callout variant="info">
+    This is a sample info callout
+</Callout>
+
+/* Other variants shown below */
 ```
 
 Results in:
 
 <Callout>This is a sample callout</Callout>
+
+Info variant:
+
+<Callout variant="info">This is a sample info callout</Callout>
+
+Warning variant:
+
+<Callout variant="warning">This is a sample warning callout</Callout>
 
 Danger variant:
 
