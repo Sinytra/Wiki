@@ -1,93 +1,84 @@
 import {RefreshCwIcon, SettingsIcon, TrashIcon} from "lucide-react";
 
-# Publishing
+# Veröffentlichen
 
-Learn how to publish your documentation on our website!
+Lerne, wie du deine Dokumentation auf unserer Website veröffentlichst!
 
-## Developer portal
+## Entwickler-Portal
 
-You can access our [developer portal](../dev) by clicking the `Developer area` button on the home page or in the footer.
+Du kannst auf unser [Entwickler-Portal](../dev) zugreifen, indem du auf der Startseite oder im Footer auf den Button `Entwickler` klickst.
 
-### First login
+### Erster Login
 
-If this is your first time signing in, you'll be redirected to the login page where you can sign in using
-your **GitHub account**.
+Wenn du dich zum ersten Mal anmeldest, wirst du zur Login-Seite weitergeleitet, wo du dich mit deinem **GitHub-Konto** anmelden kannst.
 
-GitHub will ask you to authorize our GitHub App to access your account. It only requires minimal permissions used to
-verify your identify and repository access permissions. Upon approving the request, you'll be automatically taken
-to the developer portal.
+GitHub wird dich bitten, unserer GitHub-App die Erlaubnis zu geben, auf dein Konto zuzugreifen. Sie benötigt nur minimale Berechtigungen, um deine Identität und Repository-Zugriffsrechte zu überprüfen. Nach der Genehmigung wirst du automatisch zum Entwickler-Portal weitergeleitet.
 
-## Registering projects
+## Projekte registrieren
 
-To add a new project to the wiki, hit the `Add Project` button. This will open a modal dialog, where you'll be asked
-to fill out the following information:
+Um ein neues Projekt im Wiki hinzuzufügen, klicke auf den Button `Projekt hinzufügen`. Ein Dialogfenster wird geöffnet, in dem du folgende Informationen ausfüllen musst:
 
-- `Owner` - GitHub repository owner. Can be a user or an organization
-- `Name` - GitHub repository name
-- `Branch` - Name of the branch where the documentation is located
-- `Path to documentation root` - Path to the documentation root folder inside the repository.
-  Should begin with a leading `/`.
+- `Besitzer` - GitHub-Repository-Besitzer (Benutzer oder Organisation)
+- `Name` - Name des GitHub-Repositories
+- `Branch` - Name des Branches, in dem sich die Dokumentation befindet
+- `Pfad zum Stammverzeichnis der Dokumentation` - Pfad zum Dokumentations-Stammordner im Repository.
+  Sollte mit `/` beginnen.
 
-Once you've filled everything out, hit the `Submit` button to complete the registration process.
+Nachdem du alles ausgefüllt hast, klicke auf `Einreichen`, um den Registrierungsprozess abzuschließen.
 
-If the process completed successfully, you're good to go! Try opening the project on the wiki to see the rendered result.
+Wenn alles erfolgreich abgeschlossen wurde, bist du fertig! Du kannst das Projekt im Wiki öffnen und das gerenderte Ergebnis sehen.
 
-**Should you run into any errors, please see the Troubleshooting section below. If the issue still persists,
-[reach out to us](./help).**
+**Solltest du auf Fehler stoßen, sieh dir bitte den Abschnitt Fehlerbehebung unten an. Wenn das Problem weiterhin besteht, [kontaktiere uns](./help).**
 
 <Callout>
-    As wiki content is rendered lazily, you may experience slightly increased loading times when first visiting pages,
-    but this only occurs the first time a given page is opened and will be **cached for all visitors** afterward,
-    achieving near-instant navigation times.
+    Da die Wiki-Inhalte verzögert geladen werden, kann es beim ersten Besuch einer Seite zu leicht erhöhten Ladezeiten kommen.
+    Danach werden die Seiten jedoch für alle Besucher **zwischengespeichert**,
+    sodass nahezu sofortige Navigationszeiten erreicht werden.
 </Callout>
 
-( also don't forget to let your users know they can now find docs for your mod here :) )
+( Lass auch deine Nutzer wissen, dass sie die Dokumentation für deine Mod nun hier finden! :) )
 
 <Callout>
-    If you change your default branch on GitHub (e.g. as when porting your mod to newer versions), don't forget to
-    update the source branch in the wiki project's settings as well, so that the website can keep showing the latest
-    docs version.
+    Wenn du deinen Standard-Branch auf GitHub änderst (z. B. beim Portieren deiner Mod auf neuere Versionen), vergiss nicht,
+    den Quell-Branch in den Wiki-Projekteinstellungen zu aktualisieren,
+    damit die Website weiterhin die neueste Version der Dokumentation anzeigen kann.
 </Callout>
 
-#### Troubleshooting
+#### Fehlerbehebung
 
-> Please first install our GitHub app on your repository (here).
+> Bitte installiere zuerst unsere GitHub-App auf deinem Repository (hier).
 
-1. **Possible cause:** The wiki GitHub app is not installed on the project's GitHub repository, and therefore cannot access it.\
-   **Fix:** Navigate to the link provided in the error message and grant the wiki GitHub App access to your repository.
-   It's enough if you only grant it access to the project's repository rather than all of them at once.\
-   Don't worry about leaving the page - filled out information will be saved and re-applied when you return.
+1. **Mögliche Ursache:** Die Wiki-GitHub-App ist nicht auf dem GitHub-Repository des Projekts installiert und kann daher nicht darauf zugreifen.\
+   **Lösung:** Folge dem Link in der Fehlermeldung und erteile der Wiki-GitHub-App Zugriff auf dein Repository.
+   Es reicht, wenn du ihr nur Zugriff auf das jeweilige Projekt-Repository gewährst.\
+   Keine Sorge, die eingegebenen Informationen werden gespeichert und wiederhergestellt, wenn du zurückkommst.
 
-2. **Possible cause:** The provided GitHub repository does not exist.\
-   **Fix:** Make sure you've filled out the repository `Owner` and `Name` fields correctly. These should match each the
-   repository `owner/name` pair as seen in its URL, e.g. `https://github.com/Sinytra/Wiki` would use `Sinytra` as the owner
-   and `Wiki` as the name.
+2. **Mögliche Ursache:** Das angegebene GitHub-Repository existiert nicht.\
+   **Lösung:** Stelle sicher, dass du die Felder `Besitzer` und `Name` korrekt ausgefüllt hast. Diese sollten mit dem `owner/name`-Paar der Repository-URL übereinstimmen, z. B. `https://github.com/Sinytra/Wiki`würde `Sinytra` als Besitzer und `Wiki` als Name verwenden.
 
-> Verification error
+> Verifizierungsfehler
 
-- **Possible cause:** Your mod's hosting platform project (see [documentation metadata](./devs#wiki-metadata)) does not
-  provide a Source Code link pointing to the mod's GitHub repository.\
-  **Fix:** For the purposes of verifying project ownership, please momentarily set the Source Code url of your project
-  to match the GitHub repository url.
+- **Mögliche Ursache:** Das Hosting-Plattform-Projekt deiner Mod (siehe [Dokumentations-Metadaten](./devs#wiki-metadata)) bietet keinen Quellcode-Link, der auf das GitHub-Repository der Mod verweist.\
+  **Lösung:** Ändere vorübergehend die Quellcode-URL deines Projekts, sodass sie der GitHub-Repository-URL entspricht.
 
 <details>
-    <summary>Expand to get assistance for Modrinth projects</summary>
+    <summary>Hilfe für Modrinth-Projekte anzeigen</summary>
     
-    1. Open to your project's settings.
-    2. Navigate to the `Links` tab.
-    3. Enter the GitHub repository url in the `Source code` field.
-    4. Apply the changes.
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Tab `Links`.
+    3. Gib die GitHub-Repository-URL im Feld `Source code` ein.
+    4. Wende die Änderungen an.
     
     ![](/meta-docs-assets/mr_src_url.png)
 </details>
 <p/>
 <details>
-    <summary>Expand to get assistance for CurseForge projects</summary>
+    <summary>Hilfe für CurseForge-Projekte anzeigen</summary>
     
-    1. Open your project's settings.
-    2. Navigate to the `Source` tab.
-    3. Enter the GitHub repository url in the `Repository URL` field.
-    4. Apply the changes.
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Tab `Source`.
+    3. Gib die GitHub-Repository-URL im Feld `Repository URL` ein.
+    4. Wende die Änderungen an.
 
 ```
 ![](/meta-docs-assets/cf_src_url.png)
@@ -95,40 +86,33 @@ If the process completed successfully, you're good to go! Try opening the projec
 
 </details>
 
-> User does not have access to repository.
+> Der Benutzer hat keinen Zugriff auf das Repository.
 
-Your repository access permissions are insufficient to register it to the wiki. Please make sure you have at least
-**Maintain** or **Admin** access.
+Deine Repository-Zugriffsrechte sind unzureichend, um es im Wiki zu registrieren. Stelle sicher, dass du mindestens über **Maintain**- oder **Admin**-Zugriff verfügst.
 
-> Invalid path provided
+> Ungültiger Pfad angegeben
 
-The provided path does not exist or is a regular file. Please make sure the path points to an existing directory within
-the repository. There is no need to prefix the path with a branch or tag name.
+Der angegebene Pfad existiert nicht oder ist eine normale Datei. Stelle sicher, dass der Pfad auf ein vorhandenes Verzeichnis im Repository verweist. Es ist nicht erforderlich, den Pfad mit einem Branch- oder Tag-Namen zu versehen.
 
-This field is identical to the `path` parameter of GitHub's "[Get repository content](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content)"
-REST API route.
+Dieses Feld ist identisch mit dem `path`-Parameter der GitHub-REST-API-Route "[Get repository content](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content)".
 
-## Project management
+## Projektverwaltung
 
-On your developer dashboard, you can find a couple options that let your manage your mod project. These are described
-in detail below.
+In deinem Entwickler-Dashboard findest du einige Optionen zur Verwaltung deines Mod-Projekts. Diese werden unten beschrieben.
 
-### <RefreshCwIcon className="inline-block mr-1 w-5 h-5"/> Revalidate project
+### <RefreshCwIcon className="inline-block mr-1 w-5 h-5"/> Projekt neu validieren
 
-Purges all cached documentation pages, forcing them to be re-rendered lazily on-demand.
-This option should only be used upon updating the documentation source itself.
+Löscht alle zwischengespeicherten Dokumentationsseiten und erzwingt deren erneutes Rendern bei Bedarf.
+Diese Option sollte nur verwendet werden, wenn die Dokumentationsquelle selbst aktualisiert wurde.
 
-For your own convenience, we recommend automatically revalidating docs after publication using our
-[Gradle plugin](./devs#-gradle-plugin-companion) instead.
+Zu deiner eigenen Bequemlichkeit empfehlen wir, die Dokumentation nach der Veröffentlichung automatisch mit unserem [Gradle-Plugin](./devs#-gradle-plugin-companion) neu zu validieren.
 
-### <SettingsIcon className="inline-block mr-1 w-5 h-5"/> Edit project
+### <SettingsIcon className="inline-block mr-1 w-5 h-5"/> Projekt bearbeiten
 
-Edit the project's parameters that have been set during registration. The project's ownership will be re-validated
-during an update.
+Bearbeite die während der Registrierung festgelegten Parameter des Projekts. Die Projektinhaberschaft wird während eines Updates erneut validiert.
 
-### <TrashIcon className="inline-block mr-1 w-5 h-5"/> Delete a project
+### <TrashIcon className="inline-block mr-1 w-5 h-5"/> Projekt löschen
 
-Permanently delete the project and removes all associated data from our servers. The cache for documentation pages will
-be immediately purged as well, but it might take some time to propagate to the CDN and browser clients.
+Löscht das Projekt dauerhaft und entfernt alle zugehörigen Daten von unseren Servern. Der Cache für die Dokumentationsseiten wird ebenfalls sofort gelöscht, es kann jedoch etwas dauern, bis sich dies auf das CDN und die Browser-Clients auswirkt.
 
-**This is a destructive operation and cannot be undone.**
+**Dies ist eine nicht umkehrbare Aktion.**
