@@ -1,7 +1,6 @@
 import {auth, signOut} from "@/lib/auth";
 import github, {GitHubUserProfile} from "@/lib/github/github";
-import githubApp from "@/lib/github/githubApp";
-import database from "@/lib/database";
+import database from "../../../../../lib/base/database";
 import * as React from "react";
 import {Suspense} from "react";
 import ProfileProject from "@/components/dev/ProfileProject";
@@ -19,6 +18,7 @@ import LoadingContent from "@/components/util/LoadingContent";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 import LinkTextButton from "@/components/ui/link-text-button";
+import githubFacade from "@/lib/facade/githubFacade";
 
 export const dynamic = 'force-dynamic';
 
@@ -44,7 +44,7 @@ function ProfileProjectSkeleton() {
 }
 
 async function ProfileProjects({owner, access_token}: { owner: string; access_token: string }) {
-  const repos = await githubApp.getAvailableRepositories(owner, access_token);
+  const repos = await githubFacade.getUserRepositoriesForApp(owner, access_token);
   let projects = await database.getProjects(repos.map(r => r.full_name));
 
   if (users.isWikiAdmin(owner)) {

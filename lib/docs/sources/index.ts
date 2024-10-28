@@ -1,11 +1,10 @@
 import {promises as fs} from 'fs';
-import database from "@/lib/database";
+import database from "../../base/database";
 import {ModPlatform} from "@/lib/platforms";
 import {unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import cacheUtil from "@/lib/cacheUtil";
-import githubApp from "@/lib/github/githubApp";
 import localPreview from "@/lib/docs/localPreview";
 import {redirect, RedirectType} from "next/navigation";
 import metadata, {DocumentationFolderMetadata, ValidationError} from "@/lib/docs/metadata";
@@ -15,6 +14,7 @@ import {
   FOLDER_METADATA_FILE_NAME,
   HOMEPAGE_FILE_PATH
 } from "@/lib/constants";
+import githubFacade from "@/lib/facade/githubFacade";
 
 const defaultLocale = 'en';
 
@@ -236,7 +236,7 @@ async function findProjectSource(slug: string, enableLocal: boolean): Promise<Do
   if (!localPreview.isEnabled()) {
     const project = await database.getProjectCached(slug);
     if (project) {
-      const editable = await githubApp.isRepositoryPublic(project.source_repo);
+      const editable = await githubFacade.isRepositoryPublic(project.source_repo);
       const metadata = await getRemoteRepositoryCachedMetadata(project.id, project.source_repo, project.source_branch, project.source_path);
 
       return {

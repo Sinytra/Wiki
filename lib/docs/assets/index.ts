@@ -2,7 +2,7 @@ import {unstable_cache} from "next/cache";
 import sources, {DocumentationSource, RemoteDocumentationSource} from "@/lib/docs/sources";
 import staticAssets from "@/lib/docs/assets/staticAssets";
 import githubAssets from "@/lib/docs/assets/githubAssets";
-import githubApp from "@/lib/github/githubApp";
+import githubFacade from "@/lib/facade/githubFacade";
 
 type SourceType = 'static' | 'github';
 const rawGithubUserContent: string = 'https://raw.githubusercontent.com';
@@ -102,7 +102,7 @@ async function getDocumentationSourceAssets(source: DocumentationSource): Promis
   let baseUrl: string | null = null;
   if (isRemote) {
     const remote = source as RemoteDocumentationSource;
-    if (await githubApp.isRepositoryPublic(remote.repo)) {
+    if (await githubFacade.isRepositoryPublic(remote.repo)) {
       baseUrl = `${rawGithubUserContent}/${remote.repo}/${remote.branch}/${source.path}/`;
     }
   }

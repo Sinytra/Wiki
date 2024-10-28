@@ -1,11 +1,10 @@
 'use server'
 
 import {docsPageReportSchema, migrateRepositorySchema, projectRegisterSchema} from "@/lib/forms/schemas";
-import {revalidatePath, revalidateTag} from "next/cache";
-import githubApp from "@/lib/github/githubApp";
+import {revalidatePath} from "next/cache";
 import {ValidationError} from "@/lib/docs/metadata";
 import platforms, {ModProject} from "@/lib/platforms";
-import database from "@/lib/database";
+import database from "../base/database";
 import {auth, isModrinthOAuthAvailable, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
 import verification from "@/lib/github/verification";
@@ -14,6 +13,8 @@ import email from "@/lib/email";
 import users from "@/lib/users";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import modrinth from "@/lib/platforms/modrinth";
+import githubFacade from "@/lib/facade/githubFacade";
+import githubAppCache from "@/lib/cache/githubAppCache";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -80,7 +81,7 @@ export async function handleMigrateRepositoryForm(rawData: any) {
   const user = await github.getUserProfile(session.access_token);
 
   // Ensure app is installed on repository
-  const installation = await githubApp.getInstallation(data.new_owner, data.repo, null, null);
+  const installation = await githubFacade.getInstallation(data.new_owner, data.repo, null, null);
   // Prompt user to install app
   if (installation && 'url' in installation) {
     return {success: false, installation_url: installation.url};
@@ -91,16 +92,13 @@ export async function handleMigrateRepositoryForm(rawData: any) {
     return {success: false, validation_error: 'access_denied'};
   }
 
-  // Create auth instance
-  const octokit = await githubApp.createInstance(installation!.id);
-
-  const repo = await githubApp.getRepository(octokit, data.owner, data.repo);
+  const repo = await githubFacade.getRepository(data.owner, data.repo);
 
   // Check if repo has moved
   if ('id' in repo && data.owner.toLowerCase() !== repo.owner.login.toLowerCase() && data.repo.toLowerCase() === repo.name.toLowerCase()) {
     await database.migrateRepository(`${data.owner}/${data.repo}`, repo.full_name);
 
-    revalidateTag(cacheUtil.getGithubAppUserInstallCacheId(data.owner));
+    githubAppCache.getUserAccessibleInstallations.invalidate(data.owner, data.repo);
     revalidatePath('/dev');
     return {success: true};
   }
@@ -184,7 +182,7 @@ async function validateProjectFormData(rawData: any) {
   }
 
   // Ensure app is installed on repository
-  const installation = await githubApp.getInstallation(data.owner, data.repo, data.branch, data.path);
+  const installation = await githubFacade.getInstallation(data.owner, data.repo, data.branch, data.path);
   // Prompt user to install app
   if (installation && 'url' in installation) {
     return {success: false, installation_url: installation.url};
@@ -195,16 +193,13 @@ async function validateProjectFormData(rawData: any) {
     return {success: false, validation_error: 'access_denied'};
   }
 
-  // Create auth instance
-  const octokit = await githubApp.createInstance(installation!.id);
-
-  const branches = await githubApp.getRepoBranches(octokit, data.owner, data.repo);
+  const branches = await githubFacade.getRepoBranches(data.owner, data.repo);
   if (!branches.some(b => b.name === data.branch)) {
     return {success: false, errors: {branch: ['no_branch']}};
   }
 
   // Read docs path
-  const content = await githubApp.getRepoContents(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
+  const content = await githubFacade.getRepositoryContents(data.owner + '/' + data.repo, data.branch, validatedFields.data.path);
 
   if (content === null) {
     return {success: false, errors: {path: ['invalid_path']}};
@@ -213,7 +208,7 @@ async function validateProjectFormData(rawData: any) {
   // Parse metadata file
   let metadata = undefined
   try {
-    metadata = await githubDocsSource.readRemoteMetadata(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
+    metadata = await githubDocsSource.readMetadata(data.owner + '/' + data.repo, data.branch, validatedFields.data.path);
   } catch (e) {
     return {success: false, error: 'invalid_meta', details: e instanceof ValidationError ? e.message : undefined};
   }

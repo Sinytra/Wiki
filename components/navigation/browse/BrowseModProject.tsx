@@ -9,12 +9,12 @@ import {Button} from "@/components/ui/button";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
-import githubApp from "@/lib/github/githubApp";
 import {getLatestVersion} from "@/components/docs/mod-info/modInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
+import githubFacade from "@/lib/facade/githubFacade";
 
 function ProjectIcon({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
@@ -43,7 +43,7 @@ function ProjectIconPlaceholder() {
 }
 
 async function GitHubProjectLink({repo}: { repo: string }) {
-  const isPublic = await githubApp.isRepositoryPublic(repo);
+  const isPublic = await githubFacade.isRepositoryPublic(repo);
 
   return (
     <Suspense>

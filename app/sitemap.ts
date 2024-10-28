@@ -1,5 +1,5 @@
 import type {MetadataRoute} from 'next';
-import database from "@/lib/database";
+import database from "../lib/base/database";
 import available from "@/lib/locales/available";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

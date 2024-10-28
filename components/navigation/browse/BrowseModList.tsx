@@ -1,7 +1,7 @@
 import {Mod} from "@prisma/client";
 import BrowseModProject from "@/components/navigation/browse/BrowseModProject";
 import TablePagination from "@/components/navigation/TablePagination";
-import database from "@/lib/database";
+import database from "../../../lib/base/database";
 import {getTranslations} from "next-intl/server";
 
 export default async function BrowseModList({ query, page }: { query: string; page: number }) {

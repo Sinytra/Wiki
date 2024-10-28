@@ -1,4 +1,4 @@
-import {revalidateTag} from "next/cache";
+import {revalidateTag, unstable_cache} from "next/cache";
 
 const githubRequestsCacheId = 'github';
 const githubAppRequestsCacheId = 'github_app';
@@ -19,31 +19,54 @@ function getRemoteProjectMetadataCacheId(id: string): string {
   return `remote_project_metadata:${id}`;
 }
 
-function getGithubAppRepoInstallCacheId(owner: string): string {
-  return `repo_install:${owner}`;
-}
-
-function getGithubAppUserInstallCacheId(owner: string): string {
-  return `user_install:${owner}`;
-}
-
 function clearModCaches(id: string) {
-  revalidateTag(cacheUtil.getModDocsTreeCacheId(id));
-  revalidateTag(cacheUtil.getModDocsSourceCacheId(id));
-  revalidateTag(cacheUtil.getModDocsLocalesCacheId(id));
-  revalidateTag(cacheUtil.getRemoteProjectMetadataCacheId(id));
+  revalidateTag(getModDocsTreeCacheId(id));
+  revalidateTag(getModDocsSourceCacheId(id));
+  revalidateTag(getModDocsLocalesCacheId(id));
+  revalidateTag(getRemoteProjectMetadataCacheId(id));
 }
 
-const cacheUtil = {
+interface DynamicCache<T extends Array<any>, U extends Promise<any>> {
+  get: (...args: T) => U;
+  invalidate: (...args: T) => void;
+}
+
+export function wrapDynamicCached<
+  T extends Array<any>,
+  U extends Promise<any>
+>(
+  name: string,
+  tag: (...args: T) => string,
+  action: (...args: T) => U,
+  expiry?: number | false
+): DynamicCache<T, U> {
+  const get = (...args: T): U => {
+    const t = name + ':' + tag(...args);
+    const cache = unstable_cache(action, [name], {tags: [t], revalidate: expiry});
+
+    try {
+      return cache(...args);
+    } catch (e) {
+      console.error(`Error querying cache '${name}'`, e);
+      revalidateTag(t);
+      throw e;
+    }
+  }
+
+  const invalidate = (...args: T): void => {
+    const t = name + ':' + tag(...args);
+    revalidateTag(t);
+  };
+
+  return {get, invalidate};
+}
+
+export default {
   githubRequestsCacheId,
   githubAppRequestsCacheId,
-  getGithubAppUserInstallCacheId,
-  getGithubAppRepoInstallCacheId,
   getModDocsTreeCacheId,
   getModDocsSourceCacheId,
   getModDocsLocalesCacheId,
   getRemoteProjectMetadataCacheId,
   clearModCaches
 };
-
-export default cacheUtil;

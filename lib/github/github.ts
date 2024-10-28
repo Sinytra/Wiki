@@ -30,7 +30,7 @@ async function getAccessibleInstallations(token: string) {
 
 async function getAccessibleAppRepositories(token: string, installationId: number) {
   const instance = new Octokit({auth: token});
-  return github.getPaginatedData(instance, `GET /user/installations/${installationId}/repositories`, true);
+  return getPaginatedData(instance, `GET /user/installations/${installationId}/repositories`, true);
 }
 
 async function makeApiRequest<T>(token: string, path: string, ...options: any[]) {
@@ -88,7 +88,7 @@ function parseData(data: any) {
   }
 
   // Some endpoints respond with 204 No Content instead of empty array
-  //   when there is no data. In that case, return an empty array.
+  // when there is no data. In that case, return an empty array.
   if (!data) {
     return []
   }
@@ -105,11 +105,8 @@ function parseData(data: any) {
   return data;
 }
 
-const github = {
+export default {
   getUserProfile,
-  getPaginatedData,
   getAccessibleInstallations,
   getAccessibleAppRepositories
 };
-
-export default github;

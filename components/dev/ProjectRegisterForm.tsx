@@ -26,7 +26,7 @@ import {cn} from "@/lib/utils";
 import {Loader2Icon} from "lucide-react";
 import {modrinthAuthScopes, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import {Button} from "@/components/ui/button";
-import {RepoInstallationState} from "@/lib/github/githubApp";
+import {RepoInstallationState} from "@/lib/base/github/githubApp";
 import {useRouter} from "@/lib/locales/routing";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 

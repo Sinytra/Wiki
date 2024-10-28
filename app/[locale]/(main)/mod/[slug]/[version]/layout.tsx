@@ -11,7 +11,7 @@ import {NavLink} from "@/components/navigation/link/NavLink";
 import {ErrorBoundary} from "react-error-boundary";
 import {useTranslations} from "next-intl";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
-import githubApp from "@/lib/github/githubApp";
+import githubFacade from "@/lib/facade/githubFacade";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -63,7 +63,7 @@ export default async function ModLayout({children, params}: Readonly<{
   params: { slug: string; version: string; locale: string }
 }>) {
   const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
-  const isPublic = 'repo' in source && (await githubApp.isRepositoryPublic(source.repo as string));
+  const isPublic = 'repo' in source && (await githubFacade.isRepositoryPublic(source.repo as string));
 
   setContextLocale(params.locale);
 

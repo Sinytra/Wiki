@@ -1,6 +1,6 @@
 import {NextRequest} from "next/server";
 import cacheUtil from "@/lib/cacheUtil";
-import database from "@/lib/database";
+import database from "../../../../../../lib/base/database";
 import {getHttpErrorDetailsURL} from "@/lib/utils";
 import verification from "@/lib/github/verification";
 import {revalidatePath} from "next/cache";
