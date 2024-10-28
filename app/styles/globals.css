@@ -10,7 +10,7 @@
     transition: 250ms grid-template-rows ease;
 }
 
-.accordion.open .accordion-body {
+.accordion.open > div > .accordion-body {
     grid-template-rows: 1fr;
 }
 

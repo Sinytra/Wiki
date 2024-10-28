@@ -21,7 +21,7 @@ export default function DirectoryTreeView({level, newBasePath, trigger, children
     <div className={cn("[&:not(:last-child)_.docsAccordeonTrigger]:border-b accordion", isOpen && 'open')} style={{paddingLeft: `${((level - 1) * 0.4)}rem`}}>
       <div className="border-b !border-none">
         <h3 className="flex">
-          <button onClick={() => setOpen(!isOpen)}
+          <button onClick={() => setOpen(!isOpen)} data-state={isOpen ? 'open' : 'closed'}
                   className="border-b docsAccordeonTrigger flex flex-1 items-center justify-between py-4 font-medium hover:underline [&[data-state=open]>svg]:rotate-180 docsAccordeonTrigger px-1 border-accent [&_svg]:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 transition-none">
             {trigger}
             <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200"/>

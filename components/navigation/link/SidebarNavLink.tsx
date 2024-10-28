@@ -10,7 +10,10 @@ export default function SidebarNavLink({href, icon: Icon, children}: {
   return (
     <LocaleNavLink href={href}>
       <ActiveNavButton target={href}>
-        {Icon && <Icon className="mr-2 h-4 w-4"/>} {children}
+        {Icon && <Icon className="flex-shrink-0 mr-2 h-4 w-4"/>}
+        <span className="text-ellipsis overflow-hidden">
+          {children}
+        </span>
       </ActiveNavButton>
     </LocaleNavLink>
   )
