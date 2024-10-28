@@ -4,7 +4,7 @@ import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import markdown from "@/lib/markdown";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent";
-import platforms from "@/lib/platforms";
+import platformsFacade from "@/lib/facade/platformsFacade";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import PageEditControls from "@/components/docs/PageEditControls";
 import DocsTableOfContents from "@/components/docs/DocsTableOfContents";
@@ -14,7 +14,7 @@ import {pick} from "lodash";
 
 export default async function DocsEntryPage({slug, path, locale, version}: { slug: string; path: string[]; locale: string; version: string }) {
   const source = await sources.getBranchedProjectSource(slug, version);
-  const project = await platforms.getPlatformProject(source.platform, source.slug);
+  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
 
   const {file, content, edit_url} = await markdown.renderDocumentationFile(source, path, locale);
 

@@ -1,4 +1,4 @@
-import platforms, {ModPlatform, ModProject} from "@/lib/platforms";
+import platformsFacade, {ModPlatform, ModProject} from "@/lib/facade/platformsFacade";
 import {Suspense, use} from "react";
 import {PartialMod} from "@/lib/types/search";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
@@ -72,7 +72,7 @@ function ProjectMetaInfo({project}: { project: Promise<ModProject> }) {
 }
 
 export default async function BrowseModProject({mod}: { mod: PartialMod }) {
-  const project = platforms.getPlatformProject(mod.platform as ModPlatform, mod.slug);
+  const project = platformsFacade.getPlatformProject(mod.platform as ModPlatform, mod.slug);
 
   return (
     <div className="flex flex-row items-center border border-neutral-600 rounded-sm w-full p-3 gap-4">
@@ -115,7 +115,7 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
             <GitHubProjectLink repo={mod.source_repo}/>
             <Button asChild variant="outline" size="icon"
                     className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
-              <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
+              <NavLink href={platformsFacade.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
                 {mod.platform === 'modrinth'
                   ? <ModrinthIcon width={24} height={24}/>
                   : <CurseForgeIcon width={24} height={24}/>

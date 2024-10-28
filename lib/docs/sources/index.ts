@@ -1,6 +1,6 @@
 import {promises as fs} from 'fs';
-import database from "../../base/database";
-import {ModPlatform} from "@/lib/platforms";
+import database from "@/lib/database";
+import {ModPlatform} from "@/lib/facade/platformsFacade";
 import {unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";

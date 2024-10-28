@@ -3,7 +3,7 @@ import MetadataRowKey from "@/components/docs/mod-metadata/MetadataRowKey";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {DocsEntryMetadata, ModContentType} from "@/lib/docs/metadata";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
-import {ModProject} from "@/lib/platforms";
+import {ModProject} from "@/lib/facade/platformsFacade";
 import assets, {AssetLocation, resourceLocationToString} from "@/lib/docs/assets";
 import {DocumentationSource} from "@/lib/docs/sources";
 import ImageWithFallback from "@/components/util/ImageWithFallback";

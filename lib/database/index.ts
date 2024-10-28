@@ -1,5 +1,5 @@
-import prisma from "@/lib/base/database/prisma";
-import {ModPlatform} from "@/lib/platforms";
+import prisma from "@/lib/database/prisma";
+import {ModPlatform} from "@/lib/facade/platformsFacade";
 
 async function registerProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string, is_community: boolean) {
   // TODO Throw error on duplicate

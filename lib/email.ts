@@ -44,8 +44,6 @@ async function sendMessage(recipient: string, subject: string, body: string) {
   console.log('Message sent: %s', info.messageId);
 }
 
-const email = {
+export default {
   submitReport
 };
-
-export default email;

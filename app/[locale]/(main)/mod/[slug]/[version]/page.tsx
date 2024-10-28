@@ -2,7 +2,7 @@ import MarkdownContent from "@/components/docs/markdown/MarkdownContent";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
 import ModInfo from "@/components/docs/mod-info";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
-import platforms, {ModProject} from "@/lib/platforms";
+import platformsFacade, {ModProject} from "@/lib/facade/platformsFacade";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import {setContextLocale} from "@/lib/locales/routing";
 import DocsHomepagePlaceholder from "@/components/docs/DocsHomepagePlaceholder";
@@ -24,7 +24,7 @@ export async function generateMetadata({params}: {
     return { title: (await parent).title?.absolute };
   }
 
-  const project = await platforms.getPlatformProject(source.platform, source.slug);
+  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
 
   return {
     title: `${project.name} - ${(await parent).title?.absolute}`,
@@ -66,7 +66,7 @@ export default async function Mod({params}: { params: { slug: string; version: s
   setContextLocale(params.locale);
 
   const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
-  const project = await platforms.getPlatformProject(source.platform, source.slug);
+  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
 
   return (
     <ModDocsEntryPageLayout rightPanel={<ModInfo mod={project}/>}>

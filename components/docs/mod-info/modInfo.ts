@@ -23,7 +23,7 @@ import {
   WandIcon,
   ZapIcon
 } from "lucide-react";
-import platforms, {ModAuthor, ModProject} from "@/lib/platforms";
+import platformsFacade, {ModAuthor, ModProject} from "@/lib/facade/platformsFacade";
 import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
 
@@ -83,7 +83,7 @@ export function getLatestVersion(project: ModProject): string | undefined {
 }
 
 export async function getModProjectInformation(project: ModProject): Promise<ModDisplayInformation> {
-  const authors = await platforms.getProjectAuthors(project);
+  const authors = await platformsFacade.getProjectAuthors(project);
   const t = await getTranslations('DocsModInfo');
 
   const license = !project.license ? t('license.unknown') : project.license.id === ARRNoLicense ? t('license.arr') : project.license.id.startsWith('LicenseRef') ? t('license.custom') : project.license.id || t('license.unknown');

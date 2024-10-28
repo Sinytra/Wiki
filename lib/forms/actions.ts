@@ -3,17 +3,17 @@
 import {docsPageReportSchema, migrateRepositorySchema, projectRegisterSchema} from "@/lib/forms/schemas";
 import {revalidatePath} from "next/cache";
 import {ValidationError} from "@/lib/docs/metadata";
-import platforms, {ModProject} from "@/lib/platforms";
-import database from "../base/database";
+import platformsFacade, {ModProject} from "@/lib/facade/platformsFacade";
+import database from "@/lib/database";
 import {auth, isModrinthOAuthAvailable, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
 import github from "@/lib/base/github/github";
 import email from "@/lib/email";
-import users from "@/lib/users";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
-import modrinth from "@/lib/platforms/modrinth";
+import modrinth from "@/lib/base/platforms/modrinth";
 import githubFacade from "@/lib/facade/githubFacade";
 import githubCache from "@/lib/cache/githubCache";
+import {isWikiAdmin} from "@/lib/utils";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -176,7 +176,7 @@ async function validateProjectFormData(rawData: any) {
   }
   const user = await github.getUserProfile(session.access_token);
 
-  if (rawData.is_community !== undefined && !users.isWikiAdmin(user.login)) {
+  if (rawData.is_community !== undefined && !isWikiAdmin(user.login)) {
     return {success: false, error: 'insufficient_perms'};
   }
 
@@ -221,7 +221,7 @@ async function validateProjectFormData(rawData: any) {
 
   let project: ModProject;
   try {
-    project = await platforms.getPlatformProject(metadata.platform, metadata.slug);
+    project = await platformsFacade.getPlatformProject(metadata.platform, metadata.slug);
   } catch (e) {
     return {success: false, error: 'no_project'};
   }

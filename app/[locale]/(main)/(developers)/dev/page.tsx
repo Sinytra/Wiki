@@ -1,6 +1,6 @@
 import {auth, signOut} from "@/lib/auth";
 import github, {GitHubUserProfile} from "@/lib/base/github/github";
-import database from "../../../../../lib/base/database";
+import database from "@/lib/database";
 import * as React from "react";
 import {Suspense} from "react";
 import ProfileProject from "@/components/dev/ProfileProject";
@@ -11,7 +11,6 @@ import {getMessages, getTranslations} from "next-intl/server";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
 import {pick} from "lodash";
 import {GetHelpModal} from "@/components/dev/GetHelpModal";
-import users from "@/lib/users";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {Skeleton} from "@/components/ui/skeleton";
 import LoadingContent from "@/components/util/LoadingContent";
@@ -19,6 +18,7 @@ import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 import LinkTextButton from "@/components/ui/link-text-button";
 import githubFacade from "@/lib/facade/githubFacade";
+import {isWikiAdmin} from "@/lib/utils";
 
 export const dynamic = 'force-dynamic';
 
@@ -47,7 +47,7 @@ async function ProfileProjects({owner, access_token}: { owner: string; access_to
   const repos = await githubFacade.getUserRepositoriesForApp(owner, access_token);
   let projects = await database.getProjects(repos.map(r => r.full_name));
 
-  if (users.isWikiAdmin(owner)) {
+  if (isWikiAdmin(owner)) {
     const communityProjects = await database.getCommunityProjects();
     projects.push(...communityProjects.filter(p => !projects.some(t => p.id === t.id)));
   }
@@ -150,7 +150,7 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
 
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
-  const isAdmin = session.user?.name !== undefined && session.user.name !== null && users.isWikiAdmin(session.user.name);
+  const isAdmin = session.user?.name !== undefined && session.user.name !== null && isWikiAdmin(session.user.name);
 
   return (
     <GetStartedContextProvider>

@@ -1,4 +1,4 @@
-import platforms from "@/lib/platforms";
+import platformsFacade from "@/lib/facade/platformsFacade";
 import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
@@ -24,7 +24,7 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
 }
 
 export default async function ProfileProject({mod}: { mod: Mod }) {
-  const project = await platforms.getProject(mod);
+  const project = await platformsFacade.getProject(mod);
   const messages = await getMessages();
 
   return <>

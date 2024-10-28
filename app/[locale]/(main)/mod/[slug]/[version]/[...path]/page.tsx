@@ -3,7 +3,7 @@ import DocsEntryPage from "@/components/docs/DocsEntryPage";
 import DocsLoadingSkeleton from "@/components/docs/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
-import platforms from "@/lib/platforms";
+import platformsFacade from "@/lib/facade/platformsFacade";
 import {setContextLocale} from "@/lib/locales/routing";
 import {FOLDER_METADATA_FILE_NAME} from "@/lib/constants";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({params}: {
     return { title: (await parent).title?.absolute };
   }
 
-  const project = await platforms.getPlatformProject(source.platform, source.slug);
+  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
 
   let title: string | undefined = undefined;
   try {

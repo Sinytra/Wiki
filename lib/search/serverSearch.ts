@@ -2,7 +2,7 @@
 
 import {ModSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/types/search";
 import {getProcessURL} from "@/lib/utils";
-import database from "../base/database";
+import database from "@/lib/database";
 
 export async function searchWikiServer(query: string): Promise<WikiSearchResults> {
   if (!process.env.SEARCH_ENDPOINT || !process.env.SEARCH_INDEX || !process.env.SEARCH_API_KEY) {

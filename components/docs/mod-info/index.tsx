@@ -5,7 +5,7 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import MetadataGrid from "@/components/docs/mod-metadata/MetadataGrid";
 import MetadataRowKey from "@/components/docs/mod-metadata/MetadataRowKey";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
-import platforms, {ModProject} from "@/lib/platforms";
+import platformsFacade, {ModProject} from "@/lib/facade/platformsFacade";
 import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
@@ -40,7 +40,7 @@ export default async function ModInfo({mod}: Props) {
   return (
     <div className="flex flex-col">
       <DocsSidebarTitle
-        extra={<MutedLinkIconButton icon={ExternalLinkIcon} href={platforms.getProjectURL(mod.platform, mod.slug)}/>}>
+        extra={<MutedLinkIconButton icon={ExternalLinkIcon} href={platformsFacade.getProjectURL(mod.platform, mod.slug)}/>}>
         {t('title')}
       </DocsSidebarTitle>
 

@@ -1,6 +1,6 @@
 import {NextRequest} from "next/server";
 import cacheUtil from "@/lib/cacheUtil";
-import database from "../../../../../../lib/base/database";
+import database from "@/lib/database";
 import {getHttpErrorDetailsURL} from "@/lib/utils";
 import {revalidatePath} from "next/cache";
 import githubFacade from "@/lib/facade/githubFacade";

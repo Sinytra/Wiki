@@ -1,10 +1,10 @@
 import {Mod} from '@prisma/client';
 
-import {ModAuthor, ModProject, ModPlatformProvider, ModPlatform} from "./universal";
-import {modrinthModPlatform} from "./modrinth";
-import {curseForgeModPlatform} from "@/lib/platforms/curseforge";
+import {ModAuthor, ModProject, ModPlatformProvider, ModPlatform} from "../base/platforms/universal";
+import {modrinthModPlatform} from "../base/platforms/modrinth";
+import {curseForgeModPlatform} from "@/lib/base/platforms/curseforge";
 
-export * from './universal';
+export * from '@/lib/base/platforms/universal';
 
 const providers: { [key: string]: ModPlatformProvider } = {
   modrinth: modrinthModPlatform,
@@ -37,11 +37,9 @@ function getProjectURL(source: ModPlatform, slug: string): string {
   return getModSourcePlatform(source).getProjectURL(slug);
 }
 
-const platforms = {
+export default {
   getProject,
   getProjectAuthors,
   getPlatformProject,
   getProjectURL
 };
-
-export default platforms;
