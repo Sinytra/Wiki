@@ -1,5 +1,6 @@
 import githubApp from "@/lib/base/github/githubApp";
 import {wrapDynamicCached} from "@/lib/cacheUtil";
+import github from "@/lib/base/github/github";
 
 const getExistingAppRepoInstallation = wrapDynamicCached(
   'existing_app_repo_installation',
@@ -10,7 +11,7 @@ const getExistingAppRepoInstallation = wrapDynamicCached(
 const getUserAccessibleInstallations = wrapDynamicCached(
   'accessible_user_installations',
   (owner, token) => owner,
-  (owner: string, token: string) => githubApp.getUserAccessibleInstallations(token),
+  (owner: string, token: string) => github.getUserAccessibleInstallations(token),
   360
 );
 

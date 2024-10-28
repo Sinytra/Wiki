@@ -2,8 +2,8 @@ import {NextRequest} from "next/server";
 import cacheUtil from "@/lib/cacheUtil";
 import database from "../../../../../../lib/base/database";
 import {getHttpErrorDetailsURL} from "@/lib/utils";
-import verification from "@/lib/github/verification";
 import {revalidatePath} from "next/cache";
+import githubFacade from "@/lib/facade/githubFacade";
 
 export async function POST(request: NextRequest, { params }: { params: { slug: string } }) {
   // Expect authorization using GitHub user token
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
   }
 
   const parts = mod.source_repo.split('/');
-  if (!(await verification.verifyRepositoryOwnership(parts[0], parts[1], auth))) {
+  if (!(await githubFacade.verifyUserRepositoryOwnership(parts[0], parts[1], auth))) {
     return Response.json({ message: 'Verification error' }, { status: 401 });
   }
 

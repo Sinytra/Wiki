@@ -7,14 +7,13 @@ import platforms, {ModProject} from "@/lib/platforms";
 import database from "../base/database";
 import {auth, isModrinthOAuthAvailable, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
-import verification from "@/lib/github/verification";
-import github from "@/lib/github/github";
+import github from "@/lib/base/github/github";
 import email from "@/lib/email";
 import users from "@/lib/users";
 import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import modrinth from "@/lib/platforms/modrinth";
 import githubFacade from "@/lib/facade/githubFacade";
-import githubAppCache from "@/lib/cache/githubAppCache";
+import githubCache from "@/lib/cache/githubCache";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -88,7 +87,7 @@ export async function handleMigrateRepositoryForm(rawData: any) {
   }
 
   // Validate user repository access
-  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.new_owner, data.repo, user.login))) {
+  if (!(await githubFacade.verifyAppInstallationRepositoryOwnership(data.new_owner, data.repo, user.login))) {
     return {success: false, validation_error: 'access_denied'};
   }
 
@@ -98,7 +97,7 @@ export async function handleMigrateRepositoryForm(rawData: any) {
   if ('id' in repo && data.owner.toLowerCase() !== repo.owner.login.toLowerCase() && data.repo.toLowerCase() === repo.name.toLowerCase()) {
     await database.migrateRepository(`${data.owner}/${data.repo}`, repo.full_name);
 
-    githubAppCache.getUserAccessibleInstallations.invalidate(data.owner, data.repo);
+    githubCache.getUserAccessibleInstallations.invalidate(data.owner, data.repo);
     revalidatePath('/dev');
     return {success: true};
   }
@@ -118,7 +117,7 @@ export async function handleRevalidateDocs(id: string) {
   }
 
   const parts = mod.source_repo.split('/');
-  if (!(await verification.verifyRepositoryOwnership(parts[0], parts[1], session.access_token))) {
+  if (!(await githubFacade.verifyUserRepositoryOwnership(parts[0], parts[1], session.access_token))) {
     return {success: false, error: 'verification'};
   }
 
@@ -189,7 +188,7 @@ async function validateProjectFormData(rawData: any) {
   }
 
   // Validate user repository access
-  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
+  if (!(await githubFacade.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
     return {success: false, validation_error: 'access_denied'};
   }
 

@@ -1,6 +1,5 @@
 import {App, Octokit} from "octokit";
 import {Api} from "@octokit/plugin-rest-endpoint-methods";
-import github from "@/lib/github/github";
 import cacheUtil from "@/lib/cacheUtil";
 import {FileTreeNode, RemoteDocumentationSource} from "@/lib/docs/sources";
 import githubFacade from "@/lib/facade/githubFacade";
@@ -67,11 +66,6 @@ async function getInstallation(owner: string, repo: string, branch: string | nul
 async function getExistingAppRepoInstallation(owner: string, repo: string): Promise<number> {
   const response = await createAppInstance().octokit.rest.apps.getRepoInstallation({owner, repo});
   return response.data.id;
-}
-
-async function getUserAccessibleInstallations(token: string) {
-  const response = await github.getAccessibleInstallations(token);
-  return response.data.installations.map(i => i.id);
 }
 
 async function readGitHubDirectoryTree(source: RemoteDocumentationSource, path?: string, shallow?: boolean): Promise<FileTreeNode[]> {
@@ -181,7 +175,6 @@ export default {
   getExistingAppRepoInstallation,
   isRepositoryPublic,
   getRepository,
-  getUserAccessibleInstallations,
   getRepositoryFileContents,
   readGitHubDirectoryTree,
   getRepoUserPermissionLevel
