@@ -13,22 +13,14 @@ import {pick} from "lodash";
 import {GetHelpModal} from "@/components/dev/GetHelpModal";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {Skeleton} from "@/components/ui/skeleton";
-import LoadingContent from "@/components/util/LoadingContent";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 import LinkTextButton from "@/components/ui/link-text-button";
 import githubFacade from "@/lib/facade/githubFacade";
 import {isWikiAdmin} from "@/lib/utils";
+import DevPageProjectsList from "@/components/dev/DevPageProjectsList";
 
 export const dynamic = 'force-dynamic';
-
-function ProfileProjectsLoading() {
-  return (
-    <div className="w-full flex justify-center items-center h-[185px] border-none">
-      <LoadingContent/>
-    </div>
-  );
-}
 
 function ProfileProjectSkeleton() {
   return (
@@ -182,9 +174,11 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
         <hr className="my-2 border-neutral-600"/>
 
         <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url}>
-          <Suspense fallback={<ProfileProjectsLoading />}>
-            <ProfileProjects owner={profile.login} access_token={session.access_token}/>
-          </Suspense>
+          <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
+            <DevPageProjectsList>
+              <ProfileProjects owner={profile.login} access_token={session.access_token}/>
+            </DevPageProjectsList>
+          </NextIntlClientProvider>
         </Profile>
       </div>
     </GetStartedContextProvider>

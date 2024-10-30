@@ -29,7 +29,6 @@ export async function handleEnableProjectForm(rawData: any) {
   }
 
   await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, sourceRepo, data.branch, data.path, data.is_community || false);
-  revalidatePath('/dev');
 
   return {success: true};
 }
@@ -38,8 +37,6 @@ export async function handleDeleteProjectForm(id: string) {
   await database.unregisterProject(id);
   cacheUtil.clearModCaches(id);
   revalidatePath(`/[locale]/mod/${id}/[version]`, 'layout');
-
-  revalidatePath('/dev');
 
   return {success: true};
 }
