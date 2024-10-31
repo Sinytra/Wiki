@@ -17,6 +17,7 @@ import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import * as LucideReact from "lucide-react";
+import matter from 'gray-matter';
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -91,6 +92,14 @@ function sanitizeHastTree(tree: any, sanitizer: (tree: any) => any, components: 
   return tree.children ? tree : sanitizer(tree);
 }
 
+async function readDocumentationFileMetadata(source: DocumentationSource, path: string[], locale: string): Promise<DocsEntryMetadata> {
+  const file = await sources.readDocsFile(source, path, locale);
+  const result = matter(file.content);
+
+  console.log(result.data);
+  return result.data;
+}
+
 async function renderDocumentationFile(source: DocumentationSource, path: string[], locale: string): Promise<RenderedFile> {
   const file = await sources.readDocsFile(source, path, locale);
   const content = await renderDocumentationMarkdown(file.content);
@@ -105,5 +114,6 @@ async function renderDocumentationFile(source: DocumentationSource, path: string
 
 export default {
   renderMarkdown,
-  renderDocumentationFile
+  renderDocumentationFile,
+  readDocumentationFileMetadata
 };

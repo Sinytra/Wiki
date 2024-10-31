@@ -28,6 +28,9 @@ export async function generateMetadata({params}: {
 
   return {
     title: `${project.name} - ${(await parent).title?.absolute}`,
+    openGraph: {
+      images: [`/api/og?slug=${params.slug}&locale=${params.locale}`]
+    },
     other: {
       docs_source_mod: project.name,
       docs_source_icon: project.icon_url

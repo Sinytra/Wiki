@@ -17,7 +17,7 @@ export async function generateMetadata({params}: {
   try {
     source = await sources.getBranchedProjectSource(params.slug, params.version);
   } catch (e) {
-    return { title: (await parent).title?.absolute };
+    return {title: (await parent).title?.absolute};
   }
 
   const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
@@ -34,6 +34,9 @@ export async function generateMetadata({params}: {
 
   return {
     title: title ? `${title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
+    openGraph: {
+      images: [`/api/og?slug=${params.slug}&locale=${params.locale}&path=${params.path.join('/')}`]
+    },
     other: {
       docs_source_mod: project.name,
       docs_source_icon: project.icon_url
@@ -41,7 +44,9 @@ export async function generateMetadata({params}: {
   }
 }
 
-export default async function ModDocsPage({params}: { params: { slug: string; path: string[]; locale: string; version: string; } }) {
+export default async function ModDocsPage({params}: {
+  params: { slug: string; path: string[]; locale: string; version: string; }
+}) {
   setContextLocale(params.locale);
   await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
 
