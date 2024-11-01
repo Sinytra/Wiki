@@ -85,7 +85,7 @@ async function readDocsFile(source: DocumentationSource, path: string[], locale?
     throw new Error(`Documentation file at ${path} not found`);
   }
 
-  return content;
+  return { ...content, updated_at: content.updated_at ? new Date(content.updated_at) : null };
 }
 
 async function parseFolderMetadataFile(source: DocumentationSource, path: string, locale?: string): Promise<DocumentationFolderMetadata> {
