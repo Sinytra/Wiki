@@ -96,7 +96,6 @@ async function readDocumentationFileMetadata(source: DocumentationSource, path: 
   const file = await sources.readDocsFile(source, path, locale);
   const result = matter(file.content);
 
-  console.log(result.data);
   return result.data;
 }
 

@@ -48,7 +48,7 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
             </Button>
         }
         <PrimaryButton asChild>
-          <NavLink href="/public">
+          <NavLink href="/">
             <HouseIcon className="mr-2 w-4 h-4" strokeWidth={2.5} />
             {t('return')}
           </NavLink>
@@ -68,7 +68,7 @@ export default async function ModLayout({children, params}: Readonly<{
   setContextLocale(params.locale);
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={isPublic ? getIssueCreationLink(source.repo) : undefined}/>}>
+    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={isPublic ? getIssueCreationLink(source.repo) : undefined}/>}  >
       <ModDocsBaseLayout leftPanel={<DocsTree source={source} locale={params.locale} version={params.version} />}>
         {children}
       </ModDocsBaseLayout>

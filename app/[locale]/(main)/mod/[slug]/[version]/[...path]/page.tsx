@@ -35,7 +35,7 @@ export async function generateMetadata({params}: {
   return {
     title: title ? `${title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
     openGraph: {
-      images: [`/api/og?slug=${params.slug}&locale=${params.locale}&path=${params.path.join('/')}`]
+      images: [`/api/og?slug=${params.slug}&locale=${params.locale}&path=${params.path.join('/')}&version=${params.version}`]
     },
     other: {
       docs_source_mod: project.name,

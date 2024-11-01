@@ -5,15 +5,96 @@ import sources from "@/lib/docs/sources";
 import sharp from "sharp";
 import markdown from "@/lib/markdown";
 import assets, {AssetLocation} from "@/lib/docs/assets";
+import {getProcessURL} from "@/lib/utils";
 
 export const runtime = 'nodejs';
 
 const size = {
   width: 1200,
-  height: 630,
+  height: 630
 }
 
-async function projectPageImage(project: ModProject) {
+interface DocsPathCoords {
+  locale: string;
+  slug: string;
+  version: string;
+  path?: string;
+}
+
+async function getFont() {
+  const fonts = {
+    'Inter': 'Inter_28pt-Bold.ttf',
+    'SourceCodePro': 'SourceCodePro-Medium.ttf'
+  };
+
+  return Promise.all(Object.entries(fonts).map(async e => {
+    const resp = await fetch(`${getProcessURL()}/static/${e[1]}`);
+    const data = await resp.arrayBuffer();
+
+    return {
+      name: e[0],
+      data: data,
+      style: 'normal'
+    }
+  }));
+}
+
+function PagePath({locale, slug, version, path}: DocsPathCoords) {
+  const fullPath = `/${locale === 'en' ? '' : locale + '/'}mod/${slug}/${version}${path ? '/' + path : ''}`;
+
+  return (
+    <span style={{
+      marginTop: 'auto',
+      width: '100%',
+      alignSelf: 'flex-start',
+      fontSize: '1.8rem',
+      color: '#EBEBF599',
+      fontFamily: 'monospace, SourceCodePro',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      flexShrink: 0
+    }}>
+      {fullPath}
+    </span>
+  );
+}
+
+function WikiHeader() {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      width: '100%',
+      alignItems: 'center'
+    }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        alignItems: 'center',
+        marginRight: '4rem',
+        marginLeft: '4rem'
+      }}>
+        <span style={{fontSize: '4.2rem'}}>Modded Minecraft Wiki</span>
+
+        <img src="https://sinytra.org/logo.png" width={120} height={120} alt="Sinytra logo"/>
+      </div>
+
+      <hr style={{
+        height: '1px',
+        border: '2px solid #EBEBF599',
+        width: '100%',
+        marginTop: '1rem',
+        marginBottom: '2rem'
+      }}/>
+    </div>
+  )
+}
+
+async function projectPageImage(coords: DocsPathCoords, project: ModProject, fonts: any) {
   const getImageBase64 = async (url: string) => {
     const resp = await fetch(url);
     const buf = await resp.arrayBuffer();
@@ -37,68 +118,65 @@ async function projectPageImage(project: ModProject) {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           padding: '2rem',
+          paddingLeft: '3.5rem',
+          paddingRight: '3.5rem',
         }}
       >
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
-          height: '56%',
-          gap: '1rem',
-          marginTop: '1.5rem',
-          marginLeft: '2rem'
-        }}>
-          <img src={acualUrl} width={196} height={196} alt={project.name}/>
-
-          <span style={{
-            paddingTop: '1.6rem',
-            fontSize: '4.5rem',
-            overflowX: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            maxWidth: '66rem'
-          }}>
-            {project.name}
-          </span>
-        </div>
-
-        <hr style={{
-          height: '1px',
-          border: '1px solid #EBEBF599',
-          width: '100%',
-          marginBottom: '2rem',
-          marginTop: '4rem'
-        }}/>
+        <WikiHeader/>
 
         <div style={{
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '5rem',
-          marginRight: '4rem'
+          justifyContent: 'space-between',
+          width: '80%',
+          height: '60%',
+          gap: '1rem'
         }}>
-          <img src="https://sinytra.org/logo.png" width={128} height={128}
-               alt="Sinytra logo"/>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            overflow: 'hidden',
+            width: '100%'
+          }}>
+            <span style={{
+              fontSize: '3.5rem',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              maxWidth: '49rem'
+            }}>
+              {project.name}
+            </span>
+            <span style={{
+              color: '#EBEBF599',
+              fontSize: '2.5rem',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              maxHeight: '15.5rem'
+            }}>
+              {project.summary}
+            </span>
+          </div>
 
-          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <span style={{fontSize: '3rem', marginBottom: '1rem'}}>Modded Minecraft Wiki</span>
-            <span style={{color: '#EBEBF599', fontSize: '2rem'}}>The Wiki for all of Modded Minecraft</span>
+          <div style={{display: 'flex', alignSelf: 'flex-end', flexDirection: 'row'}}>
+            <img src={acualUrl} width={196} height={196} alt={project.name}/>
           </div>
         </div>
+
+        <PagePath {...coords}/>
       </div>
     ),
     {
-      ...size
+      ...size,
+      fonts
     }
   );
 }
 
-function docsEntryPageResponse(mod: string, title: string, iconUrl: AssetLocation | null) {
+function docsEntryPageResponse(coords: DocsPathCoords, mod: string, title: string, iconUrl: AssetLocation | null, fonts: any) {
   return new ImageResponse(
     (
       <div
@@ -112,37 +190,33 @@ function docsEntryPageResponse(mod: string, title: string, iconUrl: AssetLocatio
           flexDirection: 'column',
           alignItems: 'center',
           padding: '2rem',
+          paddingLeft: '3.5rem',
+          paddingRight: '3.5rem'
         }}
       >
+        <WikiHeader/>
+
         <div style={{
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'row',
           justifyContent: 'space-between',
-          alignItems: 'center',
           width: '100%',
-          height: '60%',
-          gap: '1rem',
+          height: '100%',
+          paddingBottom: '14rem'
         }}>
-          {iconUrl ? <img src={iconUrl.src} width={196} height={196} alt={title}/>
-            : <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5ODk4OWYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZpbGUtdGV4dCI+PHBhdGggZD0iTTE1IDJINmEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMlY3WiIvPjxwYXRoIGQ9Ik0xNCAydjRhMiAyIDAgMCAwIDIgMmg0Ii8+PHBhdGggZD0iTTEwIDlIOCIvPjxwYXRoIGQ9Ik0xNiAxM0g4Ii8+PHBhdGggZD0iTTE2IDE3SDgiLz48L3N2Zz4="
-                   style={{width: 168, height: 168, marginTop: '1.6rem'}} alt="Document" />
-          }
-
           <div style={{
             display: 'flex',
             flexDirection: 'column',
+            width: '75%',
             gap: '1rem',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '45rem',
-            textAlign: 'center'
+            overflow: 'hidden'
           }}>
             <span style={{
               fontSize: '3.5rem',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
-              maxWidth: '50rem'
+              maxWidth: '60rem'
             }}>
               {title}
             </span>
@@ -150,43 +224,24 @@ function docsEntryPageResponse(mod: string, title: string, iconUrl: AssetLocatio
               color: '#EBEBF599',
               fontSize: '2.5rem',
               textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              maxWidth: '50rem',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              maxHeight: '12rem'
             }}>
-                ({mod})
-              </span>
+              {mod}
+            </span>
+          </div>
+
+          <div style={{display: 'flex', alignSelf: 'flex-end', flexDirection: 'row'}}>
+            {iconUrl && <img src={iconUrl.src} width={196} height={196} alt={title}/>}
           </div>
         </div>
 
-        <hr style={{
-          height: '1px',
-          border: '1px solid #EBEBF599',
-          width: '100%',
-          marginBottom: '2rem',
-          marginTop: '4rem'
-        }}/>
-
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '5rem',
-          marginRight: '4rem'
-        }}>
-          <img src="https://sinytra.org/logo.png" width={128} height={128}
-               alt="Sinytra logo"/>
-
-          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <span style={{fontSize: '3rem', marginBottom: '1rem'}}>Modded Minecraft Wiki</span>
-            <span style={{color: '#EBEBF599', fontSize: '2rem'}}>The Wiki for all of Modded Minecraft</span>
-          </div>
-        </div>
+        <PagePath {...coords}/>
       </div>
     ),
     {
-      ...size
+      ...size,
+      fonts
     }
   );
 }
@@ -198,19 +253,24 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({'error': 'Missing slug parameter'}, {status: 400})
   }
 
+  const fonts = await getFont();
+
   const source = await sources.getProjectSource(slug);
   const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
 
+  const locale = searchParams.get('locale') || 'en';
+  const version = searchParams.get('version') || 'docs';
+
+  const coords: DocsPathCoords = {locale, slug, version};
+
   const pathVal = searchParams.get('path');
   if (!pathVal) {
-    return projectPageImage(project);
+    return projectPageImage(coords, project, fonts);
   }
-
-  const locale = searchParams.get('locale') || 'en';
 
   const path = pathVal.split('/');
   const metadata = await markdown.readDocumentationFileMetadata(source, path, locale);
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await assets.getAssetResource((metadata.icon || metadata.id)!, source);
 
-  return docsEntryPageResponse(project.name, metadata.title || 'funny', iconUrl);
+  return docsEntryPageResponse({...coords, path: pathVal}, project.name, metadata.title || 'Document', iconUrl, fonts);
 }
