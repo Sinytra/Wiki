@@ -1,3 +1,5 @@
+import available from "@/lib/locales/available";
+
 interface CrowdinResponse<T> {
   data: T
 }
@@ -13,7 +15,8 @@ interface CrowdinLanguageData {
 async function getCrowdinTranslationStatus(lang: string): Promise<number> {
   if (process.env.CROWDIN_PROJECT_ID && process.env.CROWDIN_API_KEY) {
     try {
-      const resp = await fetch(`https://api.crowdin.com/api/v2/projects/${process.env.CROWDIN_PROJECT_ID}/languages/progress?languageIds=${lang}`, {
+      const crowdinLangId = available.getCrowdinLanguageId(lang);
+      const resp = await fetch(`https://api.crowdin.com/api/v2/projects/${process.env.CROWDIN_PROJECT_ID}/languages/progress?languageIds=${crowdinLangId}`, {
         headers: {
           Authorization: `Bearer ${process.env.CROWDIN_API_KEY}`
         }

@@ -19,10 +19,9 @@ function HomePageContent() {
         <p className="text-3xl md:text-4xl text-foreground flex flex-col lg:flex-row items-center gap-x-2">
           {t.rich('heading', {
             highlight: (chunks) => (
-              <span
-                className="text-center font-medium bg-gradient-to-b from-blue-400 to-blue-500 bg-clip-text text-transparent">
-                    {chunks}
-                  </span>
+              <span className="text-center font-medium bg-gradient-to-b from-blue-400 to-blue-500 bg-clip-text text-transparent">
+                {chunks}
+              </span>
             )
           })}
         </p>

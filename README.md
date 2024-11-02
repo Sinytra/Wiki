@@ -29,3 +29,14 @@ An example documentation setup can be found in the `example` directory of this r
 4. Run `npm run dev` to start the app
 
 You can list desired local documentation sources in the `LOCAL_DOCS_ROOTS` env variable as demonstrated in the example.
+
+## Credits
+
+### Translations
+
+Massive thanks to everyone who has contributed to [translation](https://crowdin.com/project/sinytra-wiki) efforts!
+
+Special graditude goes to our most significant contributors:
+
+- [@moritz-htk](https://github.com/moritz-htk) for German translations
+- [@notlin4](https://github.com/notlin4) for Traditional Chinese translations
