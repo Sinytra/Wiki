@@ -5,7 +5,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import available from "@/lib/locales/available";
 
 export async function generateStaticParams() {
-  return Object.keys(available.getAvailableLocales()).map(locale => ({ locale }));
+  return available.getLanguagePaths().map(locale => ({ locale }));
 }
 
 export default function LocaleLayout({params, children}: Readonly<{
