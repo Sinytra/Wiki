@@ -4,8 +4,9 @@ import platformsFacade, {ModProject} from "@/lib/facade/platformsFacade";
 import sources from "@/lib/docs/sources";
 import sharp from "sharp";
 import markdown from "@/lib/markdown";
-import assets, {AssetLocation} from "@/lib/docs/assets";
 import {getProcessURL} from "@/lib/utils";
+import {AssetLocation} from "@/lib/base/assets";
+import assetsFacade from "@/lib/facade/assetsFacade";
 
 export const runtime = 'nodejs';
 
@@ -270,7 +271,7 @@ export async function GET(req: NextRequest) {
 
   const path = pathVal.split('/');
   const metadata = await markdown.readDocumentationFileMetadata(source, path, locale);
-  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await assets.getAssetResource((metadata.icon || metadata.id)!, source);
+  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await assetsFacade.getAssetResource((metadata.icon || metadata.id)!, source);
 
   return docsEntryPageResponse({...coords, path: pathVal}, project.name, metadata.title || 'Document', iconUrl, fonts);
 }

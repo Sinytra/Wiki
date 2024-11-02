@@ -26,9 +26,39 @@ function clearModCaches(id: string) {
   revalidateTag(getRemoteProjectMetadataCacheId(id));
 }
 
+interface SimpleCache<T extends Array<any>, U extends Promise<any>> {
+  get: (...args: T) => U;
+  invalidate: () => void;
+}
+
 interface DynamicCache<T extends Array<any>, U extends Promise<any>> {
   get: (...args: T) => U;
   invalidate: (...args: T) => void;
+}
+
+export function wrapCached<
+  T extends Array<any>,
+  U extends Promise<any>
+>(
+  name: string,
+  action: (...args: T) => U,
+  expiry?: number | false
+): SimpleCache<T, U> {
+  const invalidate = (): void => revalidateTag(name);
+  
+  const get = (...args: T): U => {
+    const cache = unstable_cache(action, [name], {tags: [name], revalidate: expiry});
+
+    try {
+      return cache(...args);
+    } catch (e) {
+      console.error(`Error querying cache '${name}'`, e);
+      invalidate();
+      throw e;
+    }
+  }
+
+  return {get, invalidate};
 }
 
 export function wrapDynamicCached<

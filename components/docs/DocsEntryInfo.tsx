@@ -4,10 +4,12 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import {DocsEntryMetadata, ModContentType} from "@/lib/docs/metadata";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import {ModProject} from "@/lib/facade/platformsFacade";
-import assets, {AssetLocation, resourceLocationToString} from "@/lib/docs/assets";
 import {DocumentationSource} from "@/lib/docs/sources";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {getTranslations} from "next-intl/server";
+import {AssetLocation} from "@/lib/base/assets";
+import assetsFacade from "@/lib/facade/assetsFacade";
+import resourceLocation from "@/lib/base/resourceLocation";
 
 interface Props {
   source: DocumentationSource;
@@ -18,7 +20,7 @@ interface Props {
 const types: ModContentType[] = ['block', 'item', 'other'];
 
 export default async function DocsEntryInfo({source, project, metadata}: Props) {
-  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await assets.getAssetResource((metadata.icon || metadata.id)!, source);
+  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await assetsFacade.getAssetResource((metadata.icon || metadata.id)!, source);
   const t = await getTranslations('DocsEntryInfo');
 
   return (
@@ -29,7 +31,7 @@ export default async function DocsEntryInfo({source, project, metadata}: Props) 
 
       <div className="mb-6 border border-accent m-2 rounded-sm">
         <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto"
-                           alt={!iconUrl ? undefined : resourceLocationToString(iconUrl.id)}/>
+                           alt={!iconUrl ? undefined : resourceLocation.toString(iconUrl.id)}/>
       </div>
 
       <div className="mb-4">

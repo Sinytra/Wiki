@@ -1,8 +1,10 @@
-import assets from "@/lib/docs/assets";
 import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import Image from "next/image";
 import CraftingBackground from '@/components/assets/crafting_background.png';
 import '@south-paw/typeface-minecraft';
+import {getParams} from "@nimpl/getters/get-params";
+import sources from "@/lib/docs/sources";
+import assetsFacade from "@/lib/facade/assetsFacade";
 
 interface Props {
   slots: (string | null)[]
@@ -11,9 +13,12 @@ interface Props {
 }
 
 export default async function CraftingRecipe({slots, result, count}: Props) {
+  const params = getParams() || {};
+  const source = params.slug ? await sources.getProjectSource(params.slug as string) : undefined; 
+
   const displaySlots = slots.slice(0, Math.min(slots.length, 9));
-  const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : assets.getAssetResource(slot)));
-  const resultAsset = await assets.getAssetResource(result);
+  const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : assetsFacade.getAssetResource(slot, source)));
+  const resultAsset = await assetsFacade.getAssetResource(result, source);
 
   return (
     <div className="relative">

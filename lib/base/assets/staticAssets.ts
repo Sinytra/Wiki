@@ -1,12 +1,12 @@
-import {
-  AssetLocation,
-  AssetProvider,
-  AssetSourceRoot,
-  itemAssetBasePath,
-  itemAssetExtension, ResourceLocation
-} from "@/lib/docs/assets/index";
 import {readLocalImage} from "@/lib/serverUtils";
 import normalizeUrl from "normalize-url";
+import {
+  AssetLocation, AssetProvider,
+  AssetSourceRoot,
+  itemAssetBasePath,
+  itemAssetExtension,
+  ResourceLocation
+} from "@/lib/base/assets/index";
 
 async function resolveAsset(root: AssetSourceRoot<string>, id: ResourceLocation): Promise<AssetLocation | null> {
   const url = new URL(root.source);
