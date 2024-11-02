@@ -106,7 +106,7 @@
             "loading": "Lade Profil...",
             "empty": {
                 "primary": "Es scheint, dass du noch keine Projekte registriert hast",
-                "secondary": "Get started by reading our <guide>author guide</guide>."
+                "secondary": "Lies zuerst unseren <guide>Autorenleitfaden</guide>."
             }
         }
     },
@@ -279,8 +279,8 @@
             "title": "Projekt erfolgreich registriert",
             "desc": "Du kannst jetzt zur Mod-Seite des Projekts navigieren"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "Einreichen...",
+        "verify_modrinth": "Mit Modrinth verifizieren"
     },
     "ProjectSettingsForm": {
         "title": "Projekt bearbeiten",
@@ -382,7 +382,7 @@
         "return": "Zurück zur Startseite"
     },
     "GetStartedButton": {
-        "title": "Add project"
+        "title": "Projekt hinzufügen"
     },
     "GetStartedModal": {
         "button": "Projekt hinzufügen",
@@ -415,10 +415,10 @@
         "latest": "Neueste"
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "placeholder": "Durchsuche Wiki-Inhalte...",
+        "no_results": "Keine Ergebnisse gefunden!",
+        "loading": "Suche die perfekten Ergebnisse...",
+        "results": "Zeigt <highlight>{count}</highlight> von <highlight>{total}</highlight> Ergebnissen",
+        "close": "<kbd>ESC</kbd> zum Schließen"
     }
 }
