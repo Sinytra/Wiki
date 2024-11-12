@@ -1,4 +1,4 @@
-import {ModAuthor, ModPlatformProvider, ModProject} from "@/lib/base/platforms/universal";
+import {ModAuthor, ModPlatformProvider, ModProject} from "@/lib/platforms/universal";
 import localPreview from "@/lib/docs/localPreview";
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';

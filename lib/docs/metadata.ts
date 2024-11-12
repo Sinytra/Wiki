@@ -1,4 +1,4 @@
-import {ModPlatform} from "@/lib/facade/platformsFacade";
+import {ModPlatform} from "@/lib/platforms";
 import metadataJsonSchema from '@/public/sinytra-wiki.schema.json';
 import folderMetadataJsonSchema from '@/public/_meta.schema.json';
 import {Draft, Draft2019, JsonError} from "json-schema-library";

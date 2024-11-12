@@ -1,15 +1,6 @@
-import github from "@/lib/base/github/github";
-import githubCache from "@/lib/cache/githubCache";
-import {DocumentationFile, RemoteDocumentationSource} from "@/lib/docs/sources";
-import githubApp, {CollaboratorRepositoryPermissions, RepositoryContent} from "@/lib/base/github/githubApp";
-
-async function getExistingAppRepoInstallation(owner: string, repo: string): Promise<number> {
-  try {
-    return githubCache.getExistingAppRepoInstallation.get(owner, repo);
-  } catch (e: any) {
-    throw new Error(`Error getting app installation on repository ${owner}/${repo}`)
-  }
-}
+import github from "@/lib/github/github";
+import githubCache from "@/lib/github/githubCache";
+import githubApp, {CollaboratorRepositoryPermissions, RepositoryContent} from "@/lib/github/githubApp";
 
 async function getUserRepositoriesForApp(owner: string, token: string) {
   try {
@@ -20,21 +11,6 @@ async function getUserRepositoriesForApp(owner: string, token: string) {
     console.error(e);
     return [];
   }
-}
-
-async function isRepositoryPublic(repo: string) {
-  const parts = repo.split('/');
-  const installationId = await githubCache.getExistingAppRepoInstallation.get(parts[0], parts[1]);
-
-  return githubCache.isRepositoryPublic.get(installationId, parts[0], parts[1]);
-}
-
-async function getRepositoryFileContents(source: RemoteDocumentationSource, path: string): Promise<DocumentationFile> {
-  const parts = source.repo.split('/');
-  const installationId = await githubCache.getExistingAppRepoInstallation.get(parts[0], parts[1]);
-  const filePath = source.path + (path ? '/' + path : '');
-
-  return githubCache.getRepositoryFileContents.get(installationId, parts[0], parts[1], source.branch, filePath);
 }
 
 async function getRepositoryContents(repo: string, ref: string, path: string): Promise<RepositoryContent | null> {
@@ -87,14 +63,11 @@ function hasSufficientAccess(data: CollaboratorRepositoryPermissions): boolean {
 
 export default {
   getUserRepositoriesForApp,
-  isRepositoryPublic,
-  getRepositoryFileContents,
-  getExistingAppRepoInstallation,
+  isRepositoryPublic: github.isRepositoryPublic,
   getInstallation: githubApp.getInstallation,
   getRepository,
   getRepoBranches,
   getRepositoryContents,
-  readGitHubDirectoryTree: githubApp.readGitHubDirectoryTree, // TODO Cache
   verifyAppInstallationRepositoryOwnership,
   verifyUserRepositoryOwnership
 }

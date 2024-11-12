@@ -2,7 +2,7 @@
 
 import {useDebouncedCallback} from "use-debounce";
 import {useState} from "react";
-import {ModSearchResult} from "@/lib/types/search";
+import {ModSearchResult} from "@/lib/search";
 import LoadingContent from "@/components/util/LoadingContent";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import {useTranslations} from "next-intl";

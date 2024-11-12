@@ -3,21 +3,17 @@ import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import DocsBranchSelector from "@/components/docs/DocsBranchSelector";
-import {DocumentationSource, RemoteDocumentationSource} from "@/lib/docs/sources";
+import {Mod} from "@/lib/service";
 
 interface Props {
-  source?: DocumentationSource;
+  mod?: Mod;
   children?: any;
   titleClassName?: string;
   version?: string;
 }
 
-export default function DocsContentTitle({ source, children, titleClassName, version }: Props) {
+export default function DocsContentTitle({ mod, children, titleClassName, version }: Props) {
   const t = useTranslations('Badges');
-
-  const isLocal = source?.type === 'local';
-  const isCommunity = source?.is_community;
-  const hasBranches = source && (source as RemoteDocumentationSource).branches != undefined && Object.keys((source as RemoteDocumentationSource).branches!).length > 0;
 
   return (
     <div className="not-prose">
@@ -25,10 +21,10 @@ export default function DocsContentTitle({ source, children, titleClassName, ver
         <h1 className={cn("docsContentTitle text-ellipsis md:overflow-hidden md:whitespace-nowrap text-foreground text-2xl", titleClassName)}>
           {children}
         </h1>
-        <div className={cn("flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", hasBranches ? 'items-center' : 'items-end')}>
-          {isLocal && <Badge variant="destructive">{t('local')}</Badge>}
-          {isCommunity && <CommunityDocsBadge />}
-          {hasBranches && <DocsBranchSelector branch={version} branches={(source as RemoteDocumentationSource).branches} />}
+        <div className={cn("flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", mod?.branches ? 'items-center' : 'items-end')}>
+          {mod?.local && <Badge variant="destructive">{t('local')}</Badge>}
+          {mod?.is_community && <CommunityDocsBadge />}
+          {mod?.branches && <DocsBranchSelector branch={version} branches={mod?.branches} />}
         </div>
       </div>
       <hr className="mt-4 mb-6 border-neutral-600"/>

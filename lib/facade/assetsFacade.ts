@@ -1,7 +1,6 @@
 import {DocumentationSource} from "@/lib/docs/sources";
-import {AssetLocation} from "@/lib/base/assets";
-import resourceLocation from "@/lib/base/resourceLocation";
-import assetsCache from "@/lib/cache/assetsCache";
+import assets, {AssetLocation} from "../assets";
+import resourceLocation from "@/lib/util/resourceLocation";
 
 async function getAssetResource(location: string, source?: DocumentationSource): Promise<AssetLocation | null> {
   const resource = resourceLocation.parse(location);
@@ -9,7 +8,7 @@ async function getAssetResource(location: string, source?: DocumentationSource):
     return null;
   }
 
-  return await assetsCache.getDocumentationAsset.get(resource, source);
+  return await assets.getAssetResource(resource, source);
 }
 
 export default {

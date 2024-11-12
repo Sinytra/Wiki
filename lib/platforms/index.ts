@@ -1,10 +1,10 @@
 import {Mod} from '@prisma/client';
 
-import {ModAuthor, ModProject, ModPlatformProvider, ModPlatform} from "../base/platforms/universal";
-import {modrinthModPlatform} from "../base/platforms/modrinth";
-import {curseForgeModPlatform} from "@/lib/base/platforms/curseforge";
+import {ModAuthor, ModProject, ModPlatformProvider, ModPlatform} from "@/lib/platforms/universal";
+import {modrinthModPlatform} from "@/lib/platforms/modrinth";
+import {curseForgeModPlatform} from "@/lib/platforms/curseforge";
 
-export * from '@/lib/base/platforms/universal';
+export * from '@/lib/platforms/universal';
 
 const providers: { [key: string]: ModPlatformProvider } = {
   modrinth: modrinthModPlatform,

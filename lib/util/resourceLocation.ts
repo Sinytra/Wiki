@@ -1,4 +1,6 @@
-import {ResourceLocation} from "@/lib/base/assets";
+import {ResourceLocation} from "../assets";
+
+export const DEFAULT_RSLOC_NAMESPACE = "minecraft";
 
 function toString(location: ResourceLocation): string {
   return `${location.namespace}:${location.path}`;

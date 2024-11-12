@@ -13,6 +13,7 @@ export default function DirectoryTreeView({level, newBasePath, trigger, children
   children?: any;
 }) {
   const currentPath = usePathname().split('/').slice(4).join('/');
+  // TODO FIXME
   const isDefaultOpen = currentPath.length > 0 && currentPath.startsWith(newBasePath.substring(1) + '/');
 
   const [isOpen, setOpen] = useState(isDefaultOpen);

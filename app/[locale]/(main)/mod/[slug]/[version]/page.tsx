@@ -1,30 +1,28 @@
 import MarkdownContent from "@/components/docs/markdown/MarkdownContent";
-import sources, {DocumentationSource} from "@/lib/docs/sources";
 import ModInfo from "@/components/docs/mod-info";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
-import platformsFacade, {ModProject} from "@/lib/facade/platformsFacade";
+import {ModProject} from "@/lib/platforms";
 import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
 import {setContextLocale} from "@/lib/locales/routing";
 import DocsHomepagePlaceholder from "@/components/docs/DocsHomepagePlaceholder";
-import markdown from "@/lib/markdown";
 import {HOMEPAGE_FILE_PATH} from "@/lib/constants";
 import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent";
 import {Metadata, ResolvingMetadata} from "next";
+import service, {type Mod} from "@/lib/service";
+import {redirect} from "next/navigation";
+import platforms from "@/lib/platforms";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
-export async function generateMetadata({params}: {
-  params: { slug: string; locale: string; version: string }
-}, parent: ResolvingMetadata): Promise<Metadata> {
-  let source: DocumentationSource | undefined = undefined;
-  try {
-    source = await sources.getBranchedProjectSource(params.slug, params.version);
-  } catch (e) {
-    return { title: (await parent).title?.absolute };
+export async function generateMetadata({params}: { params: { slug: string; locale: string; version: string } },
+                                       parent: ResolvingMetadata): Promise<Metadata> {
+  const mod = (await service.getBackendLayout(params.slug, params.version, params.locale))?.mod;
+  if (!mod) {
+    return {title: (await parent).title?.absolute};
   }
 
-  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
+  const project = await platforms.getPlatformProject(mod.platform, mod.slug);
 
   return {
     title: `${project.name} - ${(await parent).title?.absolute}`,
@@ -38,19 +36,16 @@ export async function generateMetadata({params}: {
   }
 }
 
-
-async function ModHomepage({source, project, locale}: {
-  source: DocumentationSource;
+async function ModHomepage({mod, project, version, locale}: {
+  mod: Mod;
   project: ModProject;
+  version: string;
   locale: string;
 }) {
   // Attempt to resolve custom homepage
-  try {
-    const result = await markdown.renderDocumentationFile(source, [HOMEPAGE_FILE_PATH], locale);
-
+  const result = await service.renderDocsPage(mod.id, [HOMEPAGE_FILE_PATH], version, locale);
+  if (result) {
     return <DocsMarkdownContent content={result.content.content}/>;
-  } catch (e) {
-    // Ignored
   }
 
   // File does not exist, fallback to project desc
@@ -68,17 +63,19 @@ async function ModHomepage({source, project, locale}: {
 export default async function Mod({params}: { params: { slug: string; version: string; locale: string } }) {
   setContextLocale(params.locale);
 
-  const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
-  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
+  const data = await service.getBackendLayout(params.slug, params.version, params.locale);
+  if (!data) redirect('/');
+
+  const project = await platforms.getPlatformProject(data.mod.platform, data.mod.slug);
 
   return (
     <ModDocsEntryPageLayout rightPanel={<ModInfo mod={project}/>}>
       <div className="flex flex-col">
-        <DocsContentTitle source={source} version={params.version}>
+        <DocsContentTitle mod={data.mod} version={params.version}>
           {project.name}
         </DocsContentTitle>
 
-        <ModHomepage source={source} project={project} locale={params.locale} />
+        <ModHomepage mod={data.mod} project={project} version={params.version} locale={params.locale}/>
       </div>
     </ModDocsEntryPageLayout>
   );

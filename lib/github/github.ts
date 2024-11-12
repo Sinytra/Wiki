@@ -1,6 +1,6 @@
 import {Octokit} from "octokit";
 import cacheUtil from "@/lib/cacheUtil";
-import {CollaboratorRepositoryPermissions} from "@/lib/base/github/githubApp";
+import {CollaboratorRepositoryPermissions} from "@/lib/github/githubApp";
 
 export interface GitHubUserProfile {
   name: string;
@@ -22,6 +22,16 @@ function cachedFetch(...args: any[]) {
 
 async function getUserProfile(token: string): Promise<GitHubUserProfile> {
   return makeApiRequest(token, 'GET /user');
+}
+
+async function isRepositoryPublic(repo: string): Promise<boolean> {
+  try {
+    const resp = await fetch(`https://github.com/${repo}`);
+    return resp.ok;
+  } catch (e) {
+    // Private / not found
+  }
+  return false;
 }
 
 async function getUserAccessibleInstallations(token: string) {
@@ -120,5 +130,6 @@ export default {
   getUserProfile,
   getUserAccessibleInstallations,
   getAccessibleAppRepositories,
-  getUserRepositoryPermissions
+  getUserRepositoryPermissions,
+  isRepositoryPublic
 };

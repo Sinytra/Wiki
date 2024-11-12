@@ -1,8 +1,6 @@
 import {App, Octokit} from "octokit";
 import {Api} from "@octokit/plugin-rest-endpoint-methods";
 import cacheUtil from "@/lib/cacheUtil";
-import {FileTreeNode, RemoteDocumentationSource} from "@/lib/docs/sources";
-import githubFacade from "@/lib/facade/githubFacade";
 import {components} from '@octokit/openapi-types';
 
 export interface RepoInstallationState {
@@ -32,18 +30,6 @@ function cachedFetch(...args: any[]) {
   });
 }
 
-async function isRepositoryPublic(installationId: number, owner: string, repo: string): Promise<boolean> {
-  try {
-    const octokit = await createInstance(installationId);
-
-    const data = (await octokit.rest.repos.get({owner, repo})).data;
-    return !data.private && data.visibility === 'public';
-  } catch (e) {
-    // Private / not found
-  }
-  return false;
-}
-
 async function getInstallation(owner: string, repo: string, branch: string | null, path: string | null) {
   const app = createAppInstance();
   const appOctokit: Octokit = app.octokit;
@@ -66,34 +52,6 @@ async function getInstallation(owner: string, repo: string, branch: string | nul
 async function getExistingAppRepoInstallation(owner: string, repo: string): Promise<number> {
   const response = await createAppInstance().octokit.rest.apps.getRepoInstallation({owner, repo});
   return response.data.id;
-}
-
-async function readGitHubDirectoryTree(source: RemoteDocumentationSource, path?: string, shallow?: boolean): Promise<FileTreeNode[]> {
-  const repoParts = source.repo.split('/');
-  const installationId = await githubFacade.getExistingAppRepoInstallation(repoParts[0], repoParts[1]);
-  const octokit = await createInstance(installationId);
-
-  const contentPath = path ? `${source.path}/${path}` : source.path;
-  const content = await getRepositoryContentsInternal(octokit, repoParts[0], repoParts[1], source.branch, contentPath);
-  if (content === null || !Array.isArray(content)) {
-    return [];
-  }
-
-  const root = contentPath.startsWith('/') ? contentPath.substring(1) : contentPath;
-  const recursiveResolver = shallow ? async () => [] : async (path: string) => {
-    const c = await getRepositoryContentsInternal(octokit, repoParts[0], repoParts[1], source.branch, path);
-    return Array.isArray(c) ? c : [];
-  };
-  return convertRepositoryContents(root, content, recursiveResolver);
-}
-
-async function convertRepositoryContents(root: string, files: any[], contentGetter: (path: string) => Promise<any[]>): Promise<FileTreeNode[]> {
-  return Promise.all(files.filter(f => f.type === 'dir' || f.type === 'file').map(async f => ({
-    name: f.name,
-    path: f.path.substring(root.length),
-    type: f.type === 'dir' ? 'directory' : 'file',
-    children: await convertRepositoryContents(root, await contentGetter(f.path), contentGetter)
-  })));
 }
 
 async function getRepositoryContents(installationId: number, owner: string, repo: string, ref: string, path: string): Promise<RepositoryContent> {
@@ -173,9 +131,7 @@ export default {
   getRepositoryContents,
   getRepoBranches,
   getExistingAppRepoInstallation,
-  isRepositoryPublic,
   getRepository,
   getRepositoryFileContents,
-  readGitHubDirectoryTree,
   getRepoUserPermissionLevel
 };

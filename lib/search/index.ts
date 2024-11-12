@@ -1,9 +1,4 @@
-export interface ModSearchResult {
-  id: string;
-  name: string;
-}
-
-interface PartialMod {
+export interface PartialMod {
   id: string;
   name: string;
   source_repo: string;
@@ -12,12 +7,17 @@ interface PartialMod {
   is_community: boolean;
 }
 
-interface WikiSearchResults {
+export interface ModSearchResult {
+  id: string;
+  name: string;
+}
+
+export interface WikiSearchResults {
   total: number;
   hits: WikiSearchResult[];
 }
 
-interface WikiSearchResult {
+export interface WikiSearchResult {
   title: string;
   mod: string;
   url: string;

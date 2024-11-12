@@ -1,14 +1,18 @@
 import {
-  ArchiveIcon, BiohazardIcon,
+  ArchiveIcon,
+  BiohazardIcon,
   BookIcon,
   BriefcaseIcon,
   BugIcon,
   BugOffIcon,
-  CarrotIcon, CircuitBoardIcon,
+  CarrotIcon,
+  CircuitBoardIcon,
   CompassIcon,
   DollarSignIcon,
-  EarthIcon, FileQuestionIcon,
-  Gamepad2Icon, GraduationCapIcon,
+  EarthIcon,
+  FileQuestionIcon,
+  Gamepad2Icon,
+  GraduationCapIcon,
   HardDriveIcon,
   HouseIcon,
   MapIcon,
@@ -23,9 +27,8 @@ import {
   WandIcon,
   ZapIcon
 } from "lucide-react";
-import platformsFacade, {ModAuthor, ModProject} from "@/lib/facade/platformsFacade";
+import platforms, {ModAuthor, ModProject} from "@/lib/platforms";
 import {getTranslations} from "next-intl/server";
-import {useTranslations} from "next-intl";
 
 const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 
@@ -83,7 +86,7 @@ export function getLatestVersion(project: ModProject): string | undefined {
 }
 
 export async function getModProjectInformation(project: ModProject): Promise<ModDisplayInformation> {
-  const authors = await platformsFacade.getProjectAuthors(project);
+  const authors = await platforms.getProjectAuthors(project);
   const t = await getTranslations('DocsModInfo');
 
   const license = !project.license ? t('license.unknown') : project.license.id === ARRNoLicense ? t('license.arr') : project.license.id.startsWith('LicenseRef') ? t('license.custom') : project.license.id || t('license.unknown');

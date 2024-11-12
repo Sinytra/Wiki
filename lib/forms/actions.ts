@@ -2,18 +2,18 @@
 
 import {docsPageReportSchema, migrateRepositorySchema, projectRegisterSchema} from "@/lib/forms/schemas";
 import {revalidatePath} from "next/cache";
-import {ValidationError} from "@/lib/docs/metadata";
-import platformsFacade, {ModProject} from "@/lib/facade/platformsFacade";
+import metadata, {ValidationError} from "@/lib/docs/metadata";
 import database from "@/lib/database";
 import {auth, isModrinthOAuthAvailable, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
-import github from "@/lib/base/github/github";
+import github from "@/lib/github/github";
 import email from "@/lib/email";
-import {githubDocsSource} from "@/lib/docs/sources/githubSource";
-import modrinth from "@/lib/base/platforms/modrinth";
+import modrinth from "@/lib/platforms/modrinth";
 import githubFacade from "@/lib/facade/githubFacade";
-import githubCache from "@/lib/cache/githubCache";
+import githubCache from "@/lib/github/githubCache";
 import {isWikiAdmin} from "@/lib/utils";
+import {DOCS_METADATA_FILE_NAME} from "@/lib/constants";
+import platforms, {ModProject} from "@/lib/platforms";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -204,7 +204,7 @@ async function validateProjectFormData(rawData: any) {
   // Parse metadata file
   let metadata = undefined
   try {
-    metadata = await githubDocsSource.readMetadata(data.owner + '/' + data.repo, data.branch, validatedFields.data.path);
+    metadata = await readMetadata(data.owner + '/' + data.repo, data.branch, validatedFields.data.path);
   } catch (e) {
     return {success: false, error: 'invalid_meta', details: e instanceof ValidationError ? e.message : undefined};
   }
@@ -218,7 +218,7 @@ async function validateProjectFormData(rawData: any) {
 
   let project: ModProject;
   try {
-    project = await platformsFacade.getPlatformProject(metadata.platform, metadata.slug);
+    project = await platforms.getPlatformProject(metadata.platform, metadata.slug);
   } catch (e) {
     return {success: false, error: 'no_project'};
   }
@@ -257,4 +257,17 @@ async function verifyProjectOwnership(project: ModProject, owner: string, repo: 
   }
 
   return false;
+}
+
+// TODO Move to BE
+async function readMetadata(repo: string, branch: string, root: string) {
+  const metadataPath = root + '/' + DOCS_METADATA_FILE_NAME;
+  const metaFile = await githubFacade.getRepositoryContents(repo, branch, metadataPath);
+
+  if (metaFile && 'content' in metaFile) {
+    const content = Buffer.from(metaFile.content, 'base64').toString('utf-8');
+    return metadata.parseMetadata(content);
+  }
+
+  return null;
 }

@@ -1,5 +1,5 @@
 import prisma from "@/lib/database/prisma";
-import {ModPlatform} from "@/lib/facade/platformsFacade";
+import {ModPlatform} from "@/lib/platforms";
 
 async function registerProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string, is_community: boolean) {
   // TODO Throw error on duplicate
@@ -120,15 +120,6 @@ async function getProject(slug: string) {
   });
 }
 
-async function getProjectCached(slug: string) {
-  return prisma.mod.findUnique({
-    where: {
-      id: slug
-    },
-    cacheStrategy: { swr: 60, ttl: 360 }
-  });
-}
-
 async function getAllProjectIDs() {
   return prisma.mod.findMany({
     select: {
@@ -154,7 +145,6 @@ const database = {
   searchProjectsPaginated,
   getAllProjectIDs,
   getRandomProjectID,
-  getProjectCached,
   migrateRepository,
   getCommunityProjects
 };

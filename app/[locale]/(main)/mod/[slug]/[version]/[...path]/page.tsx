@@ -2,10 +2,12 @@ import {Suspense} from "react";
 import DocsEntryPage from "@/components/docs/DocsEntryPage";
 import DocsLoadingSkeleton from "@/components/docs/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
-import sources, {DocumentationSource} from "@/lib/docs/sources";
-import platformsFacade from "@/lib/facade/platformsFacade";
 import {setContextLocale} from "@/lib/locales/routing";
-import {FOLDER_METADATA_FILE_NAME} from "@/lib/constants";
+import service from "@/lib/service";
+import {redirect} from "next/navigation";
+import matter from "gray-matter";
+import {DocsEntryMetadata} from "@/lib/docs/metadata";
+import platforms from "@/lib/platforms";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -13,27 +15,16 @@ export const fetchCache = 'force-cache';
 export async function generateMetadata({params}: {
   params: { slug: string; path: string[]; locale: string; version: string }
 }, parent: ResolvingMetadata): Promise<Metadata> {
-  let source: DocumentationSource | undefined = undefined;
-  try {
-    source = await sources.getBranchedProjectSource(params.slug, params.version);
-  } catch (e) {
+  const page = await service.getDocsPage(params.slug, params.path, params.version, params.locale);
+  if (!page) {
     return {title: (await parent).title?.absolute};
   }
 
-  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
-
-  let title: string | undefined = undefined;
-  try {
-    const folderPath = params.path.slice(0, params.path.length - 1);
-    const folderMeta = await sources.parseFolderMetadataFile(source, folderPath.join('/') + '/' + FOLDER_METADATA_FILE_NAME, params.locale);
-    const fileName = params.path[params.path.length - 1] + '.mdx';
-    title = folderMeta[fileName].name;
-  } catch (e) {
-    // ignored
-  }
+  const project = await platforms.getPlatformProject(page.mod.platform, page.mod.slug);
+  const result = matter(page.content).data as DocsEntryMetadata;
 
   return {
-    title: title ? `${title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
+    title: result.title ? `${result.title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
     openGraph: {
       images: [`/api/og?slug=${params.slug}&locale=${params.locale}&path=${params.path.join('/')}&version=${params.version}`]
     },
@@ -48,11 +39,13 @@ export default async function ModDocsPage({params}: {
   params: { slug: string; path: string[]; locale: string; version: string; }
 }) {
   setContextLocale(params.locale);
-  await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
+
+  const page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
+  if (!page) redirect(`/mod/${params.slug}/docs`);
 
   return (
     <Suspense fallback={<DocsLoadingSkeleton/>}>
-      <DocsEntryPage slug={params.slug} path={params.path} locale={params.locale} version={params.version}/>
+      <DocsEntryPage page={page} path={params.path} version={params.version}/>
     </Suspense>
   )
 }

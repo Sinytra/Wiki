@@ -1,12 +1,13 @@
 import {NextRequest, NextResponse} from "next/server";
 import {ImageResponse} from "next/og";
-import platformsFacade, {ModProject} from "@/lib/facade/platformsFacade";
+import platforms, {ModProject} from "@/lib/platforms";
 import sources from "@/lib/docs/sources";
 import sharp from "sharp";
 import markdown from "@/lib/markdown";
 import {getProcessURL} from "@/lib/utils";
-import {AssetLocation} from "@/lib/base/assets";
-import assetsFacade from "@/lib/facade/assetsFacade";
+import {AssetLocation} from "@/lib/assets";
+import service from "@/lib/service";
+import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 
 export const runtime = 'nodejs';
 
@@ -257,10 +258,10 @@ export async function GET(req: NextRequest) {
   const fonts = await getFont();
 
   const source = await sources.getProjectSource(slug);
-  const project = await platformsFacade.getPlatformProject(source.platform, source.slug);
+  const project = await platforms.getPlatformProject(source.platform, source.slug);
 
-  const locale = searchParams.get('locale') || 'en';
-  const version = searchParams.get('version') || 'docs';
+  const locale = searchParams.get('locale') || DEFAULT_LOCALE;
+  const version = searchParams.get('version') || DEFAULT_DOCS_VERSION;
 
   const coords: DocsPathCoords = {locale, slug, version};
 
@@ -271,7 +272,7 @@ export async function GET(req: NextRequest) {
 
   const path = pathVal.split('/');
   const metadata = await markdown.readDocumentationFileMetadata(source, path, locale);
-  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await assetsFacade.getAssetResource((metadata.icon || metadata.id)!, source);
+  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(slug, (metadata.icon || metadata.id)!, version);
 
   return docsEntryPageResponse({...coords, path: pathVal}, project.name, metadata.title || 'Document', iconUrl, fonts);
 }

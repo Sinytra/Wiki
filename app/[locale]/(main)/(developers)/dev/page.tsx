@@ -1,5 +1,5 @@
 import {auth, signOut} from "@/lib/auth";
-import github, {GitHubUserProfile} from "@/lib/base/github/github";
+import github, {GitHubUserProfile} from "@/lib/github/github";
 import database from "@/lib/database";
 import * as React from "react";
 import {Suspense} from "react";

@@ -1,6 +1,6 @@
-import platformsFacade, {ModPlatform, ModProject} from "@/lib/facade/platformsFacade";
+import {ModPlatform, ModProject} from "@/lib/platforms";
 import {Suspense, use} from "react";
-import {PartialMod} from "@/lib/types/search";
+import {PartialMod} from "@/lib/search";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
 import {Skeleton} from "@/components/ui/skeleton";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
@@ -15,6 +15,7 @@ import Link from "next/link";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import githubFacade from "@/lib/facade/githubFacade";
+import platforms from "@/lib/platforms";
 
 function ProjectIcon({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
@@ -46,15 +47,12 @@ async function GitHubProjectLink({repo}: { repo: string }) {
   const isPublic = await githubFacade.isRepositoryPublic(repo);
 
   return (
-    <Suspense>
-      {isPublic && 
-          <Button variant="outline" size="icon" asChild>
-              <Link href={`https://github.com/${repo}`} target="_blank">
-                  <GitHubIcon width={24} height={24}/>
-              </Link>
-          </Button>
-      }
-    </Suspense>
+    isPublic &&
+    <Button variant="outline" size="icon" asChild>
+        <Link href={`https://github.com/${repo}`} target="_blank">
+            <GitHubIcon width={24} height={24}/>
+        </Link>
+    </Button>
   )
 }
 
@@ -72,7 +70,7 @@ function ProjectMetaInfo({project}: { project: Promise<ModProject> }) {
 }
 
 export default async function BrowseModProject({mod}: { mod: PartialMod }) {
-  const project = platformsFacade.getPlatformProject(mod.platform as ModPlatform, mod.slug);
+  const project = platforms.getPlatformProject(mod.platform as ModPlatform, mod.slug);
 
   return (
     <div className="flex flex-row items-center border border-neutral-600 rounded-sm w-full p-3 gap-4">
@@ -85,11 +83,12 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
       <div className="flex flex-col gap-1 w-full">
         <div className="w-full h-full flex flex-col gap-1.5">
           <div className="w-full inline-flex gap-2">
-            <LinkTextButton href={`/mod/${mod.id}`} className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">
+            <LinkTextButton href={`/mod/${mod.id}`}
+                            className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">
               {mod.name}
             </LinkTextButton>
 
-            {mod.is_community && <CommunityDocsBadge small />}
+            {mod.is_community && <CommunityDocsBadge small/>}
           </div>
 
           <ErrorBoundary fallback={<span></span>}>
@@ -112,10 +111,12 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
           </ErrorBoundary>
 
           <div className="flex flex-shrink-0 gap-2">
-            <GitHubProjectLink repo={mod.source_repo}/>
+            <Suspense fallback={<div className="h-10 w-10"></div>}>
+              <GitHubProjectLink repo={mod.source_repo}/>
+            </Suspense>
             <Button asChild variant="outline" size="icon"
                     className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
-              <NavLink href={platformsFacade.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
+              <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
                 {mod.platform === 'modrinth'
                   ? <ModrinthIcon width={24} height={24}/>
                   : <CurseForgeIcon width={24} height={24}/>

@@ -19,7 +19,7 @@ export default function ImageWithFallback({ src, alt, width, height, className, 
                onError={() => setError(true)}
           />
       }
-      {((loading && !loaded) || error) && <Fallback/>}
+      {(!src || (loading && !loaded) || error) && <Fallback/>}
     </div>
   );
 }

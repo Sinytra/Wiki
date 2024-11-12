@@ -2,7 +2,6 @@
 
 import {useDebouncedCallback} from "use-debounce";
 import {useEffect, useLayoutEffect, useRef, useState} from "react";
-import {WikiSearchResult, WikiSearchResults} from "@/lib/types/search";
 import clientSearch from "@/lib/search/clientSearch";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {FileTextIcon, LoaderCircleIcon, SearchIcon} from "lucide-react";
@@ -10,6 +9,7 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
+import {WikiSearchResult, WikiSearchResults} from "@/lib/search";
 
 function SearchResult({result}: { result: WikiSearchResult }) {
   const icon = !result.path ? result.mod_icon : result.icon;
