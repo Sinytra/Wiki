@@ -4,10 +4,10 @@
         "latest": "Latest"
     },
     "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Wiki de Modificaciones de Minecraft",
         "title_short": "Wiki",
         "badge": {
-            "preview": "PREVIEW MODE",
+            "preview": "MODO DE PREVISUALIZACIÓN",
             "beta": "Beta"
         },
         "link": {
@@ -20,10 +20,10 @@
         "title": "Wiki de Modificaciones de Minecraft",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "Navegación",
+                "home": "Página de inicio",
+                "browse": "Explorar",
+                "dev": "Desarrolladores"
             },
             "links": {
                 "title": "Links"
@@ -105,61 +105,61 @@
             "loading_all": "Cargando proyectos de perfil...",
             "loading": "Cargando perfil...",
             "empty": {
-                "primary": "Looks like you haven't registered any projects yet",
-                "secondary": "Get started by reading our <guide>author guide</guide>."
+                "primary": "Parece que aún no has registrado ningún proyecto",
+                "secondary": "Comience leyendo nuestra <guide>guía de autor</guide>."
             }
         }
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "Se requiere iniciar sesión",
+        "desc": "La página a la que está intentando acceder requiere que inicie sesión.",
+        "prompt": "Por favor, utiliza tu cuenta de GitHub para continuar.",
+        "button": "Iniciar sesión con GitHub"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
+        "title": "El modo de previsualización está habilitado",
+        "desc": "El modo de previsualización permite una interfaz de usuario mínima, permitiéndole enfocarse en redactar sus documentos localmente antes de que sean publicados.",
+        "roots": "Raíces de documentación local disponibles",
+        "open": "Abrir"
     },
     "DocsFileTree": {
-        "title": "Documentation",
-        "homepage": "Mod homepage"
+        "title": "Documentación",
+        "homepage": "Página de inicio del mod"
     },
     "DocsModInfo": {
-        "title": "Mod information",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "Información del Mod",
+        "author": "Autor",
+        "tags": "Etiquetas",
         "latest": {
-            "title": "Latest version",
-            "unknown": "N/A"
+            "title": "Última versión",
+            "unknown": "N/D"
         },
         "license": {
-            "title": "License",
+            "title": "Licencia",
             "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "unknown": "Desconocido",
+            "arr": "Todos los Derechos Reservados"
         }
     },
     "ModCategories": {
-        "adventure": "Adventure",
+        "adventure": "Aventura",
         "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
+        "decoration": "Decoración",
+        "economy": "Economía",
+        "equipment": "Equipamiento",
+        "food": "Alimento",
+        "game-mechanics": "Mecánicas del juego",
+        "library": "Biblioteca",
+        "magic": "Magia",
+        "management": "Gestión",
+        "minigame": "Minijuego",
         "mobs": "Mobs",
-        "optimization": "Optimization",
+        "optimization": "Optimización",
         "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
+        "storage": "Almacenaje",
+        "technology": "Tecnología",
+        "transportation": "Transporte",
+        "utility": "Utilidad",
         "worldgen": "Generación de mundo",
         "server-utility": "Utilidades de servidor",
         "armor-weapons-tools": "Armaduras, Herramientas y Armas",
@@ -204,7 +204,7 @@
         "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
         "form": {
             "id": {
-                "title": "Project ID",
+                "title": "ID de proyecto",
                 "desc": "Reported project ID."
             },
             "path": {
@@ -220,21 +220,21 @@
                 "placeholder": "Select a reason for reporting this page",
                 "desc": "Reason for reporting this page.",
                 "spam": "Spam",
-                "copyright": "Copyright Infringement",
-                "content_rules_violation": "Violates Content Rules",
+                "copyright": "Infracción de derechos de autor",
+                "content_rules_violation": "Viola las normas de contenido",
                 "tos_violation": "Violates Terms of Service",
                 "dislike": "I just don't like it"
             },
             "details": {
                 "title": "Details*",
                 "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "desc": "Detalles adicionales sobre el problema."
             },
             "dislike": {
                 "title": "We understand that you may not like this page, and that's totally okay!",
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
                 "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "Explore mods"
+                "explore": "Explorar mods"
             }
         }
     },
@@ -266,13 +266,13 @@
             "title": "Ruta a la raíz de documentación",
             "desc": "Path to the folder containing the metadata file."
         },
-        "admin": "Wiki admin settings",
+        "admin": "Configuración del admin de Wiki",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "Proyecto mantenido por la Comunidad"
         },
         "errors": {
             "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
-            "details": "Show details"
+            "details": "Mostrar detalles"
         },
         "submit": "Submit",
         "success": {
@@ -280,10 +280,10 @@
             "desc": "You can now navigate to the project's mod page"
         },
         "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "verify_modrinth": "Verificar usando Modrinth"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
+        "title": "Editar proyecto",
         "desc": "Editar la configuración de un proyecto existente.",
         "success": {
             "title": "Proyecto actualizado correctamente",
@@ -319,8 +319,8 @@
             "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "ownership": "Failed to verify project ownership",
             "internal": "Internal Server Error, please try again later.",
-            "verification": "Verification error",
-            "not_found": "Not found",
+            "verification": "Error de verificación",
+            "not_found": "No encontrado",
             "insufficient_perms": "Insufficient permissions to create community project"
         }
     },
@@ -338,64 +338,64 @@
         },
         "other": {
             "title": "Otros problemas",
-            "desc": "Check the troubleshooting section of the documentation Publishing guide.",
-            "link": "Open troubleshooting guide"
+            "desc": "Consulte la sección de solución de problemas de la guía de Publicación de documentación.",
+            "link": "Abrir guía de solución de problemas"
         }
     },
     "MigrateRepositoryForm": {
-        "title": "Migrate project repository",
-        "desc": "Update repository data after its location has changed.",
+        "title": "Migrar repositorio del proyecto",
+        "desc": "Actualizar los datos del repositorio después de que su ubicación haya cambiado.",
         "owner": {
             "title": "Propietario antiguo",
             "desc": "Usuario antiguo / nombre de la organización.",
-            "placeholder": "ExampleUser"
+            "placeholder": "UsuarioDeEjemplo"
         },
         "repo": {
-            "title": "Old Name",
-            "desc": "Old repository name.",
-            "placeholder": "ExampleMod"
+            "title": "Nombre Antiguo",
+            "desc": "Nombre antiguo del repositorio.",
+            "placeholder": "ModDeEjemplo"
         },
         "new_owner": {
-            "title": "New Owner",
-            "desc": "New User / organization name.",
-            "placeholder": "ExampleOrg"
+            "title": "Nuevo Propietario",
+            "desc": "Nuevo usuario / nombre de organización.",
+            "placeholder": "OrgDeEjemplo"
         },
-        "submit": "Migrate",
+        "submit": "Migrar",
         "success": {
-            "title": "Repository migrated successfully",
-            "desc": "You should now see the migrated projects"
+            "title": "Repositorio migrado con éxito",
+            "desc": "Ahora puedes ver los proyectos migrados"
         },
         "migrate_error": {
-            "install_app": "Please ensure our GitHub app is <link>installed</link> on the migrated repository.",
-            "unavailable": "No migration available for repository. Is the entered information correct?"
+            "install_app": "Asegúrate de que nuestra aplicación de GitHub esté <link>instalada</link> en el repositorio migrado.",
+            "unavailable": "No hay migración disponible para el repositorio. ¿Es correcta la información introducida?"
         }
     },
     "CommunityBadge": {
-        "title": "Community",
-        "desc": "Unofficial documentation maintained by the community"
+        "title": "Comunidad",
+        "desc": "Documentación no oficial mantenida por la comunidad"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
-        "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the mod author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "title": "Perdimos esta página",
+        "desc": "La página de documentación solicitada no está disponible por el momento.",
+        "suggestion": "Por favor, inténtalo de nuevo más tarde o reporta este problema al autor del mod.",
+        "submit": "Enviar un problema",
+        "return": "Volver al Inicio"
     },
     "GetStartedButton": {
-        "title": "Add project"
+        "title": "Agrega un proyecto"
     },
     "GetStartedModal": {
-        "button": "Add project",
+        "button": "Agregar proyecto",
         "title": "I'd like to write documentation for...",
         "dev": {
-            "title": "My own mod",
+            "title": "Mi propio mod",
             "desc": "Author your own documentation and control who can make changes to it.",
-            "button": "Create project"
+            "button": "Crear un proyecto"
         },
         "community": {
             "title": "Someone else's mod",
             "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
-            "button": "Read guide"
+            "button": "Leer la guía"
         }
     },
     "ModDocsPlaceholder": {
@@ -411,14 +411,14 @@
         "title": "On this page"
     },
     "DocsBranchSelector": {
-        "title": "Versions",
-        "latest": "Latest"
+        "title": "Versiones",
+        "latest": "Más reciente"
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "placeholder": "Buscar contenido de la wiki...",
+        "no_results": "¡No se encontraron resultados!",
+        "loading": "Buscando los resultados perfectos...",
+        "results": "Mostrando <highlight>{count}</highlight> de <highlight>{total}</highlight> resultados",
+        "close": "<kbd>ESC</kbd> para cerrar"
     }
 }
