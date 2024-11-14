@@ -70,10 +70,10 @@ async function getBackendLayout(slug: string, version: string, locale: string): 
 // TODO Improve asset resolution
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
-  if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || !location.includes(':')) {
+  if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || location.startsWith(`${DEFAULT_RSLOC_NAMESPACE}:`) || !location.includes(':')) {
     return assetsFacade.getAssetResource(location);
   }
-  
+
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
 
   if (process.env.LOCAL_DOCS_ROOTS) {
