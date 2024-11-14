@@ -15,7 +15,7 @@ export interface Mod {
   source_repo?: string;
   is_community: boolean;
   is_public: boolean;
-  branches?: Record<string, string>;
+  versions?: Record<string, string>;
   local?: boolean;
 }
 
@@ -70,7 +70,7 @@ async function getBackendLayout(slug: string, version: string, locale: string): 
 // TODO Improve asset resolution
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
-  if (!slug || slug === DEFAULT_RSLOC_NAMESPACE) {
+  if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || !location.includes(':')) {
     return assetsFacade.getAssetResource(location);
   }
   

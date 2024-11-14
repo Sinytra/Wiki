@@ -1,5 +1,5 @@
 import {DocumentationPage, LayoutTree, Mod, ServiceProvider} from "@/lib/service/index";
-import {AssetLocation} from "../assets";
+import {AssetLocation} from "@/lib/assets";
 
 interface AssetResponse {
   data: string;
@@ -22,19 +22,19 @@ async function fetchBackendService(path: string, params: Record<string, string |
       searchParams.set(key, params[key]);
     }
   }
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/${path}?${searchParams.toString()}`, {
+  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`
     },
     next: {
-      tags: [`backend:${params.mod || ''}`]
+      tags: [`backend:${params.mod || ''}`] // TODO Ensure error responses are cached
     }
   });
 }
 
 async function getBackendLayout(mod: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   try {
-    const resp = await fetchBackendService(`tree`, { mod, version, locale });
+    const resp = await fetchBackendService(`mod/${mod}/tree`, { version, locale });
     if (resp.ok) {
       return resp.json();
     }
@@ -46,7 +46,7 @@ async function getBackendLayout(mod: string, version: string | null, locale: str
 
 async function getAsset(mod: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(`asset`, { mod, location, version });
+    const resp = await fetchBackendService(`mod/${mod}/asset/${location}`, { version });
     if (resp.ok) {
       const json = await resp.json() as AssetResponse;
       return {
@@ -62,7 +62,7 @@ async function getAsset(mod: string, location: string, version: string | null): 
 
 async function getDocsPage(mod: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   try {
-    const resp = await fetchBackendService(`page`, {mod, path: `${path.join('/')}.mdx`, version, locale});
+    const resp = await fetchBackendService(`mod/${mod}/page/${path.join('/')}.mdx`, {version, locale});
     if (resp.ok) {
       const json = await resp.json() as PageResponse;
       const content = Buffer.from(json.content, 'base64').toString('utf-8');

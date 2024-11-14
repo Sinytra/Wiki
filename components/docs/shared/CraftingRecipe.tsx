@@ -36,7 +36,7 @@ export default async function CraftingRecipe({slots, result, count}: Props) {
                 <div>
                     <ItemDisplay asset={resultAsset}/>
                 </div>
-                {count &&
+                {count && count > 1 &&
                     <span className="absolute bottom-0 right-0 text-white text-base leading-[1] text-left sharpRendering z-10" style={{fontFamily: 'Minecraft, sans-serif', textShadow: '2px 2px 0 #3F3F3F'}}>
                       {count}
                     </span>

@@ -21,10 +21,10 @@ export default function DocsContentTitle({ mod, children, titleClassName, versio
         <h1 className={cn("docsContentTitle text-ellipsis md:overflow-hidden md:whitespace-nowrap text-foreground text-2xl", titleClassName)}>
           {children}
         </h1>
-        <div className={cn("flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", mod?.branches ? 'items-center' : 'items-end')}>
+        <div className={cn("flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", mod?.versions ? 'items-center' : 'items-end')}>
           {mod?.local && <Badge variant="destructive">{t('local')}</Badge>}
           {mod?.is_community && <CommunityDocsBadge />}
-          {mod?.branches && <DocsBranchSelector branch={version} branches={mod?.branches} />}
+          {mod?.versions && <DocsBranchSelector branch={version} branches={mod?.versions} />}
         </div>
       </div>
       <hr className="mt-4 mb-6 border-neutral-600"/>
