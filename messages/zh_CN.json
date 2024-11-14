@@ -11,51 +11,51 @@
             "beta": "Beta"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "主页",
+            "browse": "浏览",
+            "about": "关于"
         }
     },
     "NavigationFooter": {
         "title": "Modded Minecraft Wiki",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "导航",
+                "home": "主页",
+                "browse": "浏览",
+                "dev": "控制台"
             },
             "links": {
-                "title": "Links"
+                "title": "链接"
             },
             "resources": {
-                "title": "Resources",
-                "blog": "Blog",
-                "translate": "Help us translate"
+                "title": "资源",
+                "blog": "博客",
+                "translate": "帮助我们翻译"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "关于",
+                "tos": "服务条款",
+                "privacy": "隐私政策",
+                "contact": "联系我们"
             }
         }
     },
     "HomePage": {
-        "heading": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "heading": "欢迎来到 <highlight>Modded Minecraft 维基</highlight>",
         "documentation": {
-            "title": "Documentation",
-            "desc": "Browse mod documentation",
+            "title": "文档",
+            "desc": "浏览模组文档",
             "search": {
-                "placeholder": "Find your favourite mod..."
+                "placeholder": "搜索你喜爱的模组……"
             },
-            "explore": "Explore mods"
+            "explore": "浏览模组"
         },
         "developers": {
-            "title": "Authors & Developers",
-            "desc": "Looking to write documentation for a mod?",
-            "guide": "Get started by reading our <guide>author guide</guide>.",
-            "area": "Project dashboard"
+            "title": "文档作者 & 开发者",
+            "desc": "想为某个模组添加资料？",
+            "guide": "请先阅读我们的<guide>作者指南</guide>。",
+            "area": "项目仪表盘"
         },
         "links": {
             "browse": {
@@ -63,11 +63,11 @@
                 "desc": "Browse our library of documented mods"
             },
             "blog": {
-                "title": "Blog",
-                "desc": "Read about the latest wiki updates"
+                "title": "博客",
+                "desc": "了解维基近期更新内容"
             },
             "about": {
-                "title": "About",
+                "title": "关于",
                 "desc": "Learn more about how the wiki operates"
             },
             "devs": {
@@ -83,11 +83,11 @@
         "no_results": "Search query returned no results!"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "加载中…"
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
-        "about": "About",
+        "title": "导航",
+        "about": "关于",
         "devs": "Developers",
         "format": "Format",
         "publishing": "Publishing",
@@ -135,10 +135,10 @@
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "许可证",
+            "custom": "其他",
+            "unknown": "未知",
+            "arr": "保留所有权利"
         }
     },
     "ModCategories": {
@@ -150,78 +150,78 @@
         "food": "Food",
         "game-mechanics": "Game Mechanics",
         "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "magic": "魔法",
+        "management": "管理",
+        "minigame": "小游戏",
+        "mobs": "生物",
+        "optimization": "优化",
+        "social": "社交",
+        "storage": "存储",
+        "technology": "科技",
+        "transportation": "物流",
+        "utility": "实用",
+        "worldgen": "世界生成",
+        "server-utility": "服务器工具",
+        "armor-weapons-tools": "道具",
+        "library-api": "LIB",
+        "adventure-rpg": "冒险",
+        "world-gen": "世界生成",
+        "cosmetic": "装饰",
+        "mc-food": "食物",
+        "performance": "性能",
+        "map-information": "信息展示",
+        "bug-fixes": "Bug修复",
+        "mc-addons": "插件",
+        "education": "教育",
+        "mc-miscellaneous": "杂项",
+        "redstone": "红石",
+        "utility-qol": "改良",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit page on GitHub",
-        "report": "Report this page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "在GitHub上编辑本页",
+        "report": "报告本页",
+        "last_updated": "最后更新：<date></date>"
     },
     "DocsEntryInfo": {
-        "title": "Information",
-        "name": "Name",
-        "source": "Source Mod",
-        "tags": "Tags",
+        "title": "信息",
+        "name": "名称",
+        "source": "原模组",
+        "tags": "标签",
         "id": "ID",
-        "unknown": "Unknown",
+        "unknown": "未知",
         "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
+            "block": "方块",
+            "item": "物品",
+            "other": "其它"
         }
     },
     "Report": {
-        "title": "Report a documentation page",
-        "desc": "Report content that violates our Terms of Service or Content Rules.",
-        "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
-        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
-        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "title": "报告文档页面",
+        "desc": "报告违反了我们的《服务条款》或《内容规则》的内容。",
+        "contact": "您的<b>用户名</b>（以及可选的邮箱地址）会随同报告一并提交以便后续联系",
+        "confidential": "我们重视您的隐私，这些信息将会永远保密。",
+        "privacy": "欲了解更多信息，请参阅我们的<link>《隐私政策》</link>",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "项目ID",
+                "desc": "欲报告项目的ID。"
             },
             "path": {
-                "title": "Page path",
-                "desc": "Reported documentation page path."
+                "title": "页面路径",
+                "desc": "欲报告内容的文档页面路径。"
             },
             "email": {
-                "title": "Reply email address",
-                "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
+                "title": "回复邮箱地址",
+                "desc": "（可选）我们可以用此联系邮箱地址通知您关于本报告的更新，或要求提供更多内容。"
             },
             "reason": {
-                "title": "Reason*",
-                "placeholder": "Select a reason for reporting this page",
-                "desc": "Reason for reporting this page.",
-                "spam": "Spam",
-                "copyright": "Copyright Infringement",
-                "content_rules_violation": "Violates Content Rules",
+                "title": "原因*",
+                "placeholder": "请选择报告本页的原因",
+                "desc": "报告本页的原因",
+                "spam": "垃圾信息",
+                "copyright": "版权侵犯",
+                "content_rules_violation": "违反《内容规则》",
                 "tos_violation": "Violates Terms of Service",
                 "dislike": "I just don't like it"
             },
@@ -400,10 +400,10 @@
     },
     "ModDocsPlaceholder": {
         "summary": "(Placeholder)",
-        "description": "(Placeholder)"
+        "description": "（占位符）"
     },
     "DocsHomepagePlaceholder": {
-        "title": "Homepage placeholder",
+        "title": "主页占位符",
         "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
         "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
     },
@@ -411,14 +411,14 @@
         "title": "On this page"
     },
     "DocsBranchSelector": {
-        "title": "Versions",
+        "title": "版本",
         "latest": "Latest"
     },
     "DocsSearchBar": {
         "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
+        "no_results": "什么都木有找到！",
         "loading": "Finding the perfect results...",
         "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "close": "按下<kbd>ESC</kbd>以关闭"
     }
 }
