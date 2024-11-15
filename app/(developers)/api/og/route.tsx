@@ -1,13 +1,13 @@
 import {NextRequest, NextResponse} from "next/server";
 import {ImageResponse} from "next/og";
 import platforms, {ModProject} from "@/lib/platforms";
-import sources from "@/lib/docs/sources";
 import sharp from "sharp";
-import markdown from "@/lib/markdown";
 import {getProcessURL} from "@/lib/utils";
 import {AssetLocation} from "@/lib/assets";
 import service from "@/lib/service";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
+import matter from "gray-matter";
+import {DocsEntryMetadata} from "@/lib/docs/metadata";
 
 export const runtime = 'nodejs';
 
@@ -103,7 +103,7 @@ async function projectPageImage(coords: DocsPathCoords, project: ModProject, fon
 
     const buffer = await sharp(buf).toFormat('png').toBuffer()
     return {
-      url: `data:${'image/png'};base64,${buffer.toString('base64')}`,
+      url: `data:image/png;base64,${buffer.toString('base64')}`,
     };
   };
 
@@ -256,10 +256,6 @@ export async function GET(req: NextRequest) {
   }
 
   const fonts = await getFont();
-
-  const source = await sources.getProjectSource(slug);
-  const project = await platforms.getPlatformProject(source.platform, source.slug);
-
   const locale = searchParams.get('locale') || DEFAULT_LOCALE;
   const version = searchParams.get('version') || DEFAULT_DOCS_VERSION;
 
@@ -267,11 +263,23 @@ export async function GET(req: NextRequest) {
 
   const pathVal = searchParams.get('path');
   if (!pathVal) {
+    const mod = await service.getMod(slug);
+    if (!mod) {
+      return NextResponse.error();
+    }
+    const project = await platforms.getPlatformProject(mod.platform, mod.slug);
     return projectPageImage(coords, project, fonts);
   }
 
   const path = pathVal.split('/');
-  const metadata = await markdown.readDocumentationFileMetadata(source, path, locale);
+  const page = await service.getDocsPage(slug, path, version, locale);
+  if (!page) {
+    return NextResponse.error();
+  }
+
+  const project = await platforms.getPlatformProject(page.mod.platform, page.mod.slug);
+  const metadata = matter(page.content).data as DocsEntryMetadata;
+
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(slug, (metadata.icon || metadata.id)!, version);
 
   return docsEntryPageResponse({...coords, path: pathVal}, project.name, metadata.title || 'Document', iconUrl, fonts);

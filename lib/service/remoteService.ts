@@ -33,6 +33,19 @@ async function fetchBackendService(path: string, params: Record<string, string |
   });
 }
 
+async function getMod(mod: string): Promise<Mod | null> {
+  try {
+    const resp = await fetchBackendService(`mod/${mod}`);
+    if (resp.ok) {
+      const json = await resp.json();
+      return json.mod;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+  return null;
+}
+
 async function getBackendLayout(mod: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   try {
     const resp = await fetchBackendService(`mod/${mod}/tree`, {version, locale});
@@ -92,5 +105,6 @@ export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
-  invalidateCache
+  invalidateCache,
+  getMod
 } satisfies ServiceProvider

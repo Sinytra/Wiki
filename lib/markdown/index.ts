@@ -6,7 +6,6 @@ import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from "rehype-raw";
 
 import {markdownRehypeSchema} from "./contentFilter";
-import sources, {DocumentationFile, DocumentationSource} from "@/lib/docs/sources";
 import {ReactElement} from "react";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
@@ -17,17 +16,10 @@ import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import * as LucideReact from "lucide-react";
-import matter from 'gray-matter';
 
 export interface DocumentationMarkdown {
   content: ReactElement;
   metadata: DocsEntryMetadata;
-}
-
-interface RenderedFile {
-  file: DocumentationFile;
-  content: DocumentationMarkdown;
-  edit_url?: string;
 }
 
 async function renderMarkdown(content: string): Promise<string> {
@@ -92,15 +84,7 @@ function sanitizeHastTree(tree: any, sanitizer: (tree: any) => any, components: 
   return tree.children ? tree : sanitizer(tree);
 }
 
-async function readDocumentationFileMetadata(source: DocumentationSource, path: string[], locale: string): Promise<DocsEntryMetadata> {
-  const file = await sources.readDocsFile(source, path, locale);
-  const result = matter(file.content);
-
-  return result.data;
-}
-
 export default {
   renderMarkdown,
-  readDocumentationFileMetadata,
   renderDocumentationMarkdown
 };

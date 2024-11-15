@@ -156,34 +156,6 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
     }));
 }
 
-async function getProjectSource(slug: string): Promise<DocumentationSource> {
-  if (localPreview.isEnabled()) {
-    return findProjectSource(slug, enableLocalSources());
-  }
-
-  const cache = unstable_cache(
-    async (id: string, enableLocal: boolean) => findProjectSource(id, enableLocal),
-    [process.env.LOCAL_DOCS_ROOTS || 'no_locals'],
-    {
-      tags: [cacheUtil.getModDocsSourceCacheId(slug)]
-    }
-  );
-  return await cache(slug, enableLocalSources());
-}
-
-async function findProjectSource(slug: string, enableLocal: boolean): Promise<DocumentationSource> {
-  if (enableLocal) {
-    const localSources = await getLocalDocumentationSources();
-
-    const local = localSources.find(s => s.id === slug);
-    if (local) {
-      return local;
-    }
-  }
-
-  throw Error(`Project source not found for ${slug}`);
-}
-
 async function getLocalDocumentationSources(): Promise<DocumentationSource[]> {
   const localPaths = process.env.LOCAL_DOCS_ROOTS || '';
 
@@ -243,10 +215,6 @@ async function computeAvailableLocales(source: DocumentationSource, provider: Do
   }
 }
 
-function enableLocalSources() {
-  return process.env.LOCAL_DOCS_ROOTS !== undefined;
-}
-
 function capitalizeDefaultEntryName(str: string) {
   const words = str.split('.')[0].replaceAll(/[_\-]/g, ' ').split(' ');
   for (let i = 0; i < words.length; i++) {
@@ -256,7 +224,6 @@ function capitalizeDefaultEntryName(str: string) {
 }
 
 export default {
-  getProjectSource,
   readDocsTree,
   readDocsFile,
   readShallowFileTree,

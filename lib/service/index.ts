@@ -49,10 +49,22 @@ export interface RenderedDocsPage {
 }
 
 export interface ServiceProvider {
+  getMod: (slug: string) => Promise<Mod | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
   invalidateCache: (slug: string) => Promise<void>;
+}
+
+async function getMod(slug: string): Promise<Mod | null> {
+  if (process.env.LOCAL_DOCS_ROOTS) {
+    const localMod = await localService.getMod(slug);
+    if (localMod) {
+      return localMod;
+    }
+  }
+
+  return remoteService.getMod(slug);
 }
 
 async function getBackendLayout(slug: string, version: string, locale: string): Promise<LayoutTree | null> {
@@ -122,6 +134,7 @@ async function invalidateCache(slug: string) {
 }
 
 export default {
+  getMod,
   getBackendLayout,
   getAsset,
   getDocsPage,

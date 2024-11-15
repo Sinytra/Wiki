@@ -10,22 +10,33 @@ async function getProjectSource(slug: string): Promise<DocumentationSource | nul
   return src || null;
 }
 
+async function getMod(slug: string): Promise<Mod | null> {
+  const src = await getProjectSource(slug);
+  if (src) {
+    return sourceToMod(src)
+  }
+  return null;
+}
+
+async function sourceToMod(src: DocumentationSource): Promise<Mod> {
+  const project = await platforms.getPlatformProject(src.platform, src.slug);
+
+  return {
+    id: src.id,
+    name: project.name,
+    platform: src.platform,
+    slug: src.slug,
+    is_community: src.is_community,
+    is_public: false,
+    local: true
+  };
+}
+
 async function getBackendLayout(slug: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    const project = await platforms.getPlatformProject(src.platform, src.slug);
-
-    const mod: Mod = {
-      id: src.id,
-      name: project.name,
-      platform: src.platform,
-      slug: src.slug,
-      is_community: src.is_community,
-      is_public: false,
-      local: true
-    };
+    const mod = await sourceToMod(src)
     const tree = await sources.readDocsTree(src, locale || undefined);
-
     return {
       mod,
       tree
@@ -74,5 +85,6 @@ export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
-  invalidateCache
+  invalidateCache,
+  getMod
 } satisfies ServiceProvider;
