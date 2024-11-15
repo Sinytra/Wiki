@@ -11,13 +11,13 @@
             "beta": "Beta"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "Inicio",
+            "browse": "Explorar",
+            "about": "Acerca de"
         }
     },
     "NavigationFooter": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Wiki de Modificaciones de Minecraft",
         "links": {
             "navigation": {
                 "title": "Navigation",
@@ -29,81 +29,81 @@
                 "title": "Links"
             },
             "resources": {
-                "title": "Resources",
+                "title": "Recursos",
                 "blog": "Blog",
-                "translate": "Help us translate"
+                "translate": "Ayúdanos a traducir"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "Acerca de",
+                "tos": "Términos de Servicio",
+                "privacy": "Política de Privacidad",
+                "contact": "Contacto"
             }
         }
     },
     "HomePage": {
-        "heading": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "heading": "Bienvenido a la <highlight>Wiki de Modificaciones de Minecraft</highlight>",
         "documentation": {
-            "title": "Documentation",
-            "desc": "Browse mod documentation",
+            "title": "Documentación",
+            "desc": "Explorar la documentación del mod",
             "search": {
-                "placeholder": "Find your favourite mod..."
+                "placeholder": "Encuentra tu mod favorito..."
             },
-            "explore": "Explore mods"
+            "explore": "Explorar mods"
         },
         "developers": {
-            "title": "Authors & Developers",
-            "desc": "Looking to write documentation for a mod?",
-            "guide": "Get started by reading our <guide>author guide</guide>.",
-            "area": "Project dashboard"
+            "title": "Autores y Desarrolladores",
+            "desc": "¿Buscas escribir la documentación para un mod?",
+            "guide": "Comience leyendo nuestra <guide>guía de autor</guide>.",
+            "area": "Panel de proyectos"
         },
         "links": {
             "browse": {
-                "title": "Browse mods",
-                "desc": "Browse our library of documented mods"
+                "title": "Buscar mods",
+                "desc": "Navega por nuestra biblioteca de mods documentados"
             },
             "blog": {
                 "title": "Blog",
-                "desc": "Read about the latest wiki updates"
+                "desc": "Lee acerca de las últimas actualizaciones de la wiki"
             },
             "about": {
-                "title": "About",
-                "desc": "Learn more about how the wiki operates"
+                "title": "Acerca de",
+                "desc": "Aprende más sobre cómo funciona la wiki"
             },
             "devs": {
-                "title": "Authors",
-                "desc": "Host your mod's documentation on our wiki"
+                "title": "Autores",
+                "desc": "Hospeda la documentación de tu mod en nuestra wiki"
             }
         }
     },
     "BrowsePage": {
         "search": {
-            "placeholder": "!"
+            "placeholder": "Buscar mods..."
         },
-        "no_results": "La recherche n'a donné aucun résultat !"
+        "no_results": "¡La consulta de búsqueda no ha devuelto resultados!"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "Cargando..."
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
-        "about": "About",
-        "devs": "Developers",
-        "format": "Format",
-        "publishing": "Publishing",
-        "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
-        "security": "Security Notice",
-        "community": "Community Docs"
+        "title": "Navegación",
+        "about": "Acerca de",
+        "devs": "Desarrolladores",
+        "format": "Formato",
+        "publishing": "Publicación",
+        "help": "Obtener ayuda",
+        "tos": "Términos de Uso",
+        "privacy": "Política de Privacidad",
+        "security": "Aviso de Seguridad",
+        "community": "Documentos Comunitarios"
     },
     "DeveloperPortal": {
-        "title": "Project management dashboard",
-        "logout": "Logout",
+        "title": "Panel de administración de proyectos",
+        "logout": "Cerrar sesión",
         "projects": {
-            "title": "Projects",
-            "loading_all": "Loading profile projects...",
-            "loading": "Loading profile...",
+            "title": "Proyectos",
+            "loading_all": "Cargando proyectos de perfil...",
+            "loading": "Cargando perfil...",
             "empty": {
                 "primary": "Looks like you haven't registered any projects yet",
                 "secondary": "Get started by reading our <guide>author guide</guide>."
@@ -160,45 +160,45 @@
         "technology": "Technology",
         "transportation": "Transporation",
         "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
+        "worldgen": "Generación de mundo",
+        "server-utility": "Utilidades de servidor",
+        "armor-weapons-tools": "Armaduras, Herramientas y Armas",
+        "library-api": "API y librerías",
+        "adventure-rpg": "Aventura y RPG",
+        "world-gen": "Generación del mundo",
+        "cosmetic": "Cosmética",
+        "mc-food": "Alimentos",
+        "performance": "Rendimiento",
+        "map-information": "Mapa e información",
+        "bug-fixes": "Arreglos de Bugs",
+        "mc-addons": "Complementos",
+        "education": "Educación",
+        "mc-miscellaneous": "Misceláneo",
         "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "utility-qol": "Utilidad & Calidad de vida",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit page on GitHub",
-        "report": "Report this page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "Editar página en GitHub",
+        "report": "Reportar esta página",
+        "last_updated": "Última actualización: <date></date>"
     },
     "DocsEntryInfo": {
-        "title": "Information",
-        "name": "Name",
-        "source": "Source Mod",
-        "tags": "Tags",
+        "title": "Información",
+        "name": "Nombre",
+        "source": "Fuente del mod",
+        "tags": "Etiquetas",
         "id": "ID",
-        "unknown": "Unknown",
+        "unknown": "Desconocido",
         "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
+            "block": "Bloque",
+            "item": "Ítem",
+            "other": "Otro"
         }
     },
     "Report": {
-        "title": "Report a documentation page",
-        "desc": "Report content that violates our Terms of Service or Content Rules.",
+        "title": "Reportar una página de documentación",
+        "desc": "Informar del contenido que viola nuestros Términos de Servicio o nuestras Normas de Contenido.",
         "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
         "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
         "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
@@ -245,25 +245,25 @@
         "title": "Heads up!"
     },
     "ProjectRegisterForm": {
-        "button": "Add Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "button": "Añadir Proyecto",
+        "title": "Registrar proyecto",
+        "desc": "Registrar un nuevo proyecto en la wiki.",
         "owner": {
-            "title": "Owner",
-            "desc": "User / organization name.",
+            "title": "Propietario",
+            "desc": "Usuario / nombre de la organización.",
             "placeholder": "ExampleUser"
         },
         "repo": {
-            "title": "Name",
-            "desc": "Repository name.",
+            "title": "Nombre",
+            "desc": "Nombre del repositorio.",
             "placeholder": "ExampleMod"
         },
         "branch": {
-            "title": "Branch",
+            "title": "Rama",
             "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
         },
         "path": {
-            "title": "Path to documentation root",
+            "title": "Ruta a la raíz de documentación",
             "desc": "Path to the folder containing the metadata file."
         },
         "admin": "Wiki admin settings",
@@ -284,38 +284,38 @@
     },
     "ProjectSettingsForm": {
         "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
+        "desc": "Editar la configuración de un proyecto existente.",
         "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's mod page"
+            "title": "Proyecto actualizado correctamente",
+            "desc": "Ahora puede navegar a la página de mods del proyecto actualizado"
         }
     },
     "ProjectDeletionForm": {
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "title": "¿Estás realmente seguro?",
+        "desc": "Esta acción no se puede deshacer. Esto eliminará permanentemente tu proyecto y eliminará todos los datos asociados de nuestros servidores.",
+        "cancel": "Cancelar",
+        "submit": "Eliminar",
+        "success": "Proyecto eliminado correctamente"
     },
     "ProjectRevalidateForm": {
-        "title": "Revalidate project?",
-        "primary": "All cached documentation pages will be purged and re-rendered lazily on-demand.",
-        "secondary": "This option should only be used upon updating the documentation source itself.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "cancel": "Cancel",
-        "submit": "Revalidate",
-        "success": "Project successfully revalidated"
+        "title": "¿Revalidar proyecto?",
+        "primary": "Todas las páginas de documentación almacenadas en caché serán repurgadas y reproducidas perezosamente bajo demanda.",
+        "secondary": "Esta opción solo debería utilizarse cuando se actualice la fuente de documentación en sí.",
+        "tertiary": "Para su propia comodidad, le recomendamos que vuelva a validar automáticamente los documentos después de su publicación utilizando nuestro <link>plugin de Gradle</link> en su lugar.",
+        "cancel": "Cancelar",
+        "submit": "Revalidar",
+        "success": "Proyecto revalidado con éxito"
     },
     "FormActions": {
         "errors": {
-            "exists": "Project already exists.",
-            "unauthenticated": "Unauthenticated",
-            "access_denied": "User does not have access to repository.",
-            "no_branch": "Branch does not exist",
-            "invalid_path": "Invalid path provided",
-            "invalid_meta": "Metadata file is invalid",
-            "no_meta": "Metadata file not found",
-            "no_cf_key": "Cannot register CurseForge project; missing API key",
+            "exists": "El proyecto ya existe.",
+            "unauthenticated": "No autorizado",
+            "access_denied": "El usuario no tiene acceso al repositorio.",
+            "no_branch": "La rama no existe",
+            "invalid_path": "Ruta inválida proporcionada",
+            "invalid_meta": "El archivo de metadatos no es válido",
+            "no_meta": "Archivo de metadatos no se ha encontrado",
+            "no_cf_key": "No se puede registrar el proyecto de CurseForge; falta la clave de API",
             "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "ownership": "Failed to verify project ownership",
             "internal": "Internal Server Error, please try again later.",
@@ -330,14 +330,14 @@
         "desc": "Help resolve common issues with project registration.",
         "app": {
             "title": "Ensure the GitHub app is installed on your repository",
-            "button": "Install GitHub App"
+            "button": "Instala la app de GitHub"
         },
         "moved": {
-            "title": "Has your repository moved?",
-            "button": "Migrate project repository"
+            "title": "¿Has removido tu repositorio?",
+            "button": "Migrar repositorio del proyecto"
         },
         "other": {
-            "title": "Other issues",
+            "title": "Otros problemas",
             "desc": "Check the troubleshooting section of the documentation Publishing guide.",
             "link": "Open troubleshooting guide"
         }
@@ -346,8 +346,8 @@
         "title": "Migrate project repository",
         "desc": "Update repository data after its location has changed.",
         "owner": {
-            "title": "Old Owner",
-            "desc": "Old User / organization name.",
+            "title": "Propietario antiguo",
+            "desc": "Usuario antiguo / nombre de la organización.",
             "placeholder": "ExampleUser"
         },
         "repo": {

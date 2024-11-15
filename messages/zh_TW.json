@@ -1,0 +1,424 @@
+{
+    "Badges": {
+        "local": "本機",
+        "latest": "最新"
+    },
+    "NavigationHeader": {
+        "title": "Modded Minecraft Wiki",
+        "title_short": "Wiki",
+        "badge": {
+            "preview": "預覽模式",
+            "beta": "Beta 版"
+        },
+        "link": {
+            "home": "首頁",
+            "browse": "瀏覽",
+            "about": "關於"
+        }
+    },
+    "NavigationFooter": {
+        "title": "Modded Minecraft Wiki",
+        "links": {
+            "navigation": {
+                "title": "導覽",
+                "home": "首頁",
+                "browse": "瀏覽",
+                "dev": "開發人員"
+            },
+            "links": {
+                "title": "連結"
+            },
+            "resources": {
+                "title": "資源",
+                "blog": "部落格",
+                "translate": "協助我們翻譯"
+            },
+            "about": {
+                "title": "關於",
+                "tos": "服務條款",
+                "privacy": "隱私權政策",
+                "contact": "聯絡我們"
+            }
+        }
+    },
+    "HomePage": {
+        "heading": "歡迎使用 <highlight>Modded Minecraft Wiki</highlight>",
+        "documentation": {
+            "title": "文件",
+            "desc": "瀏覽模組文件",
+            "search": {
+                "placeholder": "尋找你最喜歡的模組..."
+            },
+            "explore": "探索模組"
+        },
+        "developers": {
+            "title": "作者和開發人員",
+            "desc": "想為模組撰寫文件嗎？",
+            "guide": "請先閱讀我們的<guide>作者指南</guide>。",
+            "area": "專案儀表板"
+        },
+        "links": {
+            "browse": {
+                "title": "瀏覽模組",
+                "desc": "瀏覽我們已記錄的模組庫"
+            },
+            "blog": {
+                "title": "部落格",
+                "desc": "閱讀最新的 Wiki 更新資訊"
+            },
+            "about": {
+                "title": "關於",
+                "desc": "深入了解 Wiki 的運作方式"
+            },
+            "devs": {
+                "title": "作者",
+                "desc": "在我們的 Wiki 上託管您的模組文件"
+            }
+        }
+    },
+    "BrowsePage": {
+        "search": {
+            "placeholder": "搜尋模組..."
+        },
+        "no_results": "搜尋查詢沒有結果！"
+    },
+    "LoadingContent": {
+        "message": "載入中..."
+    },
+    "MetaDocsNavigation": {
+        "title": "導覽",
+        "about": "關於",
+        "devs": "開發人員",
+        "format": "格式",
+        "publishing": "發布",
+        "help": "取得協助",
+        "tos": "使用規定",
+        "privacy": "隱私權政策",
+        "security": "安全性通知",
+        "community": "社群文件"
+    },
+    "DeveloperPortal": {
+        "title": "專案管理儀表板",
+        "logout": "登出",
+        "projects": {
+            "title": "專案",
+            "loading_all": "正在載入個人檔案專案...",
+            "loading": "正在載入個人檔案...",
+            "empty": {
+                "primary": "看來您尚未登錄任何專案",
+                "secondary": "請先閱讀我們的<guide>作者指南</guide>開始。"
+            }
+        }
+    },
+    "Login": {
+        "title": "需要登入",
+        "desc": "您嘗試存取的頁面需要您登入。",
+        "prompt": "請使用您的 GitHub 帳號繼續。",
+        "button": "使用 GitHub 登入"
+    },
+    "Preview": {
+        "title": "預覽模式已啟用",
+        "desc": "預覽模式會啟用最小的使用者介面，讓您可以在發布前專注於在本機撰寫文件草稿。",
+        "roots": "可用的本機文件根目錄",
+        "open": "開啟"
+    },
+    "DocsFileTree": {
+        "title": "文件",
+        "homepage": "模組首頁"
+    },
+    "DocsModInfo": {
+        "title": "模組資訊",
+        "author": "作者",
+        "tags": "標籤",
+        "latest": {
+            "title": "最新版本",
+            "unknown": "N/A"
+        },
+        "license": {
+            "title": "授權條款",
+            "custom": "自訂",
+            "unknown": "未知",
+            "arr": "版權所有"
+        }
+    },
+    "ModCategories": {
+        "adventure": "冒險",
+        "cursed": "惡搞",
+        "decoration": "裝飾",
+        "economy": "經濟",
+        "equipment": "裝備",
+        "food": "食物",
+        "game-mechanics": "遊戲機制",
+        "library": "程式庫",
+        "magic": "魔法",
+        "management": "管理",
+        "minigame": "小遊戲",
+        "mobs": "生物",
+        "optimization": "最佳化",
+        "social": "社交",
+        "storage": "儲物",
+        "technology": "科技",
+        "transportation": "運輸",
+        "utility": "工具",
+        "worldgen": "世界生成",
+        "server-utility": "伺服器工具",
+        "armor-weapons-tools": "盔甲、工具和武器",
+        "library-api": "API 和程式庫",
+        "adventure-rpg": "冒險和 RPG",
+        "world-gen": "世界生成",
+        "cosmetic": "外觀",
+        "mc-food": "食物",
+        "performance": "效能",
+        "map-information": "地圖和資訊",
+        "bug-fixes": "錯誤修正",
+        "mc-addons": "Addons",
+        "education": "教育",
+        "mc-miscellaneous": "其他",
+        "redstone": "紅石",
+        "utility-qol": "工具與生活品質",
+        "mc-creator": "MCreator"
+    },
+    "PageEditControls": {
+        "edit_gh": "在 GitHub 上編輯頁面",
+        "report": "檢舉這個頁面",
+        "last_updated": "上次更新時間：<date></date>"
+    },
+    "DocsEntryInfo": {
+        "title": "資訊",
+        "name": "名稱",
+        "source": "來源模組",
+        "tags": "標籤",
+        "id": "ID",
+        "unknown": "未知",
+        "type": {
+            "block": "方塊",
+            "item": "物品",
+            "other": "其他"
+        }
+    },
+    "Report": {
+        "title": "檢舉文件頁面",
+        "desc": "檢舉違反我們《服務條款》或《內容規範》的內容。",
+        "contact": "基於聯絡目的，您的<b>使用者名稱</b>（以及電子郵件地址，如果您提供的話）將會包含在檢舉報告中。",
+        "confidential": "我們很重視您的隱私，這些資訊會永遠保密。",
+        "privacy": "如需詳細資訊，請參閱我們的《<link>隱私權政策</link>》。",
+        "form": {
+            "id": {
+                "title": "專案 ID",
+                "desc": "被檢舉的專案 ID。"
+            },
+            "path": {
+                "title": "頁面路徑",
+                "desc": "被檢舉的文件頁面路徑。"
+            },
+            "email": {
+                "title": "回覆電子郵件地址",
+                "desc": "（選填）我們可以用來通知您這份檢舉的更新，或要求其他資訊的聯絡電子郵件地址。"
+            },
+            "reason": {
+                "title": "原因*",
+                "placeholder": "選擇檢舉這個頁面的原因",
+                "desc": "檢舉這個頁面的原因。",
+                "spam": "垃圾內容",
+                "copyright": "侵犯版權",
+                "content_rules_violation": "違反《內容規範》",
+                "tos_violation": "違反《服務條款》",
+                "dislike": "我不喜歡它"
+            },
+            "details": {
+                "title": "詳細資訊*",
+                "placeholder": "請提供更多關於您為何檢舉這個頁面的詳細資訊。請注意，空白的檢舉將會被忽略。",
+                "desc": "關於這個問題的額外詳細資訊。"
+            },
+            "dislike": {
+                "title": "我們理解您可能不喜歡這個頁面，這完全沒問題！",
+                "desc": "但很遺憾的是，這不是檢舉專案的有效理由。",
+                "suggestion": "您想找其他東西來閱讀嗎？",
+                "explore": "探索模組"
+            }
+        }
+    },
+    "SubmitButton": {
+        "title": "提交"
+    },
+    "Callout": {
+        "title": "注意！"
+    },
+    "ProjectRegisterForm": {
+        "button": "新增專案",
+        "title": "登錄專案",
+        "desc": "向 Wiki 登錄一個新專案。",
+        "owner": {
+            "title": "擁有者",
+            "desc": "使用者／組織名稱。",
+            "placeholder": "ExampleUser"
+        },
+        "repo": {
+            "title": "名稱",
+            "desc": "儲存庫名稱。",
+            "placeholder": "ExampleMod"
+        },
+        "branch": {
+            "title": "分支",
+            "desc": "主要分支參考。您可以在中繼資料檔案中指定要包含的其他分支。"
+        },
+        "path": {
+            "title": "文件根目錄的路徑",
+            "desc": "包含中繼資料檔案的資料夾路徑。"
+        },
+        "admin": "Wiki 管理員設定",
+        "is_community": {
+            "title": "社群維護的專案"
+        },
+        "errors": {
+            "install_app": "請先在您的儲存庫上安裝我們的 GitHub 應用程式 <link>這裡</link>。",
+            "details": "顯示詳細資訊"
+        },
+        "submit": "提交",
+        "success": {
+            "title": "專案登錄成功",
+            "desc": "您現在可以導覽至專案的模組頁面"
+        },
+        "submitting": "提交中...",
+        "verify_modrinth": "使用 Modrinth 驗證"
+    },
+    "ProjectSettingsForm": {
+        "title": "編輯專案",
+        "desc": "編輯現有專案的設定。",
+        "success": {
+            "title": "專案更新成功",
+            "desc": "您現在可以導覽至已更新的專案的模組頁面"
+        }
+    },
+    "ProjectDeletionForm": {
+        "title": "您確定嗎？",
+        "desc": "這項操作無法復原。這會永久刪除您的專案，並從我們的伺服器中移除所有相關資料。",
+        "cancel": "取消",
+        "submit": "刪除",
+        "success": "專案已成功刪除"
+    },
+    "ProjectRevalidateForm": {
+        "title": "要重新驗證專案嗎？",
+        "primary": "所有快取的文件頁面將會被清除，並在需要時重新顯示。",
+        "secondary": "這項選項應該只在更新文件來源本身時使用。",
+        "tertiary": "為了您的方便，我們建議您在發布後使用我們的 <link>Gradle 延伸模組</link>自動重新驗證文件",
+        "cancel": "取消",
+        "submit": "重新驗證",
+        "success": "專案已成功重新驗證"
+    },
+    "FormActions": {
+        "errors": {
+            "exists": "專案已存在。",
+            "unauthenticated": "未驗證",
+            "access_denied": "使用者沒有存取儲存庫的權限。",
+            "no_branch": "分支不存在",
+            "invalid_path": "提供的路徑無效",
+            "invalid_meta": "中繼資料檔案無效",
+            "no_meta": "找不到中繼資料檔案",
+            "no_cf_key": "無法登錄 CurseForge 專案；缺少 API 金鑰",
+            "no_project": "找不到平台專案。請確認中繼資料的「slug」欄位正確。",
+            "ownership": "無法驗證專案擁有權",
+            "internal": "內部伺服器錯誤，請稍後再試。",
+            "verification": "驗證錯誤",
+            "not_found": "找不到",
+            "insufficient_perms": "權限不足，無法建立社群專案"
+        }
+    },
+    "GetHelpModal": {
+        "button": "您的專案沒有顯示嗎？",
+        "title": "專案協助",
+        "desc": "協助解決專案登錄的常見問題。",
+        "app": {
+            "title": "確保 GitHub 應用程式已安裝在您的儲存庫上",
+            "button": "安裝 GitHub 應用程式"
+        },
+        "moved": {
+            "title": "您的儲存庫移動了嗎？",
+            "button": "遷移專案儲存庫"
+        },
+        "other": {
+            "title": "其他問題",
+            "desc": "請查看文件發布指南的疑難排解章節。",
+            "link": "開啟疑難排解指南"
+        }
+    },
+    "MigrateRepositoryForm": {
+        "title": "遷移專案儲存庫",
+        "desc": "在儲存庫位置變更後更新儲存庫資料。",
+        "owner": {
+            "title": "舊擁有者",
+            "desc": "舊使用者／組織名稱。",
+            "placeholder": "ExampleUser"
+        },
+        "repo": {
+            "title": "舊名稱",
+            "desc": "舊儲存庫名稱。",
+            "placeholder": "ExampleMod"
+        },
+        "new_owner": {
+            "title": "新擁有者",
+            "desc": "新使用者／組織名稱。",
+            "placeholder": "ExampleOrg"
+        },
+        "submit": "遷移",
+        "success": {
+            "title": "儲存庫遷移成功",
+            "desc": "現在應該可以看到遷移的專案"
+        },
+        "migrate_error": {
+            "install_app": "請確保我們的 GitHub 應用程式已<link>安裝</link>在遷移的儲存庫上。",
+            "unavailable": "儲存庫沒有可用的遷移。輸入的資訊是否正確？"
+        }
+    },
+    "CommunityBadge": {
+        "title": "社群",
+        "desc": "由社群維護的非官方文件"
+    },
+    "DocsPageNotFoundError": {
+        "title": "我們找不到這個頁面",
+        "desc": "目前無法使用所請求的文件頁面。",
+        "suggestion": "請稍後再試，或向模組作者回報這個問題。",
+        "submit": "提交問題",
+        "return": "返回首頁"
+    },
+    "GetStartedButton": {
+        "title": "新增專案"
+    },
+    "GetStartedModal": {
+        "button": "新增專案",
+        "title": "我想撰寫... 的文件",
+        "dev": {
+            "title": "我自己的模組",
+            "desc": "撰寫您自己的文件，並控制誰可以進行變更。",
+            "button": "建立專案"
+        },
+        "community": {
+            "title": "其他人的模組",
+            "desc": "參與由 Wiki 編輯者維護的社群模組文件集",
+            "button": "閱讀指南"
+        }
+    },
+    "ModDocsPlaceholder": {
+        "summary": "（預留位置）",
+        "description": "（預留位置）"
+    },
+    "DocsHomepagePlaceholder": {
+        "title": "首頁預留位置",
+        "subtitle": "由於 API 限制，在本機環境中無法取得 CurseForge 專案的中繼資料。",
+        "replace": "別擔心！部署到線上 Wiki 網站後，我們會將這個預留位置替換為專案的實際描述。"
+    },
+    "DocsTableOfContents": {
+        "title": "本頁內容"
+    },
+    "DocsBranchSelector": {
+        "title": "版本",
+        "latest": "最新"
+    },
+    "DocsSearchBar": {
+        "placeholder": "搜尋 Wiki 內容...",
+        "no_results": "找不到結果！",
+        "loading": "正在尋找最完美的結果...",
+        "results": "顯示 <highlight>{count}</highlight> / <highlight>{total}</highlight> 個結果",
+        "close": "<kbd>ESC</kbd> 關閉"
+    }
+}

@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const allMods = await database.getAllProjectIDs();
-  const languageKeys = Object.keys(available.getAvailableLocales()).filter(l => l !== 'en');
+  const languageKeys = available.getLanguagePaths().filter(l => l !== 'en');
 
   return allMods.map(m => {
     let languages: any = {};

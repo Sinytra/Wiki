@@ -9,7 +9,7 @@ const withNextIntl = createNextIntlPlugin(
     './components/i18n/request.tsx'
 );
 
-const intlMatcher = Object.keys(available.getAvailableLocales()).join('|');
+const intlMatcher = available.getLanguagePaths().join('|');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

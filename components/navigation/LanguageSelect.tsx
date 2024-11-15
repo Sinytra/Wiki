@@ -15,7 +15,6 @@ import available from "@/lib/locales/available";
 import {usePathname} from "@/lib/locales/routing";
 import {useRouter} from 'next-nprogress-bar';
 import {useState} from "react";
-import {Language} from "@/lib/types/available";
 
 function LanguageOption({ id, name, icon, active, onNavigate }: { id: string; name: string; icon: any; active: boolean; onNavigate: () => void }) {
   const pathname = usePathname();
@@ -35,9 +34,9 @@ function LanguageOption({ id, name, icon, active, onNavigate }: { id: string; na
 }
 
 export default function LanguageSelect({ locale }: { locale: string }) {
-  const availableLocales = available.getAvailableLocales() as {[key: string]: Language};
+  const availableLocales = available.getAvailableLocales();
   const [value, setValue] = useState('');
-
+  
   return (
     <div className={styles.socialLinks}>
       <div>
@@ -48,9 +47,9 @@ export default function LanguageSelect({ locale }: { locale: string }) {
                 <LanguagesIcon className="w-5 h-5"/>
               </NavigationMenuTrigger>
               <NavigationMenuContent className="p-3 whitespace-nowrap flex flex-col justify-start items-start">
-                {...Object.keys(availableLocales).filter(l => availableLocales[l] !== undefined).map(l => {
-                  const name = availableLocales[l];
-                  return <LanguageOption key={l} id={l} name={name.name} icon={name.icon} active={locale === l} onNavigate={() => setValue('')} />
+                {...Object.keys(availableLocales).map(id => {
+                  const {name, icon, prefix} = availableLocales[id];
+                  return <LanguageOption key={id} id={prefix || id} name={name} icon={icon} active={locale === id} onNavigate={() => setValue('')} />
                 })}
               </NavigationMenuContent>
             </NavigationMenuItem>

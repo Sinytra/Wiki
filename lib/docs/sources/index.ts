@@ -81,7 +81,7 @@ async function parseFolderMetadataFile(source: DocumentationSource, path: string
 
 async function readLocalizedFile(provider: DocumentationSourceProvider<any>, source: DocumentationSource, path: string, locale?: string): Promise<DocumentationFile> {
   if (locale && locale !== defaultLocale) {
-    const availableLocales = await getAvailableLocales(source, provider);
+    const availableLocales = await getAvailableDocsLocales(source, provider);
     if (availableLocales.includes(locale)) {
       const localeFolder = `.translated/${locale}_${locale}/`;
       try {
@@ -96,7 +96,7 @@ async function readLocalizedFile(provider: DocumentationSourceProvider<any>, sou
 
 async function readDocsTree(source: DocumentationSource, locale?: string): Promise<FileTree> {
   const provider = getDocumentationSourceProvider(source);
-  const availableLocales = await getAvailableLocales(source, provider);
+  const availableLocales = await getAvailableDocsLocales(source, provider);
   const actualLocale = locale === defaultLocale ? undefined : locale && locale in availableLocales ? locale : undefined;
 
   // Do not cache local trees
@@ -220,7 +220,7 @@ async function computeLocalDocumentationSources(paths: string): Promise<Document
   }));
 }
 
-async function getAvailableLocales(source: DocumentationSource, provider: DocumentationSourceProvider<any>): Promise<string[]> {
+async function getAvailableDocsLocales(source: DocumentationSource, provider: DocumentationSourceProvider<any>): Promise<string[]> {
   const cacheId = cacheUtil.getModDocsLocalesCacheId(source.id);
 
   const cache = unstable_cache(

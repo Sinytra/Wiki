@@ -4,39 +4,39 @@
         "latest": "Latest"
     },
     "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Wiki Minecraft Moddé",
         "title_short": "Wiki",
         "badge": {
             "preview": "PREVIEW MODE",
             "beta": "Beta"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "Acceuil",
+            "browse": "Explorer",
+            "about": "À propos"
         }
     },
     "NavigationFooter": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Wiki Minecraft Moddé",
         "links": {
             "navigation": {
                 "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "home": "Page d'acceuil",
+                "browse": "Explorer",
+                "dev": "Développeurs"
             },
             "links": {
-                "title": "Links"
+                "title": "Liens"
             },
             "resources": {
-                "title": "Resources",
+                "title": "Ressources",
                 "blog": "Blog",
-                "translate": "Help us translate"
+                "translate": "Aidez-nous à traduire"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
+                "title": "À propos",
+                "tos": "Conditions d'utilisation",
+                "privacy": "Politique de confidentialité",
                 "contact": "Contact"
             }
         }
@@ -78,9 +78,9 @@
     },
     "BrowsePage": {
         "search": {
-            "placeholder": "Search mods..."
+            "placeholder": "!"
         },
-        "no_results": "Search query returned no results!"
+        "no_results": "La recherche n'a donné aucun résultat !"
     },
     "LoadingContent": {
         "message": "Loading..."

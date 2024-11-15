@@ -1,11 +1,14 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
-import {routing} from '@/lib/locales/routing';
- 
+import available from "@/lib/locales/available";
+
 export default getRequestConfig(async ({locale}) => {
-  if (!routing.locales.includes(locale as any)) notFound();
- 
+  const lang = available.getForUrlParam(locale);
+  if (!lang) {
+    notFound();
+  }
+
   return {
-    messages: (await import(`../../messages/${locale}.json`)).default
+    messages: (await import(`../../messages/${lang.file}.json`)).default
   };
 });
