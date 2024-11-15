@@ -66,8 +66,13 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
   return null;
 }
 
+async function invalidateCache(slug: string) {
+  // No op
+}
+
 export default {
   getBackendLayout,
   getAsset,
-  getDocsPage
+  getDocsPage,
+  invalidateCache
 } satisfies ServiceProvider;

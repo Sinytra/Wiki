@@ -12,7 +12,7 @@ interface PageResponse {
   updated_at?: string;
 }
 
-async function fetchBackendService(path: string, params: Record<string, string | null>) {
+async function fetchBackendService(path: string, params: Record<string, string | null> = {}, method?: string) {
   if (!process.env.BACKEND_SERVICE_URL) {
     throw new Error('Environment variable BACKEND_SERVICE_URL not set');
   }
@@ -23,6 +23,7 @@ async function fetchBackendService(path: string, params: Record<string, string |
     }
   }
   return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+    method,
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`
     },
@@ -34,7 +35,7 @@ async function fetchBackendService(path: string, params: Record<string, string |
 
 async function getBackendLayout(mod: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   try {
-    const resp = await fetchBackendService(`mod/${mod}/tree`, { version, locale });
+    const resp = await fetchBackendService(`mod/${mod}/tree`, {version, locale});
     if (resp.ok) {
       return resp.json();
     }
@@ -46,7 +47,7 @@ async function getBackendLayout(mod: string, version: string | null, locale: str
 
 async function getAsset(mod: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(`mod/${mod}/asset/${location}`, { version });
+    const resp = await fetchBackendService(`mod/${mod}/asset/${location}`, {version});
     if (resp.ok) {
       const json = await resp.json() as AssetResponse;
       return {
@@ -79,8 +80,17 @@ async function getDocsPage(mod: string, path: string[], version: string | null, 
   return null;
 }
 
+async function invalidateCache(mod: string) {
+  try {
+    await fetchBackendService(`mod/${mod}/invalidate`, {}, 'POST');
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export default {
   getBackendLayout,
   getAsset,
-  getDocsPage
+  getDocsPage,
+  invalidateCache
 } satisfies ServiceProvider

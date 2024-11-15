@@ -14,6 +14,7 @@ import githubCache from "@/lib/github/githubCache";
 import {isWikiAdmin} from "@/lib/utils";
 import {DOCS_METADATA_FILE_NAME} from "@/lib/constants";
 import platforms, {ModProject} from "@/lib/platforms";
+import service from "@/lib/service";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -121,6 +122,7 @@ export async function handleRevalidateDocs(id: string) {
   cacheUtil.clearModCaches(id);
   revalidatePath(`/[locale]/mod/${id}`, 'layout');
   revalidatePath(`/[locale]/mod/${id}/[version]`, 'layout');
+  await service.invalidateCache(id);
 
   return {success: true};
 }
