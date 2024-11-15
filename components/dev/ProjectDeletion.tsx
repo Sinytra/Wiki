@@ -2,7 +2,6 @@
 
 import {Button} from "@/components/ui/button";
 import {Loader2Icon, TrashIcon} from "lucide-react";
-import {handleDeleteProjectForm} from "@/lib/forms/actions";
 import {toast} from "sonner";
 import * as React from "react";
 import {useContext, useState} from "react";
@@ -21,6 +20,10 @@ import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
 import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
 
+interface Properties {
+  action: () => Promise<any>;
+}
+
 function DeleteButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
@@ -32,16 +35,14 @@ function DeleteButton({ text }: { text: string }) {
   );
 }
 
-export default function ProjectDeletion({id}: { id: string }) {
+export default function ProjectDeletion({action}: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const {startTransition} = useContext(GetStartedContext)!;
   const t = useTranslations('ProjectDeletionForm');
 
-  const actionWithSlug = handleDeleteProjectForm.bind(null, id);
-
   const formAction = async () => {
-    await actionWithSlug();
+    await action();
 
     startTransition(() => router.refresh());
 

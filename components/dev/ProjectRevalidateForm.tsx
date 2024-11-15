@@ -2,7 +2,6 @@
 
 import {Button} from "@/components/ui/button";
 import {Loader2Icon, RefreshCwIcon} from "lucide-react";
-import {handleRevalidateDocs} from "@/lib/forms/actions";
 import {toast} from "sonner";
 import * as React from "react";
 import {useState} from "react";
@@ -20,6 +19,10 @@ import {useFormStatus} from "react-dom";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {useTranslations} from "next-intl";
 
+interface Properties {
+  action: () => Promise<any>;
+}
+
 function RevalidateButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
@@ -31,14 +34,12 @@ function RevalidateButton({ text }: { text: string }) {
   );
 }
 
-export default function ProjectRevalidateForm({id}: { id: string }) {
+export default function ProjectRevalidateForm({action}: Properties) {
   const [open, setOpen] = useState(false);
   const t = useTranslations('ProjectRevalidateForm');
 
-  const actionWithSlug = handleRevalidateDocs.bind(null, id);
-
   const formAction = async () => {
-    await actionWithSlug();
+    await action();
     setOpen(false);
     toast.success(t('success'));
   }

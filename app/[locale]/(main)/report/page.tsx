@@ -2,6 +2,7 @@ import ReportDocsPageForm from "@/components/docs/ReportDocsPageForm";
 import * as React from "react";
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import {useMessages, useTranslations} from "next-intl";
+import {handleReportProjectForm} from "@/lib/forms/actions";
 
 export default function ReportPage({params, searchParams}: { params: { locale: string }; searchParams: { [key: string]: string | string[] | undefined } }) {
   setContextLocale(params.locale);
@@ -31,7 +32,9 @@ export default function ReportPage({params, searchParams}: { params: { locale: s
 
         <div className="p-4 bg-muted rounded-md">
           {/*@ts-ignore*/}
-          <ReportDocsPageForm projectId={slug} path={path} t={messages['Report']['form']} submitT={messages['SubmitButton']}/>
+          <ReportDocsPageForm projectId={slug} path={path} t={messages['Report']['form']}
+                              submitT={messages['SubmitButton']}
+                              formAction={handleReportProjectForm.bind(null, slug, path)}/>
         </div>        
       </div>
     </div>

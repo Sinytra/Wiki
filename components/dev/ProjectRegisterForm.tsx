@@ -12,7 +12,6 @@ import {
   DialogHeader,
   DialogTitle
 } from "@/components/ui/dialog";
-import {handleEnableProjectForm} from "@/lib/forms/actions";
 import * as React from "react";
 import {TransitionFunction, useEffect, useRef, useState} from "react";
 import {toast} from "sonner";
@@ -37,6 +36,8 @@ export interface ProjectRegisterFormProps {
   open: boolean;
   setOpen: (v: boolean) => void;
   autoSubmit?: boolean;
+  
+  formAction: (data: any) => Promise<any>
 }
 
 export interface Properties extends ProjectRegisterFormProps {
@@ -44,7 +45,7 @@ export interface Properties extends ProjectRegisterFormProps {
 }
 
 export default function ProjectRegisterForm(
-  {open, setOpen, defaultValues, state, isAdmin, autoSubmit, startTransition}: Properties
+  {open, setOpen, defaultValues, state, isAdmin, autoSubmit, startTransition, formAction}: Properties
 ) {
   const openDefault = state !== undefined;
   const router = useRouter();
@@ -59,7 +60,7 @@ export default function ProjectRegisterForm(
   const formRef = useRef<HTMLFormElement | null>(null);
   const [canVerifyModrinth, setCanVerifyModrinth] = useState(false);
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await handleEnableProjectForm(data) as any;
+    const resp = await formAction(data) as any;
     if (resp.success) {
       startTransition(() => router.refresh());
 

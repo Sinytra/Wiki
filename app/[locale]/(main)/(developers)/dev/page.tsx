@@ -19,6 +19,7 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import githubFacade from "@/lib/facade/githubFacade";
 import {isWikiAdmin} from "@/lib/utils";
 import DevPageProjectsList from "@/components/dev/DevPageProjectsList";
+import {handleEnableProjectForm, handleMigrateRepositoryForm} from "@/lib/forms/actions";
 
 export const dynamic = 'force-dynamic';
 
@@ -49,7 +50,7 @@ async function ProfileProjects({owner, access_token}: { owner: string; access_to
 
   const HelpModal = () => (
     <NextIntlClientProvider messages={pick(messages, 'GetHelpModal', 'MigrateRepositoryForm', 'FormActions')}>
-      <GetHelpModal githubAppName={process.env.GITHUB_APP_NAME}/>
+      <GetHelpModal githubAppName={process.env.GITHUB_APP_NAME} migrateFormAction={handleMigrateRepositoryForm}/>
     </NextIntlClientProvider>
   );
 
@@ -154,7 +155,8 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
 
           <div className="flex flex-row items-center gap-2">
             <NextIntlClientProvider messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions')}>
-              <GetStartedModal defaultValues={defaultValues} state={state} isAdmin={isAdmin} autoSubmit={autoSubmit} />
+              <GetStartedModal defaultValues={defaultValues} state={state} isAdmin={isAdmin} autoSubmit={autoSubmit}
+                               formAction={handleEnableProjectForm} />
             </NextIntlClientProvider>
 
             <form

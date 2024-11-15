@@ -31,6 +31,7 @@
             "resources": {
                 "title": "Ressources",
                 "blog": "Blog",
+                "status": "Status",
                 "translate": "Aidez-nous à traduire"
             },
             "about": {

@@ -13,6 +13,7 @@ import {pick} from "lodash";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import {Mod} from "@prisma/client";
 import platforms from "@/lib/platforms";
+import {handleDeleteProjectForm, handleEditProjectForm, handleRevalidateDocs} from "@/lib/forms/actions";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
@@ -61,13 +62,13 @@ export default async function ProfileProject({mod}: { mod: Mod }) {
         <div className="flex flex-row gap-4 items-center ml-auto sm:ml-0">
           <MutedLinkIconButton variant="outline" icon={ExternalLinkIcon} href={`/mod/${mod.id}`} />
           <NextIntlClientProvider messages={pick(messages, 'ProjectRevalidateForm', 'FormActions')}>
-            <ProjectRevalidateForm id={mod.id} />
+            <ProjectRevalidateForm action={handleRevalidateDocs.bind(null, mod.id)} />
           </NextIntlClientProvider>
           <NextIntlClientProvider messages={pick(messages, 'ProjectSettingsForm', 'ProjectRegisterForm', 'FormActions')}>
-            <ProjectSettings mod={mod} />
+            <ProjectSettings mod={mod} formAction={handleEditProjectForm} />
           </NextIntlClientProvider>
           <NextIntlClientProvider messages={pick(messages, 'ProjectDeletionForm')}>
-            <ProjectDeletion id={mod.id} />
+            <ProjectDeletion action={handleDeleteProjectForm.bind(null, mod.id)} />
           </NextIntlClientProvider>
         </div>
       </div>

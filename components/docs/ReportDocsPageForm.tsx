@@ -6,7 +6,6 @@ import {z} from "zod";
 import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
 import {DialogFooter} from "@/components/ui/dialog";
-import {handleReportProjectForm} from "@/lib/forms/actions";
 import * as React from "react";
 import {toast} from "sonner";
 import {docsPageReportSchema} from "@/lib/forms/schemas";
@@ -18,15 +17,22 @@ import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {Textarea} from "@/components/ui/textarea";
 import {flushSync} from "react-dom";
 
-export default function ReportDocsPageForm({projectId, path, t, submitT}: { projectId: string, path: string, t: any, submitT: any }) {
-  const handler = handleReportProjectForm.bind(null, projectId, path);
+interface Properties {
+  projectId: string;
+  path: string;
+  t: any;
+  submitT: any;
+  formAction: (data: any) => Promise<any>;
+}
+
+export default function ReportDocsPageForm({projectId, path, t, submitT, formAction}: Properties) {
   const form = useForm<z.infer<typeof docsPageReportSchema>>({
     resolver: zodResolver(docsPageReportSchema),
     defaultValues: {}
   });
   const reason = form.watch('reason');
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await handler(data) as any;
+    const resp = await formAction(data);
     if (resp.success) {
       toast.success('Report submitted successfully');
       flushSync(() => form.reset());

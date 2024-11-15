@@ -5,7 +5,6 @@ import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {migrateRepositorySchema} from "@/lib/forms/schemas";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {handleMigrateRepositoryForm} from "@/lib/forms/actions";
 import * as React from "react";
 import {useEffect} from "react";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
@@ -15,7 +14,13 @@ import {useTranslations} from "next-intl";
 import {toast} from "sonner";
 import LinkTextButton from "@/components/ui/link-text-button";
 
-export function MigrateRepositoryModal({isOpen, setOpen}: { isOpen: boolean; setOpen: (open: boolean) => void }) {
+interface Properties {
+  isOpen: boolean;
+  setOpen: (open: boolean) => void;
+  formAction: (data: any) => Promise<any>;
+}
+
+export function MigrateRepositoryModal({isOpen, setOpen, formAction}: Properties) {
   const t = useTranslations('MigrateRepositoryForm');
   const u = useTranslations('FormActions');
 
@@ -23,7 +28,7 @@ export function MigrateRepositoryModal({isOpen, setOpen}: { isOpen: boolean; set
     resolver: zodResolver(migrateRepositorySchema)
   });
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await handleMigrateRepositoryForm(data) as any;
+    const resp = await formAction(data) as any;
     if (resp.success) {
       setOpen(false);
       toast.success(t('success.title'), {description: t('success.desc')});

@@ -18,7 +18,12 @@ import {useState} from "react";
 import {useTranslations} from "next-intl";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
 
-export function GetHelpModal({githubAppName}: { githubAppName?: string }) {
+interface Properties {
+  githubAppName?: string;
+  migrateFormAction: (data: any) => Promise<any>;
+}
+
+export function GetHelpModal({githubAppName, migrateFormAction}: Properties) {
   const [open, setOpen] = useState(false);
   const [migrateOpen, setMigrateOpen] = useState(false);
 
@@ -27,7 +32,7 @@ export function GetHelpModal({githubAppName}: { githubAppName?: string }) {
 
   return (
     <>
-      <MigrateRepositoryModal isOpen={migrateOpen} setOpen={setMigrateOpen}/>
+      <MigrateRepositoryModal isOpen={migrateOpen} setOpen={setMigrateOpen} formAction={migrateFormAction}/>
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>

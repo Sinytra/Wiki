@@ -14,7 +14,6 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
-import {handleEditProjectForm} from "@/lib/forms/actions";
 import {SettingsIcon} from "lucide-react";
 import * as React from "react";
 import {useEffect, useState} from "react";
@@ -26,7 +25,12 @@ import SubmitButton from "@/components/dev/SubmitButton";
 import {useTranslations} from "next-intl";
 import {Mod} from "@prisma/client";
 
-export default function ProjectSettings({mod}: { mod: Mod }) {
+interface Properties {
+  mod: Mod;
+  formAction: (data: any) => Promise<any>;
+}
+
+export default function ProjectSettings({mod, formAction}: Properties) {
   const [open, setOpen] = useState(false);
   const t = useTranslations('ProjectSettingsForm');
   const u = useTranslations('ProjectRegisterForm');
@@ -44,7 +48,7 @@ export default function ProjectSettings({mod}: { mod: Mod }) {
     defaultValues: defaultValues
   });
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await handleEditProjectForm(data) as any;
+    const resp = await formAction(data);
     if (resp.success) {
       setOpen(false);
       toast.success(t('success.title'), {description: t('success.desc')});
