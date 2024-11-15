@@ -1,5 +1,6 @@
 import {Octokit} from "octokit";
 import cacheUtil from "@/lib/cacheUtil";
+import {CollaboratorRepositoryPermissions} from "@/lib/github/githubApp";
 
 export interface GitHubUserProfile {
   name: string;
@@ -23,14 +24,34 @@ async function getUserProfile(token: string): Promise<GitHubUserProfile> {
   return makeApiRequest(token, 'GET /user');
 }
 
-async function getAccessibleInstallations(token: string) {
+async function isRepositoryPublic(repo: string): Promise<boolean> {
+  try {
+    const resp = await fetch(`https://github.com/${repo}`);
+    return resp.ok;
+  } catch (e) {
+    // Private / not found
+  }
+  return false;
+}
+
+async function getUserAccessibleInstallations(token: string) {
   const octokit = new Octokit({auth: token});
-  return octokit.rest.apps.listInstallationsForAuthenticatedUser();
+  const response = await octokit.rest.apps.listInstallationsForAuthenticatedUser();
+  return response.data.installations.map(i => i.id);
 }
 
 async function getAccessibleAppRepositories(token: string, installationId: number) {
   const instance = new Octokit({auth: token});
-  return github.getPaginatedData(instance, `GET /user/installations/${installationId}/repositories`, true);
+  return getPaginatedData(instance, `GET /user/installations/${installationId}/repositories`, true);
+}
+
+async function getUserRepositoryPermissions(owner: string, repo: string, access_token: string): Promise<CollaboratorRepositoryPermissions> {
+  const octokit = new Octokit({auth: access_token});
+
+  const user = (await octokit.rest.users.getAuthenticated()).data;
+  const data = (await octokit.rest.repos.getCollaboratorPermissionLevel({owner, repo, username: user.login})).data;
+
+  return data.user?.permissions;
 }
 
 async function makeApiRequest<T>(token: string, path: string, ...options: any[]) {
@@ -88,7 +109,7 @@ function parseData(data: any) {
   }
 
   // Some endpoints respond with 204 No Content instead of empty array
-  //   when there is no data. In that case, return an empty array.
+  // when there is no data. In that case, return an empty array.
   if (!data) {
     return []
   }
@@ -105,11 +126,10 @@ function parseData(data: any) {
   return data;
 }
 
-const github = {
+export default {
   getUserProfile,
-  getPaginatedData,
-  getAccessibleInstallations,
-  getAccessibleAppRepositories
+  getUserAccessibleInstallations,
+  getAccessibleAppRepositories,
+  getUserRepositoryPermissions,
+  isRepositoryPublic
 };
-
-export default github;

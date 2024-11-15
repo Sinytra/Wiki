@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import {handleEnableProjectForm} from "@/lib/forms/actions";
 import * as React from "react";
-import {useEffect, useRef, useState} from "react";
+import {TransitionFunction, useEffect, useRef, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
@@ -39,8 +39,12 @@ export interface ProjectRegisterFormProps {
   autoSubmit?: boolean;
 }
 
+export interface Properties extends ProjectRegisterFormProps {
+  startTransition: (transition: TransitionFunction) => void;
+}
+
 export default function ProjectRegisterForm(
-  {open, setOpen, defaultValues, state, isAdmin, autoSubmit}: ProjectRegisterFormProps
+  {open, setOpen, defaultValues, state, isAdmin, autoSubmit, startTransition}: Properties
 ) {
   const openDefault = state !== undefined;
   const router = useRouter();
@@ -57,8 +61,11 @@ export default function ProjectRegisterForm(
   const action: () => void = form.handleSubmit(async (data) => {
     const resp = await handleEnableProjectForm(data) as any;
     if (resp.success) {
+      startTransition(() => router.refresh());
+
       setOpen(false);
       toast.success(t('success.title'), {description: t('success.desc')});
+
       if (autoSubmit || openDefault) {
         window.history.pushState({}, '', '/dev');
         router.replace('/dev');

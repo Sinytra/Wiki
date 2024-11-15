@@ -13,6 +13,8 @@ datasource db {
 }
 
 model Mod {
+  @@map("mod")
+
   // Unique mod id, used internally to identify projects
   id            String   @id
   // Mod project name, used for search

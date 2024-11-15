@@ -1,4 +1,4 @@
-import {WikiSearchResults} from "@/lib/types/search";
+import {WikiSearchResults} from "@/lib/search";
 import {searchWikiServer} from "@/lib/search/serverSearch";
 
 async function searchWiki(query: string): Promise<WikiSearchResults> {

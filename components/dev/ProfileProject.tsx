@@ -1,4 +1,3 @@
-import platforms from "@/lib/platforms";
 import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
@@ -13,6 +12,7 @@ import {NextIntlClientProvider} from "next-intl";
 import {pick} from "lodash";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import {Mod} from "@prisma/client";
+import platforms from "@/lib/platforms";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (

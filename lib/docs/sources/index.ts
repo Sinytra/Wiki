@@ -1,24 +1,20 @@
 import {promises as fs} from 'fs';
-import database from "@/lib/database";
 import {ModPlatform} from "@/lib/platforms";
 import {unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
-import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import cacheUtil from "@/lib/cacheUtil";
-import githubApp from "@/lib/github/githubApp";
 import localPreview from "@/lib/docs/localPreview";
-import {redirect, RedirectType} from "next/navigation";
 import metadata, {DocumentationFolderMetadata, ValidationError} from "@/lib/docs/metadata";
 import {
-  DEFAULT_DOCS_VERSION,
   DOCS_METADATA_FILE_NAME,
   FOLDER_METADATA_FILE_NAME,
   HOMEPAGE_FILE_PATH
 } from "@/lib/constants";
+import {FileTree} from "@/lib/service";
 
 const defaultLocale = 'en';
 
-type SourceType = 'local' | 'github';
+type SourceType = 'local';
 
 export interface DocumentationSource {
   id: string;
@@ -33,40 +29,21 @@ export interface DocumentationSource {
 export interface DocumentationFile {
   content: string;
   edit_url: string | null;
-  updated_at: Date | null;
+  updated_at?: Date;
 }
 
 export interface DocumentationSourceProvider<T extends DocumentationSource> {
   readFileContents: (source: T, path: string) => Promise<DocumentationFile>;
-  readFileTree: (source: T) => Promise<FileTreeNode[]>;
-  readShallowFileTree: (source: T, path: string) => Promise<FileTreeNode[]>;
+  readFileTree: (source: T) => Promise<FileTree>;
+  readShallowFileTree: (source: T, path: string) => Promise<FileTree>;
 }
 
 export interface LocalDocumentationSource extends DocumentationSource {
   type: 'local';
 }
 
-export interface RemoteDocumentationSource extends DocumentationSource {
-  type: 'github';
-  repo: string;
-  branch: string;
-  editable: boolean;
-
-  branches?: Record<string, string>;
-}
-
-export interface FileTreeNode {
-  name: string;
-  path: string;
-  url?: string;
-  type: 'directory' | 'file';
-  children: FileTreeNode[];
-  icon?: string;
-}
-
-const documentationProviders: { [key in SourceType]: DocumentationSourceProvider<any> } = {
-  local: localDocsSource,
-  github: githubDocsSource
+const documentationProviders: { [key: string]: DocumentationSourceProvider<any> } = {
+  local: localDocsSource
 }
 
 function getDocumentationSourceProvider<T extends DocumentationSource>(source: DocumentationSource): DocumentationSourceProvider<T> {
@@ -85,7 +62,7 @@ async function readDocsFile(source: DocumentationSource, path: string[], locale?
     throw new Error(`Documentation file at ${path} not found`);
   }
 
-  return content;
+  return { ...content, updated_at: content.updated_at ? new Date(content.updated_at) : undefined };
 }
 
 async function parseFolderMetadataFile(source: DocumentationSource, path: string, locale?: string): Promise<DocumentationFolderMetadata> {
@@ -117,7 +94,7 @@ async function readLocalizedFile(provider: DocumentationSourceProvider<any>, sou
   return await provider.readFileContents(source, path);
 }
 
-async function readDocsTree(source: DocumentationSource, locale?: string): Promise<FileTreeNode[]> {
+async function readDocsTree(source: DocumentationSource, locale?: string): Promise<FileTree> {
   const provider = getDocumentationSourceProvider(source);
   const availableLocales = await getAvailableDocsLocales(source, provider);
   const actualLocale = locale === defaultLocale ? undefined : locale && locale in availableLocales ? locale : undefined;
@@ -137,22 +114,22 @@ async function readDocsTree(source: DocumentationSource, locale?: string): Promi
   return await cache(source, actualLocale);
 }
 
-async function resolveDocsTree(source: DocumentationSource, locale?: string): Promise<FileTreeNode[]> {
+async function resolveDocsTree(source: DocumentationSource, locale?: string): Promise<FileTree> {
   const provider = getDocumentationSourceProvider(source);
   const converted = await provider.readFileTree(source);
 
   const filtered = converted.filter(c =>
     c.type === 'file' && c.name !== DOCS_METADATA_FILE_NAME && c.name !== `${HOMEPAGE_FILE_PATH}.mdx` && (c.name === FOLDER_METADATA_FILE_NAME || c.name.endsWith('.mdx'))
-    || c.type === 'directory' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
+    || c.type === 'dir' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0);
   return processFileTree(source, '', filtered, locale);
 }
 
-async function readShallowFileTree(source: DocumentationSource, path: string): Promise<FileTreeNode[]> {
+async function readShallowFileTree(source: DocumentationSource, path: string): Promise<FileTree> {
   const provider = getDocumentationSourceProvider(source);
   return await provider.readShallowFileTree(source, path);
 }
 
-async function processFileTree(source: DocumentationSource, root: string, tree: FileTreeNode[], locale?: string): Promise<FileTreeNode[]> {
+async function processFileTree(source: DocumentationSource, root: string, tree: FileTree, locale?: string): Promise<FileTree> {
   const metaFile = tree.find(t => t.type === 'file' && t.name === FOLDER_METADATA_FILE_NAME);
   const metadata = metaFile ? await parseFolderMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name, locale) : undefined;
   const order = Object.keys(metadata || {});
@@ -167,36 +144,16 @@ async function processFileTree(source: DocumentationSource, root: string, tree: 
       }
       return order.indexOf(a.name) - order.indexOf(b.name);
     })
-    .map(async (entry) => (
-      {
-        path: entry.name,
+    .map(async (entry) => {
+      const basePath = root.length === 0 ? entry.name : root + '/' + entry.name;
+      return {
+        path: basePath.endsWith('.mdx') ? basePath.substring(0, basePath.length - 4) : basePath,
         name: metadata?.[entry.name]?.name || capitalizeDefaultEntryName(entry.name),
         type: entry.type,
-        children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : [],
+        children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : [], 
         icon: metadata?.[entry.name]?.icon
       }
-    )));
-}
-
-async function getProjectSourceOrRedirect(slug: string, locale: string, version: string): Promise<DocumentationSource> {
-  try {
-    const source = await getProjectSource(slug);
-
-    if (version != DEFAULT_DOCS_VERSION) {
-      if (source.type !== 'github' || (source as any).branches == undefined || !(version in (source as any).branches)) {
-        return redirect(`/mod/${slug}/docs`);
-      }
-      return {...source, branch: (source as RemoteDocumentationSource).branches![version]} as RemoteDocumentationSource;
-    }
-
-    return source;
-  } catch (e) {
-    if (process.env.NODE_ENV !== 'production' && e instanceof ValidationError) {
-      throw e;
-    }
-    console.error(e);
-    redirect(`/${locale}`, RedirectType.replace);
-  }
+    }));
 }
 
 async function getProjectSource(slug: string): Promise<DocumentationSource> {
@@ -214,14 +171,6 @@ async function getProjectSource(slug: string): Promise<DocumentationSource> {
   return await cache(slug, enableLocalSources());
 }
 
-async function getBranchedProjectSource(slug: string, version: string): Promise<DocumentationSource> {
-  const source = await getProjectSource(slug);
-  return source.type === 'github' && version != DEFAULT_DOCS_VERSION ? {
-    ...source,
-    branch: (source as RemoteDocumentationSource).branches![version]
-  } as RemoteDocumentationSource : source;
-}
-
 async function findProjectSource(slug: string, enableLocal: boolean): Promise<DocumentationSource> {
   if (enableLocal) {
     const localSources = await getLocalDocumentationSources();
@@ -229,28 +178,6 @@ async function findProjectSource(slug: string, enableLocal: boolean): Promise<Do
     const local = localSources.find(s => s.id === slug);
     if (local) {
       return local;
-    }
-  }
-
-  // Disable remote sources in preview
-  if (!localPreview.isEnabled()) {
-    const project = await database.getProjectCached(slug);
-    if (project) {
-      const editable = await githubApp.isRepositoryPublic(project.source_repo);
-      const metadata = await getRemoteRepositoryCachedMetadata(project.id, project.source_repo, project.source_branch, project.source_path);
-
-      return {
-        id: project.id,
-        platform: project.platform as ModPlatform,
-        slug: project.slug,
-        type: 'github',
-        repo: project.source_repo,
-        branch: project.source_branch,
-        path: project.source_path,
-        is_community: project.is_community,
-        editable,
-        branches: metadata?.versions
-      } as RemoteDocumentationSource;
     }
   }
 
@@ -310,7 +237,7 @@ async function computeAvailableLocales(source: DocumentationSource, provider: Do
   const localeDirRegex = /^[a-z]{2}_[a-z]{2}$/;
   try {
     const translations = await provider.readShallowFileTree(source, '.translated');
-    return translations.filter(t => t.type === 'directory' && t.name.match(localeDirRegex)).map(t => t.name.split('_')[0]);
+    return translations.filter(t => t.type === 'dir' && t.name.match(localeDirRegex)).map(t => t.name.split('_')[0]);
   } catch (e) {
     return [];
   }
@@ -318,20 +245,6 @@ async function computeAvailableLocales(source: DocumentationSource, provider: Do
 
 function enableLocalSources() {
   return process.env.LOCAL_DOCS_ROOTS !== undefined;
-}
-
-async function getRemoteRepositoryCachedMetadata(id: string, repo: string, branch: string, root: string) {
-  const cacheId = cacheUtil.getRemoteProjectMetadataCacheId(id);
-
-  const cache = unstable_cache(
-    async (r, b, rt) => githubDocsSource.readMetadata(r, b, rt),
-    [cacheId],
-    {
-      tags: [cacheId]
-    }
-  );
-
-  return await cache(repo, branch, root);
 }
 
 function capitalizeDefaultEntryName(str: string) {
@@ -347,8 +260,5 @@ export default {
   readDocsTree,
   readDocsFile,
   readShallowFileTree,
-  parseFolderMetadataFile,
-  getLocalDocumentationSources,
-  getProjectSourceOrRedirect,
-  getBranchedProjectSource
+  getLocalDocumentationSources
 };

@@ -1,6 +1,6 @@
 'use server'
 
-import {ModSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/types/search";
+import {ModSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/search";
 import {getProcessURL} from "@/lib/utils";
 import database from "@/lib/database";
 
@@ -73,6 +73,7 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
   return {total: 0, hits: []};
 }
 
+// TODO Deprecated
 export async function searchModsServer(query: string): Promise<ModSearchResult[]> {
   if (!query || query.length === 0) {
     return [];

@@ -1,9 +1,7 @@
 import {App, Octokit} from "octokit";
 import {Api} from "@octokit/plugin-rest-endpoint-methods";
-import github from "@/lib/github/github";
-import {revalidateTag, unstable_cache} from "next/cache";
 import cacheUtil from "@/lib/cacheUtil";
-import verification from "@/lib/github/verification";
+import {components} from '@octokit/openapi-types';
 
 export interface RepoInstallationState {
   owner: string;
@@ -12,7 +10,15 @@ export interface RepoInstallationState {
   path: string | null;
 }
 
+export interface RepositoryFileContent {
+  content: string;
+  edit_url: string | null;
+  updated_at: Date | null;
+}
+
 export type RepositoryContent = Awaited<ReturnType<Api['rest']['repos']['getContent']>>['data'];
+
+export type CollaboratorRepositoryPermissions = components['schemas']['collaborator']['permissions'];
 
 function cachedFetch(...args: any[]) {
   return fetch(args[0], {
@@ -22,30 +28,6 @@ function cachedFetch(...args: any[]) {
       tags: [cacheUtil.githubAppRequestsCacheId]
     },
   });
-}
-
-async function isRepositoryPublic(repo: string): Promise<boolean> {
-  try {
-    const parts = repo.split('/');
-    const installationId = await githubApp.getExistingInstallation(parts[0], parts[1]);
-    const octokit = await githubApp.createInstance(installationId);
-
-    const data = (await octokit.rest.repos.get({owner: parts[0], repo: parts[1]})).data;
-    return !data.private && data.visibility === 'public';
-  } catch (e) {
-    // Private / not found
-  }
-
-  return false;
-}
-
-async function getFileModifiedDate(octokit: Octokit, owner: string, repo: string, branch: string, path: string): Promise<Date | null> {
-  const commits = await octokit.rest.repos.listCommits({owner, repo, sha: branch, path, page: 1, per_page: 1});
-  if (commits.data.length > 0 && commits.data[0].commit.committer?.date) {
-    return new Date(commits.data[0].commit.committer.date);
-  }
-
-  return null;
 }
 
 async function getInstallation(owner: string, repo: string, branch: string | null, path: string | null) {
@@ -67,21 +49,49 @@ async function getInstallation(owner: string, repo: string, branch: string | nul
   }
 }
 
-async function getRepoContents(octokit: Octokit, owner: string, repo: string, ref: string, path: string): Promise<RepositoryContent | null> {
-  const normalPath = path.endsWith('/') ? path.substring(0, path.length - 1) : path;
-  try {
-    const resp = await octokit.rest.repos.getContent({
-      owner, repo, ref, path: normalPath, mediaType: normalPath.includes('.png') ? {format: 'base64'} : undefined,
-      request: {fetch: cachedFetch}
-    });
-    return resp.data;
-  } catch (e) {
-    return null;
-  }
+async function getExistingAppRepoInstallation(owner: string, repo: string): Promise<number> {
+  const response = await createAppInstance().octokit.rest.apps.getRepoInstallation({owner, repo});
+  return response.data.id;
 }
 
-async function getRepository(octokit: Octokit, owner: string, repo: string) {
+async function getRepositoryContents(installationId: number, owner: string, repo: string, ref: string, path: string): Promise<RepositoryContent> {
+  const octokit = await createInstance(installationId);
+  return getRepositoryContentsInternal(octokit, owner, repo, ref, path);
+}
+
+async function getRepositoryFileContents(installationId: number, owner: string, repo: string, branch: string, path: string): Promise<RepositoryFileContent> {
+  const octokit = await createInstance(installationId);
+
+  const file = await getRepositoryContentsInternal(octokit, owner, repo, branch, path);
+  if (file && 'content' in file) {
+    const content = Buffer.from(file.content, 'base64').toString('utf-8');
+    const updated_at = await getFileModifiedDate(octokit, owner, repo, branch, path);
+    return {content, edit_url: file.html_url, updated_at};
+  }
+
+  throw new Error(`Invalid file at path ${path}`);
+}
+
+async function getRepositoryContentsInternal(octokit: Octokit, owner: string, repo: string, ref: string, path: string): Promise<RepositoryContent> {
+  const normalPath = path.endsWith('/') ? path.substring(0, path.length - 1) : path;
+  const resp = await octokit.rest.repos.getContent({
+    owner, repo, ref, path: normalPath, mediaType: normalPath.includes('.png') ? {format: 'base64'} : undefined,
+    request: {fetch: cachedFetch}
+  });
+  return resp.data;
+}
+
+async function getFileModifiedDate(octokit: Octokit, owner: string, repo: string, branch: string, path: string): Promise<Date | null> {
+  const commits = await octokit.rest.repos.listCommits({owner, repo, sha: branch, path, page: 1, per_page: 1});
+  if (commits.data.length > 0 && commits.data[0].commit.committer?.date) {
+    return new Date(commits.data[0].commit.committer.date);
+  }
+  return null;
+}
+
+async function getRepository(installationId: number, owner: string, repo: string) {
   try {
+    const octokit = await createInstance(installationId);
     const resp = await octokit.rest.repos.get({owner, repo});
     return resp.data;
   } catch (e) {
@@ -89,8 +99,9 @@ async function getRepository(octokit: Octokit, owner: string, repo: string) {
   }
 }
 
-async function getRepoBranches(octokit: Octokit, owner: string, repo: string) {
+async function getRepoBranches(installationId: number, owner: string, repo: string) {
   try {
+    const octokit = await createInstance(installationId);
     const resp = await octokit.rest.repos.listBranches({owner, repo});
     return resp.data;
   } catch (e) {
@@ -98,46 +109,10 @@ async function getRepoBranches(octokit: Octokit, owner: string, repo: string) {
   }
 }
 
-async function getExistingInstallation(owner: string, repo: string): Promise<number> {
-  const getCachedAppOctokitRepoInstance = unstable_cache(
-    async (owner: string, repo: string) => {
-      try {
-        const response = await createAppInstance().octokit.rest.apps.getRepoInstallation({owner, repo});
-        return response.data.id;
-      } catch (e: any) {
-        throw new Error(`Error getting app installation on repository ${owner}/${repo}`)
-      }
-    },
-    ['app_repo_installation'],
-    {
-      tags: [cacheUtil.getGithubAppRepoInstallCacheId(owner)]
-    }
-  );
-  return getCachedAppOctokitRepoInstance(owner, repo);
-}
-
-async function getAvailableRepositories(owner: string, token: string) {
-  const installationsForUserCache = unstable_cache(
-    async () => {
-      const response = await github.getAccessibleInstallations(token);
-      return response.data.installations.map(i => i.id);
-    },
-    ['app_user_installations', owner],
-    {
-      revalidate: 360,
-      tags: [cacheUtil.getGithubAppUserInstallCacheId(owner)]
-    }
-  );
-
-  try {
-    const installationIds = await installationsForUserCache();
-    const repositories = await Promise.all(installationIds.map(async id => github.getAccessibleAppRepositories(token, id)));
-    return repositories.flatMap(a => a).filter(r => verification.hasSufficientAccess(r.permissions));
-  } catch (e) {
-    revalidateTag(cacheUtil.getGithubAppUserInstallCacheId(owner));
-    console.error(e);
-    return [];
-  }
+async function getRepoUserPermissionLevel(installationId: number, owner: string, repo: string, username: string): Promise<CollaboratorRepositoryPermissions> {
+  const octokit = await createInstance(installationId)
+  const data = (await octokit.rest.repos.getCollaboratorPermissionLevel({owner, repo, username})).data;
+  return data.user?.permissions || { pull: false, triage: false, push: false, maintain: false, admin: false };
 }
 
 async function createInstance(installationId: number): Promise<Octokit> {
@@ -151,16 +126,12 @@ function createAppInstance(): App {
   });
 }
 
-const githubApp = {
+export default {
   getInstallation,
-  getRepoContents,
+  getRepositoryContents,
   getRepoBranches,
-  createInstance,
-  getAvailableRepositories,
-  getExistingInstallation,
-  isRepositoryPublic,
-  getFileModifiedDate,
-  getRepository
+  getExistingAppRepoInstallation,
+  getRepository,
+  getRepositoryFileContents,
+  getRepoUserPermissionLevel
 };
-
-export default githubApp;

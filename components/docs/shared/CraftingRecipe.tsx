@@ -3,8 +3,7 @@ import Image from "next/image";
 import CraftingBackground from '@/components/assets/crafting_background.png';
 import '@south-paw/typeface-minecraft';
 import {getParams} from "@nimpl/getters/get-params";
-import sources from "@/lib/docs/sources";
-import assets from "@/lib/docs/assets";
+import service from "@/lib/service";
 
 interface Props {
   slots: (string | null)[]
@@ -14,11 +13,12 @@ interface Props {
 
 export default async function CraftingRecipe({slots, result, count}: Props) {
   const params = getParams() || {};
-  const source = params.slug ? await sources.getProjectSource(params.slug as string) : undefined; 
+  const slug = params.slug as any;
+  const version = (params.version || null) as any;
 
   const displaySlots = slots.slice(0, Math.min(slots.length, 9));
-  const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : assets.getAssetResource(slot, source)));
-  const resultAsset = await assets.getAssetResource(result, source);
+  const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : service.getAsset(slug, slot, version)));
+  const resultAsset = await service.getAsset(slug, result, version);
 
   return (
     <div className="relative">
@@ -36,7 +36,7 @@ export default async function CraftingRecipe({slots, result, count}: Props) {
                 <div>
                     <ItemDisplay asset={resultAsset}/>
                 </div>
-                {count &&
+                {count && count > 1 &&
                     <span className="absolute bottom-0 right-0 text-white text-base leading-[1] text-left sharpRendering z-10" style={{fontFamily: 'Minecraft, sans-serif', textShadow: '2px 2px 0 #3F3F3F'}}>
                       {count}
                     </span>

@@ -65,6 +65,7 @@ function NavigationColumns() {
 
       <LinkColumn title={t('links.resources.title')}>
         <LinkEntry title={t('links.resources.blog')} href="/blog" component={Link}/>
+        <LinkEntry title={t('links.resources.status')} href="https://status.moddedmc.org"/>
         <LinkEntry title={t('links.resources.translate')} href="https://crowdin.com/project/sinytra-wiki"/>
       </LinkColumn>
 

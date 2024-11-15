@@ -127,7 +127,7 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
     },
     next: {
       tags: ['modrinth'],
-      revalidate: 3600
+      revalidate: 6000
     }
   });
   if (!response.ok) {

@@ -120,15 +120,6 @@ async function getProject(slug: string) {
   });
 }
 
-async function getProjectCached(slug: string) {
-  return prisma.mod.findUnique({
-    where: {
-      id: slug
-    },
-    cacheStrategy: { swr: 60, ttl: 360 }
-  });
-}
-
 async function getAllProjectIDs() {
   return prisma.mod.findMany({
     select: {
@@ -154,7 +145,6 @@ const database = {
   searchProjectsPaginated,
   getAllProjectIDs,
   getRandomProjectID,
-  getProjectCached,
   migrateRepository,
   getCommunityProjects
 };

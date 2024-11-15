@@ -1,6 +1,6 @@
-import platforms, {ModPlatform, ModProject} from "@/lib/platforms";
+import {ModPlatform, ModProject} from "@/lib/platforms";
 import {Suspense, use} from "react";
-import {PartialMod} from "@/lib/types/search";
+import {PartialMod} from "@/lib/search";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
 import {Skeleton} from "@/components/ui/skeleton";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
@@ -9,12 +9,14 @@ import {Button} from "@/components/ui/button";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
-import githubApp from "@/lib/github/githubApp";
 import {getLatestVersion} from "@/components/docs/mod-info/modInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
+import githubFacade from "@/lib/facade/githubFacade";
+import platforms from "@/lib/platforms";
+import {randomInt} from "node:crypto";
 
 function ProjectIcon({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
@@ -43,29 +45,46 @@ function ProjectIconPlaceholder() {
 }
 
 async function GitHubProjectLink({repo}: { repo: string }) {
-  const isPublic = await githubApp.isRepositoryPublic(repo);
+  const isPublic = await githubFacade.isRepositoryPublic(repo);
 
   return (
-    <Suspense>
-      {isPublic && 
-          <Button variant="outline" size="icon" asChild>
-              <Link href={`https://github.com/${repo}`} target="_blank">
-                  <GitHubIcon width={24} height={24}/>
-              </Link>
-          </Button>
-      }
-    </Suspense>
+    isPublic &&
+    <Button variant="outline" size="icon" asChild>
+        <Link href={`https://github.com/${repo}`} target="_blank">
+            <GitHubIcon width={24} height={24}/>
+        </Link>
+    </Button>
   )
 }
 
-function ProjectMetaInfo({project}: { project: Promise<ModProject> }) {
+function ProjectMetaInfo({mod, project}: { mod: PartialMod, project: Promise<ModProject> }) {
   const projectContent = use(project);
   const t = useTranslations('DocsModInfo.latest');
+
   return (
-    <div>
-      <div className="flex flex-row items-center gap-2 text-muted-foreground">
-        <MilestoneIcon className="w-5 h-5"/>
-        <span className="text-base">{getLatestVersion(projectContent) || t('unknown')}</span>
+    <div className="flex flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
+      <ErrorBoundary fallback={<span></span>}>
+        <div>
+          <div className="flex flex-row items-center gap-2 text-muted-foreground">
+            <MilestoneIcon className="w-5 h-5"/>
+            <span className="text-base">{getLatestVersion(projectContent) || t('unknown')}</span>
+          </div>
+        </div>
+      </ErrorBoundary>
+
+      <div className="flex flex-shrink-0 gap-2">
+        <Suspense fallback={<div className="h-10 w-10"></div>}>
+          <GitHubProjectLink repo={mod.source_repo}/>
+        </Suspense>
+        <Button asChild variant="outline" size="icon"
+                className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
+          <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
+            {mod.platform === 'modrinth'
+              ? <ModrinthIcon width={24} height={24}/>
+              : <CurseForgeIcon width={24} height={24}/>
+            }
+          </NavLink>
+        </Button>
       </div>
     </div>
   )
@@ -85,18 +104,18 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
       <div className="flex flex-col gap-1 w-full">
         <div className="w-full h-full flex flex-col gap-1.5">
           <div className="w-full inline-flex gap-2">
-            <LinkTextButton href={`/mod/${mod.id}`} className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">
+            <LinkTextButton href={`/mod/${mod.id}`}
+                            className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">
               {mod.name}
             </LinkTextButton>
 
-            {mod.is_community && <CommunityDocsBadge small />}
+            {mod.is_community && <CommunityDocsBadge small/>}
           </div>
 
           <ErrorBoundary fallback={<span></span>}>
             <Suspense fallback={
               <>
-                <Skeleton className="w-full h-4"/>
-                <Skeleton className="w-full h-4"/>
+                <Skeleton className="w-full h-6"/>
               </>
             }>
               <ProjectDescription project={project}/>
@@ -104,26 +123,13 @@ export default async function BrowseModProject({mod}: { mod: PartialMod }) {
           </ErrorBoundary>
         </div>
 
-        <div className="flex flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
-          <ErrorBoundary fallback={<span></span>}>
-            <Suspense>
-              <ProjectMetaInfo project={project}/>
-            </Suspense>
-          </ErrorBoundary>
-
-          <div className="flex flex-shrink-0 gap-2">
-            <GitHubProjectLink repo={mod.source_repo}/>
-            <Button asChild variant="outline" size="icon"
-                    className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
-              <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
-                {mod.platform === 'modrinth'
-                  ? <ModrinthIcon width={24} height={24}/>
-                  : <CurseForgeIcon width={24} height={24}/>
-                }
-              </NavLink>
-            </Button>
+        <Suspense fallback={
+          <div className="h-8 mt-1">
+            <Skeleton className="w-full h-5"/>
           </div>
-        </div>
+        }>
+          <ProjectMetaInfo mod={mod} project={project} />
+        </Suspense>
       </div>
     </div>
   )

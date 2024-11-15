@@ -6,7 +6,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from "rehype-raw";
 
 import {markdownRehypeSchema} from "./contentFilter";
-import sources, {DocumentationFile, DocumentationSource, RemoteDocumentationSource} from "@/lib/docs/sources";
+import sources, {DocumentationFile, DocumentationSource} from "@/lib/docs/sources";
 import {ReactElement} from "react";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
@@ -17,6 +17,7 @@ import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import * as LucideReact from "lucide-react";
+import matter from 'gray-matter';
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -91,19 +92,15 @@ function sanitizeHastTree(tree: any, sanitizer: (tree: any) => any, components: 
   return tree.children ? tree : sanitizer(tree);
 }
 
-async function renderDocumentationFile(source: DocumentationSource, path: string[], locale: string): Promise<RenderedFile> {
+async function readDocumentationFileMetadata(source: DocumentationSource, path: string[], locale: string): Promise<DocsEntryMetadata> {
   const file = await sources.readDocsFile(source, path, locale);
-  const content = await renderDocumentationMarkdown(file.content);
-  const edit_url = source.type === 'github' && (source as RemoteDocumentationSource).editable ? file.edit_url : null;
+  const result = matter(file.content);
 
-  return {
-    file,
-    content,
-    edit_url: edit_url !== null ? edit_url : undefined
-  }
+  return result.data;
 }
 
 export default {
   renderMarkdown,
-  renderDocumentationFile
+  readDocumentationFileMetadata,
+  renderDocumentationMarkdown
 };

@@ -1,14 +1,18 @@
 import {
-  ArchiveIcon, BiohazardIcon,
+  ArchiveIcon,
+  BiohazardIcon,
   BookIcon,
   BriefcaseIcon,
   BugIcon,
   BugOffIcon,
-  CarrotIcon, CircuitBoardIcon,
+  CarrotIcon,
+  CircuitBoardIcon,
   CompassIcon,
   DollarSignIcon,
-  EarthIcon, FileQuestionIcon,
-  Gamepad2Icon, GraduationCapIcon,
+  EarthIcon,
+  FileQuestionIcon,
+  Gamepad2Icon,
+  GraduationCapIcon,
   HardDriveIcon,
   HouseIcon,
   MapIcon,
@@ -25,7 +29,6 @@ import {
 } from "lucide-react";
 import platforms, {ModAuthor, ModProject} from "@/lib/platforms";
 import {getTranslations} from "next-intl/server";
-import {useTranslations} from "next-intl";
 
 const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 

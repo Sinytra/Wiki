@@ -1,6 +1,5 @@
 import ModDocsBaseLayout from "@/components/docs/layout/ModDocsBaseLayout";
 import DocsTree from "@/components/docs/tree/DocsTree";
-import sources from "@/lib/docs/sources";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import {FileQuestionIcon, HouseIcon} from "lucide-react";
@@ -11,7 +10,8 @@ import {NavLink} from "@/components/navigation/link/NavLink";
 import {ErrorBoundary} from "react-error-boundary";
 import {useTranslations} from "next-intl";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
-import githubApp from "@/lib/github/githubApp";
+import {redirect} from "next/navigation";
+import service from "@/lib/service";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -48,7 +48,7 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
             </Button>
         }
         <PrimaryButton asChild>
-          <NavLink href="/public">
+          <NavLink href="/">
             <HouseIcon className="mr-2 w-4 h-4" strokeWidth={2.5} />
             {t('return')}
           </NavLink>
@@ -62,14 +62,14 @@ export default async function ModLayout({children, params}: Readonly<{
   children: ReactNode;
   params: { slug: string; version: string; locale: string }
 }>) {
-  const source = await sources.getProjectSourceOrRedirect(params.slug, params.locale, params.version);
-  const isPublic = 'repo' in source && (await githubApp.isRepositoryPublic(source.repo as string));
-
   setContextLocale(params.locale);
 
+  const data = await service.getBackendLayout(params.slug, params.version, params.locale);
+  if (!data) redirect('/');
+
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={isPublic ? getIssueCreationLink(source.repo) : undefined}/>}>
-      <ModDocsBaseLayout leftPanel={<DocsTree source={source} locale={params.locale} version={params.version} />}>
+    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={data.mod.is_public ? getIssueCreationLink(data.mod.source_repo) : undefined}/>}  >
+      <ModDocsBaseLayout leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version} />}>
         {children}
       </ModDocsBaseLayout>
     </ErrorBoundary>

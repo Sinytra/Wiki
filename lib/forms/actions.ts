@@ -1,19 +1,20 @@
 'use server'
 
 import {docsPageReportSchema, migrateRepositorySchema, projectRegisterSchema} from "@/lib/forms/schemas";
-import {revalidatePath, revalidateTag} from "next/cache";
-import githubApp from "@/lib/github/githubApp";
-import {ValidationError} from "@/lib/docs/metadata";
-import platforms, {ModProject} from "@/lib/platforms";
+import {revalidatePath} from "next/cache";
+import metadata, {ValidationError} from "@/lib/docs/metadata";
 import database from "@/lib/database";
 import {auth, isModrinthOAuthAvailable, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import cacheUtil from "@/lib/cacheUtil";
-import verification from "@/lib/github/verification";
 import github from "@/lib/github/github";
 import email from "@/lib/email";
-import users from "@/lib/users";
-import {githubDocsSource} from "@/lib/docs/sources/githubSource";
 import modrinth from "@/lib/platforms/modrinth";
+import githubFacade from "@/lib/facade/githubFacade";
+import githubCache from "@/lib/github/githubCache";
+import {isWikiAdmin} from "@/lib/utils";
+import {DOCS_METADATA_FILE_NAME} from "@/lib/constants";
+import platforms, {ModProject} from "@/lib/platforms";
+import service from "@/lib/service";
 
 export async function handleEnableProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData);
@@ -29,7 +30,6 @@ export async function handleEnableProjectForm(rawData: any) {
   }
 
   await database.registerProject(metadata.id, project.name, metadata.platform, project.slug, sourceRepo, data.branch, data.path, data.is_community || false);
-  revalidatePath('/dev');
 
   return {success: true};
 }
@@ -38,8 +38,6 @@ export async function handleDeleteProjectForm(id: string) {
   await database.unregisterProject(id);
   cacheUtil.clearModCaches(id);
   revalidatePath(`/[locale]/mod/${id}/[version]`, 'layout');
-
-  revalidatePath('/dev');
 
   return {success: true};
 }
@@ -80,27 +78,24 @@ export async function handleMigrateRepositoryForm(rawData: any) {
   const user = await github.getUserProfile(session.access_token);
 
   // Ensure app is installed on repository
-  const installation = await githubApp.getInstallation(data.new_owner, data.repo, null, null);
+  const installation = await githubFacade.getInstallation(data.new_owner, data.repo, null, null);
   // Prompt user to install app
   if (installation && 'url' in installation) {
     return {success: false, installation_url: installation.url};
   }
 
   // Validate user repository access
-  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.new_owner, data.repo, user.login))) {
+  if (!(await githubFacade.verifyAppInstallationRepositoryOwnership(data.new_owner, data.repo, user.login))) {
     return {success: false, validation_error: 'access_denied'};
   }
 
-  // Create auth instance
-  const octokit = await githubApp.createInstance(installation!.id);
-
-  const repo = await githubApp.getRepository(octokit, data.owner, data.repo);
+  const repo = await githubFacade.getRepository(data.owner, data.repo);
 
   // Check if repo has moved
   if ('id' in repo && data.owner.toLowerCase() !== repo.owner.login.toLowerCase() && data.repo.toLowerCase() === repo.name.toLowerCase()) {
     await database.migrateRepository(`${data.owner}/${data.repo}`, repo.full_name);
 
-    revalidateTag(cacheUtil.getGithubAppUserInstallCacheId(data.owner));
+    githubCache.getUserAccessibleInstallations.invalidate(data.owner, data.repo);
     revalidatePath('/dev');
     return {success: true};
   }
@@ -120,13 +115,14 @@ export async function handleRevalidateDocs(id: string) {
   }
 
   const parts = mod.source_repo.split('/');
-  if (!(await verification.verifyRepositoryOwnership(parts[0], parts[1], session.access_token))) {
+  if (!(await githubFacade.verifyUserRepositoryOwnership(parts[0], parts[1], session.access_token))) {
     return {success: false, error: 'verification'};
   }
 
   cacheUtil.clearModCaches(id);
   revalidatePath(`/[locale]/mod/${id}`, 'layout');
   revalidatePath(`/[locale]/mod/${id}/[version]`, 'layout');
+  await service.invalidateCache(id);
 
   return {success: true};
 }
@@ -179,32 +175,29 @@ async function validateProjectFormData(rawData: any) {
   }
   const user = await github.getUserProfile(session.access_token);
 
-  if (rawData.is_community !== undefined && !users.isWikiAdmin(user.login)) {
+  if (rawData.is_community !== undefined && !isWikiAdmin(user.login)) {
     return {success: false, error: 'insufficient_perms'};
   }
 
   // Ensure app is installed on repository
-  const installation = await githubApp.getInstallation(data.owner, data.repo, data.branch, data.path);
+  const installation = await githubFacade.getInstallation(data.owner, data.repo, data.branch, data.path);
   // Prompt user to install app
   if (installation && 'url' in installation) {
     return {success: false, installation_url: installation.url};
   }
 
   // Validate user repository access
-  if (!(await verification.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
+  if (!(await githubFacade.verifyAppInstallationRepositoryOwnership(data.owner, data.repo, user.login))) {
     return {success: false, validation_error: 'access_denied'};
   }
 
-  // Create auth instance
-  const octokit = await githubApp.createInstance(installation!.id);
-
-  const branches = await githubApp.getRepoBranches(octokit, data.owner, data.repo);
+  const branches = await githubFacade.getRepoBranches(data.owner, data.repo);
   if (!branches.some(b => b.name === data.branch)) {
     return {success: false, errors: {branch: ['no_branch']}};
   }
 
   // Read docs path
-  const content = await githubApp.getRepoContents(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
+  const content = await githubFacade.getRepositoryContents(data.owner + '/' + data.repo, data.branch, validatedFields.data.path);
 
   if (content === null) {
     return {success: false, errors: {path: ['invalid_path']}};
@@ -213,7 +206,7 @@ async function validateProjectFormData(rawData: any) {
   // Parse metadata file
   let metadata = undefined
   try {
-    metadata = await githubDocsSource.readRemoteMetadata(octokit, data.owner, data.repo, data.branch, validatedFields.data.path);
+    metadata = await readMetadata(data.owner + '/' + data.repo, data.branch, validatedFields.data.path);
   } catch (e) {
     return {success: false, error: 'invalid_meta', details: e instanceof ValidationError ? e.message : undefined};
   }
@@ -266,4 +259,17 @@ async function verifyProjectOwnership(project: ModProject, owner: string, repo: 
   }
 
   return false;
+}
+
+// TODO Move to BE
+async function readMetadata(repo: string, branch: string, root: string) {
+  const metadataPath = root + '/' + DOCS_METADATA_FILE_NAME;
+  const metaFile = await githubFacade.getRepositoryContents(repo, branch, metadataPath);
+
+  if (metaFile && 'content' in metaFile) {
+    const content = Buffer.from(metaFile.content, 'base64').toString('utf-8');
+    return metadata.parseMetadata(content);
+  }
+
+  return null;
 }

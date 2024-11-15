@@ -60,13 +60,13 @@ export default function GetStartedModal({
                                           isAdmin,
                                           autoSubmit
                                         }: Omit<ProjectRegisterFormProps, 'open' | 'setOpen'>) {
-  const {open, setOpen} = useContext(GetStartedContext)!;
+  const {open, setOpen, startTransition} = useContext(GetStartedContext)!;
   const [registerOpen, setRegisterOpen] = useState(false);
   const t = useTranslations('GetStartedModal');
 
   return (<>
     <ProjectRegisterForm open={registerOpen} setOpen={setRegisterOpen} defaultValues={defaultValues} state={state}
-                         isAdmin={isAdmin} autoSubmit={autoSubmit}/>
+                         isAdmin={isAdmin} autoSubmit={autoSubmit} startTransition={startTransition}/>
 
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
