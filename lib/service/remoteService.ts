@@ -1,4 +1,4 @@
-import {DocumentationPage, LayoutTree, Mod, ServiceProvider} from "@/lib/service/index";
+import {DocumentationPage, LayoutTree, Mod, ModSearchResults, ServiceProvider} from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
 
 interface AssetResponse {
@@ -12,7 +12,7 @@ interface PageResponse {
   updated_at?: string;
 }
 
-async function fetchBackendService(mod: string, path: string, params: Record<string, string | null> = {}, method?: string) {
+async function fetchBackendService(path: string, params: Record<string, string | null> = {}, method?: string, disableCache?: boolean) {
   if (!process.env.BACKEND_SERVICE_URL) {
     throw new Error('Environment variable BACKEND_SERVICE_URL not set');
   }
@@ -27,15 +27,17 @@ async function fetchBackendService(mod: string, path: string, params: Record<str
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`
     },
-    next: {
-      tags: [`backend:${mod}`] // TODO Ensure error responses are cached
-    }
+    ...(disableCache ? {cache: 'no-store'} : {
+      next: {
+        tags: params.mod ? [`backend:${params.mod || ''}`] : [] // TODO Ensure error responses are cached
+      }
+    })
   });
 }
 
 async function getMod(mod: string): Promise<Mod | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}`);
+    const resp = await fetchBackendService(`mod/${mod}`);
     if (resp.ok) {
       const json = await resp.json();
       return json.mod;
@@ -48,7 +50,7 @@ async function getMod(mod: string): Promise<Mod | null> {
 
 async function getBackendLayout(mod: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}/tree`, {version, locale});
+    const resp = await fetchBackendService(`mod/${mod}/tree`, {version, locale});
     if (resp.ok) {
       return resp.json();
     }
@@ -60,7 +62,7 @@ async function getBackendLayout(mod: string, version: string | null, locale: str
 
 async function getAsset(mod: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}/asset/${location}`, {version});
+    const resp = await fetchBackendService(`mod/${mod}/asset/${location}`, {version});
     if (resp.ok) {
       const json = await resp.json() as AssetResponse;
       return {
@@ -76,7 +78,7 @@ async function getAsset(mod: string, location: string, version: string | null): 
 
 async function getDocsPage(mod: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}/page/${path.join('/')}.mdx`, {version, locale});
+    const resp = await fetchBackendService(`mod/${mod}/page/${path.join('/')}.mdx`, {version, locale});
     if (resp.ok) {
       const json = await resp.json() as PageResponse;
       const content = Buffer.from(json.content, 'base64').toString('utf-8');
@@ -95,10 +97,22 @@ async function getDocsPage(mod: string, path: string[], version: string | null, 
 
 async function invalidateCache(mod: string) {
   try {
-    await fetchBackendService(mod, `mod/${mod}/invalidate`, {}, 'POST');
+    await fetchBackendService(`mod/${mod}/invalidate`, {}, 'POST');
   } catch (e) {
     console.error(e);
   }
+}
+
+async function searchMods(query: string, page: number): Promise<ModSearchResults> {
+  try {
+    const resp = await fetchBackendService(`browse`, {query, page: page.toString()}, 'GET', true);
+    if (resp.ok) {
+      return await resp.json();
+    }
+  } catch (e) {
+    console.error(e);
+  }
+  return {pages: 0, total: 0, data: []};
 }
 
 export default {
@@ -106,5 +120,6 @@ export default {
   getAsset,
   getDocsPage,
   invalidateCache,
-  getMod
+  getMod,
+  searchMods
 } satisfies ServiceProvider

@@ -6,13 +6,12 @@ import cacheUtil from "@/lib/cacheUtil";
 import localPreview from "@/lib/docs/localPreview";
 import metadata, {DocumentationFolderMetadata, ValidationError} from "@/lib/docs/metadata";
 import {
+  DEFAULT_LOCALE,
   DOCS_METADATA_FILE_NAME,
   FOLDER_METADATA_FILE_NAME,
   HOMEPAGE_FILE_PATH
 } from "@/lib/constants";
 import {FileTree} from "@/lib/service";
-
-const defaultLocale = 'en';
 
 type SourceType = 'local';
 
@@ -80,7 +79,7 @@ async function parseFolderMetadataFile(source: DocumentationSource, path: string
 }
 
 async function readLocalizedFile(provider: DocumentationSourceProvider<any>, source: DocumentationSource, path: string, locale?: string): Promise<DocumentationFile> {
-  if (locale && locale !== defaultLocale) {
+  if (locale && locale !== DEFAULT_LOCALE) {
     const availableLocales = await getAvailableDocsLocales(source, provider);
     if (availableLocales.includes(locale)) {
       const localeFolder = `.translated/${locale}_${locale}/`;
@@ -97,21 +96,9 @@ async function readLocalizedFile(provider: DocumentationSourceProvider<any>, sou
 async function readDocsTree(source: DocumentationSource, locale?: string): Promise<FileTree> {
   const provider = getDocumentationSourceProvider(source);
   const availableLocales = await getAvailableDocsLocales(source, provider);
-  const actualLocale = locale === defaultLocale ? undefined : locale && locale in availableLocales ? locale : undefined;
+  const actualLocale = locale === DEFAULT_LOCALE ? undefined : locale && locale in availableLocales ? locale : undefined;
 
-  // Do not cache local trees
-  if (source.type === 'local') {
-    return resolveDocsTree(source, actualLocale);
-  }
-
-  const cache = unstable_cache(
-    async (src: DocumentationSource, lang?: string) => resolveDocsTree(src, lang),
-    ['source', source.id],
-    {
-      tags: [cacheUtil.getModDocsTreeCacheId(source.id)]
-    }
-  );
-  return await cache(source, actualLocale);
+  return resolveDocsTree(source, actualLocale);
 }
 
 async function resolveDocsTree(source: DocumentationSource, locale?: string): Promise<FileTree> {

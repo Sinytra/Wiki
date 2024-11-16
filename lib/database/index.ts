@@ -73,46 +73,6 @@ async function getCommunityProjects() {
   });
 }
 
-async function searchProjectsPaginated(limit: number, query?: string, page?: number) {
-  //@ts-ignore
-  return prisma.mod.paginate({
-    where: {
-      name: {
-        search: query ? query.split(' ').map(v => v + ':*').join(' &#124; ') : undefined,
-      }
-    },
-    select: {
-      id: true,
-      name: true,
-      source_repo: true,
-      platform: true,
-      slug: true,
-      is_community: true
-    },
-    // @ts-ignore
-    cacheStrategy: { swr: 60, ttl: 60 }
-  }).withPages({
-    page,
-    limit,
-    includePageCount: true
-  });
-}
-
-async function searchProjects(query: string) {
-  return prisma.mod.findMany({
-    where: {
-      name: {
-        search: query ? query.split(' ').map(v => v + ':*').join(' &#124; ') : undefined,
-      }
-    },
-    select: {
-      id: true,
-      name: true
-    },
-    cacheStrategy: { swr: 60, ttl: 360 }
-  });
-}
-
 async function getProject(slug: string) {
   return prisma.mod.findUnique({
     where: {
@@ -140,10 +100,8 @@ const database = {
   getProject,
   getProjects,
   unregisterProject,
-  searchProjects,
   updateProject,
   findExistingProject,
-  searchProjectsPaginated,
   getAllProjectIDs,
   getRandomProjectID,
   migrateRepository,

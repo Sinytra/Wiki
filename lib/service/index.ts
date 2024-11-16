@@ -7,13 +7,16 @@ import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 
-export interface Mod {
+export interface PartialMod {
   id: string;
   name: string;
+  source_repo?: string;
   platform: ModPlatform;
   slug: string;
-  source_repo?: string;
   is_community: boolean;
+}
+
+export interface Mod extends PartialMod {
   is_public: boolean;
   versions?: Record<string, string>;
   local?: boolean;
@@ -48,12 +51,19 @@ export interface RenderedDocsPage {
   edit_url?: string;
 }
 
+export interface ModSearchResults {
+  data: PartialMod[];
+  pages: number;
+  total: number;
+}
+
 export interface ServiceProvider {
   getMod: (slug: string) => Promise<Mod | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
   invalidateCache: (slug: string) => Promise<void>;
+  searchMods: (query: string, page: number) => Promise<ModSearchResults>;
 }
 
 async function getMod(slug: string): Promise<Mod | null> {
@@ -133,11 +143,16 @@ async function invalidateCache(slug: string) {
   return remoteService.invalidateCache(slug);
 }
 
+async function searchMods(query: string, page: number): Promise<ModSearchResults> {
+  return remoteService.searchMods(query, page);
+}
+
 export default {
   getMod,
   getBackendLayout,
   getAsset,
   getDocsPage,
   renderDocsPage,
-  invalidateCache
+  invalidateCache,
+  searchMods
 }

@@ -3,27 +3,12 @@ import {revalidateTag, unstable_cache} from "next/cache";
 const githubRequestsCacheId = 'github';
 const githubAppRequestsCacheId = 'github_app';
 
-function getModDocsTreeCacheId(id: string): string {
-  return `mod_tree:${id}`;
-}
-
-function getModDocsSourceCacheId(id: string): string {
-  return `mod_source:${id}`;
-}
-
 function getModDocsLocalesCacheId(id: string): string {
   return `mod_locales:${id}`;
 }
 
-function getRemoteProjectMetadataCacheId(id: string): string {
-  return `remote_project_metadata:${id}`;
-}
-
 function clearModCaches(id: string) {
-  revalidateTag(getModDocsTreeCacheId(id));
-  revalidateTag(getModDocsSourceCacheId(id));
   revalidateTag(getModDocsLocalesCacheId(id));
-  revalidateTag(getRemoteProjectMetadataCacheId(id));
   revalidateTag('backend:' + id);
 }
 
@@ -65,8 +50,6 @@ export function wrapDynamicCached<
 export default {
   githubRequestsCacheId,
   githubAppRequestsCacheId,
-  getModDocsTreeCacheId,
-  getModDocsSourceCacheId,
   getModDocsLocalesCacheId,
   clearModCaches
 };

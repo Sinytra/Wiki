@@ -2,7 +2,7 @@
 
 import {ModSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/search";
 import {getProcessURL} from "@/lib/utils";
-import database from "@/lib/database";
+import service from "@/lib/service";
 
 export async function searchWikiServer(query: string): Promise<WikiSearchResults> {
   if (!process.env.SEARCH_ENDPOINT || !process.env.SEARCH_INDEX || !process.env.SEARCH_API_KEY) {
@@ -79,5 +79,6 @@ export async function searchModsServer(query: string): Promise<ModSearchResult[]
     return [];
   }
 
-  return await database.searchProjects(query);
+  const results = await service.searchMods(query as any, 1);
+  return results.data.map(r => ({ id: r.id, name: r.name }));
 }

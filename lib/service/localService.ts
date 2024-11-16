@@ -1,4 +1,4 @@
-import {DocumentationPage, LayoutTree, Mod, ServiceProvider} from "@/lib/service/index";
+import {DocumentationPage, LayoutTree, Mod, ModSearchResults, ServiceProvider} from "@/lib/service/index";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
 import {AssetLocation} from "../assets";
 import assetsFacade from "@/lib/facade/assetsFacade";
@@ -81,10 +81,15 @@ async function invalidateCache(slug: string) {
   // No op
 }
 
+async function searchMods(query: string, page: number): Promise<ModSearchResults> {
+  return {pages: 0, total: 0, data: []};
+}
+
 export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
   invalidateCache,
-  getMod
+  getMod,
+  searchMods
 } satisfies ServiceProvider;

@@ -1,6 +1,5 @@
 import {ModPlatform, ModProject} from "@/lib/platforms";
 import {Suspense, use} from "react";
-import {PartialMod} from "@/lib/search";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
 import {Skeleton} from "@/components/ui/skeleton";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
@@ -16,7 +15,7 @@ import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import githubFacade from "@/lib/facade/githubFacade";
 import platforms from "@/lib/platforms";
-import {randomInt} from "node:crypto";
+import {PartialMod} from "@/lib/service";
 
 function ProjectIcon({project}: { project: Promise<ModProject> }) {
   const projectContent = use(project);
@@ -73,9 +72,11 @@ function ProjectMetaInfo({mod, project}: { mod: PartialMod, project: Promise<Mod
       </ErrorBoundary>
 
       <div className="flex flex-shrink-0 gap-2">
-        <Suspense fallback={<div className="h-10 w-10"></div>}>
-          <GitHubProjectLink repo={mod.source_repo}/>
-        </Suspense>
+        {mod.source_repo && 
+            <Suspense fallback={<div className="h-10 w-10"></div>}>
+                <GitHubProjectLink repo={mod.source_repo}/>
+            </Suspense>
+        }
         <Button asChild variant="outline" size="icon"
                 className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
           <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
