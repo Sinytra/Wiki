@@ -3,6 +3,8 @@ import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import Callout from "@/components/docs/shared/Callout";
 import ModAsset from "@/components/docs/shared/ModAsset";
 import {SquirrelIcon} from "lucide-react";
+import {DE, FR, TW} from "country-flag-icons/react/3x2";
+import CountryFlag from "@/components/util/CountryFlag";
 
 // Used in meta-docs only
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -13,6 +15,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Callout,
     ModAsset,
     ...components,
-    SquirrelIcon
+    SquirrelIcon,
+    FlagDE: () => (<div className="inline-block"><CountryFlag flag={DE} /></div>),
+    FlagFR: () => (<div className="inline-block"><CountryFlag flag={FR}/></div>),
+    FlagTW: () => (<div className="inline-block"><CountryFlag flag={TW}/></div>)
   }
 }
