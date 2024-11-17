@@ -58,7 +58,8 @@ async function getProjects(repoNames: string[]) {
   return prisma.mod.findMany({
     where: {
       source_repo: {
-        in: repoNames
+        in: repoNames,
+        mode: 'insensitive'
       }
     }
   });
