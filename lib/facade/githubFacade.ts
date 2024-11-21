@@ -3,14 +3,9 @@ import githubCache from "@/lib/github/githubCache";
 import githubApp, {CollaboratorRepositoryPermissions, RepositoryContent} from "@/lib/github/githubApp";
 
 async function getUserRepositoriesForApp(owner: string, token: string) {
-  try {
-    const installations = await githubCache.getUserAccessibleInstallations.get(owner, token);
-    const repositories = await Promise.all(installations.map(async id => github.getAccessibleAppRepositories(token, id)));
-    return repositories.flatMap(a => a).filter(r => hasSufficientAccess(r.permissions));
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
+  const installations = await githubCache.getUserAccessibleInstallations.get(owner, token);
+  const repositories = await Promise.all(installations.map(async id => github.getAccessibleAppRepositories(token, id)));
+  return repositories.flatMap(a => a).filter(r => hasSufficientAccess(r.permissions));
 }
 
 async function getRepositoryContents(repo: string, ref: string, path: string): Promise<RepositoryContent | null> {

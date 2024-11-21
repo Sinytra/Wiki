@@ -37,7 +37,15 @@ function ProfileProjectSkeleton() {
 }
 
 async function ProfileProjects({owner, access_token}: { owner: string; access_token: string }) {
-  const repos = await githubFacade.getUserRepositoriesForApp(owner, access_token);
+  let repos;
+  try {
+    repos = await githubFacade.getUserRepositoriesForApp(owner, access_token);
+  } catch (e: any) {
+    if (e.status === 401) {
+      return redirect('/api/auth/refresh');
+    }
+    throw e;
+  }
   let projects = await database.getProjects(repos.map(r => r.full_name));
 
   if (isWikiAdmin(owner)) {
