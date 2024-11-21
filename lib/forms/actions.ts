@@ -120,8 +120,8 @@ export async function handleRevalidateDocs(id: string) {
   }
 
   cacheUtil.clearModCaches(id);
-  revalidatePath(`/[locale]/(main)/mod/${id}/[version]`, 'layout');
   await service.invalidateCache(id);
+  revalidatePath(`/[locale]/(main)/mod/${id}/[version]`, 'layout');
 
   return {success: true};
 }
