@@ -2,17 +2,17 @@ import prisma from "@/lib/database/prisma";
 import {ModPlatform} from "@/lib/platforms";
 
 async function registerProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string, is_community: boolean) {
-  // TODO Throw error on duplicate
   const existing = await prisma.mod.findUnique({
     where: {
-      id: slug
+      id
     }
   });
-  if (!existing) {
-    await prisma.mod.create({
-      data: {id, name, platform, slug, source_repo, source_branch, source_path, is_community}
-    })
+  if (existing) {
+    throw new Error(`Project with id ${id} already exists`);
   }
+  await prisma.mod.create({
+    data: {id, name, platform, slug, source_repo, source_branch, source_path, is_community}
+  })
 }
 
 async function updateProject(id: string, name: string, platform: ModPlatform, slug: string, source_repo: string, source_branch: string, source_path: string, is_community: boolean) {
