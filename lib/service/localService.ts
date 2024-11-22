@@ -77,10 +77,6 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
   return null;
 }
 
-async function invalidateCache(slug: string) {
-  // No op
-}
-
 async function searchMods(query: string, page: number): Promise<ModSearchResults> {
   return {pages: 0, total: 0, data: []};
 }
@@ -89,7 +85,6 @@ export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
-  invalidateCache,
   getMod,
   searchMods
 } satisfies ServiceProvider;

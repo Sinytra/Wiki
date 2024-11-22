@@ -1,6 +1,8 @@
 import {DocumentationPage, LayoutTree, Mod, ModSearchResults, ServiceProvider} from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
 
+type RequestOptions = Parameters<typeof fetch>[1];
+
 interface AssetResponse {
   data: string;
 }
@@ -12,7 +14,7 @@ interface PageResponse {
   updated_at?: string;
 }
 
-async function fetchBackendService(path: string, params: Record<string, string | null> = {}, method?: string, disableCache?: boolean) {
+async function fetchBackendService(mod: string, path: string, params: Record<string, string | null> = {}, method?: string, disableCache?: boolean, options?: RequestOptions) {
   if (!process.env.BACKEND_SERVICE_URL) {
     throw new Error('Environment variable BACKEND_SERVICE_URL not set');
   }
@@ -23,13 +25,15 @@ async function fetchBackendService(path: string, params: Record<string, string |
     }
   }
   return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+    ...options,
     method,
     headers: {
-      Authorization: `Bearer ${process.env.BACKEND_API_KEY}`
+      Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
+      ...(options?.headers || {})
     },
     ...(disableCache ? {cache: 'no-store'} : {
       next: {
-        tags: params.mod ? [`backend:${params.mod || ''}`] : [] // TODO Ensure error responses are cached
+        tags: params.mod ? [`backend:${mod}`] : []
       }
     })
   });
@@ -37,7 +41,7 @@ async function fetchBackendService(path: string, params: Record<string, string |
 
 async function getMod(mod: string): Promise<Mod | null> {
   try {
-    const resp = await fetchBackendService(`mod/${mod}`);
+    const resp = await fetchBackendService(mod, `mod/${mod}`);
     if (resp.ok) {
       const json = await resp.json();
       return json.mod;
@@ -50,7 +54,7 @@ async function getMod(mod: string): Promise<Mod | null> {
 
 async function getBackendLayout(mod: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   try {
-    const resp = await fetchBackendService(`mod/${mod}/tree`, {version, locale});
+    const resp = await fetchBackendService(mod, `mod/${mod}/tree`, {version, locale});
     if (resp.ok) {
       return resp.json();
     }
@@ -62,7 +66,7 @@ async function getBackendLayout(mod: string, version: string | null, locale: str
 
 async function getAsset(mod: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(`mod/${mod}/asset/${location}`, {version});
+    const resp = await fetchBackendService(mod, `mod/${mod}/asset/${location}`, {version});
     if (resp.ok) {
       const json = await resp.json() as AssetResponse;
       return {
@@ -78,7 +82,7 @@ async function getAsset(mod: string, location: string, version: string | null): 
 
 async function getDocsPage(mod: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   try {
-    const resp = await fetchBackendService(`mod/${mod}/page/${path.join('/')}.mdx`, {version, locale});
+    const resp = await fetchBackendService(mod, `mod/${mod}/page/${path.join('/')}.mdx`, {version, locale});
     if (resp.ok) {
       const json = await resp.json() as PageResponse;
       const content = Buffer.from(json.content, 'base64').toString('utf-8');
@@ -95,17 +99,9 @@ async function getDocsPage(mod: string, path: string[], version: string | null, 
   return null;
 }
 
-async function invalidateCache(mod: string) {
-  try {
-    await fetchBackendService(`mod/${mod}/invalidate`, {}, 'POST');
-  } catch (e) {
-    console.error(e);
-  }
-}
-
 async function searchMods(query: string, page: number): Promise<ModSearchResults> {
   try {
-    const resp = await fetchBackendService(`browse`, {query, page: page.toString()}, 'GET', true);
+    const resp = await fetchBackendService('', `browse`, {query, page: page.toString()}, 'GET', true);
     if (resp.ok) {
       return await resp.json();
     }
@@ -119,7 +115,6 @@ export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
-  invalidateCache,
   getMod,
   searchMods
 } satisfies ServiceProvider

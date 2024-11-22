@@ -309,20 +309,20 @@
     },
     "FormActions": {
         "errors": {
-            "exists": "Project already exists.",
             "unauthenticated": "Unauthenticated",
-            "access_denied": "User does not have access to repository.",
+            "user_github_auth": "GitHub authentication error",
+            "insufficient_wiki_perms": "Insufficient permissions to create community project",
+            "unsupported": "Not yet implemented",
+            "insufficient_repo_perms": "User does not have access to repository.",
             "no_branch": "Branch does not exist",
-            "invalid_path": "Invalid path provided",
-            "invalid_meta": "Metadata file is invalid",
             "no_meta": "Metadata file not found",
-            "no_cf_key": "Cannot register CurseForge project; missing API key",
+            "invalid_meta": "Metadata file is invalid",
+            "exists": "Project already exists.",
+            "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "ownership": "Failed to verify project ownership",
             "internal": "Internal Server Error, please try again later.",
-            "verification": "Verification error",
-            "not_found": "Not found",
-            "insufficient_perms": "Insufficient permissions to create community project"
+            "not_found": "Project does not exist"
         }
     },
     "GetHelpModal": {

@@ -62,7 +62,6 @@ export interface ServiceProvider {
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
-  invalidateCache: (slug: string) => Promise<void>;
   searchMods: (query: string, page: number) => Promise<ModSearchResults>;
 }
 
@@ -136,13 +135,6 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
   return null;
 }
 
-async function invalidateCache(slug: string) {
-  if (process.env.LOCAL_DOCS_ROOTS) {
-      return localService.invalidateCache(slug);
-  }
-  return remoteService.invalidateCache(slug);
-}
-
 async function searchMods(query: string, page: number): Promise<ModSearchResults> {
   return remoteService.searchMods(query, page);
 }
@@ -153,6 +145,5 @@ export default {
   getAsset,
   getDocsPage,
   renderDocsPage,
-  invalidateCache,
   searchMods
 }

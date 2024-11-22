@@ -72,14 +72,14 @@ export default function ProjectRegisterForm(
         router.replace('/dev');
       }
     } else if (resp.installation_url) {
-      form.setError('root.not_installed', {message: resp.installation_url});
-    } else if (resp.validation_error) {
+      form.setError('root.missing_installation', {message: resp.installation_url});
+    } else if (resp.error == 'insufficient_repo_perms') {
       // @ts-ignore
-      form.setError('root.validation_error', {message: u(`errors.${resp.validation_error}`)});
+      form.setError('root.insufficient_repo_perms', {message: u(`errors.${resp.insufficient_repo_perms}`)});
     } else if (resp.error) {
       // @ts-ignore
       form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});
-      setCanVerifyModrinth(resp.canVerifyModrinth && resp.error === 'ownership');
+      setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-ignore
@@ -189,16 +189,18 @@ export default function ProjectRegisterForm(
                 />
               </div>
 
-              {form.formState.errors?.root?.validation_error?.message &&
-                  <p className="text-sm font-medium text-destructive">{form.formState.errors.root.validation_error.message}</p>
+              {form.formState.errors?.root?.insufficient_repo_perms?.message &&
+                  <p className="text-sm font-medium text-destructive">
+                      {form.formState.errors.root.insufficient_repo_perms.message}
+                  </p>
               }
 
-              {form.formState.errors?.root?.not_installed?.message &&
+              {form.formState.errors?.root?.missing_installation?.message &&
                   <p className="text-destructive text-sm">
                     {t.rich('errors.install_app', {
                       link: (chunks) => (
                         <LinkTextButton className="!text-destructive !font-medium underline"
-                                        href={form.formState.errors.root!.not_installed.message!}>
+                                        href={form.formState.errors.root!.missing_installation.message!}>
                           {chunks}
                         </LinkTextButton>
                       )

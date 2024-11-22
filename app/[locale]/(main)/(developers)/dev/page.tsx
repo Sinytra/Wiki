@@ -19,7 +19,7 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import githubFacade from "@/lib/facade/githubFacade";
 import {isWikiAdmin} from "@/lib/utils";
 import DevPageProjectsList from "@/components/dev/DevPageProjectsList";
-import {handleEnableProjectForm, handleMigrateRepositoryForm} from "@/lib/forms/actions";
+import {handleRegisterProjectForm, handleMigrateRepositoryForm} from "@/lib/forms/actions";
 
 export const dynamic = 'force-dynamic';
 
@@ -47,11 +47,6 @@ async function ProfileProjects({owner, access_token}: { owner: string; access_to
     throw e;
   }
   let projects = await database.getProjects(repos.map(r => r.full_name));
-
-  if (isWikiAdmin(owner)) {
-    const communityProjects = await database.getCommunityProjects();
-    projects.push(...communityProjects.filter(p => !projects.some(t => p.id === t.id)));
-  }
 
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
@@ -164,7 +159,7 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
           <div className="flex flex-row items-center gap-2">
             <NextIntlClientProvider messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions')}>
               <GetStartedModal defaultValues={defaultValues} state={state} isAdmin={isAdmin} autoSubmit={autoSubmit}
-                               formAction={handleEnableProjectForm} />
+                               formAction={handleRegisterProjectForm} />
             </NextIntlClientProvider>
 
             <form

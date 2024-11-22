@@ -1,4 +1,4 @@
-import {revalidateTag, unstable_cache} from "next/cache";
+import {revalidatePath, revalidateTag, unstable_cache} from "next/cache";
 
 const githubRequestsCacheId = 'github';
 const githubAppRequestsCacheId = 'github_app';
@@ -7,9 +7,11 @@ function getModDocsLocalesCacheId(id: string): string {
   return `mod_locales:${id}`;
 }
 
-function clearModCaches(id: string) {
+function invalidateDocs(id: string) {
   revalidateTag(getModDocsLocalesCacheId(id));
   revalidateTag('backend:' + id);
+
+  revalidatePath(`/[locale]/(main)/mod/${id}/[version]`, 'layout');
 }
 
 interface DynamicCache<T extends Array<any>, U extends Promise<any>> {
@@ -51,5 +53,5 @@ export default {
   githubRequestsCacheId,
   githubAppRequestsCacheId,
   getModDocsLocalesCacheId,
-  clearModCaches
+  invalidateDocs
 };
