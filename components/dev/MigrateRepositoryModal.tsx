@@ -32,14 +32,11 @@ export function MigrateRepositoryModal({isOpen, setOpen, formAction}: Properties
     if (resp.success) {
       setOpen(false);
       toast.success(t('success.title'), {description: t('success.desc')});
-    } else if (resp.installation_url) {
-      form.setError('root.not_installed', {message: resp.installation_url});
-    } else if (resp.validation_error) {
+    } else if (resp.install_app) {
+      form.setError('root.missing_installation', {message: resp.install_app});
+    } else if (resp.error === 'insufficient_repo_perms') {
       // @ts-ignore
-      form.setError('root.validation_error', {message: u(`errors.${resp.validation_error}`)});
-    } else if (resp.migrate_error) {
-      // @ts-ignore
-      form.setError('root.custom', {message: t(`migrate_error.${resp.migrate_error}`)});
+      form.setError('root.insufficient_repo_perms', {message: u(`errors.${resp.error}`)});
     } else if (resp.error) {
       // @ts-ignore
       form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});
@@ -112,35 +109,16 @@ export function MigrateRepositoryModal({isOpen, setOpen, formAction}: Properties
               />
             </div>
 
-            <FormField
-              control={form.control}
-              name="new_owner"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>
-                    {t('new_owner.title')}
-                  </FormLabel>
-                  <FormControl>
-                    <Input className="w-1/2" placeholder={t('new_owner.placeholder')} {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    {t('new_owner.desc')}
-                  </FormDescription>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            />
-
             {form.formState.errors?.root?.validation_error?.message &&
                 <p className="text-sm font-medium text-destructive">{form.formState.errors.root.validation_error.message}</p>
             }
 
-            {form.formState.errors?.root?.not_installed?.message &&
+            {form.formState.errors?.root?.missing_installation?.message &&
                 <p className="text-destructive text-sm">
                   {t.rich('migrate_error.install_app', {
                     link: (chunks) => (
                       <LinkTextButton className="!text-destructive !font-medium underline"
-                                      href={form.formState.errors.root!.not_installed.message!}>
+                                      href={form.formState.errors.root!.missing_installation.message!}>
                         {chunks}
                       </LinkTextButton>
                     )

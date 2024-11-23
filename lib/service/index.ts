@@ -11,6 +11,8 @@ export interface PartialMod {
   id: string;
   name: string;
   source_repo?: string;
+  source_branch?: string;
+  source_path?: string;
   platform: ModPlatform;
   slug: string;
   is_community: boolean;

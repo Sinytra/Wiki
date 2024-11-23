@@ -11,9 +11,9 @@ import {getMessages} from "next-intl/server";
 import {NextIntlClientProvider} from "next-intl";
 import {pick} from "lodash";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
-import {Mod} from "@prisma/client";
 import platforms from "@/lib/platforms";
 import {handleDeleteProjectForm, handleEditProjectForm, handleRevalidateDocs} from "@/lib/forms/actions";
+import {Mod} from "@/lib/service";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
@@ -25,7 +25,7 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
 }
 
 export default async function ProfileProject({mod}: { mod: Mod }) {
-  const project = await platforms.getProject(mod);
+  const project = await platforms.getPlatformProject(mod.platform, mod.slug);
   const messages = await getMessages();
 
   return <>

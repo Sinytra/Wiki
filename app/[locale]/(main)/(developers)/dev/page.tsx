@@ -1,6 +1,5 @@
 import {auth, signOut} from "@/lib/auth";
 import github, {GitHubUserProfile} from "@/lib/github/github";
-import database from "@/lib/database";
 import * as React from "react";
 import {Suspense} from "react";
 import ProfileProject from "@/components/dev/ProfileProject";
@@ -16,10 +15,10 @@ import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 import LinkTextButton from "@/components/ui/link-text-button";
-import githubFacade from "@/lib/facade/githubFacade";
 import {isWikiAdmin} from "@/lib/utils";
 import DevPageProjectsList from "@/components/dev/DevPageProjectsList";
 import {handleRegisterProjectForm, handleMigrateRepositoryForm} from "@/lib/forms/actions";
+import remoteServiceApi from "@/lib/service/remoteServiceApi";
 
 export const dynamic = 'force-dynamic';
 
@@ -36,17 +35,8 @@ function ProfileProjectSkeleton() {
   )
 }
 
-async function ProfileProjects({owner, access_token}: { owner: string; access_token: string }) {
-  let repos;
-  try {
-    repos = await githubFacade.getUserRepositoriesForApp(owner, access_token);
-  } catch (e: any) {
-    if (e.status === 401) {
-      return redirect('/api/auth/refresh');
-    }
-    throw e;
-  }
-  let projects = await database.getProjects(repos.map(r => r.full_name));
+async function ProfileProjects({access_token}: { access_token: string }) {
+  const {projects} = await remoteServiceApi.getUserDevProjects(access_token);
 
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
@@ -125,6 +115,7 @@ function Profile({name, desc, avatar_url, children}: {
 export default async function Dev({searchParams}: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const session = (await auth())!;
 
+  // TODO Include in BE response
   let profile: GitHubUserProfile;
   try {
     profile = await github.getUserProfile(session.access_token);
@@ -181,7 +172,7 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
         <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url}>
           <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
             <DevPageProjectsList>
-              <ProfileProjects owner={profile.login} access_token={session.access_token}/>
+              <ProfileProjects access_token={session.access_token}/>
             </DevPageProjectsList>
           </NextIntlClientProvider>
         </Profile>

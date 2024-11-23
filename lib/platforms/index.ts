@@ -1,5 +1,3 @@
-import {Mod} from '@prisma/client';
-
 import {ModAuthor, ModProject, ModPlatformProvider, ModPlatform} from "@/lib/platforms/universal";
 import {modrinthModPlatform} from "@/lib/platforms/modrinth";
 import {curseForgeModPlatform} from "@/lib/platforms/curseforge";
@@ -25,10 +23,6 @@ async function getPlatformProject(source: ModPlatform, slug: string): Promise<Mo
   return getModSourcePlatform(source).getProject(slug);
 }
 
-async function getProject(mod: Mod): Promise<ModProject> {
-  return getPlatformProject(mod.platform as ModPlatform, mod.slug);
-}
-
 async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
   return getModSourcePlatform(mod.platform).getProjectAuthors(mod);
 }
@@ -38,7 +32,6 @@ function getProjectURL(source: ModPlatform, slug: string): string {
 }
 
 export default {
-  getProject,
   getProjectAuthors,
   getPlatformProject,
   getProjectURL

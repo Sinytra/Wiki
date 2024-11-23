@@ -25,7 +25,6 @@ import {cn} from "@/lib/utils";
 import {Loader2Icon} from "lucide-react";
 import {modrinthAuthScopes, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import {Button} from "@/components/ui/button";
-import {RepoInstallationState} from "@/lib/github/githubApp";
 import {useRouter} from "@/lib/locales/routing";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 
@@ -38,6 +37,13 @@ export interface ProjectRegisterFormProps {
   autoSubmit?: boolean;
   
   formAction: (data: any) => Promise<any>
+}
+
+export interface RepoInstallationState {
+  owner: string;
+  repo: string;
+  branch: string | null;
+  path: string | null;
 }
 
 export interface Properties extends ProjectRegisterFormProps {
@@ -71,11 +77,11 @@ export default function ProjectRegisterForm(
         window.history.pushState({}, '', '/dev');
         router.replace('/dev');
       }
-    } else if (resp.installation_url) {
-      form.setError('root.missing_installation', {message: resp.installation_url});
+    } else if (resp.install_url) {
+      form.setError('root.missing_installation', {message: resp.install_url});
     } else if (resp.error == 'insufficient_repo_perms') {
       // @ts-ignore
-      form.setError('root.insufficient_repo_perms', {message: u(`errors.${resp.insufficient_repo_perms}`)});
+      form.setError('root.insufficient_repo_perms', {message: u(`errors.${resp.error}`)});
     } else if (resp.error) {
       // @ts-ignore
       form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});

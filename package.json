@@ -6,19 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate --no-engine"
+    "lint": "next lint"
   },
   "type": "module",
   "dependencies": {
-    "@badgateway/oauth2-client": "^2.4.2",
     "@hookform/resolvers": "^3.9.0",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.5",
     "@nimpl/getters": "^1.4.1",
-    "@prisma/client": "^5.19.1",
-    "@prisma/extension-accelerate": "^1.1.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-collapsible": "^1.1.0",

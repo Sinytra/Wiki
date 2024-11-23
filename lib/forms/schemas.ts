@@ -18,6 +18,5 @@ export const docsPageReportSchema = z.object({
 
 export const migrateRepositorySchema = z.object({
   owner: z.string(),
-  repo: z.string(),
-  new_owner: z.string(),
+  repo: z.string()
 });

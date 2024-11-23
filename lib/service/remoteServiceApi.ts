@@ -36,6 +36,11 @@ interface ProjectUpdateResponse extends SuccessResponse {
   project: Mod;
 }
 
+interface DevProjectsResponse {
+  repositories: string[];
+  projects: Mod[];
+}
+
 async function registerProject(data: ProjectRegisterRequest, token: string): Promise<SuccessResponse | ErrorResponse> {
   try {
     const resp = await sendApiRequest('project/create', data, {token});
@@ -58,7 +63,7 @@ async function updateProject(data: ProjectUpdateRequest, token: string): Promise
 
 async function deleteProject(id: string, token: string): Promise<SuccessResponse | ErrorResponse> {
   try {
-    const resp = await sendSimpleRequest(`project/${id}`, {token}, 'DELETE');
+    const resp = await sendSimpleRequest(`project/${id}/remove`, {token});
     return await resp.json();
   } catch (e) {
     console.error(e);
@@ -72,6 +77,27 @@ async function revalidateProject(id: string, token: string): Promise<SuccessResp
     if (resp.ok) {
       cacheUtil.invalidateDocs(id);
     }
+    return await resp.json();
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function migrateRepository(repo: string, token: string): Promise<SuccessResponse | ErrorResponse> {
+  try {
+    const data = {repo};
+    const resp = await sendApiRequest(`project/migrate`, data, {token});
+    return await resp.json();
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function getUserDevProjects(token: string): Promise<DevProjectsResponse> {
+  try {
+    const resp = await sendSimpleRequest(`projects/dev`, {token}, 'GET');
     return await resp.json();
   } catch (e) {
     console.error(e);
@@ -140,5 +166,7 @@ export default {
   updateProject,
   deleteProject,
   revalidateProject,
-  getAllProjectIDs
+  getAllProjectIDs,
+  migrateRepository,
+  getUserDevProjects
 }

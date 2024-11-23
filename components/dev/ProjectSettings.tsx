@@ -23,7 +23,7 @@ import {Input} from "@/components/ui/input";
 import LinkTextButton from "@/components/ui/link-text-button";
 import SubmitButton from "@/components/dev/SubmitButton";
 import {useTranslations} from "next-intl";
-import {Mod} from "@prisma/client";
+import {Mod} from "@/lib/service";
 
 interface Properties {
   mod: Mod;
@@ -36,7 +36,7 @@ export default function ProjectSettings({mod, formAction}: Properties) {
   const u = useTranslations('ProjectRegisterForm');
   const v = useTranslations('FormActions');
 
-  const parts = mod.source_repo.split('/');
+  const parts = mod.source_repo!.split('/');
   const defaultValues = {
     owner: parts[0],
     repo: parts[1],
