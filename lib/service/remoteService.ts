@@ -8,7 +8,7 @@ interface AssetResponse {
 }
 
 interface PageResponse {
-  mod: Mod;
+  project: Mod;
   content: string;
   edit_url?: string;
   updated_at?: string;
@@ -41,10 +41,12 @@ async function fetchBackendService(mod: string, path: string, params: Record<str
 
 async function getMod(mod: string): Promise<Mod | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}`);
+    const resp = await fetchBackendService(mod, `project/${mod}`);
     if (resp.ok) {
       const json = await resp.json();
       return json.mod;
+    } else {
+      console.error(resp);
     }
   } catch (e) {
     console.error(e);
@@ -54,9 +56,11 @@ async function getMod(mod: string): Promise<Mod | null> {
 
 async function getBackendLayout(mod: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}/tree`, {version, locale});
+    const resp = await fetchBackendService(mod, `project/${mod}/tree`, {version, locale});
     if (resp.ok) {
       return resp.json();
+    } else {
+      console.error(resp);
     }
   } catch (e) {
     console.error(e);
@@ -66,13 +70,15 @@ async function getBackendLayout(mod: string, version: string | null, locale: str
 
 async function getAsset(mod: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}/asset/${location}`, {version});
+    const resp = await fetchBackendService(mod, `project/${mod}/asset/${location}`, {version});
     if (resp.ok) {
       const json = await resp.json() as AssetResponse;
       return {
         id: location,
         src: json.data
       }
+    } else {
+      console.error(resp);
     }
   } catch (e) {
     console.error(e);
@@ -82,16 +88,18 @@ async function getAsset(mod: string, location: string, version: string | null): 
 
 async function getDocsPage(mod: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   try {
-    const resp = await fetchBackendService(mod, `mod/${mod}/page/${path.join('/')}.mdx`, {version, locale});
+    const resp = await fetchBackendService(mod, `project/${mod}/page/${path.join('/')}.mdx`, {version, locale});
     if (resp.ok) {
       const json = await resp.json() as PageResponse;
       const content = Buffer.from(json.content, 'base64').toString('utf-8');
       return {
-        mod: json.mod,
+        project: json.project,
         content,
         edit_url: json.edit_url,
         updated_at: json.updated_at ? new Date(json.updated_at) : undefined
       }
+    } else {
+      console.error(resp);
     }
   } catch (e) {
     console.error(e);
@@ -104,6 +112,8 @@ async function searchMods(query: string, page: number): Promise<ModSearchResults
     const resp = await fetchBackendService('', `browse`, {query, page: page.toString()}, 'GET', true);
     if (resp.ok) {
       return await resp.json();
+    } else {
+      console.error(resp);
     }
   } catch (e) {
     console.error(e);

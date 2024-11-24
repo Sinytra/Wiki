@@ -1,7 +1,6 @@
 import {DocumentationPage, LayoutTree, Mod, ModSearchResults, ServiceProvider} from "@/lib/service/index";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
-import {AssetLocation} from "../assets";
-import assetsFacade from "@/lib/facade/assetsFacade";
+import assets, {AssetLocation} from "../assets";
 import platforms from "@/lib/platforms";
 
 async function getProjectSource(slug: string): Promise<DocumentationSource | null> {
@@ -38,7 +37,7 @@ async function getBackendLayout(slug: string, version: string | null, locale: st
     const mod = await sourceToMod(src)
     const tree = await sources.readDocsTree(src, locale || undefined);
     return {
-      mod,
+      project: mod,
       tree
     }
   }
@@ -48,7 +47,7 @@ async function getBackendLayout(slug: string, version: string | null, locale: st
 async function getAsset(slug: string, location: string, version: string | null): Promise<AssetLocation | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    return assetsFacade.getAssetResource(location, src);
+    return assets.getAssetResource(location, src);
   }
   return null;
 }
@@ -69,7 +68,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
     };
     const file = await sources.readDocsFile(src, path, locale || undefined);
     return {
-      mod,
+      project: mod,
       content: file.content,
       updated_at: file.updated_at
     }

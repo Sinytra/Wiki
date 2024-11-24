@@ -1,5 +1,4 @@
 import {auth, signOut} from "@/lib/auth";
-import github, {GitHubUserProfile} from "@/lib/github/github";
 import * as React from "react";
 import {Suspense} from "react";
 import ProfileProject from "@/components/dev/ProfileProject";
@@ -18,121 +17,117 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import {isWikiAdmin} from "@/lib/utils";
 import DevPageProjectsList from "@/components/dev/DevPageProjectsList";
 import {handleRegisterProjectForm, handleMigrateRepositoryForm} from "@/lib/forms/actions";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
+import remoteServiceApi, {GitHubUserProfile} from "@/lib/service/remoteServiceApi";
+import {Mod} from "@/lib/service";
 
 export const dynamic = 'force-dynamic';
 
 function ProfileProjectSkeleton() {
   return (
-    <div className="flex flex-col border border-none w-full py-3 gap-3">
-      <div className="flex flex-row justify-between h-24 gap-3">
-        <Skeleton className="w-full"/>
-        <Skeleton className="w-24 flex-shrink-0"/>
+      <div className="flex flex-col border border-none w-full py-3 gap-3">
+        <div className="flex flex-row justify-between h-24 gap-3">
+          <Skeleton className="w-full"/>
+          <Skeleton className="w-24 flex-shrink-0"/>
+        </div>
+        <hr/>
+        <Skeleton className="h-[40px]"/>
       </div>
-      <hr/>
-      <Skeleton className="h-[40px]"/>
-    </div>
   )
 }
 
-async function ProfileProjects({access_token}: { access_token: string }) {
-  const {projects} = await remoteServiceApi.getUserDevProjects(access_token);
-
+async function ProfileProjects({projects, state, autoSubmit}: { projects: Mod[], state?: any, autoSubmit?: boolean }) {
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
 
   const HelpModal = () => (
-    <NextIntlClientProvider messages={pick(messages, 'GetHelpModal', 'MigrateRepositoryForm', 'FormActions')}>
-      <GetHelpModal githubAppName={process.env.GITHUB_APP_NAME} migrateFormAction={handleMigrateRepositoryForm}/>
-    </NextIntlClientProvider>
+      <NextIntlClientProvider messages={pick(messages, 'GetHelpModal', 'MigrateRepositoryForm', 'FormActions')}>
+        <GetHelpModal githubAppName={process.env.GITHUB_APP_NAME} migrateFormAction={handleMigrateRepositoryForm}/>
+      </NextIntlClientProvider>
   );
 
   return (
-    <>
-      {projects.map(p => (
-        <Suspense key={p.id} fallback={<ProfileProjectSkeleton />}>
-          <ProfileProject mod={p}/>
-        </Suspense>
-      ))}
-      {projects.length === 0
-        ?
-        <div
-          className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 gap-4">
-          <span className="text-foreground font-medium">{t('projects.empty.primary')}</span>
-          <span className="text-muted-foreground">
+      <>
+        {projects.map(p => (
+            <Suspense key={p.id} fallback={<ProfileProjectSkeleton/>}>
+              <ProfileProject mod={p} state={state?.id === p.id ? state : undefined}
+                              autoSubmit={state?.id === p.id && autoSubmit}/>
+            </Suspense>
+        ))}
+        {projects.length === 0
+            ?
+            <div
+                className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 gap-4">
+              <span className="text-foreground font-medium">{t('projects.empty.primary')}</span>
+              <span className="text-muted-foreground">
             {t.rich('projects.empty.secondary', {
               guide: (chunks) => (
-                <LinkTextButton className="!text-foreground !text-base !font-normal underline" href="/about/devs">
-                  {chunks}
-                </LinkTextButton>
+                  <LinkTextButton className="!text-foreground !text-base !font-normal underline" href="/about/devs">
+                    {chunks}
+                  </LinkTextButton>
               )
             })}
           </span>
 
-          <NextIntlClientProvider messages={pick(messages, 'GetStartedButton')}>
-            <GetStartedButton />
-          </NextIntlClientProvider>
+              <NextIntlClientProvider messages={pick(messages, 'GetStartedButton')}>
+                <GetStartedButton/>
+              </NextIntlClientProvider>
 
-          <HelpModal/>
-        </div>
-        :
-        <div className="mt-4 border-none flex justify-center mx-auto">
-          <HelpModal/>
-        </div>
-      }
-    </>
+              <HelpModal/>
+            </div>
+            :
+            <div className="mt-4 border-none flex justify-center mx-auto">
+              <HelpModal/>
+            </div>
+        }
+      </>
   )
 }
 
-function Profile({name, desc, avatar_url, children}: {
-  name: string,
-  desc?: string,
-  avatar_url: string,
+function Profile({profile, children}: {
+  profile: GitHubUserProfile;
   children?: any
 }) {
   const t = useTranslations('DeveloperPortal');
 
   return (
-    <div>
-      <div className="my-5 flex flex-row justify-between w-full">
-        <div className="flex flex-col gap-2">
-          <p className="font-medium text-2xl font-mono">{name}</p>
+      <div>
+        <div className="my-5 flex flex-row justify-between w-full">
+          <div className="flex flex-col gap-2">
+            <p className="font-medium text-2xl font-mono">{profile.name}</p>
 
-          <p className="text-muted-foreground">{desc || ''}</p>
+            <p className="text-muted-foreground">{profile.bio || ''}</p>
+          </div>
+          <img className="rounded-md" src={profile.avatar_url} alt="Avatar" width={96} height={96}/>
         </div>
-        <img className="rounded-md" src={avatar_url} alt="Avatar" width={96} height={96}/>
-      </div>
 
-      <p className="text-xl border-b border-neutral-600 pb-2">{t('projects.title')}</p>
+        <p className="text-xl border-b border-neutral-600 pb-2">{t('projects.title')}</p>
 
-      <div className="flex flex-col divide-y divide-neutral-600 my-2">
-        {children}
+        <div className="flex flex-col divide-y divide-neutral-600 my-2">
+          {children}
+        </div>
       </div>
-    </div>
   )
 }
 
 export default async function Dev({searchParams}: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const session = (await auth())!;
 
-  // TODO Include in BE response
-  let profile: GitHubUserProfile;
-  try {
-    profile = await github.getUserProfile(session.access_token);
-  } catch (e: any) {
-    if (e.status === 401) {
+  const response = await remoteServiceApi.getUserDevProjects(session.access_token);
+  if ('status' in response) {
+    if (response.status === 401) {
       return redirect('/api/auth/refresh');
     }
-    throw e;
+    throw new Error("Unexpected response status: " + response.status);
   }
 
   const autoSubmit = searchParams['code'] !== undefined;
   const state = (searchParams['setup_action'] !== undefined || autoSubmit) && searchParams['state'] !== undefined
-    ? JSON.parse(atob(searchParams['state'] as string))
-    : undefined;
-  let defaultValues: any = {owner: profile.login};
+      ? JSON.parse(atob(searchParams['state'] as string))
+      : undefined;
+  let defaultValues: any = {owner: response.profile.login};
   if (autoSubmit) {
     defaultValues.mr_code = searchParams['code'];
+    state.mr_code = searchParams['code'];
   }
 
   const t = await getTranslations('DeveloperPortal');
@@ -140,43 +135,45 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
   const isAdmin = session.user?.name !== undefined && session.user.name !== null && isWikiAdmin(session.user.name);
 
   return (
-    <GetStartedContextProvider>
-      <div>
-        <div className="flex flex-row justify-between">
+      <GetStartedContextProvider>
+        <div>
+          <div className="flex flex-row justify-between">
           <span className="text-foreground text-lg">
             {t('title')}
           </span>
 
-          <div className="flex flex-row items-center gap-2">
-            <NextIntlClientProvider messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions')}>
-              <GetStartedModal defaultValues={defaultValues} state={state} isAdmin={isAdmin} autoSubmit={autoSubmit}
-                               formAction={handleRegisterProjectForm} />
-            </NextIntlClientProvider>
+            <div className="flex flex-row items-center gap-2">
+              <NextIntlClientProvider
+                  messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions')}>
+                <GetStartedModal defaultValues={defaultValues} state={state?.id === undefined ? state : undefined}
+                                 isAdmin={isAdmin} autoSubmit={state?.id === undefined && autoSubmit}
+                                 formAction={handleRegisterProjectForm}/>
+              </NextIntlClientProvider>
 
-            <form
-              title={t('logout')}
-              action={async () => {
-                "use server"
-                await signOut({redirectTo: '/'});
-              }}
-            >
-              <Button type="submit" variant="outline" size="icon" className="h-9 w-9">
-                <LogOutIcon className="h-4 w-4"/>
-              </Button>
-            </form>
+              <form
+                  title={t('logout')}
+                  action={async () => {
+                    "use server"
+                    await signOut({redirectTo: '/'});
+                  }}
+              >
+                <Button type="submit" variant="outline" size="icon" className="h-9 w-9">
+                  <LogOutIcon className="h-4 w-4"/>
+                </Button>
+              </form>
+            </div>
           </div>
+
+          <hr className="my-2 border-neutral-600"/>
+
+          <Profile profile={response.profile}>
+            <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
+              <DevPageProjectsList>
+                <ProfileProjects state={state} autoSubmit={autoSubmit} projects={response.projects}/>
+              </DevPageProjectsList>
+            </NextIntlClientProvider>
+          </Profile>
         </div>
-
-        <hr className="my-2 border-neutral-600"/>
-
-        <Profile name={profile.name} desc={profile.bio} avatar_url={profile.avatar_url}>
-          <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
-            <DevPageProjectsList>
-              <ProfileProjects access_token={session.access_token}/>
-            </DevPageProjectsList>
-          </NextIntlClientProvider>
-        </Profile>
-      </div>
-    </GetStartedContextProvider>
+      </GetStartedContextProvider>
   )
 }

@@ -68,7 +68,7 @@ export default async function ModLayout({children, params}: Readonly<{
   if (!data) redirect('/');
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={data.mod.is_public ? getIssueCreationLink(data.mod.source_repo) : undefined}/>}  >
+    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={data.project.is_public ? getIssueCreationLink(data.project.source_repo) : undefined}/>}  >
       <ModDocsBaseLayout leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version} />}>
         {children}
       </ModDocsBaseLayout>

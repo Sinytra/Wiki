@@ -2,7 +2,6 @@ import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon} from "lucide
 import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
-import ProjectSettings from "@/components/dev/ProjectSettings";
 import ProjectRevalidateForm from "@/components/dev/ProjectRevalidateForm";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
@@ -14,6 +13,7 @@ import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import platforms from "@/lib/platforms";
 import {handleDeleteProjectForm, handleEditProjectForm, handleRevalidateDocs} from "@/lib/forms/actions";
 import {Mod} from "@/lib/service";
+import ProjectSettingsForm from "@/components/dev/ProjectSettingsForm";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
@@ -24,7 +24,7 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
   )
 }
 
-export default async function ProfileProject({mod}: { mod: Mod }) {
+export default async function ProfileProject({mod, state, autoSubmit}: { mod: Mod, state?: any, autoSubmit?: boolean }) {
   const project = await platforms.getPlatformProject(mod.platform, mod.slug);
   const messages = await getMessages();
 
@@ -65,7 +65,7 @@ export default async function ProfileProject({mod}: { mod: Mod }) {
             <ProjectRevalidateForm action={handleRevalidateDocs.bind(null, mod.id)} />
           </NextIntlClientProvider>
           <NextIntlClientProvider messages={pick(messages, 'ProjectSettingsForm', 'ProjectRegisterForm', 'FormActions')}>
-            <ProjectSettings mod={mod} formAction={handleEditProjectForm} />
+            <ProjectSettingsForm mod={mod} formAction={handleEditProjectForm} state={state} autoSubmit={autoSubmit} />
           </NextIntlClientProvider>
           <NextIntlClientProvider messages={pick(messages, 'ProjectDeletionForm')}>
             <ProjectDeletion action={handleDeleteProjectForm.bind(null, mod.id)} />

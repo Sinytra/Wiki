@@ -1,13 +1,18 @@
 'use server'
 
-import {docsPageReportSchema, migrateRepositorySchema, projectRegisterSchema} from "@/lib/forms/schemas";
-import {auth} from "@/lib/auth";
+import {
+  docsPageReportSchema,
+  migrateRepositorySchema,
+  projectEditSchema,
+  projectRegisterSchema
+} from "@/lib/forms/schemas";
+import {auth, isModrinthOAuthAvailable} from "@/lib/auth";
 import email from "@/lib/email";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import cacheUtil from "@/lib/cacheUtil";
 
 export async function handleRegisterProjectForm(rawData: any) {
-  const validated = await validateProjectFormData(rawData);
+  const validated = await validateProjectFormData(rawData, projectRegisterSchema);
   if ('success' in validated) {
     return validated;
   }
@@ -22,14 +27,18 @@ export async function handleRegisterProjectForm(rawData: any) {
   }, token);
 
   if ('error' in response) {
-    return {success: false, ...response};
+    return {
+      success: false,
+      can_verify_mr: response.can_verify_mr && isModrinthOAuthAvailable() ? response.can_verify_mr : undefined,
+      ...response
+    };
   }
 
   return {success: true};
 }
 
 export async function handleEditProjectForm(rawData: any) {
-  const validated = await validateProjectFormData(rawData);
+  const validated = await validateProjectFormData(rawData, projectEditSchema);
   if ('success' in validated) {
     return validated;
   }
@@ -39,10 +48,15 @@ export async function handleEditProjectForm(rawData: any) {
     repo: `${data.owner}/${data.repo}`,
     branch: data.branch,
     path: data.path,
+    mr_code: data.mr_code == null ? undefined : data.mr_code
   }, token);
 
   if ('error' in response) {
-    return {success: false, ...response};
+    return {
+      success: false,
+      can_verify_mr: response.can_verify_mr && isModrinthOAuthAvailable() ? response.can_verify_mr : undefined,
+      ...response
+    };
   }
 
   cacheUtil.invalidateDocs(response.project.id);
@@ -132,8 +146,8 @@ export async function handleReportProjectForm(projectId: string, path: string, r
   return {success: true};
 }
 
-async function validateProjectFormData(rawData: any) {
-  const validatedFields = projectRegisterSchema.safeParse(rawData);
+async function validateProjectFormData(rawData: any, schema: any) {
+  const validatedFields = schema.safeParse(rawData);
 
   if (!validatedFields.success) {
     return {

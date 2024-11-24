@@ -13,7 +13,6 @@ import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
-import githubFacade from "@/lib/facade/githubFacade";
 import platforms from "@/lib/platforms";
 import {PartialMod} from "@/lib/service";
 
@@ -43,13 +42,10 @@ function ProjectIconPlaceholder() {
   )
 }
 
-async function GitHubProjectLink({repo}: { repo: string }) {
-  const isPublic = await githubFacade.isRepositoryPublic(repo);
-
+async function GitHubProjectLink({url}: { url: string }) {
   return (
-    isPublic &&
     <Button variant="outline" size="icon" asChild>
-        <Link href={`https://github.com/${repo}`} target="_blank">
+        <Link href={url} target="_blank">
             <GitHubIcon width={24} height={24}/>
         </Link>
     </Button>
@@ -72,11 +68,7 @@ function ProjectMetaInfo({mod, project}: { mod: PartialMod, project: Promise<Mod
       </ErrorBoundary>
 
       <div className="flex flex-shrink-0 gap-2">
-        {mod.source_repo && 
-            <Suspense fallback={<div className="h-10 w-10"></div>}>
-                <GitHubProjectLink repo={mod.source_repo}/>
-            </Suspense>
-        }
+        {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
         <Button asChild variant="outline" size="icon"
                 className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
           <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>

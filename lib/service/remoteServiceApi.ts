@@ -17,6 +17,10 @@ interface ErrorResponse {
   can_verify_mr?: boolean;
 }
 
+interface StatusResponse {
+  status: number;
+}
+
 interface ProjectRegisterRequest {
   repo: string;
   branch: string;
@@ -30,13 +34,24 @@ interface ProjectUpdateRequest {
   repo: string;
   branch: string;
   path: string;
+
+  mr_code?: string;
 }
 
 interface ProjectUpdateResponse extends SuccessResponse {
   project: Mod;
 }
 
+export interface GitHubUserProfile {
+  name: string;
+  bio?: string;
+  avatar_url: string;
+  login: string;
+  email?: string;
+}
+
 interface DevProjectsResponse {
+  profile: GitHubUserProfile;
   repositories: string[];
   projects: Mod[];
 }
@@ -95,10 +110,13 @@ async function migrateRepository(repo: string, token: string): Promise<SuccessRe
   }
 }
 
-async function getUserDevProjects(token: string): Promise<DevProjectsResponse> {
+async function getUserDevProjects(token: string): Promise<DevProjectsResponse | StatusResponse> {
   try {
     const resp = await sendSimpleRequest(`projects/dev`, {token}, 'GET');
-    return await resp.json();
+    if (resp.ok) {
+      return await resp.json();
+    }
+    return { status: resp.status };
   } catch (e) {
     console.error(e);
     throw e;
@@ -138,6 +156,7 @@ async function sendApiRequest(path: string, data: any, params: Record<string, st
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(data),
     cache: 'no-store',

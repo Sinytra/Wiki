@@ -20,7 +20,7 @@ export async function generateMetadata({params}: {
     return {title: (await parent).title?.absolute};
   }
 
-  const project = await platforms.getPlatformProject(page.mod.platform, page.mod.slug);
+  const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);
   const result = matter(page.content).data as DocsEntryMetadata;
 
   return {

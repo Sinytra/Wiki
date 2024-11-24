@@ -1,7 +1,6 @@
 import localService from "@/lib/service/localService";
 import remoteService from "@/lib/service/remoteService";
-import {AssetLocation} from "../assets";
-import assetsFacade from "@/lib/facade/assetsFacade";
+import assets, {AssetLocation} from "../assets";
 import {ModPlatform} from "@/lib/platforms/universal";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
@@ -35,19 +34,19 @@ export interface FileTreeEntry {
 export type FileTree = FileTreeEntry[];
 
 export interface LayoutTree {
-  mod: Mod;
+  project: Mod;
   tree: FileTree;
 }
 
 export interface DocumentationPage {
-  mod: Mod;
+  project: Mod;
   content: string;
   updated_at?: Date;
   edit_url?: string;
 }
 
 export interface RenderedDocsPage {
-  mod: Mod;
+  project: Mod;
   content: DocumentationMarkdown;
   updated_at?: Date;
   edit_url?: string;
@@ -95,7 +94,7 @@ async function getBackendLayout(slug: string, version: string, locale: string): 
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
   if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || location.startsWith(`${DEFAULT_RSLOC_NAMESPACE}:`) || !location.includes(':')) {
-    return assetsFacade.getAssetResource(location);
+    return assets.getAssetResource(location);
   }
 
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
@@ -128,7 +127,7 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
   if (raw) {
     const content = await markdown.renderDocumentationMarkdown(raw.content);
     return {
-      mod: raw.mod,
+      project: raw.project,
       content,
       edit_url: raw.edit_url,
       updated_at: raw.updated_at

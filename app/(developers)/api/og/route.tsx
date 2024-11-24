@@ -277,7 +277,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.error();
   }
 
-  const project = await platforms.getPlatformProject(page.mod.platform, page.mod.slug);
+  const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);
   const metadata = matter(page.content).data as DocsEntryMetadata;
 
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(slug, (metadata.icon || metadata.id)!, version);

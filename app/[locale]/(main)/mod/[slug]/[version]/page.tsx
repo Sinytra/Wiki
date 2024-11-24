@@ -17,7 +17,7 @@ export const fetchCache = 'force-cache';
 
 export async function generateMetadata({params}: { params: { slug: string; locale: string; version: string } },
                                        parent: ResolvingMetadata): Promise<Metadata> {
-  const mod = (await service.getBackendLayout(params.slug, params.version, params.locale))?.mod;
+  const mod = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
   if (!mod) {
     return {title: (await parent).title?.absolute};
   }
@@ -60,22 +60,22 @@ async function ModHomepage({mod, project, version, locale}: {
   );
 }
 
-export default async function Mod({params}: { params: { slug: string; version: string; locale: string } }) {
+export default async function ProjectHomepage({params}: { params: { slug: string; version: string; locale: string } }) {
   setContextLocale(params.locale);
 
   const data = await service.getBackendLayout(params.slug, params.version, params.locale);
   if (!data) redirect('/');
 
-  const project = await platforms.getPlatformProject(data.mod.platform, data.mod.slug);
+  const project = await platforms.getPlatformProject(data.project.platform, data.project.slug);
 
   return (
     <ModDocsEntryPageLayout rightPanel={<ModInfo mod={project}/>}>
       <div className="flex flex-col">
-        <DocsContentTitle mod={data.mod} version={params.version}>
+        <DocsContentTitle mod={data.project} version={params.version}>
           {project.name}
         </DocsContentTitle>
 
-        <ModHomepage mod={data.mod} project={project} version={params.version} locale={params.locale}/>
+        <ModHomepage mod={data.project} project={project} version={params.version} locale={params.locale}/>
       </div>
     </ModDocsEntryPageLayout>
   );
