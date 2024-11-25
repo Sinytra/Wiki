@@ -6,7 +6,7 @@ function isEnabled(): boolean {
 
 function previewMiddleware(request: NextRequest, response: NextResponse): NextResponse | null {
   const path = request.nextUrl.pathname;
-  if (!path.startsWith('/preview') && !path.startsWith('/mod')) {
+  if (!path.startsWith('/preview') && !path.startsWith('/project')) {
     return NextResponse.redirect(new URL('/preview', request.url), { status: 307 });
   }
   return null;

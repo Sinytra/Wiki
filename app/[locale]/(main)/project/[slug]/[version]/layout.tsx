@@ -1,4 +1,4 @@
-import ModDocsBaseLayout from "@/components/docs/layout/ModDocsBaseLayout";
+import ProjectDocsBaseLayout from "@/components/docs/layout/ProjectDocsBaseLayout";
 import DocsTree from "@/components/docs/tree/DocsTree";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
@@ -58,7 +58,7 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
   )
 }
 
-export default async function ModLayout({children, params}: Readonly<{
+export default async function ProjectLayout({children, params}: Readonly<{
   children: ReactNode;
   params: { slug: string; version: string; locale: string }
 }>) {
@@ -69,9 +69,9 @@ export default async function ModLayout({children, params}: Readonly<{
 
   return (
     <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={data.project.is_public ? getIssueCreationLink(data.project.source_repo) : undefined}/>}  >
-      <ModDocsBaseLayout leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version} />}>
+      <ProjectDocsBaseLayout leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version} />}>
         {children}
-      </ModDocsBaseLayout>
+      </ProjectDocsBaseLayout>
     </ErrorBoundary>
   )
 }

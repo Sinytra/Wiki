@@ -1,4 +1,4 @@
-export interface ModSearchResult {
+export interface ProjectSearchResult {
   id: string;
   name: string;
 }

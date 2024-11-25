@@ -1,4 +1,4 @@
-import {ModAuthor, ModPlatformProvider, ModProject} from "@/lib/platforms/universal";
+import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "@/lib/platforms/universal";
 import localPreview from "@/lib/docs/localPreview";
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
@@ -46,7 +46,7 @@ interface PaginatedResults<T> {
   }
 }
 
-async function getProject(slug: string): Promise<ModProject> {
+async function getProject(slug: string): Promise<PlatformProject> {
   // CF API is not public, so we provide placeholder metadata in local previews
   if (!process.env.CF_API_KEY && localPreview.isEnabled()) {
     return {
@@ -86,13 +86,13 @@ async function getProject(slug: string): Promise<ModProject> {
     platform: 'curseforge',
     project_url: getProjectURL(project.slug),
     extra: {
-      authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies ModAuthor))
+      authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies PlatformProjectAuthor))
     }
   }
 }
 
-async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
-  return mod.extra.authors as ModAuthor[];
+async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
+  return source.extra.authors as PlatformProjectAuthor[];
 }
 
 function getProjectURL(slug: string) {
@@ -134,7 +134,7 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
   return body as T;
 }
 
-export const curseForgeModPlatform: ModPlatformProvider = {
+export const curseForgeModPlatform: ProjectPlatformProvider = {
   getProject,
   getProjectAuthors,
   getProjectURL

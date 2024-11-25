@@ -1,4 +1,4 @@
-import {ModAuthor, ModPlatformProvider, ModProject} from "./universal";
+import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "./universal";
 import localPreview from "@/lib/docs/localPreview";
 
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (localPreview.isEnabled() ? '/local' : '');
@@ -47,7 +47,7 @@ interface ModrinthOrganization {
   members: ModrinthMember[];
 }
 
-async function getProject(slug: string): Promise<ModProject> {
+async function getProject(slug: string): Promise<PlatformProject> {
   const mrProject = await getModrinthProject(slug);
 
   return {
@@ -70,8 +70,8 @@ async function getProject(slug: string): Promise<ModProject> {
   }
 }
 
-async function isProjectMember(mod: ModProject, username: string): Promise<boolean> {
-  const project = await getModrinthProject(mod.slug);
+async function isProjectMember(source: PlatformProject, username: string): Promise<boolean> {
+  const project = await getModrinthProject(source.slug);
 
   const members = await getProjectMembers(project.slug);
   if (members.some(m => m.user.username === username)) {
@@ -88,8 +88,8 @@ async function isProjectMember(mod: ModProject, username: string): Promise<boole
   return false;
 }
 
-async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
-  const project = await getModrinthProject(mod.slug);
+async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
+  const project = await getModrinthProject(source.slug);
 
   if (project.organization) {
     const org = await getProjectOrganization(project.slug);
@@ -158,7 +158,7 @@ export default {
   isProjectMember
 }
 
-export const modrinthModPlatform: ModPlatformProvider = {
+export const modrinthModPlatform: ProjectPlatformProvider = {
   getProject,
   getProjectAuthors,
   getProjectURL

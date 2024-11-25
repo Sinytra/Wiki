@@ -7,17 +7,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [];
   }
 
-  const allMods = await remoteServiceApi.getAllProjectIDs();
+  const allProjects = await remoteServiceApi.getAllProjectIDs();
   const languageKeys = available.getLanguagePaths().filter(l => l !== 'en');
 
-  return allMods.map(id => {
+  return allProjects.map(id => {
     let languages: any = {};
     languageKeys.forEach(l => {
-      languages[l] = `${process.env.NEXT_APP_URL}/${l}/mod/${id}`;
+      languages[l] = `${process.env.NEXT_APP_URL}/${l}/project/${id}`;
     });
 
     return {
-      url: `${process.env.NEXT_APP_URL}/en/mod/${id}/docs`,
+      url: `${process.env.NEXT_APP_URL}/en/project/${id}/docs`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       alternates: {

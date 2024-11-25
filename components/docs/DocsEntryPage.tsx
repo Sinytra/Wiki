@@ -2,7 +2,7 @@ import DocsEntryInfo from "@/components/docs/DocsEntryInfo";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsMarkdownContent from "@/components/docs/markdown/DocsMarkdownContent";
-import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
+import ProjectDocsEntryPageLayout from "@/components/docs/layout/ProjectDocsEntryPageLayout";
 import PageEditControls from "@/components/docs/PageEditControls";
 import DocsTableOfContents from "@/components/docs/DocsTableOfContents";
 import {NextIntlClientProvider} from "next-intl";
@@ -17,10 +17,10 @@ export default async function DocsEntryPage({page, path, version}: { page: Rende
   const messages = await getMessages();
 
   return (
-    <ModDocsEntryPageLayout
+    <ProjectDocsEntryPageLayout
       rightPanel={
         <div className="flex flex-col h-full">
-          {!page.content.metadata.hide_meta && <DocsEntryInfo mod={page.project} project={project} metadata={page.content.metadata as DocsEntryMetadata} version={version} />}
+          {!page.content.metadata.hide_meta && <DocsEntryInfo project={page.project} platformProject={project} metadata={page.content.metadata as DocsEntryMetadata} version={version} />}
           {page.content.metadata.hide_meta && page.content.metadata._headings &&
             <NextIntlClientProvider messages={pick(messages, 'DocsTableOfContents')}>
                 <DocsTableOfContents headings={page.content.metadata._headings}/>
@@ -31,12 +31,12 @@ export default async function DocsEntryPage({page, path, version}: { page: Rende
       }
     >
       <div className="flex flex-col">
-        <DocsContentTitle mod={page.project} version={version}>
+        <DocsContentTitle project={page.project} version={version}>
           {page.content.metadata.title || project.name}
         </DocsContentTitle>
 
         <DocsMarkdownContent content={page.content.content}/>
       </div>
-    </ModDocsEntryPageLayout>
+    </ProjectDocsEntryPageLayout>
   )
 }

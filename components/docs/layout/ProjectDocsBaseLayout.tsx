@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 
-export default async function ModDocsBaseLayout({leftPanel, children}: Readonly<{
+export default async function ProjectDocsBaseLayout({leftPanel, children}: Readonly<{
   leftPanel: ReactNode;
   children: ReactNode;
 }>) {

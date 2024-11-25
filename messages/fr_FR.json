@@ -127,7 +127,7 @@
         "title": "Documentation",
         "homepage": "Page d'accueil du mod"
     },
-    "DocsModInfo": {
+    "DocsProjectInfo": {
         "title": "Information du mod",
         "author": "Auteur",
         "tags": "Mots-clés",
@@ -142,7 +142,7 @@
             "arr": "Tous Droits Réservés"
         }
     },
-    "ModCategories": {
+    "ProjectCategories": {
         "adventure": "Aventure",
         "cursed": "Maudit",
         "decoration": "Décoration",
@@ -399,7 +399,7 @@
             "button": "Lire le guide"
         }
     },
-    "ModDocsPlaceholder": {
+    "ProjectDocsPlaceholder": {
         "summary": "(Placeholder)",
         "description": "(Placeholder)"
     },

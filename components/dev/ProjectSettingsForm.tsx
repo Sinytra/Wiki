@@ -1,6 +1,6 @@
 'use client'
 
-import {Mod} from "@/lib/service";
+import {Project} from "@/lib/service";
 import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
 import {useContext, useState} from "react";
 import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
@@ -10,7 +10,7 @@ import {SettingsIcon} from "lucide-react";
 import {projectEditSchema} from "@/lib/forms/schemas";
 
 export interface ProjectEditFormProps {
-  mod: Mod;
+  mod: Project;
   state?: any;
   autoSubmit?: boolean;
 

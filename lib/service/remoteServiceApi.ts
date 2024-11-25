@@ -1,4 +1,4 @@
-import {Mod} from "@/lib/service/index";
+import {Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 
 export type RegistrationErrors = 'user_github_auth' | 'insufficient_wiki_perms' | 'unsupported' | 'missing_installation'
@@ -39,7 +39,7 @@ interface ProjectUpdateRequest {
 }
 
 interface ProjectUpdateResponse extends SuccessResponse {
-  project: Mod;
+  project: Project;
 }
 
 export interface GitHubUserProfile {
@@ -53,7 +53,7 @@ export interface GitHubUserProfile {
 interface DevProjectsResponse {
   profile: GitHubUserProfile;
   repositories: string[];
-  projects: Mod[];
+  projects: Project[];
 }
 
 async function registerProject(data: ProjectRegisterRequest, token: string): Promise<SuccessResponse | ErrorResponse> {

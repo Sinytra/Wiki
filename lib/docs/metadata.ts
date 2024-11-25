@@ -1,9 +1,9 @@
-import {ModPlatform} from "@/lib/platforms";
+import {ProjectPlatform} from "@/lib/platforms";
 import metadataJsonSchema from '@/public/sinytra-wiki.schema.json';
 import folderMetadataJsonSchema from '@/public/_meta.schema.json';
 import {Draft, Draft2019, JsonError} from "json-schema-library";
 
-export type ModContentType = 'block' | 'item' | 'other';
+export type GameContentType = 'block' | 'item' | 'other';
 
 export interface FileHeading {
   depth: number;
@@ -15,7 +15,7 @@ export interface FileHeading {
 export interface DocsEntryMetadata {
   title?: string;
   id?: string;
-  type?: ModContentType;
+  type?: GameContentType;
   custom?: Record<string, string>;
   icon?: string;
   hide_icon?: boolean;
@@ -27,7 +27,7 @@ export interface DocsEntryMetadata {
 // sinytra-wiki.json
 export interface DocumentationProjectMetadata {
   id: string;
-  platform: ModPlatform;
+  platform: ProjectPlatform;
   slug: string;
   versions?: Record<string, string>;
 }

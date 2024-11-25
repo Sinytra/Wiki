@@ -1,8 +1,7 @@
 import {promises as fs} from 'fs';
-import {ModPlatform} from "@/lib/platforms";
+import {ProjectPlatform} from "@/lib/platforms";
 import {unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
-import cacheUtil from "@/lib/cacheUtil";
 import localPreview from "@/lib/docs/localPreview";
 import metadata, {DocumentationFolderMetadata, ValidationError} from "@/lib/docs/metadata";
 import {
@@ -17,7 +16,7 @@ type SourceType = 'local';
 
 export interface DocumentationSource {
   id: string;
-  platform: ModPlatform;
+  platform: ProjectPlatform;
   slug: string;
 
   path: string;
@@ -180,13 +179,11 @@ async function computeLocalDocumentationSources(paths: string): Promise<Document
 }
 
 async function getAvailableDocsLocales(source: DocumentationSource, provider: DocumentationSourceProvider<any>): Promise<string[]> {
-  const cacheId = cacheUtil.getModDocsLocalesCacheId(source.id);
-
   const cache = unstable_cache(
     async () => computeAvailableLocales(source, provider),
-    [cacheId],
+    [`mod_locales:${source.id}`],
     {
-      tags: [cacheId]
+      tags: [`mod_locales:${source.id}`]
     }
   );
   return await cache();

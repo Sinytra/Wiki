@@ -1,4 +1,4 @@
-import {DocumentationPage, LayoutTree, Mod, ModSearchResults, ServiceProvider} from "@/lib/service/index";
+import {DocumentationPage, LayoutTree, Project, ProjectSearchResults, ServiceProvider} from "@/lib/service/index";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
 import assets, {AssetLocation} from "../assets";
 import platforms from "@/lib/platforms";
@@ -9,15 +9,15 @@ async function getProjectSource(slug: string): Promise<DocumentationSource | nul
   return src || null;
 }
 
-async function getMod(slug: string): Promise<Mod | null> {
+async function getProject(slug: string): Promise<Project | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    return sourceToMod(src)
+    return sourceToProject(src)
   }
   return null;
 }
 
-async function sourceToMod(src: DocumentationSource): Promise<Mod> {
+async function sourceToProject(src: DocumentationSource): Promise<Project> {
   const project = await platforms.getPlatformProject(src.platform, src.slug);
 
   return {
@@ -34,10 +34,10 @@ async function sourceToMod(src: DocumentationSource): Promise<Mod> {
 async function getBackendLayout(slug: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    const mod = await sourceToMod(src)
+    const project = await sourceToProject(src)
     const tree = await sources.readDocsTree(src, locale || undefined);
     return {
-      project: mod,
+      project,
       tree
     }
   }
@@ -55,11 +55,11 @@ async function getAsset(slug: string, location: string, version: string | null):
 async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    const project = await platforms.getPlatformProject(src.platform, src.slug);
+    const platformProject = await platforms.getPlatformProject(src.platform, src.slug);
 
-    const mod: Mod = {
+    const project: Project = {
       id: src.id,
-      name: project.name,
+      name: platformProject.name,
       platform: src.platform,
       slug: src.slug,
       is_community: src.is_community,
@@ -68,7 +68,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
     };
     const file = await sources.readDocsFile(src, path, locale || undefined);
     return {
-      project: mod,
+      project,
       content: file.content,
       updated_at: file.updated_at
     }
@@ -76,7 +76,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
   return null;
 }
 
-async function searchMods(query: string, page: number): Promise<ModSearchResults> {
+async function searchProjects(query: string, page: number): Promise<ProjectSearchResults> {
   return {pages: 0, total: 0, data: []};
 }
 
@@ -84,6 +84,6 @@ export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
-  getMod,
-  searchMods
+  getProject,
+  searchProjects
 } satisfies ServiceProvider;

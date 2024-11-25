@@ -127,7 +127,7 @@
         "title": "문서",
         "homepage": "모드 홈페이지"
     },
-    "DocsModInfo": {
+    "DocsProjectInfo": {
         "title": "모드 정보",
         "author": "원작자",
         "tags": "태그",
@@ -142,7 +142,7 @@
             "arr": "All Rights Reserved"
         }
     },
-    "ModCategories": {
+    "ProjectCategories": {
         "adventure": "모험",
         "cursed": "Cursed",
         "decoration": "꾸미기",
@@ -399,7 +399,7 @@
             "button": "Read guide"
         }
     },
-    "ModDocsPlaceholder": {
+    "ProjectDocsPlaceholder": {
         "summary": "(Placeholder)",
         "description": "(Placeholder)"
     },

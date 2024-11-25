@@ -1,4 +1,4 @@
-import BrowseModList from "@/components/navigation/browse/BrowseModList";
+import BrowseProjectList from "@/components/navigation/browse/BrowseProjectList";
 import {Suspense} from "react";
 import ProjectSearch from "@/components/navigation/browse/BrowseSearch";
 import LoadingContent from "@/components/util/LoadingContent";
@@ -25,7 +25,7 @@ export default function Browse({params, searchParams}: {
             <LoadingContent/>
           </div>
         }>
-          <BrowseModList query={query} page={page}/>
+          <BrowseProjectList query={query} page={page}/>
         </Suspense>
       </div>
     </div>

@@ -3,15 +3,10 @@ import {revalidatePath, revalidateTag, unstable_cache} from "next/cache";
 const githubRequestsCacheId = 'github';
 const githubAppRequestsCacheId = 'github_app';
 
-function getModDocsLocalesCacheId(id: string): string {
-  return `mod_locales:${id}`;
-}
-
 function invalidateDocs(id: string) {
-  revalidateTag(getModDocsLocalesCacheId(id));
   revalidateTag('backend:' + id);
 
-  revalidatePath(`/[locale]/(main)/mod/${id}/[version]`, 'layout');
+  revalidatePath(`/[locale]/(main)/project/${id}/[version]`, 'layout');
 }
 
 interface DynamicCache<T extends Array<any>, U extends Promise<any>> {
@@ -52,6 +47,5 @@ export function wrapDynamicCached<
 export default {
   githubRequestsCacheId,
   githubAppRequestsCacheId,
-  getModDocsLocalesCacheId,
   invalidateDocs
 };

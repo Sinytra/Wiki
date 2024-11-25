@@ -17,7 +17,7 @@ const nextConfig = {
     async headers() {
         return [
             {
-                source: `/((?:${intlMatcher})/)?(mod|about)/:path*`,
+                source: `/((?:${intlMatcher})/)?(mod|project|about)/:path*`,
                 headers: [
                     {
                         key: 'Cache-Control',

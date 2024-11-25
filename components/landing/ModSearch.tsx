@@ -2,14 +2,14 @@
 
 import {useDebouncedCallback} from "use-debounce";
 import {useState} from "react";
-import {ModSearchResult} from "@/lib/search";
+import {ProjectSearchResult} from "@/lib/search";
 import LoadingContent from "@/components/util/LoadingContent";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import {useTranslations} from "next-intl";
-import {searchModsServer} from "@/lib/search/serverSearch";
+import {searchProjectsServer} from "@/lib/search/serverSearch";
 
-export default function ModSearch({ locale, placeholder }: { locale: string; placeholder: string }) {
-  const [results, setResults] = useState<ModSearchResult[] | null>(null);
+export default function ProjectSearch({ locale, placeholder }: { locale: string; placeholder: string }) {
+  const [results, setResults] = useState<ProjectSearchResult[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [shown, setShown] = useState<boolean>(true);
   const t = useTranslations('BrowsePage');
@@ -29,7 +29,7 @@ export default function ModSearch({ locale, placeholder }: { locale: string; pla
     }, 500);
 
     try {
-      const resp = await searchModsServer(query);
+      const resp = await searchProjectsServer(query);
       setResults(resp);
     } finally {
       pending = false;
@@ -67,7 +67,7 @@ export default function ModSearch({ locale, placeholder }: { locale: string; pla
               </div>
               :
               results.map(r => (
-                <NavLink href={`${locale}/mod/${r.id}`} key={r.id}
+                <NavLink href={`${locale}/project/${r.id}`} key={r.id}
                       className="first:rounded-t-sm last:rounded-b-sm py-3 px-2 bg-muted hover:bg-accent w-full h-full">
                   {r.name}
                 </NavLink>

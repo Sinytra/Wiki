@@ -18,7 +18,7 @@ import {isWikiAdmin} from "@/lib/utils";
 import DevPageProjectsList from "@/components/dev/DevPageProjectsList";
 import {handleRegisterProjectForm, handleMigrateRepositoryForm} from "@/lib/forms/actions";
 import remoteServiceApi, {GitHubUserProfile} from "@/lib/service/remoteServiceApi";
-import {Mod} from "@/lib/service";
+import {Project} from "@/lib/service";
 
 export const dynamic = 'force-dynamic';
 
@@ -35,7 +35,7 @@ function ProfileProjectSkeleton() {
   )
 }
 
-async function ProfileProjects({projects, state, autoSubmit}: { projects: Mod[], state?: any, autoSubmit?: boolean }) {
+async function ProfileProjects({projects, state, autoSubmit}: { projects: Project[], state?: any, autoSubmit?: boolean }) {
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
 
@@ -49,7 +49,7 @@ async function ProfileProjects({projects, state, autoSubmit}: { projects: Mod[],
       <>
         {projects.map(p => (
             <Suspense key={p.id} fallback={<ProfileProjectSkeleton/>}>
-              <ProfileProject mod={p} state={state?.id === p.id ? state : undefined}
+              <ProfileProject project={p} state={state?.id === p.id ? state : undefined}
                               autoSubmit={state?.id === p.id && autoSubmit}/>
             </Suspense>
         ))}

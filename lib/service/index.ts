@@ -1,23 +1,23 @@
 import localService from "@/lib/service/localService";
 import remoteService from "@/lib/service/remoteService";
 import assets, {AssetLocation} from "../assets";
-import {ModPlatform} from "@/lib/platforms/universal";
+import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 
-export interface PartialMod {
+export interface BaseProject {
   id: string;
   name: string;
   source_repo?: string;
   source_branch?: string;
   source_path?: string;
-  platform: ModPlatform;
+  platform: ProjectPlatform;
   slug: string;
   is_community: boolean;
 }
 
-export interface Mod extends PartialMod {
+export interface Project extends BaseProject {
   is_public: boolean;
   versions?: Record<string, string>;
   local?: boolean;
@@ -34,47 +34,47 @@ export interface FileTreeEntry {
 export type FileTree = FileTreeEntry[];
 
 export interface LayoutTree {
-  project: Mod;
+  project: Project;
   tree: FileTree;
 }
 
 export interface DocumentationPage {
-  project: Mod;
+  project: Project;
   content: string;
   updated_at?: Date;
   edit_url?: string;
 }
 
 export interface RenderedDocsPage {
-  project: Mod;
+  project: Project;
   content: DocumentationMarkdown;
   updated_at?: Date;
   edit_url?: string;
 }
 
-export interface ModSearchResults {
-  data: PartialMod[];
+export interface ProjectSearchResults {
+  data: BaseProject[];
   pages: number;
   total: number;
 }
 
 export interface ServiceProvider {
-  getMod: (slug: string) => Promise<Mod | null>;
+  getProject: (slug: string) => Promise<Project | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
-  searchMods: (query: string, page: number) => Promise<ModSearchResults>;
+  searchProjects: (query: string, page: number) => Promise<ProjectSearchResults>;
 }
 
-async function getMod(slug: string): Promise<Mod | null> {
+async function getProject(slug: string): Promise<Project | null> {
   if (process.env.LOCAL_DOCS_ROOTS) {
-    const localMod = await localService.getMod(slug);
-    if (localMod) {
-      return localMod;
+    const localProject = await localService.getProject(slug);
+    if (localProject) {
+      return localProject;
     }
   }
 
-  return remoteService.getMod(slug);
+  return remoteService.getProject(slug);
 }
 
 async function getBackendLayout(slug: string, version: string, locale: string): Promise<LayoutTree | null> {
@@ -136,15 +136,15 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
   return null;
 }
 
-async function searchMods(query: string, page: number): Promise<ModSearchResults> {
-  return remoteService.searchMods(query, page);
+async function searchProjects(query: string, page: number): Promise<ProjectSearchResults> {
+  return remoteService.searchProjects(query, page);
 }
 
 export default {
-  getMod,
+  getProject,
   getBackendLayout,
   getAsset,
   getDocsPage,
   renderDocsPage,
-  searchMods
+  searchProjects
 }
