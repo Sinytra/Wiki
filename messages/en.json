@@ -78,10 +78,30 @@
         }
     },
     "BrowsePage": {
-        "search": {
-            "placeholder": "Search projects..."
+        "sidebar": {
+            "title": "Browse projects",
+            "search_filters": "Search filters...",
+            "categories": "Categories"
         },
+        "sorting": "Sort by",
+        "sort": {
+            "relevance": "Relevance",
+            "creation_date": "Creation date",
+            "popularity": "Popularity",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
         "no_results": "Search query returned no results!"
+    },
+    "SearchProjectTypes": {
+        "mod": "Mods",
+        "modpack": "Modpacks",
+        "resourcepack": "Resource packs",
+        "datapack": "Data pack",
+        "shader": "Shaders",
+        "plugin": "Plugins"
     },
     "LoadingContent": {
         "message": "Loading..."

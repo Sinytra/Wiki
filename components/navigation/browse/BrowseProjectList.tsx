@@ -3,8 +3,8 @@ import TablePagination from "@/components/navigation/TablePagination";
 import {getTranslations} from "next-intl/server";
 import service from "@/lib/service";
 
-export default async function BrowseProjectList({ query, page }: { query: string; page: number }) {
-  const results = await service.searchProjects(query as any, page || 1);
+export default async function BrowseProjectList({ query, page, types, sort }: { query: string; page: number; types: string | null; sort: string | null; }) {
+  const results = await service.searchProjects(query, page, types, sort);
 
   const t = await getTranslations('BrowsePage');
 

@@ -63,7 +63,7 @@ export interface ServiceProvider {
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
-  searchProjects: (query: string, page: number) => Promise<ProjectSearchResults>;
+  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
 }
 
 async function getProject(slug: string): Promise<Project | null> {
@@ -136,8 +136,8 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
   return null;
 }
 
-async function searchProjects(query: string, page: number): Promise<ProjectSearchResults> {
-  return remoteService.searchProjects(query, page);
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
+  return remoteService.searchProjects(query, page, types, sort);
 }
 
 export default {

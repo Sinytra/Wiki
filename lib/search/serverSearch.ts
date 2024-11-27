@@ -79,6 +79,6 @@ export async function searchProjectsServer(query: string): Promise<ProjectSearch
     return [];
   }
 
-  const results = await service.searchProjects(query as any, 1);
+  const results = await service.searchProjects(query as any, 1, null);
   return results.data.map(r => ({ id: r.id, name: r.name }));
 }

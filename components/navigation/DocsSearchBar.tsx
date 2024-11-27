@@ -183,7 +183,7 @@ export default function DocsSearchBar() {
         <SearchIcon className="w-4 h-4 absolute inset top-1/2 left-2 -translate-y-1/2 text-neutral-500"/>
         <input type="text" value={searchQuery} ref={inputRef}
                className="px-8 text-ellipsis cursor-pointer focus:shadow-md focus:cursor-text border border-neutral-700
-                          focus:outline focus:outline-muted-foreground bg-muted text-sm text-center
+                          focus:outline focus:outline-2 focus:outline-muted-foreground bg-muted text-sm text-center
                           placeholder:text-neutral-500 p-1.5 rounded-sm w-full"
                onChange={(e) => handleSearch(e.target.value)}
                placeholder={t('placeholder')}

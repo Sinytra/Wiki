@@ -76,7 +76,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
   return null;
 }
 
-async function searchProjects(query: string, page: number): Promise<ProjectSearchResults> {
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
   return {pages: 0, total: 0, data: []};
 }
 

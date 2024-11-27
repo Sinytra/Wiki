@@ -110,9 +110,9 @@ async function getDocsPage(project: string, path: string[], version: string | nu
   return null;
 }
 
-async function searchProjects(query: string, page: number): Promise<ProjectSearchResults> {
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
   try {
-    const resp = await fetchBackendService('', `browse`, {query, page: page.toString()}, 'GET', true);
+    const resp = await fetchBackendService('', `browse`, {query, page: page.toString(), types, sort}, 'GET', true);
     if (resp.ok) {
       return await resp.json();
     } else {
