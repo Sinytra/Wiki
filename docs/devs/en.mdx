@@ -5,25 +5,26 @@ import GradleIcon from "../../components/ui/icons/GradleIcon.tsx";
 
 # Developers
 
-Get started hosting your mod's documentation on our wiki!
+Get started hosting your project's documentation on our wiki!
 
 This guide provides information on local development and the documentation format.
 For a guide on publishing docs onto our website, please see the [Publishing](./publishing) page instead.
 
 ## Prerequisites
 
-In order to start hosting documentation on our wiki, your mod only needs to meet a few minimal requirements: 
+In order to start hosting documentation on our wiki, your project only needs to meet a few minimal requirements:
 
 - Be hosted on a <GitHubIcon className="inline-block mb-1 mx-1" width={16} height={16} /> GitHub repository
 (both private and public repositories work!)
 - Be approved on either
 <ModrinthIcon className="inline-block mb-1 mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> [Modrinth](https://modrinth.com/) or
 <CurseForgeIcon className="inline-block mb-0.5 mx-1 text-[var(--curseforge-brand)]" width={16} height={16} /> [CurseForge](https://www.curseforge.com/)
-- Have the GitHub repository linked as the mod's source code url on the respective hosting website  
-  (this is currently required to verify project ownership)
+- At the time of registration, CurseForge projects MUST have the GitHub repository linked as the project's source code
+url (this is currently required to verify project ownership). Modrinth projects can also be easily verified using your
+Modrinth account
 
-Additionally, the person registering the project to the wiki should have **Maintain** or **Admin** access to its
-GitHub repository.
+- Additionally, the person registering the project to the wiki should have **Maintain** or **Admin** access to its
+GitHub repository
 
 ## Folder structure
 
@@ -31,9 +32,9 @@ Start by creating a new directory inside your project. This can be located at an
 For example, you can use `docs/(your modid here)` or simply `docs`, both are equally valid.
 
 <Callout>
-    We also support scenarios where multiple mods' documentation is hosted in a single repository, as long as they're in
-    separate folders.  
-    This is useful if you'd like to host documentation for multiple of your mods in a single place.
+    We also support scenarios where multiple projects have their documentation hosted in a single repository, as long
+    as they're located in separate folders.
+    This is useful if you're looking to store documentation for multiple of your projects in a single place.
 </Callout>
 
 A minimal example folder layout may look like this:
@@ -90,13 +91,13 @@ and tags can be used in addition to standard Markdown. For a complete descriptio
     which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
 </Callout>
 
-Assets are used to display images of items, blocks and other mod content across the website. These can be used as part
-of crafting recipes, sidebar information or custom components.
+Assets are used to display images of items, blocks and other project content across the website. These can be used as
+part of crafting recipes, sidebar information or custom components.
 
 Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
 in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
 
-Rendered mod assets including **both items and blocks** should be placed under `.assets/item/(modid)` inside the
+Rendered project assets including **both items and blocks** should be placed under `.assets/item/(modid)` inside the
 documentation directory, where `modid` is the namespace of each texture you wish to provide.
 
 Each asset **must be in `.png` format**. The name of the file is up to your choice.
@@ -120,14 +121,14 @@ recommended to translate all files whenever possible.
 
 ### Custom homepage
 
-The wiki provides a dedicated landing page for documentation called the "Mod homepage". By default, this shows the
+The wiki provides a dedicated landing page for documentation called the "Homepage". By default, this shows the
 linked platform project's description.
 
 If you'd like to provide your own contents instead, you can do so by creating a `_homepage.mdx` file in your
 documentation's root folder (at the same level as `sinytra-wiki.json`). The file's contents follow the same
 [formatting](./format) as regular documentation pages, except for frontmatter metadata (e.g. title), which is ignored.
-The homepage's title will always match the mod's name, whereas the sidebar will display various information about the
-platform project, such as the project's authors, categories and available mc versions.
+The homepage's title will always match the project's name, whereas the sidebar will display various information about
+the platform project, such as the project's authors, categories and available mc versions.
 
 ## Documentation format
 
@@ -149,10 +150,10 @@ The wiki metadata file contains the following properties, all of which are **req
 
 - `id`: Unique project id used to identify the project across the wiki. We recommend using your mod id
 or hosting platform slug.
-- `platform`: Your mod's distribution platform. Can be either of `modrinth` or `curseforge`.
+- `platform`: Your project's distribution platform. Can be either of `modrinth` or `curseforge`.
 - `slug`: The host platform's project slug.
 
-The project slug can be easily extracted from your mod's project page URL as shown in the examples below, where `{slug}`
+The project slug can be easily extracted from your project page URL as shown in the examples below, where `{slug}`
 is a placeholder for the actual value.
 - For Modrinth projects: `https://modrinth.com/mod/{slug}`  
 - For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
@@ -204,7 +205,7 @@ More information on icon names can be found on the [Format](./format#icons) page
 
 ### Versioning
 
-You can show multiple versions of your mod's documentation on the wiki by adding a `versions` property to your
+You can show multiple versions of your project's documentation on the wiki by adding a `versions` property to your
 docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector
 as well as in the URL paths) to git branch names.
 
