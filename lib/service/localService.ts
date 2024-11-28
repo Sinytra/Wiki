@@ -27,7 +27,8 @@ async function sourceToProject(src: DocumentationSource): Promise<Project> {
     slug: src.slug,
     is_community: src.is_community,
     is_public: false,
-    local: true
+    local: true,
+    type: project.type
   };
 }
 
@@ -64,7 +65,8 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
       slug: src.slug,
       is_community: src.is_community,
       is_public: false,
-      local: true
+      local: true,
+      type: platformProject.type
     };
     const file = await sources.readDocsFile(src, path, locale || undefined);
     return {

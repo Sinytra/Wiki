@@ -1,7 +1,7 @@
 import {
   ArchiveIcon,
   BiohazardIcon,
-  BookIcon,
+  BookIcon, BoxIcon, BracesIcon,
   BriefcaseIcon,
   BugIcon,
   BugOffIcon,
@@ -16,19 +16,20 @@ import {
   HardDriveIcon,
   HouseIcon,
   MapIcon,
-  MessageCircleIcon,
+  MessageCircleIcon, PackageOpenIcon, PaintbrushIcon,
   PawPrint,
   PuzzleIcon,
   ServerIcon,
   ShirtIcon,
-  SlidersVerticalIcon,
+  SlidersVerticalIcon, SwatchBookIcon,
   SwordsIcon,
-  TruckIcon,
+  TruckIcon, UnplugIcon,
   WandIcon,
   ZapIcon
 } from "lucide-react";
 import platforms, {PlatformProjectAuthor, PlatformProject} from "@/lib/platforms";
 import {getTranslations} from "next-intl/server";
+import {ProjectType} from "@/lib/service/types";
 
 const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 
@@ -73,6 +74,15 @@ export const ProjectCategories: { [key: string]: any } = {
   redstone: CircuitBoardIcon,
   'utility-qol': BriefcaseIcon,
   'mc-creator': BiohazardIcon,
+}
+
+export const ProjectTypeIcons: { [key in ProjectType]: any } = {
+  [ProjectType.MOD]: BoxIcon,
+  [ProjectType.MODPACK]: PackageOpenIcon,
+  [ProjectType.RESOURCEPACK]: PaintbrushIcon,
+  [ProjectType.DATAPACK]: BracesIcon,
+  [ProjectType.SHADER]: SwatchBookIcon,
+  [ProjectType.PLUGIN]: UnplugIcon
 }
 
 interface ProjectDisplayInformation {

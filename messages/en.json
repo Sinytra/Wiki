@@ -99,9 +99,17 @@
         "mod": "Mods",
         "modpack": "Modpacks",
         "resourcepack": "Resource packs",
-        "datapack": "Data pack",
+        "datapack": "Data packs",
         "shader": "Shaders",
         "plugin": "Plugins"
+    },
+    "ProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Modpack",
+        "resourcepack": "Resource pack",
+        "datapack": "Data pack",
+        "shader": "Shader",
+        "plugin": "Plugin"
     },
     "LoadingContent": {
         "message": "Loading..."
@@ -149,6 +157,7 @@
     },
     "DocsProjectInfo": {
         "title": "Project information",
+        "type": "Type",
         "author": "Author",
         "tags": "Tags",
         "latest": {

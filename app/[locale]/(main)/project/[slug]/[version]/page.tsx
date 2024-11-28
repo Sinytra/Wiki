@@ -69,7 +69,7 @@ export default async function Homepage({params}: { params: { slug: string; versi
   const platformProject = await platforms.getPlatformProject(data.project.platform, data.project.slug);
 
   return (
-      <ProjectDocsEntryPageLayout rightPanel={<ProjectInfo project={platformProject}/>}>
+      <ProjectDocsEntryPageLayout rightPanel={<ProjectInfo project={data.project} platformProj={platformProject}/>}>
         <div className="flex flex-col">
           <DocsContentTitle project={data.project} version={params.version}>
             {platformProject.name}

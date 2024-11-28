@@ -8,7 +8,7 @@ import {Button} from "@/components/ui/button";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
-import {getLatestVersion} from "@/components/docs/project-info/projectInfo";
+import {getLatestVersion, ProjectTypeIcons} from "@/components/docs/project-info/projectInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
@@ -55,11 +55,17 @@ async function GitHubProjectLink({url}: { url: string }) {
 function ProjectMetaInfo({mod, project}: { mod: BaseProject, project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   const t = useTranslations('DocsProjectInfo.latest');
+  const u = useTranslations('ProjectTypes');
+  const TypeIcon = ProjectTypeIcons[projectContent.type];
 
   return (
     <div className="flex flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
       <ErrorBoundary fallback={<span></span>}>
-        <div>
+        <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-row items-center gap-2 text-muted-foreground">
+            <TypeIcon className="w-5 h-5"/>
+            <span className="text-base">{u(projectContent.type)}</span>
+          </div>
           <div className="flex flex-row items-center gap-2 text-muted-foreground">
             <MilestoneIcon className="w-5 h-5"/>
             <span className="text-base">{getLatestVersion(projectContent) || t('unknown')}</span>

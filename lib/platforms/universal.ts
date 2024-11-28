@@ -1,3 +1,5 @@
+import {ProjectType} from "@/lib/service/types";
+
 export type ProjectPlatform = 'modrinth' | 'curseforge';
 
 export interface ProjectPlatformProvider {
@@ -21,6 +23,7 @@ export interface PlatformProject {
   platform: ProjectPlatform;
   project_url: string;
   extra?: any;
+  type: ProjectType;
   // For local preview CF projects
   is_placeholder?: boolean;
 }

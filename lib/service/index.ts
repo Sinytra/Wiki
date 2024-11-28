@@ -5,6 +5,7 @@ import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
+import {ProjectType} from "@/lib/service/types";
 
 export interface BaseProject {
   id: string;
@@ -15,6 +16,7 @@ export interface BaseProject {
   platform: ProjectPlatform;
   slug: string;
   is_community: boolean;
+  type: ProjectType;
 }
 
 export interface Project extends BaseProject {

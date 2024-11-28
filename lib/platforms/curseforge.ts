@@ -1,9 +1,18 @@
 import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "@/lib/platforms/universal";
 import localPreview from "@/lib/docs/localPreview";
+import {ProjectType} from "@/lib/service/types";
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
-const minecraftModsCategoryId = 6;
+
+const curseforgeProjectTypes: Record<number, ProjectType> = {
+  6: ProjectType.MOD,
+  12: ProjectType.RESOURCEPACK,
+  6945: ProjectType.DATAPACK,
+  6552: ProjectType.SHADER,
+  4471: ProjectType.MODPACK,
+  5: ProjectType.PLUGIN
+};
 
 interface CurseForgeProject {
   id: number;
@@ -19,6 +28,7 @@ interface CurseForgeProject {
   links: {
     sourceUrl: string;
   }
+  classId: number;
 }
 
 interface CurseForgeFile {
@@ -65,12 +75,14 @@ async function getProject(slug: string): Promise<PlatformProject> {
       extra: {
         authors: []
       },
+      type: ProjectType.MOD,
       is_placeholder: true
     }
   }
 
   const project = await getCurseForgeProject(slug);
   const description = await getProjectDescription(project.id);
+  const type = curseforgeProjectTypes[project.classId] || ProjectType.MOD;
 
   return {
     slug: project.slug,
@@ -87,7 +99,8 @@ async function getProject(slug: string): Promise<PlatformProject> {
     project_url: getProjectURL(project.slug),
     extra: {
       authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies PlatformProjectAuthor))
-    }
+    },
+    type
   }
 }
 
@@ -100,7 +113,7 @@ function getProjectURL(slug: string) {
 }
 
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
-  const results = await fetchCurseForgeApiInternal(`/mods/search?gameId=${minecraftGameId}&classId=${minecraftModsCategoryId}&slug=${slug}`) as PaginatedResults<CurseForgeProject>;
+  const results = await fetchCurseForgeApiInternal(`/mods/search?gameId=${minecraftGameId}&slug=${slug}`) as PaginatedResults<CurseForgeProject>;
   if (results.pagination.resultCount === 1 && results.data.length === 1) {
     return results.data[0];
   }
