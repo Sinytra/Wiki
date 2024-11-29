@@ -9,6 +9,7 @@ import BrowseSortDropdown from "@/components/navigation/browse/BrowseSortDropdow
 import {NuqsAdapter} from 'nuqs/adapters/next/app';
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {pick} from "lodash";
+import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 
 type Properties = {
   params: { locale: string };
@@ -32,25 +33,19 @@ export default function Browse({params, searchParams}: Properties) {
 
   return (
       <NuqsAdapter>
-        <div className="flex flex-row gap-4 w-full justify-center">
+        <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center">
           <aside
-              className="p-3 bg-muted rounded-md w-full md:w-64 mb-2 md:mb-0 flex-shrink-0 md:sticky md:top-20 md:h-[calc(100vh_-_8rem)]"
+              className="px-1 md:p-1.5 md:pt-2 bg-muted rounded-md w-full md:w-64 mb-2 md:mb-0 flex-shrink-0 md:sticky md:top-20 md:h-[calc(100vh_-_8rem)]"
           >
-            <div className="p-1 flex flex-row items-center gap-4 pb-2">
-              <span className="text-foreground text-lg">
-                {t('sidebar.title')}
-              </span>
-            </div>
-
-            <hr className="border-neutral-700 mt-1 mb-4"/>
-
-            <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>
-              <BrowseFilterPanel/>
-            </NextIntlClientProvider>
+            <CollapsibleDocsTreeBase title={t('sidebar.title')} defaultOpen={false}>
+              <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>
+                <BrowseFilterPanel/>
+              </NextIntlClientProvider>
+            </CollapsibleDocsTreeBase>
           </aside>
 
           <div className="w-full max-w-[60rem] flex flex-col gap-2">
-            <div className="flex flex-row justify-between w-full pb-4 mb-2 border-b border-neutral-700">
+            <div className="flex flex-col gap-4 sm:flex-row flex-wrap items-end sm:items-start justify-between w-full pb-4 mb-2 border-b border-neutral-700">
               <ProjectSearch placeholder={t('search')}/>
 
               <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>

@@ -6,7 +6,7 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/
 import {usePathname} from "@/lib/locales/routing";
 import {ChevronDownIcon} from "lucide-react";
 
-export default function CollapsibleDocsTreeBase({title, children}: { title: string; children: any; }) {
+export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: { title: string; defaultOpen?: boolean; children: any; }) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const [_, setWindowWidth] = useState<number | undefined>(undefined);
@@ -23,7 +23,7 @@ export default function CollapsibleDocsTreeBase({title, children}: { title: stri
           if (state < desktopWindowSize && window.innerWidth >= desktopWindowSize) {
             setIsOpen(true);
           } else if (state >= desktopWindowSize && window.innerWidth < desktopWindowSize) {
-            setIsOpen(true);
+            setIsOpen(defaultOpen === undefined || defaultOpen);
           }
         }
         return window.innerWidth;
