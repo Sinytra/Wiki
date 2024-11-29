@@ -103,7 +103,7 @@ export default async function BrowseProject({mod}: { mod: BaseProject }) {
       <div className="flex flex-col gap-1 w-full">
         <div className="w-full h-full flex flex-col gap-1.5">
           <div className="w-full inline-flex gap-2">
-            <LinkTextButton href={`/mod/${mod.id}`}
+            <LinkTextButton href={`/project/${mod.id}`}
                             className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">
               {mod.name}
             </LinkTextButton>
