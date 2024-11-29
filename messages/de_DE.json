@@ -127,7 +127,7 @@
         "title": "Dokumentation",
         "homepage": "Mod-Startseite"
     },
-    "DocsModInfo": {
+    "DocsProjectInfo": {
         "title": "Mod-Informationen",
         "author": "Autor",
         "tags": "Tags",
@@ -142,7 +142,7 @@
             "arr": "Alle Rechte vorbehalten"
         }
     },
-    "ModCategories": {
+    "ProjectCategories": {
         "adventure": "Abenteuer",
         "cursed": "Verflucht",
         "decoration": "Dekoration",
@@ -399,7 +399,7 @@
             "button": "Leitfaden lesen"
         }
     },
-    "ModDocsPlaceholder": {
+    "ProjectDocsPlaceholder": {
         "summary": "(Platzhalter)",
         "description": "(Platzhalter)"
     },

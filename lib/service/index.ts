@@ -1,19 +1,25 @@
 import localService from "@/lib/service/localService";
 import remoteService from "@/lib/service/remoteService";
-import {AssetLocation} from "../assets";
-import assetsFacade from "@/lib/facade/assetsFacade";
-import {ModPlatform} from "@/lib/platforms/universal";
+import assets, {AssetLocation} from "../assets";
+import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
+import {ProjectType} from "@/lib/service/types";
 
-export interface Mod {
+export interface BaseProject {
   id: string;
   name: string;
-  platform: ModPlatform;
-  slug: string;
   source_repo?: string;
+  source_branch?: string;
+  source_path?: string;
+  platform: ProjectPlatform;
+  slug: string;
   is_community: boolean;
+  type: ProjectType;
+}
+
+export interface Project extends BaseProject {
   is_public: boolean;
   versions?: Record<string, string>;
   local?: boolean;
@@ -30,41 +36,47 @@ export interface FileTreeEntry {
 export type FileTree = FileTreeEntry[];
 
 export interface LayoutTree {
-  mod: Mod;
+  project: Project;
   tree: FileTree;
 }
 
 export interface DocumentationPage {
-  mod: Mod;
+  project: Project;
   content: string;
   updated_at?: Date;
   edit_url?: string;
 }
 
 export interface RenderedDocsPage {
-  mod: Mod;
+  project: Project;
   content: DocumentationMarkdown;
   updated_at?: Date;
   edit_url?: string;
 }
 
+export interface ProjectSearchResults {
+  data: BaseProject[];
+  pages: number;
+  total: number;
+}
+
 export interface ServiceProvider {
-  getMod: (slug: string) => Promise<Mod | null>;
+  getProject: (slug: string) => Promise<Project | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
-  invalidateCache: (slug: string) => Promise<void>;
+  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
 }
 
-async function getMod(slug: string): Promise<Mod | null> {
+async function getProject(slug: string): Promise<Project | null> {
   if (process.env.LOCAL_DOCS_ROOTS) {
-    const localMod = await localService.getMod(slug);
-    if (localMod) {
-      return localMod;
+    const localProject = await localService.getProject(slug);
+    if (localProject) {
+      return localProject;
     }
   }
 
-  return remoteService.getMod(slug);
+  return remoteService.getProject(slug);
 }
 
 async function getBackendLayout(slug: string, version: string, locale: string): Promise<LayoutTree | null> {
@@ -84,7 +96,7 @@ async function getBackendLayout(slug: string, version: string, locale: string): 
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
   if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || location.startsWith(`${DEFAULT_RSLOC_NAMESPACE}:`) || !location.includes(':')) {
-    return assetsFacade.getAssetResource(location);
+    return assets.getAssetResource(location);
   }
 
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
@@ -117,7 +129,7 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
   if (raw) {
     const content = await markdown.renderDocumentationMarkdown(raw.content);
     return {
-      mod: raw.mod,
+      project: raw.project,
       content,
       edit_url: raw.edit_url,
       updated_at: raw.updated_at
@@ -126,18 +138,15 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
   return null;
 }
 
-async function invalidateCache(slug: string) {
-  if (process.env.LOCAL_DOCS_ROOTS) {
-      return localService.invalidateCache(slug);
-  }
-  return remoteService.invalidateCache(slug);
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
+  return remoteService.searchProjects(query, page, types, sort);
 }
 
 export default {
-  getMod,
+  getProject,
   getBackendLayout,
   getAsset,
   getDocsPage,
   renderDocsPage,
-  invalidateCache
+  searchProjects
 }

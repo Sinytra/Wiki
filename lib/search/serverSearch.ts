@@ -1,8 +1,8 @@
 'use server'
 
-import {ModSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/search";
+import {ProjectSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/search";
 import {getProcessURL} from "@/lib/utils";
-import database from "@/lib/database";
+import service from "@/lib/service";
 
 export async function searchWikiServer(query: string): Promise<WikiSearchResults> {
   if (!process.env.SEARCH_ENDPOINT || !process.env.SEARCH_INDEX || !process.env.SEARCH_API_KEY) {
@@ -45,7 +45,7 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
         const mappedHits = hits.map(hit => {
           const url_path = hit.fields.url_path[0];
           const path = url_path.split('/').slice(5).join(' > ');
-          const url = getProcessURL() + url_path;
+          const url = getProcessURL() + url_path.replace('/en/mod/', '/en/project/');
 
           return {
             title: hit.fields.docs_title?.[0],
@@ -74,10 +74,11 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
 }
 
 // TODO Deprecated
-export async function searchModsServer(query: string): Promise<ModSearchResult[]> {
+export async function searchProjectsServer(query: string): Promise<ProjectSearchResult[]> {
   if (!query || query.length === 0) {
     return [];
   }
 
-  return await database.searchProjects(query);
+  const results = await service.searchProjects(query as any, 1, null, null);
+  return results.data.map(r => ({ id: r.id, name: r.name }));
 }

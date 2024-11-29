@@ -16,6 +16,7 @@ import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import * as LucideReact from "lucide-react";
+import Asset from "@/components/docs/shared/Asset";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -42,7 +43,7 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       obj[key] = LucideReact[key];
       return obj;
     }, {});
-  const components = {CraftingRecipe, Callout, ModAsset, ...icons};
+  const components = {CraftingRecipe, Callout, ModAsset, Asset, ...icons};
 
   const {content, frontmatter} = await compileMDX({
     source,

@@ -1,6 +1,5 @@
-import {ModPlatform, ModProject} from "@/lib/platforms";
+import {ProjectPlatform, PlatformProject} from "@/lib/platforms";
 import {Suspense, use} from "react";
-import {PartialMod} from "@/lib/search";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
 import {Skeleton} from "@/components/ui/skeleton";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
@@ -9,16 +8,15 @@ import {Button} from "@/components/ui/button";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
-import {getLatestVersion} from "@/components/docs/mod-info/modInfo";
+import {getLatestVersion, ProjectTypeIcons} from "@/components/docs/project-info/projectInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
-import githubFacade from "@/lib/facade/githubFacade";
 import platforms from "@/lib/platforms";
-import {randomInt} from "node:crypto";
+import {BaseProject} from "@/lib/service";
 
-function ProjectIcon({project}: { project: Promise<ModProject> }) {
+function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
     <div className="flex-shrink-0">
@@ -27,7 +25,7 @@ function ProjectIcon({project}: { project: Promise<ModProject> }) {
   )
 }
 
-function ProjectDescription({project}: { project: Promise<ModProject> }) {
+function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
     <span className="text-sm text-muted-foreground font-normal line-clamp-2">
@@ -44,27 +42,30 @@ function ProjectIconPlaceholder() {
   )
 }
 
-async function GitHubProjectLink({repo}: { repo: string }) {
-  const isPublic = await githubFacade.isRepositoryPublic(repo);
-
+async function GitHubProjectLink({url}: { url: string }) {
   return (
-    isPublic &&
     <Button variant="outline" size="icon" asChild>
-        <Link href={`https://github.com/${repo}`} target="_blank">
+        <Link href={url} target="_blank">
             <GitHubIcon width={24} height={24}/>
         </Link>
     </Button>
   )
 }
 
-function ProjectMetaInfo({mod, project}: { mod: PartialMod, project: Promise<ModProject> }) {
+function ProjectMetaInfo({mod, project}: { mod: BaseProject, project: Promise<PlatformProject> }) {
   const projectContent = use(project);
-  const t = useTranslations('DocsModInfo.latest');
+  const t = useTranslations('DocsProjectInfo.latest');
+  const u = useTranslations('ProjectTypes');
+  const TypeIcon = ProjectTypeIcons[projectContent.type];
 
   return (
     <div className="flex flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
       <ErrorBoundary fallback={<span></span>}>
-        <div>
+        <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-row items-center gap-2 text-muted-foreground">
+            <TypeIcon className="w-5 h-5"/>
+            <span className="text-base">{u(projectContent.type)}</span>
+          </div>
           <div className="flex flex-row items-center gap-2 text-muted-foreground">
             <MilestoneIcon className="w-5 h-5"/>
             <span className="text-base">{getLatestVersion(projectContent) || t('unknown')}</span>
@@ -73,12 +74,10 @@ function ProjectMetaInfo({mod, project}: { mod: PartialMod, project: Promise<Mod
       </ErrorBoundary>
 
       <div className="flex flex-shrink-0 gap-2">
-        <Suspense fallback={<div className="h-10 w-10"></div>}>
-          <GitHubProjectLink repo={mod.source_repo}/>
-        </Suspense>
+        {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
         <Button asChild variant="outline" size="icon"
                 className={mod.platform === 'modrinth' ? 'hover:text-[var(--modrinth-brand)]' : 'hover:text-[var(--curseforge-brand)]'}>
-          <NavLink href={platforms.getProjectURL(mod.platform as ModPlatform, mod.slug)}>
+          <NavLink href={platforms.getProjectURL(mod.platform as ProjectPlatform, mod.slug)}>
             {mod.platform === 'modrinth'
               ? <ModrinthIcon width={24} height={24}/>
               : <CurseForgeIcon width={24} height={24}/>
@@ -90,8 +89,8 @@ function ProjectMetaInfo({mod, project}: { mod: PartialMod, project: Promise<Mod
   )
 }
 
-export default async function BrowseModProject({mod}: { mod: PartialMod }) {
-  const project = platforms.getPlatformProject(mod.platform as ModPlatform, mod.slug);
+export default async function BrowseProject({mod}: { mod: BaseProject }) {
+  const project = platforms.getPlatformProject(mod.platform as ProjectPlatform, mod.slug);
 
   return (
     <div className="flex flex-row items-center border border-neutral-600 rounded-sm w-full p-3 gap-4">

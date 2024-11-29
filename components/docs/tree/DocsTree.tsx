@@ -1,4 +1,4 @@
-import ModHomepageLink from "@/components/docs/ModHomepageLink";
+import ProjectHomepageLink from "@/components/docs/ProjectHomepageLink";
 import DocsEntryLink from "@/components/docs/DocsEntryLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 import {getTranslations} from "next-intl/server";
@@ -57,7 +57,7 @@ export default async function DocsTree({slug, version, tree}: {
 
   return (
     <CollapsibleDocsTreeBase title={t('title')}>
-      <ModHomepageLink text={t('homepage')} slug={slug} version={version}/>
+      <ProjectHomepageLink text={t('homepage')} slug={slug} version={version}/>
 
       <hr className="mt-2"/>
 

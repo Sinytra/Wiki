@@ -10,6 +10,18 @@ export const projectRegisterSchema = z.object({
   mr_code: z.string().nullish()
 });
 
+export const projectEditSchema = z.object({
+  id: z.string(),
+
+  owner: z.string(),
+  repo: z.string(),
+  branch: z.string(),
+  path: z.string(),
+  is_community: z.boolean().optional(),
+
+  mr_code: z.string().nullish()
+});
+
 export const docsPageReportSchema = z.object({
   reason: z.string(),
   content: z.string(),
@@ -18,6 +30,5 @@ export const docsPageReportSchema = z.object({
 
 export const migrateRepositorySchema = z.object({
   owner: z.string(),
-  repo: z.string(),
-  new_owner: z.string(),
+  repo: z.string()
 });

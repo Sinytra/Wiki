@@ -2,36 +2,32 @@
 
 import {SearchIcon} from "lucide-react";
 import {Input} from "@/components/ui/input";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from 'use-debounce';
+import {parseAsInteger, parseAsString, useQueryStates} from "nuqs";
 
-export default function ProjectSearch({ placeholder }: { placeholder: string; }) {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const {replace} = useRouter();
+export default function ProjectSearch({placeholder}: { placeholder: string; }) {
+  const [params, setParams] = useQueryStates(
+      {
+        query: parseAsString,
+        page: parseAsInteger
+      },
+      { shallow: false }
+  );
 
-  const handleSearch = useDebouncedCallback((term) => {
-    const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set('query', term);
-    } else {
-      params.delete('query');
-    }
-    replace(`${pathname}?${params.toString()}`);
+  const handleSearch = useDebouncedCallback(async (term) => {
+    await setParams({query: term ? term : null, page: null});
   }, 300);
 
   return (
-    <div className="flex flex-row w-full pb-4 mb-2 border-b border-neutral-700">
       <div className="w-full sm:w-fit relative text-muted-foreground">
         <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
         <Input
-          className="sm:w-96 pl-9 border-neutral-600"
-          type="text"
-          placeholder={placeholder}
-          onChange={(e) => handleSearch(e.target.value)}
-          defaultValue={searchParams.get('query')?.toString()}
+            className="sm:w-96 pl-9 border-neutral-600"
+            type="text"
+            placeholder={placeholder}
+            onChange={(e) => handleSearch(e.target.value)}
+            defaultValue={params.query || ''}
         />
       </div>
-    </div>
   )
 }

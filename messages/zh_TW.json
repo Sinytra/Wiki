@@ -127,7 +127,7 @@
         "title": "文件",
         "homepage": "模組首頁"
     },
-    "DocsModInfo": {
+    "DocsProjectInfo": {
         "title": "模組資訊",
         "author": "作者",
         "tags": "標籤",
@@ -142,7 +142,7 @@
             "arr": "版權所有"
         }
     },
-    "ModCategories": {
+    "ProjectCategories": {
         "adventure": "冒險",
         "cursed": "惡搞",
         "decoration": "裝飾",
@@ -399,7 +399,7 @@
             "button": "閱讀指南"
         }
     },
-    "ModDocsPlaceholder": {
+    "ProjectDocsPlaceholder": {
         "summary": "（預留位置）",
         "description": "（預留位置）"
     },

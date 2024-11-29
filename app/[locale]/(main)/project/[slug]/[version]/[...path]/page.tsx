@@ -20,7 +20,7 @@ export async function generateMetadata({params}: {
     return {title: (await parent).title?.absolute};
   }
 
-  const project = await platforms.getPlatformProject(page.mod.platform, page.mod.slug);
+  const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);
   const result = matter(page.content).data as DocsEntryMetadata;
 
   return {
@@ -35,13 +35,13 @@ export async function generateMetadata({params}: {
   }
 }
 
-export default async function ModDocsPage({params}: {
+export default async function ProjectDocsPage({params}: {
   params: { slug: string; path: string[]; locale: string; version: string; }
 }) {
   setContextLocale(params.locale);
 
   const page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
-  if (!page) redirect(`/mod/${params.slug}/docs`);
+  if (!page) redirect(`/project/${params.slug}/docs`);
 
   return (
     <Suspense fallback={<DocsLoadingSkeleton/>}>

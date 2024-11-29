@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 
-export default async function ModDocsEntryPageLayout({rightPanel, children}: Readonly<{
+export default async function ProjectDocsEntryPageLayout({rightPanel, children}: Readonly<{
   rightPanel: ReactNode;
   children: ReactNode;
 }>) {

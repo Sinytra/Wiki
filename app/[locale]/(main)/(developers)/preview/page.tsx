@@ -50,7 +50,7 @@ export default async function Preview({params}: { params: { locale: string } }) 
               </div>
 
               <Button size="sm" asChild>
-                <NavLink href={`/mod/${s.id}`}>
+                <NavLink href={`/project/${s.id}`}>
                   {t('open')}
                 </NavLink>
               </Button>

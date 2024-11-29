@@ -6,6 +6,7 @@ import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {getLocale, getMessages, getTranslations} from "next-intl/server";
 import {NextIntlClientProvider} from "next-intl";
 import {pick} from "lodash";
+import {searchProjectsServer} from "@/lib/search/serverSearch";
 
 export default async function UserStarter() {
   const locale = await getLocale();
@@ -13,20 +14,21 @@ export default async function UserStarter() {
   const messages = await getMessages();
 
   return (
-    <LandingStarterBase icon={BookTextIcon} title={t('documentation.title')}
-                        desc={<span className="text-muted-foreground text-lg">{t('documentation.desc')}</span>}>
-      <div className="flex flex-col gap-8 justify-center items-center w-full sm:w-fit">
-        <NextIntlClientProvider messages={pick(messages, 'LoadingContent', 'BrowsePage')}>
-          <ModSearch locale={locale} placeholder={t('documentation.search.placeholder')}/>
-        </NextIntlClientProvider>
+      <LandingStarterBase icon={BookTextIcon} title={t('documentation.title')}
+                          desc={<span className="text-muted-foreground text-lg">{t('documentation.desc')}</span>}>
+        <div className="flex flex-col gap-8 justify-center items-center w-full sm:w-fit">
+          <NextIntlClientProvider messages={pick(messages, 'LoadingContent', 'BrowsePage')}>
+            <ModSearch locale={locale} placeholder={t('documentation.search.placeholder')}
+                       searchFunc={searchProjectsServer}/>
+          </NextIntlClientProvider>
 
-        <Button variant="outline" asChild className="!border-[var(--vp-c-brand-1)]">
-          <LocaleNavLink href="/browse">
-            <CompassIcon className="w-4 h-4 mr-2"/>
-            {t('documentation.explore')}
-          </LocaleNavLink>
-        </Button>
-      </div>
-    </LandingStarterBase>
+          <Button variant="outline" asChild className="!border-[var(--vp-c-brand-1)]">
+            <LocaleNavLink href="/browse">
+              <CompassIcon className="w-4 h-4 mr-2"/>
+              {t('documentation.explore')}
+            </LocaleNavLink>
+          </Button>
+        </div>
+      </LandingStarterBase>
   );
 }

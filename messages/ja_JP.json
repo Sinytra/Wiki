@@ -127,7 +127,7 @@
         "title": "Documentation",
         "homepage": "Mod homepage"
     },
-    "DocsModInfo": {
+    "DocsProjectInfo": {
         "title": "Mod information",
         "author": "Author",
         "tags": "Tags",
@@ -142,7 +142,7 @@
             "arr": "All Rights Reserved"
         }
     },
-    "ModCategories": {
+    "ProjectCategories": {
         "adventure": "Adventure",
         "cursed": "Cursed",
         "decoration": "Decoration",
@@ -399,7 +399,7 @@
             "button": "Read guide"
         }
     },
-    "ModDocsPlaceholder": {
+    "ProjectDocsPlaceholder": {
         "summary": "(Placeholder)",
         "description": "(Placeholder)"
     },

@@ -1,44 +1,37 @@
-import {Mod} from '@prisma/client';
-
-import {ModAuthor, ModProject, ModPlatformProvider, ModPlatform} from "@/lib/platforms/universal";
+import {PlatformProjectAuthor, PlatformProject, ProjectPlatformProvider, ProjectPlatform} from "@/lib/platforms/universal";
 import {modrinthModPlatform} from "@/lib/platforms/modrinth";
 import {curseForgeModPlatform} from "@/lib/platforms/curseforge";
 
 export * from '@/lib/platforms/universal';
 
-const providers: { [key: string]: ModPlatformProvider } = {
+const providers: { [key: string]: ProjectPlatformProvider } = {
   modrinth: modrinthModPlatform,
   curseforge: curseForgeModPlatform
 }
 
-function getModSourcePlatform(id: string): ModPlatformProvider {
-  const source: ModPlatformProvider | undefined = providers[id];
+function getProjectSourcePlatform(id: string): ProjectPlatformProvider {
+  const source: ProjectPlatformProvider | undefined = providers[id];
 
   if (!source) {
-    throw new Error(`Unknown mod source ${id}`);
+    throw new Error(`Unknown project source ${id}`);
   }
 
   return source;
 }
 
-async function getPlatformProject(source: ModPlatform, slug: string): Promise<ModProject> {
-  return getModSourcePlatform(source).getProject(slug);
+async function getPlatformProject(source: ProjectPlatform, slug: string): Promise<PlatformProject> {
+  return getProjectSourcePlatform(source).getProject(slug);
 }
 
-async function getProject(mod: Mod): Promise<ModProject> {
-  return getPlatformProject(mod.platform as ModPlatform, mod.slug);
+async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
+  return getProjectSourcePlatform(source.platform).getProjectAuthors(source);
 }
 
-async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
-  return getModSourcePlatform(mod.platform).getProjectAuthors(mod);
-}
-
-function getProjectURL(source: ModPlatform, slug: string): string {
-  return getModSourcePlatform(source).getProjectURL(slug);
+function getProjectURL(source: ProjectPlatform, slug: string): string {
+  return getProjectSourcePlatform(source).getProjectURL(slug);
 }
 
 export default {
-  getProject,
   getProjectAuthors,
   getPlatformProject,
   getProjectURL

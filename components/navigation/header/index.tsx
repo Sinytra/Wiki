@@ -10,6 +10,7 @@ import {NextIntlClientProvider, useMessages, useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
 import DocsSearchBar from "@/components/navigation/DocsSearchBar";
 import {pick} from "lodash";
+import {searchWikiServer} from "@/lib/search/serverSearch";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -47,7 +48,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
 
         {!minimal && !preview &&
           <NextIntlClientProvider messages={pick(messages, 'DocsSearchBar')}>
-              <DocsSearchBar />
+              <DocsSearchBar searchFunc={searchWikiServer} />
           </NextIntlClientProvider>  
         }
 

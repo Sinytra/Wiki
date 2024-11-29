@@ -1,5 +1,6 @@
-import {ModAuthor, ModPlatformProvider, ModProject} from "./universal";
+import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "./universal";
 import localPreview from "@/lib/docs/localPreview";
+import {AVAILABLE_PROJECT_TYPES, ProjectType} from "@/lib/service/types";
 
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (localPreview.isEnabled() ? '/local' : '');
 const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3';
@@ -47,8 +48,11 @@ interface ModrinthOrganization {
   members: ModrinthMember[];
 }
 
-async function getProject(slug: string): Promise<ModProject> {
+async function getProject(slug: string): Promise<PlatformProject> {
   const mrProject = await getModrinthProject(slug);
+  const type = mrProject.project_types.length < 1 || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0])
+      ? ProjectType.MOD
+      : mrProject.project_types[0] as ProjectType;
 
   return {
     slug: mrProject.slug,
@@ -66,30 +70,13 @@ async function getProject(slug: string): Promise<ModProject> {
     source_url: mrProject.link_urls?.source.url,
 
     platform: 'modrinth',
-    project_url: getProjectURL(mrProject.slug)
+    project_url: getProjectURL(mrProject.slug),
+    type
   }
 }
 
-async function isProjectMember(mod: ModProject, username: string): Promise<boolean> {
-  const project = await getModrinthProject(mod.slug);
-
-  const members = await getProjectMembers(project.slug);
-  if (members.some(m => m.user.username === username)) {
-    return true;
-  }
-
-  if (project.organization) {
-    const org = await getProjectOrganization(project.slug);
-    if (org.members.some(m => m.user.username === username)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-async function getProjectAuthors(mod: ModProject): Promise<ModAuthor[]> {
-  const project = await getModrinthProject(mod.slug);
+async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
+  const project = await getModrinthProject(source.slug);
 
   if (project.organization) {
     const org = await getProjectOrganization(project.slug);
@@ -149,16 +136,7 @@ function getProjectURL(slug: string) {
   return `https://modrinth.com/mod/${slug}`;
 }
 
-// TODO Validate type
-function isValidProject(project: ModrinthProject): boolean {
-  return project.project_types.includes('mod');
-}
-
-export default {
-  isProjectMember
-}
-
-export const modrinthModPlatform: ModPlatformProvider = {
+export const modrinthModPlatform: ProjectPlatformProvider = {
   getProject,
   getProjectAuthors,
   getProjectURL

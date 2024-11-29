@@ -1,12 +1,12 @@
-import ModDocsEntryPageLayout from "@/components/docs/layout/ModDocsEntryPageLayout";
+import ProjectDocsEntryPageLayout from "@/components/docs/layout/ProjectDocsEntryPageLayout";
 import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import {Skeleton} from "@/components/ui/skeleton";
-import MetadataGrid from "@/components/docs/mod-metadata/MetadataGrid";
+import MetadataGrid from "@/components/docs/project-metadata/MetadataGrid";
 
 export default function DocsLoadingSkeleton() {
   return (
-    <ModDocsEntryPageLayout rightPanel={
+    <ProjectDocsEntryPageLayout rightPanel={
       <div>
         <div className="flex flex-col mb-2">
           <DocsSidebarTitle>
@@ -84,6 +84,6 @@ export default function DocsLoadingSkeleton() {
           </div>
         </div>
       </div>
-    </ModDocsEntryPageLayout>
+    </ProjectDocsEntryPageLayout>
   )
 }

@@ -1,6 +1,7 @@
 import sources, {DocumentationSource} from "@/lib/docs/sources";
 import staticAssets from "@/lib/assets/staticAssets";
 import {FileTreeEntry} from "@/lib/service";
+import resourceLocation from "@/lib/util/resourceLocation";
 
 type SourceType = 'static';
 
@@ -52,9 +53,18 @@ async function getBuiltinAssetSourceRoots(): Promise<AssetSourceRoots> {
   return {};
 }
 
-async function getAssetResource(resource: ResourceLocation, source?: DocumentationSource): Promise<AssetLocation | null> {
-  const sytemRoots = await getBuiltinAssetSourceRoots();
-  let root = sytemRoots[resource.namespace];
+async function getAssetResource(location: string, source?: DocumentationSource): Promise<AssetLocation | null> {
+  const resource = resourceLocation.parse(location);
+  if (!resource) {
+    return null;
+  }
+
+  return await computeAssetResource(resource, source);
+}
+
+async function computeAssetResource(resource: ResourceLocation, source?: DocumentationSource): Promise<AssetLocation | null> {
+  const systemRoots = await getBuiltinAssetSourceRoots();
+  let root = systemRoots[resource.namespace];
 
   if (!root && source) {
     root = await getDocumentationSourceAssetRoot(source, resource.namespace);
@@ -85,8 +95,6 @@ async function getDocumentationSourceAssetRoot(source: DocumentationSource, name
   return roots[namespace];
 }
 
-const index = {
+export default {
   getAssetResource
-};
-
-export default index;
+}

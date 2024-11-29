@@ -46,22 +46,22 @@
         "heading": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
         "documentation": {
             "title": "Documentation",
-            "desc": "Browse mod documentation",
+            "desc": "Browse project documentation",
             "search": {
-                "placeholder": "Find your favourite mod..."
+                "placeholder": "Find your favourite projects..."
             },
-            "explore": "Explore mods"
+            "explore": "Explore projects"
         },
         "developers": {
             "title": "Authors & Developers",
-            "desc": "Looking to write documentation for a mod?",
+            "desc": "Looking to write documentation for a project?",
             "guide": "Get started by reading our <guide>author guide</guide>.",
             "area": "Project dashboard"
         },
         "links": {
             "browse": {
-                "title": "Browse mods",
-                "desc": "Browse our library of documented mods"
+                "title": "Browse",
+                "desc": "Browse our library of documented projects"
             },
             "blog": {
                 "title": "Blog",
@@ -73,15 +73,43 @@
             },
             "devs": {
                 "title": "Authors",
-                "desc": "Host your mod's documentation on our wiki"
+                "desc": "Host your project's documentation on our wiki"
             }
         }
     },
     "BrowsePage": {
-        "search": {
-            "placeholder": "Search mods..."
+        "sidebar": {
+            "title": "Browse projects",
+            "search_filters": "Search filters...",
+            "categories": "Categories"
         },
+        "sorting": "Sort by",
+        "sort": {
+            "relevance": "Relevance",
+            "creation_date": "Creation date",
+            "popularity": "Popularity",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
         "no_results": "Search query returned no results!"
+    },
+    "SearchProjectTypes": {
+        "mod": "Mods",
+        "modpack": "Modpacks",
+        "resourcepack": "Resource packs",
+        "datapack": "Data packs",
+        "shader": "Shaders",
+        "plugin": "Plugins"
+    },
+    "ProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Modpack",
+        "resourcepack": "Resource pack",
+        "datapack": "Data pack",
+        "shader": "Shader",
+        "plugin": "Plugin"
     },
     "LoadingContent": {
         "message": "Loading..."
@@ -125,10 +153,11 @@
     },
     "DocsFileTree": {
         "title": "Documentation",
-        "homepage": "Mod homepage"
+        "homepage": "Homepage"
     },
-    "DocsModInfo": {
-        "title": "Mod information",
+    "DocsProjectInfo": {
+        "title": "Project information",
+        "type": "Type",
         "author": "Author",
         "tags": "Tags",
         "latest": {
@@ -142,7 +171,7 @@
             "arr": "All Rights Reserved"
         }
     },
-    "ModCategories": {
+    "ProjectCategories": {
         "adventure": "Adventure",
         "cursed": "Cursed",
         "decoration": "Decoration",
@@ -235,7 +264,7 @@
                 "title": "We understand that you may not like this page, and that's totally okay!",
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
                 "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "Explore mods"
+                "explore": "Explore projects"
             }
         }
     },
@@ -278,7 +307,7 @@
         "submit": "Submit",
         "success": {
             "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's mod page"
+            "desc": "You can now navigate to the project's docs page"
         },
         "submitting": "Submitting...",
         "verify_modrinth": "Verify using Modrinth"
@@ -288,7 +317,7 @@
         "desc": "Edit an existing project's settings.",
         "success": {
             "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's mod page"
+            "desc": "You can now navigate to the updated project's docs page"
         }
     },
     "ProjectDeletionForm": {
@@ -309,20 +338,20 @@
     },
     "FormActions": {
         "errors": {
-            "exists": "Project already exists.",
             "unauthenticated": "Unauthenticated",
-            "access_denied": "User does not have access to repository.",
+            "user_github_auth": "GitHub authentication error",
+            "insufficient_wiki_perms": "Insufficient permissions to create community project",
+            "unsupported": "Not yet implemented",
+            "insufficient_repo_perms": "User does not have access to repository.",
             "no_branch": "Branch does not exist",
-            "invalid_path": "Invalid path provided",
-            "invalid_meta": "Metadata file is invalid",
             "no_meta": "Metadata file not found",
-            "no_cf_key": "Cannot register CurseForge project; missing API key",
+            "invalid_meta": "Metadata file is invalid",
+            "exists": "Project already exists.",
+            "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "ownership": "Failed to verify project ownership",
             "internal": "Internal Server Error, please try again later.",
-            "verification": "Verification error",
-            "not_found": "Not found",
-            "insufficient_perms": "Insufficient permissions to create community project"
+            "not_found": "Project does not exist"
         }
     },
     "GetHelpModal": {
@@ -378,7 +407,7 @@
     "DocsPageNotFoundError": {
         "title": "We lost this page",
         "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the mod author.",
+        "suggestion": "Please try again later or report this issue to the project author.",
         "submit": "Submit issue",
         "return": "Return Home"
     },
@@ -389,17 +418,17 @@
         "button": "Add project",
         "title": "I'd like to write documentation for...",
         "dev": {
-            "title": "My own mod",
+            "title": "My own project",
             "desc": "Author your own documentation and control who can make changes to it.",
             "button": "Create project"
         },
         "community": {
-            "title": "Someone else's mod",
-            "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
+            "title": "Someone else's project",
+            "desc": "Contribute to a collection of community docs maintained by wiki editors",
             "button": "Read guide"
         }
     },
-    "ModDocsPlaceholder": {
+    "ProjectDocsPlaceholder": {
         "summary": "(Placeholder)",
         "description": "(Placeholder)"
     },

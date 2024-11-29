@@ -1,7 +1,6 @@
-import {DocumentationPage, LayoutTree, Mod, ServiceProvider} from "@/lib/service/index";
+import {DocumentationPage, LayoutTree, Project, ProjectSearchResults, ServiceProvider} from "@/lib/service/index";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
-import {AssetLocation} from "../assets";
-import assetsFacade from "@/lib/facade/assetsFacade";
+import assets, {AssetLocation} from "../assets";
 import platforms from "@/lib/platforms";
 
 async function getProjectSource(slug: string): Promise<DocumentationSource | null> {
@@ -10,15 +9,15 @@ async function getProjectSource(slug: string): Promise<DocumentationSource | nul
   return src || null;
 }
 
-async function getMod(slug: string): Promise<Mod | null> {
+async function getProject(slug: string): Promise<Project | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    return sourceToMod(src)
+    return sourceToProject(src)
   }
   return null;
 }
 
-async function sourceToMod(src: DocumentationSource): Promise<Mod> {
+async function sourceToProject(src: DocumentationSource): Promise<Project> {
   const project = await platforms.getPlatformProject(src.platform, src.slug);
 
   return {
@@ -28,17 +27,18 @@ async function sourceToMod(src: DocumentationSource): Promise<Mod> {
     slug: src.slug,
     is_community: src.is_community,
     is_public: false,
-    local: true
+    local: true,
+    type: project.type
   };
 }
 
 async function getBackendLayout(slug: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    const mod = await sourceToMod(src)
+    const project = await sourceToProject(src)
     const tree = await sources.readDocsTree(src, locale || undefined);
     return {
-      mod,
+      project,
       tree
     }
   }
@@ -48,7 +48,7 @@ async function getBackendLayout(slug: string, version: string | null, locale: st
 async function getAsset(slug: string, location: string, version: string | null): Promise<AssetLocation | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    return assetsFacade.getAssetResource(location, src);
+    return assets.getAssetResource(location, src);
   }
   return null;
 }
@@ -56,20 +56,21 @@ async function getAsset(slug: string, location: string, version: string | null):
 async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    const project = await platforms.getPlatformProject(src.platform, src.slug);
+    const platformProject = await platforms.getPlatformProject(src.platform, src.slug);
 
-    const mod: Mod = {
+    const project: Project = {
       id: src.id,
-      name: project.name,
+      name: platformProject.name,
       platform: src.platform,
       slug: src.slug,
       is_community: src.is_community,
       is_public: false,
-      local: true
+      local: true,
+      type: platformProject.type
     };
     const file = await sources.readDocsFile(src, path, locale || undefined);
     return {
-      mod,
+      project,
       content: file.content,
       updated_at: file.updated_at
     }
@@ -77,14 +78,14 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
   return null;
 }
 
-async function invalidateCache(slug: string) {
-  // No op
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
+  return {pages: 0, total: 0, data: []};
 }
 
 export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
-  invalidateCache,
-  getMod
+  getProject,
+  searchProjects
 } satisfies ServiceProvider;

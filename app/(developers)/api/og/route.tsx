@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import {ImageResponse} from "next/og";
-import platforms, {ModProject} from "@/lib/platforms";
+import platforms, {PlatformProject} from "@/lib/platforms";
 import sharp from "sharp";
 import {getProcessURL} from "@/lib/utils";
 import {AssetLocation} from "@/lib/assets";
@@ -42,7 +42,7 @@ async function getFont() {
 }
 
 function PagePath({locale, slug, version, path}: DocsPathCoords) {
-  const fullPath = `/${locale === 'en' ? '' : locale + '/'}mod/${slug}/${version}${path ? '/' + path : ''}`;
+  const fullPath = `/${locale === 'en' ? '' : locale + '/'}project/${slug}/${version}${path ? '/' + path : ''}`;
 
   return (
     <span style={{
@@ -96,7 +96,7 @@ function WikiHeader() {
   )
 }
 
-async function projectPageImage(coords: DocsPathCoords, project: ModProject, fonts: any) {
+async function projectPageImage(coords: DocsPathCoords, project: PlatformProject, fonts: any) {
   const getImageBase64 = async (url: string) => {
     const resp = await fetch(url);
     const buf = await resp.arrayBuffer();
@@ -178,7 +178,7 @@ async function projectPageImage(coords: DocsPathCoords, project: ModProject, fon
   );
 }
 
-function docsEntryPageResponse(coords: DocsPathCoords, mod: string, title: string, iconUrl: AssetLocation | null, fonts: any) {
+function docsEntryPageResponse(coords: DocsPathCoords, project: string, title: string, iconUrl: AssetLocation | null, fonts: any) {
   return new ImageResponse(
     (
       <div
@@ -229,7 +229,7 @@ function docsEntryPageResponse(coords: DocsPathCoords, mod: string, title: strin
               overflow: 'hidden',
               maxHeight: '12rem'
             }}>
-              {mod}
+              {project}
             </span>
           </div>
 
@@ -263,12 +263,12 @@ export async function GET(req: NextRequest) {
 
   const pathVal = searchParams.get('path');
   if (!pathVal) {
-    const mod = await service.getMod(slug);
-    if (!mod) {
+    const project = await service.getProject(slug);
+    if (!project) {
       return NextResponse.error();
     }
-    const project = await platforms.getPlatformProject(mod.platform, mod.slug);
-    return projectPageImage(coords, project, fonts);
+    const platformProject = await platforms.getPlatformProject(project.platform, project.slug);
+    return projectPageImage(coords, platformProject, fonts);
   }
 
   const path = pathVal.split('/');
@@ -277,7 +277,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.error();
   }
 
-  const project = await platforms.getPlatformProject(page.mod.platform, page.mod.slug);
+  const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);
   const metadata = matter(page.content).data as DocsEntryMetadata;
 
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(slug, (metadata.icon || metadata.id)!, version);

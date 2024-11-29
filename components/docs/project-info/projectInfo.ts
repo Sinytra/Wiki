@@ -1,7 +1,7 @@
 import {
   ArchiveIcon,
   BiohazardIcon,
-  BookIcon,
+  BookIcon, BoxIcon, BracesIcon,
   BriefcaseIcon,
   BugIcon,
   BugOffIcon,
@@ -16,23 +16,24 @@ import {
   HardDriveIcon,
   HouseIcon,
   MapIcon,
-  MessageCircleIcon,
+  MessageCircleIcon, PackageOpenIcon, PaintbrushIcon,
   PawPrint,
   PuzzleIcon,
   ServerIcon,
   ShirtIcon,
-  SlidersVerticalIcon,
+  SlidersVerticalIcon, SwatchBookIcon,
   SwordsIcon,
-  TruckIcon,
+  TruckIcon, UnplugIcon,
   WandIcon,
   ZapIcon
 } from "lucide-react";
-import platforms, {ModAuthor, ModProject} from "@/lib/platforms";
+import platforms, {PlatformProjectAuthor, PlatformProject} from "@/lib/platforms";
 import {getTranslations} from "next-intl/server";
+import {ProjectType} from "@/lib/service/types";
 
 const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 
-export const ModCategories: { [key: string]: any } = {
+export const ProjectCategories: { [key: string]: any } = {
   // Modrinth tags
   adventure: CompassIcon,
   cursed: BugIcon,
@@ -75,19 +76,28 @@ export const ModCategories: { [key: string]: any } = {
   'mc-creator': BiohazardIcon,
 }
 
-interface ModDisplayInformation {
-  authors: ModAuthor[];
+export const ProjectTypeIcons: { [key in ProjectType]: any } = {
+  [ProjectType.MOD]: BoxIcon,
+  [ProjectType.MODPACK]: PackageOpenIcon,
+  [ProjectType.RESOURCEPACK]: PaintbrushIcon,
+  [ProjectType.DATAPACK]: BracesIcon,
+  [ProjectType.SHADER]: SwatchBookIcon,
+  [ProjectType.PLUGIN]: UnplugIcon
+}
+
+interface ProjectDisplayInformation {
+  authors: PlatformProjectAuthor[];
   latest_version: string;
   license: { name: string; url: string | null };
 }
 
-export function getLatestVersion(project: ModProject): string | undefined {
+export function getLatestVersion(project: PlatformProject): string | undefined {
   return project.game_versions.length === 0 ? undefined : project.game_versions[project.game_versions.length - 1];
 }
 
-export async function getModProjectInformation(project: ModProject): Promise<ModDisplayInformation> {
+export async function getPlatformProjectInformation(project: PlatformProject): Promise<ProjectDisplayInformation> {
   const authors = await platforms.getProjectAuthors(project);
-  const t = await getTranslations('DocsModInfo');
+  const t = await getTranslations('DocsProjectInfo');
 
   const license = !project.license ? t('license.unknown') : project.license.id === ARRNoLicense ? t('license.arr') : project.license.id.startsWith('LicenseRef') ? t('license.custom') : project.license.id || t('license.unknown');
 
