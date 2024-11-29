@@ -40,7 +40,7 @@ function DocsFileTree({slug, version, tree, level}: {
         :
         <div key={file.path} className="w-full pt-2"
              style={{marginLeft: offset, paddingRight: offset}}>
-          <DocsEntryLink href={`/mod/${slug}/${version}/${file.path}`}>
+          <DocsEntryLink href={`/project/${slug}/${version}/${file.path}`}>
             <FileIcon file={file} width="18" height="18" strokeWidth={1.8}/> {file.name.split('.')[0].replace('_', ' ')}
           </DocsEntryLink>
         </div>
