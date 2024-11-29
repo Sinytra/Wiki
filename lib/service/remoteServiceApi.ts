@@ -125,7 +125,7 @@ async function getUserDevProjects(token: string): Promise<DevProjectsResponse | 
 
 async function getAllProjectIDs(): Promise<string[]> {
   try {
-    const resp = await sendSimpleRequest(`projects`);
+    const resp = await sendSimpleRequest(`projects`, {}, 'GET');
     if (resp.ok) {
       return await resp.json() as string[];
     }

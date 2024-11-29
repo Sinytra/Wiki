@@ -2,7 +2,6 @@
 
 import {useDebouncedCallback} from "use-debounce";
 import {useEffect, useLayoutEffect, useRef, useState} from "react";
-import clientSearch from "@/lib/search/clientSearch";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {FileTextIcon, LoaderCircleIcon, SearchIcon} from "lucide-react";
 import Link from "next/link";
@@ -81,7 +80,7 @@ function SearchOverlayFooter({visible, total}: { visible: number; total: number 
   )
 }
 
-export default function DocsSearchBar() {
+export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string) => Promise<WikiSearchResults>}) {
   const t = useTranslations('DocsSearchBar');
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<WikiSearchResults | null>(null);
@@ -96,7 +95,7 @@ export default function DocsSearchBar() {
       }
     }, 500);
 
-    const res = await clientSearch.searchWiki(query);
+    const res = await searchFunc(query);
     setResults(res);
 
     pending = false;
