@@ -58,7 +58,12 @@ async function getBackendLayout(project: string, version: string | null, locale:
   try {
     const resp = await fetchBackendService(project, `project/${project}/tree`, {version, locale});
     if (resp.ok) {
-      return resp.json();
+      const data = await resp.json();
+      if ('error' in data) {
+        console.error(data.error);
+        return null;
+      }
+      return data;
     } else {
       console.error(resp);
     }
