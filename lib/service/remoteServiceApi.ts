@@ -90,7 +90,11 @@ async function revalidateProject(id: string, token: string): Promise<SuccessResp
   try {
     const resp = await sendSimpleRequest(`project/${id}/invalidate`, {token});
     if (resp.ok) {
+      console.log('Invalidating docs for project {}', id);
       cacheUtil.invalidateDocs(id);
+    } else {
+      console.error('Error invalidating docs for project {}', id);
+      console.error(resp);
     }
     return await resp.json();
   } catch (e) {
@@ -101,8 +105,7 @@ async function revalidateProject(id: string, token: string): Promise<SuccessResp
 
 async function migrateRepository(repo: string, token: string): Promise<SuccessResponse | ErrorResponse> {
   try {
-    const data = {repo};
-    const resp = await sendApiRequest(`project/migrate`, data, {token});
+    const resp = await sendApiRequest(`project/migrate`, {repo}, {token});
     return await resp.json();
   } catch (e) {
     console.error(e);

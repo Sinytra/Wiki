@@ -6,6 +6,8 @@ import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 import {ProjectType} from "@/lib/service/types";
+import available from "@/lib/locales/available";
+import {Language} from "@/lib/types/available";
 
 export interface BaseProject {
   id: string;
@@ -68,6 +70,11 @@ export interface ServiceProvider {
   searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
 }
 
+function getLocaleName(locale: string) {
+  const loc: Language = available.getForUrlParam(locale);
+  return loc.prefix ? loc.prefix : `${locale}_${locale}`;
+}
+
 async function getProject(slug: string): Promise<Project | null> {
   if (process.env.LOCAL_DOCS_ROOTS) {
     const localProject = await localService.getProject(slug);
@@ -81,7 +88,7 @@ async function getProject(slug: string): Promise<Project | null> {
 
 async function getBackendLayout(slug: string, version: string, locale: string): Promise<LayoutTree | null> {
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-  const actualLocale = locale == DEFAULT_LOCALE ? null : locale;
+  const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
 
   if (process.env.LOCAL_DOCS_ROOTS) {
     const localLayout = await localService.getBackendLayout(slug, actualVersion, actualLocale);
@@ -113,7 +120,7 @@ async function getAsset(slug: string | null, location: string, version: string |
 
 async function getDocsPage(slug: string, path: string[], version: string, locale: string): Promise<DocumentationPage | null> {
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-  const actualLocale = locale == DEFAULT_LOCALE ? null : locale;
+  const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
 
   if (process.env.LOCAL_DOCS_ROOTS) {
     const localPage = await localService.getDocsPage(slug, path, actualVersion, actualLocale);

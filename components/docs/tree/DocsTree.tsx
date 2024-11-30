@@ -30,7 +30,7 @@ function DocsFileTree({slug, version, tree, level}: {
       file.type === 'dir'
         ? <DirectoryTreeView key={file.path} level={level + 1} newBasePath={file.path}
                              trigger={
-                               <span className="inline-flex items-center gap-2">
+                               <span className="text-start inline-flex items-center gap-2">
                                  <FileIcon file={file}/> {file.name}
                                </span>
                              }
