@@ -7,12 +7,12 @@
         "title": "Wiki Minecraft Moddé",
         "title_short": "Wiki",
         "badge": {
-            "preview": "MODE APERCU",
-            "beta": "Beta"
+            "preview": "MODE APERÇU",
+            "beta": "Bêta"
         },
         "link": {
             "home": "Acceuil",
-            "browse": "Explorer",
+            "browse": "Parcourir",
             "about": "À propos"
         }
     },
@@ -21,12 +21,12 @@
         "links": {
             "navigation": {
                 "title": "Navigation",
-                "home": "Page d'acceuil",
-                "browse": "Explorer",
+                "home": "Page d'accueil",
+                "browse": "Parcourir",
                 "dev": "Développeurs"
             },
             "links": {
-                "title": "Liens"
+                "title": "Lien"
             },
             "resources": {
                 "title": "Ressources",
@@ -36,32 +36,32 @@
             },
             "about": {
                 "title": "À propos",
-                "tos": "Conditions d'utilisation",
-                "privacy": "Politique de confidentialité",
+                "tos": "Conditions d'Utilisation",
+                "privacy": "Politique de Confidentialité",
                 "contact": "Contact"
             }
         }
     },
     "HomePage": {
-        "heading": "Bienvenue sur le Wiki Minecraft <highlight>Moddé</highlight>",
+        "heading": "Welcome to the <highlight>Wiki Minecraft Moddé</highlight>",
         "documentation": {
             "title": "Documentation",
-            "desc": "Parcourir la documentation des mod",
+            "desc": "Browse project documentation",
             "search": {
-                "placeholder": "Trouvez votre mod préféré..."
+                "placeholder": "Find your favourite projects..."
             },
-            "explore": "Explorer les mods"
+            "explore": "Explore projects"
         },
         "developers": {
             "title": "Auteurs et Développeurs",
-            "desc": "Vous cherchez à écrire de la documentation pour un mod ?",
+            "desc": "Looking to write documentation for a project?",
             "guide": "Commencez par lire notre <guide>guide de l'auteur</guide>.",
             "area": "Tableau de bord du projet"
         },
         "links": {
             "browse": {
-                "title": "Parcourir les mods",
-                "desc": "Parcourir la bibliothèque de mods documentés"
+                "title": "Browse",
+                "desc": "Browse our library of documented projects"
             },
             "blog": {
                 "title": "Blog",
@@ -73,15 +73,43 @@
             },
             "devs": {
                 "title": "Auteurs",
-                "desc": "Hébergez la documentation de votre mod sur notre wiki"
+                "desc": "Host your project's documentation on our wiki"
             }
         }
     },
     "BrowsePage": {
-        "search": {
-            "placeholder": "!"
+        "sidebar": {
+            "title": "Browse projects",
+            "search_filters": "Search filters...",
+            "categories": "Categories"
         },
+        "sorting": "Sort by",
+        "sort": {
+            "relevance": "Relevance",
+            "creation_date": "Creation date",
+            "popularity": "Popularity",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
         "no_results": "La recherche n'a donné aucun résultat !"
+    },
+    "SearchProjectTypes": {
+        "mod": "Mods",
+        "modpack": "Modpacks",
+        "resourcepack": "Resource packs",
+        "datapack": "Data packs",
+        "shader": "Shaders",
+        "plugin": "Plugins"
+    },
+    "ProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Modpack",
+        "resourcepack": "Resource pack",
+        "datapack": "Data pack",
+        "shader": "Shader",
+        "plugin": "Plugin"
     },
     "LoadingContent": {
         "message": "Chargement..."
@@ -125,58 +153,59 @@
     },
     "DocsFileTree": {
         "title": "Documentation",
-        "homepage": "Page d'accueil du mod"
+        "homepage": "Homepage"
     },
     "DocsProjectInfo": {
-        "title": "Information du mod",
-        "author": "Auteur",
-        "tags": "Mots-clés",
+        "title": "Project information",
+        "type": "Type",
+        "author": "Author",
+        "tags": "Tags",
         "latest": {
-            "title": "Dernière version",
-            "unknown": "N/D"
+            "title": "Latest version",
+            "unknown": "N/A"
         },
         "license": {
-            "title": "Licence",
-            "custom": "Personnalisé",
-            "unknown": "Inconnu",
-            "arr": "Tous Droits Réservés"
+            "title": "License",
+            "custom": "Custom",
+            "unknown": "Unknown",
+            "arr": "All Rights Reserved"
         }
     },
     "ProjectCategories": {
-        "adventure": "Aventure",
-        "cursed": "Maudit",
-        "decoration": "Décoration",
-        "economy": "Économie",
-        "equipment": "Équipement",
-        "food": "Nourriture",
-        "game-mechanics": "Mécanique de Jeu",
-        "library": "Bibliothèque",
-        "magic": "Magie",
-        "management": "Gestion",
-        "minigame": "Mini-jeu",
-        "mobs": "Créatures",
-        "optimization": "Optimisation",
+        "adventure": "Adventure",
+        "cursed": "Cursed",
+        "decoration": "Decoration",
+        "economy": "Economy",
+        "equipment": "Equipment",
+        "food": "Food",
+        "game-mechanics": "Game Mechanics",
+        "library": "Library",
+        "magic": "Magic",
+        "management": "Management",
+        "minigame": "Minigame",
+        "mobs": "Mobs",
+        "optimization": "Optimization",
         "social": "Social",
-        "storage": "Stockage",
-        "technology": "Technologie",
-        "transportation": "Transport",
-        "utility": "Utilitaire",
-        "worldgen": "Génération du monde",
-        "server-utility": "Utilitaire de serveur",
-        "armor-weapons-tools": "Armure, Outils et Armes",
-        "library-api": "API et Bibliothèque",
-        "adventure-rpg": "Aventure et RPG",
-        "world-gen": "Génération du monde",
-        "cosmetic": "Cosmétique",
-        "mc-food": "Nourriture",
+        "storage": "Storage",
+        "technology": "Technology",
+        "transportation": "Transporation",
+        "utility": "Utility",
+        "worldgen": "Worldgen",
+        "server-utility": "Server Utility",
+        "armor-weapons-tools": "Armor, Tools, and Weapons",
+        "library-api": "API and Library",
+        "adventure-rpg": "Adventure and RPG",
+        "world-gen": "World Gen",
+        "cosmetic": "Cosmetic",
+        "mc-food": "Food",
         "performance": "Performance",
-        "map-information": "Carte et informations",
-        "bug-fixes": "Corrections de bug",
-        "mc-addons": "Extensions",
-        "education": "Éducation",
-        "mc-miscellaneous": "Divers",
+        "map-information": "Map and Information",
+        "bug-fixes": "Bug Fixes",
+        "mc-addons": "Addons",
+        "education": "Education",
+        "mc-miscellaneous": "Miscellaneous",
         "redstone": "Redstone",
-        "utility-qol": "Utilitaire & Qualité de Vie",
+        "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
@@ -235,7 +264,7 @@
                 "title": "Nous comprenons que vous n'aimez peut-être pas cette page, et c'est tout à fait compréhensible !",
                 "desc": "Malheureusement, ce n'est pas une raison valable de rapporter un projet.",
                 "suggestion": "Voulez-vous chercher quelque chose d'autre à lire à la place ?",
-                "explore": "Explorer les mods"
+                "explore": "Explore projects"
             }
         }
     },
@@ -278,7 +307,7 @@
         "submit": "Soumettre",
         "success": {
             "title": "Projet enregistré avec succès",
-            "desc": "Vous pouvez maintenant naviguer sur la page du mod"
+            "desc": "You can now navigate to the project's docs page"
         },
         "submitting": "Envoi...",
         "verify_modrinth": "Vérification avec Modrinth"
@@ -288,7 +317,7 @@
         "desc": "Modifier les paramètres d'un projet existant.",
         "success": {
             "title": "Projet mise à jour avec succès",
-            "desc": "Vous pouvez maintenant naviguer sur la page du mod"
+            "desc": "You can now navigate to the updated project's docs page"
         }
     },
     "ProjectDeletionForm": {
@@ -309,20 +338,20 @@
     },
     "FormActions": {
         "errors": {
-            "exists": "Le projet existe déjà.",
             "unauthenticated": "Non authentifié",
-            "access_denied": "Les utilisateurs n'ont pas accès au dépôt.",
+            "user_github_auth": "GitHub authentication error",
+            "insufficient_wiki_perms": "Insufficient permissions to create community project",
+            "unsupported": "Not yet implemented",
+            "insufficient_repo_perms": "User does not have access to repository.",
             "no_branch": "La branche n’existe pas",
-            "invalid_path": "Le lien fourni est invalide",
-            "invalid_meta": "Fichier(s) de Métadonnées invalides",
             "no_meta": "Fichier de métadonnées introuvable",
-            "no_cf_key": "Impossible d'enregistrer le projet CurseForge ; clé API manquante",
+            "invalid_meta": "Fichier(s) de Métadonnées invalides",
+            "exists": "Le projet existe déjà.",
+            "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Plateforme de projet introuvable. Veuillez vous assurer que le champ \"slug\" des métadonnées est correct.",
             "ownership": "Impossible de vérifier la propriété du projet",
             "internal": "Erreur de serveur interne, veuillez réessayer plus tard.",
-            "verification": "Erreur de vérification",
-            "not_found": "Non trouvé",
-            "insufficient_perms": "Autorisations insuffisantes pour créer un projet communautaire"
+            "not_found": "Project does not exist"
         }
     },
     "GetHelpModal": {
@@ -378,7 +407,7 @@
     "DocsPageNotFoundError": {
         "title": "Cette page a été perdue",
         "desc": "La page de documentation demandée n'est pas disponible pour le moment.",
-        "suggestion": "Veuillez réessayer plus tard ou signaler ce problème à l'auteur du mod.",
+        "suggestion": "Please try again later or report this issue to the project author.",
         "submit": "Soumettre un problème",
         "return": "Revenir à l'accueil"
     },
@@ -389,13 +418,13 @@
         "button": "Ajouter un projet",
         "title": "J'aimerais écrire de la documentation pour...",
         "dev": {
-            "title": "Mon propre mod",
+            "title": "My own project",
             "desc": "Auteur, écrivez votre propre documentation et contrôlez qui peut y apporter des modifications.",
             "button": "Créer un projet"
         },
         "community": {
-            "title": "Mod de quelqu'un d'autre",
-            "desc": "Contribuer à la documentation de mod, maintenus par les éditeurs de wiki",
+            "title": "Someone else's project",
+            "desc": "Contribute to a collection of community docs maintained by wiki editors",
             "button": "Lire le guide"
         }
     },

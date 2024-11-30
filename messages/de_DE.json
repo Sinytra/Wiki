@@ -46,22 +46,22 @@
         "heading": "Willkommen im <highlight>Modded Minecraft Wiki</highlight>",
         "documentation": {
             "title": "Dokumentation",
-            "desc": "Durchsuche die Mod-Dokumentation",
+            "desc": "Browse project documentation",
             "search": {
-                "placeholder": "Finde deine Lieblingsmod..."
+                "placeholder": "Find your favourite projects..."
             },
-            "explore": "Mods erkunden"
+            "explore": "Explore projects"
         },
         "developers": {
             "title": "Autoren & Entwickler",
-            "desc": "Möchtest du eine Dokumentation für deine Mod schreiben?",
+            "desc": "Looking to write documentation for a project?",
             "guide": "Lies zuerst unseren <guide>Autorenleitfaden</guide>.",
             "area": "Projekt-Dashboard"
         },
         "links": {
             "browse": {
-                "title": "Mods durchsuchen",
-                "desc": "Durchsuche unsere Bibliothek dokumentierter Mods"
+                "title": "Browse",
+                "desc": "Browse our library of documented projects"
             },
             "blog": {
                 "title": "Blog",
@@ -73,15 +73,43 @@
             },
             "devs": {
                 "title": "Autoren",
-                "desc": "Hoste die Dokumentation deiner Mod auf unserem Wiki"
+                "desc": "Host your project's documentation on our wiki"
             }
         }
     },
     "BrowsePage": {
-        "search": {
-            "placeholder": "Mods suchen..."
+        "sidebar": {
+            "title": "Browse projects",
+            "search_filters": "Search filters...",
+            "categories": "Categories"
         },
+        "sorting": "Sort by",
+        "sort": {
+            "relevance": "Relevance",
+            "creation_date": "Creation date",
+            "popularity": "Popularity",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
         "no_results": "Die Suchanfrage ergab keine Ergebnisse!"
+    },
+    "SearchProjectTypes": {
+        "mod": "Mods",
+        "modpack": "Modpacks",
+        "resourcepack": "Resource packs",
+        "datapack": "Data packs",
+        "shader": "Shaders",
+        "plugin": "Plugins"
+    },
+    "ProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Modpack",
+        "resourcepack": "Resource pack",
+        "datapack": "Data pack",
+        "shader": "Shader",
+        "plugin": "Plugin"
     },
     "LoadingContent": {
         "message": "Lädt..."
@@ -125,58 +153,59 @@
     },
     "DocsFileTree": {
         "title": "Dokumentation",
-        "homepage": "Mod-Startseite"
+        "homepage": "Homepage"
     },
     "DocsProjectInfo": {
-        "title": "Mod-Informationen",
-        "author": "Autor",
+        "title": "Project information",
+        "type": "Type",
+        "author": "Author",
         "tags": "Tags",
         "latest": {
-            "title": "Neueste Version",
-            "unknown": "Nicht verfügbar"
+            "title": "Latest version",
+            "unknown": "N/A"
         },
         "license": {
-            "title": "Lizenz",
-            "custom": "Benutzerdefiniert",
-            "unknown": "Unbekannt",
-            "arr": "Alle Rechte vorbehalten"
+            "title": "License",
+            "custom": "Custom",
+            "unknown": "Unknown",
+            "arr": "All Rights Reserved"
         }
     },
     "ProjectCategories": {
-        "adventure": "Abenteuer",
-        "cursed": "Verflucht",
-        "decoration": "Dekoration",
-        "economy": "Wirtschaft",
-        "equipment": "Ausrüstung",
-        "food": "Essen",
-        "game-mechanics": "Spielmechanik",
-        "library": "Bibliothek",
-        "magic": "Magie",
+        "adventure": "Adventure",
+        "cursed": "Cursed",
+        "decoration": "Decoration",
+        "economy": "Economy",
+        "equipment": "Equipment",
+        "food": "Food",
+        "game-mechanics": "Game Mechanics",
+        "library": "Library",
+        "magic": "Magic",
         "management": "Management",
-        "minigame": "Minispiel",
+        "minigame": "Minigame",
         "mobs": "Mobs",
-        "optimization": "Optimierung",
-        "social": "Sozial",
-        "storage": "Speicher",
-        "technology": "Technologie",
-        "transportation": "Transport",
-        "utility": "Dienstprogramme",
-        "worldgen": "Weltgenerierung",
-        "server-utility": "Server-Dienstprogramme",
-        "armor-weapons-tools": "Rüstungen, Werkzeuge und Waffen",
-        "library-api": "API und Bibliothek",
-        "adventure-rpg": "Abenteuer und RPG",
-        "world-gen": "Weltgenerierung",
-        "cosmetic": "Kosmetik",
-        "mc-food": "Essen",
-        "performance": "Leistung",
-        "map-information": "Karte und Informationen",
-        "bug-fixes": "Fehlerbehebungen",
+        "optimization": "Optimization",
+        "social": "Social",
+        "storage": "Storage",
+        "technology": "Technology",
+        "transportation": "Transporation",
+        "utility": "Utility",
+        "worldgen": "Worldgen",
+        "server-utility": "Server Utility",
+        "armor-weapons-tools": "Armor, Tools, and Weapons",
+        "library-api": "API and Library",
+        "adventure-rpg": "Adventure and RPG",
+        "world-gen": "World Gen",
+        "cosmetic": "Cosmetic",
+        "mc-food": "Food",
+        "performance": "Performance",
+        "map-information": "Map and Information",
+        "bug-fixes": "Bug Fixes",
         "mc-addons": "Addons",
-        "education": "Bildung",
-        "mc-miscellaneous": "Verschiedenes",
+        "education": "Education",
+        "mc-miscellaneous": "Miscellaneous",
         "redstone": "Redstone",
-        "utility-qol": "Dienstprogramme & Lebensqualität",
+        "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
@@ -235,7 +264,7 @@
                 "title": "Wir verstehen, dass du diese Seite vielleicht nicht magst, und das ist völlig in Ordnung!",
                 "desc": "Leider ist das jedoch kein gültiger Grund, ein Projekt zu melden.",
                 "suggestion": "Möchtest du stattdessen nach etwas anderem suchen?",
-                "explore": "Mods erkunden"
+                "explore": "Explore projects"
             }
         }
     },
@@ -278,7 +307,7 @@
         "submit": "Einreichen",
         "success": {
             "title": "Projekt erfolgreich registriert",
-            "desc": "Du kannst jetzt zur Mod-Seite des Projekts navigieren"
+            "desc": "You can now navigate to the project's docs page"
         },
         "submitting": "Einreichen...",
         "verify_modrinth": "Mit Modrinth verifizieren"
@@ -288,7 +317,7 @@
         "desc": "Bearbeite die Einstellungen eines bestehenden Projekts.",
         "success": {
             "title": "Projekt erfolgreich aktualisiert",
-            "desc": "Du kannst jetzt zur aktualisierten Mod-Seite des Projekts navigieren"
+            "desc": "You can now navigate to the updated project's docs page"
         }
     },
     "ProjectDeletionForm": {
@@ -309,20 +338,20 @@
     },
     "FormActions": {
         "errors": {
-            "exists": "Projekt existiert bereits.",
             "unauthenticated": "Nicht authentifiziert",
-            "access_denied": "Benutzer hat keinen Zugriff auf das Repository.",
+            "user_github_auth": "GitHub authentication error",
+            "insufficient_wiki_perms": "Insufficient permissions to create community project",
+            "unsupported": "Not yet implemented",
+            "insufficient_repo_perms": "User does not have access to repository.",
             "no_branch": "Branch existiert nicht",
-            "invalid_path": "Ungültiger Pfad angegeben",
-            "invalid_meta": "Metadatendatei ist ungültig",
             "no_meta": "Metadatendatei nicht gefunden",
-            "no_cf_key": "Kann CurseForge-Projekt nicht registrieren; fehlender API-Schlüssel",
+            "invalid_meta": "Metadatendatei ist ungültig",
+            "exists": "Projekt existiert bereits.",
+            "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Plattformprojekt nicht gefunden. Bitte stelle sicher, dass das Feld \"slug\" in den Metadaten korrekt ist.",
             "ownership": "Überprüfung des Projekteigentums fehlgeschlagen",
             "internal": "Interner Serverfehler, bitte später erneut versuchen.",
-            "verification": "Überprüfungsfehler",
-            "not_found": "Nicht gefunden",
-            "insufficient_perms": "Unzureichende Berechtigungen zum Erstellen eines Community-Projekts"
+            "not_found": "Project does not exist"
         }
     },
     "GetHelpModal": {
@@ -378,7 +407,7 @@
     "DocsPageNotFoundError": {
         "title": "Wir haben diese Seite verloren",
         "desc": "Die angeforderte Dokumentationsseite ist momentan nicht verfügbar.",
-        "suggestion": "Bitte versuche es später erneut oder melde dieses Problem dem Mod-Autor.",
+        "suggestion": "Please try again later or report this issue to the project author.",
         "submit": "Problem melden",
         "return": "Zurück zur Startseite"
     },
@@ -389,19 +418,19 @@
         "button": "Projekt hinzufügen",
         "title": "Ich möchte eine Dokumentation für...",
         "dev": {
-            "title": "Meine eigene Mod",
+            "title": "My own project",
             "desc": "Verfasse deine eigene Dokumentation und bestimme, wer Änderungen daran vornehmen kann.",
             "button": "Projekt erstellen"
         },
         "community": {
-            "title": "Die Mod eines anderen",
-            "desc": "Trage zu einer Sammlung von Community-Mod-Dokumentationen bei, die von Wiki-Redakteuren gepflegt werden",
+            "title": "Someone else's project",
+            "desc": "Contribute to a collection of community docs maintained by wiki editors",
             "button": "Leitfaden lesen"
         }
     },
     "ProjectDocsPlaceholder": {
-        "summary": "(Platzhalter)",
-        "description": "(Platzhalter)"
+        "summary": "(Placeholder)",
+        "description": "(Placeholder)"
     },
     "DocsHomepagePlaceholder": {
         "title": "Homepage-Platzhalter",
