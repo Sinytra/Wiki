@@ -91,11 +91,19 @@ async function getAsset(project: string, location: string, version: string | nul
   return null;
 }
 
-async function getDocsPage(project: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
+async function getDocsPage(project: string, path: string[], version: string | null, locale: string | null, optional: boolean): Promise<DocumentationPage | null> {
   try {
-    const resp = await fetchBackendService(project, `project/${project}/page/${path.join('/')}.mdx`, {version, locale});
+    const resp = await fetchBackendService(project, `project/${project}/page/${path.join('/')}.mdx`, {
+      version,
+      locale,
+      optional: optional ? "true" : null
+    });
     if (resp.ok) {
       const json = await resp.json() as PageResponse;
+      if ('error' in json) {
+        return null;
+      }
+
       const content = Buffer.from(json.content, 'base64').toString('utf-8');
       return {
         project: json.project,
@@ -104,10 +112,7 @@ async function getDocsPage(project: string, path: string[], version: string | nu
         updated_at: json.updated_at ? new Date(json.updated_at) : undefined
       }
     } else {
-      // Hardcoded because lazy
-      if (path.length != 1 || path[0] != '_homepage') {
-        console.error(path);
-      }
+      console.error('Error getting page', path);
     }
   } catch (e) {
     console.error(e);

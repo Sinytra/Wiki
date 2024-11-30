@@ -66,7 +66,7 @@ export interface ServiceProvider {
   getProject: (slug: string) => Promise<Project | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
-  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
+  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional: boolean) => Promise<DocumentationPage | null>;
   searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
 }
 
@@ -118,21 +118,21 @@ async function getAsset(slug: string | null, location: string, version: string |
   return remoteService.getAsset(slug, location, actualVersion);
 }
 
-async function getDocsPage(slug: string, path: string[], version: string, locale: string): Promise<DocumentationPage | null> {
+async function getDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean): Promise<DocumentationPage | null> {
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
   const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
 
   if (process.env.LOCAL_DOCS_ROOTS) {
-    const localPage = await localService.getDocsPage(slug, path, actualVersion, actualLocale);
+    const localPage = await localService.getDocsPage(slug, path, actualVersion, actualLocale, optional || false);
     if (localPage) {
       return localPage;
     }
   }
-  return remoteService.getDocsPage(slug, path, actualVersion, actualLocale);
+  return remoteService.getDocsPage(slug, path, actualVersion, actualLocale, optional || false);
 }
 
-async function renderDocsPage(slug: string, path: string[], version: string, locale: string): Promise<RenderedDocsPage | null> {
-  const raw = await getDocsPage(slug, path, version, locale);
+async function renderDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean): Promise<RenderedDocsPage | null> {
+  const raw = await getDocsPage(slug, path, version, locale, optional);
   if (raw) {
     const content = await markdown.renderDocumentationMarkdown(raw.content);
     return {

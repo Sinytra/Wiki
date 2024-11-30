@@ -43,7 +43,7 @@ async function ProjectHomepage({project, platformProject, version, locale}: {
   locale: string;
 }) {
   // Attempt to resolve custom homepage
-  const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale);
+  const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale, true);
   if (result) {
     return <DocsMarkdownContent content={result.content.content}/>;
   }

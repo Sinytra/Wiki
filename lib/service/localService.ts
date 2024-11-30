@@ -53,7 +53,7 @@ async function getAsset(slug: string, location: string, version: string | null):
   return null;
 }
 
-async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null): Promise<DocumentationPage | null> {
+async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null, optional: boolean): Promise<DocumentationPage | null> {
   const src = await getProjectSource(slug);
   if (src) {
     const platformProject = await platforms.getPlatformProject(src.platform, src.slug);
