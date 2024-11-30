@@ -10,7 +10,7 @@ export function getHttpErrorDetailsURL(status: number): string {
 }
 
 export function getProcessURL(): string {
-  return process.env.NEXT_APP_URL || 'http://localhost:3000';
+  return process.env.NEXT_PUBLIC_NEXT_APP_URL || 'http://localhost:3000';
 }
 
 export function isWikiAdmin(username: string): boolean {

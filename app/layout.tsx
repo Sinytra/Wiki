@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: 'Modded Minecraft Wiki',
     type: 'website',
-    url: process.env.NEXT_APP_URL
+    url: process.env.NEXT_PUBLIC_NEXT_APP_URL
   },
   other: {
     'darkreader-lock': 'true'

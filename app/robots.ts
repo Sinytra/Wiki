@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: disallow,
     },
-    sitemap: process.env.NEXT_APP_URL ? `${process.env.NEXT_APP_URL}/sitemap.xml` : undefined,
+    sitemap: process.env.NEXT_PUBLIC_NEXT_APP_URL ? `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/sitemap.xml` : undefined,
   }
 }
