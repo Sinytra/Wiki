@@ -1,13 +1,13 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest"
+        "local": "本地",
+        "latest": "最新"
     },
     "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
-        "title_short": "Wiki",
+        "title": "Minecraft 模组维基",
+        "title_short": "维基",
         "badge": {
-            "preview": "PREVIEW MODE",
+            "preview": "预览模式",
             "beta": "Beta"
         },
         "link": {
@@ -17,13 +17,13 @@
         }
     },
     "NavigationFooter": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Minecraft 模组维基",
         "links": {
             "navigation": {
                 "title": "导航",
                 "home": "主页",
                 "browse": "浏览",
-                "dev": "控制台"
+                "dev": "开发者面板"
             },
             "links": {
                 "title": "链接"
@@ -31,7 +31,7 @@
             "resources": {
                 "title": "资源",
                 "blog": "博客",
-                "status": "Status",
+                "status": "状态",
                 "translate": "帮助我们翻译"
             },
             "about": {
@@ -43,25 +43,25 @@
         }
     },
     "HomePage": {
-        "heading": "欢迎来到 <highlight>Modded Minecraft 维基</highlight>",
+        "heading": "欢迎来到 <highlight>Minecraft 模组维基</highlight>",
         "documentation": {
             "title": "文档",
-            "desc": "浏览模组文档",
+            "desc": "Browse project documentation",
             "search": {
-                "placeholder": "搜索你喜爱的模组……"
+                "placeholder": "Find your favourite projects..."
             },
-            "explore": "浏览模组"
+            "explore": "Explore projects"
         },
         "developers": {
             "title": "文档作者 & 开发者",
-            "desc": "想为某个模组添加资料？",
-            "guide": "请先阅读我们的<guide>作者指南</guide>。",
+            "desc": "Looking to write documentation for a project?",
+            "guide": "请参阅我们的<guide>作者指南</guide>。",
             "area": "项目仪表盘"
         },
         "links": {
             "browse": {
-                "title": "Browse mods",
-                "desc": "Browse our library of documented mods"
+                "title": "Browse",
+                "desc": "Browse our library of documented projects"
             },
             "blog": {
                 "title": "博客",
@@ -69,19 +69,47 @@
             },
             "about": {
                 "title": "关于",
-                "desc": "Learn more about how the wiki operates"
+                "desc": "了解更多关于维基如何运作的信息"
             },
             "devs": {
-                "title": "Authors",
-                "desc": "Host your mod's documentation on our wiki"
+                "title": "作者",
+                "desc": "Host your project's documentation on our wiki"
             }
         }
     },
     "BrowsePage": {
-        "search": {
-            "placeholder": "Search mods..."
+        "sidebar": {
+            "title": "Browse projects",
+            "search_filters": "Search filters...",
+            "categories": "Categories"
         },
-        "no_results": "Search query returned no results!"
+        "sorting": "Sort by",
+        "sort": {
+            "relevance": "Relevance",
+            "creation_date": "Creation date",
+            "popularity": "Popularity",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
+        "no_results": "无搜索结果！"
+    },
+    "SearchProjectTypes": {
+        "mod": "Mods",
+        "modpack": "Modpacks",
+        "resourcepack": "Resource packs",
+        "datapack": "Data packs",
+        "shader": "Shaders",
+        "plugin": "Plugins"
+    },
+    "ProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Modpack",
+        "resourcepack": "Resource pack",
+        "datapack": "Data pack",
+        "shader": "Shader",
+        "plugin": "Plugin"
     },
     "LoadingContent": {
         "message": "加载中…"
@@ -89,46 +117,47 @@
     "MetaDocsNavigation": {
         "title": "导航",
         "about": "关于",
-        "devs": "Developers",
-        "format": "Format",
-        "publishing": "Publishing",
-        "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
-        "security": "Security Notice",
-        "community": "Community Docs"
+        "devs": "开发者",
+        "format": "格式",
+        "publishing": "发布",
+        "help": "获得帮助",
+        "tos": "用户条款",
+        "privacy": "隐私政策",
+        "security": "安全须知",
+        "community": "社区文档"
     },
     "DeveloperPortal": {
-        "title": "Project management dashboard",
-        "logout": "Logout",
+        "title": "项目管理面板",
+        "logout": "登出",
         "projects": {
-            "title": "Projects",
-            "loading_all": "Loading profile projects...",
-            "loading": "Loading profile...",
+            "title": "项目",
+            "loading_all": "正在加载您的项目...",
+            "loading": "正在加载个人资料……",
             "empty": {
-                "primary": "Looks like you haven't registered any projects yet",
-                "secondary": "Get started by reading our <guide>author guide</guide>."
+                "primary": "似乎您还没有注册任何项目",
+                "secondary": "请参阅我们的<guide>作者指南</guide>。"
             }
         }
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "请先登录",
+        "desc": "请先登录以访问该页面。",
+        "prompt": "请使用您的GitHub账户以继续。",
+        "button": "使用 Github 登录"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
+        "title": "预览模式已启用",
+        "desc": "预览模式会显示一个小型预览界面，让您能在发布前在本地预览您的草稿。",
+        "roots": "可用的本地文档根目录",
+        "open": "打开"
     },
     "DocsFileTree": {
-        "title": "Documentation",
-        "homepage": "Mod homepage"
+        "title": "文档",
+        "homepage": "Homepage"
     },
     "DocsProjectInfo": {
-        "title": "Mod information",
+        "title": "Project information",
+        "type": "Type",
         "author": "Author",
         "tags": "Tags",
         "latest": {
@@ -136,10 +165,10 @@
             "unknown": "N/A"
         },
         "license": {
-            "title": "许可证",
-            "custom": "其他",
-            "unknown": "未知",
-            "arr": "保留所有权利"
+            "title": "License",
+            "custom": "Custom",
+            "unknown": "Unknown",
+            "arr": "All Rights Reserved"
         }
     },
     "ProjectCategories": {
@@ -151,32 +180,32 @@
         "food": "Food",
         "game-mechanics": "Game Mechanics",
         "library": "Library",
-        "magic": "魔法",
-        "management": "管理",
-        "minigame": "小游戏",
-        "mobs": "生物",
-        "optimization": "优化",
-        "social": "社交",
-        "storage": "存储",
-        "technology": "科技",
-        "transportation": "物流",
-        "utility": "实用",
-        "worldgen": "世界生成",
-        "server-utility": "服务器工具",
-        "armor-weapons-tools": "道具",
-        "library-api": "LIB",
-        "adventure-rpg": "冒险",
-        "world-gen": "世界生成",
-        "cosmetic": "装饰",
-        "mc-food": "食物",
-        "performance": "性能",
-        "map-information": "信息展示",
-        "bug-fixes": "Bug修复",
-        "mc-addons": "插件",
-        "education": "教育",
-        "mc-miscellaneous": "杂项",
-        "redstone": "红石",
-        "utility-qol": "改良",
+        "magic": "Magic",
+        "management": "Management",
+        "minigame": "Minigame",
+        "mobs": "Mobs",
+        "optimization": "Optimization",
+        "social": "Social",
+        "storage": "Storage",
+        "technology": "Technology",
+        "transportation": "Transporation",
+        "utility": "Utility",
+        "worldgen": "Worldgen",
+        "server-utility": "Server Utility",
+        "armor-weapons-tools": "Armor, Tools, and Weapons",
+        "library-api": "API and Library",
+        "adventure-rpg": "Adventure and RPG",
+        "world-gen": "World Gen",
+        "cosmetic": "Cosmetic",
+        "mc-food": "Food",
+        "performance": "Performance",
+        "map-information": "Map and Information",
+        "bug-fixes": "Bug Fixes",
+        "mc-addons": "Addons",
+        "education": "Education",
+        "mc-miscellaneous": "Miscellaneous",
+        "redstone": "Redstone",
+        "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
@@ -223,203 +252,203 @@
                 "spam": "垃圾信息",
                 "copyright": "版权侵犯",
                 "content_rules_violation": "违反《内容规则》",
-                "tos_violation": "Violates Terms of Service",
-                "dislike": "I just don't like it"
+                "tos_violation": "违反《服务条款》",
+                "dislike": "就是不顺眼"
             },
             "details": {
-                "title": "Details*",
-                "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "title": "详细信息*",
+                "placeholder": "请提供更多详细信息，以帮助我们进一步了解您报告此页的原因。请注意，空报告将被忽略。",
+                "desc": "关于该问题的更多细节。"
             },
             "dislike": {
-                "title": "We understand that you may not like this page, and that's totally okay!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
-                "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "Explore mods"
+                "title": "我们理解您可能认为该页面不顺眼，那真的没关系！",
+                "desc": "但不幸的是，这并不属于报告项目的合理理由。",
+                "suggestion": "也许您可以换个页面，读点别的？",
+                "explore": "Explore projects"
             }
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "提交"
     },
     "Callout": {
-        "title": "Heads up!"
+        "title": "警告！"
     },
     "ProjectRegisterForm": {
-        "button": "Add Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "button": "添加项目",
+        "title": "注册项目",
+        "desc": "在维基上注册一个新的项目。",
         "owner": {
-            "title": "Owner",
-            "desc": "User / organization name.",
+            "title": "所有者",
+            "desc": "用户或组织名。",
             "placeholder": "ExampleUser"
         },
         "repo": {
-            "title": "Name",
-            "desc": "Repository name.",
+            "title": "名称",
+            "desc": "仓库名称。",
             "placeholder": "ExampleMod"
         },
         "branch": {
-            "title": "Branch",
-            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+            "title": "分支",
+            "desc": "主分支名。可以在您的元数据文件中指定更多分支。"
         },
         "path": {
-            "title": "Path to documentation root",
-            "desc": "Path to the folder containing the metadata file."
+            "title": "文档根路径",
+            "desc": "包含元数据文件目录的路径"
         },
-        "admin": "Wiki admin settings",
+        "admin": "维基管理设置",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "社区维护的项目"
         },
         "errors": {
-            "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
-            "details": "Show details"
+            "install_app": "请先在<link>这里</link>下载我们的GitHub应用，安装至您的仓库中。",
+            "details": "显示详情"
         },
-        "submit": "Submit",
+        "submit": "提交",
         "success": {
-            "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's mod page"
+            "title": "项目注册成功",
+            "desc": "You can now navigate to the project's docs page"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "提交中...",
+        "verify_modrinth": "使用Modrinth验证"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
+        "title": "编辑项目",
+        "desc": "编辑现有的项目设置",
         "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's mod page"
+            "title": "项目更新成功",
+            "desc": "You can now navigate to the updated project's docs page"
         }
     },
     "ProjectDeletionForm": {
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "title": "您确定要删除吗？",
+        "desc": "此操作无法撤销。这将永久删除您的项目，并从我们的服务器上清除所有相关数据。",
+        "cancel": "取消",
+        "submit": "删除",
+        "success": "项目删除成功"
     },
     "ProjectRevalidateForm": {
-        "title": "Revalidate project?",
-        "primary": "All cached documentation pages will be purged and re-rendered lazily on-demand.",
-        "secondary": "This option should only be used upon updating the documentation source itself.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "cancel": "Cancel",
-        "submit": "Revalidate",
-        "success": "Project successfully revalidated"
+        "title": "重新验证项目？",
+        "primary": "将清理所有缓存文档，并在需要时重新渲染。",
+        "secondary": "应只在文档源更新时使用此选项。",
+        "tertiary": "为了您更加方便，我们建议在发布后使用我们的<link>Gradle插件</link>，以自动重新验证文档。",
+        "cancel": "取消",
+        "submit": "重新验证",
+        "success": "项目重新验证成功"
     },
     "FormActions": {
         "errors": {
-            "exists": "Project already exists.",
-            "unauthenticated": "Unauthenticated",
-            "access_denied": "User does not have access to repository.",
-            "no_branch": "Branch does not exist",
-            "invalid_path": "Invalid path provided",
-            "invalid_meta": "Metadata file is invalid",
-            "no_meta": "Metadata file not found",
-            "no_cf_key": "Cannot register CurseForge project; missing API key",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
-            "ownership": "Failed to verify project ownership",
-            "internal": "Internal Server Error, please try again later.",
-            "verification": "Verification error",
-            "not_found": "Not found",
-            "insufficient_perms": "Insufficient permissions to create community project"
+            "unauthenticated": "未认证",
+            "user_github_auth": "GitHub authentication error",
+            "insufficient_wiki_perms": "Insufficient permissions to create community project",
+            "unsupported": "Not yet implemented",
+            "insufficient_repo_perms": "User does not have access to repository.",
+            "no_branch": "分支不存在",
+            "no_meta": "元数据文件未找到",
+            "invalid_meta": "元数据文件无效",
+            "exists": "项目已存在。",
+            "cf_unavailable": "Registering CurseForge projects is not active",
+            "no_project": "未找到平台项目。请确保元数据“slug”字段正确。",
+            "ownership": "验证项目所有权失败",
+            "internal": "服务器内部错误，请稍后再试。",
+            "not_found": "Project does not exist"
         }
     },
     "GetHelpModal": {
-        "button": "Is your project not showing up?",
-        "title": "Project help",
-        "desc": "Help resolve common issues with project registration.",
+        "button": "您的项目没有显示？",
+        "title": "项目帮助",
+        "desc": "帮助解决项目注册的常见问题。",
         "app": {
-            "title": "Ensure the GitHub app is installed on your repository",
-            "button": "Install GitHub App"
+            "title": "确保GitHub应用已安装至您的仓库",
+            "button": "下载 GitHub 应用"
         },
         "moved": {
-            "title": "Has your repository moved?",
-            "button": "Migrate project repository"
+            "title": "您的仓库被移动了吗？",
+            "button": "迁移项目仓库"
         },
         "other": {
-            "title": "Other issues",
-            "desc": "Check the troubleshooting section of the documentation Publishing guide.",
-            "link": "Open troubleshooting guide"
+            "title": "其它问题",
+            "desc": "请检查文档发布指南的疑难解答部分。",
+            "link": "打开疑难解答指南"
         }
     },
     "MigrateRepositoryForm": {
-        "title": "Migrate project repository",
-        "desc": "Update repository data after its location has changed.",
+        "title": "迁移项目仓库",
+        "desc": "在仓库位置改变后更新其数据。",
         "owner": {
-            "title": "Old Owner",
-            "desc": "Old User / organization name.",
+            "title": "原所有者",
+            "desc": "原用户或组织名。",
             "placeholder": "ExampleUser"
         },
         "repo": {
-            "title": "Old Name",
-            "desc": "Old repository name.",
+            "title": "原名称",
+            "desc": "原仓库名称。",
             "placeholder": "ExampleMod"
         },
         "new_owner": {
-            "title": "New Owner",
-            "desc": "New User / organization name.",
+            "title": "新所有者",
+            "desc": "新用户或组织名。",
             "placeholder": "ExampleOrg"
         },
-        "submit": "Migrate",
+        "submit": "迁移",
         "success": {
-            "title": "Repository migrated successfully",
-            "desc": "You should now see the migrated projects"
+            "title": "仓库迁移成功",
+            "desc": "您现在应该能找到迁移的项目了"
         },
         "migrate_error": {
-            "install_app": "Please ensure our GitHub app is <link>installed</link> on the migrated repository.",
-            "unavailable": "No migration available for repository. Is the entered information correct?"
+            "install_app": "请确保我们的GitHub应用已<link>安装</link>至迁移后的项目。",
+            "unavailable": "仓库迁移不可用。请检查输入信息。"
         }
     },
     "CommunityBadge": {
-        "title": "Community",
-        "desc": "Unofficial documentation maintained by the community"
+        "title": "社区",
+        "desc": "社区维护的非官方文档"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
-        "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the mod author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "title": "我们找不到此页",
+        "desc": "请求的文档页当前不可用。",
+        "suggestion": "Please try again later or report this issue to the project author.",
+        "submit": "提交问题",
+        "return": "返回主页"
     },
     "GetStartedButton": {
-        "title": "Add project"
+        "title": "添加项目"
     },
     "GetStartedModal": {
-        "button": "Add project",
-        "title": "I'd like to write documentation for...",
+        "button": "添加项目",
+        "title": "我接下来的文档写给……",
         "dev": {
-            "title": "My own mod",
-            "desc": "Author your own documentation and control who can make changes to it.",
-            "button": "Create project"
+            "title": "My own project",
+            "desc": "为您的模组编写文档，并控制谁能修改它。",
+            "button": "创建项目"
         },
         "community": {
-            "title": "Someone else's mod",
-            "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
-            "button": "Read guide"
+            "title": "Someone else's project",
+            "desc": "Contribute to a collection of community docs maintained by wiki editors",
+            "button": "阅读指南"
         }
     },
     "ProjectDocsPlaceholder": {
         "summary": "(Placeholder)",
-        "description": "（占位符）"
+        "description": "(Placeholder)"
     },
     "DocsHomepagePlaceholder": {
         "title": "主页占位符",
-        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
-        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+        "subtitle": "由于API限制，本地环境中暂时无法获取CurseForge项目的元数据。",
+        "replace": "别担心！我们将会在文档部署后将该占位符替换为项目真正的描述信息。"
     },
     "DocsTableOfContents": {
-        "title": "On this page"
+        "title": "在此页上"
     },
     "DocsBranchSelector": {
         "title": "版本",
-        "latest": "Latest"
+        "latest": "最新"
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
+        "placeholder": "搜索维基内容...",
         "no_results": "什么都木有找到！",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
+        "loading": "正在搜索最佳结果...",
+        "results": "展示<highlight>{count}</highlight> / <highlight>{total}</highlight> 条结果",
         "close": "按下<kbd>ESC</kbd>以关闭"
     }
 }
