@@ -7,12 +7,12 @@
         "title": "마인크래프트 모드 위키",
         "title_short": "위키",
         "badge": {
-            "preview": "PREVIEW MODE",
+            "preview": "미리보기 모드",
             "beta": "베타"
         },
         "link": {
             "home": "홈",
-            "browse": "Browse",
+            "browse": "탐색하기",
             "about": "소개"
         }
     },
@@ -22,7 +22,7 @@
             "navigation": {
                 "title": "탐색",
                 "home": "홈페이지",
-                "browse": "Browse",
+                "browse": "탐색하기",
                 "dev": "개발자 페이지"
             },
             "links": {
@@ -31,7 +31,7 @@
             "resources": {
                 "title": "자료",
                 "blog": "블로그",
-                "status": "Status",
+                "status": "상태",
                 "translate": "번역 참여하기"
             },
             "about": {
@@ -46,22 +46,22 @@
         "heading": "<highlight>마인크래프트 모드 위키</highlight>에 오신 것을 환영합니다",
         "documentation": {
             "title": "문서",
-            "desc": "모드 문서를 검색하세요",
+            "desc": "Browse project documentation",
             "search": {
-                "placeholder": "좋아하는 모드를 찾아보세요..."
+                "placeholder": "Find your favourite projects..."
             },
-            "explore": "Explore mods"
+            "explore": "Explore projects"
         },
         "developers": {
             "title": "Authors & Developers",
-            "desc": "Looking to write documentation for a mod?",
+            "desc": "Looking to write documentation for a project?",
             "guide": "Get started by reading our <guide>author guide</guide>.",
             "area": "Project dashboard"
         },
         "links": {
             "browse": {
-                "title": "Browse mods",
-                "desc": "Browse our library of documented mods"
+                "title": "Browse",
+                "desc": "Browse our library of documented projects"
             },
             "blog": {
                 "title": "Blog",
@@ -73,15 +73,43 @@
             },
             "devs": {
                 "title": "Authors",
-                "desc": "Host your mod's documentation on our wiki"
+                "desc": "Host your project's documentation on our wiki"
             }
         }
     },
     "BrowsePage": {
-        "search": {
-            "placeholder": "Search mods..."
+        "sidebar": {
+            "title": "Browse projects",
+            "search_filters": "Search filters...",
+            "categories": "Categories"
         },
+        "sorting": "정렬 기준",
+        "sort": {
+            "relevance": "Relevance",
+            "creation_date": "Creation date",
+            "popularity": "Popularity",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
         "no_results": "Search query returned no results!"
+    },
+    "SearchProjectTypes": {
+        "mod": "모드",
+        "modpack": "모드팩",
+        "resourcepack": "리소스 팩",
+        "datapack": "데이터 팩",
+        "shader": "셰이더",
+        "plugin": "플러그인"
+    },
+    "ProjectTypes": {
+        "mod": "모드",
+        "modpack": "모드팩",
+        "resourcepack": "리소스 팩",
+        "datapack": "데이터 팩",
+        "shader": "셰이더",
+        "plugin": "플러그인"
     },
     "LoadingContent": {
         "message": "불러오는 중..."
@@ -115,7 +143,7 @@
         "title": "먼저 로그인하세요",
         "desc": "이 페이지에 접근하려면 먼저 로그인해야 합니다.",
         "prompt": "계속하려면 GitHub 계정으로 로그인해주세요.",
-        "button": "Log in with GitHub"
+        "button": "GitHub으로 로그인"
     },
     "Preview": {
         "title": "Preview mode is enabled",
@@ -125,11 +153,12 @@
     },
     "DocsFileTree": {
         "title": "문서",
-        "homepage": "모드 홈페이지"
+        "homepage": "홈페이지"
     },
     "DocsProjectInfo": {
-        "title": "모드 정보",
-        "author": "원작자",
+        "title": "프로젝트 정보",
+        "type": "Type",
+        "author": "Author",
         "tags": "태그",
         "latest": {
             "title": "최신 버전",
@@ -137,45 +166,45 @@
         },
         "license": {
             "title": "라이선스",
-            "custom": "커스텀",
-            "unknown": "알 수 없음",
+            "custom": "Custom",
+            "unknown": "Unknown",
             "arr": "All Rights Reserved"
         }
     },
     "ProjectCategories": {
-        "adventure": "모험",
+        "adventure": "Adventure",
         "cursed": "Cursed",
-        "decoration": "꾸미기",
-        "economy": "경제",
-        "equipment": "장비",
-        "food": "음식",
+        "decoration": "Decoration",
+        "economy": "Economy",
+        "equipment": "Equipment",
+        "food": "Food",
         "game-mechanics": "Game Mechanics",
-        "library": "라이브러리",
-        "magic": "마법",
-        "management": "관리",
-        "minigame": "미니게임",
-        "mobs": "몹",
-        "optimization": "최적화",
+        "library": "Library",
+        "magic": "Magic",
+        "management": "Management",
+        "minigame": "Minigame",
+        "mobs": "Mobs",
+        "optimization": "Optimization",
         "social": "Social",
         "storage": "Storage",
-        "technology": "기술",
-        "transportation": "운송",
+        "technology": "Technology",
+        "transportation": "Transporation",
         "utility": "Utility",
-        "worldgen": "세계 생성",
+        "worldgen": "Worldgen",
         "server-utility": "Server Utility",
-        "armor-weapons-tools": "갑옷, 도구, 무기",
-        "library-api": "API 및 라이브러리",
-        "adventure-rpg": "모험 및 RPG",
-        "world-gen": "월드 생성",
+        "armor-weapons-tools": "Armor, Tools, and Weapons",
+        "library-api": "API and Library",
+        "adventure-rpg": "Adventure and RPG",
+        "world-gen": "World Gen",
         "cosmetic": "Cosmetic",
-        "mc-food": "음식",
-        "performance": "성능",
-        "map-information": "지도 및 정보",
-        "bug-fixes": "버그 수정",
-        "mc-addons": "애드온",
-        "education": "교육",
-        "mc-miscellaneous": "기타",
-        "redstone": "레드스톤",
+        "mc-food": "Food",
+        "performance": "Performance",
+        "map-information": "Map and Information",
+        "bug-fixes": "Bug Fixes",
+        "mc-addons": "Addons",
+        "education": "Education",
+        "mc-miscellaneous": "Miscellaneous",
+        "redstone": "Redstone",
         "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
@@ -235,7 +264,7 @@
                 "title": "이 페이지가 마음에 드시지 않는다는 걸 이해합니다. 그럴 수도 있죠!",
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
                 "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "모드 탐색하기"
+                "explore": "Explore projects"
             }
         }
     },
@@ -278,7 +307,7 @@
         "submit": "제출하기",
         "success": {
             "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's mod page"
+            "desc": "You can now navigate to the project's docs page"
         },
         "submitting": "Submitting...",
         "verify_modrinth": "Verify using Modrinth"
@@ -288,7 +317,7 @@
         "desc": "Edit an existing project's settings.",
         "success": {
             "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's mod page"
+            "desc": "You can now navigate to the updated project's docs page"
         }
     },
     "ProjectDeletionForm": {
@@ -309,20 +338,20 @@
     },
     "FormActions": {
         "errors": {
-            "exists": "Project already exists.",
             "unauthenticated": "Unauthenticated",
-            "access_denied": "User does not have access to repository.",
+            "user_github_auth": "GitHub authentication error",
+            "insufficient_wiki_perms": "Insufficient permissions to create community project",
+            "unsupported": "Not yet implemented",
+            "insufficient_repo_perms": "User does not have access to repository.",
             "no_branch": "Branch does not exist",
-            "invalid_path": "Invalid path provided",
-            "invalid_meta": "Metadata file is invalid",
             "no_meta": "Metadata file not found",
-            "no_cf_key": "Cannot register CurseForge project; missing API key",
+            "invalid_meta": "Metadata file is invalid",
+            "exists": "Project already exists.",
+            "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "ownership": "Failed to verify project ownership",
             "internal": "Internal Server Error, please try again later.",
-            "verification": "Verification error",
-            "not_found": "Not found",
-            "insufficient_perms": "Insufficient permissions to create community project"
+            "not_found": "Project does not exist"
         }
     },
     "GetHelpModal": {
@@ -378,7 +407,7 @@
     "DocsPageNotFoundError": {
         "title": "We lost this page",
         "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the mod author.",
+        "suggestion": "Please try again later or report this issue to the project author.",
         "submit": "Submit issue",
         "return": "Return Home"
     },
@@ -389,13 +418,13 @@
         "button": "Add project",
         "title": "I'd like to write documentation for...",
         "dev": {
-            "title": "My own mod",
+            "title": "My own project",
             "desc": "Author your own documentation and control who can make changes to it.",
             "button": "프로젝트 만들기"
         },
         "community": {
-            "title": "Someone else's mod",
-            "desc": "Contribute to a collection of community mod docs maintained by wiki editors",
+            "title": "Someone else's project",
+            "desc": "Contribute to a collection of community docs maintained by wiki editors",
             "button": "Read guide"
         }
     },
