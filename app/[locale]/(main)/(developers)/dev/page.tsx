@@ -35,7 +35,11 @@ function ProfileProjectSkeleton() {
   )
 }
 
-async function ProfileProjects({projects, state, autoSubmit}: { projects: Project[], state?: any, autoSubmit?: boolean }) {
+async function ProfileProjects({projects, state, autoSubmit}: {
+  projects: Project[],
+  state?: any,
+  autoSubmit?: boolean
+}) {
   const t = await getTranslations('DeveloperPortal');
   const messages = await getMessages();
 
@@ -93,7 +97,7 @@ function Profile({profile, children}: {
       <div>
         <div className="my-5 flex flex-row justify-between w-full">
           <div className="flex flex-col gap-2">
-            <p className="font-medium text-2xl font-mono">{profile.name}</p>
+            <p className="font-medium text-2xl font-mono">{profile.name || profile.login}</p>
 
             <p className="text-muted-foreground">{profile.bio || ''}</p>
           </div>
@@ -120,8 +124,8 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
     throw new Error("Unexpected response status: " + response.status);
   }
 
-  const autoSubmit = searchParams['code'] !== undefined;
-  const state = (searchParams['setup_action'] !== undefined || autoSubmit) && searchParams['state'] !== undefined
+  const autoSubmit = searchParams['code'] !== undefined || searchParams['setup_action'] !== undefined;
+  const state = autoSubmit && searchParams['state'] !== undefined
       ? JSON.parse(atob(searchParams['state'] as string))
       : undefined;
   let defaultValues: any = {owner: response.profile.login};

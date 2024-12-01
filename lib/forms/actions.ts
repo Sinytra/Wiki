@@ -29,8 +29,9 @@ export async function handleRegisterProjectForm(rawData: any) {
   if ('error' in response) {
     return {
       success: false,
+      ...response,
       can_verify_mr: response.can_verify_mr && isModrinthOAuthAvailable() ? response.can_verify_mr : undefined,
-      ...response
+      install_url: response.install_url ? saveState(response.install_url, data) : undefined
     };
   }
 
@@ -54,8 +55,9 @@ export async function handleEditProjectForm(rawData: any) {
   if ('error' in response) {
     return {
       success: false,
+      ...response,
       can_verify_mr: response.can_verify_mr && isModrinthOAuthAvailable() ? response.can_verify_mr : undefined,
-      ...response
+      install_url: response.install_url ? saveState(response.install_url, data) : undefined
     };
   }
 
@@ -165,4 +167,9 @@ async function validateProjectFormData(rawData: any, schema: any) {
   }
 
   return {data, token: session.access_token};
+}
+
+function saveState(url: string, state: any) {
+  const serialized = btoa(JSON.stringify(state));
+  return url + '?state=' + serialized;
 }
