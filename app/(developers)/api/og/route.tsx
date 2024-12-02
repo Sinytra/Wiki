@@ -265,7 +265,7 @@ export async function GET(req: NextRequest) {
   if (!pathVal) {
     const project = await service.getProject(slug);
     if (!project) {
-      return NextResponse.error();
+      return NextResponse.json({'error': 'Project not found'}, { status: 400 });
     }
     const platformProject = await platforms.getPlatformProject(project.platform, project.slug);
     return projectPageImage(coords, platformProject, fonts);
@@ -274,7 +274,7 @@ export async function GET(req: NextRequest) {
   const path = pathVal.split('/');
   const page = await service.getDocsPage(slug, path, version, locale);
   if (!page) {
-    return NextResponse.error();
+    return NextResponse.json({'error': 'Page not found'}, { status: 400 });
   }
 
   const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);

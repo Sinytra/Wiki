@@ -44,7 +44,7 @@ async function getProject(project: string): Promise<Project | null> {
     const resp = await fetchBackendService(project, `project/${project}`);
     if (resp.ok) {
       const json = await resp.json();
-      return json.mod;
+      return json.project;
     } else {
       console.error(resp);
     }
