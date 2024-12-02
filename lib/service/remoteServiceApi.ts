@@ -90,10 +90,10 @@ async function revalidateProject(id: string, token: string): Promise<SuccessResp
   try {
     const resp = await sendSimpleRequest(`project/${id}/invalidate`, {token});
     if (resp.ok) {
-      console.log('Invalidating docs for project {}', id);
+      console.log('Invalidating docs for project', id);
       cacheUtil.invalidateDocs(id);
     } else {
-      console.error('Error invalidating docs for project {}', id);
+      console.error('Error invalidating docs for project', id);
       console.error(resp);
     }
     return await resp.json();

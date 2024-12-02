@@ -131,7 +131,9 @@ export default async function Dev({searchParams}: { searchParams: { [key: string
   let defaultValues: any = {owner: response.profile.login};
   if (autoSubmit) {
     defaultValues.mr_code = searchParams['code'];
-    state.mr_code = searchParams['code'];
+    if (state) {
+      state.mr_code = searchParams['code'];
+    }
   }
 
   const t = await getTranslations('DeveloperPortal');

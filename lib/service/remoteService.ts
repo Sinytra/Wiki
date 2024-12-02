@@ -33,7 +33,7 @@ async function fetchBackendService(project: string, path: string, params: Record
     },
     ...(disableCache ? {cache: 'no-store'} : {
       next: {
-        tags: params.mod ? [`backend:${project}`] : []
+        tags: [`backend:${project}`]
       }
     })
   });
