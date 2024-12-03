@@ -267,7 +267,7 @@ export async function GET(req: NextRequest) {
     if (!project) {
       return NextResponse.json({'error': 'Project not found'}, { status: 400 });
     }
-    const platformProject = await platforms.getPlatformProject(project.platform, project.slug);
+    const platformProject = await platforms.getPlatformProject(project);
     return projectPageImage(coords, platformProject, fonts);
   }
 
@@ -277,7 +277,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({'error': 'Page not found'}, { status: 400 });
   }
 
-  const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);
+  const project = await platforms.getPlatformProject(page.project);
   const metadata = matter(page.content).data as DocsEntryMetadata;
 
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(slug, (metadata.icon || metadata.id)!, version);

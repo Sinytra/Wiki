@@ -1,27 +1,20 @@
 import {promises as fs} from 'fs';
-import {ProjectPlatform} from "@/lib/platforms";
 import {unstable_cache} from "next/cache";
 import {localDocsSource} from "@/lib/docs/sources/localSource";
 import localPreview from "@/lib/docs/localPreview";
 import metadata, {DocumentationFolderMetadata, ValidationError} from "@/lib/docs/metadata";
-import {
-  DEFAULT_LOCALE,
-  DOCS_METADATA_FILE_NAME,
-  FOLDER_METADATA_FILE_NAME,
-  HOMEPAGE_FILE_PATH
-} from "@/lib/constants";
-import {FileTree} from "@/lib/service";
+import {DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from "@/lib/constants";
+import {FileTree, ProjectPlatforms} from "@/lib/service";
 
 type SourceType = 'local';
 
 export interface DocumentationSource {
   id: string;
-  platform: ProjectPlatform;
-  slug: string;
+  platforms: ProjectPlatforms;
+  is_community: boolean;
 
   path: string;
   type: SourceType;
-  is_community: boolean;
 }
 
 export interface DocumentationFile {
@@ -52,15 +45,22 @@ function getDocumentationSourceProvider<T extends DocumentationSource>(source: D
   return provider;
 }
 
-async function readDocsFile(source: DocumentationSource, path: string[], locale?: string): Promise<DocumentationFile> {
+async function readDocsFile(source: DocumentationSource, path: string[], locale?: string, optional?: boolean): Promise<DocumentationFile | null> {
   const provider = getDocumentationSourceProvider(source);
 
-  const content = await readLocalizedFile(provider, source, `${path.join('/')}.mdx`, locale);
-  if (!content) {
-    throw new Error(`Documentation file at ${path} not found`);
+  try {
+    const content = await readLocalizedFile(provider, source, `${path.join('/')}.mdx`, locale);
+    if (!content) {
+      throw new Error(`Documentation file at ${path} not found`);
+    }
+    return { ...content, updated_at: content.updated_at ? new Date(content.updated_at) : undefined };
+  } catch (e) {
+    if (!optional) {
+      throw e;
+    }
   }
 
-  return { ...content, updated_at: content.updated_at ? new Date(content.updated_at) : undefined };
+  return null;
 }
 
 async function parseFolderMetadataFile(source: DocumentationSource, path: string, locale?: string): Promise<DocumentationFolderMetadata> {
@@ -169,12 +169,14 @@ async function computeLocalDocumentationSources(paths: string): Promise<Document
 
     return {
       id: data.id,
-      platform: data.platform,
-      slug: data.slug,
-      type: 'local',
+      platforms: {
+        [data.platform as any]: data.slug, // TODO
+        ...data.platforms
+      },
       path: root,
-      is_community: false
-    } satisfies LocalDocumentationSource;
+      is_community: false,
+      type: 'local'
+    };
   }));
 }
 

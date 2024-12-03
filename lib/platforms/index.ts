@@ -1,15 +1,26 @@
-import {PlatformProjectAuthor, PlatformProject, ProjectPlatformProvider, ProjectPlatform} from "@/lib/platforms/universal";
+import {
+  PlatformProject,
+  PlatformProjectAuthor,
+  ProjectPlatform,
+  ProjectPlatformProvider
+} from "@/lib/platforms/universal";
 import {modrinthModPlatform} from "@/lib/platforms/modrinth";
 import {curseForgeModPlatform} from "@/lib/platforms/curseforge";
+import {ProjectPlatforms} from "@/lib/service";
 
 export * from '@/lib/platforms/universal';
 
-const providers: { [key: string]: ProjectPlatformProvider } = {
+interface IdentifiableProject {
+  id: string;
+  platforms: ProjectPlatforms;
+}
+
+const providers: { [key in ProjectPlatform]: ProjectPlatformProvider } = {
   modrinth: modrinthModPlatform,
   curseforge: curseForgeModPlatform
 }
 
-function getProjectSourcePlatform(id: string): ProjectPlatformProvider {
+function getProjectSourcePlatform(id: ProjectPlatform): ProjectPlatformProvider {
   const source: ProjectPlatformProvider | undefined = providers[id];
 
   if (!source) {
@@ -19,8 +30,13 @@ function getProjectSourcePlatform(id: string): ProjectPlatformProvider {
   return source;
 }
 
-async function getPlatformProject(source: ProjectPlatform, slug: string): Promise<PlatformProject> {
-  return getProjectSourcePlatform(source).getProject(slug);
+async function getPlatformProject(project: IdentifiableProject): Promise<PlatformProject> {
+  for (let key in providers) {
+    if (project.platforms[key as ProjectPlatform]) {
+      return providers[key as ProjectPlatform].getProject(project.platforms[key as ProjectPlatform]!);
+    }
+  }
+  throw new Error(`No provider found for project ${project.id} on platforms ${JSON.stringify(project.platforms)}`);
 }
 
 async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
@@ -33,6 +49,6 @@ function getProjectURL(source: ProjectPlatform, slug: string): string {
 
 export default {
   getProjectAuthors,
-  getPlatformProject,
-  getProjectURL
+  getProjectURL,
+  getPlatformProject
 };

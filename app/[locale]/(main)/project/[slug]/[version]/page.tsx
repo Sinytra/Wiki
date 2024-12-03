@@ -22,7 +22,7 @@ export async function generateMetadata({params}: { params: { slug: string; local
     return {title: (await parent).title?.absolute};
   }
 
-  const platformProject = await platforms.getPlatformProject(project.platform, project.slug);
+  const platformProject = await platforms.getPlatformProject(project);
 
   return {
     title: `${platformProject.name} - ${(await parent).title?.absolute}`,
@@ -66,7 +66,7 @@ export default async function Homepage({params}: { params: { slug: string; versi
   const data = await service.getBackendLayout(params.slug, params.version, params.locale);
   if (!data) redirect('/');
 
-  const platformProject = await platforms.getPlatformProject(data.project.platform, data.project.slug);
+  const platformProject = await platforms.getPlatformProject(data.project);
 
   return (
       <ProjectDocsEntryPageLayout rightPanel={<ProjectInfo project={data.project} platformProj={platformProject}/>}>

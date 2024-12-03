@@ -9,14 +9,15 @@ import {ProjectType} from "@/lib/service/types";
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
 
+export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
+
 export interface BaseProject {
   id: string;
   name: string;
   source_repo?: string;
   source_branch?: string;
   source_path?: string;
-  platform: ProjectPlatform;
-  slug: string;
+  platforms: ProjectPlatforms;
   is_community: boolean;
   type: ProjectType;
 }
@@ -66,7 +67,7 @@ export interface ServiceProvider {
   getProject: (slug: string) => Promise<Project | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
-  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional: boolean) => Promise<DocumentationPage | null>;
+  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional: boolean) => Promise<DocumentationPage | undefined | null>;
   searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
 }
 
@@ -99,7 +100,6 @@ async function getBackendLayout(slug: string, version: string, locale: string): 
   return remoteService.getBackendLayout(slug, actualVersion, actualLocale);
 }
 
-// TODO Improve asset resolution
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
   if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || location.startsWith(`${DEFAULT_RSLOC_NAMESPACE}:`) || !location.includes(':')) {
@@ -124,7 +124,7 @@ async function getDocsPage(slug: string, path: string[], version: string, locale
 
   if (process.env.LOCAL_DOCS_ROOTS) {
     const localPage = await localService.getDocsPage(slug, path, actualVersion, actualLocale, optional || false);
-    if (localPage) {
+    if (localPage !== undefined) {
       return localPage;
     }
   }

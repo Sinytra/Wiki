@@ -12,7 +12,7 @@ import {RenderedDocsPage} from "@/lib/service";
 import platforms from "@/lib/platforms";
 
 export default async function DocsEntryPage({page, path, version}: { page: RenderedDocsPage; path: string[]; version: string }) {
-  const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);
+  const project = await platforms.getPlatformProject(page.project);
 
   const messages = await getMessages();
 

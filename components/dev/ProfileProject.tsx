@@ -29,7 +29,7 @@ export default async function ProfileProject({project, state, autoSubmit}: {
   state?: any,
   autoSubmit?: boolean
 }) {
-  const platformProject = await platforms.getPlatformProject(project.platform, project.slug);
+  const platformProject = await platforms.getPlatformProject(project);
   const messages = await getMessages();
 
   return <>
@@ -51,15 +51,15 @@ export default async function ProfileProject({project, state, autoSubmit}: {
             <LinkTextButton href={`https://github.com/${project.source_repo}`}>{project.source_repo}</LinkTextButton>
           </Property>
           <Property icon={GitBranchIcon}>{project.source_branch}</Property>
-          {project.platform === 'modrinth'
-              ?
-              <Property icon={ModrinthIcon} iconClass="text-[var(--modrinth-brand)]">Modrinth</Property>
-              :
-              <Property icon={CurseForgeIcon} iconClass="text-[var(--curseforge-brand)]">CurseForge</Property>
-          }
-          <Property icon={GlobeIcon}>
-            <LinkTextButton href={platformProject.project_url}>{project.slug}</LinkTextButton>
-          </Property>
+          {/*{project.platform === 'modrinth' TODO*/}
+          {/*    ?*/}
+          {/*    <Property icon={ModrinthIcon} iconClass="text-[var(--modrinth-brand)]">Modrinth</Property>*/}
+          {/*    :*/}
+          {/*    <Property icon={CurseForgeIcon} iconClass="text-[var(--curseforge-brand)]">CurseForge</Property>*/}
+          {/*}*/}
+          {/*<Property icon={GlobeIcon}>*/}
+          {/*  <LinkTextButton href={platformProject.project_url}>{project.slug}</LinkTextButton>*/}
+          {/*</Property>*/}
           {project.is_community && <CommunityDocsBadge bright/>}
         </div>
 
