@@ -76,19 +76,19 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
 
         <div className="flex flex-shrink-0 gap-2">
           {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
-          {base.platforms.modrinth &&
-              <Button asChild variant="outline" size="icon"
-                      className="hover:text-[var(--modrinth-brand)]">
-                  <NavLink href={platforms.getProjectURL('modrinth', base.platforms.modrinth)}>
-                      <ModrinthIcon width={24} height={24}/>
-                  </NavLink>
-              </Button>
-          }
           {base.platforms.curseforge &&
               <Button asChild variant="outline" size="icon"
                       className="hover:text-[var(--curseforge-brand)]">
-                  <NavLink href={platforms.getProjectURL('curseforge', base.platforms.curseforge)}>
+                  <NavLink href={platforms.getProjectURL('curseforge', base.platforms.curseforge)} target="_blank">
                       <CurseForgeIcon width={24} height={24}/>
+                  </NavLink>
+              </Button>
+          }
+          {base.platforms.modrinth &&
+              <Button asChild variant="outline" size="icon"
+                      className="hover:text-[var(--modrinth-brand)]">
+                  <NavLink href={platforms.getProjectURL('modrinth', base.platforms.modrinth)} target="_blank">
+                      <ModrinthIcon width={24} height={24}/>
                   </NavLink>
               </Button>
           }

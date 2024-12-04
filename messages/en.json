@@ -347,6 +347,7 @@
             "no_meta": "Metadata file not found",
             "invalid_meta": "Metadata file is invalid",
             "exists": "Project already exists.",
+            "no_platforms": "No platform projects defined in metadata.",
             "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "ownership": "Failed to verify project ownership",

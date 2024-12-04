@@ -141,8 +141,10 @@ It must be placed in a file called `sinytra-wiki.json` inside the documentation 
 ```json title="sinytra-wiki.json"
 {
     "id": "mffs",
-    "platform": "modrinth",
-    "slug": "mffs"
+    "platforms": {
+        "curseforge": "mffs",
+        "modrinth": "mffs"
+    }
 }
 ```
 
@@ -150,8 +152,8 @@ The wiki metadata file contains the following properties, all of which are **req
 
 - `id`: Unique project id used to identify the project across the wiki. We recommend using your mod id
 or hosting platform slug.
-- `platform`: Your project's distribution platform. Can be either of `modrinth` or `curseforge`.
-- `slug`: The host platform's project slug.
+- `platforms`: Your project's distribution platforms. This is map of (platform) -> (platform project slug).
+Currently supported platforms are `modrinth` and `curseforge`.
 
 The project slug can be easily extracted from your project page URL as shown in the examples below, where `{slug}`
 is a placeholder for the actual value.

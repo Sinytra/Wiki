@@ -1,4 +1,4 @@
-import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon, GlobeIcon} from "lucide-react";
+import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
 import ProjectDeletion from "@/components/dev/ProjectDeletion";
 import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
@@ -51,15 +51,20 @@ export default async function ProfileProject({project, state, autoSubmit}: {
             <LinkTextButton href={`https://github.com/${project.source_repo}`}>{project.source_repo}</LinkTextButton>
           </Property>
           <Property icon={GitBranchIcon}>{project.source_branch}</Property>
-          {/*{project.platform === 'modrinth' TODO*/}
-          {/*    ?*/}
-          {/*    <Property icon={ModrinthIcon} iconClass="text-[var(--modrinth-brand)]">Modrinth</Property>*/}
-          {/*    :*/}
-          {/*    <Property icon={CurseForgeIcon} iconClass="text-[var(--curseforge-brand)]">CurseForge</Property>*/}
-          {/*}*/}
-          {/*<Property icon={GlobeIcon}>*/}
-          {/*  <LinkTextButton href={platformProject.project_url}>{project.slug}</LinkTextButton>*/}
-          {/*</Property>*/}
+          {project.platforms.curseforge &&
+              <Property icon={CurseForgeIcon} iconClass="text-[var(--curseforge-brand)]">
+                  <LinkTextButton href={platforms.getProjectURL('curseforge', project.platforms.curseforge)} target="_blank">
+                    {project.platforms.curseforge}
+                  </LinkTextButton>
+              </Property>
+          }
+          {project.platforms.modrinth &&
+              <Property icon={ModrinthIcon} iconClass="text-[var(--modrinth-brand)]">
+                  <LinkTextButton href={platforms.getProjectURL('modrinth', project.platforms.modrinth)} target="_blank">
+                    {project.platforms.modrinth}
+                  </LinkTextButton>
+              </Property>
+          }
           {project.is_community && <CommunityDocsBadge bright/>}
         </div>
 
