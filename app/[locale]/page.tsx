@@ -60,84 +60,110 @@ function HomePageContent() {
         </p>
       </section>
 
-      <section className="mt-12 mb-16">
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Left column: Popular Wikis */}
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-6 text-center">Popular Wikis</h3>
-            <div className="grid grid-cols-1 gap-6">
-              {featuredProjects.map((project, index) => (
-                <div key={index} className="bg-card p-6 rounded-lg shadow-md flex flex-col">
-                  <div className="flex items-center mb-4">
-                    <img
-                      src={project.icon}
-                      alt={`${project.title} icon`}
-                      width={48}
-                      height={48}
-                      className="rounded-md mr-4"
-                    />
-                    <div>
-                      <h4 className="text-xl font-semibold text-card-foreground">{project.title}</h4>
-                      {project.tag}
+      <section className="mt-12 mb-16 overflow-x-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Left column: Popular Wikis */}
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6 text-center">Popular Wikis</h3>
+              <div className="grid grid-cols-1 gap-6">
+                {featuredProjects.map((project, index) => (
+                  <div key={index} className="bg-card p-6 rounded-lg shadow-md flex flex-col">
+                    <div className="flex items-center mb-4">
+                      <img
+                        src={project.icon}
+                        alt={`${project.title} icon`}
+                        width={48}
+                        height={48}
+                        className="rounded-md mr-4"
+                      />
+                      <div>
+                        <h4 className="text-xl font-semibold text-card-foreground">{project.title}</h4>
+                        {project.tag}
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground mb-4 flex-grow">
+                      {project.summary.length > 100 ? `${project.summary.substring(0, 100)}...` : project.summary}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex flex-wrap gap-2">
+                        {project.links.curseforge && (
+                          <a href={project.links.curseforge} target="_blank" rel="noopener noreferrer">
+                            <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                              <CurseForgeIcon className="h-4 w-4" />
+                            </Button>
+                          </a>
+                        )}
+                        {project.links.github && (
+                          <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                            <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                              <GitHubIcon className="h-4 w-4" />
+                            </Button>
+                          </a>
+                        )}
+                        {project.links.modrinth && (
+                          <a href={project.links.modrinth} target="_blank" rel="noopener noreferrer">
+                            <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                              <ModrinthIcon className="h-4 w-4" />
+                            </Button>
+                          </a>
+                        )}
+                      </div>
+                      <Button variant="link" className="text-primary hover:text-primary/80">
+                        Read more
+                        <ArrowRight className="ml-2 h-4 w-4 text-blue-700" />
+                      </Button>
                     </div>
                   </div>
-                  <p className="text-muted-foreground mb-4 flex-grow">
-                    {project.summary.length > 100 ? `${project.summary.substring(0, 100)}...` : project.summary}
+                ))}
+                <div>
+                  <p className="text-muted-foreground text-sm">
+                    These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki.
                   </p>
-                  <div className="flex justify-between items-center">
-                    <div className="space-x-2">
-                      {project.links.curseforge && (
-                        <a href={project.links.curseforge} target="_blank" rel="noopener noreferrer">
-                          <Button variant="outline" size="icon">
-                            <CurseForgeIcon width={24} height={24} />
-                          </Button>
-                        </a>
-                      )}
-                      {project.links.github && (
-                        <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                          <Button variant="outline" size="icon">
-                            <GitHubIcon width={24} height={24} />
-                          </Button>
-                        </a>
-                      )}
-                      {project.links.modrinth && (
-                        <a href={project.links.modrinth} target="_blank" rel="noopener noreferrer">
-                          <Button variant="outline" size="icon">
-                            <ModrinthIcon width={24} height={24} />
-                          </Button>
-                        </a>
-                      )}
-                    </div>
-                    <Button variant="link" className="text-primary hover:text-primary/80">
-                      Read more
-                      <ArrowRight className="ml-2 h-4 w-4 text-blue-700" />
-                    </Button>
-                  </div>
                 </div>
-              ))}
-              <div>
-                <p className="text-muted-foreground text-sm">
-                  These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki.
-                </p>
               </div>
             </div>
-          </div>
 
-          {/* Right column: Authors (top) and Users (below) */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-primary mb-6 text-center">Join Our Community</h3>
+            {/* Right column: Authors (top) and Users (below) */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-primary mb-6 text-center">Join Our Community</h3>
+                <div className="bg-card p-6 rounded-lg shadow-md">
+
+                  <h4 className="text-2xl font-semibold text-card-foreground mb-4">Authors</h4>
+                  <p className="text-muted-foreground mb-4">Get access to the Project Dashboard and enjoy these benefits:</p>
+                  <div className="space-y-4">
+                    {[
+                      { text: "Versioning support for your documentation", icon: <GitBranchIcon /> },
+                      { text: "Custom components for recipes, assets, etc.", icon: <ComponentIcon /> },
+                      { text: "Gradle integration for seamless workflow", icon: <BlocksIcon /> },
+                      { text: "Advanced project management tools", icon: <BookIcon /> },
+                      { text: "Direct interaction with your user base", icon: <HeartIcon /> },
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <div className="mr-3 text-muted-foreground">{item.icon}</div>
+                        <p className="text-muted-foreground">{item.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <Link href="/authors" className="mt-6 inline-flex items-center text-primary hover:text-primary/80">
+                    Start documenting
+                    <ArrowRight className="ml-2 text-blue-600" />
+                  </Link>
+                </div>
+              </div>
+
+
               <div className="bg-card p-6 rounded-lg shadow-md">
-
-                <h4 className="text-2xl font-semibold text-card-foreground mb-4">Authors</h4>
-                <p className="text-muted-foreground mb-4">Get access to the Project Dashboard and enjoy these benefits:</p>
+                <h4 className="text-2xl font-semibold text-card-foreground mb-4">Users</h4>
+                <p className="text-muted-foreground mb-4">Explore our featured projects and enjoy these benefits:</p>
                 <div className="space-y-4">
                   {[
-                    { text: "Versioning support for your documentation", icon: <GitBranchIcon /> },
-                    { text: "Custom components for recipes, assets, etc.", icon: <ComponentIcon /> },
-                    { text: "Gradle integration for seamless workflow", icon: <BlocksIcon /> },
-                    { text: "Advanced project management tools", icon: <BookIcon /> },
-                    { text: "Direct interaction with your user base", icon: <HeartIcon /> },
+                    { text: "Access high-quality, up-to-date documentation", icon: <FileText /> },
+                    { text: "Contribute to projects without programming knowledge", icon: <UserPlus /> },
+                    { text: "Enjoy a consistent, user-friendly interface across all projects", icon: <Layout /> },
+                    { text: "Benefit from multi-language support", icon: <Globe /> },
+                    { text: "Easily navigate between different versions of documentation", icon: <HopIcon /> },
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start">
                       <div className="mr-3 text-muted-foreground">{item.icon}</div>
@@ -145,35 +171,11 @@ function HomePageContent() {
                     </div>
                   ))}
                 </div>
-                <Link href="/authors" className="mt-6 inline-flex items-center text-primary hover:text-primary/80">
-                  Start documenting
+                <Link href="/browse" className="mt-6 inline-flex items-center text-primary hover:text-primary/80">
+                  Browse projects
                   <ArrowRight className="ml-2 text-blue-600" />
                 </Link>
               </div>
-            </div>
-
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <h4 className="text-2xl font-semibold text-card-foreground mb-4">Users</h4>
-              <p className="text-muted-foreground mb-4">Explore our featured projects and enjoy these benefits:</p>
-              <div className="space-y-4">
-                {[
-                  { text: "Access high-quality, up-to-date documentation", icon: <FileText /> },
-                  { text: "Contribute to projects without programming knowledge", icon: <UserPlus /> },
-                  { text: "Enjoy a consistent, user-friendly interface across all projects", icon: <Layout /> },
-                  { text: "Benefit from multi-language support", icon: <Globe /> },
-                  { text: "Easily navigate between different versions of documentation", icon: <HopIcon /> },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start">
-                    <div className="mr-3 text-muted-foreground">{item.icon}</div>
-                    <p className="text-muted-foreground">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-              <Link href="/browse" className="mt-6 inline-flex items-center text-primary hover:text-primary/80">
-                Browse projects
-                <ArrowRight className="ml-2 text-blue-600" />
-              </Link>
             </div>
           </div>
         </div>
