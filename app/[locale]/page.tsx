@@ -220,26 +220,23 @@ function HomePageContent() {
       <section className="mt-12 bg-muted rounded-lg p-8">
         <h2 className="text-2xl font-bold text-foreground mb-4">About Us</h2>
         <p className="text-muted-foreground mb-4">
-          The Wiki is built and maintained by Sinytra, a team of passionate developers creating Free and Open Source common Minecraft modding software.
+          The Wiki is built and maintained by <strong>Sinytra</strong>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.
         </p>
         <p className="text-muted-foreground mb-4">
-          If you like our work, feel free to check out our other projects found on our GitHub page ❤️.
+          Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft. From intuitive user interfaces to community-driven features, we strive to make modding accessible and enjoyable for everyone.
         </p>
-        <Link href="https://github.com/Sinytra" className="inline-flex items-center text-primary hover:text-primary/80">
+        <p className="text-muted-foreground mb-4">
+          If you enjoy our work, consider supporting us by exploring our other Free and Open Source projects available on our <strong>GitHub page</strong>. Your contributions and feedback drive us forward! ❤️
+        </p>
+        <Link
+          href="https://github.com/Sinytra"
+          className="inline-flex items-center text-primary hover:text-primary/80"
+        >
           Visit our GitHub
           <ArrowRight className="ml-2 text-blue-600" />
         </Link>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold text-foreground mb-4">Contributing</h2>
-        <p className="text-muted-foreground mb-4">
-          To edit a documentation page, use the Edit page on GitHub button found at the bottom of the right side panel.
-        </p>
-        <p className="text-muted-foreground mb-4">
-          As project documentation is sourced from GitHub repositories, you can either use the GitHub web editor, or clone the repository and make changes locally. Then, once you're done making changes, you can submit a Pull Request to the upstream repository and wait for it to be reviewed / merged by a maintainer.
-        </p>
-      </section>
     </main>
   );
 }
