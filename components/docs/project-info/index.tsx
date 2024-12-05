@@ -62,7 +62,7 @@ export default async function ProjectInfo({project, platformProj}: Props) {
   const summary = platformProj.is_placeholder ? u('summary') : platformProj.summary;
 
   return (
-      <div className="flex flex-col">
+      <div className="flex flex-col h-full">
         <DocsSidebarTitle>
           {t('title')}
         </DocsSidebarTitle>
@@ -77,7 +77,7 @@ export default async function ProjectInfo({project, platformProj}: Props) {
           <span className="docsSourceDesc text-sm text-muted-foreground text-center">{summary}</span>
         </div>
 
-        <div className="mx-1 mt-6">
+        <div className="flex flex-col mx-1 mt-6 h-full">
           <MetadataGrid>
             <MetadataRowKey icon={ProjectTypeIcons[project.type]} title={t('type')}>
               {v(project.type)}
@@ -105,8 +105,10 @@ export default async function ProjectInfo({project, platformProj}: Props) {
                   <>{info.license.name}</>
               }
             </MetadataRowKey>
+          </MetadataGrid>
 
-            <hr className="my-1"/>
+          <MetadataGrid className="mt-auto">
+            <hr className="my-2"/>
 
             {project.platforms.curseforge &&
                 <MetadataLinkRowKey title="CurseForge" icon={CurseForgeIcon}
@@ -119,7 +121,6 @@ export default async function ProjectInfo({project, platformProj}: Props) {
             {platformProj.source_url &&
                 <MetadataLinkRowKey title="GitHub" icon={GitHubIcon} href={platformProj.source_url}/>
             }
-
           </MetadataGrid>
         </div>
       </div>

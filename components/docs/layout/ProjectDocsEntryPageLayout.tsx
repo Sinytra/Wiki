@@ -1,10 +1,16 @@
 import {ReactNode} from "react";
 
-export default async function ProjectDocsEntryPageLayout({rightPanel, children}: Readonly<{
+export default async function ProjectDocsEntryPageLayout({rightPanel, mobileToolbar, children}: Readonly<{
   rightPanel: ReactNode;
+  mobileToolbar?: ReactNode;
   children: ReactNode;
 }>) {
   return <>
+    {mobileToolbar &&
+      <div className="md:hidden">
+        {mobileToolbar}
+      </div>
+    }
     <div className="w-full max-w-[50rem] px-2 md:px-0">
       {children}
     </div>

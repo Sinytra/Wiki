@@ -25,6 +25,7 @@ export interface BaseProject {
 export interface Project extends BaseProject {
   is_public: boolean;
   versions?: Record<string, string>;
+  locales?: string[];
   local?: boolean;
 }
 

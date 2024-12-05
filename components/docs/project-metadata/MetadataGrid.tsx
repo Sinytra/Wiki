@@ -1,8 +1,9 @@
 import {ReactNode} from "react";
+import {cn} from "@/lib/utils";
 
-export default function MetadataGrid({children}: { children?: ReactNode }) {
+export default function MetadataGrid({className, children}: { className?: string, children?: ReactNode }) {
   return (
-    <div className="w-full grid grid-flow-row gap-y-3 text-sm">
+    <div className={cn(className, "w-full grid grid-flow-row gap-y-3 text-sm")}>
       {children}
     </div>
   )

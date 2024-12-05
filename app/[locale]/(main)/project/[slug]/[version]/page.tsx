@@ -11,6 +11,7 @@ import {Metadata, ResolvingMetadata} from "next";
 import service, {type Project} from "@/lib/service";
 import {redirect} from "next/navigation";
 import platforms from "@/lib/platforms";
+import MobileDocsToolbar from "@/components/docs/MobileDocsToolbar";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -50,13 +51,13 @@ async function ProjectHomepage({project, platformProject, version, locale}: {
 
   // File does not exist, fallback to project desc
   return (
-      platformProject.is_placeholder
-          ?
-          <DocsHomepagePlaceholder/>
-          :
-          <div>
-            <MarkdownContent content={platformProject.description}/>
-          </div>
+    platformProject.is_placeholder
+      ?
+      <DocsHomepagePlaceholder/>
+      :
+      <div>
+        <MarkdownContent content={platformProject.description}/>
+      </div>
   );
 }
 
@@ -69,15 +70,19 @@ export default async function Homepage({params}: { params: { slug: string; versi
   const platformProject = await platforms.getPlatformProject(data.project);
 
   return (
-      <ProjectDocsEntryPageLayout rightPanel={<ProjectInfo project={data.project} platformProj={platformProject}/>}>
-        <div className="flex flex-col">
-          <DocsContentTitle project={data.project} version={params.version}>
-            {platformProject.name}
-          </DocsContentTitle>
+    <ProjectDocsEntryPageLayout
+      rightPanel={<ProjectInfo project={data.project} platformProj={platformProject}/>}
+      mobileToolbar={<MobileDocsToolbar locale={params.locale} locales={data.project.locales} version={params.version}
+                                        versions={data.project.versions}/>}
+    >
+      <div className="flex flex-col">
+        <DocsContentTitle project={data.project} version={params.version}>
+          {platformProject.name}
+        </DocsContentTitle>
 
-          <ProjectHomepage project={data.project} platformProject={platformProject} version={params.version}
-                           locale={params.locale}/>
-        </div>
-      </ProjectDocsEntryPageLayout>
+        <ProjectHomepage project={data.project} platformProject={platformProject} version={params.version}
+                         locale={params.locale}/>
+      </div>
+    </ProjectDocsEntryPageLayout>
   );
 }
