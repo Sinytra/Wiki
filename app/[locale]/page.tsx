@@ -4,18 +4,21 @@ import { cn } from "@/lib/utils";
 import TranslateBanner from "@/components/landing/TranslateBanner";
 import Link from "next/link";
 import crowdin from "@/lib/locales/crowdin";
-import { ArrowRight, Badge, BlocksIcon, BookIcon, ComponentIcon, FileText, GitBranch, GitBranchIcon, Globe, HeartIcon, HopIcon, Layout, UserPlus } from "lucide-react";
+import { ArrowRight, BookIcon, ComponentIcon, FileText, GitBranchIcon, Globe, HeartIcon, Layout, UserPlus } from "lucide-react";
 import GradleIcon from "@/components/ui/icons/GradleIcon";
 import { Button } from "@/components/ui/button";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
+import { Badge } from "@/components/ui/badge";
+import DiscordIcon from "@/components/ui/icons/DiscordIcon";
 
 export const dynamic = 'force-static';
 
 function HomePageContent() {
   const t = useTranslations('HomePage');
 
+  // TODO: Make this dynamic.
   const featuredProjects = [
     {
       icon: "https://cdn.modrinth.com/data/LNytGWDc/61d716699bcf1ec42ed4926a9e1c7311be6087e2_96.webp",
@@ -50,17 +53,45 @@ function HomePageContent() {
     }
   ];
 
+  // TODO: Make this dynamic.
+  const latestBlogPosts = [
+    {
+      id: "2024-11-15-scaling",
+      title: "The Scaling Update",
+      date: "2024-11-15",
+      excerpt: "Improving response times & future scalability."
+    },
+    {
+      id: "2024-10-27-search",
+      title: "Search & Versions Update",
+      date: "2024-10-27",
+      excerpt: "Global search, versioned documentation and new customization options!"
+    },
+    {
+      id: "2024-10-05-community-docs",
+      title: "Community Wiki Update",
+      date: "2024-10-05",
+      excerpt: "In the first major wiki update, we're introducing community docs and UI localization."
+    }
+  ];
+
+
   return (
     <main className="container mx-auto px-4 py-8">
-      <section className=" mb-12">
+      <section className="mb-5">
         <p className="text-center text-lg text-muted-foreground mb-2">Welcome to the</p>
         <h2 className="text-center text-5xl font-bold bg-gradient-to-r from-blue-500 via-cyan-300 to-blue-500 text-transparent bg-clip-text animate-gradient mb-4">Modded Minecraft Wiki</h2>
         <p className="text-center text-xl text-muted-foreground mx-auto">
           Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.
         </p>
+        <div className="text-center mt-4 md:hidden ">
+          <button className="block mx-auto bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 text-white animate-gradient rounded px-12 py-2">
+            Browse Projects
+          </button>
+        </div>
       </section>
 
-      <section className="mt-12 mb-16 overflow-x-hidden">
+      <section className="mb-16 overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Left column: Popular Wikis */}
@@ -129,14 +160,38 @@ function HomePageContent() {
               <div>
                 <h3 className="text-2xl font-bold text-primary mb-6 text-center">Join Our Community</h3>
                 <div className="bg-card p-6 rounded-lg shadow-md">
-
+                  <h4 className="text-2xl font-semibold text-card-foreground mb-4">Users</h4>
+                  <p className="text-muted-foreground mb-4">Explore our featured projects and enjoy these benefits:</p>
+                  <div className="space-y-4">
+                    {[
+                      { text: "Access high-quality, up-to-date and versioned documentation", icon: <FileText /> },
+                      { text: "Contribute to projects without programming knowledge", icon: <UserPlus /> },
+                      { text: "Enjoy a consistent, user-friendly interface across all projects", icon: <Layout /> },
+                      { text: "Benefit from multi-language support", icon: <Globe /> }
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <div className="mr-3 text-muted-foreground">{item.icon}</div>
+                        <p className="text-muted-foreground">{item.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 space-y-4">
+                    <Link
+                      href="/authors/dashboard"
+                      className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+                    >
+                      Browse Projects
+                    </Link>
+                  </div>
+                </div>
+                <div className="mt-4 bg-card p-6 rounded-lg shadow-md">
                   <h4 className="text-2xl font-semibold text-card-foreground mb-4">Authors</h4>
                   <p className="text-muted-foreground mb-4">Get access to the Project Dashboard and enjoy these benefits:</p>
                   <div className="space-y-4">
                     {[
                       { text: "Versioning support for your documentation", icon: <GitBranchIcon /> },
                       { text: "Custom components for recipes, assets, etc.", icon: <ComponentIcon /> },
-                      { text: "Gradle integration for seamless workflow", icon: <BlocksIcon /> },
+                      { text: "Gradle integration for seamless workflow", icon: <GradleIcon width={24} height={24} className="" /> },
                       { text: "Advanced project management tools", icon: <BookIcon /> },
                       { text: "Direct interaction with your user base", icon: <HeartIcon /> },
                     ].map((item, idx) => (
@@ -146,35 +201,21 @@ function HomePageContent() {
                       </div>
                     ))}
                   </div>
-                  <Link href="/authors" className="mt-6 inline-flex items-center text-primary hover:text-primary/80">
-                    Start documenting
-                    <ArrowRight className="ml-2 text-blue-600" />
-                  </Link>
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Link
+                      href="/authors/dashboard"
+                      className="text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+                    >
+                      Open Dashboard
+                    </Link>
+                    <Link
+                      href="/some-other-page"
+                      className="text-center bg-neutral-600 hover:bg-neutral-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+                    >
+                      Read More
+                    </Link>
+                  </div>
                 </div>
-              </div>
-
-
-              <div className="bg-card p-6 rounded-lg shadow-md">
-                <h4 className="text-2xl font-semibold text-card-foreground mb-4">Users</h4>
-                <p className="text-muted-foreground mb-4">Explore our featured projects and enjoy these benefits:</p>
-                <div className="space-y-4">
-                  {[
-                    { text: "Access high-quality, up-to-date documentation", icon: <FileText /> },
-                    { text: "Contribute to projects without programming knowledge", icon: <UserPlus /> },
-                    { text: "Enjoy a consistent, user-friendly interface across all projects", icon: <Layout /> },
-                    { text: "Benefit from multi-language support", icon: <Globe /> },
-                    { text: "Easily navigate between different versions of documentation", icon: <HopIcon /> },
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <div className="mr-3 text-muted-foreground">{item.icon}</div>
-                      <p className="text-muted-foreground">{item.text}</p>
-                    </div>
-                  ))}
-                </div>
-                <Link href="/browse" className="mt-6 inline-flex items-center text-primary hover:text-primary/80">
-                  Browse projects
-                  <ArrowRight className="ml-2 text-blue-600" />
-                </Link>
               </div>
             </div>
           </div>
@@ -220,25 +261,67 @@ function HomePageContent() {
       </section>
 
       <section className="mt-12 bg-muted rounded-lg p-8">
-        <h2 className="text-2xl font-bold text-foreground mb-4">About Us</h2>
-        <p className="text-muted-foreground mb-4">
-          The Wiki is built and maintained by <strong>Sinytra</strong>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.
-        </p>
-        <p className="text-muted-foreground mb-4">
-          Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft. From intuitive user interfaces to community-driven features, we strive to make modding accessible and enjoyable for everyone.
-        </p>
-        <p className="text-muted-foreground mb-4">
-          If you enjoy our work, consider supporting us by exploring our other Free and Open Source projects available on our <strong>GitHub page</strong>. Your contributions and feedback drive us forward! ❤️
-        </p>
-        <Link
-          href="https://github.com/Sinytra"
-          className="inline-flex items-center text-primary hover:text-primary/80"
-        >
-          Visit our GitHub
-          <ArrowRight className="ml-2 text-blue-600" />
-        </Link>
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-1/3">
+            <h2 className="text-xl font-semibold mb-4">About Us</h2>
+            <p className="text-muted-foreground mb-4">
+              The Wiki is built and maintained by <strong>Sinytra</strong>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.
+            </p>
+            <p className="text-muted-foreground mb-4">
+              Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft.
+            </p>
+            <div className="flex flex-row flex-wrap gap-4">
+              <a href="https://github.com/Sinytra" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                  <GitHubIcon className="h-4 w-4" />
+                </Button>
+              </a>
+              <a href="https://discord.sinytra.org/" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                  <DiscordIcon className="h-4 w-4" />
+                </Button>
+              </a>
+              <a href="https://modrinth.com/organization/sinytra" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                  <ModrinthIcon className="h-4 w-4" />
+                </Button>
+              </a>
+              <a href="https://www.curseforge.com/members/su5ed/projects" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                  <CurseForgeIcon className="h-4 w-4" />
+                </Button>
+              </a>
+            </div>
+          </div>
+          <div className="lg:w-2/3">
+            <h2 className="text-xl font-semibold mb-4">Blog Posts</h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {latestBlogPosts.map((post, index) => (
+                <div
+                  key={index}
+                  className={`bg-background rounded-lg p-4 flex flex-col border ${index === 0 ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600'
+                    }`}
+                >
+                  <h4 className="text-lg font-semibold mb-2">{post.title} {index === 0 && (
+                    <Badge variant="secondary" className="border-[var(--vp-c-brand-1)] my-auto mx-auto align-middle">
+                      Latest
+                    </Badge>
+                  )}</h4>
+                  <p className="text-sm text-muted-foreground mb-2">{post.date}</p>
+                  <p className="text-muted-foreground flex-grow">{post.excerpt}</p>
+                  <Link
+                    href={`/blog/post/${post.id}`}
+                    className="text-primary hover:text-primary/80 mt-2 inline-flex items-center"
+                  >
+                    Read more
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
-
     </main>
   );
 }
