@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {useEffect, useRef, useState} from "react";
 import {cn} from "@/lib/utils";
@@ -13,13 +13,19 @@ export default function HeaderBase({unfix, children}: { unfix?: boolean, childre
     };
 
     document.addEventListener("scroll", onScroll);
-
     return () => document.removeEventListener("scroll", onScroll);
-  }, [scrolled]);
-  
+  }, []);
+
   return (
-    <header className={cn(!unfix && 'fixed left-0 w-[100vw]', 'bg-background z-50', !unfix && scrolled && 'shadow-xl transition-shadow motion-reduce:transition-none')} ref={binding}>
+    <header
+      ref={binding}
+      className={cn(
+        !unfix && 'fixed left-0 w-[100vw]',
+        'bg-background z-50',
+        !unfix && scrolled && 'shadow-xl transition-shadow motion-reduce:transition-none'
+      )}
+    >
       {children}
     </header>
-  )
+  );
 }
