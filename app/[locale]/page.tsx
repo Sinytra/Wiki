@@ -114,11 +114,11 @@ function HomePageContent() {
         <p className="text-center text-xl text-muted-foreground mx-auto">
           {t('subtitle')}
         </p>
-        <div className="text-center mt-4 md:hidden">
-          <button
-            className="block mx-auto bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 text-white animate-gradient rounded px-12 py-2">
+        <div className="text-center mt-8 md:hidden">
+          <LocaleNavLink href="/browse"
+            className="w-fit block mx-auto bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 text-white animate-gradient rounded px-12 py-2">
             {t('browse')}
-          </button>
+          </LocaleNavLink>
         </div>
       </section>
 
