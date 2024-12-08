@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 
-function IconRow({icon: Icon, children}: { icon?: any, children: any }) {
+export function IconRow({icon: Icon, children}: { icon?: any, children: any }) {
   return (
     <div className="inline-flex items-center whitespace-nowrap gap-2">
       { Icon && <Icon className="w-4 h-4"/> }

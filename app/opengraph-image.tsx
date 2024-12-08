@@ -9,6 +9,7 @@ export const size = {
   height: 630,
 }
 
+// noinspection JSUnusedGlobalSymbols
 export const contentType = 'image/png'
 
 // Image generation

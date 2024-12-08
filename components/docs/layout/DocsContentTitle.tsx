@@ -24,7 +24,9 @@ export default function DocsContentTitle({ project, children, titleClassName, ve
         <div className={cn("flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", project?.versions ? 'items-center' : 'items-end')}>
           {project?.local && <Badge variant="destructive">{t('local')}</Badge>}
           {project?.is_community && <CommunityDocsBadge />}
-          {project?.versions && <DocsBranchSelector branch={version} branches={project?.versions} />}
+          <div className="hidden md:block">
+            {project?.versions && <DocsBranchSelector branch={version} branches={project?.versions} />}
+          </div>
         </div>
       </div>
       <hr className="mt-4 mb-6 border-neutral-600"/>
