@@ -40,16 +40,16 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
 
       <div className="inline-flex gap-4 mt-4">
         {issueURL &&
-            <Button variant="secondary" asChild>
-                <Link href={issueURL} target="_blank">
-                    <GitHubIcon className="mr-2 w-4 h-4"/>
-                    {t('submit')}
-                </Link>
-            </Button>
+          <Button variant="secondary" asChild>
+              <Link href={issueURL} target="_blank">
+                  <GitHubIcon className="mr-2 w-4 h-4"/>
+                {t('submit')}
+              </Link>
+          </Button>
         }
         <PrimaryButton asChild>
           <NavLink href="/">
-            <HouseIcon className="mr-2 w-4 h-4" strokeWidth={2.5} />
+            <HouseIcon className="mr-2 w-4 h-4" strokeWidth={2.5}/>
             {t('return')}
           </NavLink>
         </PrimaryButton>
@@ -68,8 +68,11 @@ export default async function ProjectLayout({children, params}: Readonly<{
   if (!data) redirect('/');
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={data.project.is_public ? getIssueCreationLink(data.project.source_repo) : undefined}/>}  >
-      <ProjectDocsBaseLayout leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version} />}>
+    <ErrorBoundary fallback={<DocsPageNotFoundError
+      issueURL={data.project.is_public ? getIssueCreationLink(data.project.source_repo) : undefined}/>}>
+      <ProjectDocsBaseLayout
+        leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version}
+                             locales={data.project.locales}/>}>
         {children}
       </ProjectDocsBaseLayout>
     </ErrorBoundary>

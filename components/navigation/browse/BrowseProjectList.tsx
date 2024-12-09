@@ -11,7 +11,7 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
   return <>
     <div className="flex flex-col gap-2">
       {...results.data.map((m) => (
-        <BrowseProject key={m.id} mod={m}/>
+        <BrowseProject key={m.id} project={m}/>
       ))}
       {results.data.length === 0 &&
           <span className="text-center my-3 text-muted-foreground">

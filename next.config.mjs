@@ -4,6 +4,7 @@ import available from "./lib/locales/available.js";
 import remarkGfm from 'remark-gfm';
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import { withContentlayer } from "next-contentlayer";
 
 const withNextIntl = createNextIntlPlugin(
     './components/i18n/request.tsx'
@@ -37,10 +38,10 @@ const withMDX = createMDX({
     options: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
-            [rehypePrettyCode, {theme: 'plastic'}],
+            [rehypePrettyCode, { theme: 'plastic' }],
             rehypeSlug
         ]
     }
 })
 
-export default withNextIntl(withMDX(nextConfig));
+export default withContentlayer(withNextIntl(withMDX(nextConfig)));

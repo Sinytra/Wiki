@@ -75,9 +75,16 @@ async function getBackendLayout(project: string, version: string | null, locale:
 
 async function getAsset(project: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(project, `project/${project}/asset/${location}`, {version});
+    const resp = await fetchBackendService(project, `project/${project}/asset/${location}`, {
+      version,
+      optional: "true"
+    });
     if (resp.ok) {
       const json = await resp.json() as AssetResponse;
+      if ('error' in json) {
+        return null;
+      }
+
       return {
         id: location,
         src: json.data
