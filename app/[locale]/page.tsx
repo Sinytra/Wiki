@@ -26,6 +26,8 @@ import remoteServiceApi, {FeaturedProject} from "@/lib/service/remoteServiceApi"
 import {Suspense, use} from "react";
 import {Skeleton} from "@/components/ui/skeleton";
 import blog from "@/lib/blog";
+import { allBlogs } from "@/.contentlayer/generated";
+import { compareDesc, formatDistanceStrict } from "date-fns";
 
 export const dynamic = 'force-static';
 
@@ -96,7 +98,7 @@ function FeaturedProjectsFallback() {
 function HomePageContent() {
   const t = useTranslations('HomePage');
   const featuredProjects = remoteServiceApi.getFeaturedProjects();
-  const latestBlogPosts = blog.getAllPosts().slice(0, 3);
+  const blogPosts = allBlogs.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3);
 
   return (
     <main className="container mx-auto px-4">
@@ -285,16 +287,16 @@ function HomePageContent() {
               {t('blog.title')}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {latestBlogPosts.map((post, index) => (
+              {blogPosts.map((post, index) => (
                 <div
                   key={index}
                   className={`bg-background rounded-lg p-4 flex flex-col border ${index === 0 ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600'}`}
                 >
                   <h4 className="text-lg font-semibold mb-2">{post.title}</h4>
-                  <p className="text-sm text-muted-foreground mb-2">{post.date}</p>
+                  <p className="text-sm text-muted-foreground mb-2">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
                   <p className="text-muted-foreground flex-grow">{post.excerpt}</p>
                   <Link
-                    href={`/blog/post/${post.id}`}
+                    href={`/blog/${post._id.replace(".mdx", "")}`}
                     className="text-primary hover:text-primary/80 mt-2 inline-flex items-center"
                   >
                     {t('blog.open')}
