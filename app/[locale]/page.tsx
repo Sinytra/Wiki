@@ -20,14 +20,13 @@ import {Button} from "@/components/ui/button";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
-import DiscordIcon from "@/components/ui/icons/DiscordIcon";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import remoteServiceApi, {FeaturedProject} from "@/lib/service/remoteServiceApi";
 import {Suspense, use} from "react";
 import {Skeleton} from "@/components/ui/skeleton";
-import blog from "@/lib/blog";
 import { allBlogs } from "@/.contentlayer/generated";
 import { compareDesc, formatDistanceStrict } from "date-fns";
+import SocialButtons from "@/components/ui/custom/SocialButtons";
 
 export const dynamic = 'force-static';
 
@@ -259,28 +258,7 @@ function HomePageContent() {
             <p className="text-muted-foreground mb-4">
               {t('about.mission')}
             </p>
-            <div className="flex flex-row flex-wrap gap-4">
-              <a href="https://www.curseforge.com/members/su5ed/projects" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
-                  <CurseForgeIcon className="h-5 w-5"/>
-                </Button>
-              </a>
-              <a href="https://modrinth.com/organization/sinytra" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
-                  <ModrinthIcon className="h-5 w-5"/>
-                </Button>
-              </a>
-              <a href="https://github.com/Sinytra" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
-                  <GitHubIcon className="h-5 w-5"/>
-                </Button>
-              </a>
-              <a href="https://discord.sinytra.org/" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
-                  <DiscordIcon className="h-5 w-5"/>
-                </Button>
-              </a>
-            </div>
+            <SocialButtons />
           </div>
           <div className="lg:w-2/3">
             <h2 className="text-xl font-semibold mb-4">
