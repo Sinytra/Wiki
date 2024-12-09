@@ -12,6 +12,7 @@ import {useTranslations} from "next-intl";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
 import {redirect} from "next/navigation";
 import service from "@/lib/service";
+import {NuqsAdapter} from "nuqs/adapters/next/app";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -68,13 +69,15 @@ export default async function ProjectLayout({children, params}: Readonly<{
   if (!data) redirect('/');
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError
-      issueURL={data.project.is_public ? getIssueCreationLink(data.project.source_repo) : undefined}/>}>
-      <ProjectDocsBaseLayout
-        leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version}
-                             locales={data.project.locales}/>}>
-        {children}
-      </ProjectDocsBaseLayout>
-    </ErrorBoundary>
+    <NuqsAdapter>
+      <ErrorBoundary fallback={<DocsPageNotFoundError
+        issueURL={data.project.is_public ? getIssueCreationLink(data.project.source_repo) : undefined}/>}>
+        <ProjectDocsBaseLayout
+          leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version}
+                               locales={data.project.locales}/>}>
+          {children}
+        </ProjectDocsBaseLayout>
+      </ErrorBoundary>
+    </NuqsAdapter>
   )
 }

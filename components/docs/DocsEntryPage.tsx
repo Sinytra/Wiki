@@ -11,6 +11,9 @@ import {pick} from "lodash";
 import {RenderedDocsPage} from "@/lib/service";
 import platforms from "@/lib/platforms";
 import MobileDocsToolbar from "@/components/docs/MobileDocsToolbar";
+import DocsEntryHistory from "@/components/docs/DocsEntryHistory";
+import TabSwitchedDocsContent from "@/components/docs/tabs/TabSwitchedDocsContent";
+import React from "react";
 
 export default async function DocsEntryPage({page, path, locale, locales, version, versions}: {
   page: RenderedDocsPage;
@@ -43,11 +46,18 @@ export default async function DocsEntryPage({page, path, locale, locales, versio
                                         version={version} versions={versions}/>}
     >
       <div className="flex flex-col">
-        <DocsContentTitle project={page.project} version={version}>
+        <DocsContentTitle project={page.project} version={version} tabs={page.content.metadata.history !== undefined}>
           {page.content.metadata.title || project.name}
         </DocsContentTitle>
 
-        <DocsMarkdownContent content={page.content.content}/>
+        <TabSwitchedDocsContent
+          main={
+            <DocsMarkdownContent content={page.content.content}/>
+          }
+          history={
+            page.content.metadata.history ? <DocsEntryHistory changelog={page.content.metadata.history}/> : null
+          }
+        />
       </div>
     </ProjectDocsEntryPageLayout>
   )

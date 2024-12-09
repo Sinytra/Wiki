@@ -1,13 +1,11 @@
-import { allBlogs } from "@/.contentlayer/generated"
-import { notFound } from "next/navigation"
-import { format, parseISO } from 'date-fns'
-import { useMDXComponent } from 'next-contentlayer/hooks'
-import { useMDXComponents } from "mdx-components"
-import { setContextLocale } from "@/lib/locales/routing";
-import Header from "@/components/navigation/header"
+import {allBlogs} from "@/.contentlayer/generated"
+import {notFound} from "next/navigation"
+import {format, parseISO} from 'date-fns'
+import {useMDXComponent} from 'next-contentlayer/hooks'
+import {useMDXComponents} from "mdx-components"
+import {setContextLocale} from "@/lib/locales/routing";
 import BlogHeader from "@/components/navigation/BlogHeader"
 import SocialButtons from "@/components/ui/custom/SocialButtons"
-import { Button } from "@/components/ui/button"
 
 export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }))
 
