@@ -5,6 +5,8 @@ import {Badge} from "@/components/ui/badge";
 import {useTranslations} from "next-intl";
 import {setContextLocale} from "@/lib/locales/routing";
 import blog from "@/lib/blog";
+import { allBlogs } from "@/.contentlayer/generated";
+import { compareDesc, formatDistance, formatDistanceStrict, formatRelative } from "date-fns";
 
 export const dynamic = 'force-static';
 
@@ -21,7 +23,7 @@ function BlogPost({id, name, desc, date, latest}: {
     <div className={cn('border px-3 py-2 rounded-sm', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600')}>
       <div className="flex flex-row items-center justify-between w-full">
         <div className="flex flex-row items-center w-fit gap-2">
-          <Link href={`/blog/post/${id}`} className="text-lg !no-underline hover:!underline">
+          <Link href={`/blog/${id.replace(".mdx", "")}`} className="text-lg !no-underline hover:!underline">
             {name}
           </Link>
 
@@ -32,7 +34,7 @@ function BlogPost({id, name, desc, date, latest}: {
           }
         </div>
 
-        <span className="text-muted-foreground">{date}</span>
+        <span className="text-muted-foreground">{formatDistanceStrict(date, new Date(), { addSuffix: true })}</span>
       </div>
 
       <span className="font-normal text-muted-foreground">{desc}</span>
@@ -43,15 +45,17 @@ function BlogPost({id, name, desc, date, latest}: {
 export default async function Blog() {
   setContextLocale('en');
 
+  const blogPosts = allBlogs.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+
   return (
     <div className="flex flex-col">
-      <BlogHeader/>
+      <BlogHeader hideSubtext={false} />
 
       <span className="text-xl mb-4 pb-1 border-b">Recent posts</span>
 
       <div className="flex flex-col gap-6">
-        {...blog.getAllPosts().map((post, index) => (
-          <BlogPost key={post.id} id={post.id} name={post.title} desc={post.excerpt} date={post.date}
+        {...blogPosts.map((post, index) => (
+          <BlogPost key={post._id} id={post._id} name={post.title} desc={post.excerpt} date={post.date}
                     latest={index === 0}/>
         ))}
       </div>
