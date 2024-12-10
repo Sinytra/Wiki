@@ -1,15 +1,13 @@
-import {ReactNode} from "react";
-import {setContextLocale} from "@/lib/locales/routing";
+import { ReactNode } from "react";
+import { setContextLocale } from "@/lib/locales/routing";
 
-export default function LocaleLayout({params, children}: Readonly<{
+export default function LocaleLayout({ params, children }: Readonly<{
   params: { locale: string };
   children: ReactNode;
 }>) {
   setContextLocale(params.locale);
 
-  return (
-    <div className="page-wrapper flex flex-1 min-h-[100vh] mx-4 sm:mx-2">
-      {children}
-    </div>
-  )
+  return <div className="flex flex-col min-h-screen mx-4 page-wrapper sm:mx-2">
+    {children}
+  </div>;
 }
