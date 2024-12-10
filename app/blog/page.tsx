@@ -4,9 +4,8 @@ import {cn} from "@/lib/utils";
 import {Badge} from "@/components/ui/badge";
 import {useTranslations} from "next-intl";
 import {setContextLocale} from "@/lib/locales/routing";
-import blog from "@/lib/blog";
-import { allBlogs } from "@/.contentlayer/generated";
-import { compareDesc, formatDistance, formatDistanceStrict, formatRelative } from "date-fns";
+import {allBlogs} from "@/.contentlayer/generated";
+import {compareDesc, formatDistanceStrict} from "date-fns";
 
 export const dynamic = 'force-static';
 

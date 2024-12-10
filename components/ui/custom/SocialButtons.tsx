@@ -7,7 +7,7 @@ import DiscordIcon from "../icons/DiscordIcon";
 import GitHubIcon from "../icons/GitHubIcon";
 import ModrinthIcon from "../icons/ModrinthIcon";
 
-export default function SocialButtons({ enableSharing, shareData }: { enableSharing: boolean, shareData?: any }) {
+export default function SocialButtons({ enableSharing, shareData }: { enableSharing?: boolean, shareData?: any }) {
     const isShareSupported = typeof navigator !== "undefined" && typeof navigator.share === "function";
     
     const handleShare = () => {
