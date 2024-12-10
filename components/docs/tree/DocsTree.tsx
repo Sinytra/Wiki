@@ -5,6 +5,8 @@ import {getTranslations} from "next-intl/server";
 import * as LucideIcons from 'lucide-react';
 import DirectoryTreeView from "@/components/docs/tree/DirectoryTreeView";
 import {FileTree, FileTreeEntry} from "@/lib/service";
+import available from "@/lib/locales/available";
+import {Language} from "@/lib/types/available";
 
 function FileIcon<T extends { file: FileTreeEntry } & Record<string, any>>({file, ...props}: T) {
   if (file.icon) {
@@ -35,7 +37,7 @@ function DocsFileTree({slug, version, tree, level}: {
                                </span>
                              }
         >
-          <DocsFileTree slug={slug} version={version} tree={file.children!} level={level + 1} />
+          <DocsFileTree slug={slug} version={version} tree={file.children!} level={level + 1}/>
         </DirectoryTreeView>
         :
         <div key={file.path} className="w-full pt-2"
@@ -48,15 +50,16 @@ function DocsFileTree({slug, version, tree, level}: {
   </>
 }
 
-export default async function DocsTree({slug, version, tree}: {
+export default async function DocsTree({slug, version, tree, locales}: {
   slug: string;
   version: string;
   tree: FileTree;
+  locales?: string[];
 }) {
   const t = await getTranslations('DocsFileTree');
 
   return (
-    <CollapsibleDocsTreeBase title={t('title')}>
+    <CollapsibleDocsTreeBase title={t('title')} locales={locales}>
       <ProjectHomepageLink text={t('homepage')} slug={slug} version={version}/>
 
       <hr className="mt-2"/>

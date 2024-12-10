@@ -73,7 +73,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
             }
           </nav>
 
-          {!minimal && <LanguageSelect locale={locale}/>}
+          {!minimal && <LanguageSelect locale={locale} />}
         </div>
       </div>
     </HeaderBase>

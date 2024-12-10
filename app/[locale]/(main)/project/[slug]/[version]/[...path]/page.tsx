@@ -20,7 +20,7 @@ export async function generateMetadata({params}: {
     return {title: (await parent).title?.absolute};
   }
 
-  const project = await platforms.getPlatformProject(page.project.platform, page.project.slug);
+  const project = await platforms.getPlatformProject(page.project);
   const result = matter(page.content).data as DocsEntryMetadata;
 
   return {
@@ -45,7 +45,8 @@ export default async function ProjectDocsPage({params}: {
 
   return (
     <Suspense fallback={<DocsLoadingSkeleton/>}>
-      <DocsEntryPage page={page} path={params.path} version={params.version}/>
+      <DocsEntryPage locale={params.locale} locales={page.project.locales} page={page} path={params.path}
+                     version={params.version} versions={page.project.versions}/>
     </Suspense>
   )
 }

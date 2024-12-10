@@ -1,8 +1,7 @@
 'use server'
 
-import {ProjectSearchResult, WikiSearchResult, WikiSearchResults} from "@/lib/search";
+import {WikiSearchResult, WikiSearchResults} from "@/lib/search";
 import {getProcessURL} from "@/lib/utils";
-import service from "@/lib/service";
 
 export async function searchWikiServer(query: string): Promise<WikiSearchResults> {
   if (!process.env.SEARCH_ENDPOINT || !process.env.SEARCH_INDEX || !process.env.SEARCH_API_KEY) {
@@ -71,14 +70,4 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
   }
 
   return {total: 0, hits: []};
-}
-
-// TODO Deprecated
-export async function searchProjectsServer(query: string): Promise<ProjectSearchResult[]> {
-  if (!query || query.length === 0) {
-    return [];
-  }
-
-  const results = await service.searchProjects(query as any, 1, null, null);
-  return results.data.map(r => ({ id: r.id, name: r.name }));
 }

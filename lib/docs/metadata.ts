@@ -1,4 +1,3 @@
-import {ProjectPlatform} from "@/lib/platforms";
 import metadataJsonSchema from '@/public/sinytra-wiki.schema.json';
 import folderMetadataJsonSchema from '@/public/_meta.schema.json';
 import {Draft, Draft2019, JsonError} from "json-schema-library";
@@ -24,14 +23,6 @@ export interface DocsEntryMetadata {
   _headings?: FileHeading[];
 }
 
-// sinytra-wiki.json
-export interface DocumentationProjectMetadata {
-  id: string;
-  platform: ProjectPlatform;
-  slug: string;
-  versions?: Record<string, string>;
-}
-
 // _meta.json
 export interface RawDocumentationFolderMetadata extends Record<string, string | DocumentationFolderMetadataEntry> {}
 
@@ -40,14 +31,6 @@ export interface DocumentationFolderMetadata extends Record<string, Documentatio
 export interface DocumentationFolderMetadataEntry {
   name: string;
   icon?: string;
-}
-
-function parseMetadata(source: string): DocumentationProjectMetadata {
-  const meta = JSON.parse(source);
-
-  validateMetadataFile(meta);
-
-  return meta as DocumentationProjectMetadata;
 }
 
 function parseFolderMetadata(source: string): DocumentationFolderMetadata {
@@ -96,7 +79,6 @@ function validateFolderMetadataFile(obj: any): boolean {
 }
 
 export default {
-  parseMetadata,
   validateMetadataFile,
   parseFolderMetadata
 };

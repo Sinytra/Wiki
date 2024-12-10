@@ -1,9 +1,11 @@
 import {Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
+import platforms, {ProjectPlatform} from "@/lib/platforms";
+import {ProjectType} from "@/lib/service/types";
 
 export type RegistrationErrors = 'user_github_auth' | 'insufficient_wiki_perms' | 'unsupported' | 'missing_installation'
-    | 'insufficient_repo_perms' | 'no_branch' | 'no_meta' | 'invalid_meta' | 'exists' | 'cf_unavailable' | 'no_project'
-    | 'ownership' | 'internal';
+  | 'insufficient_repo_perms' | 'no_branch' | 'no_meta' | 'invalid_meta' | 'exists' | 'cf_unavailable' | 'no_project'
+  | 'ownership' | 'internal';
 
 interface SuccessResponse {
   message: string;
@@ -119,7 +121,7 @@ async function getUserDevProjects(token: string): Promise<DevProjectsResponse | 
     if (resp.ok) {
       return await resp.json();
     }
-    return { status: resp.status };
+    return {status: resp.status};
   } catch (e) {
     console.error(e);
     throw e;
@@ -136,6 +138,56 @@ async function getAllProjectIDs(): Promise<string[]> {
     console.error(e);
   }
   return [];
+}
+
+async function getPopularProjects(): Promise<Project[]> {
+  try {
+    const resp = await sendSimpleRequest(`projects/popular`, {}, 'GET');
+    if (resp.ok) {
+      return await resp.json() as Project[];
+    }
+  } catch (e) {
+    console.error(e);
+  }
+  return [];
+}
+
+export interface FeaturedProject {
+  title: string;
+  summary: string;
+  icon: string;
+  type: ProjectType;
+  links: {
+    curseforge?: string;
+    modrinth?: string;
+    github?: string;
+  }
+}
+
+async function getFeaturedProjects(): Promise<FeaturedProject[]> {
+  try {
+    const popular = await getPopularProjects();
+    const platformsProjects = await Promise.all(popular.map(async proj => {
+      const resolved = await platforms.getPlatformProject(proj);
+      return {project: proj, resolved}
+    }));
+    return platformsProjects.map(({project, resolved}) => ({
+      title: resolved.name,
+      summary: resolved.summary,
+      icon: resolved.icon_url,
+      type: resolved.type,
+      links: {
+        ...Object.entries(project.platforms).reduce((prev, cur) => ({
+          ...prev,
+          [cur[0]]: platforms.getProjectURL(cur[0] as ProjectPlatform, cur[1])
+        }), {}),
+        github: resolved.source_url
+      }
+    }));
+  } catch (e) {
+    console.error('Error getting featured projects', e);
+    return [];
+  }
 }
 
 function urlParams(params: Record<string, string | null>) {
@@ -190,5 +242,6 @@ export default {
   revalidateProject,
   getAllProjectIDs,
   migrateRepository,
-  getUserDevProjects
+  getUserDevProjects,
+  getFeaturedProjects
 }
