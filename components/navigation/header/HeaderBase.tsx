@@ -18,7 +18,7 @@ export default function HeaderBase({unfix, children}: { unfix?: boolean, childre
   }, [scrolled]);
   
   return (
-    <header className={cn(!unfix && 'fixed left-0 w-[100vw]', 'bg-background z-45', !unfix && scrolled && 'shadow-xl transition-shadow motion-reduce:transition-none')} ref={binding}>
+    <header className={cn(!unfix && 'fixed left-0 w-[100vw]', 'bg-background z-50', !unfix && scrolled && 'shadow-xl transition-shadow motion-reduce:transition-none')} ref={binding}>
       {children}
     </header>
   )

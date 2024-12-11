@@ -55,6 +55,8 @@ export default function RightSidebar({
       fixed lg:static inset-y-0 right-0
       transition-all duration-300 ease-in-out
       overflow-hidden border-l border-border bg-background
+
+      sm:z-[65]
     `}>
       <div
         className="h-full p-4 space-y-5 overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-secondary/20">
