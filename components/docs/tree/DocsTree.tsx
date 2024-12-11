@@ -5,8 +5,6 @@ import {getTranslations} from "next-intl/server";
 import * as LucideIcons from 'lucide-react';
 import DirectoryTreeView from "@/components/docs/tree/DirectoryTreeView";
 import {FileTree, FileTreeEntry} from "@/lib/service";
-import available from "@/lib/locales/available";
-import {Language} from "@/lib/types/available";
 
 function FileIcon<T extends { file: FileTreeEntry } & Record<string, any>>({file, ...props}: T) {
   if (file.icon) {

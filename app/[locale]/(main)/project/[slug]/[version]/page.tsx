@@ -1,9 +1,12 @@
 import { Metadata, ResolvingMetadata } from "next";
 import { setContextLocale } from "@/lib/locales/routing";
-import platforms from "@/lib/platforms";
-import DocsLayoutClient from "@/components/docs/new/DocsLayoutClient"
+import platforms, {PlatformProject} from "@/lib/platforms";
 import { HOMEPAGE_FILE_PATH } from "@/lib/constants";
-import service from "@/lib/service";
+import service, {Project} from "@/lib/service";
+import {redirect} from "next/navigation";
+import DocsMarkdownContent from "@/components/docs/new/DocsMarkdownContent";
+import DocsHomepagePlaceholder from "@/components/docs/DocsHomepagePlaceholder";
+import MarkdownContent from "@/components/docs/markdown/MarkdownContent";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -39,6 +42,34 @@ interface PageProps {
   };
 }
 
+async function ProjectHomepage({project, platformProject, version, locale}: {
+  project: Project;
+  platformProject: PlatformProject;
+  version: string;
+  locale: string;
+}) {
+  // Attempt to resolve custom homepage
+  const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale, true);
+  if (result) {
+    return (
+      <DocsMarkdownContent>
+        {result.content.content}
+      </DocsMarkdownContent>
+    );
+  }
+
+  // File does not exist, fallback to project desc
+  return (
+    platformProject.is_placeholder
+      ?
+      <DocsHomepagePlaceholder/>
+      :
+      <div>
+        <MarkdownContent content={platformProject.description}/>
+      </div>
+  );
+}
+
 export default async function Homepage({ params }: PageProps) {
   // Set the locale context on the server
   setContextLocale(params.locale);
@@ -46,25 +77,15 @@ export default async function Homepage({ params }: PageProps) {
   // Fetch project data
   const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
   if (!projectData) {
-    // Handle redirection or error rendering
-    return <div>Project not found</div>;
-    // Or use Next.js redirection:
-    // import { redirect } from 'next/navigation';
-    // redirect('/');
+    return redirect('/');
   }
 
   const platformProject = await platforms.getPlatformProject(projectData.project);
 
-  // Attempt to resolve custom homepage content
-  const result = await service.renderDocsPage(
-    projectData.project.id,
-    [HOMEPAGE_FILE_PATH],
-    params.version,
-    params.locale,
-    true
-  );
-
-  const homepageContent = result ? result.content.content : null;
-
-  return homepageContent;
+  return (
+    <ProjectHomepage project={projectData.project}
+                     platformProject={platformProject} version={params.version}
+                     locale={params.locale}
+    />
+  )
 }

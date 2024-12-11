@@ -7,3 +7,8 @@ export const HOMEPAGE_FILE_PATH = '_homepage';
 export const DEFAULT_DOCS_VERSION = 'docs';
 
 export const DEFAULT_LOCALE = 'en';
+
+export const DEFAULT_WIKI_LICENSE = {
+  name: 'CC BY-NC-SA 4.0',
+  url: 'https://creativecommons.org/licenses/by-nc-sa/4.0'
+}

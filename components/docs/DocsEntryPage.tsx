@@ -25,30 +25,14 @@ export default async function DocsEntryPage({page, path, locale, locales, versio
   const messages = await getMessages();
 
   return (
-    <ProjectDocsEntryPageLayout
-      rightPanel={
-        <div className="flex flex-col h-full">
-          {!page.content.metadata.hide_meta && <DocsEntryInfo project={page.project} platformProject={project}
-                                                              metadata={page.content.metadata as DocsEntryMetadata}
-                                                              version={version}/>}
-          {page.content.metadata.hide_meta && page.content.metadata._headings &&
-            <NextIntlClientProvider messages={pick(messages, 'DocsTableOfContents')}>
-                <DocsTableOfContents headings={page.content.metadata._headings}/>
-            </NextIntlClientProvider>
-          }
-          {<PageEditControls edit_url={page.edit_url} updated_at={page.updated_at} slug={page.project.id} path={path}/>}
-        </div>
-      }
-      mobileToolbar={<MobileDocsToolbar locale={locale} locales={locales}
-                                        version={version} versions={versions}/>}
-    >
-      <div className="flex flex-col">
-        <DocsContentTitle project={page.project} version={version}>
-          {page.content.metadata.title || project.name}
-        </DocsContentTitle>
+    <div className="flex flex-col">
+      <DocsContentTitle project={page.project} version={version}>
+        {page.content.metadata.title || project.name}
+      </DocsContentTitle>
 
-        <DocsMarkdownContent content={page.content.content}/>
-      </div>
-    </ProjectDocsEntryPageLayout>
+      <DocsMarkdownContent>
+        {page.content.content}
+      </DocsMarkdownContent>
+    </div>
   )
 }

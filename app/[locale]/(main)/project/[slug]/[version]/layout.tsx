@@ -1,11 +1,14 @@
-// /app/homepage/layout.tsx
-
-import { ReactNode } from "react";
-import { Metadata, ResolvingMetadata } from "next";
-import { setContextLocale } from "@/lib/locales/routing";
+import {ReactNode} from "react";
+import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@/lib/platforms";
 import service from "@/lib/service";
 import DocsLayoutClient from "@/components/docs/new/DocsLayoutClient";
+import {HOMEPAGE_FILE_PATH} from "@/lib/constants";
+import {redirect} from "next/navigation";
+import {getPlatformProjectInformation} from "@/components/docs/project-info/projectInfo";
+import {NextIntlClientProvider} from "next-intl";
+import {getMessages} from "next-intl/server";
+import {pick} from "lodash";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -19,65 +22,32 @@ interface LayoutProps {
   };
 }
 
-export async function generateMetadata(
-  { params }: LayoutProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const project = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
-  if (!project) {
-    return { title: (await parent).title?.absolute };
-  }
-
-  const platformProject = await platforms.getPlatformProject(project);
-
-  return {
-    title: `${platformProject.name} - ${(await parent).title?.absolute}`,
-    openGraph: {
-      images: [`/api/og?slug=${params.slug}&locale=${params.locale}`],
-    },
-    other: {
-      docs_source_mod: platformProject.name,
-      docs_source_icon: platformProject.icon_url,
-    },
-  };
-}
-
-export default async function HomepageLayout({ children, params }: LayoutProps) {
-  // Set the locale context on the server
+export default async function HomepageLayout({children, params}: LayoutProps) {
   setContextLocale(params.locale);
 
-  // Fetch project data
+  const messages = await getMessages();
+
   const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
   if (!projectData) {
-    // Handle redirection or error rendering
-    return <div>Project not found</div>;
-    // Alternatively, use Next.js redirection:
-    // import { redirect } from 'next/navigation';
-    // redirect('/');
+    return redirect('/');
   }
 
   const platformProject = await platforms.getPlatformProject(projectData.project);
 
-  // Attempt to resolve custom homepage content
-  const result = await service.renderDocsPage(
-    projectData.project.id,
-    [service.HOMEPAGE_FILE_PATH],
-    params.version,
-    params.locale,
-    true
-  );
-
-  const homepageContent = result ? result.content.content : null;
+  const info = await getPlatformProjectInformation(platformProject);
 
   return (
-    <DocsLayoutClient
-      project={projectData.project}
-      platformProject={platformProject}
-      version={params.version}
-      locale={params.locale}
-      homepageContent={homepageContent}
-    >
-      {children}
-    </DocsLayoutClient>
+    <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories')}>
+      <DocsLayoutClient
+        project={projectData.project}
+        platformProject={platformProject}
+        projectInfo={info}
+        version={params.version}
+        locale={params.locale}
+        tree={projectData.tree}
+      >
+        {children}
+      </DocsLayoutClient>
+    </NextIntlClientProvider>
   );
 }

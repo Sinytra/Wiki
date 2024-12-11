@@ -1,72 +1,122 @@
-import { Box, Code2, FileCode2, Github, Globe, CopyrightIcon as License, Tags, User, X } from 'lucide-react'
-import Link from "next/link"
+import {CopyrightIcon as License, Globe, MilestoneIcon, Tags, User, X} from 'lucide-react'
+import GitHubIcon from "@/components/ui/icons/GitHubIcon";
+import {Project} from "@/lib/service";
+import platforms, {PlatformProject} from "@/lib/platforms";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
+import {ProjectDisplayInformation, ProjectTypeIcons} from "@/components/docs/project-info/projectInfo";
+import LinkTextButton from "@/components/ui/link-text-button";
+import {useTranslations} from "next-intl";
+import {cn} from "@/lib/utils";
+import {DEFAULT_WIKI_LICENSE} from "@/lib/constants";
+import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
+import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 
 interface RightSidebarProps {
-  isOpen: boolean
-  toggleSidebar: () => void
+  project: Project;
+  platformProject: PlatformProject;
+  projectInfo: ProjectDisplayInformation;
+  isOpen: boolean;
+  toggleSidebar: () => void;
 }
 
-export default function RightSidebar({ isOpen, toggleSidebar }: RightSidebarProps) {
+function DetailCategory({icon: Icon, className, innerClass, children}: {
+  icon: any;
+  className?: string;
+  innerClass?: string;
+  children?: any
+}) {
+  return (
+    <div className={cn("flex items-center space-x-2 text-muted-foreground", className)}>
+      <Icon className="w-4 h-4"/>
+      <div className={innerClass}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export default function RightSidebar({
+                                       project,
+                                       platformProject,
+                                       projectInfo,
+                                       isOpen,
+                                       toggleSidebar
+                                     }: RightSidebarProps
+) {
+  const TypeIcon = ProjectTypeIcons[project.type];
+  const types = useTranslations('ProjectTypes');
+  const categories = useTranslations('ProjectCategories');
+
   return (
     <aside className={`
       ${isOpen ? 'translate-x-0' : 'translate-x-full'}
       lg:translate-x-0
       ${isOpen ? 'w-64' : 'w-0 lg:w-64'}
-      fixed lg:static inset-y-0 right-0 z-75
+      fixed lg:static inset-y-0 right-0
       transition-all duration-300 ease-in-out
       overflow-hidden border-l border-border bg-background
     `}>
-      <div className="h-full p-4 space-y-4 overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-secondary/20">
+      <div
+        className="h-full p-4 space-y-5 overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-secondary/20">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-sm font-semibold text-muted-foreground">Project Information</h3>
           <button onClick={toggleSidebar} className="lg:hidden text-muted-foreground">
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5"/>
           </button>
         </div>
         {/* Project Icon & Name */}
         <div className="flex items-center space-x-3">
           <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
-            <Box className="w-6 h-6 text-secondary-foreground" />
+            <ImageWithFallback src={platformProject.icon_url} width={48} height={48} fbWidth={24} fbHeight={24}
+                               className="!opacity-100 !text-secondary-foreground" alt="Logo"
+                               strokeWidth={2}/>
           </div>
           <div>
-            <h2 className="text-lg font-bold">Project Name</h2>
-            <p className="text-xs text-muted-foreground">A brief project description</p>
+            <h2 className="text-lg font-bold">
+              {platformProject.name}
+            </h2>
+            <p className="text-xs text-muted-foreground">
+              {platformProject.summary}
+            </p>
           </div>
         </div>
 
         {/* Project Details */}
         <div className="space-y-3 text-sm">
-          {/* Author */}
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <User className="w-4 h-4" />
-            <span>Author Name</span>
-          </div>
-
           {/* Project Type */}
           <div className="flex items-center space-x-2 text-muted-foreground">
-            <FileCode2 className="w-4 h-4" />
-            <span>Mod</span>
+            <TypeIcon className="w-4 h-4"/>
+            <span>
+              {types(project.type)}
+            </span>
           </div>
 
+          {/* Author */}
+          <DetailCategory icon={User} innerClass="myItems flex flex-row flex-wrap justify-end">
+            {projectInfo.authors.map(a => (
+              <div key={a.name}>
+                <LinkTextButton className="!font-normal !text-muted-foreground" href={a.url} target="_blank">
+                  {a.name}
+                </LinkTextButton>
+              </div>
+            ))}
+          </DetailCategory>
+
           {/* Latest Version */}
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Code2 className="w-4 h-4" />
-            <span>MC 1.20.2</span>
-          </div>
+          <DetailCategory icon={MilestoneIcon}>
+            {projectInfo.latest_version}
+          </DetailCategory>
 
           {/* Tags */}
           <div>
-            <div className="flex items-center space-x-2 text-muted-foreground mb-1">
-              <Tags className="w-4 h-4" />
-              <span>Tags</span>
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {['Technology', 'Automation', 'Magic'].map((tag) => (
+            <DetailCategory icon={Tags} className="mb-2">Tags</DetailCategory>
+            <div className="flex flex-wrap gap-1 ml-5">
+              {platformProject.categories.map((tag) => (
                 <span
                   key={tag}
                   className="px-2 py-0.5 text-xs bg-secondary text-secondary-foreground rounded-md"
                 >
-                  {tag}
+                  {categories(tag as any)}
                 </span>
               ))}
             </div>
@@ -74,29 +124,51 @@ export default function RightSidebar({ isOpen, toggleSidebar }: RightSidebarProp
 
           {/* Licenses */}
           <div>
-            <div className="flex items-center space-x-2 text-muted-foreground mb-1">
-              <License className="w-4 h-4" />
-              <span>Licenses</span>
-            </div>
-            <div className="space-y-1 text-xs text-muted-foreground">
-              <div>Project: MIT</div>
-              <div>Wiki: CC BY-SA 4.0</div>
+            <DetailCategory icon={License} className="mb-2">Licenses</DetailCategory>
+            <div className="flex flex-col gap-2 text-muted-foreground ml-5">
+              <div>Project: {platformProject?.license?.url
+                ?
+                <LinkTextButton className="!font-normal !text-muted-foreground"
+                                href={platformProject.license.url}>
+                  {projectInfo.license.name}
+                </LinkTextButton>
+                : projectInfo.license.name
+              }</div>
+              <div>
+                Wiki: <LinkTextButton className="!font-normal !text-muted-foreground"
+                                      href={DEFAULT_WIKI_LICENSE.url}>
+                {DEFAULT_WIKI_LICENSE.name}
+              </LinkTextButton>
+              </div>
             </div>
           </div>
 
           {/* Links */}
           <div>
-            <div className="flex items-center space-x-2 text-muted-foreground mb-1">
-              <Globe className="w-4 h-4" />
-              <span>Links</span>
+            <DetailCategory icon={Globe} className="mb-2">Links</DetailCategory>
+            <div className="flex flex-col gap-1 ml-5">
+              {project.platforms.curseforge &&
+                <LinkTextButton href={platforms.getProjectURL('curseforge', project.platforms.curseforge)}
+                                className="!justify-start items-center gap-2 !font-normal !text-muted-foreground mb-1">
+                    <CurseForgeIcon className="w-4 h-4"/>
+                    <span>CurseForge</span>
+                </LinkTextButton>
+              }
+              {project.platforms.modrinth &&
+                <LinkTextButton href={platforms.getProjectURL('modrinth', project.platforms.modrinth)}
+                                className="!justify-start items-center gap-2 !font-normal !text-muted-foreground mb-1">
+                    <ModrinthIcon className="w-4 h-4"/>
+                    <span>Modrinth</span>
+                </LinkTextButton>
+              }
+              {platformProject.source_url &&
+                <LinkTextButton href={platformProject.source_url}
+                                className="!justify-start items-center gap-2 !font-normal !text-muted-foreground mb-1">
+                    <GitHubIcon className="w-4 h-4"/>
+                    <span>GitHub Repository</span>
+                </LinkTextButton>
+              }
             </div>
-            <Link
-              href="#"
-              className="flex items-center space-x-2 text-primary hover:text-primary/80 text-xs"
-            >
-              <Github className="w-4 h-4" />
-              <span>GitHub Repository</span>
-            </Link>
           </div>
         </div>
       </div>

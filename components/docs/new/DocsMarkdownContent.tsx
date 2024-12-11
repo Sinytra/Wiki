@@ -6,8 +6,8 @@ interface DocsMarkdownContentProps {
 
 export default function DocsMarkdownContent({ children }: DocsMarkdownContentProps) {
   return (
-    <div className="prose dark:prose-invert min-w-full">
+    <article className="prose dark:prose-invert min-w-full">
       {children}
-    </div>
+    </article>
   );
 }
