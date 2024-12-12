@@ -7,6 +7,10 @@ import {redirect} from "next/navigation";
 import DocsMarkdownContent from "@/components/docs/new/DocsMarkdownContent";
 import DocsHomepagePlaceholder from "@/components/docs/DocsHomepagePlaceholder";
 import MarkdownContent from "@/components/docs/markdown/MarkdownContent";
+import DocsInnerLayoutClient from "@/components/docs/new/DocsInnerLayoutClient";
+import {getPlatformProjectInformation} from "@/components/docs/project-info/projectInfo";
+import DocsPageFooter from "@/components/docs/new/DocsPageFooter";
+import DocsProjectRightSidebar from "@/components/docs/new/DocsProjectRightSidebar";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -71,21 +75,31 @@ async function ProjectHomepage({project, platformProject, version, locale}: {
 }
 
 export default async function Homepage({ params }: PageProps) {
-  // Set the locale context on the server
   setContextLocale(params.locale);
 
-  // Fetch project data
   const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
   if (!projectData) {
     return redirect('/');
   }
 
   const platformProject = await platforms.getPlatformProject(projectData.project);
+  const info = await getPlatformProjectInformation(platformProject); // TODO Suspense?
 
   return (
-    <ProjectHomepage project={projectData.project}
-                     platformProject={platformProject} version={params.version}
-                     locale={params.locale}
-    />
+    <DocsInnerLayoutClient project={projectData.project}
+                           tree={projectData.tree}
+                           version={params.version} locale={params.locale}
+                           rightSidebar={
+                             <DocsProjectRightSidebar project={projectData.project} platformProject={platformProject}
+                                                      projectInfo={info} isOpen/>
+                           }
+                           footer={
+                             <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
+                                             version={params.version} versions={projectData.project.versions}/>
+                           }
+    >
+      <ProjectHomepage project={projectData.project} platformProject={platformProject}
+                       version={params.version} locale={params.locale} />
+    </DocsInnerLayoutClient>
   )
 }

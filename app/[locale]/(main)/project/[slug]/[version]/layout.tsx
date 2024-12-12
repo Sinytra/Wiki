@@ -1,11 +1,8 @@
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
-import platforms from "@/lib/platforms";
 import service from "@/lib/service";
 import DocsLayoutClient from "@/components/docs/new/DocsLayoutClient";
-import {HOMEPAGE_FILE_PATH} from "@/lib/constants";
 import {redirect} from "next/navigation";
-import {getPlatformProjectInformation} from "@/components/docs/project-info/projectInfo";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
@@ -32,20 +29,9 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
     return redirect('/');
   }
 
-  const platformProject = await platforms.getPlatformProject(projectData.project);
-
-  const info = await getPlatformProjectInformation(platformProject);
-
   return (
-    <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories')}>
-      <DocsLayoutClient
-        project={projectData.project}
-        platformProject={platformProject}
-        projectInfo={info}
-        version={params.version}
-        locale={params.locale}
-        tree={projectData.tree}
-      >
+    <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls')}>
+      <DocsLayoutClient>
         {children}
       </DocsLayoutClient>
     </NextIntlClientProvider>

@@ -8,6 +8,9 @@ import {redirect} from "next/navigation";
 import matter from "gray-matter";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import platforms from "@/lib/platforms";
+import DocsInnerLayoutClient from "@/components/docs/new/DocsInnerLayoutClient";
+import DocsPageFooter from "@/components/docs/new/DocsPageFooter";
+import DocsContentRightSidebar from "@/components/docs/new/DocsContentRightSidebar";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -40,13 +43,32 @@ export default async function ProjectDocsPage({params}: {
 }) {
   setContextLocale(params.locale);
 
+  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
+  if (!projectData) {
+    return redirect('/');
+  }
+
   const page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
   if (!page) redirect(`/project/${params.slug}/docs`);
 
   return (
-    <Suspense fallback={<DocsLoadingSkeleton/>}>
-      <DocsEntryPage locale={params.locale} locales={page.project.locales} page={page} path={params.path}
-                     version={params.version} versions={page.project.versions}/>
-    </Suspense>
+    <DocsInnerLayoutClient project={page.project}
+                           tree={projectData.tree}
+                           version={params.version} locale={params.locale}
+                           rightSidebar={
+                            <DocsContentRightSidebar isOpen />
+                           }
+                           footer={
+                             <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
+                                             version={params.version} versions={projectData.project.versions}
+                                             editUrl={page.edit_url} updatedAt={page.updated_at}
+                             />
+                           }
+    >
+      <Suspense fallback={<DocsLoadingSkeleton/>}>
+        <DocsEntryPage locale={params.locale} locales={page.project.locales} page={page} path={params.path}
+                       version={params.version} versions={page.project.versions}/>
+      </Suspense>
+    </DocsInnerLayoutClient>
   )
 }

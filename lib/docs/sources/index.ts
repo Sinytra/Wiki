@@ -92,6 +92,11 @@ async function readLocalizedFile(provider: DocumentationSourceProvider<any>, sou
   return await provider.readFileContents(source, path);
 }
 
+async function getAvailableLocales(source: DocumentationSource) {
+  const provider = getDocumentationSourceProvider(source);
+  return await getAvailableDocsLocales(source, provider);
+}
+
 async function readDocsTree(source: DocumentationSource, locale?: string): Promise<FileTree> {
   const provider = getDocumentationSourceProvider(source);
   const availableLocales = await getAvailableDocsLocales(source, provider);
@@ -213,5 +218,6 @@ export default {
   readDocsTree,
   readDocsFile,
   readShallowFileTree,
-  getLocalDocumentationSources
+  getLocalDocumentationSources,
+  getAvailableLocales
 };
