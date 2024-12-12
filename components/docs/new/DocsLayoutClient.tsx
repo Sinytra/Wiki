@@ -77,7 +77,7 @@ export default function DocsLayoutClient({
       </div>
 
       {/* Footer */}
-      <DocsPageFooter isChangelogOpen={isChangelogOpen} toggleChangelog={toggleChangelog}/>
+      <DocsPageFooter isChangelogOpen={isChangelogOpen} toggleChangelog={toggleChangelog} locale={locale} locales={project.locales} version={version} versions={project.versions}/>
     </div>
   );
 }
