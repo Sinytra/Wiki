@@ -6,11 +6,20 @@ import { FileHeading } from "@/lib/docs/metadata";
 import { cn } from "@/lib/utils";
 
 interface ContentRightSidebarProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   headings: FileHeading[];
 }
 
 export default function DocsContentRightSidebar({ isOpen, headings }: ContentRightSidebarProps) {
+  const isOpenRef = useRef(isOpen);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+      isOpenRef.current = true;
+    }
+  }, [isOpen]);
+
   const [activeId, setActiveId] = useState<string>('');
   const [showTopGradient, setShowTopGradient] = useState(false);
   const [showBottomGradient, setShowBottomGradient] = useState(false);
@@ -65,8 +74,8 @@ export default function DocsContentRightSidebar({ isOpen, headings }: ContentRig
       className={cn(
         'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
         'border-l transition-all duration-300 ease-in-out overflow-hidden',
-        isOpen ? 'w-64' : 'w-0 lg:w-64',
-        isOpen ? '' : 'translate-x-full'
+        isOpenRef.current ? 'w-64' : 'w-0 lg:w-64',
+        isOpenRef.current ? '' : 'translate-x-full'
       )}
       tagName="nav"
     >

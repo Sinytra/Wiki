@@ -6,6 +6,7 @@ import {redirect} from "next/navigation";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
+import DocsInnerLayoutClient from "@/components/docs/new/DocsInnerLayoutClient";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
