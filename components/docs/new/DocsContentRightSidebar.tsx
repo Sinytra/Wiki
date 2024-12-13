@@ -36,37 +36,35 @@ export default function DocsContentRightSidebar({ isOpen, headings }: ContentRig
     <DocsSidebarBase
       title="On this page"
       className={cn(
-        "transition-all duration-300 ease-in-out overflow-hidden",
+        'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
+        'border-l transition-all duration-300 ease-in-out overflow-hidden',
         isOpen ? 'w-64' : 'w-0 lg:w-64',
         isOpen ? '' : 'translate-x-full'
       )}
+      tagName="nav"
     >
-      {headings.length > 0 && (
-        <nav className="py-4 pt-0">
-          <ul className="space-y-1 text-sm">
-            {headings.slice(1).map((heading, index) => (
-              <li key={heading.id} style={{ paddingLeft: `${(heading.depth - 1) * 0.75}rem` }}>
-                <a
-                  href={`#${heading.id}`}
-                  className={cn(
-                    "block py-1 text-muted-foreground hover:text-foreground transition-colors",
-                    activeId === heading.id && "font-medium text-foreground",
-                    index === 0 ? '!pt-0' : ''
-                  )}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById(heading.id)?.scrollIntoView({
-                      behavior: 'smooth'
-                    });
-                  }}
-                >
-                  {heading.value}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+      <ul className="space-y-1 text-sm">
+        {headings.slice(1).map((heading, index) => (
+          <li key={heading.id} style={{ paddingLeft: `${(heading.depth - 1) * 0.75}rem` }}>
+            <a
+              href={`#${heading.id}`}
+              className={cn(
+                "block py-1 text-muted-foreground hover:text-foreground transition-colors",
+                activeId === heading.id && "font-medium text-foreground",
+                index === 0 ? '!pt-0' : ''
+              )}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(heading.id)?.scrollIntoView({
+                  behavior: 'smooth'
+                });
+              }}
+            >
+              {heading.value}
+            </a>
+          </li>
+        ))}
+      </ul>
     </DocsSidebarBase>
   );
 }

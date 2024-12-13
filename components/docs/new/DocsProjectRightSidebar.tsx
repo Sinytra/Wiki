@@ -47,10 +47,12 @@ export default function DocsProjectRightSidebar({
   const categories = useTranslations('ProjectCategories');
 
   return (
-    <DocsSidebarBase title="Project Information" className={`
-      ${isOpen ? '' : 'translate-x-full'}
-      ${isOpen ? 'w-64' : 'w-0 lg:w-64'}`}
-    >
+    <DocsSidebarBase title="Project Information" className={cn(
+      'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
+      isOpen ? '' : 'translate-x-full',
+      isOpen ? 'w-64' : 'w-0 lg:w-64',
+      'border-l'
+    )}>
       {/* Project Icon & Name */}
       <div className="flex items-center space-x-3">
         <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">

@@ -25,11 +25,7 @@ export default function DocsInnerLayoutClient({ project, version, rightSidebar, 
       </main>
 
       {/* Right Sidebar */}
-      <div className="flex-shrink-0">
-        <div className="sticky top-0 h-screen p-4">
-          {rightSidebar}
-        </div>
-      </div>
+      {rightSidebar}
     </div>
 
     {/* Footer */}
