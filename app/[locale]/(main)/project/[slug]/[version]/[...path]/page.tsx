@@ -56,7 +56,7 @@ export default async function ProjectDocsPage({params}: {
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
                            rightSidebar={
-                            <DocsContentRightSidebar isOpen />
+                            <DocsContentRightSidebar isOpen headings={page.content.metadata._headings}/>
                            }
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
