@@ -3,6 +3,8 @@ import DocsMarkdownContent from "@/components/docs/new/DocsMarkdownContent";
 import {getMessages} from "next-intl/server";
 import {RenderedDocsPage} from "@/lib/service";
 import platforms from "@/lib/platforms";
+import TabSwitchedDocsContent from "@/components/docs/new/tabs/TabSwitchedDocsContent";
+import DocsChangelogPage from "@/components/docs/new/DocsChangelogPage";
 
 export default async function DocsEntryPage({page, path, locale, locales, version, versions}: {
   page: RenderedDocsPage;
@@ -22,9 +24,16 @@ export default async function DocsEntryPage({page, path, locale, locales, versio
         {page.content.metadata.title || project.name}
       </DocsContentTitle>
 
-      <DocsMarkdownContent>
-        {page.content.content}
-      </DocsMarkdownContent>
+      <TabSwitchedDocsContent
+        main={
+          <DocsMarkdownContent>
+            {page.content.content}
+          </DocsMarkdownContent>
+        }
+        history={
+          page.content.metadata.history ? <DocsChangelogPage changelog={page.content.metadata.history}/> : null
+        }
+      />
     </div>
   )
 }

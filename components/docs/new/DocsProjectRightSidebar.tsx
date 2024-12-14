@@ -11,28 +11,14 @@ import {DEFAULT_WIKI_LICENSE} from "@/lib/constants";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
+import EntryDetails from "@/components/docs/new/util/EntryDetails";
+import DetailCategory from "@/components/docs/new/util/DetailCategory";
 
 interface RightSidebarProps {
   project: Project;
   platformProject: PlatformProject;
   projectInfo: ProjectDisplayInformation;
   isOpen: boolean;
-}
-
-function DetailCategory({icon: Icon, className, innerClass, children}: {
-  icon: any;
-  className?: string;
-  innerClass?: string;
-  children?: any
-}) {
-  return (
-    <div className={cn("flex items-center space-x-2 text-muted-foreground", className)}>
-      <Icon className="w-4 h-4"/>
-      <div className={innerClass}>
-        {children}
-      </div>
-    </div>
-  );
 }
 
 export default function DocsProjectRightSidebar({
@@ -54,7 +40,7 @@ export default function DocsProjectRightSidebar({
       'border-l'
     )}>
       {/* Project Icon & Name */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-3 pb-2">
         <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
           <ImageWithFallback src={platformProject.icon_url} width={48} height={48} fbWidth={24} fbHeight={24}
                              className="!opacity-100 !text-secondary-foreground" alt="Logo"
@@ -71,14 +57,11 @@ export default function DocsProjectRightSidebar({
       </div>
 
       {/* Project Details */}
-      <div className="space-y-3 text-sm">
+      <EntryDetails>
         {/* Project Type */}
-        <div className="flex items-center space-x-2 text-muted-foreground">
-          <TypeIcon className="w-4 h-4"/>
-          <span>
-              {types(project.type)}
-            </span>
-        </div>
+        <DetailCategory icon={TypeIcon}>
+          {types(project.type)}
+        </DetailCategory>
 
         {/* Author */}
         <DetailCategory icon={User} innerClass="myItems flex flex-row flex-wrap justify-end">
@@ -159,7 +142,7 @@ export default function DocsProjectRightSidebar({
             }
           </div>
         </div>
-      </div>
+      </EntryDetails>
     </DocsSidebarBase>
   )
 }

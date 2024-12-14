@@ -6,7 +6,7 @@ import {redirect} from "next/navigation";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
-import DocsInnerLayoutClient from "@/components/docs/new/DocsInnerLayoutClient";
+import {NuqsAdapter} from "nuqs/adapters/next/app";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -30,11 +30,14 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
     return redirect('/');
   }
 
+  // TODO Where is DocsPageNotFoundError?
   return (
-    <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls')}>
-      <DocsLayoutClient>
-        {children}
-      </DocsLayoutClient>
-    </NextIntlClientProvider>
+    <NuqsAdapter>
+      <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls')}>
+        <DocsLayoutClient>
+          {children}
+        </DocsLayoutClient>
+      </NextIntlClientProvider>
+    </NuqsAdapter>
   );
 }

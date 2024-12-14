@@ -1,28 +1,35 @@
-interface ChangelogEntry {
-    version: string
-    date: string
-    changes: string[]
-}
+import {Changelog, FullChangelogEntry} from "@/lib/docs/metadata";
 
 interface ChangelogProps {
-    entries: ChangelogEntry[]
+  changelog: Changelog;
 }
 
-export default function Changelog({ entries }: ChangelogProps) {
-    return (
-        <div className="space-y-6">
-            <h2 className="text-2xl font-bold mb-4">Changelog</h2>
-            {entries.map((entry, index) => (
-                <div key={index} className="border-b border-border pb-4">
-                    <h3 className="text-lg font-semibold">{entry.version} <span className="text-sm text-muted-foreground">({entry.date})</span></h3>
-                    <ul className="list-disc list-inside mt-2">
-                        {entry.changes.map((change, changeIndex) => (
-                            <li key={changeIndex} className="text-muted-foreground">{change}</li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
+export default function DocsChangelogPage({changelog}: ChangelogProps) {
+  const entries = changelog
+    .map(e => Object.entries(e).length === 1
+      ? { version: Object.entries(e)[0][0], changes: [ Object.entries(e)[0][1] ]} as FullChangelogEntry
+      : e as FullChangelogEntry
+    );
+
+  return (
+    <div className="border-t pt-4 space-y-6">
+      <h2 className="text-2xl font-bold mb-4">Changelog</h2>
+      {entries.map((entry, index) => (
+        <div key={index} className="border-b border-border pb-4">
+          <h3 className="text-lg font-semibold">{entry.version}
+            &nbsp;{entry.date && <span className="text-sm text-muted-foreground">({entry.date})</span>}
+          </h3>
+          <ul className="list-disc list-inside mt-2">
+            {(Array.isArray(entry.changes) ? entry.changes : [entry.changes])
+              .map((change, changeIndex) => (
+                <li key={changeIndex} className="text-muted-foreground">
+                  {change}
+                </li>
+              ))}
+          </ul>
         </div>
-    )
+      ))}
+    </div>
+  )
 }
 

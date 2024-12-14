@@ -10,6 +10,7 @@ import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import platforms from "@/lib/platforms";
 import DocsInnerLayoutClient from "@/components/docs/new/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/new/DocsPageFooter";
+import DocsNonContentRightSidebar from "@/components/docs/new/DocsNonContentRightSidebar";
 import DocsContentRightSidebar from "@/components/docs/new/DocsContentRightSidebar";
 
 export const dynamic = 'force-static';
@@ -51,12 +52,20 @@ export default async function ProjectDocsPage({params}: {
   const page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
   if (!page) redirect(`/project/${params.slug}/docs`);
 
+  const platformProject = await platforms.getPlatformProject(projectData.project);
+
   return (
     <DocsInnerLayoutClient project={page.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
                            rightSidebar={
-                            <DocsContentRightSidebar headings={page.content.metadata._headings || []}/>
+                             !page.content.metadata.hide_meta
+                               ? <DocsContentRightSidebar project={projectData.project}
+                                                          platformProject={platformProject}
+                                                          metadata={page.content.metadata}
+                                                          version={params.version}
+                                                          isOpen/>
+                               : <DocsNonContentRightSidebar isOpen headings={page.content.metadata._headings || []}/>
                            }
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}

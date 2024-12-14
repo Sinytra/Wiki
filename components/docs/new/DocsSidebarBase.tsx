@@ -12,7 +12,7 @@ export default function DocsSidebarBase({title, className, tagName, children}: D
   const ContentDiv = tagName || 'div' as any;
 
   return (
-    <aside className={cn(className, 'transition-all duration-300 ease-in-out overflow-hidden border-border bg-background')}>
+    <aside className={cn(className, 'sm:h-[calc(100vh_-_9.5rem)] transition-all duration-300 ease-in-out overflow-hidden border-border bg-background')}>
       <ContentDiv className="h-full p-4 space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-secondary/20">
         <div className="mb-4 flex justify-between items-center">
           <h3 className="text-sm font-semibold text-muted-foreground">

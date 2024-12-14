@@ -17,7 +17,7 @@ export default function DocsInnerLayoutClient({ project, version, rightSidebar, 
     {/* Main Content Area */}
     <div className="flex flex-1">
       {/* Left Sidebar */}
-      <DocsLeftSidebar slug={project.id} version={version} tree={tree} />
+      <DocsLeftSidebar slug={project.id} version={version} tree={tree} isOpen />
 
       {/* Main Content TODO changelog */}
       <main className="flex-1 p-6 overflow-auto">
