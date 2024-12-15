@@ -52,8 +52,6 @@ export default async function ProjectDocsPage({params}: {
   const page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
   if (!page) redirect(`/project/${params.slug}/docs`);
 
-  const platformProject = await platforms.getPlatformProject(projectData.project);
-
   return (
     <DocsInnerLayoutClient project={page.project}
                            tree={projectData.tree}
@@ -61,7 +59,6 @@ export default async function ProjectDocsPage({params}: {
                            rightSidebar={
                              !page.content.metadata.hide_meta
                                ? <DocsContentRightSidebar project={projectData.project}
-                                                          platformProject={platformProject}
                                                           metadata={page.content.metadata}
                                                           version={params.version}
                                                           isOpen/>
@@ -71,6 +68,7 @@ export default async function ProjectDocsPage({params}: {
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
                                              version={params.version} versions={projectData.project.versions}
                                              editUrl={page.edit_url} updatedAt={page.updated_at}
+                                             showHistory={page.content.metadata.history !== undefined}
                              />
                            }
     >

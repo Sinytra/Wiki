@@ -1,7 +1,6 @@
 import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
 import {cn} from "@/lib/utils";
 import service, {Project} from "@/lib/service";
-import {PlatformProject} from "@/lib/platforms";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import {AssetLocation} from "@/lib/assets";
 import {getTranslations} from "next-intl/server";
@@ -12,14 +11,13 @@ import MetadataGrid from "@/components/docs/project-metadata/MetadataGrid";
 
 interface ContentRightSidebarProps {
   project: Project;
-  platformProject: PlatformProject;
   metadata: DocsEntryMetadata;
   version: string;
 
   isOpen: boolean; // TODO
 }
 
-export default async function DocsContentRightSidebar({ project, platformProject, metadata, version, isOpen }: ContentRightSidebarProps) {
+export default async function DocsContentRightSidebar({ project, metadata, version, isOpen }: ContentRightSidebarProps) {
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(project.id, (metadata.icon || metadata.id)!, version);
   const t = await getTranslations('DocsEntryInfo');
 

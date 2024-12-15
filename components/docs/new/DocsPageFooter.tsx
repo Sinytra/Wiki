@@ -16,19 +16,17 @@ interface FooterProps {
   versions?: Record<string, string>
   editUrl?: string;
   updatedAt?: Date;
+  showHistory?: boolean;
 }
 
-export default function Footer({locale, version, locales, versions, editUrl, updatedAt}: FooterProps) {
+export default function Footer({locale, version, locales, versions, editUrl, updatedAt, showHistory}: FooterProps) {
   const t = useTranslations('PageEditControls');
 
   return (
-    <footer
-      className="border-t border-border p-4 flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center justify-between text-sm text-muted-foreground">
+    <footer className="border-t border-border p-4 flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center
+                      justify-between text-sm text-muted-foreground relative
+                      flex-shrink-0 sm:sticky sm:bottom-0 bg-background">
       <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-        {/*<button onClick={toggleChangelog} className="flex items-center hover:text-accent-foreground">*/}
-        {/*  <History className="w-4 h-4 mr-1"/>*/}
-        {/*  {isChangelogOpen ? "View Documentation" : "View Changelog"}*/}
-        {/*</button>*/}
         {updatedAt &&
           <span className="flex items-center text-muted-foreground text-sm whitespace-pre">
             <Clock className="w-4 h-4 mr-2"/>
@@ -36,8 +34,13 @@ export default function Footer({locale, version, locales, versions, editUrl, upd
           </span>
         }
       </div>
+
+        {showHistory &&
+          <div className="ml-auto mr-4 md:absolute md:left-1/2 md:-translate-x-1/2">
+            <DocsEntryTabs/>
+          </div>
+        }
       <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-        <DocsEntryTabs />
         {locales && locales.length > 0 &&
           <DocsLanguageSelect locale={locale} locales={locales}/>
         }
@@ -46,8 +49,8 @@ export default function Footer({locale, version, locales, versions, editUrl, upd
         }
         {editUrl && <Link href={editUrl} className="flex items-center hover:text-accent-foreground">
             <Edit className="w-4 h-4 mr-1"/>
-              Edit this page
-          </Link>
+            Edit this page
+        </Link>
         }
       </div>
     </footer>
