@@ -44,6 +44,7 @@ export default function LeftSidebar({isOpen, slug, version, tree}: LeftSidebarPr
   return (
     <DocsSidebarBase title="Documentation" tagName="nav" className={cn(
       'flex-shrink-0 sm:sticky sm:top-20',
+      'data-[open=false]:-translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64',
       isOpen ? '' : '-translate-x-full',
       isOpen ? 'w-64' : 'w-0 lg:w-64',
       'border-r'

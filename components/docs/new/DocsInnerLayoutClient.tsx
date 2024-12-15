@@ -1,5 +1,5 @@
 import DocsLeftSidebar from "@/components/docs/new/DocsLeftSidebar";
-import { FileTree, Project } from "@/lib/service";
+import {FileTree, Project} from "@/lib/service";
 
 interface Props {
   project: Project;
@@ -12,12 +12,12 @@ interface Props {
   footer: any;
 }
 
-export default function DocsInnerLayoutClient({ project, version, rightSidebar, footer, tree, children }: Props) {
+export default function DocsInnerLayoutClient({project, version, rightSidebar, footer, tree, children}: Props) {
   return <>
     {/* Main Content Area */}
     <div className="flex flex-1">
       {/* Left Sidebar */}
-      <DocsLeftSidebar slug={project.id} version={version} tree={tree} isOpen />
+      <DocsLeftSidebar slug={project.id} version={version} tree={tree} isOpen/>
 
       {/* Main Content TODO changelog */}
       <main className="flex-1 p-6 overflow-auto">

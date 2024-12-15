@@ -7,6 +7,8 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 import {NuqsAdapter} from "nuqs/adapters/next/app";
+import RightSidebarContextProvider from "@/components/docs/new/side/RightSidebarContext";
+import LeftSidebarContextProvider from "@/components/docs/new/side/LeftSidebarContext";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -33,11 +35,15 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
   // TODO Where is DocsPageNotFoundError?
   return (
     <NuqsAdapter>
-      <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls')}>
-        <DocsLayoutClient>
-          {children}
-        </DocsLayoutClient>
-      </NextIntlClientProvider>
+      <LeftSidebarContextProvider>
+        <RightSidebarContextProvider>
+          <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls')}>
+            <DocsLayoutClient title={projectData.project.name}>
+              {children}
+            </DocsLayoutClient>
+          </NextIntlClientProvider>
+        </RightSidebarContextProvider>
+      </LeftSidebarContextProvider>
     </NuqsAdapter>
   );
 }

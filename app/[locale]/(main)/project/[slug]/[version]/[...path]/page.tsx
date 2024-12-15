@@ -60,9 +60,8 @@ export default async function ProjectDocsPage({params}: {
                              !page.content.metadata.hide_meta
                                ? <DocsContentRightSidebar project={projectData.project}
                                                           metadata={page.content.metadata}
-                                                          version={params.version}
-                                                          isOpen/>
-                               : <DocsNonContentRightSidebar isOpen headings={page.content.metadata._headings || []}/>
+                                                          version={params.version}/>
+                               : <DocsNonContentRightSidebar headings={page.content.metadata._headings || []}/>
                            }
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
@@ -73,8 +72,7 @@ export default async function ProjectDocsPage({params}: {
                            }
     >
       <Suspense fallback={<DocsLoadingSkeleton/>}>
-        <DocsEntryPage locale={params.locale} locales={page.project.locales} page={page} path={params.path}
-                       version={params.version} versions={page.project.versions}/>
+        <DocsEntryPage page={page} version={params.version}/>
       </Suspense>
     </DocsInnerLayoutClient>
   )

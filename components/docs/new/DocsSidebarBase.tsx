@@ -1,26 +1,29 @@
-import {X} from "lucide-react";
+'use client'
+
 import {cn} from "@/lib/utils";
+import {Context, useContext} from "react";
+import {LeftSidebarContext, SidebarContext} from "@/components/docs/new/side/LeftSidebarContext";
 
 interface DocsSidebarBaseProps {
   title: string;
   className?: string;
   tagName?: string;
   children?: any;
+  context?: Context<SidebarContext | null>;
 }
 
-export default function DocsSidebarBase({title, className, tagName, children}: DocsSidebarBaseProps) {
+export default function DocsSidebarBase({title, className, tagName, children, context = LeftSidebarContext}: DocsSidebarBaseProps) {
   const ContentDiv = tagName || 'div' as any;
 
+  const {open} = useContext(context)!;
+
   return (
-    <aside className={cn(className, 'sm:h-[calc(100vh_-_9.5rem)] transition-all duration-300 ease-in-out overflow-hidden border-border bg-background')}>
+    <aside data-open={open} className={cn(className, 'sm:h-[calc(100vh_-_9.5rem)] transition-all duration-300 ease-in-out overflow-hidden border-border bg-background')}>
       <ContentDiv className="h-full p-4 space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-secondary/20">
         <div className="mb-4 flex justify-between items-center">
           <h3 className="text-sm font-semibold text-muted-foreground">
             {title}
           </h3>
-          <button className="lg:hidden text-muted-foreground">
-            <X className="w-5 h-5"/>
-          </button>
         </div>
 
         {children}

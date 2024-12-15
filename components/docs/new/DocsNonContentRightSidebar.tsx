@@ -4,13 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
 import { FileHeading } from "@/lib/docs/metadata";
 import { cn } from "@/lib/utils";
+import {RightSidebarContext} from "@/components/docs/new/side/RightSidebarContext";
 
 interface ContentRightSidebarProps {
-  isOpen: boolean;
   headings: FileHeading[];
 }
 
-export default function DocsNonContentRightSidebar({ isOpen, headings }: ContentRightSidebarProps) {
+export default function DocsNonContentRightSidebar({ headings }: ContentRightSidebarProps) {
   const [activeId, setActiveId] = useState<string>('');
   const [showTopGradient, setShowTopGradient] = useState(false);
   const [showBottomGradient, setShowBottomGradient] = useState(false);
@@ -61,12 +61,12 @@ export default function DocsNonContentRightSidebar({ isOpen, headings }: Content
 
   return (
     <DocsSidebarBase
+      context={RightSidebarContext}
       title="On this page"
       className={cn(
         'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
         'border-l transition-all duration-300 ease-in-out overflow-hidden',
-        isOpen ? 'w-64' : 'w-0 lg:w-64',
-        isOpen ? '' : 'translate-x-full'
+        'data-[open=false]:translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64'
       )}
       tagName="nav"
     >
