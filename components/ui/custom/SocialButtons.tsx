@@ -36,7 +36,7 @@ export default function SocialButtons({ enableSharing, shareData }: { enableShar
     );
 }
 
-function SocialButton({ href, icon }: { href: string; icon: React.ReactNode }) {
+export function SocialButton({ href, icon }: { href: string; icon: React.ReactNode }) {
     return (
         <a href={href} target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
