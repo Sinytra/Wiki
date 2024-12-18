@@ -13,7 +13,6 @@ import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
 import EntryDetails from "@/components/docs/new/util/EntryDetails";
 import DetailCategory from "@/components/docs/new/util/DetailCategory";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { SocialButton } from '@/components/ui/custom/SocialButtons';
 
@@ -104,16 +103,16 @@ export default function DocsProjectRightSidebar({
           </DetailCategory>
           <div className="space-y-2 text-sm ml-6">
             <div>
-              <span className="font-medium">Project:</span>{' '}
-                <Button variant="link" className="h-auto p-0" asChild>
+              <span className="text-muted-foreground">Project:</span>{' '}
+                <Button variant="link" className="h-auto p-0 text-muted-foreground" asChild>
                   <a href={platformProject?.license?.url ?? `https://spdx.org/licenses/${projectInfo.license.name}`} target="_blank" rel="noopener noreferrer">
                     {projectInfo.license.name}
                   </a>
                 </Button>
             </div>
             <div>
-              <span className="font-medium">Wiki:</span>{' '}
-              <Button variant="link" className="h-auto p-0" asChild>
+              <span className="text-muted-foreground">Wiki:</span>{' '}
+              <Button variant="link" className="h-auto p-0 text-muted-foreground" asChild>
                 <a href={DEFAULT_WIKI_LICENSE.url} target="_blank" rel="noopener noreferrer">
                   {DEFAULT_WIKI_LICENSE.name}
                 </a>

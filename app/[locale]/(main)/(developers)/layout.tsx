@@ -8,7 +8,7 @@ export default async function ProjectLayout({params, children}: Readonly<{
   setContextLocale(params.locale);
 
   return (
-    <div className="flex flex-col w-full items-center mx-1 sm:mx-6 page-wrapper-ext">
+    <div className="flex flex-col w-full items-center mx-1 page-wrapper-ext">
       <div className="max-w-5xl w-full">
         {children}
       </div>
