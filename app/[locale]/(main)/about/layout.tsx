@@ -15,7 +15,7 @@ export default function AboutLayout({params, children}: Readonly<{
   const messages = useMessages();
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center">
+    <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center page-wrapper-ext">
       <aside className="w-full md:w-64 flex-shrink-0 bg-muted rounded-md px-2 mb-2 md:mb-0">
         <MetaDocsNavigation messages={messages['MetaDocsNavigation']} docsOnly={localPreview.isEnabled()}/>
       </aside>

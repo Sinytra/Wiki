@@ -6,6 +6,7 @@ import CurseForgeIcon from "../icons/CurseForgeIcon";
 import DiscordIcon from "../icons/DiscordIcon";
 import GitHubIcon from "../icons/GitHubIcon";
 import ModrinthIcon from "../icons/ModrinthIcon";
+import {ReactNode} from "react";
 
 export default function SocialButtons({ enableSharing, shareData }: { enableSharing?: boolean, shareData?: any }) {
     const isShareSupported = typeof navigator !== "undefined" && typeof navigator.share === "function";
@@ -36,7 +37,7 @@ export default function SocialButtons({ enableSharing, shareData }: { enableShar
     );
 }
 
-function SocialButton({ href, icon }: { href: string; icon: React.ReactNode }) {
+export function SocialButton({ href, icon }: { href: string; icon: ReactNode }) {
     return (
         <a href={href} target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">

@@ -85,7 +85,7 @@ export const ProjectTypeIcons: { [key in ProjectType]: any } = {
   [ProjectType.PLUGIN]: UnplugIcon
 }
 
-interface ProjectDisplayInformation {
+export interface ProjectDisplayInformation {
   authors: PlatformProjectAuthor[];
   latest_version: string;
   license: { name: string; url: string | null };

@@ -297,12 +297,12 @@ export default async function Home({params}: { params: { locale: string } }) {
 
   return <>
     {showBanner &&
-      <div className="page-wrapper max-w-5xl mx-auto w-full px-5">
+      <div className="page-wrapper max-w-5xl mx-auto w-full px-5 mb-5">
           <TranslateBanner locale={params.locale}/>
       </div>
     }
 
-    <div className={cn(showBanner && '!pt-0', "page-wrapper flex flex-1 min-h-[100vh] mx-4 sm:mx-2")}>
+    <div className={cn(showBanner && '!pt-0', 'page-wrapper page-wrapper-ext flex flex-1 min-h-[100vh] mx-4 sm:mx-2')}>
       <HomePageContent/>
     </div>
   </>
