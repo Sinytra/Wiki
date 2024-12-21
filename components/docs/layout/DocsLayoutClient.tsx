@@ -1,8 +1,8 @@
 "use client";
 
 import {ReactNode, useContext} from "react";
-import {LeftSidebarContext} from "@/components/docs/new/side/LeftSidebarContext";
-import {RightSidebarContext} from "@/components/docs/new/side/RightSidebarContext";
+import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
+import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 import {Info, Menu, X} from "lucide-react";
 
 interface DocsLayoutClientProps {

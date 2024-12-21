@@ -1,4 +1,4 @@
-import ReportDocsPageForm from "@/components/docs/ReportDocsPageForm";
+import ReportDocsPageForm from "@/components/docs/form/ReportDocsPageForm";
 import * as React from "react";
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import {useMessages, useTranslations} from "next-intl";

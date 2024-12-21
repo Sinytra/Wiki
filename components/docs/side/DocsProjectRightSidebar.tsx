@@ -3,16 +3,20 @@ import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import { Project } from "@/lib/service";
 import platforms, { PlatformProject } from "@/lib/platforms";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
-import { ProjectDisplayInformation, ProjectTypeIcons } from "@/components/docs/project-info/projectInfo";
+import {
+  ProjectCategories,
+  ProjectDisplayInformation,
+  ProjectTypeIcons
+} from "@/lib/docs/projectInfo";
 import LinkTextButton from "@/components/ui/link-text-button";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { DEFAULT_WIKI_LICENSE } from "@/lib/constants";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
-import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
-import EntryDetails from "@/components/docs/new/util/EntryDetails";
-import DetailCategory from "@/components/docs/new/util/DetailCategory";
+import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
+import EntryDetails from "@/components/docs/util/EntryDetails";
+import DetailCategory from "@/components/docs/util/DetailCategory";
 import { Button } from '@/components/ui/button';
 import { SocialButton } from '@/components/ui/custom/SocialButtons';
 
@@ -43,13 +47,13 @@ export default function DocsProjectRightSidebar({
     )}>
       {/* Project Icon & Name */}
       <div className="flex items-center space-x-3 pb-2">
-        <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
+        <div className="flex-shrink-0 w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
           <ImageWithFallback src={platformProject.icon_url} width={48} height={48} fbWidth={24} fbHeight={24}
-            className="!opacity-100 !text-secondary-foreground" alt="Logo"
+            className="rounded-sm !opacity-100 !text-secondary-foreground" alt="Logo"
             strokeWidth={2} />
         </div>
         <div>
-          <h2 className="text-lg font-bold">
+          <h2 className="text-base font-semibold">
             {platformProject.name}
           </h2>
           <p className="text-xs text-muted-foreground">
@@ -85,7 +89,7 @@ export default function DocsProjectRightSidebar({
         <div>
           <DetailCategory icon={Tags} className="mb-2">Tags</DetailCategory>
           <div className="flex flex-wrap gap-1 ml-5">
-            {platformProject.categories.map((tag) => (
+            {platformProject.categories.filter(t => ProjectCategories[t] !== undefined).map((tag) => (
               <span
                 key={tag}
                 className="px-2 py-0.5 text-xs bg-secondary text-secondary-foreground rounded-md"

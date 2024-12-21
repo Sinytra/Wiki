@@ -1,14 +1,13 @@
-import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
+import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
 import {cn} from "@/lib/utils";
 import service, {Project} from "@/lib/service";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import {AssetLocation} from "@/lib/assets";
-import {getTranslations} from "next-intl/server";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
-import EntryDetails from "@/components/docs/new/util/EntryDetails";
-import MetadataRowKey from "@/components/docs/project-metadata/MetadataRowKey";
-import MetadataGrid from "@/components/docs/project-metadata/MetadataGrid";
-import {RightSidebarContext} from "@/components/docs/new/side/RightSidebarContext";
+import EntryDetails from "@/components/docs/util/EntryDetails";
+import MetadataRowKey from "@/components/docs/util/MetadataRowKey";
+import MetadataGrid from "@/components/docs/util/MetadataGrid";
+import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 
 interface ContentRightSidebarProps {
   project: Project;
@@ -18,7 +17,6 @@ interface ContentRightSidebarProps {
 
 export default async function DocsContentRightSidebar({ project, metadata, version }: ContentRightSidebarProps) {
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(project.id, (metadata.icon || metadata.id)!, version);
-  const t = await getTranslations('DocsEntryInfo');
 
   return (
     <DocsSidebarBase

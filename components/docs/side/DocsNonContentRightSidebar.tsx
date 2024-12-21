@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
+import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
 import { FileHeading } from "@/lib/docs/metadata";
 import { cn } from "@/lib/utils";
-import {RightSidebarContext} from "@/components/docs/new/side/RightSidebarContext";
+import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 
 interface ContentRightSidebarProps {
   headings: FileHeading[];
@@ -66,7 +66,7 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
       className={cn(
         'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
         'border-l transition-all duration-300 ease-in-out overflow-hidden',
-        'data-[open=false]:translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64'
+        'w-64 data-[open=false]:translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64'
       )}
       tagName="nav"
     >
@@ -85,7 +85,7 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
                   href={`#${heading.id}`}
                   className={cn(
                     "block py-1 text-muted-foreground hover:text-foreground transition-colors",
-                    activeId === heading.id && "font-medium text-foreground",
+                    activeId === heading.id && "text-foreground",
                     index === 0 ? '!pt-0' : ''
                   )}
                   onClick={(e) => {

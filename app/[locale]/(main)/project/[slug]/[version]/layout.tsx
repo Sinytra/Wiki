@@ -1,14 +1,14 @@
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
-import DocsLayoutClient from "@/components/docs/new/DocsLayoutClient";
+import DocsLayoutClient from "@/components/docs/layout/DocsLayoutClient";
 import {redirect} from "next/navigation";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 import {NuqsAdapter} from "nuqs/adapters/next/app";
-import RightSidebarContextProvider from "@/components/docs/new/side/RightSidebarContext";
-import LeftSidebarContextProvider from "@/components/docs/new/side/LeftSidebarContext";
+import RightSidebarContextProvider from "@/components/docs/side/RightSidebarContext";
+import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContext";
 import {ErrorBoundary} from "react-error-boundary";
 import {FileQuestionIcon, HouseIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";

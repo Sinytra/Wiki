@@ -2,7 +2,7 @@
 
 import {cn} from "@/lib/utils";
 import {Context, useContext} from "react";
-import {LeftSidebarContext, SidebarContext} from "@/components/docs/new/side/LeftSidebarContext";
+import {LeftSidebarContext, SidebarContext} from "@/components/docs/side/LeftSidebarContext";
 
 interface DocsSidebarBaseProps {
   title: string;
@@ -12,6 +12,7 @@ interface DocsSidebarBaseProps {
   context?: Context<SidebarContext | null>;
 }
 
+// @ts-ignore
 export default function DocsSidebarBase({title, className, tagName, children, context = LeftSidebarContext}: DocsSidebarBaseProps) {
   const ContentDiv = tagName || 'div' as any;
 

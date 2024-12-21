@@ -1,4 +1,4 @@
-import DocsLeftSidebar from "@/components/docs/new/DocsLeftSidebar";
+import DocsLeftSidebar from "@/components/docs/side/DocsLeftSidebar";
 import {FileTree, Project} from "@/lib/service";
 
 interface Props {
@@ -19,7 +19,7 @@ export default function DocsInnerLayoutClient({project, version, rightSidebar, f
       {/* Left Sidebar */}
       <DocsLeftSidebar slug={project.id} version={version} tree={tree} isOpen/>
 
-      {/* Main Content TODO changelog */}
+      {/* Main Content */}
       <main className="flex-1 p-6 overflow-auto">
         {children}
       </main>

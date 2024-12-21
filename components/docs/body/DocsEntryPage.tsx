@@ -1,16 +1,16 @@
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
-import DocsMarkdownContent from "@/components/docs/new/DocsMarkdownContent";
+import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
 import {RenderedDocsPage} from "@/lib/service";
 import platforms from "@/lib/platforms";
-import TabSwitchedDocsContent from "@/components/docs/new/tabs/TabSwitchedDocsContent";
-import DocsChangelogPage from "@/components/docs/new/DocsChangelogPage";
+import TabSwitchedDocsContent from "@/components/docs/tabs/TabSwitchedDocsContent";
+import DocsChangelogPage from "@/components/docs/body/DocsChangelogPage";
 
-export default async function DocsEntryPage({page, version}: { page: RenderedDocsPage; version: string; }) {
+export default async function DocsEntryPage({page}: { page: RenderedDocsPage; }) {
   const project = await platforms.getPlatformProject(page.project);
 
   return (
     <div className="flex flex-col">
-      <DocsContentTitle project={page.project} version={version}>
+      <DocsContentTitle project={page.project}>
         {page.content.metadata.title || project.name}
       </DocsContentTitle>
 

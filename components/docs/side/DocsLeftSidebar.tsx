@@ -1,9 +1,9 @@
 import * as LucideIcons from 'lucide-react';
 import {Book, HomeIcon} from 'lucide-react';
 import {FileTree, FileTreeEntry} from "@/lib/service";
-import DocsFileLink from "@/components/docs/new/DocsFileLink";
-import DocsSidebarBase from "@/components/docs/new/DocsSidebarBase";
-import DocsFileTreeFolder from "@/components/docs/new/DocsFileTreeFolder";
+import DocsFileLink from "@/components/docs/util/DocsFileLink";
+import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
+import DocsFileTreeFolder from "@/components/docs/layout/DocsFileTreeFolder";
 import {cn} from "@/lib/utils";
 
 interface LeftSidebarProps {
@@ -21,7 +21,7 @@ function DocsFileEntry({slug, version, file}: { slug: string; version: string; f
       key={file.path}
       href={`/project/${slug}/${version}/${file.path}`}
     >
-      <Icon className="w-4 h-4 mr-2"/>
+      <Icon className="flex-shrink-0 w-4 h-4 mr-2"/>
       {file.name}
     </DocsFileLink>
   );

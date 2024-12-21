@@ -1,6 +1,6 @@
 import {Suspense} from "react";
-import DocsEntryPage from "@/components/docs/DocsEntryPage";
-import DocsLoadingSkeleton from "@/components/docs/DocsLoadingSkeleton";
+import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
+import DocsLoadingSkeleton from "@/components/docs/body/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
@@ -8,10 +8,10 @@ import {redirect} from "next/navigation";
 import matter from "gray-matter";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import platforms from "@/lib/platforms";
-import DocsInnerLayoutClient from "@/components/docs/new/DocsInnerLayoutClient";
-import DocsPageFooter from "@/components/docs/new/DocsPageFooter";
-import DocsNonContentRightSidebar from "@/components/docs/new/DocsNonContentRightSidebar";
-import DocsContentRightSidebar from "@/components/docs/new/DocsContentRightSidebar";
+import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
+import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
+import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRightSidebar";
+import DocsContentRightSidebar from "@/components/docs/side/DocsContentRightSidebar";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -72,7 +72,7 @@ export default async function ProjectDocsPage({params}: {
                            }
     >
       <Suspense fallback={<DocsLoadingSkeleton/>}>
-        <DocsEntryPage page={page} version={params.version}/>
+        <DocsEntryPage page={page}/>
       </Suspense>
     </DocsInnerLayoutClient>
   )

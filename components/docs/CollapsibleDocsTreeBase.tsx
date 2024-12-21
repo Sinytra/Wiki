@@ -5,17 +5,13 @@ import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 import {usePathname} from "@/lib/locales/routing";
 import {ChevronDownIcon} from "lucide-react";
-import {useParams} from "next/navigation";
-import FilteredLanguageSelect from "@/components/docs/FilteredLanguageSelect";
 
-export default function CollapsibleDocsTreeBase({title, defaultOpen, locales, children}: {
+export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: {
   title: string;
   defaultOpen?: boolean;
-  locales?: string[];
   children: any;
 }) {
   const pathname = usePathname();
-  const {locale} = useParams();
   const [isOpen, setIsOpen] = useState(true);
   const [_, setWindowWidth] = useState<number | undefined>(undefined);
   const desktopWindowSize = 768;
@@ -60,11 +56,6 @@ export default function CollapsibleDocsTreeBase({title, defaultOpen, locales, ch
             className="docsMainTrigger md:hidden w-5 h-5 text-muted-foreground transition-transform duration-200"/>
         }>
           <span>{title}</span>
-          {locales &&
-            <div className="inline-flex ml-auto">
-                <FilteredLanguageSelect minimal locale={locale as string} locales={locales}/>
-            </div>
-          }
         </DocsSidebarTitle>
       </div>
 

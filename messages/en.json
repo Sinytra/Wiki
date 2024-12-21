@@ -175,10 +175,6 @@
         "roots": "Available local documentation roots",
         "open": "Open"
     },
-    "DocsFileTree": {
-        "title": "Documentation",
-        "homepage": "Homepage"
-    },
     "DocsProjectInfo": {
         "title": "Project information",
         "type": "Type",
@@ -236,19 +232,6 @@
         "edit_gh": "Edit page on GitHub",
         "report": "Report this page",
         "last_updated": "Last updated: <date></date>"
-    },
-    "DocsEntryInfo": {
-        "title": "Information",
-        "name": "Name",
-        "source": "Project",
-        "tags": "Tags",
-        "id": "ID",
-        "unknown": "Unknown",
-        "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
-        }
     },
     "Report": {
         "title": "Report a documentation page",
@@ -453,21 +436,10 @@
             "button": "Read guide"
         }
     },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
-    },
     "DocsHomepagePlaceholder": {
         "title": "Homepage placeholder",
         "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
         "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
-    },
-    "DocsTableOfContents": {
-        "title": "On this page"
-    },
-    "DocsBranchSelector": {
-        "title": "Versions",
-        "latest": "Latest"
     },
     "DocsSearchBar": {
         "placeholder": "Search wiki contents...",
