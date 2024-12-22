@@ -15,13 +15,13 @@ interface LeftSidebarProps {
 
 function DocsFileEntry({slug, version, file}: { slug: string; version: string; file: FileTreeEntry }) {
   // @ts-ignore
-  const Icon = LucideIcons[file.icon + 'Icon'] || Book;
+  const Icon = file.icon ? LucideIcons[file.icon + 'Icon'] : null;
   return (
     <DocsFileLink
       key={file.path}
       href={`/project/${slug}/${version}/${file.path}`}
     >
-      <Icon className="flex-shrink-0 w-4 h-4 mr-2"/>
+      {Icon && <Icon className="flex-shrink-0 w-4 h-4 mr-2"/>}
       {file.name}
     </DocsFileLink>
   );
@@ -51,7 +51,7 @@ export default function LeftSidebar({isOpen, slug, version, tree}: LeftSidebarPr
     )}>
       <DocsFileLink href={`/project/${slug}/${version}`}>
         <HomeIcon className="w-4 h-4 mr-2"/>
-        Mod Homepage
+        Project Homepage
       </DocsFileLink>
 
       <hr/>

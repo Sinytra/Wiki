@@ -19,6 +19,7 @@ import EntryDetails from "@/components/docs/util/EntryDetails";
 import DetailCategory from "@/components/docs/util/DetailCategory";
 import { Button } from '@/components/ui/button';
 import { SocialButton } from '@/components/ui/custom/SocialButtons';
+import ModVersionRange from "@/components/docs/ModVersionRange";
 
 interface RightSidebarProps {
   project: Project;
@@ -35,6 +36,7 @@ export default function DocsProjectRightSidebar({
 }: RightSidebarProps
 ) {
   const TypeIcon = ProjectTypeIcons[project.type];
+  const t = useTranslations('DocsProjectRightSidebar');
   const types = useTranslations('ProjectTypes');
   const categories = useTranslations('ProjectCategories');
 
@@ -57,7 +59,7 @@ export default function DocsProjectRightSidebar({
             {platformProject.name}
           </h2>
           <p className="text-xs text-muted-foreground">
-            {platformProject.summary}
+            {platformProject.is_placeholder ? t('placeholder.summary') : platformProject.summary}
           </p>
         </div>
       </div>
@@ -71,6 +73,9 @@ export default function DocsProjectRightSidebar({
 
         {/* Author */}
         <DetailCategory icon={User} innerClass="myItems flex flex-row flex-wrap justify-end">
+          {platformProject.is_placeholder &&
+            <span className="text-muted-foreground">{t('placeholder.author')}</span>
+          }
           {projectInfo.authors.map(a => (
             <div key={a.name}>
               <LinkTextButton className="!font-normal !text-muted-foreground" href={a.url} target="_blank">
@@ -81,8 +86,11 @@ export default function DocsProjectRightSidebar({
         </DetailCategory>
 
         {/* Latest Version */}
-        <DetailCategory icon={MilestoneIcon}>
-          {projectInfo.latest_version}
+        <DetailCategory icon={MilestoneIcon} innerClass="flex flex-row gap-2">
+          {platformProject.is_placeholder &&
+            <span className="text-muted-foreground">{t('placeholder.latest_version')}</span>
+          }
+          <ModVersionRange versions={platformProject.game_versions} />
         </DetailCategory>
 
         {/* Tags */}
