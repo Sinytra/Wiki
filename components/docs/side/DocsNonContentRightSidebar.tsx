@@ -1,16 +1,19 @@
-"use client";
+'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
 import { FileHeading } from "@/lib/docs/metadata";
 import { cn } from "@/lib/utils";
 import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
+import {useTranslations} from "next-intl";
 
 interface ContentRightSidebarProps {
   headings: FileHeading[];
 }
 
 export default function DocsNonContentRightSidebar({ headings }: ContentRightSidebarProps) {
+  const t = useTranslations('DocsNonContentRightSidebar');
+
   const [activeId, setActiveId] = useState<string>('');
   const [showTopGradient, setShowTopGradient] = useState(false);
   const [showBottomGradient, setShowBottomGradient] = useState(false);
@@ -62,7 +65,7 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
   return (
     <DocsSidebarBase
       context={RightSidebarContext}
-      title="On this page"
+      title={t('title')}
       className={cn(
         'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
         'border-l transition-all duration-300 ease-in-out overflow-hidden',

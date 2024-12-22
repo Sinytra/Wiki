@@ -1,6 +1,6 @@
 'use client'
 
-import {createContext, useState} from "react";
+import {createContext, useState} from 'react';
 
 export interface SidebarContext {
   open: boolean;

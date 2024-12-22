@@ -12,6 +12,9 @@ import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClien
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRightSidebar";
 import DocsContentRightSidebar from "@/components/docs/side/DocsContentRightSidebar";
+import {NextIntlClientProvider} from "next-intl";
+import {getMessages} from "next-intl/server";
+import {pick} from "lodash";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -52,6 +55,8 @@ export default async function ProjectDocsPage({params}: {
   const page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
   if (!page) redirect(`/project/${params.slug}/docs`);
 
+  const messages = await getMessages();
+
   return (
     <DocsInnerLayoutClient project={page.project}
                            tree={projectData.tree}
@@ -61,13 +66,17 @@ export default async function ProjectDocsPage({params}: {
                                ? <DocsContentRightSidebar project={projectData.project}
                                                           metadata={page.content.metadata}
                                                           version={params.version}/>
-                               : <DocsNonContentRightSidebar headings={page.content.metadata._headings || []}/>
+                               : <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
+                                   <DocsNonContentRightSidebar headings={page.content.metadata._headings || []}/>
+                                 </NextIntlClientProvider>
                            }
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
                                              version={params.version} versions={projectData.project.versions}
                                              editUrl={page.edit_url} updatedAt={page.updated_at}
                                              showHistory={page.content.metadata.history !== undefined}
+                                             slug={params.slug} path={params.path}
+                                             local={projectData.project.local}
                              />
                            }
     >

@@ -1,10 +1,11 @@
 import * as LucideIcons from 'lucide-react';
-import {Book, HomeIcon} from 'lucide-react';
+import {HomeIcon} from 'lucide-react';
 import {FileTree, FileTreeEntry} from "@/lib/service";
 import DocsFileLink from "@/components/docs/util/DocsFileLink";
 import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
 import DocsFileTreeFolder from "@/components/docs/layout/DocsFileTreeFolder";
 import {cn} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 interface LeftSidebarProps {
   slug: string;
@@ -40,9 +41,11 @@ function DocsFileTree({slug, version, tree, level}: { slug: string; version: str
   })
 }
 
-export default function LeftSidebar({isOpen, slug, version, tree}: LeftSidebarProps) {
+export default function DocsLeftSidebar({isOpen, slug, version, tree}: LeftSidebarProps) {
+  const t = useTranslations('DocsLeftSidebar');
+
   return (
-    <DocsSidebarBase title="Documentation" tagName="nav" className={cn(
+    <DocsSidebarBase title={t('title')} tagName="nav" className={cn(
       'flex-shrink-0 sm:sticky sm:top-20',
       'data-[open=false]:-translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64',
       isOpen ? '' : '-translate-x-full',
@@ -51,7 +54,7 @@ export default function LeftSidebar({isOpen, slug, version, tree}: LeftSidebarPr
     )}>
       <DocsFileLink href={`/project/${slug}/${version}`}>
         <HomeIcon className="w-4 h-4 mr-2"/>
-        Project Homepage
+        {t('homepage')}
       </DocsFileLink>
 
       <hr/>

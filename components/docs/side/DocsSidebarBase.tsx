@@ -1,8 +1,8 @@
 'use client'
 
-import {cn} from "@/lib/utils";
-import {Context, useContext} from "react";
-import {LeftSidebarContext, SidebarContext} from "@/components/docs/side/LeftSidebarContext";
+import {cn} from '@/lib/utils';
+import {Context, useContext} from 'react';
+import {LeftSidebarContext, SidebarContext} from '@/components/docs/side/LeftSidebarContext';
 
 interface DocsSidebarBaseProps {
   title: string;

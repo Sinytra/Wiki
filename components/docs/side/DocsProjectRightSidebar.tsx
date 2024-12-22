@@ -41,7 +41,7 @@ export default function DocsProjectRightSidebar({
   const categories = useTranslations('ProjectCategories');
 
   return (
-    <DocsSidebarBase title="Project Information" className={cn(
+    <DocsSidebarBase title={t('title')} className={cn(
       'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
       isOpen ? '' : 'translate-x-full',
       isOpen ? 'w-64' : 'w-0 lg:w-64',
@@ -95,7 +95,9 @@ export default function DocsProjectRightSidebar({
 
         {/* Tags */}
         <div>
-          <DetailCategory icon={Tags} className="mb-2">Tags</DetailCategory>
+          <DetailCategory icon={Tags} className="mb-2">
+            {t('tags')}
+          </DetailCategory>
           <div className="flex flex-wrap gap-1 ml-5">
             {platformProject.categories.filter(t => ProjectCategories[t] !== undefined).map((tag) => (
               <span
@@ -111,11 +113,11 @@ export default function DocsProjectRightSidebar({
         <div className="space-y-4">
         <div>
           <DetailCategory icon={License} className="mb-2">
-            Licenses
+            {t('licenses.title')}
           </DetailCategory>
           <div className="space-y-2 text-sm ml-6">
             <div>
-              <span className="text-muted-foreground">Project:</span>{' '}
+              <span className="text-muted-foreground">{t('licenses.project')}</span>{' '}
                 <Button variant="link" className="h-auto p-0 text-muted-foreground" asChild>
                   <a href={platformProject?.license?.url ?? `https://spdx.org/licenses/${projectInfo.license.name}`} target="_blank" rel="noopener noreferrer">
                     {projectInfo.license.name}
@@ -123,7 +125,9 @@ export default function DocsProjectRightSidebar({
                 </Button>
             </div>
             <div>
-              <span className="text-muted-foreground">Wiki:</span>{' '}
+              <span className="text-muted-foreground">
+                {t('licenses.wiki')}
+              </span>{' '}
               <Button variant="link" className="h-auto p-0 text-muted-foreground" asChild>
                 <a href={DEFAULT_WIKI_LICENSE.url} target="_blank" rel="noopener noreferrer">
                   {DEFAULT_WIKI_LICENSE.name}
@@ -135,7 +139,7 @@ export default function DocsProjectRightSidebar({
 
         <div>
           <DetailCategory icon={Globe} className="mb-2">
-            Links
+            {t('links')}
           </DetailCategory>
           <div className="flex flex-wrap gap-2 ml-6">
             {project.platforms.curseforge && (

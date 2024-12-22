@@ -34,7 +34,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
   const action: () => void = form.handleSubmit(async (data) => {
     const resp = await formAction(data);
     if (resp.success) {
-      toast.success('Report submitted successfully');
+      toast.success(t.success);
       flushSync(() => form.reset());
     } else if (resp.error) {
       form.setError('root.custom', {message: resp.error});
@@ -160,7 +160,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
           ?
           <div className="flex flex-col text-sm">
             {t.dislike.title}
-            {t.dislike.desc}
+            &nbsp;{t.dislike.desc}
             <p className="my-1"/>
             {t.dislike.suggestion}
 
