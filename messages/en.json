@@ -175,10 +175,6 @@
         "roots": "Available local documentation roots",
         "open": "Open"
     },
-    "DocsFileTree": {
-        "title": "Documentation",
-        "homepage": "Homepage"
-    },
     "DocsProjectInfo": {
         "title": "Project information",
         "type": "Type",
@@ -233,22 +229,9 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit page on GitHub",
+        "edit_gh": "Edit this page",
         "report": "Report this page",
         "last_updated": "Last updated: <date></date>"
-    },
-    "DocsEntryInfo": {
-        "title": "Information",
-        "name": "Name",
-        "source": "Source Mod",
-        "tags": "Tags",
-        "id": "ID",
-        "unknown": "Unknown",
-        "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
-        }
     },
     "Report": {
         "title": "Report a documentation page",
@@ -289,7 +272,8 @@
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
                 "suggestion": "Would you like to look for something else to read instead?",
                 "explore": "Explore projects"
-            }
+            },
+            "success": "Report submitted successfully"
         }
     },
     "SubmitButton": {
@@ -453,21 +437,10 @@
             "button": "Read guide"
         }
     },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
-    },
     "DocsHomepagePlaceholder": {
         "title": "Homepage placeholder",
         "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
         "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
-    },
-    "DocsTableOfContents": {
-        "title": "On this page"
-    },
-    "DocsBranchSelector": {
-        "title": "Versions",
-        "latest": "Latest"
     },
     "DocsSearchBar": {
         "placeholder": "Search wiki contents...",
@@ -475,5 +448,33 @@
         "loading": "Finding the perfect results...",
         "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
         "close": "<kbd>ESC</kbd> to close"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Links",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Author",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentation",
+        "homepage": "Project Homepage"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "On this page"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Select version"
     }
 }

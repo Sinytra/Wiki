@@ -8,13 +8,14 @@ import {Button} from "@/components/ui/button";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
-import {getLatestVersion, ProjectTypeIcons} from "@/components/docs/project-info/projectInfo";
+import {getLatestVersion, ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import platforms from "@/lib/platforms";
 import {BaseProject} from "@/lib/service";
+import ModVersionRange from "@/components/docs/ModVersionRange";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
@@ -69,7 +70,10 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
             </div>
             <div className="flex flex-row items-center gap-2 text-muted-foreground">
               <MilestoneIcon className="w-5 h-5"/>
-              <span className="text-base">{getLatestVersion(projectContent) || t('unknown')}</span>
+              {projectContent.game_versions.length === 0
+                ? <span className="text-base">{t('unknown')}</span>
+                : <ModVersionRange versions={projectContent.game_versions} />
+              }
             </div>
           </div>
         </ErrorBoundary>

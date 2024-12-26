@@ -34,10 +34,11 @@ async function sourceToProject(src: DocumentationSource): Promise<Project> {
 async function getBackendLayout(slug: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
   const src = await getProjectSource(slug);
   if (src) {
-    const project = await sourceToProject(src)
+    const project = await sourceToProject(src);
+    const locales = await sources.getAvailableLocales(src);
     const tree = await sources.readDocsTree(src, locale || undefined);
     return {
-      project,
+      project: {...project, locales},
       tree
     }
   }
