@@ -20,19 +20,18 @@ import DetailCategory from "@/components/docs/util/DetailCategory";
 import { Button } from '@/components/ui/button';
 import { SocialButton } from '@/components/ui/custom/SocialButtons';
 import ModVersionRange from "@/components/docs/ModVersionRange";
+import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 
 interface RightSidebarProps {
   project: Project;
   platformProject: PlatformProject;
   projectInfo: ProjectDisplayInformation;
-  isOpen: boolean;
 }
 
 export default function DocsProjectRightSidebar({
   project,
   platformProject,
   projectInfo,
-  isOpen
 }: RightSidebarProps
 ) {
   const TypeIcon = ProjectTypeIcons[project.type];
@@ -41,11 +40,10 @@ export default function DocsProjectRightSidebar({
   const categories = useTranslations('ProjectCategories');
 
   return (
-    <DocsSidebarBase title={t('title')} className={cn(
-      'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
-      isOpen ? '' : 'translate-x-full',
-      isOpen ? 'w-64' : 'w-0 lg:w-64',
-      'border-l'
+    <DocsSidebarBase title={t('title')} context={RightSidebarContext} className={cn(
+      'flex-shrink-0 sm:sticky sm:top-20',
+      'w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+      'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
     )}>
       {/* Project Icon & Name */}
       <div className="flex items-center space-x-3 pb-2">
@@ -58,8 +56,11 @@ export default function DocsProjectRightSidebar({
           <h2 className="text-base font-semibold">
             {platformProject.name}
           </h2>
-          <p className="text-xs text-muted-foreground">
-            {platformProject.is_placeholder ? t('placeholder.summary') : platformProject.summary}
+          <p className="text-xs text-muted-foreground" title={platformProject.is_placeholder ? undefined : platformProject.summary}>
+            {platformProject.is_placeholder
+              ? t('placeholder.summary')
+              : (platformProject.summary.length > 50 ? `${platformProject.summary.substring(0, 50)}...` : platformProject.summary)
+            }
           </p>
         </div>
       </div>

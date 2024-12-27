@@ -10,7 +10,7 @@ export interface SidebarContext {
 export const RightSidebarContext = createContext<SidebarContext|null>(null);
 
 export default function RightSidebarContextProvider({ children }: { children: any }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <RightSidebarContext.Provider value={{open, setOpen}}>

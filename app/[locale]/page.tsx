@@ -78,8 +78,10 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
           )}
         </div>
         <Button variant="link" className="text-primary hover:text-primary/80">
-          {t('popular.open')}
-          <ArrowRight className="ml-2 h-4 w-4 text-blue-700"/>
+          <LocaleNavLink className="flex flex-row items-center" href={`/project/${project.id}`}>
+            {t('popular.open')}
+            <ArrowRight className="ml-2 h-4 w-4 text-blue-700"/>
+          </LocaleNavLink>
         </Button>
       </div>
     </div>
@@ -233,7 +235,7 @@ function HomePageContent() {
               title: t('highlights.open.title'),
               description: t('highlights.open.desc')
             },
-            {emoji: "💸", title: t('highlights.open.title'), description: t('highlights.open.desc')}
+            {emoji: "💸", title: t('highlights.free.title'), description: t('highlights.free.desc')}
           ].map((feature, index) => (
             <li key={index} className="flex items-start">
               <span className="text-2xl mr-2">{feature.emoji}</span>

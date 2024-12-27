@@ -8,6 +8,7 @@ import CountryFlag from "@/components/util/CountryFlag";
 import {usePathname} from "@/lib/locales/routing";
 import {useRouter} from "next-nprogress-bar";
 import {useEffect} from "react";
+import {useTranslations} from "next-intl";
 
 export default function DocsLanguageSelect({locale, locales}: { locale: string; locales: string[] }) {
   const availableLocales = ['en', ...(locales?.map(l =>
@@ -48,18 +49,18 @@ export default function DocsLanguageSelect({locale, locales}: { locale: string; 
     return () => observer.disconnect();
   }, []);
 
+  const t = useTranslations('DocsLanguageSelect');
+
   return (
     <Select value={locale} onValueChange={changeLocale}>
       <SelectTrigger className="w-[180px]">
         <Globe className="w-4 h-4 mr-1" />
-        <SelectValue placeholder="Select locale" />
+        <SelectValue placeholder={t('placeholder')} />
       </SelectTrigger>
       <SelectContent>
         {Object.entries(selectableLocales).map(([id, loc]) => (
           <SelectItem key={id} value={id}>
-            <span className="w-full inline-flex justify-start items-center gap-3">
-              <CountryFlag flag={loc.icon} /> {loc.name}
-            </span>
+            <CountryFlag className="inline-block mr-1" flag={loc.icon} /> {loc.name}
           </SelectItem>
         ))}
       </SelectContent>

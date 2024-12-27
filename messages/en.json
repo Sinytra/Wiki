@@ -471,10 +471,16 @@
         "title": "Documentation",
         "homepage": "Project Homepage"
     },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
     "DocsNonContentRightSidebar": {
         "title": "On this page"
     },
     "DocsVersionSelector": {
         "placeholder": "Select version"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
     }
 }

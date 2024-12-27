@@ -68,8 +68,8 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
       title={t('title')}
       className={cn(
         'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
-        'border-l transition-all duration-300 ease-in-out overflow-hidden',
-        'w-64 data-[open=false]:translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64'
+        'w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+        'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
       )}
       tagName="nav"
     >

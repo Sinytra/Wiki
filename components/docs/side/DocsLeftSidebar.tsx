@@ -11,7 +11,6 @@ interface LeftSidebarProps {
   slug: string;
   version: string;
   tree: FileTree;
-  isOpen: boolean;
 }
 
 function DocsFileEntry({slug, version, file}: { slug: string; version: string; file: FileTreeEntry }) {
@@ -41,17 +40,15 @@ function DocsFileTree({slug, version, tree, level}: { slug: string; version: str
   })
 }
 
-export default function DocsLeftSidebar({isOpen, slug, version, tree}: LeftSidebarProps) {
+export default function DocsLeftSidebar({slug, version, tree}: LeftSidebarProps) {
   const t = useTranslations('DocsLeftSidebar');
 
   return (
     <DocsSidebarBase title={t('title')} tagName="nav" className={cn(
       'flex-shrink-0 sm:sticky sm:top-20',
-      'data-[open=false]:-translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64',
-      isOpen ? '' : '-translate-x-full',
-      isOpen ? 'w-64' : 'w-0 lg:w-64',
-      'border-r'
-    )}>
+      'data-[open=true]:w-64 data-[open=false]:-translate-x-full data-[open=false]:lg:-translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+      'border-r data-[open=false]:border-0 data-[open=false]:lg:border-r'
+    )} innerClassName="overscroll-contain">
       <DocsFileLink href={`/project/${slug}/${version}`}>
         <HomeIcon className="w-4 h-4 mr-2"/>
         {t('homepage')}

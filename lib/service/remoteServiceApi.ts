@@ -153,6 +153,7 @@ async function getPopularProjects(): Promise<Project[]> {
 }
 
 export interface FeaturedProject {
+  id: string;
   title: string;
   summary: string;
   icon: string;
@@ -172,6 +173,7 @@ async function getFeaturedProjects(): Promise<FeaturedProject[]> {
       return {project: proj, resolved}
     }));
     return platformsProjects.map(({project, resolved}) => ({
+      id: project.id,
       title: resolved.name,
       summary: resolved.summary,
       icon: resolved.icon_url,

@@ -43,7 +43,7 @@ export default function DocsPageFooter({
   return (
     <footer className="border-t border-border px-4 py-3 flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center
                       justify-between text-sm text-muted-foreground relative
-                      flex-shrink-0 sm:sticky sm:bottom-0 bg-background h-16">
+                      flex-shrink-0 bg-background h-16">
       <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
         {!preview && local && slug && path &&
           <TooltipProvider>

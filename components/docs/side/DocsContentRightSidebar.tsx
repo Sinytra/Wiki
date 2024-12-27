@@ -8,6 +8,7 @@ import EntryDetails from "@/components/docs/util/EntryDetails";
 import MetadataRowKey from "@/components/docs/util/MetadataRowKey";
 import MetadataGrid from "@/components/docs/util/MetadataGrid";
 import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
+import {getTranslations} from "next-intl/server";
 
 interface ContentRightSidebarProps {
   project: Project;
@@ -16,16 +17,18 @@ interface ContentRightSidebarProps {
 }
 
 export default async function DocsContentRightSidebar({ project, metadata, version }: ContentRightSidebarProps) {
+  const t = await getTranslations('DocsContentRightSidebar');
+
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(project.id, (metadata.icon || metadata.id)!, version);
 
   return (
     <DocsSidebarBase
       context={RightSidebarContext}
-      title="Entry information"
+      title={t('title')}
       className={cn(
         'flex-shrink-0 sm:sticky sm:top-20',
-        'border-l transition-all duration-300 ease-in-out overflow-hidden',
-        'w-64 data-[open=false]:translate-x-full data-[open=false]:w-0 data-[open=false]:lg:w-64'
+        'w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+        'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
       )}
     >
       <div className="mb-6 border border-accent m-2 rounded-sm">
@@ -38,7 +41,7 @@ export default async function DocsContentRightSidebar({ project, metadata, versi
         </h1>
       }
 
-      <EntryDetails className="pb-2">
+      <EntryDetails className="pb-2 text-center">
         {metadata.id &&
           <code className="text-center text-muted-foreground">{metadata.id}</code>
         }

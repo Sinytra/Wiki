@@ -1,7 +1,7 @@
-import { Metadata, ResolvingMetadata } from "next";
-import { setContextLocale } from "@/lib/locales/routing";
+import {Metadata, ResolvingMetadata} from "next";
+import {setContextLocale} from "@/lib/locales/routing";
 import platforms, {PlatformProject} from "@/lib/platforms";
-import { HOMEPAGE_FILE_PATH } from "@/lib/constants";
+import {HOMEPAGE_FILE_PATH} from "@/lib/constants";
 import service, {Project} from "@/lib/service";
 import {redirect} from "next/navigation";
 import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
@@ -16,12 +16,12 @@ export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
 export async function generateMetadata(
-  { params }: { params: { slug: string; locale: string; version: string } },
+  {params}: { params: { slug: string; locale: string; version: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const project = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
   if (!project) {
-    return { title: (await parent).title?.absolute };
+    return {title: (await parent).title?.absolute};
   }
 
   const platformProject = await platforms.getPlatformProject(project);
@@ -74,7 +74,7 @@ async function ProjectHomepage({project, platformProject, version, locale}: {
   );
 }
 
-export default async function Homepage({ params }: PageProps) {
+export default async function Homepage({params}: PageProps) {
   setContextLocale(params.locale);
 
   const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
@@ -91,7 +91,7 @@ export default async function Homepage({ params }: PageProps) {
                            version={params.version} locale={params.locale}
                            rightSidebar={
                              <DocsProjectRightSidebar project={projectData.project} platformProject={platformProject}
-                                                      projectInfo={info} isOpen/>
+                                                      projectInfo={info}/>
                            }
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
@@ -99,7 +99,7 @@ export default async function Homepage({ params }: PageProps) {
                            }
     >
       <ProjectHomepage project={projectData.project} platformProject={platformProject}
-                       version={params.version} locale={params.locale} />
+                       version={params.version} locale={params.locale}/>
     </DocsInnerLayoutClient>
   )
 }

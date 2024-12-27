@@ -28,7 +28,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn(styles.container, 'z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
+        className={cn(styles.container, 'z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-2 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
             <span className="hidden sm:inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">

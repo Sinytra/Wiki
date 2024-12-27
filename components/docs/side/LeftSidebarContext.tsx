@@ -15,7 +15,7 @@ export interface LeftSidebarContext extends SidebarContext {
 export const LeftSidebarContext = createContext<LeftSidebarContext|null>(null);
 
 export default function LeftSidebarContextProvider({ children }: { children: any }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [folderStates, setFolderStates] = useState<Record<string, boolean>>({});
 
   return (

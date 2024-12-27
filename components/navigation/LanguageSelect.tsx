@@ -59,10 +59,10 @@ export default function LanguageSelect({locale, locales, minimal, smallOffset}: 
   return (
     <div className={cn(!minimal && styles.socialLinks)}>
       <div>
-        <NavigationMenu className={cn(smallOffset ? '[&_div.absolute]:-left-[6rem] [&_div.absolute]:md:-left-0' : '[&_div.absolute]:-left-[6.7rem]')} value={value} onValueChange={setValue}>
+        <NavigationMenu className={cn(smallOffset ? '[&_div.absolute]:-left-[6rem] [&_div.absolute]:md:-left-0' : '[&_div.absolute]:top-[2.8rem] [&_div.absolute]:-left-[6.7rem]')} value={value} onValueChange={setValue}>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className={cn("h-fit sm:h-10 sm:!px-2 p-1", minimal ? 'bg-transparent' : '')}>
+              <NavigationMenuTrigger className="h-fit sm:h-10 sm:!px-2 p-1 bg-transparent">
                 <LanguagesIcon className="w-5 h-5"/>
               </NavigationMenuTrigger>
               <NavigationMenuContent className="p-3 gap-0.5 whitespace-nowrap flex flex-col justify-start items-start">
