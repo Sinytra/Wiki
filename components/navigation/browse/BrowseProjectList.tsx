@@ -9,7 +9,7 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
   const t = await getTranslations('BrowsePage');
 
   return <>
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3 sm:gap-2">
       {...results.data.map((m) => (
         <BrowseProject key={m.id} project={m}/>
       ))}

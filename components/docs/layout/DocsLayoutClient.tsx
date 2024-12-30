@@ -1,9 +1,8 @@
 "use client";
 
 import {ReactNode, useContext} from "react";
-import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
-import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 import {Info, Menu, X} from "lucide-react";
+import {DocsSidebarContext} from "@/components/docs/side/DocsSidebarContext";
 
 interface DocsLayoutClientProps {
   title: string;
@@ -11,19 +10,18 @@ interface DocsLayoutClientProps {
 }
 
 function MobileHeader({title}: {title: string}) {
-  const {open: leftOpen, setOpen: setLeftOpen} = useContext(LeftSidebarContext)!;
-  const {open: rightOpen, setOpen: setRightOpen} = useContext(RightSidebarContext)!;
+  const {open, setOpen} = useContext(DocsSidebarContext)!;
 
   return (
     <header className="lg:hidden flex justify-between items-center p-4 border-b border-border">
-      <button onClick={() => setLeftOpen(!leftOpen)} className="text-foreground">
-        {leftOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      <button onClick={() => setOpen(open == 'left' ? 'none' : 'left')} className="text-foreground">
+        {open === 'left' ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
       <h1 className="text-lg font-bold">
         {title}
       </h1>
-      <button onClick={() => setRightOpen(!rightOpen)} className="text-foreground">
-        {rightOpen ? <X className="w-6 h-6" /> : <Info className="w-6 h-6" />}
+      <button onClick={() => setOpen(open == 'right' ? 'none' : 'right')} className="text-foreground">
+        {open === 'right' ? <X className="w-6 h-6" /> : <Info className="w-6 h-6" />}
       </button>
     </header>
   )

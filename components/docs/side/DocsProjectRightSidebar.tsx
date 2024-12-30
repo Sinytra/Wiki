@@ -20,7 +20,6 @@ import DetailCategory from "@/components/docs/util/DetailCategory";
 import { Button } from '@/components/ui/button';
 import { SocialButton } from '@/components/ui/custom/SocialButtons';
 import ModVersionRange from "@/components/docs/ModVersionRange";
-import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 
 interface RightSidebarProps {
   project: Project;
@@ -40,9 +39,9 @@ export default function DocsProjectRightSidebar({
   const categories = useTranslations('ProjectCategories');
 
   return (
-    <DocsSidebarBase title={t('title')} context={RightSidebarContext} className={cn(
-      'flex-shrink-0 sm:sticky sm:top-20',
-      'w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+    <DocsSidebarBase title={t('title')} type="right" className={cn(
+      'flex-shrink-0 right-0',
+      'w-[96vw] sm:w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0',
       'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
     )}>
       {/* Project Icon & Name */}

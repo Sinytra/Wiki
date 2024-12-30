@@ -482,5 +482,8 @@
     },
     "DocsLanguageSelect": {
         "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
     }
 }

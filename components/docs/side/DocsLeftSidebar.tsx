@@ -44,9 +44,9 @@ export default function DocsLeftSidebar({slug, version, tree}: LeftSidebarProps)
   const t = useTranslations('DocsLeftSidebar');
 
   return (
-    <DocsSidebarBase title={t('title')} tagName="nav" className={cn(
-      'flex-shrink-0 sm:sticky sm:top-20',
-      'data-[open=true]:w-64 data-[open=false]:-translate-x-full data-[open=false]:lg:-translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+    <DocsSidebarBase title={t('title')} tagName="nav" type="left" className={cn(
+      'flex-shrink-0 left-0',
+      'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full data-[open=false]:lg:-translate-x-0',
       'border-r data-[open=false]:border-0 data-[open=false]:lg:border-r'
     )} innerClassName="overscroll-contain">
       <DocsFileLink href={`/project/${slug}/${version}`}>

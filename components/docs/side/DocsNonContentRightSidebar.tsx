@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
 import { FileHeading } from "@/lib/docs/metadata";
 import { cn } from "@/lib/utils";
-import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 import {useTranslations} from "next-intl";
 
 interface ContentRightSidebarProps {
@@ -64,11 +63,11 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
 
   return (
     <DocsSidebarBase
-      context={RightSidebarContext}
+      type="right"
       title={t('title')}
       className={cn(
-        'flex-shrink-0 sm:sticky sm:top-20 sm:h-[calc(100vh_-_8rem)]',
-        'w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+        'flex-shrink-0 right-0',
+        'w-[96vw] sm:w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0',
         'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
       )}
       tagName="nav"

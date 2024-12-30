@@ -7,7 +7,6 @@ import ImageWithFallback from "@/components/util/ImageWithFallback";
 import EntryDetails from "@/components/docs/util/EntryDetails";
 import MetadataRowKey from "@/components/docs/util/MetadataRowKey";
 import MetadataGrid from "@/components/docs/util/MetadataGrid";
-import {RightSidebarContext} from "@/components/docs/side/RightSidebarContext";
 import {getTranslations} from "next-intl/server";
 
 interface ContentRightSidebarProps {
@@ -23,11 +22,11 @@ export default async function DocsContentRightSidebar({ project, metadata, versi
 
   return (
     <DocsSidebarBase
-      context={RightSidebarContext}
+      type="right"
       title={t('title')}
       className={cn(
-        'flex-shrink-0 sm:sticky sm:top-20',
-        'w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0 data-[open=false]:w-0 data-[open=false]:lg:w-64',
+        'flex-shrink-0 right-0',
+        'w-[96vw] sm:w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0',
         'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
       )}
     >

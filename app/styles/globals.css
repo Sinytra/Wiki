@@ -199,6 +199,10 @@ html body[data-scroll-locked] {
     .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
         @apply scrollbar-thin scrollbar-thumb-[#404043] scrollbar-thumb-rounded;
     }
+
+    .no-scroll {
+        @apply fixed lg:static;
+    }
 }
 
 @layer utilities {

@@ -7,7 +7,6 @@ import {NextIntlClientProvider, useTranslations} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 import {NuqsAdapter} from "nuqs/adapters/next/app";
-import RightSidebarContextProvider from "@/components/docs/side/RightSidebarContext";
 import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContext";
 import {ErrorBoundary} from "react-error-boundary";
 import {FileQuestionIcon, HouseIcon} from "lucide-react";
@@ -16,6 +15,7 @@ import Link from "next/link";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -89,13 +89,13 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
     }>
       <NuqsAdapter>
         <LeftSidebarContextProvider>
-          <RightSidebarContextProvider>
-            <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect')}>
+          <DocsSidebarContextProvider>
+            <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
               <DocsLayoutClient title={projectData.project.name}>
                 {children}
               </DocsLayoutClient>
             </NextIntlClientProvider>
-          </RightSidebarContextProvider>
+          </DocsSidebarContextProvider>
         </LeftSidebarContextProvider>
       </NuqsAdapter>
     </ErrorBoundary>

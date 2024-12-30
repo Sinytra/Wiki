@@ -41,18 +41,19 @@ export default function DocsPageFooter({
   const preview = localPreview.isEnabled();
 
   return (
-    <footer className="border-t border-border px-4 py-3 flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center
+    <footer className="border-t border-border px-4 py-3 flex flex-col-reverse sm:flex-row gap-y-3 sm:gap-y-0 sm:items-center
                       justify-between text-sm text-muted-foreground relative
-                      flex-shrink-0 bg-background h-16">
-      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-        {!preview && local && slug && path &&
+                      flex-shrink-0 bg-background sm:h-16">
+      <div className="flex flex-wrap sm:flex-nowrap sm:flex-row flex-row-reverse items-center gap-2 gap-y-3 justify-between sm:justify-start sm:gap-4">
+        {!preview && !local && slug && path &&
           <TooltipProvider>
               <Tooltip>
                   <TooltipTrigger asChild>
-                      <Button asChild variant="ghost" size="sm"
-                              className="p-0 text-muted-foreground hover:bg-transparent h-fit font-normal">
+                      <Button asChild variant="outline" size="sm"
+                              className="sm:p-0 text-muted-foreground hover:bg-transparent sm:h-fit font-normal sm:border-none">
                           <Link href={`/report?slug=${slug}&path=${path.join('/')}`}>
-                              <FlagIcon className="w-4 h-4"/>
+                              <FlagIcon className="w-4 h-4 mr-2 sm:mr-0"/>
+                              <span className="sm:hidden">Report page</span>
                           </Link>
                       </Button>
                   </TooltipTrigger>
@@ -76,14 +77,14 @@ export default function DocsPageFooter({
             <DocsEntryTabs/>
         </div>
       }
-      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+      <div className="flex flex-col sm:flex-row items-end sm:items-center gap-y-3 sm:gap-y-0 sm:gap-x-4">
         {locales && locales.length > 0 &&
           <DocsLanguageSelect locale={locale} locales={locales}/>
         }
         {versions && Object.keys(versions).length > 0 &&
           <DocsVersionSelector version={version} versions={versions}/>
         }
-        {editUrl && <Link href={editUrl} className="flex items-center hover:text-accent-foreground">
+        {editUrl && <Link href={editUrl} className="flex items-center px-3 py-2 sm:p-0 rounded-md border border-input sm:border-none hover:text-accent-foreground">
             <Edit className="w-4 h-4 mr-2"/>
             {t('edit_gh')}
         </Link>

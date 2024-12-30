@@ -304,7 +304,7 @@ export default async function Home({params}: { params: { locale: string } }) {
       </div>
     }
 
-    <div className={cn(showBanner && '!pt-0', 'page-wrapper page-wrapper-ext flex flex-1 min-h-[100vh] mx-4 sm:mx-2')}>
+    <div className={cn(showBanner && '!pt-0', 'page-wrapper page-wrapper-ext flex flex-1 min-h-[100vh] sm:mx-2')}>
       <HomePageContent/>
     </div>
   </>

@@ -53,7 +53,7 @@ export default function DocsLanguageSelect({locale, locales}: { locale: string; 
 
   return (
     <Select value={locale} onValueChange={changeLocale}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="sm:w-[180px]">
         <Globe className="w-4 h-4 mr-1" />
         <SelectValue placeholder={t('placeholder')} />
       </SelectTrigger>

@@ -60,7 +60,7 @@ function NavigationColumns() {
       <LinkColumn title={t('links.links.title')}>
         <LinkEntry title="Discord" href="https://discord.sinytra.org"/>
         <LinkEntry title="GitHub" href="https://github.com/Sinytra"/>
-        <LinkEntry title="OpenCollective" href="https://opencollective.com/sinytra"/>
+        <LinkEntry title="Donate" href="https://opencollective.com/sinytra"/>
       </LinkColumn>
 
       <LinkColumn title={t('links.resources.title')}>

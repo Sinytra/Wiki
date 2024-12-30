@@ -21,8 +21,7 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
       <div className="flex-shrink-0">
-        <img className="rounded-sm border border-accent" src={projectContent.icon_url} alt="icon" width={80}
-             height={80}/>
+        <img className="rounded-sm border border-accent w-16 h-16 sm:w-20 sm:h-20" src={projectContent.icon_url} alt="icon"/>
       </div>
   )
 }
@@ -46,9 +45,9 @@ function ProjectIconPlaceholder() {
 
 async function GitHubProjectLink({url}: { url: string }) {
   return (
-      <Button variant="outline" size="icon" asChild>
+      <Button variant="outline" size="icon" className="w-8 h-8 sm:w-10 sm:h-10" asChild>
         <Link href={url} target="_blank">
-          <GitHubIcon width={24} height={24}/>
+          <GitHubIcon className="w-5 h-5 sm:w-6 sm:h-6" />
         </Link>
       </Button>
   )
@@ -61,38 +60,38 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
   const TypeIcon = ProjectTypeIcons[projectContent.type];
 
   return (
-      <div className="flex flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
+      <div className="flex flex-wrap sm:flex-nowrap sm:flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
         <ErrorBoundary fallback={<span></span>}>
           <div className="flex flex-row items-center gap-3">
             <div className="flex flex-row items-center gap-2 text-muted-foreground">
-              <TypeIcon className="w-5 h-5"/>
-              <span className="text-base">{u(projectContent.type)}</span>
+              <TypeIcon className="w-4 h-4 sm:w-5 sm:h-5"/>
+              <span className="text-sm sm:text-base">{u(projectContent.type)}</span>
             </div>
             <div className="flex flex-row items-center gap-2 text-muted-foreground">
-              <MilestoneIcon className="w-5 h-5"/>
+              <MilestoneIcon className="w-4 h-4 sm:w-5 sm:h-5"/>
               {projectContent.game_versions.length === 0
-                ? <span className="text-base">{t('unknown')}</span>
+                ? <span className="text-sm sm:text-base">{t('unknown')}</span>
                 : <ModVersionRange versions={projectContent.game_versions} />
               }
             </div>
           </div>
         </ErrorBoundary>
 
-        <div className="flex flex-shrink-0 gap-2">
+        <div className="sm:flex-shrink-0 gap-1 sm:gap-2 hidden sm:flex">
           {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
           {base.platforms.curseforge &&
               <Button asChild variant="outline" size="icon"
-                      className="hover:text-[var(--curseforge-brand)]">
+                      className="hover:text-[var(--curseforge-brand)] w-8 h-8 sm:w-10 sm:h-10">
                   <NavLink href={platforms.getProjectURL('curseforge', base.platforms.curseforge)} target="_blank">
-                      <CurseForgeIcon width={24} height={24}/>
+                      <CurseForgeIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
                   </NavLink>
               </Button>
           }
           {base.platforms.modrinth &&
               <Button asChild variant="outline" size="icon"
-                      className="hover:text-[var(--modrinth-brand)]">
+                      className="hover:text-[var(--modrinth-brand)] w-8 h-8 sm:w-10 sm:h-10">
                   <NavLink href={platforms.getProjectURL('modrinth', base.platforms.modrinth)} target="_blank">
-                      <ModrinthIcon width={24} height={24}/>
+                      <ModrinthIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
                   </NavLink>
               </Button>
           }
@@ -105,18 +104,18 @@ export default async function BrowseProject({project}: { project: BaseProject })
   const platformProject = platforms.getPlatformProject(project);
 
   return (
-      <div className="flex flex-row items-center border border-neutral-600 rounded-sm w-full p-3 gap-4">
+      <div className="flex flex-row items-center border border-neutral-600 rounded-sm w-full px-3 py-2 sm:py-3 gap-3 sm:gap-4">
         <ErrorBoundary fallback={<ProjectIconPlaceholder/>}>
           <Suspense fallback={<ProjectIconPlaceholder/>}>
             <ProjectIcon project={platformProject}/>
           </Suspense>
         </ErrorBoundary>
 
-        <div className="flex flex-col gap-1 w-full">
+        <div className="flex flex-col gap-2 sm:gap-1 w-full">
           <div className="w-full h-full flex flex-col gap-1.5">
             <div className="w-full inline-flex gap-2">
               <LinkTextButton href={`/project/${project.id}`}
-                              className="!w-fit !font-normal flex-shrink-0 text-lg sm:text-xl text-foreground">
+                              className="!w-fit !font-normal sm:flex-shrink-0 text-lg sm:text-xl text-foreground">
                 {project.name}
               </LinkTextButton>
 

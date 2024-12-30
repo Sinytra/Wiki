@@ -20,7 +20,7 @@ export default function DocsInnerLayoutClient({project, version, rightSidebar, f
       <DocsLeftSidebar slug={project.id} version={version} tree={tree}/>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 p-6 overflow-auto min-h-[86vh] sm:min-h-[auto]">
         {children}
       </main>
 
