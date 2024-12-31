@@ -4,7 +4,7 @@ export default function DocsSidebarTitle({ children, extra, offset, noSeparator 
   return (
     <div>
       <div className={cn("h-10 flex flex-row items-center justify-between", offset && 'm-1')}>
-        <h1 className={cn("text-foreground text-lg")}>
+        <h1 className="text-foreground text-lg w-full inline-flex items-center">
           {children}
         </h1>
         {extra}

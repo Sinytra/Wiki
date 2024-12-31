@@ -32,27 +32,29 @@ export default function Browse({params, searchParams}: Properties) {
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
   return (
-      <NuqsAdapter>
-        <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center">
-          <aside
-              className="px-1 md:p-1.5 md:pt-2 bg-muted rounded-md w-full md:w-64 mb-2 md:mb-0 flex-shrink-0 md:sticky md:top-20 md:h-[calc(100vh_-_8rem)]"
-          >
-            <CollapsibleDocsTreeBase title={t('sidebar.title')} defaultOpen={false}>
-              <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>
-                <BrowseFilterPanel/>
-              </NextIntlClientProvider>
-            </CollapsibleDocsTreeBase>
-          </aside>
+    <NuqsAdapter>
+      <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center page-wrapper-ext">
+        <aside
+          className="px-1 md:p-1.5 md:pt-2 bg-muted rounded-md w-full md:w-64 mb-2 md:mb-0 flex-shrink-0 md:sticky md:top-20 md:h-[calc(100vh_-_8rem)]"
+        >
+          <CollapsibleDocsTreeBase title={t('sidebar.title')} defaultOpen={false}>
+            <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>
+              <BrowseFilterPanel/>
+            </NextIntlClientProvider>
+          </CollapsibleDocsTreeBase>
+        </aside>
 
-          <div className="w-full max-w-[60rem] flex flex-col gap-2">
-            <div className="flex flex-col gap-4 sm:flex-row flex-wrap items-end sm:items-start justify-between w-full pb-4 mb-2 border-b border-neutral-700">
-              <ProjectSearch placeholder={t('search')}/>
+        <div className="w-full sm:max-w-[60rem] flex flex-col gap-2">
+          <div
+            className="flex flex-col gap-4 sm:flex-row flex-wrap items-end sm:items-start justify-between w-full pb-4 mb-2 border-b border-neutral-700">
+            <ProjectSearch placeholder={t('search')}/>
 
-              <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>
-                <BrowseSortDropdown/>
-              </NextIntlClientProvider>
-            </div>
+            <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>
+              <BrowseSortDropdown/>
+            </NextIntlClientProvider>
+          </div>
 
+          <NextIntlClientProvider messages={pick(messages, 'ModVersionRange')}>
             <Suspense fallback={
               <div className="w-full flex justify-center my-3">
                 <LoadingContent/>
@@ -60,8 +62,9 @@ export default function Browse({params, searchParams}: Properties) {
             }>
               <BrowseProjectList query={query} page={page} types={types} sort={sort}/>
             </Suspense>
-          </div>
+          </NextIntlClientProvider>
         </div>
-      </NuqsAdapter>
+      </div>
+    </NuqsAdapter>
   )
 }

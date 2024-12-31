@@ -1,4 +1,4 @@
-import ReportDocsPageForm from "@/components/docs/ReportDocsPageForm";
+import ReportDocsPageForm from "@/components/docs/form/ReportDocsPageForm";
 import * as React from "react";
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import {useMessages, useTranslations} from "next-intl";
@@ -14,7 +14,7 @@ export default function ReportPage({params, searchParams}: { params: { locale: s
   const messages = useMessages();
 
   return (
-    <div className="flex flex-row gap-4 w-full justify-center">
+    <div className="flex flex-row gap-4 w-full justify-center page-wrapper-ext">
       <div className="w-full max-w-[62rem] flex flex-col gap-4">
         <h1 className="text-center text-2xl text-primary border-b pb-4">
           {t('title')}

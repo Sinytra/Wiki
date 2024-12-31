@@ -1,0 +1,96 @@
+---
+title: Project Types Update
+date: 2024-11-28
+excerpt: New project types, improved browsing functionality and miscellaneous changes.
+---
+
+One could call the latest wiki update a multidimensional one. And that's for a reason - we now support 6 project types
+that can be documented on the wiki!
+
+These include:
+- <BoxIcon className="w-5 h-5 mr-1 inline-block text-green-500" /> **Mods**
+- <PackageOpenIcon className="w-5 h-5 mr-1 inline-block text-orange-500" /> **Modpacks**
+- <PaintbrushIcon className="w-5 h-5 mr-1 inline-block text-sky-500" /> **Resource packs**
+- <BracesIcon className="w-5 h-5 mr-1 inline-block text-rose-500" /> **Data packs**
+- <UnplugIcon className="w-5 h-5 mr-1 inline-block text-amber-500" /> **Plugins**
+- <SwatchBookIcon className="w-5 h-5 mr-1 inline-block text-fuchsia-500" /> **Shaders**
+
+If there's enough demand, we're always open to adding more in the future as well.
+
+Let's dive into all the new features below!
+
+## 🎨 New project types
+
+When we first started the wiki, our focus was on providing a place for devs to publish documentation
+for their mods.
+
+However, as we've progressed, we found that mods are not the only projects that often publish documentation or come
+with some kind of user guide. These projects [face the same trouble](/blog/post/2024-09-10-introduction#present-options)
+as mods when looking at hosting options for their docs, and we'd like to fill the gap in this area, too.
+
+The wiki's functionality has been expanded and adapted to now support **multiple types** of projects.
+Whatever your project is, if it's related to minecraft, there's a good chance we support it!
+
+As mentioned above, there are now in total **6 types of projects** that can be documented. The process
+and approach remains the same regardless of the projects, e.g. docs are hosted on GitHub and actively
+crawled by the wiki. **Community documentation** can be created for non-mod projects as well.
+
+**No additional steps** are required - the project type is **automatically chosen** when you register your project on
+the wiki based on information provided by the hosting platform.
+
+## 🔎 Improved browse page
+
+Along with adding more project types, we've improved the project browse page to including new filter and sorting
+options for search.
+
+The search algorithm now uses postgresql's built-in [full text search](https://neon.tech/docs/data-types/tsvector)
+algorithm to provide even more accurate results, taking into account more than just the project id.
+
+We now also display the type for each project to better distinguish them in the list. We'll be working on adding
+more filter options and displayed meta information in the future.
+
+<figure style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    <img src="https://i.imgur.com/qpmvGlO.png" alt="New browse page preview" />
+    <figcaption>Preview of the new browse page layout</figcaption>
+</figure>
+
+## 🔧 Misc changes
+
+- 🐛 Fixed issues related to project revalidation not refreshing page data sources
+
+- 🐛 Fixed an issue where projects would not be shown on the dev dashboard due to the filter being case-sensitive
+
+- 🐛 Fixed an issue where the dev dashboard would try to use an expired GitHub token,
+resulting in no projects being displayed
+
+## Summary / TL;DR
+
+**✅ In this major update, we made the following changes:**
+
+- 🛠️ Support for more project types - document your modpacks, resourcepacks, datapacks, shaders and more!
+
+- 🗺️ Improved browse page UI and added filter/sort options
+
+- 🐘 The [Wiki Developer Toolkit](https://github.com/Sinytra/WikiToolkit) gradle plugin is now available on
+the [Gradle Plugin Portal](https://plugins.gradle.org/)!
+
+**🏗️ Features to look forward to, coming in the near future:**
+
+- 📤 The [Item Asset Exporter](https://github.com/Sinytra/ItemAssetExporterMod) helper mod will get new export options
+and progress visualization!
+
+- 🗺️ Homepage UI overhaul
+
+- 🔗 Linking both CurseForge and Modrinth platform projects at once
+
+- 🧑‍🍳 Support for [custom recipe types](https://github.com/Sinytra/Wiki/issues/51)
+
+## 🤝 We're looking for your feedback
+
+Our team is working hard on improving the website's interface and feature set to bring you the next generation
+wiki for all of modded minecraft.
+
+As always, please make sure to let us know if you have any suggestions or ideas we could implement on the wiki!
+Any feedback is appreciated!
+
+Find us on: &nbsp; [Discord](https://discord.sinytra.org) • [GitHub](https://github.com/Sinytra/Wiki) • [Email](mailto:contact@moddedmc.org)

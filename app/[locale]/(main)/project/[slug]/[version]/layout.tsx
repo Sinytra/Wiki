@@ -1,20 +1,33 @@
-import ProjectDocsBaseLayout from "@/components/docs/layout/ProjectDocsBaseLayout";
-import DocsTree from "@/components/docs/tree/DocsTree";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
+import service from "@/lib/service";
+import DocsLayoutClient from "@/components/docs/layout/DocsLayoutClient";
+import {redirect} from "next/navigation";
+import {NextIntlClientProvider, useTranslations} from "next-intl";
+import {getMessages} from "next-intl/server";
+import {pick} from "lodash";
+import {NuqsAdapter} from "nuqs/adapters/next/app";
+import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContext";
+import {ErrorBoundary} from "react-error-boundary";
 import {FileQuestionIcon, HouseIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {ErrorBoundary} from "react-error-boundary";
-import {useTranslations} from "next-intl";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
-import {redirect} from "next/navigation";
-import service from "@/lib/service";
+import {NavLink} from "@/components/navigation/link/NavLink";
+import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
+
+interface LayoutProps {
+  children: ReactNode;
+  params: {
+    slug: string;
+    version: string;
+    locale: string;
+  };
+}
 
 function getIssueCreationLink(repo: any) {
   return `https://github.com/${repo}/issues/new`;
@@ -40,16 +53,16 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
 
       <div className="inline-flex gap-4 mt-4">
         {issueURL &&
-            <Button variant="secondary" asChild>
-                <Link href={issueURL} target="_blank">
-                    <GitHubIcon className="mr-2 w-4 h-4"/>
-                    {t('submit')}
-                </Link>
-            </Button>
+          <Button variant="secondary" asChild>
+              <Link href={issueURL} target="_blank">
+                  <GitHubIcon className="mr-2 w-4 h-4"/>
+                {t('submit')}
+              </Link>
+          </Button>
         }
         <PrimaryButton asChild>
           <NavLink href="/">
-            <HouseIcon className="mr-2 w-4 h-4" strokeWidth={2.5} />
+            <HouseIcon className="mr-2 w-4 h-4" strokeWidth={2.5}/>
             {t('return')}
           </NavLink>
         </PrimaryButton>
@@ -58,20 +71,33 @@ function DocsPageNotFoundError({issueURL}: { issueURL?: string }) {
   )
 }
 
-export default async function ProjectLayout({children, params}: Readonly<{
-  children: ReactNode;
-  params: { slug: string; version: string; locale: string }
-}>) {
+export default async function HomepageLayout({children, params}: LayoutProps) {
   setContextLocale(params.locale);
 
-  const data = await service.getBackendLayout(params.slug, params.version, params.locale);
-  if (!data) redirect('/');
+  const messages = await getMessages();
+
+  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
+  if (!projectData) {
+    return redirect('/');
+  }
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError issueURL={data.project.is_public ? getIssueCreationLink(data.project.source_repo) : undefined}/>}  >
-      <ProjectDocsBaseLayout leftPanel={<DocsTree slug={params.slug} tree={data.tree} version={params.version} />}>
-        {children}
-      </ProjectDocsBaseLayout>
+    <ErrorBoundary fallback={
+      <DocsPageNotFoundError
+        issueURL={projectData.project.is_public ? getIssueCreationLink(projectData.project.source_repo) : undefined}
+      />
+    }>
+      <NuqsAdapter>
+        <LeftSidebarContextProvider>
+          <DocsSidebarContextProvider>
+            <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
+              <DocsLayoutClient title={projectData.project.name}>
+                {children}
+              </DocsLayoutClient>
+            </NextIntlClientProvider>
+          </DocsSidebarContextProvider>
+        </LeftSidebarContextProvider>
+      </NuqsAdapter>
     </ErrorBoundary>
-  )
+  );
 }

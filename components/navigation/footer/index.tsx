@@ -60,7 +60,7 @@ function NavigationColumns() {
       <LinkColumn title={t('links.links.title')}>
         <LinkEntry title="Discord" href="https://discord.sinytra.org"/>
         <LinkEntry title="GitHub" href="https://github.com/Sinytra"/>
-        <LinkEntry title="OpenCollective" href="https://opencollective.com/sinytra"/>
+        <LinkEntry title="Donate" href="https://opencollective.com/sinytra"/>
       </LinkColumn>
 
       <LinkColumn title={t('links.resources.title')}>
@@ -83,16 +83,23 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full bg-muted pt-10 sm:pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-border">
+      className="w-full bg-muted pt-10 sm:pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-border"
+    >
       <div className="px-8 w-full max-w-[90rem] text-muted-foreground flex flex-col gap-8">
         <div
-          className={cn("flex flex-wrap md:flex-nowrap md:flex-row w-full justify-center gap-y-10 sm:gap-y-8", !isPreview && 'md:justify-between')}>
-          <Copyright center={isPreview}/>
+          className={cn(
+            "flex flex-wrap md:flex-nowrap md:flex-row w-full justify-center gap-y-10 sm:gap-y-8",
+            !isPreview && 'md:justify-between'
+          )}
+        >
+          <Copyright center={isPreview} />
 
           { !isPreview && <NavigationColumns /> }
         </div>
         <div className="text-center">
-          <span className="text-xs text-muted-foreground">NOT AN OFFICIAL MINECRAFT WEBSITE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</span>
+          <span className="text-xs text-muted-foreground">
+            NOT AN OFFICIAL MINECRAFT WEBSITE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+          </span>
         </div>
       </div>
     </footer>

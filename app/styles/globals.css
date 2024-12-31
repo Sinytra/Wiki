@@ -7,10 +7,10 @@
 .accordion-body {
     display: grid;
     grid-template-rows: 0fr;
-    transition: 250ms grid-template-rows ease;
+    transition: 200ms grid-template-rows ease;
 }
 
-.accordion.open > div > .accordion-body {
+.accordion.open > .accordion-body {
     grid-template-rows: 1fr;
 }
 
@@ -99,7 +99,10 @@ html body[data-scroll-locked] {
 }
 
 .page-wrapper {
-    padding-top: calc(var(--vp-nav-height) + 0.5rem);
+    padding-top: calc(var(--vp-nav-height));
+}
+
+.page-wrapper-ext {
     padding-bottom: 2.5rem;
 }
 
@@ -195,6 +198,10 @@ html body[data-scroll-locked] {
     
     .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
         @apply scrollbar-thin scrollbar-thumb-[#404043] scrollbar-thumb-rounded;
+    }
+
+    .no-scroll {
+        @apply fixed lg:static;
     }
 }
 

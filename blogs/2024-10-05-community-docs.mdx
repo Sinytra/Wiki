@@ -1,0 +1,171 @@
+---
+title: Community Wiki Update
+date: 2024-10-05
+excerpt: In the first major wiki update, we're introducing community docs and UI localization.
+---
+
+Even though it's only been a short while since we've officially launched the Modded Minecraft Wiki, we've already
+prepared the first large update to the website, which further expands available documentation options and improves the
+user experience.
+
+Let's take a deeper look below!
+
+## 🤝 Community documentation
+
+Community-sourced documentation is now available! Any person, whether they're a mod author or not, can document their
+favourite mod with no coding knowledge required in a few simple steps. Community projects will show up in the browse tab
+just like regular ones, and unofficial documentation will always be explicitly marked as such to avoid confusion in case
+of inaccuracies.
+
+### ➡️ But why?
+
+While first-party official documentation can be realiable and is easier to maintain, there are certain cases where it's
+more feasible to let the community document mods instead.
+
+- Documenting old mods (writing new docs or migrating existing docs from other wikis where the license allows it)
+
+- Documenting mods where official documentation is unavailable
+
+- Documenting other versions of mods / forks
+
+### ➡️ But how?
+
+Normally, wiki websites store their documentation files in a database and allow anyone with an account to make changes
+to content, usually via a built-in editor. However, this requires constant attention to changes being made to the
+website in order to keep it free from potential vandalism and spambots.
+
+In addition, our website takes a different approach to how documentation is sourced, as in that we do not store any
+files locally. Instead, everything is stored in mods' own GitHub repositories and changes are controlled by mod
+authors / other repository maintainers.
+
+Hence, our approach to handling community contributions will differ a little. Rather than the changes being done
+directly on the website, we (the Wiki team) will be maintaining a
+GitHub [repository](https://github.com/Sinytra/CommunityWikiDocs) containing all community documentation hosted on the
+Wiki, where contributions can be made to.
+
+While this may sound a little difficult to handle for users who do not have experience developing mods / using GitHub,
+we have prepared a thorough [guide](https://moddedmc.org/en/about/community) to make sure anyone can contribute to the
+docs easily regardless of their experience.
+
+### ➡️ Who maintains community docs?
+
+Changes to community docs will be reviewed by Sinytra's newly-estabilished Wiki team, also called simply "Wiki Editors",
+who will have direct control over what changes are made to community documentation. The good news is - anyone can join!
+Kinda. We'll soon public an application form for people who wish to be active maintainers.
+
+For everyone else - don't worry! It's not necessary to be an editor in order to submit changes - the team is only in
+charge of reviews.
+
+### ➡️ What does this mean for mod developers?
+
+Official and community-sourced documentation will be stored in different places and will remain independent. As a
+result, there may be cases where mod devs looking to document their own mod will discover it already being documented by
+the community under the Wiki editor team.
+
+There's multiple options you can take here:
+
+1. Use the community docs as a basis for official documentation
+
+2. Keep official and unofficial docs separate (e.g. yours may contain actual specs of mod content, whereas community
+   docs will add useful tips and handy setups)
+
+3. Merge community docs into official docs. Feel free to reach out to us if this is the case, and we'll be happy to
+   assist with moving the docs from the community repo into the mod's own repository.
+
+## 🌐 Website translation - a call for help
+
+The wiki's user interface is now fully translatable!
+
+If you speak a foreign language and would like to help us out localizing the website's interface, you can do so on
+our [Crowdin page](https://crowdin.com/project/sinytra-wiki), where translations can be submitted publicly. (again, no coding knowledge required!).
+In case your language is not shown, please let us know on our [Discord](https://discord.sinytra.org/) and we'll enable it for you.
+
+We'll be very thankful and contributions, and significant onces will be **credited** in the wiki's README on GitHub, as
+well as the "[About](https://moddedmc.org/en/about)" page.
+
+## 🪄 User interface improvements
+
+### Documentation pages
+
+#### Sticky sidebars
+
+Sidebars now stick to the sides of the page when scrolling, so that you don't need to always return to the top of the
+page to navigate away.
+
+#### Table of contents
+
+Pages with hidden metadata will display a table of contents in the right sidebar instead of mod meta information.
+Additionally, mod metadata information will remain completely hidden on content pages (e.g. block and item entries) to
+leave more space for meta information. Mod metadata can be displayed anytime by navigating to "Mod homepage", located on
+the top of the left sidebar.
+
+We'll be adding more customization options for documentation pages in our upcoming update, which will give you more
+control over what types of sidebars are shown.
+
+### Author dashboard
+
+The author dashboard has been updated to make it easier for new authors to register projects to the website.
+
+There is also a new diagnostics dialog to help resolve issues with repository access in cases where the wiki can no
+longer access the repository or the repository has been moved to a different account.
+
+<details>
+    <summary>Show page preview</summary>
+
+    <img src="https://i.imgur.com/ADxiUeb.png"/>
+</details>
+
+We've upgraded the project registration modal to reflect new community documentation options as well.
+
+<details>
+    <summary>Show modal preview</summary>
+
+    <img src="https://i.imgur.com/07NOmyp.png"/>
+</details>
+
+### Project error page
+
+We've added a new error page that will be shown in case a documentation page cannot be accessed by the website. Instead
+of a generic error, we'll let the user know what the cause is and give them the option to report this to the mod author
+on their repository.
+
+<details>
+    <summary>Show error preview</summary>
+
+    <img src="https://i.imgur.com/0WxgcGF.png"/>
+</details>
+
+## Summary / TL;DR
+
+**✅ In this major update, we made the following changes:**
+
+- 🤝 Support for community documentation - [guide](https://moddedmc.org/en/about/community)
+
+- 🌐 User interface is now fully localizable - translations can be submitted on
+  our [Crowdin page](https://crowdin.com/project/sinytra-wiki)
+
+- 🪄 Improvements to UI and error handling
+
+**👁️ What to look out for:**
+
+- 📝 Wiki community docs maintainer signups are opening soon!  
+  An announcement will be posted on our [discord](https://discord.sinytra.org/) with further details once they're open.
+
+**🏗️ Notable features coming in the next update:**
+
+- 🔀 Branch support - maintain docs for multiple mc versions at the same time
+
+- ⚙️ More options for docs page customization via metadata
+
+---
+
+<h4 className="!text-muted-foreground">Something extra for the curious!</h4>
+
+<span className="text-sm text-muted-foreground">
+    Shhh, looks like there is "one more thing" in the works...
+    Ever wondered where <a className="text-muted-foreground" href="https://moddedmc.wiki/">moddedmc.wiki</a> leads to?
+    Well, why not go find out now?
+
+    Special thanks goes to <a className="text-muted-foreground" href="https://github.com/IMB11">@IMB11</a> for
+    helping me out with acquiring the domain! ❤️
+</span>

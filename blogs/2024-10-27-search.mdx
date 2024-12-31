@@ -1,0 +1,155 @@
+---
+title: Search & Versions Update
+date: 2024-10-27
+excerpt: Global search, versioned documentation and new customization options!
+---
+
+Our latest wiki update brings 2 new major features to the website - global search and versioning! We've also added new
+configuration options for documentation authors and made various improvements to the wiki's UI.
+
+Let's take a deeper look below!
+
+## 🔎 Global search
+
+You can now search the entire website's documentation contents using the navigation header's search bar, allowing you to
+query documentation pages as well as mods in one place without having to navigate back-and-forth between docs and the
+browse tab. Results will be sorted in order based on relevancy to the searched term, displaying the name of the docs
+page, the name of the mod it belongs to, its path on the website and the associated icon (entry asset or mod logo).
+
+## 🔖 Versioning
+
+We have introduced versioned docs to the wiki, allowing mod authors to publish documentation for multiple versions of
+their mod at once!
+
+You can show multiple versions of your mod's documentation on the wiki by adding a `versions` property to your  
+docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector  
+as well as in the URL paths) to git branch names.
+
+The documentation folder structure remains the same across all branches with contents being isolated per branch,  
+including assets and localization. **Documentation metadata files (`sinytra-wiki.json`) from other branches are
+ignored**, as all necessary information is already contained in the default branch's file.
+
+Take a look at an example below:
+
+```json title="sinytra-wiki.json"
+{
+    ...
+    "versions": {
+        "1.19.2": "my-git-branch-name",
+        "1.18.2": "another-branch"
+    }
+}
+```
+
+## 🏠 Custom homepages
+
+Until now, the mod documentation homepage always displayed its platform (cf/mr) project's description. To further
+improve wiki customization options, we've added support for showing your own homepage content using the same familiar
+format you use for documentation pages.
+
+To provide your own contents instead, create a `_homepage.mdx` file in your documentation's root folder
+(at the same level as `sinytra-wiki.json`). The file's contents follow the same [formatting](./format) as regular
+documentation pages, except for frontmatter metadata (e.g. title), which is ignored.
+
+The homepage's title will always match the mod's name, whereas the sidebar will display various information about the
+platform project, such as the project's authors, categories and available mc versions.
+
+## 🚀 Improved callouts
+
+We've added new callout variants to allow authors to better draw the reader's attention to various parts depending
+on their importance.
+
+You can choose which variant to show using the `variant` component attribute.
+
+<Callout>This is a sample basic callout</Callout>
+
+Info variant (`info`):
+
+<Callout variant="info">This is a sample info callout</Callout>
+
+Warning variant (`warning`):
+
+<Callout variant="warning">This is a sample warning callout</Callout>
+
+Danger / error variant (`danger`):
+
+<Callout variant="danger">This is a sample danger callout</Callout>
+
+## 🐿️ Icons for everyone
+
+We've made the entire collection of [Lucide icons](https://lucide.dev/icons/) available for use in documentation files
+via React components.
+
+Names of icon components consist of an icon's "component name" (which you can find on the website or make an educated
+guess by converting the icon id to PascalCase (e.g. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`)
+and the `Icon` suffix. All properties supported by [Lucide React](https://lucide.dev/guide/packages/lucide-react) are
+available as well.
+
+For example:
+
+```jsx
+<SquirrelIcon width={32} height={32} strokeWidth={1.5} />
+```
+
+Results in:
+
+<SquirrelIcon width={32} height={32} strokeWidth={1.5} />
+
+### Sidebar usage
+
+You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
+and supplying the icon's name as shown below.
+
+The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
+
+```json title="_meta.json"
+{
+    "blocks": {
+        "name": "Blocks",
+        "icon": "Box"
+    }
+}
+```
+
+## 🔧 Miscellaneous changes
+
+- 💡 Added support for arbitrary asset extensions (you can show GIFs in your docs now!).
+  Example usage: `examplemod:tea.gif` resolves to `.assets/item/examplemod/tea.gif`
+
+- Sidebar headings are indented
+
+- 💡 Codeblocks can now display file names by writing `title="example.json"` after the language definition, where
+  `example.json` is your desired file name to show
+
+- 💡 It is now possible to verify project ownership status by a single-time login to modrinth. If necessary, you'll be
+  prompted with this option during project registration.
+
+- Fixed local preview for CurseForge projects. As the CF api is inaccessible locally, we'll display placeholder project
+metadata until the project is uploaded to the website.
+
+- Mod asset components are no longer wrapped in divs
+
+## Summary / TL;DR
+
+**✅ In this major update, we made the following changes:**
+
+- 🔎 Global wiki documentation search
+
+- 🔖 Versioned documentation using git branches
+
+- 🪄 Documentation format updates for authors
+
+**🏗️ Features to look forward to, coming in the next update:**
+
+- 🛠️ Support for more project types - document your modpacks, resourcepacks, datapacks, shaders, anything!
+
+- 🗺️ UI Improvements to the homepage and navigation
+
+- 🐛 Bugfixes, accessibility improvements and more documentation customization options
+
+## 🤝 Give us feedback
+
+As always, please make sure to let us know if you have any suggestions or ideas we could implement on the wiki!
+Any feedback is appreciated!
+
+Find us on: &nbsp; [Discord](https://discord.sinytra.org) - [GitHub](https://github.com/Sinytra/Wiki) - [Email](mailto:contact@moddedmc.org)

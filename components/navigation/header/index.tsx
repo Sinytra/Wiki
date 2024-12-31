@@ -28,7 +28,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn(styles.container, 'flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-3 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
+        className={cn(styles.container, 'z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-2 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
             <span className="hidden sm:inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
@@ -40,10 +40,10 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
               <span>{t('title_short')}</span>
             </span>
           </LocaleNavLink>
-          {preview && <Badge variant="secondary">{t('badge.preview')}</Badge>}
+          {preview && <Badge className="hidden sm:block" variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&
               <Badge variant="outline"
-                     className="border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
+                     className="hidden sm:block border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
         </div>
 
         {!minimal && !preview &&
@@ -73,7 +73,11 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
             }
           </nav>
 
-          {!minimal && <LanguageSelect locale={locale}/>}
+          {!minimal &&
+            <NextIntlClientProvider messages={pick(messages, 'LanguageSelect')}>
+              <LanguageSelect locale={locale} />
+            </NextIntlClientProvider>
+          }
         </div>
       </div>
     </HeaderBase>

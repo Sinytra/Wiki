@@ -1,0 +1,124 @@
+---
+title: The Scaling Update
+date: 2024-11-15
+excerpt: Improving response times & future scalability.
+---
+
+export const Embed = ({src, alt, fig}) =>
+    <figure style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <img style={{border: '1px white solid' }} width="75%" src={src} alt={alt} />
+        <figcaption>{fig}</figcaption>
+    </figure>
+
+Our latest wiki update brings a brand new experimental backend to improve our services as well as further improvements
+to caching and wiki scalability.
+
+Let's take a deeper look below!
+
+## 🧪 New experimental backend
+
+We've equipped the website with a new experimental [backend](https://github.com/Sinytra/WikiService) to address
+long-running issues with caching and poor page load times (usually as a result slow external API queries).
+
+Decoupling the frontend from tasks related to data processing and moving them to a separate service allows us to run
+heavier computations for longer times, with finer control over concurrent access. As the website grows and wikis
+become larger and more demanding on compute, we should be able to maintain the same performance even during peak
+usage times.
+
+In addition, the new backend allows us to run more analytics-related tasks, which will come in handy when we introduce
+support for custom recipes.
+
+For now, documentation pages have been migrated to the backend service. In the future, we intend to migrate
+the rest of dynamic user interactions, such as database access or content reporting. 
+
+### Track the website status
+
+The uptime of all related services can be found at our new [Status page](https://status.moddedmc.org/), which you can
+also find in the wiki page footer.
+
+## 🖼️ Custom embeds
+
+Each mod page now gets their own embed image to show off on social media, including the homepage and non-content pages.
+
+This means anytime you link a page on Discord, Reddit, Mastodon or your other favourite websites, the wiki will show
+a preview of the page contents instead of the generic wiki embed we've had until now.
+
+### Mod homepage
+
+The mod's homepage will display the mod name, the project summary and mod icon.
+
+<Embed src="https://i.imgur.com/u4Lbc36.png" alt="Mod homepage embed" fig={
+    <a href="https://moddedmc.org/en/mod/instrumentus/docs">
+        Instrumentus homepage
+    </a>
+}/>
+
+### Content page
+
+Content pages will show the page title, origin mod name and optionally the content icon.
+
+<Embed src="https://i.imgur.com/4VorosX.png" alt="Mod content page embed" fig={
+    <a href="https://moddedmc.org/en/mod/instrumentus/docs/brushes">
+        Brushes - Instrumentus
+    </a>
+}/>
+
+### Non-content page
+
+Non-content pages will display the page title and the origin mod name.
+
+<Embed src="https://i.imgur.com/VLujCnt.png" alt="Mod non-content page embed" fig={
+    <a href="https://moddedmc.org/en/mod/mffs/docs/getting_started/gathering_resources">
+        Gathering Resources - Modular Force Field System
+    </a>
+}/>
+
+## 🔧 Miscellaneous changes
+
+### Language translations
+
+As of this update, the website has been fully translated into several languages courtesy of our
+[community members](https://crowdin.com/project/sinytra-wiki/members).
+
+These include:
+- <FlagDE /> German (Deutsch)
+- <FlagFR /> French (Français)
+- <FlagTW /> Traditional Chinese (繁體中文)
+
+### Bugfixes
+
+- 💡 Improved browse page loading speeds
+
+- Fixed crafting recipes not showing their output
+
+## Summary / TL;DR
+
+**✅ In this major update, we made the following changes:**
+
+- 🧪 Introduced a new backend service to improve website performance and future scalability
+
+- 🖼️ Added per-page embed images to display fancy previews on social media
+
+- 🐛 Fixed bugs and worked on further improving page load times
+
+**🏗️ Features to look forward to, coming in the near future:**
+
+- 🐘 The [Wiki Developer Toolkit](https://github.com/Sinytra/WikiToolkit) gradle plugin is going to be published on
+the [Gradle Plugin Portal](https://plugins.gradle.org/)!  
+
+- 📤 The [Item Asset Exporter](https://github.com/Sinytra/ItemAssetExporterMod) helper mod will get new export options
+and progress visualization!
+
+- 🗺️ UI Improvements to the homepage and project list
+
+- 🛠️ Support for more project types - document your modpacks, resourcepacks, datapacks, shaders, anything!
+
+## 🤝 We're looking for your feedback
+
+Our team is working hard on improving the website's interface and feature set to bring you the next generation
+wiki for all of modded minecraft.
+
+As always, please make sure to let us know if you have any suggestions or ideas we could implement on the wiki!
+Any feedback is appreciated!
+
+Find us on: &nbsp; [Discord](https://discord.sinytra.org) • [GitHub](https://github.com/Sinytra/Wiki) • [Email](mailto:contact@moddedmc.org)

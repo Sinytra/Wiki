@@ -6,7 +6,11 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/
 import {usePathname} from "@/lib/locales/routing";
 import {ChevronDownIcon} from "lucide-react";
 
-export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: { title: string; defaultOpen?: boolean; children: any; }) {
+export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: any;
+}) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const [_, setWindowWidth] = useState<number | undefined>(undefined);
@@ -36,14 +40,24 @@ export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: 
   }, [pathname]);
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="h-full flex flex-col px-2 [&[data-state=open]_.docsMainTrigger]:rotate-180">
-      <CollapsibleTrigger className="md:pointer-events-none">
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}
+                 className="h-full flex flex-col px-2 [&[data-state=open]_.docsMainTrigger]:rotate-180">
+      <CollapsibleTrigger className="md:hidden">
         <DocsSidebarTitle offset noSeparator extra={
-          <ChevronDownIcon className="docsMainTrigger md:hidden w-5 h-5 text-muted-foreground transition-transform duration-200"/>
+          <ChevronDownIcon
+            className="docsMainTrigger md:hidden w-5 h-5 text-muted-foreground transition-transform duration-200"/>
         }>
-          {title}
+          <span>{title}</span>
         </DocsSidebarTitle>
       </CollapsibleTrigger>
+      <div className="hidden md:block">
+        <DocsSidebarTitle offset noSeparator extra={
+          <ChevronDownIcon
+            className="docsMainTrigger md:hidden w-5 h-5 text-muted-foreground transition-transform duration-200"/>
+        }>
+          <span>{title}</span>
+        </DocsSidebarTitle>
+      </div>
 
       <CollapsibleContent
         className="pb-2 overflow-hidden transition-all data-[state=open]:animate-collapsible-down md:data-[state=open]:animate-none data-[state=closed]:animate-collapsible-up md:data-[state=closed]:animate-none md:transition-none md:animate-none">
