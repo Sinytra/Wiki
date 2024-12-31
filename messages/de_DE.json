@@ -43,71 +43,95 @@
         }
     },
     "HomePage": {
-        "heading": "Willkommen im <highlight>Modded Minecraft Wiki</highlight>",
-        "documentation": {
-            "title": "Dokumentation",
-            "desc": "Browse project documentation",
-            "search": {
-                "placeholder": "Find your favourite projects..."
-            },
-            "explore": "Explore projects"
+        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "popular": {
+            "title": "Popular Wikis",
+            "open": "Read more",
+            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
-        "developers": {
-            "title": "Autoren & Entwickler",
-            "desc": "Looking to write documentation for a project?",
-            "guide": "Lies zuerst unseren <guide>Autorenleitfaden</guide>.",
-            "area": "Projekt-Dashboard"
-        },
-        "links": {
-            "browse": {
-                "title": "Browse",
-                "desc": "Browse our library of documented projects"
+        "community": {
+            "title": "Join Our Community",
+            "users": {
+                "title": "Users",
+                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "docs": "Access high-quality, up-to-date and versioned documentation",
+                "contribute": "Contribute to projects without programming knowledge",
+                "ui": "Enjoy a consistent, user-friendly interface across all projects",
+                "localization": "Benefit from multi-language support"
             },
-            "blog": {
-                "title": "Blog",
-                "desc": "Lies die neuesten Wiki-Updates"
-            },
-            "about": {
-                "title": "Über uns",
-                "desc": "Erfahre mehr darüber, wie das Wiki funktioniert"
-            },
-            "devs": {
-                "title": "Autoren",
-                "desc": "Host your project's documentation on our wiki"
+            "authors": {
+                "title": "Authors",
+                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
+                "vcs": "Versioning support for your documentation",
+                "components": "Custom components for recipes, assets, etc.",
+                "gradle": "Gradle integration for seamless workflow",
+                "management": "Advanced project management tools",
+                "interaction": "Direct interaction with your user base",
+                "dashboard": "Open Dashboard",
+                "guide": "Read More"
             }
+        },
+        "browse": "Browse Projects",
+        "highlights": {
+            "localization": {
+                "title": "Localization",
+                "desc": "Translate your docs into world languages"
+            },
+            "accessibility": {
+                "title": "Accessible",
+                "desc": "Intuitive and responsive user interface"
+            },
+            "open": {
+                "title": "Open",
+                "desc": "Let your users contribute without any programming knowledge necessary"
+            },
+            "free": {
+                "title": "Free",
+                "desc": "Hosting docs on our website is completely free of charge!"
+            }
+        },
+        "about": {
+            "title": "About Us",
+            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
+            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+        },
+        "blog": {
+            "title": "Blog Posts",
+            "open": "Read More"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "Projekte durchsuchen",
+            "search_filters": "Suchfilter...",
+            "categories": "Kategorien"
         },
-        "sorting": "Sort by",
+        "sorting": "Sortieren nach",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "Relevanz",
+            "creation_date": "Erstellungsdatum",
+            "popularity": "Beliebtheit",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
+        "search": "Projekt suchen...",
+        "clear_filter": "Filter zurücksetzen",
         "no_results": "Die Suchanfrage ergab keine Ergebnisse!"
     },
     "SearchProjectTypes": {
         "mod": "Mods",
         "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
+        "resourcepack": "Ressourcenpakete",
+        "datapack": "Datenpakete",
+        "shader": "Shader",
         "plugin": "Plugins"
     },
     "ProjectTypes": {
         "mod": "Mod",
         "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
+        "resourcepack": "Ressourcenpaket",
+        "datapack": "Datenpaket",
         "shader": "Shader",
         "plugin": "Plugin"
     },
@@ -151,80 +175,63 @@
         "roots": "Verfügbare lokale Dokumentationswurzeln",
         "open": "Öffnen"
     },
-    "DocsFileTree": {
-        "title": "Dokumentation",
-        "homepage": "Homepage"
-    },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
+        "title": "Projektinformationen",
+        "type": "Typ",
+        "author": "Autor",
         "tags": "Tags",
         "latest": {
-            "title": "Latest version",
-            "unknown": "N/A"
+            "title": "Neueste Version",
+            "unknown": "Nicht verfügbar"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "Lizenz",
+            "custom": "Benutzerdefiniert",
+            "unknown": "Unbekannt",
+            "arr": "Alle Rechte vorbehalten"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
+        "adventure": "Abenteuer",
+        "cursed": "Verflucht",
+        "decoration": "Dekoration",
+        "economy": "Wirtschaft",
+        "equipment": "Ausrüstung",
+        "food": "Essen",
+        "game-mechanics": "Spielmechanik",
+        "library": "Bibliothek",
+        "magic": "Magie",
         "management": "Management",
-        "minigame": "Minigame",
+        "minigame": "Minispiel",
         "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
+        "optimization": "Optimierung",
+        "social": "Sozial",
+        "storage": "Lagerung",
+        "technology": "Technologie",
+        "transportation": "Transport",
+        "utility": "Dienstprogramm",
+        "worldgen": "Weltgenerierung",
+        "server-utility": "Server-Dienstprogramm",
+        "armor-weapons-tools": "Rüstung, Werkzeuge und Waffen",
+        "library-api": "API und Bibliothek",
+        "adventure-rpg": "Abenteuer und Rollenspiel",
+        "world-gen": "Weltgenerierung",
+        "cosmetic": "Kosmetik",
+        "mc-food": "Essen",
+        "performance": "Leistung",
+        "map-information": "Karte und Information",
+        "bug-fixes": "Fehlerbehebungen",
         "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
+        "education": "Bildung",
+        "mc-miscellaneous": "Verschiedenes",
         "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "utility-qol": "Werkzeuge & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Seite auf GitHub bearbeiten",
+        "edit_gh": "Edit this page",
         "report": "Diese Seite melden",
         "last_updated": "Zuletzt aktualisiert: <date></date>"
-    },
-    "DocsEntryInfo": {
-        "title": "Information",
-        "name": "Name",
-        "source": "Quell-Mod",
-        "tags": "Tags",
-        "id": "ID",
-        "unknown": "Unbekannt",
-        "type": {
-            "block": "Block",
-            "item": "Gegenstand",
-            "other": "Andere"
-        }
     },
     "Report": {
         "title": "Eine Dokumentationsseite melden",
@@ -264,8 +271,9 @@
                 "title": "Wir verstehen, dass du diese Seite vielleicht nicht magst, und das ist völlig in Ordnung!",
                 "desc": "Leider ist das jedoch kein gültiger Grund, ein Projekt zu melden.",
                 "suggestion": "Möchtest du stattdessen nach etwas anderem suchen?",
-                "explore": "Explore projects"
-            }
+                "explore": "Projekte entdecken"
+            },
+            "success": "Report submitted successfully"
         }
     },
     "SubmitButton": {
@@ -307,7 +315,7 @@
         "submit": "Einreichen",
         "success": {
             "title": "Projekt erfolgreich registriert",
-            "desc": "You can now navigate to the project's docs page"
+            "desc": "Du kannst jetzt zur Dokumentationsseite des Projekts navigieren"
         },
         "submitting": "Einreichen...",
         "verify_modrinth": "Mit Modrinth verifizieren"
@@ -317,7 +325,7 @@
         "desc": "Bearbeite die Einstellungen eines bestehenden Projekts.",
         "success": {
             "title": "Projekt erfolgreich aktualisiert",
-            "desc": "You can now navigate to the updated project's docs page"
+            "desc": "Du kannst jetzt zur aktualisierten Dokumentationsseite des Projekts navigieren"
         }
     },
     "ProjectDeletionForm": {
@@ -339,19 +347,20 @@
     "FormActions": {
         "errors": {
             "unauthenticated": "Nicht authentifiziert",
-            "user_github_auth": "GitHub authentication error",
-            "insufficient_wiki_perms": "Insufficient permissions to create community project",
-            "unsupported": "Not yet implemented",
-            "insufficient_repo_perms": "User does not have access to repository.",
+            "user_github_auth": "GitHub Authentifizierungsfehler",
+            "insufficient_wiki_perms": "Unzureichende Berechtigung zum Erstellen eines Community-Projekts",
+            "unsupported": "Noch nicht implementiert",
+            "insufficient_repo_perms": "Benutzer hat keinen Zugriff auf das Repository.",
             "no_branch": "Branch existiert nicht",
             "no_meta": "Metadatendatei nicht gefunden",
             "invalid_meta": "Metadatendatei ist ungültig",
             "exists": "Projekt existiert bereits.",
-            "cf_unavailable": "Registering CurseForge projects is not active",
+            "no_platforms": "No platform projects defined in metadata.",
+            "cf_unavailable": "Die Registrierung von CurseForge-Projekten ist nicht aktiv",
             "no_project": "Plattformprojekt nicht gefunden. Bitte stelle sicher, dass das Feld \"slug\" in den Metadaten korrekt ist.",
             "ownership": "Überprüfung des Projekteigentums fehlgeschlagen",
             "internal": "Interner Serverfehler, bitte später erneut versuchen.",
-            "not_found": "Project does not exist"
+            "not_found": "Projekt existiert nicht"
         }
     },
     "GetHelpModal": {
@@ -407,7 +416,7 @@
     "DocsPageNotFoundError": {
         "title": "Wir haben diese Seite verloren",
         "desc": "Die angeforderte Dokumentationsseite ist momentan nicht verfügbar.",
-        "suggestion": "Please try again later or report this issue to the project author.",
+        "suggestion": "Bitte versuche es später erneut oder melde dieses Problem dem Projektautor.",
         "submit": "Problem melden",
         "return": "Zurück zur Startseite"
     },
@@ -418,31 +427,20 @@
         "button": "Projekt hinzufügen",
         "title": "Ich möchte eine Dokumentation für...",
         "dev": {
-            "title": "My own project",
+            "title": "Mein eigenes Projekt",
             "desc": "Verfasse deine eigene Dokumentation und bestimme, wer Änderungen daran vornehmen kann.",
             "button": "Projekt erstellen"
         },
         "community": {
-            "title": "Someone else's project",
-            "desc": "Contribute to a collection of community docs maintained by wiki editors",
+            "title": "Jemandes anderes Projekt",
+            "desc": "Leiste deinen Beitrag zu einer Sammlung von Community-Dokumentationen, die von Wiki-Erstellern gepflegt wird",
             "button": "Leitfaden lesen"
         }
-    },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
     },
     "DocsHomepagePlaceholder": {
         "title": "Homepage-Platzhalter",
         "subtitle": "Aufgrund von API-Beschränkungen sind Projektdaten für CurseForge-Projekte in lokalen Umgebungen nicht verfügbar.",
         "replace": "Mach dir keine Sorgen! Wir werden diesen Platzhalter durch die tatsächliche Beschreibung des Projekts ersetzen, sobald es auf der Live-Wiki-Website bereitgestellt wird."
-    },
-    "DocsTableOfContents": {
-        "title": "Auf dieser Seite"
-    },
-    "DocsBranchSelector": {
-        "title": "Versionen",
-        "latest": "Neueste"
     },
     "DocsSearchBar": {
         "placeholder": "Durchsuche Wiki-Inhalte...",
@@ -450,5 +448,46 @@
         "loading": "Suche die perfekten Ergebnisse...",
         "results": "Zeigt <highlight>{count}</highlight> von <highlight>{total}</highlight> Ergebnissen",
         "close": "<kbd>ESC</kbd> zum Schließen"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Links",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Author",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentation",
+        "homepage": "Project Homepage"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "On this page"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Select version"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
+    },
+    "LanguageSelect": {
+        "placeholder": "Search languages...",
+        "no_results": "No language found."
     }
 }
