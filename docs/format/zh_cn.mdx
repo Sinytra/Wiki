@@ -1,74 +1,61 @@
 import CraftingRecipe from "../../components/docs/shared/CraftingRecipe.tsx";
 
-# Documentation format
+# 文档格式
 
-The wiki uses [MDX](https://mdxjs.com/) files as its documentation format. In additon, [GitHub Flavored Markdown](https://github.github.com/gfm/)
-(GFM) is also available using [`remark-gfm`](https://github.com/remarkjs/remark-gfm). 
+Wiki 使用 [MDX](https://mdxjs.com/) 文件作为其文档格式。此外，还支持使用 [`remark-gfm`](https://github.com/remarkjs/remark-gfm) 提供的 [GitHub Flavored Markdown](https://github.github.com/gfm/) (GFM)。
 
-If you're not yet familiar with MDX, don't worry - it is an extension of the simple [Markdown](https://www.markdownguide.org/)
-format with added JSX capabilities, meaning you can include fancy custom components in your documentation,
-such as crafting recipes.
+如果您还不熟悉 MDX，不要担心——它是简单的 [Markdown](https://www.markdownguide.org/) 格式的扩展，增加了 JSX 的功能，这意味着您可以在文档中包含自定义组件，例如合成配方。
 
-These features are purely optional, and you can always stick to using standard Markdown in your documentation. However,
-the file extension must remain `.mdx`.
+这些功能是可选的，您可以始终选择使用标准 Markdown 编写文档。但是文件扩展名必须保持为 `.mdx`。
 
-#### Limitations
+#### 限制
 
-Because MDX can potentially allow unwanted code injection on the server, we sanitize all sources before they're rendered,
-which can result in certain features of MDX being unavailable. That said, if there's a safe feature you'd like to use in
-your documentation that isn't available on the wiki, please open an issue on our
-[GitHub repository](https://github.com/Sinytra/Wiki/issues).
+由于 MDX 可能允许在服务器上进行代码注入，我们会在渲染之前对所有源代码进行清理，这可能会导致某些 MDX 功能不可用。不过，如果您希望在文档中使用某个安全的功能而它在维基上不可用，请在我们的 [GitHub 仓库](https://github.com/Sinytra/Wiki/issues) 上提交问题。
 
-## Metadata
+## 元数据
 
-Markdown page metadata, also known as simply "Frontmatter" is used by the wiki to provide additional information about
-a page or in-game content. It's located at the very beginning of each file in YAML format.
+Markdown 页面元数据，也称为“Frontmatter”，用于提供有关页面或游戏内内容的额外信息。它位于每个文件的开头，采用 YAML 格式。
 
-Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
-Usually, this includes an icon of the block/item along with its name, id, source mod and other handy information.
+从 Frontmatter 获取的信息会显示在每页右侧边栏的“信息”部分。通常包括方块/物品的图标及其名称、ID、来源模组和其他有用的信息。
 
-If your page is not related to a specific object, you can hide all metadata and ignore their values by setting
-`hide_meta: true`. The `title` attribute will still be used, and we recommend providing it at all times.
+如果您的页面与特定对象无关，可以通过设置 `hide_meta: true` 来隐藏所有元数据并忽略它们的值。`title` 属性仍然会被使用，我们建议始终提供该属性。
 
 ```markdown
 ---
 title: Hello World
 ---
 
-Content comes here
+其它内容
 ```
 
-Here's an overview of supported attributes:
+以下是支持的属性概述：
 
-- `title` - Display name of the page, shown in the content heading and the browser tab title.
-  Replaces the `h1` heading in docs.
-  - Type: `string`
-  - Example: `Fancy Block`
-- `hide_meta` - Hides sidebar meta information. As a results, all other attributes will be ignored.
-  - Type: `boolean`
-- `id` - In-game resource location ID of the content shown. If a matching asset with the same location is found in the
-  documentation root's asset folder, it will be used as the `icon`.
-  - Type: Resource Location
-  - Example: `examplemod:generator`
-- `icon` - Resource location of an asset that will be shown as the documented item's icon. Its size should be at least
-  128x128 pixels.
-  - Type: Resource Location
-  - Example: `examplemod:fancy_generator`
-- `hide_icon` - Hides the project icon, showing a generic placeholder instead.
-  - Type: `boolean`
-- `type` - Can be `block`, `item` or `other`
-  - Type: `string`
-- `custom` - A map of custom attributes you wish to display in the sidebar.
-  - Type: `string` -> `string` map
-  - Example:
+- `title` - 页面的显示名称，显示在内容标题和浏览器标签标题中。替换文档中的 `h1` 标题。
+  - 类型：`string`
+  - 示例：`Fancy Block`
+- `hide_meta` - 隐藏侧边栏元数据。结果是其他所有属性将被忽略。
+  - 类型：`boolean`
+- `id` - 显示内容的游戏内资源位置 ID。如果在文档根目录的资产文件夹中找到与同一位置匹配的资产，它将用作 `icon`。
+  - 类型：资源位置
+  - 示例：`examplemod:generator`
+- `icon` - 将作为文档化物品图标的资产资源位置。大小应至少为 128x128 像素。
+  - 类型：资源位置
+  - 示例：`examplemod:fancy_generator`
+- `hide_icon` - 隐藏项目图标，显示通用占位符。
+  - 类型：`boolean`
+- `type` - 可以是 `block`、`item` 或 `other`
+  - 类型：`string`
+- `custom` - 您希望在侧边栏中显示的自定义属性映射。
+  - 类型：`string` -> `string` 映射
+  - 示例：
     ```yaml
     custom:
       Category: Machines
     ```
 
 <details>
-    <summary>Show complete metadata example</summary>
-    
+    <summary>显示完整的元数据示例</summary>
+
     ```markdown
     ---
     title: Generator
@@ -78,35 +65,35 @@ Here's an overview of supported attributes:
     custom:
       Subcategory: Machines
     ---
-    
-    Content comes here
+
+    其它内容
     ```
 </details>
 
-## Custom components
+## 自定义组件
 
-The wiki adds a selection of useful components that you can use in your documentation.
+维基提供了一些有用的组件，您可以在文档中使用。
 
-Import statements are not required for built-in wiki components.
+内置维基组件不需要导入语句。
 
 <Callout>
-    Didn't find what you were looking for? Head over to our [GitHub repository](https://github.com/Sinytra/Wiki/issues)
-    and open a new issue or pull request proposing your desired component!
+    没有找到您需要的内容？请前往我们的 [GitHub 仓库](https://github.com/Sinytra/Wiki/issues)
+    并提出新的问题或拉取请求，提议您所需的组件！
 </Callout>
 
-### Crafting recipe
+### 合成配方
 
-- `slots` - Exactly 9 resource location strings (asset names), in order from top-left to bottom-right.
-- `result` - Resource location of the resulting item asset
-- `count` - Optionally, specify the output item amount
+- `slots` - 恰好 9 个资源位置字符串（资产名称），按从左上到右下的顺序排列。
+- `result` - 结果物品的资源位置
+- `count` - 可选，指定输出物品的数量
 
-※ Images shown in crafting recipes are sourced from documentation assets as described [here](./devs#assets).
+※ 合成配方中显示的图像来自文档资产，如 [这里](./devs#assets) 所述。
 
 ```jsx
 <CraftingRecipe
     slots={[
         'flint',
-        'minecraft:flint', // Hint: the namespace is optional for 'minecraft' items
+        'minecraft:flint', // 提示：对于原版物品，命名空间可以省略
         'flint',
         '',
         'iron_block',
@@ -116,11 +103,11 @@ Import statements are not required for built-in wiki components.
         ''
     ]}
     result="furnace"
-    count={4} // Optional
+    count={4} // 可选
 />
 ```
 
-Results in:
+效果如下：
 
 <CraftingRecipe
     slots={[
@@ -138,82 +125,77 @@ Results in:
     count={4}
 />
 
-### Callouts
+### 提示框
 
-Draw the reader's attention with callouts.
+使用提示框吸引读者的注意力。
 
-Available attributes:
+可用属性：
 
-- `variant` Optional; can be either of [`default`, `info`, `warning`, `danger`] (default: `default`)
+- `variant` 可选；可以是 [`default`, `info`, `warning`, `danger`] 中的一个（默认为 `default`）
 
 ```jsx
 <Callout>
-    This is a sample callout
+    这是一个示例提示框
 </Callout>
 
 <Callout variant="info">
-    This is a sample info callout
+    这是一个示例信息提示框
 </Callout>
 
-/* Other variants shown below */
+/* 其它变体如下所示 */
 ```
 
-Results in:
+效果如下：
 
-<Callout>This is a sample callout</Callout>
+<Callout>这是一个示例提示框</Callout>
 
-Info variant:
+信息（info）变体：
 
-<Callout variant="info">This is a sample info callout</Callout>
+<Callout variant="info">这是一个示例信息提示框</Callout>
 
-Warning variant:
+警告（warning）变体：
 
-<Callout variant="warning">This is a sample warning callout</Callout>
+<Callout variant="warning">这是一个示例警告提示框</Callout>
 
-Danger variant:
+危险（danger）变体:
 
-<Callout variant="danger">This is a sample danger callout</Callout>
+<Callout variant="danger">这是一个示例危险提示框</Callout>
 
-### Mod Asset
+### 模组资源
 
-Displays an [asset](./devs#assets) image.
+显示一个[资源](./devs#assets)图片。
 
-Available attributes:
+可用属性：
 
-- `location` Required, Resource Location of the asset you wish to display
-- All properties of `img` except for `src` are accepted
+- `location` 必填，您希望显示的资产的资源位置
+- 接受除 `src` 外的所有 `img` 属性
 
 ```jsx
 <Asset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
 ```
 
-Results in:
+效果如下：
 
 <Asset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
 
-### Icons
+### 图标
 
-The entire collection of [Lucide icons](https://lucide.dev/icons/) is available to use in documentation files via
-React components.
+整个 [Lucide 图标](https://lucide.dev/icons/) 集合都可以通过 React 组件在文档文件中使用。
 
-Names of icon components consist of an icon's "component name" (which you can find on the website or make an educated
-guess by converting the icon id to PascalCase (e.g. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`)
-and the `Icon` suffix. All properties supported by [Lucide React](https://lucide.dev/guide/packages/lucide-react) are
-available as well.
+图标组件的名称由图标的“组件名称”（您可以在网站上找到或通过将图标 ID 转换为 PascalCase 来猜测，例如 `align-vertical-justify-start` -> `AlignVerticalJustifyStart`）和 `Icon` 后缀组成。所有 [Lucide React](https://lucide.dev/guide/packages/lucide-react) 支持的属性都可用。
 
-For example:
+例如：
 
 ```jsx
 <SquirrelIcon width={64} height={64} strokeWidth={1.5} />
 ```
 
-Results in:
+效果如下：
 
 <SquirrelIcon width={64} height={64} strokeWidth={1.5} />
 
-## Next steps
+## 下一步
 
-Once your documentation folder is set up, and you're satisfied with the looks and content of your documentation,
-it is time to get it published on the wiki.
+一旦您的文档文件夹设置完成，并且您对文档的外观和内容感到满意，就可以将其发布到维基上。
 
-➡️ See the [Publishing](./publishing) page for more information.
+➡️ 请参阅 [发布](./publishing) 页面获取更多信息。

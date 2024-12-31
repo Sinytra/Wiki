@@ -1,134 +1,108 @@
 import {RefreshCwIcon, SettingsIcon, TrashIcon} from "lucide-react";
 
-# Publishing
+# 发布
 
-Learn how to publish your documentation on our website!
+学习如何在我们的网站上发布您的文档！
 
-## Developer portal
+## 开发者面板
 
-You can access our [developer portal](../dev) by clicking the `Developer area` button on the home page or in the footer.
+您可以通过点击主页或页脚上的 `开发者区域` 按钮访问我们的 [开发者面板](../dev)。
 
-### First login
+### 首次登录
 
-If this is your first time signing in, you'll be redirected to the login page where you can sign in using
-your **GitHub account**.
+如果您是第一次登录，您将被重定向到登录页面，您可以使用 **GitHub 账户** 登录。
 
-GitHub will ask you to authorize our GitHub App to access your account. It only requires minimal permissions used to
-verify your identify and repository access permissions. Upon approving the request, you'll be automatically taken
-to the developer portal.
+GitHub 会要求您授权我们的 GitHub 应用程序访问您的账户。它仅需要用于验证身份和仓库访问权限的最小权限。批准请求后，您将自动进入开发者面板。
 
-## Registering projects
+## 注册项目
 
-To add a new project to the wiki, hit the `Add Project` button. This will open a modal dialog, where you'll be asked
-to fill out the following information:
+要向 Wiki 添加新项目，请点击 `添加项目` 按钮。这将打开一个模态对话框，要求您填写以下信息：
 
-- `Owner` - GitHub repository owner. Can be a user or an organization
-- `Name` - GitHub repository name
-- `Branch` - Name of the branch where the documentation is located
-- `Path to documentation root` - Path to the documentation root folder inside the repository.
-  Should begin with a leading `/`.
+- `所有者` - GitHub 仓库所有者。可以是用户或组织
+- `名称` - GitHub 仓库名称
+- `分支` - 文档所在的分支名称
+- `文档根路径` - 仓库中文档根文件夹的路径。应以 `/` 开头。
 
-Once you've filled everything out, hit the `Submit` button to complete the registration process.
+填写完毕后，点击 `提交` 按钮完成注册过程。
 
-If the process completed successfully, you're good to go! Try opening the project on the wiki to see the rendered result.
+如果注册成功，恭喜！尝试在 Wiki 上打开该项目以查看渲染结果。
 
-**Should you run into any errors, please see the Troubleshooting section below. If the issue still persists,
-[reach out to us](./help).**
+**如果您遇到任何错误，请参阅下面的故障排除部分。如果问题仍然存在，请[联系我们](./help)。**
 
 <Callout>
-    As wiki content is rendered lazily, you may experience slightly increased loading times when first visiting pages,
-    but this only occurs the first time a given page is opened and will be **cached for all visitors** afterward,
-    achieving near-instant navigation times.
+    由于 Wiki 内容是惰性加载的，首次访问页面时可能会有稍微增加的加载时间，但这只会在首次打开给定页面时发生，并且之后会为所有访客**缓存**，实现几乎即时的导航时间。
 </Callout>
 
-( also don't forget to let your users know they can now find docs for your mod here :) )
+（别忘了告诉您的用户，他们现在可以在我们这里找到您模组的文档 :)）
 
 <Callout>
-    If you change your default branch on GitHub (e.g. as when porting your mod to newer versions), don't forget to
-    update the source branch in the wiki project's settings as well, so that the website can keep showing the latest
-    docs version.
+    如果您更改了 GitHub 上的默认分支（例如，在移植模组到更新版本时），请不要忘记在 Wiki 项目的设置中更新源分支，以便网站可以继续显示最新的文档版本。
 </Callout>
 
-#### Troubleshooting
+#### 故障排除
 
-> Please first install our GitHub app on your repository (here).
+> 请首先在您的仓库上安装我们的 GitHub 应用程序（这里）。
 
-1. **Possible cause:** The wiki GitHub app is not installed on the project's GitHub repository, and therefore cannot access it.\
-   **Fix:** Navigate to the link provided in the error message and grant the wiki GitHub App access to your repository.
-   It's enough if you only grant it access to the project's repository rather than all of them at once.\
-   Don't worry about leaving the page - filled out information will be saved and re-applied when you return.
+1. **可能原因：** 维基 GitHub 应用程序未安装在项目的 GitHub 仓库上，因此无法访问它。
+   **解决方法：** 导航到错误消息提供的链接并授予维基 GitHub 应用程序访问您的仓库的权限。只需授予其对项目仓库的访问权限即可，无需一次性授予所有仓库的权限。不用担心离开页面——已填写的信息将保存并在您返回时自动填入。
 
-2. **Possible cause:** The provided GitHub repository does not exist.\
-   **Fix:** Make sure you've filled out the repository `Owner` and `Name` fields correctly. These should match each the
-   repository `owner/name` pair as seen in its URL, e.g. `https://github.com/Sinytra/Wiki` would use `Sinytra` as the owner
-   and `Wiki` as the name.
+2. **可能原因：** 提供的 GitHub 仓库不存在。
+   **解决方法：** 确保您正确填写了仓库的 `所有者` 和 `名称` 字段。这些应该与 URL 中看到的仓库 `owner/name` 对应，例如 `https://github.com/Sinytra/Wiki` 使用 `Sinytra` 作为所有者，`Wiki` 作为名称。
 
-> Verification error
+> 验证错误
 
-- **Possible cause:** Your mod's hosting platform project (see [documentation metadata](./devs#wiki-metadata)) does not
-  provide a Source Code link pointing to the mod's GitHub repository.\
-  **Fix:** For the purposes of verifying project ownership, please momentarily set the Source Code url of your project
-  to match the GitHub repository url.
+- **可能原因：** 您的模组托管平台项目（见[文档元数据](./devs#wiki-metadata)）没有提供指向模组 GitHub 仓库的源代码链接。\
+  **解决方法：** 为了验证项目所有权，请暂时将项目的源代码 URL 设置为匹配 GitHub 仓库 URL。
 
 <details>
-    <summary>Expand to get assistance for Modrinth projects</summary>
-    
-    1. Open to your project's settings.
-    2. Navigate to the `Links` tab.
-    3. Enter the GitHub repository url in the `Source code` field.
-    4. Apply the changes.
-    
+    <summary>展开以获取 Modrinth 项目的帮助</summary>
+
+    1. 打开项目的设置。
+    2. 导航到 `链接` 标签。
+    3. 在 `源代码` 字段中输入 GitHub 仓库 URL。
+    4. 应用更改。
+
     ![](/meta-docs-assets/mr_src_url.png)
 </details>
 <p/>
 <details>
-    <summary>Expand to get assistance for CurseForge projects</summary>
-    
-    1. Open your project's settings.
-    2. Navigate to the `Source` tab.
-    3. Enter the GitHub repository url in the `Repository URL` field.
-    4. Apply the changes.
+    <summary>展开以获取 CurseForge 项目的帮助</summary>
 
-```
-![](/meta-docs-assets/cf_src_url.png)
-```
+    1. 打开项目的设置。
+    2. 导航到 `源` 标签。
+    3. 在 `Repository URL` 字段中输入 GitHub 仓库 URL。
+    4. 应用更改。
 
+    ![](/meta-docs-assets/cf_src_url.png)
 </details>
 
-> User does not have access to repository.
+> 用户无权访问仓库。
 
-Your repository access permissions are insufficient to register it to the wiki. Please make sure you have at least
-**Maintain** or **Admin** access.
+您的仓库访问权限不足以将其注册到 Wiki。请确保您至少具有 **维护** 或 **管理员** 权限。
 
-> Invalid path provided
+> 提供的路径无效
 
-The provided path does not exist or is a regular file. Please make sure the path points to an existing directory within
-the repository. There is no need to prefix the path with a branch or tag name.
+提供的路径不存在或是一个普通文件。请确保路径指向仓库中现有的目录。无需在路径前加上分支或标签名。
 
-This field is identical to the `path` parameter of GitHub's "[Get repository content](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content)"
-REST API route.
+此字段等同于 GitHub 的 "[获取仓库内容](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content)" REST API 路由中的 `path` 参数。
 
-## Project management
+## 项目管理
 
-On your developer dashboard, you can find a couple options that let your manage your mod project. These are described
-in detail below.
+在您的开发者面板上，您可以找到几个选项来管理您的模组项目。详细描述如下。
 
-### <RefreshCwIcon className="inline-block mr-1 w-5 h-5"/> Revalidate project
+### <RefreshCwIcon className="inline-block mr-1 w-5 h-5"/> 重新验证项目
 
-Purges all cached documentation pages, forcing them to be re-rendered lazily on-demand.
-This option should only be used upon updating the documentation source itself.
+清除所有缓存的文档页面，强制它们按需重新渲染。
+只有在更新文档源时才应使用此选项。
 
-For your own convenience, we recommend automatically revalidating docs after publication using our
-[Gradle plugin](./devs#-gradle-plugin-companion) instead.
+为了方便起见，我们建议在发布后使用我们的 [Gradle 插件](./devs#-gradle-plugin-companion) 自动重新验证文档。
 
-### <SettingsIcon className="inline-block mr-1 w-5 h-5"/> Edit project
+### <SettingsIcon className="inline-block mr-1 w-5 h-5"/> 编辑项目
 
-Edit the project's parameters that have been set during registration. The project's ownership will be re-validated
-during an update.
+编辑注册时设置的项目参数。更新期间将重新验证项目的所属关系。
 
-### <TrashIcon className="inline-block mr-1 w-5 h-5"/> Delete a project
+### <TrashIcon className="inline-block mr-1 w-5 h-5"/> 删除项目
 
-Permanently delete the project and removes all associated data from our servers. The cache for documentation pages will
-be immediately purged as well, but it might take some time to propagate to the CDN and browser clients.
+永久删除项目并从我们的服务器中移除所有相关数据。文档页面的缓存将立即清除，但可能需要一些时间传播到 CDN 和浏览器客户端。
 
-**This is a destructive operation and cannot be undone.**
+**这是一个破坏性操作，无法撤销。**
