@@ -1,7 +1,7 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest"
+        "local": "로컬",
+        "latest": "최근"
     },
     "NavigationHeader": {
         "title": "마인크래프트 모드 위키",
@@ -12,7 +12,7 @@
         },
         "link": {
             "home": "홈",
-            "browse": "탐색하기",
+            "browse": "찾아보기",
             "about": "소개"
         }
     },
@@ -20,9 +20,9 @@
         "title": "마인크래프트 모드 위키",
         "links": {
             "navigation": {
-                "title": "탐색",
+                "title": "둘러보기",
                 "home": "홈페이지",
-                "browse": "탐색하기",
+                "browse": "찾아보기",
                 "dev": "개발자 페이지"
             },
             "links": {
@@ -43,57 +43,81 @@
         }
     },
     "HomePage": {
-        "heading": "<highlight>마인크래프트 모드 위키</highlight>에 오신 것을 환영합니다",
-        "documentation": {
-            "title": "문서",
-            "desc": "Browse project documentation",
-            "search": {
-                "placeholder": "Find your favourite projects..."
-            },
-            "explore": "Explore projects"
+        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "popular": {
+            "title": "Popular Wikis",
+            "open": "Read more",
+            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
-        "developers": {
-            "title": "Authors & Developers",
-            "desc": "Looking to write documentation for a project?",
-            "guide": "Get started by reading our <guide>author guide</guide>.",
-            "area": "Project dashboard"
-        },
-        "links": {
-            "browse": {
-                "title": "Browse",
-                "desc": "Browse our library of documented projects"
+        "community": {
+            "title": "Join Our Community",
+            "users": {
+                "title": "Users",
+                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "docs": "Access high-quality, up-to-date and versioned documentation",
+                "contribute": "Contribute to projects without programming knowledge",
+                "ui": "Enjoy a consistent, user-friendly interface across all projects",
+                "localization": "Benefit from multi-language support"
             },
-            "blog": {
-                "title": "Blog",
-                "desc": "Read about the latest wiki updates"
-            },
-            "about": {
-                "title": "About",
-                "desc": "Learn more about how the wiki operates"
-            },
-            "devs": {
+            "authors": {
                 "title": "Authors",
-                "desc": "Host your project's documentation on our wiki"
+                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
+                "vcs": "Versioning support for your documentation",
+                "components": "Custom components for recipes, assets, etc.",
+                "gradle": "Gradle integration for seamless workflow",
+                "management": "Advanced project management tools",
+                "interaction": "Direct interaction with your user base",
+                "dashboard": "Open Dashboard",
+                "guide": "Read More"
             }
+        },
+        "browse": "Browse Projects",
+        "highlights": {
+            "localization": {
+                "title": "Localization",
+                "desc": "Translate your docs into world languages"
+            },
+            "accessibility": {
+                "title": "Accessible",
+                "desc": "Intuitive and responsive user interface"
+            },
+            "open": {
+                "title": "Open",
+                "desc": "Let your users contribute without any programming knowledge necessary"
+            },
+            "free": {
+                "title": "Free",
+                "desc": "Hosting docs on our website is completely free of charge!"
+            }
+        },
+        "about": {
+            "title": "About Us",
+            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
+            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+        },
+        "blog": {
+            "title": "Blog Posts",
+            "open": "Read More"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "프로젝트 찾아보기",
+            "search_filters": "필터 검색...",
+            "categories": "카테고리"
         },
         "sorting": "정렬 기준",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
-            "az": "A-Z",
-            "za": "Z-A"
+            "relevance": "관련성",
+            "creation_date": "생성일",
+            "popularity": "인기도",
+            "az": "오름차순",
+            "za": "내림차순"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
-        "no_results": "Search query returned no results!"
+        "search": "프로젝트 검색...",
+        "clear_filter": "필터 초기화",
+        "no_results": "검색어에 대한 결과가 없습니다!"
     },
     "SearchProjectTypes": {
         "mod": "모드",
@@ -115,15 +139,15 @@
         "message": "불러오는 중..."
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
+        "title": "둘러보기",
         "about": "소개",
-        "devs": "Developers",
-        "format": "Format",
-        "publishing": "Publishing",
-        "help": "Get help",
+        "devs": "개발자들",
+        "format": "형식",
+        "publishing": "게시하기",
+        "help": "문의하기",
         "tos": "이용약관",
         "privacy": "개인정보 처리방침",
-        "security": "Security Notice",
+        "security": "보안 공지",
         "community": "커뮤니티 문서"
     },
     "DeveloperPortal": {
@@ -131,11 +155,11 @@
         "logout": "로그아웃",
         "projects": {
             "title": "프로젝트",
-            "loading_all": "Loading profile projects...",
-            "loading": "Loading profile...",
+            "loading_all": "프로필 프로젝트를 불러오는 중...",
+            "loading": "프로필을 불러오는 중...",
             "empty": {
-                "primary": "Looks like you haven't registered any projects yet",
-                "secondary": "Get started by reading our <guide>author guide</guide>."
+                "primary": "아직 등록된 프로젝트가 없는 것 같습니다",
+                "secondary": "여기 <guide>제작자 가이드</guide>가 준비되어 있습니다."
             }
         }
     },
@@ -146,92 +170,75 @@
         "button": "GitHub으로 로그인"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
+        "title": "미리보기 모드가 활성화됨",
         "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
-    },
-    "DocsFileTree": {
-        "title": "문서",
-        "homepage": "홈페이지"
+        "roots": "사용 가능한 로컬 문서 루트",
+        "open": "열기"
     },
     "DocsProjectInfo": {
         "title": "프로젝트 정보",
-        "type": "Type",
-        "author": "Author",
+        "type": "종류",
+        "author": "제작자",
         "tags": "태그",
         "latest": {
             "title": "최신 버전",
-            "unknown": "N/A"
+            "unknown": "해당사항 없음"
         },
         "license": {
             "title": "라이선스",
-            "custom": "Custom",
-            "unknown": "Unknown",
+            "custom": "커스텀",
+            "unknown": "알 수 없음",
             "arr": "All Rights Reserved"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
+        "adventure": "모험",
         "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
+        "decoration": "장식",
+        "economy": "경제",
+        "equipment": "장비",
+        "food": "음식",
         "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "library": "라이브러리",
+        "magic": "마법",
+        "management": "관리",
+        "minigame": "미니게임",
+        "mobs": "몹",
+        "optimization": "최적화",
+        "social": "소셜",
+        "storage": "보관함",
+        "technology": "기술",
+        "transportation": "운송",
+        "utility": "유틸리티",
+        "worldgen": "세계 생성",
+        "server-utility": "서버 유틸리티",
+        "armor-weapons-tools": "갑옷, 도구, 무기",
+        "library-api": "API 및 라이브러리",
+        "adventure-rpg": "모험 및 RPG",
+        "world-gen": "세계 생성",
+        "cosmetic": "치장",
+        "mc-food": "음식",
+        "performance": "성능",
+        "map-information": "지도 및 정보",
+        "bug-fixes": "버그 수정",
+        "mc-addons": "애드온",
+        "education": "교육",
+        "mc-miscellaneous": "기타",
+        "redstone": "레드스톤",
+        "utility-qol": "유틸리티 및 편의성",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "GitHub에서 이 페이지 편집하기",
+        "edit_gh": "Edit this page",
         "report": "이 페이지 신고하기",
         "last_updated": "<date></date>에 마지막으로 업데이트됨"
     },
-    "DocsEntryInfo": {
-        "title": "정보",
-        "name": "이름",
-        "source": "원본 모드",
-        "tags": "태그",
-        "id": "ID",
-        "unknown": "알 수 없음",
-        "type": {
-            "block": "블록",
-            "item": "아이템",
-            "other": "기타"
-        }
-    },
     "Report": {
-        "title": "Report a documentation page",
-        "desc": "Report content that violates our Terms of Service or Content Rules.",
+        "title": "문서 페이지 신고",
+        "desc": "서비스 약관 또는 콘텐츠 규칙을 위반하는 콘텐츠 신고",
         "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
         "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
-        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "privacy": "자세한 내용은 <link>개인정보 보호 정책</link>을 확인하시길 바랍니다.",
         "form": {
             "id": {
                 "title": "프로젝트 ID",
@@ -242,8 +249,8 @@
                 "desc": "신고하려는 페이지의 경로입니다."
             },
             "email": {
-                "title": "Reply email address",
-                "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
+                "title": "회신 이메일 주소",
+                "desc": "(선택사항) 이 신고에 대한 업데이트를 받거나 추가 정보를 요청하기 위해 사용할 수 있는 연락용 이메일 주소."
             },
             "reason": {
                 "title": "사유*",
@@ -257,35 +264,36 @@
             },
             "details": {
                 "title": "세부 정보*",
-                "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
+                "placeholder": "이 페이지를 신고하는 사유에 대한 세부 정보를 입력하세요. 입력하지 않으면 이 신고는 무시됩니다.",
                 "desc": "문제 상황에 대한 세부 정보입니다."
             },
             "dislike": {
-                "title": "이 페이지가 마음에 드시지 않는다는 걸 이해합니다. 그럴 수도 있죠!",
+                "title": "이 페이지가 마음에 드시지 않을 수도 있다는 걸 이해합니다, 그럴 수도 있죠!",
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
                 "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "Explore projects"
-            }
+                "explore": "프로젝트 둘러보기"
+            },
+            "success": "Report submitted successfully"
         }
     },
     "SubmitButton": {
         "title": "제출하기"
     },
     "Callout": {
-        "title": "Heads up!"
+        "title": "유의사항!"
     },
     "ProjectRegisterForm": {
         "button": "프로젝트 추가하기",
-        "title": "모드 등록하기",
+        "title": "프로젝트 등록하기",
         "desc": "새 프로젝트를 위키에 등록합니다.",
         "owner": {
             "title": "소유자",
-            "desc": "유저 / 조직의 이름.",
+            "desc": "사용자 / 조직의 이름.",
             "placeholder": "ExampleUser"
         },
         "repo": {
             "title": "이름",
-            "desc": "리포지토리의 이름.",
+            "desc": "리포지토리 이름.",
             "placeholder": "ExampleMod"
         },
         "branch": {
@@ -293,101 +301,102 @@
             "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
         },
         "path": {
-            "title": "Path to documentation root",
-            "desc": "Path to the folder containing the metadata file."
+            "title": "문서 루트 경로",
+            "desc": "메타데이터 파일이 포함된 폴더의 경로."
         },
-        "admin": "Wiki admin settings",
+        "admin": "위키 관리자 설정",
         "is_community": {
             "title": "Community-maintained project"
         },
         "errors": {
-            "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
-            "details": "Show details"
+            "install_app": "먼저 <link>여기</link>를 눌러 리포지토리에 GitHub 앱을 설치하세요.",
+            "details": "상세 정보 보기"
         },
         "submit": "제출하기",
         "success": {
-            "title": "Project registered successfully",
+            "title": "프로젝트를 성공적으로 게시했습니다",
             "desc": "You can now navigate to the project's docs page"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "전송중...",
+        "verify_modrinth": "Modrinth를 사용하여 확인"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
+        "title": "프로젝트 편집",
         "desc": "Edit an existing project's settings.",
         "success": {
-            "title": "Project updated successfully",
+            "title": "프로젝트를 성공적으로 업데이트했습니다",
             "desc": "You can now navigate to the updated project's docs page"
         }
     },
     "ProjectDeletionForm": {
-        "title": "Are you absolutely sure?",
+        "title": "정말로 확실합니까?",
         "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "cancel": "취소",
+        "submit": "삭제",
+        "success": "프로젝트가 성공적으로 삭제되었습니다"
     },
     "ProjectRevalidateForm": {
-        "title": "Revalidate project?",
+        "title": "프로젝트를 재심사 하시겠습니까?",
         "primary": "All cached documentation pages will be purged and re-rendered lazily on-demand.",
         "secondary": "This option should only be used upon updating the documentation source itself.",
         "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "cancel": "Cancel",
-        "submit": "Revalidate",
+        "cancel": "취소",
+        "submit": "재심사",
         "success": "Project successfully revalidated"
     },
     "FormActions": {
         "errors": {
-            "unauthenticated": "Unauthenticated",
-            "user_github_auth": "GitHub authentication error",
-            "insufficient_wiki_perms": "Insufficient permissions to create community project",
-            "unsupported": "Not yet implemented",
-            "insufficient_repo_perms": "User does not have access to repository.",
-            "no_branch": "Branch does not exist",
-            "no_meta": "Metadata file not found",
-            "invalid_meta": "Metadata file is invalid",
-            "exists": "Project already exists.",
+            "unauthenticated": "인증되지 않음",
+            "user_github_auth": "GitHub 인증 오류",
+            "insufficient_wiki_perms": "커뮤니티 프로젝트를 만들 수 있는 권한이 부족합니다",
+            "unsupported": "아직 구현되지 않았습니다",
+            "insufficient_repo_perms": "리포지토리에 대한 접근 권한이 없습니다.",
+            "no_branch": "해당 지점이 존재하지 않습니다",
+            "no_meta": "메타데이터 파일을 찾을 수 없습니다",
+            "invalid_meta": "메타데이터 파일이 유효하지 않습니다",
+            "exists": "프로젝트가 이미 존재합니다.",
+            "no_platforms": "No platform projects defined in metadata.",
             "cf_unavailable": "Registering CurseForge projects is not active",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
-            "ownership": "Failed to verify project ownership",
-            "internal": "Internal Server Error, please try again later.",
-            "not_found": "Project does not exist"
+            "no_project": "플랫폼 프로젝트를 찾을 수 없습니다. 메타데이터의 \"슬러그\" 필드가 올바른지 확인하세요.",
+            "ownership": "프로젝트 소유권 확인에 실패하였습니다",
+            "internal": "내부 서버 오류가 발생했습니다, 나중에 다시 시도하십시오.",
+            "not_found": "해당 프로젝트가 존재하지 않습니다"
         }
     },
     "GetHelpModal": {
-        "button": "Is your project not showing up?",
-        "title": "Project help",
+        "button": "프로젝트가 표시되지 않습니까?",
+        "title": "프로젝트 도움말",
         "desc": "Help resolve common issues with project registration.",
         "app": {
-            "title": "Ensure the GitHub app is installed on your repository",
-            "button": "Install GitHub App"
+            "title": "리포지토리에 GitHub 앱이 설치되어 있는지 확인하세요",
+            "button": "GitHub 앱 설치"
         },
         "moved": {
             "title": "Has your repository moved?",
             "button": "Migrate project repository"
         },
         "other": {
-            "title": "Other issues",
+            "title": "다른 문제",
             "desc": "Check the troubleshooting section of the documentation Publishing guide.",
-            "link": "Open troubleshooting guide"
+            "link": "문제 해결 가이드 열기"
         }
     },
     "MigrateRepositoryForm": {
         "title": "Migrate project repository",
-        "desc": "Update repository data after its location has changed.",
+        "desc": "위치가 변경된 후 리포지토리 데이터 업데이트.",
         "owner": {
-            "title": "Old Owner",
-            "desc": "Old User / organization name.",
-            "placeholder": "ExampleUser"
+            "title": "이전 소유자",
+            "desc": "이전 사용자 / 조직의 이름.",
+            "placeholder": "예시 사용자"
         },
         "repo": {
-            "title": "Old Name",
-            "desc": "Old repository name.",
-            "placeholder": "ExampleMod"
+            "title": "이전 이름",
+            "desc": "이전 리포지토리 이름",
+            "placeholder": "예시 모드"
         },
         "new_owner": {
-            "title": "New Owner",
-            "desc": "New User / organization name.",
+            "title": "새 소유자",
+            "desc": "새 사용자 / 조직의 이름.",
             "placeholder": "ExampleOrg"
         },
         "submit": "Migrate",
@@ -401,54 +410,84 @@
         }
     },
     "CommunityBadge": {
-        "title": "Community",
+        "title": "커뮤니티",
         "desc": "Unofficial documentation maintained by the community"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
+        "title": "해당 페이지를 찾지 못했습니다",
         "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the project author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "suggestion": "나중에 다시 시도하거나 이 문제를 프로젝트 제작자에게 보고하세요.",
+        "submit": "문제 제출",
+        "return": "홈으로 돌아가기"
     },
     "GetStartedButton": {
-        "title": "Add project"
+        "title": "프로젝트 추가"
     },
     "GetStartedModal": {
-        "button": "Add project",
+        "button": "프로젝트 추가",
         "title": "I'd like to write documentation for...",
         "dev": {
-            "title": "My own project",
+            "title": "나의 프로젝트",
             "desc": "Author your own documentation and control who can make changes to it.",
             "button": "프로젝트 만들기"
         },
         "community": {
-            "title": "Someone else's project",
+            "title": "다른 사람들의 프로젝트",
             "desc": "Contribute to a collection of community docs maintained by wiki editors",
-            "button": "Read guide"
+            "button": "가이드 읽기"
         }
-    },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
     },
     "DocsHomepagePlaceholder": {
         "title": "Homepage placeholder",
         "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
         "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
     },
-    "DocsTableOfContents": {
+    "DocsSearchBar": {
+        "placeholder": "위키 콘텐츠 검색하기...",
+        "no_results": "검색 결과가 없습니다!",
+        "loading": "완벽한 결과를 찾는중...",
+        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
+        "close": "<kbd>ESC</kbd>를 눌러 종료하기"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Links",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Author",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentation",
+        "homepage": "Project Homepage"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
+    "DocsNonContentRightSidebar": {
         "title": "On this page"
     },
-    "DocsBranchSelector": {
-        "title": "Versions",
-        "latest": "Latest"
+    "DocsVersionSelector": {
+        "placeholder": "Select version"
     },
-    "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
+    },
+    "LanguageSelect": {
+        "placeholder": "Search languages...",
+        "no_results": "No language found."
     }
 }
