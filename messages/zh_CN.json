@@ -43,73 +43,97 @@
         }
     },
     "HomePage": {
-        "heading": "欢迎来到 <highlight>Minecraft 模组维基</highlight>",
-        "documentation": {
-            "title": "文档",
-            "desc": "Browse project documentation",
-            "search": {
-                "placeholder": "Find your favourite projects..."
-            },
-            "explore": "Explore projects"
+        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "popular": {
+            "title": "Popular Wikis",
+            "open": "Read more",
+            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
-        "developers": {
-            "title": "文档作者 & 开发者",
-            "desc": "Looking to write documentation for a project?",
-            "guide": "请参阅我们的<guide>作者指南</guide>。",
-            "area": "项目仪表盘"
-        },
-        "links": {
-            "browse": {
-                "title": "Browse",
-                "desc": "Browse our library of documented projects"
+        "community": {
+            "title": "Join Our Community",
+            "users": {
+                "title": "Users",
+                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "docs": "Access high-quality, up-to-date and versioned documentation",
+                "contribute": "Contribute to projects without programming knowledge",
+                "ui": "Enjoy a consistent, user-friendly interface across all projects",
+                "localization": "Benefit from multi-language support"
             },
-            "blog": {
-                "title": "博客",
-                "desc": "了解维基近期更新内容"
-            },
-            "about": {
-                "title": "关于",
-                "desc": "了解更多关于维基如何运作的信息"
-            },
-            "devs": {
-                "title": "作者",
-                "desc": "Host your project's documentation on our wiki"
+            "authors": {
+                "title": "Authors",
+                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
+                "vcs": "Versioning support for your documentation",
+                "components": "Custom components for recipes, assets, etc.",
+                "gradle": "Gradle integration for seamless workflow",
+                "management": "Advanced project management tools",
+                "interaction": "Direct interaction with your user base",
+                "dashboard": "Open Dashboard",
+                "guide": "Read More"
             }
+        },
+        "browse": "Browse Projects",
+        "highlights": {
+            "localization": {
+                "title": "Localization",
+                "desc": "Translate your docs into world languages"
+            },
+            "accessibility": {
+                "title": "Accessible",
+                "desc": "Intuitive and responsive user interface"
+            },
+            "open": {
+                "title": "Open",
+                "desc": "Let your users contribute without any programming knowledge necessary"
+            },
+            "free": {
+                "title": "Free",
+                "desc": "Hosting docs on our website is completely free of charge!"
+            }
+        },
+        "about": {
+            "title": "About Us",
+            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
+            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+        },
+        "blog": {
+            "title": "Blog Posts",
+            "open": "Read More"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "浏览项目",
+            "search_filters": "搜索过滤...",
+            "categories": "类别"
         },
-        "sorting": "Sort by",
+        "sorting": "排序：",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "相关程度",
+            "creation_date": "创建日期",
+            "popularity": "热度",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
+        "search": "搜索项目...",
+        "clear_filter": "清除筛选",
         "no_results": "无搜索结果！"
     },
     "SearchProjectTypes": {
-        "mod": "Mods",
-        "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "mod": "模组",
+        "modpack": "整合包",
+        "resourcepack": "资源包",
+        "datapack": "数据包",
+        "shader": "光影",
+        "plugin": "插件"
     },
     "ProjectTypes": {
-        "mod": "Mod",
-        "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
-        "shader": "Shader",
-        "plugin": "Plugin"
+        "mod": "模组",
+        "modpack": "整合包",
+        "resourcepack": "资源包",
+        "datapack": "数据包",
+        "shader": "光影",
+        "plugin": "插件"
     },
     "LoadingContent": {
         "message": "加载中…"
@@ -151,80 +175,63 @@
         "roots": "可用的本地文档根目录",
         "open": "打开"
     },
-    "DocsFileTree": {
-        "title": "文档",
-        "homepage": "Homepage"
-    },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "项目信息",
+        "type": "类型",
+        "author": "作者",
+        "tags": "标签",
         "latest": {
-            "title": "Latest version",
+            "title": "最新版本",
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "许可证",
+            "custom": "其他",
+            "unknown": "未知",
+            "arr": "保留所有权利"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "adventure": "冒险",
+        "cursed": "受诅",
+        "decoration": "装饰",
+        "economy": "经济",
+        "equipment": "装备",
+        "food": "食物",
+        "game-mechanics": "游戏机制",
+        "library": "库",
+        "magic": "魔法",
+        "management": "管理",
+        "minigame": "小游戏",
+        "mobs": "生物",
+        "optimization": "优化",
+        "social": "社交",
+        "storage": "存储",
+        "technology": "科技",
+        "transportation": "物流",
+        "utility": "实用",
+        "worldgen": "世界生成",
+        "server-utility": "服务器工具",
+        "armor-weapons-tools": "道具",
+        "library-api": "LIB",
+        "adventure-rpg": "冒险",
+        "world-gen": "世界生成",
+        "cosmetic": "装饰",
+        "mc-food": "食物",
+        "performance": "性能",
+        "map-information": "信息展示",
+        "bug-fixes": "Bug修复",
+        "mc-addons": "插件",
+        "education": "教育",
+        "mc-miscellaneous": "杂项",
+        "redstone": "红石",
+        "utility-qol": "改良",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "在GitHub上编辑本页",
+        "edit_gh": "Edit this page",
         "report": "报告本页",
         "last_updated": "最后更新：<date></date>"
-    },
-    "DocsEntryInfo": {
-        "title": "信息",
-        "name": "名称",
-        "source": "原模组",
-        "tags": "标签",
-        "id": "ID",
-        "unknown": "未知",
-        "type": {
-            "block": "方块",
-            "item": "物品",
-            "other": "其它"
-        }
     },
     "Report": {
         "title": "报告文档页面",
@@ -264,8 +271,9 @@
                 "title": "我们理解您可能认为该页面不顺眼，那真的没关系！",
                 "desc": "但不幸的是，这并不属于报告项目的合理理由。",
                 "suggestion": "也许您可以换个页面，读点别的？",
-                "explore": "Explore projects"
-            }
+                "explore": "查看项目"
+            },
+            "success": "Report submitted successfully"
         }
     },
     "SubmitButton": {
@@ -307,7 +315,7 @@
         "submit": "提交",
         "success": {
             "title": "项目注册成功",
-            "desc": "You can now navigate to the project's docs page"
+            "desc": "您现在可以转至项目文档页面"
         },
         "submitting": "提交中...",
         "verify_modrinth": "使用Modrinth验证"
@@ -317,7 +325,7 @@
         "desc": "编辑现有的项目设置",
         "success": {
             "title": "项目更新成功",
-            "desc": "You can now navigate to the updated project's docs page"
+            "desc": "您现在可以转至更新后的项目文档界面"
         }
     },
     "ProjectDeletionForm": {
@@ -339,19 +347,20 @@
     "FormActions": {
         "errors": {
             "unauthenticated": "未认证",
-            "user_github_auth": "GitHub authentication error",
-            "insufficient_wiki_perms": "Insufficient permissions to create community project",
-            "unsupported": "Not yet implemented",
-            "insufficient_repo_perms": "User does not have access to repository.",
+            "user_github_auth": "GitHub 身份验证错误",
+            "insufficient_wiki_perms": "权限不足，无法创建社区项目",
+            "unsupported": "尚未实现，敬请期待",
+            "insufficient_repo_perms": "用户没有访问仓库的权限。",
             "no_branch": "分支不存在",
             "no_meta": "元数据文件未找到",
             "invalid_meta": "元数据文件无效",
             "exists": "项目已存在。",
-            "cf_unavailable": "Registering CurseForge projects is not active",
+            "no_platforms": "No platform projects defined in metadata.",
+            "cf_unavailable": "注册CurseForge项目已禁用",
             "no_project": "未找到平台项目。请确保元数据“slug”字段正确。",
             "ownership": "验证项目所有权失败",
             "internal": "服务器内部错误，请稍后再试。",
-            "not_found": "Project does not exist"
+            "not_found": "项目不存在"
         }
     },
     "GetHelpModal": {
@@ -407,7 +416,7 @@
     "DocsPageNotFoundError": {
         "title": "我们找不到此页",
         "desc": "请求的文档页当前不可用。",
-        "suggestion": "Please try again later or report this issue to the project author.",
+        "suggestion": "请稍后再试，或将此问题报告给项目作者。",
         "submit": "提交问题",
         "return": "返回主页"
     },
@@ -418,31 +427,20 @@
         "button": "添加项目",
         "title": "我接下来的文档写给……",
         "dev": {
-            "title": "My own project",
+            "title": "我的项目",
             "desc": "为您的模组编写文档，并控制谁能修改它。",
             "button": "创建项目"
         },
         "community": {
-            "title": "Someone else's project",
-            "desc": "Contribute to a collection of community docs maintained by wiki editors",
+            "title": "别人的项目",
+            "desc": "为维基编辑维护的一系列社区项目文档做贡献",
             "button": "阅读指南"
         }
-    },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
     },
     "DocsHomepagePlaceholder": {
         "title": "主页占位符",
         "subtitle": "由于API限制，本地环境中暂时无法获取CurseForge项目的元数据。",
         "replace": "别担心！我们将会在文档部署后将该占位符替换为项目真正的描述信息。"
-    },
-    "DocsTableOfContents": {
-        "title": "在此页上"
-    },
-    "DocsBranchSelector": {
-        "title": "版本",
-        "latest": "最新"
     },
     "DocsSearchBar": {
         "placeholder": "搜索维基内容...",
@@ -450,5 +448,46 @@
         "loading": "正在搜索最佳结果...",
         "results": "展示<highlight>{count}</highlight> / <highlight>{total}</highlight> 条结果",
         "close": "按下<kbd>ESC</kbd>以关闭"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Links",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Author",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentation",
+        "homepage": "Project Homepage"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "On this page"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Select version"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
+    },
+    "LanguageSelect": {
+        "placeholder": "Search languages...",
+        "no_results": "No language found."
     }
 }
