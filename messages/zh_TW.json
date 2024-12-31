@@ -43,73 +43,97 @@
         }
     },
     "HomePage": {
-        "heading": "歡迎使用 <highlight>Modded Minecraft Wiki</highlight>",
-        "documentation": {
-            "title": "文件",
-            "desc": "瀏覽專案文件",
-            "search": {
-                "placeholder": "尋找你最喜歡的專案..."
-            },
-            "explore": "瀏覽專案"
+        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "popular": {
+            "title": "Popular Wikis",
+            "open": "Read more",
+            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
-        "developers": {
-            "title": "作者和開發人員",
-            "desc": "想為專案撰寫文件嗎？",
-            "guide": "請先閱讀我們的<guide>作者指南</guide>。",
-            "area": "專案儀表板"
-        },
-        "links": {
-            "browse": {
-                "title": "瀏覽",
-                "desc": "瀏覽我們已記錄的專案庫"
+        "community": {
+            "title": "Join Our Community",
+            "users": {
+                "title": "Users",
+                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "docs": "Access high-quality, up-to-date and versioned documentation",
+                "contribute": "Contribute to projects without programming knowledge",
+                "ui": "Enjoy a consistent, user-friendly interface across all projects",
+                "localization": "Benefit from multi-language support"
             },
-            "blog": {
-                "title": "部落格",
-                "desc": "閱讀最新的 Wiki 更新資訊"
-            },
-            "about": {
-                "title": "關於",
-                "desc": "深入了解 Wiki 的運作方式"
-            },
-            "devs": {
-                "title": "作者",
-                "desc": "在我們的 Wiki 上託管您的專案文件"
+            "authors": {
+                "title": "Authors",
+                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
+                "vcs": "Versioning support for your documentation",
+                "components": "Custom components for recipes, assets, etc.",
+                "gradle": "Gradle integration for seamless workflow",
+                "management": "Advanced project management tools",
+                "interaction": "Direct interaction with your user base",
+                "dashboard": "Open Dashboard",
+                "guide": "Read More"
             }
+        },
+        "browse": "Browse Projects",
+        "highlights": {
+            "localization": {
+                "title": "Localization",
+                "desc": "Translate your docs into world languages"
+            },
+            "accessibility": {
+                "title": "Accessible",
+                "desc": "Intuitive and responsive user interface"
+            },
+            "open": {
+                "title": "Open",
+                "desc": "Let your users contribute without any programming knowledge necessary"
+            },
+            "free": {
+                "title": "Free",
+                "desc": "Hosting docs on our website is completely free of charge!"
+            }
+        },
+        "about": {
+            "title": "About Us",
+            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
+            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+        },
+        "blog": {
+            "title": "Blog Posts",
+            "open": "Read More"
         }
     },
     "BrowsePage": {
         "sidebar": {
             "title": "瀏覽專案",
-            "search_filters": "搜尋篩選器...",
-            "categories": "Categories"
+            "search_filters": "搜尋篩選...",
+            "categories": "分類"
         },
-        "sorting": "Sort by",
+        "sorting": "排序依據",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "相關度",
+            "creation_date": "建立日期",
+            "popularity": "熱門程度",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
+        "search": "搜尋專案...",
+        "clear_filter": "清除篩選器",
         "no_results": "搜尋查詢沒有結果！"
     },
     "SearchProjectTypes": {
-        "mod": "Mods",
-        "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "mod": "模組",
+        "modpack": "模組包",
+        "resourcepack": "資源包",
+        "datapack": "資料包",
+        "shader": "光影包",
+        "plugin": "插件"
     },
     "ProjectTypes": {
-        "mod": "Mod",
-        "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
-        "shader": "Shader",
-        "plugin": "Plugin"
+        "mod": "模組",
+        "modpack": "模組包",
+        "resourcepack": "資源包",
+        "datapack": "資料包",
+        "shader": "光影包",
+        "plugin": "插件"
     },
     "LoadingContent": {
         "message": "載入中..."
@@ -141,7 +165,7 @@
     },
     "Login": {
         "title": "需要登入",
-        "desc": "您嘗試存取的頁面需要您登入。",
+        "desc": "您嘗試存取的頁面需要登入。",
         "prompt": "請使用您的 GitHub 帳號繼續。",
         "button": "使用 GitHub 登入"
     },
@@ -151,80 +175,63 @@
         "roots": "可用的本機文件根目錄",
         "open": "開啟"
     },
-    "DocsFileTree": {
-        "title": "文件",
-        "homepage": "Homepage"
-    },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "專案資訊",
+        "type": "類型",
+        "author": "作者",
+        "tags": "標籤",
         "latest": {
-            "title": "Latest version",
+            "title": "最新版本",
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "授權條款",
+            "custom": "自訂",
+            "unknown": "未知",
+            "arr": "版權所有"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
+        "adventure": "冒險",
+        "cursed": "惡搞",
+        "decoration": "裝飾",
+        "economy": "經濟",
+        "equipment": "裝備",
+        "food": "食物",
+        "game-mechanics": "遊戲機制",
+        "library": "程式庫",
+        "magic": "魔法",
+        "management": "管理",
+        "minigame": "小遊戲",
+        "mobs": "生物",
+        "optimization": "最佳化",
+        "social": "社交",
+        "storage": "儲物",
+        "technology": "科技",
+        "transportation": "運輸",
+        "utility": "便利工具",
+        "worldgen": "世界生成",
+        "server-utility": "伺服器實用工具",
+        "armor-weapons-tools": "盔甲、工具和武器",
+        "library-api": "API 和程式庫",
+        "adventure-rpg": "冒險和 RPG",
+        "world-gen": "世界生成",
+        "cosmetic": "外觀",
+        "mc-food": "食物",
+        "performance": "效能",
+        "map-information": "地圖和資訊",
+        "bug-fixes": "錯誤修正",
         "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "education": "教育",
+        "mc-miscellaneous": "其他",
+        "redstone": "紅石",
+        "utility-qol": "便利工具與生活品質",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "在 GitHub 上編輯頁面",
+        "edit_gh": "Edit this page",
         "report": "檢舉這個頁面",
         "last_updated": "上次更新時間：<date></date>"
-    },
-    "DocsEntryInfo": {
-        "title": "資訊",
-        "name": "名稱",
-        "source": "來源模組",
-        "tags": "標籤",
-        "id": "ID",
-        "unknown": "未知",
-        "type": {
-            "block": "方塊",
-            "item": "物品",
-            "other": "其他"
-        }
     },
     "Report": {
         "title": "檢舉文件頁面",
@@ -264,8 +271,9 @@
                 "title": "我們理解您可能不喜歡這個頁面，這完全沒問題！",
                 "desc": "但很遺憾的是，這不是檢舉專案的有效理由。",
                 "suggestion": "您想找其他東西來閱讀嗎？",
-                "explore": "Explore projects"
-            }
+                "explore": "瀏覽專案"
+            },
+            "success": "Report submitted successfully"
         }
     },
     "SubmitButton": {
@@ -307,7 +315,7 @@
         "submit": "提交",
         "success": {
             "title": "專案登錄成功",
-            "desc": "You can now navigate to the project's docs page"
+            "desc": "您現在可以導覽至專案的文件頁面"
         },
         "submitting": "提交中...",
         "verify_modrinth": "使用 Modrinth 驗證"
@@ -317,7 +325,7 @@
         "desc": "編輯現有專案的設定。",
         "success": {
             "title": "專案更新成功",
-            "desc": "You can now navigate to the updated project's docs page"
+            "desc": "您現在可以導覽至已更新的專案的文件頁面"
         }
     },
     "ProjectDeletionForm": {
@@ -339,19 +347,20 @@
     "FormActions": {
         "errors": {
             "unauthenticated": "未驗證",
-            "user_github_auth": "GitHub authentication error",
-            "insufficient_wiki_perms": "Insufficient permissions to create community project",
-            "unsupported": "Not yet implemented",
-            "insufficient_repo_perms": "User does not have access to repository.",
+            "user_github_auth": "GitHub 驗證錯誤",
+            "insufficient_wiki_perms": "權限不足，無法建立社群專案",
+            "unsupported": "尚未實作",
+            "insufficient_repo_perms": "使用者沒有存取儲存庫的權限。",
             "no_branch": "分支不存在",
             "no_meta": "找不到中繼資料檔案",
             "invalid_meta": "中繼資料檔案無效",
             "exists": "專案已存在。",
-            "cf_unavailable": "Registering CurseForge projects is not active",
+            "no_platforms": "No platform projects defined in metadata.",
+            "cf_unavailable": "CurseForge 專案登錄尚未啟用",
             "no_project": "找不到平台專案。請確認中繼資料的「slug」欄位正確。",
             "ownership": "無法驗證專案擁有權",
             "internal": "內部伺服器錯誤，請稍後再試。",
-            "not_found": "Project does not exist"
+            "not_found": "專案不存在"
         }
     },
     "GetHelpModal": {
@@ -407,7 +416,7 @@
     "DocsPageNotFoundError": {
         "title": "我們找不到這個頁面",
         "desc": "目前無法使用所請求的文件頁面。",
-        "suggestion": "Please try again later or report this issue to the project author.",
+        "suggestion": "請稍後再試，或向專案作者回報這個問題。",
         "submit": "提交問題",
         "return": "返回首頁"
     },
@@ -418,31 +427,20 @@
         "button": "新增專案",
         "title": "我想撰寫... 的文件",
         "dev": {
-            "title": "My own project",
+            "title": "我自己的專案",
             "desc": "撰寫您自己的文件，並控制誰可以進行變更。",
             "button": "建立專案"
         },
         "community": {
-            "title": "Someone else's project",
-            "desc": "Contribute to a collection of community docs maintained by wiki editors",
+            "title": "其他人的專案",
+            "desc": "參與由 Wiki 編輯者維護的社群文件集",
             "button": "閱讀指南"
         }
-    },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
     },
     "DocsHomepagePlaceholder": {
         "title": "首頁預留位置",
         "subtitle": "由於 API 限制，在本機環境中無法取得 CurseForge 專案的中繼資料。",
         "replace": "別擔心！部署到線上 Wiki 網站後，我們會將這個預留位置替換為專案的實際描述。"
-    },
-    "DocsTableOfContents": {
-        "title": "本頁內容"
-    },
-    "DocsBranchSelector": {
-        "title": "版本",
-        "latest": "最新"
     },
     "DocsSearchBar": {
         "placeholder": "搜尋 Wiki 內容...",
@@ -450,5 +448,46 @@
         "loading": "正在尋找最完美的結果...",
         "results": "顯示 <highlight>{count}</highlight> / <highlight>{total}</highlight> 個結果",
         "close": "<kbd>ESC</kbd> 關閉"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Links",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Author",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentation",
+        "homepage": "Project Homepage"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "On this page"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Select version"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
+    },
+    "LanguageSelect": {
+        "placeholder": "Search languages...",
+        "no_results": "No language found."
     }
 }

@@ -43,38 +43,62 @@
         }
     },
     "HomePage": {
-        "heading": "<highlight>Modded Minecraft Wiki</highlight>へようこそ",
-        "documentation": {
-            "title": "ドキュメント",
-            "desc": "Browse project documentation",
-            "search": {
-                "placeholder": "Find your favourite projects..."
-            },
-            "explore": "Explore projects"
+        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "popular": {
+            "title": "Popular Wikis",
+            "open": "Read more",
+            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
-        "developers": {
-            "title": "執筆者＆開発者",
-            "desc": "Looking to write documentation for a project?",
-            "guide": "<guide>執筆者ガイド</guide>を読んで始めましょう",
-            "area": "プロジェクトダッシュボード"
-        },
-        "links": {
-            "browse": {
-                "title": "Browse",
-                "desc": "Browse our library of documented projects"
+        "community": {
+            "title": "Join Our Community",
+            "users": {
+                "title": "Users",
+                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "docs": "Access high-quality, up-to-date and versioned documentation",
+                "contribute": "Contribute to projects without programming knowledge",
+                "ui": "Enjoy a consistent, user-friendly interface across all projects",
+                "localization": "Benefit from multi-language support"
             },
-            "blog": {
-                "title": "ブログ",
-                "desc": "Wikiの最新の更新について見る"
-            },
-            "about": {
-                "title": "概要",
-                "desc": "Wikiの運用について詳しく知る"
-            },
-            "devs": {
-                "title": "執筆者",
-                "desc": "Host your project's documentation on our wiki"
+            "authors": {
+                "title": "Authors",
+                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
+                "vcs": "Versioning support for your documentation",
+                "components": "Custom components for recipes, assets, etc.",
+                "gradle": "Gradle integration for seamless workflow",
+                "management": "Advanced project management tools",
+                "interaction": "Direct interaction with your user base",
+                "dashboard": "Open Dashboard",
+                "guide": "Read More"
             }
+        },
+        "browse": "Browse Projects",
+        "highlights": {
+            "localization": {
+                "title": "Localization",
+                "desc": "Translate your docs into world languages"
+            },
+            "accessibility": {
+                "title": "Accessible",
+                "desc": "Intuitive and responsive user interface"
+            },
+            "open": {
+                "title": "Open",
+                "desc": "Let your users contribute without any programming knowledge necessary"
+            },
+            "free": {
+                "title": "Free",
+                "desc": "Hosting docs on our website is completely free of charge!"
+            }
+        },
+        "about": {
+            "title": "About Us",
+            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
+            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+        },
+        "blog": {
+            "title": "Blog Posts",
+            "open": "Read More"
         }
     },
     "BrowsePage": {
@@ -151,10 +175,6 @@
         "roots": "Available local documentation roots",
         "open": "Open"
     },
-    "DocsFileTree": {
-        "title": "Documentation",
-        "homepage": "Homepage"
-    },
     "DocsProjectInfo": {
         "title": "Project information",
         "type": "Type",
@@ -209,22 +229,9 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit page on GitHub",
+        "edit_gh": "Edit this page",
         "report": "Report this page",
         "last_updated": "Last updated: <date></date>"
-    },
-    "DocsEntryInfo": {
-        "title": "Information",
-        "name": "Name",
-        "source": "Source Mod",
-        "tags": "Tags",
-        "id": "ID",
-        "unknown": "Unknown",
-        "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
-        }
     },
     "Report": {
         "title": "Report a documentation page",
@@ -265,7 +272,8 @@
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
                 "suggestion": "Would you like to look for something else to read instead?",
                 "explore": "Explore projects"
-            }
+            },
+            "success": "Report submitted successfully"
         }
     },
     "SubmitButton": {
@@ -347,6 +355,7 @@
             "no_meta": "Metadata file not found",
             "invalid_meta": "Metadata file is invalid",
             "exists": "Project already exists.",
+            "no_platforms": "No platform projects defined in metadata.",
             "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "ownership": "Failed to verify project ownership",
@@ -428,21 +437,10 @@
             "button": "Read guide"
         }
     },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
-    },
     "DocsHomepagePlaceholder": {
         "title": "Homepage placeholder",
         "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
         "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
-    },
-    "DocsTableOfContents": {
-        "title": "On this page"
-    },
-    "DocsBranchSelector": {
-        "title": "Versions",
-        "latest": "Latest"
     },
     "DocsSearchBar": {
         "placeholder": "Search wiki contents...",
@@ -450,5 +448,46 @@
         "loading": "Finding the perfect results...",
         "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
         "close": "<kbd>ESC</kbd> to close"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Links",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Author",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentation",
+        "homepage": "Project Homepage"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "On this page"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Select version"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
+    },
+    "LanguageSelect": {
+        "placeholder": "Search languages...",
+        "no_results": "No language found."
     }
 }
