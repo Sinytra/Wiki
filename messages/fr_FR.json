@@ -31,7 +31,7 @@
             "resources": {
                 "title": "Ressources",
                 "blog": "Blog",
-                "status": "Status",
+                "status": "Statut",
                 "translate": "Aidez-nous à traduire"
             },
             "about": {
@@ -43,56 +43,80 @@
         }
     },
     "HomePage": {
-        "heading": "Welcome to the <highlight>Wiki Minecraft Moddé</highlight>",
-        "documentation": {
-            "title": "Documentation",
-            "desc": "Browse project documentation",
-            "search": {
-                "placeholder": "Find your favourite projects..."
-            },
-            "explore": "Explore projects"
+        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "popular": {
+            "title": "Popular Wikis",
+            "open": "Read more",
+            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
-        "developers": {
-            "title": "Auteurs et Développeurs",
-            "desc": "Looking to write documentation for a project?",
-            "guide": "Commencez par lire notre <guide>guide de l'auteur</guide>.",
-            "area": "Tableau de bord du projet"
-        },
-        "links": {
-            "browse": {
-                "title": "Browse",
-                "desc": "Browse our library of documented projects"
+        "community": {
+            "title": "Join Our Community",
+            "users": {
+                "title": "Users",
+                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "docs": "Access high-quality, up-to-date and versioned documentation",
+                "contribute": "Contribute to projects without programming knowledge",
+                "ui": "Enjoy a consistent, user-friendly interface across all projects",
+                "localization": "Benefit from multi-language support"
             },
-            "blog": {
-                "title": "Blog",
-                "desc": "En savoir plus sur les dernières mises à jour du wiki"
-            },
-            "about": {
-                "title": "À propos",
-                "desc": "En savoir plus sur le fonctionnement du wiki"
-            },
-            "devs": {
-                "title": "Auteurs",
-                "desc": "Host your project's documentation on our wiki"
+            "authors": {
+                "title": "Authors",
+                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
+                "vcs": "Versioning support for your documentation",
+                "components": "Custom components for recipes, assets, etc.",
+                "gradle": "Gradle integration for seamless workflow",
+                "management": "Advanced project management tools",
+                "interaction": "Direct interaction with your user base",
+                "dashboard": "Open Dashboard",
+                "guide": "Read More"
             }
+        },
+        "browse": "Browse Projects",
+        "highlights": {
+            "localization": {
+                "title": "Localization",
+                "desc": "Translate your docs into world languages"
+            },
+            "accessibility": {
+                "title": "Accessible",
+                "desc": "Intuitive and responsive user interface"
+            },
+            "open": {
+                "title": "Open",
+                "desc": "Let your users contribute without any programming knowledge necessary"
+            },
+            "free": {
+                "title": "Free",
+                "desc": "Hosting docs on our website is completely free of charge!"
+            }
+        },
+        "about": {
+            "title": "About Us",
+            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
+            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+        },
+        "blog": {
+            "title": "Blog Posts",
+            "open": "Read More"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "Explorer les projets",
+            "search_filters": "Filtrer par...",
+            "categories": "Catégories"
         },
-        "sorting": "Sort by",
+        "sorting": "Trier par",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
-            "az": "A-Z",
-            "za": "Z-A"
+            "relevance": "Pertinence",
+            "creation_date": "Date de création",
+            "popularity": "Popularité",
+            "az": "Ordre alphabétique",
+            "za": "Ordre alphabétique inverse"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
+        "search": "Chercher des projets...",
+        "clear_filter": "Effacer les filtres",
         "no_results": "La recherche n'a donné aucun résultat !"
     },
     "SearchProjectTypes": {
@@ -151,12 +175,8 @@
         "roots": "Base de la documentation locale disponible",
         "open": "Ouvert"
     },
-    "DocsFileTree": {
-        "title": "Documentation",
-        "homepage": "Homepage"
-    },
     "DocsProjectInfo": {
-        "title": "Project information",
+        "title": "Informations du projet",
         "type": "Type",
         "author": "Author",
         "tags": "Tags",
@@ -209,22 +229,9 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Édité la page sur GitHub",
+        "edit_gh": "Edit this page",
         "report": "Signaler cette page",
         "last_updated": "Dernière mise à jour : <date></date>"
-    },
-    "DocsEntryInfo": {
-        "title": "Informations",
-        "name": "Nom",
-        "source": "Source du Mod",
-        "tags": "Mots-clés",
-        "id": "ID",
-        "unknown": "Inconnu",
-        "type": {
-            "block": "Bloc",
-            "item": "Objet",
-            "other": "Autre"
-        }
     },
     "Report": {
         "title": "Signaler une page de documentation",
@@ -265,7 +272,8 @@
                 "desc": "Malheureusement, ce n'est pas une raison valable de rapporter un projet.",
                 "suggestion": "Voulez-vous chercher quelque chose d'autre à lire à la place ?",
                 "explore": "Explore projects"
-            }
+            },
+            "success": "Report submitted successfully"
         }
     },
     "SubmitButton": {
@@ -347,6 +355,7 @@
             "no_meta": "Fichier de métadonnées introuvable",
             "invalid_meta": "Fichier(s) de Métadonnées invalides",
             "exists": "Le projet existe déjà.",
+            "no_platforms": "No platform projects defined in metadata.",
             "cf_unavailable": "Registering CurseForge projects is not active",
             "no_project": "Plateforme de projet introuvable. Veuillez vous assurer que le champ \"slug\" des métadonnées est correct.",
             "ownership": "Impossible de vérifier la propriété du projet",
@@ -428,21 +437,10 @@
             "button": "Lire le guide"
         }
     },
-    "ProjectDocsPlaceholder": {
-        "summary": "(Placeholder)",
-        "description": "(Placeholder)"
-    },
     "DocsHomepagePlaceholder": {
         "title": "Placeholder page d'accueil",
         "subtitle": "En raison des restrictions de l'API, les métadonnées du projet ne sont pas disponibles pour les projets CurseForge dans les environnements locaux.",
         "replace": "Ne vous inquiétez pas ! Nous remplacerons ce placeholder par la description réelle du projet une fois déployée sur le site web du wiki."
-    },
-    "DocsTableOfContents": {
-        "title": "Sur cette page"
-    },
-    "DocsBranchSelector": {
-        "title": "Versions",
-        "latest": "Dernière"
     },
     "DocsSearchBar": {
         "placeholder": "Rechercher sur le wiki...",
@@ -450,5 +448,46 @@
         "loading": "Recherche de résultats parfaits...",
         "results": "Affichage de <highlight>{count}</highlight> résultats sur <highlight>{total}</highlight>",
         "close": "<kbd>Échap</kbd> pour fermer"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Links",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Author",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentation",
+        "homepage": "Project Homepage"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "On this page"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Select version"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
+    },
+    "LanguageSelect": {
+        "placeholder": "Search languages...",
+        "no_results": "No language found."
     }
 }
