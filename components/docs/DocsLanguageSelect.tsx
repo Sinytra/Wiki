@@ -51,8 +51,10 @@ export default function DocsLanguageSelect({locale, locales}: { locale: string; 
 
   const t = useTranslations('DocsLanguageSelect');
 
+  let selectedValue = Object.keys(selectableLocales).includes(locale) ? locale : 'en';
+
   return (
-    <Select value={locale} onValueChange={changeLocale}>
+    <Select value={selectedValue} onValueChange={changeLocale}>
       <SelectTrigger className="sm:w-[180px]">
         <Globe className="w-4 h-4 mr-1" />
         <SelectValue placeholder={t('placeholder')} />

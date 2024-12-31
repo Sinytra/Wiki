@@ -40,10 +40,10 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
               <span>{t('title_short')}</span>
             </span>
           </LocaleNavLink>
-          {preview && <Badge variant="secondary">{t('badge.preview')}</Badge>}
+          {preview && <Badge className="hidden sm:block" variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&
               <Badge variant="outline"
-                     className="border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
+                     className="hidden sm:block border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
         </div>
 
         {!minimal && !preview &&
@@ -73,7 +73,11 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
             }
           </nav>
 
-          {!minimal && <LanguageSelect locale={locale} />}
+          {!minimal &&
+            <NextIntlClientProvider messages={pick(messages, 'LanguageSelect')}>
+              <LanguageSelect locale={locale} />
+            </NextIntlClientProvider>
+          }
         </div>
       </div>
     </HeaderBase>
