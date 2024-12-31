@@ -52,7 +52,7 @@ export default function DocsProjectRightSidebar({
             strokeWidth={2} />
         </div>
         <div>
-          <h2 className="text-base font-semibold">
+          <h2 className="docsContentTitle text-base font-semibold">
             {platformProject.name}
           </h2>
           <p className="text-xs text-muted-foreground" title={platformProject.is_placeholder ? undefined : platformProject.summary}>
