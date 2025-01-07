@@ -107,7 +107,7 @@ async function revalidateProject(id: string, token: string): Promise<SuccessResp
 
 async function migrateRepository(repo: string, token: string): Promise<SuccessResponse | ErrorResponse> {
   try {
-    const resp = await sendApiRequest(`project/migrate`, {repo}, {token});
+    const resp = await sendApiRequest('project/migrate', {repo}, {token});
     return await resp.json();
   } catch (e) {
     console.error(e);
@@ -142,7 +142,7 @@ async function getAllProjectIDs(): Promise<string[]> {
 
 async function getPopularProjects(): Promise<Project[]> {
   try {
-    const resp = await sendSimpleRequest(`projects/popular`, {}, 'GET');
+    const resp = await sendCachedRequest(`projects/popular`);
     if (resp.ok) {
       return await resp.json() as Project[];
     }
@@ -234,6 +234,24 @@ async function sendSimpleRequest(path: string, params: Record<string, string | n
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
     },
     cache: 'no-store'
+  });
+}
+
+async function sendCachedRequest(path: string, params: Record<string, string | null> = {}, method: string = 'GET') {
+  if (!process.env.BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  }
+
+  const searchParams = urlParams(params);
+
+  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+    method,
+    headers: {
+      Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
+    },
+    next: {
+      revalidate: 60 * 60 * 24 * 7 // Revalidate every week
+    }
   });
 }
 
