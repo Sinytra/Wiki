@@ -8,7 +8,7 @@ import {Button} from "@/components/ui/button";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
-import {getLatestVersion, ProjectTypeIcons} from "@/lib/docs/projectInfo";
+import {ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
@@ -16,12 +16,20 @@ import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import platforms from "@/lib/platforms";
 import {BaseProject} from "@/lib/service";
 import ModVersionRange from "@/components/docs/ModVersionRange";
+import Image from "next/image";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
       <div className="flex-shrink-0">
-        <img className="rounded-sm border border-accent w-16 h-16 sm:w-20 sm:h-20" src={projectContent.icon_url} alt="icon"/>
+        <Image className="rounded-sm border border-accent w-16 h-16 sm:w-20 sm:h-20"
+               src={projectContent.icon_url}
+               alt="icon"
+               width={64}
+               height={64}
+               unoptimized
+               priority
+        />
       </div>
   )
 }

@@ -1,0 +1,98 @@
+---
+title: User Interface Overhaul
+date: 2025-01-10
+excerpt: Brand-new homepage and an overhauled docs UI layout
+---
+
+export const Embed = ({src, alt, fig}) =>
+  <figure style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <img style={{border: '1px white solid' }} width="85%" src={src} alt={alt} />
+      <figcaption>{fig}</figcaption>
+  </figure>
+
+We're excited to bring you the latest wiki update, which includes a major UI overhaul of the wiki's homepage and
+documentation pages. Additionally, we're adding support for linking both CurseForge and Modrinth platform pages at once.
+
+Let's dive into all the new features below!
+
+## Fancy docs UI
+
+Thanks to <a className="text-muted-foreground" href="https://imb11.dev/">@IMB11</a>'s amazing design work, we're
+proud to present a new UI layout of multiple parts of the wiki.
+
+### Homepage
+
+The homepage has been completely overhauled to be more informative and appealing to wiki users. We've also added
+a new element that displays trending projects, worth checking out!
+
+<Embed src="https://i.imgur.com/f7ZsiLt.png" alt="Wiki homepage top" fig="Overhauled homepage top"/>
+
+We've made sure to maintain fast navigation to key features, such as browsing projects and accessing the developer
+dashboard.
+
+<Embed src="https://i.imgur.com/NTMDdLv.png" alt="Wiki homepage bottom" fig="Overhauled homepage bottom"/>
+
+The bottom part of the homepage shows the latest blog post (which is probably where you found this one, too!) and
+a brief description of us maintainers.
+
+### Documentation
+
+The new documentation layout moves sidebars to the very edges of the screen and gives content more reading space.
+
+<Embed src="https://i.imgur.com/qzUVkWB.png" alt="Docs homepage" fig="Documentation homepage layout"/>
+
+The footer gives quick access to switching docs versions and languages, as well as page editing and changelog options.
+
+<Embed src="https://i.imgur.com/uTOauuY.png" alt="Docs content page" fig="Documentation content page layout"/>
+
+Mobile support is included by default.
+
+## Multiplatform support
+
+We now support specifying multiple hosting platforms in the wiki metadata file (`sinytra-wiki.json`). These are
+currently CurseForge and Modrinth.
+
+The old format using `slug` and `platform` will remain supported, but we recommend migrating to the new spec nevertheless.
+
+Hosting platforms can now be specified under the `platforms` property, where the keys represent platforms and values
+are respective project slugs.
+
+```json title="sinytra-wiki.json"
+{
+    "id": "mffs",
+    "platforms": {
+        "curseforge": "mffs",
+        "modrinth": "mffs"
+    }
+}
+```
+
+## Summary / TL;DR
+
+**✅ In this major update, we made the following changes:**
+
+- 🏠 Major homepage UI overhaul
+
+- 🗺️ Major documentation UI overhaul
+
+- 🔗 Linking both CurseForge and Modrinth platform projects at once
+
+**🏗️ Features to look forward to, coming in the near future:**
+
+- ⏱️ Faster page load times
+
+- 🧑‍💻 Support for any git project (not just GitHub-hosted ones)
+
+- 🛠️ Developer page overhaul
+
+- 🧑‍🍳 Support for [custom recipe types](https://github.com/Sinytra/Wiki/issues/51)
+
+## 🤝 We're looking for your feedback
+
+Our team is working hard on improving the website's interface and feature set to bring you the next generation
+wiki for all of modded minecraft.
+
+As always, please make sure to let us know if you have any suggestions or ideas we could implement on the wiki!
+Any feedback is appreciated!
+
+Find us on: &nbsp; [Discord](https://discord.sinytra.org) • [GitHub](https://github.com/Sinytra/Wiki) • [Email](mailto:contact@moddedmc.org)
