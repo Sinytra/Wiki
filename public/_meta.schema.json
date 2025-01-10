@@ -14,11 +14,10 @@
                         "description": "Page display name"
                     },
                     "icon": {
-                        "type": "string",
+                        "type": ["string", "null"],
                         "description": "Display icon name"
                     }
-                },
-                "required": ["name"]
+                }
             },
             {
                 "type": "string"

@@ -15,6 +15,9 @@ const intlMatcher = available.getLanguagePaths().join('|');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+    images: {
+      remotePatterns: [{ hostname: 'media.forgecdn.net' }, { hostname: 'cdn.modrinth.com' }]
+    },
     async headers() {
         return [
             {
