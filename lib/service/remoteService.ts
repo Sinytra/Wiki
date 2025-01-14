@@ -3,10 +3,6 @@ import {AssetLocation} from "@/lib/assets";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
-interface AssetResponse {
-  data: string;
-}
-
 interface PageResponse {
   project: Project;
   content: string;
@@ -75,23 +71,11 @@ async function getBackendLayout(project: string, version: string | null, locale:
 
 async function getAsset(project: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(project, `project/${project}/asset/${location}`, {
-      version,
-      optional: "true"
-    });
-    if (resp.ok) {
-      const json = await resp.json() as AssetResponse;
-      if ('error' in json) {
-        return null;
-      }
-
-      return {
-        id: location,
-        src: json.data
-      }
-    } else {
-      console.error(resp);
-    }
+    const url = `${process.env.BACKEND_SERVICE_URL}/api/v1/project/${project}/asset/${location}` + (version ? `?version=${version}` : '');
+    return {
+      id: location,
+      src: url
+    };
   } catch (e) {
     console.error(e);
   }
@@ -111,10 +95,9 @@ async function getDocsPage(project: string, path: string[], version: string | nu
         return null;
       }
 
-      const content = Buffer.from(json.content, 'base64').toString('utf-8');
       return {
         project: json.project,
-        content,
+        content: json.content,
         edit_url: json.edit_url,
         updated_at: json.updated_at ? new Date(json.updated_at) : undefined
       }
