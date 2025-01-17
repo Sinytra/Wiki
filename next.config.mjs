@@ -34,6 +34,9 @@ const nextConfig = {
                 ]
             }
         ]
+    },
+    experimental: {
+        serverComponentsExternalPackages: ['vscode-oniguruma', 'shiki'],
     }
 };
 

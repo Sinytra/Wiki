@@ -32,6 +32,10 @@ interface ProjectRegisterRequest {
   mr_code?: string;
 }
 
+interface ProjectRegisterResponse extends SuccessResponse{
+  project: Project;
+}
+
 interface ProjectUpdateRequest {
   repo: string;
   branch: string;
@@ -58,7 +62,7 @@ interface DevProjectsResponse {
   projects: Project[];
 }
 
-async function registerProject(data: ProjectRegisterRequest, token: string): Promise<SuccessResponse | ErrorResponse> {
+async function registerProject(data: ProjectRegisterRequest, token: string): Promise<ProjectRegisterResponse | ErrorResponse> {
   try {
     const resp = await sendApiRequest('project/create', data, {token});
     return await resp.json();
@@ -117,7 +121,7 @@ async function migrateRepository(repo: string, token: string): Promise<SuccessRe
 
 async function getUserDevProjects(token: string): Promise<DevProjectsResponse | StatusResponse> {
   try {
-    const resp = await sendSimpleRequest(`projects/dev`, {token}, 'GET');
+    const resp = await sendSimpleRequest('projects/dev', {token}, 'GET');
     if (resp.ok) {
       return await resp.json();
     }
@@ -128,9 +132,35 @@ async function getUserDevProjects(token: string): Promise<DevProjectsResponse | 
   }
 }
 
+async function getDevProject(token: string, id: string): Promise<Project | StatusResponse> {
+  try {
+    const resp = await sendSimpleRequest(`project/${id}`, {token}, 'GET');
+    if (resp.ok) {
+      return await resp.json();
+    }
+    return { status: resp.status };
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function getProjectDevLog(token: string, id: string): Promise<string | undefined> {
+  try {
+    const resp = await sendSimpleRequest(`project/${id}/log`, {token}, 'GET');
+    if (resp.ok) {
+      return (await resp.json()).content;
+    }
+    return undefined;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
 async function getAllProjectIDs(): Promise<string[]> {
   try {
-    const resp = await sendSimpleRequest(`projects`, {}, 'GET');
+    const resp = await sendSimpleRequest('projects', {}, 'GET');
     if (resp.ok) {
       return await resp.json() as string[];
     }
@@ -142,7 +172,7 @@ async function getAllProjectIDs(): Promise<string[]> {
 
 async function getPopularProjects(): Promise<Project[]> {
   try {
-    const resp = await sendCachedRequest(`projects/popular`);
+    const resp = await sendCachedRequest('projects/popular');
     if (resp.ok) {
       return await resp.json() as Project[];
     }
@@ -263,5 +293,7 @@ export default {
   getAllProjectIDs,
   migrateRepository,
   getUserDevProjects,
-  getFeaturedProjects
+  getFeaturedProjects,
+  getProjectDevLog,
+  getDevProject
 }

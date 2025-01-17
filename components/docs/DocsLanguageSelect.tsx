@@ -7,8 +7,8 @@ import {Globe} from "lucide-react";
 import CountryFlag from "@/components/util/CountryFlag";
 import {usePathname} from "@/lib/locales/routing";
 import {useRouter} from "next-nprogress-bar";
-import {useEffect} from "react";
 import {useTranslations} from "next-intl";
+import clientUtil from "@/lib/util/clientUtil";
 
 export default function DocsLanguageSelect({locale, locales}: { locale: string; locales: string[] }) {
   const availableLocales = ['en', ...(locales?.map(l =>
@@ -34,20 +34,7 @@ export default function DocsLanguageSelect({locale, locales}: { locale: string; 
   };
 
   // Prevent badly engineered anti-scroll mechanism from breaking our view
-  useEffect(() => {
-    const el = document.querySelector('body')!;
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        if (mutation.type === "attributes") {
-          if (mutation.attributeName === 'data-scroll-locked') {
-            (mutation.target as HTMLBodyElement).removeAttribute('data-scroll-locked')
-          }
-        }
-      });
-    });
-    observer.observe(el, {attributes: true});
-    return () => observer.disconnect();
-  }, []);
+  clientUtil.usePreventBuggyScrollLock();
 
   const t = useTranslations('DocsLanguageSelect');
 

@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 import {Loader2Icon, RefreshCwIcon} from "lucide-react";
 import {toast} from "sonner";
 import * as React from "react";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {
   Dialog,
   DialogClose,
@@ -18,6 +18,8 @@ import {
 import {useFormStatus} from "react-dom";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {useTranslations} from "next-intl";
+import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
+import {useRouter} from "@/lib/locales/routing";
 
 interface Properties {
   action: () => Promise<any>;
@@ -37,18 +39,22 @@ function RevalidateButton({ text }: { text: string }) {
 export default function ProjectRevalidateForm({action}: Properties) {
   const [open, setOpen] = useState(false);
   const t = useTranslations('ProjectRevalidateForm');
+  const router = useRouter();
+  const {startTransition} = useContext(GetStartedContext)!;
 
   const formAction = async () => {
     await action();
     setOpen(false);
     toast.success(t('success'));
+    startTransition(() => router.refresh());
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon" className="w-10 h-10 text-muted-foreground">
-          <RefreshCwIcon className="w-4 h-4"/>
+        <Button variant="outline" size="sm">
+          <RefreshCwIcon className="mr-2 w-4 h-4"/>
+          Reload
         </Button>
       </DialogTrigger>
       <DialogContent>

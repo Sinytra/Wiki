@@ -8,6 +8,7 @@ import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 import {ProjectType} from "@/lib/service/types";
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
+import {ProjectStatus} from "@/lib/types/serviceTypes";
 
 export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
 
@@ -27,6 +28,7 @@ export interface Project extends BaseProject {
   versions?: Record<string, string>;
   locales?: string[];
   local?: boolean;
+  status?: ProjectStatus;
 }
 
 export interface FileTreeEntry {

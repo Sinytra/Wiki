@@ -2,12 +2,12 @@
 
 import {Project} from "@/lib/service";
 import ProjectRegisterForm from "@/components/dev/ProjectRegisterForm";
-import {useContext, useState} from "react";
-import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
-import {Button} from "@/components/ui/button";
 import * as React from "react";
+import {useContext} from "react";
+import {Button} from "@/components/ui/button";
 import {SettingsIcon} from "lucide-react";
 import {projectEditSchema} from "@/lib/forms/schemas";
+import {ProjectSettingsContext} from "@/components/dev/new/ProjectSettingsContextProvider";
 
 export interface ProjectEditFormProps {
   mod: Project;
@@ -18,8 +18,8 @@ export interface ProjectEditFormProps {
 }
 
 export default function ProjectSettingsForm({mod, state, formAction, autoSubmit}: ProjectEditFormProps) {
-  const [open, setOpen] = useState(false);
-  const {startTransition} = useContext(GetStartedContext)!;
+  const {open, setOpen} = useContext(ProjectSettingsContext)!;
+  // const {startTransition} = useContext(GetStartedContext)!;
 
   const parts = mod.source_repo!.split('/');
   const defaultValues = {
@@ -32,14 +32,15 @@ export default function ProjectSettingsForm({mod, state, formAction, autoSubmit}
   };
 
   return (
-      <ProjectRegisterForm startTransition={startTransition} defaultValues={defaultValues} isAdmin={false} open={open}
+      <ProjectRegisterForm defaultValues={defaultValues} isAdmin={false} open={open}
                            setOpen={setOpen} formAction={formAction} state={state} autoSubmit={autoSubmit}
                            translations="ProjectSettingsForm"
                            schema={projectEditSchema}
                            lateAutoSubmit
                            trigger={
-                             <Button variant="secondary" size="icon">
-                               <SettingsIcon className="w-4 h-4"/>
+                             <Button variant="outline" size="sm">
+                               <SettingsIcon className="mr-2 w-4 h-4"/>
+                               Settings
                              </Button>
                            }/>
   )

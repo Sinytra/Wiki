@@ -1,26 +1,19 @@
-import {BookMarkedIcon, ExternalLinkIcon, GitBranchIcon} from "lucide-react";
+import {BookMarkedIcon, CheckIcon, GitBranchIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
-import ProjectDeletion from "@/components/dev/ProjectDeletion";
-import MutedLinkIconButton from "@/components/ui/muted-link-icon-button";
-import ProjectRevalidateForm from "@/components/dev/ProjectRevalidateForm";
-import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
-import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
 import {cn} from "@/lib/utils";
-import {getMessages} from "next-intl/server";
-import {NextIntlClientProvider} from "next-intl";
-import {pick} from "lodash";
-import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
+import {getMessages, getTranslations} from "next-intl/server";
 import platforms from "@/lib/platforms";
-import {handleDeleteProjectForm, handleEditProjectForm, handleRevalidateDocs} from "@/lib/forms/actions";
 import {Project} from "@/lib/service";
-import ProjectSettingsForm from "@/components/dev/ProjectSettingsForm";
+import {Button} from "@/components/ui/button";
+import {Link} from "@/lib/locales/routing";
+import {ProjectStatus} from "@/lib/types/serviceTypes";
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
-      <div className="inline-flex items-center gap-2">
-        <Icon className={cn("w-4 h-4", iconClass)}/>
-        <span className="text-foreground text-sm">{children}</span>
-      </div>
+    <div className="inline-flex items-center gap-2">
+      <Icon className={cn("w-4 h-4", iconClass)}/>
+      <span className="text-foreground align-bottom text-sm">{children}</span>
+    </div>
   )
 }
 
@@ -31,59 +24,50 @@ export default async function ProfileProject({project, state, autoSubmit}: {
 }) {
   const platformProject = await platforms.getPlatformProject(project);
   const messages = await getMessages();
+  const u = await getTranslations('ProjectStatus');
 
   return <>
-    <div className="flex flex-col justify-between gap-3 py-3">
-      <div className="flex flex-row justify-between w-full">
-        <div className="flex flex-col gap-2">
-          <p className="text-foreground font-medium text-lg">{platformProject.name}</p>
-          <p className="text-muted-foreground font-normal min-h-6">{platformProject.summary}</p>
-        </div>
-
+    <div className="flex flex-row gap-4 w-full justify-between p-3 border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
+      <div>
         <img className="rounded-md" src={platformProject.icon_url} alt="Project icon" width={96} height={96}/>
       </div>
 
-      <hr/>
-
-      <div className="inline-flex justify-between items-center flex-wrap gap-4">
-        <div className="inline-flex gap-5 flex-wrap">
-          <Property icon={BookMarkedIcon}>
-            <LinkTextButton href={`https://github.com/${project.source_repo}`}>{project.source_repo}</LinkTextButton>
-          </Property>
-          <Property icon={GitBranchIcon}>{project.source_branch}</Property>
-          {project.platforms.curseforge &&
-              <Property icon={CurseForgeIcon} iconClass="text-[var(--curseforge-brand)]">
-                  <LinkTextButton href={platforms.getProjectURL('curseforge', project.platforms.curseforge)} target="_blank">
-                    {project.platforms.curseforge}
-                  </LinkTextButton>
-              </Property>
-          }
-          {project.platforms.modrinth &&
-              <Property icon={ModrinthIcon} iconClass="text-[var(--modrinth-brand)]">
-                  <LinkTextButton href={platforms.getProjectURL('modrinth', project.platforms.modrinth)} target="_blank">
-                    {project.platforms.modrinth}
-                  </LinkTextButton>
-              </Property>
-          }
-          {project.is_community && <CommunityDocsBadge bright/>}
+      <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col">
+          <div>
+            <LinkTextButton className="!w-fit !text-foreground !font-medium !text-lg" href={`/dev/${project.id}`}>
+              {platformProject.name}
+            </LinkTextButton>
+          </div>
+          <p className="text-muted-foreground font-normal whitespace-nowrap text-ellipsis overflow-x-hidden max-w-5xl">
+            {platformProject.summary}
+          </p>
         </div>
 
-        <div className="flex flex-row gap-4 items-center ml-auto sm:ml-0">
-          <MutedLinkIconButton variant="outline" icon={ExternalLinkIcon} href={`/project/${project.id}`}/>
-          <NextIntlClientProvider messages={pick(messages, 'ProjectRevalidateForm', 'FormActions')}>
-            <ProjectRevalidateForm action={handleRevalidateDocs.bind(null, project.id)}/>
-          </NextIntlClientProvider>
-          <NextIntlClientProvider
-              messages={pick(messages, 'ProjectSettingsForm', 'ProjectRegisterForm', 'FormActions')}>
-            <ProjectSettingsForm mod={project} formAction={handleEditProjectForm} state={state}
-                                 autoSubmit={autoSubmit}/>
-          </NextIntlClientProvider>
-          <NextIntlClientProvider messages={pick(messages, 'ProjectDeletionForm')}>
-            <ProjectDeletion action={handleDeleteProjectForm.bind(null, project.id)}/>
-          </NextIntlClientProvider>
+        <div className="flex flex-row">
+          <div className="inline-flex gap-5">
+            <Property
+              iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-muted-foreground '}
+              icon={project.status === ProjectStatus.LOADED ? CheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
+              {u(project.status || ProjectStatus.UNKNOWN)}
+            </Property>
+            <Property icon={BookMarkedIcon}>
+              <LinkTextButton className="!font-normal !align-bottom"
+                              href={`https://github.com/${project.source_repo}`}>{project.source_repo}</LinkTextButton>
+            </Property>
+            <Property icon={GitBranchIcon}>{project.source_branch}</Property>
+          </div>
+
+          <div className="ml-auto">
+            <Link href={`/dev/${project.id}`}>
+              <Button className="h-8 border border-neutral-700" variant="ghost" size="sm">
+                <SettingsIcon className="mr-2 w-4 h-4"/>
+                Manage
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
-    <hr className="border-neutral-600"/>
   </>
 }

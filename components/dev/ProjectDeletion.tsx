@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 import {Loader2Icon, TrashIcon} from "lucide-react";
 import {toast} from "sonner";
 import * as React from "react";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import {
   Dialog,
   DialogClose,
@@ -18,7 +18,6 @@ import {
 import {useFormStatus} from "react-dom";
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
-import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
 
 interface Properties {
   action: () => Promise<any>;
@@ -38,13 +37,13 @@ function DeleteButton({ text }: { text: string }) {
 export default function ProjectDeletion({action}: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const {startTransition} = useContext(GetStartedContext)!;
+  // const {startTransition} = useContext(GetStartedContext)!;
   const t = useTranslations('ProjectDeletionForm');
 
   const formAction = async () => {
     await action();
 
-    startTransition(() => router.refresh());
+    // startTransition(() => router.refresh()); TODO
 
     setOpen(false);
     toast.success(t('success'));
@@ -53,8 +52,9 @@ export default function ProjectDeletion({action}: Properties) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive" size="icon" className="w-9 h-9">
-          <TrashIcon className="w-4 h-4"/>
+        <Button variant="outline" size="sm" className="border-destructive-border-dim">
+          <TrashIcon className="mr-2 w-4 h-4"/>
+          Delete
         </Button>
       </DialogTrigger>
       <DialogContent>

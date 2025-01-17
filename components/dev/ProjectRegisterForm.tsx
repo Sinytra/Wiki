@@ -13,7 +13,7 @@ import {
   DialogTitle, DialogTrigger
 } from "@/components/ui/dialog";
 import * as React from "react";
-import {TransitionFunction, useEffect, useRef, useState} from "react";
+import {startTransition, useEffect, useRef, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
@@ -26,6 +26,7 @@ import {Loader2Icon} from "lucide-react";
 import {modrinthAuthScopes, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import {Button} from "@/components/ui/button";
 import {useRouter} from "@/lib/locales/routing";
+import {useRouter as useProgressRouter} from "next-nprogress-bar";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 
 export interface ProjectRegisterFormProps {
@@ -39,6 +40,7 @@ export interface ProjectRegisterFormProps {
   trigger?: any;
   schema: any;
   lateAutoSubmit?: boolean;
+  redirectToProject?: boolean;
 
   formAction: (data: any) => Promise<any>
 }
@@ -50,10 +52,6 @@ export interface RepoInstallationState {
   path: string | null;
 }
 
-export interface Properties extends ProjectRegisterFormProps {
-  startTransition: (transition: TransitionFunction) => void;
-}
-
 export default function ProjectRegisterForm(
     {
       open,
@@ -62,15 +60,16 @@ export default function ProjectRegisterForm(
       state,
       isAdmin,
       autoSubmit,
-      startTransition,
       formAction,
       translations,
       trigger,
       schema,
-      lateAutoSubmit
-    }: Properties
+      lateAutoSubmit,
+      redirectToProject
+    }: ProjectRegisterFormProps
 ) {
   const openDefault = state !== undefined;
+  const progressRouter = useProgressRouter();
   const router = useRouter();
 
   // @ts-ignore
@@ -87,7 +86,9 @@ export default function ProjectRegisterForm(
   const action: () => void = form.handleSubmit(async (data) => {
     const resp = await formAction(data) as any;
     if (resp.success) {
-      startTransition(() => router.refresh());
+      if (redirectToProject && resp.project.id) {
+        startTransition(() => progressRouter.push(`/dev/${resp.project.id}`));
+      }
 
       setOpen(false);
       toast.success(v('success.title'), {description: v('success.desc')});

@@ -489,5 +489,11 @@
     "LanguageSelect": {
         "placeholder": "Search languages...",
         "no_results": "No language found."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
     }
 }
