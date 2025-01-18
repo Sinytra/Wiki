@@ -6,31 +6,33 @@ import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 import {pick} from "lodash";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {Suspense} from "react";
-import ProfileProject from "@/components/dev/ProfileProject";
-import {GetHelpModal} from "@/components/dev/GetHelpModal";
+import {GetHelpModal} from "@/components/dev/modal/GetHelpModal";
 import {handleMigrateRepositoryForm, handleRegisterProjectForm} from "@/lib/forms/actions";
 import {getMessages, getTranslations} from "next-intl/server";
 import {Project} from "@/lib/service";
 import {Skeleton} from "@/components/ui/skeleton";
-import DevPageProjectsList from "@/components/dev/DevPageProjectsList";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
-import {isWikiAdmin} from "@/lib/utils";
+import {cn, isWikiAdmin} from "@/lib/utils";
+import platforms from "@/lib/platforms";
+import {ProjectStatus} from "@/lib/types/serviceTypes";
+import {BookMarkedIcon, CheckIcon, GitBranchIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon} from "lucide-react";
+import {Link} from "@/lib/locales/routing";
+import {Button} from "@/components/ui/button";
 
-function ProjectsListHeader({defaultValues, state, isAdmin, autoSubmit}: {
+function ProjectsListHeader({defaultValues, state, isAdmin}: {
   defaultValues?: any;
   state?: any;
   isAdmin: boolean;
-  autoSubmit?: boolean
 }) {
   const messages = useMessages();
 
   return (
     <div className="w-full flex flex-col items-end">
       <NextIntlClientProvider
-        messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions')}>
+        messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
         <GetStartedModal defaultValues={defaultValues} state={state?.id === undefined ? state : undefined}
-                         isAdmin={isAdmin} autoSubmit={state?.id === undefined && autoSubmit}
+                         isAdmin={isAdmin}
                          formAction={handleRegisterProjectForm}/>
       </NextIntlClientProvider>
 
@@ -41,23 +43,72 @@ function ProjectsListHeader({defaultValues, state, isAdmin, autoSubmit}: {
 
 function ProfileProjectSkeleton() {
   return (
-    <div className="flex flex-col border border-none w-full py-3 gap-3">
-      <div className="flex flex-row justify-between h-24 gap-3">
-        <Skeleton className="w-full"/>
-        <Skeleton className="w-24 flex-shrink-0"/>
-      </div>
-      <hr/>
-      <Skeleton className="h-[40px]"/>
+    <Skeleton className="w-full h-[118px]"/>
+  )
+}
+
+function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
+  return (
+    <div className="inline-flex items-center gap-2">
+      <Icon className={cn("w-4 h-4", iconClass)}/>
+      <span className="text-foreground align-bottom text-sm">{children}</span>
     </div>
   )
 }
 
-async function ProfileProjects({projects, state, autoSubmit}: {
-  projects: Project[],
-  state?: any,
-  autoSubmit?: boolean
-}) {
-  const t = await getTranslations('DeveloperPortal');
+async function DevProjectsListEntry({project}: { project: Project }) {
+  const platformProject = await platforms.getPlatformProject(project);
+  const t = await getTranslations('DevProjectsListPage');
+  const u = await getTranslations('ProjectStatus');
+
+  return <>
+    <div className="flex flex-row gap-4 w-full justify-between p-3 border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
+      <div>
+        <img className="rounded-md" src={platformProject.icon_url} alt="Project icon" width={96} height={96}/>
+      </div>
+
+      <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col">
+          <div>
+            <LinkTextButton className="!w-fit !text-foreground !font-medium !text-lg" href={`/dev/${project.id}`}>
+              {platformProject.name}
+            </LinkTextButton>
+          </div>
+          <p className="text-muted-foreground font-normal whitespace-nowrap text-ellipsis overflow-x-hidden max-w-5xl">
+            {platformProject.summary}
+          </p>
+        </div>
+
+        <div className="flex flex-row">
+          <div className="inline-flex gap-5">
+            <Property
+              iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-muted-foreground '}
+              icon={project.status === ProjectStatus.LOADED ? CheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
+              {u(project.status || ProjectStatus.UNKNOWN)}
+            </Property>
+            <Property icon={BookMarkedIcon}>
+              <LinkTextButton className="!font-normal !align-bottom"
+                              href={`https://github.com/${project.source_repo}`}>{project.source_repo}</LinkTextButton>
+            </Property>
+            <Property icon={GitBranchIcon}>{project.source_branch}</Property>
+          </div>
+
+          <div className="ml-auto">
+            <Link href={`/dev/${project.id}`}>
+              <Button className="h-8 border border-neutral-700" variant="ghost" size="sm">
+                <SettingsIcon className="mr-2 w-4 h-4"/>
+                {t('project.manage')}
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+}
+
+async function ProfileProjects({projects}: { projects: Project[] }) {
+  const t = await getTranslations('DevProjectsListPage');
   const messages = await getMessages();
 
   const HelpModal = () => (
@@ -71,8 +122,7 @@ async function ProfileProjects({projects, state, autoSubmit}: {
       <div className="flex flex-col gap-3">
         {projects.map(p => (
           <Suspense key={p.id} fallback={<ProfileProjectSkeleton/>}>
-            <ProfileProject project={p} state={state?.id === p.id ? state : undefined}
-                            autoSubmit={state?.id === p.id && autoSubmit}/>
+            <DevProjectsListEntry project={p} />
           </Suspense>
         ))}
       </div>
@@ -80,9 +130,9 @@ async function ProfileProjects({projects, state, autoSubmit}: {
         ?
         <div
           className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 gap-4">
-          <span className="text-foreground font-medium">{t('projects.empty.primary')}</span>
+          <span className="text-foreground font-medium">{t('empty.primary')}</span>
           <span className="text-muted-foreground">
-            {t.rich('projects.empty.secondary', {
+            {t.rich('empty.secondary', {
               guide: (chunks) => (
                 <LinkTextButton className="!text-foreground !text-base !font-normal underline" href="/about/devs">
                   {chunks}
@@ -123,7 +173,7 @@ export default async function DevPage({searchParams}: {
   const state = autoSubmit && searchParams['state'] !== undefined
     ? JSON.parse(atob(searchParams['state'] as string))
     : undefined;
-  let defaultValues: any = {owner: response.profile.login};
+  let defaultValues: any = {owner: response.profile.login, repo: '', branch: '', path: ''};
   if (autoSubmit) {
     defaultValues.mr_code = searchParams['code'];
     if (state) {
@@ -137,13 +187,11 @@ export default async function DevPage({searchParams}: {
   return (
     <GetStartedContextProvider>
       <div>
-        <ProjectsListHeader state={state} defaultValues={defaultValues} isAdmin={isAdmin} autoSubmit={autoSubmit}/>
+        <ProjectsListHeader state={state} defaultValues={defaultValues} isAdmin={isAdmin}/>
 
         <div>
           <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
-            <DevPageProjectsList>
-              <ProfileProjects state={state} autoSubmit={autoSubmit} projects={response.projects}/>
-            </DevPageProjectsList>
+            <ProfileProjects projects={response.projects}/>
           </NextIntlClientProvider>
         </div>
       </div>

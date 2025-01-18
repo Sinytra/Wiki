@@ -8,7 +8,7 @@ import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@
 import {useTranslations} from "next-intl";
 import {Link} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
-import ProjectRegisterForm, {ProjectRegisterFormProps} from "@/components/dev/ProjectRegisterForm";
+import ProjectRegisterForm, {ProjectRegisterFormProps} from "@/components/dev/modal/ProjectRegisterForm";
 import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 
@@ -58,7 +58,6 @@ export default function GetStartedModal({
                                           defaultValues,
                                           state,
                                           isAdmin,
-                                          autoSubmit,
                                           formAction
                                         }: Omit<ProjectRegisterFormProps, 'open' | 'setOpen' | 'schema'>) {
   const {open, setOpen} = useContext(GetStartedContext)!;
@@ -68,7 +67,7 @@ export default function GetStartedModal({
   return (<>
     <ProjectRegisterForm open={registerOpen} setOpen={setRegisterOpen} defaultValues={defaultValues} state={state}
                          schema={projectRegisterSchema}
-                         isAdmin={isAdmin} autoSubmit={autoSubmit}
+                         isAdmin={isAdmin}
                          formAction={formAction}
                          redirectToProject/>
 

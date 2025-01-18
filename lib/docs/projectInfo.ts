@@ -1,7 +1,9 @@
 import {
   ArchiveIcon,
   BiohazardIcon,
-  BookIcon, BoxIcon, BracesIcon,
+  BookIcon,
+  BoxIcon,
+  BracesIcon,
   BriefcaseIcon,
   BugIcon,
   BugOffIcon,
@@ -16,22 +18,34 @@ import {
   HardDriveIcon,
   HouseIcon,
   MapIcon,
-  MessageCircleIcon, PackageOpenIcon, PaintbrushIcon,
+  MessageCircleIcon,
+  PackageOpenIcon,
+  PaintbrushIcon,
   PawPrint,
   PuzzleIcon,
   ServerIcon,
   ShirtIcon,
-  SlidersVerticalIcon, SwatchBookIcon,
+  SlidersVerticalIcon,
+  SwatchBookIcon,
   SwordsIcon,
-  TruckIcon, UnplugIcon,
+  TruckIcon,
+  UnplugIcon,
   WandIcon,
   ZapIcon
 } from "lucide-react";
-import platforms, {PlatformProjectAuthor, PlatformProject} from "@/lib/platforms";
+import platforms, {PlatformProject, PlatformProjectAuthor, ProjectPlatform} from "@/lib/platforms";
 import {getTranslations} from "next-intl/server";
 import {ProjectType} from "@/lib/service/types";
+import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
+import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
+import {ElementType} from "react";
 
 const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
+
+export const ProjectHostingPlatforms: { [key in ProjectPlatform]: { name: string; icon: ElementType } } = {
+  curseforge: {name: 'CurseForge', icon: CurseForgeIcon},
+  modrinth: {name: 'Modrinth', icon: ModrinthIcon}
+};
 
 export const ProjectCategories: { [key: string]: any } = {
   // Modrinth tags

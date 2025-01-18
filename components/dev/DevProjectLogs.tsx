@@ -11,6 +11,10 @@ import {createOnigurumaEngine} from 'shiki/engine/oniguruma';
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {useRouter} from "@/lib/locales/routing";
 import {toast} from "sonner";
+import {useTranslations} from "next-intl";
+
+const WS_SUCCESS = '<<success';
+const WS_ERROR = '<<error';
 
 function Skeleton({children}: { children: any }) {
   return (
@@ -31,18 +35,19 @@ function RenderedLogBody({body}: { body: string }) {
 }
 
 function LogBody({body}: { body: Promise<string | null> }) {
+  const t = useTranslations('DevProjectLogs');
   const html = use(body);
 
-  return (html !== null ? <RenderedLogBody body={html}/>
-      : <Skeleton>Error loading logs</Skeleton>
-  );
+  return (html !== null ? <RenderedLogBody body={html}/> : <Skeleton>{t('error')}</Skeleton>);
 }
 
 function LoadingLogs() {
+  const t = useTranslations('DevProjectLogs');
+
   return (
     <Skeleton>
       <span className="text-xl">
-        Loading...
+        {t('loading')}
       </span>
       <LoaderCircleIcon className="mt-4 h-7 w-7 animate-spin"/>
     </Skeleton>
@@ -50,10 +55,12 @@ function LoadingLogs() {
 }
 
 function NoLogs({children}: { children: any }) {
+  const t = useTranslations('DevProjectLogs');
+
   return (
     <Skeleton>
       <span className="text-xl">
-        Not loaded
+        {t('unloaded')}
       </span>
       {children}
     </Skeleton>
@@ -61,21 +68,26 @@ function NoLogs({children}: { children: any }) {
 }
 
 function WaitingLogs() {
+  const t = useTranslations('DevProjectLogs');
+
   return (
     <Skeleton>
-      <span>Waiting for server...</span>
+      <span>
+        {t('waiting')}
+      </span>
     </Skeleton>
   )
 }
 
 const getHighlighter = makeSingletonHighlighterCore(createHighlighterCore);
 
-export default function ProjectLogs({id, status, hashedToken, callback}: {
+export default function DevProjectLogs({id, status, hashedToken, callback}: {
   id: string;
   status: ProjectStatus;
   hashedToken: string;
   callback: (id: string) => Promise<string | undefined>;
 }) {
+  const t = useTranslations('DevProjectLogs');
   const [lines, setLines] = useState<string[]>([]);
   const [renderedLogs, setRenderedLogs] = useState<string | undefined>(undefined);
   const [logPromise, setLogPromise] = useState<Promise<string | null> | undefined>(undefined);
@@ -101,6 +113,7 @@ export default function ProjectLogs({id, status, hashedToken, callback}: {
 
   useEffect(() => {
     if (lines.length === 0) {
+      setRenderedLogs(undefined);
       return;
     }
 
@@ -113,14 +126,29 @@ export default function ProjectLogs({id, status, hashedToken, callback}: {
   }, [lines]);
 
   const initialized = useRef(false);
+  const keepLogs = useRef(false);
+  const oldStatus = useRef(status);
   const [wsOpen, setWsOpen] = useState<boolean>(false);
 
   useEffect(() => {
+    // Reset logs when changing project settings, but not after revalidating
+    if (!keepLogs.current && status != oldStatus.current) {
+      setLines([]);
+      setLogPromise(undefined);
+      oldStatus.current = status;
+    } else if (keepLogs.current) {
+      keepLogs.current = false;
+    }
+
     if (status != ProjectStatus.LOADING || initialized.current) {
       return;
     }
 
-    const ws = new WebSocket(`ws://localhost:8080/ws/api/v1/project/log/${id}?token=${hashedToken}`);
+    if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_HOST) {
+      return;
+    }
+
+    const ws = new WebSocket(`ws://${process.env.NEXT_PUBLIC_BACKEND_SERVICE_HOST}/ws/api/v1/project/log/${id}?token=${hashedToken}`);
 
     ws.onerror = console.error;
 
@@ -133,12 +161,14 @@ export default function ProjectLogs({id, status, hashedToken, callback}: {
 
     ws.onmessage = (data: MessageEvent<any>) => {
       if (data.data.startsWith('<<')) {
-        if (data.data === '<<success') { // TODO
-          toast.success('Project setup complete');
+        if (data.data === WS_SUCCESS) {
+          toast.success(t('toast.success'));
         }
-        if (data.data === '<<complete') {
-          startTransition(() => router.refresh());
+        if (data.data === WS_ERROR) {
+          toast.error(t('toast.error'));
         }
+        keepLogs.current = true;
+        startTransition(() => router.refresh());
         return;
       }
       setLines((v) => [...v, data.data]);
@@ -158,7 +188,9 @@ export default function ProjectLogs({id, status, hashedToken, callback}: {
       <div className="flex flex-row justify-between gap-4">
         <div className="flex flex-row items-center gap-2">
           <ScrollTextIcon className="w-4 h-4"/>
-          <span>Server logs</span>
+          <span>
+            {t('title')}
+          </span>
           {wsOpen &&
             <div className="ml-1 inline-flex items-center rounded-full p-1 bg-green-900 text-green-300">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -176,7 +208,7 @@ export default function ProjectLogs({id, status, hashedToken, callback}: {
               :
               <NoLogs>
                 <Button size="sm" className="!h-8" variant="outline" onClick={onClick}>
-                  Show
+                  {t('show')}
                 </Button>
               </NoLogs>
         }

@@ -1,7 +1,7 @@
 'use client'
 
 import {useContext} from "react";
-import {ProjectSettingsContext} from "@/components/dev/new/ProjectSettingsContextProvider";
+import {ProjectSettingsContext} from "@/components/dev/modal/ProjectSettingsContextProvider";
 import {SettingsIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 

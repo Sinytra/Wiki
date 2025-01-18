@@ -1,4 +1,6 @@
-import {useEffect} from "react";
+import {TransitionFunction, useEffect, useRef, useTransition} from "react";
+import {toast} from "sonner";
+import {useTranslations} from "next-intl";
 
 function usePreventBuggyScrollLock() {
   useEffect(() => {
@@ -17,6 +19,31 @@ function usePreventBuggyScrollLock() {
   }, []);
 }
 
+function usePageDataReloadTransition() {
+  const t = useTranslations('DevPageRefreshTransition');
+  const [loading, startTransition] = useTransition();
+  const transitionResolveRef = useRef<((v: any) => void) | undefined>(undefined);
+
+  useEffect(() => {
+    if (!loading && transitionResolveRef.current) {
+      transitionResolveRef.current(null);
+      transitionResolveRef.current = undefined;
+    }
+  }, [loading]);
+
+  return (callback: TransitionFunction) => {
+    toast.promise(new Promise(resolve => {
+      transitionResolveRef.current = resolve;
+    }), {
+      loading: t('loading'),
+      success: t('success'),
+      error: t('error')
+    });
+    startTransition(callback);
+  };
+}
+
 export default {
-  usePreventBuggyScrollLock
+  usePreventBuggyScrollLock,
+  usePageDataReloadTransition
 }

@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,} from "@/components/ui/sidebar"
+import {useTranslations} from "next-intl";
 
 interface Props {
   teams: {
@@ -21,9 +22,10 @@ interface Props {
   }[]
 }
 
-export function ContextSwitcher({teams}: Props) {
+export function DevSidebarContextSwitcher({teams}: Props) {
   const {isMobile} = useSidebar();
   const [activeTeam, setactiveTeam] = useState(teams[0]);
+  const t = useTranslations('DevSidebarContextSwitcher');
 
   return (
     <SidebarMenu>
@@ -50,7 +52,7 @@ export function ContextSwitcher({teams}: Props) {
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Teams
+              {t('title')}
             </DropdownMenuLabel>
             {teams.map((team, index) => (
               <DropdownMenuItem

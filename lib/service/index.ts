@@ -23,12 +23,14 @@ export interface BaseProject {
   type: ProjectType;
 }
 
+// TODO Split into DevProject
 export interface Project extends BaseProject {
   is_public: boolean;
   versions?: Record<string, string>;
   locales?: string[];
   local?: boolean;
   status?: ProjectStatus;
+  created_at: string;
 }
 
 export interface FileTreeEntry {

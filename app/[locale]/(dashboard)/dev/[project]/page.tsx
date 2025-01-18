@@ -12,10 +12,10 @@ import {auth} from "@/lib/auth";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {Project} from "@/lib/service";
-import {getMessages} from "next-intl/server";
-import ProjectLogs from "@/components/dev/new/ProjectLogs";
+import {getMessages, getTranslations} from "next-intl/server";
+import DevProjectLogs from "@/components/dev/DevProjectLogs";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
-import ProjectRevalidateForm from "@/components/dev/ProjectRevalidateForm";
+import ProjectRevalidateForm from "@/components/dev/modal/ProjectRevalidateForm";
 import {pick} from "lodash";
 import {
   fetchProjectLog,
@@ -23,8 +23,8 @@ import {
   handleEditProjectForm,
   handleRevalidateDocs
 } from "@/lib/forms/actions";
-import ProjectSettingsForm from "@/components/dev/ProjectSettingsForm";
-import ProjectDeletion from "@/components/dev/ProjectDeletion";
+import ProjectSettingsForm from "@/components/dev/modal/ProjectSettingsForm";
+import ProjectDeleteForm from "@/components/dev/modal/ProjectDeleteForm";
 import {
   BookMarkedIcon,
   CheckIcon,
@@ -43,44 +43,45 @@ import {
 } from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {Button} from "@/components/ui/button";
-import ProjectSettingsContextProvider from "@/components/dev/new/ProjectSettingsContextProvider";
-import ProjectSourceSettingsButton from "@/components/dev/new/ProjectSourceSettingsButton";
-import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
-import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
+import ProjectSettingsContextProvider from "@/components/dev/modal/ProjectSettingsContextProvider";
+import ProjectSourceSettingsButton from "@/components/dev/ProjectSourceSettingsButton";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {format} from "date-fns";
-import {ProjectTypeIcons} from "@/lib/docs/projectInfo";
+import {ProjectHostingPlatforms, ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {cn} from "@/lib/utils";
 import {sha256} from "hash-wasm";
 
-interface DevProject extends Project {
-  source_repo: string;
-  source_branch: string;
-  source_path: string;
-  is_public: boolean;
-  status?: ProjectStatus;
-  created_at: string;
-}
-
 function ScrollableCell({children}: { children?: any }) {
   return (
-    <div className={cn('overflow-auto slim-scrollbar max-w-sm break-all')}>
-      {children}
-    </div>
+    <td>
+      <div className={cn('overflow-auto slim-scrollbar max-w-sm break-all')}>
+        {children}
+      </div>
+    </td>
   )
 }
 
-function ProjectSource({project}: { project: DevProject }) {
+function IconTableCell({icon: Icon, children}: { icon: any; children?: any }) {
+  return (
+    <td>
+      <Icon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
+      {children}
+    </td>
+  )
+}
+
+function ProjectSource({project}: { project: Project }) {
   const sourceLink = `https://github.com/${project.source_repo}/tree/${project.source_branch}${project.source_path}`;
+  const t = useTranslations('DevProjectPage.source');
 
   return (
     <div className="flex flex-col gap-3">
       <div className="w-full flex flex-row justify-between">
         <div className="flex flex-row items-center gap-2">
           <CodeXmlIcon className="w-5 h-5"/>
-          Project Source
+          {t('title')}
         </div>
 
         <div className="flex flex-row gap-2">
@@ -96,43 +97,33 @@ function ProjectSource({project}: { project: DevProject }) {
       <table>
         <tbody>
         <tr>
-          <td>
-            <BookMarkedIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
-            Repository
-          </td>
-          <td>
-            <ScrollableCell>
-              {project.source_repo}
-            </ScrollableCell>
-          </td>
+          <IconTableCell icon={BookMarkedIcon}>
+            {t('repo')}
+          </IconTableCell>
+          <ScrollableCell>
+            {project.source_repo}
+          </ScrollableCell>
         </tr>
         <tr>
-          <td>
-            <GitBranchIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
-            Branch
-          </td>
-          <td>
-            <ScrollableCell>
-              {project.source_branch}
-            </ScrollableCell>
-          </td>
+          <IconTableCell icon={GitBranchIcon}>
+            {t('branch')}
+          </IconTableCell>
+          <ScrollableCell>
+            {project.source_branch}
+          </ScrollableCell>
         </tr>
         <tr>
-          <td>
-            <MapIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
-            Path
-          </td>
-          <td>
-            <ScrollableCell>
-              {project.source_path}
-            </ScrollableCell>
-          </td>
+          <IconTableCell icon={MapIcon}>
+            {t('path')}
+          </IconTableCell>
+          <ScrollableCell>
+            {project.source_path}
+          </ScrollableCell>
         </tr>
         <tr>
-          <td>
-            <GlobeIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
-            Public
-          </td>
+          <IconTableCell icon={GlobeIcon}>
+            {t('public')}
+          </IconTableCell>
           <td>{project.is_public ? <CheckIcon className="w-5 h-5"/> : <XIcon className="w-5 h-5"/>}</td>
         </tr>
         </tbody>
@@ -141,48 +132,42 @@ function ProjectSource({project}: { project: DevProject }) {
   )
 }
 
-function ProjectPlatforms({project}: { project: DevProject }) {
-  const plats = {
-    curseforge: {name: 'CurseForge', icon: CurseForgeIcon},
-    modrinth: {name: 'Modrinth', icon: ModrinthIcon}
-  } as any;
+function ProjectPlatforms({project}: { project: Project }) {
+  const t = useTranslations('DevProjectPage.platforms');
 
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-row items-center gap-2">
         <CloudyIcon className="w-5 h-5"/>
-        Platforms
+        {t('title')}
       </div>
 
       <table>
         <thead>
         <tr>
-          <th>Platform</th>
-          <th>Slug / ID</th>
-          <th>Link</th>
+          <th>{t('headers.platform')}</th>
+          <th>{t('headers.slug')}</th>
+          <th>{t('headers.link')}</th>
         </tr>
         </thead>
         <tbody>
         {...Object.keys(project.platforms).map(platform => {
-          const p = plats[platform]!;
+          const p = ProjectHostingPlatforms[platform as ProjectPlatform]!;
           const value = project.platforms[platform as ProjectPlatform] as any;
 
           return (
             <tr key={platform}>
-              <td>
-                <p.icon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
+              <IconTableCell icon={p.icon}>
                 {p.name}
-              </td>
-              <td>
-                <ScrollableCell>
-                  {value}
-                </ScrollableCell>
-              </td>
+              </IconTableCell>
+              <ScrollableCell>
+                {value}
+              </ScrollableCell>
               <td>
                 <LinkTextButton className="align-middle mb-0.5" target="_blank"
                                 href={platforms.getProjectURL(platform as ProjectPlatform, value)}>
                   <ExternalLinkIcon className="mr-2 w-4 h-4 text-muted-foreground"/>
-                  Open
+                  {t('open')}
                 </LinkTextButton>
               </td>
             </tr>
@@ -194,7 +179,8 @@ function ProjectPlatforms({project}: { project: DevProject }) {
   )
 }
 
-function ProjectInfo({project}: { project: DevProject }) {
+function ProjectInfo({project}: { project: Project }) {
+  const t = useTranslations('DevProjectPage.information');
   const u = useTranslations('ProjectStatus');
   const v = useTranslations('ProjectTypes');
   const TypeIcon = ProjectTypeIcons[project.type];
@@ -213,7 +199,7 @@ function ProjectInfo({project}: { project: DevProject }) {
       <div className="w-full flex flex-row justify-between">
         <div className="flex flex-row items-center gap-2">
           <InfoIcon className="w-5 h-5"/>
-          Information
+          {t('title')}
         </div>
       </div>
 
@@ -222,7 +208,7 @@ function ProjectInfo({project}: { project: DevProject }) {
         <tr>
           <td>
             <TypeIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
-            Type
+            {t('type')}
           </td>
           <td>
             {v(project.type)}
@@ -231,7 +217,7 @@ function ProjectInfo({project}: { project: DevProject }) {
         <tr>
           <td>
             <ServerIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
-            Status
+            {t('status')}
           </td>
           <td className={statuses[status].text}>
             <StatusIcon className={cn('mr-1 mb-0.5 inline-block w-5 h-5', statuses[status].iconClass)}/>
@@ -241,7 +227,7 @@ function ProjectInfo({project}: { project: DevProject }) {
         <tr>
           <td>
             <ClockIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
-            Created at
+            {t('created_at')}
           </td>
           <td>{format(project.created_at, 'yyyy-MM-dd HH:mm')}</td>
         </tr>
@@ -251,8 +237,9 @@ function ProjectInfo({project}: { project: DevProject }) {
   )
 }
 
-async function ProfileProject({project}: { project: DevProject }) {
+async function ProfileProject({project}: { project: Project }) {
   const platformProject = await platforms.getPlatformProject(project);
+  const t = await getTranslations('DevProjectPage');
   const messages = await getMessages();
 
   const session = await auth();
@@ -282,7 +269,7 @@ async function ProfileProject({project}: { project: DevProject }) {
           <LocaleNavLink href={`/project/${project.id}`} target="_blank">
             <Button variant="outline" size="sm">
               <ExternalLinkIcon className="mr-2 w-4 h-4"/>
-              View
+              {t('toolbar.view')}
             </Button>
           </LocaleNavLink>
           <NextIntlClientProvider messages={pick(messages, 'ProjectRevalidateForm', 'FormActions')}>
@@ -290,11 +277,11 @@ async function ProfileProject({project}: { project: DevProject }) {
           </NextIntlClientProvider>
           <div className="flex flex-row gap-4 items-center ml-auto">
             <NextIntlClientProvider
-              messages={pick(messages, 'ProjectSettingsForm', 'ProjectRegisterForm', 'FormActions')}>
+              messages={pick(messages, 'ProjectSettingsForm', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
               <ProjectSettingsForm mod={project} formAction={handleEditProjectForm}/>
             </NextIntlClientProvider>
-            <NextIntlClientProvider messages={pick(messages, 'ProjectDeletionForm')}>
-              <ProjectDeletion action={handleDeleteProjectForm.bind(null, project.id)}/>
+            <NextIntlClientProvider messages={pick(messages, 'ProjectDeleteForm')}>
+              <ProjectDeleteForm action={handleDeleteProjectForm.bind(null, project.id)}/>
             </NextIntlClientProvider>
           </div>
         </div>
@@ -303,9 +290,7 @@ async function ProfileProject({project}: { project: DevProject }) {
 
         <div className="flex flex-row justify-between flex-wrap gap-3">
           <ProjectSource project={project}/>
-
           <ProjectPlatforms project={project}/>
-
           <ProjectInfo project={project}/>
         </div>
 
@@ -313,8 +298,10 @@ async function ProfileProject({project}: { project: DevProject }) {
 
         {project.status !== ProjectStatus.UNKNOWN &&
           <div>
-              <ProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} hashedToken={hashedToken}
-                           callback={fetchProjectLog}/>
+              <NextIntlClientProvider messages={pick(messages, 'DevProjectLogs')}>
+                  <DevProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} hashedToken={hashedToken}
+                                  callback={fetchProjectLog}/>
+              </NextIntlClientProvider>
           </div>
         }
       </div>
@@ -322,7 +309,7 @@ async function ProfileProject({project}: { project: DevProject }) {
   </>
 }
 
-export default async function DevProject({params}: { params: { project: string } }) {
+export default async function DevProjectPage({params}: { params: { project: string } }) {
   const session = await auth();
   if (!session) {
     return redirect('/dev');
@@ -333,6 +320,7 @@ export default async function DevProject({params}: { params: { project: string }
     return redirect('/dev');
   }
 
+  const t = await getTranslations('DevProjectPage');
   const platformProject = await platforms.getPlatformProject(project);
 
   return (
@@ -343,7 +331,7 @@ export default async function DevProject({params}: { params: { project: string }
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href="/dev">
-                  Projects
+                  {t('breadcrumbs.projects')}
                 </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
@@ -356,7 +344,7 @@ export default async function DevProject({params}: { params: { project: string }
           </BreadcrumbList>
         </Breadcrumb>
 
-        <ProfileProject project={project as DevProject}/>
+        <ProfileProject project={project}/>
       </div>
     </GetStartedContextProvider>
   )

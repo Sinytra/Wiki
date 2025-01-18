@@ -22,12 +22,14 @@ import SubmitButton from "@/components/dev/SubmitButton";
 import {useTranslations} from "next-intl";
 import {Switch} from "@/components/ui/switch";
 import {cn} from "@/lib/utils";
-import {Loader2Icon} from "lucide-react";
+import {CheckIcon, Loader2Icon} from "lucide-react";
 import {modrinthAuthScopes, modrinthCallbackURL, modrinthOAuthClient} from "@/lib/auth";
 import {Button} from "@/components/ui/button";
 import {useRouter} from "@/lib/locales/routing";
 import {useRouter as useProgressRouter} from "next-nprogress-bar";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
+import clientUtil from "@/lib/util/clientUtil";
+import {useParams} from "next/navigation";
 
 export interface ProjectRegisterFormProps {
   defaultValues: any;
@@ -35,12 +37,11 @@ export interface ProjectRegisterFormProps {
   isAdmin: boolean;
   open: boolean;
   setOpen: (v: boolean) => void;
-  autoSubmit?: boolean;
   translations?: string;
   trigger?: any;
   schema: any;
-  lateAutoSubmit?: boolean;
   redirectToProject?: boolean;
+  reloadAfterSubmit?: boolean;
 
   formAction: (data: any) => Promise<any>
 }
@@ -59,16 +60,16 @@ export default function ProjectRegisterForm(
       defaultValues,
       state,
       isAdmin,
-      autoSubmit,
       formAction,
       translations,
       trigger,
       schema,
-      lateAutoSubmit,
-      redirectToProject
+      redirectToProject,
+      reloadAfterSubmit
     }: ProjectRegisterFormProps
 ) {
   const openDefault = state !== undefined;
+  const params = useParams();
   const progressRouter = useProgressRouter();
   const router = useRouter();
 
@@ -76,6 +77,7 @@ export default function ProjectRegisterForm(
   const v = useTranslations(translations || 'ProjectRegisterForm');
   const t = useTranslations('ProjectRegisterForm');
   const u = useTranslations('FormActions');
+  const reload = clientUtil.usePageDataReloadTransition();
 
   const form = useForm<z.infer<typeof projectRegisterSchema>>({
     resolver: zodResolver(schema),
@@ -87,15 +89,14 @@ export default function ProjectRegisterForm(
     const resp = await formAction(data) as any;
     if (resp.success) {
       if (redirectToProject && resp.project.id) {
-        startTransition(() => progressRouter.push(`/dev/${resp.project.id}`));
+        startTransition(() => progressRouter.push(`/${params.locale}/dev/${resp.project.id}`));
       }
 
       setOpen(false);
       toast.success(v('success.title'), {description: v('success.desc')});
 
-      if (autoSubmit || openDefault) {
-        window.history.pushState({}, '', '/dev');
-        router.replace('/dev');
+      if (reloadAfterSubmit) {
+        reload(() => router.refresh());
       }
     } else if (resp.install_url) {
       form.setError('root.missing_installation', {message: resp.install_url});
@@ -129,25 +130,16 @@ export default function ProjectRegisterForm(
   // Prints a warning in console. Might wanna find a better way that doesn't re-add the values every time the modal opens
   useEffect(() => {
     if (openDefault) {
-      window.history.pushState({}, '', '/dev');
+      window.history.pushState({}, '', `/${params.locale}/dev`);
 
       setTimeout(() => {
         for (const value in state) {
           // @ts-ignore
           form.setValue(value, state[value]);
         }
-        if (autoSubmit && formRef.current) {
-          formRef.current.requestSubmit();
-        }
       });
     }
   }, [form, openDefault, state]);
-
-  useEffect(() => {
-    if (lateAutoSubmit && autoSubmit && formRef.current) {
-      formRef.current.requestSubmit();
-    }
-  }, [formRef.current])
 
   async function verifyUsingModrinth() {
     const state = btoa(JSON.stringify(form.getValues() satisfies RepoInstallationState));
@@ -328,11 +320,19 @@ export default function ProjectRegisterForm(
                           {t('errors.details')}
                         </summary>
                       {/*@ts-ignore*/}
-                        <code>{form.formState.errors.root.custom.details}</code>
+                        <code className="text-xs">{form.formState.errors.root.custom.details}</code>
                     </details>
                 }
 
-                <DialogFooter>
+                <DialogFooter className="flex flex-row w-full">
+                  {form.getValues().mr_code &&
+                    <span className="mr-auto flex flex-row gap-2 items-center">
+                        <CheckIcon className="w-4 h-4 text-green-500" />
+                        <span className="text-sm text-muted-foreground">
+                            {t('mr_verified')}
+                        </span>
+                    </span>
+                  }
                   <SubmitButton t={{title: t('submit')}}/>
                 </DialogFooter>
               </form>
