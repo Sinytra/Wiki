@@ -14,11 +14,12 @@ import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import {cn, isWikiAdmin} from "@/lib/utils";
-import platforms from "@/lib/platforms";
+import platforms, {PlatformProject} from "@/lib/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {BookMarkedIcon, CheckIcon, GitBranchIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon} from "lucide-react";
 import {Link} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
+import {SidebarTrigger} from "@/components/ui/sidebar";
 
 function ProjectsListHeader({defaultValues, state, isAdmin}: {
   defaultValues?: any;
@@ -28,13 +29,17 @@ function ProjectsListHeader({defaultValues, state, isAdmin}: {
   const messages = useMessages();
 
   return (
-    <div className="w-full flex flex-col items-end">
-      <NextIntlClientProvider
-        messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
-        <GetStartedModal defaultValues={defaultValues} state={state?.id === undefined ? state : undefined}
-                         isAdmin={isAdmin}
-                         formAction={handleRegisterProjectForm}/>
-      </NextIntlClientProvider>
+    <div className="w-full flex flex-col">
+      <div className="flex flex-row items-center justify-end">
+        <SidebarTrigger className="-ml-1 mr-auto sm:hidden text-foreground"/>
+
+        <NextIntlClientProvider
+          messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
+          <GetStartedModal defaultValues={defaultValues} state={state?.id === undefined ? state : undefined}
+                           isAdmin={isAdmin}
+                           formAction={handleRegisterProjectForm}/>
+        </NextIntlClientProvider>
+      </div>
 
       <hr className="w-full flex my-3 border-neutral-600"/>
     </div>
@@ -56,19 +61,41 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
   )
 }
 
+function MobileProjectHeader({id, project}: { id: string; project: PlatformProject; }) {
+  return (
+    <div className="sm:hidden flex flex-row gap-4">
+      <div className="flex flex-shrink-0 w-12 h-12 sm:w-24 sm:h-24">
+        <img className="rounded-md" src={project.icon_url} alt="Project icon"/>
+      </div>
+      <div className="flex flex-col">
+        <div>
+          <LinkTextButton className="!w-fit !text-foreground !font-medium !text-lg" href={`/dev/${id}`}>
+            {project.name}
+          </LinkTextButton>
+        </div>
+        <p className="text-muted-foreground font-normal text-ellipsis overflow-x-hidden max-w-5xl">
+          {project.summary}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 async function DevProjectsListEntry({project}: { project: Project }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectsListPage');
   const u = await getTranslations('ProjectStatus');
 
-  return <>
-    <div className="flex flex-row gap-4 w-full justify-between p-3 border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
-      <div>
+  return (
+    <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
+      <MobileProjectHeader id={project.id} project={platformProject} />
+
+      <div className="hidden sm:block">
         <img className="rounded-md" src={platformProject.icon_url} alt="Project icon" width={96} height={96}/>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
-        <div className="flex flex-col">
+        <div className="hidden sm:flex flex-col">
           <div>
             <LinkTextButton className="!w-fit !text-foreground !font-medium !text-lg" href={`/dev/${project.id}`}>
               {platformProject.name}
@@ -79,8 +106,8 @@ async function DevProjectsListEntry({project}: { project: Project }) {
           </p>
         </div>
 
-        <div className="flex flex-row">
-          <div className="inline-flex gap-5">
+        <div className="flex flex-col gap-3 w-full sm:gap-0 sm:flex-row">
+          <div className="flex flex-row flex-wrap gap-4 sm:gap-5">
             <Property
               iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-muted-foreground '}
               icon={project.status === ProjectStatus.LOADED ? CheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
@@ -104,7 +131,7 @@ async function DevProjectsListEntry({project}: { project: Project }) {
         </div>
       </div>
     </div>
-  </>
+  )
 }
 
 async function ProfileProjects({projects}: { projects: Project[] }) {
@@ -122,7 +149,7 @@ async function ProfileProjects({projects}: { projects: Project[] }) {
       <div className="flex flex-col gap-3">
         {projects.map(p => (
           <Suspense key={p.id} fallback={<ProfileProjectSkeleton/>}>
-            <DevProjectsListEntry project={p} />
+            <DevProjectsListEntry project={p}/>
           </Suspense>
         ))}
       </div>

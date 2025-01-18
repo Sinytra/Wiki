@@ -51,8 +51,8 @@ export default function ProjectRevalidateForm({action}: Properties) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
-          <RefreshCwIcon className="mr-2 w-4 h-4"/>
-          Reload
+          <RefreshCwIcon className="sm:mr-2 w-4 h-4"/>
+          <span className="hidden sm:block">Reload</span>
         </Button>
       </DialogTrigger>
       <DialogContent>

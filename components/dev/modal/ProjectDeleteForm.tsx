@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 import {Loader2Icon, TrashIcon} from "lucide-react";
 import {toast} from "sonner";
 import * as React from "react";
-import {useState} from "react";
+import {startTransition, useState} from "react";
 import {
   Dialog,
   DialogClose,
@@ -37,24 +37,23 @@ function DeleteButton({ text }: { text: string }) {
 export default function ProjectDeleteForm({action}: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  // const {startTransition} = useContext(GetStartedContext)!;
   const t = useTranslations('ProjectDeleteForm');
 
   const formAction = async () => {
     await action();
 
-    // startTransition(() => router.refresh()); TODO
-
     setOpen(false);
     toast.success(t('success'));
+
+    startTransition(() => router.refresh());
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm" className="border-destructive-border-dim">
-          <TrashIcon className="mr-2 w-4 h-4"/>
-          {t('trigger')}
+          <TrashIcon className="sm:mr-2 w-4 h-4"/>
+          <span className="hidden sm:block">{t('trigger')}</span>
         </Button>
       </DialogTrigger>
       <DialogContent>

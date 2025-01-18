@@ -81,6 +81,7 @@ function WaitingLogs() {
 
 const getHighlighter = makeSingletonHighlighterCore(createHighlighterCore);
 
+// TODO Load logs automatically
 export default function DevProjectLogs({id, status, hashedToken, callback}: {
   id: string;
   status: ProjectStatus;

@@ -52,11 +52,12 @@ import {ProjectStatus} from "@/lib/types/serviceTypes";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {cn} from "@/lib/utils";
 import {sha256} from "hash-wasm";
+import {SidebarTrigger} from "@/components/ui/sidebar";
 
-function ScrollableCell({children}: { children?: any }) {
+function ScrollableCell({className, children}: { className?: string; children?: any }) {
   return (
-    <td>
-      <div className={cn('overflow-auto slim-scrollbar max-w-sm break-all')}>
+    <td className={className}>
+      <div className="overflow-auto slim-scrollbar sm:max-w-sm break-all">
         {children}
       </div>
     </td>
@@ -65,8 +66,8 @@ function ScrollableCell({children}: { children?: any }) {
 
 function IconTableCell({icon: Icon, children}: { icon: any; children?: any }) {
   return (
-    <td>
-      <Icon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
+    <td className="whitespace-nowrap">
+      <Icon className="inline-block sm:mb-0.5 mr-2 w-4 h-4"/>
       {children}
     </td>
   )
@@ -75,9 +76,10 @@ function IconTableCell({icon: Icon, children}: { icon: any; children?: any }) {
 function ProjectSource({project}: { project: Project }) {
   const sourceLink = `https://github.com/${project.source_repo}/tree/${project.source_branch}${project.source_path}`;
   const t = useTranslations('DevProjectPage.source');
+  const Icon = project.is_public ? CheckIcon : XIcon;
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 min-w-0">
       <div className="w-full flex flex-row justify-between">
         <div className="flex flex-row items-center gap-2">
           <CodeXmlIcon className="w-5 h-5"/>
@@ -124,7 +126,9 @@ function ProjectSource({project}: { project: Project }) {
           <IconTableCell icon={GlobeIcon}>
             {t('public')}
           </IconTableCell>
-          <td>{project.is_public ? <CheckIcon className="w-5 h-5"/> : <XIcon className="w-5 h-5"/>}</td>
+          <td>
+            <Icon className="w-5 h-5"/>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -136,7 +140,7 @@ function ProjectPlatforms({project}: { project: Project }) {
   const t = useTranslations('DevProjectPage.platforms');
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 min-w-0">
       <div className="flex flex-row items-center gap-2">
         <CloudyIcon className="w-5 h-5"/>
         {t('title')}
@@ -144,7 +148,7 @@ function ProjectPlatforms({project}: { project: Project }) {
 
       <table>
         <thead>
-        <tr>
+        <tr className="[&_th]:text-sm sm:[&_th]:text-base">
           <th>{t('headers.platform')}</th>
           <th>{t('headers.slug')}</th>
           <th>{t('headers.link')}</th>
@@ -195,7 +199,7 @@ function ProjectInfo({project}: { project: Project }) {
   const StatusIcon = statuses[status].icon;
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 min-w-0">
       <div className="w-full flex flex-row justify-between">
         <div className="flex flex-row items-center gap-2">
           <InfoIcon className="w-5 h-5"/>
@@ -206,30 +210,29 @@ function ProjectInfo({project}: { project: Project }) {
       <table>
         <tbody>
         <tr>
-          <td>
-            <TypeIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
+          <IconTableCell icon={TypeIcon}>
             {t('type')}
-          </td>
-          <td>
+          </IconTableCell>
+          <ScrollableCell>
             {v(project.type)}
-          </td>
+          </ScrollableCell>
         </tr>
         <tr>
-          <td>
-            <ServerIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
+          <IconTableCell icon={ServerIcon}>
             {t('status')}
-          </td>
-          <td className={statuses[status].text}>
-            <StatusIcon className={cn('mr-1 mb-0.5 inline-block w-5 h-5', statuses[status].iconClass)}/>
+          </IconTableCell>
+          <ScrollableCell className={statuses[status].text}>
+            <StatusIcon className={cn('mr-1 sm:mb-0.5 inline-block w-5 h-5', statuses[status].iconClass)}/>
             {u(status)}
-          </td>
+          </ScrollableCell>
         </tr>
         <tr>
-          <td>
-            <ClockIcon className="inline-block mb-0.5 mr-2 w-4 h-4"/>
+          <IconTableCell icon={ClockIcon}>
             {t('created_at')}
-          </td>
-          <td>{format(project.created_at, 'yyyy-MM-dd HH:mm')}</td>
+          </IconTableCell>
+          <ScrollableCell>
+            {format(project.created_at, 'yyyy-MM-dd HH:mm')}
+          </ScrollableCell>
         </tr>
         </tbody>
       </table>
@@ -251,21 +254,21 @@ async function ProfileProject({project}: { project: Project }) {
       <div className="flex flex-col justify-between gap-3">
         <div
           className="flex flex-row gap-4 p-4 w-full border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
-          <img className="rounded-md" src={platformProject.icon_url} alt="Project icon" width={84} height={84}/>
+          <img className="rounded-md w-12 h-12 sm:w-[84px] sm:h-[84px]" src={platformProject.icon_url} alt="Project icon"/>
 
           <div className="flex flex-col gap-2">
             <Link href={`/dev/${project.id}`}>
-              <p className="text-foreground font-medium text-lg">
+              <p className="text-foreground font-medium sm:text-lg">
                 {platformProject.name}
               </p>
             </Link>
-            <p className="text-muted-foreground font-normal min-h-6">
+            <p className="text-muted-foreground font-normal min-h-6 text-sm sm:text-base">
               {platformProject.summary}
             </p>
           </div>
         </div>
 
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-row flex-wrap gap-4 items-center">
           <LocaleNavLink href={`/project/${project.id}`} target="_blank">
             <Button variant="outline" size="sm">
               <ExternalLinkIcon className="mr-2 w-4 h-4"/>
@@ -288,7 +291,7 @@ async function ProfileProject({project}: { project: Project }) {
 
         <hr className="my-2"/>
 
-        <div className="flex flex-row justify-between flex-wrap gap-3">
+        <div className="flex flex-row justify-between flex-wrap gap-5 sm:gap-3">
           <ProjectSource project={project}/>
           <ProjectPlatforms project={project}/>
           <ProjectInfo project={project}/>
@@ -326,8 +329,9 @@ export default async function DevProjectPage({params}: { params: { project: stri
   return (
     <GetStartedContextProvider>
       <div>
-        <Breadcrumb className="mb-4">
+        <Breadcrumb className="mt-2 sm:mt-0 mb-4">
           <BreadcrumbList>
+            <SidebarTrigger className="-ml-1 mr-1 sm:hidden text-foreground"/>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href="/dev">

@@ -21,7 +21,7 @@ export default async function DevLayout({ children }: { children?: any }) {
   const messages = await getMessages();
 
   return (
-    <div className="w-full mx-auto max-w-[77vw]">
+    <div className="w-full mx-auto sm:max-w-[77vw]">
       <SidebarProvider>
         <NextIntlClientProvider messages={pick(messages, 'DeveloperSidebar', 'DevSidebarContextSwitcher', 'DevSidebarUser')}>
           <DeveloperSidebar profile={response.profile} logoutAction={async () => {
@@ -29,11 +29,7 @@ export default async function DevLayout({ children }: { children?: any }) {
             await signOut({redirectTo: '/'});
           }}/>
         </NextIntlClientProvider>
-        <SidebarInset className="pl-4 my-4 mx-auto w-full h-full">
-          <div className="sm:hidden">
-            <SidebarTrigger className="-ml-1"/>
-          </div>
-
+        <SidebarInset className="px-1 sm:pl-4 sm:pr-0 my-4 mx-auto w-full h-full">
           {children}
         </SidebarInset>
       </SidebarProvider>

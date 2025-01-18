@@ -36,8 +36,8 @@ export default function ProjectSettingsForm({mod, state, formAction}: ProjectEdi
                            schema={projectEditSchema}
                            trigger={
                              <Button variant="outline" size="sm">
-                               <SettingsIcon className="mr-2 w-4 h-4"/>
-                               Settings
+                               <SettingsIcon className="sm:mr-2 w-4 h-4"/>
+                               <span className="hidden sm:block">Settings</span>
                              </Button>
                            }/>
   )
