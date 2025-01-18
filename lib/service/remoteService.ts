@@ -11,8 +11,8 @@ interface PageResponse {
 }
 
 async function fetchBackendService(project: string, path: string, params: Record<string, string | null> = {}, method?: string, disableCache?: boolean, options?: RequestOptions) {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
   const searchParams = new URLSearchParams();
   for (const key in params) {
@@ -20,7 +20,7 @@ async function fetchBackendService(project: string, path: string, params: Record
       searchParams.set(key, params[key]);
     }
   }
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
     ...options,
     method,
     headers: {
@@ -71,7 +71,7 @@ async function getBackendLayout(project: string, version: string | null, locale:
 
 async function getAsset(project: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const url = `${process.env.BACKEND_SERVICE_URL}/api/v1/project/${project}/asset/${location}` + (version ? `?version=${version}` : '');
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/project/${project}/asset/${location}` + (version ? `?version=${version}` : '');
     return {
       id: location,
       src: url

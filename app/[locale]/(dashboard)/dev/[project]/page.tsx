@@ -54,10 +54,10 @@ import {cn} from "@/lib/utils";
 import {sha256} from "hash-wasm";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 
-function ScrollableCell({className, children}: { className?: string; children?: any }) {
+function ValueTableCell({className, hideOverflow, children}: { className?: string; hideOverflow?: boolean; children?: any }) {
   return (
     <td className={className}>
-      <div className="overflow-auto slim-scrollbar sm:max-w-sm break-all">
+      <div className={cn('slim-scrollbar sm:max-w-sm break-all', !hideOverflow && 'overflow-auto')}>
         {children}
       </div>
     </td>
@@ -102,25 +102,25 @@ function ProjectSource({project}: { project: Project }) {
           <IconTableCell icon={BookMarkedIcon}>
             {t('repo')}
           </IconTableCell>
-          <ScrollableCell>
+          <ValueTableCell>
             {project.source_repo}
-          </ScrollableCell>
+          </ValueTableCell>
         </tr>
         <tr>
           <IconTableCell icon={GitBranchIcon}>
             {t('branch')}
           </IconTableCell>
-          <ScrollableCell>
+          <ValueTableCell>
             {project.source_branch}
-          </ScrollableCell>
+          </ValueTableCell>
         </tr>
         <tr>
           <IconTableCell icon={MapIcon}>
             {t('path')}
           </IconTableCell>
-          <ScrollableCell>
+          <ValueTableCell>
             {project.source_path}
-          </ScrollableCell>
+          </ValueTableCell>
         </tr>
         <tr>
           <IconTableCell icon={GlobeIcon}>
@@ -164,9 +164,9 @@ function ProjectPlatforms({project}: { project: Project }) {
               <IconTableCell icon={p.icon}>
                 {p.name}
               </IconTableCell>
-              <ScrollableCell>
+              <ValueTableCell>
                 {value}
-              </ScrollableCell>
+              </ValueTableCell>
               <td>
                 <LinkTextButton className="align-middle mb-0.5" target="_blank"
                                 href={platforms.getProjectURL(platform as ProjectPlatform, value)}>
@@ -213,26 +213,26 @@ function ProjectInfo({project}: { project: Project }) {
           <IconTableCell icon={TypeIcon}>
             {t('type')}
           </IconTableCell>
-          <ScrollableCell>
+          <ValueTableCell>
             {v(project.type)}
-          </ScrollableCell>
+          </ValueTableCell>
         </tr>
         <tr>
           <IconTableCell icon={ServerIcon}>
             {t('status')}
           </IconTableCell>
-          <ScrollableCell className={statuses[status].text}>
+          <ValueTableCell className={statuses[status].text} hideOverflow>
             <StatusIcon className={cn('mr-1 sm:mb-0.5 inline-block w-5 h-5', statuses[status].iconClass)}/>
             {u(status)}
-          </ScrollableCell>
+          </ValueTableCell>
         </tr>
         <tr>
           <IconTableCell icon={ClockIcon}>
             {t('created_at')}
           </IconTableCell>
-          <ScrollableCell>
-            {format(project.created_at, 'yyyy-MM-dd HH:mm')}
-          </ScrollableCell>
+          <ValueTableCell>
+            {project.created_at && format(project.created_at, 'yyyy-MM-dd HH:mm')}
+          </ValueTableCell>
         </tr>
         </tbody>
       </table>

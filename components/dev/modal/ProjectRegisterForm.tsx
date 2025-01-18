@@ -10,7 +10,8 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle, DialogTrigger
+  DialogTitle,
+  DialogTrigger
 } from "@/components/ui/dialog";
 import * as React from "react";
 import {startTransition, useEffect, useRef, useState} from "react";
@@ -29,7 +30,7 @@ import {useRouter} from "@/lib/locales/routing";
 import {useRouter as useProgressRouter} from "next-nprogress-bar";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import clientUtil from "@/lib/util/clientUtil";
-import {useParams} from "next/navigation";
+import {useParams, usePathname} from "next/navigation";
 
 export interface ProjectRegisterFormProps {
   defaultValues: any;
@@ -72,6 +73,7 @@ export default function ProjectRegisterForm(
   const params = useParams();
   const progressRouter = useProgressRouter();
   const router = useRouter();
+  const path = usePathname();
 
   // @ts-ignore
   const v = useTranslations(translations || 'ProjectRegisterForm');

@@ -1,7 +1,7 @@
 'use client'
 
 import {Button} from "@/components/ui/button";
-import {Loader2Icon, RefreshCwIcon} from "lucide-react";
+import {InfoIcon, LightbulbIcon, Loader2Icon, RefreshCwIcon} from "lucide-react";
 import {toast} from "sonner";
 import * as React from "react";
 import {startTransition, useState} from "react";
@@ -43,7 +43,7 @@ export default function ProjectRevalidateForm({action}: Properties) {
   const formAction = async () => {
     await action();
     setOpen(false);
-    toast.success(t('success'));
+    toast.info(t('success'));
     startTransition(() => router.refresh());
   }
 
@@ -60,29 +60,39 @@ export default function ProjectRevalidateForm({action}: Properties) {
           <DialogTitle>
             {t('title')}
           </DialogTitle>
-          <DialogDescription asChild className="!mt-4">
+          <DialogDescription asChild className="!mt-4 text-left">
             <div>
-              {t('primary')}
+              {t.rich('primary', {
+                b: (chunks) => <span className="text-foreground font-medium">{chunks}</span>
+              })}
 
               <p className="mt-4">
                 {t('secondary')}
               </p>
 
-              <p className="mt-4">
-                {t.rich('tertiary', {
-                  link: (chunks) => (
-                    <LinkTextButton target="_blank" href="/about" className="!font-normal !text-foreground">
-                      {chunks}
-                    </LinkTextButton>
-                  )
-                })}
+              <p className="flex flex-row items-start mt-4">
+                <LightbulbIcon className="inline-block flex-shrink-0 mt-0.5 mr-2 h-4 w-4"/>
+                <span>
+                  {t.rich('tertiary', {
+                    link: (chunks) => (
+                      <LinkTextButton target="_blank" href="/about" className="!font-normal !text-foreground">
+                        {chunks}
+                      </LinkTextButton>
+                    )
+                  })}
+                </span>
+              </p>
+
+              <p className="flex flex-row items-start mt-4 text-muted-foreground opacity-70">
+                <InfoIcon className="inline-block flex-shrink-0 mt-0.5 mr-2 h-4 w-4"/>
+                {t('note')}
               </p>
             </div>
           </DialogDescription>
         </DialogHeader>
 
         <form tabIndex={0} action={formAction} className="focus:outline-none space-y-6">
-          <DialogFooter>
+        <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="secondary">
                 {t('cancel')}

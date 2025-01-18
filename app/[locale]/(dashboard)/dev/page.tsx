@@ -31,7 +31,7 @@ function ProjectsListHeader({defaultValues, state, isAdmin}: {
   return (
     <div className="w-full flex flex-col">
       <div className="flex flex-row items-center justify-end">
-        <SidebarTrigger className="-ml-1 mr-auto sm:hidden text-foreground"/>
+        <SidebarTrigger className="-ml-1 mr-auto md:hidden text-foreground"/>
 
         <NextIntlClientProvider
           messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
@@ -90,8 +90,8 @@ async function DevProjectsListEntry({project}: { project: Project }) {
     <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
       <MobileProjectHeader id={project.id} project={platformProject} />
 
-      <div className="hidden sm:block">
-        <img className="rounded-md" src={platformProject.icon_url} alt="Project icon" width={96} height={96}/>
+      <div className="hidden sm:block flex-shrink-0">
+        <img className="rounded-md w-20 h-20 lg:w-24 lg:h-24" src={platformProject.icon_url} alt="Project icon"/>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
@@ -101,12 +101,12 @@ async function DevProjectsListEntry({project}: { project: Project }) {
               {platformProject.name}
             </LinkTextButton>
           </div>
-          <p className="text-muted-foreground font-normal whitespace-nowrap text-ellipsis overflow-x-hidden max-w-5xl">
+          <p className="text-muted-foreground font-normal">
             {platformProject.summary}
           </p>
         </div>
 
-        <div className="flex flex-col gap-3 w-full sm:gap-0 sm:flex-row">
+        <div className="flex flex-col gap-3 w-full flex-wrap sm:flex-row">
           <div className="flex flex-row flex-wrap gap-4 sm:gap-5">
             <Property
               iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-muted-foreground '}

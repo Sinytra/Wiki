@@ -82,6 +82,7 @@ function WaitingLogs() {
 const getHighlighter = makeSingletonHighlighterCore(createHighlighterCore);
 
 // TODO Load logs automatically
+// FIXME Trouble with client side SHIKI
 export default function DevProjectLogs({id, status, hashedToken, callback}: {
   id: string;
   status: ProjectStatus;
@@ -145,11 +146,12 @@ export default function DevProjectLogs({id, status, hashedToken, callback}: {
       return;
     }
 
-    if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_HOST) {
+    if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
       return;
     }
 
-    const ws = new WebSocket(`ws://${process.env.NEXT_PUBLIC_BACKEND_SERVICE_HOST}/ws/api/v1/project/log/${id}?token=${hashedToken}`);
+    const endpointUrl = process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL.replace('https://', 'wss://').replace('http://', 'ws://');
+    const ws = new WebSocket(`${endpointUrl}/ws/api/v1/project/log/${id}?token=${hashedToken}`);
 
     ws.onerror = console.error;
 

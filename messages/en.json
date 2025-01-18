@@ -325,13 +325,14 @@
         "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "Revalidate project?",
-        "primary": "All cached documentation pages will be purged and re-rendered lazily on-demand.",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "This option should only be used upon updating the documentation source itself.",
         "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "Cancel",
-        "submit": "Revalidate",
-        "success": "Project successfully revalidated"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -535,11 +536,6 @@
             "success": "Project setup complete",
             "error": "Error during project setup"
         }
-    },
-    "DevPageRefreshTransition": {
-        "loading": "Refreshing page data...",
-        "success": "Page refresh success",
-        "error": "Page refresh error"
     },
     "DeveloperSidebar": {
         "teams": {

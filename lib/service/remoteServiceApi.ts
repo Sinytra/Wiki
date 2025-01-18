@@ -233,13 +233,13 @@ function urlParams(params: Record<string, string | null>) {
 }
 
 async function sendApiRequest(path: string, data: any, params: Record<string, string | null> = {}, options?: Parameters<typeof fetch>[1]) {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
 
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
@@ -252,13 +252,13 @@ async function sendApiRequest(path: string, data: any, params: Record<string, st
 }
 
 async function sendSimpleRequest(path: string, params: Record<string, string | null> = {}, method: string = 'POST') {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
 
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
     method,
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
@@ -268,13 +268,13 @@ async function sendSimpleRequest(path: string, params: Record<string, string | n
 }
 
 async function sendCachedRequest(path: string, params: Record<string, string | null> = {}, method: string = 'GET') {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
 
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
     method,
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
