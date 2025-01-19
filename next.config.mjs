@@ -36,7 +36,7 @@ const nextConfig = {
         ]
     },
     experimental: {
-        serverComponentsExternalPackages: ['vscode-oniguruma', 'shiki'],
+        optimizePackageImports: ['shiki']
     }
 };
 

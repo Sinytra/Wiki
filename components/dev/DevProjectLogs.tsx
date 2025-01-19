@@ -81,8 +81,6 @@ function WaitingLogs() {
 
 const getHighlighter = makeSingletonHighlighterCore(createHighlighterCore);
 
-// TODO Load logs automatically
-// FIXME Trouble with client side SHIKI
 export default function DevProjectLogs({id, status, hashedToken, callback}: {
   id: string;
   status: ProjectStatus;
