@@ -41,6 +41,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "codehike": "^1.0.4",
     "contentlayer": "^0.3.4",
     "country-flag-icons": "^1.5.13",
     "date-fns": "^3.6.0",

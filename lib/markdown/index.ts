@@ -15,8 +15,10 @@ import {compileMDX} from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 import rehypePrettyCode from "rehype-pretty-code";
+import { remarkCodeHike, recmaCodeHike } from "codehike/mdx";
 import * as LucideReact from "lucide-react";
 import Asset from "@/components/docs/shared/Asset";
+import CodeTabs from "@/components/docs/shared/CodeTabs";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -43,13 +45,13 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       obj[key] = LucideReact[key];
       return obj;
     }, {});
-  const components = {CraftingRecipe, Callout, ModAsset, Asset, ...icons};
+  const components = {CraftingRecipe, Callout, ModAsset, Asset, CodeTabs, ...icons};
 
   const {content, frontmatter} = await compileMDX({
     source,
     options: {
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [remarkCodeHike, remarkGfm],
         rehypePlugins: [
           [rehypePrettyCode, {theme: 'plastic'}],
           rehypeMarkdownHeadings,
@@ -58,7 +60,8 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
             const newTree = {...tree};
             return sanitizeHastTree(newTree, sanitizer, components);
           }
-        ]
+        ],
+        recmaPlugins: [recmaCodeHike]
       },
       parseFrontmatter: true
     },
