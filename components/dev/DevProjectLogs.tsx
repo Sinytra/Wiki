@@ -171,7 +171,6 @@ export default function DevProjectLogs({id, status, hashedToken, callback}: {
           toast.error(t('toast.error'));
         }
         keepLogs.current = true;
-        startTransition(() => router.refresh());
         return;
       }
       setLines((v) => [...v, data.data]);
@@ -181,6 +180,7 @@ export default function DevProjectLogs({id, status, hashedToken, callback}: {
       console.debug('Closed WS connection for project', id);
       setWsOpen(false);
       initialized.current = false;
+      startTransition(() => router.refresh());
     }
 
     initialized.current = true;

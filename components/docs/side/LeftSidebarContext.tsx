@@ -8,15 +8,15 @@ export interface SidebarContext {
 }
 
 export interface LeftSidebarContext extends SidebarContext {
-  folderStates: Record<string, boolean>;
-  setFolderStates: (state: Record<string, boolean>) => void;
+  folderStates: Record<number, string>;
+  setFolderStates: (state: Record<number, string>) => void;
 }
 
 export const LeftSidebarContext = createContext<LeftSidebarContext|null>(null);
 
 export default function LeftSidebarContextProvider({ children }: { children: any }) {
   const [open, setOpen] = useState(false);
-  const [folderStates, setFolderStates] = useState<Record<string, boolean>>({});
+  const [folderStates, setFolderStates] = useState<Record<number, string>>({});
 
   return (
     <LeftSidebarContext.Provider value={{open, setOpen, folderStates, setFolderStates}}>
