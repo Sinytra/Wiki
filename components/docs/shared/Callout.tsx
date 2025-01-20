@@ -16,7 +16,7 @@ export default function Callout({variant = 'default', children}: { variant?: Var
   const ActiveIcon = icons[variant] || icons['default'];
 
   return (
-    <Alert className="not-prose bg-muted" variant={variant === 'danger' ? 'destructive' : variant || 'default'}>
+    <Alert className="not-prose my-4 bg-muted" variant={variant === 'danger' ? 'destructive' : variant || 'default'}>
       <ActiveIcon className="h-4 w-4"/>
       <AlertTitle>
         {t('title')}

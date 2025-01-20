@@ -4,6 +4,42 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    :root {
+        --sidebar-background: 0 0% 98%;
+        --sidebar-foreground: 240 5.3% 26.1%;
+        --sidebar-primary: 240 5.9% 10%;
+        --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-accent: 240 4.8% 95.9%;
+        --sidebar-accent-foreground: 240 5.9% 10%;
+        --sidebar-border: 220 13% 91%;
+        --sidebar-ring: 217.2 91.2% 59.8%
+    }
+    .dark {
+        --sidebar-background: 240 5.9% 10%;
+        --sidebar-foreground: 240 4.8% 95.9%;
+        --sidebar-primary: 224.3 76.3% 48%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 240 3.7% 15.9%;
+        --sidebar-accent-foreground: 240 4.8% 95.9%;
+        --sidebar-border: 240 3.7% 15.9%;
+        --sidebar-ring: 240, 33%, 94%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    .disable-blur {
+        image-rendering: pixelated;
+    }
+}
+
 .accordion-body {
     display: grid;
     grid-template-rows: 0fr;
@@ -74,6 +110,7 @@
         --destructive: var(--vp-c-danger-3);
         --destructive-bright: rgb(251, 108, 111);
         --destructive-border: rgba(224, 87, 91, 75%);
+        --destructive-border-dim: rgba(224, 87, 91, 55%);
         --destructive-foreground: 0 0% 98%;
         --callout-border: rgba(235, 235, 245, 40%);
         --border: 240 3.7% 15.9%;
@@ -96,6 +133,10 @@ html {
 /*Prevent added margin when opening select*/
 html body[data-scroll-locked] {
     margin-right: 0 !important;
+}
+
+.page-wrapper-base {
+    padding-top: calc(var(--vp-nav-height));
 }
 
 .page-wrapper {
@@ -181,7 +222,7 @@ html body[data-scroll-locked] {
     }
 
     .slim-scrollbar {
-        @apply scrollbar scrollbar-w-1 scrollbar-thumb-muted-foreground scrollbar-thumb-rounded;
+        @apply scrollbar scrollbar-w-1 scrollbar-h-1 scrollbar-thumb-muted-foreground scrollbar-thumb-rounded;
     }
 
     .slim-scrollbar-muted {
@@ -231,7 +272,7 @@ html body[data-scroll-locked] {
 }
 
 figcaption[data-rehype-pretty-code-title] {
-    background-color: var(--vp-c-bg-elv);
+    background-color: #2b313a;
     padding: 0.3rem 0.3rem 0.3rem 0.6rem;
     border-top-left-radius: 0.375rem;
     border-top-right-radius: 0.375rem;

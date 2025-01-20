@@ -13,7 +13,7 @@ import {Label} from "@/components/ui/label";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {CircleHelpIcon, HardDriveDownloadIcon, PackageIcon} from "lucide-react";
 import LinkTextButton from "@/components/ui/link-text-button";
-import {MigrateRepositoryModal} from "@/components/dev/MigrateRepositoryModal";
+import {MigrateRepositoryModal} from "@/components/dev/modal/MigrateRepositoryModal";
 import {useState} from "react";
 import {useTranslations} from "next-intl";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";

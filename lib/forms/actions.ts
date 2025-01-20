@@ -11,6 +11,11 @@ import email from "@/lib/email";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import cacheUtil from "@/lib/cacheUtil";
 
+export async function fetchProjectLog(id: string) {
+  const session = await auth();
+  return remoteServiceApi.getProjectDevLog(session!.access_token, id);
+}
+
 export async function handleRegisterProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData, projectRegisterSchema);
   if ('success' in validated) {
@@ -35,7 +40,7 @@ export async function handleRegisterProjectForm(rawData: any) {
     };
   }
 
-  return {success: true};
+  return {success: true, project: response.project};
 }
 
 export async function handleEditProjectForm(rawData: any) {

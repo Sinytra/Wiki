@@ -6,6 +6,7 @@ import {DE, FR, TW} from "country-flag-icons/react/3x2";
 import CountryFlag from "@/components/util/CountryFlag";
 import Asset from "@/components/docs/shared/Asset";
 import MetaDocsTitle from "@/components/meta-docs/MetaDocsTitle";
+import CodeTabs from "@/components/docs/shared/CodeTabs";
 
 // Used in meta-docs only
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -22,6 +23,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <MetaDocsTitle>{children}</MetaDocsTitle>
     ),
     Callout,
+    CodeTabs,
     Asset,
     ModAsset, // Deprecated
     ...components,

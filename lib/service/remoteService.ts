@@ -3,10 +3,6 @@ import {AssetLocation} from "@/lib/assets";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
-interface AssetResponse {
-  data: string;
-}
-
 interface PageResponse {
   project: Project;
   content: string;
@@ -15,8 +11,8 @@ interface PageResponse {
 }
 
 async function fetchBackendService(project: string, path: string, params: Record<string, string | null> = {}, method?: string, disableCache?: boolean, options?: RequestOptions) {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
   const searchParams = new URLSearchParams();
   for (const key in params) {
@@ -24,7 +20,7 @@ async function fetchBackendService(project: string, path: string, params: Record
       searchParams.set(key, params[key]);
     }
   }
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
     ...options,
     method,
     headers: {
@@ -75,23 +71,11 @@ async function getBackendLayout(project: string, version: string | null, locale:
 
 async function getAsset(project: string, location: string, version: string | null): Promise<AssetLocation | null> {
   try {
-    const resp = await fetchBackendService(project, `project/${project}/asset/${location}`, {
-      version,
-      optional: "true"
-    });
-    if (resp.ok) {
-      const json = await resp.json() as AssetResponse;
-      if ('error' in json) {
-        return null;
-      }
-
-      return {
-        id: location,
-        src: json.data
-      }
-    } else {
-      console.error(resp);
-    }
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/project/${project}/asset/${location}` + (version ? `?version=${version}` : '');
+    return {
+      id: location,
+      src: url
+    };
   } catch (e) {
     console.error(e);
   }
@@ -111,10 +95,9 @@ async function getDocsPage(project: string, path: string[], version: string | nu
         return null;
       }
 
-      const content = Buffer.from(json.content, 'base64').toString('utf-8');
       return {
         project: json.project,
-        content,
+        content: json.content,
         edit_url: json.edit_url,
         updated_at: json.updated_at ? new Date(json.updated_at) : undefined
       }

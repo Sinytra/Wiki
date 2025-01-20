@@ -32,6 +32,10 @@ interface ProjectRegisterRequest {
   mr_code?: string;
 }
 
+interface ProjectRegisterResponse extends SuccessResponse{
+  project: Project;
+}
+
 interface ProjectUpdateRequest {
   repo: string;
   branch: string;
@@ -58,7 +62,7 @@ interface DevProjectsResponse {
   projects: Project[];
 }
 
-async function registerProject(data: ProjectRegisterRequest, token: string): Promise<SuccessResponse | ErrorResponse> {
+async function registerProject(data: ProjectRegisterRequest, token: string): Promise<ProjectRegisterResponse | ErrorResponse> {
   try {
     const resp = await sendApiRequest('project/create', data, {token});
     return await resp.json();
@@ -117,7 +121,7 @@ async function migrateRepository(repo: string, token: string): Promise<SuccessRe
 
 async function getUserDevProjects(token: string): Promise<DevProjectsResponse | StatusResponse> {
   try {
-    const resp = await sendSimpleRequest(`projects/dev`, {token}, 'GET');
+    const resp = await sendSimpleRequest('projects/dev', {token}, 'GET');
     if (resp.ok) {
       return await resp.json();
     }
@@ -128,9 +132,35 @@ async function getUserDevProjects(token: string): Promise<DevProjectsResponse | 
   }
 }
 
+async function getDevProject(token: string, id: string): Promise<Project | StatusResponse> {
+  try {
+    const resp = await sendSimpleRequest(`project/${id}`, {token}, 'GET');
+    if (resp.ok) {
+      return await resp.json();
+    }
+    return { status: resp.status };
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function getProjectDevLog(token: string, id: string): Promise<string | undefined> {
+  try {
+    const resp = await sendSimpleRequest(`project/${id}/log`, {token}, 'GET');
+    if (resp.ok) {
+      return (await resp.json()).content;
+    }
+    return undefined;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
 async function getAllProjectIDs(): Promise<string[]> {
   try {
-    const resp = await sendSimpleRequest(`projects`, {}, 'GET');
+    const resp = await sendSimpleRequest('projects', {}, 'GET');
     if (resp.ok) {
       return await resp.json() as string[];
     }
@@ -142,7 +172,7 @@ async function getAllProjectIDs(): Promise<string[]> {
 
 async function getPopularProjects(): Promise<Project[]> {
   try {
-    const resp = await sendCachedRequest(`projects/popular`);
+    const resp = await sendCachedRequest('projects/popular');
     if (resp.ok) {
       return await resp.json() as Project[];
     }
@@ -203,13 +233,13 @@ function urlParams(params: Record<string, string | null>) {
 }
 
 async function sendApiRequest(path: string, data: any, params: Record<string, string | null> = {}, options?: Parameters<typeof fetch>[1]) {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
 
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
@@ -222,13 +252,13 @@ async function sendApiRequest(path: string, data: any, params: Record<string, st
 }
 
 async function sendSimpleRequest(path: string, params: Record<string, string | null> = {}, method: string = 'POST') {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
 
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
     method,
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
@@ -238,13 +268,13 @@ async function sendSimpleRequest(path: string, params: Record<string, string | n
 }
 
 async function sendCachedRequest(path: string, params: Record<string, string | null> = {}, method: string = 'GET') {
-  if (!process.env.BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable BACKEND_SERVICE_URL not set');
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
   }
 
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
     method,
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
@@ -263,5 +293,7 @@ export default {
   getAllProjectIDs,
   migrateRepository,
   getUserDevProjects,
-  getFeaturedProjects
+  getFeaturedProjects,
+  getProjectDevLog,
+  getDevProject
 }

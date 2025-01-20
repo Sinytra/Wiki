@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { withContentlayer } from "next-contentlayer";
+import { remarkCodeHike, recmaCodeHike } from "codehike/mdx";
 
 const withNextIntl = createNextIntlPlugin(
     './components/i18n/request.tsx'
@@ -34,16 +35,20 @@ const nextConfig = {
                 ]
             }
         ]
+    },
+    experimental: {
+        optimizePackageImports: ['shiki']
     }
 };
 
 const withMDX = createMDX({
     options: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [remarkGfm, remarkCodeHike],
         rehypePlugins: [
             [rehypePrettyCode, { theme: 'plastic' }],
             rehypeSlug
-        ]
+        ],
+        recmaPlugins: [recmaCodeHike]
     }
 })
 
