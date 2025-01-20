@@ -150,19 +150,6 @@
         "security": "보안 공지",
         "community": "커뮤니티 문서"
     },
-    "DeveloperPortal": {
-        "title": "프로젝트 관리 대시보드",
-        "logout": "로그아웃",
-        "projects": {
-            "title": "프로젝트",
-            "loading_all": "프로필 프로젝트를 불러오는 중...",
-            "loading": "프로필을 불러오는 중...",
-            "empty": {
-                "primary": "아직 등록된 프로젝트가 없는 것 같습니다",
-                "secondary": "여기 <guide>제작자 가이드</guide>가 준비되어 있습니다."
-            }
-        }
-    },
     "Login": {
         "title": "먼저 로그인하세요",
         "desc": "이 페이지에 접근하려면 먼저 로그인해야 합니다.",
@@ -305,6 +292,7 @@
             "desc": "메타데이터 파일이 포함된 폴더의 경로."
         },
         "admin": "위키 관리자 설정",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "Community-maintained project"
         },
@@ -328,21 +316,23 @@
             "desc": "You can now navigate to the updated project's docs page"
         }
     },
-    "ProjectDeletionForm": {
-        "title": "정말로 확실합니까?",
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
         "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "취소",
-        "submit": "삭제",
-        "success": "프로젝트가 성공적으로 삭제되었습니다"
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "프로젝트를 재심사 하시겠습니까?",
-        "primary": "All cached documentation pages will be purged and re-rendered lazily on-demand.",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "This option should only be used upon updating the documentation source itself.",
         "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "취소",
-        "submit": "재심사",
-        "success": "Project successfully revalidated"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -421,7 +411,7 @@
         "return": "홈으로 돌아가기"
     },
     "GetStartedButton": {
-        "title": "프로젝트 추가"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "프로젝트 추가",
@@ -489,5 +479,87 @@
     "LanguageSelect": {
         "placeholder": "Search languages...",
         "no_results": "No language found."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }

@@ -43,62 +43,62 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "歡迎使用 <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "您探索、建立和貢獻 Minecraft 相關專案的首選資源。",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "熱門 Wiki",
+            "open": "閱讀更多",
+            "disclaimer": "這些專案是根據其透過瀏覽次數統計所顯示的受歡迎程度來突顯的，且並未獲得 Modded Minecraft Wiki 的官方認可。"
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "加入我們的社群",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "使用者",
+                "subtitle": "探索我們的精選專案，並體驗以下優點：",
+                "docs": "取得高品質、即時更新且區分版本的文件",
+                "contribute": "即使不懂程式設計，也能參與專案貢獻",
+                "ui": "在所有專案中，都能享有一致且使用者友善的介面。",
+                "localization": "受益於多語言支援"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "作者",
+                "subtitle": "取得專案儀表板的存取權，並體驗以下優點：",
+                "vcs": "您的文件版本控制支援",
+                "components": "用於配方、素材等的自訂元件",
+                "gradle": "Gradle 整合，帶來無縫的工作流程",
+                "management": "進階專案管理工具",
+                "interaction": "與您的使用者群直接互動",
+                "dashboard": "開啟儀表板",
+                "guide": "閱讀更多"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "瀏覽專案",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "在地化",
+                "desc": "讓文件走向世界"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "無障礙",
+                "desc": "直覺且反應靈敏的使用者介面"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "開放",
+                "desc": "讓使用者共同參與，無需任何程式設計知識"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "免費",
+                "desc": "在我們的網站上託管文件完全免費！"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "關於我們",
+            "maintainers": "這個 Wiki 是由 <0>Sinytra</0> 建立及維護，他們是由一群充滿熱忱的開發人員組成的專門團隊，致力於為 Minecraft 模組社群提供高品質、自由且開放原始碼的軟體。",
+            "mission": "我們的目標是協助模組製作者和玩家，提供他們所需的工具與資源，以便創造、記錄並探索經由模組改造的 Minecraft 所帶來的無限可能。"
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "部落格文章",
+            "open": "閱讀更多"
         }
     },
     "BrowsePage": {
@@ -149,19 +149,6 @@
         "privacy": "隱私權政策",
         "security": "安全性通知",
         "community": "社群文件"
-    },
-    "DeveloperPortal": {
-        "title": "專案管理儀表板",
-        "logout": "登出",
-        "projects": {
-            "title": "專案",
-            "loading_all": "正在載入個人檔案專案...",
-            "loading": "正在載入個人檔案...",
-            "empty": {
-                "primary": "看來您尚未登錄任何專案",
-                "secondary": "請先閱讀我們的<guide>作者指南</guide>開始。"
-            }
-        }
     },
     "Login": {
         "title": "需要登入",
@@ -229,7 +216,7 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
+        "edit_gh": "編輯這個頁面",
         "report": "檢舉這個頁面",
         "last_updated": "上次更新時間：<date></date>"
     },
@@ -273,7 +260,7 @@
                 "suggestion": "您想找其他東西來閱讀嗎？",
                 "explore": "瀏覽專案"
             },
-            "success": "Report submitted successfully"
+            "success": "檢舉提交成功"
         }
     },
     "SubmitButton": {
@@ -305,6 +292,7 @@
             "desc": "包含中繼資料檔案的資料夾路徑。"
         },
         "admin": "Wiki 管理員設定",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "社群維護的專案"
         },
@@ -328,21 +316,23 @@
             "desc": "您現在可以導覽至已更新的專案的文件頁面"
         }
     },
-    "ProjectDeletionForm": {
-        "title": "您確定嗎？",
-        "desc": "這項操作無法復原。這會永久刪除您的專案，並從我們的伺服器中移除所有相關資料。",
-        "cancel": "取消",
-        "submit": "刪除",
-        "success": "專案已成功刪除"
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "要重新驗證專案嗎？",
-        "primary": "所有快取的文件頁面將會被清除，並在需要時重新顯示。",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "這項選項應該只在更新文件來源本身時使用。",
         "tertiary": "為了您的方便，我們建議您在發布後使用我們的 <link>Gradle 延伸模組</link>自動重新驗證文件",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "取消",
-        "submit": "重新驗證",
-        "success": "專案已成功重新驗證"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -355,7 +345,7 @@
             "no_meta": "找不到中繼資料檔案",
             "invalid_meta": "中繼資料檔案無效",
             "exists": "專案已存在。",
-            "no_platforms": "No platform projects defined in metadata.",
+            "no_platforms": "中繼資料中未定義任何平台專案。",
             "cf_unavailable": "CurseForge 專案登錄尚未啟用",
             "no_project": "找不到平台專案。請確認中繼資料的「slug」欄位正確。",
             "ownership": "無法驗證專案擁有權",
@@ -421,7 +411,7 @@
         "return": "返回首頁"
     },
     "GetStartedButton": {
-        "title": "新增專案"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "新增專案",
@@ -450,44 +440,126 @@
         "close": "<kbd>ESC</kbd> 關閉"
     },
     "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
+        "title": "專案資訊",
+        "tags": "標籤",
         "licenses": {
-            "title": "Licenses",
-            "project": "Project:",
+            "title": "授權條款",
+            "project": "專案：",
             "wiki": "Wiki:"
         },
-        "links": "Links",
+        "links": "連結",
         "placeholder": {
-            "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
+            "summary": "本機專案預覽",
+            "author": "作者",
+            "latest_version": "最新版本"
         }
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "變更記錄"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Project Homepage"
+        "title": "文件",
+        "homepage": "專案首頁"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "條目資訊"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "本頁內容"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version"
+        "placeholder": "選擇版本"
     },
     "DocsLanguageSelect": {
-        "placeholder": "Select locale"
+        "placeholder": "選擇語言"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "以及其他 {count} 個"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "搜尋語言...",
+        "no_results": "找不到語言。"
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }

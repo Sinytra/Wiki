@@ -43,62 +43,62 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "Willkommen im <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Deine zentrale Anlaufstelle, um Minecraft-bezogene Projekte zu entdecken, zu erstellen und dazu beizutragen.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "Beliebte Wikis",
+            "open": "Mehr erfahren",
+            "disclaimer": "Diese Projekte werden basierend auf ihrer Beliebtheit anhand von Aufrufstatistiken hervorgehoben und sind nicht offiziell vom Modded Minecraft Wiki unterstützt."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "Werde Teil unserer Community",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "Benutzer",
+                "subtitle": "Entdecke unsere vorgestellten Projekte und genieße diese Vorteile:",
+                "docs": "Greif auf hochwertige, aktuelle und versionierte Dokumentation zu",
+                "contribute": "Trage zu Projekten bei, ohne Programmierkenntnisse zu haben",
+                "ui": "Genieße eine konsistente, benutzerfreundliche Oberfläche über alle Projekte hinweg",
+                "localization": "Profitiere von der Unterstützung mehrerer Sprachen"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "Autoren",
+                "subtitle": "Erhalte Zugang zum Projekt-Dashboard und genieße diese Vorteile:",
+                "vcs": "Versionierung deiner Dokumentation",
+                "components": "Benutzerdefinierte Komponenten für Rezepte, Assets usw.",
+                "gradle": "Gradle-Integration für einen nahtlosen Arbeitsablauf",
+                "management": "Fortgeschrittene Projektmanagement-Tools",
+                "interaction": "Direkte Interaktion mit deiner Benutzerbasis",
+                "dashboard": "Dashboard öffnen",
+                "guide": "Mehr erfahren"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "Projekte durchsuchen",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "Lokalisierung",
+                "desc": "Übersetze deine Dokumentation in weltweite Sprachen"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "Zugänglich",
+                "desc": "Intuitive und reaktionsschnelle Benutzeroberfläche"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "Offen",
+                "desc": "Lass deine Benutzer ohne Programmierkenntnisse beitragen"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "Kostenlos",
+                "desc": "Das Hosting von Dokumentationen auf unserer Website ist komplett kostenlos!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "Über uns",
+            "maintainers": "Das Wiki wird von <b>Sinytra</b> erstellt und gepflegt, einem engagierten Team leidenschaftlicher Entwickler, das sich darauf konzentriert, hochwertige, kostenlose und Open-Source-Software für die Minecraft-Modding-Community bereitzustellen.",
+            "mission": "Unser Ziel ist es, sowohl Moddern als auch Spielern die nötigen Werkzeuge und Ressourcen zur Verfügung zu stellen, um die unendlichen Möglichkeiten von modifiziertem Minecraft zu erschaffen, zu dokumentieren und zu erkunden."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "Blog-Beiträge",
+            "open": "Mehr erfahren"
         }
     },
     "BrowsePage": {
@@ -149,19 +149,6 @@
         "privacy": "Datenschutzbestimmung",
         "security": "Sicherheitswarnung",
         "community": "Community-Dokumentation"
-    },
-    "DeveloperPortal": {
-        "title": "Projektmanagement-Dashboard",
-        "logout": "Abmelden",
-        "projects": {
-            "title": "Projekte",
-            "loading_all": "Lade alle Projekte...",
-            "loading": "Lade Profil...",
-            "empty": {
-                "primary": "Es scheint, dass du noch keine Projekte registriert hast",
-                "secondary": "Lies zuerst unseren <guide>Autorenleitfaden</guide>."
-            }
-        }
     },
     "Login": {
         "title": "Anmeldung erforderlich",
@@ -229,7 +216,7 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
+        "edit_gh": "Seite bearbeiten",
         "report": "Diese Seite melden",
         "last_updated": "Zuletzt aktualisiert: <date></date>"
     },
@@ -273,7 +260,7 @@
                 "suggestion": "Möchtest du stattdessen nach etwas anderem suchen?",
                 "explore": "Projekte entdecken"
             },
-            "success": "Report submitted successfully"
+            "success": "Meldung erfolgreich eingereicht"
         }
     },
     "SubmitButton": {
@@ -305,6 +292,7 @@
             "desc": "Pfad zum Ordner, der die Metadatendatei enthält."
         },
         "admin": "Wiki-Admin-Einstellungen",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "Community-verwaltetes Projekt"
         },
@@ -328,21 +316,23 @@
             "desc": "Du kannst jetzt zur aktualisierten Dokumentationsseite des Projekts navigieren"
         }
     },
-    "ProjectDeletionForm": {
-        "title": "Bist du dir absolut sicher?",
-        "desc": "Diese Aktion kann nicht rückgängig gemacht werden. Dies wird dein Projekt dauerhaft löschen und alle zugehörigen Daten von unseren Servern entfernen.",
-        "cancel": "Abbrechen",
-        "submit": "Löschen",
-        "success": "Projekt erfolgreich gelöscht"
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "Projekt neu validieren?",
-        "primary": "Alle zwischengespeicherten Dokumentationsseiten werden gelöscht und bei Bedarf neu gerendert.",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "Diese Option sollte nur verwendet werden, wenn die Dokumentationsquelle selbst aktualisiert wird.",
         "tertiary": "Für deine eigene Bequemlichkeit empfehlen wir, die Dokumentation nach der Veröffentlichung automatisch mit unserem <link>Gradle-Plugin</link> neu zu validieren.",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "Abbrechen",
-        "submit": "Neu validieren",
-        "success": "Projekt erfolgreich neu validiert"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -355,7 +345,7 @@
             "no_meta": "Metadatendatei nicht gefunden",
             "invalid_meta": "Metadatendatei ist ungültig",
             "exists": "Projekt existiert bereits.",
-            "no_platforms": "No platform projects defined in metadata.",
+            "no_platforms": "Keine Plattformprojekte in den Metadaten definiert.",
             "cf_unavailable": "Die Registrierung von CurseForge-Projekten ist nicht aktiv",
             "no_project": "Plattformprojekt nicht gefunden. Bitte stelle sicher, dass das Feld \"slug\" in den Metadaten korrekt ist.",
             "ownership": "Überprüfung des Projekteigentums fehlgeschlagen",
@@ -421,7 +411,7 @@
         "return": "Zurück zur Startseite"
     },
     "GetStartedButton": {
-        "title": "Projekt hinzufügen"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "Projekt hinzufügen",
@@ -450,44 +440,126 @@
         "close": "<kbd>ESC</kbd> zum Schließen"
     },
     "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
+        "title": "Projektinformationen",
+        "tags": "Kategorien",
         "licenses": {
-            "title": "Licenses",
-            "project": "Project:",
+            "title": "Lizenzen",
+            "project": "Projekt:",
             "wiki": "Wiki:"
         },
         "links": "Links",
         "placeholder": {
-            "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
+            "summary": "Lokale Projektvorschau",
+            "author": "Autor",
+            "latest_version": "Neueste Version"
         }
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "Änderungsprotokoll"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Project Homepage"
+        "title": "Dokumentation",
+        "homepage": "Projekt-Homepage"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "Eintragsinformationen"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "Auf dieser Seite"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version"
+        "placeholder": "Version auswählen"
     },
     "DocsLanguageSelect": {
-        "placeholder": "Select locale"
+        "placeholder": "Sprache auswählen"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "+{count} weitere"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "Sprachen suchen...",
+        "no_results": "Keine Sprache gefunden."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }

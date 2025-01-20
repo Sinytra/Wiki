@@ -11,8 +11,8 @@
             "beta": "Beta"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
+            "home": "Domov",
+            "browse": "Prozkoumávat",
             "about": "About"
         }
     },
@@ -21,32 +21,32 @@
         "links": {
             "navigation": {
                 "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "home": "Domovská stránka",
+                "browse": "Prozkoumávat",
+                "dev": "Vývojáři"
             },
             "links": {
-                "title": "Links"
+                "title": "Odkazy"
             },
             "resources": {
                 "title": "Resources",
                 "blog": "Blog",
                 "status": "Status",
-                "translate": "Help us translate"
+                "translate": "Pomozte nám překládat"
             },
             "about": {
                 "title": "About",
                 "tos": "Terms of Service",
                 "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "contact": "Kontaktovat"
             }
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "title": "Vítejte v <highlight>Módované Minecraft Wiki</highlight>",
         "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
         "popular": {
-            "title": "Popular Wikis",
+            "title": "Populární Wiki",
             "open": "Read more",
             "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
@@ -61,7 +61,7 @@
                 "localization": "Benefit from multi-language support"
             },
             "authors": {
-                "title": "Authors",
+                "title": "Autoři",
                 "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
                 "vcs": "Versioning support for your documentation",
                 "components": "Custom components for recipes, assets, etc.",
@@ -104,70 +104,57 @@
     "BrowsePage": {
         "sidebar": {
             "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "search_filters": "Vyhledávací filtry...",
+            "categories": "Kategorie"
         },
-        "sorting": "Sort by",
+        "sorting": "Řadit podle",
         "sort": {
             "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "creation_date": "Datum vytvoření",
+            "popularity": "Popularita",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
-        "no_results": "Search query returned no results!"
+        "search": "Hledat projekty...",
+        "clear_filter": "Vymazat filtry",
+        "no_results": "Hledaný dotaz nevrátil žádné výsledky!"
     },
     "SearchProjectTypes": {
-        "mod": "Mods",
-        "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
+        "mod": "Módy",
+        "modpack": "Modpacky",
+        "resourcepack": "Balíčky zdrojů",
         "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "shader": "Shadery",
+        "plugin": "Pluginy"
     },
     "ProjectTypes": {
-        "mod": "Mod",
+        "mod": "Mód",
         "modpack": "Modpack",
-        "resourcepack": "Resource pack",
+        "resourcepack": "Balíček zdrojů",
         "datapack": "Data pack",
         "shader": "Shader",
         "plugin": "Plugin"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "Načítání…"
     },
     "MetaDocsNavigation": {
         "title": "Navigation",
         "about": "About",
-        "devs": "Developers",
-        "format": "Format",
+        "devs": "Vývojáři",
+        "format": "Formát",
         "publishing": "Publishing",
-        "help": "Get help",
+        "help": "Získat pomoc",
         "tos": "Terms of Use",
         "privacy": "Privacy Policy",
         "security": "Security Notice",
         "community": "Community Docs"
     },
-    "DeveloperPortal": {
-        "title": "Project management dashboard",
-        "logout": "Logout",
-        "projects": {
-            "title": "Projects",
-            "loading_all": "Loading profile projects...",
-            "loading": "Loading profile...",
-            "empty": {
-                "primary": "Looks like you haven't registered any projects yet",
-                "secondary": "Get started by reading our <guide>author guide</guide>."
-            }
-        }
-    },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "Vyžadováno přihlášení",
+        "desc": "Stránka, ke které se pokoušíte přistupovat, vyžaduje přihlášení.",
+        "prompt": "Pro pokračování použijte prosím svůj účet na GitHub.",
+        "button": "Přihlásit se pomocí GitHub"
     },
     "Preview": {
         "title": "Preview mode is enabled",
@@ -176,73 +163,73 @@
         "open": "Open"
     },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "Informace o projektu",
+        "type": "Typ",
+        "author": "Autor",
+        "tags": "Tagy",
         "latest": {
-            "title": "Latest version",
+            "title": "Nejnovější verze",
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
+            "title": "Licence",
             "custom": "Custom",
             "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "arr": "Všechna práva vyhrazena"
         }
     },
     "ProjectCategories": {
         "adventure": "Adventure",
         "cursed": "Cursed",
-        "decoration": "Decoration",
+        "decoration": "Dekorace",
         "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
+        "equipment": "Výbava",
+        "food": "Jídlo",
         "game-mechanics": "Game Mechanics",
         "library": "Library",
-        "magic": "Magic",
+        "magic": "Magie",
         "management": "Management",
-        "minigame": "Minigame",
+        "minigame": "Minihra",
         "mobs": "Mobs",
-        "optimization": "Optimization",
+        "optimization": "Optimalizace",
         "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
+        "storage": "Úložiště",
+        "technology": "Technologie",
+        "transportation": "Přeprava",
         "utility": "Utility",
-        "worldgen": "Worldgen",
+        "worldgen": "Generace světa",
         "server-utility": "Server Utility",
         "armor-weapons-tools": "Armor, Tools, and Weapons",
         "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
+        "adventure-rpg": "Dobrodružství a RPG",
+        "world-gen": "Generace světa",
         "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
+        "mc-food": "Jídlo",
+        "performance": "Výkon",
+        "map-information": "Mapa a informace",
+        "bug-fixes": "Opravy chyb",
+        "mc-addons": "Doplňky",
         "education": "Education",
         "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
+        "redstone": "Rudit",
         "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "Report this page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "Upravit tuto stránku",
+        "report": "Nahlásit tuto stránku",
+        "last_updated": "Naposledy aktualizováno: <date></date>"
     },
     "Report": {
-        "title": "Report a documentation page",
+        "title": "Nahlásit stránku dokumentace",
         "desc": "Report content that violates our Terms of Service or Content Rules.",
         "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
         "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
         "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "ID Projektu",
+                "desc": "Nahlášené ID projektu."
             },
             "path": {
                 "title": "Page path",
@@ -253,42 +240,42 @@
                 "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
             },
             "reason": {
-                "title": "Reason*",
-                "placeholder": "Select a reason for reporting this page",
-                "desc": "Reason for reporting this page.",
+                "title": "Důvod*",
+                "placeholder": "Vyberte důvod pro nahlášení této stránky",
+                "desc": "Důvod pro hlášení této stránky.",
                 "spam": "Spam",
-                "copyright": "Copyright Infringement",
+                "copyright": "Porušení autorských práv",
                 "content_rules_violation": "Violates Content Rules",
                 "tos_violation": "Violates Terms of Service",
-                "dislike": "I just don't like it"
+                "dislike": "Jen se mi to nelíbí"
             },
             "details": {
-                "title": "Details*",
-                "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
+                "title": "Podrobnosti*",
+                "placeholder": "Uveďte prosím další podrobnosti o tom, proč nahlašujete tuto stránku. Poznámka: prázdná hlášení budou ignorována.",
                 "desc": "Additional details about the issue."
             },
             "dislike": {
-                "title": "We understand that you may not like this page, and that's totally okay!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
+                "title": "Chápeme, že se vám tato stránka nemusí líbit, a to je zcela v pořádku!",
+                "desc": "Bohužel to však není platný důvod k nahlášení projektu.",
                 "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "Explore projects"
+                "explore": "Prozkoumat projekty"
             },
-            "success": "Report submitted successfully"
+            "success": "Nahlášení bylo úspěšně odesláno"
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "Odeslat"
     },
     "Callout": {
         "title": "Heads up!"
     },
     "ProjectRegisterForm": {
-        "button": "Add Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "button": "Přidat projekt",
+        "title": "Registrovat projekt",
+        "desc": "Registrovat nový projekt na wiki.",
         "owner": {
-            "title": "Owner",
-            "desc": "User / organization name.",
+            "title": "Vlastník",
+            "desc": "Jméno uživatele / organizace.",
             "placeholder": "ExampleUser"
         },
         "repo": {
@@ -305,12 +292,13 @@
             "desc": "Path to the folder containing the metadata file."
         },
         "admin": "Wiki admin settings",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "Community-maintained project"
         },
         "errors": {
             "install_app": "Please first install our GitHub app on your repository <link>here</link>.",
-            "details": "Show details"
+            "details": "Zobrazit detaily"
         },
         "submit": "Submit",
         "success": {
@@ -318,17 +306,18 @@
             "desc": "You can now navigate to the project's docs page"
         },
         "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "verify_modrinth": "Ověřit pomocí Modrinth"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
+        "title": "Upravit projekt",
+        "desc": "Upravit nastavení existujícího projektu.",
         "success": {
-            "title": "Project updated successfully",
+            "title": "Projekt úspěšně aktualizován",
             "desc": "You can now navigate to the updated project's docs page"
         }
     },
-    "ProjectDeletionForm": {
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
         "title": "Are you absolutely sure?",
         "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
         "cancel": "Cancel",
@@ -336,13 +325,14 @@
         "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "Revalidate project?",
-        "primary": "All cached documentation pages will be purged and re-rendered lazily on-demand.",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "This option should only be used upon updating the documentation source itself.",
         "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "cancel": "Cancel",
-        "submit": "Revalidate",
-        "success": "Project successfully revalidated"
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "cancel": "Zrušit",
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -421,7 +411,7 @@
         "return": "Return Home"
     },
     "GetStartedButton": {
-        "title": "Add project"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "Add project",
@@ -489,5 +479,87 @@
     "LanguageSelect": {
         "placeholder": "Search languages...",
         "no_results": "No language found."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }

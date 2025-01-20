@@ -43,11 +43,11 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "欢迎来到 <highlight>Minecraft 模组维基</highlight>",
+        "subtitle": "您对有关Minecraft的项目进行发现，创建，贡献的必备资源。",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
+            "title": "热门Wiki",
+            "open": "了解更多",
             "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
         "community": {
@@ -149,19 +149,6 @@
         "privacy": "隐私政策",
         "security": "安全须知",
         "community": "社区文档"
-    },
-    "DeveloperPortal": {
-        "title": "项目管理面板",
-        "logout": "登出",
-        "projects": {
-            "title": "项目",
-            "loading_all": "正在加载您的项目...",
-            "loading": "正在加载个人资料……",
-            "empty": {
-                "primary": "似乎您还没有注册任何项目",
-                "secondary": "请参阅我们的<guide>作者指南</guide>。"
-            }
-        }
     },
     "Login": {
         "title": "请先登录",
@@ -305,6 +292,7 @@
             "desc": "包含元数据文件目录的路径"
         },
         "admin": "维基管理设置",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "社区维护的项目"
         },
@@ -328,21 +316,23 @@
             "desc": "您现在可以转至更新后的项目文档界面"
         }
     },
-    "ProjectDeletionForm": {
-        "title": "您确定要删除吗？",
-        "desc": "此操作无法撤销。这将永久删除您的项目，并从我们的服务器上清除所有相关数据。",
-        "cancel": "取消",
-        "submit": "删除",
-        "success": "项目删除成功"
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "重新验证项目？",
-        "primary": "将清理所有缓存文档，并在需要时重新渲染。",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "应只在文档源更新时使用此选项。",
         "tertiary": "为了您更加方便，我们建议在发布后使用我们的<link>Gradle插件</link>，以自动重新验证文档。",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "取消",
-        "submit": "重新验证",
-        "success": "项目重新验证成功"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -421,7 +411,7 @@
         "return": "返回主页"
     },
     "GetStartedButton": {
-        "title": "添加项目"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "添加项目",
@@ -489,5 +479,87 @@
     "LanguageSelect": {
         "placeholder": "Search languages...",
         "no_results": "No language found."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }

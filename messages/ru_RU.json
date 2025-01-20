@@ -150,19 +150,6 @@
         "security": "Про безопасность",
         "community": "Документы сообщества"
     },
-    "DeveloperPortal": {
-        "title": "Панель управления проектом",
-        "logout": "Выйти",
-        "projects": {
-            "title": "Проекты",
-            "loading_all": "Загрузка профиля проектов...",
-            "loading": "Загрузка профиля...",
-            "empty": {
-                "primary": "Похоже, вы ещё не зарегистрировали ни одного проекта",
-                "secondary": "Начните, прочитав наше <guide>руководство для авторов</guide>."
-            }
-        }
-    },
     "Login": {
         "title": "Требуется вход",
         "desc": "Вам нужно авторизоваться, чтобы войти на эту страницу.",
@@ -305,6 +292,7 @@
             "desc": "Путь к папке, содержащей файл метаданных."
         },
         "admin": "Админ-панель",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "Проект, поддерживаемый сообществом"
         },
@@ -328,21 +316,23 @@
             "desc": "Теперь вы можете перейти на обновлённую страницу документации проекта"
         }
     },
-    "ProjectDeletionForm": {
-        "title": "Вы точно уверены?",
-        "desc": "Это действие необратимо. Ваш проект будет полностью удалён, включая всю связанную информацию, хранящуюся на наших серверах.",
-        "cancel": "Отменить",
-        "submit": "Удалить",
-        "success": "Проект успешно удалён"
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "Перепроверить проект?",
-        "primary": "Все закэшированные страницы документации будут очищены и сгенерированы повторно по мере необходимости.",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "Эту опцию следует использовать только при обновлении самого источника документации.",
         "tertiary": "Для облегчения работы мы рекомендуем автоматически перепроверять документацию после публикации с помощью <link>нашего плагина для Gradle</link>.",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "Отменить",
-        "submit": "Перепроверить",
-        "success": "Проект успешно перепроверен"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -421,7 +411,7 @@
         "return": "Вернуться на главную"
     },
     "GetStartedButton": {
-        "title": "Добавить проект"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "Добавить проект",
@@ -489,5 +479,87 @@
     "LanguageSelect": {
         "placeholder": "Search languages...",
         "no_results": "No language found."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }

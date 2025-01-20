@@ -46,8 +46,8 @@
         "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
         "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
+            "title": "Wikis Populares",
+            "open": "Leer Más",
             "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
         "community": {
@@ -69,7 +69,7 @@
                 "management": "Advanced project management tools",
                 "interaction": "Direct interaction with your user base",
                 "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "guide": ""
             }
         },
         "browse": "Browse Projects",
@@ -149,19 +149,6 @@
         "privacy": "Política de Privacidad",
         "security": "Aviso de Seguridad",
         "community": "Documentos Comunitarios"
-    },
-    "DeveloperPortal": {
-        "title": "Panel de administración de proyectos",
-        "logout": "Cerrar sesión",
-        "projects": {
-            "title": "Proyectos",
-            "loading_all": "Cargando proyectos de perfil...",
-            "loading": "Cargando perfil...",
-            "empty": {
-                "primary": "Parece que aún no has registrado ningún proyecto",
-                "secondary": "Comience leyendo nuestra <guide>guía de autor</guide>."
-            }
-        }
     },
     "Login": {
         "title": "Se requiere iniciar sesión",
@@ -305,6 +292,7 @@
             "desc": "Path to the folder containing the metadata file."
         },
         "admin": "Configuración del admin de Wiki",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "Proyecto mantenido por la Comunidad"
         },
@@ -328,21 +316,23 @@
             "desc": "You can now navigate to the updated project's docs page"
         }
     },
-    "ProjectDeletionForm": {
-        "title": "¿Estás realmente seguro?",
-        "desc": "Esta acción no se puede deshacer. Esto eliminará permanentemente tu proyecto y eliminará todos los datos asociados de nuestros servidores.",
-        "cancel": "Cancelar",
-        "submit": "Eliminar",
-        "success": "Proyecto eliminado correctamente"
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "¿Revalidar proyecto?",
-        "primary": "Todas las páginas de documentación almacenadas en caché serán repurgadas y reproducidas perezosamente bajo demanda.",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "Esta opción solo debería utilizarse cuando se actualice la fuente de documentación en sí.",
         "tertiary": "Para su propia comodidad, le recomendamos que vuelva a validar automáticamente los documentos después de su publicación utilizando nuestro <link>plugin de Gradle</link> en su lugar.",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "Cancelar",
-        "submit": "Revalidar",
-        "success": "Proyecto revalidado con éxito"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -421,7 +411,7 @@
         "return": "Volver al Inicio"
     },
     "GetStartedButton": {
-        "title": "Agrega un proyecto"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "Agregar proyecto",
@@ -489,5 +479,87 @@
     "LanguageSelect": {
         "placeholder": "Search languages...",
         "no_results": "No language found."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }
