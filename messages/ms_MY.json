@@ -12,8 +12,8 @@
         },
         "link": {
             "home": "Laman Utama",
-            "browse": "Semak imbas",
-            "about": "Perihal"
+            "browse": "Semak Imbas",
+            "about": "Tentang"
         }
     },
     "NavigationFooter": {
@@ -22,7 +22,7 @@
             "navigation": {
                 "title": "Navigasi",
                 "home": "Laman Utama",
-                "browse": "Semak imbas",
+                "browse": "Semak Imbas",
                 "dev": "Pembangun"
             },
             "links": {
@@ -35,7 +35,7 @@
                 "translate": "Bantu kami menterjemah"
             },
             "about": {
-                "title": "Perihal",
+                "title": "Tentang",
                 "tos": "Syarat Perkhidmatan",
                 "privacy": "Dasar Privasi",
                 "contact": "Hubungi"
@@ -43,62 +43,62 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "Selamat datang ke <highlight>Wiki Minecraft Modded</highlight>",
+        "subtitle": "Sumber utama anda untuk menemui, mencipta dan menyumbang kepada projek berkaitan Minecraft.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "Wiki Popular",
+            "open": "Baca lebih lanjut",
+            "disclaimer": "Projek-projek ini diserlahkan berdasarkan popularitinya melalui statistik paparan dan tidak disahkan secara rasmi oleh Wiki Minecraft Modded."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "Sertai Komuniti Kami",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "Pengguna",
+                "subtitle": "Terokai projek yang ditampilkan oleh kami dan nikmati faedah ini:",
+                "docs": "Akses dokumentasi yang terkini, berkualiti tinggi dan berversi",
+                "contribute": "Bersumbang kepada projek tanpa pengetahuan pengaturcaraan",
+                "ui": "Nikmati antara muka yang konsisten dan mesra pengguna merentasi semua projek",
+                "localization": "Manfaat daripada sokongan multibahasa"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "Pengarang",
+                "subtitle": "Dapatkan akses kepada Papan Pemuka Projek dan nikmati faedah ini:",
+                "vcs": "Sokongan pemversian untuk dokumentasi anda",
+                "components": "Komponen tersuai untuk resipi, aset, dsb.",
+                "gradle": "Penyepaduan Gradle untuk aliran kerja yang lancar",
+                "management": "Alat pengurusan projek lanjutan",
+                "interaction": "Interaksi langsung dengan pangkalan pengguna anda",
+                "dashboard": "Buka Papan Pemuka",
+                "guide": "Baca Lebih Lanjut"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "Semak Imbas Projek",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "Penterjemahan",
+                "desc": "Terjemahkan dokumentasi anda ke dalam bahasa-bahasa dunia"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "Boleh Diakses",
+                "desc": "Antara muka pengguna yang intuitif dan responsif"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "Terbuka",
+                "desc": "Biarkan pengguna anda menyumbang tanpa pengetahuan pengaturcaraan yang diperlukan"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "Percuma",
+                "desc": "Pengehosan dokumentasi pada laman sesawang kami adalah percuma sepenuhnya!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "Tentang Kami",
+            "maintainers": "Wiki ini dibina dan diselenggara oleh <b>Sinytra</b>, sebuah pasukan pembangun yang berdedikasi yang bersemangat yang menumpukan pada penyampaian perisian Sumber Terbuka dan Percuma yang berkualiti tinggi untuk komuniti pengubahsuaian Minecraft.",
+            "mission": "Matlamat kami adalah untuk memperkasakan pengubahsuai dan pemain dengan menyediakan alatan dan sumber yang diperlukan untuk mencipta, mendokumenkan dan meneroka kemungkinan yang tidak berkesudahan Minecraft yang diubah suai."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "Siaran Blog",
+            "open": "Baca Lebih Lanjut"
         }
     },
     "BrowsePage": {
@@ -140,7 +140,7 @@
     },
     "MetaDocsNavigation": {
         "title": "Navigasi",
-        "about": "Perihal",
+        "about": "Tentang",
         "devs": "Pembangun",
         "format": "Format",
         "publishing": "Menyiarkan",
@@ -149,19 +149,6 @@
         "privacy": "Dasar Privasi",
         "security": "Notis Keselamatan",
         "community": "Dokumentasi Komuniti"
-    },
-    "DeveloperPortal": {
-        "title": "Papan pemuka pengurusan projek",
-        "logout": "Log keluar",
-        "projects": {
-            "title": "Projek",
-            "loading_all": "Memuatkan projek profil...",
-            "loading": "Memuatkan profil...",
-            "empty": {
-                "primary": "Nampaknya anda belum mendaftar sebarang projek lagi",
-                "secondary": "Mulakan dengan membaca <guide>panduan pengarang</guide> kami."
-            }
-        }
     },
     "Login": {
         "title": "Log masuk diperlukan",
@@ -229,7 +216,7 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
+        "edit_gh": "Sunting halaman ini",
         "report": "Laporkan laman ini",
         "last_updated": "Kemas kini terakhir: <date></date>"
     },
@@ -273,7 +260,7 @@
                 "suggestion": "Adakah anda ingin mencari sesuatu yang lain untuk dibaca?",
                 "explore": "Terokai projek"
             },
-            "success": "Report submitted successfully"
+            "success": "Laporan berjaya dihantar"
         }
     },
     "SubmitButton": {
@@ -305,6 +292,7 @@
             "desc": "Laluan ke folder yang mengandungi fail metadata."
         },
         "admin": "Tetapan pentadbir wiki",
+        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "Projek yang diselenggara komuniti"
         },
@@ -328,21 +316,23 @@
             "desc": "Anda kini boleh menavigasi ke laman dokumentasi projek yang dikemas kini"
         }
     },
-    "ProjectDeletionForm": {
-        "title": "Adakah anda benar-benar pasti?",
-        "desc": "Tindakan ini tidak boleh dibuat asal. Ini akan memadamkan projek anda secara kekal dan mengalih keluar semua data yang berkaitan daripada pelayan kami.",
-        "cancel": "Batal",
-        "submit": "Padam",
-        "success": "Projek berjaya dipadam"
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
-        "title": "Sahkan semula projek?",
-        "primary": "Semua laman dokumentasi yang dicache akan dibersihkan dan dipaparkan semula secara malas atas permintaan.",
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "Pilihan ini hanya boleh digunakan apabila mengemas kini sumber dokumentasi itu sendiri.",
         "tertiary": "Untuk kemudahan anda sendiri, kami mengesyorkan agar anda sebaliknya mengesahkan semula dokumentasi secara automatik selepas diterbitkan menggunakan <link>pemalam Gradle</link> kami.",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "Batal",
-        "submit": "Sahkan semula",
-        "success": "Projek berjaya disahkan semula"
+        "submit": "Reload",
+        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
@@ -355,7 +345,7 @@
             "no_meta": "Fail metadata tidak ditemui",
             "invalid_meta": "Fail metadata tidak sah",
             "exists": "Projek sudah wujud.",
-            "no_platforms": "No platform projects defined in metadata.",
+            "no_platforms": "Tiada projek platform ditakrifkan dalam metadata.",
             "cf_unavailable": "Pendaftaran projek CurseForge tidak aktif",
             "no_project": "Platform projek tidak ditemui. Sila pastikan medan \"slug\" metadata adalah betul.",
             "ownership": "Gagal mengesahkan pemilikan projek",
@@ -421,7 +411,7 @@
         "return": "Kembali ke Laman Utama"
     },
     "GetStartedButton": {
-        "title": "Tambah projek"
+        "title": "Create first project"
     },
     "GetStartedModal": {
         "button": "Tambah projek",
@@ -450,44 +440,126 @@
         "close": "<kbd>ESC</kbd> untuk tutup"
     },
     "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
+        "title": "Maklumat Projek",
+        "tags": "Tag",
         "licenses": {
-            "title": "Licenses",
-            "project": "Project:",
+            "title": "Lesen",
+            "project": "Projek:",
             "wiki": "Wiki:"
         },
-        "links": "Links",
+        "links": "Pautan",
         "placeholder": {
-            "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
+            "summary": "Pralihat projek tempatan",
+            "author": "Pengarang",
+            "latest_version": "Versi terkini"
         }
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "Log Perubahan"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Project Homepage"
+        "title": "Dokumentasi",
+        "homepage": "Laman Utama Projek"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "Maklumat entri"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "Pada laman ini"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version"
+        "placeholder": "Pilih versi"
     },
     "DocsLanguageSelect": {
-        "placeholder": "Select locale"
+        "placeholder": "Pilih bahasa"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "+{count} lagi"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "Cari bahasa...",
+        "no_results": "Tiada bahasa ditemui."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "projects": "Projects"
+        },
+        "toolbar": {
+            "view": "View"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Link"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Information",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
     }
 }
