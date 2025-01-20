@@ -2,10 +2,10 @@ import * as LucideIcons from 'lucide-react';
 import {HomeIcon} from 'lucide-react';
 import {FileTree, FileTreeEntry} from "@/lib/service";
 import DocsFileLink from "@/components/docs/util/DocsFileLink";
-import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
 import DocsFileTreeFolder from "@/components/docs/layout/DocsFileTreeFolder";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
+import ScrollableDocsSidebarBase from "@/components/docs/side/ScrollableDocsSidebarBase";
 
 interface LeftSidebarProps {
   slug: string;
@@ -44,7 +44,7 @@ export default function DocsLeftSidebar({slug, version, tree}: LeftSidebarProps)
   const t = useTranslations('DocsLeftSidebar');
 
   return (
-    <DocsSidebarBase title={t('title')} tagName="nav" type="left" className={cn(
+    <ScrollableDocsSidebarBase title={t('title')} tagName="nav" type="left" className={cn(
       'flex-shrink-0 left-0',
       'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full data-[open=false]:lg:-translate-x-0',
       'border-r data-[open=false]:border-0 data-[open=false]:lg:border-r'
@@ -57,7 +57,7 @@ export default function DocsLeftSidebar({slug, version, tree}: LeftSidebarProps)
       <hr/>
 
       <DocsFileTree slug={slug} version={version} tree={tree} level={1}/>
-    </DocsSidebarBase>
+    </ScrollableDocsSidebarBase>
   )
 }
 

@@ -5,7 +5,6 @@ import "./styles/colors.css";
 import Providers from "@/components/navigation/nav-progress-bar";
 import {Toaster} from "@/components/ui/sonner";
 import {ReactNode} from "react";
-import {Analytics} from '@vercel/analytics/react';
 import {SpeedInsights} from "@vercel/speed-insights/next"
 import {getProcessURL} from "@/lib/utils";
 
@@ -33,7 +32,6 @@ export default function LocaleLayout({children}: Readonly<{ children: ReactNode;
       {children}
     </Providers>
     <Toaster/>
-    <Analytics/>
     <SpeedInsights/>
     </body>
     </html>

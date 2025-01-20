@@ -31,7 +31,7 @@ export default async function DocsContentRightSidebar({ project, metadata, versi
       )}
     >
       <div className="mb-6 border border-accent m-2 rounded-sm">
-        <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto"
+        <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto disable-blur"
                            alt={!iconUrl ? undefined : iconUrl.id}/>
       </div>
       {metadata.title &&
@@ -42,7 +42,7 @@ export default async function DocsContentRightSidebar({ project, metadata, versi
 
       <EntryDetails className="pb-2 text-center">
         {metadata.id &&
-          <code className="text-center text-muted-foreground">{metadata.id}</code>
+          <code className="text-center text-muted-foreground break-all">{metadata.id}</code>
         }
       </EntryDetails>
 

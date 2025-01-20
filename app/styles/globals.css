@@ -26,12 +26,17 @@
         --sidebar-ring: 240, 33%, 94%;
     }
 }
+
 @layer base {
     * {
         @apply border-border;
     }
     body {
         @apply bg-background text-foreground;
+    }
+
+    .disable-blur {
+        image-rendering: pixelated;
     }
 }
 
