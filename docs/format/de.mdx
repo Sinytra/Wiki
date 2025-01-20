@@ -1,34 +1,27 @@
 import CraftingRecipe from "../../components/docs/shared/CraftingRecipe.tsx";
 
-# Documentation format
+# Dokumentationsformat
 
-The wiki uses [MDX](https://mdxjs.com/) files as its documentation format. In additon, [GitHub Flavored Markdown](https://github.github.com/gfm/)
-(GFM) is also available using [`remark-gfm`](https://github.com/remarkjs/remark-gfm). 
+Das Wiki verwendet [MDX](https://mdxjs.com/) Dateien als Dokumentationsformat. Zusätzlich ist auch [GitHub Flavored Markdown](https://github.github.com/gfm/) (GFM) verfügbar, das mit [`remark-gfm`](https://github.com/remarkjs/remark-gfm) funktioniert.
 
-If you're not yet familiar with MDX, don't worry - it is an extension of the simple [Markdown](https://www.markdownguide.org/)
-format with added JSX capabilities, meaning you can include fancy custom components in your documentation,
-such as crafting recipes.
+Falls du noch nicht mit MDX vertraut bist, keine Sorge – es ist eine Erweiterung des einfachen [Markdown](https://www.markdownguide.org/) Formats mit zusätzlichen JSX-Funktionen, was bedeutet, dass du in deiner Dokumentation coole benutzerdefinierte Komponenten einfügen kannst, wie zum Beispiel Minecraft Rezepte.
 
-These features are purely optional, and you can always stick to using standard Markdown in your documentation. However,
-the file extension must remain `.mdx`.
+Diese Funktionen sind völlig optional, und du kannst immer beim Standard-Markdown für deine Dokumentation bleiben. Die Dateiendung muss jedoch `.mdx` bleiben.
 
-#### Limitations
+#### Einschränkungen
 
-Because MDX can potentially allow unwanted code injection on the server, we sanitize all sources before they're rendered,
-which can result in certain features of MDX being unavailable. That said, if there's a safe feature you'd like to use in
-your documentation that isn't available on the wiki, please open an issue on our
-[GitHub repository](https://github.com/Sinytra/Wiki/issues).
+Da MDX potenziell unerwünschte Code-Injektionen auf dem Server ermöglichen könnte, sanitieren wir alle Quellen, bevor sie gerendert werden, was dazu führen kann, dass bestimmte Funktionen von MDX nicht verfügbar sind. Falls es jedoch eine sichere Funktion gibt, die du in deiner Dokumentation verwenden möchtest und die auf dem Wiki nicht verfügbar ist, eröffne bitte ein Issue in unserem [GitHub-Repository](https://github.com/Sinytra/Wiki/issues).
 
-## Metadata
+## Metadaten
 
-Markdown page metadata, also known as simply "Frontmatter" is used by the wiki to provide additional information about
-a page or in-game content. It's located at the very beginning of each file in YAML format.
+Markdown-Seitenmetadaten, auch bekannt als "Frontmatter", werden vom Wiki verwendet, um zusätzliche Informationen über
+eine Seite oder In-Game-Inhalte bereitzustellen. Sie befinden sich ganz am Anfang jeder Datei im YAML-Format.
 
-Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
-Usually, this includes an icon of the block/item along with its name, id, source mod and other handy information.
+Die aus dem Frontmatter gewonnenen Informationen werden dann in der rechten Seitenleiste jeder Seite unter "Informationen" angezeigt.
+In der Regel umfasst dies ein Icon des Blocks/Items zusammen mit seinem Namen, seiner ID, der Quelle des Projekts und anderen nützlichen Informationen.
 
-If your page is not related to a specific object, you can hide all metadata and ignore their values by setting
-`hide_meta: true`. The `title` attribute will still be used, and we recommend providing it at all times.
+Wenn deine Seite nicht mit einem bestimmten Objekt verbunden ist, kannst du alle Metadaten ausblenden und ihre Werte ignorieren, indem du
+`hide_meta: true` setzt. Das Attribut `title` wird dennoch verwendet, und wir empfehlen, es immer anzugeben.
 
 ```markdown
 ---
@@ -38,36 +31,36 @@ title: Hello World
 Content comes here
 ```
 
-Here's an overview of supported attributes:
+Hier ist eine Übersicht der unterstützten Attribute:
 
-- `title` - Display name of the page, shown in the content heading and the browser tab title.
-  Replaces the `h1` heading in docs.
-  - Type: `string`
-  - Example: `Fancy Block`
-- `hide_meta` - Hides sidebar meta information. As a results, all other attributes will be ignored.
-  - Type: `boolean`
-- `id` - In-game resource location ID of the content shown. If a matching asset with the same location is found in the
-  documentation root's asset folder, it will be used as the `icon`.
-  - Type: Resource Location
-  - Example: `examplemod:generator`
-- `icon` - Resource location of an asset that will be shown as the documented item's icon. Its size should be at least
-  128x128 pixels.
-  - Type: Resource Location
-  - Example: `examplemod:fancy_generator`
-- `hide_icon` - Hides the project icon, showing a generic placeholder instead.
-  - Type: `boolean`
-- `type` - Can be `block`, `item` or `other`
-  - Type: `string`
-- `custom` - A map of custom attributes you wish to display in the sidebar.
-  - Type: `string` -> `string` map
-  - Example:
+- `title` - Anzeigename der Seite, wird in der Inhaltsüberschrift und im Browser-Tab-Titel angezeigt.
+  Ersetzt die `h1`-Überschrift in der Dokumentation.
+  - Typ: `string`
+  - Beispiel: `Fancy Block`
+- `hide_meta` - Blendet die Metainformationen in der Seitenleiste aus. Als Ergebnis werden alle anderen Attribute ignoriert.
+  - Typ: `boolean`
+- `id` - In-Game-Resource-Location-ID des angezeigten Inhalts. Wenn ein passendes Asset mit derselben Location im
+  Asset-Ordner des Dokumentations-Roots gefunden wird, wird es als `icon` verwendet.
+  - Typ: Resource Location
+  - Beispiel: `examplemod:generator`
+- `icon` - Resource-Location eines Assets, das als Icon des dokumentierten Items angezeigt wird. Es sollte mindestens
+  128x128 Pixel groß sein.
+  - Typ: Resource Location
+  - Beispiel: `examplemod:fancy_generator`
+- `hide_icon` - Blendet das Projekt-Icon aus und zeigt stattdessen einen generischen Platzhalter an.
+  - Typ: `boolean`
+- `type` - Kann `block`, `item` oder `other` sein.
+  - Typ: `string`
+- `custom` - Eine Zuordnung von benutzerdefinierten Attributen, die du in der Seitenleiste anzeigen möchtest.
+  - Typ: `string` -> `string` Zuordnung
+  - Beispiel:
     ```yaml
     custom:
       Category: Machines
     ```
 
 <details>
-    <summary>Show complete metadata example</summary>
+    <summary>Vollständiges Metadaten-Beispiel anzeigen</summary>
     
     ```markdown
     ---
@@ -79,34 +72,34 @@ Here's an overview of supported attributes:
       Subcategory: Machines
     ---
     
-    Content comes here
+    Inhalt kommt hier
     ```
 </details>
 
-## Custom components
+## Benutzerdefinierte Komponenten
 
-The wiki adds a selection of useful components that you can use in your documentation.
+Das Wiki fügt eine Auswahl nützlicher Komponenten hinzu, die du in deiner Dokumentation verwenden kannst.
 
-Import statements are not required for built-in wiki components.
+Import-Anweisungen sind für die eingebauten Wiki-Komponenten nicht erforderlich.
 
 <Callout>
-    Didn't find what you were looking for? Head over to our [GitHub repository](https://github.com/Sinytra/Wiki/issues)
-    and open a new issue or pull request proposing your desired component!
+    Hast du nicht das gefunden, was du gesucht hast? Gehe zu unserem [GitHub-Repository](https://github.com/Sinytra/Wiki/issues)
+    und eröffne ein neues Issue oder Pull-Request, um deine gewünschte Komponente vorzuschlagen!
 </Callout>
 
-### Crafting recipe
+### Rezepte
 
-- `slots` - Exactly 9 resource location strings (asset names), in order from top-left to bottom-right.
-- `result` - Resource location of the resulting item asset
-- `count` - Optionally, specify the output item amount
+- `slots` - Genau 9 Resource-Location-Strings (Asset-Namen), in der Reihenfolge von oben links nach unten rechts.
+- `result` - Resource-Location des resultierenden Item-Assets
+- `count` - Optional, die Menge des Ausgabeelements angeben
 
-※ Images shown in crafting recipes are sourced from documentation assets as described [here](./devs#assets).
+※ Die in Rezepten angezeigten Bilder stammen aus Dokumentations-Assets, wie [hier](./devs#assets) beschrieben.
 
 ```jsx
 <CraftingRecipe
     slots={[
         'flint',
-        'minecraft:flint', // Hint: the namespace is optional for 'minecraft' items
+        'minecraft:flint', // Hinweis: Der Namespace ist für 'minecraft'-Items optional
         'flint',
         '',
         'iron_block',
@@ -120,7 +113,7 @@ Import statements are not required for built-in wiki components.
 />
 ```
 
-Results in:
+Ergebnis:
 
 <CraftingRecipe
     slots={[
@@ -138,82 +131,82 @@ Results in:
     count={4}
 />
 
-### Callouts
+### Hinweise
 
-Draw the reader's attention with callouts.
+Lenke die Aufmerksamkeit der Leser mit Hinweisen.
 
-Available attributes:
+Verfügbare Attribute:
 
-- `variant` Optional; can be either of [`default`, `info`, `warning`, `danger`] (default: `default`)
+- `variant` Optional; kann einer der Werte [`default`, `info`, `warning`, `danger`] sein (Standard: `default`)
 
 ```jsx
 <Callout>
-    This is a sample callout
+    Dies ist ein Beispielhinweis
 </Callout>
 
 <Callout variant="info">
-    This is a sample info callout
+    Dies ist ein Beispiel-Info-Hinweis
 </Callout>
 
-/* Other variants shown below */
+/* Weitere Varianten siehe unten */
 ```
 
-Results in:
+Ergebnis:
 
-<Callout>This is a sample callout</Callout>
+<Callout>Dies ist ein Beispielhinweis</Callout>
 
-Info variant:
+Info-Variante:
 
-<Callout variant="info">This is a sample info callout</Callout>
+<Callout variant="info">Dies ist ein Beispiel-Info-Hinweis</Callout>
 
-Warning variant:
+Warnung-Variante:
 
-<Callout variant="warning">This is a sample warning callout</Callout>
+<Callout variant="warning">Dies ist ein Beispiel-Warnhinweis</Callout>
 
-Danger variant:
+Gefahr-Variante:
 
-<Callout variant="danger">This is a sample danger callout</Callout>
+<Callout variant="danger">Dies ist ein Beispiel-Gefahr-Hinweis</Callout>
 
-### Mod Asset
+### Projekt Asset
 
-Displays an [asset](./devs#assets) image.
+Zeigt ein [Asset](./devs#assets)-Bild an.
 
-Available attributes:
+Verfügbare Attribute:
 
-- `location` Required, Resource Location of the asset you wish to display
-- All properties of `img` except for `src` are accepted
+- `location` Erforderlich, die Resource-Location des Assets, das du anzeigen möchtest
+- Alle Eigenschaften von `img` außer `src` werden akzeptiert
 
 ```jsx
 <Asset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
 ```
 
-Results in:
+Ergebnis:
 
 <Asset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
 
 ### Icons
 
-The entire collection of [Lucide icons](https://lucide.dev/icons/) is available to use in documentation files via
-React components.
+Die gesamte Sammlung der [Lucide-Icons](https://lucide.dev/icons/) steht zur Verwendung in Dokumentationsdateien über
+React-Komponenten zur Verfügung.
 
-Names of icon components consist of an icon's "component name" (which you can find on the website or make an educated
-guess by converting the icon id to PascalCase (e.g. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`)
-and the `Icon` suffix. All properties supported by [Lucide React](https://lucide.dev/guide/packages/lucide-react) are
-available as well.
+Die Namen der Icon-Komponenten bestehen aus dem "Komponentennamen" des Icons (den du auf der Website finden kannst oder durch
+eine informierte Annahme, indem du die Icon-ID in PascalCase umwandelst, z. B. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`)
+und dem Suffix `Icon`. Alle Eigenschaften, die von [Lucide React](https://lucide.dev/guide/packages/lucide-react) unterstützt werden,
+sind ebenfalls verfügbar.
 
-For example:
+Zum Beispiel:
 
 ```jsx
 <SquirrelIcon width={64} height={64} strokeWidth={1.5} />
 ```
 
-Results in:
+Ergebnis:
 
 <SquirrelIcon width={64} height={64} strokeWidth={1.5} />
 
-## Next steps
+## Nächste Schritte
 
-Once your documentation folder is set up, and you're satisfied with the looks and content of your documentation,
-it is time to get it published on the wiki.
+Sobald dein Dokumentationsordner eingerichtet ist und du mit dem Aussehen und Inhalt deiner Dokumentation zufrieden bist,
+ist es Zeit, sie auf dem Wiki zu veröffentlichen.
 
-➡️ See the [Publishing](./publishing) page for more information.
+➡️ Siehe die [Veröffentlichungs](./publishing)-Seite für weitere Informationen.

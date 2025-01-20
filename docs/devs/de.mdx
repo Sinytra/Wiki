@@ -3,40 +3,37 @@ import ModrinthIcon from "../../components/ui/icons/ModrinthIcon.tsx";
 import CurseForgeIcon from "../../components/ui/icons/CurseForgeIcon.tsx";
 import GradleIcon from "../../components/ui/icons/GradleIcon.tsx";
 
-# Developers
+# Entwickler
 
-Get started hosting your mod's documentation on our wiki!
+Starte damit, die Dokumentation deines Projekts auf unserem Wiki zu hosten!
 
-This guide provides information on local development and the documentation format.
-For a guide on publishing docs onto our website, please see the [Publishing](./publishing) page instead.
+Diese Anleitung enthält Informationen zur lokalen Entwicklung und zum Dokumentationsformat.
+Für eine Anleitung zum Veröffentlichen der Docs auf unserer Website, schaue bitte auf der Seite [Veröffentlichen](./publishing) nach.
 
-## Prerequisites
+## Voraussetzungen
 
-In order to start hosting documentation on our wiki, your mod only needs to meet a few minimal requirements: 
+Um mit dem Hosten der Dokumentation auf unserem Wiki zu beginnen, muss dein Projekt nur einige minimale Anforderungen erfüllen:
 
-- Be hosted on a <GitHubIcon className="inline-block mb-1 mx-1" width={16} height={16} /> GitHub repository
-  (both private and public repositories work!)
-- Be approved on either
-  <ModrinthIcon className="inline-block mb-1 mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> [Modrinth](https://modrinth.com/) or
-  <CurseForgeIcon className="inline-block mb-0.5 mx-1 text-[var(--curseforge-brand)]" width={16} height={16} /> [CurseForge](https://www.curseforge.com/)
-- Have the GitHub repository linked as the mod's source code url on the respective hosting website\
-  (this is currently required to verify project ownership)
+- Auf einem <GitHubIcon className="inline-block mb-1 mx-1" width={16} height={16} /> GitHub-Repository gehostet sein
+  (sowohl private als auch öffentliche Repositories funktionieren!)
+- Auf entweder <ModrinthIcon className="inline-block mb-1 mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> [Modrinth](https://modrinth.com/) oder
+  <CurseForgeIcon className="inline-block mb-0.5 mx-1 text-[var(--curseforge-brand)]" width={16} height={16} /> [CurseForge](https://www.curseforge.com/) genehmigt sein
+- Das GitHub-Repository muss als URL des Quellcodes des Projekts auf der jeweiligen Hosting-Website verlinkt sein\
+  (dies ist derzeit erforderlich, um den Besitz des Projekts zu verifizieren)
 
-Additionally, the person registering the project to the wiki should have **Maintain** or **Admin** access to its
-GitHub repository.
+Zusätzlich sollte die Person, die das Projekt im Wiki registriert, **Maintain**- oder **Admin**-Zugriff auf das GitHub-Repository haben.
 
-## Folder structure
+## Ordnerstruktur
 
-Start by creating a new directory inside your project. This can be located at any path of your choice.\
-For example, you can use `docs/(your modid here)` or simply `docs`, both are equally valid.
+Beginne damit, ein neues Verzeichnis in deinem Projekt zu erstellen. Dies kann sich an jedem beliebigen Pfad deiner Wahl befinden.\
+Zum Beispiel kannst du `docs/(deine Mod-ID hier)` oder einfach `docs` verwenden, beides ist gleichermaßen gültig.
 
 <Callout>
-    We also support scenarios where multiple mods' documentation is hosted in a single repository, as long as they're in
-    separate folders.  
-    This is useful if you'd like to host documentation for multiple of your mods in a single place.
+    Wir unterstützen auch Szenarien, in denen die Dokumentation mehrerer Projekte in einem einzigen Repository gehostet wird, solange sie in separaten Ordnern abgelegt sind.
+    Dies ist nützlich, wenn du die Dokumentation für mehrere deiner Projekte an einem einzigen Ort hosten möchtest.
 </Callout>
 
-A minimal example folder layout may look like this:
+Ein minimales Beispiel für eine Ordnerstruktur könnte so aussehen:
 
 ```
 docs
@@ -49,9 +46,9 @@ docs
 ```
 
 <details>
-    <summary>Show complete example</summary>
+    <summary>Vollständiges Beispiel anzeigen</summary>
     
-    Here is a complete example including assets and translations.
+    Hier ist ein vollständiges Beispiel, das Assets und Übersetzungen beinhaltet.
     
     ```
     docs
@@ -73,70 +70,65 @@ docs
     ```
 </details>
 
-Let's talk about what each of these files does:
+Lass uns darüber sprechen, was jede dieser Dateien macht:
 
-- `sinytra-wiki.json`: The main metadata file, the "heart" of the documentation package, carries information about the
-  project. For its content format, see the complete explanation below.
-- `_meta.json`: Can be placed in the root folder as well as each subfolder. Provides display names for files and
-  folders, which are shown in the documentation navigation sidebar on the wiki, and also specifies the order in which
-  they are displayed. If not provided, fallback display names are generated automatically.
-- `*.mdx` files: Contain documentation contents. To learn more about the MDX format, please see their
-  [website](https://mdxjs.com/). As MDX compiles to JavaScript, the Wiki imposes certain restrictions on what components
-  and tags can be used in addition to standard Markdown. For a complete description, please read below.
+- `sinytra-wiki.json`: Die Hauptmetadaten-Datei, das "Herz" des Dokumentationspakets, enthält Informationen über das Projekt. Das Format ihres Inhalts wird weiter unten ausführlich erklärt.
+- `_meta.json`: Kann im Root-Ordner sowie in jedem Unterordner abgelegt werden. Bietet Anzeigennamen für Dateien und Ordner, die in der Navigationsleiste der Dokumentation auf dem Wiki angezeigt werden, und legt auch die Reihenfolge fest, in der sie angezeigt werden. Wenn keine bereitgestellt wird, werden Fallback-Anzeigennamen automatisch generiert.
+- `*.mdx`-Dateien: Enthalten den Dokumentationsinhalt. Weitere Informationen zum MDX-Format findest du auf ihrer [Website](https://mdxjs.com/). Da MDX zu JavaScript kompiliert, gibt es bestimmte Einschränkungen, welche Komponenten und Tags zusätzlich zu Standard-Markdown verwendet werden können. Eine vollständige Beschreibung findest du weiter unten.
 
 ### Assets
 
 <Callout>
-    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#-gradle-plugin-companion),
-    which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
+    Spare dir Zeit, indem du alle Assets nicht manuell exportierst, sondern unser [**Gradle-Plugin**](#-gradle-plugin-companion) verwendest,
+    das mit beliebten Mod-Loader-Toolchains integriert ist und **automatisch gerenderte Assets** für dich erstellen kann!
 </Callout>
 
-Assets are used to display images of items, blocks and other mod content across the website. These can be used as part
-of crafting recipes, sidebar information or custom components.
+Assets werden verwendet, um Bilder von Items, Blöcken und anderen Projektinhalten auf der Website anzuzeigen. Diese können als Teil
+von Rezepten, Seitenleisteninformationen oder benutzerdefinierten Komponenten verwendet werden.
 
-Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
-in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
+Assets werden mit [Resource Locations](https://minecraft.wiki/w/Resource_location) identifiziert, die die gleiche Syntax wie
+im Spiel selbst verwenden. Es wird empfohlen, die Namen der Assets mit den In-Game-IDs der Objekte, zu denen sie gehören, abzugleichen.
 
-Rendered mod assets including **both items and blocks** should be placed under `.assets/item/(modid)` inside the
-documentation directory, where `modid` is the namespace of each texture you wish to provide.
+Gerenderte Assets, einschließlich **sowohl Items als auch Blöcken**, sollten unter `.assets/item/(modid)` im
+Dokumentationsverzeichnis abgelegt werden, wobei `modid` der Namespace jeder Textur ist, die du bereitstellen möchtest.
 
-Each asset **must be in `.png` format**. The name of the file is up to your choice.
+Jedes Asset **muss im `.png`-Format** vorliegen. Der Name der Datei ist dir überlassen.
 
-For example, `examplemod:generator` would point to `(root)/.assets/item/examplemod/generator.png`.
+Beispiel: `examplemod:generator` würde auf `(root)/.assets/item/examplemod/generator.png` verweisen.
 
-### Translation
+### Übersetzung
 
-Documentation can be localized into various languages supported by the wiki. A complete list can be found in the
-language selection dropdown located on the right-most part of the navigation header.
+Die Dokumentation kann in verschiedene Sprachen übersetzt werden, die vom Wiki unterstützt werden. Eine vollständige Liste findest du im
+Sprachauswahl-Dropdown, das sich im äußersten rechten Bereich der Navigationsleiste befindet.
 
-Localized files must be placed under `.translated/(lang)` inside the documentation directory, where
-`(lang)` is the desired language code in `(lang)_(region)` format. Currently, all regions match the language, so
-it's sufficient to take the target language code and complete the region to be the same as the language
-(e.g. German translations (`de`) would be placed under `.translated/de_de`).
+Lokalisierte Dateien müssen unter `.translated/(lang)` im Dokumentationsverzeichnis abgelegt werden, wobei
+`(lang)` der gewünschte Sprachcode im `(lang)_(region)`-Format ist. Derzeit entsprechen alle Regionen der Sprache, sodass
+es ausreicht, den Sprachcode des Zielgebiets zu nehmen und die Region auf denselben Wert wie die Sprache zu setzen
+(z. B. deutsche Übersetzungen (`de`) würden unter `.translated/de_de` abgelegt werden).
 
-The localized folder structure follows the same layout as root. Both documentation content files (`.mdx`) and folder
-metadata (`_meta.json`) may be translated. Translated content takes precedence over the default locale when being
-loaded. However, untranslated files will still be shown even when the locale is non-default, therefore it is
-recommended to translate all files whenever possible.
+Die lokale Ordnerstruktur folgt dem gleichen Layout wie das Root-Verzeichnis. Sowohl Dokumentationsinhaltsdateien (`.mdx`) als auch Ordner
+Metadaten (`_meta.json`) können übersetzt werden. Übersetzte Inhalte haben Vorrang vor der Standardsprache, wenn sie geladen werden.
+Nicht übersetzte Dateien werden jedoch auch angezeigt, wenn die Sprache nicht der Standard-Sprache entspricht. Daher wird empfohlen,
+alle Dateien zu übersetzen, wann immer möglich.
 
-### Custom homepage
+### Benutzerdefinierte Startseite
 
-The wiki provides a dedicated landing page for documentation called the "Mod homepage". By default, this shows the
-linked platform project's description.
+Das Wiki bietet eine spezielle Landing-Page für die Dokumentation, die als "Projekt-Homepage" bezeichnet wird. Standardmäßig zeigt diese
+die Beschreibung des verlinkten Plattformprojekts.
 
-If you'd like to provide your own contents instead, you can do so by creating a `_homepage.mdx` file in your
-documentation's root folder (at the same level as `sinytra-wiki.json`). The file's contents follow the same
-[formatting](./format) as regular documentation pages, except for frontmatter metadata (e.g. title), which is ignored.
-The homepage's title will always match the mod's name, whereas the sidebar will display various information about the
-platform project, such as the project's authors, categories and available mc versions.
+Wenn du stattdessen eigene Inhalte bereitstellen möchtest, kannst du dies tun, indem du eine Datei `_homepage.mdx` im
+Root-Ordner deiner Dokumentation erstellst (auf derselben Ebene wie `sinytra-wiki.json`). Der Inhalt der Datei folgt dem gleichen
+[Format](./format) wie reguläre Dokumentationsseiten, mit Ausnahme der Frontmatter-Metadaten (z. B. Titel), die ignoriert werden.
+Der Titel der Startseite wird immer dem Namen des Mods entsprechen, während die Seitenleiste verschiedene Informationen über das
+Plattformprojekt anzeigt, wie z. B. die Autoren des Projekts, Kategorien und verfügbare Minecraft-Versionen.
 
-## Documentation format
+## Dokumentationsformat
 
-### Wiki Metadata
+### Wiki-Metadaten
 
-The wiki metadata file specifies project identification information, necessary for the wiki to load the project.
+Die Wiki-Metadaten-Datei gibt Identifikationsinformationen für das Projekt an, die notwendig sind, damit das Wiki das Projekt laden kann.
 
-It must be placed in a file called `sinytra-wiki.json` inside the documentation **root directory**.
+Sie muss in einer Datei namens `sinytra-wiki.json` im **Root-Verzeichnis** der Dokumentation abgelegt werden.
 
 ```json title="sinytra-wiki.json"
 {
@@ -146,31 +138,29 @@ It must be placed in a file called `sinytra-wiki.json` inside the documentation 
 }
 ```
 
-The wiki metadata file contains the following properties, all of which are **required**:
+Die Wiki-Metadaten-Datei enthält die folgenden Eigenschaften, die alle **erforderlich** sind:
 
-- `id`: Unique project id used to identify the project across the wiki. We recommend using your mod id
-  or hosting platform slug.
-- `platform`: Your mod's distribution platform. Can be either of `modrinth` or `curseforge`.
-- `slug`: The host platform's project slug.
+- `id`: Eindeutige Projekt-ID, die verwendet wird, um das Projekt im Wiki zu identifizieren. Wir empfehlen, deine Mod-ID
+  oder den Slug der Hosting-Plattform zu verwenden.
+- `platform`: Die Hosting-Plattform deines Projekts. Kann entweder `modrinth` oder `curseforge` sein.
+- `slug`: Der Projekt-Slug der Hosting-Plattform.
 
-The project slug can be easily extracted from your mod's project page URL as shown in the examples below, where `{slug}`
-is a placeholder for the actual value.
+Der Projekt-Slug kann leicht aus der URL der Projektseite deines Projekts extrahiert werden, wie in den folgenden Beispielen gezeigt, wobei `{slug}`
+als Platzhalter für den tatsächlichen Wert dient.
 
-- For Modrinth projects: `https://modrinth.com/mod/{slug}`  
-- For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+- Für Modrinth-Projekte: `https://modrinth.com/mod/{slug}`
+- Für CurseForge-Projekte: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
 
-The JSON Schema specification for this file can be found [here](/sinytra-wiki.schema.json).
+Die JSON-Schema-Spezifikation für diese Datei findest du [hier](/sinytra-wiki.schema.json).
 
-### Folder metadata
+### Ordner-Metadaten
 
-Provides additional information for the documentation page navigation sidebar:
+Bietet zusätzliche Informationen für die Navigationsleiste der Dokumentationsseite:
 
-- The **display names** of folders and files. If not provided, the wiki will use automatically generated display names.
-- The **ordering** of sidebar entries. By default, folders are shown first, followed by regular files, all sorted
-  alphabetically.
+- Die **Anzeigennamen** von Ordnern und Dateien. Wenn diese nicht angegeben werden, verwendet das Wiki automatisch generierte Anzeigennamen.
+- Die **Reihenfolge** der Einträge in der Navigationsleiste. Standardmäßig werden Ordner zuerst angezeigt, gefolgt von regulären Dateien, alle alphabetisch sortiert.
 
-To avoid potential unwanted display errors, we recommend **always** providing complete folder metadata in your
-documentation.
+Um mögliche unerwünschte Anzeigeprobleme zu vermeiden, empfehlen wir, **immer** vollständige Ordner-Metadaten in deiner Dokumentation bereitzustellen.
 
 ```json title="\_meta.json"
 {
@@ -180,21 +170,21 @@ documentation.
 }
 ```
 
-The folder metadata json consists of string key-value pairs, where the keys represent the name of a file or a folder,
-and the values are their display name. When specifying a file name, the full name including the extension is required.
+Die Ordner-Metadaten im JSON-Format bestehen aus Schlüssel-Wert-Paaren, wobei die Schlüssel den Namen einer Datei oder eines Ordners darstellen
+und die Werte deren Anzeigennamen sind. Beim Angeben eines Dateinamens ist der vollständige Name einschließlich der Erweiterung erforderlich.
 
-Folder metadata is contained in a file called `_meta.json` and can be placed **inside any folder** within the
-documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
+Ordner-Metadaten sind in einer Datei namens `_meta.json` enthalten und können **innerhalb eines beliebigen Ordners** im
+Dokumentationsverzeichnis abgelegt werden, **einschließlich des Root-Verzeichnisses** selbst (z. B. auf derselben Ebene wie `sinytra-wiki.json`).
 
-The JSON Schema specification for this file can be found [here](/_meta.schema.json).
+Die JSON-Schema-Spezifikation für diese Datei findest du [hier](/_meta.schema.json).
 
 #### Icons
 
-You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
-and supplying the icon's name as shown below.
+Du kannst Icons für jeden Metadaten-Eintrag hinzufügen, die in der Navigationsleiste angezeigt werden, indem du den Metawert in ein Objekt umwandelst
+und den Namen des Icons wie unten gezeigt angibst.
 
-The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
-More information on icon names can be found on the [Format](./format#icons) page.
+Der angegebene Icon-Name sollte ein [Lucide-Icon](https://lucide.dev/icons/) Komponentenname (ohne das Suffix `Icon`) sein.
+Weitere Informationen zu Icon-Namen findest du auf der Seite [Format](./format#icons).
 
 ```json title="\_meta.json"
 {
@@ -205,15 +195,15 @@ More information on icon names can be found on the [Format](./format#icons) page
 }
 ```
 
-### Versioning
+### Versionierung
 
-You can show multiple versions of your mod's documentation on the wiki by adding a `versions` property to your
-docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector
-as well as in the URL paths) to git branch names.
+Du kannst mehrere Versionen der Dokumentation deines Projekts im Wiki anzeigen, indem du eine `versions`-Eigenschaft zu deiner
+Dokumentations-Metadaten-Datei hinzufügst. Diese enthält eine Zuordnung von Minecraft-Versionen (die im Versionsauswähler
+sowie in den URL-Pfaden angezeigt werden) zu Git-Branch-Namen.
 
-The documentation folder structure remains the same across all branches with contents being isolated per branch,
-including assets and localization. **Documentation metadata files (`sinytra-wiki.json`) from other branches are ignored**,
-as all necessary information is already contained in the default branch's file.
+Die Ordnerstruktur der Dokumentation bleibt in allen Branches gleich, wobei die Inhalte pro Branch isoliert sind,
+einschließlich Assets und Lokalisierung. **Dokumentations-Metadaten-Dateien (`sinytra-wiki.json`) aus anderen Branches werden ignoriert**,
+da alle erforderlichen Informationen bereits in der Datei des Standard-Branches enthalten sind.
 
 ```json title="sinytra-wiki.json"
 {
@@ -225,19 +215,18 @@ as all necessary information is already contained in the default branch's file.
 }
 ```
 
-## <GradleIcon width={32} height={32} className="inline-block mr-1" /> Gradle plugin companion
+## <GradleIcon width={32} height={32} className="inline-block mr-1" /> Gradle-Plugin
 
-We provide an excellent wiki companion [Gradle plugin](https://github.com/Sinytra/WikiToolkit) to help you with
-authoring documentation.
+Wir bieten ein hervorragendes Wiki [Gradle-Plugin](https://github.com/Sinytra/WikiToolkit), das dir beim Erstellen der Dokumentation hilft.
 
-Its features include:
+Die Funktionen umfassen:
 
-- Local real-time, accurate preview of your documentation in the exact same look as it will have once uploaded to the wiki
-- Automatically generating asset renders of inventory models for all mod items
-- Revalidating documentation after publishing
+- Lokale Echtzeitvorschau deiner Dokumentation, die genauso aussieht wie sie später im Wiki angezeigt wird
+- Automatisches Erstellen von Asset-Rendern für Inventar-Modelle aller Mod-Items
+- Neuvalidierung der Dokumentation nach der Veröffentlichung
 
-A complete usage guide can be found on its [GitHub repository](https://github.com/Sinytra/WikiToolkit).
+Eine vollständige Anleitung zur Nutzung findest du im [GitHub-Repository](https://github.com/Sinytra/WikiToolkit).
 
-## Next steps
+## Nächste Schritte
 
-➡️ Learn more about the specifics of the MDX [Documentation format](./format).
+➡️ Erkunde die Details des MDX [Dokumentationsformats](./format).
