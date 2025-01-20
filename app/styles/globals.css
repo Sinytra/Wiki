@@ -272,7 +272,7 @@ html body[data-scroll-locked] {
 }
 
 figcaption[data-rehype-pretty-code-title] {
-    background-color: var(--vp-c-bg-elv);
+    background-color: #2b313a;
     padding: 0.3rem 0.3rem 0.3rem 0.6rem;
     border-top-left-radius: 0.375rem;
     border-top-right-radius: 0.375rem;
