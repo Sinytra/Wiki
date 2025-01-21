@@ -11,10 +11,20 @@ import {BookMarkedIcon} from "lucide-react";
 import DocsSearchBar from "@/components/navigation/DocsSearchBar";
 import {pick} from "lodash";
 import {searchWikiServer} from "@/lib/search/serverSearch";
+import MobileNav from "@/components/navigation/header/MobileNav";
+import SocialButtons from "@/components/ui/custom/SocialButtons";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
     <LocaleNavLink href={href} className={`${styles.menuLink} text-foreground font-medium first:pl-0 px-1 sm:px-2 lg:px-3`}>
+      {children}
+    </LocaleNavLink>
+  )
+}
+
+function MobileHeaderLink({href, children}: { href: string, children: ReactNode }) {
+  return (
+    <LocaleNavLink href={href} className={`${styles.menuLink} text-foreground font-normal py-3 border-b border-[var(--vp-c-divider)]`}>
       {children}
     </LocaleNavLink>
   )
@@ -28,16 +38,12 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn(styles.container, 'z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-2 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
+        className={cn(styles.container, 'h-[56px] !pointer-events-auto sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-2 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
-            <span className="hidden sm:inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
+            <span className="inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
               <BookMarkedIcon className="mr-1 w-4 h-4" />
               {t('title')}
-            </span>
-            <span className="sm:hidden text-base font-medium text-foreground inline-flex gap-1 items-center align-bottom">
-              <BookMarkedIcon className="mr-1 w-4 h-4" />
-              <span>{t('title_short')}</span>
             </span>
           </LocaleNavLink>
           {preview && <Badge className="hidden sm:block" variant="secondary">{t('badge.preview')}</Badge>}
@@ -52,7 +58,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           </NextIntlClientProvider>  
         }
 
-        <div className="flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
+        <div className="hidden sm:flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
           <nav className="flex flex-row">
             {preview
               ?
@@ -79,6 +85,37 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
             </NextIntlClientProvider>
           }
         </div>
+
+        <MobileNav>
+          <nav className="flex flex-col gap-2">
+            {preview
+              ?
+              <>
+                <MobileHeaderLink href="/preview">{t('link.home')}</MobileHeaderLink>
+                <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
+              </>
+              :
+              <>
+                <MobileHeaderLink href="/">{t('link.home')}</MobileHeaderLink>
+                {!minimal &&
+                  <>
+                      <MobileHeaderLink href="/browse">{t('link.browse')}</MobileHeaderLink>
+                      <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
+                  </>
+                }
+              </>
+            }
+            {!minimal &&
+              <NextIntlClientProvider messages={pick(messages, 'LanguageSelect')}>
+                  <LanguageSelect mobile locale={locale} />
+              </NextIntlClientProvider>
+            }
+            <hr />
+            <div className="mt-2 mx-auto">
+              <SocialButtons large />
+            </div>
+          </nav>
+        </MobileNav>
       </div>
     </HeaderBase>
   )

@@ -233,6 +233,10 @@ html body[data-scroll-locked] {
         /*@apply lg:m-0 lg:h-full lg:overflow-hidden; TODO*/
     }
 
+    .navScrollLock {
+        @apply overflow-hidden pointer-events-none sm:overflow-auto sm:pointer-events-auto;
+    }
+
     kbd {
         @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-sm;
     }
@@ -282,4 +286,29 @@ figcaption[data-rehype-pretty-code-title] {
 figure[data-rehype-pretty-code-figure] figcaption + pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.fade-enter .innerFadeContainer,
+.fade-exit-active .innerFadeContainer {
+    transform: translateY(-8px);
+}
+.fade-enter-active .innerFadeContainer,
+.fade-exit-active .innerFadeContainer {
+    transform: translateY(0);
+    transition: transform 0.25s ease;
 }
