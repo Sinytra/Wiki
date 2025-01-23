@@ -56,19 +56,21 @@ export default async function ProjectDocsPage({params}: {
   if (!page) redirect(`/project/${params.slug}/docs`);
 
   const messages = await getMessages();
+  const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
+    && page.content.metadata.hide_meta === undefined;
 
   return (
     <DocsInnerLayoutClient project={page.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
                            rightSidebar={
-                             !page.content.metadata.hide_meta
+                             isContentPage
                                ? <DocsContentRightSidebar project={projectData.project}
                                                           metadata={page.content.metadata}
                                                           version={params.version}/>
                                : <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
-                                   <DocsNonContentRightSidebar headings={page.content.metadata._headings || []}/>
-                                 </NextIntlClientProvider>
+                                 <DocsNonContentRightSidebar headings={page.content.metadata._headings || []}/>
+                               </NextIntlClientProvider>
                            }
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
