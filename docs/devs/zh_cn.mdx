@@ -3,40 +3,37 @@ import ModrinthIcon from "../../components/ui/icons/ModrinthIcon.tsx";
 import CurseForgeIcon from "../../components/ui/icons/CurseForgeIcon.tsx";
 import GradleIcon from "../../components/ui/icons/GradleIcon.tsx";
 
-# Developers
+# 开发者
 
-Get started hosting your mod's documentation on our wiki!
+开始在我们的维基上托管您的模组文档！
 
-This guide provides information on local development and the documentation format.
-For a guide on publishing docs onto our website, please see the [Publishing](./publishing) page instead.
+本指南提供了本地开发和文档格式的信息。有关在我们的网站上发布文档的指南，请参阅[发布](./publishing)页面。
 
-## Prerequisites
+## 前期准备
 
-In order to start hosting documentation on our wiki, your mod only needs to meet a few minimal requirements: 
+为了开始在 我们的维基 上托管文档，您的模组只需要满足一些基本要求：
 
-- Be hosted on a <GitHubIcon className="inline-block mb-1 mx-1" width={16} height={16} /> GitHub repository
-  (both private and public repositories work!)
-- Be approved on either
-  <ModrinthIcon className="inline-block mb-1 mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> [Modrinth](https://modrinth.com/) or
+- 存放在一个 <GitHubIcon className="inline-block mb-1 mx-1" width={16} height={16} /> GitHub 仓库中
+（私有和公共仓库都可以！）
+- 在以下任一平台上获得批准
+<ModrinthIcon className="inline-block mb-1 mx-1 text-[var(--modrinth-brand)]" width={16} height={16} /> [Modrinth](https://modrinth.com/) 或
   <CurseForgeIcon className="inline-block mb-0.5 mx-1 text-[var(--curseforge-brand)]" width={16} height={16} /> [CurseForge](https://www.curseforge.com/)
-- Have the GitHub repository linked as the mod's source code url on the respective hosting website\
-  (this is currently required to verify project ownership)
+- 在相应的托管网站上，将GitHub仓库链接为模组的源代码URL
+（目前这是验证项目所有权的必要步骤）
 
-Additionally, the person registering the project to the wiki should have **Maintain** or **Admin** access to its
-GitHub repository.
+另外，注册项目到维基的人员应该对其GitHub仓库拥有 **维护** 或 **管理员** 访问权限。
 
-## Folder structure
+## 文件夹结构
 
-Start by creating a new directory inside your project. This can be located at any path of your choice.\
-For example, you can use `docs/(your modid here)` or simply `docs`, both are equally valid.
+首先，在您的项目内部创建一个新目录。这个目录可以位于您选择的任何路径上。
+例如，您可以使用 `docs/(您的模组ID)` 或者简单的 `docs`，这两个都是同样有效的。
 
 <Callout>
-    We also support scenarios where multiple mods' documentation is hosted in a single repository, as long as they're in
-    separate folders.  
-    This is useful if you'd like to host documentation for multiple of your mods in a single place.
+    我们还支持在单个仓库中托管多个模组的文档的情况，只要它们位于不同的文件夹中。
+    如果您想在同一个地方为您的多个模组托管文档，这将会很有用。
 </Callout>
 
-A minimal example folder layout may look like this:
+一个最简单的示例文件夹布局如下所示：
 
 ```
 docs
@@ -49,9 +46,9 @@ docs
 ```
 
 <details>
-    <summary>Show complete example</summary>
+    <summary>展示完整示例</summary>
     
-    Here is a complete example including assets and translations.
+    这里是包含资源和翻译的完整示例。
     
     ```
     docs
@@ -73,71 +70,55 @@ docs
     ```
 </details>
 
-Let's talk about what each of these files does:
+让我们来了解这些文件各自的作用：
+- `sinytra-wiki.json`：主要的元数据文件，是文档包的“心脏”，携带有关项目的信息。
+关于其内容格式，请参见下面的完整解释。
+- `_meta.json`：可以放置在根文件夹以及每个子文件夹中。为文件和文件夹提供显示名称，
+这些名称将显示在维基的文档导航侧边栏中，并指定它们显示的顺序。如果未提供，将自动生成后备显示名称。
+- `*.mdx` 文件：包含文档内容。要了解更多关于MDX格式的信息，请访问他们的
+[网站](https://mdxjs.com/)。由于MDX编译为JavaScript，维基对除了标准Markdown之外可以使用的组件和标签施加了某些限制。
+关于完整的描述，请继续阅读下面内容。
 
-- `sinytra-wiki.json`: The main metadata file, the "heart" of the documentation package, carries information about the
-  project. For its content format, see the complete explanation below.
-- `_meta.json`: Can be placed in the root folder as well as each subfolder. Provides display names for files and
-  folders, which are shown in the documentation navigation sidebar on the wiki, and also specifies the order in which
-  they are displayed. If not provided, fallback display names are generated automatically.
-- `*.mdx` files: Contain documentation contents. To learn more about the MDX format, please see their
-  [website](https://mdxjs.com/). As MDX compiles to JavaScript, the Wiki imposes certain restrictions on what components
-  and tags can be used in addition to standard Markdown. For a complete description, please read below.
 
-### Assets
+### 资源
 
 <Callout>
-    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#-gradle-plugin-companion),
-    which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
+    使用我们的配套 [**Gradle插件**](#-gradle-plugin-companion) 来节省您手动导出所有资源的时间，
+    该插件与流行的模组加载器工具链集成，并且可以为您 **自动生成渲染后的资源**！
 </Callout>
 
-Assets are used to display images of items, blocks and other mod content across the website. These can be used as part
-of crafting recipes, sidebar information or custom components.
+资源用于在网站上展示物品、方块和其他模组内容的图片。这些资源可以用于制作配方、侧边栏信息或自定义组件的一部分。
 
-Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
-in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
+资源使用 [资源位置](https://minecraft.wiki/w/Resource_location) 来识别，其语法与游戏中的相同。建议将资源名称与它们所属对象的的游戏内ID匹配。
 
-Rendered mod assets including **both items and blocks** should be placed under `.assets/item/(modid)` inside the
-documentation directory, where `modid` is the namespace of each texture you wish to provide.
+渲染后的模组资源，包括 **物品和方块**，应放置在文档目录下的 `.assets/item/(modid)` 中，其中 `modid` 是您希望提供的每个纹理的命名空间。
 
-Each asset **must be in `.png` format**. The name of the file is up to your choice.
+每个资源 **必须是 `.png` 格式**。文件的名称由您自行决定。
 
-For example, `examplemod:generator` would point to `(root)/.assets/item/examplemod/generator.png`.
+例如，`examplemod:generator` 将指向 `(根目录)/.assets/item/examplemod/generator.png`。
 
-### Translation
+### 翻译
 
-Documentation can be localized into various languages supported by the wiki. A complete list can be found in the
-language selection dropdown located on the right-most part of the navigation header.
+文档可以通过维基支持的各种语言进行本地化。完整的语言列表可以在导航栏最右侧的语言选择下拉菜单中找到。
 
-Localized files must be placed under `.translated/(lang)` inside the documentation directory, where
-`(lang)` is the desired language code in `(lang)_(region)` format. Currently, all regions match the language, so
-it's sufficient to take the target language code and complete the region to be the same as the language
-(e.g. German translations (`de`) would be placed under `.translated/de_de`).
+本地化文件必须放置在文档目录下的 `.translated/(lang)` 中，其中 `(lang)` 是所需的语言代码，格式为 `(lang)_(region)`。目前，所有地区都与语言匹配，因此只需取目标语言代码，并将地区设置为与语言相同（例如，德语翻译（`de`）应放置在 `.translated/de_de` 下）。
 
-The localized folder structure follows the same layout as root. Both documentation content files (`.mdx`) and folder
-metadata (`_meta.json`) may be translated. Translated content takes precedence over the default locale when being
-loaded. However, untranslated files will still be shown even when the locale is non-default, therefore it is
-recommended to translate all files whenever possible.
+本地化文件夹结构遵循与根目录相同的布局。文档内容文件（`.mdx`）和文件夹元数据（`_meta.json`）都可以被翻译。加载时，翻译后的内容会优先于默认语言环境。然而，即使语言环境不是默认的，未翻译的文件仍然会被显示，因此建议尽可能翻译所有文件。
 
-### Custom homepage
 
-The wiki provides a dedicated landing page for documentation called the "Mod homepage". By default, this shows the
-linked platform project's description.
+### 自定义主页
 
-If you'd like to provide your own contents instead, you can do so by creating a `_homepage.mdx` file in your
-documentation's root folder (at the same level as `sinytra-wiki.json`). The file's contents follow the same
-[formatting](./format) as regular documentation pages, except for frontmatter metadata (e.g. title), which is ignored.
-The homepage's title will always match the mod's name, whereas the sidebar will display various information about the
-platform project, such as the project's authors, categories and available mc versions.
+维基为文档提供了一个专门的详情页，称为“模组主页”。默认情况下，这里会显示链接的平台项目的描述。
 
-## Documentation format
+如果您想提供自己的内容，可以在文档的根文件夹中创建一个 `_homepage.mdx` 文件（与 `sinytra-wiki.json` 同级）。文件的内容遵循与常规文档页面相同的[格式](./format)，但不包括前言元数据（例如标题），这些将被忽略。主页的标题将始终与模组的名称匹配，而侧边栏将显示有关平台项目的各种信息，如项目的作者、类别和可用的mc版本。
 
-### Wiki Metadata
 
-The wiki metadata file specifies project identification information, necessary for the wiki to load the project.
+## 文档格式
 
-It must be placed in a file called `sinytra-wiki.json` inside the documentation **root directory**.
+### 维基元数据
 
+维基元数据文件指定了项目识别信息，这对于维基加载项目是必要的。
+它必须放置在文档**根目录**中的一个名为 `sinytra-wiki.json` 的文件中。
 ```json title="sinytra-wiki.json"
 {
     "id": "mffs",
@@ -145,58 +126,44 @@ It must be placed in a file called `sinytra-wiki.json` inside the documentation 
     "slug": "mffs"
 }
 ```
+维基元数据文件包含以下属性，所有这些都是**必需**的：
+- `id`: 用于在维基中标识项目的唯一项目id。我们建议使用您的模组id或托管平台slug。
+- `platform`: 您的模组的分发平台。可以是 `modrinth` 或 `curseforge`。
+- `slug`: 主机平台的项目slug。
+项目slug可以从您的模组项目页面URL中轻松提取，如下例所示，其中 `{slug}` 是实际值的占位符。
+- 对于Modrinth项目：`https://modrinth.com/mod/{slug}`
+- 对于CurseForge项目：`https://www.curseforge.com/minecraft/mc-mods/{slug}`
 
-The wiki metadata file contains the following properties, all of which are **required**:
+此文件的JSON Schema规范可以在此处找到[这里](/sinytra-wiki.schema.json)。
 
-- `id`: Unique project id used to identify the project across the wiki. We recommend using your mod id
-  or hosting platform slug.
-- `platform`: Your mod's distribution platform. Can be either of `modrinth` or `curseforge`.
-- `slug`: The host platform's project slug.
+### 文件夹元数据
 
-The project slug can be easily extracted from your mod's project page URL as shown in the examples below, where `{slug}`
-is a placeholder for the actual value.
+为文档页面导航侧边栏提供附加信息：
+- 文件夹和文件的**显示名称**。如果未提供，维基将使用自动生成的显示名称。
+- 侧边栏条目的**排序**。默认情况下，首先显示文件夹，然后是常规文件，所有内容按字母顺序排序。
 
-- For Modrinth projects: `https://modrinth.com/mod/{slug}`  
-- For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+为了避免潜在的意外显示错误，我们建议在您的文档中**始终**提供完整的文件夹元数据。
 
-The JSON Schema specification for this file can be found [here](/sinytra-wiki.schema.json).
-
-### Folder metadata
-
-Provides additional information for the documentation page navigation sidebar:
-
-- The **display names** of folders and files. If not provided, the wiki will use automatically generated display names.
-- The **ordering** of sidebar entries. By default, folders are shown first, followed by regular files, all sorted
-  alphabetically.
-
-To avoid potential unwanted display errors, we recommend **always** providing complete folder metadata in your
-documentation.
-
-```json title="\_meta.json"
+```json title="_meta.json"
 {
     "blocks": "Blocks",
-    "items": "Completely custom name",
-    "introduction.mdx": "Introduction"
+    "items": "完全自定义名称",
+    "introduction.mdx": "介绍"
 }
 ```
 
-The folder metadata json consists of string key-value pairs, where the keys represent the name of a file or a folder,
-and the values are their display name. When specifying a file name, the full name including the extension is required.
+文件夹元数据json由字符串键值对组成，其中键代表文件或文件夹的名称，值是它们的显示名称。指定文件名时，需要包括扩展名的完整名称。
+文件夹元数据包含在一个名为 `_meta.json` 的文件中，可以放置在文档目录内的**任何文件夹**中，**包括根**目录本身（例如，与 `sinytra-wiki.json` 同级）。
 
-Folder metadata is contained in a file called `_meta.json` and can be placed **inside any folder** within the
-documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
+此文件的 JSON Schema 规范可以在此处找到[这里](/_meta.schema.json)。
 
-The JSON Schema specification for this file can be found [here](/_meta.schema.json).
+#### 图标
 
-#### Icons
+您可以通过将元数据值转换为对象并在导航侧边栏中提供图标的名称来为每个元数据条目添加图标。
 
-You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
-and supplying the icon's name as shown below.
+提供的图标名应为[Lucide icon](https://lucide.dev/icons/)中的某个部件名称，且不能包含`Icon`后缀。
 
-The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
-More information on icon names can be found on the [Format](./format#icons) page.
-
-```json title="\_meta.json"
+```json title="_meta.json"
 {
     "blocks": {
         "name": "Blocks",
@@ -205,15 +172,11 @@ More information on icon names can be found on the [Format](./format#icons) page
 }
 ```
 
-### Versioning
+### 版本控制
 
-You can show multiple versions of your mod's documentation on the wiki by adding a `versions` property to your
-docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector
-as well as in the URL paths) to git branch names.
+您可以通过在您的文档元数据文件中添加一个 `versions` 属性来在维基上显示您模组文档的多个版本，该属性包含 Minecraft 版本名称（这些将在版本选择器以及URL路径中显示）到git分支名称的映射。
 
-The documentation folder structure remains the same across all branches with contents being isolated per branch,
-including assets and localization. **Documentation metadata files (`sinytra-wiki.json`) from other branches are ignored**,
-as all necessary information is already contained in the default branch's file.
+文档文件夹结构在所有分支中保持相同，内容按分支隔离，包括资源和本地化文件。**来自其他分支的文档元数据文件（`sinytra-wiki.json`）将被忽略**，因为所有必要的信息已经包含在默认分支的文件中。
 
 ```json title="sinytra-wiki.json"
 {
@@ -225,19 +188,17 @@ as all necessary information is already contained in the default branch's file.
 }
 ```
 
-## <GradleIcon width={32} height={32} className="inline-block mr-1" /> Gradle plugin companion
+## <GradleIcon width={32} height={32} className="inline-block mr-1" /> Gradle插件伴侣
 
-We provide an excellent wiki companion [Gradle plugin](https://github.com/Sinytra/WikiToolkit) to help you with
-authoring documentation.
+我们提供了一个优秀的维基伴侣[Gradle插件](https://github.com/Sinytra/WikiToolkit)来帮助您编写文档。
 
-Its features include:
+其功能包括：
+- 本地实时、精确预览您的文档，其外观与上传到维基后完全相同
+- 自动生成所有模组物品的库存模型资产渲染
+- 发布后重新验证文档
 
-- Local real-time, accurate preview of your documentation in the exact same look as it will have once uploaded to the wiki
-- Automatically generating asset renders of inventory models for all mod items
-- Revalidating documentation after publishing
+完整的使用指南可以在其[GitHub仓库](https://github.com/Sinytra/WikiToolkit)中找到。
 
-A complete usage guide can be found on its [GitHub repository](https://github.com/Sinytra/WikiToolkit).
+## 下一步
 
-## Next steps
-
-➡️ Learn more about the specifics of the MDX [Documentation format](./format).
+➡️ 了解有关 MDX [文档格式](./format)的详细信息。
