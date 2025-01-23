@@ -218,6 +218,7 @@
     "PageEditControls": {
         "edit_gh": "Edit this page",
         "report": "Signaler cette page",
+        "report_button": "Report page",
         "last_updated": "Dernière mise à jour : <date></date>"
     },
     "Report": {

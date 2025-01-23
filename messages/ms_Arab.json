@@ -75,11 +75,11 @@
         "browse": "سمق ايمبس ڤروجيک",
         "highlights": {
             "localization": {
-                "title": "ڤنترجمهن",
-                "desc": "ترجمهکن دوکومنتاسي اندا ک دالم بهاس٢ دنيا"
+                "title": "ڤڽتمڤتن",
+                "desc": "ترجمهکن دوکومنتاسي اندا کدالم بهاس٢ دنيا"
             },
             "accessibility": {
-                "title": "بوليه داکسيس",
+                "title": "موده داکسيس",
                 "desc": "انتارا موک ڤڠݢونا يڠ اينتويتيف دان ريسڤونسيف"
             },
             "open": {
@@ -218,6 +218,7 @@
     "PageEditControls": {
         "edit_gh": "سونتيڠ هلامن اين",
         "report": "لاڤورکن لامن اين",
+        "report_button": "Report page",
         "last_updated": "کمس کيني تراخير: <date></date>"
     },
     "Report": {
@@ -292,7 +293,7 @@
             "desc": "لالوان کفولدر يڠ مڠاندوڠي فاءيل ميتاداتا."
         },
         "admin": "تتڤن ڤنتدبير ويکي",
-        "mr_verified": "Modrinth ownership verified",
+        "mr_verified": "ڤميليقن Modrinth دصحکن",
         "is_community": {
             "title": "ڤروجيک يڠ دسلڠݢارا کومونيتي"
         },
@@ -317,22 +318,22 @@
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "trigger": "ڤادم",
+        "title": "اداکه اندا بنر٢ ڤستي؟",
+        "desc": "تيندقن اين تيدق بوليه دبوات اصل. اين اکن ممادمکن ڤروجيک اندا سچارا ککل دان مڠاليه کلوار سموا داتا يڠ برکاءيتن درڤد ڤلاين کامي.",
+        "cancel": "بطل",
+        "submit": "ڤادم",
+        "success": "ڤروجيک برجاي دڤادم"
     },
     "ProjectRevalidateForm": {
-        "title": "Reload project pages?",
-        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
+        "title": "موات سمولا لامن٢ ڤروجيک؟",
+        "primary": "سموا هلامن دوکومنتاسي يڠ دسيمڤن اکن <b>دبرسيهکن دان دأمبيل سمولا</b> درڤد سومبر.",
         "secondary": "ڤيليهن اين هاڽ بوليه دݢوناکن اڤابيلا مڠمس کيني سومبر دوکومنتاسي ايت سنديري.",
         "tertiary": "اونتوق کمودهن اندا سنديري⹁ کامي مڠشورکن اݢر اندا سباليقڽ مڠصحکن سمولا دوکومن سچارا اءوتوماتيک سلڤس دتربيتکن مڠݢوناکن <link>ڤمالم Gradle</link> کامي.",
-        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "note": "داتا ڤندفترن ڤروجيک ککل تيدق بروبه. اونتوق مڠمس کيني معلومت متا (چونتوهڽ سومبر دان ڤلتفوم)⹁ سيلا سباليقڽ ݢوناکن ديالوݢ تتڤن.",
         "cancel": "بطل",
-        "submit": "Reload",
-        "success": "Project reload started"
+        "submit": "موات سمولا",
+        "success": "ڤمواتن سمولا ڤروجيک دمولاکن"
     },
     "FormActions": {
         "errors": {
@@ -411,7 +412,7 @@
         "return": "کمبالي ک لامن اوتام"
     },
     "GetStartedButton": {
-        "title": "Create first project"
+        "title": "چيڤتا ڤروجيک ڤرتام"
     },
     "GetStartedModal": {
         "button": "تمبه ڤروجيک",
@@ -481,84 +482,84 @@
         "no_results": "تياد بهاس دتموءي."
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "loaded": "Loaded",
-        "error": "Errored"
+        "unknown": "تيدق دکتاهوءي",
+        "loading": "دمولاکن",
+        "loaded": "دمواتکن",
+        "error": "تله رالت"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "اوروس"
         },
         "empty": {
-            "primary": "Looks like you haven't registered any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "primary": "نمڤقڽ اندا بلوم مندفتر سبارڠ ڤروجيک لاݢي",
+            "secondary": "مولاکن دڠن ممباچ <guide>ڤندوان ڤڠارڠ</guide> کامي."
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "projects": "Projects"
+            "projects": "ڤروجيک"
         },
         "toolbar": {
-            "view": "View"
+            "view": "ليهت"
         },
         "source": {
-            "title": "Project Source",
-            "repo": "Repository",
-            "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "title": "سومبر ڤروجيک",
+            "repo": "ريڤوسيتوري",
+            "branch": "چابڠ",
+            "path": "لالوان",
+            "public": "عوام"
         },
         "platforms": {
-            "title": "Platforms",
+            "title": "ڤلتفوم",
             "headers": {
-                "platform": "Platform",
-                "slug": "Slug / ID",
-                "link": "Link"
+                "platform": "ڤلتفوم",
+                "slug": "سلوݢ / ID",
+                "link": "ڤاءوتن"
             },
-            "open": "Open"
+            "open": "بوک"
         },
         "information": {
-            "title": "Information",
-            "type": "Type",
-            "status": "Status",
-            "created_at": "Created at"
+            "title": "معلومت",
+            "type": "جنيس",
+            "status": "ستاتوس",
+            "created_at": "دچيڤتا ڤد"
         }
     },
     "DevProjectLogs": {
-        "title": "Server logs",
-        "show": "Show",
-        "unloaded": "Not loaded",
-        "waiting": "Waiting for server...",
-        "loading": "Loading...",
-        "error": "Error loading logs",
+        "title": "لوݢ ڤلاين",
+        "show": "تونجوقکن",
+        "unloaded": "تيدق دمواتکن",
+        "waiting": "منوڠݢو ڤلاين...",
+        "loading": "مموات...",
+        "error": "رالت دالم مموات لوݢ",
         "toast": {
-            "success": "Project setup complete",
-            "error": "Error during project setup"
+            "success": "ڤرسدياءن ڤروجيک سلساي",
+            "error": "رالت سماس ڤرسدياءن ڤروجيک"
         }
     },
     "DeveloperSidebar": {
         "teams": {
-            "personal": "Personal"
+            "personal": "ڤريبادي"
         },
         "groups": {
-            "projects": "Projects",
-            "platform": "Platform"
+            "projects": "ڤروجيک",
+            "platform": "ڤلتفوم"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
-            "settings": "Settings"
+            "projects": "ڤروجيک",
+            "documentation": "دوکومنتاسي",
+            "settings": "تتڤن"
         }
     },
     "DevSidebarContextSwitcher": {
-        "title": "Teams"
+        "title": "ڤاسوقن"
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Log out",
-            "title": "Logout",
-            "desc": "Logging out..."
+            "button": "لوݢ کلوار",
+            "title": "لوݢ کلوار",
+            "desc": "سدڠ لوݢ کلوار..."
         },
         "unknown_avatar": "N/A"
     }

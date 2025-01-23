@@ -218,6 +218,7 @@
     "PageEditControls": {
         "edit_gh": "Seite bearbeiten",
         "report": "Diese Seite melden",
+        "report_button": "Report page",
         "last_updated": "Zuletzt aktualisiert: <date></date>"
     },
     "Report": {
