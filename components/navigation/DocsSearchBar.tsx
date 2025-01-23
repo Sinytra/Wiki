@@ -193,7 +193,7 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
       </div>
       {focused && searchQuery && (loading || (!loading && results)) &&
           <div onMouseDown={e => e.preventDefault()}
-              className="absolute top-12 flex flex-col bg-muted w-full divide-y border border-neutral-700 rounded-sm shadow-lg">
+              className="absolute top-11 flex flex-col bg-muted w-full divide-y border border-neutral-700 rounded-sm shadow-lg">
             {loading && <LoadingSearchState/>}
 
             {!loading && results && results.hits.map(r => <SearchResult key={r.url} result={r}/>)}

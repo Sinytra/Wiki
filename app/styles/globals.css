@@ -143,10 +143,6 @@ html body[data-scroll-locked] {
     padding-top: calc(var(--vp-nav-height));
 }
 
-.page-wrapper-ext {
-    padding-bottom: 2.5rem;
-}
-
 @media screen and (min-width: 768px) {
     .page-wrapper {
         padding-top: calc(var(--vp-nav-height) + 1rem);
@@ -213,6 +209,10 @@ html body[data-scroll-locked] {
         @apply border-border;
     }
 
+    .page-wrapper-ext {
+        @apply mt-4 sm:mt-0 pb-10;
+    }
+
     body {
         @apply bg-background text-foreground;
     }
@@ -231,6 +231,10 @@ html body[data-scroll-locked] {
 
     .scrollLock {
         /*@apply lg:m-0 lg:h-full lg:overflow-hidden; TODO*/
+    }
+
+    .navScrollLock {
+        @apply overflow-hidden pointer-events-none sm:overflow-auto sm:pointer-events-auto;
     }
 
     kbd {
@@ -282,4 +286,29 @@ figcaption[data-rehype-pretty-code-title] {
 figure[data-rehype-pretty-code-figure] figcaption + pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.fade-enter .innerFadeContainer,
+.fade-exit-active .innerFadeContainer {
+    transform: translateY(-8px);
+}
+.fade-enter-active .innerFadeContainer,
+.fade-exit-active .innerFadeContainer {
+    transform: translateY(0);
+    transition: transform 0.25s ease;
 }

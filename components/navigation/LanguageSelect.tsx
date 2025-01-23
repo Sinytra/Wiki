@@ -14,10 +14,10 @@ import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@/components/ui/command";
 import {useTranslations} from "next-intl";
 
-export default function LanguageSelect({locale, locales, minimal}: {
+export default function LanguageSelect({locale, locales, mobile}: {
   locale: string;
   locales?: string[];
-  minimal?: boolean;
+  mobile?: boolean;
 }) {
   const t = useTranslations('LanguageSelect');
 
@@ -40,15 +40,22 @@ export default function LanguageSelect({locale, locales, minimal}: {
   };
 
   const lang = available.getNextIntlInternal(locale);
+  const selectedLang = available.getForUrlParam(locale);
   const ordered = [lang, ...Object.keys(availableLocales).filter(k => k != lang)];
 
   return (
-    <div className={cn(!minimal && styles.socialLinks)}>
+    <div className={cn(!mobile && styles.socialLinks)}>
       <div>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button variant="outline" role="combobox" aria-expanded={open} className="px-2 py-1 bg-transparent border-none justify-between">
               <LanguagesIcon className="w-5 h-5"/>
+              {mobile &&
+                <div className="inline-flex gap-2 ml-3 mr-2">
+                    <CountryFlag className="!rounded-sm" flag={selectedLang.icon}/>
+                    {selectedLang.name}
+                </div>
+              }
               <ChevronDown
                 data-state={open ? 'open' : 'closed'}
                 className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 data-[state=open]:rotate-180"
@@ -56,7 +63,7 @@ export default function LanguageSelect({locale, locales, minimal}: {
               />
             </Button>
           </PopoverTrigger>
-          <PopoverContent align="end" className="w-48 mt-1 p-0">
+          <PopoverContent align={mobile ? 'start' : 'end'} className={cn('mt-1 p-0 !pointer-events-auto', !mobile && 'w-48')}>
             <Command value={value} defaultValue={value}>
               <CommandInput placeholder={t('placeholder')} />
               <CommandList className="[scrollbar-color:var(--muted-foreground)_var(--muted-foreground)] overscroll-contain">
