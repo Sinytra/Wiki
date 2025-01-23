@@ -1,5 +1,4 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
-import rehypePrettyCode from 'rehype-pretty-code'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from "rehype-slug";
 import { remarkCodeHike } from "codehike/mdx";
@@ -15,10 +14,7 @@ export const Blog = defineDocumentType(() => ({
   },
   mdx: {
     remarkPlugins: [remarkCodeHike, remarkGfm],
-    rehypePlugins: [
-      [rehypePrettyCode, { theme: 'plastic' }],
-      rehypeSlug
-    ]
+    rehypePlugins: [rehypeSlug]
   },
   computedFields: {
     url: { type: 'string', resolve: (post) => `/blogs/${post._raw.flattenedPath}` },
