@@ -13,6 +13,7 @@ import {pick} from "lodash";
 import {searchWikiServer} from "@/lib/search/serverSearch";
 import MobileNav from "@/components/navigation/header/MobileNav";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
+import MobileDocsSearch from "@/components/navigation/MobileDocsSearch";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -38,7 +39,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn(styles.container, 'h-[56px] !pointer-events-auto sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-2 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
+        className={cn(styles.container, 'h-[56px] !pointer-events-auto sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-1.5 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
             <span className="inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
@@ -86,36 +87,44 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           }
         </div>
 
-        <MobileNav>
-          <nav className="flex flex-col gap-2">
-            {preview
-              ?
-              <>
-                <MobileHeaderLink href="/preview">{t('link.home')}</MobileHeaderLink>
-                <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
-              </>
-              :
-              <>
-                <MobileHeaderLink href="/">{t('link.home')}</MobileHeaderLink>
-                {!minimal &&
-                  <>
-                      <MobileHeaderLink href="/browse">{t('link.browse')}</MobileHeaderLink>
-                      <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
-                  </>
-                }
-              </>
-            }
-            {!minimal &&
-              <NextIntlClientProvider messages={pick(messages, 'LanguageSelect')}>
-                  <LanguageSelect mobile locale={locale} />
-              </NextIntlClientProvider>
-            }
-            <hr />
-            <div className="mt-2 mx-auto">
-              <SocialButtons large />
-            </div>
-          </nav>
-        </MobileNav>
+        <div className="flex flex-row items-center gap-2">
+          {!minimal && !preview &&
+            <NextIntlClientProvider messages={pick(messages, 'DocsSearchBar')}>
+                <MobileDocsSearch searchFunc={searchWikiServer} />
+            </NextIntlClientProvider>
+          }
+
+          <MobileNav>
+            <nav className="flex flex-col gap-2">
+              {preview
+                ?
+                <>
+                  <MobileHeaderLink href="/preview">{t('link.home')}</MobileHeaderLink>
+                  <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
+                </>
+                :
+                <>
+                  <MobileHeaderLink href="/">{t('link.home')}</MobileHeaderLink>
+                  {!minimal &&
+                    <>
+                        <MobileHeaderLink href="/browse">{t('link.browse')}</MobileHeaderLink>
+                        <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
+                    </>
+                  }
+                </>
+              }
+              {!minimal &&
+                <NextIntlClientProvider messages={pick(messages, 'LanguageSelect')}>
+                    <LanguageSelect mobile locale={locale} />
+                </NextIntlClientProvider>
+              }
+              <hr />
+              <div className="mt-2 mx-auto">
+                <SocialButtons large />
+              </div>
+            </nav>
+          </MobileNav>
+        </div>
       </div>
     </HeaderBase>
   )
