@@ -15,6 +15,15 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
     return { title: post.title }
 }
 
+function Embed({src, alt, fig, width, height}: { src?: string; alt?: string; fig?: string; width?: any; height?: any }) {
+    return (
+      <figure style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <img style={{border: '1px white solid' }} width={width || '85%'} src={src} alt={alt} height={height} />
+          <figcaption>{fig}</figcaption>
+      </figure>
+    )
+}
+
 const BlogLayout = ({ params }: { params: { slug: string } }) => {
     setContextLocale('en');
 
@@ -22,7 +31,7 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
     if (!post) notFound();
 
     const MDXContent = useMDXComponent(post.body.code);
-    const components = useMDXComponents({});
+    const components = useMDXComponents({Embed});
 
     return (
         <article className="mx-auto py-8">

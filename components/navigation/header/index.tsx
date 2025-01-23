@@ -40,7 +40,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
     <HeaderBase unfix={unfix}>
       <div
         className={cn(styles.container, 'h-[56px] !pointer-events-auto sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-1.5 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
-        <div className="flex flex-row items-center gap-3 sm:gap-4">
+        <div className="flex flex-row items-center gap-3 sm:gap-4 mr-auto">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
             <span className="inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
               <BookMarkedIcon className="mr-1 w-4 h-4" />
@@ -59,7 +59,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           </NextIntlClientProvider>  
         }
 
-        <div className="hidden sm:flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap">
+        <div className="hidden sm:flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap ml-auto">
           <nav className="flex flex-row">
             {preview
               ?

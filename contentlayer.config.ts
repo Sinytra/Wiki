@@ -2,6 +2,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import rehypePrettyCode from 'rehype-pretty-code'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from "rehype-slug";
+import { remarkCodeHike } from "codehike/mdx";
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
@@ -13,7 +14,7 @@ export const Blog = defineDocumentType(() => ({
     excerpt: { type: "string", required: true }
   },
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkCodeHike, remarkGfm],
     rehypePlugins: [
       [rehypePrettyCode, { theme: 'plastic' }],
       rehypeSlug
