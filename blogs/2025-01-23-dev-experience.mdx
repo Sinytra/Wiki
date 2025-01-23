@@ -1,0 +1,125 @@
+---
+title: New developer experience
+date: 2025-01-23
+excerpt: New developer dashboard and precise project management
+---
+
+In this update, we've made significant improvements to the overall developer experience and project management on the
+wiki, making it feel less of a "black box" experience and providing verbose project information to developers.
+
+At the same time, we've improved mobile support for the wiki and added new components to use in documentation pages.
+
+Let's dive into all the new features below!
+
+## Faster project load times
+
+Previously, the wiki loaded pages "lazily" by fetching them from the GitHub repository specified in project settings.
+However, issuing several API calls every time a page was rendered ended up being too slow, and we've decided to
+rework this system into one that's more eager.
+
+Our new solution involves cloning the entire git repository on the backend and serving wiki pages from local storage,
+leading to massive improvements to page loading speeds. At the same time, this allows developers to keep precise track
+of how their project is loaded into the system and discover errors immediately at the time of registering.
+
+Additionally, this new system will allow us to further expand our wiki to any accept any Git repository, not only those
+hosted on GitHub. Stay tuned!
+
+## Developer experience overhaul
+
+The simple developer project list has been upgraded to an actual multipurpose dashboard that also sets the basis for
+future account management features. For now, the only available page is the Project list, but more will be coming.
+
+The new dashboard uses the same user-friendly approach as the old one did, now giving developers broader and more
+precise management & monitoring capabilities over their projects.
+
+<Embed src="/blog-assets/project_list.png" alt="Developer dashboard" fig="New developer dashboard"/>
+
+### Project management
+
+Selecting a project from the dashboard list leads to a brand-new Project overview page that contains all the tools
+and data you need to keep track of your project's status and fix potential errors with your configuration / metadata.
+
+The Project overview page begins with an overview of the project, displaying the name and summary imported from one of
+its hosting platforms.
+
+Underneath you can find a toolbar with various tools:
+- **View** - open the live project documentation home page
+- **Reload** - re-downloads documentation pages on the server
+(does not update project metadata - use "Settings" instead)
+- **Settings** - opens project source settings
+- **Delete** - open project deletion dialog
+
+Below the toolbar, the overview page gives you raw **metadata information** about the project and its **deployment status**,
+including **server-side logs**.
+
+<Embed src="/blog-assets/project_overview.png" alt="Project overview" fig="Project overview"/>
+
+## Miscellaneous changes
+
+### Improved mobile UI
+
+The wiki now has proper support for global search on mobile devices. Navbar links have been moved into a hamburger menu
+to support a wider range of screen resolutions.
+
+<div className="flex flex-row flex-wrap justify-evenly w-full">
+    <Embed src="/blog-assets/mobile_nav.png" alt="Mobile navigation" fig="Mobile navigation dropdown" width="auto"/>
+
+    <Embed src="/blog-assets/mobile_search.png" alt="Mobile search" fig="Mobile search" width="auto"/>
+</div>
+
+### Code tabs
+
+Multi-tab code blocks are now available for use in documentation! These can be useful if you want to merge multiple
+related code blocks into one, or provide alternative syntax (such as old / new API usage).
+
+See the [Documentation format](/en/about/format#code-tabs) page for syntax & usage information.
+
+<CodeTabs tabs={[
+    {
+        lang: 'js',
+        meta: 'main.js',
+        value: `function lorem(ipsum, dolor = 1) {
+  const sit = ipsum == null ? 0 : ipsum.sit
+  dolor = sit - amet(dolor)
+  return sit ? consectetur(ipsum) : []
+}`
+    },
+    {
+        lang: 'css',
+        meta: 'styles.css',
+        value: `body {
+  margin: 0;
+  padding: 0;
+}`
+    }
+]}/>
+
+## Summary / TL;DR
+
+**✅ In this major update, we made the following changes:**
+
+- 🛠️ Developer page overhaul
+
+- ⏱️ Faster page load times
+
+- 📱 Better mobile UI accessibility
+
+**🏗️ Features to look forward to, coming in the near future:**
+
+- 💼 Robust account & project ownership management system
+
+- 🌲 Support for any Git project (not just GitHub-hosted ones)
+
+- 🧑‍🍳 Support for [custom recipe types](https://github.com/Sinytra/Wiki/issues/51)
+
+- 🎨 More documentation-related components
+
+## 🤝 Let us know what you think!
+
+Our team is working hard on improving the website's interface and feature set to bring you the next generation
+wiki for all of modded minecraft.
+
+As always, please make sure to let us know if you have any suggestions or ideas we could implement on the wiki!
+Any feedback is appreciated!
+
+Find us on: &nbsp; [Discord](https://discord.sinytra.org) • [GitHub](https://github.com/Sinytra/Wiki) • [Email](mailto:contact@moddedmc.org)
