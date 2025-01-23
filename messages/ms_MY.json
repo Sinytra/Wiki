@@ -75,11 +75,11 @@
         "browse": "Semak Imbas Projek",
         "highlights": {
             "localization": {
-                "title": "Penterjemahan",
+                "title": "Penyetempatan",
                 "desc": "Terjemahkan dokumentasi anda ke dalam bahasa-bahasa dunia"
             },
             "accessibility": {
-                "title": "Boleh Diakses",
+                "title": "Mudah Diakses",
                 "desc": "Antara muka pengguna yang intuitif dan responsif"
             },
             "open": {
@@ -218,6 +218,7 @@
     "PageEditControls": {
         "edit_gh": "Sunting halaman ini",
         "report": "Laporkan laman ini",
+        "report_button": "Report page",
         "last_updated": "Kemas kini terakhir: <date></date>"
     },
     "Report": {
@@ -292,7 +293,7 @@
             "desc": "Laluan ke folder yang mengandungi fail metadata."
         },
         "admin": "Tetapan pentadbir wiki",
-        "mr_verified": "Modrinth ownership verified",
+        "mr_verified": "Pemilikan Modrinth disahkan",
         "is_community": {
             "title": "Projek yang diselenggara komuniti"
         },
@@ -317,22 +318,22 @@
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "trigger": "Padam",
+        "title": "Adakah anda benar-benar pasti?",
+        "desc": "Tindakan ini tidak boleh dibuat asal. Ini akan memadamkan projek anda secara kekal dan mengalih keluar semua data yang berkaitan daripada pelayan kami.",
+        "cancel": "Batal",
+        "submit": "Padam",
+        "success": "Projek berjaya dipadam"
     },
     "ProjectRevalidateForm": {
-        "title": "Reload project pages?",
-        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
+        "title": "Muat semula laman-laman projek?",
+        "primary": "Semua halaman dokumentasi yang disimpan akan <b>dibersihkan dan diambil semula</b> daripada sumber.",
         "secondary": "Pilihan ini hanya boleh digunakan apabila mengemas kini sumber dokumentasi itu sendiri.",
         "tertiary": "Untuk kemudahan anda sendiri, kami mengesyorkan agar anda sebaliknya mengesahkan semula dokumentasi secara automatik selepas diterbitkan menggunakan <link>pemalam Gradle</link> kami.",
-        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "note": "Data pendaftaran projek kekal tidak berubah. Untuk mengemas kini maklumat meta (cth. sumber dan platform), sila sebaliknya gunakan dialog Tetapan.",
         "cancel": "Batal",
-        "submit": "Reload",
-        "success": "Project reload started"
+        "submit": "Muat Semula",
+        "success": "Pemuatan semula projek dimulakan"
     },
     "FormActions": {
         "errors": {
@@ -411,7 +412,7 @@
         "return": "Kembali ke Laman Utama"
     },
     "GetStartedButton": {
-        "title": "Create first project"
+        "title": "Cipta projek pertama"
     },
     "GetStartedModal": {
         "button": "Tambah projek",
@@ -481,84 +482,84 @@
         "no_results": "Tiada bahasa ditemui."
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "loaded": "Loaded",
-        "error": "Errored"
+        "unknown": "Tidak diketahui",
+        "loading": "Dimulakan",
+        "loaded": "Dimuatkan",
+        "error": "Telah Ralat"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "Urus"
         },
         "empty": {
-            "primary": "Looks like you haven't registered any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "primary": "Nampaknya anda belum mendaftar sebarang projek lagi",
+            "secondary": "Mulakan dengan membaca <guide>panduan pengarang</guide> kami."
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "projects": "Projects"
+            "projects": "Projek"
         },
         "toolbar": {
-            "view": "View"
+            "view": "Lihat"
         },
         "source": {
-            "title": "Project Source",
-            "repo": "Repository",
-            "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "title": "Sumber Projek",
+            "repo": "Repositori",
+            "branch": "Cabang",
+            "path": "Laluan",
+            "public": "Awam"
         },
         "platforms": {
-            "title": "Platforms",
+            "title": "Platform",
             "headers": {
                 "platform": "Platform",
                 "slug": "Slug / ID",
-                "link": "Link"
+                "link": "Pautan"
             },
-            "open": "Open"
+            "open": "Buka"
         },
         "information": {
-            "title": "Information",
-            "type": "Type",
+            "title": "Maklumat",
+            "type": "Jenis",
             "status": "Status",
-            "created_at": "Created at"
+            "created_at": "Dicipta pada"
         }
     },
     "DevProjectLogs": {
-        "title": "Server logs",
-        "show": "Show",
-        "unloaded": "Not loaded",
-        "waiting": "Waiting for server...",
-        "loading": "Loading...",
-        "error": "Error loading logs",
+        "title": "Log pelayan",
+        "show": "Tunjukkan",
+        "unloaded": "Tidak dimuatkan",
+        "waiting": "Menunggu pelayan...",
+        "loading": "Memuat...",
+        "error": "Ralat dalam memuat log",
         "toast": {
-            "success": "Project setup complete",
-            "error": "Error during project setup"
+            "success": "Persediaan projek selesai",
+            "error": "Ralat semasa persediaan projek"
         }
     },
     "DeveloperSidebar": {
         "teams": {
-            "personal": "Personal"
+            "personal": "Peribadi"
         },
         "groups": {
-            "projects": "Projects",
+            "projects": "Projek",
             "platform": "Platform"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
-            "settings": "Settings"
+            "projects": "Projek",
+            "documentation": "Dokumentasi",
+            "settings": "Tetapan"
         }
     },
     "DevSidebarContextSwitcher": {
-        "title": "Teams"
+        "title": "Pasukan"
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Log out",
-            "title": "Logout",
-            "desc": "Logging out..."
+            "button": "Log keluar",
+            "title": "Log keluar",
+            "desc": "Sedang log keluar..."
         },
         "unknown_avatar": "N/A"
     }
