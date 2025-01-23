@@ -218,6 +218,7 @@
     "PageEditControls": {
         "edit_gh": "Edit this page",
         "report": "报告本页",
+        "report_button": "Report page",
         "last_updated": "最后更新：<date></date>"
     },
     "Report": {
