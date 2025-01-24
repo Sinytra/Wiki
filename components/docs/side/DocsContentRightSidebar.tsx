@@ -25,12 +25,12 @@ export default async function DocsContentRightSidebar({ project, metadata, versi
       type="right"
       title={t('title')}
       className={cn(
-        'flex-shrink-0 right-0',
-        'w-[96vw] sm:w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0',
-        'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
+        'shrink-0 right-0',
+        'w-[96vw] sm:w-64 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
+        'border-l data-[open=false]:border-0 lg:data-[open=false]:border-l'
       )}
     >
-      <div className="mb-6 border border-accent m-2 rounded-sm">
+      <div className="mb-6 border border-accent m-2 rounded-xs">
         <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto disable-blur"
                            alt={!iconUrl ? undefined : iconUrl.id}/>
       </div>

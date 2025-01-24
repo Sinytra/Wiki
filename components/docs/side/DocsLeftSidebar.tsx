@@ -21,7 +21,7 @@ function DocsFileEntry({slug, version, file}: { slug: string; version: string; f
       key={file.path}
       href={`/project/${slug}/${version}/${file.path}`}
     >
-      {Icon && <Icon className="flex-shrink-0 w-4 h-4 mr-2"/>}
+      {Icon && <Icon className="shrink-0 w-4 h-4 mr-2"/>}
       {file.name}
     </DocsFileLink>
   );
@@ -45,9 +45,9 @@ export default function DocsLeftSidebar({slug, version, tree}: LeftSidebarProps)
 
   return (
     <ScrollableDocsSidebarBase title={t('title')} tagName="nav" type="left" className={cn(
-      'flex-shrink-0 left-0',
-      'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full data-[open=false]:lg:-translate-x-0',
-      'border-r data-[open=false]:border-0 data-[open=false]:lg:border-r'
+      'shrink-0 left-0',
+      'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full lg:data-[open=false]:-translate-x-0',
+      'border-r data-[open=false]:border-0 lg:data-[open=false]:border-r'
     )} innerClassName="overscroll-contain">
       <DocsFileLink href={`/project/${slug}/${version}`}>
         <HomeIcon className="w-4 h-4 mr-2"/>

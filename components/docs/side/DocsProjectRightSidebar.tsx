@@ -40,15 +40,15 @@ export default function DocsProjectRightSidebar({
 
   return (
     <DocsSidebarBase title={t('title')} type="right" className={cn(
-      'flex-shrink-0 right-0',
-      'w-[96vw] sm:w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0',
-      'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
+      'shrink-0 right-0',
+      'w-[96vw] sm:w-64 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
+      'border-l data-[open=false]:border-0 lg:data-[open=false]:border-l'
     )}>
       {/* Project Icon & Name */}
       <div className="flex items-center space-x-3 pb-2">
-        <div className="flex-shrink-0 w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
+        <div className="shrink-0 w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
           <ImageWithFallback src={platformProject.icon_url} width={48} height={48} fbWidth={24} fbHeight={24}
-            className="rounded-sm !opacity-100 !text-secondary-foreground" alt="Logo"
+            className="rounded-xs opacity-100! text-secondary-foreground!" alt="Logo"
             strokeWidth={2} />
         </div>
         <div>
@@ -78,7 +78,7 @@ export default function DocsProjectRightSidebar({
           }
           {projectInfo.authors.map(a => (
             <div key={a.name}>
-              <LinkTextButton className="!font-normal !text-muted-foreground" href={a.url} target="_blank">
+              <LinkTextButton className="font-normal! text-muted-foreground!" href={a.url} target="_blank">
                 {a.name}
               </LinkTextButton>
             </div>

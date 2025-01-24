@@ -64,12 +64,12 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
 function MobileProjectHeader({id, project}: { id: string; project: PlatformProject; }) {
   return (
     <div className="sm:hidden flex flex-row gap-4">
-      <div className="flex flex-shrink-0 w-12 h-12 sm:w-24 sm:h-24">
+      <div className="flex shrink-0 w-12 h-12 sm:w-24 sm:h-24">
         <img className="rounded-md" src={project.icon_url} alt="Project icon"/>
       </div>
       <div className="flex flex-col">
         <div>
-          <LinkTextButton className="!w-fit !text-foreground !font-medium !text-lg" href={`/dev/${id}`}>
+          <LinkTextButton className="w-fit! text-foreground! font-medium! text-lg!" href={`/dev/${id}`}>
             {project.name}
           </LinkTextButton>
         </div>
@@ -90,14 +90,14 @@ async function DevProjectsListEntry({project}: { project: Project }) {
     <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
       <MobileProjectHeader id={project.id} project={platformProject} />
 
-      <div className="hidden sm:block flex-shrink-0">
+      <div className="hidden sm:block shrink-0">
         <img className="rounded-md w-20 h-20 lg:w-24 lg:h-24" src={platformProject.icon_url} alt="Project icon"/>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
         <div className="hidden sm:flex flex-col">
           <div>
-            <LinkTextButton className="!w-fit !text-foreground !font-medium !text-lg" href={`/dev/${project.id}`}>
+            <LinkTextButton className="w-fit! text-foreground! font-medium! text-lg!" href={`/dev/${project.id}`}>
               {platformProject.name}
             </LinkTextButton>
           </div>
@@ -114,7 +114,7 @@ async function DevProjectsListEntry({project}: { project: Project }) {
               {u(project.status || ProjectStatus.UNKNOWN)}
             </Property>
             <Property icon={BookMarkedIcon}>
-              <LinkTextButton className="!font-normal !align-bottom"
+              <LinkTextButton className="font-normal! align-bottom!"
                               href={`https://github.com/${project.source_repo}`}>{project.source_repo}</LinkTextButton>
             </Property>
             <Property icon={GitBranchIcon}>{project.source_branch}</Property>
@@ -156,12 +156,12 @@ async function ProfileProjects({projects}: { projects: Project[] }) {
       {projects.length === 0
         ?
         <div
-          className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-sm my-4 gap-4">
+          className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-xs my-4 gap-4">
           <span className="text-foreground font-medium">{t('empty.primary')}</span>
           <span className="text-muted-foreground">
             {t.rich('empty.secondary', {
               guide: (chunks) => (
-                <LinkTextButton className="!text-foreground !text-base !font-normal underline" href="/about/devs">
+                <LinkTextButton className="text-foreground! text-base! font-normal! underline" href="/about/devs">
                   {chunks}
                 </LinkTextButton>
               )

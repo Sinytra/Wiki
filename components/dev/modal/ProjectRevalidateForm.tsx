@@ -60,7 +60,7 @@ export default function ProjectRevalidateForm({action}: Properties) {
           <DialogTitle>
             {t('title')}
           </DialogTitle>
-          <DialogDescription asChild className="!mt-4 text-left">
+          <DialogDescription asChild className="mt-4! text-left">
             <div>
               {t.rich('primary', {
                 b: (chunks) => <span className="text-foreground font-medium">{chunks}</span>
@@ -71,11 +71,11 @@ export default function ProjectRevalidateForm({action}: Properties) {
               </p>
 
               <p className="flex flex-row items-start mt-4">
-                <LightbulbIcon className="inline-block flex-shrink-0 mt-0.5 mr-2 h-4 w-4"/>
+                <LightbulbIcon className="inline-block shrink-0 mt-0.5 mr-2 h-4 w-4"/>
                 <span>
                   {t.rich('tertiary', {
                     link: (chunks) => (
-                      <LinkTextButton target="_blank" href="/about" className="!font-normal !text-foreground">
+                      <LinkTextButton target="_blank" href="/about" className="font-normal! text-foreground!">
                         {chunks}
                       </LinkTextButton>
                     )
@@ -84,14 +84,14 @@ export default function ProjectRevalidateForm({action}: Properties) {
               </p>
 
               <p className="flex flex-row items-start mt-4 text-muted-foreground opacity-70">
-                <InfoIcon className="inline-block flex-shrink-0 mt-0.5 mr-2 h-4 w-4"/>
+                <InfoIcon className="inline-block shrink-0 mt-0.5 mr-2 h-4 w-4"/>
                 {t('note')}
               </p>
             </div>
           </DialogDescription>
         </DialogHeader>
 
-        <form tabIndex={0} action={formAction} className="focus:outline-none space-y-6">
+        <form tabIndex={0} action={formAction} className="focus:outline-hidden space-y-6">
         <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="secondary">

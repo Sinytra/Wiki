@@ -16,7 +16,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
   return (
     <Link href={result.url}
           className="z-50 flex flex-row gap-2 bg-muted text-foreground px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm hover:bg-neutral-800 cursor-pointer">
-      <div className="rounded-sm p-1 flex-shrink-0">
+      <div className="rounded-xs p-1 shrink-0">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} loading/>
       </div>
       <div
@@ -183,7 +183,7 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
         <input type="text" value={searchQuery} ref={inputRef}
                className="px-8 text-ellipsis cursor-pointer focus:shadow-md focus:cursor-text border border-neutral-700
                           focus:outline focus:outline-2 focus:outline-muted-foreground bg-muted text-sm text-center
-                          placeholder:text-neutral-500 p-1 rounded-sm w-full"
+                          placeholder:text-neutral-500 p-1 rounded-xs w-full"
                onChange={(e) => handleSearch(e.target.value)}
                placeholder={t('placeholder')}
                onFocus={onFocus}
@@ -193,7 +193,7 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
       </div>
       {focused && searchQuery && (loading || (!loading && results)) &&
           <div onMouseDown={e => e.preventDefault()}
-              className="absolute top-11 flex flex-col bg-muted w-full divide-y border border-neutral-700 rounded-sm shadow-lg">
+              className="absolute top-11 flex flex-col bg-muted w-full divide-y border border-neutral-700 rounded-xs shadow-lg">
             {loading && <LoadingSearchState/>}
 
             {!loading && results && results.hits.map(r => <SearchResult key={r.url} result={r}/>)}

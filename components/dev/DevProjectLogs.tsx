@@ -208,7 +208,7 @@ export default function DevProjectLogs({id, status, hashedToken, callback}: {
               </Suspense>
               :
               <NoLogs>
-                <Button size="sm" className="!h-8" variant="outline" onClick={onClick}>
+                <Button size="sm" className="h-8!" variant="outline" onClick={onClick}>
                   {t('show')}
                 </Button>
               </NoLogs>

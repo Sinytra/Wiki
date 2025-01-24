@@ -27,7 +27,7 @@ function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { ti
     <ul>
       <li>
         <LinkComponent
-          className="hover:text-secondary-foreground transition-colors rounded-md py-0.5 text-sm text-muted-foreground outline-none"
+          className="hover:text-secondary-foreground transition-colors rounded-md py-0.5 text-sm text-muted-foreground outline-hidden"
           href={href}>
           {title}
         </LinkComponent>

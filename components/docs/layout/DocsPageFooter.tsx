@@ -146,7 +146,7 @@ export default function DocsPageFooter(props: FooterProps) {
   return (
     <footer className="border-t border-border px-1 sm:px-4 py-3 flex flex-col-reverse sm:flex-row gap-y-3 sm:gap-y-0 sm:items-center
                       justify-between text-sm text-muted-foreground relative
-                      flex-shrink-0 bg-background sm:h-16">
+                      shrink-0 bg-background sm:h-16">
       <DesktopDocsFooter {...props} />
       <MobileDocsFooter {...props} />
     </footer>

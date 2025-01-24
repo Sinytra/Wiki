@@ -50,7 +50,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
           {projectTypes(project.type)}
         </div>
       </div>
-      <p className="text-muted-foreground mb-4 flex-grow">
+      <p className="text-muted-foreground mb-4 grow">
         {project.summary.length > 100 ? `${project.summary.substring(0, 100)}...` : project.summary}
       </p>
       <div className="flex justify-between items-center">
@@ -108,7 +108,7 @@ function HomePageContent() {
           {t.rich('title', {
             highlight: (chunks) => (
               <h2
-                className="text-center text-5xl font-bold bg-gradient-to-r from-blue-500 via-cyan-300 to-blue-500 text-transparent bg-clip-text animate-gradient mb-4">
+                className="text-center text-5xl font-bold bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 text-transparent bg-clip-text animate-gradient mb-4">
                 {chunks}
               </h2>
             )
@@ -119,7 +119,7 @@ function HomePageContent() {
         </p>
         <div className="text-center mt-8 md:hidden">
           <LocaleNavLink href="/browse"
-            className="w-fit block mx-auto bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 text-white animate-gradient rounded px-12 py-2">
+            className="w-fit block mx-auto bg-linear-to-r from-blue-500 via-blue-600 to-blue-500 text-white animate-gradient rounded px-12 py-2">
             {t('browse')}
           </LocaleNavLink>
         </div>
@@ -274,7 +274,7 @@ function HomePageContent() {
                 >
                   <h4 className="text-lg font-semibold mb-2">{post.title}</h4>
                   <p className="text-sm text-muted-foreground mb-2">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
-                  <p className="text-muted-foreground flex-grow">{post.excerpt}</p>
+                  <p className="text-muted-foreground grow">{post.excerpt}</p>
                   <Link
                     href={`/blog/${post._id.replace(".mdx", "")}`}
                     className="text-primary hover:text-primary/80 mt-2 inline-flex items-center"
@@ -304,7 +304,7 @@ export default async function Home({params}: { params: { locale: string } }) {
       </div>
     }
 
-    <div className={cn(showBanner && '!pt-0', 'page-wrapper page-wrapper-ext flex flex-1 min-h-[100vh] sm:mx-2')}>
+    <div className={cn(showBanner && 'pt-0!', 'page-wrapper page-wrapper-ext flex flex-1 min-h-[100vh] sm:mx-2')}>
       <HomePageContent/>
     </div>
   </>

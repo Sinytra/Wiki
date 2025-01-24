@@ -159,7 +159,7 @@ export default function ProjectRegisterForm(
               {trigger}
             </DialogTrigger>
         }
-        <DialogContent className="!outline-none">
+        <DialogContent className="outline-hidden!">
           <DialogHeader>
             <DialogTitle>
               {v('title')}
@@ -170,7 +170,7 @@ export default function ProjectRegisterForm(
           </DialogHeader>
 
           <Form {...form}>
-            <div className="focus:outline-none relative" tabIndex={0}>
+            <div className="focus:outline-hidden relative" tabIndex={0}>
               {form.formState.isSubmitting &&
                   <div
                       className="inline-flex gap-2 items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -179,7 +179,7 @@ export default function ProjectRegisterForm(
                   </div>
               }
               <form ref={formRef} action={action}
-                    className={cn('focus:outline-none space-y-6', form.formState.isSubmitting && 'invisible')}>
+                    className={cn('focus:outline-hidden space-y-6', form.formState.isSubmitting && 'invisible')}>
                 <div className="flex flex-row items-center gap-2 w-full">
                   <FormField
                       control={form.control}
@@ -230,7 +230,7 @@ export default function ProjectRegisterForm(
                     <p className="text-destructive text-sm">
                       {t.rich('errors.install_app', {
                         link: (chunks) => (
-                            <LinkTextButton className="!text-destructive !font-medium underline"
+                            <LinkTextButton className="text-destructive! font-medium! underline"
                                             href={form.formState.errors.root!.missing_installation.message!}>
                               {chunks}
                             </LinkTextButton>
@@ -294,7 +294,7 @@ export default function ProjectRegisterForm(
                                     </FormLabel>
                                   </div>
                                   <FormControl>
-                                    <Switch className="!mt-0" checked={field.value} onCheckedChange={field.onChange}/>
+                                    <Switch className="mt-0!" checked={field.value} onCheckedChange={field.onChange}/>
                                   </FormControl>
                                 </FormItem>
                             )}

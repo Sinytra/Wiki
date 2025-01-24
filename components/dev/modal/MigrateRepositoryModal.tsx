@@ -68,7 +68,7 @@ export function MigrateRepositoryModal({isOpen, setOpen, formAction}: Properties
         </DialogHeader>
 
         <Form {...form}>
-          <form tabIndex={0} action={action} className="focus:outline-none space-y-6">
+          <form tabIndex={0} action={action} className="focus:outline-hidden space-y-6">
             <div className="mt-2 flex flex-row items-center gap-2 w-full">
               <FormField
                 control={form.control}
@@ -117,7 +117,7 @@ export function MigrateRepositoryModal({isOpen, setOpen, formAction}: Properties
                 <p className="text-destructive text-sm">
                   {t.rich('migrate_error.install_app', {
                     link: (chunks) => (
-                      <LinkTextButton className="!text-destructive !font-medium underline"
+                      <LinkTextButton className="text-destructive! font-medium! underline"
                                       href={form.formState.errors.root!.missing_installation.message!}>
                         {chunks}
                       </LinkTextButton>

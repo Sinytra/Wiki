@@ -1,8 +1,140 @@
-@import "./ghmd.css";
+@import './ghmd.css' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+  --color-destructive-border-dim: var(--destructive-border-dim);
+
+  --color-warning: var(--warning);
+  --color-warning-border: var(--warning-border);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: var(--card);
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-collapsible-down: collapsible-down 0.3s
+    cubic-bezier(0.57, 0, 0.43, 0.98);
+  --animate-collapsible-up: collapsible-up 0.3s
+    cubic-bezier(0.57, 0, 0.43, 0.98);
+  --animate-gradient: gradient 12s ease infinite;
+
+  @keyframes gradient {
+    0% {
+      background-size: 200% 100%;
+    }
+    50% {
+      background-size: 100% 100%;
+    }
+    100% {
+      background-size: 200% 100%;
+    }
+  }
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
 
 @layer base {
     :root {
@@ -40,18 +172,20 @@
     }
 }
 
-.accordion-body {
+@layer utilities {
+  .accordion-body {
     display: grid;
     grid-template-rows: 0fr;
     transition: 200ms grid-template-rows ease;
-}
+  }
 
-.accordion.open > .accordion-body {
+  .accordion.open > .accordion-body {
     grid-template-rows: 1fr;
-}
+  }
 
-.accordion-body > div {
+  .accordion-body > div {
     overflow: hidden;
+  }
 }
 
 @layer base {
@@ -124,84 +258,102 @@
     }
 }
 
-html {
+@layer utilities {
+  html {
     overflow: auto;
     scrollbar-gutter: stable;
     scroll-padding-top: 58px;
-}
+  }
 
-/*Prevent added margin when opening select*/
-html body[data-scroll-locked] {
+  /*Prevent added margin when opening select*/
+  html body[data-scroll-locked] {
     margin-right: 0 !important;
-}
+  }
 
-.page-wrapper-base {
+  .page-wrapper-base {
     padding-top: calc(var(--vp-nav-height));
-}
+  }
 
-.page-wrapper {
+  .page-wrapper {
     padding-top: calc(var(--vp-nav-height));
-}
+  }
 
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .page-wrapper {
-        padding-top: calc(var(--vp-nav-height) + 1rem);
+      padding-top: calc(var(--vp-nav-height) + 1rem);
     }
 
     html {
-        scroll-padding-top: 72px;
+      scroll-padding-top: 72px;
     }
-}
+  }
 
-.prose :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
     display: inline;
     margin: 0;
-}
+  }
 
-.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
     text-decoration: none;
-}
+  }
 
-.prose :where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose :where(hr):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
     margin: 20px 0;
-}
+  }
 
-.prose :where(:not(pre)>code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose
+    :where(:not(pre) > code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
     border-radius: 4px;
     padding: 3px 6px;
     background-color: var(--vp-code-bg);
     font-size: var(--vp-code-font-size);
     color: var(--vp-code-color);
     font-family: var(--vp-font-family-mono), ui-monospace;
-}
+  }
 
-.prose :where(a:has(code)):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose
+    :where(a:has(code)):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
     text-decoration-color: var(--vp-code-color) !important;
-}
+  }
 
-.prose :where(:not(strong)>code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose
+    :where(:not(strong) > code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
     font-weight: normal;
-}
+  }
 
-.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
-    content: "" !important;
-}
+  .prose
+    :where(code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    )::before {
+    content: '' !important;
+  }
 
-.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
-    content: "" !important;
-}
+  .prose
+    :where(code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    )::after {
+    content: '' !important;
+  }
 
-.prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-    background-color: #21252B;
-    color: #A9B2C3;
-}
+  .prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    background-color: #21252b;
+    color: #a9b2c3;
+  }
 
-.prose :where(details):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose
+    :where(details):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
     cursor: pointer;
-}
+  }
 
-.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
     text-decoration: underline;
+  }
 }
 
 @layer base {
@@ -218,7 +370,7 @@ html body[data-scroll-locked] {
     }
 
     .prose :where(h2,h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-        @apply !text-foreground !font-medium;
+        @apply text-foreground! font-medium!;
     }
 
     .slim-scrollbar {
@@ -238,7 +390,7 @@ html body[data-scroll-locked] {
     }
 
     kbd {
-        @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-sm;
+        @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-xs;
     }
     
     .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
@@ -247,12 +399,6 @@ html body[data-scroll-locked] {
 
     .no-scroll {
         @apply fixed lg:static;
-    }
-}
-
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
     }
 }
 

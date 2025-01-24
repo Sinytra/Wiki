@@ -39,7 +39,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn(styles.container, 'h-[56px] !pointer-events-auto sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-1.5 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
+        className={cn(styles.container, 'h-[56px] pointer-events-auto! sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-1.5 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-3 sm:gap-4 mr-auto">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
             <span className="inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">

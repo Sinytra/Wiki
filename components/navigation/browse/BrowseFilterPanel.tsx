@@ -31,7 +31,7 @@ function FilterSearch({filter, setFilter, active, onReset}: {
         <div className="w-full relative text-muted-foreground">
           <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
           <Input
-              className="pl-9 border-neutral-700 focus-visible:ring-0 focus-visible:outline-none"
+              className="pl-9 border-neutral-700 focus-visible:ring-0 focus-visible:outline-hidden"
               type="text"
               placeholder={t("sidebar.search_filters")}
               value={filter || ''}

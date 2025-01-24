@@ -19,10 +19,10 @@ function BlogPost({id, name, desc, date, latest}: {
   const t = useTranslations('Badges');
 
   return (
-    <div className={cn('border px-3 py-2 rounded-sm', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600')}>
+    <div className={cn('border px-3 py-2 rounded-xs', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600')}>
       <div className="flex flex-row items-center justify-between w-full">
         <div className="flex flex-row items-center w-fit gap-2">
-          <Link href={`/blog/${id.replace(".mdx", "")}`} className="text-lg !no-underline hover:!underline">
+          <Link href={`/blog/${id.replace(".mdx", "")}`} className="text-lg no-underline! hover:underline!">
             {name}
           </Link>
 

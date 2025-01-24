@@ -16,8 +16,8 @@ function SearchResult({result}: { result: WikiSearchResult }) {
 
   return (
     <Link href={result.url}
-          className="z-50 flex flex-row gap-2 bg-muted text-foreground px-1 py-1.5 cursor-pointer border border-neutral-700 rounded-sm">
-      <div className="rounded-sm p-1 flex-shrink-0">
+          className="z-50 flex flex-row gap-2 bg-muted text-foreground px-1 py-1.5 cursor-pointer border border-neutral-700 rounded-xs">
+      <div className="rounded-xs p-1 shrink-0">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} loading/>
       </div>
       <div
@@ -47,7 +47,7 @@ function LoadingSearchState() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted px-1 py-1.5 border border-neutral-700 rounded-sm">
+    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted px-1 py-1.5 border border-neutral-700 rounded-xs">
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       {t('loading')}
     </div>
@@ -58,7 +58,7 @@ function NoSearchResults() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted px-1 py-1.5 border border-neutral-700 rounded-sm">
+    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted px-1 py-1.5 border border-neutral-700 rounded-xs">
       {t('no_results')}
     </div>
   )
@@ -121,7 +121,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
             <input type="text" value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
                    className="px-8 text-ellipsis cursor-pointer focus:cursor-text border border-neutral-700
                           focus:outline focus:outline-1 focus:outline-muted-foreground bg-muted text-sm text-center
-                          placeholder:text-neutral-500 p-2 rounded-sm w-full"
+                          placeholder:text-neutral-500 p-2 rounded-xs w-full"
                    placeholder={t('placeholder')}
             />
           </div>

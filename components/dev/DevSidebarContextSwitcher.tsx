@@ -34,7 +34,7 @@ export function DevSidebarContextSwitcher({teams}: Props) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton size="lg" className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
               <div
-                className="flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600 text-sidebar-primary-foreground">
+                className="flex aspect-square size-8 items-center justify-center rounded-xs bg-gray-600 text-sidebar-primary-foreground">
                 <activeTeam.logo className="size-4"/>
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -46,7 +46,7 @@ export function DevSidebarContextSwitcher({teams}: Props) {
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-sm"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-xs"
             align="start"
             side={isMobile ? "bottom" : "right"}
             sideOffset={4}
@@ -60,7 +60,7 @@ export function DevSidebarContextSwitcher({teams}: Props) {
                 onClick={() => setactiveTeam(team)}
                 className="gap-2 p-2"
               >
-                <div className="flex size-6 items-center justify-center rounded-sm border">
+                <div className="flex size-6 items-center justify-center rounded-xs border">
                   <team.logo className="size-4 shrink-0"/>
                 </div>
                 {team.name}

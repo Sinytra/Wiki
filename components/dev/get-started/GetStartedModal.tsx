@@ -35,7 +35,7 @@ function DocumentationOption({title, desc, button, buttonIcon: ButtonIcon, icon:
         {desc}
       </span>
 
-      <PrimaryButton variant="muted" size="sm" className="w-36 !text-sm mt-2" onClick={onClick}
+      <PrimaryButton variant="muted" size="sm" className="w-36 text-sm! mt-2" onClick={onClick}
                      asChild={href !== undefined}>
         {href !== undefined
           ?

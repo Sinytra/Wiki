@@ -27,7 +27,7 @@ function DeleteButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} variant="destructive" className="!text-destructive-foreground !bg-destructive">
+    <Button type="submit" disabled={pending} variant="destructive" className="text-destructive-foreground! bg-destructive!">
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
       {text}
     </Button>
@@ -66,7 +66,7 @@ export default function ProjectDeleteForm({action}: Properties) {
           </DialogDescription>
         </DialogHeader>
 
-        <form tabIndex={0} action={formAction} className="focus:outline-none space-y-6">
+        <form tabIndex={0} action={formAction} className="focus:outline-hidden space-y-6">
           <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="secondary">

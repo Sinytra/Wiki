@@ -71,7 +71,7 @@ export default function DocsFileTreeFolder({name, path, icon, level, children}: 
         className="[&[data-state=open]>svg:last-child]:rotate-180 flex items-center px-3 py-2 text-sm
                    text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-md"
       >
-        {Icon && <Icon className="flex-shrink-0 w-4 h-4 mr-2"/>}
+        {Icon && <Icon className="shrink-0 w-4 h-4 mr-2"/>}
         {name}
         <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200"/>
       </button>

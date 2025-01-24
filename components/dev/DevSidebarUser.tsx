@@ -34,7 +34,7 @@ function LogoutModal({open}: { open: boolean; }) {
           </DialogTitle>
         </VisuallyHidden>
       </DialogHeader>
-      <DialogContent className="flex flex-col gap-6 justify-center items-center !outline-none [&>button]:hidden" aria-describedby={undefined}>
+      <DialogContent className="flex flex-col gap-6 justify-center items-center outline-hidden! [&>button]:hidden" aria-describedby={undefined}>
         <span>
           <LogOutIcon className="mr-2 inline-block w-5 h-5" />
           {t('desc')}
@@ -72,9 +72,9 @@ export function DevSidebarUser({profile, logoutAction}: { profile: GitHubUserPro
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton size="lg"
                                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Avatar className="h-8 w-8 rounded-sm">
+                <Avatar className="h-8 w-8 rounded-xs">
                   <AvatarImage src={profile.avatar_url} alt={name}/>
-                  <AvatarFallback className="rounded-sm">
+                  <AvatarFallback className="rounded-xs">
                     {t('unknown_avatar')}
                   </AvatarFallback>
                 </Avatar>
@@ -87,16 +87,16 @@ export function DevSidebarUser({profile, logoutAction}: { profile: GitHubUserPro
             </DropdownMenuTrigger>
 
             <DropdownMenuContent
-              className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-sm"
+              className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-xs"
               side={isMobile ? "bottom" : "right"}
               align="end"
               sideOffset={4}
             >
               <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                  <Avatar className="h-8 w-8 rounded-sm">
+                  <Avatar className="h-8 w-8 rounded-xs">
                     <AvatarImage src={profile.avatar_url} alt={name}/>
-                    <AvatarFallback className="rounded-sm">
+                    <AvatarFallback className="rounded-xs">
                       {t('unknown_avatar')}
                     </AvatarFallback>
                   </Avatar>
