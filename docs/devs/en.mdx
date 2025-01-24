@@ -57,9 +57,8 @@ docs
     ```
     docs
     ├── .assets
-    │   └── item
-    │       └── examplemod
-    │           └── generator.png
+    │   └── examplemod
+    │       └── generator.png
     ├── .translated
     │   └── de_de
     │       └── blocks
@@ -97,12 +96,12 @@ part of crafting recipes, sidebar information or custom components.
 Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
 in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
 
-Rendered project assets including **both items and blocks** should be placed under `.assets/item/(modid)` inside the
+Rendered project assets including **both items and blocks** should be placed under `.assets/(modid)` inside the
 documentation directory, where `modid` is the namespace of each texture you wish to provide.
 
 Each asset **must be in `.png` format**. The name of the file is up to your choice.
 
-For example, `examplemod:generator` would point to `(root)/.assets/item/examplemod/generator.png`.
+For example, `examplemod:generator` would point to `(root)/.assets/examplemod/generator.png`.
 
 ### Translation
 
