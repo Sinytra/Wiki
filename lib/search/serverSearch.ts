@@ -15,9 +15,10 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
           query,
           type: "bool_prefix",
           fields: [
-            "all_docs_content",
-            "all_docs_content._2gram",
-            "all_docs_content._3gram"
+            "docs_source_mod_only^2",
+            "all_docs_content^1",
+            "all_docs_content._2gram^1",
+            "all_docs_content._3gram^1"
           ]
         }
       },
@@ -33,7 +34,8 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
         Authorization: `ApiKey ${process.env.SEARCH_API_KEY}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      cache: 'no-store'
     });
 
     if (results.ok) {
