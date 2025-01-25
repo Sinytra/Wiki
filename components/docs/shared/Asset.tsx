@@ -11,5 +11,5 @@ export default async function Asset({ location, ...props }: Props) {
   const version = (params.version || null) as any;
   const resultAsset = await service.getAsset(slug, location, version);
 
-  return resultAsset ? <ItemDisplay asset={resultAsset} {...props} /> : <span className="bg-accent p-0.5">{location}</span>
+  return resultAsset ? <ItemDisplay asset={resultAsset} {...props} /> : <span className="bg-secondary p-0.5">{location}</span>
 }

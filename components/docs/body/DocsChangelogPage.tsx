@@ -22,12 +22,12 @@ export default function DocsChangelogPage({changelog}: ChangelogProps) {
       {entries.map((entry, index) => (
         <div key={index} className="border-b border-border pb-4">
           <h3 className="text-lg font-semibold">{entry.version}
-            &nbsp;{entry.date && <span className="text-sm text-muted-foreground">({entry.date})</span>}
+            &nbsp;{entry.date && <span className="text-sm text-secondary">({entry.date})</span>}
           </h3>
           <ul className="list-disc list-inside mt-2">
             {(Array.isArray(entry.changes) ? entry.changes : [entry.changes])
               .map((change, changeIndex) => (
-                <li key={changeIndex} className="text-muted-foreground">
+                <li key={changeIndex} className="text-secondary">
                   {change}
                 </li>
               ))}

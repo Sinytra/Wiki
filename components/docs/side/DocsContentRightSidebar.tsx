@@ -30,19 +30,19 @@ export default async function DocsContentRightSidebar({ project, metadata, versi
         'border-l data-[open=false]:border-0 lg:data-[open=false]:border-l'
       )}
     >
-      <div className="mb-6 border border-accent m-2 rounded-xs">
+      <div className="mb-6 border border-tertiary m-2 rounded-xs">
         <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto disable-blur"
                            alt={!iconUrl ? undefined : iconUrl.id}/>
       </div>
       {metadata.title &&
-        <h1 className="text-center text-lg text-foregrounds font-semibold">
+        <h1 className="text-center text-lg text-primarys font-semibold">
           {metadata.title}
         </h1>
       }
 
       <EntryDetails className="pb-2 text-center">
         {metadata.id &&
-          <code className="text-center text-muted-foreground break-all">{metadata.id}</code>
+          <code className="text-center text-secondary break-all">{metadata.id}</code>
         }
       </EntryDetails>
 

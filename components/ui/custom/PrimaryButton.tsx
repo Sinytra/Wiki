@@ -9,8 +9,8 @@ const primaryButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-foreground!",
-        muted: "border-muted-foreground!"
+        default: "border-primary-alt",
+        muted: "border-secondary-alt!"
       }
     },
     defaultVariants: {

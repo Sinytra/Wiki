@@ -86,8 +86,8 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "block py-1 text-muted-foreground hover:text-foreground transition-colors",
-                    activeId === heading.id && "text-foreground",
+                    "block py-1 text-secondary hover:text-primary transition-colors",
+                    activeId === heading.id && "text-primary",
                     index === 0 ? 'pt-0!' : ''
                   )}
                   onClick={(e) => {

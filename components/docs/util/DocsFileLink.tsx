@@ -11,8 +11,8 @@ export default function DocsFileLink({href, children}: { href: string, children:
     <Link href={href}
           className={
             cn(
-              'flex items-center px-3 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-md',
-              active && 'text-accent-foreground bg-accent'
+              'flex items-center px-3 py-2 text-sm text-secondary hover:bg-secondary hover:text-primary-alt rounded-md',
+              active && 'text-primary-alt bg-secondary'
             )
           }>
       {children}

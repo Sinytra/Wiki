@@ -63,7 +63,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
             {t('groups.projects')}
           </SidebarGroupLabel>
           <SidebarMenu>
-            <SidebarMenuItem key="Projects">
+            <SidebarMenuItem>
               <SidebarMenuButton isActive asChild>
                 <a href="#">
                   <PencilRulerIcon/>

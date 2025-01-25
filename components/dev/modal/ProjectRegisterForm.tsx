@@ -30,7 +30,7 @@ import {useRouter} from "@/lib/locales/routing";
 import {useRouter as useProgressRouter} from "next-nprogress-bar";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import clientUtil from "@/lib/util/clientUtil";
-import {useParams, usePathname} from "next/navigation";
+import {useParams} from "next/navigation";
 
 export interface ProjectRegisterFormProps {
   defaultValues: any;
@@ -73,7 +73,6 @@ export default function ProjectRegisterForm(
   const params = useParams();
   const progressRouter = useProgressRouter();
   const router = useRouter();
-  const path = usePathname();
 
   // @ts-ignore
   const v = useTranslations(translations || 'ProjectRegisterForm');
@@ -287,14 +286,14 @@ export default function ProjectRegisterForm(
                             control={form.control}
                             name="is_community"
                             render={({field}) => (
-                                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3">
-                                  <div>
+                                <FormItem className="flex flex-row items-center justify-between rounded-lg border border-tertiary p-3">
+                                  <div className="mb-0!">
                                     <FormLabel>
                                       {t('is_community.title')}
                                     </FormLabel>
                                   </div>
                                   <FormControl>
-                                    <Switch className="mt-0!" checked={field.value} onCheckedChange={field.onChange}/>
+                                    <Switch className="mt-0! mb-0!" checked={field.value} onCheckedChange={field.onChange}/>
                                   </FormControl>
                                 </FormItem>
                             )}
@@ -306,7 +305,7 @@ export default function ProjectRegisterForm(
                     <div className="flex flex-col gap-2 sm:flex-row items-center justify-between w-full">
                         <p className="text-destructive text-sm">{form.formState.errors.root.custom.message}</p>
                       {canVerifyModrinth &&
-                          <Button className="my-1 text-[var(--modrinth-brand)] border-[var(--modrinth-brand)]"
+                          <Button className="my-1 text-brand-modrinth border-brand-modrinth"
                                   variant="outline" type="button" onClick={verifyUsingModrinth}
                           >
                               <ModrinthIcon className="mr-2 w-4 h-4"/>
@@ -330,7 +329,7 @@ export default function ProjectRegisterForm(
                   {form.getValues().mr_code &&
                     <span className="mr-auto flex flex-row gap-2 items-center">
                         <CheckIcon className="w-4 h-4 text-green-500" />
-                        <span className="text-sm text-muted-foreground">
+                        <span className="text-sm text-secondary">
                             {t('mr_verified')}
                         </span>
                     </span>

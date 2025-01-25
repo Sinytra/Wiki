@@ -30,7 +30,7 @@ export default function ReportPage({params, searchParams}: { params: { locale: s
 
         <hr className="my-2" />
 
-        <div className="p-4 bg-muted rounded-md">
+        <div className="p-4 bg-primary-alt rounded-md">
           {/*@ts-ignore*/}
           <ReportDocsPageForm projectId={slug} path={path} t={messages['Report']['form']}
                               submitT={messages['SubmitButton']}

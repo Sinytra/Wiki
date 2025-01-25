@@ -2,7 +2,7 @@ import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import Header from "@/components/navigation/header";
 import {NextIntlClientProvider} from "next-intl";
-import Footer from "@/components/navigation/footer";
+import Footer from "@/components/navigation/Footer";
 
 export const dynamic = 'force-static';
 

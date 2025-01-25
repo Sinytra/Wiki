@@ -16,7 +16,7 @@ export default function AboutLayout({params, children}: Readonly<{
 
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center page-wrapper-ext">
-      <aside className="w-full md:w-64 shrink-0 bg-muted rounded-md px-2 mb-2 md:mb-0">
+      <aside className="w-full md:w-64 shrink-0 bg-primary-alt rounded-md px-2 mb-2 md:mb-0">
         <MetaDocsNavigation messages={messages['MetaDocsNavigation']} docsOnly={localPreview.isEnabled()}/>
       </aside>
       <div className="prose prose-h2:border-b prose-h2:border-b-neutral-700 prose-h2:pb-1 dark:prose-invert w-full max-w-[67rem] px-2 md:px-0">

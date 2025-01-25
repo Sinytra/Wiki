@@ -29,7 +29,7 @@ function UpdatedAt({updatedAt}: { updatedAt?: Date }) {
   const t = useTranslations('PageEditControls');
 
   return updatedAt &&
-    <span className="flex items-center text-muted-foreground text-sm whitespace-pre">
+    <span className="flex items-center text-secondary text-sm whitespace-pre">
         <Clock className="w-4 h-4 mr-2"/>
       {t.rich('last_updated', {date: () => <LocalDateTime dateTime={updatedAt}/>})}
     </span>;
@@ -44,7 +44,7 @@ function ReportPage({local, slug, path}: { local?: boolean; slug?: string; path?
       <Tooltip>
         <TooltipTrigger asChild>
           <Button asChild variant="outline" size="sm"
-                  className="sm:p-0 text-muted-foreground hover:bg-transparent sm:h-fit font-normal sm:border-none">
+                  className="sm:p-0 text-secondary hover:bg-transparent sm:h-fit font-normal sm:border-none">
             <Link href={`/report?slug=${slug}&path=${path.join('/')}`}>
               <FlagIcon className="w-4 h-4 mr-2 sm:mr-0"/>
               <span className="sm:hidden">
@@ -66,7 +66,7 @@ function EditPage({editUrl} : { editUrl?: string }) {
 
   return editUrl && (
     <Link href={editUrl}
-          className="flex items-center px-3 py-2 sm:p-0 rounded-md border border-input sm:border-none hover:text-accent-foreground">
+          className="flex items-center px-3 py-2 sm:p-0 rounded-md border border-quaternary sm:border-none hover:text-primary-alt">
       <Edit className="w-4 h-4 mr-2"/>
       {t('edit_gh')}
     </Link>
@@ -145,8 +145,8 @@ function MobileDocsFooter({local, slug, path, updatedAt, editUrl, locale, locale
 export default function DocsPageFooter(props: FooterProps) {
   return (
     <footer className="border-t border-border px-1 sm:px-4 py-3 flex flex-col-reverse sm:flex-row gap-y-3 sm:gap-y-0 sm:items-center
-                      justify-between text-sm text-muted-foreground relative
-                      shrink-0 bg-background sm:h-16">
+                      justify-between text-sm text-secondary relative
+                      shrink-0 bg-primary sm:h-16">
       <DesktopDocsFooter {...props} />
       <MobileDocsFooter {...props} />
     </footer>

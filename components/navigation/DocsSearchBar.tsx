@@ -15,7 +15,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
 
   return (
     <Link href={result.url}
-          className="z-50 flex flex-row gap-2 bg-muted text-foreground px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm hover:bg-neutral-800 cursor-pointer">
+          className="z-50 flex flex-row gap-2 bg-primary-alt text-primary px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm hover:bg-tertiary cursor-pointer">
       <div className="rounded-xs p-1 shrink-0">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} loading/>
       </div>
@@ -24,11 +24,11 @@ function SearchResult({result}: { result: WikiSearchResult }) {
         <span>{result.title}</span>
         {!result.path && result.mod_desc
           ?
-          <span className="text-muted-foreground">{result.mod_desc}</span>
+          <span className="text-secondary">{result.mod_desc}</span>
           :
           <div className="flex flex-row gap-2">
-            <span className="text-muted-foreground">{result.mod}</span>
-            {result.path && <span className="font-light text-muted-foreground">- {result.path}</span>}
+            <span className="text-secondary">{result.mod}</span>
+            {result.path && <span className="font-light text-secondary">- {result.path}</span>}
           </div>
         }
       </div>
@@ -40,7 +40,7 @@ function NoSearchResults() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted font-light px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm">
+    <div className="text-secondary h-16 z-50 flex flex-row justify-center items-center gap-2 bg-primary-alt font-light px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm">
       {t('no_results')}
     </div>
   )
@@ -50,7 +50,7 @@ function LoadingSearchState() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted font-light px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm">
+    <div className="text-secondary h-16 z-50 flex flex-row justify-center items-center gap-2 bg-primary-alt font-light px-1 py-1.5 first:rounded-t-sm last:rounded-b-sm">
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       {t('loading')}
     </div>
@@ -61,7 +61,7 @@ function SearchOverlayFooter({visible, total}: { visible: number; total: number 
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-muted-foreground w-full bg-muted flex flex-row justify-between items-center p-2 rounded-b-sm">
+    <div className="text-secondary w-full bg-primary-alt flex flex-row justify-between items-center p-2 rounded-b-sm">
       <div className="text-sm font-light">
         {t.rich('results', {
           highlight: (chunks) => (
@@ -181,9 +181,9 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
       <div className="w-full relative">
         <SearchIcon className="w-4 h-4 absolute inset top-1/2 left-2 -translate-y-1/2 text-neutral-500"/>
         <input type="text" value={searchQuery} ref={inputRef}
-               className="px-8 text-ellipsis cursor-pointer focus:shadow-md focus:cursor-text border border-neutral-700
-                          focus:outline focus:outline-2 focus:outline-muted-foreground bg-muted text-sm text-center
-                          placeholder:text-neutral-500 p-1 rounded-xs w-full"
+               className="px-8 text-ellipsis cursor-pointer focus:shadow-md focus:cursor-text border border-secondary
+                          focus:outline-none focus:border-secondary-alt bg-primary-alt text-sm text-center
+                          placeholder:text-neutral-500 p-1 rounded-sm w-full"
                onChange={(e) => handleSearch(e.target.value)}
                placeholder={t('placeholder')}
                onFocus={onFocus}
@@ -193,7 +193,7 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
       </div>
       {focused && searchQuery && (loading || (!loading && results)) &&
           <div onMouseDown={e => e.preventDefault()}
-              className="absolute top-11 flex flex-col bg-muted w-full divide-y border border-neutral-700 rounded-xs shadow-lg">
+              className="absolute top-11 flex flex-col bg-primary-alt w-full divide-y divide-tertiary border border-secondary rounded-sm shadow-lg">
             {loading && <LoadingSearchState/>}
 
             {!loading && results && results.hits.map(r => <SearchResult key={r.url} result={r}/>)}

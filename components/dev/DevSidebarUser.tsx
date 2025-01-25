@@ -71,10 +71,10 @@ export function DevSidebarUser({profile, logoutAction}: { profile: GitHubUserPro
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton size="lg"
-                                 className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Avatar className="h-8 w-8 rounded-xs">
+                                 className="data-[state=open]:bg-secondary data-[state=open]:text-primary-alt">
+                <Avatar className="h-8 w-8 rounded-sm">
                   <AvatarImage src={profile.avatar_url} alt={name}/>
-                  <AvatarFallback className="rounded-xs">
+                  <AvatarFallback className="rounded-sm">
                     {t('unknown_avatar')}
                   </AvatarFallback>
                 </Avatar>
@@ -94,9 +94,9 @@ export function DevSidebarUser({profile, logoutAction}: { profile: GitHubUserPro
             >
               <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                  <Avatar className="h-8 w-8 rounded-xs">
+                  <Avatar className="h-8 w-8 rounded-sm">
                     <AvatarImage src={profile.avatar_url} alt={name}/>
-                    <AvatarFallback className="rounded-xs">
+                    <AvatarFallback className="rounded-sm">
                       {t('unknown_avatar')}
                     </AvatarFallback>
                   </Avatar>

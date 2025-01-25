@@ -9,11 +9,11 @@ export default function NotFound() {
       {/*Image sourced from https://github.com/httpcats/http.cat, licensed under the MIT License*/}
       <Image src={NotFoundImage} alt="Not Found" className="rounded-xs" width={450}/>
 
-      <h1 className="text-foreground text-5xl my-2">
+      <h1 className="text-primary text-5xl my-2">
         404 Not Found
       </h1>
 
-      <p className="text-muted-foreground">Whoops! Could not find the requested resource.</p>
+      <p className="text-secondary">Whoops! Could not find the requested resource.</p>
 
       <Button asChild className="mt-4">
         <NavLink href="/">

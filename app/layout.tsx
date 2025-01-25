@@ -1,11 +1,10 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./styles/globals.css";
-import "./styles/colors.css";
 import Providers from "@/components/navigation/nav-progress-bar";
 import {Toaster} from "@/components/ui/sonner";
 import {ReactNode} from "react";
-import {getProcessURL} from "@/lib/utils";
+import {cn, getProcessURL} from "@/lib/utils";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -25,12 +24,16 @@ export const metadata: Metadata = {
 
 export default function LocaleLayout({children}: Readonly<{ children: ReactNode; }>) {
   return (
-    <html lang="en">
-    <body className={`${inter.className} dark flex flex-col min-h-screen`}>
+    <html lang="en" data-theme="dark">
+    <body className={cn(inter.className, 'flex flex-col min-h-screen bg-primary text-primary')}>
     <Providers>
       {children}
     </Providers>
-    <Toaster/>
+    <Toaster toastOptions={{
+      style: {
+        background: 'var(--background-color-primary-alt)'
+      }
+    }}/>
     </body>
     </html>
   );

@@ -19,7 +19,7 @@ export default function ProjectSearch({placeholder}: { placeholder: string; }) {
   }, 300);
 
   return (
-      <div className="w-full sm:w-fit relative text-muted-foreground">
+      <div className="w-full sm:w-fit relative text-secondary">
         <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
         <Input
             className="sm:w-96 pl-9 border-neutral-600"

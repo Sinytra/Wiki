@@ -23,7 +23,7 @@ export default async function Preview({params}: { params: { locale: string } }) 
         {t('title')}
       </h1>
       
-      <span className="text-muted-foreground text-center mb-12">
+      <span className="text-secondary text-center mb-12">
         {t('desc')}
       </span>
       

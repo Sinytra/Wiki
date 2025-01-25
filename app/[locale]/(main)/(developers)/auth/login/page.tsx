@@ -35,7 +35,7 @@ export default async function Login({params, searchParams}: {
             <KeyRoundIcon className="mr-2 w-6 h-6" strokeWidth={1.8}/>
             {t('title')}
           </CardTitle>
-          <div className="pt-2 text-sm text-muted-foreground space-y-2">
+          <div className="pt-2 text-sm text-secondary space-y-2">
             <p>{t('desc')}</p>
             <p>{t('prompt')}</p>
           </div>

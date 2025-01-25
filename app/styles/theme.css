@@ -1,0 +1,49 @@
+@theme {
+    --background-color-primary: #1B1B1F; /*bg-background*/
+    --background-color-primary-alt: #161618; /*bg-card*/
+    --background-color-secondary: #27272AFF; /*accent*/ /*sidebar-accent*/ /*input*/
+    --background-color-tertiary: var(--color-neutral-800);
+    --background-color-inverse: #FAFAFAFF;
+    --background-color-inverse-secondary: #EBEBF599;
+    --background-color-destructive: #E0575BFF;
+
+    --text-color-primary: #FFFFF5DB; /*foreground*/
+    --text-color-primary-alt: #FAFAFAFF;
+    --text-color-secondary: #EBEBF599; /*muted-foreground*/
+    --text-color-secondary-alt: #EBEBF5BC; /*secondary-foreground*/
+    --text-color-inverse: #1B1B1F;
+    --text-color-brand-primary: #5C9DE4FF;
+    --text-color-warning: #EFA63E;
+    --text-color-destructive: #FB6C6F;
+
+    --border-color-primary: var(--color-neutral-600);
+    --border-color-secondary: #404040FF;
+    --border-color-secondary-alt: #EBEBF599;
+    --border-color-tertiary: #27272AFF; /*border*/
+    --border-color-quaternary: #27272AFF; /*input*/
+    --border-color-warning: #DA8B17B2;
+    --border-color-destructive: #E0575BBF;
+    --border-color-destructive-secondary: #E0575B8C;
+
+    --outline-color-secondary: #EBEBF599;
+
+    --divide-color-tertiary: var(--border-color-tertiary);
+
+    --ring-offset-color-background: var(--background-color-primary);
+
+    --shadow-color-secondary: #27272AFF; /*sidebar-border*/
+
+    --color-scrollbar-primary: #161618;
+    --color-scrollbar-secondary: #EBEBF599;
+
+    --color-ring: #EBEBF560;
+    --color-contrast: var(--color-blue-600);
+    --color-brand-curseforge: #F16436;
+    --color-brand-modrinth: #00AF5C;
+
+    /* Non-standard colors */
+    --background-color-popover: var(--background-color-primary-alt);
+    --background-color-accent: var(--background-color-secondary);
+    --text-color-popover-foreground: var(--text-color-primary);
+    --border-color-border: var(--border-color-tertiary);
+}

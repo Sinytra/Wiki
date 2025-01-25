@@ -18,12 +18,12 @@ export default function BrowseSortDropdown() {
 
   return (
       <div className="flex flex-row items-center gap-x-4">
-        <span className="text-foreground">
+        <span className="text-primary">
           {t('sorting')}
         </span>
 
         <Select value={sort as string || undefined} defaultValue="relevance" onValueChange={setSort}>
-          <SelectTrigger className="w-[180px] border-neutral-600">
+          <SelectTrigger className="w-[180px] border-secondary">
             <SelectValue placeholder="Choose one"/>
           </SelectTrigger>
           <SelectContent>

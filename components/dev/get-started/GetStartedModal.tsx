@@ -23,15 +23,15 @@ function DocumentationOption({title, desc, button, buttonIcon: ButtonIcon, icon:
 }) {
   return (
     <div className="w-full flex flex-col items-center p-2 gap-4">
-      <span className="text-foreground text-lg">
+      <span className="text-primary text-lg">
         {title}
       </span>
 
       <div className="p-1">
-        <Icon className="w-9 h-9 text-foreground" strokeWidth={1.5}/>
+        <Icon className="w-9 h-9 text-primary" strokeWidth={1.5}/>
       </div>
 
-      <span className="text-muted-foreground text-sm text-center">
+      <span className="text-secondary text-sm text-center">
         {desc}
       </span>
 
@@ -73,7 +73,7 @@ export default function GetStartedModal({
 
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="secondary" className="border border-neutral-600 bg-[hsl(var(--sidebar-background))]" size="sm">
+        <Button variant="secondary" className="border border-secondary bg-[hsl(var(--sidebar-background))]" size="sm">
           <HammerIcon className="mr-2 w-4 h-4"/>
           {t('button')}
         </Button>

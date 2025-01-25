@@ -19,7 +19,7 @@ const WS_ERROR = '<<error';
 function Skeleton({children}: { children: any }) {
   return (
     <div
-      className="text-muted-foreground w-full rounded-md flex flex-col gap-3 justify-center items-center h-72 bg-[#0d1117]">
+      className="text-secondary w-full rounded-md flex flex-col gap-3 justify-center items-center h-72 bg-[#0d1117]">
       {children}
     </div>
   )
@@ -28,7 +28,7 @@ function Skeleton({children}: { children: any }) {
 function RenderedLogBody({body}: { body: string }) {
   return (
     <div
-      className="[&>pre]:slim-scrollbar-muted [&>pre]:overflow-y-auto [&>pre]:h-72 [&>pre]:p-2 [&>pre]:rounded-md [&>pre]:text-xs"
+      className="[&>pre]:slim-scrollbar-scrollbar-primary [&>pre]:overflow-y-auto [&>pre]:h-72 [&>pre]:p-2 [&>pre]:rounded-md [&>pre]:text-xs"
       dangerouslySetInnerHTML={({__html: body})}>
     </div>
   )

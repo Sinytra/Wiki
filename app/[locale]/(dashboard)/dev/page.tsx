@@ -29,9 +29,9 @@ function ProjectsListHeader({defaultValues, state, isAdmin}: {
   const messages = useMessages();
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col mb-2">
       <div className="flex flex-row items-center justify-end">
-        <SidebarTrigger className="-ml-1 mr-auto md:hidden text-foreground"/>
+        <SidebarTrigger className="-ml-1 mr-auto md:hidden text-primary"/>
 
         <NextIntlClientProvider
           messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
@@ -56,7 +56,7 @@ function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: st
   return (
     <div className="inline-flex items-center gap-2">
       <Icon className={cn("w-4 h-4", iconClass)}/>
-      <span className="text-foreground align-bottom text-sm">{children}</span>
+      <span className="text-primary align-bottom text-sm">{children}</span>
     </div>
   )
 }
@@ -69,11 +69,11 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
       </div>
       <div className="flex flex-col">
         <div>
-          <LinkTextButton className="w-fit! text-foreground! font-medium! text-lg!" href={`/dev/${id}`}>
+          <LinkTextButton className="w-fit! text-primary! font-medium! text-lg!" href={`/dev/${id}`}>
             {project.name}
           </LinkTextButton>
         </div>
-        <p className="text-muted-foreground font-normal text-ellipsis overflow-x-hidden max-w-5xl">
+        <p className="text-secondary font-normal text-ellipsis overflow-x-hidden max-w-5xl">
           {project.summary}
         </p>
       </div>
@@ -87,7 +87,7 @@ async function DevProjectsListEntry({project}: { project: Project }) {
   const u = await getTranslations('ProjectStatus');
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
+    <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-tertiary rounded-md bg-primary-alt">
       <MobileProjectHeader id={project.id} project={platformProject} />
 
       <div className="hidden sm:block shrink-0">
@@ -97,11 +97,11 @@ async function DevProjectsListEntry({project}: { project: Project }) {
       <div className="flex flex-col gap-2 w-full">
         <div className="hidden sm:flex flex-col">
           <div>
-            <LinkTextButton className="w-fit! text-foreground! font-medium! text-lg!" href={`/dev/${project.id}`}>
+            <LinkTextButton className="w-fit! text-primary! font-medium! text-lg!" href={`/dev/${project.id}`}>
               {platformProject.name}
             </LinkTextButton>
           </div>
-          <p className="text-muted-foreground font-normal">
+          <p className="text-secondary font-normal">
             {platformProject.summary}
           </p>
         </div>
@@ -109,7 +109,7 @@ async function DevProjectsListEntry({project}: { project: Project }) {
         <div className="flex flex-col gap-3 w-full flex-wrap sm:flex-row">
           <div className="flex flex-row flex-wrap gap-4 sm:gap-5">
             <Property
-              iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-muted-foreground '}
+              iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-secondary '}
               icon={project.status === ProjectStatus.LOADED ? CheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
               {u(project.status || ProjectStatus.UNKNOWN)}
             </Property>
@@ -156,12 +156,12 @@ async function ProfileProjects({projects}: { projects: Project[] }) {
       {projects.length === 0
         ?
         <div
-          className="px-4 py-6 text-center w-full border border-accent flex flex-col justify-center items-center rounded-xs my-4 gap-4">
-          <span className="text-foreground font-medium">{t('empty.primary')}</span>
-          <span className="text-muted-foreground">
+          className="px-4 py-6 text-center w-full border border-tertiary flex flex-col justify-center items-center rounded-xs gap-4">
+          <span className="text-primary font-medium">{t('empty.primary')}</span>
+          <span className="text-secondary">
             {t.rich('empty.secondary', {
               guide: (chunks) => (
-                <LinkTextButton className="text-foreground! text-base! font-normal! underline" href="/about/devs">
+                <LinkTextButton className="text-primary! text-base! font-normal! underline" href="/about/devs">
                   {chunks}
                 </LinkTextButton>
               )

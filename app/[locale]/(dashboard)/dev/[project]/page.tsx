@@ -170,7 +170,7 @@ function ProjectPlatforms({project}: { project: Project }) {
               <td>
                 <LinkTextButton className="align-middle mb-0.5" target="_blank"
                                 href={platforms.getProjectURL(platform as ProjectPlatform, value)}>
-                  <ExternalLinkIcon className="mr-2 w-4 h-4 text-muted-foreground"/>
+                  <ExternalLinkIcon className="mr-2 w-4 h-4 text-secondary"/>
                   {t('open')}
                 </LinkTextButton>
               </td>
@@ -253,16 +253,16 @@ async function ProfileProject({project}: { project: Project }) {
     <ProjectSettingsContextProvider>
       <div className="flex flex-col justify-between gap-3">
         <div
-          className="flex flex-row gap-4 p-4 w-full border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
+          className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">
           <img className="rounded-md w-12 h-12 sm:w-[84px] sm:h-[84px]" src={platformProject.icon_url} alt="Project icon"/>
 
           <div className="flex flex-col gap-2">
             <Link href={`/dev/${project.id}`}>
-              <p className="text-foreground font-medium sm:text-lg">
+              <p className="text-primary font-medium sm:text-lg">
                 {platformProject.name}
               </p>
             </Link>
-            <p className="text-muted-foreground font-normal min-h-6 text-sm sm:text-base">
+            <p className="text-secondary font-normal min-h-6 text-sm sm:text-base">
               {platformProject.summary}
             </p>
           </div>
@@ -331,7 +331,7 @@ export default async function DevProjectPage({params}: { params: { project: stri
       <div>
         <Breadcrumb className="mt-2 sm:mt-0 mb-4">
           <BreadcrumbList>
-            <SidebarTrigger className="-ml-1 mr-1 sm:hidden text-foreground"/>
+            <SidebarTrigger className="-ml-1 mr-1 sm:hidden text-primary"/>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href="/dev">

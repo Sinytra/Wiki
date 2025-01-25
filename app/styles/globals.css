@@ -1,230 +1,73 @@
 @import './ghmd.css' layer(base);
+@import './colors.css';
+@import "./theme.css" layer(theme);
 
 @import 'tailwindcss';
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@theme {
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: var(--ring);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@plugin "tailwindcss-animate";
+@plugin "tailwind-scrollbar";
+@plugin "@tailwindcss/typography";
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+@theme inline {
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+    --animate-collapsible-down: collapsible-down 0.3s cubic-bezier(0.57, 0, 0.43, 0.98);
+    --animate-collapsible-up: collapsible-up 0.3s cubic-bezier(0.57, 0, 0.43, 0.98);
+    --animate-gradient: gradient 12s ease infinite;
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-destructive-border: var(--destructive-border);
-  --color-destructive-border-dim: var(--destructive-border-dim);
-
-  --color-warning: var(--warning);
-  --color-warning-border: var(--warning-border);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
-  --color-card: var(--card);
-  --color-card-foreground: hsl(var(--card-foreground));
-
-  --color-sidebar: hsl(var(--sidebar-background));
-  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
-  --color-sidebar-primary: hsl(var(--sidebar-primary));
-  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
-  --color-sidebar-accent: hsl(var(--sidebar-accent));
-  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
-  --color-sidebar-border: hsl(var(--sidebar-border));
-  --color-sidebar-ring: hsl(var(--sidebar-ring));
-
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-collapsible-down: collapsible-down 0.3s
-    cubic-bezier(0.57, 0, 0.43, 0.98);
-  --animate-collapsible-up: collapsible-up 0.3s
-    cubic-bezier(0.57, 0, 0.43, 0.98);
-  --animate-gradient: gradient 12s ease infinite;
-
-  @keyframes gradient {
-    0% {
-      background-size: 200% 100%;
+    @keyframes gradient {
+        0% {
+            background-size: 200% 100%;
+        }
+        50% {
+            background-size: 100% 100%;
+        }
+        100% {
+            background-size: 200% 100%;
+        }
     }
-    50% {
-      background-size: 100% 100%;
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes accordion-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-accordion-content-height);
+        }
     }
-    100% {
-      background-size: 200% 100%;
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes accordion-up {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+        to {
+            height: 0;
+        }
     }
-  }
-  @keyframes accordion-down {
-    from {
-      height: 0;
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes collapsible-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-collapsible-content-height);
+        }
     }
-    to {
-      height: var(--radix-accordion-content-height);
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes collapsible-up {
+        from {
+            height: var(--radix-collapsible-content-height);
+        }
+        to {
+            height: 0;
+        }
     }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-  @keyframes collapsible-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-collapsible-content-height);
-    }
-  }
-  @keyframes collapsible-up {
-    from {
-      height: var(--radix-collapsible-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-}
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-@utility text-balance {
-  text-wrap: balance;
 }
 
 @layer base {
     :root {
-        --sidebar-background: 0 0% 98%;
-        --sidebar-foreground: 240 5.3% 26.1%;
-        --sidebar-primary: 240 5.9% 10%;
-        --sidebar-primary-foreground: 0 0% 98%;
-        --sidebar-accent: 240 4.8% 95.9%;
-        --sidebar-accent-foreground: 240 5.9% 10%;
-        --sidebar-border: 220 13% 91%;
-        --sidebar-ring: 217.2 91.2% 59.8%
-    }
-    .dark {
-        --sidebar-background: 240 5.9% 10%;
-        --sidebar-foreground: 240 4.8% 95.9%;
-        --sidebar-primary: 224.3 76.3% 48%;
-        --sidebar-primary-foreground: 0 0% 100%;
-        --sidebar-accent: 240 3.7% 15.9%;
-        --sidebar-accent-foreground: 240 4.8% 95.9%;
-        --sidebar-border: 240 3.7% 15.9%;
-        --sidebar-ring: 240, 33%, 94%;
-    }
-}
-
-@layer base {
-    * {
-        @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
-
-    .disable-blur {
-        image-rendering: pixelated;
-    }
-}
-
-@layer utilities {
-  .accordion-body {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: 200ms grid-template-rows ease;
-  }
-
-  .accordion.open > .accordion-body {
-    grid-template-rows: 1fr;
-  }
-
-  .accordion-body > div {
-    overflow: hidden;
-  }
-}
-
-@layer base {
-    :root {
-        --modrinth-brand: #00AF5C;
-        --curseforge-brand: #F16436;
-        --gradle-brand: #02303A;
-    }
-
-    :root {
-        --background: var(--vp-c-bg);
-        --foreground: var(--vp-c-text-1);
-        --card: var(--vp-c-bg-alt);
-        --card-foreground: 240 10% 3.9%;
-        --popover: var(--vp-c-bg-alt);
-        --popover-foreground: 240 10% 3.9%;
-        --primary: 240 5.9% 10%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 240 4.8% 95.9%;
-        --secondary-foreground: #3C3C43C6;
-        --muted: var(--vp-c-bg-alt);
-        --muted-foreground: var(--vp-c-text-2);
-        --accent: 240 4.8% 95.9%;
-        --accent-foreground: 240 5.9% 10%;
-        --warning: var(--vp-c-yellow-2);
-        --destructive: var(--vp-c-danger-3);
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 5.9% 90%;
-        --input: 240 5.9% 90%;
-        --ring: 240 10% 3.9%;
-        --radius: 0.5rem;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-    }
-
-    .dark {
         --background: var(--vp-c-bg);
         --foreground: var(--vp-c-text-1);
         --card: var(--vp-c-bg-alt);
@@ -256,129 +99,164 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
     }
+
+    hr {
+        @apply border-tertiary;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    .disable-blur {
+        image-rendering: pixelated;
+    }
+}
+
+@utility text-balance {
+    text-wrap: balance;
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+    @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+}
+    @media (width >= 1400px) {
+        max-width: 1400px;
+    }
 }
 
 @layer utilities {
-  html {
-    overflow: auto;
-    scrollbar-gutter: stable;
-    scroll-padding-top: 58px;
-  }
+    .accordion-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: 200ms grid-template-rows ease;
+    }
 
-  /*Prevent added margin when opening select*/
-  html body[data-scroll-locked] {
-    margin-right: 0 !important;
-  }
+    .accordion.open > .accordion-body {
+        grid-template-rows: 1fr;
+    }
 
-  .page-wrapper-base {
-    padding-top: calc(var(--vp-nav-height));
-  }
-
-  .page-wrapper {
-    padding-top: calc(var(--vp-nav-height));
-  }
-
-  @media screen and (min-width: 768px) {
-    .page-wrapper {
-      padding-top: calc(var(--vp-nav-height) + 1rem);
+    .accordion-body > div {
+        overflow: hidden;
     }
 
     html {
-      scroll-padding-top: 72px;
+        overflow: auto;
+        scrollbar-gutter: stable;
+        scroll-padding-top: 58px;
     }
-  }
 
-  .prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-    display: inline;
-    margin: 0;
-  }
+    /*Prevent added margin when opening select*/
+    html body[data-scroll-locked] {
+        margin-right: 0 !important;
+    }
 
-  .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-    text-decoration: none;
-  }
+    .page-wrapper-base {
+        padding-top: calc(var(--vp-nav-height));
+    }
 
-  .prose :where(hr):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-    margin: 20px 0;
-  }
+    .page-wrapper {
+        padding-top: calc(var(--vp-nav-height));
+    }
 
-  .prose
+    @media screen and (min-width: 768px) {
+        .page-wrapper {
+            padding-top: calc(var(--vp-nav-height) + 1rem);
+        }
+
+        html {
+            scroll-padding-top: 72px;
+        }
+    }
+
+    .prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        display: inline;
+        margin: 0;
+    }
+
+    .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        text-decoration: none;
+    }
+
+    .prose :where(hr):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        margin: 20px 0;
+    }
+
+    .prose
     :where(:not(pre) > code):not(
       :where([class~='not-prose'], [class~='not-prose'] *)
     ) {
-    border-radius: 4px;
-    padding: 3px 6px;
-    background-color: var(--vp-code-bg);
-    font-size: var(--vp-code-font-size);
-    color: var(--vp-code-color);
-    font-family: var(--vp-font-family-mono), ui-monospace;
-  }
+        border-radius: 4px;
+        padding: 3px 6px;
+        background-color: var(--vp-code-bg);
+        font-size: var(--vp-code-font-size);
+        color: var(--vp-code-color);
+        font-family: var(--vp-font-family-mono), ui-monospace;
+    }
 
-  .prose
+    .prose
     :where(a:has(code)):not(
       :where([class~='not-prose'], [class~='not-prose'] *)
     ) {
-    text-decoration-color: var(--vp-code-color) !important;
-  }
+        text-decoration-color: var(--vp-code-color) !important;
+    }
 
-  .prose
+    .prose
     :where(:not(strong) > code):not(
       :where([class~='not-prose'], [class~='not-prose'] *)
     ) {
-    font-weight: normal;
-  }
+        font-weight: normal;
+    }
 
-  .prose
+    .prose
     :where(code):not(
       :where([class~='not-prose'], [class~='not-prose'] *)
     )::before {
-    content: '' !important;
-  }
+        content: '' !important;
+    }
 
-  .prose
+    .prose
     :where(code):not(
       :where([class~='not-prose'], [class~='not-prose'] *)
     )::after {
-    content: '' !important;
-  }
+        content: '' !important;
+    }
 
-  .prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-    background-color: #21252b;
-    color: #a9b2c3;
-  }
+    .prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        background-color: #21252b;
+        color: #a9b2c3;
+    }
 
-  .prose
+    .prose
     :where(details):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-    cursor: pointer;
-  }
+        cursor: pointer;
+    }
 
-  .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-    text-decoration: underline;
-  }
+    .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        text-decoration: underline;
+    }
 }
 
 @layer base {
-    * {
-        @apply border-border;
-    }
-
     .page-wrapper-ext {
         @apply mt-4 sm:mt-0 pb-10;
     }
 
-    body {
-        @apply bg-background text-foreground;
-    }
-
     .prose :where(h2,h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-        @apply text-foreground! font-medium!;
+        @apply text-primary! font-medium!;
     }
 
     .slim-scrollbar {
-        @apply scrollbar scrollbar-w-1 scrollbar-h-1 scrollbar-thumb-muted-foreground scrollbar-thumb-rounded;
+        @apply scrollbar-thin scrollbar-thumb-scrollbar-secondary;
+        /*TODO*/
     }
 
     .slim-scrollbar-muted {
-        @apply scrollbar scrollbar-w-1 scrollbar-thumb-[#404043] scrollbar-thumb-rounded;
+        @apply scrollbar-thin scrollbar-thumb-[#404043];
+        /*TODO*/
     }
 
     .scrollLock {
@@ -392,9 +270,9 @@
     kbd {
         @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-xs;
     }
-    
+
     .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-        @apply scrollbar-thin scrollbar-thumb-[#404043] scrollbar-thumb-rounded;
+        @apply scrollbar-thin scrollbar-thumb-[#404043];
     }
 
     .no-scroll {
@@ -424,13 +302,16 @@
 .fade-enter {
     opacity: 0;
 }
+
 .fade-enter-active {
     opacity: 1;
     transition: opacity 0.25s;
 }
+
 .fade-exit {
     opacity: 1;
 }
+
 .fade-exit-active {
     opacity: 0;
     transition: opacity 0.25s;
@@ -440,6 +321,7 @@
 .fade-exit-active .innerFadeContainer {
     transform: translateY(-8px);
 }
+
 .fade-enter-active .innerFadeContainer,
 .fade-exit-active .innerFadeContainer {
     transform: translateY(0);

@@ -36,7 +36,7 @@ export function GetHelpModal({githubAppName, migrateFormAction}: Properties) {
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="link" className="py-0 h-fit text-muted-foreground underline">
+          <Button variant="link" className="py-0 h-fit text-secondary underline">
             {t('button')}
           </Button>
         </DialogTrigger>
@@ -84,12 +84,12 @@ export function GetHelpModal({githubAppName, migrateFormAction}: Properties) {
             <span className="text-primary text-base font-medium">
               {t('other.title')}
             </span>
-            <span className="text-muted-foreground text-sm">
+            <span className="text-secondary text-sm">
               {t('other.desc')}
             </span>
 
             <LinkTextButton href="/about/publishing#troubleshooting" target="_blank"
-                            className="w-fit mt-1 text-primary-foreground">
+                            className="w-fit mt-1 text-inverse">
               <CircleHelpIcon className="mr-2 h-4 w-4"/>
               {t('other.link')}
             </LinkTextButton>
