@@ -2,9 +2,8 @@
 
 import {Button} from "@/components/ui/button";
 import {Loader2Icon, TrashIcon} from "lucide-react";
-import {toast} from "sonner";
 import * as React from "react";
-import {startTransition, useState} from "react";
+import {useState} from "react";
 import {
   Dialog,
   DialogClose,
@@ -17,7 +16,6 @@ import {
 } from "@/components/ui/dialog";
 import {useFormStatus} from "react-dom";
 import {useTranslations} from "next-intl";
-import {useRouter} from "@/lib/locales/routing";
 
 interface Properties {
   action: () => Promise<any>;
@@ -27,42 +25,40 @@ function DeleteButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} variant="destructive" className="text-primary-alt! bg-destructive!">
+    <Button type="submit" disabled={pending} variant="destructive" className="text-primary-alt hover:text-primary bg-destructive!">
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
       {text}
     </Button>
   );
 }
 
-export default function ProjectDeleteForm({action}: Properties) {
+export default function DeleteAccountForm({action}: Properties) {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
-  const t = useTranslations('ProjectDeleteForm');
+  const t = useTranslations('UserSettings.account');
 
   const formAction = async () => {
     await action();
 
     setOpen(false);
-    toast.success(t('success'));
-
-    startTransition(() => router.refresh());
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="border-destructive-secondary">
-          <TrashIcon className="sm:mr-2 w-4 h-4"/>
-          <span className="hidden sm:block">{t('trigger')}</span>
+        <Button variant="destructive" size="sm" className="font-semibold bg-primary hover:bg-secondary/80 border data-[pending=true]:text-destructive/90 border-destructive-secondary">
+          <TrashIcon className="mr-2 w-4 h-4"/>
+          <span>
+            {t('delete.button')}
+          </span>
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            {t('title')}
+            {t('delete_modal.title')}
           </DialogTitle>
           <DialogDescription>
-            {t('desc')}
+            {t('delete_modal.desc')}
           </DialogDescription>
         </DialogHeader>
 
@@ -70,10 +66,10 @@ export default function ProjectDeleteForm({action}: Properties) {
           <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="secondary">
-                {t('cancel')}
+                {t('delete_modal.cancel')}
               </Button>
             </DialogClose>
-            <DeleteButton text={t('submit')} />
+            <DeleteButton text={t('delete_modal.button')} />
           </DialogFooter>
         </form>
       </DialogContent>

@@ -5,9 +5,7 @@ export const projectRegisterSchema = z.object({
   repo: z.string(),
   branch: z.string(),
   path: z.string(),
-  is_community: z.boolean().optional(),
-
-  mr_code: z.string().nullish()
+  is_community: z.boolean().optional()
 });
 
 export const projectEditSchema = z.object({
@@ -17,18 +15,11 @@ export const projectEditSchema = z.object({
   repo: z.string(),
   branch: z.string(),
   path: z.string(),
-  is_community: z.boolean().optional(),
-
-  mr_code: z.string().nullish()
+  is_community: z.boolean().optional()
 });
 
 export const docsPageReportSchema = z.object({
   reason: z.string(),
   content: z.string(),
   email: z.string().email().optional()
-});
-
-export const migrateRepositorySchema = z.object({
-  owner: z.string(),
-  repo: z.string()
 });

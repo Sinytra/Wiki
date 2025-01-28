@@ -81,10 +81,10 @@ function WaitingLogs() {
 
 const getHighlighter = makeSingletonHighlighterCore(createHighlighterCore);
 
-export default function DevProjectLogs({id, status, hashedToken, callback}: {
+export default function DevProjectLogs({id, status, token, callback}: {
   id: string;
   status: ProjectStatus;
-  hashedToken: string;
+  token: string;
   callback: (id: string) => Promise<string | undefined>;
 }) {
   const t = useTranslations('DevProjectLogs');
@@ -149,7 +149,7 @@ export default function DevProjectLogs({id, status, hashedToken, callback}: {
     }
 
     const endpointUrl = process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL.replace('https://', 'wss://').replace('http://', 'ws://');
-    const ws = new WebSocket(`${endpointUrl}/ws/api/v1/project/log/${id}?token=${hashedToken}`);
+    const ws = new WebSocket(`${endpointUrl}/ws/api/v1/project/log/${id}?token=${token}`);
 
     ws.onerror = console.error;
 

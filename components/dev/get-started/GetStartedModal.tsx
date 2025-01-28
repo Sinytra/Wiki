@@ -56,7 +56,6 @@ function DocumentationOption({title, desc, button, buttonIcon: ButtonIcon, icon:
 
 export default function GetStartedModal({
                                           defaultValues,
-                                          state,
                                           isAdmin,
                                           formAction
                                         }: Omit<ProjectRegisterFormProps, 'open' | 'setOpen' | 'schema'>) {
@@ -65,7 +64,7 @@ export default function GetStartedModal({
   const t = useTranslations('GetStartedModal');
 
   return (<>
-    <ProjectRegisterForm open={registerOpen} setOpen={setRegisterOpen} defaultValues={defaultValues} state={state}
+    <ProjectRegisterForm open={registerOpen} setOpen={setRegisterOpen} defaultValues={defaultValues}
                          schema={projectRegisterSchema}
                          isAdmin={isAdmin}
                          formAction={formAction}

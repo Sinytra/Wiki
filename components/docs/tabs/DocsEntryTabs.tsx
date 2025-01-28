@@ -14,7 +14,7 @@ export default function DocsEntryTabs() {
 
   return (
     <Tabs defaultValue="home" value={tab || undefined} onValueChange={switchTab} className="p-0 m-0">
-      <TabsList className="h-fit border rounded-xs bg-primary">
+      <TabsList className="h-fit border border-tertiary rounded-sm bg-primary">
         <TabsTrigger className="h-[30px] data-[state=active]:bg-neutral-800" value="home">
           <HomeIcon className="w-4 h-4"/>
         </TabsTrigger>

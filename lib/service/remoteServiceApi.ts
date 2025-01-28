@@ -2,6 +2,10 @@ import {Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {ProjectType} from "@/lib/service/types";
+import { cookies } from "next/headers";
+
+const ONE_DAY = 60 * 60 * 24;
+const ONE_WEEK = ONE_DAY * 7;
 
 export type RegistrationErrors = 'user_github_auth' | 'insufficient_wiki_perms' | 'unsupported' | 'missing_installation'
   | 'insufficient_repo_perms' | 'no_branch' | 'no_meta' | 'invalid_meta' | 'exists' | 'cf_unavailable' | 'no_project'
@@ -23,13 +27,20 @@ interface StatusResponse {
   status: number;
 }
 
+interface SimpleErrorResponse extends StatusResponse {
+  error: string;
+}
+
+interface RedirectResponse {
+  url: string;
+}
+
 interface ProjectRegisterRequest {
   repo: string;
   branch: string;
   path: string;
 
   is_community?: boolean;
-  mr_code?: string;
 }
 
 interface ProjectRegisterResponse extends SuccessResponse{
@@ -40,31 +51,34 @@ interface ProjectUpdateRequest {
   repo: string;
   branch: string;
   path: string;
-
-  mr_code?: string;
 }
 
 interface ProjectUpdateResponse extends SuccessResponse {
   project: Project;
 }
 
-export interface GitHubUserProfile {
-  name?: string;
-  bio?: string;
+export interface UserProfile {
+  username: string;
   avatar_url: string;
-  login: string;
-  email?: string;
+  modrinth_id: string | null;
+  created_at: string;
 }
 
 interface DevProjectsResponse {
-  profile: GitHubUserProfile;
-  repositories: string[];
+  profile: UserProfile;
   projects: Project[];
 }
 
-async function registerProject(data: ProjectRegisterRequest, token: string): Promise<ProjectRegisterResponse | ErrorResponse> {
+export function assertBackendUrl(): string {
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
+  }
+  return process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL;
+}
+
+async function registerProject(data: ProjectRegisterRequest): Promise<ProjectRegisterResponse | ErrorResponse> {
   try {
-    const resp = await sendApiRequest('project/create', data, {token});
+    const resp = await sendApiRequest('project/create', data);
     return await resp.json();
   } catch (e) {
     console.error(e);
@@ -72,9 +86,9 @@ async function registerProject(data: ProjectRegisterRequest, token: string): Pro
   }
 }
 
-async function updateProject(data: ProjectUpdateRequest, token: string): Promise<ProjectUpdateResponse | ErrorResponse> {
+async function updateProject(data: ProjectUpdateRequest): Promise<ProjectUpdateResponse | ErrorResponse> {
   try {
-    const resp = await sendApiRequest('project/update', data, {token});
+    const resp = await sendApiRequest('project/update', data);
     return await resp.json();
   } catch (e) {
     console.error(e);
@@ -82,9 +96,9 @@ async function updateProject(data: ProjectUpdateRequest, token: string): Promise
   }
 }
 
-async function deleteProject(id: string, token: string): Promise<SuccessResponse | ErrorResponse> {
+async function deleteProject(id: string): Promise<SuccessResponse | ErrorResponse> {
   try {
-    const resp = await sendSimpleRequest(`project/${id}/remove`, {token});
+    const resp = await sendSimpleRequest(`project/${id}/remove`);
     return await resp.json();
   } catch (e) {
     console.error(e);
@@ -92,15 +106,13 @@ async function deleteProject(id: string, token: string): Promise<SuccessResponse
   }
 }
 
-async function revalidateProject(id: string, token: string): Promise<SuccessResponse | ErrorResponse> {
+async function revalidateProject(id: string, token: string | null = null): Promise<SuccessResponse | ErrorResponse> {
   try {
     const resp = await sendSimpleRequest(`project/${id}/invalidate`, {token});
     if (resp.ok) {
-      console.log('Invalidating docs for project', id);
       cacheUtil.invalidateDocs(id);
     } else {
-      console.error('Error invalidating docs for project', id);
-      console.error(resp);
+      console.error('Error invalidating docs for project', id, resp);
     }
     return await resp.json();
   } catch (e) {
@@ -109,19 +121,9 @@ async function revalidateProject(id: string, token: string): Promise<SuccessResp
   }
 }
 
-async function migrateRepository(repo: string, token: string): Promise<SuccessResponse | ErrorResponse> {
+async function getUserProfile(): Promise<UserProfile | StatusResponse> {
   try {
-    const resp = await sendApiRequest('project/migrate', {repo}, {token});
-    return await resp.json();
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function getUserDevProjects(token: string): Promise<DevProjectsResponse | StatusResponse> {
-  try {
-    const resp = await sendSimpleRequest('projects/dev', {token}, 'GET');
+    const resp = await sendSimpleRequest('auth/user', {}, 'GET');
     if (resp.ok) {
       return await resp.json();
     }
@@ -132,9 +134,64 @@ async function getUserDevProjects(token: string): Promise<DevProjectsResponse | 
   }
 }
 
-async function getDevProject(token: string, id: string): Promise<Project | StatusResponse> {
+async function linkModrinthAcount(): Promise<RedirectResponse | SimpleErrorResponse> {
   try {
-    const resp = await sendSimpleRequest(`project/${id}`, {token}, 'GET');
+    const resp = await sendSimpleRequest('auth/link/modrinth', {}, 'GET');
+    if (resp.ok) {
+      return {url: resp.url};
+    }
+    const body = await resp.text();
+    return {status: resp.status, error: body};
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function unlinkModrinthAcount(): Promise<SimpleErrorResponse | StatusResponse> {
+  try {
+    const resp = await sendSimpleRequest('auth/unlink/modrinth');
+    if (resp.ok) {
+      return {status: resp.status};
+    }
+    const body = await resp.json();
+    return {status: resp.status, error: body.error};
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function deleteUserAcount(): Promise<SimpleErrorResponse | StatusResponse> {
+  try {
+    const resp = await sendSimpleRequest('auth/user', {}, 'DELETE');
+    if (resp.ok) {
+      return {status: resp.status};
+    }
+    const body = await resp.json();
+    return {status: resp.status, error: body.error};
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function getUserDevProjects(): Promise<DevProjectsResponse | StatusResponse> {
+  try {
+    const resp = await sendSimpleRequest('projects/dev', {}, 'GET');
+    if (resp.ok) {
+      return await resp.json();
+    }
+    return {status: resp.status};
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function getDevProject(id: string): Promise<Project | StatusResponse> {
+  try {
+    const resp = await sendSimpleRequest(`project/${id}`, {}, 'GET');
     if (resp.ok) {
       return await resp.json();
     }
@@ -145,9 +202,9 @@ async function getDevProject(token: string, id: string): Promise<Project | Statu
   }
 }
 
-async function getProjectDevLog(token: string, id: string): Promise<string | undefined> {
+async function getProjectDevLog(id: string): Promise<string | undefined> {
   try {
-    const resp = await sendSimpleRequest(`project/${id}/log`, {token}, 'GET');
+    const resp = await sendSimpleRequest(`project/${id}/log`, {}, 'GET');
     if (resp.ok) {
       return (await resp.json()).content;
     }
@@ -233,17 +290,14 @@ function urlParams(params: Record<string, string | null>) {
 }
 
 async function sendApiRequest(path: string, data: any, params: Record<string, string | null> = {}, options?: Parameters<typeof fetch>[1]) {
-  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
-  }
-
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams}`, {
+  return fetch(`${assertBackendUrl()}/api/v1/${path}?${searchParams}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      cookie: cookies().toString()
     },
     body: JSON.stringify(data),
     cache: 'no-store',
@@ -251,37 +305,32 @@ async function sendApiRequest(path: string, data: any, params: Record<string, st
   });
 }
 
-async function sendSimpleRequest(path: string, params: Record<string, string | null> = {}, method: string = 'POST') {
-  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
-  }
-
+async function sendCachedRequest(path: string, params: Record<string, string | null> = {}, method: string = 'GET', expire?: number, tag?: string) {
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${assertBackendUrl()}/api/v1/${path}?${searchParams.toString()}`, {
     method,
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
+      cookie: cookies().toString()
     },
-    cache: 'no-store'
+    next: {
+      revalidate: expire || ONE_WEEK, // Revalidate every week
+      tags: tag ? [tag] : undefined
+    }
   });
 }
 
-async function sendCachedRequest(path: string, params: Record<string, string | null> = {}, method: string = 'GET') {
-  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
-  }
-
+async function sendSimpleRequest(path: string, params: Record<string, string | null> = {}, method: string = 'POST') {
   const searchParams = urlParams(params);
 
-  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${assertBackendUrl()}/api/v1/${path}?${searchParams.toString()}`, {
     method,
     headers: {
       Authorization: `Bearer ${process.env.BACKEND_API_KEY}`,
+      cookie: cookies().toString()
     },
-    next: {
-      revalidate: 60 * 60 * 24 * 7 // Revalidate every week
-    }
+    cache: 'no-store',
   });
 }
 
@@ -291,9 +340,12 @@ export default {
   deleteProject,
   revalidateProject,
   getAllProjectIDs,
-  migrateRepository,
   getUserDevProjects,
   getFeaturedProjects,
   getProjectDevLog,
-  getDevProject
+  getDevProject,
+  getUserProfile,
+  linkModrinthAcount,
+  unlinkModrinthAcount,
+  deleteUserAcount
 }

@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@/components/ui/sidebar";
-import {GitHubUserProfile} from "@/lib/service/remoteServiceApi";
+import {UserProfile} from "@/lib/service/remoteServiceApi";
 import {useTranslations} from "next-intl";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
@@ -45,10 +45,9 @@ function LogoutModal({open}: { open: boolean; }) {
   )
 }
 
-export function DevSidebarUser({profile, logoutAction}: { profile: GitHubUserProfile; logoutAction: () => Promise<void> }) {
+export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; logoutAction: () => Promise<void> }) {
   const {isMobile} = useSidebar();
   const t = useTranslations('DevSidebarUser');
-  const name = profile.name || profile.login;
 
   const schema = z.object({});
   const form = useForm<z.infer<typeof schema>>({
@@ -73,14 +72,14 @@ export function DevSidebarUser({profile, logoutAction}: { profile: GitHubUserPro
               <SidebarMenuButton size="lg"
                                  className="data-[state=open]:bg-secondary data-[state=open]:text-primary-alt">
                 <Avatar className="h-8 w-8 rounded-sm">
-                  <AvatarImage src={profile.avatar_url} alt={name}/>
+                  <AvatarImage src={profile.avatar_url} alt={profile.username}/>
                   <AvatarFallback className="rounded-sm">
                     {t('unknown_avatar')}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{name}</span>
-                  <span className="truncate text-xs">{profile.email}</span>
+                  <span className="truncate font-semibold">{profile.username}</span>
+                  {/*<span className="truncate text-xs">{profile.email}</span>*/}
                 </div>
                 <ChevronsUpDown className="ml-auto size-4"/>
               </SidebarMenuButton>
@@ -95,14 +94,14 @@ export function DevSidebarUser({profile, logoutAction}: { profile: GitHubUserPro
               <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar className="h-8 w-8 rounded-sm">
-                    <AvatarImage src={profile.avatar_url} alt={name}/>
+                    <AvatarImage src={profile.avatar_url} alt={profile.username}/>
                     <AvatarFallback className="rounded-sm">
                       {t('unknown_avatar')}
                     </AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">{name}</span>
-                    <span className="truncate text-xs">{profile.email}</span>
+                    <span className="truncate font-semibold">{profile.username}</span>
+                    {/*<span className="truncate text-xs">{profile.email}</span>*/}
                   </div>
                 </div>
               </DropdownMenuLabel>
