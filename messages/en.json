@@ -544,7 +544,7 @@
             "title": "Account",
             "delete": {
                 "title": "Delete account",
-                "desc": "Delete all account data forever",
+                "desc": "Forever delete all account data",
                 "button": "Delete account"
             },
             "delete_modal": {
@@ -560,5 +560,12 @@
                 "error": "Error unlinking account"
             }
         }
+    },
+    "AuthFailure": {
+        "title": "Authentication failure",
+        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
+        "status": "Check status",
+        "return": "Return home",
+        "report": "Report Bug"
     }
 }

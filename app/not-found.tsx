@@ -2,6 +2,7 @@ import {Button} from "@/components/ui/button";
 import NotFoundImage from '@/components/assets/not-found.jpg';
 import Image from "next/image";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import {HouseIcon} from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -17,6 +18,7 @@ export default function NotFound() {
 
       <Button asChild className="mt-4">
         <NavLink href="/">
+          <HouseIcon className="mr-2 w-4 h-4" />
           Return Home
         </NavLink>
       </Button>

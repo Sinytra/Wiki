@@ -144,7 +144,6 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
   }, [dynamicRoute]);
 
   // TODO Distinguish mods from docs
-  // TODO mobile support
 
   // Prevent transition when switching tabs
   const [visible, setVisible] = useState(true);
