@@ -293,13 +293,15 @@
             "desc": "包含中繼資料檔案的資料夾路徑。"
         },
         "admin": "Wiki 管理員設定",
-        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "社群維護的專案"
         },
         "errors": {
-            "install_app": "請先在您的儲存庫上安裝我們的 GitHub 應用程式 <link>這裡</link>。",
             "details": "顯示詳細資訊"
+        },
+        "connect_modrinth": {
+            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
+            "settings": "Open Settings"
         },
         "submit": "提交",
         "success": {
@@ -337,67 +339,22 @@
     },
     "FormActions": {
         "errors": {
-            "unauthenticated": "未驗證",
-            "user_github_auth": "GitHub 驗證錯誤",
-            "insufficient_wiki_perms": "權限不足，無法建立社群專案",
-            "unsupported": "尚未實作",
-            "insufficient_repo_perms": "使用者沒有存取儲存庫的權限。",
-            "no_branch": "分支不存在",
-            "no_meta": "找不到中繼資料檔案",
-            "invalid_meta": "中繼資料檔案無效",
-            "exists": "專案已存在。",
-            "no_platforms": "中繼資料中未定義任何平台專案。",
-            "cf_unavailable": "CurseForge 專案登錄尚未啟用",
-            "no_project": "找不到平台專案。請確認中繼資料的「slug」欄位正確。",
-            "ownership": "無法驗證專案擁有權",
+            "unauthorized": "User authentication error",
             "internal": "內部伺服器錯誤，請稍後再試。",
+            "unknown": "An unknown error has occurred, please try again later.",
+            "no_platforms": "中繼資料中未定義任何平台專案。",
+            "no_project": "找不到平台專案。請確認中繼資料的「slug」欄位正確。",
+            "unsupported_type": "Unsupported project type",
+            "ownership": "無法驗證專案擁有權",
+            "cf_unavailable": "CurseForge 專案登錄尚未啟用",
+            "requires_auth": "Repository connection requires login credentials but none were provided",
+            "no_repository": "Repository not found",
+            "no_branch": "Invalid branch specified",
+            "no_path": "Metadata file not found at specified path",
+            "invalid_meta": "中繼資料檔案無效",
+            "unsupported": "尚未實作",
+            "exists": "專案已存在。",
             "not_found": "專案不存在"
-        }
-    },
-    "GetHelpModal": {
-        "button": "您的專案沒有顯示嗎？",
-        "title": "專案協助",
-        "desc": "協助解決專案登錄的常見問題。",
-        "app": {
-            "title": "確保 GitHub 應用程式已安裝在您的儲存庫上",
-            "button": "安裝 GitHub 應用程式"
-        },
-        "moved": {
-            "title": "您的儲存庫移動了嗎？",
-            "button": "遷移專案儲存庫"
-        },
-        "other": {
-            "title": "其他問題",
-            "desc": "請查看文件發布指南的疑難排解章節。",
-            "link": "開啟疑難排解指南"
-        }
-    },
-    "MigrateRepositoryForm": {
-        "title": "遷移專案儲存庫",
-        "desc": "在儲存庫位置變更後更新儲存庫資料。",
-        "owner": {
-            "title": "舊擁有者",
-            "desc": "舊使用者／組織名稱。",
-            "placeholder": "ExampleUser"
-        },
-        "repo": {
-            "title": "舊名稱",
-            "desc": "舊儲存庫名稱。",
-            "placeholder": "ExampleMod"
-        },
-        "new_owner": {
-            "title": "新擁有者",
-            "desc": "新使用者／組織名稱。",
-            "placeholder": "ExampleOrg"
-        },
-        "submit": "遷移",
-        "success": {
-            "title": "儲存庫遷移成功",
-            "desc": "現在應該可以看到遷移的專案"
-        },
-        "migrate_error": {
-            "install_app": "請確保我們的 GitHub 應用程式已<link>安裝</link>在遷移的儲存庫上。",
-            "unavailable": "儲存庫沒有可用的遷移。輸入的資訊是否正確？"
         }
     },
     "CommunityBadge": {
@@ -469,7 +426,8 @@
         "title": "本頁內容"
     },
     "DocsVersionSelector": {
-        "placeholder": "選擇版本"
+        "placeholder": "選擇版本",
+        "latest": "Latest"
     },
     "DocsLanguageSelect": {
         "placeholder": "選擇語言"
@@ -498,7 +456,7 @@
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "projects": "Projects"
+            "home": "Home"
         },
         "toolbar": {
             "view": "View"
@@ -562,5 +520,52 @@
             "desc": "Logging out..."
         },
         "unknown_avatar": "N/A"
+    },
+    "UserSettings": {
+        "breadcrumbs": {
+            "home": "Home",
+            "settings": "Settings"
+        },
+        "profile": {
+            "bio": "Modded Minecraft Wiki creator",
+            "join_date": "Joined {date}"
+        },
+        "connections": {
+            "title": "Connections",
+            "modrinth": {
+                "title": "Modrinth account",
+                "desc": "Used to verify project ownership",
+                "connect": "Connect",
+                "view": "View",
+                "disconnect": "Disconnect"
+            }
+        },
+        "account": {
+            "title": "Account",
+            "delete": {
+                "title": "Delete account",
+                "desc": "Forever delete all account data",
+                "button": "Delete account"
+            },
+            "delete_modal": {
+                "title": "Delete account",
+                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
+                "cancel": "Cancel",
+                "button": "Delete forever"
+            }
+        },
+        "toast": {
+            "unlink": {
+                "success": "Account unlinked successfully",
+                "error": "Error unlinking account"
+            }
+        }
+    },
+    "AuthFailure": {
+        "title": "Authentication failure",
+        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
+        "status": "Check status",
+        "return": "Return home",
+        "report": "Report Bug"
     }
 }
