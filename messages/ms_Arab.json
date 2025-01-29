@@ -218,7 +218,7 @@
     "PageEditControls": {
         "edit_gh": "سونتيڠ هلامن اين",
         "report": "لاڤورکن لامن اين",
-        "report_button": "Report page",
+        "report_button": "لاڤورکن لامن",
         "last_updated": "کمس کيني تراخير: <date></date>"
     },
     "Report": {
@@ -293,13 +293,15 @@
             "desc": "لالوان کفولدر يڠ مڠاندوڠي فاءيل ميتاداتا."
         },
         "admin": "تتڤن ڤنتدبير ويکي",
-        "mr_verified": "ڤميليقن Modrinth دصحکن",
         "is_community": {
             "title": "ڤروجيک يڠ دسلڠݢارا کومونيتي"
         },
         "errors": {
-            "install_app": "سيلا ڤاسڠ اڤليکاسي GitHub کامي دهولو ڤد ريڤوسيتوري اندا <link>دسيني</link>.",
             "details": "ڤاڤرکن بوتيرن"
+        },
+        "connect_modrinth": {
+            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
+            "settings": "Open Settings"
         },
         "submit": "سره",
         "success": {
@@ -337,67 +339,22 @@
     },
     "FormActions": {
         "errors": {
-            "unauthenticated": "بلوم دصحکن",
-            "user_github_auth": "رالت ڤڠصحن GitHub",
-            "insufficient_wiki_perms": "کبنرن تيدق منچوکوڤي اونتوق ممبوات ڤروجيک کومونيتي",
-            "unsupported": "بلوم دلقساناکن",
-            "insufficient_repo_perms": "ڤڠݢونا تيدق ممڤوڽاءي اکسيس کڤد ريڤوسيتوري.",
-            "no_branch": "چابڠ تيدق وجود",
-            "no_meta": "فاءيل ميتاداتا تيدق دتموءي",
-            "invalid_meta": "فاءيل ميتاداتا تيدق صح",
-            "exists": "ڤروجيک سوده وجود.",
-            "no_platforms": "تياد ڤروجيک ڤلتفوم دتعريفکن دالم ميتاداتا.",
-            "cf_unavailable": "ڤندفترن ڤروجيک CurseForge تيدق اکتيف",
-            "no_project": "ڤلتفوم ڤروجيک تيدق دتموءي. سيلا ڤستيکن ميدن \"slug\" ميتاداتا اداله بتول.",
-            "ownership": "ݢاݢل مڠصحکن ڤميليقن ڤروجيک",
+            "unauthorized": "User authentication error",
             "internal": "رالت ڤلاين دالمن⹁ سيلا چوبا لاݢي کمودين.",
+            "unknown": "An unknown error has occurred, please try again later.",
+            "no_platforms": "تياد ڤروجيک ڤلتفوم دتعريفکن دالم ميتاداتا.",
+            "no_project": "ڤلتفوم ڤروجيک تيدق دتموءي. سيلا ڤستيکن ميدن \"slug\" ميتاداتا اداله بتول.",
+            "unsupported_type": "Unsupported project type",
+            "ownership": "ݢاݢل مڠصحکن ڤميليقن ڤروجيک",
+            "cf_unavailable": "ڤندفترن ڤروجيک CurseForge تيدق اکتيف",
+            "requires_auth": "Repository connection requires login credentials but none were provided",
+            "no_repository": "Repository not found",
+            "no_branch": "Invalid branch specified",
+            "no_path": "Metadata file not found at specified path",
+            "invalid_meta": "فاءيل ميتاداتا تيدق صح",
+            "unsupported": "بلوم دلقساناکن",
+            "exists": "ڤروجيک سوده وجود.",
             "not_found": "ڤروجيک تيدق وجود"
-        }
-    },
-    "GetHelpModal": {
-        "button": "اداکه ڤروجيک اندا تيدق مونچول؟",
-        "title": "بنتوان ڤروجيک",
-        "desc": "بنتو مڽلسايکن ايسو بياسا دڠن ڤندفترن ڤروجيک.",
-        "app": {
-            "title": "ڤستيکن اڤليکاسي GitHub دڤاسڠ ڤد ريڤوسيتوري اندا",
-            "button": "ڤاسڠ اڤليکاسي GitHub"
-        },
-        "moved": {
-            "title": "اداکه ريڤوسيتوري اندا تله دڤيندهکن؟",
-            "button": "ڤيندهکن ريڤوسيتوري ڤروجيک"
-        },
-        "other": {
-            "title": "ايسو لاءين",
-            "desc": "سمق بهاݢين ڤڽلساين مسئله دالم ڤندوان ڤنربيتن دوکومنتاسي.",
-            "link": "بوک ڤندوان ڤڽلساين مسئله"
-        }
-    },
-    "MigrateRepositoryForm": {
-        "title": "ڤيندهکن ريڤوسيتوري ڤروجيک",
-        "desc": "کمس کيني داتا ريڤوسيتوري سلڤس لوکاسيڽ تله براوبه.",
-        "owner": {
-            "title": "ڤميليق لاما",
-            "desc": "نام ڤڠݢونا / اورݢانيساسي لاما.",
-            "placeholder": "چونتوه_ڤڠݢونا"
-        },
-        "repo": {
-            "title": "نام لاما",
-            "desc": "نام ريڤوسيتوري لاما.",
-            "placeholder": "چونتوه_مود"
-        },
-        "new_owner": {
-            "title": "ڤميليق بهارو",
-            "desc": "نام ڤڠݢونا / اورݢانيساسي بهارو.",
-            "placeholder": "چونتوه_اورݢانيساسي"
-        },
-        "submit": "ڤيندهکن",
-        "success": {
-            "title": "ريڤوسيتوري برجاي دڤيندهکن",
-            "desc": "اندا کيني سڤاتوتڽ مليهت ڤروجيک يڠ دڤيندهکن"
-        },
-        "migrate_error": {
-            "install_app": "سيلا سيلا ڤستي کن اڤليکاسي GitHub کامي <link>دڤاسڠ</link> ڤد ريڤوسيتوري يڠ دڤيندهکن.",
-            "unavailable": "تياد ڤميندهن ترسديا اونتوق ريڤوسيتوري. اداکه معلومت يڠ دماسوقکن بتول؟"
         }
     },
     "CommunityBadge": {
@@ -469,7 +426,8 @@
         "title": "ڤد لامن اين"
     },
     "DocsVersionSelector": {
-        "placeholder": "ڤيليه ۏرسي"
+        "placeholder": "ڤيليه ۏرسي",
+        "latest": "Latest"
     },
     "DocsLanguageSelect": {
         "placeholder": "ڤيليه بهاس"
@@ -498,7 +456,7 @@
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "projects": "ڤروجيک"
+            "home": "Home"
         },
         "toolbar": {
             "view": "ليهت"
@@ -562,5 +520,52 @@
             "desc": "سدڠ لوݢ کلوار..."
         },
         "unknown_avatar": "N/A"
+    },
+    "UserSettings": {
+        "breadcrumbs": {
+            "home": "Home",
+            "settings": "Settings"
+        },
+        "profile": {
+            "bio": "Modded Minecraft Wiki creator",
+            "join_date": "Joined {date}"
+        },
+        "connections": {
+            "title": "Connections",
+            "modrinth": {
+                "title": "Modrinth account",
+                "desc": "Used to verify project ownership",
+                "connect": "Connect",
+                "view": "View",
+                "disconnect": "Disconnect"
+            }
+        },
+        "account": {
+            "title": "Account",
+            "delete": {
+                "title": "Delete account",
+                "desc": "Forever delete all account data",
+                "button": "Delete account"
+            },
+            "delete_modal": {
+                "title": "Delete account",
+                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
+                "cancel": "Cancel",
+                "button": "Delete forever"
+            }
+        },
+        "toast": {
+            "unlink": {
+                "success": "Account unlinked successfully",
+                "error": "Error unlinking account"
+            }
+        }
+    },
+    "AuthFailure": {
+        "title": "Authentication failure",
+        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
+        "status": "Check status",
+        "return": "Return home",
+        "report": "Report Bug"
     }
 }

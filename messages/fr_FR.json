@@ -293,13 +293,15 @@
             "desc": "Lien vers le dossier contenant le fichier de métadonnées."
         },
         "admin": "Paramètres administrateur du wiki",
-        "mr_verified": "Modrinth ownership verified",
         "is_community": {
             "title": "Projet géré par la communauté"
         },
         "errors": {
-            "install_app": "Veuillez d'abord installer notre application GitHub sur votre dépôt <link>ici</link>.",
             "details": "Afficher les détails"
+        },
+        "connect_modrinth": {
+            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
+            "settings": "Open Settings"
         },
         "submit": "Soumettre",
         "success": {
@@ -337,67 +339,22 @@
     },
     "FormActions": {
         "errors": {
-            "unauthenticated": "Non authentifié",
-            "user_github_auth": "GitHub authentication error",
-            "insufficient_wiki_perms": "Insufficient permissions to create community project",
-            "unsupported": "Not yet implemented",
-            "insufficient_repo_perms": "User does not have access to repository.",
-            "no_branch": "La branche n’existe pas",
-            "no_meta": "Fichier de métadonnées introuvable",
-            "invalid_meta": "Fichier(s) de Métadonnées invalides",
-            "exists": "Le projet existe déjà.",
-            "no_platforms": "No platform projects defined in metadata.",
-            "cf_unavailable": "Registering CurseForge projects is not active",
-            "no_project": "Plateforme de projet introuvable. Veuillez vous assurer que le champ \"slug\" des métadonnées est correct.",
-            "ownership": "Impossible de vérifier la propriété du projet",
+            "unauthorized": "User authentication error",
             "internal": "Erreur de serveur interne, veuillez réessayer plus tard.",
+            "unknown": "An unknown error has occurred, please try again later.",
+            "no_platforms": "No platform projects defined in metadata.",
+            "no_project": "Plateforme de projet introuvable. Veuillez vous assurer que le champ \"slug\" des métadonnées est correct.",
+            "unsupported_type": "Unsupported project type",
+            "ownership": "Impossible de vérifier la propriété du projet",
+            "cf_unavailable": "Registering CurseForge projects is not active",
+            "requires_auth": "Repository connection requires login credentials but none were provided",
+            "no_repository": "Repository not found",
+            "no_branch": "Invalid branch specified",
+            "no_path": "Metadata file not found at specified path",
+            "invalid_meta": "Fichier(s) de Métadonnées invalides",
+            "unsupported": "Not yet implemented",
+            "exists": "Le projet existe déjà.",
             "not_found": "Project does not exist"
-        }
-    },
-    "GetHelpModal": {
-        "button": "Votre projet ne s'affiche pas ?",
-        "title": "Aide du projet",
-        "desc": "Les problèmes courants sont résolu lors de l'enregistrement du projet.",
-        "app": {
-            "title": "Assurez-vous que l'application GitHub est installée sur votre dépôt",
-            "button": "Installer l'App GitHub"
-        },
-        "moved": {
-            "title": "Votre dépôt a-t-il été déplacé ?",
-            "button": "Migrer le dépôt du projet"
-        },
-        "other": {
-            "title": "Autres problèmes",
-            "desc": "Consultez la section de dépannage du guide de publication.",
-            "link": "Ouvrir le guide de dépannage"
-        }
-    },
-    "MigrateRepositoryForm": {
-        "title": "Migrer le dépôt du projet",
-        "desc": "Mettre à jour les données du dépôt après que son emplacement ait changé.",
-        "owner": {
-            "title": "Ancien Propriétaire",
-            "desc": "Ancien Nom d'utilisateur / organisation.",
-            "placeholder": "UtilisateurExemple"
-        },
-        "repo": {
-            "title": "Ancien Nom",
-            "desc": "Ancien nom du dépôt.",
-            "placeholder": "ModeExemple"
-        },
-        "new_owner": {
-            "title": "Nouveau propriétaire",
-            "desc": "Nouveau Nom d'utilisateur / organisation.",
-            "placeholder": "OrgExemple"
-        },
-        "submit": "Migrer",
-        "success": {
-            "title": "Dépôt migré avec succès",
-            "desc": "Vous devriez maintenant voir les projets migrés"
-        },
-        "migrate_error": {
-            "install_app": "Veuillez vous assurer que notre application GitHub est <link>installée</link> sur le dépôt migré.",
-            "unavailable": "Aucune migration disponible pour le dépôt. Les informations saisies sont-elles correctes ?"
         }
     },
     "CommunityBadge": {
@@ -469,7 +426,8 @@
         "title": "On this page"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version"
+        "placeholder": "Select version",
+        "latest": "Latest"
     },
     "DocsLanguageSelect": {
         "placeholder": "Select locale"
@@ -498,7 +456,7 @@
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "projects": "Projects"
+            "home": "Home"
         },
         "toolbar": {
             "view": "View"
@@ -562,5 +520,52 @@
             "desc": "Logging out..."
         },
         "unknown_avatar": "N/A"
+    },
+    "UserSettings": {
+        "breadcrumbs": {
+            "home": "Home",
+            "settings": "Settings"
+        },
+        "profile": {
+            "bio": "Modded Minecraft Wiki creator",
+            "join_date": "Joined {date}"
+        },
+        "connections": {
+            "title": "Connections",
+            "modrinth": {
+                "title": "Modrinth account",
+                "desc": "Used to verify project ownership",
+                "connect": "Connect",
+                "view": "View",
+                "disconnect": "Disconnect"
+            }
+        },
+        "account": {
+            "title": "Account",
+            "delete": {
+                "title": "Delete account",
+                "desc": "Forever delete all account data",
+                "button": "Delete account"
+            },
+            "delete_modal": {
+                "title": "Delete account",
+                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
+                "cancel": "Cancel",
+                "button": "Delete forever"
+            }
+        },
+        "toast": {
+            "unlink": {
+                "success": "Account unlinked successfully",
+                "error": "Error unlinking account"
+            }
+        }
+    },
+    "AuthFailure": {
+        "title": "Authentication failure",
+        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
+        "status": "Check status",
+        "return": "Return home",
+        "report": "Report Bug"
     }
 }
