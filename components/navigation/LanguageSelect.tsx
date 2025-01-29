@@ -48,12 +48,13 @@ export default function LanguageSelect({locale, locales, mobile}: {
       <div>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <Button variant="outline" role="combobox" aria-expanded={open} className="px-2 py-1 bg-transparent border-none justify-between">
+            <Button variant="outline" role="combobox" aria-expanded={open}
+                    className="px-2 py-1 bg-transparent border-none justify-between">
               <LanguagesIcon className="w-5 h-5"/>
               {mobile &&
                 <div className="inline-flex gap-2 ml-3 mr-2">
-                    <CountryFlag className="!rounded-sm" flag={selectedLang.icon}/>
-                    {selectedLang.name}
+                    <CountryFlag className="rounded-xs!" flag={selectedLang.icon}/>
+                  {selectedLang.name}
                 </div>
               }
               <ChevronDown
@@ -63,10 +64,12 @@ export default function LanguageSelect({locale, locales, mobile}: {
               />
             </Button>
           </PopoverTrigger>
-          <PopoverContent align={mobile ? 'start' : 'end'} className={cn('mt-1 p-0 !pointer-events-auto', !mobile && 'w-48')}>
+          <PopoverContent align={mobile ? 'start' : 'end'}
+                          className={cn('mt-1 p-0 pointer-events-auto!', !mobile && 'w-48')}>
             <Command value={value} defaultValue={value}>
-              <CommandInput placeholder={t('placeholder')} />
-              <CommandList className="[scrollbar-color:var(--muted-foreground)_var(--muted-foreground)] overscroll-contain">
+              <CommandInput placeholder={t('placeholder')}/>
+              <CommandList
+                className="[scrollbar-color:var(--background-color-inverse-secondary)_var(--background-color-primary)] overscroll-contain">
                 <CommandEmpty>
                   {t('no_results')}
                 </CommandEmpty>
@@ -79,7 +82,7 @@ export default function LanguageSelect({locale, locales, mobile}: {
                       <CommandItem
                         key={id}
                         value={actualId}
-                        className="w-full inline-flex justify-start items-center gap-3 hover:bg-accent hover:text-accent-foreground"
+                        className={cn('w-full inline-flex justify-start items-center gap-3 hover:bg-secondary hover:text-primary-alt', value == actualId && 'pointer-events-none')}
                         onSelect={(currentValue) => {
                           setValue(currentValue === value ? "" : currentValue);
                           setOpen(false);

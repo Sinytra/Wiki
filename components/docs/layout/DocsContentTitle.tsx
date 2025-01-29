@@ -19,7 +19,7 @@ export default function DocsContentTitle({ project, children, titleClassName }: 
         <h1 className={cn("docsContentTitle text-ellipsis md:overflow-hidden md:whitespace-nowrap text-primary text-2xl", titleClassName)}>
           {children}
         </h1>
-        <div className={cn("not-prose flex-shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", project?.versions ? 'items-center' : 'items-end')}>
+        <div className={cn("not-prose shrink-0 flex flex-row justify-between gap-3 ml-auto md:ml-0", project?.versions ? 'items-center' : 'items-end')}>
           {project?.local && <Badge variant="destructive">{t('local')}</Badge>}
           {project?.is_community && <CommunityDocsBadge />}
         </div>

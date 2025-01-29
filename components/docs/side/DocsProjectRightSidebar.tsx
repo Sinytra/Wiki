@@ -40,22 +40,22 @@ export default function DocsProjectRightSidebar({
 
   return (
     <DocsSidebarBase title={t('title')} type="right" className={cn(
-      'flex-shrink-0 right-0',
-      'w-[96vw] sm:w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0',
-      'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
+      'shrink-0 right-0',
+      'w-[96vw] sm:w-64 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
+      'border-l data-[open=false]:border-0 lg:data-[open=false]:border-l'
     )}>
       {/* Project Icon & Name */}
       <div className="flex items-center space-x-3 pb-2">
-        <div className="flex-shrink-0 w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
+        <div className="shrink-0 w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
           <ImageWithFallback src={platformProject.icon_url} width={48} height={48} fbWidth={24} fbHeight={24}
-            className="rounded-sm !opacity-100 !text-secondary-foreground" alt="Logo"
+            className="rounded-xs opacity-100! text-secondary-alt!" alt="Logo"
             strokeWidth={2} />
         </div>
         <div>
           <h2 className="docsContentTitle text-base font-semibold">
             {platformProject.name}
           </h2>
-          <p className="text-xs text-muted-foreground" title={platformProject.is_placeholder ? undefined : platformProject.summary}>
+          <p className="text-xs text-secondary" title={platformProject.is_placeholder ? undefined : platformProject.summary}>
             {platformProject.is_placeholder
               ? t('placeholder.summary')
               : (platformProject.summary.length > 50 ? `${platformProject.summary.substring(0, 50)}...` : platformProject.summary)
@@ -74,11 +74,11 @@ export default function DocsProjectRightSidebar({
         {/* Author */}
         <DetailCategory icon={User} innerClass="myItems flex flex-row flex-wrap justify-end">
           {platformProject.is_placeholder &&
-            <span className="text-muted-foreground">{t('placeholder.author')}</span>
+            <span className="text-secondary">{t('placeholder.author')}</span>
           }
           {projectInfo.authors.map(a => (
             <div key={a.name}>
-              <LinkTextButton className="!font-normal !text-muted-foreground" href={a.url} target="_blank">
+              <LinkTextButton className="font-normal! text-secondary!" href={a.url} target="_blank">
                 {a.name}
               </LinkTextButton>
             </div>
@@ -88,7 +88,7 @@ export default function DocsProjectRightSidebar({
         {/* Latest Version */}
         <DetailCategory icon={MilestoneIcon} innerClass="flex flex-row gap-2">
           {platformProject.is_placeholder &&
-            <span className="text-muted-foreground">{t('placeholder.latest_version')}</span>
+            <span className="text-secondary">{t('placeholder.latest_version')}</span>
           }
           <ModVersionRange versions={platformProject.game_versions} />
         </DetailCategory>
@@ -102,7 +102,7 @@ export default function DocsProjectRightSidebar({
             {platformProject.categories.filter(t => ProjectCategories[t] !== undefined).map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-xs bg-secondary text-secondary-foreground rounded-md"
+                className="px-2 py-0.5 text-xs bg-secondary text-secondary-alt rounded-md"
               >
                 {categories(tag as any)}
               </span>
@@ -117,18 +117,18 @@ export default function DocsProjectRightSidebar({
           </DetailCategory>
           <div className="space-y-2 text-sm ml-6">
             <div>
-              <span className="text-muted-foreground">{t('licenses.project')}</span>{' '}
-                <Button variant="link" className="h-auto p-0 text-muted-foreground" asChild>
+              <span className="text-secondary">{t('licenses.project')}</span>{' '}
+                <Button variant="link" className="h-auto p-0 text-secondary" asChild>
                   <a href={platformProject?.license?.url ?? `https://spdx.org/licenses/${projectInfo.license.name}`} target="_blank" rel="noopener noreferrer">
                     {projectInfo.license.name}
                   </a>
                 </Button>
             </div>
             <div>
-              <span className="text-muted-foreground">
+              <span className="text-secondary">
                 {t('licenses.wiki')}
               </span>{' '}
-              <Button variant="link" className="h-auto p-0 text-muted-foreground" asChild>
+              <Button variant="link" className="h-auto p-0 text-secondary" asChild>
                 <a href={DEFAULT_WIKI_LICENSE.url} target="_blank" rel="noopener noreferrer">
                   {DEFAULT_WIKI_LICENSE.name}
                 </a>
@@ -143,13 +143,15 @@ export default function DocsProjectRightSidebar({
           </DetailCategory>
           <div className="flex flex-wrap gap-2 ml-6">
             {project.platforms.curseforge && (
-              <SocialButton 
+              <SocialButton
+                className="hover:text-brand-curseforge"
                 href={platforms.getProjectURL('curseforge', project.platforms.curseforge)} 
                 icon={<CurseForgeIcon className="h-4 w-4 sm:h-5 sm:w-5" />} 
               />
             )}
             {project.platforms.modrinth && (
-              <SocialButton 
+              <SocialButton
+                className="hover:text-brand-modrinth"
                 href={platforms.getProjectURL('modrinth', project.platforms.modrinth)} 
                 icon={<ModrinthIcon className="h-4 w-4 sm:h-5 sm:w-5" />} 
               />

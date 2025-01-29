@@ -11,12 +11,11 @@ import {ProjectSettingsContext} from "@/components/dev/modal/ProjectSettingsCont
 
 export interface ProjectEditFormProps {
   mod: Project;
-  state?: any;
 
   formAction: (data: any) => Promise<any>
 }
 
-export default function ProjectSettingsForm({mod, state, formAction}: ProjectEditFormProps) {
+export default function ProjectSettingsForm({mod, formAction}: ProjectEditFormProps) {
   const {open, setOpen} = useContext(ProjectSettingsContext)!;
 
   const parts = mod.source_repo!.split('/');
@@ -25,13 +24,12 @@ export default function ProjectSettingsForm({mod, state, formAction}: ProjectEdi
     owner: parts[0],
     repo: parts[1],
     branch: mod.source_branch,
-    path: mod.source_path,
-    mr_code: state?.mr_code
+    path: mod.source_path
   };
 
   return (
       <ProjectRegisterForm defaultValues={defaultValues} isAdmin={false} open={open} reloadAfterSubmit
-                           setOpen={setOpen} formAction={formAction} state={state}
+                           setOpen={setOpen} formAction={formAction}
                            translations="ProjectSettingsForm"
                            schema={projectEditSchema}
                            trigger={

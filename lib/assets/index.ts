@@ -1,9 +1,9 @@
-import sources, {DocumentationSource} from "@/lib/docs/sources";
+import {DocumentationSource} from "@/lib/docs/sources";
 import staticAssets from "@/lib/assets/staticAssets";
-import {FileTreeEntry} from "@/lib/service";
 import resourceLocation from "@/lib/util/resourceLocation";
+import localAssets from "@/lib/assets/localAssets";
 
-type SourceType = 'static';
+type SourceType = 'static' | 'local';
 
 interface AssetSourceRoots {
   [key: string]: AssetSourceRoot
@@ -28,17 +28,13 @@ export interface ResourceLocation {
   path: string;
 }
 
-export type LocalFileTree = LocalFileTreeEntry[];
-
-export interface LocalFileTreeEntry extends FileTreeEntry {
-  url: string;
-}
-
+export const assetBasePath: string = '.assets';
 export const itemAssetBasePath: string = '.assets/item';
 export const itemAssetExtension: string = '.png';
 
 const assetProviders: { [key: string]: AssetProvider } = {
-  static: staticAssets
+  static: staticAssets,
+  local: localAssets
 }
 
 async function getBuiltinAssetSourceRoots(): Promise<AssetSourceRoots> {
@@ -59,15 +55,11 @@ async function getAssetResource(location: string, source?: DocumentationSource):
     return null;
   }
 
-  return await computeAssetResource(resource, source);
-}
-
-async function computeAssetResource(resource: ResourceLocation, source?: DocumentationSource): Promise<AssetLocation | null> {
   const systemRoots = await getBuiltinAssetSourceRoots();
   let root = systemRoots[resource.namespace];
 
-  if (!root && source) {
-    root = await getDocumentationSourceAssetRoot(source, resource.namespace);
+  if (!root && source?.type === 'local') {
+    root = { type: 'local', source: source.path }
   }
 
   if (root) {
@@ -83,18 +75,11 @@ async function computeAssetResource(resource: ResourceLocation, source?: Documen
   return null;
 }
 
-async function getDocumentationSourceAssetRoot(source: DocumentationSource, namespace: string): Promise<AssetSourceRoot> {
-  const sourceAssets = await sources.readShallowFileTree(source, itemAssetBasePath) as LocalFileTree;
-  let roots: AssetSourceRoots = {};
-  sourceAssets.filter(f => f.type === 'dir').forEach(f =>
-    roots[f.name] = {
-      source: f.url!,
-      type: 'static'
-    }
-  );
-  return roots[namespace];
+function getAssetResourcePath(id: ResourceLocation): string {
+  return assetBasePath + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
 }
 
 export default {
-  getAssetResource
+  getAssetResource,
+  getAssetResourcePath
 }

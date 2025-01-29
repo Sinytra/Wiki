@@ -45,7 +45,7 @@ export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: 
       <CollapsibleTrigger className="md:hidden">
         <DocsSidebarTitle offset noSeparator extra={
           <ChevronDownIcon
-            className="docsMainTrigger md:hidden w-5 h-5 text-muted-foreground transition-transform duration-200"/>
+            className="docsMainTrigger md:hidden w-5 h-5 text-secondary transition-transform duration-200"/>
         }>
           <span>{title}</span>
         </DocsSidebarTitle>
@@ -53,7 +53,7 @@ export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: 
       <div className="hidden md:block">
         <DocsSidebarTitle offset noSeparator extra={
           <ChevronDownIcon
-            className="docsMainTrigger md:hidden w-5 h-5 text-muted-foreground transition-transform duration-200"/>
+            className="docsMainTrigger md:hidden w-5 h-5 text-secondary transition-transform duration-200"/>
         }>
           <span>{title}</span>
         </DocsSidebarTitle>

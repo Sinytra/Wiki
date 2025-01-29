@@ -16,8 +16,8 @@ function SearchResult({result}: { result: WikiSearchResult }) {
 
   return (
     <Link href={result.url}
-          className="z-50 flex flex-row gap-2 bg-muted text-foreground px-1 py-1.5 cursor-pointer border border-neutral-700 rounded-sm">
-      <div className="rounded-sm p-1 flex-shrink-0">
+          className="z-50 flex flex-row gap-2 bg-primary-alt text-primary px-1 py-1.5 cursor-pointer border border-neutral-700 rounded-xs">
+      <div className="rounded-xs p-1 shrink-0">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} loading/>
       </div>
       <div
@@ -25,14 +25,14 @@ function SearchResult({result}: { result: WikiSearchResult }) {
         <span>{result.title}</span>
         {!result.path && result.mod_desc
           ?
-          <span className="text-muted-foreground">{result.mod_desc}</span>
+          <span className="text-secondary">{result.mod_desc}</span>
           :
           <div className="flex flex-col gap-1">
-            <span className="text-muted-foreground">
+            <span className="text-secondary">
               {result.mod}
             </span>
             {result.path &&
-              <span className="font-normal text-muted-foreground opacity-60">
+              <span className="font-normal text-secondary opacity-60">
                 {result.path}
               </span>
             }
@@ -47,7 +47,7 @@ function LoadingSearchState() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted px-1 py-1.5 border border-neutral-700 rounded-sm">
+    <div className="text-secondary h-16 z-50 flex flex-row justify-center items-center gap-2 bg-primary-alt px-1 py-1.5 border border-neutral-700 rounded-xs">
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       {t('loading')}
     </div>
@@ -58,7 +58,7 @@ function NoSearchResults() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-muted-foreground h-16 z-50 flex flex-row justify-center items-center gap-2 bg-muted px-1 py-1.5 border border-neutral-700 rounded-sm">
+    <div className="text-secondary h-16 z-50 flex flex-row justify-center items-center gap-2 bg-primary-alt px-1 py-1.5 border border-neutral-700 rounded-xs">
       {t('no_results')}
     </div>
   )
@@ -116,12 +116,12 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
         <div className="p-4 innerFadeContainer flex flex-col gap-4">
           <div className="relative">
             <button onClick={() => setOpen(false)}>
-              <ArrowLeftIcon className="w-5 h-5 absolute top-1/2 -translate-y-1/2 left-2 text-muted-foreground"/>
+              <ArrowLeftIcon className="w-5 h-5 absolute top-1/2 -translate-y-1/2 left-2 text-secondary"/>
             </button>
             <input type="text" value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
                    className="px-8 text-ellipsis cursor-pointer focus:cursor-text border border-neutral-700
-                          focus:outline focus:outline-1 focus:outline-muted-foreground bg-muted text-sm text-center
-                          placeholder:text-neutral-500 p-2 rounded-sm w-full"
+                          focus:outline focus:outline-1 focus:outline-secondary bg-primary-alt text-sm text-center
+                          placeholder:text-neutral-500 p-2 rounded-xs w-full"
                    placeholder={t('placeholder')}
             />
           </div>

@@ -1,31 +1,23 @@
-"use client"
-
-import {ExternalLinkIcon, type LucideIcon} from "lucide-react"
+'use client'
 
 import {Collapsible,} from "@/components/ui/collapsible"
-import {
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
+import {SidebarGroup, SidebarGroupLabel, SidebarMenu,} from "@/components/ui/sidebar"
 import {useTranslations} from "next-intl";
-import {Link} from "@/lib/locales/routing";
+import DevSidebarMenuItem, {Props as DevSidebarMenuItemProps} from "@/components/dev/DevSidebarMenuItem";
+import * as React from "react";
+import {usePathname} from "@/lib/locales/routing";
 
 interface Props {
-  items: {
-    title: string;
-    url: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
-    external?: boolean;
-    disabled?: boolean;
-  }[]
+  items: DevSidebarMenuItemProps[]
 }
 
 export function DevSidebarMainNav({items}: Props) {
   const t = useTranslations('DeveloperSidebar');
+  const pathname = usePathname();
+
+  function isActive(item: DevSidebarMenuItemProps) {
+    return pathname === item.url;
+  }
 
   return (
     <SidebarGroup>
@@ -37,18 +29,10 @@ export function DevSidebarMainNav({items}: Props) {
           <Collapsible
             key={item.title}
             asChild
-            defaultOpen={item.isActive}
+            defaultOpen={isActive(item)}
             className="group/collapsible"
           >
-            <SidebarMenuItem>
-              <Link href={item.url} target={item.external ? '_blank' : undefined}>
-                <SidebarMenuButton disabled={item.disabled} tooltip={item.title}>
-                  {item.icon && <item.icon/>}
-                  <span>{item.title}</span>
-                  {item.external && <ExternalLinkIcon className="ml-auto w-4 h-4" />}
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
+            <DevSidebarMenuItem {...item} />
           </Collapsible>
         ))}
       </SidebarMenu>

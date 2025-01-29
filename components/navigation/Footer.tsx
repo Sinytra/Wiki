@@ -11,7 +11,7 @@ function Copyright({ center }: { center: boolean }) {
 
   return <>
     <div className={cn("flex flex-col items-center md:basis-96", !center && 'md:items-start')}>
-      <span className="inline-flex items-center font-medium text-foreground">
+      <span className="inline-flex items-center font-medium text-primary">
         <BookMarkedIcon className="mr-2 w-4 h-4" />
         {t('title')}
       </span>
@@ -27,7 +27,7 @@ function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { ti
     <ul>
       <li>
         <LinkComponent
-          className="hover:text-secondary-foreground transition-colors rounded-md py-0.5 text-sm text-muted-foreground outline-none"
+          className="hover:text-secondary-alt transition-colors rounded-md py-0.5 text-sm text-secondary outline-hidden"
           href={href}>
           {title}
         </LinkComponent>
@@ -39,7 +39,7 @@ function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { ti
 function LinkColumn({title, className, children}: { title: string, className?: string, children: React.ReactNode }) {
   return <>
     <div className={`flex flex-col gap-4 ${className}`}>
-      <p className="mb-2 text-sm text-foreground font-medium">{title}</p>
+      <p className="mb-2 text-sm text-primary font-medium">{title}</p>
 
       {children}
     </div>
@@ -83,9 +83,9 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full bg-muted pt-10 sm:pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-border"
+      className="w-full bg-primary-alt pt-10 sm:pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-tertiary"
     >
-      <div className="px-8 w-full max-w-[90rem] text-muted-foreground flex flex-col gap-8">
+      <div className="px-8 w-full max-w-[90rem] text-secondary flex flex-col gap-8">
         <div
           className={cn(
             "flex flex-wrap md:flex-nowrap md:flex-row w-full justify-center gap-y-10 sm:gap-y-8",
@@ -97,7 +97,7 @@ export default function Footer() {
           { !isPreview && <NavigationColumns /> }
         </div>
         <div className="text-center">
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-secondary">
             NOT AN OFFICIAL MINECRAFT WEBSITE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
           </span>
         </div>

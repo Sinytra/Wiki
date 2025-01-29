@@ -31,7 +31,7 @@ export default function ImageWithFallback({
   const [error, setError] = useState(false);
 
   const Fallback = () => <FallbackIcon strokeWidth={strokeWidth}
-                                       className={cn(className, 'text-muted-foreground opacity-20')}
+                                       className={cn(className, 'text-secondary opacity-20')}
                                        width={fbWidth || width}
                                        height={fbHeight || height}/>;
 

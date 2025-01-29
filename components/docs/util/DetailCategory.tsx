@@ -7,7 +7,7 @@ export default function DetailCategory({icon: Icon, className, innerClass, child
   children?: any
 }) {
   return (
-    <div className={cn("flex items-center space-x-2 text-muted-foreground", className)}>
+    <div className={cn("flex items-center space-x-2 text-secondary", className)}>
       <Icon className="w-4 h-4"/>
       <div className={innerClass}>
         {children}

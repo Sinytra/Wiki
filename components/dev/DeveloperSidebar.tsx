@@ -13,16 +13,15 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem
+  SidebarMenu
 } from "@/components/ui/sidebar";
-import {GitHubUserProfile} from "@/lib/service/remoteServiceApi";
 import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
+import {UserProfile} from "@/lib/service/remoteServiceApi";
+import DevSidebarMenuItem from "@/components/dev/DevSidebarMenuItem";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
-  profile: GitHubUserProfile;
+  profile: UserProfile;
   logoutAction: () => Promise<void>;
 }
 
@@ -45,9 +44,8 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
     },
     {
       title: t('nav.settings'),
-      url: "#",
-      icon: Settings2,
-      disabled: true
+      url: "/dev/settings",
+      icon: Settings2
     },
   ];
 
@@ -63,16 +61,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
             {t('groups.projects')}
           </SidebarGroupLabel>
           <SidebarMenu>
-            <SidebarMenuItem key="Projects">
-              <SidebarMenuButton isActive asChild>
-                <a href="#">
-                  <PencilRulerIcon/>
-                  <span>
-                    {t('nav.projects')}
-                  </span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            <DevSidebarMenuItem url="/dev" icon={PencilRulerIcon} title={t('nav.projects')} />
           </SidebarMenu>
         </SidebarGroup>
 

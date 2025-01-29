@@ -19,7 +19,7 @@ const WS_ERROR = '<<error';
 function Skeleton({children}: { children: any }) {
   return (
     <div
-      className="text-muted-foreground w-full rounded-md flex flex-col gap-3 justify-center items-center h-72 bg-[#0d1117]">
+      className="text-secondary w-full rounded-md flex flex-col gap-3 justify-center items-center h-72 bg-[#0d1117]">
       {children}
     </div>
   )
@@ -28,7 +28,7 @@ function Skeleton({children}: { children: any }) {
 function RenderedLogBody({body}: { body: string }) {
   return (
     <div
-      className="[&>pre]:slim-scrollbar-muted [&>pre]:overflow-y-auto [&>pre]:h-72 [&>pre]:p-2 [&>pre]:rounded-md [&>pre]:text-xs"
+      className="[&>pre]:slim-scrollbar-scrollbar-primary [&>pre]:overflow-y-auto [&>pre]:h-72 [&>pre]:p-2 [&>pre]:rounded-md [&>pre]:text-xs"
       dangerouslySetInnerHTML={({__html: body})}>
     </div>
   )
@@ -81,10 +81,10 @@ function WaitingLogs() {
 
 const getHighlighter = makeSingletonHighlighterCore(createHighlighterCore);
 
-export default function DevProjectLogs({id, status, hashedToken, callback}: {
+export default function DevProjectLogs({id, status, token, callback}: {
   id: string;
   status: ProjectStatus;
-  hashedToken: string;
+  token: string;
   callback: (id: string) => Promise<string | undefined>;
 }) {
   const t = useTranslations('DevProjectLogs');
@@ -149,7 +149,7 @@ export default function DevProjectLogs({id, status, hashedToken, callback}: {
     }
 
     const endpointUrl = process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL.replace('https://', 'wss://').replace('http://', 'ws://');
-    const ws = new WebSocket(`${endpointUrl}/ws/api/v1/project/log/${id}?token=${hashedToken}`);
+    const ws = new WebSocket(`${endpointUrl}/ws/api/v1/project/log/${id}?token=${token}`);
 
     ws.onerror = console.error;
 
@@ -208,7 +208,7 @@ export default function DevProjectLogs({id, status, hashedToken, callback}: {
               </Suspense>
               :
               <NoLogs>
-                <Button size="sm" className="!h-8" variant="outline" onClick={onClick}>
+                <Button size="sm" className="h-8!" variant="outline" onClick={onClick}>
                   {t('show')}
                 </Button>
               </NoLogs>

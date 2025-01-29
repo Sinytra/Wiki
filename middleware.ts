@@ -1,9 +1,8 @@
 import {NextRequest, NextResponse} from "next/server";
-
-import {auth} from "@/lib/auth";
 import localPreview from "@/lib/docs/localPreview";
 import createMiddleware from "next-intl/middleware";
 import {routing} from "@/lib/locales/routing";
+import authSession from "@/lib/authSession";
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -27,11 +26,12 @@ export async function middleware(request: NextRequest, response: NextResponse) {
       return localResp;
     }
 
-    const resp = await auth(request as any, response as any) as any;
-    localResp.headers.forEach((val, key) => resp.headers.set(key, val));
-    // @ts-ignore
-    resp.cookies = localResp.cookies;
-    return resp;
+    const authed = authSession.isAuthenticated(request.cookies);
+    if (!authed) {
+      return NextResponse.redirect(new URL('/auth/login', request.url));
+    }
+
+    return localResp;
   }
 
   return handleI18nRouting(request);

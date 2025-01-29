@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import {Link} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import {auth} from "@/lib/auth";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {Project} from "@/lib/service";
@@ -51,8 +50,8 @@ import {ProjectHostingPlatforms, ProjectTypeIcons} from "@/lib/docs/projectInfo"
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {cn} from "@/lib/utils";
-import {sha256} from "hash-wasm";
 import {SidebarTrigger} from "@/components/ui/sidebar";
+import authSession from "@/lib/authSession";
 
 function ValueTableCell({className, hideOverflow, children}: { className?: string; hideOverflow?: boolean; children?: any }) {
   return (
@@ -170,7 +169,7 @@ function ProjectPlatforms({project}: { project: Project }) {
               <td>
                 <LinkTextButton className="align-middle mb-0.5" target="_blank"
                                 href={platforms.getProjectURL(platform as ProjectPlatform, value)}>
-                  <ExternalLinkIcon className="mr-2 w-4 h-4 text-muted-foreground"/>
+                  <ExternalLinkIcon className="mr-2 w-4 h-4 text-secondary"/>
                   {t('open')}
                 </LinkTextButton>
               </td>
@@ -245,24 +244,21 @@ async function ProfileProject({project}: { project: Project }) {
   const t = await getTranslations('DevProjectPage');
   const messages = await getMessages();
 
-  const session = await auth();
-  const token = session?.access_token;
-  const hashedToken = token ? await sha256(token) : '';
+  // TODO Find alternative
+  const token = authSession.getSession()?.token!;
 
   return <>
     <ProjectSettingsContextProvider>
       <div className="flex flex-col justify-between gap-3">
         <div
-          className="flex flex-row gap-4 p-4 w-full border border-[hsl(var(--sidebar-border))] rounded-md bg-[hsl(var(--sidebar-background))]">
-          <img className="rounded-md w-12 h-12 sm:w-[84px] sm:h-[84px]" src={platformProject.icon_url} alt="Project icon"/>
+          className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">
+          <img className="rounded-sm w-12 h-12 sm:w-[84px] sm:h-[84px]" src={platformProject.icon_url} alt="Project icon"/>
 
           <div className="flex flex-col gap-2">
-            <Link href={`/dev/${project.id}`}>
-              <p className="text-foreground font-medium sm:text-lg">
-                {platformProject.name}
-              </p>
-            </Link>
-            <p className="text-muted-foreground font-normal min-h-6 text-sm sm:text-base">
+            <p className="text-primary font-medium sm:text-lg">
+              {platformProject.name}
+            </p>
+            <p className="text-secondary font-normal min-h-6 text-sm sm:text-base">
               {platformProject.summary}
             </p>
           </div>
@@ -302,7 +298,7 @@ async function ProfileProject({project}: { project: Project }) {
         {project.status !== ProjectStatus.UNKNOWN &&
           <div>
               <NextIntlClientProvider messages={pick(messages, 'DevProjectLogs')}>
-                  <DevProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} hashedToken={hashedToken}
+                  <DevProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}
                                   callback={fetchProjectLog}/>
               </NextIntlClientProvider>
           </div>
@@ -313,12 +309,7 @@ async function ProfileProject({project}: { project: Project }) {
 }
 
 export default async function DevProjectPage({params}: { params: { project: string } }) {
-  const session = await auth();
-  if (!session) {
-    return redirect('/dev');
-  }
-
-  const project = await remoteServiceApi.getDevProject(session.access_token, params.project);
+  const project = await remoteServiceApi.getDevProject(params.project);
   if (!('id' in project)) {
     return redirect('/dev');
   }
@@ -329,13 +320,13 @@ export default async function DevProjectPage({params}: { params: { project: stri
   return (
     <GetStartedContextProvider>
       <div>
-        <Breadcrumb className="mt-2 sm:mt-0 mb-4">
+        <Breadcrumb className="mt-1 sm:mt-0 mb-4">
           <BreadcrumbList>
-            <SidebarTrigger className="-ml-1 mr-1 sm:hidden text-foreground"/>
+            <SidebarTrigger className="-ml-1 mr-1 sm:hidden text-primary"/>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href="/dev">
-                  {t('breadcrumbs.projects')}
+                  {t('breadcrumbs.home')}
                 </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>

@@ -5,6 +5,7 @@ import {Button} from "../button";
 import DiscordIcon from "../icons/DiscordIcon";
 import GitHubIcon from "../icons/GitHubIcon";
 import {ReactNode} from "react";
+import {cn} from "@/lib/utils";
 
 export default function SocialButtons({ enableSharing, shareData, large }: { enableSharing?: boolean, shareData?: any; large?: boolean }) {
     const isShareSupported = typeof navigator !== "undefined" && typeof navigator.share === "function";
@@ -37,10 +38,10 @@ export default function SocialButtons({ enableSharing, shareData, large }: { ena
     );
 }
 
-export function SocialButton({ href, icon, large }: { href: string; icon: ReactNode; large?: boolean }) {
+export function SocialButton({ href, icon, large, className }: { href: string; icon: ReactNode; large?: boolean; className?: string }) {
     return (
         <a href={href} target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="icon" className={large ? 'h-10 w-10' : 'h-8 w-8 sm:h-10 sm:w-10'}>
+            <Button variant="outline" size="icon" className={cn(className, large ? 'h-10 w-10' : 'h-8 w-8 sm:h-10 sm:w-10')}>
                 {icon}
             </Button>
         </a>

@@ -1,10 +1,10 @@
-import {auth, signIn} from "@/lib/auth";
 import {redirect} from "next/navigation";
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {KeyRoundIcon} from "lucide-react";
 import {setContextLocale} from "@/lib/locales/routing";
 import LoginSubmitButton from "@/components/util/LoginSubmitButton";
 import {getTranslations} from "next-intl/server";
+import authSession from "@/lib/authSession";
 
 export default async function Login({params, searchParams}: {
   params: { locale: string },
@@ -12,10 +12,9 @@ export default async function Login({params, searchParams}: {
 }) {
   setContextLocale(params.locale);
 
-  const session = (await auth());
-  const callbackUrl = searchParams.callbackUrl as string | undefined;
-
+  const session = authSession.getSession();
   if (session) {
+    const callbackUrl = searchParams.callbackUrl as string | undefined;
     return redirect(callbackUrl || '/dev');
   }
 
@@ -26,7 +25,7 @@ export default async function Login({params, searchParams}: {
       className="flex w-full h-[50vh] items-center justify-center"
       action={async () => {
         "use server"
-        await signIn('github', {redirectTo: callbackUrl || '/dev'})
+        authSession.login();
       }}
     >
       <Card className="w-full max-w-sm shadow-md">
@@ -35,7 +34,7 @@ export default async function Login({params, searchParams}: {
             <KeyRoundIcon className="mr-2 w-6 h-6" strokeWidth={1.8}/>
             {t('title')}
           </CardTitle>
-          <div className="pt-2 text-sm text-muted-foreground space-y-2">
+          <div className="pt-2 text-sm text-secondary space-y-2">
             <p>{t('desc')}</p>
             <p>{t('prompt')}</p>
           </div>

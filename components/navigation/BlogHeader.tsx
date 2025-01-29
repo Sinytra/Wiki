@@ -17,7 +17,7 @@ export default function BlogHeader({hideSubtext}: {hideSubtext: boolean}) {
       <img style={{ marginBottom: '1.5rem' }} src="https://sinytra.org/logo.png" width={124} height={124}
         alt="Sinytra logo" />
 
-      <a href="/blog" className="text-foreground !no-underline flex flex-col sm:flex-row items-center"
+      <a href="/blog" className="text-primary no-underline! flex flex-col sm:flex-row items-center"
         style={{ fontSize: '2rem', marginBottom: '0.1rem' }}>
         Modded Minecraft Wiki
         <Badge className="ml-3 text-lg" variant="secondary">Blog</Badge>

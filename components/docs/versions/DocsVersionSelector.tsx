@@ -9,11 +9,14 @@ export default function DocsVersionSelector({version, versions}: { version: stri
 
   return (
     <DocsVersionSelectWrapper value={version} defaultValue={DEFAULT_DOCS_VERSION}>
-      <SelectTrigger className="sm:w-[140px]">
+      <SelectTrigger className="sm:w-[180px]">
         <Tag className="w-4 h-4 mr-1"/>
         <SelectValue placeholder={t('placeholder')}/>
       </SelectTrigger>
       <SelectContent>
+        <SelectItem value={DEFAULT_DOCS_VERSION}>
+          {t('latest')}
+        </SelectItem>
         {Object.entries(versions).map(([key, value]) => (
           <SelectItem key={key} value={key}>
             {value}

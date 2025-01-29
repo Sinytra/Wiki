@@ -21,8 +21,8 @@ import Image from "next/image";
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
-      <div className="flex-shrink-0">
-        <Image className="rounded-sm border border-accent w-16 h-16 sm:w-20 sm:h-20"
+      <div className="shrink-0">
+        <Image className="rounded-sm border border-tertiary w-16 h-16 sm:w-20 sm:h-20"
                src={projectContent.icon_url}
                alt="icon"
                width={64}
@@ -37,7 +37,7 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
 function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
-      <span className="text-sm text-muted-foreground font-normal line-clamp-2">
+      <span className="text-sm text-secondary font-normal line-clamp-2">
       {projectContent.summary}
     </span>
   )
@@ -45,8 +45,8 @@ function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
 
 function ProjectIconPlaceholder() {
   return (
-      <div className="flex-shrink-0 flex w-[80px] h-[80px] border border-accent rounded-sm">
-        <BoxIcon strokeWidth={1} className="m-auto text-muted-foreground opacity-20" width={56} height={56}/>
+      <div className="shrink-0 flex w-[80px] h-[80px] border border-tertiary rounded-xs">
+        <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={56} height={56}/>
       </div>
   )
 }
@@ -68,14 +68,14 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
   const TypeIcon = ProjectTypeIcons[projectContent.type];
 
   return (
-      <div className="flex flex-wrap sm:flex-nowrap sm:flex-shrink-0 w-full justify-between items-center mt-auto gap-2 text-muted-foreground">
+      <div className="flex flex-wrap sm:flex-nowrap sm:shrink-0 w-full justify-between items-center mt-auto gap-2 text-secondary">
         <ErrorBoundary fallback={<span></span>}>
           <div className="flex flex-row items-center gap-3">
-            <div className="flex flex-row items-center gap-2 text-muted-foreground">
+            <div className="flex flex-row items-center gap-2 text-secondary">
               <TypeIcon className="w-4 h-4 sm:w-5 sm:h-5"/>
               <span className="text-sm sm:text-base">{u(projectContent.type)}</span>
             </div>
-            <div className="flex flex-row items-center gap-2 text-muted-foreground">
+            <div className="flex flex-row items-center gap-2 text-secondary">
               <MilestoneIcon className="w-4 h-4 sm:w-5 sm:h-5"/>
               {projectContent.game_versions.length === 0
                 ? <span className="text-sm sm:text-base">{t('unknown')}</span>
@@ -85,11 +85,11 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
           </div>
         </ErrorBoundary>
 
-        <div className="sm:flex-shrink-0 gap-1 sm:gap-2 hidden sm:flex">
+        <div className="sm:shrink-0 gap-1 sm:gap-2 hidden sm:flex">
           {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
           {base.platforms.curseforge &&
               <Button asChild variant="outline" size="icon"
-                      className="hover:text-[var(--curseforge-brand)] w-8 h-8 sm:w-10 sm:h-10">
+                      className="hover:text-brand-curseforge w-8 h-8 sm:w-10 sm:h-10">
                   <NavLink href={platforms.getProjectURL('curseforge', base.platforms.curseforge)} target="_blank">
                       <CurseForgeIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
                   </NavLink>
@@ -97,7 +97,7 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
           }
           {base.platforms.modrinth &&
               <Button asChild variant="outline" size="icon"
-                      className="hover:text-[var(--modrinth-brand)] w-8 h-8 sm:w-10 sm:h-10">
+                      className="hover:text-brand-modrinth w-8 h-8 sm:w-10 sm:h-10">
                   <NavLink href={platforms.getProjectURL('modrinth', base.platforms.modrinth)} target="_blank">
                       <ModrinthIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
                   </NavLink>
@@ -112,7 +112,7 @@ export default async function BrowseProject({project}: { project: BaseProject })
   const platformProject = platforms.getPlatformProject(project);
 
   return (
-      <div className="flex flex-row items-center border border-neutral-600 rounded-sm w-full px-3 py-2 sm:py-3 gap-3 sm:gap-4">
+      <div className="flex flex-row items-center border border-secondary rounded-sm w-full px-3 py-2 sm:py-3 gap-3 sm:gap-4">
         <ErrorBoundary fallback={<ProjectIconPlaceholder/>}>
           <Suspense fallback={<ProjectIconPlaceholder/>}>
             <ProjectIcon project={platformProject}/>
@@ -123,7 +123,7 @@ export default async function BrowseProject({project}: { project: BaseProject })
           <div className="w-full h-full flex flex-col gap-1.5">
             <div className="w-full inline-flex gap-2">
               <LinkTextButton href={`/project/${project.id}`}
-                              className="!w-fit !font-normal sm:flex-shrink-0 text-lg sm:text-xl text-foreground">
+                              className="w-fit! font-normal! sm:shrink-0 text-lg sm:text-xl text-primary">
                 {project.name}
               </LinkTextButton>
 

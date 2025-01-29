@@ -14,13 +14,13 @@ function MobileHeader({title}: {title: string}) {
 
   return (
     <header className="lg:hidden flex justify-between items-center p-4 border-b border-border">
-      <button onClick={() => setOpen(open == 'left' ? 'none' : 'left')} className="text-foreground">
+      <button onClick={() => setOpen(open == 'left' ? 'none' : 'left')} className="text-primary">
         {open === 'left' ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
       <h1 className="text-lg font-bold">
         {title}
       </h1>
-      <button onClick={() => setOpen(open == 'right' ? 'none' : 'right')} className="text-foreground">
+      <button onClick={() => setOpen(open == 'right' ? 'none' : 'right')} className="text-primary">
         {open === 'right' ? <X className="w-6 h-6" /> : <Info className="w-6 h-6" />}
       </button>
     </header>
@@ -29,7 +29,7 @@ function MobileHeader({title}: {title: string}) {
 
 export default function DocsLayoutClient({title, children}: DocsLayoutClientProps) {
   return (
-    <div className="flex flex-col flex-1 bg-background text-foreground">
+    <div className="flex flex-col flex-1 bg-primary text-primary">
       {/* Header */}
       <MobileHeader title={title} />
 

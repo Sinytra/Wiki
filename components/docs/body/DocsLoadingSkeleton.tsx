@@ -17,7 +17,7 @@ export default function DocsLoadingSkeleton() {
           <Skeleton className="w-full h-8"/>
 
           <div className="flex flex-row w-full gap-6">
-            <Skeleton className="w-72 h-72 flex-shrink-0"/>
+            <Skeleton className="w-72 h-72 shrink-0"/>
 
             <div className="flex flex-col justify-between gap-4 w-full">
               <Skeleton className="w-full h-8"/>

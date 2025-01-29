@@ -3,6 +3,6 @@ import {cn} from "@/lib/utils";
 
 export default function CurseForgeColorIcon({ width, height, className}: { width?: any, height?: any, className?: string }) {
   return (
-    <CurseForgeIcon className={cn(className, 'text-[var(--curseforge-brand)]')} width={width} height={height} />
+    <CurseForgeIcon className={cn(className, 'text-brand-curseforge')} width={width} height={height} />
   )
 }

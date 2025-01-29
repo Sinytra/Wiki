@@ -14,7 +14,7 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
         <BrowseProject key={m.id} project={m}/>
       ))}
       {results.data.length === 0 &&
-          <span className="text-center my-3 text-muted-foreground">
+          <span className="text-center my-3 text-secondary">
               {t('no_results')}
           </span>
       }

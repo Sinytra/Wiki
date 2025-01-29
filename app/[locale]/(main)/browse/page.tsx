@@ -35,7 +35,7 @@ export default function Browse({params, searchParams}: Properties) {
     <NuqsAdapter>
       <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center page-wrapper-ext">
         <aside
-          className="px-1 md:p-1.5 md:pt-2 bg-muted rounded-md w-full md:w-64 mb-2 md:mb-0 flex-shrink-0 md:sticky md:top-20 md:h-[calc(100vh_-_8rem)]"
+          className="px-1 md:p-1.5 md:pt-2 bg-primary-alt rounded-md w-full md:w-64 mb-2 md:mb-0 shrink-0 md:sticky md:top-[75px] md:h-[calc(100vh_-_8rem)]"
         >
           <CollapsibleDocsTreeBase title={t('sidebar.title')} defaultOpen={false}>
             <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>
@@ -46,7 +46,7 @@ export default function Browse({params, searchParams}: Properties) {
 
         <div className="w-full sm:max-w-[60rem] flex flex-col gap-2">
           <div
-            className="flex flex-col gap-4 sm:flex-row flex-wrap items-end sm:items-start justify-between w-full pb-4 mb-2 border-b border-neutral-700">
+            className="flex flex-col gap-4 sm:flex-row flex-wrap items-end sm:items-start justify-between w-full pb-4 mb-2 border-b border-secondary">
             <ProjectSearch placeholder={t('search')}/>
 
             <NextIntlClientProvider messages={pick(messages, 'BrowsePage', 'SearchProjectTypes')}>

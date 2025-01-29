@@ -120,6 +120,10 @@ async function getAsset(slug: string | null, location: string, version: string |
     }
   }
 
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    return null;
+  }
+
   return remoteService.getAsset(slug, location, actualVersion);
 }
 

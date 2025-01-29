@@ -28,10 +28,10 @@ function FilterSearch({filter, setFilter, active, onReset}: {
 
   return (
       <div className="w-full flex flex-row gap-2 mt-2 sm:mt-0">
-        <div className="w-full relative text-muted-foreground">
+        <div className="w-full relative text-secondary">
           <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
           <Input
-              className="pl-9 border-neutral-700 focus-visible:ring-0 focus-visible:outline-none"
+              className="pl-9 border-neutral-700 focus-visible:ring-0 focus-visible:outline-hidden"
               type="text"
               placeholder={t("sidebar.search_filters")}
               value={filter || ''}
@@ -39,7 +39,7 @@ function FilterSearch({filter, setFilter, active, onReset}: {
           />
         </div>
         {active &&
-            <Button size="icon" className="text-foreground border-muted-foreground" variant="outline" onClick={onReset}>
+            <Button size="icon" className="text-primary border-secondary-alt" variant="outline" onClick={onReset}>
                 <div className="px-4">
                     <FilterXIcon className="w-4 h-4"/>
                 </div>
@@ -61,7 +61,7 @@ function Category({name, icon: Icon, checked, onChange}: {
                   checked={checked}
                   onCheckedChange={(e) => onChange(e == true)}/>
         <Icon className="w-4 h-4"/>
-        <span className="text-sm text-foreground">{name}</span>
+        <span className="text-sm text-primary">{name}</span>
       </div>
   )
 }

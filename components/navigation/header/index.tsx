@@ -17,7 +17,7 @@ import MobileDocsSearch from "@/components/navigation/MobileDocsSearch";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <LocaleNavLink href={href} className={`${styles.menuLink} text-foreground font-medium first:pl-0 px-1 sm:px-2 lg:px-3`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary font-medium first:pl-0 px-1 sm:px-2 lg:px-3`}>
       {children}
     </LocaleNavLink>
   )
@@ -25,7 +25,7 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
 
 function MobileHeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <LocaleNavLink href={href} className={`${styles.menuLink} text-foreground font-normal py-3 border-b border-[var(--vp-c-divider)]`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary font-normal py-3 border-b border-[var(--vp-c-divider)]`}>
       {children}
     </LocaleNavLink>
   )
@@ -39,10 +39,10 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn(styles.container, 'h-[56px] !pointer-events-auto sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-1.5 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
+        className={cn(styles.container, 'h-[56px] pointer-events-auto! sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-1.5 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
         <div className="flex flex-row items-center gap-3 sm:gap-4 mr-auto">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
-            <span className="inline-flex text-base font-medium text-foreground gap-1 items-center align-bottom">
+            <span className="inline-flex text-base font-medium text-primary gap-1 items-center align-bottom">
               <BookMarkedIcon className="mr-1 w-4 h-4" />
               {t('title')}
             </span>
@@ -50,7 +50,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           {preview && <Badge className="hidden sm:block" variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&
               <Badge variant="outline"
-                     className="hidden sm:block border-neutral-600 text-muted-foreground font-normal">{t('badge.beta')}</Badge>}
+                     className="hidden sm:block border-neutral-600 text-secondary font-normal">{t('badge.beta')}</Badge>}
         </div>
 
         {!minimal && !preview &&

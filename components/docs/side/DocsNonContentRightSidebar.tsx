@@ -66,15 +66,15 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
       type="right"
       title={t('title')}
       className={cn(
-        'flex-shrink-0 right-0',
-        'w-[96vw] sm:w-64 data-[open=false]:translate-x-full data-[open=false]:lg:translate-x-0',
-        'border-l data-[open=false]:border-0 data-[open=false]:lg:border-l'
+        'shrink-0 right-0',
+        'w-[96vw] sm:w-64 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
+        'border-l data-[open=false]:border-0 lg:data-[open=false]:border-l'
       )}
       tagName="nav"
     >
       <div className="relative">
         {showTopGradient && (
-          <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-background to-transparent pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-12 bg-linear-to-b from-background to-transparent pointer-events-none" />
         )}
         <div
           ref={listRef}
@@ -86,9 +86,9 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "block py-1 text-muted-foreground hover:text-foreground transition-colors",
-                    activeId === heading.id && "text-foreground",
-                    index === 0 ? '!pt-0' : ''
+                    "block py-1 text-secondary hover:text-primary transition-colors",
+                    activeId === heading.id && "text-primary",
+                    index === 0 ? 'pt-0!' : ''
                   )}
                   onClick={(e) => {
                     e.preventDefault()
@@ -104,7 +104,7 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
           </ul>
         </div>
         {showBottomGradient && (
-          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-background to-transparent pointer-events-none" />
         )}
       </div>
     </DocsSidebarBase>

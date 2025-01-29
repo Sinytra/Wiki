@@ -49,7 +49,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
 
   return (
     <Form {...form}>
-      <form tabIndex={0} action={action} className="focus:outline-none space-y-6">
+      <form tabIndex={0} action={action} className="focus:outline-hidden space-y-6">
         <FormItem>
           <FormLabel>
             {t.id.title}
@@ -164,7 +164,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
             <p className="my-1"/>
             {t.dislike.suggestion}
 
-            <Button asChild className="mt-4 ml-auto text-primary-foreground">
+            <Button asChild className="mt-4 ml-auto text-inverse">
               <LocaleNavLink href="/browse">
                 <CompassIcon className="w-4 h-4 mr-2"/>
                 {t.dislike.explore}

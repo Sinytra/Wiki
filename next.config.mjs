@@ -2,7 +2,6 @@ import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
 import available from "./lib/locales/available.js";
 import remarkGfm from 'remark-gfm';
-import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { withContentlayer } from "next-contentlayer";
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx";
@@ -41,14 +40,15 @@ const nextConfig = {
     }
 };
 
+const chConfig = {
+    components: { code: "CodeHikeCode" },
+}
+
 const withMDX = createMDX({
     options: {
-        remarkPlugins: [remarkGfm, remarkCodeHike],
-        rehypePlugins: [
-            [rehypePrettyCode, { theme: 'plastic' }],
-            rehypeSlug
-        ],
-        recmaPlugins: [recmaCodeHike]
+        remarkPlugins: [remarkGfm, [remarkCodeHike, chConfig]],
+        rehypePlugins: [rehypeSlug],
+        recmaPlugins: [[recmaCodeHike, chConfig]]
     }
 })
 

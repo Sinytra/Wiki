@@ -16,9 +16,9 @@ export default function HeaderBase({unfix, children}: { unfix?: boolean, childre
 
     return () => document.removeEventListener("scroll", onScroll);
   }, [scrolled]);
-  
+
   return (
-    <header className={cn(!unfix && 'fixed left-0 w-[100vw]', 'bg-muted border-b z-50', !unfix && scrolled && 'motion-reduce:transition-none')} ref={binding}>
+    <header className={cn(!unfix && 'fixed left-0 w-[100vw]', 'bg-primary-alt border-b border-tertiary z-50', !unfix && scrolled && 'motion-reduce:transition-none')} ref={binding}>
       {children}
     </header>
   )
