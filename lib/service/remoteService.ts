@@ -37,7 +37,7 @@ async function fetchBackendService(project: string, path: string, params: Record
 
 async function getProject(project: string): Promise<Project | null> {
   try {
-    const resp = await fetchBackendService(project, `project/${project}`);
+    const resp = await fetchBackendService(project, `docs/${project}`);
     if (resp.ok) {
       const json = await resp.json();
       return json.project;
