@@ -8,6 +8,7 @@ import {Button} from "@/components/ui/button";
 import {SettingsIcon} from "lucide-react";
 import {projectEditSchema} from "@/lib/forms/schemas";
 import {ProjectSettingsContext} from "@/components/dev/modal/ProjectSettingsContextProvider";
+import {useTranslations} from "next-intl";
 
 export interface ProjectEditFormProps {
   mod: Project;
@@ -17,12 +18,11 @@ export interface ProjectEditFormProps {
 
 export default function ProjectSettingsForm({mod, formAction}: ProjectEditFormProps) {
   const {open, setOpen} = useContext(ProjectSettingsContext)!;
+  const t = useTranslations('ProjectSettingsForm');
 
-  const parts = mod.source_repo!.split('/');
   const defaultValues = {
     id: mod.id,
-    owner: parts[0],
-    repo: parts[1],
+    repo: mod.source_repo,
     branch: mod.source_branch,
     path: mod.source_path
   };
@@ -35,7 +35,9 @@ export default function ProjectSettingsForm({mod, formAction}: ProjectEditFormPr
                            trigger={
                              <Button variant="outline" size="sm">
                                <SettingsIcon className="sm:mr-2 w-4 h-4"/>
-                               <span className="hidden sm:block">Settings</span>
+                               <span className="hidden sm:block">
+                                 {t('button')}
+                               </span>
                              </Button>
                            }/>
   )

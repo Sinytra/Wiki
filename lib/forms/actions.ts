@@ -19,7 +19,7 @@ export async function handleRegisterProjectForm(rawData: any) {
   }
 
   const response = await remoteServiceApi.registerProject({
-    repo: `${data.owner}/${data.repo}`,
+    repo: data.repo,
     branch: data.branch,
     path: data.path,
     is_community: data.is_community
@@ -45,7 +45,7 @@ export async function handleEditProjectForm(rawData: any) {
   }
 
   const response = await remoteServiceApi.updateProject({
-    repo: `${data.owner}/${data.repo}`,
+    repo: data.repo,
     branch: data.branch,
     path: data.path
   });

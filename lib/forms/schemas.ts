@@ -1,7 +1,6 @@
 import {z} from "zod";
 
 export const projectRegisterSchema = z.object({
-  owner: z.string(),
   repo: z.string(),
   branch: z.string(),
   path: z.string(),
@@ -11,7 +10,6 @@ export const projectRegisterSchema = z.object({
 export const projectEditSchema = z.object({
   id: z.string(),
 
-  owner: z.string(),
   repo: z.string(),
   branch: z.string(),
   path: z.string(),
