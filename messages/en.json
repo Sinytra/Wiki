@@ -274,15 +274,10 @@
         "button": "Add Project",
         "title": "Register project",
         "desc": "Register a new project to the wiki.",
-        "owner": {
-            "title": "Owner",
-            "desc": "User / organization name.",
-            "placeholder": "ExampleUser"
-        },
         "repo": {
-            "title": "Name",
-            "desc": "Repository name.",
-            "placeholder": "ExampleMod"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "Branch",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Edit project",
         "desc": "Edit an existing project's settings.",
+        "button": "Settings",
         "success": {
             "title": "Project updated successfully",
             "desc": "You can now navigate to the updated project's docs page"

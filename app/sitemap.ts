@@ -8,6 +8,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const allProjects = await remoteServiceApi.getAllProjectIDs();
+  if ('error' in allProjects) {
+    return [];
+  }
+
   const languageKeys = available.getLanguagePaths().filter(l => l !== 'en');
 
   return allProjects.map(id => {

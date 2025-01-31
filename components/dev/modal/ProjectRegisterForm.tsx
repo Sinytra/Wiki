@@ -77,7 +77,7 @@ export default function ProjectRegisterForm(
     const resp = await formAction(data) as any;
     if (resp.success) {
       if (redirectToProject && resp.project.id) {
-        progressRouter.push(`/${params.locale}/dev/${resp.project.id}`);
+        progressRouter.push(`/${params.locale}/dev/project/${resp.project.id}`);
       }
 
       setOpen(false);
@@ -134,45 +134,24 @@ export default function ProjectRegisterForm(
             }
             <form ref={formRef} action={action}
                   className={cn('focus:outline-hidden space-y-6', form.formState.isSubmitting && 'invisible')}>
-              <div className="flex flex-row items-center gap-2 w-full">
-                <FormField
-                  control={form.control}
-                  name="owner"
-                  render={({field}) => (
-                    <FormItem>
-                      <FormLabel>
-                        {t('owner.title')}
-                      </FormLabel>
-                      <FormControl>
-                        <Input placeholder={t('owner.placeholder')} {...field} />
-                      </FormControl>
-                      <FormDescription>
-                        {t('owner.desc')}
-                      </FormDescription>
-                      <FormMessage/>
-                    </FormItem>
-                  )}
-                />
-                <span>/</span>
-                <FormField
-                  control={form.control}
-                  name="repo"
-                  render={({field}) => (
-                    <FormItem>
-                      <FormLabel>
-                        {t('repo.title')}
-                      </FormLabel>
-                      <FormControl>
-                        <Input placeholder={t('repo.placeholder')} {...field} />
-                      </FormControl>
-                      <FormDescription>
-                        {t('repo.title')}
-                      </FormDescription>
-                      <FormMessage/>
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="repo"
+                render={({field}) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t('repo.title')}
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder={t('repo.placeholder')} {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      {t('repo.desc')}
+                    </FormDescription>
+                    <FormMessage/>
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
