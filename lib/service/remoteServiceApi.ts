@@ -91,17 +91,17 @@ export async function wrapJsonServiceCall<T = any, U = T>(callback: () => Promis
       const body = await resp.json();
       if ('error' in body) {
         console.error(body.error);
-        return {status: resp.status, error: body.error};
+        return {...body, status: resp.status, error: body.error};
       }
       return processor?.(body) || body;
     } else {
-      let error = 'Unknown';
+      let body: any = {};
       try {
-        error = (await resp.json()).error;
+        body = await resp.json();
       } catch (e) {
       }
       console.error(resp);
-      return {status: resp.status, error};
+      return {...body, status: resp.status, error: body?.error || 'unknown'};
     }
   } catch (e) {
     console.error(e);
