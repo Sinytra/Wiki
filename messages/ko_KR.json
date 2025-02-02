@@ -274,15 +274,10 @@
         "button": "프로젝트 추가하기",
         "title": "프로젝트 등록하기",
         "desc": "새 프로젝트를 위키에 등록합니다.",
-        "owner": {
-            "title": "소유자",
-            "desc": "사용자 / 조직의 이름.",
-            "placeholder": "ExampleUser"
-        },
         "repo": {
-            "title": "이름",
-            "desc": "리포지토리 이름.",
-            "placeholder": "ExampleMod"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "브랜치",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "프로젝트 편집",
         "desc": "Edit an existing project's settings.",
+        "button": "Settings",
         "success": {
             "title": "프로젝트를 성공적으로 업데이트했습니다",
             "desc": "You can now navigate to the updated project's docs page"
