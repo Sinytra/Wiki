@@ -274,15 +274,10 @@
         "button": "新增專案",
         "title": "登錄專案",
         "desc": "向 Wiki 登錄一個新專案。",
-        "owner": {
-            "title": "擁有者",
-            "desc": "使用者／組織名稱。",
-            "placeholder": "ExampleUser"
-        },
         "repo": {
-            "title": "名稱",
-            "desc": "儲存庫名稱。",
-            "placeholder": "ExampleMod"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "分支",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "編輯專案",
         "desc": "編輯現有專案的設定。",
+        "button": "Settings",
         "success": {
             "title": "專案更新成功",
             "desc": "您現在可以導覽至已更新的專案的文件頁面"
