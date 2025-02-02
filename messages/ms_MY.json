@@ -274,15 +274,10 @@
         "button": "Tambah Projek",
         "title": "Daftar projek",
         "desc": "Daftarkan projek baharu ke dalam wiki.",
-        "owner": {
-            "title": "Pemilik",
-            "desc": "Nama Pengguna / Organisasi.",
-            "placeholder": "ContohPengguna"
-        },
         "repo": {
-            "title": "Nama",
-            "desc": "Nama repositori.",
-            "placeholder": "ContohMod"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "Cabang",
@@ -300,8 +295,8 @@
             "details": "Paparkan butiran"
         },
         "connect_modrinth": {
-            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Open Settings"
+            "desc": "Sambungkan <b>akaun Modrinth</b> anda dalam Tetapan untuk mengesahkan pemilikan projek platform dengan mudah pada bila-bila masa.",
+            "settings": "Buka Tetapan"
         },
         "submit": "Serah",
         "success": {
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Sunting projek",
         "desc": "Sunting tetapan projek sedia ada.",
+        "button": "Settings",
         "success": {
             "title": "Projek berjaya dikemas kini",
             "desc": "Anda kini boleh menavigasi ke laman dokumentasi projek yang dikemas kini"
@@ -339,18 +335,18 @@
     },
     "FormActions": {
         "errors": {
-            "unauthorized": "User authentication error",
+            "unauthorized": "Ralat pengesahan pengguna",
             "internal": "Ralat Pelayan Dalaman, sila cuba lagi kemudian.",
-            "unknown": "An unknown error has occurred, please try again later.",
+            "unknown": "Sebuah ralat yang tidak diketahui telah berlaku, sila cuba sebentar lagi.",
             "no_platforms": "Tiada projek platform ditakrifkan dalam metadata.",
             "no_project": "Platform projek tidak ditemui. Sila pastikan medan \"slug\" metadata adalah betul.",
-            "unsupported_type": "Unsupported project type",
+            "unsupported_type": "Jenis projek tidak disokong",
             "ownership": "Gagal mengesahkan pemilikan projek",
             "cf_unavailable": "Pendaftaran projek CurseForge tidak aktif",
-            "requires_auth": "Repository connection requires login credentials but none were provided",
-            "no_repository": "Repository not found",
-            "no_branch": "Invalid branch specified",
-            "no_path": "Metadata file not found at specified path",
+            "requires_auth": "Sambungan repositori memerlukan kelayakan log masuk tetapi tiada yang diberikan",
+            "no_repository": "Repositori tidak ditemui",
+            "no_branch": "Cabang tidak sah ditentukan",
+            "no_path": "Fail metadata tidak ditemui pada laluan yang ditentukan",
             "invalid_meta": "Fail metadata tidak sah",
             "unsupported": "Belum dilaksanakan",
             "exists": "Projek sudah wujud.",
@@ -427,7 +423,7 @@
     },
     "DocsVersionSelector": {
         "placeholder": "Pilih versi",
-        "latest": "Latest"
+        "latest": "Terkini"
     },
     "DocsLanguageSelect": {
         "placeholder": "Pilih bahasa"
@@ -456,7 +452,7 @@
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "Laman Utama"
         },
         "toolbar": {
             "view": "Lihat"
@@ -523,49 +519,49 @@
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
-            "settings": "Settings"
+            "home": "Laman Utama",
+            "settings": "Tetapan"
         },
         "profile": {
-            "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}"
+            "bio": "Pencipta Wiki Minecraft Modded",
+            "join_date": "Menyertai pada {date}"
         },
         "connections": {
-            "title": "Connections",
+            "title": "Sambungan",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "Akaun Modrinth",
+                "desc": "Digunakan untuk mengesahkan pemilikan projek",
+                "connect": "Sambung",
+                "view": "Lihat",
+                "disconnect": "Putuskan"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "Akaun",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "Padam akaun",
+                "desc": "Padam semua data akaun buat selama-lamanya",
+                "button": "Padam akaun"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "Padam akaun",
+                "desc": "Adakah anda pasti mahu memadamkan akaun ini? Ini adalah tindakan yang merosakkan dan tidak boleh dibuat asal.",
+                "cancel": "Batal",
+                "button": "Padam selama-lamanya"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "Akaun berjaya dinyahpaut",
+                "error": "Ralat dalam menyahpaut akaun"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "Kegagalan pengesahan",
+        "desc": "Sebuah ralat yang tidak dijangka telah berlaku semasa cuba log masuk. Sila cuba sebentar lagi.",
+        "status": "Semak status",
+        "return": "Kembali ke laman utama",
+        "report": "Laporkan Pepijat"
     }
 }
