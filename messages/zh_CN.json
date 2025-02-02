@@ -274,15 +274,10 @@
         "button": "添加项目",
         "title": "注册项目",
         "desc": "在维基上注册一个新的项目。",
-        "owner": {
-            "title": "所有者",
-            "desc": "用户或组织名。",
-            "placeholder": "ExampleUser"
-        },
         "repo": {
-            "title": "名称",
-            "desc": "仓库名称。",
-            "placeholder": "ExampleMod"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "分支",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "编辑项目",
         "desc": "编辑现有的项目设置",
+        "button": "Settings",
         "success": {
             "title": "项目更新成功",
             "desc": "您现在可以转至更新后的项目文档界面"
