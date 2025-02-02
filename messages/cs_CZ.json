@@ -274,15 +274,10 @@
         "button": "Přidat projekt",
         "title": "Registrovat projekt",
         "desc": "Registrovat nový projekt na wiki.",
-        "owner": {
-            "title": "Vlastník",
-            "desc": "Jméno uživatele / organizace.",
-            "placeholder": "ExampleUser"
-        },
         "repo": {
-            "title": "Name",
-            "desc": "Repository name.",
-            "placeholder": "ExampleMod"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "Branch",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Upravit projekt",
         "desc": "Upravit nastavení existujícího projektu.",
+        "button": "Settings",
         "success": {
             "title": "Projekt úspěšně aktualizován",
             "desc": "You can now navigate to the updated project's docs page"

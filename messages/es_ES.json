@@ -274,15 +274,10 @@
         "button": "Añadir Proyecto",
         "title": "Registrar proyecto",
         "desc": "Registrar un nuevo proyecto en la wiki.",
-        "owner": {
-            "title": "Propietario",
-            "desc": "Usuario / nombre de la organización.",
-            "placeholder": "ExampleUser"
-        },
         "repo": {
-            "title": "Nombre",
-            "desc": "Nombre del repositorio.",
-            "placeholder": "ExampleMod"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "Rama",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Editar proyecto",
         "desc": "Editar la configuración de un proyecto existente.",
+        "button": "Settings",
         "success": {
             "title": "Proyecto actualizado correctamente",
             "desc": "You can now navigate to the updated project's docs page"
