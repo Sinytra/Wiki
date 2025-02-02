@@ -3,7 +3,7 @@ import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
 import DocsLoadingSkeleton from "@/components/docs/body/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
-import service from "@/lib/service";
+import service, {RenderedDocsPage} from "@/lib/service";
 import {redirect} from "next/navigation";
 import matter from "gray-matter";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
@@ -15,6 +15,7 @@ import DocsContentRightSidebar from "@/components/docs/side/DocsContentRightSide
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
+import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -52,7 +53,15 @@ export default async function ProjectDocsPage({params}: {
     return redirect('/');
   }
 
-  const page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
+  let page: RenderedDocsPage | null;
+  try {
+    page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
+  } catch (e) {
+    console.error('FATAL error rendering page', e);
+    return (
+      <DocsPageNotFoundError repo={projectData.project.is_public ? projectData.project.source_repo : undefined}/>
+    );
+  }
   if (!page) redirect(`/project/${params.slug}/docs`);
 
   const messages = await getMessages();
