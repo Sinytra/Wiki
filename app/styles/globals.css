@@ -6,9 +6,9 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@plugin "tailwindcss-animate";
-@plugin "tailwind-scrollbar";
-@plugin "@tailwindcss/typography";
+@plugin 'tailwindcss-animate';
+@plugin 'tailwind-scrollbar';
+@plugin '@tailwindcss/typography';
 
 @theme inline {
     --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -241,6 +241,11 @@
 }
 
 @layer base {
+    :root {
+        color-scheme: dark;
+        @apply scrollbar-thin;
+    }
+
     .page-wrapper-ext {
         @apply mt-4 sm:mt-0 pb-10;
     }

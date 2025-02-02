@@ -10,8 +10,8 @@ import {createHighlighterCore, makeSingletonHighlighterCore} from 'shiki/core';
 import {createOnigurumaEngine} from 'shiki/engine/oniguruma';
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {useRouter} from "@/lib/locales/routing";
-import {toast} from "sonner";
 import {useTranslations} from "next-intl";
+import {debounce} from "lodash";
 
 const WS_SUCCESS = '<<success';
 const WS_ERROR = '<<error';
@@ -26,8 +26,18 @@ function Skeleton({children}: { children: any }) {
 }
 
 function RenderedLogBody({body}: { body: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const child = container?.firstElementChild;
+    if (child) {
+      child.scrollTop = child.scrollHeight - 1;
+    }
+  });
+
   return (
-    <div
+    <div ref={containerRef}
       className="[&>pre]:slim-scrollbar-scrollbar-primary [&>pre]:overflow-y-auto [&>pre]:h-72 [&>pre]:p-2 [&>pre]:rounded-md [&>pre]:text-xs"
       dangerouslySetInnerHTML={({__html: body})}>
     </div>
@@ -111,18 +121,23 @@ export default function DevProjectLogs({id, status, token, callback}: {
     }))
   }
 
-  useEffect(() => {
-    if (lines.length === 0) {
+  const debounded = debounce(async (ls: string[]) => {
+    if (ls.length === 0) {
       setRenderedLogs(undefined);
       return;
     }
 
-    getHighlighterInstance().then(r => {
-      setRenderedLogs(r.codeToHtml(lines.join(''), {
-        lang: 'log',
-        theme: 'github-dark-default'
-      }));
-    })
+    const highlighter = await getHighlighterInstance();
+    setRenderedLogs(
+      highlighter.codeToHtml(ls.join(""), {
+        lang: "log",
+        theme: "github-dark-default",
+      })
+    );
+  }, 250);
+
+  useEffect(() => {
+    debounded(lines);
   }, [lines]);
 
   const initialized = useRef(false);
@@ -162,12 +177,6 @@ export default function DevProjectLogs({id, status, token, callback}: {
 
     ws.onmessage = (data: MessageEvent<any>) => {
       if (data.data.startsWith('<<')) {
-        if (data.data === WS_SUCCESS) {
-          toast.success(t('toast.success'));
-        }
-        if (data.data === WS_ERROR) {
-          toast.error(t('toast.error'));
-        }
         keepLogs.current = true;
         return;
       }

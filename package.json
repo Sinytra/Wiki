@@ -84,7 +84,7 @@
   "devDependencies": {
     "@shikijs/rehype": "^1.16.2",
     "@tailwindcss/postcss": "^4.0.0",
-    "@tailwindcss/typography": "^0.5.14",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/lodash": "^4.17.9",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.15",
@@ -94,7 +94,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
-    "tailwind-scrollbar": "^4.0.0-beta.0",
+    "tailwind-scrollbar": "^4.0.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5"
   },
