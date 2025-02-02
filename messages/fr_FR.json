@@ -274,15 +274,10 @@
         "button": "Ajouter un Projet",
         "title": "Enregistrer le projet",
         "desc": "Enregistrez un nouveau projet sur le wiki.",
-        "owner": {
-            "title": "Propriétaire",
-            "desc": "Nom d'utilisateur / organisation.",
-            "placeholder": "UtilisateurExemple"
-        },
         "repo": {
-            "title": "Nom",
-            "desc": "Nom du dépôt.",
-            "placeholder": "ModeExemple"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "Branche",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Éditer le projet",
         "desc": "Modifier les paramètres d'un projet existant.",
+        "button": "Settings",
         "success": {
             "title": "Projet mise à jour avec succès",
             "desc": "You can now navigate to the updated project's docs page"
