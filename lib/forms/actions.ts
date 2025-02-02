@@ -8,8 +8,9 @@ import authSession from "@/lib/authSession";
 import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
 
-export async function fetchProjectLog(id: string) {
-  return remoteServiceApi.getProjectDevLog(id);
+export async function fetchProjectLog(id: string): Promise<string | undefined> {
+  const res = await remoteServiceApi.getProjectDevLog(id);
+  return typeof res === 'string' ? res : undefined;
 }
 
 export async function handleRegisterProjectForm(rawData: any) {
