@@ -274,15 +274,10 @@
         "button": "Добавить проект",
         "title": "Зарегистрировать проект",
         "desc": "Зарегистрируйте новый проект в вики.",
-        "owner": {
-            "title": "Владелец",
-            "desc": "Имя пользователя или организации.",
-            "placeholder": "Примерный пользователь"
-        },
         "repo": {
-            "title": "Название",
-            "desc": "Название репозитория.",
-            "placeholder": "Примерный мод"
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "Ветка",
@@ -314,6 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Отредактировать проект",
         "desc": "Редактировать настройки существующего проекта.",
+        "button": "Settings",
         "success": {
             "title": "Проект успешно обновлён",
             "desc": "Теперь вы можете перейти на обновлённую страницу документации проекта"
