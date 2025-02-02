@@ -11,19 +11,20 @@ import {useTranslations} from "next-intl";
 import clientUtil from "@/lib/util/clientUtil";
 
 export default function DocsLanguageSelect({locale, locales}: { locale: string; locales: string[] }) {
-  const availableLocales = ['en', ...(locales?.map(l =>
-    Object.entries(available.getAvailableLocales())
-      .find(e => e[0] === l.split('_')[0] || (e[1] as Language).prefix === l || e[0] == l)
-      ?.[0]
-  )
-    .filter(l => l !== undefined) || [])];
   const allLocales = available.getAvailableLocales();
-  const selectableLocales: LanguageMap = availableLocales ? Object.keys(allLocales)
-    .filter(k => availableLocales.includes(k))
+
+  const projectLocaleKeys = locales?.map(l =>
+    Object.entries(available.getAvailableLocales())
+      .find(([key, val]) => key === l.split('_')[0] || (val as Language).prefix === l || key == l)?.[0]
+  ).filter(l => l !== undefined) || [];
+  const dropdownLocaleKeys = ['en', ...projectLocaleKeys];
+
+  const dropdownLanguages: LanguageMap = Object.keys(allLocales)
+    .filter(k => dropdownLocaleKeys.includes(k))
     .reduce((obj: any, key) => {
       obj[key] = allLocales[key];
       return obj;
-    }, {}) : allLocales;
+    }, {});
 
   const pathname = usePathname();
   const router = useRouter();
@@ -38,18 +39,19 @@ export default function DocsLanguageSelect({locale, locales}: { locale: string; 
 
   const t = useTranslations('DocsLanguageSelect');
 
-  let selectedValue = Object.keys(selectableLocales).includes(locale) ? locale : 'en';
+  let selectedLanguageId = available.getNextIntlInternal(locale);
+  let selectedValue = Object.keys(dropdownLanguages).includes(selectedLanguageId) ? locale : 'en';
 
   return (
     <Select value={selectedValue} onValueChange={changeLocale}>
       <SelectTrigger className="sm:w-[180px]">
-        <Globe className="w-4 h-4 mr-1" />
-        <SelectValue placeholder={t('placeholder')} />
+        <Globe className="w-4 h-4 mr-1"/>
+        <SelectValue placeholder={t('placeholder')}/>
       </SelectTrigger>
       <SelectContent>
-        {Object.entries(selectableLocales).map(([id, loc]) => (
-          <SelectItem key={id} value={id}>
-            <CountryFlag className="inline-block mr-1" flag={loc.icon} /> {loc.name}
+        {Object.entries(dropdownLanguages).map(([id, loc]) => (
+          <SelectItem key={id} value={loc.prefix || id}>
+            <CountryFlag className="inline-block mr-1" flag={loc.icon}/> {loc.name}
           </SelectItem>
         ))}
       </SelectContent>

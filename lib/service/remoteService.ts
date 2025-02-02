@@ -1,26 +1,17 @@
 import {DocumentationPage, LayoutTree, Project, ProjectSearchResults, ServiceProvider} from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
+import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
-interface PageResponse {
-  project: Project;
-  content: string;
-  edit_url?: string;
-  updated_at?: string;
-}
-
 async function fetchBackendService(project: string, path: string, params: Record<string, string | null> = {}, method?: string, disableCache?: boolean, options?: RequestOptions) {
-  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
-  }
   const searchParams = new URLSearchParams();
   for (const key in params) {
     if (params[key] != null) {
       searchParams.set(key, params[key]);
     }
   }
-  return fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/${path}?${searchParams.toString()}`, {
+  return fetch(`${assertBackendUrl()}/api/v1/${path}?${searchParams.toString()}`, {
     ...options,
     method,
     headers: {
@@ -35,93 +26,58 @@ async function fetchBackendService(project: string, path: string, params: Record
   });
 }
 
-async function getProject(project: string): Promise<Project | null> {
+async function wrapNullableServiceCall<T = any, U = T>(callback: () => Promise<Response>, processor?: (body: T) => U): Promise<U | null> {
   try {
-    const resp = await fetchBackendService(project, `docs/${project}`);
-    if (resp.ok) {
-      const json = await resp.json();
-      return json.project;
-    } else {
-      console.error(resp);
+    const resp = await wrapJsonServiceCall<T, U>(callback, processor);
+    // @ts-ignore
+    if ('error' in resp) {
+      return null;
     }
-  } catch (e) {
-    console.error(e);
+    return resp;
+  } catch (error) {
+    return null;
   }
-  return null;
+}
+
+async function getProject(project: string): Promise<Project | null> {
+  return wrapNullableServiceCall<Project>(() => fetchBackendService(project, `docs/${project}`));
 }
 
 async function getBackendLayout(project: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
-  try {
-    const resp = await fetchBackendService(project, `project/${project}/tree`, {version, locale});
-    if (resp.ok) {
-      const data = await resp.json();
-      if ('error' in data) {
-        console.error(data.error);
-        return null;
-      }
-      return data;
-    } else {
-      console.error(resp);
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return wrapNullableServiceCall<LayoutTree>(() => fetchBackendService(project, `docs/${project}/tree`, {version, locale}));
 }
 
 async function getAsset(project: string, location: string, version: string | null): Promise<AssetLocation | null> {
-  try {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/project/${project}/asset/${location}` + (version ? `?version=${version}` : '');
-    return {
-      id: location,
-      src: url
-    };
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  const url = `${assertBackendUrl()}/api/v1/docs/${project}/asset/${location}` + (version ? `?version=${version}` : '');
+  return {
+    id: location,
+    src: url
+  };
 }
 
 async function getDocsPage(project: string, path: string[], version: string | null, locale: string | null, optional: boolean): Promise<DocumentationPage | null> {
-  try {
-    const resp = await fetchBackendService(project, `project/${project}/page/${path.join('/')}.mdx`, {
+  return wrapNullableServiceCall(
+    () => fetchBackendService(project, `docs/${project}/page/${path.join('/')}.mdx`, {
       version,
       locale,
       optional: optional ? "true" : null
-    });
-    if (resp.ok) {
-      const json = await resp.json() as PageResponse;
-      if ('error' in json) {
-        return null;
-      }
-
-      return {
-        project: json.project,
-        content: json.content,
-        edit_url: json.edit_url,
-        updated_at: json.updated_at ? new Date(json.updated_at) : undefined
-      }
-    } else {
-      console.error('Error getting page', path);
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+    }),
+    json => ({
+      project: json.project,
+      content: json.content,
+      edit_url: json.edit_url,
+      updated_at: json.updated_at ? new Date(json.updated_at) : undefined
+    })
+  );
 }
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
-  try {
-    const resp = await fetchBackendService('', `browse`, {query, page: page.toString(), types, sort}, 'GET', true);
-    if (resp.ok) {
-      return await resp.json();
-    } else {
-      console.error(resp);
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return {pages: 0, total: 0, data: []};
+  return await wrapNullableServiceCall(() => fetchBackendService('', `browse`, {
+    query,
+    page: page.toString(),
+    types,
+    sort
+  }, 'GET', true)) || {pages: 0, total: 0, data: []};
 }
 
 export default {

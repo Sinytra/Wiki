@@ -2,25 +2,13 @@ import {Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {ProjectType} from "@/lib/service/types";
-import { cookies } from "next/headers";
+import {cookies} from "next/headers";
 
 const ONE_DAY = 60 * 60 * 24;
 const ONE_WEEK = ONE_DAY * 7;
 
-export type RegistrationErrors = 'user_github_auth' | 'insufficient_wiki_perms' | 'unsupported' | 'missing_installation'
-  | 'insufficient_repo_perms' | 'no_branch' | 'no_meta' | 'invalid_meta' | 'exists' | 'cf_unavailable' | 'no_project'
-  | 'ownership' | 'internal';
-
 interface SuccessResponse {
   message: string;
-}
-
-interface ErrorResponse {
-  error: RegistrationErrors;
-  details?: string;
-
-  install_url?: string;
-  can_verify_mr?: boolean;
 }
 
 interface StatusResponse {
@@ -29,6 +17,13 @@ interface StatusResponse {
 
 interface SimpleErrorResponse extends StatusResponse {
   error: string;
+}
+
+interface ErrorResponse extends SimpleErrorResponse {
+  details?: string;
+
+  install_url?: string;
+  can_verify_mr?: boolean;
 }
 
 interface RedirectResponse {
@@ -43,7 +38,7 @@ interface ProjectRegisterRequest {
   is_community?: boolean;
 }
 
-interface ProjectRegisterResponse extends SuccessResponse{
+interface ProjectRegisterResponse extends SuccessResponse {
   project: Project;
 }
 
@@ -64,179 +59,9 @@ export interface UserProfile {
   created_at: string;
 }
 
-interface DevProjectsResponse {
+export interface DevProjectsResponse {
   profile: UserProfile;
   projects: Project[];
-}
-
-export function assertBackendUrl(): string {
-  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
-    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
-  }
-  return process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL;
-}
-
-async function registerProject(data: ProjectRegisterRequest): Promise<ProjectRegisterResponse | ErrorResponse> {
-  try {
-    const resp = await sendApiRequest('project/create', data);
-    return await resp.json();
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function updateProject(data: ProjectUpdateRequest): Promise<ProjectUpdateResponse | ErrorResponse> {
-  try {
-    const resp = await sendApiRequest('project/update', data);
-    return await resp.json();
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function deleteProject(id: string): Promise<SuccessResponse | ErrorResponse> {
-  try {
-    const resp = await sendSimpleRequest(`project/${id}/remove`);
-    return await resp.json();
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function revalidateProject(id: string, token: string | null = null): Promise<SuccessResponse | ErrorResponse> {
-  try {
-    const resp = await sendSimpleRequest(`project/${id}/invalidate`, {token});
-    if (resp.ok) {
-      cacheUtil.invalidateDocs(id);
-    } else {
-      console.error('Error invalidating docs for project', id, resp);
-    }
-    return await resp.json();
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function getUserProfile(): Promise<UserProfile | StatusResponse> {
-  try {
-    const resp = await sendSimpleRequest('auth/user', {}, 'GET');
-    if (resp.ok) {
-      return await resp.json();
-    }
-    return {status: resp.status};
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function linkModrinthAcount(): Promise<RedirectResponse | SimpleErrorResponse> {
-  try {
-    const resp = await sendSimpleRequest('auth/link/modrinth', {}, 'GET');
-    if (resp.ok) {
-      return {url: resp.url};
-    }
-    const body = await resp.text();
-    return {status: resp.status, error: body};
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function unlinkModrinthAcount(): Promise<SimpleErrorResponse | StatusResponse> {
-  try {
-    const resp = await sendSimpleRequest('auth/unlink/modrinth');
-    if (resp.ok) {
-      return {status: resp.status};
-    }
-    const body = await resp.json();
-    return {status: resp.status, error: body.error};
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function deleteUserAcount(): Promise<SimpleErrorResponse | StatusResponse> {
-  try {
-    const resp = await sendSimpleRequest('auth/user', {}, 'DELETE');
-    if (resp.ok) {
-      return {status: resp.status};
-    }
-    const body = await resp.json();
-    return {status: resp.status, error: body.error};
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function getUserDevProjects(): Promise<DevProjectsResponse | StatusResponse> {
-  try {
-    const resp = await sendSimpleRequest('projects/dev', {}, 'GET');
-    if (resp.ok) {
-      return await resp.json();
-    }
-    return {status: resp.status};
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function getDevProject(id: string): Promise<Project | StatusResponse> {
-  try {
-    const resp = await sendSimpleRequest(`project/${id}`, {}, 'GET');
-    if (resp.ok) {
-      return await resp.json();
-    }
-    return { status: resp.status };
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function getProjectDevLog(id: string): Promise<string | undefined> {
-  try {
-    const resp = await sendSimpleRequest(`project/${id}/log`, {}, 'GET');
-    if (resp.ok) {
-      return (await resp.json()).content;
-    }
-    return undefined;
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function getAllProjectIDs(): Promise<string[]> {
-  try {
-    const resp = await sendSimpleRequest('projects', {}, 'GET');
-    if (resp.ok) {
-      return await resp.json() as string[];
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return [];
-}
-
-async function getPopularProjects(): Promise<Project[]> {
-  try {
-    const resp = await sendCachedRequest('projects/popular');
-    if (resp.ok) {
-      return await resp.json() as Project[];
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return [];
 }
 
 export interface FeaturedProject {
@@ -252,13 +77,108 @@ export interface FeaturedProject {
   }
 }
 
+export function assertBackendUrl(): string {
+  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
+  }
+  return process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL;
+}
+
+export async function wrapJsonServiceCall<T = any, U = T>(callback: () => Promise<Response>, processor?: (body: T) => U): Promise<U | SimpleErrorResponse> {
+  try {
+    const resp = await callback();
+    if (resp.ok) {
+      const body = await resp.json();
+      if ('error' in body) {
+        console.error(body.error);
+        return {...body, status: resp.status, error: body.error};
+      }
+      return processor?.(body) || body;
+    } else {
+      let body: any = {};
+      try {
+        body = await resp.json();
+      } catch (e) {
+      }
+      console.error(resp);
+      return {...body, status: resp.status, error: body?.error || 'unknown'};
+    }
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+async function getAllProjectIDs(): Promise<string[] | SimpleErrorResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest('projects', {}, 'GET'));
+}
+
+async function getPopularProjects(): Promise<Project[] | SimpleErrorResponse> {
+  return wrapJsonServiceCall(() => sendCachedRequest('projects/popular'));
+}
+
+async function getUserDevProjects(): Promise<DevProjectsResponse | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest('dev/projects', {}, 'GET'));
+}
+
+async function getDevProject(id: string): Promise<Project | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}`, {}, 'GET'));
+}
+
+async function getProjectDevLog(id: string): Promise<string | SimpleErrorResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/log`, {}, 'GET'), a => a.content);
+}
+
+async function registerProject(data: ProjectRegisterRequest): Promise<ProjectRegisterResponse | ErrorResponse> {
+  return wrapJsonServiceCall(() => sendApiRequest('dev/projects', data));
+}
+
+async function updateProject(data: ProjectUpdateRequest): Promise<ProjectUpdateResponse | ErrorResponse> {
+  return wrapJsonServiceCall(() => sendApiRequest('dev/projects', data, {}, {method: 'PUT'}));
+}
+
+async function deleteProject(id: string): Promise<SuccessResponse | ErrorResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}`, {}, 'DELETE'));
+}
+
+async function revalidateProject(id: string, token: string | null = null): Promise<SuccessResponse | ErrorResponse> {
+  const result = await wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/invalidate`, {token}));
+  if (!('error' in result)) {
+    cacheUtil.invalidateDocs(id);
+  } else {
+    console.error('Error invalidating docs for project', id);
+  }
+  return result;
+}
+
+async function linkModrinthAcount(): Promise<RedirectResponse | SimpleErrorResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest('auth/link/modrinth', {}, 'GET'));
+}
+
+async function unlinkModrinthAcount(): Promise<SimpleErrorResponse | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest('auth/unlink/modrinth'));
+}
+
+async function getUserProfile(): Promise<UserProfile | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest('auth/user', {}, 'GET'));
+}
+
+async function deleteUserAcount(): Promise<SimpleErrorResponse | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest('auth/user', {}, 'DELETE'));
+}
+
 async function getFeaturedProjects(): Promise<FeaturedProject[]> {
   try {
     const popular = await getPopularProjects();
+    if ('error' in popular) {
+      return [];
+    }
+
     const platformsProjects = await Promise.all(popular.map(async proj => {
       const resolved = await platforms.getPlatformProject(proj);
       return {project: proj, resolved}
     }));
+
     return platformsProjects.map(({project, resolved}) => ({
       id: project.id,
       title: resolved.name,
