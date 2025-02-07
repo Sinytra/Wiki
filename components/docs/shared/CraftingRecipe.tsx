@@ -1,7 +1,6 @@
 import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import Image from "next/image";
 import CraftingBackground from '@/components/assets/crafting_background.png';
-import '@south-paw/typeface-minecraft';
 import {getParams} from "@nimpl/getters/get-params";
 import service from "@/lib/service";
 
@@ -22,7 +21,7 @@ export default async function CraftingRecipe({slots, result, count}: Props) {
 
   return (
     <div className="relative">
-      <Image unoptimized priority src={CraftingBackground} alt="background" width={260} height={136}/>
+      <Image className="sharpRendering" unoptimized priority src={CraftingBackground} alt="background" width={260} height={136}/>
 
       <div className="absolute top-4 left-4 grid grid-cols-3 gap-1">
         {assetSlots.map((asset, index) => (

@@ -3,9 +3,9 @@ import remoteService from "@/lib/service/remoteService";
 import assets, {AssetLocation} from "../assets";
 import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
-import {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
+import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
-import {ProjectType} from "@/lib/service/types";
+import {GameProjectRecipe, ProjectType} from "@/lib/service/types";
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
@@ -74,6 +74,7 @@ export interface ServiceProvider {
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional: boolean) => Promise<DocumentationPage | undefined | null>;
   searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
+  getProjectRecipe: (project: string, recipe: string) => Promise<GameProjectRecipe | null>
 }
 
 function getLocaleName(locale: string) {
@@ -108,7 +109,8 @@ async function getBackendLayout(slug: string, version: string, locale: string): 
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
   if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || location.startsWith(`${DEFAULT_RSLOC_NAMESPACE}:`) || !location.includes(':')) {
-    return assets.getAssetResource(location);
+    const compatibleLocation = location.includes('/') ? location :  prefixItemPath(location);
+    return assets.getAssetResource(compatibleLocation);
   }
 
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
@@ -156,6 +158,11 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
   return remoteService.searchProjects(query, page, types, sort);
+}
+
+function prefixItemPath(location: string) {
+  const parsed = resourceLocation.parse(location);
+  return !parsed ? location : resourceLocation.toString({ namespace: parsed.namespace, path: 'item/' + parsed.path });
 }
 
 export default {

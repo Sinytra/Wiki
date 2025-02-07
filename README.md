@@ -30,6 +30,8 @@ You can list desired local documentation sources in the `LOCAL_DOCS_ROOTS` env v
 
 ## Credits
 
+- [Minecraft typeface](https://github.com/Mojang/web-theme-bootstrap/tree/92d9913110cf79db5813e6335f97c6dc689854ee/assets/fonts) by Mojang
+
 ### Translations
 
 Massive thanks to everyone who has contributed to [translation](https://crowdin.com/project/sinytra-wiki) efforts!
