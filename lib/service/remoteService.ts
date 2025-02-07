@@ -1,6 +1,13 @@
-import {DocumentationPage, LayoutTree, Project, ProjectSearchResults, ServiceProvider} from "@/lib/service/index";
+import {
+  DocumentationPage,
+  LayoutTree,
+  Project,
+  ProjectSearchResults,
+  ServiceProvider
+} from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
 import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
+import {GameProjectRecipe} from "@/lib/service/types";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
@@ -80,10 +87,15 @@ async function searchProjects(query: string, page: number, types: string | null,
   }, 'GET', true)) || {pages: 0, total: 0, data: []};
 }
 
+async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
+  return wrapNullableServiceCall<GameProjectRecipe>(() => fetchBackendService(project, `content/${project}/recipe/${recipe}`));
+}
+
 export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
   getProject,
-  searchProjects
+  searchProjects,
+  getProjectRecipe
 } satisfies ServiceProvider

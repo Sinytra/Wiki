@@ -19,6 +19,7 @@ import * as LucideReact from "lucide-react";
 import Asset from "@/components/docs/shared/Asset";
 import CodeTabs from "@/components/docs/shared/CodeTabs";
 import CodeHikeCode from "@/components/util/CodeHikeCode";
+import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -61,7 +62,7 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       obj[key] = LucideReact[key];
       return obj;
     }, {});
-  const components = {CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ...icons};
+  const components = {CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ...icons};
   const chConfig = {
     components: { code: "CodeHikeCode" },
   }

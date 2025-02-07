@@ -1,0 +1,57 @@
+@font-face {
+    font-family: Minecraft;
+    src: url('../../public/fonts/Minecraft-Seven_v2.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.minetip-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #100010;
+    background-color: rgba(16,0,16,0.94);
+    padding: 0.375em;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 16px;
+    word-spacing: 4px;
+    white-space: nowrap;
+    line-height: 1.25em;
+    margin: 0.125em 0.25em;
+    pointer-events: none;
+    z-index: 9999
+}
+
+.minetip-tooltip::before {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: -0.125em;
+    bottom: 0.125em;
+    left: -0.125em;
+    border: 0.15em solid #100010;
+    border-style: none solid;
+    border-color: rgba(16,0,16,0.94)
+}
+
+.minetip-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: 0;
+    bottom: 0.125em;
+    left: 0;
+    border: 0.125em solid #2D0A63;
+    border-image: -webkit-linear-gradient(rgba(80,0,255,0.31),rgba(40,0,127,0.31)) 1;
+    border-image: linear-gradient(rgba(80,0,255,0.31),rgba(40,0,127,0.31)) 1
+}
+
+.minetip-tooltip > .description,.minetip-tooltip > .minetip-description {
+    display: block;
+    margin-top: 0.25em
+}
+
+.minetip-tooltip {
+    color: #FBFBFB;
+    text-shadow: 0.125em 0.125em 0 #3E3E3E
+}
