@@ -29,7 +29,6 @@ export interface ResourceLocation {
 }
 
 export const assetBasePath: string = '.assets';
-export const itemAssetBasePath: string = '.assets/item';
 export const itemAssetExtension: string = '.png';
 
 const assetProviders: { [key: string]: AssetProvider } = {

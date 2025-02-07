@@ -1,7 +1,14 @@
-import {DocumentationPage, LayoutTree, Project, ProjectSearchResults, ServiceProvider} from "@/lib/service/index";
+import {
+  DocumentationPage,
+  LayoutTree,
+  Project,
+  ProjectSearchResults,
+  ServiceProvider
+} from "@/lib/service/index";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
 import assets, {AssetLocation} from "../assets";
 import platforms from "@/lib/platforms";
+import {GameProjectRecipe} from "@/lib/service/types";
 
 async function getProjectSource(slug: string): Promise<DocumentationSource | null> {
   const localSources = await sources.getLocalDocumentationSources();
@@ -86,10 +93,15 @@ async function searchProjects(query: string, page: number, types: string | null,
   return {pages: 0, total: 0, data: []};
 }
 
+async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
+  return null;
+}
+
 export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
   getProject,
-  searchProjects
+  searchProjects,
+  getProjectRecipe
 } satisfies ServiceProvider;

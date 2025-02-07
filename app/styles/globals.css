@@ -1,5 +1,6 @@
 @import './ghmd.css' layer(base);
 @import './colors.css';
+@import './fonts.css';
 @import "./theme.css" layer(theme);
 
 @import 'tailwindcss';
