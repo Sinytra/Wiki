@@ -9,6 +9,7 @@ import {GameProjectRecipe, ProjectType} from "@/lib/service/types";
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
+import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
 
 export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
 
@@ -160,6 +161,17 @@ async function searchProjects(query: string, page: number, types: string | null,
   return remoteService.searchProjects(query, page, types, sort);
 }
 
+async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
+  let result = await remoteService.getProjectRecipe(project, recipe);
+  if (result && !result.type.localizedName) {
+    const name = await builtinRecipeTypes.getRecipeTypeName(result.type.id);
+    if (name) {
+      return {...result, type: {...result.type, localizedName: name} };
+    }
+  }
+  return result;
+}
+
 function prefixItemPath(location: string) {
   const parsed = resourceLocation.parse(location);
   return !parsed ? location : resourceLocation.toString({ namespace: parsed.namespace, path: 'item/' + parsed.path });
@@ -171,5 +183,6 @@ export default {
   getAsset,
   getDocsPage,
   renderDocsPage,
-  searchProjects
+  searchProjects,
+  getProjectRecipe
 }
