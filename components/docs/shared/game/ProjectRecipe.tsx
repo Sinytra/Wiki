@@ -1,26 +1,23 @@
-import remoteService from "@/lib/service/remoteService";
 import {getParams} from "@nimpl/getters/get-params";
 import service from "@/lib/service";
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
-import {GameProjectRecipe, RecipeIngredient, RecipeItem, ResolvedItem} from "@/lib/service/types";
+import {GameProjectRecipe, GameRecipeType, RecipeIngredient, RecipeItem, ResolvedItem} from "@/lib/service/types";
 import resourceLocation from "@/lib/util/resourceLocation";
 import RecipeIngredientDisplay from "@/components/docs/shared/game/RecipeIngredientDisplay";
 
-interface Slot {
-  x: number;
-  y: number;
-}
-
-type SlotMap = Record<number, Slot>;
-
-interface GameRecipeType {
-  name: string; // TODO Localize
-  background: string;
-  inputSlots: SlotMap;
-  outputSlots: SlotMap;
+async function resolveAsset(locale: LocaleFile, slug: string, src: RecipeItem): Promise<ResolvedItem | null> {
+  const loc = resourceLocation.parse(src.id);
+  const asset = await service.getAsset(slug, src.id, null);
+  const name = src.name ? src.name : (loc ? locale[`item.${loc.namespace}.${loc.path}`] || src.id : src.id);
+  return !asset ? null : {
+    id: src.id,
+    src: asset,
+    name
+  } as ResolvedItem
 }
 
 type LocaleFile = Record<string, string>;
+
 async function getLanguageDefs(): Promise<LocaleFile> {
   const locale = 'en_us'; // TODO
   const resp = await fetch(process.env.BUILTIN_LOCALE_SOURCES + locale + '.json', {
@@ -32,40 +29,6 @@ async function getLanguageDefs(): Promise<LocaleFile> {
   return resp.json();
 }
 
-const craftingShapedType: GameRecipeType = {
-  name: 'Shaped Crafting',
-  background: 'gui/recipe/crafting_shaped',
-  inputSlots: {
-    1: {x: 16, y: 16},
-    2: {x: 52, y: 16},
-    3: {x: 88, y: 16},
-    4: {x: 16, y: 52},
-    5: {x: 52, y: 52},
-    6: {x: 88, y: 52},
-    7: {x: 16, y: 88},
-    8: {x: 52, y: 88},
-    9: {x: 88, y: 88},
-  },
-  outputSlots: {
-    1: {x: 204, y: 52},
-  }
-}
-
-const types: { [key: string]: GameRecipeType } = {
-  'minecraft:crafting_shaped': craftingShapedType
-}
-
-async function resolveAsset(locale: LocaleFile, slug: string, src: RecipeItem): Promise<ResolvedItem | null> {
-  const loc = resourceLocation.parse(src.id);
-  const asset = await service.getAsset(slug, src.id, null);
-  const name = loc ? locale[`item.${loc.namespace}.${loc.path}`] || src.id : src.id;
-  return !asset ? null : {
-    id: src.id,
-    src: asset,
-    name
-  } as ResolvedItem
-}
-
 async function resolveAssets(locale: LocaleFile, slug: string, src: RecipeItem[]): Promise<ResolvedItem[]> {
   const res = await Promise.all(src.map(async s => {
     // TODO s.sources
@@ -74,7 +37,7 @@ async function resolveAssets(locale: LocaleFile, slug: string, src: RecipeItem[]
   return res.filter(s => s !== null);
 }
 
-async function RecipeBody({slug, recipe, type}: {slug: string; recipe: GameProjectRecipe, type: GameRecipeType}) {
+async function RecipeBody({slug, recipe, type}: { slug: string; recipe: GameProjectRecipe, type: GameRecipeType }) {
   const background = await service.getAsset(slug, type.background, null);
   const locale = await getLanguageDefs();
 
@@ -90,11 +53,12 @@ async function RecipeBody({slug, recipe, type}: {slug: string; recipe: GameProje
         const assets = 'tag' in input ? input.tag.items : input.items;
         const resolved = await resolveAssets(locale, slug, assets);
         if (resolved.length < 1) {
-          console.error('failed to resolve', input);
+          console.error('Failed to resolve', input);
           return null;
         }
         return (
-          <RotatingItemDisplaySlot src={resolved} key={i} className="absolute" style={{left: `${slot.x}px`, top: `${slot.y}px`}}/>
+          <RotatingItemDisplaySlot src={resolved} key={i} className="absolute"
+                                   style={{left: `${slot.x}px`, top: `${slot.y}px`}}/>
         );
       })}
 
@@ -106,15 +70,18 @@ async function RecipeBody({slug, recipe, type}: {slug: string; recipe: GameProje
         const asset = output.items[0];
         const resolved = await resolveAsset(locale, slug, asset);
         return resolved ? (
-          <RotatingItemDisplaySlot src={[resolved]} key={i} className="absolute" style={{left: `${slot.x}px`, top: `${slot.y}px`}}/>
+          <RotatingItemDisplaySlot src={[resolved]} key={i} className="absolute"
+                                   style={{left: `${slot.x}px`, top: `${slot.y}px`}}/>
         ) : null;
       })}
     </div>
   )
 }
 
-function countOccurrences(ingredients: RecipeIngredient[]): Record<string, number> {
-  let counts: {[key: string]: number} = {};
+type IngredientCount = { count: number; item: RecipeItem };
+
+function countOccurrences(ingredients: RecipeIngredient[]): IngredientCount[] {
+  let counts: { [key: string]: number } = {};
   ingredients.forEach(ing => {
     if ('tag' in ing) {
       const item = ing.tag.items[0]; // TODO
@@ -123,25 +90,32 @@ function countOccurrences(ingredients: RecipeIngredient[]): Record<string, numbe
       const item = ing.items[0];
       counts[item.id] = (counts[item.id] || 0) + item.count;
     }
-  })
-  return counts;
+  });
+  return Object.entries(counts)
+    .map(([k, v]) => {
+      const item = ingredients
+        .map(i => 'tag' in i ? i.tag.items[0] : i.items[0])
+        .filter(i => i != undefined)
+        .find(i => i.id == k);
+      return item ? {count: v, item: item} : undefined;
+    })
+    .filter(i => i != undefined);
 }
 
 export default async function ProjectRecipe({id}: { id: string }) {
   const params = getParams() || {};
   const slug = params.slug as any;
 
-  const recipe = await remoteService.getProjectRecipe(slug, id);
+  const recipe = await service.getProjectRecipe(slug, id);
   if (!recipe) {
     return null;
   }
-  const type = types[recipe.type];
   const locale = await getLanguageDefs();
   const inputCounts = countOccurrences(recipe.inputs);
   const outputCounts = countOccurrences(recipe.outputs);
 
   return (
-    <table>
+    <table className="[&_td]:bg-primary-alt/50">
       <thead>
       <tr>
         <th>Recipe Type</th>
@@ -153,43 +127,47 @@ export default async function ProjectRecipe({id}: { id: string }) {
       <tbody>
       <tr>
         <td className="align-middle whitespace-nowrap">
-          {type.name}
+          {recipe.type.localizedName}
         </td>
         <td className="align-top">
           <ul>
-            {Object.entries(inputCounts).sort((a, b) => b[1] - a[1]).map(async ([id, count], index) => {
-              const resolved = await resolveAsset(locale, slug, {id, sources: []});
-              if (!resolved) {
-                return null; // TODO
-              }
+            {inputCounts
+              .sort((a, b) => b.count - a.count)
+              .map(async ({count, item}, index) => {
+                const resolved = await resolveAsset(locale, slug, item);
+                if (!resolved) {
+                  return null; // TODO
+                }
 
-              return (
-                <li key={index}>
-                  <RecipeIngredientDisplay count={count} item={resolved} />
-                </li>
-              )
-            })}
+                return (
+                  <li key={index}>
+                    <RecipeIngredientDisplay count={count} item={resolved}/>
+                  </li>
+                )
+              })}
           </ul>
         </td>
         <td className="align-top">
           <ul>
-            {Object.entries(outputCounts).sort((a, b) => b[1] - a[1]).map(async ([id, count], index) => {
-              const resolved = await resolveAsset(locale, slug, {id, sources: []});
-              if (!resolved) {
-                return null; // TODO
-              }
+            {outputCounts
+              .sort((a, b) => b.count - a.count)
+              .map(async ({count, item}, index) => {
+                const resolved = await resolveAsset(locale, slug, item);
+                if (!resolved) {
+                  return null; // TODO
+                }
 
-              return (
-                <li key={index}>
-                  <RecipeIngredientDisplay count={count} item={resolved} />
-                </li>
-              )
-            })}
+                return (
+                  <li key={index}>
+                    <RecipeIngredientDisplay count={count} item={resolved}/>
+                  </li>
+                )
+              })}
           </ul>
         </td>
         <td>
           <div className="my-2">
-            <RecipeBody slug={slug} recipe={recipe} type={type} />
+            <RecipeBody slug={slug} recipe={recipe} type={recipe.type}/>
           </div>
         </td>
       </tr>
