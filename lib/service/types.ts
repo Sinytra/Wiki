@@ -14,8 +14,24 @@ export const AVAILABLE_PROJECT_TYPES: string[] = [
   ProjectType.SHADER, ProjectType.PLUGIN
 ];
 
+export interface Slot {
+  x: number;
+  y: number;
+}
+
+export type SlotMap = Record<number, Slot>;
+
+export interface GameRecipeType {
+  localizedName: string | null;
+  id: string;
+  background: string;
+  inputSlots: SlotMap;
+  outputSlots: SlotMap;
+}
+
 export interface RecipeItem {
   id: string;
+  name?: string;
   sources: string[];
 }
 
@@ -42,7 +58,7 @@ export interface RecipeIngredientItem {
 export type RecipeIngredient = RecipeIngredientItem | RecipeIgredientTag;
 
 export interface GameProjectRecipe {
-  type: string;
+  type: GameRecipeType;
   inputs: RecipeIngredient[];
   outputs: RecipeIngredientItem[];
 }
