@@ -3,9 +3,14 @@
 import {ReactNode, useContext} from "react";
 import {Info, Menu, X} from "lucide-react";
 import {DocsSidebarContext} from "@/components/docs/side/DocsSidebarContext";
+import DocsSubNavBar from "@/components/docs/layout/DocsSubNavBar";
+import {Project} from "@/lib/service";
+import {PlatformProject} from "@/lib/platforms";
 
 interface DocsLayoutClientProps {
   title: string;
+  project: Project;
+  platformProject: PlatformProject;
   children: ReactNode;
 }
 
@@ -27,13 +32,17 @@ function MobileHeader({title}: {title: string}) {
   )
 }
 
-export default function DocsLayoutClient({title, children}: DocsLayoutClientProps) {
+export default function DocsLayoutClient({title, project, platformProject, children}: DocsLayoutClientProps) {
   return (
-    <div className="flex flex-col flex-1 bg-primary text-primary">
-      {/* Header */}
-      <MobileHeader title={title} />
+    <div className="flex flex-col lg:gap-3">
+      <DocsSubNavBar project={project} platformProject={platformProject} />
 
-      {children}
+      <div className="flex flex-col flex-1 bg-primary text-primary">
+        {/* Header */}
+        <MobileHeader title={title} />
+
+        {children}
+      </div>
     </div>
   );
 }

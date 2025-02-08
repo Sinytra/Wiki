@@ -159,10 +159,6 @@
         padding-top: calc(var(--vp-nav-height));
     }
 
-    .page-wrapper {
-        padding-top: calc(var(--vp-nav-height));
-    }
-
     @media screen and (min-width: 768px) {
         .page-wrapper {
             padding-top: calc(var(--vp-nav-height) + 1rem);
@@ -171,6 +167,10 @@
         html {
             scroll-padding-top: 72px;
         }
+    }
+
+    .prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        @apply border-b border-tertiary pb-2 mb-4;
     }
 
     .prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -248,7 +248,7 @@
     }
 
     .page-wrapper-ext {
-        @apply mt-4 sm:mt-0 pb-10;
+        @apply mt-4 sm:mt-0 pb-10 sm:pt-5;
     }
 
     .prose :where(h2,h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
@@ -332,4 +332,29 @@
 .fade-exit-active .innerFadeContainer {
     transform: translateY(0);
     transition: transform 0.25s ease;
+}
+
+.masked-overflow:not(:hover) {
+    --mask-height: 10%;
+
+    --mask-image-content: linear-gradient(
+            to bottom,
+            transparent,
+            0,
+            black calc(100% - var(--mask-height)),
+            transparent
+    );
+
+    --mask-size-content: 100% 100%;
+
+    --mask-image-scrollbar: linear-gradient(black, black);
+
+    --mask-size-scrollbar: 0 100%;
+
+    mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+    mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+
+    mask-position: 0 0, 100% 0;
+
+    mask-repeat: no-repeat, no-repeat;
 }

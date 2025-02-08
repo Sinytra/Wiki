@@ -11,6 +11,7 @@ import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContex
 import {ErrorBoundary} from "react-error-boundary";
 import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
+import platforms from "@/lib/platforms";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -34,13 +35,17 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
     return redirect('/');
   }
 
+  const platformProject = await platforms.getPlatformProject(projectData.project);
+
   return (
     <ErrorBoundary fallback={<DocsPageNotFoundError repo={projectData.project.is_public ? projectData.project.source_repo : undefined}/>}>
       <NuqsAdapter>
         <LeftSidebarContextProvider>
           <DocsSidebarContextProvider>
-            <NextIntlClientProvider messages={pick(messages, 'DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
-              <DocsLayoutClient title={projectData.project.name}>
+            <NextIntlClientProvider
+              messages={pick(messages, 'DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
+              <DocsLayoutClient title={projectData.project.name} project={projectData.project}
+                                platformProject={platformProject}>
                 {children}
               </DocsLayoutClient>
             </NextIntlClientProvider>

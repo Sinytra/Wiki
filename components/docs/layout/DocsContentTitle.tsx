@@ -14,7 +14,7 @@ export default function DocsContentTitle({ project, children, titleClassName }: 
   const t = useTranslations('Badges');
 
   return (
-    <div className="mb-6">
+    <div className="mb-4 pb-2 border-b border-secondary">
       <div className="flex flex-row flex-wrap md:flex-nowrap justify-between md:items-center gap-2">
         <h1 className={cn("docsContentTitle text-ellipsis md:overflow-hidden md:whitespace-nowrap text-primary text-2xl", titleClassName)}>
           {children}
