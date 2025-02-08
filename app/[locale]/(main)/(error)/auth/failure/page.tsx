@@ -10,7 +10,7 @@ export default function AuthFailure({params}: { params: { locale: string }}) {
   const t = useTranslations('AuthFailure');
 
   return (
-    <div className="my-auto p-4 flex flex-col gap-4 justify-center items-center">
+    <div className="my-auto p-4 flex flex-col gap-4 justify-center items-center page-wrapper-ext">
       <ServerCrashIcon className="w-32 h-32 sm:w-48 sm:h-48" strokeWidth={1.5}/>
 
       <h1 className="text-primary text-3xl sm:text-5xl my-2">
