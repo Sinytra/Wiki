@@ -4,7 +4,7 @@ export const FOLDER_METADATA_FILE_NAME = '_meta.json';
 
 export const HOMEPAGE_FILE_PATH = '_homepage';
 
-export const DEFAULT_DOCS_VERSION = 'docs';
+export const DEFAULT_DOCS_VERSION = 'latest';
 
 export const DEFAULT_LOCALE = 'en';
 
