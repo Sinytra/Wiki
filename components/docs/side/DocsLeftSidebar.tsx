@@ -49,7 +49,7 @@ export default function DocsLeftSidebar({slug, version, tree}: LeftSidebarProps)
       'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full lg:data-[open=false]:-translate-x-0',
       'border-r data-[open=false]:border-0 lg:data-[open=false]:border-r'
     )} innerClassName="overscroll-contain">
-      <DocsFileLink href={`/project/${slug}/${version}`}>
+      <DocsFileLink href={`/project/${slug}/${version}/docs`}>
         <HomeIcon className="w-4 h-4 mr-2"/>
         {t('homepage')}
       </DocsFileLink>
