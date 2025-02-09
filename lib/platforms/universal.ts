@@ -5,7 +5,7 @@ export type ProjectPlatform = 'modrinth' | 'curseforge';
 export interface ProjectPlatformProvider {
   getProject: (slug: string) => Promise<PlatformProject>;
   getProjectAuthors: (mod: PlatformProject) => Promise<PlatformProjectAuthor[]>;
-  getProjectURL: (slug: string) => string;
+  getProjectURL: (slug: string) => Promise<string>;
 }
 
 export interface PlatformProject {

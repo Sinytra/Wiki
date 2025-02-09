@@ -43,7 +43,7 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
   return getProjectSourcePlatform(source.platform).getProjectAuthors(source);
 }
 
-function getProjectURL(source: ProjectPlatform, slug: string): string {
+async function getProjectURL(source: ProjectPlatform, slug: string): Promise<string> {
   return getProjectSourcePlatform(source).getProjectURL(slug);
 }
 

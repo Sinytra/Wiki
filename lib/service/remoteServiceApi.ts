@@ -167,6 +167,17 @@ async function deleteUserAcount(): Promise<SimpleErrorResponse | StatusResponse>
   return wrapJsonServiceCall(() => sendSimpleRequest('auth/user', {}, 'DELETE'));
 }
 
+async function getProjectLinks(project: Project, sourceUrl?: string): Promise<FeaturedProject["links"]> {
+  let entries: any = {};
+  for (const [key, value] of Object.entries(project.platforms)) {
+    entries[key] = await platforms.getProjectURL(key as ProjectPlatform, value);
+  }
+  return {
+    ...entries,
+    github: sourceUrl
+  };
+}
+
 async function getFeaturedProjects(): Promise<FeaturedProject[]> {
   try {
     const popular = await getPopularProjects();
@@ -179,20 +190,14 @@ async function getFeaturedProjects(): Promise<FeaturedProject[]> {
       return {project: proj, resolved}
     }));
 
-    return platformsProjects.map(({project, resolved}) => ({
+    return await Promise.all(platformsProjects.map(async ({project, resolved}) => ({
       id: project.id,
       title: resolved.name,
       summary: resolved.summary,
       icon: resolved.icon_url,
       type: resolved.type,
-      links: {
-        ...Object.entries(project.platforms).reduce((prev, cur) => ({
-          ...prev,
-          [cur[0]]: platforms.getProjectURL(cur[0] as ProjectPlatform, cur[1])
-        }), {}),
-        github: resolved.source_url
-      }
-    }));
+      links: await getProjectLinks(project, resolved.source_url)
+    })));
   } catch (e) {
     console.error('Error getting featured projects', e);
     return [];

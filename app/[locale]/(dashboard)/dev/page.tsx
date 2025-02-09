@@ -113,8 +113,7 @@ async function DevProjectsListEntry({project}: { project: Project }) {
               {u(project.status || ProjectStatus.UNKNOWN)}
             </Property>
             <Property icon={BookMarkedIcon}>
-              <LinkTextButton className="font-normal! align-bottom!"
-                              href={`https://github.com/${project.source_repo}`}>{project.source_repo}</LinkTextButton>
+              <LinkTextButton className="font-normal! align-bottom!" href={project.source_repo!}>{project.source_repo}</LinkTextButton>
             </Property>
             <Property icon={GitBranchIcon}>{project.source_branch}</Property>
           </div>

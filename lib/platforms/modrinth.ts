@@ -70,7 +70,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
     source_url: mrProject.link_urls?.source.url,
 
     platform: 'modrinth',
-    project_url: getProjectURL(mrProject.slug),
+    project_url: await getProjectURL(mrProject.slug),
     type
   }
 }
@@ -132,7 +132,7 @@ function getUserURL(user: ModrinthUser) {
   return `https://modrinth.com/user/${user.username}`;
 }
 
-function getProjectURL(slug: string) {
+async function getProjectURL(slug: string) {
   return `https://modrinth.com/mod/${slug}`;
 }
 

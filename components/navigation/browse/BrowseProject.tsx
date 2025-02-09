@@ -1,4 +1,4 @@
-import {PlatformProject} from "@/lib/platforms";
+import platforms, {PlatformProject} from "@/lib/platforms";
 import {Suspense, use} from "react";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
 import {Skeleton} from "@/components/ui/skeleton";
@@ -11,12 +11,11 @@ import {ErrorBoundary} from "react-error-boundary";
 import {ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
-import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
-import platforms from "@/lib/platforms";
 import {BaseProject} from "@/lib/service";
 import ModVersionRange from "@/components/docs/ModVersionRange";
 import Image from "next/image";
+import {getTranslations} from "next-intl/server";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
@@ -61,11 +60,14 @@ async function GitHubProjectLink({url}: { url: string }) {
   )
 }
 
-function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<PlatformProject> }) {
-  const projectContent = use(project);
-  const t = useTranslations('DocsProjectInfo.latest');
-  const u = useTranslations('ProjectTypes');
+async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<PlatformProject> }) {
+  const projectContent = await project;
+  const t = await getTranslations('DocsProjectInfo.latest');
+  const u = await getTranslations('ProjectTypes');
   const TypeIcon = ProjectTypeIcons[projectContent.type];
+
+  const cfLink = base.platforms.curseforge ? await platforms.getProjectURL('curseforge', base.platforms.curseforge) : null;
+  const mrLink = base.platforms.modrinth ? await platforms.getProjectURL('modrinth', base.platforms.modrinth) : null;
 
   return (
       <div className="flex flex-wrap sm:flex-nowrap sm:shrink-0 w-full justify-between items-center mt-auto gap-2 text-secondary">
@@ -87,18 +89,18 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
 
         <div className="sm:shrink-0 gap-1 sm:gap-2 hidden sm:flex">
           {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
-          {base.platforms.curseforge &&
+          {cfLink &&
               <Button asChild variant="outline" size="icon"
                       className="hover:text-brand-curseforge w-8 h-8 sm:w-10 sm:h-10">
-                  <NavLink href={platforms.getProjectURL('curseforge', base.platforms.curseforge)} target="_blank">
+                  <NavLink href={cfLink} target="_blank">
                       <CurseForgeIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
                   </NavLink>
               </Button>
           }
-          {base.platforms.modrinth &&
+          {mrLink &&
               <Button asChild variant="outline" size="icon"
                       className="hover:text-brand-modrinth w-8 h-8 sm:w-10 sm:h-10">
-                  <NavLink href={platforms.getProjectURL('modrinth', base.platforms.modrinth)} target="_blank">
+                  <NavLink href={mrLink} target="_blank">
                       <ModrinthIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
                   </NavLink>
               </Button>
@@ -108,7 +110,7 @@ function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<
   )
 }
 
-export default async function BrowseProject({project}: { project: BaseProject }) {
+export default function BrowseProject({project}: { project: BaseProject }) {
   const platformProject = platforms.getPlatformProject(project);
 
   return (

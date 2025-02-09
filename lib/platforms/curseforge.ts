@@ -26,6 +26,7 @@ interface CurseForgeProject {
   authors: CurseForgeAuthor[];
   latestFilesIndexes: CurseForgeFile[];
   links: {
+    websiteUrl: string;
     sourceUrl: string;
   }
   classId: number;
@@ -71,7 +72,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
       source_url: '',
 
       platform: 'curseforge',
-      project_url: getProjectURL(slug),
+      project_url: await getProjectURL(slug),
       extra: {
         authors: []
       },
@@ -96,7 +97,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
     source_url: project.links.sourceUrl,
 
     platform: 'curseforge',
-    project_url: getProjectURL(project.slug),
+    project_url: await getProjectURL(project.slug),
     extra: {
       authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies PlatformProjectAuthor))
     },
@@ -108,11 +109,21 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
   return source.extra.authors as PlatformProjectAuthor[];
 }
 
-function getProjectURL(slug: string) {
-  return `https://www.curseforge.com/minecraft/mc-mods/${slug}`;
+async function getProjectURL(slug: string) {
+  const project = await getCurseForgeProject(slug);
+  return project.links.websiteUrl;
 }
 
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
+  if (isNumeric(slug)) {
+    try {
+      const results = await fetchCurseForgeApiInternal(`/mods/${slug}`) as { data: CurseForgeProject };
+      return results.data;
+    } catch (error) {
+      console.error('Error fetching project by ID', slug, error);
+    }
+  }
+
   const results = await fetchCurseForgeApiInternal(`/mods/search?gameId=${minecraftGameId}&slug=${slug}`) as PaginatedResults<CurseForgeProject>;
   if (results.pagination.resultCount === 1 && results.data.length === 1) {
     return results.data[0];
@@ -145,6 +156,10 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
   }
   const body = await response.json();
   return body as T;
+}
+
+function isNumeric(str: string) {
+  return !isNaN(Number(str)) && !isNaN(parseFloat(str));
 }
 
 export const curseForgeModPlatform: ProjectPlatformProvider = {

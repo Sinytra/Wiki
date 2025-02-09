@@ -73,7 +73,7 @@ function IconTableCell({icon: Icon, children}: { icon: any; children?: any }) {
 }
 
 function ProjectSource({project}: { project: Project }) {
-  const sourceLink = `https://github.com/${project.source_repo}/tree/${project.source_branch}${project.source_path}`;
+  const sourceLink = `${project.source_repo}/tree/${project.source_branch}${project.source_path}`;
   const t = useTranslations('DevProjectPage.source');
   const Icon = project.is_public ? CheckIcon : XIcon;
 
@@ -135,8 +135,31 @@ function ProjectSource({project}: { project: Project }) {
   )
 }
 
-function ProjectPlatforms({project}: { project: Project }) {
-  const t = useTranslations('DevProjectPage.platforms');
+async function ProjectPlatforms({project}: { project: Project }) {
+  const t = await getTranslations('DevProjectPage.platforms');
+
+  const entries = await Promise.all(Object.keys(project.platforms).map(async platform => {
+    const p = ProjectHostingPlatforms[platform as ProjectPlatform]!;
+    const value = project.platforms[platform as ProjectPlatform] as any;
+    const url = await platforms.getProjectURL(platform as ProjectPlatform, value);
+
+    return (
+      <tr key={platform}>
+        <IconTableCell icon={p.icon}>
+          {p.name}
+        </IconTableCell>
+        <ValueTableCell>
+          {value}
+        </ValueTableCell>
+        <td>
+          <LinkTextButton className="align-middle mb-0.5" target="_blank" href={url}>
+            <ExternalLinkIcon className="mr-2 w-4 h-4 text-secondary"/>
+            {t('open')}
+          </LinkTextButton>
+        </td>
+      </tr>
+    );
+  }));
 
   return (
     <div className="flex flex-col gap-3 min-w-0">
@@ -154,28 +177,7 @@ function ProjectPlatforms({project}: { project: Project }) {
         </tr>
         </thead>
         <tbody>
-        {...Object.keys(project.platforms).map(platform => {
-          const p = ProjectHostingPlatforms[platform as ProjectPlatform]!;
-          const value = project.platforms[platform as ProjectPlatform] as any;
-
-          return (
-            <tr key={platform}>
-              <IconTableCell icon={p.icon}>
-                {p.name}
-              </IconTableCell>
-              <ValueTableCell>
-                {value}
-              </ValueTableCell>
-              <td>
-                <LinkTextButton className="align-middle mb-0.5" target="_blank"
-                                href={platforms.getProjectURL(platform as ProjectPlatform, value)}>
-                  <ExternalLinkIcon className="mr-2 w-4 h-4 text-secondary"/>
-                  {t('open')}
-                </LinkTextButton>
-              </td>
-            </tr>
-          );
-        })}
+        {...entries}
         </tbody>
       </table>
     </div>
