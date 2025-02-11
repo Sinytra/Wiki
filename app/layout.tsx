@@ -23,8 +23,22 @@ export const metadata: Metadata = {
 };
 
 export default function LocaleLayout({children}: Readonly<{ children: ReactNode; }>) {
+  const jsonLd = {
+    '@context' : 'https://schema.org',
+    '@type' : 'WebSite',
+    name : 'Modded Minecraft Wiki',
+    alternateName : ['Sinytra Wiki', 'MMW'],
+    url : process.env.NEXT_PUBLIC_NEXT_APP_URL
+  };
+
   return (
     <html lang="en" data-theme="dark">
+    <head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </head>
     <body className={cn(inter.className, 'flex flex-col min-h-screen bg-primary text-primary')}>
     <Providers>
       {children}
