@@ -40,7 +40,7 @@ import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import {ElementType} from "react";
 
-const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
+export const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 
 export const ProjectHostingPlatforms: { [key in ProjectPlatform]: { name: string; icon: ElementType } } = {
   curseforge: {name: 'CurseForge', icon: CurseForgeIcon},

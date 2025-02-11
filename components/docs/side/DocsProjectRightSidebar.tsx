@@ -4,6 +4,7 @@ import {Project} from "@/lib/service";
 import platforms, {PlatformProject} from "@/lib/platforms";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {
+  ARRNoLicense,
   ProjectCategories,
   ProjectDisplayInformation,
   ProjectTypeIcons
@@ -73,6 +74,7 @@ export default function DocsProjectRightSidebar({
   const t = useTranslations('DocsProjectRightSidebar');
   const types = useTranslations('ProjectTypes');
   const categories = useTranslations('ProjectCategories');
+  const licenseUrl = platformProject?.license?.url ?? platformProject?.license?.id != ARRNoLicense ? `https://spdx.org/licenses/${projectInfo.license.name}` : null;
 
   return (
     <DocsSidebarBase title={t('title')} type="right" className={cn(
@@ -155,12 +157,18 @@ export default function DocsProjectRightSidebar({
             <div className="space-y-2 text-sm ml-6">
               <div>
                 <span className="text-secondary">{t('licenses.project')}</span>{' '}
-                <Button variant="link" className="h-auto p-0 text-secondary" asChild>
-                  <a href={platformProject?.license?.url ?? `https://spdx.org/licenses/${projectInfo.license.name}`}
-                     target="_blank" rel="noopener noreferrer">
+                {licenseUrl
+                  ?
+                  <Button variant="link" className="h-auto p-0 text-secondary" asChild>
+                    <a href={licenseUrl} target="_blank" rel="noopener noreferrer">
+                      {projectInfo.license.name}
+                    </a>
+                  </Button>
+                  :
+                  <span className="text-secondary font-medium">
                     {projectInfo.license.name}
-                  </a>
-                </Button>
+                  </span>
+                }
               </div>
               <div>
               <span className="text-secondary">
