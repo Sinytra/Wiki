@@ -67,7 +67,8 @@ async function getProject(slug: string): Promise<PlatformProject> {
       name: mrProject.license.name,
       url: mrProject.license.url
     },
-    source_url: mrProject.link_urls?.source.url,
+    source_url: mrProject.link_urls?.source?.url,
+    discord_url: mrProject.link_urls?.discord?.url,
 
     platform: 'modrinth',
     project_url: await getProjectURL(mrProject.slug),

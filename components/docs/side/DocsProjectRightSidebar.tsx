@@ -21,6 +21,7 @@ import {Button} from '@/components/ui/button';
 import {SocialButton} from '@/components/ui/custom/SocialButtons';
 import ModVersionRange from "@/components/docs/ModVersionRange";
 import {Suspense} from "react";
+import DiscordIcon from "@/components/ui/icons/DiscordIcon";
 
 interface RightSidebarProps {
   project: Project;
@@ -45,6 +46,13 @@ async function ProjectLinks({project, platformProject}: { project: Project; plat
           icon={<ModrinthIcon className="h-4 w-4 sm:h-5 sm:w-5"/>}
         />
       )}
+      {platformProject.discord_url &&
+        <SocialButton
+          className="hover:text-brand-discord"
+          href={platformProject.discord_url}
+          icon={<DiscordIcon className="h-4 w-4 sm:h-5 sm:w-5"/>}
+        />
+      }
       {platformProject.source_url && (
         <SocialButton
           href={platformProject.source_url}

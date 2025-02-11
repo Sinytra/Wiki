@@ -19,6 +19,7 @@ export interface PlatformProject {
   game_versions: string[];
   license?: PlatformProjectLicense;
   source_url?: string;
+  discord_url?: string;
 
   platform: ProjectPlatform;
   project_url: string;
