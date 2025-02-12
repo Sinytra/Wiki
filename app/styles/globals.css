@@ -170,7 +170,7 @@
     }
 
     .prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-        @apply border-b border-tertiary pb-2 mb-4;
+        @apply border-b border-secondary pb-2 mb-4;
     }
 
     .prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -180,6 +180,7 @@
 
     .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
         text-decoration: none;
+        @apply font-normal;
     }
 
     .prose :where(hr):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -234,10 +235,6 @@
     .prose
     :where(details):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
         cursor: pointer;
-    }
-
-    .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-        text-decoration: underline;
     }
 }
 

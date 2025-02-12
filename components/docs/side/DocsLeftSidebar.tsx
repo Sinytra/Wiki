@@ -19,7 +19,7 @@ function DocsFileEntry({slug, version, file}: { slug: string; version: string; f
   return (
     <DocsFileLink
       key={file.path}
-      href={`/project/${slug}/${version}/${file.path}`}
+      href={`/project/${slug}/${version}/docs/${file.path}`}
     >
       {Icon && <Icon className="shrink-0 w-4 h-4 mr-2"/>}
       {file.name}

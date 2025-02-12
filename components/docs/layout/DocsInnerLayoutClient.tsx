@@ -8,7 +8,7 @@ interface Props {
   tree: FileTree;
   children: any;
 
-  rightSidebar: any;
+  rightSidebar?: any;
   footer: any;
 }
 
@@ -20,7 +20,7 @@ export default function DocsInnerLayoutClient({project, version, rightSidebar, f
       <DocsLeftSidebar slug={project.id} version={version} tree={tree}/>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 overflow-auto min-h-[86vh] sm:min-h-[auto]">
+      <main className="flex-1 pb-6 pt-2 overflow-auto min-h-[86vh] sm:min-h-[auto] sm:mx-auto sm:max-w-5xl">
         {children}
       </main>
 
