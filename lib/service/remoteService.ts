@@ -7,7 +7,7 @@ import {
 } from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
 import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
-import {GameProjectRecipe} from "@/lib/service/types";
+import {GameProjectRecipe, ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
@@ -67,7 +67,7 @@ async function getDocsPage(project: string, path: string[], version: string | nu
     () => fetchBackendService(project, `docs/${project}/page/${path.join('/')}.mdx`, {
       version,
       locale,
-      optional: optional ? "true" : null
+      optional: optional ? 'true' : null
     }),
     json => ({
       project: json.project,
@@ -91,11 +91,21 @@ async function getProjectRecipe(project: string, recipe: string): Promise<GamePr
   return wrapNullableServiceCall<GameProjectRecipe>(() => fetchBackendService(project, `content/${project}/recipe/${recipe}`));
 }
 
+async function getProjectContents(project: string): Promise<ProjectContentTree | null> {
+  return wrapNullableServiceCall<ProjectContentTree>(() => fetchBackendService(project, `content/${project}`));
+}
+
+async function getProjectContentPage(project: string, id: string): Promise<DocumentationPage | null> {
+  return wrapNullableServiceCall<DocumentationPage>(() => fetchBackendService(project, `content/${project}/${id}`));
+}
+
 export default {
   getBackendLayout,
   getAsset,
   getDocsPage,
   getProject,
   searchProjects,
-  getProjectRecipe
+  getProjectRecipe,
+  getProjectContents,
+  getProjectContentPage
 } satisfies ServiceProvider

@@ -51,7 +51,6 @@ export default async function DocsContentRightSidebar({ project, metadata, versi
           <MetadataRowKey key={e[0]} title={e[0]}>{e[1]}</MetadataRowKey>
         ))}
       </MetadataGrid>
-
     </DocsSidebarBase>
   );
 }

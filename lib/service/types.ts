@@ -1,4 +1,5 @@
 import {AssetLocation} from "@/lib/assets";
+import {FileTreeEntry} from "@/lib/service/index";
 
 export enum ProjectType {
   MOD = 'mod',
@@ -67,4 +68,11 @@ export interface ResolvedItem {
   id: string;
   src: AssetLocation;
   name: string;
+}
+
+export type ProjectContentTree = ProjectContentEntry[];
+
+export interface ProjectContentEntry extends FileTreeEntry {
+  id?: string;
+  children: ProjectContentTree;
 }

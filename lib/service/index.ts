@@ -5,7 +5,7 @@ import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
-import {GameProjectRecipe, ProjectType} from "@/lib/service/types";
+import {GameProjectRecipe, ProjectContentEntry, ProjectContentTree, ProjectType} from "@/lib/service/types";
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
@@ -75,7 +75,9 @@ export interface ServiceProvider {
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional: boolean) => Promise<DocumentationPage | undefined | null>;
   searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
-  getProjectRecipe: (project: string, recipe: string) => Promise<GameProjectRecipe | null>
+  getProjectContents: (project: string) => Promise<ProjectContentTree | null>;
+  getProjectRecipe: (project: string, recipe: string) => Promise<GameProjectRecipe | null>;
+  getProjectContentPage: (project: string, id: string) => Promise<DocumentationPage | null>;
 }
 
 function getLocaleName(locale: string) {
@@ -145,6 +147,39 @@ async function getDocsPage(slug: string, path: string[], version: string, locale
 
 async function renderDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean): Promise<RenderedDocsPage | null> {
   const raw = await getDocsPage(slug, path, version, locale, optional);
+  return renderMarkdown(raw);
+}
+
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
+  // TODO local
+  return remoteService.searchProjects(query, page, types, sort);
+}
+
+async function getProjectContents(project: string): Promise<ProjectContentTree | null> {
+  // TODO local
+  return await localService.getProjectContents(project);
+  // return remoteService.getProjectContents(project);
+}
+
+async function getProjectContentPage(slug: string, id: string): Promise<DocumentationPage | null> {
+  // const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
+  // const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
+
+  if (process.env.LOCAL_DOCS_ROOTS) {
+    const localPage = await localService.getProjectContentPage(slug, id);
+    if (localPage !== undefined) {
+      return localPage;
+    }
+  }
+  return remoteService.getProjectContentPage(slug, id);
+}
+
+async function renderProjectContentPage(project: string, id: string): Promise<RenderedDocsPage | null> {
+  const raw = await getProjectContentPage(project, id);
+  return renderMarkdown(raw);
+}
+
+async function renderMarkdown(raw: DocumentationPage | null): Promise<RenderedDocsPage | null> {
   if (raw) {
     const content = await markdown.renderDocumentationMarkdown(raw.content);
     return {
@@ -155,10 +190,6 @@ async function renderDocsPage(slug: string, path: string[], version: string, loc
     };
   }
   return null;
-}
-
-async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
-  return remoteService.searchProjects(query, page, types, sort);
 }
 
 async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
@@ -184,5 +215,7 @@ export default {
   getDocsPage,
   renderDocsPage,
   searchProjects,
-  getProjectRecipe
+  getProjectContents,
+  getProjectRecipe,
+  renderProjectContentPage
 }

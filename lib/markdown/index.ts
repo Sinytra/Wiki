@@ -20,6 +20,9 @@ import Asset from "@/components/docs/shared/Asset";
 import CodeTabs from "@/components/docs/shared/CodeTabs";
 import CodeHikeCode from "@/components/util/CodeHikeCode";
 import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
+import ContentLink from "@/components/docs/shared/ContentLink";
+import matter from 'gray-matter';
+import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -62,7 +65,11 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       obj[key] = LucideReact[key];
       return obj;
     }, {});
-  const components = {CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ...icons};
+  const components = {
+    CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink,
+    ...icons,
+    h2: LinkAwareHeading
+  };
   const chConfig = {
     components: { code: "CodeHikeCode" },
   }
@@ -117,7 +124,12 @@ function sanitizeHastTree(tree: any, components: any) {
   return sanitized;
 }
 
+function readFrontmatter(source: string): any {
+  return matter(source).data;
+}
+
 export default {
   renderMarkdown,
-  renderDocumentationMarkdown
+  renderDocumentationMarkdown,
+  readFrontmatter
 };
