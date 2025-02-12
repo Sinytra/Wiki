@@ -12,6 +12,7 @@ import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import {cn} from "@/lib/utils";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 import PageLink from "@/components/docs/PageLink";
+import DiscordIcon from "@/components/ui/icons/DiscordIcon";
 
 interface PageProps {
   params: {
@@ -108,6 +109,7 @@ export default async function ProjectHomePage({params}: PageProps) {
   const pageCount = 125; // TODO
   const contentCount = 42; // TODO
   const website = 'https://example.com'; // TODO
+  // TODO License info and tags
 
   return (
     <div className="max-w-5xl w-full mx-auto flex flex-col gap-6 mt-1 mb-5">
@@ -136,6 +138,7 @@ export default async function ProjectHomePage({params}: PageProps) {
         ))}.
         </div>
 
+        {/*TODO Expand*/}
         <div>
           Available for <AvailableVersions versions={platformProject.game_versions}/>. Latest version built for <span
           className="font-medium">
@@ -165,14 +168,21 @@ export default async function ProjectHomePage({params}: PageProps) {
         }
         {project.platforms.curseforge &&
           <ExternalLink text="CurseForge" icon={CurseForgeColorIcon}
-                        href={platforms.getProjectURL('curseforge', project.platforms.curseforge)}
+                        href={await platforms.getProjectURL('curseforge', project.platforms.curseforge)}
                         className="border-brand-curseforge/40 from-primary to-brand-curseforge/20"/>
         }
         {project.platforms.modrinth &&
           <ExternalLink text="Modrinth" icon={ModrinthIcon}
-                        href={platforms.getProjectURL('modrinth', project.platforms.modrinth)}
+                        href={await platforms.getProjectURL('modrinth', project.platforms.modrinth)}
                         className="[&>svg]:text-brand-modrinth border-brand-modrinth/40
                                    from-primary to-brand-modrinth/20"
+          />
+        }
+        {platformProject.discord_url &&
+          <ExternalLink text="Discord" icon={DiscordIcon}
+                        href={platformProject.discord_url}
+                        className="[&>svg]:text-brand-discord border-brand-discord/70
+                                   from-primary to-brand-discord/20"
           />
         }
         {project.is_public && project.source_repo && (project.source_repo?.startsWith("https://github.com/")
@@ -189,9 +199,8 @@ export default async function ProjectHomePage({params}: PageProps) {
         }
       </Section>
 
-      <Section title="In-game content" icon={BoxIcon}>
-
-      </Section>
+      {/*<Section title="In-game content" icon={BoxIcon}>*/}
+      {/*</Section>*/}
 
       {/* Related projects / custom sections? */}
     </div>
