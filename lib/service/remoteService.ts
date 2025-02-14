@@ -1,13 +1,12 @@
 import {
   DocumentationPage,
   LayoutTree,
-  Project,
-  ProjectSearchResults,
+  ProjectSearchResults, ProjectWithInfo,
   ServiceProvider
 } from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
 import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
-import {GameProjectRecipe, ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
+import {GameProjectRecipe, ProjectContentTree} from "@/lib/service/types";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
@@ -46,8 +45,8 @@ async function wrapNullableServiceCall<T = any, U = T>(callback: () => Promise<R
   }
 }
 
-async function getProject(project: string): Promise<Project | null> {
-  return wrapNullableServiceCall<Project>(() => fetchBackendService(project, `docs/${project}`));
+async function getProject(project: string, version: string | null): Promise<ProjectWithInfo | null> {
+  return wrapNullableServiceCall<ProjectWithInfo>(() => fetchBackendService(project, `docs/${project}`, {version}));
 }
 
 async function getBackendLayout(project: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
