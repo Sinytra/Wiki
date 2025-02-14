@@ -74,7 +74,7 @@ export default function DocsProjectRightSidebar({
   const t = useTranslations('DocsProjectRightSidebar');
   const types = useTranslations('ProjectTypes');
   const categories = useTranslations('ProjectCategories');
-  const licenseUrl = platformProject?.license?.url ?? platformProject?.license?.id != ARRNoLicense ? `https://spdx.org/licenses/${projectInfo.license.name}` : null;
+  const licenseUrl = platformProject?.license?.url ?? (platformProject?.license?.id != ARRNoLicense && projectInfo.license?.name != undefined) ? `https://spdx.org/licenses/${projectInfo.license!.name}` : null;
 
   return (
     <DocsSidebarBase title={t('title')} type="right" className={cn(
@@ -155,21 +155,23 @@ export default function DocsProjectRightSidebar({
               {t('licenses.title')}
             </DetailCategory>
             <div className="space-y-2 text-sm ml-6">
-              <div>
-                <span className="text-secondary">{t('licenses.project')}</span>{' '}
-                {licenseUrl
-                  ?
-                  <Button variant="link" className="h-auto p-0 text-secondary" asChild>
-                    <a href={licenseUrl} target="_blank" rel="noopener noreferrer">
-                      {projectInfo.license.name}
-                    </a>
-                  </Button>
-                  :
-                  <span className="text-secondary font-medium">
+              {projectInfo.license &&
+                <div>
+                    <span className="text-secondary">{t('licenses.project')}</span>{' '}
+                  {licenseUrl
+                    ?
+                    <Button variant="link" className="h-auto p-0 text-secondary" asChild>
+                      <a href={licenseUrl} target="_blank" rel="noopener noreferrer">
+                        {projectInfo.license.name}
+                      </a>
+                    </Button>
+                    :
+                    <span className="text-secondary font-medium">
                     {projectInfo.license.name}
                   </span>
-                }
-              </div>
+                  }
+                </div>
+              }
               <div>
               <span className="text-secondary">
                 {t('licenses.wiki')}

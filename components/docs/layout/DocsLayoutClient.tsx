@@ -35,7 +35,9 @@ function MobileHeader({title}: {title: string}) {
 export default function DocsLayoutClient({title, project, platformProject, children}: DocsLayoutClientProps) {
   return (
     <div className="flex flex-col lg:gap-3">
-      <DocsSubNavBar project={project} platformProject={platformProject} />
+      <div className="h-[46px]">
+        <DocsSubNavBar project={project} platformProject={platformProject} />
+      </div>
 
       <div className="flex flex-col flex-1 bg-primary text-primary">
         {/* Header */}

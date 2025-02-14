@@ -263,7 +263,7 @@ export async function GET(req: NextRequest) {
 
   const pathVal = searchParams.get('path');
   if (!pathVal) {
-    const project = await service.getProject(slug);
+    const project = await service.getProject(slug, null);
     if (!project) {
       return NextResponse.json({'error': 'Project not found'}, { status: 400 });
     }

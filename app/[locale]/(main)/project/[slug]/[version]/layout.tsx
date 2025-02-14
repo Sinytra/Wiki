@@ -30,21 +30,21 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
 
   const messages = await getMessages();
 
-  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
-  if (!projectData) {
+  const project = await service.getProject(params.slug, params.version);
+  if (!project) {
     return redirect('/');
   }
 
-  const platformProject = await platforms.getPlatformProject(projectData.project);
+  const platformProject = await platforms.getPlatformProject(project);
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError repo={projectData.project.is_public ? projectData.project.source_repo : undefined}/>}>
+    <ErrorBoundary fallback={<DocsPageNotFoundError repo={project.is_public ? project.source_repo : undefined}/>}>
       <NuqsAdapter>
         <LeftSidebarContextProvider>
           <DocsSidebarContextProvider>
             <NextIntlClientProvider
               messages={pick(messages, 'DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
-              <DocsLayoutClient title={projectData.project.name} project={projectData.project}
+              <DocsLayoutClient title={project.name} project={project}
                                 platformProject={platformProject}>
                 {children}
               </DocsLayoutClient>

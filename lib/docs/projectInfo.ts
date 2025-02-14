@@ -102,7 +102,7 @@ export const ProjectTypeIcons: { [key in ProjectType]: any } = {
 export interface ProjectDisplayInformation {
   authors: PlatformProjectAuthor[];
   latest_version: string;
-  license: { name: string; url: string | null };
+  license?: { name: string; url: string | null };
 }
 
 export function getLatestVersion(project: PlatformProject): string | undefined {
@@ -113,11 +113,15 @@ export async function getPlatformProjectInformation(project: PlatformProject): P
   const authors = await platforms.getProjectAuthors(project);
   const t = await getTranslations('DocsProjectInfo');
 
-  const license = !project.license ? t('license.unknown') : project.license.id === ARRNoLicense ? t('license.arr') : project.license.id.startsWith('LicenseRef') ? t('license.custom') : project.license.id || t('license.unknown');
+  const license = !project.license ? undefined
+    : project.license.id === ARRNoLicense ? { name: t('license.arr'), url: null }
+    : project.license.id.startsWith('LicenseRef') ? { name: t('license.custom'), url: project.license?.url || null }
+    : project.license?.name ? { name: project.license.name, url: project.license?.url ?? `https://spdx.org/licenses/${project.license.name}` }
+    : undefined;
 
   return {
     authors,
     latest_version: getLatestVersion(project) || t('latest.unknown'),
-    license: {name: license, url: project?.license?.url || null}
+    license
   };
 }

@@ -1,10 +1,20 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import {redirect} from "next/navigation";
-import platforms from "@/lib/platforms";
-import {getPlatformProjectInformation} from "@/lib/docs/projectInfo";
+import platforms, {PlatformProject} from "@/lib/platforms";
+import {ARRNoLicense, getPlatformProjectInformation, ProjectCategories} from "@/lib/docs/projectInfo";
 import MarkdownContent from "@/components/docs/body/MarkdownContent";
-import {BookMarkedIcon, BookOpenIcon, BoxIcon, CodeIcon, GlobeIcon, HammerIcon, LinkIcon, MapIcon} from "lucide-react";
+import {
+  BookMarkedIcon,
+  BookOpenIcon,
+  BoxIcon,
+  CodeIcon,
+  GlobeIcon,
+  HammerIcon,
+  LinkIcon,
+  MapIcon, ScaleIcon,
+  TagIcon
+} from "lucide-react";
 import ExpandableDescription from "@/components/docs/layout/ExpandableDescription";
 import CurseForgeColorIcon from "@/components/ui/icons/CurseForgeColorIcon";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
@@ -13,6 +23,8 @@ import {cn} from "@/lib/utils";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 import PageLink from "@/components/docs/PageLink";
 import DiscordIcon from "@/components/ui/icons/DiscordIcon";
+import {useTranslations} from "next-intl";
+import {DEFAULT_WIKI_LICENSE} from "@/lib/constants";
 
 interface PageProps {
   params: {
@@ -83,7 +95,7 @@ function AvailableVersions({versions}: { versions: string[] }) {
           {versions.length} game versions
         </TooltipTrigger>
         <TooltipContent className="px-3 py-1.5 text-sm w-fit max-h-56 max-w-32 overflow-y-auto slim-scrollbar"
-                        side="bottom">
+                        side="top">
           <ul>
             {...versions.reverse().slice(1).map((s, i) => (
               <li key={i}>{s}</li>
@@ -95,20 +107,33 @@ function AvailableVersions({versions}: { versions: string[] }) {
   )
 }
 
+function ProjectTags({project}: { project: PlatformProject }) {
+  const categories = useTranslations('ProjectCategories');
+
+  return (
+    <div>
+      {project.categories.filter(t => ProjectCategories[t] !== undefined).map((tag) => (
+        <span
+          key={tag}
+          className="px-2 py-1 text-xs bg-secondary text-secondary-alt rounded-md"
+        >
+          {categories(tag as any)}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export default async function ProjectHomePage({params}: PageProps) {
   setContextLocale(params.locale);
 
-  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
-  if (!projectData) {
+  const project = await service.getProject(params.slug);
+  if (!project) {
     return redirect('/');
   }
-  const {project} = projectData;
 
   const platformProject = await platforms.getPlatformProject(project);
   const info = await getPlatformProjectInformation(platformProject); // TODO Suspense?
-  const pageCount = 125; // TODO
-  const contentCount = 42; // TODO
-  const website = 'https://example.com'; // TODO
   // TODO License info and tags
 
   return (
@@ -142,7 +167,16 @@ export default async function ProjectHomePage({params}: PageProps) {
         <div>
           Available for <AvailableVersions versions={platformProject.game_versions}/>. Latest version built for <span
           className="font-medium">
-          {info.latest_version}</span>. First released for <span className="font-medium">{platformProject.game_versions[0]}</span>.
+          {info.latest_version}</span>. First released for <span
+          className="font-medium">{platformProject.game_versions[0]}</span>.
+        </div>
+
+        <div className="flex flex-row gap-2 text-secondary text-sm">
+          <span>
+            <TagIcon className="w-4 h-4 inline-block mr-2" />
+            Tagged:
+          </span>
+          <ProjectTags project={platformProject} />
         </div>
       </div>
 
@@ -153,17 +187,22 @@ export default async function ProjectHomePage({params}: PageProps) {
       </Section>
 
       <Section title="Navigation" icon={MapIcon} className="flex flex-row flex-wrap gap-4">
-        <SubpageLink title="Browse documentation" icon={BookMarkedIcon} desc={`${pageCount} pages available.`}
-                     href="docs"/>
-        <SubpageLink title="Browse content" icon={BoxIcon} desc={`${contentCount} in-game items.`}
-                     href="content"/>
+        {project.info.pageCount > 0 &&
+          <SubpageLink title="Browse documentation" icon={BookMarkedIcon}
+                       desc={`${project.info.pageCount} pages available.`}
+                       href="docs"/>
+        }
+        {project.info.contentCount > 0 &&
+          <SubpageLink title="Browse content" icon={BoxIcon} desc={`${project.info.contentCount} in-game items.`}
+                       href="content"/>
+        }
         <SubpageLink title="Developer information" icon={HammerIcon} desc="Maven and in-game IDs" href="../devs"/>
       </Section>
 
       <Section title="Links" icon={LinkIcon} className="flex flex-row gap-2">
-        {website &&
+        {project.info.website &&
           <ExternalLink text="Website" icon={GlobeIcon}
-                        href={website}
+                        href={project.info.website}
                         className="border-primary from-primary to-neutral-800"/>
         }
         {project.platforms.curseforge &&
@@ -203,6 +242,55 @@ export default async function ProjectHomePage({params}: PageProps) {
       {/*</Section>*/}
 
       {/* Related projects / custom sections? */}
+
+      <Section title="License" icon={ScaleIcon} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h3 className="font-medium text-lg">
+            Project
+          </h3>
+
+          {platformProject.license ? (
+            platformProject.license.id == ARRNoLicense
+              ?
+              <p>
+                  <span className="font-medium">{project.name}</span> does not include a license.&nbsp;
+                  <PageLink href="https://choosealicense.com/no-permission" target="_blank">
+                    All Rights Reserved.
+                  </PageLink>
+              </p>
+              :
+              platformProject.license.id.startsWith('LicenseRef')
+              ?
+              <p>
+                <span className="font-medium">{project.name}</span> is licensed under a&nbsp;
+                <PageLink href={platformProject.license.url} target="_blank">custom</PageLink> license.
+              </p>
+              :
+              <p>
+                <span className="font-medium">{project.name}</span> is licensed under the&nbsp;
+                <PageLink href={info.license?.url} target="_blank">
+                  {info.license?.name}
+                </PageLink> license.
+              </p>
+            )
+            :
+            <p className="text-secondary">
+              Unable to determine the project's license. Please check the linked websites or contact the project author.
+            </p>
+          }
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="font-medium text-lg">
+            Wiki
+          </h3>
+
+          <span>
+            Wiki content partially <PageLink href="/about/tos#copyright-policy" target="_blank">made available</PageLink> under the <PageLink href={DEFAULT_WIKI_LICENSE.url} target="_blank">
+            {DEFAULT_WIKI_LICENSE.name}
+            </PageLink> license.
+          </span>
+        </div>
+      </Section>
     </div>
   )
 }
