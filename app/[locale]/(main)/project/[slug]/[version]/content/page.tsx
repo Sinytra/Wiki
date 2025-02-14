@@ -1,6 +1,6 @@
 import {notFound, redirect} from "next/navigation";
 import Asset from "@/components/docs/shared/Asset";
-import {ProjectContentEntry} from "@/lib/service/types";
+import {ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
 import PageLink from "@/components/docs/PageLink";
 import service from "@/lib/service";
 import {setContextLocale} from "@/lib/locales/routing";
@@ -14,28 +14,85 @@ interface Props {
   };
 }
 
-// TODO Subcategories
+function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; slug: string; version: string }) {
+  if (entry.type != 'file') {
+    throw new Error('Bug? Unexpected ContentEntryLink entry type ' + entry.type);
+  }
+
+  return (
+    <div>
+      <PageLink href={`/project/${slug}/${version}/content/${entry.id}`} local
+                className="flex flex-row gap-2 items-center !text-sm">
+        <Asset location={entry.id!}/>
+        {entry.name}
+      </PageLink>
+    </div>
+  )
+}
+
+function ContentEntryList({entries, slug, version}: {entries: ProjectContentTree; slug: string; version: string} ) {
+  return (
+    <div className="flex flex-row flex-wrap gap-1 items-center">
+      {...entries.filter(c => c.type === 'file').map((c, i) =>
+        <>
+          {i > 0 && <span className="text-secondary">&bull;</span>}
+          <ContentEntryLink key={c.path} entry={c} slug={slug} version={version}/>
+        </>
+      )
+      }
+    </div>
+  )
+}
+
+function ContentSubcategory({entry, slug, version}: { entry: ProjectContentEntry; slug: string; version: string }) {
+  if (entry.type != 'dir') {
+    throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
+  }
+
+  return (
+    <div className="flex flex-row gap-6 items-center">
+      <div className="w-24 shrink-0 text-end">
+        <span className="text-sm font-medium">{entry.name}</span>
+      </div>
+      <ContentEntryList entries={entry.children} slug={slug} version={version} />
+    </div>
+  )
+}
+
 function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; slug: string; version: string }) {
+  if (entry.type != 'dir') {
+    throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
+  }
+
+  const enableCategories = entry.children.some(c => c.type === 'dir');
+  const children = entry.children.filter(c => c.type == 'file');
+
+  if (!enableCategories && children.length === 0) {
+    return null;
+  }
+
   return (
     <div className="bg-primary-alt/50">
-      {entry.type == 'file' &&
-        <PageLink href={`/project/${slug}/${version}/content/${entry.id}`} local className="flex flex-row gap-2 items-center !text-sm">
-          <Asset location={entry.id!}/>
+      <div className="px-3 py-2 flex flex-col gap-2 border border-secondary rounded-sm">
+        <span className="text-lg font-medium border-b border-tertiary pb-1">
           {entry.name}
-        </PageLink>
-      }
-      {entry.type == 'dir' &&
-        <div className="px-3 py-2 flex flex-col gap-2 border border-secondary rounded-sm">
-            <span className="text-lg font-medium border-b border-tertiary pb-1">
-              {entry.name}
-            </span>
-            <div className="flex flex-row flex-wrap gap-2">
-              {...entry.children.map(e =>
-                (<ContentCategory key={e.path} slug={slug} version={version} entry={e}/>))
-              }
-            </div>
-        </div>
-      }
+        </span>
+        {enableCategories
+          ?
+          <div className="flex flex-col gap-1">
+            {...entry.children.filter(c => c.type === 'dir').map(c => (
+              <ContentSubcategory key={c.path} entry={c} slug={slug} version={version} />
+            ))}
+            {children.length > 0 &&
+              <ContentSubcategory entry={{ name: 'Other', children, type: 'dir', path: '' }}
+                                  slug={slug} version={version} />
+            }
+          </div>
+          :
+          <ContentSubcategory entry={{ name: 'All', children, type: 'dir', path: '' }}
+                              slug={slug} version={version} />
+        }
+      </div>
     </div>
   )
 }

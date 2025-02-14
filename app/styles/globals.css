@@ -147,7 +147,7 @@
     html {
         overflow: auto;
         scrollbar-gutter: stable;
-        scroll-padding-top: 58px;
+        scroll-padding-top: calc(var(--vp-nav-height) + 6px);
     }
 
     /*Prevent added margin when opening select*/

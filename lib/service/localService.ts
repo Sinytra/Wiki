@@ -3,7 +3,7 @@ import {
   FileTreeEntry,
   LayoutTree,
   Project,
-  ProjectSearchResults,
+  ProjectSearchResults, ProjectWithInfo,
   ServiceProvider
 } from "@/lib/service/index";
 import sources, {DocumentationSource} from "@/lib/docs/sources";
@@ -19,7 +19,7 @@ async function getProjectSource(slug: string): Promise<DocumentationSource | nul
   return src || null;
 }
 
-async function getProject(slug: string): Promise<Project | null> {
+async function getProject(slug: string): Promise<ProjectWithInfo | null> {
   const src = await getProjectSource(slug);
   if (src) {
     return sourceToProject(src)
@@ -27,7 +27,7 @@ async function getProject(slug: string): Promise<Project | null> {
   return null;
 }
 
-async function sourceToProject(src: DocumentationSource): Promise<Project> {
+async function sourceToProject(src: DocumentationSource): Promise<ProjectWithInfo> {
   const project = await platforms.getPlatformProject(src);
 
   return {
@@ -38,7 +38,11 @@ async function sourceToProject(src: DocumentationSource): Promise<Project> {
     is_public: false,
     local: true,
     type: project.type,
-    created_at: ''
+    created_at: '',
+    info: {
+      pageCount: 0,
+      contentCount: 0
+    }
   };
 }
 

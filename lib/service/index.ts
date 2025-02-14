@@ -5,7 +5,7 @@ import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
-import {GameProjectRecipe, ProjectContentEntry, ProjectContentTree, ProjectType} from "@/lib/service/types";
+import {GameProjectRecipe, ProjectContentTree, ProjectType} from "@/lib/service/types";
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
@@ -32,6 +32,16 @@ export interface Project extends BaseProject {
   local?: boolean;
   status?: ProjectStatus;
   created_at: string;
+}
+
+export interface ProjectInfo {
+  website?: string;
+  pageCount: number;
+  contentCount: number;
+}
+
+export interface ProjectWithInfo extends Project {
+  info: ProjectInfo;
 }
 
 export interface FileTreeEntry {
@@ -70,7 +80,7 @@ export interface ProjectSearchResults {
 }
 
 export interface ServiceProvider {
-  getProject: (slug: string) => Promise<Project | null>;
+  getProject: (slug: string, version: string | null) => Promise<Project | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
   getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional: boolean) => Promise<DocumentationPage | undefined | null>;
@@ -85,15 +95,18 @@ function getLocaleName(locale: string) {
   return loc.prefix ? loc.prefix : `${locale}_${locale}`;
 }
 
-async function getProject(slug: string): Promise<Project | null> {
-  if (process.env.LOCAL_DOCS_ROOTS) {
-    const localProject = await localService.getProject(slug);
-    if (localProject) {
-      return localProject;
-    }
-  }
+async function getProject(slug: string, version: string | null): Promise<ProjectWithInfo | null> {
+  const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
 
-  return remoteService.getProject(slug);
+  // TODO Enable
+  // if (process.env.LOCAL_DOCS_ROOTS) {
+  //   const localProject = await localService.getProject(slug);
+  //   if (localProject) {
+  //     return localProject;
+  //   }
+  // }
+
+  return remoteService.getProject(slug, actualVersion);
 }
 
 async function getBackendLayout(slug: string, version: string, locale: string): Promise<LayoutTree | null> {
