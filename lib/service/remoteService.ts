@@ -1,4 +1,5 @@
 import {
+  ContentRecipeUsage,
   DocumentationPage,
   LayoutTree,
   ProjectSearchResults, ProjectWithInfo,
@@ -98,6 +99,10 @@ async function getProjectContentPage(project: string, id: string): Promise<Docum
   return wrapNullableServiceCall<DocumentationPage>(() => fetchBackendService(project, `content/${project}/${id}`));
 }
 
+async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
+  return wrapNullableServiceCall<ContentRecipeUsage[]>(() => fetchBackendService(project, `content/${project}/item/${id}/usage`));
+}
+
 export default {
   getBackendLayout,
   getAsset,
@@ -106,5 +111,6 @@ export default {
   searchProjects,
   getProjectRecipe,
   getProjectContents,
-  getProjectContentPage
+  getProjectContentPage,
+  getContentRecipeUsage
 } satisfies ServiceProvider

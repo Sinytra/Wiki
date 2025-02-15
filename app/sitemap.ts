@@ -1,6 +1,7 @@
 import type {MetadataRoute} from 'next';
 import available from "@/lib/locales/available";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
+import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!process.env.NEXT_PUBLIC_NEXT_APP_URL) {
@@ -20,8 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       languages[l] = `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/${l}/project/${id}`;
     });
 
+    // TODO Update for SEO
     return {
-      url: `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/en/project/${id}/docs`,
+      url: `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/en/project/${id}/${DEFAULT_DOCS_VERSION}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       alternates: {
