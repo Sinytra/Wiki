@@ -79,6 +79,12 @@ export interface ProjectSearchResults {
   total: number;
 }
 
+export interface ContentRecipeUsage {
+  id: string;
+  name?: string;
+  project: string;
+}
+
 export interface ServiceProvider {
   getProject: (slug: string, version: string | null) => Promise<Project | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
@@ -88,6 +94,7 @@ export interface ServiceProvider {
   getProjectContents: (project: string) => Promise<ProjectContentTree | null>;
   getProjectRecipe: (project: string, recipe: string) => Promise<GameProjectRecipe | null>;
   getProjectContentPage: (project: string, id: string) => Promise<DocumentationPage | null>;
+  getContentRecipeUsage: (project: string, id: string) => Promise<ContentRecipeUsage[] | null>;
 }
 
 function getLocaleName(locale: string) {
@@ -187,6 +194,10 @@ async function getProjectContentPage(slug: string, id: string): Promise<Document
   return remoteService.getProjectContentPage(slug, id);
 }
 
+async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
+  return remoteService.getContentRecipeUsage(project, id);
+}
+
 async function renderProjectContentPage(project: string, id: string): Promise<RenderedDocsPage | null> {
   const raw = await getProjectContentPage(project, id);
   return renderMarkdown(raw);
@@ -230,5 +241,6 @@ export default {
   searchProjects,
   getProjectContents,
   getProjectRecipe,
-  renderProjectContentPage
+  renderProjectContentPage,
+  getContentRecipeUsage
 }

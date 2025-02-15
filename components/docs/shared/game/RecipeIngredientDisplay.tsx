@@ -1,15 +1,9 @@
-import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
 import {ResolvedItem} from "@/lib/service/types";
-
-// TODO Integrate with ContentLink
-function getWikiLink(id: string): string | null {
-  const loc = resourceLocation.parse(id);
-  return loc?.namespace === DEFAULT_RSLOC_NAMESPACE ? `https://minecraft.wiki/w/${loc.path}` : null;
-}
+import {getExternalWikiLink} from "@/lib/game/content";
 
 export default function RecipeIngredientDisplay({count, item}: { count: number; item: ResolvedItem }) {
-  const href = getWikiLink(item.id);
+  const href = getExternalWikiLink(item.id);
   const ContentDiv: any = href != null ? 'a' : 'div';
 
   return (
@@ -17,7 +11,7 @@ export default function RecipeIngredientDisplay({count, item}: { count: number; 
       <span>{count}x</span>
       <ContentDiv href={href} target="_blank">
         <div className="inline-block mx-1">
-          <RotatingItemDisplaySlot noTooltip src={[item]}/>
+          <RotatingItemDisplaySlot noTooltip noLink src={[item]}/>
         </div>
         <span className="text-primary-alt underline font-medium">{item.name}</span>
       </ContentDiv>
