@@ -83,6 +83,7 @@ export interface ContentRecipeUsage {
   id: string;
   name?: string;
   project: string;
+  has_page: boolean;
 }
 
 export interface ServiceProvider {

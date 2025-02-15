@@ -12,7 +12,10 @@ import MetadataRowKey from "@/components/docs/util/MetadataRowKey";
 import {cn} from "@/lib/utils";
 import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import {AssetLocation} from "@/lib/assets";
-import {getTranslations} from "next-intl/server";
+import {getMessages, getTranslations} from "next-intl/server";
+import DocsContentTOCSidebar from "@/components/docs/side/DocsContentTOCSidebar";
+import {pick} from "lodash";
+import {NextIntlClientProvider} from "next-intl";
 
 interface Props {
   params: {
@@ -83,15 +86,21 @@ export default async function ContentEntryPage({params}: Props) {
   if (!page) redirect(`/project/${params.slug}/content`);
 
   const t = await getTranslations('DocsContentRightSidebar');
+  const messages = await getMessages();
 
   return (
-    <div className="max-w-[1072px] relative w-full mx-auto flex flex-row gap-2 ml-auto mt-2 mb-5">
-      <div className="w-full px-6">
+    <div className="relative w-full mx-auto flex flex-row justify-center gap-4 ml-auto mt-2 mb-12">
+      <div className="w-64 shrink-0">
+        <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
+          <DocsContentTOCSidebar headings={page.content.metadata._headings || []} />
+        </NextIntlClientProvider>
+      </div>
+      <div className="max-w-[1072px] w-full px-6">
         <Suspense fallback={<DocsLoadingSkeleton/>}>
           <DocsEntryPage page={page}/>
         </Suspense>
       </div>
-      <div className="absolute -right-72 w-64 shrink-0">
+      <div className="w-64 shrink-0">
         <RightSidebar title={t('title')} project={page.project}
                       metadata={page.content.metadata}
                       version={params.version}/>
