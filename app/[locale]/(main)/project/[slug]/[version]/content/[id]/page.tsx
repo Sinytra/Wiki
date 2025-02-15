@@ -5,7 +5,6 @@ import {redirect} from "next/navigation";
 import DocsLoadingSkeleton from "@/components/docs/body/DocsLoadingSkeleton";
 import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
 import {Suspense} from "react";
-import DocsContentRightSidebar from "@/components/docs/side/DocsContentRightSidebar";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import EntryDetails from "@/components/docs/util/EntryDetails";
 import MetadataGrid from "@/components/docs/util/MetadataGrid";
@@ -71,11 +70,6 @@ export default async function ContentEntryPage({params}: Props) {
   setContextLocale(params.locale);
   const id = decodeURIComponent(params.id);
 
-  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
-  if (!projectData) {
-    return redirect('/');
-  }
-
   let page: RenderedDocsPage | null;
   try {
     // TODO version and locale
@@ -83,7 +77,7 @@ export default async function ContentEntryPage({params}: Props) {
   } catch (e) {
     console.error('FATAL error rendering content page', e);
     return (
-      <DocsPageNotFoundError repo={projectData.project.is_public ? projectData.project.source_repo : undefined}/>
+      <DocsPageNotFoundError />
     );
   }
   if (!page) redirect(`/project/${params.slug}/content`);
@@ -98,7 +92,7 @@ export default async function ContentEntryPage({params}: Props) {
         </Suspense>
       </div>
       <div className="absolute -right-72 w-64 shrink-0">
-        <RightSidebar title={t('title')} project={projectData.project}
+        <RightSidebar title={t('title')} project={page.project}
                       metadata={page.content.metadata}
                       version={params.version}/>
       </div>

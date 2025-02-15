@@ -5,10 +5,12 @@ import {cn} from "@/lib/utils";
 import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import {ResolvedItem} from "@/lib/service/types";
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
+import {getExternalWikiLink} from "@/lib/game/content";
 
 interface AdditionalProps {
   src: ResolvedItem[];
   noTooltip?: boolean;
+  noLink?: boolean;
 }
 
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & AdditionalProps;
@@ -16,7 +18,7 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & AdditionalProps;
 const INTERVAL = 2000;
 
 // TODO pause all animations when recipe is hovered
-export default function RotatingItemDisplaySlot({noTooltip, src, ...props}: Props) {
+export default function RotatingItemDisplaySlot({noTooltip, noLink, src, ...props}: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -29,9 +31,11 @@ export default function RotatingItemDisplaySlot({noTooltip, src, ...props}: Prop
     return () => clearInterval(interval);
   }, [src]);
 
-  const Content = () => (
-    <ItemDisplay noTitle asset={src[currentIndex].src} alt={src[currentIndex].id} className={cn(props.className, 'sharpRenderinga')} {...props} />
-  );
+  const Content = () => {
+    const link = getExternalWikiLink(src[currentIndex].id);
+    const element = <ItemDisplay noTitle asset={src[currentIndex].src} alt={src[currentIndex].id} className={cn(props.className, 'sharpRenderinga')} {...props} />;
+    return link && !noLink ? <a href={link} target="_blank">{element}</a> : element;
+  };
 
   return noTooltip ? <Content /> : (
     <TooltipImg id={src[currentIndex].name}>

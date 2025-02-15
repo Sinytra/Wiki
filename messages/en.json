@@ -350,7 +350,8 @@
             "invalid_meta": "Metadata file is invalid",
             "unsupported": "Not yet implemented",
             "exists": "Project already exists.",
-            "not_found": "Project does not exist"
+            "not_found": "Project does not exist",
+            "illegal_id": "Illegal project ID"
         }
     },
     "CommunityBadge": {

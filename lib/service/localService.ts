@@ -1,4 +1,5 @@
 import {
+  ContentRecipeUsage,
   DocumentationPage,
   FileTreeEntry,
   LayoutTree,
@@ -169,6 +170,10 @@ async function getProjectContentPage(project: string, id: string): Promise<Docum
   return null; // TODO
 }
 
+async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
+  return null; // TODO
+}
+
 export default {
   getBackendLayout,
   getAsset,
@@ -177,5 +182,6 @@ export default {
   searchProjects,
   getProjectRecipe,
   getProjectContents,
-  getProjectContentPage
+  getProjectContentPage,
+  getContentRecipeUsage
 } satisfies ServiceProvider;

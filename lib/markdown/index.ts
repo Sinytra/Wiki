@@ -23,6 +23,7 @@ import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
 import ContentLink from "@/components/docs/shared/ContentLink";
 import matter from 'gray-matter';
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
+import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -66,7 +67,7 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       return obj;
     }, {});
   const components = {
-    CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink,
+    CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink, RecipeUsage,
     ...icons,
     h2: LinkAwareHeading
   };
