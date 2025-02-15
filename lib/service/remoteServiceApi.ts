@@ -152,11 +152,31 @@ async function revalidateProject(id: string, token: string | null = null): Promi
 }
 
 async function linkModrinthAcount(): Promise<RedirectResponse | SimpleErrorResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest('auth/link/modrinth', {}, 'GET'));
+  try {
+    const resp = await sendSimpleRequest('auth/link/modrinth', {}, 'GET');
+    if (resp.ok) {
+      return {url: resp.url};
+    }
+    const body = await resp.text();
+    return {status: resp.status, error: body};
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 }
 
 async function unlinkModrinthAcount(): Promise<SimpleErrorResponse | StatusResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest('auth/unlink/modrinth'));
+  try {
+    const resp = await sendSimpleRequest('auth/unlink/modrinth');
+    if (resp.ok) {
+      return {status: resp.status};
+    }
+    const body = await resp.json();
+    return {status: resp.status, error: body.error};
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 }
 
 async function getUserProfile(): Promise<UserProfile | StatusResponse> {
