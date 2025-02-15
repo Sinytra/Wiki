@@ -68,6 +68,7 @@ export default async function ProjectDocsPage({params}: {
   const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
     && page.content.metadata.hide_meta === undefined;
 
+  // TODO content needs padding
   return (
     <DocsInnerLayoutClient project={page.project}
                            tree={projectData.tree}

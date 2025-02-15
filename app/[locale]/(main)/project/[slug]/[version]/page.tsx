@@ -20,11 +20,11 @@ import CurseForgeColorIcon from "@/components/ui/icons/CurseForgeColorIcon";
 import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import {cn} from "@/lib/utils";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 import PageLink from "@/components/docs/PageLink";
 import DiscordIcon from "@/components/ui/icons/DiscordIcon";
 import {useTranslations} from "next-intl";
 import {DEFAULT_WIKI_LICENSE} from "@/lib/constants";
+import TooltipText from "@/components/docs/shared/util/TooltipText";
 
 interface PageProps {
   params: {
@@ -89,21 +89,15 @@ function ExternalLink({text, icon: Icon, href, className}: {
 
 function AvailableVersions({versions}: { versions: string[] }) {
   return (
-    <TooltipProvider delayDuration={200}>
-      <Tooltip>
-        <TooltipTrigger className="underline decoration-1 decoration-neutral-500 decoration-dashed underline-offset-4">
-          {versions.length} game versions
-        </TooltipTrigger>
-        <TooltipContent className="px-3 py-1.5 text-sm w-fit max-h-56 max-w-32 overflow-y-auto slim-scrollbar"
-                        side="top">
-          <ul>
-            {...versions.reverse().slice(1).map((s, i) => (
-              <li key={i}>{s}</li>
-            ))}
-          </ul>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <TooltipText tooltip={
+      <ul>
+        {...versions.reverse().slice(1).map((s, i) => (
+          <li key={i}>{s}</li>
+        ))}
+      </ul>
+    }>
+      {versions.length} game versions
+    </TooltipText>
   )
 }
 
@@ -127,14 +121,13 @@ function ProjectTags({project}: { project: PlatformProject }) {
 export default async function ProjectHomePage({params}: PageProps) {
   setContextLocale(params.locale);
 
-  const project = await service.getProject(params.slug);
+  const project = await service.getProject(params.slug, null);
   if (!project) {
     return redirect('/');
   }
 
   const platformProject = await platforms.getPlatformProject(project);
   const info = await getPlatformProjectInformation(platformProject); // TODO Suspense?
-  // TODO License info and tags
 
   return (
     <div className="max-w-5xl w-full mx-auto flex flex-col gap-6 mt-1 mb-5">

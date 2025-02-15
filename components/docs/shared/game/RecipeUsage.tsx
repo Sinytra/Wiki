@@ -1,8 +1,9 @@
 import remoteService from "@/lib/service/remoteService";
-import Asset from "@/components/docs/shared/Asset";
+import {getParams} from "@nimpl/getters/get-params";
+import UsageContentList from "@/components/docs/shared/game/UsageContentList";
 import PageLink from "@/components/docs/PageLink";
 import {getContentLink} from "@/lib/game/content";
-import {getParams} from "@nimpl/getters/get-params";
+import Asset from "@/components/docs/shared/Asset";
 
 export default async function RecipeUsage({id}: { id: string }) {
   const project = 'mffs';
@@ -13,6 +14,22 @@ export default async function RecipeUsage({id}: { id: string }) {
 
   const params = getParams() || {};
   const sorted = usage.sort((a, b) => a.name && b.name ? a.name.localeCompare(b.name) : 0);
+  const rendered = sorted.map(item => (
+    <li key={item.id} className="first:mt-0">
+      {item.has_page
+        ?
+        <PageLink href={getContentLink(params, item.id)}>
+          <Asset project={item.project} location={item.id} className="mr-1.5!"/>
+          <span>{item.name || item.id}</span>
+        </PageLink>
+        :
+        <div>
+          <Asset project={item.project} location={item.id} className="mr-1.5!"/>
+          <span>{item.name || item.id}</span>
+        </div>
+      }
+    </li>
+  ));
 
   return (
     <div className="flex flex-col gap-3">
@@ -21,16 +38,7 @@ export default async function RecipeUsage({id}: { id: string }) {
       </span>
 
       <div className="columns-[20em]">
-        <ul className="mt-0">
-          {...sorted.map(item => (
-            <li key={item.id} className="first:mt-0">
-              <PageLink href={getContentLink(params, item.id)}>
-                <Asset project={item.project} location={item.id} className="mr-1.5!"/>
-                <span>{item.name || item.id}</span>
-              </PageLink>
-            </li>
-          ))}
-        </ul>
+        <UsageContentList limit={12} content={rendered} />
       </div>
     </div>
   )

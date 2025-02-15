@@ -100,7 +100,7 @@ async function getProjectContentPage(project: string, id: string): Promise<Docum
 }
 
 async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
-  return wrapNullableServiceCall<ContentRecipeUsage[]>(() => fetchBackendService(project, `content/${project}/item/${id}/usage`));
+  return wrapNullableServiceCall<ContentRecipeUsage[]>(() => fetchBackendService(project, `content/${project}/${id}/usage`));
 }
 
 export default {

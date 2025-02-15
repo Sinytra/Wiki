@@ -3,7 +3,7 @@
 import {Project, ProjectWithInfo} from "@/lib/service";
 import {PlatformProject} from "@/lib/platforms";
 import {Button} from "@/components/ui/button";
-import {BookMarkedIcon, BoxIcon, HomeIcon} from "lucide-react";
+import {BookMarkedIcon, BoxIcon, HammerIcon, HomeIcon, LayoutGridIcon} from "lucide-react";
 import {Link, usePathname} from "@/lib/locales/routing";
 import {cn} from "@/lib/utils";
 import {useParams} from "next/navigation";
@@ -26,20 +26,22 @@ function SubPage({title, icon: Icon, path}: { title: string; icon: any; path: st
 
 export default function DocsSubNavBar({project, platformProject}: {project: Project | ProjectWithInfo, platformProject: PlatformProject}) {
   return (
-    <div className="fixed w-full left-0 bg-primary-dim z-50 border-b border-tertiary flex flex-row items-center justify-between px-4 py-2">
-      <div className="flex flex-row gap-2 items-center">
-        <img src={platformProject.icon_url} alt="Logo" className="rounded-sm h-6" />
-        <span className="text-base text-primary font-medium">{project.name}</span>
-      </div>
+    <div className="fixed w-full left-0 bg-primary-dim z-50 border-b border-tertiary">
+      <div className="max-w-[120rem] w-full mx-auto flex flex-row items-center justify-between px-4 py-2">
+        <div className="flex flex-row gap-2 items-center">
+          <img src={platformProject.icon_url} alt="Logo" className="rounded-sm h-6" />
+          <span className="text-base text-primary font-medium">{project.name}</span>
+        </div>
 
-      <div className="flex flex-row gap-2 items-center">
-        <SubPage title="Home" icon={HomeIcon} path="" />
-        <SubPage title="Documentation" icon={BookMarkedIcon} path="docs" />
-        {'info' in project && project.info.contentCount > 0 &&
-          <SubPage title="Content" icon={BoxIcon} path="content" />
-        }
-        {/*<SubPage title="Recipes" icon={LayoutGridIcon} path="recipes" />*/}
-        {/*<SubPage title="Developers" icon={HammerIcon} path="devs" />*/}
+        <div className="flex flex-row gap-2 items-center">
+          <SubPage title="Home" icon={HomeIcon} path="" />
+          <SubPage title="Documentation" icon={BookMarkedIcon} path="docs" />
+          {'info' in project && project.info.contentCount > 0 &&
+            <SubPage title="Content" icon={BoxIcon} path="content" />
+          }
+          <SubPage title="Recipes" icon={LayoutGridIcon} path="recipes" />
+          <SubPage title="Developers" icon={HammerIcon} path="devs" />
+        </div>
       </div>
     </div>
   )
