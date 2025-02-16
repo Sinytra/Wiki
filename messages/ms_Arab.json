@@ -275,9 +275,9 @@
         "title": "دفتر ڤروجيک",
         "desc": "دفترکن ڤروجيک بهارو ک دالم ويکي.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
-            "placeholder": "https://github.com/ExampleUser/ExampleMod"
+            "title": "URL ريڤوسيتوري",
+            "desc": "اين اداله علامت يڠ اندا ݢوناکن اونتوق مڠکلون ريڤوسيتوري اندا.",
+            "placeholder": "https://github.com/ContohPengguna/ContohMod"
         },
         "branch": {
             "title": "چابڠ",
@@ -309,7 +309,7 @@
     "ProjectSettingsForm": {
         "title": "سونتيڠ ڤروجيک",
         "desc": "سونتيڠ تتڤن ڤروجيک سديا اد.",
-        "button": "Settings",
+        "button": "تتڤن",
         "success": {
             "title": "ڤروجيک برجاي دکمس کيني",
             "desc": "اندا کيني بوليه مناۏيݢاسي کلامن دوکومنتاسي ڤروجيک يڠ دکمس کيني"
