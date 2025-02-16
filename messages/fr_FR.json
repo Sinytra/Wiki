@@ -1,7 +1,7 @@
 {
     "Badges": {
-        "local": "Locale",
-        "latest": "Dernière"
+        "local": "Local",
+        "latest": "Plus récent"
     },
     "NavigationHeader": {
         "title": "Wiki Minecraft Moddé",
@@ -43,62 +43,62 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "Bienvenue sur le <highlight>Wiki Minecraft Moddé</highlight>",
+        "subtitle": "Votre ressource de référence pour la découverte, la création et la contribution des projets liés à Minecraft.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "Wikis populaires",
+            "open": "En savoir plus",
+            "disclaimer": "Ces projets sont mis en avant en fonction de leur popularité, par le biais des statistiques de vues et ne pas officiellement approuvés par le Wiki Minecraft Moddé."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "Rejoignez notre communauté",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "Utilisateurs",
+                "subtitle": "Explorez nos projets en vedette et profitez de ces avantages :",
+                "docs": "Consultez de la documentation de haute qualité, mise à jour et versionnée",
+                "contribute": "Contribuer à des projets sans connaissances en programmation",
+                "ui": "Profitez d'une interface homogène et conviviale sur tous les projets",
+                "localization": "Bénéficiez d'un support multilingue"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "Auteurs",
+                "subtitle": "Accédez au tableau de bord et profitez de ces avantages :",
+                "vcs": "Prise en charge de versionnage pour votre documentation",
+                "components": "Composants personnalisés pour les recettes, images, etc.",
+                "gradle": "Intégration Gradle pour travailler fluidement",
+                "management": "Outils avancés de gestion de projets",
+                "interaction": "Interaction directe avec vos utilisateurs",
+                "dashboard": "Ouvrir le tableau de bord",
+                "guide": "En savoir plus"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "Parcourir les projets",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "Traduction",
+                "desc": "Traduisez votre documentation dans d'autres langues du monde"
             },
             "accessibility": {
                 "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "desc": "Interface utilisateur intuitive et réactive"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "Ouvert",
+                "desc": "Laissez vos utilisateurs contribuer sans connaissance en programmation nécessaire"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "Gratuit",
+                "desc": "Héberger de la documentation sur notre site est totalement gratuit !"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "À propos de nous",
+            "maintainers": "Le Wiki est fondé et maintenu par <b>Sinytra</b>, une équipe dévouée de développeurs passionnés qui se sont concentrés sur la distribution de logiciels libres et de haute qualité pour la communauté de modding de Minecraft.",
+            "mission": "Notre objectif est de donner du pouvoir aux moddeurs et joueurs en fournissant les outils et ressources nécessaires à la création, documentation et l'exploration des possibilités infinies des mods Minecraft."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "Articles",
+            "open": "Lire la suite"
         }
     },
     "BrowsePage": {
@@ -115,23 +115,23 @@
             "az": "Ordre alphabétique",
             "za": "Ordre alphabétique inverse"
         },
-        "search": "Chercher des projets...",
+        "search": "Rechercher des projets...",
         "clear_filter": "Effacer les filtres",
         "no_results": "La recherche n'a donné aucun résultat !"
     },
     "SearchProjectTypes": {
         "mod": "Mods",
         "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
+        "resourcepack": "Packs de ressources",
+        "datapack": "Packs de données",
         "shader": "Shaders",
         "plugin": "Plugins"
     },
     "ProjectTypes": {
         "mod": "Mod",
         "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
+        "resourcepack": "Pack de ressources",
+        "datapack": "Pack de données",
         "shader": "Shader",
         "plugin": "Plugin"
     },
@@ -160,7 +160,7 @@
         "title": "Le mode aperçu est activé",
         "desc": "Le mode Aperçu active une interface utilisateur minimale, vous permettant de vous concentrer sur la rédaction de vos docs localement avant leur publication.",
         "roots": "Base de la documentation locale disponible",
-        "open": "Ouvert"
+        "open": "Ouvrir"
     },
     "DocsProjectInfo": {
         "title": "Informations du projet",
@@ -179,46 +179,46 @@
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
+        "adventure": "Aventure",
         "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
+        "decoration": "Décoration",
+        "economy": "Économie",
+        "equipment": "Équipement",
+        "food": "Nourriture",
+        "game-mechanics": "Mécaniques de jeu",
+        "library": "Bibliothèque",
+        "magic": "Magie",
+        "management": "Gestion",
+        "minigame": "Mini-jeu",
+        "mobs": "Créatures",
+        "optimization": "Optimisation",
         "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
+        "storage": "Stockage",
+        "technology": "Technologie",
+        "transportation": "Transport",
+        "utility": "Utilitaire",
+        "worldgen": "Génération du monde",
+        "server-utility": "Outils serveur",
+        "armor-weapons-tools": "Armures, outils et armes",
+        "library-api": "API et bibliothèque",
+        "adventure-rpg": "Aventure et RPG",
+        "world-gen": "Génération du monde",
+        "cosmetic": "Cosmétique",
+        "mc-food": "Nourriture",
         "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
+        "map-information": "Carte et informations",
+        "bug-fixes": "Corrections de bug",
+        "mc-addons": "Extensions",
+        "education": "Éducation",
+        "mc-miscellaneous": "Divers",
         "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "utility-qol": "Utilitaire et qualité de vie (QV)",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
+        "edit_gh": "Modifier cette page",
         "report": "Signaler cette page",
-        "report_button": "Report page",
+        "report_button": "Signaler cette page",
         "last_updated": "Dernière mise à jour : <date></date>"
     },
     "Report": {
@@ -248,35 +248,35 @@
                 "copyright": "Violation de droit d’auteur",
                 "content_rules_violation": "Violation des règles de contenu",
                 "tos_violation": "Violation des conditions d'utilisation",
-                "dislike": "Ça ne me plaît pas"
+                "dislike": "Je n'aime pas"
             },
             "details": {
                 "title": "Détails*",
-                "placeholder": "Veuillez fournir plus de détails sur les raisons pour lesquelles vous signalez cette page. Notez que les rapports vides seront ignorés.",
+                "placeholder": "Veuillez fournir plus de détails sur les raisons pour lesquelles vous signalez cette page. Notez que les signalements vides seront ignorés.",
                 "desc": "Plus de détails sur le problème."
             },
             "dislike": {
-                "title": "Nous comprenons que vous n'aimez peut-être pas cette page, et c'est tout à fait compréhensible !",
-                "desc": "Malheureusement, ce n'est pas une raison valable de rapporter un projet.",
+                "title": "Vous n'aimez peut-être pas cette page, et c'est tout à fait compréhensible !",
+                "desc": "Malheureusement, ceci n'est pas une raison valable pour signaler un projet.",
                 "suggestion": "Voulez-vous chercher quelque chose d'autre à lire à la place ?",
-                "explore": "Explore projects"
+                "explore": "Explorer les projets"
             },
-            "success": "Report submitted successfully"
+            "success": "Votre signalement a bien été pris en compte"
         }
     },
     "SubmitButton": {
         "title": "Soumettre"
     },
     "Callout": {
-        "title": "Par ici !"
+        "title": "Attention !"
     },
     "ProjectRegisterForm": {
         "button": "Ajouter un Projet",
         "title": "Enregistrer le projet",
         "desc": "Enregistrez un nouveau projet sur le wiki.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
+            "title": "URL du dépôt",
+            "desc": "C'est l'adresse que vous utilisez pour cloner votre dépôt.",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
@@ -300,10 +300,10 @@
         },
         "submit": "Soumettre",
         "success": {
-            "title": "Projet enregistré avec succès",
+            "title": "Projet soumis avec succès",
             "desc": "You can now navigate to the project's docs page"
         },
-        "submitting": "Envoi...",
+        "submitting": "Soumission du projet...",
         "verify_modrinth": "Vérification avec Modrinth"
     },
     "ProjectSettingsForm": {
@@ -311,7 +311,7 @@
         "desc": "Modifier les paramètres d'un projet existant.",
         "button": "Settings",
         "success": {
-            "title": "Projet mise à jour avec succès",
+            "title": "Projet mis à jour avec succès",
             "desc": "You can now navigate to the updated project's docs page"
         }
     },
@@ -327,7 +327,7 @@
         "title": "Reload project pages?",
         "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
         "secondary": "Cette option ne devrait être utilisée après la mise à jour de la documentation.",
-        "tertiary": "Pour votre confort, nous vous recommandons de revalider automatiquement les documents après publication en utilisant plutôt notre <link>plugin Gradle</link>.",
+        "tertiary": "Pour votre confort, nous vous recommandons de revalider automatiquement la documentation après publication plutôt en utilisant notre <link>plugin Gradle</link>.",
         "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
         "cancel": "Annuler",
         "submit": "Reload",
@@ -347,7 +347,7 @@
             "no_repository": "Repository not found",
             "no_branch": "Invalid branch specified",
             "no_path": "Metadata file not found at specified path",
-            "invalid_meta": "Fichier(s) de Métadonnées invalides",
+            "invalid_meta": "Fichier de métadonnées invalide",
             "unsupported": "Not yet implemented",
             "exists": "Le projet existe déjà.",
             "not_found": "Project does not exist"
@@ -371,13 +371,13 @@
         "button": "Ajouter un projet",
         "title": "J'aimerais écrire de la documentation pour...",
         "dev": {
-            "title": "My own project",
-            "desc": "Auteur, écrivez votre propre documentation et contrôlez qui peut y apporter des modifications.",
+            "title": "Mon propre projet",
+            "desc": "Écrivez votre propre documentation et contrôlez qui peut y apporter des modifications.",
             "button": "Créer un projet"
         },
         "community": {
-            "title": "Someone else's project",
-            "desc": "Contribute to a collection of community docs maintained by wiki editors",
+            "title": "Le projet de quelqu'un d'autre",
+            "desc": "Contribuez à une documentation maintenue par des éditeurs de la communauté",
             "button": "Lire le guide"
         }
     },
@@ -404,8 +404,8 @@
         "links": "Links",
         "placeholder": {
             "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
+            "author": "Auteur",
+            "latest_version": "Version la plus récente"
         }
     },
     "DocsChangelogPage": {
@@ -413,76 +413,76 @@
     },
     "DocsLeftSidebar": {
         "title": "Documentation",
-        "homepage": "Project Homepage"
+        "homepage": "Page d'accueil du projet"
     },
     "DocsContentRightSidebar": {
         "title": "Entry information"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "Sur cette page"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version",
-        "latest": "Latest"
+        "placeholder": "Sélectionner une version",
+        "latest": "Plus récente"
     },
     "DocsLanguageSelect": {
-        "placeholder": "Select locale"
+        "placeholder": "Sélectionnez une langue"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "+(count) autres"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "Rechercher les langues...",
+        "no_results": "Aucune langue trouvée."
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "loaded": "Loaded",
-        "error": "Errored"
+        "unknown": "Inconnu",
+        "loading": "Chargement",
+        "loaded": "Chargé",
+        "error": "Erroné"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "Gérer"
         },
         "empty": {
-            "primary": "Looks like you haven't registered any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "primary": "Il semble que vous n'ayez pas encore créé de projet",
+            "secondary": "Commencez par lire notre <guide>guide de l'auteur</guide>."
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "Accueil"
         },
         "toolbar": {
             "view": "View"
         },
         "source": {
-            "title": "Project Source",
-            "repo": "Repository",
-            "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "title": "Source du projet",
+            "repo": "Dépôt",
+            "branch": "Branche",
+            "path": "Chemin",
+            "public": "Publique"
         },
         "platforms": {
-            "title": "Platforms",
+            "title": "Platformes",
             "headers": {
-                "platform": "Platform",
+                "platform": "Plateforme",
                 "slug": "Slug / ID",
-                "link": "Link"
+                "link": "Lien"
             },
-            "open": "Open"
+            "open": "Ouvrir"
         },
         "information": {
-            "title": "Information",
+            "title": "Informations",
             "type": "Type",
-            "status": "Status",
-            "created_at": "Created at"
+            "status": "Statut",
+            "created_at": "Créé à"
         }
     },
     "DevProjectLogs": {
-        "title": "Server logs",
-        "show": "Show",
+        "title": "Logs serveurs",
+        "show": "Afficher",
         "unloaded": "Not loaded",
         "waiting": "Waiting for server...",
         "loading": "Loading...",

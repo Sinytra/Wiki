@@ -275,9 +275,9 @@
         "title": "Daftar projek",
         "desc": "Daftarkan projek baharu ke dalam wiki.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
-            "placeholder": "https://github.com/ExampleUser/ExampleMod"
+            "title": "URL Repositori",
+            "desc": "Ini adalah alamat yang anda gunakan untuk mengklon repositori anda.",
+            "placeholder": "https://github.com/ContohPengguna/ContohMod"
         },
         "branch": {
             "title": "Cabang",
@@ -309,7 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Sunting projek",
         "desc": "Sunting tetapan projek sedia ada.",
-        "button": "Settings",
+        "button": "Tetapan",
         "success": {
             "title": "Projek berjaya dikemas kini",
             "desc": "Anda kini boleh menavigasi ke laman dokumentasi projek yang dikemas kini"

@@ -275,8 +275,8 @@
         "title": "Projekt registrieren",
         "desc": "Registriere ein neues Projekt im Wiki.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
+            "title": "Repository-URL",
+            "desc": "Das ist die Adresse, die du zum Klonen deines Repositorys benutzt.",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
@@ -309,7 +309,7 @@
     "ProjectSettingsForm": {
         "title": "Projekt bearbeiten",
         "desc": "Bearbeite die Einstellungen eines bestehenden Projekts.",
-        "button": "Settings",
+        "button": "Einstellungen",
         "success": {
             "title": "Projekt erfolgreich aktualisiert",
             "desc": "Du kannst jetzt zur aktualisierten Dokumentationsseite des Projekts navigieren"
