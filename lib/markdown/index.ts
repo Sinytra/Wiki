@@ -14,7 +14,7 @@ import ModAsset from "@/components/docs/shared/ModAsset";
 import {compileMDX} from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
-import { remarkCodeHike, recmaCodeHike } from "codehike/mdx";
+import {recmaCodeHike, remarkCodeHike} from "codehike/mdx";
 import * as LucideReact from "lucide-react";
 import Asset from "@/components/docs/shared/Asset";
 import CodeTabs from "@/components/docs/shared/CodeTabs";
@@ -97,15 +97,16 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
 const mdxElemets = ['mdxJsxFlowElement', 'mdxJsxTextElement'];
 
 function sanitizeHastTree(tree: any, sanitizer: (tree: any) => any, components: any) {
-  if (tree.children) {
-    tree.children = tree.children.map((c: any) => sanitizeHastTree(c, sanitizer, components));
-  }
-
   if (mdxElemets.includes(tree.type) && (components[tree.name] !== undefined || markdownRehypeSchema.tagNames!.includes(tree.name))) {
     return tree;
   }
 
-  return tree.children ? tree : sanitizer(tree);
+  let sanitized = sanitizer(tree);
+  if (tree.children) {
+    sanitized.children = tree.children.map((c: any) => sanitizeHastTree(c, sanitizer, components));
+  }
+
+  return sanitized;
 }
 
 export default {

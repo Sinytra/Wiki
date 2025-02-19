@@ -7,7 +7,7 @@ import authSession from "@/lib/authSession";
 const handleI18nRouting = createMiddleware(routing);
 
 export const config = {
-  matcher: ['/((?:dev|report).*|(?!api|blog|(?:en|de|fr|es|it|cs|hu|pl|ms|ms_Ar|sv|uk|ru|ja|ko|zh_cn|zh_tw)(?:(?!/dev|/report)|$)|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|static/.+|sinytra-wiki.schema.json|_meta.schema.json|opengraph-image|favicon.ico|robots.txt|sitemap.xml|.*\\.png$).*)'],
+  matcher: ['/((?:dev|report).*|(?!api|blog|(?:en|de|fr|es|it|cs|hu|pl|ms|ms_Ar|tr|sv|uk|ru|ja|ko|zh_cn|zh_tw)(?:(?!/dev|/report)|$)|_vercel/insights|_vercel/speed-insights|_next/static|_next/image|static/.+|sinytra-wiki.schema.json|_meta.schema.json|opengraph-image|favicon.ico|robots.txt|sitemap.xml|.*\\.png$).*)'],
 }
 
 export async function middleware(request: NextRequest, response: NextResponse) {
