@@ -72,8 +72,7 @@ async function getDocsPage(project: string, path: string[], version: string | nu
     json => ({
       project: json.project,
       content: json.content,
-      edit_url: json.edit_url,
-      updated_at: json.updated_at ? new Date(json.updated_at) : undefined
+      edit_url: json.edit_url
     })
   );
 }

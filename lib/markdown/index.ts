@@ -58,6 +58,26 @@ async function renderMarkdown(content: string): Promise<string> {
   return String(file);
 }
 
+async function renderMarkdownWithMetadata(source: string): Promise<DocumentationMarkdown> {
+  const {content, frontmatter} = await compileMDX({
+    source,
+    options: {
+      mdxOptions: {
+        rehypePlugins: [
+          rehypeMarkdownHeadings,
+          () => (tree: any) => {
+            const sanitizer = rehypeSanitize(markdownRehypeSchema);
+            const newTree = {...tree};
+            return sanitizeHastTree(newTree, sanitizer, {});
+          }
+        ]
+      },
+      parseFrontmatter: true
+    }
+  });
+  return {content, metadata: frontmatter || {}};
+}
+
 async function renderDocumentationMarkdown(source: string): Promise<DocumentationMarkdown> {
   const icons = Object.keys(LucideReact)
     .filter(key => key.endsWith('Icon'))
@@ -132,5 +152,6 @@ function readFrontmatter(source: string): any {
 export default {
   renderMarkdown,
   renderDocumentationMarkdown,
-  readFrontmatter
+  readFrontmatter,
+  renderMarkdownWithMetadata
 };

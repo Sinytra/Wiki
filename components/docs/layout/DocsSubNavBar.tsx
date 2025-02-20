@@ -26,7 +26,7 @@ function SubPage({title, icon: Icon, path}: { title: string; icon: any; path: st
 
 export default function DocsSubNavBar({project, platformProject}: {project: Project | ProjectWithInfo, platformProject: PlatformProject}) {
   return (
-    <div className="fixed w-full left-0 bg-primary-dim z-50 border-b border-tertiary">
+    <div className="fixed w-full left-0 bg-primary-dim z-50 border-y border-t-tertiary-dim border-tertiary">
       <div className="max-w-[120rem] w-full mx-auto flex flex-row items-center justify-between px-4 py-2">
         <div className="flex flex-row gap-2 items-center">
           <img src={platformProject.icon_url} alt="Logo" className="rounded-sm h-6" />

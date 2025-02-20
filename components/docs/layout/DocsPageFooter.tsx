@@ -1,12 +1,11 @@
 'use client'
 
-import {Clock, Edit, FlagIcon} from 'lucide-react'
+import {Edit, FlagIcon} from 'lucide-react'
 import Link from "next/link"
 import DocsLanguageSelect from "@/components/docs/DocsLanguageSelect";
 import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector";
 import * as React from "react";
 import {useTranslations} from "next-intl";
-import LocalDateTime from "@/components/util/LocalDateTime";
 import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
 import localPreview from "@/lib/docs/localPreview";
 import {Button} from "@/components/ui/button";
@@ -20,19 +19,8 @@ interface FooterProps {
   locales?: string[];
   versions?: Record<string, string>;
   editUrl?: string;
-  updatedAt?: Date;
   showHistory?: boolean;
   local?: boolean;
-}
-
-function UpdatedAt({updatedAt}: { updatedAt?: Date }) {
-  const t = useTranslations('PageEditControls');
-
-  return updatedAt &&
-    <span className="flex items-center text-secondary text-sm whitespace-pre">
-        <Clock className="w-4 h-4 mr-2"/>
-      {t.rich('last_updated', {date: () => <LocalDateTime dateTime={updatedAt}/>})}
-    </span>;
 }
 
 function ReportPage({local, slug, path}: { local?: boolean; slug?: string; path?: string[]; }) {
@@ -101,7 +89,6 @@ function DesktopDocsFooter({
                              locales,
                              versions,
                              editUrl,
-                             updatedAt,
                              showHistory,
                              local
                            }: FooterProps) {
@@ -109,7 +96,6 @@ function DesktopDocsFooter({
     <>
       <div className="hidden sm:flex flex-nowrap flex-row items-center justify-start gap-4">
         <ReportPage local={local} slug={slug} path={path}/>
-        <UpdatedAt updatedAt={updatedAt}/>
       </div>
 
       <div className="hidden sm:flex flex-nowrap flex-row items-center justify-start gap-4">
@@ -125,7 +111,7 @@ function DesktopDocsFooter({
   )
 }
 
-function MobileDocsFooter({local, slug, path, updatedAt, editUrl, locale, locales, version, versions, showHistory}: FooterProps) {
+function MobileDocsFooter({local, slug, path, editUrl, locale, locales, version, versions, showHistory}: FooterProps) {
   return (
     <div className="sm:hidden flex flex-col gap-3">
       <Tabs showHistory={showHistory} />
@@ -136,8 +122,6 @@ function MobileDocsFooter({local, slug, path, updatedAt, editUrl, locale, locale
         <ReportPage local={local} slug={slug} path={path}/>
         <EditPage editUrl={editUrl} />
       </div>
-
-      <UpdatedAt updatedAt={updatedAt}/>
     </div>
   );
 }

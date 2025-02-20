@@ -12,7 +12,6 @@ import assets, {AssetLocation} from "../assets";
 import platforms from "@/lib/platforms";
 import {GameProjectRecipe, ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
 import markdown from "@/lib/markdown";
-import {unstable_cache} from "next/cache";
 
 async function getProjectSource(slug: string): Promise<DocumentationSource | null> {
   const localSources = await sources.getLocalDocumentationSources();
@@ -88,8 +87,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
     if (file) {
       return {
         project,
-        content: file.content,
-        updated_at: file.updated_at
+        content: file.content
       }
     }
     return null;
@@ -97,7 +95,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
   return undefined;
 }
 
-async function getLocalContentTree(slug: string, locale: string | null): Promise<ProjectContentTree> {
+async function getLocalContentTree(slug: string, locale: string | null): Promise<ProjectContentTree | null> {
   const src = await getProjectSource(slug);
   if (src) {
     const modifiedSrc = {...src, path: src.path + '/.content'};
@@ -120,7 +118,7 @@ async function getLocalContentTree(slug: string, locale: string | null): Promise
     const results = await Promise.all(tree.map(e => processEntry(e)));
     return results.filter(c => c != null);
   }
-  return [];
+  return null;
 }
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
@@ -132,15 +130,7 @@ async function getProjectRecipe(project: string, recipe: string): Promise<GamePr
 }
 
 async function getProjectContents(project: string): Promise<ProjectContentTree | null> {
-  const cache = unstable_cache(
-    async (project: string) => getLocalContentTree(project, null),
-    [],
-    {
-      revalidate: false,
-      tags: ['local_content_tree']
-    }
-  );
-  return cache(project);
+  return getLocalContentTree(project, null);
 }
 
 async function getProjectContentPage(project: string, id: string): Promise<DocumentationPage | null> {

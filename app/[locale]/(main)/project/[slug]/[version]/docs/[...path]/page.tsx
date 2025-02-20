@@ -85,7 +85,7 @@ export default async function ProjectDocsPage({params}: {
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
                                              version={params.version} versions={projectData.project.versions}
-                                             editUrl={page.edit_url} updatedAt={page.updated_at}
+                                             editUrl={page.edit_url}
                                              showHistory={page.content.metadata.history !== undefined}
                                              slug={params.slug} path={params.path}
                                              local={projectData.project.local}

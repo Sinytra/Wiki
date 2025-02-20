@@ -6,11 +6,13 @@ import service, {Project} from "@/lib/service";
 import {redirect} from "next/navigation";
 import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
 import DocsHomepagePlaceholder from "@/components/docs/body/DocsHomepagePlaceholder";
-import MarkdownContent from "@/components/docs/body/MarkdownContent";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
-import {getPlatformProjectInformation} from "@/lib/docs/projectInfo";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
-import DocsProjectRightSidebar from "@/components/docs/side/DocsProjectRightSidebar";
+import {pick} from "lodash";
+import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRightSidebar";
+import {NextIntlClientProvider} from "next-intl";
+import {getMessages} from "next-intl/server";
+import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -46,32 +48,16 @@ interface PageProps {
   };
 }
 
-async function ProjectHomepage({project, platformProject, version, locale}: {
-  project: Project;
-  platformProject: PlatformProject;
-  version: string;
-  locale: string;
-}) {
-  // Attempt to resolve custom homepage
+async function renderHomepage(project: Project, platformProject: PlatformProject, version: string, locale: string): Promise<DocumentationMarkdown | null> {
   const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale, true);
   if (result) {
-    return (
-      <DocsMarkdownContent>
-        {result.content.content}
-      </DocsMarkdownContent>
-    );
+    return result.content;
   }
-
   // File does not exist, fallback to project desc
-  return (
-    platformProject.is_placeholder
-      ?
-      <DocsHomepagePlaceholder/>
-      :
-      <div>
-        <MarkdownContent content={platformProject.description}/>
-      </div>
-  );
+  if (platformProject.is_placeholder) {
+    return null;
+  }
+  return await markdown.renderMarkdownWithMetadata(platformProject.description);
 }
 
 export default async function Homepage({params}: PageProps) {
@@ -83,23 +69,32 @@ export default async function Homepage({params}: PageProps) {
   }
 
   const platformProject = await platforms.getPlatformProject(projectData.project);
-  const info = await getPlatformProjectInformation(platformProject); // TODO Suspense?
+  const messages = await getMessages();
+
+  const content = await renderHomepage(projectData.project, platformProject, params.version, params.locale);
 
   return (
     <DocsInnerLayoutClient project={projectData.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
                            rightSidebar={
-                             <DocsProjectRightSidebar project={projectData.project} platformProject={platformProject}
-                                                      projectInfo={info}/>
+                             <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
+                               <DocsNonContentRightSidebar headings={content?.metadata._headings || []}/>
+                             </NextIntlClientProvider>
                            }
                            footer={
                              <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
                                              version={params.version} versions={projectData.project.versions}/>
                            }
     >
-      <ProjectHomepage project={projectData.project} platformProject={platformProject}
-                       version={params.version} locale={params.locale}/>
+      {content === null
+        ?
+        <DocsHomepagePlaceholder/>
+        :
+        <DocsMarkdownContent>
+          {content.content}
+        </DocsMarkdownContent>
+      }
     </DocsInnerLayoutClient>
   )
 }
