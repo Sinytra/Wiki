@@ -10,7 +10,7 @@ import {Link} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
-import {Project} from "@/lib/service";
+import {DevProject, Project} from "@/lib/service";
 import {getMessages, getTranslations} from "next-intl/server";
 import DevProjectLogs from "@/components/dev/DevProjectLogs";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
@@ -72,8 +72,7 @@ function IconTableCell({icon: Icon, children}: { icon: any; children?: any }) {
   )
 }
 
-function ProjectSource({project}: { project: Project }) {
-  const sourceLink = `${project.source_repo}/tree/${project.source_branch}${project.source_path}`;
+function ProjectSource({project}: { project: DevProject }) {
   const t = useTranslations('DevProjectPage.source');
   const Icon = project.is_public ? CheckIcon : XIcon;
 
@@ -86,7 +85,7 @@ function ProjectSource({project}: { project: Project }) {
         </div>
 
         <div className="flex flex-row gap-2">
-          <LocaleNavLink href={sourceLink} target="_blank">
+          <LocaleNavLink href={project.source_repo} target="_blank">
             <Button variant="outline" size="icon" className="w-8 h-8">
               <ExternalLinkIcon className="w-4 h-4"/>
             </Button>
@@ -241,7 +240,7 @@ function ProjectInfo({project}: { project: Project }) {
   )
 }
 
-async function ProfileProject({project}: { project: Project }) {
+async function ProfileProject({project}: { project: DevProject }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectPage');
   const messages = await getMessages();

@@ -5,15 +5,10 @@ import Link from "next/link";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import {Project} from "@/lib/service";
 
-function getIssueCreationLink(repo: any) {
-  return `https://github.com/${repo}/issues/new`;
-}
-
-export default function DocsPageNotFoundError({repo}: { repo?: string }) {
+export default function DocsPageNotFoundError({project}: { project: Project }) {
   const t = useTranslations('DocsPageNotFoundError');
-
-  const issueURL = repo ? getIssueCreationLink(repo) : undefined;
 
   return (
     <div className="m-auto p-4 flex flex-col gap-4 justify-center items-center">
@@ -31,9 +26,9 @@ export default function DocsPageNotFoundError({repo}: { repo?: string }) {
       </p>
 
       <div className="inline-flex gap-4 mt-4">
-        {issueURL &&
+        {project.source_repo &&
           <Button variant="secondary" asChild>
-              <Link href={issueURL} target="_blank">
+              <Link href={project.source_repo} target="_blank">
                   <GitHubIcon className="mr-2 w-4 h-4"/>
                 {t('submit')}
               </Link>

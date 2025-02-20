@@ -59,7 +59,7 @@ export default async function ProjectDocsPage({params}: {
   } catch (e) {
     console.error('FATAL error rendering page', e);
     return (
-      <DocsPageNotFoundError repo={projectData.project.is_public ? projectData.project.source_repo : undefined}/>
+      <DocsPageNotFoundError project={projectData.project}/>
     );
   }
   if (!page) redirect(`/project/${params.slug}/docs`);
