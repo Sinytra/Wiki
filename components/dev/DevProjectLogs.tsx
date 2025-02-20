@@ -13,9 +13,6 @@ import {useRouter} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
 import {debounce} from "lodash";
 
-const WS_SUCCESS = '<<success';
-const WS_ERROR = '<<error';
-
 function Skeleton({children}: { children: any }) {
   return (
     <div
