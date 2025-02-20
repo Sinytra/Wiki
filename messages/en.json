@@ -394,21 +394,6 @@
         "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
         "close": "<kbd>ESC</kbd> to close"
     },
-    "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
-        "licenses": {
-            "title": "Licenses",
-            "project": "Project:",
-            "wiki": "Wiki:"
-        },
-        "links": "Links",
-        "placeholder": {
-            "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
-        }
-    },
     "DocsChangelogPage": {
         "title": "Changelog"
     },

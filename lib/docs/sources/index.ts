@@ -20,7 +20,6 @@ export interface DocumentationSource {
 export interface DocumentationFile {
   content: string;
   edit_url: string | null;
-  updated_at?: Date;
 }
 
 export interface DocumentationSourceProvider<T extends DocumentationSource> {
@@ -53,7 +52,7 @@ async function readDocsFile(source: DocumentationSource, path: string[], locale?
     if (!content) {
       throw new Error(`Documentation file at ${path} not found`);
     }
-    return { ...content, updated_at: content.updated_at ? new Date(content.updated_at) : undefined };
+    return content;
   } catch (e) {
     if (!optional) {
       throw e;
