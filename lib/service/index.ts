@@ -17,14 +17,11 @@ export interface BaseProject {
   id: string;
   name: string;
   source_repo?: string;
-  source_branch?: string;
-  source_path?: string;
   platforms: ProjectPlatforms;
   is_community: boolean;
   type: ProjectType;
 }
 
-// TODO Split into DevProject
 export interface Project extends BaseProject {
   is_public: boolean;
   versions?: Record<string, string>;
@@ -32,6 +29,12 @@ export interface Project extends BaseProject {
   local?: boolean;
   status?: ProjectStatus;
   created_at: string;
+}
+
+export interface DevProject extends Project {
+  source_repo: string;
+  source_branch: string;
+  source_path: string;
 }
 
 export interface ProjectInfo {

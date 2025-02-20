@@ -38,7 +38,7 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
   const platformProject = await platforms.getPlatformProject(project);
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError repo={project.is_public ? project.source_repo : undefined}/>}>
+    <ErrorBoundary fallback={<DocsPageNotFoundError project={project}/>}>
       <NuqsAdapter>
         <LeftSidebarContextProvider>
           <DocsSidebarContextProvider>

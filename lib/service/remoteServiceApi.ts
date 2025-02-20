@@ -1,4 +1,4 @@
-import {Project} from "@/lib/service/index";
+import {DevProject, Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {ProjectType} from "@/lib/service/types";
@@ -61,7 +61,7 @@ export interface UserProfile {
 
 export interface DevProjectsResponse {
   profile: UserProfile;
-  projects: Project[];
+  projects: DevProject[];
 }
 
 export interface FeaturedProject {
@@ -121,7 +121,7 @@ async function getUserDevProjects(): Promise<DevProjectsResponse | StatusRespons
   return wrapJsonServiceCall(() => sendSimpleRequest('dev/projects', {}, 'GET'));
 }
 
-async function getDevProject(id: string): Promise<Project | StatusResponse> {
+async function getDevProject(id: string): Promise<DevProject | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}`, {}, 'GET'));
 }
 

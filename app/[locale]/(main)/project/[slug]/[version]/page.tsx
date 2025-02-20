@@ -217,15 +217,15 @@ export default async function ProjectHomePage({params}: PageProps) {
                                    from-primary to-brand-discord/20"
           />
         }
-        {project.is_public && project.source_repo && (project.source_repo?.startsWith("https://github.com/")
+        {platformProject.source_url && (platformProject.source_url.startsWith("https://github.com/")
           ?
           <ExternalLink text="GitHub" icon={GitHubIcon}
-                        href={project.source_repo}
+                        href={platformProject.source_url}
                         className="border-primary from-primary to-black/20"
           />
           :
           <ExternalLink text="Source code" icon={CodeIcon}
-                        href={project.source_repo}
+                        href={platformProject.source_url}
                         className="border-primary from-primary to-primary-alt"
           />)
         }

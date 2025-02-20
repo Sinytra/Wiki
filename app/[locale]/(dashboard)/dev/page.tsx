@@ -6,7 +6,7 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import {Suspense} from "react";
 import {handleRegisterProjectForm} from "@/lib/forms/actions";
 import {getMessages, getTranslations} from "next-intl/server";
-import {Project} from "@/lib/service";
+import {DevProject} from "@/lib/service";
 import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
@@ -80,7 +80,7 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
   )
 }
 
-async function DevProjectsListEntry({project}: { project: Project }) {
+async function DevProjectsListEntry({project}: { project: DevProject }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectsListPage');
   const u = await getTranslations('ProjectStatus');
@@ -132,7 +132,7 @@ async function DevProjectsListEntry({project}: { project: Project }) {
   )
 }
 
-async function ProfileProjects({projects}: { projects: Project[] }) {
+async function ProfileProjects({projects}: { projects: DevProject[] }) {
   const t = await getTranslations('DevProjectsListPage');
   const messages = await getMessages();
 
