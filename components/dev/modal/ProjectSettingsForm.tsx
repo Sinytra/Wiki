@@ -1,6 +1,6 @@
 'use client'
 
-import {Project} from "@/lib/service";
+import {DevProject, Project} from "@/lib/service";
 import ProjectRegisterForm from "@/components/dev/modal/ProjectRegisterForm";
 import * as React from "react";
 import {useContext} from "react";
@@ -11,7 +11,7 @@ import {ProjectSettingsContext} from "@/components/dev/modal/ProjectSettingsCont
 import {useTranslations} from "next-intl";
 
 export interface ProjectEditFormProps {
-  mod: Project;
+  mod: DevProject;
 
   formAction: (data: any) => Promise<any>
 }
