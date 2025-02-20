@@ -21,8 +21,7 @@ function convertDirectoryTree(tree: DirectoryTree[]): FileTree {
 async function readFileContents(source: LocalDocumentationSource, path: string): Promise<DocumentationFile> {
   const filePath = `${source.path}/${path}`;
   const content = await fs.readFile(filePath, 'utf8');
-  const stat = await fs.stat(filePath);
-  return { content, edit_url: null, updated_at: stat.mtime }
+  return { content, edit_url: null }
 }
 
 async function readShallowFileTree(source: LocalDocumentationSource, path: string): Promise<FileTree> {

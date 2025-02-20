@@ -16,6 +16,7 @@ import {getMessages, getTranslations} from "next-intl/server";
 import DocsContentTOCSidebar from "@/components/docs/side/DocsContentTOCSidebar";
 import {pick} from "lodash";
 import {NextIntlClientProvider} from "next-intl";
+import ContentListFooter from "@/components/docs/ContentListFooter";
 
 interface Props {
   params: {
@@ -88,6 +89,8 @@ export default async function ContentEntryPage({params}: Props) {
   const t = await getTranslations('DocsContentRightSidebar');
   const messages = await getMessages();
 
+  const contents = await service.getProjectContents(params.slug);
+
   return (
     <div className="relative w-full mx-auto flex flex-row justify-center gap-4 ml-auto mt-2 mb-12">
       <div className="w-64 shrink-0">
@@ -99,6 +102,8 @@ export default async function ContentEntryPage({params}: Props) {
         <Suspense fallback={<DocsLoadingSkeleton/>}>
           <DocsEntryPage page={page}/>
         </Suspense>
+
+        {contents && <ContentListFooter project={page.project} contents={contents} version={params.version} />}
       </div>
       <div className="w-64 shrink-0">
         <RightSidebar title={t('title')} project={page.project}

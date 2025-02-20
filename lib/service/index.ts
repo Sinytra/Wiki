@@ -62,14 +62,12 @@ export interface LayoutTree {
 export interface DocumentationPage {
   project: Project;
   content: string;
-  updated_at?: Date;
   edit_url?: string;
 }
 
 export interface RenderedDocsPage {
   project: Project;
   content: DocumentationMarkdown;
-  updated_at?: Date;
   edit_url?: string;
 }
 
@@ -96,6 +94,10 @@ export interface ServiceProvider {
   getProjectRecipe: (project: string, recipe: string) => Promise<GameProjectRecipe | null>;
   getProjectContentPage: (project: string, id: string) => Promise<DocumentationPage | null>;
   getContentRecipeUsage: (project: string, id: string) => Promise<ContentRecipeUsage[] | null>;
+}
+
+function isRemoteAvailable() {
+  return process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL != null;
 }
 
 function getLocaleName(locale: string) {
@@ -146,11 +148,7 @@ async function getAsset(slug: string | null, location: string, version: string |
     }
   }
 
-  if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
-    return null;
-  }
-
-  return remoteService.getAsset(slug, location, actualVersion);
+  return isRemoteAvailable() ? remoteService.getAsset(slug, location, actualVersion) : null;
 }
 
 async function getDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean): Promise<DocumentationPage | null> {
@@ -177,9 +175,14 @@ async function searchProjects(query: string, page: number, types: string | null,
 }
 
 async function getProjectContents(project: string): Promise<ProjectContentTree | null> {
-  // TODO local
-  return await localService.getProjectContents(project);
-  // return remoteService.getProjectContents(project);
+  if (process.env.LOCAL_DOCS_ROOTS) {
+    const localContents = await localService.getProjectContents(project);
+    if (localContents) {
+      return localContents;
+    }
+  }
+
+  return isRemoteAvailable() ? remoteService.getProjectContents(project) : null;
 }
 
 async function getProjectContentPage(slug: string, id: string): Promise<DocumentationPage | null> {
@@ -210,8 +213,7 @@ async function renderMarkdown(raw: DocumentationPage | null): Promise<RenderedDo
     return {
       project: raw.project,
       content,
-      edit_url: raw.edit_url,
-      updated_at: raw.updated_at
+      edit_url: raw.edit_url
     };
   }
   return null;
