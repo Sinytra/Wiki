@@ -76,9 +76,8 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
         rehypePlugins: [
           rehypeMarkdownHeadings,
           () => (tree: any) => {
-            const sanitizer = rehypeSanitize(markdownRehypeSchema);
             const newTree = {...tree};
-            return sanitizeHastTree(newTree, sanitizer, components);
+            return sanitizeHastTree(newTree, components);
           }
         ],
         recmaPlugins: [[recmaCodeHike, chConfig]]
@@ -96,14 +95,22 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
 
 const mdxElemets = ['mdxJsxFlowElement', 'mdxJsxTextElement'];
 
-function sanitizeHastTree(tree: any, sanitizer: (tree: any) => any, components: any) {
-  if (mdxElemets.includes(tree.type) && (components[tree.name] !== undefined || markdownRehypeSchema.tagNames!.includes(tree.name))) {
-    return tree;
+function sanitizeHastTree(tree: any, components: any) {
+  if (mdxElemets.includes(tree.type)) {
+    if (components[tree.name] !== undefined || markdownRehypeSchema.tagNames!.includes(tree.name)) {
+      return tree;
+    }
+    return null;
   }
 
-  let sanitized = sanitizer(tree);
+  let sanitized = tree;
+  if (tree.tagName && !markdownRehypeSchema.tagNames!.includes(tree.tagName)) {
+    return null;
+  }
   if (tree.children) {
-    sanitized.children = tree.children.map((c: any) => sanitizeHastTree(c, sanitizer, components));
+    sanitized.children = tree.children
+      .map((c: any) => sanitizeHastTree(c, components))
+      .filter((c: any) => c != null);
   }
 
   return sanitized;
