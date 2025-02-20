@@ -1,4 +1,4 @@
-import {setContextLocale} from "@/lib/locales/routing";
+import {redirect, setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from 'next-intl';
 import {cn} from "@/lib/utils";
 import TranslateBanner from "@/components/landing/TranslateBanner";
@@ -31,6 +31,7 @@ import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
 import LargePersonStandingIcon from "@/components/ui/icons/LargePersonStandingIcon";
+import localPreview from "@/lib/docs/localPreview";
 
 export const dynamic = 'force-static';
 
@@ -300,6 +301,10 @@ function HomePageContent() {
 
 export default async function Home({params}: { params: { locale: string } }) {
   setContextLocale(params.locale);
+
+  if (localPreview.isEnabled()) {
+    return redirect({href: '/preview', locale: params.locale});
+  }
 
   const showBanner = params.locale !== 'en' && await crowdin.getCrowdinTranslationStatus(params.locale) < 50;
 

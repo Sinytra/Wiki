@@ -57,9 +57,13 @@ interface PaginatedResults<T> {
   }
 }
 
+function shouldUsePlaceholder(): boolean {
+  return !process.env.CF_API_KEY && localPreview.isEnabled();
+}
+
 async function getProject(slug: string): Promise<PlatformProject> {
   // CF API is not public, so we provide placeholder metadata in local previews
-  if (!process.env.CF_API_KEY && localPreview.isEnabled()) {
+  if (shouldUsePlaceholder()) {
     return {
       slug,
       name: slug,
@@ -110,6 +114,10 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
 }
 
 async function getProjectURL(slug: string) {
+  if (shouldUsePlaceholder()) {
+    return 'https://www.curseforge.com/';
+  }
+
   const project = await getCurseForgeProject(slug);
   return project.links.websiteUrl;
 }
