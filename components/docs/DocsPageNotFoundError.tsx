@@ -7,7 +7,7 @@ import PrimaryButton from "@/components/ui/custom/PrimaryButton";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import {Project} from "@/lib/service";
 
-export default function DocsPageNotFoundError({project}: { project: Project }) {
+export default function DocsPageNotFoundError({project}: { project?: Project }) {
   const t = useTranslations('DocsPageNotFoundError');
 
   return (
@@ -26,7 +26,7 @@ export default function DocsPageNotFoundError({project}: { project: Project }) {
       </p>
 
       <div className="inline-flex gap-4 mt-4">
-        {project.source_repo &&
+        {project?.source_repo &&
           <Button variant="secondary" asChild>
               <Link href={project.source_repo} target="_blank">
                   <GitHubIcon className="mr-2 w-4 h-4"/>
