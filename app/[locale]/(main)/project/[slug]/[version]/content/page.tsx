@@ -121,7 +121,7 @@ export default async function ProjectContentPage({params}: Props) {
         </div>
         <div className="flex flex-col gap-1">
           <h1 className="text-primary text-2xl">
-            {project.name} <span className="text-secondary">/ Content</span>
+            {project.name} <span className="text-secondary text-xl">/ Content</span>
           </h1>
           <blockquote className="text-secondary">
             {platformProject.summary}

@@ -43,24 +43,26 @@ function Category({content, slug, version}: { content: ProjectContentEntry; slug
 
 export default function ContentListFooter({project, contents, version}: { project: Project, contents: ProjectContentTree; version: string }) {
   return (
-    <div className="mt-20 not-prose">
+    <div className="not-prose">
       <hr className="mb-8"/>
 
-      <table className="w-full [&_td]:border-none [&_tr]:bg-primary-dim border-separate bg-primary-dim rounded-sm p-2.5 border border-tertiary">
-        <thead className="table w-full mb-2">
-        <tr>
-          <th colSpan={2} className="rounded-sm p-2 bg-secondary">
-            {project.name}
-            <span className="float-right min-w-[1em]">&nbsp;</span>
-          </th>
-        </tr>
-        </thead>
-        <tbody className="table w-full">
-        {...contents.map(c => (
-          <Category key={c.path} content={c} slug={project.id} version={version}/>
-        ))}
-        </tbody>
-      </table>
+      <div className="p-2">
+        <table className="w-full [&_td]:border-none [&_tr]:bg-primary-dim border-separate bg-primary-dim rounded-sm p-2.5 border border-tertiary">
+          <thead className="table w-full mb-2">
+          <tr>
+            <th colSpan={2} className="rounded-sm p-2 bg-secondary">
+              {project.name}
+              <span className="float-right min-w-[1em]">&nbsp;</span>
+            </th>
+          </tr>
+          </thead>
+          <tbody className="table w-full">
+          {...contents.map(c => (
+            <Category key={c.path} content={c} slug={project.id} version={version}/>
+          ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

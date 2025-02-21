@@ -66,7 +66,7 @@ export default function LanguageSelect({locale, locales, mobile}: {
           </PopoverTrigger>
           <PopoverContent align={mobile ? 'start' : 'end'}
                           onOpenAutoFocus={(e) => e.preventDefault()}
-                          className={cn('mt-1 p-0 pointer-events-auto!', !mobile && 'w-48')}>
+                          className={cn('p-0 pointer-events-auto!', !mobile && 'w-48')}>
             <Command value={value} defaultValue={value}>
               <CommandInput placeholder={t('placeholder')}/>
               <CommandList

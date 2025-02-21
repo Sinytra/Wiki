@@ -9,7 +9,7 @@ export default async function DocsEntryPage({page}: { page: RenderedDocsPage; })
   const project = await platforms.getPlatformProject(page.project);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-[90vh] pb-20">
       <DocsContentTitle project={page.project}>
         {page.content.metadata.title || project.name}
       </DocsContentTitle>

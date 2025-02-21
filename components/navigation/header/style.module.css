@@ -1,7 +1,3 @@
-.container {
-    max-width: calc(var(--vp-layout-max-width) - 64px);
-}
-
 .menuLink {
     transition: color 0.25s;
 }
