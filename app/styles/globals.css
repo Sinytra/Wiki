@@ -236,12 +236,27 @@
     :where(details):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
         cursor: pointer;
     }
+
+    .prose :where(.prose > ul > li > p:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        margin-top: 1.25em;
+    }
+    .prose :where(.prose > ul > li > p:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        margin-bottom: 1.25em;
+    }
 }
 
 @layer base {
     :root {
         color-scheme: dark;
         @apply scrollbar-thin;
+    }
+
+    * {
+        @apply text-base;
+    }
+
+    pre > * span {
+        @apply text-sm;
     }
 
     .page-wrapper-ext {

@@ -45,7 +45,7 @@ async function RightSidebar({title, project, metadata, version}: {
       </div>
 
       <div className="mb-6 border border-tertiary m-2 rounded-sm">
-        <ImageWithFallback src={iconUrl?.src} width={128} height={128}
+        <ImageWithFallback src={iconUrl?.src} width={112} height={112}
                            className="docsContentIcon m-4 mx-auto disable-blur"
                            alt={!iconUrl ? undefined : iconUrl.id}/>
       </div>
