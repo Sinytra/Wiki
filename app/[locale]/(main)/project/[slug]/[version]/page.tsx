@@ -105,7 +105,7 @@ function ProjectTags({project}: { project: PlatformProject }) {
   const categories = useTranslations('ProjectCategories');
 
   return (
-    <div>
+    <div className="space-x-2">
       {project.categories.filter(t => ProjectCategories[t] !== undefined).map((tag) => (
         <span
           key={tag}

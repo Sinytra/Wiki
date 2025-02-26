@@ -61,7 +61,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
             {t('groups.projects')}
           </SidebarGroupLabel>
           <SidebarMenu>
-            <DevSidebarMenuItem url="/dev" icon={PencilRulerIcon} title={t('nav.projects')} />
+            <DevSidebarMenuItem url="/dev" matcher={/^\/dev(\/project\/.*)?$/} icon={PencilRulerIcon} title={t('nav.projects')} />
           </SidebarMenu>
         </SidebarGroup>
 

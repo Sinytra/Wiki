@@ -9,6 +9,8 @@ import {PlatformProject} from "@/lib/platforms";
 
 interface DocsLayoutClientProps {
   title: string;
+  locale: string;
+  version: string;
   project: Project;
   platformProject: PlatformProject;
   children: ReactNode;
@@ -32,11 +34,11 @@ function MobileHeader({title}: {title: string}) {
   )
 }
 
-export default function DocsLayoutClient({title, project, platformProject, children}: DocsLayoutClientProps) {
+export default function DocsLayoutClient({title, project, platformProject, locale, version, children}: DocsLayoutClientProps) {
   return (
     <div className="flex flex-col lg:gap-3">
       <div className="h-[46px]">
-        <DocsSubNavBar project={project} platformProject={platformProject} />
+        <DocsSubNavBar project={project} platformProject={platformProject} locale={locale} version={version} />
       </div>
 
       <div className="flex flex-col flex-1 bg-primary text-primary">

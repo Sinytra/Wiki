@@ -45,6 +45,7 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
             <NextIntlClientProvider
               messages={pick(messages, 'DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
               <DocsLayoutClient title={project.name} project={project}
+                                locale={params.locale} version={params.version}
                                 platformProject={platformProject}>
                 {children}
               </DocsLayoutClient>

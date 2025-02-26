@@ -1,4 +1,4 @@
-import DocsLeftSidebar from "@/components/docs/side/DocsLeftSidebar";
+import DocsGuideFileTreeSidebar from "@/components/docs/side/guide/DocsGuideFileTreeSidebar";
 import {FileTree, Project} from "@/lib/service";
 
 interface Props {
@@ -17,7 +17,7 @@ export default function DocsInnerLayoutClient({project, version, rightSidebar, f
     {/* Main Content Area */}
     <div className="flex flex-row flex-1 justify-center gap-12">
       {/* Left Sidebar */}
-      <DocsLeftSidebar slug={project.id} version={version} tree={tree}/>
+      <DocsGuideFileTreeSidebar slug={project.id} version={version} tree={tree}/>
 
       {/* Main Content */}
       <main className="flex-1 pb-6 pt-2 overflow-auto min-h-[86vh] sm:min-h-[auto] sm:max-w-5xl">

@@ -73,7 +73,7 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
           </LinkTextButton>
         </div>
         <p className="text-secondary font-normal text-ellipsis overflow-x-hidden max-w-5xl">
-          {project.summary}
+          {project.summary.length > 50 ? `${project.summary.substring(0, 50)}...` : project.summary}
         </p>
       </div>
     </div>
@@ -90,7 +90,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
       <MobileProjectHeader id={project.id} project={platformProject} />
 
       <div className="hidden sm:block shrink-0">
-        <img className="rounded-md w-20 h-20 lg:w-24 lg:h-24" src={platformProject.icon_url} alt="Project icon"/>
+        <img className="rounded-md size-20 lg:size-22" src={platformProject.icon_url} alt="Project icon"/>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
@@ -101,12 +101,12 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
             </LinkTextButton>
           </div>
           <p className="text-secondary font-normal">
-            {platformProject.summary}
+            {platformProject.summary.length > 100 ? `${platformProject.summary.substring(0, 100)}...` : platformProject.summary}
           </p>
         </div>
 
         <div className="flex flex-col gap-3 w-full flex-wrap sm:flex-row">
-          <div className="flex flex-row flex-wrap gap-4 sm:gap-5">
+          <div className="flex flex-row flex-wrap gap-4 gap-y-2 sm:gap-5">
             <Property
               iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-secondary '}
               icon={project.status === ProjectStatus.LOADED ? CheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>

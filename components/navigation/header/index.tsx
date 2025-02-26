@@ -17,7 +17,7 @@ import MobileDocsSearch from "@/components/navigation/MobileDocsSearch";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary font-medium first:pl-0 px-1 sm:px-1.5 lg:px-2.5`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary text-base font-medium first:pl-0 px-1 sm:px-1.5 lg:px-2.5`}>
       {children}
     </LocaleNavLink>
   )
@@ -25,7 +25,7 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
 
 function MobileHeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary font-normal py-3 border-b border-[var(--vp-c-divider)]`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary text-base font-normal py-3 border-b border-[var(--vp-c-divider)]`}>
       {children}
     </LocaleNavLink>
   )

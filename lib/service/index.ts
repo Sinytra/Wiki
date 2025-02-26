@@ -22,9 +22,11 @@ export interface BaseProject {
   type: ProjectType;
 }
 
+export type ProjectVersions = string[];
+
 export interface Project extends BaseProject {
   is_public: boolean;
-  versions?: Record<string, string>;
+  versions?: ProjectVersions;
   locales?: string[];
   local?: boolean;
   status?: ProjectStatus;

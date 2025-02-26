@@ -43,9 +43,11 @@ export default function LocaleLayout({children}: Readonly<{ children: ReactNode;
     <Providers>
       {children}
     </Providers>
+    {/* TODO Font size */}
     <Toaster toastOptions={{
       style: {
-        background: 'var(--background-color-primary-alt)'
+        background: 'var(--background-color-primary-alt)',
+        fontStyle: 'var(--text-sm)'
       }
     }}/>
     </body>

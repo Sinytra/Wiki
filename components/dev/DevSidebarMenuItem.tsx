@@ -10,15 +10,18 @@ export interface Props {
   icon?: LucideIcon;
   external?: boolean;
   disabled?: boolean;
+  matcher?: RegExp;
 }
 
-export default function DevSidebarMenuItem({title, url, icon: Icon, external, disabled}: Props) {
+export default function DevSidebarMenuItem({title, url, icon: Icon, external, disabled, matcher}: Props) {
   const pathname = usePathname();
+
+  const isActive = matcher ? matcher.test(pathname) : pathname === url;
 
   return (
     <SidebarMenuItem>
       <Link href={url} target={external ? '_blank' : undefined}>
-        <SidebarMenuButton isActive={pathname === url} disabled={disabled} tooltip={title}>
+        <SidebarMenuButton isActive={isActive} disabled={disabled} tooltip={title}>
           {Icon && <Icon/>}
           <span>{title}</span>
           {external && <ExternalLinkIcon className="ml-auto w-4 h-4" />}

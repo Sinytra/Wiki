@@ -2,8 +2,6 @@
 
 import {Edit, FlagIcon} from 'lucide-react'
 import Link from "next/link"
-import DocsLanguageSelect from "@/components/docs/DocsLanguageSelect";
-import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector";
 import * as React from "react";
 import {useTranslations} from "next-intl";
 import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
@@ -14,10 +12,6 @@ import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/compon
 interface FooterProps {
   slug?: string;
   path?: string[];
-  locale: string;
-  version: string;
-  locales?: string[];
-  versions?: Record<string, string>;
   editUrl?: string;
   showHistory?: boolean;
   local?: boolean;
@@ -61,18 +55,6 @@ function EditPage({editUrl} : { editUrl?: string }) {
   )
 }
 
-function LanguageSelect({locale, locales} : { locale: string; locales?: string[] }) {
-  return locales && locales.length > 0 && (
-    <DocsLanguageSelect locale={locale} locales={locales}/>
-  )
-}
-
-function VersionSelect({version, versions}: { version: string; versions?: Record<string, string>; }) {
-  return versions && Object.keys(versions).length > 0 && (
-    <DocsVersionSelector version={version} versions={versions}/>
-  )
-}
-
 function Tabs({showHistory}: { showHistory?: boolean }) {
   return showHistory && (
     <div className="mx-auto sm:ml-auto sm:mr-4 md:absolute md:left-1/2 md:-translate-x-1/2">
@@ -84,10 +66,6 @@ function Tabs({showHistory}: { showHistory?: boolean }) {
 function DesktopDocsFooter({
                              slug,
                              path,
-                             locale,
-                             version,
-                             locales,
-                             versions,
                              editUrl,
                              showHistory,
                              local
@@ -102,8 +80,6 @@ function DesktopDocsFooter({
         <Tabs showHistory={showHistory} />
 
         <div className="flex flex-col sm:flex-row items-end sm:items-center gap-y-3 sm:gap-y-0 sm:gap-x-4">
-          <LanguageSelect locale={locale} locales={locales}/>
-          <VersionSelect version={version} versions={versions} />
           <EditPage editUrl={editUrl} />
         </div>
       </div>
@@ -111,12 +87,10 @@ function DesktopDocsFooter({
   )
 }
 
-function MobileDocsFooter({local, slug, path, editUrl, locale, locales, version, versions, showHistory}: FooterProps) {
+function MobileDocsFooter({local, slug, path, editUrl, showHistory}: FooterProps) {
   return (
     <div className="sm:hidden flex flex-col gap-3">
       <Tabs showHistory={showHistory} />
-      <LanguageSelect locale={locale} locales={locales}/>
-      <VersionSelect version={version} versions={versions} />
 
       <div className="flex flex-row flex-wrap justify-between gap-2">
         <ReportPage local={local} slug={slug} path={path}/>

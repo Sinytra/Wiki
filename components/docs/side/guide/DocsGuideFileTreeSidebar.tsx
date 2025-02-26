@@ -40,12 +40,12 @@ function DocsFileTree({slug, version, tree, level}: { slug: string; version: str
   })
 }
 
-export default function DocsLeftSidebar({slug, version, tree}: LeftSidebarProps) {
+export default function DocsGuideFileTreeSidebar({slug, version, tree}: LeftSidebarProps) {
   const t = useTranslations('DocsLeftSidebar');
 
   return (
     <ScrollableDocsSidebarBase title={t('title')} tagName="nav" type="left" className={cn(
-      'shrink-0',
+      'shrink-0 ml-8',
       'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full lg:data-[open=false]:-translate-x-0',
       'border-r data-[open=false]:border-0 lg:data-[open=false]:border-r'
     )} innerClassName="overscroll-contain">

@@ -11,7 +11,7 @@ import platforms from "@/lib/platforms";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRightSidebar";
-import DocsContentRightSidebar from "@/components/docs/side/DocsContentRightSidebar";
+import DocsGuideContentRightSidebar from "@/components/docs/side/guide/DocsGuideContentRightSidebar";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
@@ -75,17 +75,15 @@ export default async function ProjectDocsPage({params}: {
                            version={params.version} locale={params.locale}
                            rightSidebar={
                              isContentPage
-                               ? <DocsContentRightSidebar project={projectData.project}
-                                                          metadata={page.content.metadata}
-                                                          version={params.version}/>
+                               ? <DocsGuideContentRightSidebar project={projectData.project}
+                                                               metadata={page.content.metadata}
+                                                               version={params.version}/>
                                : <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
                                  <DocsNonContentRightSidebar headings={page.content.metadata._headings || []}/>
                                </NextIntlClientProvider>
                            }
                            footer={
-                             <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
-                                             version={params.version} versions={projectData.project.versions}
-                                             editUrl={page.edit_url}
+                             <DocsPageFooter editUrl={page.edit_url}
                                              showHistory={page.content.metadata.history !== undefined}
                                              slug={params.slug} path={params.path}
                                              local={projectData.project.local}

@@ -3,10 +3,13 @@
 import {Project, ProjectWithInfo} from "@/lib/service";
 import {PlatformProject} from "@/lib/platforms";
 import {Button} from "@/components/ui/button";
-import {BookMarkedIcon, BoxIcon, HammerIcon, HomeIcon, LayoutGridIcon} from "lucide-react";
+import {BookMarkedIcon, BoxIcon, HomeIcon, LayoutGridIcon} from "lucide-react";
 import {Link, usePathname} from "@/lib/locales/routing";
 import {cn} from "@/lib/utils";
 import {useParams} from "next/navigation";
+import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector";
+import DocsLanguageSelect from "@/components/docs/DocsLanguageSelect";
+import * as React from "react";
 
 function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any; path: string; disabled?: boolean }) {
   const pathName = usePathname();
@@ -25,23 +28,42 @@ function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any
   )
 }
 
-export default function DocsSubNavBar({project, platformProject}: {project: Project | ProjectWithInfo, platformProject: PlatformProject}) {
+export default function DocsSubNavBar({project, platformProject, locale, version}: {
+  project: Project | ProjectWithInfo;
+  platformProject: PlatformProject;
+  locale: string;
+  version: string;
+}) {
+  const showVersions = project.versions && project.versions.length > 0;
+  const showLocales = project.locales && project.locales.length > 0;
+
   return (
     <div className="fixed w-full left-0 bg-primary-dim z-40 border-y border-t-tertiary-dim border-tertiary">
       <div className="max-w-[120rem] w-full mx-auto flex flex-row items-center justify-between px-4 py-1.5">
         <div className="flex flex-row gap-2 items-center">
-          <img src={platformProject.icon_url} alt="Logo" className="rounded-sm h-6" />
+          <img src={platformProject.icon_url} alt="Logo" className="rounded-sm h-6"/>
           <span className="text-base text-primary font-medium">{project.name}</span>
         </div>
 
         <div className="flex flex-row gap-2 items-center">
-          <SubPage title="Home" icon={HomeIcon} path="" />
-          <SubPage title="Documentation" icon={BookMarkedIcon} path="docs" />
+          <SubPage title="Home" icon={HomeIcon} path=""/>
+          <SubPage title="Documentation" icon={BookMarkedIcon} path="docs"/>
           {'info' in project && project.info.contentCount > 0 &&
-            <SubPage title="Content" icon={BoxIcon} path="content" />
+            <SubPage title="Content" icon={BoxIcon} path="content"/>
           }
-          <SubPage title="Recipes" icon={LayoutGridIcon} path="recipes" disabled />
-          <SubPage title="Developers" icon={HammerIcon} path="devs" disabled />
+          <SubPage title="Recipes" icon={LayoutGridIcon} path="recipes" disabled/>
+          {/*<SubPage title="Developers" icon={HammerIcon} path="devs" disabled/>*/}
+
+          {(showVersions || showLocales) &&
+            <div className="verticalSeparator"/>
+          }
+
+          {showVersions &&
+            <DocsVersionSelector version={version} versions={project.versions!}/>
+          }
+          {showLocales &&
+            <DocsLanguageSelect locale={locale} locales={project.locales!}/>
+          }
         </div>
       </div>
     </div>

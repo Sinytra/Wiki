@@ -13,6 +13,7 @@ import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRig
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
+import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -48,7 +49,7 @@ interface PageProps {
   };
 }
 
-async function renderHomepage(project: Project, platformProject: PlatformProject, version: string, locale: string): Promise<DocumentationMarkdown | null> {
+async function renderHomepage(project: Project, platformProject: PlatformProject, version: string, locale: string): Promise<DocumentationMarkdown | null | undefined> {
   const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale, true);
   if (result) {
     return result.content;
@@ -57,7 +58,12 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
   if (platformProject.is_placeholder) {
     return null;
   }
-  return await markdown.renderMarkdownWithMetadata(platformProject.description);
+  try {
+    return await markdown.renderMarkdownWithMetadata(platformProject.description);
+  } catch (e) {
+    console.error('Error rendering homepage', e);
+    return undefined;
+  }
 }
 
 export default async function Homepage({params}: PageProps) {
@@ -83,11 +89,14 @@ export default async function Homepage({params}: PageProps) {
                              </NextIntlClientProvider>
                            }
                            footer={
-                             <DocsPageFooter locale={params.locale} locales={projectData.project.locales}
-                                             version={params.version} versions={projectData.project.versions}/>
+                             <DocsPageFooter/>
                            }
     >
-      {content === null
+      {content === undefined ?
+        <DocsContentTitle>
+          {platformProject.name}
+        </DocsContentTitle>
+        : content === null
         ?
         <DocsHomepagePlaceholder/>
         :

@@ -4,7 +4,6 @@ import available from "@/lib/locales/available";
 import {Language, LanguageMap} from "@/lib/types/available";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {Globe} from "lucide-react";
-import CountryFlag from "@/components/util/CountryFlag";
 import {usePathname} from "@/lib/locales/routing";
 import {useRouter} from "next-nprogress-bar";
 import {useTranslations} from "next-intl";
@@ -44,14 +43,16 @@ export default function DocsLanguageSelect({locale, locales}: { locale: string; 
 
   return (
     <Select value={selectedValue} onValueChange={changeLocale}>
-      <SelectTrigger className="sm:w-[180px]">
-        <Globe className="w-4 h-4 mr-1"/>
+      <SelectTrigger className="sm:w-fit sm:min-w-24 sm:max-w-32 h-7 py-0 rounded-sm [&>span]:text-sm bg-transparent
+                              hover:bg-secondary border-none justify-start [&>svg:last-child]:hidden
+                              [&>span]:text-ellipsis [&>span]:block whitespace-nowrap">
+        <Globe className="size-3.5 mr-2.5"/>
         <SelectValue placeholder={t('placeholder')}/>
       </SelectTrigger>
       <SelectContent>
         {Object.entries(dropdownLanguages).map(([id, loc]) => (
           <SelectItem key={id} value={loc.prefix || id}>
-            <CountryFlag className="inline-block mr-1" flag={loc.icon}/> {loc.name}
+            {loc.name}
           </SelectItem>
         ))}
       </SelectContent>

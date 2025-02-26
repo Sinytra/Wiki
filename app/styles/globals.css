@@ -251,14 +251,6 @@
         @apply scrollbar-thin;
     }
 
-    * {
-        @apply text-base;
-    }
-
-    pre > * span {
-        @apply text-sm;
-    }
-
     .page-wrapper-ext {
         @apply mt-4 sm:mt-0 pb-10 sm:pt-5;
     }
@@ -369,4 +361,17 @@
     mask-position: 0 0, 100% 0;
 
     mask-repeat: no-repeat, no-repeat;
+}
+
+.verticalSeparator {
+    display: inline-flex;
+}
+
+.verticalSeparator::before {
+    margin-right: 8px;
+    margin-left: 8px;
+    width: 1px;
+    height: 24px;
+    background-color: var(--vp-c-divider);
+    content: "";
 }

@@ -66,9 +66,8 @@ async function renderMarkdownWithMetadata(source: string): Promise<Documentation
         rehypePlugins: [
           rehypeMarkdownHeadings,
           () => (tree: any) => {
-            const sanitizer = rehypeSanitize(markdownRehypeSchema);
             const newTree = {...tree};
-            return sanitizeHastTree(newTree, sanitizer, {});
+            return sanitizeHastTree(newTree, {});
           }
         ]
       },
