@@ -21,7 +21,7 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
       <div className="shrink-0">
-        <Image className="rounded-sm border border-tertiary w-16 h-16 sm:w-20 sm:h-20"
+        <Image className="rounded-sm w-16 h-16 sm:w-20 sm:h-20"
                src={projectContent.icon_url}
                alt="icon"
                width={64}
@@ -52,9 +52,9 @@ function ProjectIconPlaceholder() {
 
 async function GitHubProjectLink({url}: { url: string }) {
   return (
-      <Button variant="outline" size="icon" className="w-8 h-8 sm:w-10 sm:h-10" asChild>
+      <Button variant="ghost" size="icon" className="size-8" asChild>
         <Link href={url} target="_blank">
-          <GitHubIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+          <GitHubIcon className="size-5" />
         </Link>
       </Button>
   )
@@ -74,13 +74,13 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
         <ErrorBoundary fallback={<span></span>}>
           <div className="flex flex-row items-center gap-3">
             <div className="flex flex-row items-center gap-2 text-secondary">
-              <TypeIcon className="w-4 h-4 sm:w-5 sm:h-5"/>
-              <span className="text-sm sm:text-base">{u(projectContent.type)}</span>
+              <TypeIcon className="size-4.5"/>
+              <span className="text-base">{u(projectContent.type)}</span>
             </div>
             <div className="flex flex-row items-center gap-2 text-secondary">
-              <MilestoneIcon className="w-4 h-4 sm:w-5 sm:h-5"/>
+              <MilestoneIcon className="size-4.5"/>
               {projectContent.game_versions.length === 0
-                ? <span className="text-sm sm:text-base">{t('unknown')}</span>
+                ? <span className="text-base">{t('unknown')}</span>
                 : <ModVersionRange versions={projectContent.game_versions} />
               }
             </div>
@@ -90,18 +90,18 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
         <div className="sm:shrink-0 gap-1 sm:gap-2 hidden sm:flex">
           {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
           {cfLink &&
-              <Button asChild variant="outline" size="icon"
-                      className="hover:text-brand-curseforge w-8 h-8 sm:w-10 sm:h-10">
+              <Button asChild variant="ghost" size="icon"
+                      className="hover:text-brand-curseforge size-8">
                   <NavLink href={cfLink} target="_blank">
-                      <CurseForgeIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
+                      <CurseForgeIcon className="w-5 h-5"/>
                   </NavLink>
               </Button>
           }
           {mrLink &&
-              <Button asChild variant="outline" size="icon"
-                      className="hover:text-brand-modrinth w-8 h-8 sm:w-10 sm:h-10">
+              <Button asChild variant="ghost" size="icon"
+                      className="hover:text-brand-modrinth size-8">
                   <NavLink href={mrLink} target="_blank">
-                      <ModrinthIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
+                      <ModrinthIcon className="w-5 h-5"/>
                   </NavLink>
               </Button>
           }
@@ -114,18 +114,17 @@ export default function BrowseProject({project}: { project: BaseProject }) {
   const platformProject = platforms.getPlatformProject(project);
 
   return (
-      <div className="flex flex-row items-center border border-secondary rounded-sm w-full px-3 py-2 sm:py-3 gap-3 sm:gap-4">
+      <div className="flex flex-row items-center border border-tertiary bg-primary-dim rounded-sm w-full px-3 py-2 sm:py-3 gap-3 sm:gap-4">
         <ErrorBoundary fallback={<ProjectIconPlaceholder/>}>
           <Suspense fallback={<ProjectIconPlaceholder/>}>
             <ProjectIcon project={platformProject}/>
           </Suspense>
         </ErrorBoundary>
 
-        <div className="flex flex-col gap-2 sm:gap-1 w-full">
+        <div className="flex flex-col gap-1.5 w-full">
           <div className="w-full h-full flex flex-col gap-1.5">
             <div className="w-full inline-flex gap-2">
-              <LinkTextButton href={`/project/${project.id}`}
-                              className="w-fit! font-normal! sm:shrink-0 text-lg sm:text-xl text-primary">
+              <LinkTextButton href={`/project/${project.id}`} className="[&_]:text-lg w-fit! text-base! font-normal! sm:shrink-0 text-primary">
                 {project.name}
               </LinkTextButton>
 

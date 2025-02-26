@@ -47,7 +47,7 @@ export default function DocsGuideFileTreeSidebar({slug, version, tree}: LeftSide
     <ScrollableDocsSidebarBase title={t('title')} tagName="nav" type="left" className={cn(
       'shrink-0 ml-8',
       'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full lg:data-[open=false]:-translate-x-0',
-      'border-r data-[open=false]:border-0 lg:data-[open=false]:border-r'
+      'data-[open=false]:border-0'
     )} innerClassName="overscroll-contain">
       <DocsFileLink href={`/project/${slug}/${version}/docs`}>
         <HomeIcon className="w-4 h-4 mr-2"/>

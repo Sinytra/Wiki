@@ -68,7 +68,7 @@ export default function DocsNonContentRightSidebar({ headings }: ContentRightSid
       className={cn(
         'shrink-0 right-0',
         'w-[96vw] sm:w-64 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
-        'border-l data-[open=false]:border-0 lg:data-[open=false]:border-l'
+        'data-[open=false]:border-0'
       )}
       tagName="nav"
     >

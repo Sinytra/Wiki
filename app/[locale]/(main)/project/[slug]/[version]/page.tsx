@@ -7,12 +7,16 @@ import MarkdownContent from "@/components/docs/body/MarkdownContent";
 import {
   BookMarkedIcon,
   BookOpenIcon,
+  BookOpenTextIcon,
   BoxIcon,
   CodeIcon,
+  CopyrightIcon,
   GlobeIcon,
-  HammerIcon,
+  HelpCircleIcon,
   LinkIcon,
-  MapIcon, ScaleIcon,
+  MapIcon,
+  PencilRulerIcon,
+  ScaleIcon,
   TagIcon
 } from "lucide-react";
 import ExpandableDescription from "@/components/docs/layout/ExpandableDescription";
@@ -118,6 +122,21 @@ function ProjectTags({project}: { project: PlatformProject }) {
   )
 }
 
+function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; children?: any }) {
+  return (
+    <div className="flex flex-col border border-secondary/50 rounded-sm bg-primary-dim gap-2 p-4 min-w-72 max-w-84">
+      <div className="font-medium text-base flex flex-row items-center gap-3">
+        <Icon className="size-5 shrink-0"/>
+        <span>{name}</span>
+      </div>
+
+      <hr className="mb-1"/>
+
+      {children}
+    </div>
+  )
+}
+
 export default async function ProjectHomePage({params}: PageProps) {
   setContextLocale(params.locale);
 
@@ -166,10 +185,10 @@ export default async function ProjectHomePage({params}: PageProps) {
 
         <div className="flex flex-row gap-2 text-secondary text-sm">
           <span>
-            <TagIcon className="w-4 h-4 inline-block mr-2" />
+            <TagIcon className="w-4 h-4 inline-block mr-2"/>
             Tagged:
           </span>
-          <ProjectTags project={platformProject} />
+          <ProjectTags project={platformProject}/>
         </div>
       </div>
 
@@ -189,7 +208,7 @@ export default async function ProjectHomePage({params}: PageProps) {
           <SubpageLink title="Browse content" icon={BoxIcon} desc={`${project.info.contentCount} in-game items.`}
                        href="content"/>
         }
-        <SubpageLink title="Developer information" icon={HammerIcon} desc="Maven and in-game IDs" href="../devs"/>
+        {/*<SubpageLink title="Developer information" icon={HammerIcon} desc="Maven and in-game IDs" href="../devs"/>*/}
       </Section>
 
       <Section title="Links" icon={LinkIcon} className="flex flex-row gap-2">
@@ -236,53 +255,39 @@ export default async function ProjectHomePage({params}: PageProps) {
 
       {/* Related projects / custom sections? */}
 
-      <Section title="License" icon={ScaleIcon} className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <h3 className="font-medium text-lg">
-            Project
-          </h3>
-
+      <Section title="Licenses" icon={ScaleIcon} className="flex flex-row flex-wrap gap-4">
+        <LicenseBadge name="Project License" icon={PencilRulerIcon}>
           {platformProject.license ? (
-            platformProject.license.id == ARRNoLicense
-              ?
-              <p>
-                  <span className="font-medium">{project.name}</span> does not include a license.&nbsp;
+              platformProject.license.id == ARRNoLicense
+                ?
+                <div className="m-auto flex flex-row gap-2 items-center">
+                  <CopyrightIcon className="w-4 mb-0.5"/>
                   <PageLink href="https://choosealicense.com/no-permission" target="_blank">
-                    All Rights Reserved.
+                    All Rights Reserved
                   </PageLink>
-              </p>
-              :
-              platformProject.license.id.startsWith('LicenseRef')
-              ?
-              <p>
-                <span className="font-medium">{project.name}</span> is licensed under a&nbsp;
-                <PageLink href={platformProject.license.url} target="_blank">custom</PageLink> license.
-              </p>
-              :
-              <p>
-                <span className="font-medium">{project.name}</span> is licensed under the&nbsp;
-                <PageLink href={info.license?.url} target="_blank">
-                  {info.license?.name}
-                </PageLink> license.
-              </p>
-            )
-            :
-            <p className="text-secondary">
-              Unable to determine the project's license. Please check the linked websites or contact the project author.
+                </div>
+                :
+                <div className="m-auto flex flex-row gap-2 items-center">
+                  <PageLink href={info.license?.url} className="text-center" target="_blank">
+                    {info.license?.name}
+                  </PageLink>
+                </div>
+            ) :
+            <p className="text-secondary m-auto flex flex-row gap-2 items-center">
+              <HelpCircleIcon className="size-4"/>
+              Unknown
             </p>
           }
-        </div>
-        <div className="flex flex-col gap-2">
-          <h3 className="font-medium text-lg">
-            Wiki
-          </h3>
-
-          <span>
-            Wiki content partially <PageLink href="/about/tos#copyright-policy" target="_blank">made available</PageLink> under the <PageLink href={DEFAULT_WIKI_LICENSE.url} target="_blank">
+        </LicenseBadge>
+        <LicenseBadge name="Wiki License" icon={BookOpenTextIcon}>
+          <span className="text-base text-center">
+            Wiki content <PageLink href="/about/tos#copyright-policy" className="!text-base"
+                                   target="_blank">partially made available</PageLink> under the <PageLink
+            className="!text-base" href={DEFAULT_WIKI_LICENSE.url} target="_blank">
             {DEFAULT_WIKI_LICENSE.name}
             </PageLink> license.
           </span>
-        </div>
+        </LicenseBadge>
       </Section>
     </div>
   )
