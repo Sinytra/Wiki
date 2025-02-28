@@ -39,7 +39,7 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
       <NuqsAdapter>
         <LeftSidebarContextProvider>
           <DocsSidebarContextProvider>
-            <NextIntlClientProvider messages={pick(messages, 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
+            <NextIntlClientProvider messages={pick(messages, 'DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'ModVersionRange')}>
               <DocsLayoutClient title={projectData.project.name}>
                 {children}
               </DocsLayoutClient>
