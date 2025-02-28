@@ -150,6 +150,17 @@
         "security": "Security Notice",
         "community": "Community Docs"
     },
+    "MetaDevDocsNavigation": {
+        "title": "Author guide",
+        "back": "Return home",
+        "start": "Getting started",
+        "structure": "Folder layout",
+        "config": "Configuration",
+        "format": "Format",
+        "components": "Components",
+        "publishing": "Publishing",
+        "community": "Community Docs"
+    },
     "Login": {
         "title": "Login required",
         "desc": "The page you are trying to access requires you to log in.",

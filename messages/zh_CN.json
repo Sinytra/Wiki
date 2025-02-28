@@ -150,6 +150,17 @@
         "security": "安全须知",
         "community": "社区文档"
     },
+    "MetaDevDocsNavigation": {
+        "title": "Author guide",
+        "back": "Return home",
+        "start": "Getting started",
+        "structure": "Folder layout",
+        "config": "Configuration",
+        "format": "Format",
+        "components": "Components",
+        "publishing": "Publishing",
+        "community": "Community Docs"
+    },
     "Login": {
         "title": "请先登录",
         "desc": "请先登录以访问该页面。",

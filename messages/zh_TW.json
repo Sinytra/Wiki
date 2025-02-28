@@ -150,6 +150,17 @@
         "security": "安全性通知",
         "community": "社群文件"
     },
+    "MetaDevDocsNavigation": {
+        "title": "Author guide",
+        "back": "Return home",
+        "start": "Getting started",
+        "structure": "Folder layout",
+        "config": "Configuration",
+        "format": "Format",
+        "components": "Components",
+        "publishing": "Publishing",
+        "community": "Community Docs"
+    },
     "Login": {
         "title": "需要登入",
         "desc": "您嘗試存取的頁面需要登入。",

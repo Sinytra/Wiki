@@ -150,6 +150,17 @@
         "security": "Про безопасность",
         "community": "Документы сообщества"
     },
+    "MetaDevDocsNavigation": {
+        "title": "Author guide",
+        "back": "Return home",
+        "start": "Getting started",
+        "structure": "Folder layout",
+        "config": "Configuration",
+        "format": "Format",
+        "components": "Components",
+        "publishing": "Publishing",
+        "community": "Community Docs"
+    },
     "Login": {
         "title": "Требуется вход",
         "desc": "Вам нужно авторизоваться, чтобы войти на эту страницу.",

@@ -150,6 +150,17 @@
         "security": "Avis de sécurité",
         "community": "Documentation de la communauté"
     },
+    "MetaDevDocsNavigation": {
+        "title": "Author guide",
+        "back": "Return home",
+        "start": "Getting started",
+        "structure": "Folder layout",
+        "config": "Configuration",
+        "format": "Format",
+        "components": "Components",
+        "publishing": "Publishing",
+        "community": "Community Docs"
+    },
     "Login": {
         "title": "Connexion requise",
         "desc": "La page à laquelle vous essayez d'accéder nécessite de vous connecter.",
