@@ -40,7 +40,7 @@ async function sourceToProject(src: DocumentationSource): Promise<ProjectWithInf
     type: project.type,
     created_at: '',
     info: {
-      pageCount: 0,
+      pageCount: 1, // TODO
       contentCount: 0
     }
   };

@@ -8,7 +8,7 @@ export default function ActiveNavButton({target, children}: { target: string; ch
   const active = pathname.endsWith(target);
 
   return (
-    <Button variant={active ? 'secondary' : 'ghost'} className="w-full justify-start pl-2 text-base text-ellipsis overflow-hidden">
+    <Button variant={active ? 'secondary' : 'ghost'} className="w-full justify-start !px-2 text-base text-ellipsis overflow-hidden">
       {children}
     </Button>
   )

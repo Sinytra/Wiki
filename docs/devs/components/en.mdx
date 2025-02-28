@@ -1,0 +1,173 @@
+import CraftingRecipe from "../../../components/docs/shared/CraftingRecipe.tsx";
+
+# Components
+
+The wiki adds a selection of useful components that you can use in your documentation.
+
+Import statements are not required for built-in wiki components.
+
+<Callout>
+    Didn't find what you were looking for? Head over to our [GitHub repository](https://github.com/Sinytra/Wiki/issues)
+    and open a new issue or pull request proposing your desired component!
+</Callout>
+
+## Callouts
+
+Draw the reader's attention with callouts.
+
+Available attributes:
+- `variant` Optional; can be either of [`default`, `info`, `warning`, `danger`] (default: `default`)
+
+```jsx
+<Callout>
+    This is a sample callout
+</Callout>
+
+<Callout variant="info">
+    This is a sample info callout
+</Callout>
+
+/* Other variants shown below */
+```
+
+Results in:
+
+<Callout>This is a sample callout</Callout>
+
+Info variant:
+
+<Callout variant="info">This is a sample info callout</Callout>
+
+Warning variant:
+
+<Callout variant="warning">This is a sample warning callout</Callout>
+
+Danger variant:
+
+<Callout variant="danger">This is a sample danger callout</Callout>
+
+## Crafting recipe
+
+- `slots` - Exactly 9 resource location strings (asset names), in order from top-left to bottom-right.
+- `result` - Resource location of the resulting item asset
+- `count` - Optionally, specify the output item amount
+
+※ Images shown in crafting recipes are sourced from documentation assets as described [here](./devs#assets).
+
+```jsx
+<CraftingRecipe
+    slots={[
+        'flint',
+        'minecraft:flint', // Hint: the namespace is optional for 'minecraft' items
+        'flint',
+        '',
+        'iron_block',
+        '',
+        '',
+        'diamond',
+        ''
+    ]}
+    result="furnace"
+    count={4} // Optional
+/>
+```
+
+Results in:
+
+<CraftingRecipe
+  slots={[
+      'flint',
+      'minecraft:flint',
+      'flint',
+      '',
+      'iron_block',
+      '',
+      '',
+      'diamond',
+      ''
+  ]}
+  result="furnace"
+  count={4}
+/>
+
+## Project Asset
+
+Displays an [asset](./devs#assets) image.
+
+Available attributes:
+- `location` Required, Resource Location of the asset you wish to display
+- All properties of `img` except for `src` are accepted
+
+```jsx
+<Asset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
+```
+
+Results in:
+
+<Asset width={64} height={64} location="minecraft:furnace" title="Force Field Projector" />
+
+### Icons
+
+The entire collection of [Lucide icons](https://lucide.dev/icons/) is available to use in documentation files via
+React components.
+
+Names of icon components consist of an icon's "component name" (which you can find on the website or make an educated
+guess by converting the icon id to PascalCase (e.g. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`)
+and the `Icon` suffix. All properties supported by [Lucide React](https://lucide.dev/guide/packages/lucide-react) are
+available as well.
+
+For example:
+
+```jsx
+<SquirrelIcon width={64} height={64} strokeWidth={1.5} />
+```
+
+Results in:
+
+<SquirrelIcon width={64} height={64} strokeWidth={1.5} />
+
+### Code tabs
+
+The wiki implements CodeHike's [CodeTabs](https://codehike.org/docs/code/tabs) component as shown below.
+
+````jsx
+<CodeTabs>
+
+```js !!tabs main.js
+function lorem(ipsum, dolor = 1) {
+    const sit = ipsum == null ? 0 : ipsum.sit
+    dolor = sit - amet(dolor)
+    return sit ? consectetur(ipsum) : []
+}
+```
+
+```css !!tabs styles.css
+body {
+    margin: 0;
+    padding: 0;
+}
+```
+
+</CodeTabs>
+````
+
+Results in:
+
+<CodeTabs>
+
+    ```js !!tabs main.js
+    function lorem(ipsum, dolor = 1) {
+    const sit = ipsum == null ? 0 : ipsum.sit
+    dolor = sit - amet(dolor)
+    return sit ? consectetur(ipsum) : []
+}
+    ```
+
+    ```css !!tabs styles.css
+    body {
+    margin: 0;
+    padding: 0;
+}
+    ```
+
+</CodeTabs>

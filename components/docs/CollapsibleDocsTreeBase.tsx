@@ -6,8 +6,9 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/
 import {usePathname} from "@/lib/locales/routing";
 import {ChevronDownIcon} from "lucide-react";
 
-export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: {
+export default function CollapsibleDocsTreeBase({title, icon: Icon, defaultOpen, children}: {
   title: string;
+  icon?: any;
   defaultOpen?: boolean;
   children: any;
 }) {
@@ -47,7 +48,8 @@ export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: 
           <ChevronDownIcon
             className="docsMainTrigger md:hidden w-5 h-5 text-secondary transition-transform duration-200"/>
         }>
-          <span>{title}</span>
+          {Icon && <Icon className="size-4 mr-2"/>}
+          <span className="text-base">{title}</span>
         </DocsSidebarTitle>
       </CollapsibleTrigger>
       <div className="hidden md:block">
@@ -55,7 +57,8 @@ export default function CollapsibleDocsTreeBase({title, defaultOpen, children}: 
           <ChevronDownIcon
             className="docsMainTrigger md:hidden w-5 h-5 text-secondary transition-transform duration-200"/>
         }>
-          <span>{title}</span>
+          {Icon && <Icon className="size-4 mr-2"/>}
+          <span className="text-lg">{title}</span>
         </DocsSidebarTitle>
       </div>
 

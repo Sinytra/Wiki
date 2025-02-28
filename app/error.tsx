@@ -8,7 +8,7 @@ import Link from "next/link";
   
 export default function Error({error}: { error: Error & { digest?: string }}) {
   useEffect(() => {
-    console.error(error);
+    console.error('Got error', error);
     console.error('Error digest', error.digest);
   }, [error]);
 

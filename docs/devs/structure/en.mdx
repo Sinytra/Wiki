@@ -1,0 +1,106 @@
+# Folder structure
+
+Start by creating a new directory inside your project. This can be located at any path of your choice.
+For example, you can use `docs/(your modid here)` or simply `docs`, both are equally valid.
+
+<Callout>
+    We also support scenarios where multiple projects have their documentation hosted in a single repository, as long
+    as they're located in separate folders.
+    This is useful if you're looking to store documentation for multiple of your projects in a single place.
+</Callout>
+
+A minimal example folder layout may look like this:
+
+```
+docs
+├── blocks
+│   ├── generator.mds
+│   └── _meta.json
+├── introduction.mdx
+├── _meta.json
+└── sinytra-wiki.json
+```
+
+<details>
+    <summary>Show complete example</summary>
+
+    Here is a complete example including assets and translations.
+
+    ```
+    docs
+    ├── .assets
+    │   └── examplemod
+    │       └── generator.png
+    ├── .translated
+    │   └── de_de
+    │       └── blocks
+    │           ├── generator.mdx
+    │           └── _meta.json
+    ├── blocks
+    │   ├── generator.mds
+    │   └── _meta.json
+    ├── introduction.mdx
+    ├── _meta.json
+    └── sinytra-wiki.json
+    ```
+</details>
+
+Let's talk about what each of these files does:
+- `sinytra-wiki.json`: The main metadata file, the "heart" of the documentation package, carries information about the
+project. For its content format, see the complete explanation below.
+- `_meta.json`: Can be placed in the root folder as well as each subfolder. Provides display names for files and
+folders, which are shown in the documentation navigation sidebar on the wiki, and also specifies the order in which
+they are displayed. If not provided, fallback display names are generated automatically.
+- `*.mdx` files: Contain documentation contents. To learn more about the MDX format, please see their
+[website](https://mdxjs.com/). As MDX compiles to JavaScript, the Wiki imposes certain restrictions on what components
+and tags can be used in addition to standard Markdown. For a complete description, please read below.
+
+### Assets
+
+<Callout>
+    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#-gradle-plugin-companion),
+    which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
+</Callout>
+
+Assets are used to display images of items, blocks and other project content across the website. These can be used as
+part of crafting recipes, sidebar information or custom components.
+
+Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
+in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
+
+Rendered project assets including **both items and blocks** should be placed under `.assets/(modid)` inside the
+documentation directory, where `modid` is the namespace of each texture you wish to provide.
+
+Each asset **must be in `.png` format**. The name of the file is up to your choice.
+
+For example, `examplemod:generator` would point to `(root)/.assets/examplemod/generator.png`.
+
+### Translation
+
+Documentation can be localized into various languages supported by the wiki. A complete list can be found in the
+language selection dropdown located on the right-most part of the navigation header.
+
+Localized files must be placed under `.translated/(lang)` inside the documentation directory, where
+`(lang)` is the desired language code in `(lang)_(region)` format. Currently, all regions match the language, so
+it's sufficient to take the target language code and complete the region to be the same as the language
+(e.g. German translations (`de`) would be placed under `.translated/de_de`).
+
+The localized folder structure follows the same layout as root. Both documentation content files (`.mdx`) and folder
+metadata (`_meta.json`) may be translated. Translated content takes precedence over the default locale when being
+loaded. However, untranslated files will still be shown even when the locale is non-default, therefore it is
+recommended to translate all files whenever possible.
+
+### Custom homepage
+
+The wiki provides a dedicated landing page for documentation called the "Homepage". By default, this shows the
+linked platform project's description.
+
+If you'd like to provide your own contents instead, you can do so by creating a `_homepage.mdx` file in your
+documentation's root folder (at the same level as `sinytra-wiki.json`). The file's contents follow the same
+[formatting](devs/format) as regular documentation pages, except for frontmatter metadata (e.g. title), which is ignored.
+The homepage's title will always match the project's name, whereas the sidebar will display various information about
+the platform project, such as the project's authors, categories and available mc versions.
+
+## Next steps
+
+➡️ Explore wiki [Configuration](config) files.

@@ -1,0 +1,93 @@
+# Documentation format
+
+The wiki uses [MDX](https://mdxjs.com/) files as its documentation format. In additon, [GitHub Flavored Markdown](https://github.github.com/gfm/)
+(GFM) is also available using [`remark-gfm`](https://github.com/remarkjs/remark-gfm). 
+
+If you're not yet familiar with MDX, don't worry - it is an extension of the simple [Markdown](https://www.markdownguide.org/)
+format with added JSX capabilities, meaning you can include fancy custom components in your documentation,
+such as crafting recipes.
+
+These features are purely optional, and you can always stick to using standard Markdown in your documentation. However,
+the file extension must remain `.mdx`.
+
+#### Limitations
+
+Because MDX can potentially allow unwanted code injection on the server, we sanitize all sources before they're rendered,
+which can result in certain features of MDX being unavailable. That said, if there's a safe feature you'd like to use in
+your documentation that isn't available on the wiki, please open an issue on our
+[GitHub repository](https://github.com/Sinytra/Wiki/issues).
+
+## Metadata
+
+Markdown page metadata, also known as simply "Frontmatter" is used by the wiki to provide additional information about
+a page or in-game content. It's located at the very beginning of each file in YAML format.
+
+Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
+Usually, this includes an icon of the block/item along with its name, id, source project and other handy information.
+
+If your page is not related to a specific object, you can hide all metadata and ignore their values by setting
+`hide_meta: true`. The `title` attribute will still be used, and we recommend providing it at all times.
+
+```markdown
+---
+title: Hello World
+---
+
+Content comes here
+```
+
+Here's an overview of supported attributes:
+
+- `title` - Display name of the page, shown in the content heading and the browser tab title.
+Replaces the `h1` heading in docs.
+  - Type: `string`
+  - Example: `Fancy Block`
+- `hide_meta` - Hides sidebar meta information. As a results, all other attributes will be ignored.
+  - Type: `boolean`
+- `id` - In-game resource location ID of the content shown. If a matching asset with the same location is found in the
+documentation root's asset folder, it will be used as the `icon`.
+  - Type: Resource Location
+  - Example: `examplemod:generator`
+- `icon` - Resource location of an asset that will be shown as the documented item's icon. Its size should be at least
+128x128 pixels.
+  - Type: Resource Location
+  - Example: `examplemod:fancy_generator`
+- `hide_icon` - Hides the project icon, showing a generic placeholder instead.
+  - Type: `boolean`
+- `type` - Can be `block`, `item` or `other`
+  - Type: `string`
+- `custom` - A map of custom attributes you wish to display in the sidebar.
+  - Type: `string` -> `string` map
+  - Example:
+    ```yaml
+    custom:
+      Category: Machines
+    ```
+
+<details>
+    <summary>Show complete metadata example</summary>
+    
+    ```markdown
+    ---
+    title: Generator
+    id: examplemod:generator
+    icon: examplemod:fancy_generator
+    type: block
+    custom:
+      Subcategory: Machines
+    ---
+    
+    Content comes here
+    ```
+</details>
+
+## Custom components
+
+See the [Components](./devs/components) page.
+
+## Next steps
+
+Once your documentation folder is set up, and you're satisfied with the looks and content of your documentation,
+it is time to get it published on the wiki.
+
+➡️ See the [Publishing](./publishing) page for more information.

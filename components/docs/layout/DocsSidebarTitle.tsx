@@ -9,7 +9,7 @@ export default function DocsSidebarTitle({ children, extra, offset, noSeparator 
         </h1>
         {extra}
       </div>
-      <hr className={cn("mb-6 border-neutral-600", offset ? 'mt-1' : 'mt-2', noSeparator && 'hidden md:block')}/>
+      <hr className={cn('mb-2', 'border-neutral-600', offset ? 'mt-1' : 'mt-2', noSeparator && 'hidden md:block')}/>
     </div>
   )
 }

@@ -1,0 +1,100 @@
+## Configuration
+
+### Wiki Metadata
+
+The wiki metadata file specifies project identification information, necessary for the wiki to load the project.
+
+It must be placed in a file called `sinytra-wiki.json` inside the documentation **root directory**.
+
+```json title="sinytra-wiki.json"
+{
+    "id": "mffs",
+    "platforms": {
+        "curseforge": "mffs",
+        "modrinth": "mffs"
+    }
+}
+```
+
+The wiki metadata file contains the following properties, all of which are **required**:
+
+- `id`: Unique project id used to identify the project across the wiki. We recommend using your mod id
+or hosting platform slug.
+- `platforms`: Your project's distribution platforms. This is map of (platform) -> (platform project slug).
+Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
+
+The project slug can be easily extracted from your project page URL as shown in the examples below, where `{slug}`
+is a placeholder for the actual value.
+- For Modrinth projects: `https://modrinth.com/mod/{slug}`
+- For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+
+The JSON Schema specification for this file can be found [here](/sinytra-wiki.schema.json).
+
+### Folder metadata
+
+Provides additional information for the documentation page navigation sidebar:
+- The **display names** of folders and files. If not provided, the wiki will use automatically generated display names.
+- The **ordering** of sidebar entries. By default, folders are shown first, followed by regular files, all sorted
+alphabetically.
+
+To avoid potential unwanted display errors, we recommend **always** providing complete folder metadata in your
+documentation.
+
+```json title="_meta.json"
+{
+    "blocks": "Blocks",
+    "items": "Completely custom name",
+    "introduction.mdx": "Introduction"
+}
+```
+
+The folder metadata json consists of string key-value pairs, where the keys represent the name of a file or a folder,
+and the values are their display name. When specifying a file name, the full name including the extension is required.
+
+Folder metadata is contained in a file called `_meta.json` and can be placed **inside any folder** within the
+documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
+
+The JSON Schema specification for this file can be found [here](/_meta.schema.json).
+
+#### Icons
+
+You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
+and supplying the icon's name as shown below.
+
+The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
+More information on icon names can be found on the [Format](./format#icons) page.
+
+To hide the folder icon completely, specify `null`.
+
+```json title="_meta.json"
+{
+    "blocks": {
+        "name": "Blocks",
+        "icon": "Box"
+    }
+}
+```
+
+### Versioning
+
+You can show multiple versions of your project's documentation on the wiki by adding a `versions` property to your
+docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector
+as well as in the URL paths) to git branch names.
+
+The documentation folder structure remains the same across all branches with contents being isolated per branch,
+including assets and localization. **Documentation metadata files (`sinytra-wiki.json`) from other branches are ignored**,
+as all necessary information is already contained in the default branch's file.
+
+```json title="sinytra-wiki.json"
+{
+    ...
+    "versions": {
+        "1.19.2": "my-git-branch-name",
+        "1.18.2": "another-branch"
+    }
+}
+```
+
+## Next steps
+
+➡️ Learn more about the specifics of the MDX [Documentation format](format).
