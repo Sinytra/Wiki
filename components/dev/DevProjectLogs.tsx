@@ -4,14 +4,10 @@ import {Button} from "@/components/ui/button";
 import {startTransition, Suspense, use, useEffect, useRef, useState} from 'react';
 import {LoaderCircleIcon, ScrollTextIcon} from "lucide-react";
 
-import LogLang from '@shikijs/langs/log';
-import GitHubDarkDefault from '@shikijs/themes/github-dark-default';
-import {createHighlighterCore, makeSingletonHighlighterCore} from 'shiki/core';
-import {createOnigurumaEngine} from 'shiki/engine/oniguruma';
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {useRouter} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
-import {debounce} from "lodash";
+import highlighter from "@/lib/markdown/highlighter";
 
 function Skeleton({children}: { children: any }) {
   return (
@@ -22,7 +18,7 @@ function Skeleton({children}: { children: any }) {
   )
 }
 
-function RenderedLogBody({body}: { body: string }) {
+function RenderedLogBody({lines}: { lines: string[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,18 +30,23 @@ function RenderedLogBody({body}: { body: string }) {
   });
 
   return (
-    <div ref={containerRef}
-      className="[&>pre]:slim-scrollbar-scrollbar-primary [&>pre]:overflow-y-auto [&>pre]:h-72 [&>pre]:p-2 [&>pre]:rounded-md [&>pre]:text-xs"
-      dangerouslySetInnerHTML={({__html: body})}>
+    <div ref={containerRef} className="bg-[#0d1117] slim-scrollbar">
+      <pre className="text-xs slim-scrollbar slim-scrollbar-scrollbar-primary overflow-y-auto h-72 p-2 rounded-md">
+        {...lines.map((s, i) => (
+          <p key={i}>
+            {highlighter.highlightLine(s)}
+          </p>
+        ))}
+      </pre>
     </div>
   )
 }
 
-function LogBody({body}: { body: Promise<string | null> }) {
+function LogBody({body}: { body: Promise<string | undefined> }) {
   const t = useTranslations('DevProjectLogs');
-  const html = use(body);
+  const lines = use(body)?.split('\n');
 
-  return (html !== null ? <RenderedLogBody body={html}/> : <Skeleton>{t('error')}</Skeleton>);
+  return (lines ? <RenderedLogBody lines={lines}/> : <Skeleton>{t('error')}</Skeleton>);
 }
 
 function LoadingLogs() {
@@ -86,8 +87,6 @@ function WaitingLogs() {
   )
 }
 
-const getHighlighter = makeSingletonHighlighterCore(createHighlighterCore);
-
 export default function DevProjectLogs({id, status, token, callback}: {
   id: string;
   status: ProjectStatus;
@@ -95,47 +94,14 @@ export default function DevProjectLogs({id, status, token, callback}: {
   callback: (id: string) => Promise<string | undefined>;
 }) {
   const t = useTranslations('DevProjectLogs');
-  const [lines, setLines] = useState<string[]>([]);
-  const [renderedLogs, setRenderedLogs] = useState<string | undefined>(undefined);
-  const [logPromise, setLogPromise] = useState<Promise<string | null> | undefined>(undefined);
+  const [lines, setLines] = useState<string[] | undefined>(undefined);
+  const [logPromise, setLogPromise] = useState<Promise<string | undefined> | undefined>(undefined);
 
   const router = useRouter();
 
-  const getHighlighterInstance = () => getHighlighter({
-    langs: [LogLang],
-    themes: [GitHubDarkDefault],
-    engine: createOnigurumaEngine(import('shiki/wasm'))
-  });
-
   function onClick() {
-    setLogPromise(callback(id).then(result => {
-      return result !== undefined ? getHighlighterInstance().then(r => {
-        return r.codeToHtml(result.length === 0 ? '(empty)' : result, {
-          lang: 'log',
-          theme: 'github-dark-default'
-        });
-      }) : null;
-    }))
+    setLogPromise(callback(id));
   }
-
-  const debounded = debounce(async (ls: string[]) => {
-    if (ls.length === 0) {
-      setRenderedLogs(undefined);
-      return;
-    }
-
-    const highlighter = await getHighlighterInstance();
-    setRenderedLogs(
-      highlighter.codeToHtml(ls.join(""), {
-        lang: "log",
-        theme: "github-dark-default",
-      })
-    );
-  }, 250);
-
-  useEffect(() => {
-    debounded(lines);
-  }, [lines]);
 
   const initialized = useRef(false);
   const keepLogs = useRef(false);
@@ -169,7 +135,6 @@ export default function DevProjectLogs({id, status, token, callback}: {
       console.debug('Opened WS connection for project', id);
       setWsOpen(true);
       setLines([]);
-      setRenderedLogs(undefined);
     }
 
     ws.onmessage = (data: MessageEvent<any>) => {
@@ -177,7 +142,7 @@ export default function DevProjectLogs({id, status, token, callback}: {
         keepLogs.current = true;
         return;
       }
-      setLines((v) => [...v, data.data]);
+      setLines((v) => [...(v ?? []), data.data]);
     };
 
     ws.onclose = () => {
@@ -206,7 +171,7 @@ export default function DevProjectLogs({id, status, token, callback}: {
         </div>
       </div>
       <div className="mt-2">
-        {renderedLogs ? <RenderedLogBody body={renderedLogs}/> :
+        {lines ? <RenderedLogBody lines={lines}/> :
           wsOpen ? <WaitingLogs/>
             : logPromise ?
               <Suspense fallback={<LoadingLogs/>}>
