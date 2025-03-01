@@ -6,6 +6,8 @@ import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 import authSession from "@/lib/authSession";
 
+export const dynamic = 'force-dynamic';
+
 export default async function DevLayout({ children }: { children?: any }) {
   const response = await remoteServiceApi.getUserDevProjects();
   if ('status' in response) {

@@ -22,6 +22,8 @@ import {NextIntlClientProvider, useMessages, useTranslations} from "next-intl";
 import {getTranslations} from "next-intl/server";
 import {pick} from "lodash";
 
+export const dynamic = 'force-dynamic';
+
 function UserProfileInfo({user}: { user: UserProfile }) {
   const t = useTranslations('UserSettings.profile');
   const joinDate = format(new Date(user.created_at), 'MMMM d, yyyy');

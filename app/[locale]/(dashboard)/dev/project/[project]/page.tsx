@@ -53,6 +53,8 @@ import {cn} from "@/lib/utils";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import authSession from "@/lib/authSession";
 
+export const dynamic = 'force-dynamic';
+
 function ValueTableCell({className, hideOverflow, children}: { className?: string; hideOverflow?: boolean; children?: any }) {
   return (
     <td className={className}>

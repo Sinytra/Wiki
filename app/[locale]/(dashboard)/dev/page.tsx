@@ -19,6 +19,8 @@ import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import authSession from "@/lib/authSession";
 
+export const dynamic = 'force-dynamic';
+
 function getProjectLink(id: string) {
   return `/dev/project/${id}`;
 }
