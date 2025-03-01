@@ -19,7 +19,7 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
   const {open} = useContext(DocsSidebarContext)!;
 
   return (
-    <aside data-open={open == type} className={cn(className, 'z-30 fixed lg:sticky lg:top-20 h-[88vh] sm:h-[calc(100vh_-_9.5rem)] transition-all lg:transition-none duration-300 ease-in-out overflow-hidden border-border bg-primary')}>
+    <aside data-open={open == type} className={cn(className, 'z-30 fixed lg:sticky lg:top-[6rem]! h-[88vh] sm:h-[calc(100vh_-_9.5rem)] transition-all lg:transition-none duration-300 ease-in-out overflow-hidden border-border bg-primary')}>
       <ContentDiv ref={ref} className={cn('h-full p-4 space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-secondary/20', innerClassName)}>
         <div className="mb-4 flex justify-between items-center">
           <h3 className="text-sm font-semibold text-secondary">

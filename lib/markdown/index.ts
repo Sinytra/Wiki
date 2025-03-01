@@ -11,7 +11,6 @@ import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
 import Callout from "@/components/docs/shared/Callout";
 import ModAsset from "@/components/docs/shared/ModAsset";
-import {compileMDX} from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "@/lib/markdown/headings";
 import {recmaCodeHike, remarkCodeHike} from "codehike/mdx";
@@ -19,11 +18,14 @@ import * as LucideReact from "lucide-react";
 import Asset from "@/components/docs/shared/Asset";
 import CodeTabs from "@/components/docs/shared/CodeTabs";
 import CodeHikeCode from "@/components/util/CodeHikeCode";
-import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
+import {VFile} from 'vfile';
+import {matter} from 'vfile-matter';
+import {compile, run} from "@mdx-js/mdx";
+import * as runtime from 'react/jsx-runtime';
 import ContentLink from "@/components/docs/shared/ContentLink";
-import matter from 'gray-matter';
-import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
+import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
 import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
+import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -58,25 +60,6 @@ async function renderMarkdown(content: string): Promise<string> {
   return String(file);
 }
 
-async function renderMarkdownWithMetadata(source: string): Promise<DocumentationMarkdown> {
-  const {content, frontmatter} = await compileMDX({
-    source,
-    options: {
-      mdxOptions: {
-        rehypePlugins: [
-          rehypeMarkdownHeadings,
-          () => (tree: any) => {
-            const newTree = {...tree};
-            return sanitizeHastTree(newTree, {});
-          }
-        ]
-      },
-      parseFrontmatter: true
-    }
-  });
-  return {content, metadata: frontmatter || {}};
-}
-
 async function renderDocumentationMarkdown(source: string): Promise<DocumentationMarkdown> {
   const icons = Object.keys(LucideReact)
     .filter(key => key.endsWith('Icon'))
@@ -91,34 +74,45 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
     h2: LinkAwareHeading
   };
   const chConfig = {
-    components: { code: "CodeHikeCode" },
+    components: {code: 'CodeHikeCode'},
   }
 
   const cleanSource = cleanFrontmatter(source);
 
-  const {content, frontmatter} = await compileMDX({
-    source: cleanSource,
-    options: {
-      mdxOptions: {
-        remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm],
-        rehypePlugins: [
-          rehypeMarkdownHeadings,
-          () => (tree: any) => {
-            const newTree = {...tree};
-            return sanitizeHastTree(newTree, components);
-          }
-        ],
-        recmaPlugins: [[recmaCodeHike, chConfig]]
-      },
-      parseFrontmatter: true
-    },
-    components
-  });
+  const vfile = new VFile(cleanSource);
+  matter(vfile, {strip: true});
 
-  return {
-    content,
-    metadata: frontmatter || {}
-  };
+  const frontmatter = vfile.data.matter ?? {};
+
+  try {
+    const compiledMdx = await compile(vfile, {
+      outputFormat: 'function-body',
+
+      remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm],
+      rehypePlugins: [
+        rehypeMarkdownHeadings,
+        () => (tree: any) => {
+          const newTree = {...tree};
+          return sanitizeHastTree(newTree, components);
+        }
+      ],
+      recmaPlugins: [[recmaCodeHike, chConfig]]
+    });
+
+    // @ts-ignore
+    const {default: MDXContent} = await run(compiledMdx, {
+      ...runtime,
+      baseUrl: import.meta.url,
+    });
+
+    return {
+      content: MDXContent({components}),
+      metadata: frontmatter
+    };
+  } catch (error: any) {
+    console.error('MDX Compilation error:', error);
+    throw new Error('MDX compilation failed');
+  }
 }
 
 const mdxElemets = ['mdxJsxFlowElement', 'mdxJsxTextElement'];
@@ -145,12 +139,13 @@ function sanitizeHastTree(tree: any, components: any) {
 }
 
 function readFrontmatter(source: string): any {
-  return matter(source).data;
+  const vfile = new VFile(source);
+  matter(vfile, {strip: true});
+  return vfile.data.matter ?? {};
 }
 
 export default {
   renderMarkdown,
   renderDocumentationMarkdown,
-  readFrontmatter,
-  renderMarkdownWithMetadata
+  readFrontmatter
 };

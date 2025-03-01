@@ -12,6 +12,7 @@ import {ErrorBoundary} from "react-error-boundary";
 import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import platforms from "@/lib/platforms";
+import {DEFAULT_DOCS_VERSION, LEGACY_DEFAULT_DOCS_VERSION} from "@/lib/constants";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -32,6 +33,9 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
 
   const project = await service.getProject(params.slug, params.version);
   if (!project) {
+    if (params.version == LEGACY_DEFAULT_DOCS_VERSION) {
+      return redirect(`/${params.locale}/project/${params.slug}/${DEFAULT_DOCS_VERSION}`);
+    }
     return redirect('/');
   }
 

@@ -66,7 +66,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
       type="right"
       title={t('title')}
       className={cn(
-        'shrink-0 left-0 lg:top-[7.5rem]!',
+        'shrink-0 left-0',
         'w-[96vw] sm:w-64 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
         'border-r data-[open=false]:border-0'
       )}
