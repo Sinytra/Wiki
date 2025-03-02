@@ -26,7 +26,10 @@
                 "dev": "Pembangun"
             },
             "links": {
-                "title": "Pautan"
+                "title": "Pautan",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "Donate"
             },
             "resources": {
                 "title": "Sumber",

@@ -26,7 +26,10 @@
                 "dev": "Geliştiriciler"
             },
             "links": {
-                "title": "Bağlantılar"
+                "title": "Bağlantılar",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "Donate"
             },
             "resources": {
                 "title": "Kaynaklar",
