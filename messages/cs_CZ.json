@@ -26,7 +26,10 @@
                 "dev": "Vývojáři"
             },
             "links": {
-                "title": "Odkazy"
+                "title": "Odkazy",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "Donate"
             },
             "resources": {
                 "title": "Resources",

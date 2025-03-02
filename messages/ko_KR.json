@@ -26,7 +26,10 @@
                 "dev": "개발자 페이지"
             },
             "links": {
-                "title": "링크"
+                "title": "링크",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "Donate"
             },
             "resources": {
                 "title": "자료",

@@ -26,7 +26,10 @@
                 "dev": "Developers"
             },
             "links": {
-                "title": "Links"
+                "title": "Links",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "Donate"
             },
             "resources": {
                 "title": "Resources",

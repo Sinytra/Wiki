@@ -26,7 +26,10 @@
                 "dev": "開發人員"
             },
             "links": {
-                "title": "連結"
+                "title": "連結",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "Donate"
             },
             "resources": {
                 "title": "資源",

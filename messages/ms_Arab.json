@@ -26,7 +26,10 @@
                 "dev": "ڤمباڠون"
             },
             "links": {
-                "title": "ڤاءوتن"
+                "title": "ڤاءوتن",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "Donate"
             },
             "resources": {
                 "title": "سومبر",
