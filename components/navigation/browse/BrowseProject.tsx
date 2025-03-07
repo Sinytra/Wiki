@@ -16,6 +16,7 @@ import {BaseProject} from "@/lib/service";
 import ModVersionRange from "@/components/docs/ModVersionRange";
 import Image from "next/image";
 import {getTranslations} from "next-intl/server";
+import {resolveSoft} from "@/lib/utils";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
@@ -36,15 +37,15 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
 function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
-      <span className="text-sm text-secondary font-normal line-clamp-2">
-      {projectContent.summary}
+    <span className="text-sm text-secondary font-normal line-clamp-2 sm:line-clamp-none h-10 sm:h-auto sm:min-h-5">
+      {projectContent.summary.length > 100 ? `${projectContent.summary.substring(0, 100)}...` : projectContent.summary}
     </span>
   )
 }
 
 function ProjectIconPlaceholder() {
   return (
-      <div className="shrink-0 flex w-[80px] h-[80px] border border-tertiary rounded-xs">
+      <div className="shrink-0 flex w-16 h-16 sm:w-20 sm:h-20 border border-tertiary rounded-xs">
         <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={56} height={56}/>
       </div>
   )
@@ -60,35 +61,51 @@ async function GitHubProjectLink({url}: { url: string }) {
   )
 }
 
-async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<PlatformProject> }) {
+function ProjectSourceUrl({project}: { project: Promise<PlatformProject | null> }) {
+  const projectContent = use(project);
+  return projectContent && projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>;
+}
+
+async function ProjectGameVersions({project}: { project: Promise<PlatformProject | null> }) {
   const projectContent = await project;
   const t = await getTranslations('DocsProjectInfo.latest');
+
+  return !projectContent || projectContent.game_versions.length === 0
+    ? <span className="text-base">{t('unknown')}</span>
+    : <ModVersionRange versions={projectContent.game_versions} />;
+}
+
+async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<PlatformProject> }) {
+  const promise = resolveSoft(project);
   const u = await getTranslations('ProjectTypes');
-  const TypeIcon = ProjectTypeIcons[projectContent.type];
+  const TypeIcon = ProjectTypeIcons[base.type];
 
   const cfLink = base.platforms.curseforge ? await platforms.getProjectURL('curseforge', base.platforms.curseforge) : null;
   const mrLink = base.platforms.modrinth ? await platforms.getProjectURL('modrinth', base.platforms.modrinth) : null;
 
   return (
-      <div className="flex flex-wrap sm:flex-nowrap sm:shrink-0 w-full justify-between items-center mt-auto gap-2 text-secondary">
+      <div className="flex flex-wrap sm:flex-nowrap sm:shrink-0 w-full justify-between items-center mt-auto
+                      gap-2 text-secondary h-5.5 sm:h-auto"
+      >
         <ErrorBoundary fallback={<span></span>}>
           <div className="flex flex-row items-center gap-3">
             <div className="flex flex-row items-center gap-2 text-secondary">
               <TypeIcon className="size-4.5"/>
-              <span className="text-base">{u(projectContent.type)}</span>
+              <span className="text-base">{u(base.type)}</span>
             </div>
             <div className="flex flex-row items-center gap-2 text-secondary">
               <MilestoneIcon className="size-4.5"/>
-              {projectContent.game_versions.length === 0
-                ? <span className="text-base">{t('unknown')}</span>
-                : <ModVersionRange versions={projectContent.game_versions} />
-              }
+              <Suspense>
+                <ProjectGameVersions project={promise} />
+              </Suspense>
             </div>
           </div>
         </ErrorBoundary>
 
         <div className="sm:shrink-0 gap-1 sm:gap-2 hidden sm:flex">
-          {projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>}
+          <Suspense>
+            <ProjectSourceUrl project={promise} />
+          </Suspense>
           {cfLink &&
               <Button asChild variant="ghost" size="icon"
                       className="hover:text-brand-curseforge size-8">
@@ -131,24 +148,20 @@ export default function BrowseProject({project}: { project: BaseProject }) {
               {project.is_community && <CommunityDocsBadge small/>}
             </div>
 
-            <ErrorBoundary fallback={<span></span>}>
+            <ErrorBoundary fallback={
+              <span className="h-10 sm:h-5">
+                &nbsp;
+              </span>
+            }>
               <Suspense fallback={
-                <>
-                  <Skeleton className="w-full h-6"/>
-                </>
+                <Skeleton className="w-full h-10 sm:h-5"/>
               }>
                 <ProjectDescription project={platformProject}/>
               </Suspense>
             </ErrorBoundary>
           </div>
 
-          <Suspense fallback={
-            <div className="h-8 mt-1">
-              <Skeleton className="w-full h-5"/>
-            </div>
-          }>
-            <ProjectMetaInfo base={project} project={platformProject}/>
-          </Suspense>
+          <ProjectMetaInfo base={project} project={platformProject}/>
         </div>
       </div>
   )

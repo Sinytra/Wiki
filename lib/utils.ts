@@ -13,7 +13,10 @@ export function getProcessURL(): string {
   return process.env.NEXT_PUBLIC_NEXT_APP_URL || 'http://localhost:3000';
 }
 
-export function isWikiAdmin(username: string): boolean {
-  const admins = (process.env.ADMIN_USERS || '').split(',').map(s => s.toLowerCase());
-  return admins.includes(username.toLowerCase());
+export async function resolveSoft<T>(promise: Promise<T>): Promise<T | null> {
+  try {
+    return await promise;
+  } catch (e) {
+    return null;
+  }
 }

@@ -156,7 +156,7 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
     },
     next: {
       tags: ['curseforge'],
-      revalidate: 3600
+      revalidate: 60 * 60 * 24 * 14
     }
   });
   if (!response.ok) {
