@@ -84,7 +84,7 @@ export default async function ContentEntryPage({params}: Props) {
       <DocsPageNotFoundError />
     );
   }
-  if (!page) redirect(`/project/${params.slug}/content`);
+  if (!page) redirect(`/project/${params.slug}/${params.version}/content`);
 
   const t = await getTranslations('DocsContentRightSidebar');
   const messages = await getMessages();

@@ -22,7 +22,7 @@ function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; 
   return (
     <div>
       <PageLink href={`/project/${slug}/${version}/content/${entry.id}`} local
-                className="flex flex-row gap-2 items-center !text-sm">
+                className="flex flex-row gap-1 items-center !text-sm">
         <Asset location={entry.id!}/>
         {entry.name}
       </PageLink>
@@ -34,10 +34,10 @@ function ContentEntryList({entries, slug, version}: {entries: ProjectContentTree
   return (
     <div className="flex flex-row flex-wrap gap-1 items-center">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
-        <>
+        <div key={c.path} className="flex flex-row flex-wrap gap-1 items-center">
           {i > 0 && <span className="text-secondary">&bull;</span>}
-          <ContentEntryLink key={c.path} entry={c} slug={slug} version={version}/>
-        </>
+          <ContentEntryLink entry={c} slug={slug} version={version}/>
+        </div>
       )
       }
     </div>

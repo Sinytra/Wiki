@@ -8,7 +8,7 @@ import {ProjectContentEntry} from "@/lib/service/types";
 type LinkProps = Parameters<ReturnType<typeof createSharedPathnamesNavigation>['Link']>[0] & { id: string };
 
 function flattenChildren(entries: ProjectContentEntry[]): ProjectContentEntry[] {
-  return [...entries, ...entries.flatMap(e => flattenChildren(e.children))];
+  return [...entries, ...entries.flatMap(e => flattenChildren(e.children || []))];
 }
 
 async function getLocalizedPageName(slug: string, id: string): Promise<string | null> {
