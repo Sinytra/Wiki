@@ -64,7 +64,7 @@
                 "title": "Autoři",
                 "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
                 "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
+                "components": "Built-in components for recipes, assets, etc.",
                 "gradle": "Gradle integration for seamless workflow",
                 "management": "Advanced project management tools",
                 "interaction": "Direct interaction with your user base",

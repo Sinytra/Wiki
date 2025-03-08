@@ -36,7 +36,7 @@ export default function MetaDevDocsNavigation({messages}: { messages: any }) {
         <SidebarNavLink href="/about/devs/format" icon={TypeIcon}>
           {messages['format']}
         </SidebarNavLink>
-        <SidebarNavLink href="/about/devs/components" icon={ShapesIcon}>
+        <SidebarNavLink href="/about/devs/components" icon={ShapesIcon} nested>
           {messages['components']}
         </SidebarNavLink>
 

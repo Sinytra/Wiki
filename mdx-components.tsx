@@ -8,6 +8,7 @@ import Asset from "@/components/docs/shared/Asset";
 import MetaDocsTitle from "@/components/meta-docs/MetaDocsTitle";
 import CodeTabs from "@/components/docs/shared/CodeTabs";
 import CodeHikeCode from "@/components/util/CodeHikeCode";
+import ComponentWidget from "@/components/meta-docs/ComponentWidget";
 
 // Used in meta-docs only
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -28,6 +29,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CodeTabs,
     Asset,
     ModAsset, // Deprecated
+    ComponentWidget,
     ...components,
     ...icons,
     FlagDE: () => (<div className="inline-block"><CountryFlag flag={DE} /></div>),
