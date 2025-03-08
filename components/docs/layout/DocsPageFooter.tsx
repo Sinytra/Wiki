@@ -4,7 +4,6 @@ import {Edit, FlagIcon} from 'lucide-react'
 import Link from "next/link"
 import * as React from "react";
 import {useTranslations} from "next-intl";
-import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
 import localPreview from "@/lib/previewer/localPreview";
 import {Button} from "@/components/ui/button";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
@@ -13,7 +12,6 @@ interface FooterProps {
   slug?: string;
   path?: string[];
   editUrl?: string;
-  showHistory?: boolean;
   local?: boolean;
 }
 
@@ -55,19 +53,10 @@ function EditPage({editUrl} : { editUrl?: string }) {
   )
 }
 
-function Tabs({showHistory}: { showHistory?: boolean }) {
-  return showHistory && (
-    <div className="mx-auto sm:ml-auto sm:mr-4 md:absolute md:left-1/2 md:-translate-x-1/2">
-      <DocsEntryTabs/>
-    </div>
-  );
-}
-
 function DesktopDocsFooter({
                              slug,
                              path,
                              editUrl,
-                             showHistory,
                              local
                            }: FooterProps) {
   return (
@@ -77,8 +66,6 @@ function DesktopDocsFooter({
       </div>
 
       <div className="hidden sm:flex flex-nowrap flex-row items-center justify-start gap-4">
-        <Tabs showHistory={showHistory} />
-
         <div className="flex flex-col sm:flex-row items-end sm:items-center gap-y-3 sm:gap-y-0 sm:gap-x-4">
           <EditPage editUrl={editUrl} />
         </div>
@@ -87,11 +74,9 @@ function DesktopDocsFooter({
   )
 }
 
-function MobileDocsFooter({local, slug, path, editUrl, showHistory}: FooterProps) {
+function MobileDocsFooter({local, slug, path, editUrl}: FooterProps) {
   return (
     <div className="sm:hidden flex flex-col gap-3">
-      <Tabs showHistory={showHistory} />
-
       <div className="flex flex-row flex-wrap justify-between gap-2">
         <ReportPage local={local} slug={slug} path={path}/>
         <EditPage editUrl={editUrl} />

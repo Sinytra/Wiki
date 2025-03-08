@@ -83,14 +83,13 @@ export default async function ProjectDocsPage({params}: {
                            }
                            footer={
                              <DocsPageFooter editUrl={page.edit_url}
-                                             showHistory={page.content.metadata.history !== undefined}
                                              slug={params.slug} path={params.path}
                                              local={projectData.project.local}
                              />
                            }
     >
       <Suspense fallback={<DocsLoadingSkeleton/>}>
-        <DocsEntryPage page={page}/>
+        <DocsEntryPage page={page} showHistory={page.content.metadata.history !== undefined}/>
       </Suspense>
     </DocsInnerLayoutClient>
   )

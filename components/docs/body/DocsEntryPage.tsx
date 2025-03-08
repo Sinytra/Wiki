@@ -5,12 +5,12 @@ import platforms from "@/lib/platforms";
 import TabSwitchedDocsContent from "@/components/docs/tabs/TabSwitchedDocsContent";
 import DocsChangelogPage from "@/components/docs/body/DocsChangelogPage";
 
-export default async function DocsEntryPage({page}: { page: RenderedDocsPage; }) {
+export default async function DocsEntryPage({page, showHistory}: { page: RenderedDocsPage; showHistory?: boolean }) {
   const project = await platforms.getPlatformProject(page.project);
 
   return (
     <div className="flex flex-col min-h-[90vh] pb-20">
-      <DocsContentTitle project={page.project}>
+      <DocsContentTitle project={page.project} showHistory={showHistory}>
         {page.content.metadata.title || project.name}
       </DocsContentTitle>
 

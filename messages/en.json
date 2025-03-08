@@ -557,5 +557,9 @@
     },
     "BuiltinRecipeTypes": {
         "crafting_shaped": "Shaped Crafting"
+    },
+    "DocsEntryTabs": {
+        "history": "Show history",
+        "home": "Show content"
     }
 }
