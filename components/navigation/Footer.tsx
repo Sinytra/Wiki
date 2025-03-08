@@ -1,5 +1,5 @@
 import React from "react";
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 import {cn} from "@/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import Link from "next/link";

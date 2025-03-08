@@ -1,4 +1,4 @@
-import localService from "@/lib/service/localService";
+import localService from "@/lib/previewer/localService";
 import remoteService from "@/lib/service/remoteService";
 import assets, {AssetLocation} from "../assets";
 import {ProjectPlatform} from "@/lib/platforms/universal";

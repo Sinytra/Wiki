@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 import styles from './style.module.css';
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 import {Badge} from "@/components/ui/badge";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";

@@ -31,7 +31,7 @@ import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
 import LargePersonStandingIcon from "@/components/ui/icons/LargePersonStandingIcon";
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 
 export const dynamic = 'force-static';
 

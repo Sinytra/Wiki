@@ -1,5 +1,5 @@
 import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "./universal";
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 import {AVAILABLE_PROJECT_TYPES, ProjectType} from "@/lib/service/types";
 
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (localPreview.isEnabled() ? '/local' : '');

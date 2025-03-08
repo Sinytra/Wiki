@@ -1,4 +1,4 @@
-import {NextRequest, NextResponse} from "next/server";
+import {NextRequest} from "next/server";
 import {cookies} from 'next/headers';
 import {redirect} from "next/navigation";
 import {assertBackendUrl} from "@/lib/service/remoteServiceApi";

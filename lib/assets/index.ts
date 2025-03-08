@@ -1,7 +1,7 @@
-import {DocumentationSource} from "@/lib/docs/sources";
 import staticAssets from "@/lib/assets/staticAssets";
 import resourceLocation from "@/lib/util/resourceLocation";
-import localAssets from "@/lib/assets/localAssets";
+import localAssets from "@/lib/previewer/localAssets";
+import {LocalDocumentationSource} from "@/lib/previewer/localDocs";
 
 type SourceType = 'static' | 'local';
 
@@ -48,7 +48,7 @@ async function getBuiltinAssetSourceRoots(): Promise<AssetSourceRoots> {
   return {};
 }
 
-async function getAssetResource(location: string, source?: DocumentationSource): Promise<AssetLocation | null> {
+async function getAssetResource(location: string, source?: LocalDocumentationSource): Promise<AssetLocation | null> {
   const resource = resourceLocation.parse(location);
   if (!resource) {
     return null;
@@ -57,7 +57,7 @@ async function getAssetResource(location: string, source?: DocumentationSource):
   const systemRoots = await getBuiltinAssetSourceRoots();
   let root = systemRoots[resource.namespace];
 
-  if (!root && source?.type === 'local') {
+  if (!root && source) {
     root = { type: 'local', source: source.path }
   }
 

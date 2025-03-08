@@ -1,5 +1,5 @@
 import fs from "fs";
-import assets, {AssetLocation, AssetProvider, AssetSourceRoot, ResourceLocation} from "@/lib/assets/index";
+import assets, {AssetLocation, AssetProvider, AssetSourceRoot, ResourceLocation} from "@/lib/assets";
 import resourceLocation from "@/lib/util/resourceLocation";
 
 async function resolveAsset(root: AssetSourceRoot<string>, id: ResourceLocation): Promise<AssetLocation | null> {

@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 import createMiddleware from "next-intl/middleware";
 import {routing} from "@/lib/locales/routing";
 import authSession from "@/lib/authSession";

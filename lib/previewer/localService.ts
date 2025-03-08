@@ -6,28 +6,22 @@ import {
   Project,
   ProjectSearchResults, ProjectWithInfo,
   ServiceProvider
-} from "@/lib/service/index";
-import sources, {DocumentationSource} from "@/lib/docs/sources";
+} from "@/lib/service";
 import assets, {AssetLocation} from "../assets";
 import platforms from "@/lib/platforms";
 import {GameProjectRecipe, ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
 import markdown from "@/lib/markdown";
-
-async function getProjectSource(slug: string): Promise<DocumentationSource | null> {
-  const localSources = await sources.getLocalDocumentationSources();
-  const src = localSources.find(s => s.id === slug);
-  return src || null;
-}
+import localDocs, {LocalDocumentationSource} from "@/lib/previewer/localDocs";
 
 async function getProject(slug: string): Promise<ProjectWithInfo | null> {
-  const src = await getProjectSource(slug);
+  const src = await localDocs.getProjectSource(slug);
   if (src) {
     return sourceToProject(src)
   }
   return null;
 }
 
-async function sourceToProject(src: DocumentationSource): Promise<ProjectWithInfo> {
+async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectWithInfo> {
   const project = await platforms.getPlatformProject(src);
 
   return {
@@ -47,11 +41,11 @@ async function sourceToProject(src: DocumentationSource): Promise<ProjectWithInf
 }
 
 async function getBackendLayout(slug: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
-  const src = await getProjectSource(slug);
+  const src = await localDocs.getProjectSource(slug);
   if (src) {
     const project = await sourceToProject(src);
-    const locales = await sources.getAvailableLocales(src);
-    const tree = await sources.readDocsTree(src, locale || undefined);
+    const locales = await localDocs.getAvailableLocales(src);
+    const tree = await localDocs.readDocsTree(src, locale || undefined);
     return {
       project: {...project, locales},
       tree
@@ -61,7 +55,7 @@ async function getBackendLayout(slug: string, version: string | null, locale: st
 }
 
 async function getAsset(slug: string, location: string, version: string | null): Promise<AssetLocation | null> {
-  const src = await getProjectSource(slug);
+  const src = await localDocs.getProjectSource(slug);
   if (src) {
     return assets.getAssetResource(location, src);
   }
@@ -69,7 +63,7 @@ async function getAsset(slug: string, location: string, version: string | null):
 }
 
 async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null, optional: boolean): Promise<DocumentationPage | undefined | null> {
-  const src = await getProjectSource(slug);
+  const src = await localDocs.getProjectSource(slug);
   if (src) {
     const platformProject = await platforms.getPlatformProject(src);
 
@@ -83,7 +77,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
       type: platformProject.type,
       created_at: ''
     };
-    const file = await sources.readDocsFile(src, path, locale || undefined, optional);
+    const file = await localDocs.readDocsFile(src, path, locale || undefined, optional);
     if (file) {
       return {
         project,
@@ -96,16 +90,16 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
 }
 
 async function getLocalContentTree(slug: string, locale: string | null): Promise<ProjectContentTree | null> {
-  const src = await getProjectSource(slug);
+  const src = await localDocs.getProjectSource(slug);
   if (src) {
     const modifiedSrc = {...src, path: src.path + '/.content'};
-    const tree = await sources.readDocsTree(modifiedSrc, locale || undefined);
+    const tree = await localDocs.readDocsTree(modifiedSrc, locale || undefined);
     const processEntry: (e: FileTreeEntry) => Promise<ProjectContentEntry | null> = async (entry) => {
       if (entry.type === 'dir') {
         const children = await Promise.all(entry.children.map(c => processEntry(c)));
         return { ...entry, children: children.filter(c => c != null) };
       } else {
-        const file = await sources.readDocsFile(src, ['.content', entry.path], locale || undefined, true);
+        const file = await localDocs.readDocsFile(src, ['.content', entry.path], locale || undefined, true);
         if (file) {
           const frontmatter = markdown.readFrontmatter(file.content);
           if (frontmatter.id) {

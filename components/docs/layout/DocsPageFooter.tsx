@@ -5,7 +5,7 @@ import Link from "next/link"
 import * as React from "react";
 import {useTranslations} from "next-intl";
 import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 import {Button} from "@/components/ui/button";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 

@@ -2,7 +2,7 @@ import {ReactNode} from "react";
 import MetaDocsNavigation from "@/components/meta-docs/MetaDocsNavigation";
 import {setContextLocale} from "@/lib/locales/routing";
 import {useMessages} from "next-intl";
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 
 export const dynamic = 'force-static';
 

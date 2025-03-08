@@ -1,5 +1,5 @@
 import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "@/lib/platforms/universal";
-import localPreview from "@/lib/docs/localPreview";
+import localPreview from "@/lib/previewer/localPreview";
 import {ProjectType} from "@/lib/service/types";
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
