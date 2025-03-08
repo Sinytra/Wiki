@@ -8,8 +8,8 @@ import {Link, usePathname} from "@/lib/locales/routing";
 import {cn} from "@/lib/utils";
 import {useParams} from "next/navigation";
 import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector";
-import DocsLanguageSelect from "@/components/docs/DocsLanguageSelect";
 import * as React from "react";
+import LanguageSelect from "@/components/navigation/LanguageSelect";
 
 function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any; path: string; disabled?: boolean }) {
   const pathName = usePathname();
@@ -62,7 +62,7 @@ export default function DocsSubNavBar({project, platformProject, locale, version
             <DocsVersionSelector version={version} versions={project.versions!}/>
           }
           {showLocales &&
-            <DocsLanguageSelect locale={locale} locales={project.locales!}/>
+            <LanguageSelect locale={locale} locales={project.locales!} minimal />
           }
         </div>
       </div>
