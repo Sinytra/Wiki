@@ -276,7 +276,10 @@
         "title": "Submit"
     },
     "Callout": {
-        "title": "Heads up!"
+        "default": "Heads up!",
+        "info": "Info",
+        "warning": "Warning",
+        "danger": "Danger"
     },
     "ProjectRegisterForm": {
         "button": "Add Project",

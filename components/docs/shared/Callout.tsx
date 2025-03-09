@@ -5,7 +5,7 @@ import {useTranslations} from "next-intl";
 
 type Variant = 'default' | 'info' | 'warning' | 'danger';
 
-export default function Callout({variant = 'default', children}: { variant?: Variant, children?: ReactElement }) {
+export default function Callout({variant = 'default', title, children}: { variant?: Variant; title?: string; children?: ReactElement }) {
   const t = useTranslations('Callout');
   const icons: {[key in Variant]: any} = {
     default: RocketIcon,
@@ -19,7 +19,7 @@ export default function Callout({variant = 'default', children}: { variant?: Var
     <Alert className="not-prose my-4 bg-primary-alt" variant={variant === 'danger' ? 'destructive' : variant || 'default'}>
       <ActiveIcon className="h-4 w-4"/>
       <AlertTitle>
-        {t('title')}
+        {title || t(variant)}
       </AlertTitle>
       <AlertDescription className="[&_a]:underline [&_a]:underline-offset-2">
         {children}
