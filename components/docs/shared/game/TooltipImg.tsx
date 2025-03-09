@@ -57,7 +57,7 @@ class Tooltip extends Component<any> {
           left: this.state.xPosition + this.props.offsetX
         }}
       >
-        <span className="font-[var(--font-minecraft)]">{this.props.children}</span>
+        <span className="font-minecraft">{this.props.children}</span>
       </div>
     );
   }

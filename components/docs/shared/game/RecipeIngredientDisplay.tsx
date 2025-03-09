@@ -1,9 +1,11 @@
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
 import {ResolvedItem} from "@/lib/service/types";
-import {getExternalWikiLink} from "@/lib/game/content";
+import {getResolvedItemLink} from "@/lib/game/content";
+import {getParams} from "@nimpl/getters/get-params";
 
 export default function RecipeIngredientDisplay({count, item}: { count: number; item: ResolvedItem }) {
-  const href = getExternalWikiLink(item.id);
+  const params = getParams() || {};
+  const href = getResolvedItemLink(params, item);
   const ContentDiv: any = href != null ? 'a' : 'div';
 
   return (

@@ -54,6 +54,7 @@
 
     /* Font */
     --font-size-modifier: 0.98;
+    --font-minecraft: 'Minecraft';
 
     --text-xs: calc(0.75rem * var(--font-size-modifier));
     --text-xs--line-height: calc(1 / 0.75);

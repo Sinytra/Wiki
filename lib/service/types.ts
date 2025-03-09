@@ -34,6 +34,7 @@ export interface RecipeItem {
   id: string;
   name?: string;
   sources: string[];
+  has_page: boolean;
 }
 
 export interface RecipeItemStack extends RecipeItem {
@@ -68,6 +69,8 @@ export interface ResolvedItem {
   id: string;
   src: AssetLocation;
   name: string;
+  project: string | null;
+  has_page: boolean;
 }
 
 export type ProjectContentTree = ProjectContentEntry[];
