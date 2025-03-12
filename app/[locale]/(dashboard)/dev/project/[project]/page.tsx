@@ -6,7 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import {Link} from "@/lib/locales/routing";
+import {Link, setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
@@ -16,14 +16,7 @@ import DevProjectLogs from "@/components/dev/DevProjectLogs";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
 import ProjectRevalidateForm from "@/components/dev/modal/ProjectRevalidateForm";
 import {pick} from "lodash";
-import {
-  fetchProjectLog,
-  handleDeleteProjectForm,
-  handleEditProjectForm,
-  handleRevalidateDocs
-} from "@/lib/forms/actions";
-import ProjectSettingsForm from "@/components/dev/modal/ProjectSettingsForm";
-import ProjectDeleteForm from "@/components/dev/modal/ProjectDeleteForm";
+import {fetchProjectLog, handleRevalidateDocs} from "@/lib/forms/actions";
 import {
   BookMarkedIcon,
   CheckIcon,
@@ -42,8 +35,6 @@ import {
 } from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {Button} from "@/components/ui/button";
-import ProjectSettingsContextProvider from "@/components/dev/modal/ProjectSettingsContextProvider";
-import ProjectSourceSettingsButton from "@/components/dev/ProjectSourceSettingsButton";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {format} from "date-fns";
 import {ProjectHostingPlatforms, ProjectTypeIcons} from "@/lib/docs/projectInfo";
@@ -55,7 +46,11 @@ import authSession from "@/lib/authSession";
 
 export const dynamic = 'force-dynamic';
 
-function ValueTableCell({className, hideOverflow, children}: { className?: string; hideOverflow?: boolean; children?: any }) {
+function ValueTableCell({className, hideOverflow, children}: {
+  className?: string;
+  hideOverflow?: boolean;
+  children?: any
+}) {
   return (
     <td className={className}>
       <div className={cn('slim-scrollbar sm:max-w-sm break-all', !hideOverflow && 'overflow-auto')}>
@@ -92,7 +87,6 @@ function ProjectSource({project}: { project: DevProject }) {
               <ExternalLinkIcon className="w-4 h-4"/>
             </Button>
           </LocaleNavLink>
-          <ProjectSourceSettingsButton/>
         </div>
       </div>
 
@@ -250,68 +244,60 @@ async function ProfileProject({project}: { project: DevProject }) {
   // TODO Find alternative
   const token = authSession.getSession()?.token!;
 
-  return <>
-    <ProjectSettingsContextProvider>
-      <div className="flex flex-col justify-between gap-3">
-        <div
-          className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">
-          <img className="rounded-sm w-12 h-12 sm:w-[84px] sm:h-[84px]" src={platformProject.icon_url} alt="Project icon"/>
+  return (
+    <div className="flex flex-col justify-between gap-3">
+      <div
+        className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">
+        <img className="rounded-sm" width={76} height={76}
+             src={platformProject.icon_url} alt="Project icon"/>
 
-          <div className="flex flex-col gap-2">
-            <p className="text-primary font-medium sm:text-lg">
-              {platformProject.name}
-            </p>
-            <p className="text-secondary font-normal min-h-6 text-sm sm:text-base">
-              {platformProject.summary}
-            </p>
-          </div>
+        <div className="flex flex-col gap-2">
+          <p className="text-primary font-medium sm:text-lg">
+            {platformProject.name}
+          </p>
+          <p className="text-secondary font-normal min-h-6 text-sm sm:text-base">
+            {platformProject.summary}
+          </p>
         </div>
-
-        <div className="flex flex-row flex-wrap gap-4 items-center">
-          <LocaleNavLink href={`/project/${project.id}`} target="_blank">
-            <Button variant="outline" size="sm">
-              <ExternalLinkIcon className="mr-2 w-4 h-4"/>
-              {t('toolbar.view')}
-            </Button>
-          </LocaleNavLink>
-          <NextIntlClientProvider messages={pick(messages, 'ProjectRevalidateForm', 'FormActions')}>
-            <ProjectRevalidateForm action={handleRevalidateDocs.bind(null, project.id)}/>
-          </NextIntlClientProvider>
-          <div className="flex flex-row gap-4 items-center ml-auto">
-            <NextIntlClientProvider
-              messages={pick(messages, 'ProjectSettingsForm', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
-              <ProjectSettingsForm mod={project} formAction={handleEditProjectForm}/>
-            </NextIntlClientProvider>
-            <NextIntlClientProvider messages={pick(messages, 'ProjectDeleteForm')}>
-              <ProjectDeleteForm action={handleDeleteProjectForm.bind(null, project.id)}/>
-            </NextIntlClientProvider>
-          </div>
-        </div>
-
-        <hr className="my-2"/>
-
-        <div className="flex flex-row justify-between flex-wrap gap-5 sm:gap-3">
-          <ProjectSource project={project}/>
-          <ProjectPlatforms project={project}/>
-          <ProjectInfo project={project}/>
-        </div>
-
-        <hr className="my-2"/>
-
-        {project.status !== ProjectStatus.UNKNOWN &&
-          <div>
-              <NextIntlClientProvider messages={pick(messages, 'DevProjectLogs')}>
-                  <DevProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}
-                                  callback={fetchProjectLog}/>
-              </NextIntlClientProvider>
-          </div>
-        }
       </div>
-    </ProjectSettingsContextProvider>
-  </>
+
+      <div className="flex flex-row flex-wrap gap-4 items-center">
+        <LocaleNavLink href={`/project/${project.id}`} target="_blank">
+          <Button variant="outline" size="sm">
+            <ExternalLinkIcon className="mr-2 w-4 h-4"/>
+            {t('toolbar.view')}
+          </Button>
+        </LocaleNavLink>
+        <NextIntlClientProvider messages={pick(messages, 'ProjectRevalidateForm', 'FormActions')}>
+          <ProjectRevalidateForm action={handleRevalidateDocs.bind(null, project.id)}/>
+        </NextIntlClientProvider>
+      </div>
+
+      <hr className="my-2"/>
+
+      <div className="flex flex-row justify-between flex-wrap gap-5 sm:gap-3">
+        <ProjectSource project={project}/>
+        <ProjectPlatforms project={project}/>
+        <ProjectInfo project={project}/>
+      </div>
+
+      <hr className="my-2"/>
+
+      {project.status !== ProjectStatus.UNKNOWN &&
+        <div>
+            <NextIntlClientProvider messages={pick(messages, 'DevProjectLogs')}>
+                <DevProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}
+                                callback={fetchProjectLog}/>
+            </NextIntlClientProvider>
+        </div>
+      }
+    </div>
+  )
 }
 
-export default async function DevProjectPage({params}: { params: { project: string } }) {
+export default async function DevProjectPage({params}: { params: { locale: string; project: string } }) {
+  setContextLocale(params.locale);
+
   const project = await remoteServiceApi.getDevProject(params.project);
   if (!('id' in project)) {
     return redirect('/dev');

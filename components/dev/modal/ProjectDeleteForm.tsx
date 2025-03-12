@@ -51,9 +51,11 @@ export default function ProjectDeleteForm({action}: Properties) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="border-destructive-secondary">
-          <TrashIcon className="sm:mr-2 w-4 h-4"/>
-          <span className="hidden sm:block">{t('trigger')}</span>
+        <Button variant="destructive" size="sm" className="font-semibold bg-primary hover:bg-secondary/80 border data-[pending=true]:text-destructive/90 border-destructive-secondary">
+          <TrashIcon className="mr-2 w-4 h-4"/>
+          <span>
+            {t('trigger')}
+          </span>
         </Button>
       </DialogTrigger>
       <DialogContent>

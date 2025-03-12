@@ -13,7 +13,15 @@ import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import {cn} from "@/lib/utils";
 import platforms, {PlatformProject} from "@/lib/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
-import {BookMarkedIcon, CheckIcon, GitBranchIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon} from "lucide-react";
+import {
+  BookMarkedIcon,
+  CheckIcon,
+  CircleCheckIcon,
+  GitBranchIcon,
+  HelpCircleIcon,
+  LoaderCircleIcon,
+  SettingsIcon
+} from "lucide-react";
 import {Link} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
@@ -110,8 +118,8 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
         <div className="flex flex-col gap-3 w-full flex-wrap sm:flex-row">
           <div className="flex flex-row flex-wrap gap-4 gap-y-2 sm:gap-5">
             <Property
-              iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-500' : 'text-secondary '}
-              icon={project.status === ProjectStatus.LOADED ? CheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
+              iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-400/70' : 'text-secondary '}
+              icon={project.status === ProjectStatus.LOADED ? CircleCheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
               {u(project.status || ProjectStatus.UNKNOWN)}
             </Property>
             <Property icon={BookMarkedIcon}>

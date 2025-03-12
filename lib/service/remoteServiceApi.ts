@@ -77,6 +77,14 @@ export interface FeaturedProject {
   }
 }
 
+export interface ProjectContentPage {
+  id: string;
+  name: string;
+  path: string;
+}
+
+export type ProjectContentPages = ProjectContentPage[];
+
 export function assertBackendUrl(): string {
   if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
     throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
@@ -127,6 +135,10 @@ async function getDevProject(id: string): Promise<DevProject | StatusResponse> {
 
 async function getProjectDevLog(id: string): Promise<string | SimpleErrorResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/log`, {}, 'GET'), a => a.content);
+}
+
+async function getDevProjectContentPages(id: string): Promise<ProjectContentPages | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/pages`, {}, 'GET'));
 }
 
 async function registerProject(data: ProjectRegisterRequest): Promise<ProjectRegisterResponse | ErrorResponse> {
@@ -292,5 +304,6 @@ export default {
   getUserProfile,
   linkModrinthAcount,
   unlinkModrinthAcount,
-  deleteUserAcount
+  deleteUserAcount,
+  getDevProjectContentPages
 }

@@ -90,7 +90,7 @@ function WaitingLogs() {
 export default function DevProjectLogs({id, status, token, callback}: {
   id: string;
   status: ProjectStatus;
-  token: string;
+  token?: string;
   callback: (id: string) => Promise<string | undefined>;
 }) {
   const t = useTranslations('DevProjectLogs');

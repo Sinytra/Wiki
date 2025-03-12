@@ -327,7 +327,7 @@
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Delete",
+        "trigger": "Delete project",
         "title": "Are you absolutely sure?",
         "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
         "cancel": "Cancel",
@@ -564,5 +564,19 @@
     "DocsEntryTabs": {
         "history": "Show history",
         "home": "Show content"
+    },
+    "DevProjectSidebar": {
+        "groups": {
+            "project": "Project",
+            "content": "Content"
+        },
+        "nav": {
+            "home": "Overview",
+            "settings": "Settings",
+            "health": "Health",
+            "content": "Items",
+            "tags": "Tags",
+            "recipes": "Recipes"
+        }
     }
 }

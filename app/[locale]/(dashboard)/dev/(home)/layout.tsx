@@ -1,4 +1,4 @@
-import {DeveloperSidebar} from "@/components/dev/DeveloperSidebar";
+import {DeveloperSidebar} from "@/components/dev/sidebar/DeveloperSidebar";
 import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {NextIntlClientProvider} from "next-intl";

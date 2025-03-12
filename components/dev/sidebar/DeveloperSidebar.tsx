@@ -3,9 +3,9 @@
 import * as React from 'react';
 import {BookOpen, PencilRulerIcon, Settings2, UserIcon} from 'lucide-react';
 
-import {DevSidebarMainNav} from "@/components/dev/DevSidebarMainNav";
-import {DevSidebarUser} from "@/components/dev/DevSidebarUser";
-import {DevSidebarContextSwitcher} from "@/components/dev/DevSidebarContextSwitcher";
+import {DevSidebarMainNav} from "@/components/dev/sidebar/DevSidebarMainNav";
+import {DevSidebarUser} from "@/components/dev/sidebar/DevSidebarUser";
+import {DevSidebarContextSwitcher} from "@/components/dev/sidebar/DevSidebarContextSwitcher";
 import {
   Sidebar,
   SidebarContent,
@@ -18,7 +18,7 @@ import {
 import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
 import {UserProfile} from "@/lib/service/remoteServiceApi";
-import DevSidebarMenuItem from "@/components/dev/DevSidebarMenuItem";
+import DevSidebarMenuItem from "@/components/dev/sidebar/DevSidebarMenuItem";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;

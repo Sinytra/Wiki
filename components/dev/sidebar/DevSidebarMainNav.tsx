@@ -3,7 +3,7 @@
 import {Collapsible,} from "@/components/ui/collapsible"
 import {SidebarGroup, SidebarGroupLabel, SidebarMenu,} from "@/components/ui/sidebar"
 import {useTranslations} from "next-intl";
-import DevSidebarMenuItem, {Props as DevSidebarMenuItemProps} from "@/components/dev/DevSidebarMenuItem";
+import DevSidebarMenuItem, {Props as DevSidebarMenuItemProps} from "@/components/dev/sidebar/DevSidebarMenuItem";
 import * as React from "react";
 import {usePathname} from "@/lib/locales/routing";
 
