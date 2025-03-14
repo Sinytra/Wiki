@@ -93,6 +93,7 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
         rehypeMarkdownHeadings,
         () => (tree: any) => {
           const newTree = {...tree};
+          console.log(newTree);
           return sanitizeHastTree(newTree, components);
         }
       ],
@@ -119,22 +120,24 @@ const mdxElemets = ['mdxJsxFlowElement', 'mdxJsxTextElement'];
 
 function sanitizeHastTree(tree: any, components: any) {
   if (mdxElemets.includes(tree.type)) {
-    if (components[tree.name] !== undefined || markdownRehypeSchema.tagNames!.includes(tree.name)) {
+    if (components[tree.name] !== undefined) {
       return tree;
     }
-    return null;
+    if (!tree.name || !markdownRehypeSchema.tagNames!.includes(tree.name)) {
+      return null;
+    }
+  } else {
+    if (tree.tagName && !markdownRehypeSchema.tagNames!.includes(tree.tagName)) {
+      return null;
+    }
   }
 
   let sanitized = tree;
-  if (tree.tagName && !markdownRehypeSchema.tagNames!.includes(tree.tagName)) {
-    return null;
-  }
   if (tree.children) {
     sanitized.children = tree.children
       .map((c: any) => sanitizeHastTree(c, components))
       .filter((c: any) => c != null);
   }
-
   return sanitized;
 }
 
