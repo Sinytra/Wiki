@@ -10,6 +10,7 @@ import platforms from "@/lib/platforms";
 
 export const dynamic = 'force-dynamic';
 
+// TODO Mobile sidebar
 export default async function DevLayout({ params, children }: { params: { locale: string; project: string }; children?: any }) {
   setContextLocale(params.locale);
 

@@ -8,7 +8,7 @@ import {
   LayoutGridIcon, PencilRulerIcon,
   ScrollTextIcon,
   SettingsIcon,
-  TagsIcon
+  TagsIcon, UsersIcon
 } from 'lucide-react';
 import {
   Sidebar,
@@ -68,6 +68,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
             <DevSidebarMenuItem url={baseUrl} icon={PencilRulerIcon} title={t('nav.home')} />
             <DevSidebarMenuItem url={`${baseUrl}/settings`} icon={SettingsIcon} title={t('nav.settings')} />
             <DevSidebarMenuItem url={`${baseUrl}/health`} icon={ActivityIcon} title={t('nav.health')} />
+            <DevSidebarMenuItem url={`${baseUrl}/members`} icon={UsersIcon} title={t('nav.members')} />
           </SidebarMenu>
         </SidebarGroup>
 

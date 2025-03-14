@@ -33,7 +33,7 @@ export default function Browse({params, searchParams}: Properties) {
 
   return (
     <NuqsAdapter>
-      <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center page-wrapper-ext">
+      <div className="flex flex-col md:flex-row gap-2 sm:gap-4 w-full md:justify-center page-wrapper-ext">
         <aside
           className="px-1 md:p-1.5 md:pt-2 bg-primary-alt rounded-md w-full md:w-64 mb-2 md:mb-0 shrink-0 md:sticky md:top-[75px] md:h-[calc(100vh_-_8rem)]"
         >

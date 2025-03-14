@@ -12,28 +12,15 @@ import {CodeXmlIcon, ExternalLinkIcon, LightbulbIcon, TriangleAlertIcon} from "l
 import {useTranslations} from "next-intl";
 import {projectEditSchema} from "@/lib/forms/schemas";
 import * as React from "react";
+import {useState} from "react";
 import {toast} from "sonner";
 import {Link} from "@/lib/locales/routing";
-import {useState} from "react";
-
-function SectionHeader({title, desc, icon: Icon}: { title: string; desc: string; icon?: any }) {
-  return (
-    <div className="space-y-1">
-      <h3 className="text-lg font-medium flex flex-row items-center gap-2">
-        {Icon && <Icon className="size-5" />}
-        {title}
-      </h3>
-      <p className="text-sm text-secondary">
-        {desc}
-      </p>
-    </div>
-  )
-}
+import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
 
 function SourceSection({form}: { form: any }) {
   return (
     <div className="space-y-5">
-      <SectionHeader title="Source" desc="Project source repository coordinates." icon={CodeXmlIcon} />
+      <DevProjectSectionTitle title="Source" desc="Project source repository coordinates." icon={CodeXmlIcon} />
 
       <hr/>
 
@@ -102,7 +89,7 @@ function SourceSection({form}: { form: any }) {
 function DangerSection({deleteFunc}: { deleteFunc: any }) {
   return (
     <div className="space-y-5">
-      <SectionHeader title="Danger zone"
+      <DevProjectSectionTitle title="Danger zone"
                      desc="These are destcructive actions. Proceed with caution."
                      icon={TriangleAlertIcon}
       />
@@ -110,7 +97,7 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
       <hr/>
 
       <div className="space-y-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex flex-col gap-1">
             <span>
               Delete project
@@ -182,18 +169,6 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
   return (
     <Form {...form}>
       <form action={action} className="flex flex-col h-full space-y-5">
-        <div className="space-y-3">
-          <div className="space-y-1">
-            <h3 className="text-xl font-medium">
-              Project settings
-            </h3>
-            <p className="text-sm text-secondary">
-              Configure project properties.
-            </p>
-          </div>
-          <hr className="border-primary"/>
-        </div>
-
         <SourceSection form={form}/>
 
         <div className="ml-auto w-fit">

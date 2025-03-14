@@ -8,11 +8,12 @@ import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {useRouter} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
 import highlighter from "@/lib/markdown/highlighter";
+import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
 
 function Skeleton({children}: { children: any }) {
   return (
     <div
-      className="text-secondary w-full rounded-md flex flex-col gap-3 justify-center items-center h-72 bg-[#0d1117]">
+      className="text-secondary w-full rounded-md flex flex-col gap-3 justify-center items-center h-80 bg-[#0d1117]">
       {children}
     </div>
   )
@@ -31,7 +32,7 @@ function RenderedLogBody({lines}: { lines: string[] }) {
 
   return (
     <div ref={containerRef} className="bg-[#0d1117] slim-scrollbar">
-      <pre className="text-xs slim-scrollbar slim-scrollbar-scrollbar-primary overflow-y-auto h-72 p-2 rounded-md">
+      <pre className="text-xs slim-scrollbar slim-scrollbar-scrollbar-primary overflow-y-auto h-80 p-2 rounded-md">
         {...lines.map((s, i) => (
           <p key={i}>
             {highlighter.highlightLine(s)}
@@ -156,21 +157,17 @@ export default function DevProjectLogs({id, status, token, callback}: {
   }, [status]);
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex flex-row justify-between gap-4">
-        <div className="flex flex-row items-center gap-2">
-          <ScrollTextIcon className="w-4 h-4"/>
-          <span>
-            {t('title')}
-          </span>
-          {wsOpen &&
-            <div className="ml-1 inline-flex items-center rounded-full p-1 bg-green-900 text-green-300">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            </div>
-          }
-        </div>
-      </div>
-      <div className="mt-2">
+    <div className="flex flex-col gap-4">
+      <DevProjectSectionTitle title={t('title')} desc="Server-side project log" icon={ScrollTextIcon}
+                              ping={
+                                wsOpen &&
+                                <div className="ml-1 inline-flex items-center rounded-full p-1 bg-green-900 text-green-300">
+                                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </div>
+                              }
+      />
+
+      <div>
         {lines ? <RenderedLogBody lines={lines}/> :
           wsOpen ? <WaitingLogs/>
             : logPromise ?

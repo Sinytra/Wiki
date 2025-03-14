@@ -1,131 +1,61 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from "@/components/ui/breadcrumb";
-import {Link, setContextLocale} from "@/lib/locales/routing";
+import {setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {DevProject, Project} from "@/lib/service";
 import {getMessages, getTranslations} from "next-intl/server";
-import DevProjectLogs from "@/components/dev/DevProjectLogs";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
 import ProjectRevalidateForm from "@/components/dev/modal/ProjectRevalidateForm";
 import {pick} from "lodash";
-import {fetchProjectLog, handleRevalidateDocs} from "@/lib/forms/actions";
+import {handleRevalidateDocs} from "@/lib/forms/actions";
 import {
-  BookMarkedIcon,
   CheckIcon,
   ClockIcon,
   CloudyIcon,
-  CodeXmlIcon,
   ExternalLinkIcon,
-  GitBranchIcon,
   GlobeIcon,
   HelpCircleIcon,
   InfoIcon,
   LoaderCircleIcon,
-  MapIcon,
-  ServerIcon,
+  LockIcon,
   XIcon
 } from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {Button} from "@/components/ui/button";
-import LinkTextButton from "@/components/ui/link-text-button";
 import {format} from "date-fns";
 import {ProjectHostingPlatforms, ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {cn} from "@/lib/utils";
-import {SidebarTrigger} from "@/components/ui/sidebar";
-import authSession from "@/lib/authSession";
+import * as React from "react";
+import DevProjectPageTitle from "@/components/dev/DevProjectPageTitle";
+import {Label} from "@/components/ui/label";
+import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
 
 export const dynamic = 'force-dynamic';
 
-function ValueTableCell({className, hideOverflow, children}: {
+function DataField({title, className, icon: Icon, value, iconClass, href}: {
+  title: string;
   className?: string;
-  hideOverflow?: boolean;
-  children?: any
+  icon?: any;
+  value: any;
+  iconClass?: string;
+  href?: string;
 }) {
+  const Element = href ? 'a' : 'div';
   return (
-    <td className={className}>
-      <div className={cn('slim-scrollbar sm:max-w-sm break-all', !hideOverflow && 'overflow-auto')}>
-        {children}
-      </div>
-    </td>
-  )
-}
-
-function IconTableCell({icon: Icon, children}: { icon: any; children?: any }) {
-  return (
-    <td className="whitespace-nowrap">
-      <Icon className="inline-block sm:mb-0.5 mr-2 w-4 h-4"/>
-      {children}
-    </td>
-  )
-}
-
-function ProjectSource({project}: { project: DevProject }) {
-  const t = useTranslations('DevProjectPage.source');
-  const Icon = project.is_public ? CheckIcon : XIcon;
-
-  return (
-    <div className="flex flex-col gap-3 min-w-0">
-      <div className="w-full flex flex-row justify-between">
-        <div className="flex flex-row items-center gap-2">
-          <CodeXmlIcon className="w-5 h-5"/>
-          {t('title')}
+    <div className="flex flex-col gap-y-3">
+      <Label>
+        {title}
+      </Label>
+      <Element href={href} target="_blank" className="relative">
+        {Icon && <Icon className={cn('absolute inset-0 top-1/2 -translate-y-1/2 left-3 size-4', iconClass)}/>}
+        <div className={cn('flex h-10 w-full rounded-md border border-quaternary bg-primary-dim px-3 py-2 text-sm pl-9 align-bottom leading-5.5',
+          Icon && 'pl-9', href && 'hover:underline underline-offset-4', className)}>
+          {value}
         </div>
-
-        <div className="flex flex-row gap-2">
-          <LocaleNavLink href={project.source_repo} target="_blank">
-            <Button variant="outline" size="icon" className="w-8 h-8">
-              <ExternalLinkIcon className="w-4 h-4"/>
-            </Button>
-          </LocaleNavLink>
-        </div>
-      </div>
-
-      <table>
-        <tbody>
-        <tr>
-          <IconTableCell icon={BookMarkedIcon}>
-            {t('repo')}
-          </IconTableCell>
-          <ValueTableCell>
-            {project.source_repo}
-          </ValueTableCell>
-        </tr>
-        <tr>
-          <IconTableCell icon={GitBranchIcon}>
-            {t('branch')}
-          </IconTableCell>
-          <ValueTableCell>
-            {project.source_branch}
-          </ValueTableCell>
-        </tr>
-        <tr>
-          <IconTableCell icon={MapIcon}>
-            {t('path')}
-          </IconTableCell>
-          <ValueTableCell>
-            {project.source_path}
-          </ValueTableCell>
-        </tr>
-        <tr>
-          <IconTableCell icon={GlobeIcon}>
-            {t('public')}
-          </IconTableCell>
-          <td>
-            <Icon className="w-5 h-5"/>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+        {href && <ExternalLinkIcon className="absolute top-1/2 -translate-y-1/2 right-3 size-4" />}
+      </Element>
     </div>
   )
 }
@@ -136,45 +66,18 @@ async function ProjectPlatforms({project}: { project: Project }) {
   const entries = await Promise.all(Object.keys(project.platforms).map(async platform => {
     const p = ProjectHostingPlatforms[platform as ProjectPlatform]!;
     const value = project.platforms[platform as ProjectPlatform] as any;
-    const url = await platforms.getProjectURL(platform as ProjectPlatform, value);
+    const url = await platforms.getProjectURL(platform as ProjectPlatform, value); // TODO
 
-    return (
-      <tr key={platform}>
-        <IconTableCell icon={p.icon}>
-          {p.name}
-        </IconTableCell>
-        <ValueTableCell>
-          {value}
-        </ValueTableCell>
-        <td>
-          <LinkTextButton className="align-middle mb-0.5" target="_blank" href={url}>
-            <ExternalLinkIcon className="mr-2 w-4 h-4 text-secondary"/>
-            {t('open')}
-          </LinkTextButton>
-        </td>
-      </tr>
-    );
+    return <DataField className="font-mono" title={p.name} icon={p.icon} value={value} href={url} />;
   }));
 
   return (
-    <div className="flex flex-col gap-3 min-w-0">
-      <div className="flex flex-row items-center gap-2">
-        <CloudyIcon className="w-5 h-5"/>
-        {t('title')}
-      </div>
+    <div className="w-full max-w-lg flex flex-col gap-5 min-w-0">
+      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={CloudyIcon} />
 
-      <table>
-        <thead>
-        <tr className="[&_th]:text-sm sm:[&_th]:text-base">
-          <th>{t('headers.platform')}</th>
-          <th>{t('headers.slug')}</th>
-          <th>{t('headers.link')}</th>
-        </tr>
-        </thead>
-        <tbody>
+      <div className="space-y-5">
         {...entries}
-        </tbody>
-      </table>
+      </div>
     </div>
   )
 }
@@ -186,7 +89,7 @@ function ProjectInfo({project}: { project: Project }) {
   const TypeIcon = ProjectTypeIcons[project.type];
 
   const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectStatus.LOADED]: {text: 'text-[var(--vp-c-success-3)]', icon: CheckIcon},
+    [ProjectStatus.LOADED]: {text: 'text-[var(--vp-c-success-2)]', icon: CheckIcon},
     [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
     [ProjectStatus.ERROR]: {text: 'text-destructive', icon: XIcon},
     [ProjectStatus.UNKNOWN]: {text: '', icon: HelpCircleIcon}
@@ -195,43 +98,20 @@ function ProjectInfo({project}: { project: Project }) {
   const StatusIcon = statuses[status].icon;
 
   return (
-    <div className="flex flex-col gap-3 min-w-0">
-      <div className="w-full flex flex-row justify-between">
-        <div className="flex flex-row items-center gap-2">
-          <InfoIcon className="w-5 h-5"/>
-          {t('title')}
-        </div>
-      </div>
+    <div className="w-full max-w-lg flex flex-col gap-4 min-w-0">
+      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={InfoIcon} />
 
-      <table>
-        <tbody>
-        <tr>
-          <IconTableCell icon={TypeIcon}>
-            {t('type')}
-          </IconTableCell>
-          <ValueTableCell>
-            {v(project.type)}
-          </ValueTableCell>
-        </tr>
-        <tr>
-          <IconTableCell icon={ServerIcon}>
-            {t('status')}
-          </IconTableCell>
-          <ValueTableCell className={statuses[status].text} hideOverflow>
-            <StatusIcon className={cn('mr-1 sm:mb-0.5 inline-block w-5 h-5', statuses[status].iconClass)}/>
-            {u(status)}
-          </ValueTableCell>
-        </tr>
-        <tr>
-          <IconTableCell icon={ClockIcon}>
-            {t('created_at')}
-          </IconTableCell>
-          <ValueTableCell>
-            {project.created_at && format(project.created_at, 'yyyy-MM-dd HH:mm')}
-          </ValueTableCell>
-        </tr>
-        </tbody>
-      </table>
+      <div className="space-y-5">
+        <DataField title={t('type')} icon={TypeIcon} value={v(project.type)}/>
+        {/*TODO Live update*/}
+        <DataField title={t('status')} icon={StatusIcon} value={u(status)} className={statuses[status].text}
+                   iconClass={cn(statuses[status].text, statuses[status].iconClass)}/>
+        <DataField title={t('created_at')} icon={ClockIcon}
+                   value={project.created_at && format(project.created_at, 'yyyy-MM-dd HH:mm')}/>
+
+        <DataField title="Source visibility" icon={project.is_public ? GlobeIcon : LockIcon}
+                   value={project.is_public ? 'Public' : 'Private'}/>
+      </div>
     </div>
   )
 }
@@ -241,17 +121,15 @@ async function ProfileProject({project}: { project: DevProject }) {
   const t = await getTranslations('DevProjectPage');
   const messages = await getMessages();
 
-  // TODO Find alternative
-  const token = authSession.getSession()?.token!;
-
   return (
-    <div className="flex flex-col justify-between gap-3">
+    <div className="py-1 flex flex-col justify-between gap-3">
+      <DevProjectPageTitle title="Project overview" desc="Project information summary"/>
+
       <div
         className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">
-        <img className="rounded-sm" width={76} height={76}
-             src={platformProject.icon_url} alt="Project icon"/>
+        <img className="rounded-sm size-16 sm:size-19" src={platformProject.icon_url} alt="Project icon"/>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col justify-between">
           <p className="text-primary font-medium sm:text-lg">
             {platformProject.name}
           </p>
@@ -275,22 +153,10 @@ async function ProfileProject({project}: { project: DevProject }) {
 
       <hr className="my-2"/>
 
-      <div className="flex flex-row justify-between flex-wrap gap-5 sm:gap-3">
-        <ProjectSource project={project}/>
-        <ProjectPlatforms project={project}/>
+      <div className="flex flex-row flex-wrap justify-between gap-5">
         <ProjectInfo project={project}/>
+        <ProjectPlatforms project={project}/>
       </div>
-
-      <hr className="my-2"/>
-
-      {project.status !== ProjectStatus.UNKNOWN &&
-        <div>
-            <NextIntlClientProvider messages={pick(messages, 'DevProjectLogs')}>
-                <DevProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}
-                                callback={fetchProjectLog}/>
-            </NextIntlClientProvider>
-        </div>
-      }
     </div>
   )
 }
@@ -303,33 +169,9 @@ export default async function DevProjectPage({params}: { params: { locale: strin
     return redirect('/dev');
   }
 
-  const t = await getTranslations('DevProjectPage');
-  const platformProject = await platforms.getPlatformProject(project);
-
   return (
     <GetStartedContextProvider>
-      <div>
-        <Breadcrumb className="mt-1 sm:mt-0 mb-4">
-          <BreadcrumbList>
-            <SidebarTrigger className="-ml-1 mr-1 sm:hidden text-primary"/>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/dev">
-                  {t('breadcrumbs.home')}
-                </Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator/>
-            <BreadcrumbItem>
-              <BreadcrumbPage>
-                {platformProject.name}
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-
-        <ProfileProject project={project}/>
-      </div>
+      <ProfileProject project={project}/>
     </GetStartedContextProvider>
   )
 }

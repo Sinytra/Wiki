@@ -6,6 +6,8 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 import {handleDeleteProjectForm, handleEditProjectForm} from "@/lib/forms/actions";
+import DevProjectPageTitle from "@/components/dev/DevProjectPageTitle";
+import * as React from "react";
 
 export default async function DevProjectSettingsPage({params}: { params: { locale: string; project: string } }) {
   setContextLocale(params.locale);
@@ -18,7 +20,9 @@ export default async function DevProjectSettingsPage({params}: { params: { local
   const messages = await getMessages();
 
   return (
-    <div className="h-full pt-1 pb-4">
+    <div className="flex flex-col h-full pt-1 pb-4 gap-y-4">
+      <DevProjectPageTitle title="Project settings" desc="Configure project properties" />
+
       <NextIntlClientProvider messages={pick(messages, 'ProjectRegisterForm', 'ProjectSettingsForm', 'ProjectDeleteForm', 'FormActions')}>
         <DevProjectSettings
           project={project}

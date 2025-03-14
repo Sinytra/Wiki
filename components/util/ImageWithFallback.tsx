@@ -36,7 +36,7 @@ export default function ImageWithFallback({
                                        height={fbHeight || height}/>;
 
   return (
-    <div>
+    <div className="shrink-0">
       {src && !error &&
         <img src={src} alt={alt} width={width} height={height} className={className}
              style={{display: !loading || loaded ? 'block' : 'none'}}

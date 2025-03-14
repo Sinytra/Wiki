@@ -573,6 +573,7 @@
         "nav": {
             "home": "Overview",
             "settings": "Settings",
+            "members": "Members",
             "health": "Health",
             "content": "Items",
             "tags": "Tags",

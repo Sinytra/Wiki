@@ -14,10 +14,7 @@ import {cn} from "@/lib/utils";
 import platforms, {PlatformProject} from "@/lib/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {
-  BookMarkedIcon,
-  CheckIcon,
   CircleCheckIcon,
-  GitBranchIcon,
   HelpCircleIcon,
   LoaderCircleIcon,
   SettingsIcon
@@ -96,36 +93,36 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
   const u = await getTranslations('ProjectStatus');
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-tertiary rounded-md bg-primary-alt">
+    <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-tertiary rounded-md bg-primary-dim">
       <MobileProjectHeader id={project.id} project={platformProject} />
 
-      <div className="hidden sm:block shrink-0">
-        <img className="rounded-md size-20 lg:size-22" src={platformProject.icon_url} alt="Project icon"/>
+      <div className="hidden sm:block shrink-0 my-auto">
+        <img className="rounded-md size-20" src={platformProject.icon_url} alt="Project icon"/>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
         <div className="hidden sm:flex flex-col">
           <div>
-            <LinkTextButton className="w-fit! text-primary! font-medium! text-lg!" href={getProjectLink(project.id)}>
+            <LinkTextButton className="w-fit! text-primary! font-normal! text-lg!" href={getProjectLink(project.id)}>
               {platformProject.name}
             </LinkTextButton>
           </div>
-          <p className="text-secondary font-normal">
+          <p className="text-secondary font-normal text-sm">
             {platformProject.summary.length > 100 ? `${platformProject.summary.substring(0, 100)}...` : platformProject.summary}
           </p>
         </div>
 
-        <div className="flex flex-col gap-3 w-full flex-wrap sm:flex-row">
+        <div className="flex flex-row gap-3 w-full flex-wrap">
           <div className="flex flex-row flex-wrap gap-4 gap-y-2 sm:gap-5">
             <Property
               iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-400/70' : 'text-secondary '}
               icon={project.status === ProjectStatus.LOADED ? CircleCheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
               {u(project.status || ProjectStatus.UNKNOWN)}
             </Property>
-            <Property icon={BookMarkedIcon}>
-              <LinkTextButton className="font-normal! align-bottom!" href={project.source_repo!}>{project.source_repo}</LinkTextButton>
-            </Property>
-            <Property icon={GitBranchIcon}>{project.source_branch}</Property>
+            {/*<Property icon={BookMarkedIcon}>*/}
+            {/*  <LinkTextButton className="font-normal! align-bottom!" href={project.source_repo!}>{project.source_repo}</LinkTextButton>*/}
+            {/*</Property>*/}
+            {/*<Property icon={GitBranchIcon}>{project.source_branch}</Property>*/}
           </div>
 
           <div className="ml-auto">

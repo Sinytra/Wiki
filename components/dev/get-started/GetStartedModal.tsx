@@ -102,7 +102,7 @@ export default function GetStartedModal({
             button={t('community.button')}
             icon={UsersIcon}
             buttonIcon={BookOpenIcon}
-            href="/about/community"
+            href="/about/devs/community"
           />
         </div>
       </DialogContent>
