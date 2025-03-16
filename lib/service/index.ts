@@ -13,6 +13,13 @@ import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
 
 export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
 
+export interface PaginatedData<T> {
+  data: T[];
+  total: number;
+  pages: number;
+  size: number;
+}
+
 export interface BaseProject {
   id: string;
   name: string;
@@ -76,11 +83,7 @@ export interface RenderedDocsPage {
   edit_url?: string;
 }
 
-export interface ProjectSearchResults {
-  data: BaseProject[];
-  pages: number;
-  total: number;
-}
+export type ProjectSearchResults = PaginatedData<BaseProject>;
 
 export interface ContentRecipeUsage {
   id: string;

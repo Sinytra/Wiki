@@ -1,4 +1,4 @@
-import {DevProject, Project} from "@/lib/service/index";
+import {DevProject, PaginatedData, Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {ProjectType} from "@/lib/service/types";
@@ -80,10 +80,10 @@ export interface FeaturedProject {
 export interface ProjectContentPage {
   id: string;
   name: string;
-  path: string;
+  path: string | null;
 }
 
-export type ProjectContentPages = ProjectContentPage[];
+export type ProjectContentPages = PaginatedData<ProjectContentPage>;
 
 export function assertBackendUrl(): string {
   if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
@@ -137,8 +137,8 @@ async function getProjectDevLog(id: string): Promise<string | SimpleErrorRespons
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/log`, {}, 'GET'), a => a.content);
 }
 
-async function getDevProjectContentPages(id: string): Promise<ProjectContentPages | StatusResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/pages`, {}, 'GET'));
+async function getDevProjectContentPages(id: string, params: Record<string, string | null>): Promise<ProjectContentPages | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/pages`, params, 'GET'));
 }
 
 async function registerProject(data: ProjectRegisterRequest): Promise<ProjectRegisterResponse | ErrorResponse> {
