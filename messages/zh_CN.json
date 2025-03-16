@@ -26,7 +26,10 @@
                 "dev": "开发者面板"
             },
             "links": {
-                "title": "链接"
+                "title": "链接",
+                "discord": "Discord",
+                "github": "Github",
+                "donate": "捐献"
             },
             "resources": {
                 "title": "资源",
