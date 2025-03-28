@@ -82,8 +82,13 @@ export interface ProjectContentPage {
   name: string;
   path: string | null;
 }
-
 export type ProjectContentPages = PaginatedData<ProjectContentPage>;
+
+export interface DevProjectVersion {
+  name: string;
+  branch: string;
+}
+export type DevProjectVersions = PaginatedData<DevProjectVersion>;
 
 export function assertBackendUrl(): string {
   if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
@@ -139,6 +144,10 @@ async function getProjectDevLog(id: string): Promise<string | SimpleErrorRespons
 
 async function getDevProjectContentPages(id: string, params: Record<string, string | null>): Promise<ProjectContentPages | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/pages`, params, 'GET'));
+}
+
+async function getDevProjectVersions(id: string, params: Record<string, string | null>): Promise<DevProjectVersions | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/versions`, params, 'GET'));
 }
 
 async function registerProject(data: ProjectRegisterRequest): Promise<ProjectRegisterResponse | ErrorResponse> {
@@ -305,5 +314,6 @@ export default {
   linkModrinthAcount,
   unlinkModrinthAcount,
   deleteUserAcount,
-  getDevProjectContentPages
+  getDevProjectContentPages,
+  getDevProjectVersions
 }

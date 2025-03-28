@@ -4,9 +4,8 @@ import * as React from 'react';
 import {
   ActivityIcon,
   ArrowLeftIcon,
-  BoxIcon,
+  BoxIcon, GitBranchIcon,
   LayoutGridIcon, PencilRulerIcon,
-  ScrollTextIcon,
   SettingsIcon,
   TagsIcon, UsersIcon
 } from 'lucide-react';
@@ -77,6 +76,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
             {t('groups.content')}
           </SidebarGroupLabel>
           <SidebarMenu>
+            <DevSidebarMenuItem url={`${baseUrl}/versions`} icon={GitBranchIcon} title={t('nav.versions')} />
             <DevSidebarMenuItem url={`${baseUrl}/content`} icon={BoxIcon} title={t('nav.content')} />
             <DevSidebarMenuItem url={`${baseUrl}/tags`} icon={TagsIcon} title={t('nav.tags')} />
             <DevSidebarMenuItem url={`${baseUrl}/recipes`} icon={LayoutGridIcon} title={t('nav.recipes')} />

@@ -2,7 +2,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
-import {DevProject, Project} from "@/lib/service";
+import {DevProject, Project, ProjectRevision} from "@/lib/service";
 import {getMessages, getTranslations} from "next-intl/server";
 import {NextIntlClientProvider, useTranslations} from "next-intl";
 import ProjectRevalidateForm from "@/components/dev/modal/ProjectRevalidateForm";
@@ -13,6 +13,7 @@ import {
   ClockIcon,
   CloudyIcon,
   ExternalLinkIcon,
+  GitBranchIcon,
   GlobeIcon,
   HelpCircleIcon,
   InfoIcon,
@@ -31,6 +32,9 @@ import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/DevProjectPageTitle";
 import {Label} from "@/components/ui/label";
 import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
+import LocalDateTime from "@/components/util/LocalDateTime";
+import LiveProjectConnection from "@/components/dev/LiveProjectConnection";
+import authSession from "@/lib/authSession";
 
 export const dynamic = 'force-dynamic';
 
@@ -50,11 +54,12 @@ function DataField({title, className, icon: Icon, value, iconClass, href}: {
       </Label>
       <Element href={href} target="_blank" className="relative">
         {Icon && <Icon className={cn('absolute inset-0 top-1/2 -translate-y-1/2 left-3 size-4', iconClass)}/>}
-        <div className={cn('flex h-10 w-full rounded-md border border-quaternary bg-primary-dim px-3 py-2 text-sm pl-9 align-bottom leading-5.5',
-          Icon && 'pl-9', href && 'hover:underline underline-offset-4', className)}>
+        <div
+          className={cn('flex h-10 w-full rounded-md border border-quaternary bg-primary-dim px-3 py-2 text-sm pl-9 align-bottom leading-5.5',
+            Icon && 'pl-9', href && 'hover:underline underline-offset-4', className)}>
           {value}
         </div>
-        {href && <ExternalLinkIcon className="absolute top-1/2 -translate-y-1/2 right-3 size-4" />}
+        {href && <ExternalLinkIcon className="absolute top-1/2 -translate-y-1/2 right-3 size-4"/>}
       </Element>
     </div>
   )
@@ -68,12 +73,12 @@ async function ProjectPlatforms({project}: { project: Project }) {
     const value = project.platforms[platform as ProjectPlatform] as any;
     const url = await platforms.getProjectURL(platform as ProjectPlatform, value); // TODO
 
-    return <DataField className="font-mono" title={p.name} icon={p.icon} value={value} href={url} />;
+    return <DataField className="font-mono" title={p.name} icon={p.icon} value={value} href={url}/>;
   }));
 
   return (
     <div className="w-full max-w-lg flex flex-col gap-5 min-w-0">
-      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={CloudyIcon} />
+      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={CloudyIcon}/>
 
       <div className="space-y-5">
         {...entries}
@@ -99,11 +104,10 @@ function ProjectInfo({project}: { project: Project }) {
 
   return (
     <div className="w-full max-w-lg flex flex-col gap-4 min-w-0">
-      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={InfoIcon} />
+      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={InfoIcon}/>
 
       <div className="space-y-5">
         <DataField title={t('type')} icon={TypeIcon} value={v(project.type)}/>
-        {/*TODO Live update*/}
         <DataField title={t('status')} icon={StatusIcon} value={u(status)} className={statuses[status].text}
                    iconClass={cn(statuses[status].text, statuses[status].iconClass)}/>
         <DataField title={t('created_at')} icon={ClockIcon}
@@ -112,6 +116,50 @@ function ProjectInfo({project}: { project: Project }) {
         <DataField title="Source visibility" icon={project.is_public ? GlobeIcon : LockIcon}
                    value={project.is_public ? 'Public' : 'Private'}/>
       </div>
+    </div>
+  )
+}
+
+function LinkWithFallback({className, href, children}: { className?: string, href?: string; children?: any }) {
+  return (
+    href ?
+      <a href={href} target="_blank" className={cn(className, 'hover:underline hover:underline-offset-4')}>
+        {children}
+      </a>
+      :
+      <span>
+        {children}
+      </span>
+  );
+}
+
+function ProjectRevisionInfo({revision}: { revision?: ProjectRevision }) {
+  return (
+    <div className="flex flex-col p-3 rounded-sm border border-tertiary bg-primary-dim gap-2">
+      <div className="flex flex-row gap-2 items-center">
+        <GitBranchIcon className="size-4"/>
+        <span>Current git revision</span>
+      </div>
+      {revision ?
+        <div className="flex flex-row gap-4 items-start text-sm">
+          <LinkWithFallback href={revision.url} className="font-mono text-secondary shrink-0">
+            {revision.hash}
+          </LinkWithFallback>
+          <span className="text-secondary" title={revision.authorEmail}>
+            {revision.authorName}
+          </span>
+          <LinkWithFallback href={revision.url}>
+            {revision.message}
+          </LinkWithFallback>
+          <span className="ml-auto text-sm text-secondary shrink-0">
+            <LocalDateTime dateTime={new Date(revision.date)}/>
+          </span>
+        </div>
+        :
+        <div className="text-secondary text-sm">
+          No revision found. Try reloading the project.
+        </div>
+      }
     </div>
   )
 }
@@ -137,6 +185,10 @@ async function ProfileProject({project}: { project: DevProject }) {
             {platformProject.summary}
           </p>
         </div>
+      </div>
+
+      <div>
+        <ProjectRevisionInfo revision={project.revision}/>
       </div>
 
       <div className="flex flex-row flex-wrap gap-4 items-center">
@@ -169,8 +221,11 @@ export default async function DevProjectPage({params}: { params: { locale: strin
     return redirect('/dev');
   }
 
+  const token = authSession.getSession()?.token!;
+
   return (
     <GetStartedContextProvider>
+      <LiveProjectConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token} />
       <ProfileProject project={project}/>
     </GetStartedContextProvider>
   )

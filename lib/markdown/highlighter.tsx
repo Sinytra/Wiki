@@ -42,7 +42,10 @@ function colorLine(line: string, color: string) {
 
 function highlightLine(line: string) {
   const level = line.charAt(1);
-  if (level === 'E') {
+  if (level === 'C') {
+    return colorLine(line, 'text-neutral-200 bg-red-400');
+  }
+  else if (level === 'E') {
     return colorLine(line, 'text-red-400');
   } else if (level === 'I') {
     return colorLine(line, 'text-[#7EE787]');

@@ -93,7 +93,6 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
         rehypeMarkdownHeadings,
         () => (tree: any) => {
           const newTree = {...tree};
-          console.log(newTree);
           return sanitizeHastTree(newTree, components);
         }
       ],

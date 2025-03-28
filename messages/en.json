@@ -575,6 +575,7 @@
             "settings": "Settings",
             "members": "Members",
             "health": "Health",
+            "versions": "Versions",
             "content": "Items",
             "tags": "Tags",
             "recipes": "Recipes"

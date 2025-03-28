@@ -2,7 +2,6 @@
 
 import {Button} from "@/components/ui/button";
 import {InfoIcon, LightbulbIcon, Loader2Icon, RefreshCwIcon} from "lucide-react";
-import {toast} from "sonner";
 import * as React from "react";
 import {startTransition, useState} from "react";
 import {
@@ -43,7 +42,6 @@ export default function ProjectRevalidateForm({action}: Properties) {
   const formAction = async () => {
     await action();
     setOpen(false);
-    toast.info(t('success'));
     startTransition(() => router.refresh());
   }
 

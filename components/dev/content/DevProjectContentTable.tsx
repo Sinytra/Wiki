@@ -31,7 +31,7 @@ interface Properties<T> {
   columns: TableColumn<T>[];
   data: PaginatedData<T>;
   params: TableRouteParams;
-  versions: ProjectVersions;
+  versions?: ProjectVersions;
 }
 
 export default function DevProjectContentTable<T>({columns, data, params: routeParams, versions}: Properties<T>) {
@@ -68,7 +68,7 @@ export default function DevProjectContentTable<T>({columns, data, params: routeP
             defaultValue={params.query || ''}
           />
         </div>
-        {versions.length > 0 && <DevDocsVersionSelect versions={versions} />}
+        {versions && versions.length > 0 && <DevDocsVersionSelect versions={versions} />}
       </div>
       <div className="rounded-sm border border-tertiary overflow-x-auto">
         <Table className="table table-fixed w-full mb-0!">

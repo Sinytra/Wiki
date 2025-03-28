@@ -31,6 +31,16 @@ export interface BaseProject {
 
 export type ProjectVersions = string[];
 
+export interface ProjectRevision {
+  hash: string;
+  message: string;
+  authorName: string;
+  authorEmail: string;
+  date: string;
+
+  url?: string;
+}
+
 export interface Project extends BaseProject {
   is_public: boolean;
   versions?: ProjectVersions;
@@ -44,6 +54,7 @@ export interface DevProject extends Project {
   source_repo: string;
   source_branch: string;
   source_path: string;
+  revision: ProjectRevision;
 }
 
 export interface ProjectInfo {
