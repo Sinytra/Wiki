@@ -3,7 +3,7 @@
 import {Button} from "@/components/ui/button";
 import {InfoIcon, LightbulbIcon, Loader2Icon, RefreshCwIcon} from "lucide-react";
 import * as React from "react";
-import {startTransition, useState} from "react";
+import {startTransition, useContext, useState} from "react";
 import {
   Dialog,
   DialogClose,
@@ -18,6 +18,7 @@ import {useFormStatus} from "react-dom";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
+import {DevProjectSidebarContext} from "@/components/dev/project/DevProjectSidebarContextProvider";
 
 interface Properties {
   action: () => Promise<any>;
@@ -38,6 +39,7 @@ export default function ProjectRevalidateForm({action}: Properties) {
   const [open, setOpen] = useState(false);
   const t = useTranslations('ProjectRevalidateForm');
   const router = useRouter();
+  const {connected} = useContext(DevProjectSidebarContext)!;
 
   const formAction = async () => {
     await action();
@@ -48,7 +50,7 @@ export default function ProjectRevalidateForm({action}: Properties) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" disabled={connected}>
           <RefreshCwIcon className="mr-2 size-4"/>
           <span>Reload</span>
         </Button>

@@ -7,11 +7,15 @@ import DevProjectSidebar from "@/components/dev/project/DevProjectSidebar";
 import {redirect} from "next/navigation";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@/lib/platforms";
+import DevProjectSidebarContextProvider from "@/components/dev/project/DevProjectSidebarContextProvider";
 
 export const dynamic = 'force-dynamic';
 
 // TODO Mobile sidebar
-export default async function DevLayout({ params, children }: { params: { locale: string; project: string }; children?: any }) {
+export default async function DevLayout({params, children}: {
+  params: { locale: string; project: string };
+  children?: any
+}) {
   setContextLocale(params.locale);
 
   const project = await remoteServiceApi.getDevProject(params.project);
@@ -23,15 +27,17 @@ export default async function DevLayout({ params, children }: { params: { locale
   const messages = await getMessages();
 
   return (
-    <div className="w-full mx-auto sm:max-w-[92rem]">
-      <SidebarProvider className="min-h-0">
-        <NextIntlClientProvider messages={pick(messages, 'DevProjectSidebar')}>
-          <DevProjectSidebar project={project} platformProject={platformProject} />
-        </NextIntlClientProvider>
-        <SidebarInset className="px-1 sm:px-4 my-4 mx-auto min-h-0 w-full">
-          {children}
-        </SidebarInset>
-      </SidebarProvider>
-    </div>
+    <DevProjectSidebarContextProvider>
+      <div className="w-full mx-auto sm:max-w-[92rem]">
+        <SidebarProvider className="min-h-0">
+          <NextIntlClientProvider messages={pick(messages, 'DevProjectSidebar')}>
+            <DevProjectSidebar project={project} platformProject={platformProject}/>
+          </NextIntlClientProvider>
+          <SidebarInset className="px-1 sm:px-4 my-4 mx-auto min-h-0 w-full">
+            {children}
+          </SidebarInset>
+        </SidebarProvider>
+      </div>
+    </DevProjectSidebarContextProvider>
   );
 }

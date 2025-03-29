@@ -127,13 +127,13 @@ function LinkWithFallback({className, href, children}: { className?: string, hre
         {children}
       </a>
       :
-      <span>
+      <span className={className}>
         {children}
       </span>
   );
 }
 
-function ProjectRevisionInfo({revision}: { revision?: ProjectRevision }) {
+function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revision?: ProjectRevision }) {
   return (
     <div className="flex flex-col p-3 rounded-sm border border-tertiary bg-primary-dim gap-2">
       <div className="flex flex-row gap-2 items-center">
@@ -155,10 +155,15 @@ function ProjectRevisionInfo({revision}: { revision?: ProjectRevision }) {
             <LocalDateTime dateTime={new Date(revision.date)}/>
           </span>
         </div>
-        :
-        <div className="text-secondary text-sm">
-          No revision found. Try reloading the project.
-        </div>
+        : status === ProjectStatus.LOADING
+          ?
+          <div className="text-secondary text-sm">
+            Reloading project, please stand by...
+          </div>
+          :
+          <div className="text-secondary text-sm">
+            No revision found. Try reloading the project.
+          </div>
       }
     </div>
   )
@@ -188,7 +193,7 @@ async function ProfileProject({project}: { project: DevProject }) {
       </div>
 
       <div>
-        <ProjectRevisionInfo revision={project.revision}/>
+        <ProjectRevisionInfo status={project.status} revision={project.revision}/>
       </div>
 
       <div className="flex flex-row flex-wrap gap-4 items-center">
@@ -225,7 +230,7 @@ export default async function DevProjectPage({params}: { params: { locale: strin
 
   return (
     <GetStartedContextProvider>
-      <LiveProjectConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token} />
+      <LiveProjectConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}/>
       <ProfileProject project={project}/>
     </GetStartedContextProvider>
   )

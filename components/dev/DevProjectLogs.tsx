@@ -9,6 +9,7 @@ import {useRouter} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
 import highlighter from "@/lib/markdown/highlighter";
 import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
+import ConnectionIndicator from "@/components/util/ConnectionIndicator";
 
 function Skeleton({children}: { children: any }) {
   return (
@@ -159,12 +160,7 @@ export default function DevProjectLogs({id, status, token, callback}: {
   return (
     <div className="flex flex-col gap-4">
       <DevProjectSectionTitle title={t('title')} desc="Server-side project log" icon={ScrollTextIcon}
-                              ping={
-                                wsOpen &&
-                                <div className="ml-1 inline-flex items-center rounded-full p-1 bg-green-900 text-green-300">
-                                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                </div>
-                              }
+                              ping={wsOpen && <ConnectionIndicator className="ml-1" />}
       />
 
       <div>

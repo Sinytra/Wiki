@@ -1,9 +1,11 @@
 'use client'
 
 import {ProjectStatus} from "@/lib/types/serviceTypes";
-import {startTransition, useEffect, useRef} from "react";
-import {useRouter} from "@/lib/locales/routing";
+import {startTransition, useContext, useEffect, useRef} from "react";
+import {Link, useRouter} from "@/lib/locales/routing";
 import {toast} from "sonner";
+import {Button} from "@/components/ui/button";
+import {DevProjectSidebarContext} from "@/components/dev/project/DevProjectSidebarContextProvider";
 
 interface Props {
   id: string;
@@ -14,9 +16,10 @@ interface Props {
 export default function LiveProjectConnection({id, status, token}: Props) {
   const initialized = useRef(false);
   const router = useRouter();
+  const {connected, setConnected} = useContext(DevProjectSidebarContext)!;
 
   useEffect(() => {
-    if (status != ProjectStatus.LOADING || initialized.current) {
+    if (connected || status != ProjectStatus.LOADING || initialized.current) {
       return;
     }
 
@@ -38,11 +41,19 @@ export default function LiveProjectConnection({id, status, token}: Props) {
 
     ws.onopen = () => {
       console.debug('Opened WS connection for project', id);
+      setConnected(true);
 
       toast.promise(promise, {
         loading: 'Reloading project...',
         success: 'Project reload successful',
-        error: 'Error reloading project'
+        error: 'Error reloading project',
+        action: (
+          <Link href={`/dev/project/${id}/health`} className="ml-auto">
+            <Button size="sm" variant="secondary" className="rounded-sm! text-[12px]! h-6!">
+              View logs
+            </Button>
+          </Link>
+        )
       });
     }
 
@@ -54,6 +65,7 @@ export default function LiveProjectConnection({id, status, token}: Props) {
 
     ws.onclose = () => {
       console.debug('Closed WS connection for project', id);
+      setConnected(false);
       if (resolver) resolver();
       initialized.current = false;
       startTransition(() => router.refresh());
