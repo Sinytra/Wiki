@@ -1,7 +1,7 @@
 'use client'
 
 import {toast} from "sonner";
-import {useRouter} from "next-nprogress-bar";
+import {useRouter} from "@bprogress/next";
 import {Link2Icon, LoaderCircleIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {useFormStatus} from "react-dom";

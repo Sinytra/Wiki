@@ -1,6 +1,6 @@
 'use client'
 
-import {useRouter} from 'next-nprogress-bar';
+import {useRouter} from '@bprogress/next';
 import {Select} from "@/components/ui/select";
 import {usePathname} from "next/navigation";
 

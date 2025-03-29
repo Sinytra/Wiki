@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from "react"
-import {useEffect} from "react"
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow,} from "@/components/ui/table"
 import {Input} from "@/components/ui/input";
 import {cn} from "@/lib/utils";
@@ -13,6 +12,8 @@ import {Button} from "@/components/ui/button";
 import {ChevronLeft, ChevronRight, SearchIcon} from "lucide-react";
 import {useDebouncedCallback} from "use-debounce";
 import DevDocsVersionSelect from "@/components/docs/versions/DevDocsVersionSelect";
+import clientUtil from "@/lib/util/clientUtil";
+import {useEffect} from "react";
 
 export interface TableRouteParams {
   locale: string;
@@ -40,21 +41,26 @@ export default function DevProjectContentTable<T>({columns, data, params: routeP
       query: parseAsString,
       page: parseAsInteger
     },
-    { shallow: false }
+    {shallow: false}
   );
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions({shallow: false}));
+  const transition = clientUtil.usePageDataReloadTransition(true);
 
   const handleSearch = useDebouncedCallback(async (term) => {
     await setParams({query: term ? term : null, page: null});
   }, 300);
   const handlePageClick = async (event: any) => {
-    await setPage(event.selected + 1);
+    if (event.selected + 1 != page) {
+      transition(() => {
+        setPage(event.selected + 1)
+      });
+    }
   };
   const offset = data.size * (page - 1);
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({top: 0});
-  },[page]);
+  }, [page]);
 
   return (
     <div className="w-full">
@@ -68,7 +74,7 @@ export default function DevProjectContentTable<T>({columns, data, params: routeP
             defaultValue={params.query || ''}
           />
         </div>
-        {versions && versions.length > 0 && <DevDocsVersionSelect versions={versions} />}
+        {versions && versions.length > 0 && <DevDocsVersionSelect versions={versions}/>}
       </div>
       <div className="rounded-sm border border-tertiary overflow-x-auto">
         <Table className="table table-fixed w-full mb-0!">
@@ -76,8 +82,9 @@ export default function DevProjectContentTable<T>({columns, data, params: routeP
             className="first:rounded-t-sm first:border-t-0 first:[&_th:first-child]:rounded-tl-sm first:[&_tr]:rounded-t-sm first:[&_th:last-child]:rounded-tr-sm">
             <TableRow className="first:border-t-0">
               {columns.map(col => (
-                <TableHead className={cn('first:border-l-0 border-x-0 last:border-r-0 border-t-0 overflow-auto scrollbar-none', col.className)}
-                           key={col.id}
+                <TableHead
+                  className={cn('first:border-l-0 border-x-0 last:border-r-0 border-t-0 overflow-auto scrollbar-none', col.className)}
+                  key={col.id}
                 >
                   {col.header}
                 </TableHead>
@@ -102,6 +109,13 @@ export default function DevProjectContentTable<T>({columns, data, params: routeP
                 ))}
               </TableRow>
             ))}
+            {data.total === 0 &&
+              <TableRow>
+                  <TableCell colSpan={columns.length} className="h-24 text-center border-0">
+                      No results.
+                  </TableCell>
+              </TableRow>
+            }
           </TableBody>
         </Table>
       </div>
@@ -111,14 +125,14 @@ export default function DevProjectContentTable<T>({columns, data, params: routeP
           breakLabel="..."
           previousLabel={
             <Button variant="ghost" size="sm">
-              <ChevronLeft className="mr-1 h-4 w-4" />
+              <ChevronLeft className="mr-1 h-4 w-4"/>
               <span>Previous</span>
             </Button>
           }
           nextLabel={
             <Button variant="ghost" size="sm">
               <span>Next</span>
-              <ChevronRight className="ml-1 h-4 w-4" />
+              <ChevronRight className="ml-1 h-4 w-4"/>
             </Button>
           }
           pageLinkClassName="flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium

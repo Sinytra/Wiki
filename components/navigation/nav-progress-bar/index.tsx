@@ -1,16 +1,17 @@
 'use client';
 
-import {AppProgressBar as ProgressBar} from 'next-nprogress-bar';
+import {ProgressProvider} from '@bprogress/next/app';
 
 const Providers = ({children}: { children: any }) => {
   return (
     <>
-      {children}
-      <ProgressBar
+      <ProgressProvider
         color="var(--vp-c-blue-1)"
         delay={500}
         options={{showSpinner: false}}
-      />
+      >
+        {children}
+      </ProgressProvider>
     </>
   );
 };

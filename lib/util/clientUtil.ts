@@ -1,5 +1,5 @@
 import {TransitionFunction, useEffect, useTransition} from "react";
-import {startProgress, stopProgress} from "next-nprogress-bar";
+import {useProgress} from "@bprogress/next";
 
 function usePreventBuggyScrollLock() {
   useEffect(() => {
@@ -18,17 +18,18 @@ function usePreventBuggyScrollLock() {
   }, []);
 }
 
-function usePageDataReloadTransition() {
+function usePageDataReloadTransition(delay?: boolean) {
   const [loading, startTransition] = useTransition();
+  const {start, stop} = useProgress();
 
   useEffect(() => {
     if (!loading) {
-      stopProgress();
+      stop();
     }
   }, [loading]);
 
   return (callback: TransitionFunction) => {
-    startProgress();
+    start(0, delay ? 500 : 0);
     startTransition(callback);
   };
 }

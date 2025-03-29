@@ -25,7 +25,7 @@ import {cn} from "@/lib/utils";
 import {ExternalLinkIcon, LightbulbIcon, Loader2Icon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Link, useRouter} from "@/lib/locales/routing";
-import {useRouter as useProgressRouter} from "next-nprogress-bar";
+import {useRouter as useProgressRouter} from "@bprogress/next";
 import clientUtil from "@/lib/util/clientUtil";
 import {useParams} from "next/navigation";
 

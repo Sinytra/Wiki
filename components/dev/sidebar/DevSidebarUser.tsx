@@ -20,7 +20,7 @@ import * as React from "react";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
 import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
-import {startProgress} from "next-nprogress-bar";
+import {useProgress} from "@bprogress/next";
 
 function LogoutModal({open}: { open: boolean; }) {
   const t = useTranslations('DevSidebarUser.logout');
@@ -48,6 +48,7 @@ function LogoutModal({open}: { open: boolean; }) {
 export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; logoutAction: () => Promise<void> }) {
   const {isMobile} = useSidebar();
   const t = useTranslations('DevSidebarUser');
+  const {start} = useProgress();
 
   const schema = z.object({});
   const form = useForm<z.infer<typeof schema>>({
@@ -55,7 +56,7 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
   });
   const [isOpen, setIsOpen] = useState(false);
   const action: () => void = form.handleSubmit(async (data) => {
-    startProgress();
+    start();
     setTimeout(() => setIsOpen(true), 500);
     await logoutAction();
     setIsOpen(false);

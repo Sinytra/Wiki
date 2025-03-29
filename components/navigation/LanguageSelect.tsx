@@ -5,7 +5,7 @@ import {Check, ChevronDown, Globe, LanguagesIcon} from "lucide-react";
 import CountryFlag from "@/components/util/CountryFlag";
 import {Button} from "@/components/ui/button";
 import {usePathname} from "@/lib/locales/routing";
-import {useRouter} from 'next-nprogress-bar';
+import {useRouter} from '@bprogress/next';
 import * as React from "react";
 import {useState} from "react";
 import available from "@/lib/locales/available";

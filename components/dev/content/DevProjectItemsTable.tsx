@@ -41,6 +41,7 @@ export default function DevProjectItemsTable({data, params, versions}: {
             className="shrink-0 size-7"
             width={28}
             height={28}
+            key={item.id}
           />
         </div>
       ),
