@@ -82,4 +82,7 @@
     --text-8xl--line-height: 1;
     --text-9xl: 8rem;
     --text-9xl--line-height: 1;
+
+    --text-xsm: calc(0.83rem * var(--font-size-modifier));
+    --text-xsm--line-height: calc(1 / 0.75);
 }

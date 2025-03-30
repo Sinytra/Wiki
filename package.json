@@ -79,7 +79,6 @@
     "shiki": "^1.27.2",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "use-debounce": "^10.0.2",
@@ -102,6 +101,7 @@
     "postcss": "^8",
     "tailwind-scrollbar": "^4.0.0",
     "tailwindcss": "^4.0.0",
+    "tw-animate-css": "^1.2.5",
     "typescript": "^5"
   },
   "overrides": {

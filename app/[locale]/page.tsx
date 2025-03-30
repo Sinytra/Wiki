@@ -32,6 +32,7 @@ import {compareDesc, formatDistanceStrict} from "date-fns";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
 import LargePersonStandingIcon from "@/components/ui/icons/LargePersonStandingIcon";
 import localPreview from "@/lib/previewer/localPreview";
+import Image from "next/image";
 
 export const dynamic = 'force-static';
 
@@ -43,7 +44,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   return resolved.map((project, index) => (
     <div key={index} className="h-full max-h-[33%] bg-primary-alt p-6 rounded-md shadow-sm flex flex-col">
       <div className="flex items-center mb-4">
-        <img
+        <Image
           src={project.icon}
           alt={`${project.title} icon`}
           width={48}

@@ -84,6 +84,12 @@ export interface ProjectContentPage {
 }
 export type ProjectContentPages = PaginatedData<ProjectContentPage>;
 
+export interface ProjectContentTag {
+  id: string;
+  items: string[];
+}
+export type ProjectContentTags = PaginatedData<ProjectContentTag>;
+
 export interface DevProjectVersion {
   name: string;
   branch: string;
@@ -144,6 +150,14 @@ async function getProjectDevLog(id: string): Promise<string | SimpleErrorRespons
 
 async function getDevProjectContentPages(id: string, params: Record<string, string | null>): Promise<ProjectContentPages | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/pages`, params, 'GET'));
+}
+
+async function getDevProjectContentTags(id: string, params: Record<string, string | null>): Promise<ProjectContentTags | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/tags`, params, 'GET'));
+}
+
+async function getDevProjectContentTagItems(id: string, tag: string, params: Record<string, string | null>): Promise<ProjectContentPages | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/tags/${tag}`, params, 'GET'));
 }
 
 async function getDevProjectVersions(id: string, params: Record<string, string | null>): Promise<DevProjectVersions | StatusResponse> {
@@ -315,5 +329,7 @@ export default {
   unlinkModrinthAcount,
   deleteUserAcount,
   getDevProjectContentPages,
-  getDevProjectVersions
+  getDevProjectVersions,
+  getDevProjectContentTags,
+  getDevProjectContentTagItems
 }

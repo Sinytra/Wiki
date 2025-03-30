@@ -86,8 +86,10 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
           </SidebarGroupLabel>
           <SidebarMenu>
             <DevSidebarMenuItem url={`${baseUrl}/versions`} icon={GitBranchIcon} title={t('nav.versions')} disabled={disableContents}/>
-            <DevSidebarMenuItem url={`${baseUrl}/content`} icon={BoxIcon} title={t('nav.content')} disabled={disableContents}/>
-            <DevSidebarMenuItem url={`${baseUrl}/tags`} icon={TagsIcon} title={t('nav.tags')} disabled={disableContents}/>
+            <DevSidebarMenuItem url={`${baseUrl}/content/items`} icon={BoxIcon} title={t('nav.content')} disabled={disableContents}/>
+            <DevSidebarMenuItem url={`${baseUrl}/content/tags`} icon={TagsIcon} title={t('nav.tags')}
+                                disabled={disableContents}
+                                matcher={RegExp(`^${baseUrl}\/content\/tags(\/.*)?$`)}/>
             <DevSidebarMenuItem url={`${baseUrl}/recipes`} icon={LayoutGridIcon} title={t('nav.recipes')} disabled={disableContents}/>
           </SidebarMenu>
         </SidebarGroup>

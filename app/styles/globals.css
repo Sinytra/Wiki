@@ -4,10 +4,10 @@
 @import "./theme.css" layer(theme);
 
 @import 'tailwindcss';
+@import "tw-animate-css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@plugin 'tailwindcss-animate';
 @plugin 'tailwind-scrollbar';
 @plugin '@tailwindcss/typography';
 
