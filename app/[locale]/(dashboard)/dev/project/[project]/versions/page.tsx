@@ -7,7 +7,7 @@ import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
-import DevProjectVersionsTable from "@/components/dev/content/DevProjectVersionsTable";
+import DevProjectVersionsTable from "@/components/dev/table/DevProjectVersionsTable";
 
 type Properties = {
   params: {
@@ -48,6 +48,7 @@ export default async function ProjectDevVersionsPage({params, searchParams}: Pro
         <NextIntlClientProvider messages={pick(messages, 'DocsVersionSelector')}>
           <DevProjectVersionsTable data={content}
                                    params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                                   page={page}
           />
         </NextIntlClientProvider>
       </NuqsAdapter>

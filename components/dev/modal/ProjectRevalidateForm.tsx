@@ -18,7 +18,7 @@ import {useFormStatus} from "react-dom";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
-import {DevProjectSidebarContext} from "@/components/dev/project/DevProjectSidebarContextProvider";
+import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 
 interface Properties {
   action: () => Promise<any>;

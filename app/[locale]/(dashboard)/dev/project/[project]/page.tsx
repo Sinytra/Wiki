@@ -29,11 +29,11 @@ import {ProjectStatus} from "@/lib/types/serviceTypes";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {cn} from "@/lib/utils";
 import * as React from "react";
-import DevProjectPageTitle from "@/components/dev/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {Label} from "@/components/ui/label";
-import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
+import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import LocalDateTime from "@/components/util/LocalDateTime";
-import LiveProjectConnection from "@/components/dev/LiveProjectConnection";
+import LiveProjectConnection from "@/components/dev/project/LiveProjectConnection";
 import authSession from "@/lib/authSession";
 
 export const dynamic = 'force-dynamic';

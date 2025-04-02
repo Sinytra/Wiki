@@ -11,9 +11,9 @@ import {Button} from "@/components/ui/button";
 import {ExternalLinkIcon, MoreHorizontal} from "lucide-react";
 import {getInternalWikiLink} from "@/lib/game/content";
 import * as React from "react";
-import DevProjectContentTable from "@/components/dev/content/DevProjectContentTable";
-import {PaginatedData, ProjectVersions} from "@/lib/service";
-import {TableColumn, TableRouteParams} from "@/lib/types/tableTypes";
+import DataTable from "@/components/base/data-table/DataTable";
+import service, {PaginatedData, ProjectVersions} from "@/lib/service";
+import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 
 export default function DevProjectItemsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentPage>;
@@ -22,21 +22,14 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
   page: number;
 }) {
   const columns: TableColumn<ProjectContentPage>[] = [
-    {
-      id: 'select',
-      header: 'Num.',
-      cell: (_, i) => (
-        <div className="text-center">{i + 1}</div>
-      ),
-      className: 'w-15'
-    },
+    ordinalColumn,
     {
       id: 'icon',
       header: 'Icon',
       cell: item => (
         <div className="flex shrink-0 items-center justify-center size-7">
           <ImageWithFallback
-            src={`${process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL}/api/v1/docs/mffs/asset/${item.id}`}
+            src={service.getAssetURL(params.slug, item.id, params.version)?.src}
             alt="icon"
             className="shrink-0 size-7"
             width={28}
@@ -98,6 +91,6 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
   ];
 
   return (
-    <DevProjectContentTable columns={columns} data={data} params={params} versions={versions} page={page} />
+    <DataTable columns={columns} data={data} params={params} versions={versions} page={page} />
   )
 }

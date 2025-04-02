@@ -1,9 +1,9 @@
 import {ProjectContentRecipe} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
 import {PaginatedData, ProjectVersions} from "@/lib/service";
-import DevProjectContentTable from "@/components/dev/content/DevProjectContentTable";
+import DataTable from "@/components/base/data-table/DataTable";
 import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
-import {TableColumn, TableRouteParams} from "@/lib/types/tableTypes";
+import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 
 export default function DevProjectRecipesTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentRecipe>;
@@ -12,14 +12,7 @@ export default function DevProjectRecipesTable({data, params, versions, page}: {
   page: number;
 }) {
   const columns: TableColumn<ProjectContentRecipe>[] = [
-    {
-      id: 'select',
-      header: 'Num.',
-      cell: (_, i) => (
-        <div className="text-center">{i + 1}</div>
-      ),
-      className: 'w-15'
-    },
+    ordinalColumn,
     {
       id: 'type',
       header: 'Type',
@@ -43,7 +36,7 @@ export default function DevProjectRecipesTable({data, params, versions, page}: {
   );
 
   return (
-    <DevProjectContentTable expandRows={expander} columns={columns} data={data} params={params} versions={versions}
-                            page={page}/>
+    <DataTable expandRows={expander} columns={columns} data={data} params={params} versions={versions}
+               page={page}/>
   )
 }

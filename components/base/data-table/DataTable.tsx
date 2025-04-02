@@ -3,8 +3,8 @@ import {TableCell, TableHead} from "@/components/ui/table";
 import {cn} from "@/lib/utils";
 import * as React from "react";
 import {ReactNode} from "react";
-import DevProjectContentTableClient from "@/components/dev/content/DevProjectContentTableClient";
-import {TableColumn, TableRouteParams, TableRowData} from "@/lib/types/tableTypes";
+import DataTableClient from "@/components/base/data-table/DataTableClient";
+import {TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 
 interface Properties<T> {
   expandRows?: (row: T) => ReactNode | null;
@@ -15,7 +15,7 @@ interface Properties<T> {
   page: number;
 }
 
-export default function DevProjectContentTable<T>({
+export default function DataTable<T>({
                                                     columns,
                                                     expandRows,
                                                     data,
@@ -35,7 +35,7 @@ export default function DevProjectContentTable<T>({
     </TableHead>
   ));
 
-  const rows: TableRowData[] = data.total === 0 ?
+  const rows = data.total === 0 ?
     [{
       row: (
         <TableCell colSpan={columns.length} className="h-24 text-center border-0">
@@ -69,7 +69,7 @@ export default function DevProjectContentTable<T>({
     });
 
   return (
-    <DevProjectContentTableClient cols={headers} rows={rows} data={data} versions={versions}
-                                  expandable={expandRows !== undefined}/>
+    <DataTableClient cols={headers} rows={rows} data={data} versions={versions}
+                     expandable={expandRows !== undefined}/>
   )
 }

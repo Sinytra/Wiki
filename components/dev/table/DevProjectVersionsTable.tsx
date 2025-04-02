@@ -2,21 +2,16 @@
 
 import {DevProjectVersion, DevProjectVersions} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
-import DevProjectContentTable, {TableColumn, TableRouteParams} from "@/components/dev/content/DevProjectContentTable";
+import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
+import DataTable from "@/components/base/data-table/DataTable";
 
-export default function DevProjectVersionsTable({data, params}: {
+export default function DevProjectVersionsTable({data, page, params}: {
   data: DevProjectVersions;
   params: TableRouteParams;
+  page: number;
 }) {
   const columns: TableColumn<DevProjectVersion>[] = [
-    {
-      id: 'select',
-      header: 'Num.',
-      cell: (_, i) => (
-        <div className="text-center">{i + 1}</div>
-      ),
-      className: 'w-15'
-    },
+    ordinalColumn,
     {
       id: 'name',
       header: 'Name',
@@ -34,6 +29,6 @@ export default function DevProjectVersionsTable({data, params}: {
   ];
 
   return (
-    <DevProjectContentTable columns={columns} data={data} params={params} />
+    <DataTable columns={columns} data={data} params={params} page={page} />
   )
 }

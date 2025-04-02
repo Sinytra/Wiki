@@ -9,7 +9,6 @@ import {GameProjectRecipe, ProjectContentTree, ProjectType} from "@/lib/service/
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
-import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
 
 export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
 
@@ -170,6 +169,12 @@ async function getAsset(slug: string | null, location: string, version: string |
   return isRemoteAvailable() ? remoteService.getAsset(slug, location, actualVersion) : null;
 }
 
+function getAssetURL(slug: string, location: string, version: string | null): AssetLocation | null {
+  const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
+
+  return isRemoteAvailable() ? remoteService.getAssetURL(slug, location, actualVersion) : null;
+}
+
 async function getDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean): Promise<DocumentationPage | null> {
   const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
   const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
@@ -257,5 +262,6 @@ export default {
   getProjectContents,
   getProjectRecipe,
   renderProjectContentPage,
-  getContentRecipeUsage
+  getContentRecipeUsage,
+  getAssetURL
 }

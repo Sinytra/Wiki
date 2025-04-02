@@ -15,7 +15,7 @@ import * as React from "react";
 import {useState} from "react";
 import {toast} from "sonner";
 import {Link} from "@/lib/locales/routing";
-import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
+import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 
 function SourceSection({form}: { form: any }) {
   return (

@@ -7,7 +7,7 @@ import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
-import DevProjectTagsTable from "@/components/dev/content/DevProjectTagsTable";
+import DevProjectTagsTable from "@/components/dev/table/DevProjectTagsTable";
 
 type Properties = {
   params: {

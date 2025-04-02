@@ -5,27 +5,27 @@ import {useEffect, useState} from "react"
 import {Table, TableBody, TableCell, TableHeader, TableRow,} from "@/components/ui/table"
 import {Input} from "@/components/ui/input";
 import {PaginatedData, ProjectVersions} from "@/lib/service";
-import ReactPaginate from "react-paginate";
 import {parseAsString, useQueryState, useQueryStates} from "nuqs";
 import {parseAsInteger} from "nuqs/server";
 import {Button} from "@/components/ui/button";
-import {ChevronLeft, ChevronRight, SearchIcon} from "lucide-react";
+import {SearchIcon} from "lucide-react";
 import {useDebouncedCallback} from "use-debounce";
 import DevDocsVersionSelect from "@/components/docs/versions/DevDocsVersionSelect";
 import clientUtil from "@/lib/util/clientUtil";
 import {cn} from "@/lib/utils";
-import {TableRowData} from "@/lib/types/tableTypes";
+import {TableRowData} from "@/components/base/data-table/dataTableTypes";
 import ToggleChevron from "@/components/util/ToggleChevron";
+import DataTablePagination from "@/components/base/data-table/DataTablePagination";
 
 interface Properties<T> {
-  cols: any[];
+  cols: React.JSX.Element[];
   rows: TableRowData[];
   data: PaginatedData<T>;
   versions?: ProjectVersions;
   expandable?: boolean;
 }
 
-export default function DevProjectContentTableClient<T>({cols, rows, data, versions, expandable}: Properties<T>) {
+export default function DataTableClient<T>({cols, rows, data, versions, expandable}: Properties<T>) {
   const [params, setParams] = useQueryStates(
     {
       query: parseAsString,
@@ -120,33 +120,7 @@ export default function DevProjectContentTableClient<T>({cols, rows, data, versi
           </TableBody>
         </Table>
       </div>
-      <div className="flex flex-row items-center justify-end space-x-2 py-4">
-        <ReactPaginate
-          className="flex flex-row gap-1 mx-auto"
-          breakLabel="..."
-          previousLabel={
-            <Button variant="ghost" size="sm">
-              <ChevronLeft className="mr-1 h-4 w-4"/>
-              <span>Previous</span>
-            </Button>
-          }
-          nextLabel={
-            <Button variant="ghost" size="sm">
-              <span>Next</span>
-              <ChevronRight className="ml-1 h-4 w-4"/>
-            </Button>
-          }
-          pageLinkClassName="flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium
-                            [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-background hover:bg-accent
-                            hover:text-accent-foreground size-9 cursor-pointer"
-          activeLinkClassName="border border-secondary"
-          initialPage={page - 1}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={data.pages}
-          renderOnZeroPageCount={null}
-        />
-      </div>
+      <DataTablePagination page={page} pages={data.pages} onPageChange={handlePageClick} />
     </div>
   )
 }

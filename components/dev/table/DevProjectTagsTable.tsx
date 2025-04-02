@@ -1,11 +1,11 @@
 import {ProjectContentTag} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
-import DevProjectContentTable from "@/components/dev/content/DevProjectContentTable";
+import DataTable from "@/components/base/data-table/DataTable";
 import {PaginatedData, ProjectVersions} from "@/lib/service";
 import {Button} from "@/components/ui/button";
 import {EyeIcon} from "lucide-react";
 import {Link} from "@/lib/locales/routing";
-import {TableColumn, TableRouteParams} from "@/lib/types/tableTypes";
+import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 
 export default function DevProjectTagsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentTag>;
@@ -14,14 +14,7 @@ export default function DevProjectTagsTable({data, params, versions, page}: {
   page: number;
 }) {
   const columns: TableColumn<ProjectContentTag>[] = [
-    {
-      id: 'select',
-      header: 'Num.',
-      cell: (_, i) => (
-        <div className="text-center">{i + 1}</div>
-      ),
-      className: 'w-15'
-    },
+    ordinalColumn,
     {
       id: 'id',
       header: 'Identifier',
@@ -52,7 +45,7 @@ export default function DevProjectTagsTable({data, params, versions, page}: {
 
   return (
     <>
-      <DevProjectContentTable columns={columns} data={data} params={params} versions={versions} page={page} />
+      <DataTable columns={columns} data={data} params={params} versions={versions} page={page} />
     </>
   )
 }

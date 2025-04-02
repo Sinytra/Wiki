@@ -8,7 +8,7 @@ import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {useRouter} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
 import highlighter from "@/lib/markdown/highlighter";
-import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
+import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import ConnectionIndicator from "@/components/util/ConnectionIndicator";
 
 function Skeleton({children}: { children: any }) {

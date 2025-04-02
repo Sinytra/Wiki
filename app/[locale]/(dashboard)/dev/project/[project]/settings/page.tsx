@@ -6,7 +6,7 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 import {handleDeleteProjectForm, handleEditProjectForm} from "@/lib/forms/actions";
-import DevProjectPageTitle from "@/components/dev/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
 
 export default async function DevProjectSettingsPage({params}: { params: { locale: string; project: string } }) {

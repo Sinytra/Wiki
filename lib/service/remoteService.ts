@@ -2,8 +2,8 @@ import {
   ContentRecipeUsage,
   DocumentationPage,
   LayoutTree,
-  ProjectSearchResults, ProjectWithInfo,
-  ServiceProvider
+  ProjectSearchResults,
+  ProjectWithInfo
 } from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
 import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
@@ -55,6 +55,10 @@ async function getBackendLayout(project: string, version: string | null, locale:
 }
 
 async function getAsset(project: string, location: string, version: string | null): Promise<AssetLocation | null> {
+  return getAssetURL(project, location, version);
+}
+
+function getAssetURL(project: string, location: string, version: string | null): AssetLocation | null {
   const url = `${assertBackendUrl()}/api/v1/docs/${project}/asset/${location}` + (version ? `?version=${version}` : '');
   return {
     id: location,
@@ -83,7 +87,7 @@ async function searchProjects(query: string, page: number, types: string | null,
     page: page.toString(),
     types,
     sort
-  }, 'GET', true)) || {pages: 0, total: 0, data: []};
+  }, 'GET', true)) || {pages: 0, total: 0, data: [], size: 0};
 }
 
 async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
@@ -111,5 +115,6 @@ export default {
   getProjectRecipe,
   getProjectContents,
   getProjectContentPage,
-  getContentRecipeUsage
-} satisfies ServiceProvider
+  getContentRecipeUsage,
+  getAssetURL
+}

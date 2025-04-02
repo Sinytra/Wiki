@@ -5,7 +5,7 @@ import {startTransition, useContext, useEffect, useRef} from "react";
 import {Link, useRouter} from "@/lib/locales/routing";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
-import {DevProjectSidebarContext} from "@/components/dev/project/DevProjectSidebarContextProvider";
+import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 
 interface Props {
   id: string;

@@ -3,11 +3,11 @@ import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
-import DevProjectSidebar from "@/components/dev/project/DevProjectSidebar";
+import DevProjectSidebar from "@/components/dev/navigation/DevProjectSidebar";
 import {redirect} from "next/navigation";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@/lib/platforms";
-import DevProjectSidebarContextProvider from "@/components/dev/project/DevProjectSidebarContextProvider";
+import DevProjectSidebarContextProvider from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 
 export const dynamic = 'force-dynamic';
 

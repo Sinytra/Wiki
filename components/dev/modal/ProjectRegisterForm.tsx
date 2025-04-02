@@ -18,7 +18,7 @@ import {useEffect, useRef, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
-import SubmitButton from "@/components/dev/SubmitButton";
+import SubmitButton from "@/components/ui/custom/SubmitButton";
 import {useTranslations} from "next-intl";
 import {Switch} from "@/components/ui/switch";
 import {cn} from "@/lib/utils";

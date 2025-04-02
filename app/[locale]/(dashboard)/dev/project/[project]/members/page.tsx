@@ -1,5 +1,5 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import DevProjectPageTitle from "@/components/dev/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import authSession from "@/lib/authSession";
 import {Button} from "@/components/ui/button";

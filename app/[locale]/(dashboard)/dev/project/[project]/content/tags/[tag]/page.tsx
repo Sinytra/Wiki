@@ -7,9 +7,9 @@ import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
-import DevProjectItemsTable from "@/components/dev/content/DevProjectItemsTable";
+import DevProjectItemsTable from "@/components/dev/table/DevProjectItemsTable";
 import {BreadcrumbLink, BreadcrumbPage} from "@/components/ui/breadcrumb";
-import DevBreadcrumb from "@/components/dev/DevBreadcrumb";
+import DevBreadcrumb from "@/components/dev/navigation/DevBreadcrumb";
 
 type Properties = {
   params: {

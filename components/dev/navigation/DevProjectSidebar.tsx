@@ -22,11 +22,11 @@ import {
   SidebarMenu
 } from "@/components/ui/sidebar";
 import {useTranslations} from "next-intl";
-import DevSidebarMenuItem from "@/components/dev/sidebar/DevSidebarMenuItem";
+import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
 import {DevProject} from "@/lib/service";
 import {PlatformProject} from "@/lib/platforms";
 import {Link} from "@/lib/locales/routing";
-import {DevProjectSidebarContext} from "@/components/dev/project/DevProjectSidebarContextProvider";
+import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {

@@ -6,12 +6,12 @@ import {setContextLocale} from "@/lib/locales/routing";
 import authSession from "@/lib/authSession";
 import {NextIntlClientProvider} from "next-intl";
 import {pick} from "lodash";
-import DevProjectLogs from "@/components/dev/DevProjectLogs";
+import DevProjectLogs from "@/components/dev/project/DevProjectLogs";
 import {fetchProjectLog} from "@/lib/forms/actions";
 import * as React from "react";
-import DevProjectPageTitle from "@/components/dev/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {ShieldAlertIcon, ShieldCheckIcon} from "lucide-react";
-import DevProjectSectionTitle from "@/components/dev/DevProjectSectionTitle";
+import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 
 function ProjectErrors() {
   return (
