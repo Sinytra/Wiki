@@ -239,14 +239,7 @@ async function renderMarkdown(raw: DocumentationPage | null): Promise<RenderedDo
 }
 
 async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
-  let result = await remoteService.getProjectRecipe(project, recipe);
-  if (result && !result.type.localizedName) {
-    const name = await builtinRecipeTypes.getRecipeTypeName(result.type.id);
-    if (name) {
-      return {...result, type: {...result.type, localizedName: name} };
-    }
-  }
-  return result;
+  return await remoteService.getProjectRecipe(project, recipe);
 }
 
 function prefixItemPath(location: string) {

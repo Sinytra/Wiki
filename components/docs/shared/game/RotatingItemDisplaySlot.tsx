@@ -36,7 +36,7 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
     const link = params ? getResolvedItemLink(params, src[currentIndex]) : getExternalWikiLink(src[currentIndex].id);
     const element = (
       <div {...props}>
-        <div className="relative">
+        <div className="relative shrink-0">
           <ItemDisplay noTitle asset={src[currentIndex].src} alt={src[currentIndex].id} className="sharpRendering"/>
           {count && count > 1 &&
             <span

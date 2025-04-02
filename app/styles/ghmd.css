@@ -81,9 +81,19 @@ tr:nth-child(2n) {
     background-color: var(--vp-c-bg-soft);
 }
 
-td,
+td {
+    padding: 0 13px !important;
+}
+
+td:not(:where([class~='no-table-bs'], [class~='no-table-bs'] *)) {
+    padding: 6px 13px !important;
+}
+
 th {
     padding: 6px 13px !important;
+}
+
+td, th {
     border: 1px solid var(--vp-c-divider);
 }
 

@@ -1,6 +1,7 @@
 import {GameProjectRecipe, GameRecipeType, RecipeItem, ResolvedItem, Slot} from "@/lib/service/types";
 import resourceLocation from "@/lib/util/resourceLocation";
 import service from "@/lib/service";
+import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
 
 export interface ResolvedSlotItem {
   slot: Slot;
@@ -90,6 +91,17 @@ async function resolveRecipe(recipe: GameProjectRecipe): Promise<ResolvedRecipe>
   return {inputs, outputs, type: recipe.type};
 }
 
+async function processRecipe(recipe: GameProjectRecipe): Promise<GameProjectRecipe> {
+  if (recipe && !recipe.type.localizedName) {
+    const name = await builtinRecipeTypes.getRecipeTypeName(recipe.type.id);
+    if (name) {
+      return {...recipe, type: {...recipe.type, localizedName: name} };
+    }
+  }
+  return recipe;
+}
+
 export default {
+  processRecipe,
   resolveRecipe
 }

@@ -1,7 +1,7 @@
 import {DevProject, PaginatedData, Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
-import {ProjectType} from "@/lib/service/types";
+import {GameProjectRecipe, ProjectType} from "@/lib/service/types";
 import {cookies} from "next/headers";
 
 const ONE_DAY = 60 * 60 * 24;
@@ -90,6 +90,13 @@ export interface ProjectContentTag {
 }
 export type ProjectContentTags = PaginatedData<ProjectContentTag>;
 
+export interface ProjectContentRecipe {
+  id: string;
+  type: string;
+  data: GameProjectRecipe;
+}
+export type ProjectContentRecipes = PaginatedData<ProjectContentRecipe>;
+
 export interface DevProjectVersion {
   name: string;
   branch: string;
@@ -158,6 +165,10 @@ async function getDevProjectContentTags(id: string, params: Record<string, strin
 
 async function getDevProjectContentTagItems(id: string, tag: string, params: Record<string, string | null>): Promise<ProjectContentPages | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/tags/${tag}`, params, 'GET'));
+}
+
+async function getDevProjectContentRecipes(id: string, params: Record<string, string | null>): Promise<ProjectContentRecipes | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/recipes`, params, 'GET'));
 }
 
 async function getDevProjectVersions(id: string, params: Record<string, string | null>): Promise<DevProjectVersions | StatusResponse> {
@@ -331,5 +342,6 @@ export default {
   getDevProjectContentPages,
   getDevProjectVersions,
   getDevProjectContentTags,
-  getDevProjectContentTagItems
+  getDevProjectContentTagItems,
+  getDevProjectContentRecipes
 }

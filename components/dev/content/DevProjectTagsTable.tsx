@@ -1,17 +1,17 @@
-'use client'
-
 import {ProjectContentTag} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
-import DevProjectContentTable, {TableColumn, TableRouteParams} from "@/components/dev/content/DevProjectContentTable";
+import DevProjectContentTable from "@/components/dev/content/DevProjectContentTable";
 import {PaginatedData, ProjectVersions} from "@/lib/service";
 import {Button} from "@/components/ui/button";
 import {EyeIcon} from "lucide-react";
 import {Link} from "@/lib/locales/routing";
+import {TableColumn, TableRouteParams} from "@/lib/types/tableTypes";
 
-export default function DevProjectTagsTable({data, params, versions}: {
+export default function DevProjectTagsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentTag>;
   params: TableRouteParams;
-  versions: ProjectVersions
+  versions: ProjectVersions;
+  page: number;
 }) {
   const columns: TableColumn<ProjectContentTag>[] = [
     {
@@ -52,7 +52,7 @@ export default function DevProjectTagsTable({data, params, versions}: {
 
   return (
     <>
-      <DevProjectContentTable columns={columns} data={data} params={params} versions={versions} />
+      <DevProjectContentTable columns={columns} data={data} params={params} versions={versions} page={page} />
     </>
   )
 }

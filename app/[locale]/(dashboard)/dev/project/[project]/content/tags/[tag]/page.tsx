@@ -67,6 +67,7 @@ export default async function ProjectDevContentTagItemsPage({params, searchParam
           <DevProjectItemsTable data={content}
                                 versions={project.versions || []}
                                 params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                                page={page}
           />
         </NextIntlClientProvider>
       </NuqsAdapter>

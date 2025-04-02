@@ -7,7 +7,7 @@ import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
-import DevProjectTagsTable from "@/components/dev/content/DevProjectTagsTable";
+import DevProjectRecipesTable from "@/components/dev/content/DevProjectRecipesTable";
 
 type Properties = {
   params: {
@@ -21,7 +21,7 @@ type Properties = {
   }
 }
 
-export default async function ProjectDevContentTagsPage({params, searchParams}: Properties) {
+export default async function ProjectDevContentRecipesPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
 
   const project = await remoteServiceApi.getDevProject(params.project);
@@ -33,7 +33,7 @@ export default async function ProjectDevContentTagsPage({params, searchParams}: 
   const version = parseAsString.parseServerSide(searchParams.version);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = await remoteServiceApi.getDevProjectContentTags(
+  const content = await remoteServiceApi.getDevProjectContentRecipes(
     params.project,
     {query, page: page.toString(), version}
   );
@@ -47,10 +47,10 @@ export default async function ProjectDevContentTagsPage({params, searchParams}: 
     <div>
       <NuqsAdapter>
         <NextIntlClientProvider messages={pick(messages, 'DocsVersionSelector')}>
-          <DevProjectTagsTable data={content}
-                               versions={project.versions || []}
-                               params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
-                               page={page}
+          <DevProjectRecipesTable data={content}
+                                  versions={project.versions || []}
+                                  params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                                  page={page}
           />
         </NextIntlClientProvider>
       </NuqsAdapter>

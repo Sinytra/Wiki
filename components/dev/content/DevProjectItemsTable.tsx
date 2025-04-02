@@ -1,5 +1,3 @@
-'use client'
-
 import {ProjectContentPage} from "@/lib/service/remoteServiceApi";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {
@@ -13,13 +11,15 @@ import {Button} from "@/components/ui/button";
 import {ExternalLinkIcon, MoreHorizontal} from "lucide-react";
 import {getInternalWikiLink} from "@/lib/game/content";
 import * as React from "react";
-import DevProjectContentTable, {TableColumn, TableRouteParams} from "@/components/dev/content/DevProjectContentTable";
+import DevProjectContentTable from "@/components/dev/content/DevProjectContentTable";
 import {PaginatedData, ProjectVersions} from "@/lib/service";
+import {TableColumn, TableRouteParams} from "@/lib/types/tableTypes";
 
-export default function DevProjectItemsTable({data, params, versions}: {
+export default function DevProjectItemsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentPage>;
   params: TableRouteParams;
-  versions: ProjectVersions
+  versions: ProjectVersions;
+  page: number;
 }) {
   const columns: TableColumn<ProjectContentPage>[] = [
     {
@@ -98,6 +98,6 @@ export default function DevProjectItemsTable({data, params, versions}: {
   ];
 
   return (
-    <DevProjectContentTable columns={columns} data={data} params={params} versions={versions} />
+    <DevProjectContentTable columns={columns} data={data} params={params} versions={versions} page={page} />
   )
 }

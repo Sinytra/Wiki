@@ -90,7 +90,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
             <DevSidebarMenuItem url={`${baseUrl}/content/tags`} icon={TagsIcon} title={t('nav.tags')}
                                 disabled={disableContents}
                                 matcher={RegExp(`^${baseUrl}\/content\/tags(\/.*)?$`)}/>
-            <DevSidebarMenuItem url={`${baseUrl}/recipes`} icon={LayoutGridIcon} title={t('nav.recipes')} disabled={disableContents}/>
+            <DevSidebarMenuItem url={`${baseUrl}/content/recipes`} icon={LayoutGridIcon} title={t('nav.recipes')} disabled={disableContents}/>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
