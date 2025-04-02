@@ -87,7 +87,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
               <React.Fragment key={i}>
                 <TableRow
                   className={cn('last:border-b-0 last:[&_td]:border-b-0 last:[&_td:first-child]:rounded-bl-sm last:[&_td:last-child]:rounded-br-sm',
-                    expandable && i % 2 != 0 && 'bg-[var(--vp-c-bg-soft)]')}
+                    expandable && i % 2 != 0 && 'bg-table-soft')}
                 >
                   {row.row}
                   {row.extendedRow &&
@@ -98,7 +98,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
                     </TableCell>}
                 </TableRow>
                 {row.extendedRow &&
-                  <TableRow className={cn('border-b bg-[var(--background)]')}>
+                  <TableRow className={cn('border-b bg-table-hard')}>
                       <td className="no-table-bs overflow-hidden border-0" colSpan={cols.length}>
                           <div ref={contentRefs.set(i)}
                                className={cn('border-hidden transition-[max-height] duration-300 ease-in-out')}

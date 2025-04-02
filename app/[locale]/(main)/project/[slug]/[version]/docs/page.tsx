@@ -12,9 +12,8 @@ import {pick} from "lodash";
 import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRightSidebar";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
-import {DocumentationMarkdown} from "@/lib/markdown";
+import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
-import MarkdownContent from "@/components/docs/body/MarkdownContent";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -60,7 +59,12 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
     return null;
   }
   try {
-    return { content: <MarkdownContent content={platformProject.description}/>, metadata: {} };
+    const result = await markdown.renderDocumentationMarkdown(platformProject.description);
+    return { ...result, content: (
+      <div className="[&>_:first-child>*]:mt-0!">
+        {result.content}
+      </div>
+      ) }
   } catch (e) {
     console.error('Error rendering homepage', e);
     return undefined;

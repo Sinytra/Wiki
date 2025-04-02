@@ -47,7 +47,7 @@ export default function MobileNavScreen({ isVisible, children }: { isVisible: bo
   return (
     <div>
       <CSSTransition nodeRef={nodeRef} in={isVisible} timeout={200} classNames="fade" unmountOnExit onEnter={lockScroll} onExited={unlockScroll}>
-        <div ref={nodeRef} className="fixed bg-[#1b1b1f] py-0 px-8 overflow-y-auto top-[calc(var(--vp-nav-height))] right-0 bottom-0 left-0 w-full">
+        <div ref={nodeRef} className="fixed bg-primary py-0 px-8 overflow-y-auto top-nav-height right-0 bottom-0 left-0 w-full">
           <div className="mx-auto my-0 max-w-72 pt-8 pb-24 innerFadeContainer">
             {children}
           </div>

@@ -112,7 +112,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
   return (
     <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={200} classNames="fade" unmountOnExit>
       <div ref={nodeRef}
-        className="z-50 fixed bg-[#1b1b1f] top-0 right-0 bottom-0 left-0 w-full h-[100vh] overflow-hidden">
+        className="z-50 fixed bg-primary top-0 right-0 bottom-0 left-0 w-full h-[100vh] overflow-hidden">
         <div className="p-4 innerFadeContainer flex flex-col gap-4">
           <div className="relative">
             <button onClick={() => setOpen(false)}>
@@ -120,7 +120,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
             </button>
             <input type="text" value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
                    className="px-8 text-ellipsis cursor-pointer focus:cursor-text border border-neutral-700
-                          focus:outline focus:outline-1 focus:outline-secondary bg-primary-alt text-sm text-center
+                          focus:outline-1 focus:outline-secondary bg-primary-alt text-sm text-center
                           placeholder:text-neutral-500 p-2 rounded-xs w-full"
                    placeholder={t('placeholder')}
             />

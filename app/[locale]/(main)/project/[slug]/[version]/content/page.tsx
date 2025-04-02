@@ -73,7 +73,7 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
 
   return (
     <div className="bg-primary-alt/50">
-      <div className="px-3 py-2 flex flex-col gap-2 border border-secondary rounded-sm">
+      <div className="px-3 py-2 flex flex-col gap-2 border border-secondary-dim rounded-sm">
         <span className="text-lg font-medium border-b border-tertiary pb-1">
           {entry.name}
         </span>

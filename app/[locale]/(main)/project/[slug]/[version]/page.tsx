@@ -61,7 +61,7 @@ function SubpageLink({title, icon: Icon, desc, href}: { title: string; icon: any
   return (
     <a href={`latest/${href}`}>
       <div
-        className="w-fit min-w-[17rem] p-3 rounded-sm border bg-primary-alt/50 border-secondary/50 hover:bg-secondary/20 flex flex-col gap-2">
+        className="w-fit min-w-[17rem] p-3 rounded-sm border bg-primary-alt/50 border-secondary-dim hover:bg-secondary/20 flex flex-col gap-2">
         <div className="flex flex-row items-center gap-3 text-lg">
           <Icon className="w-5 h-5"/>
           {title}

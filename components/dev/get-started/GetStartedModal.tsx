@@ -72,7 +72,7 @@ export default function GetStartedModal({
 
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="secondary" className="border border-secondary bg-[hsl(var(--sidebar-background))]" size="sm">
+        <Button size="sm">
           <HammerIcon className="mr-2 w-4 h-4"/>
           {t('button')}
         </Button>

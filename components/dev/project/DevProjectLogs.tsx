@@ -14,7 +14,7 @@ import ConnectionIndicator from "@/components/util/ConnectionIndicator";
 function Skeleton({children}: { children: any }) {
   return (
     <div
-      className="text-secondary w-full rounded-md flex flex-col gap-3 justify-center items-center h-80 bg-[#0d1117]">
+      className="text-secondary w-full rounded-md flex flex-col gap-3 justify-center items-center h-80 bg-code-dim">
       {children}
     </div>
   )
@@ -32,7 +32,7 @@ function RenderedLogBody({lines}: { lines: string[] }) {
   });
 
   return (
-    <div ref={containerRef} className="bg-[#0d1117] slim-scrollbar">
+    <div ref={containerRef} className="bg-code-dim slim-scrollbar">
       <pre className="text-xs slim-scrollbar slim-scrollbar-scrollbar-primary overflow-y-auto h-80 p-2 rounded-md">
         {...lines.map((s, i) => (
           <p key={i}>

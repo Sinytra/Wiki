@@ -129,6 +129,10 @@
     }
 }
 
+@utility top-nav-height {
+    top: calc(var(--vp-nav-height));
+}
+
 @layer utilities {
     .accordion-body {
         display: grid;
@@ -228,8 +232,7 @@
     }
 
     .prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-        background-color: #21252b;
-        color: #a9b2c3;
+        @apply bg-code text-code;
     }
 
     .prose

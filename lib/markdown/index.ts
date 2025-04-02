@@ -82,8 +82,6 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
   const vfile = new VFile(cleanSource);
   matter(vfile, {strip: true});
 
-  const frontmatter = vfile.data.matter ?? {};
-
   try {
     const compiledMdx = await compile(vfile, {
       outputFormat: 'function-body',
@@ -98,6 +96,8 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       ],
       recmaPlugins: [[recmaCodeHike, chConfig]]
     });
+
+    const frontmatter = compiledMdx.data.matter ?? {};
 
     // @ts-ignore
     const {default: MDXContent} = await run(compiledMdx, {

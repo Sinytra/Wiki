@@ -8,6 +8,12 @@
     --background-color-inverse: #FAFAFAFF;
     --background-color-inverse-secondary: #EBEBF599;
     --background-color-destructive: #E0575BFF;
+    --background-color-code: #21252b;
+    --background-color-code-alt: #2b313a;
+    --background-color-code-dim: #0D1117;
+    --background-color-table-soft: var(--vp-c-bg-soft);
+    --background-color-table-hard: var(--background);
+    --background-color-code-tab-active: #1E2127;
 
     --text-color-primary: #FFFFF5DB; /*foreground*/
     --text-color-primary-alt: #FAFAFAFF;
@@ -17,10 +23,12 @@
     --text-color-brand-primary: #5C9DE4FF;
     --text-color-warning: #EFA63E;
     --text-color-destructive: #FB6C6F;
+    --text-color-code: #A9B2C3;
 
     --border-color-primary: var(--color-neutral-600);
     --border-color-secondary: #404040FF;
     --border-color-secondary-alt: #EBEBF599;
+    --border-color-secondary-dim: color-mix(in oklab, var(--border-color-secondary) 50%, transparent);
     --border-color-tertiary: #27272AFF; /*border*/
     --border-color-tertiary-dim: #212123;
     --border-color-quaternary: #27272AFF; /*input*/
@@ -36,7 +44,6 @@
     --ring-offset-color-background: var(--background-color-primary);
 
     --shadow-color-secondary: #27272AFF; /*sidebar-border*/
-
     --color-scrollbar-primary: #161618;
     --color-scrollbar-secondary: #EBEBF599;
 
