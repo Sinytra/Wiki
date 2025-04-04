@@ -1,14 +1,20 @@
-import {getParams} from "@nimpl/getters/get-params";
 import service from "@/lib/service";
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
 import {GameProjectRecipe, GameRecipeType, ResolvedItem} from "@/lib/service/types";
 import RecipeIngredientDisplay from "@/components/docs/shared/game/RecipeIngredientDisplay";
 import recipes, {ResolvedRecipe, ResolvedSlotItem} from "@/lib/game/recipes";
 import {cn} from "@/lib/utils";
+import {ContentRouteParams} from "@/lib/game/content";
 
-async function RecipeBody({slug, recipe, type}: { slug: string; recipe: ResolvedRecipe, type: GameRecipeType }) {
+interface Properties {
+  project: string;
+  recipe: GameProjectRecipe;
+  embedded?: boolean;
+  params: ContentRouteParams;
+}
+
+async function RecipeBody({slug, recipe, type, params}: { slug: string; recipe: ResolvedRecipe, type: GameRecipeType; params: ContentRouteParams }) {
   const background = await service.getAsset(slug, type.background, null);
-  const params = getParams();
 
   return (
     <div className="relative shrink-0">
@@ -47,7 +53,7 @@ function countOccurrences(ingredients: ResolvedSlotItem[]): IngredientCount[] {
 }
 
 // TODO Handle missing items
-export default async function ResolvedProjectRecipe({project, recipe, embedded}: { project: string; recipe: GameProjectRecipe; embedded?: boolean }) {
+export default async function ResolvedProjectRecipe({project, recipe, embedded, params}: Properties) {
   const processed = await recipes.processRecipe(recipe);
   const resolvedRecipe = await recipes.resolveRecipe(processed);
 
@@ -75,7 +81,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded}:
               .sort((a, b) => b.count - a.count)
               .map(async ({count, item}, index) => (
                 <li key={index}>
-                  <RecipeIngredientDisplay count={count} item={item}/>
+                  <RecipeIngredientDisplay count={count} item={item} params={params}/>
                 </li>
               ))}
           </ul>
@@ -86,14 +92,14 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded}:
               .sort((a, b) => b.count - a.count)
               .map(async ({count, item}, index) => (
                 <li key={index}>
-                  <RecipeIngredientDisplay count={count} item={item}/>
+                  <RecipeIngredientDisplay count={count} item={item} params={params}/>
                 </li>
               ))}
           </ul>
         </td>
         <td>
           <div className="my-2 w-max">
-            <RecipeBody slug={project} recipe={resolvedRecipe} type={processed.type}/>
+            <RecipeBody slug={project} recipe={resolvedRecipe} type={processed.type} params={params}/>
           </div>
         </td>
       </tr>

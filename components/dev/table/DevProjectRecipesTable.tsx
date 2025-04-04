@@ -31,7 +31,7 @@ export default function DevProjectRecipesTable({data, params, versions, page}: {
 
   const expander = (recipe: ProjectContentRecipe) => (
     <div className="my-2 prose prose-invert max-w-fit">
-      <ResolvedProjectRecipe project={params.slug} recipe={recipe.data} embedded/>
+      <ResolvedProjectRecipe project={params.slug} recipe={recipe.data} params={params} embedded/>
     </div>
   );
 

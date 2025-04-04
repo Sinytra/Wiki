@@ -12,6 +12,6 @@ export default async function ProjectRecipe({id, project}: { id: string; project
   }
 
   return (
-    <ResolvedProjectRecipe project={slug} recipe={recipe} />
+    <ResolvedProjectRecipe project={slug} recipe={recipe} params={params as any} />
   )
 }

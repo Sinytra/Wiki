@@ -19,7 +19,7 @@ export default async function RecipeUsage({id}: { id: string }) {
     <li key={item.id} className="first:mt-0">
       {item.has_page
         ?
-        <PageLink href={getContentLink(params, item.id)}>
+        <PageLink href={getContentLink(params as any, item.id)}>
           <Asset project={item.project} location={item.id} className="mr-1.5!"/>
           <span>{item.name || item.id}</span>
         </PageLink>

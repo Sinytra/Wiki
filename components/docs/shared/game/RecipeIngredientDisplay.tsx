@@ -1,10 +1,9 @@
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
 import {ResolvedItem} from "@/lib/service/types";
-import {getResolvedItemLink} from "@/lib/game/content";
-import {getParams} from "@nimpl/getters/get-params";
+import {ContentRouteParams, getResolvedItemLink} from "@/lib/game/content";
+import {cn} from "@/lib/utils";
 
-export default function RecipeIngredientDisplay({count, item}: { count: number; item: ResolvedItem }) {
-  const params = getParams() || {};
+export default function RecipeIngredientDisplay({count, item, params}: { count: number; item: ResolvedItem; params: ContentRouteParams }) {
   const href = getResolvedItemLink(params, item);
   const ContentDiv: any = href != null ? 'a' : 'div';
 
@@ -15,7 +14,7 @@ export default function RecipeIngredientDisplay({count, item}: { count: number; 
         <div className="inline-block mx-1">
           <RotatingItemDisplaySlot noTooltip noLink src={[item]}/>
         </div>
-        <span className="text-primary-alt underline font-medium">{item.name}</span>
+        <span className={cn('text-primary-alt font-medium', href && 'underline')}>{item.name}</span>
       </ContentDiv>
     </div>
   )

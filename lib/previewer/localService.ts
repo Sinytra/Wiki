@@ -34,7 +34,7 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectWi
     type: project.type,
     created_at: '',
     info: {
-      pageCount: 1, // TODO
+      pageCount: 1,
       contentCount: 0
     }
   };
@@ -116,11 +116,11 @@ async function getLocalContentTree(slug: string, locale: string | null): Promise
 }
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
-  return {pages: 0, total: 0, data: []};
+  return {pages: 0, total: 0, data: [], size: 0};
 }
 
 async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
-  return null; // TODO
+  return null;
 }
 
 async function getProjectContents(project: string): Promise<ProjectContentTree | null> {

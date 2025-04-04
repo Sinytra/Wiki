@@ -28,7 +28,7 @@ async function getLocalizedPageName(slug: string, id: string): Promise<string | 
 export default async function ContentLink(props: LinkProps) {
   const params = getParams() || {};
 
-  const link = getContentLink(params, props.id);
+  const link = getContentLink(params as any, props.id);
   const body = props.children ?? await getLocalizedPageName(params.slug as string, props.id);
 
   return (
