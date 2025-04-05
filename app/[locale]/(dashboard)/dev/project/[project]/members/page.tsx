@@ -21,12 +21,12 @@ export default async function DevProjectMembersPage({params}: { params: { locale
     <div className="pt-1 space-y-3">
       <DevProjectPageTitle title="Project members" desc="Manage project members & permissions"/>
 
-      <div className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">
-        <ImageWithFallback src={response.avatar_url} width={84} height={84} className="rounded-sm" alt="avatar"/>
+      <div className="flex flex-row gap-3 sm:gap-4 p-3 sm:p-4 w-full border border-tertiary rounded-md bg-primary-alt">
+        <ImageWithFallback src={response.avatar_url} width={64} height={64} className="sm:size-21 rounded-sm" alt="avatar"/>
 
         <div className="flex flex-col w-full justify-between items-end">
           <div className="flex flex-row gap-2 justify-between w-full">
-            <span className="text-xl">{response.username}</span>
+            <span className="text-lg sm:text-xl">{response.username}</span>
             <span className="text-secondary">Owner</span>
           </div>
 

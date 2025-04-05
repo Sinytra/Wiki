@@ -9,7 +9,7 @@ export default function DevProjectPageTitle({title, desc}: { title: string; desc
           <SidebarTrigger className="-ml-1 mr-auto md:hidden text-primary"/>
         </div>
         <div className="space-y-1">
-          <h3 className="text-xl font-medium">
+          <h3 className="text-lg sm:text-xl font-medium">
             {title}
           </h3>
           <p className="text-sm text-secondary">

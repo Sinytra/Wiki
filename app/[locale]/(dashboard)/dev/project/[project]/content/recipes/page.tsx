@@ -8,6 +8,8 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {pick} from "lodash";
 import DevProjectRecipesTable from "@/components/dev/table/DevProjectRecipesTable";
+import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
+import * as React from "react";
 
 type Properties = {
   params: {
@@ -44,7 +46,9 @@ export default async function ProjectDevContentRecipesPage({params, searchParams
   const messages = await getMessages();
 
   return (
-    <div>
+    <div className="pt-1 space-y-3">
+      <DevProjectPageTitle title="Project recipes" desc="Browse project crafting recipes" />
+
       <NuqsAdapter>
         <NextIntlClientProvider messages={pick(messages, 'DocsVersionSelector')}>
           <DevProjectRecipesTable data={content}

@@ -8,8 +8,8 @@ export default function LocaleLayout({ params, children }: Readonly<{
   setContextLocale(params.locale);
 
   return (
-    <div className="flex flex-col min-h-screen mx-4 page-wrapper-base sm:mx-2">
-      <div className="flex flex-col w-full items-center mx-1">
+    <div className="flex flex-col min-h-screen mx-3 page-wrapper-base sm:mx-2">
+      <div className="flex flex-col w-full items-center px-1">
         {children}
       </div>
     </div>

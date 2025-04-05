@@ -141,7 +141,7 @@ function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revis
         <span>Current git revision</span>
       </div>
       {revision ?
-        <div className="flex flex-row gap-4 items-start text-sm">
+        <div className="flex flex-row flex-wrap sm:flex-nowrap gap-4 items-start text-sm">
           <LinkWithFallback href={revision.url} className="font-mono text-secondary shrink-0">
             {revision.hash}
           </LinkWithFallback>

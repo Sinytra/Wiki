@@ -133,6 +133,10 @@
     top: calc(var(--vp-nav-height));
 }
 
+@utility h-nav {
+    height: var(--vp-nav-height);
+}
+
 @layer utilities {
     .accordion-body {
         display: grid;
