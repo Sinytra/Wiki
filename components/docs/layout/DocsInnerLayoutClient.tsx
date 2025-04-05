@@ -1,7 +1,9 @@
 import DocsGuideFileTreeSidebar from "@/components/docs/side/guide/DocsGuideFileTreeSidebar";
 import {FileTree, Project} from "@/lib/service";
+import ProjectDocsMobileHeader from "@/components/docs/ProjectDocsMobileHeader";
 
 interface Props {
+  title: string;
   project: Project;
   version: string;
   locale: string;
@@ -12,15 +14,19 @@ interface Props {
   footer: any;
 }
 
-export default function DocsInnerLayoutClient({project, version, rightSidebar, footer, tree, children}: Props) {
+export default function DocsInnerLayoutClient({title, project, version, rightSidebar, footer, tree, children}: Props) {
   return <>
+    <ProjectDocsMobileHeader>
+      {title}
+    </ProjectDocsMobileHeader>
+
     {/* Main Content Area */}
-    <div className="flex flex-row flex-1 justify-center gap-12">
+    <div className="flex flex-row flex-1 justify-between gap-4 w-full max-w-[1632px]">
       {/* Left Sidebar */}
       <DocsGuideFileTreeSidebar slug={project.id} version={version} tree={tree}/>
 
       {/* Main Content */}
-      <main className="flex-1 pb-6 pt-2 overflow-auto min-h-[86vh] sm:min-h-[auto] sm:max-w-5xl">
+      <main className="flex-1 pb-6 sm:pt-2 overflow-auto min-h-[86vh] sm:min-h-[auto] sm:max-w-5xl">
         {children}
       </main>
 

@@ -60,11 +60,13 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
   }
   try {
     const result = await markdown.renderDocumentationMarkdown(platformProject.description);
-    return { ...result, content: (
-      <div className="[&>_:first-child>*]:mt-0!">
-        {result.content}
-      </div>
-      ) }
+    return {
+      ...result, content: (
+        <div className="[&>_:first-child>*]:mt-0!">
+          {result.content}
+        </div>
+      )
+    }
   } catch (e) {
     console.error('Error rendering homepage', e);
     return undefined;
@@ -85,7 +87,8 @@ export default async function Homepage({params}: PageProps) {
   const content = await renderHomepage(projectData.project, platformProject, params.version, params.locale);
 
   return (
-    <DocsInnerLayoutClient project={projectData.project}
+    <DocsInnerLayoutClient title={platformProject.name}
+                           project={projectData.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
                            rightSidebar={

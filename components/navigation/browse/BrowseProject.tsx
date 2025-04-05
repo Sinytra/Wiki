@@ -138,8 +138,8 @@ export default function BrowseProject({project}: { project: BaseProject }) {
           </Suspense>
         </ErrorBoundary>
 
-        <div className="flex flex-col gap-1.5 w-full">
-          <div className="w-full h-full flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1 w-full">
+          <div className="w-full h-full flex flex-col">
             <div className="w-full inline-flex gap-2">
               <LinkTextButton href={`/project/${project.id}`} className="[&_]:text-lg w-fit! text-base! font-normal! sm:shrink-0 text-primary">
                 {project.name}

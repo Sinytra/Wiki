@@ -98,7 +98,7 @@ export default async function ContentEntryPage({params}: Props) {
           <DocsContentTOCSidebar headings={page.content.metadata._headings || []} />
         </NextIntlClientProvider>
       </div>
-      <div className="max-w-[1072px] w-full px-6">
+      <div className="max-w-[1072px] w-full px-3">
         <Suspense fallback={<DocsLoadingSkeleton/>}>
           <DocsEntryPage page={page}/>
         </Suspense>

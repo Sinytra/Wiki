@@ -11,14 +11,15 @@ interface Props {
   showHistory?: boolean;
   children?: any;
   titleClassName?: string;
+  className?: string;
 }
 
-export default function DocsContentTitle({ project, children, titleClassName, showHistory }: Props) {
+export default function DocsContentTitle({ project, children, titleClassName, showHistory, className }: Props) {
   const t = useTranslations('Badges');
   const messages = useMessages();
 
   return (
-    <div className="mb-4 pb-2 border-b border-secondary">
+    <div className={cn('mb-4 pb-2 border-b border-secondary', className)}>
       <div className="flex flex-row flex-wrap md:flex-nowrap justify-between md:items-center gap-2">
         <h1 className={cn("docsContentTitle text-ellipsis md:overflow-hidden md:whitespace-nowrap text-primary text-2xl", titleClassName)}>
           {children}

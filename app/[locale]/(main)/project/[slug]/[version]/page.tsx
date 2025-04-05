@@ -83,8 +83,8 @@ function ExternalLink({text, icon: Icon, href, className}: {
   return (
     <a href={href} target="_blank">
       <div
-        className={cn('cursor-pointer w-36 p-3 flex flex-row justify-center items-center gap-2 rounded-sm border bg-gradient-to-b hover:to-60%', className)}>
-        <Icon className="w-5 h-5"/>
+        className={cn('cursor-pointer w-36 p-2 sm:p-3 flex flex-row justify-center items-center gap-2 rounded-sm border bg-gradient-to-b hover:to-60%', className)}>
+        <Icon className="size-4 sm:size-5 shrink-0"/>
         {text}
       </div>
     </a>
@@ -152,13 +152,13 @@ export default async function ProjectHomePage({params}: PageProps) {
     <div className="max-w-5xl w-full mx-auto flex flex-col gap-6 mt-1 mb-5">
       <div className="flex flex-row gap-4 border-b border-secondary pb-2">
         <div className="flex justify-center items-center">
-          <img src={platformProject.icon_url} alt="Icon" className="w-14 h-14 rounded-sm flex-shrink-0"/>
+          <img src={platformProject.icon_url} alt="Icon" className="size-12 sm:size-14 rounded-sm flex-shrink-0"/>
         </div>
         <div className="flex flex-col gap-1">
-          <h1 className="text-primary text-2xl">
+          <h1 className="text-primary text-lg sm:text-2xl">
             {project.name}
           </h1>
-          <blockquote className="text-secondary">
+          <blockquote className="text-secondary text-sm sm:text-base">
             {platformProject.summary}
           </blockquote>
         </div>
@@ -211,7 +211,7 @@ export default async function ProjectHomePage({params}: PageProps) {
         {/*<SubpageLink title="Developer information" icon={HammerIcon} desc="Maven and in-game IDs" href="../devs"/>*/}
       </Section>
 
-      <Section title="Links" icon={LinkIcon} className="flex flex-row gap-2">
+      <Section title="Links" icon={LinkIcon} className="flex flex-row flex-wrap gap-2">
         {project.info.website &&
           <ExternalLink text="Website" icon={GlobeIcon}
                         href={project.info.website}

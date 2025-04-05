@@ -69,7 +69,8 @@ export default async function ProjectDocsPage({params}: {
     && page.content.metadata.hide_meta === undefined;
 
   return (
-    <DocsInnerLayoutClient project={page.project}
+    <DocsInnerLayoutClient title={page.content.metadata.title || page.project.name}
+                           project={page.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
                            rightSidebar={
