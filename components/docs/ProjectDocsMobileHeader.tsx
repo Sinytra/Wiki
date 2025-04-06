@@ -8,7 +8,7 @@ export default function ProjectDocsMobileHeader({children}: {children: any}) {
   const {open, setOpen} = useContext(DocsSidebarContext)!;
 
   return (
-    <header className="lg:hidden w-full flex justify-between items-center px-0 pt-1 pb-2 border-b border-tertiary mb-4">
+    <header className="lg:hidden w-full flex justify-between items-center px-0 pt-1 pb-2 border-b border-tertiary">
       <button onClick={() => setOpen(open == 'left' ? 'none' : 'left')} className="text-primary">
         {open === 'left' ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>

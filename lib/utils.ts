@@ -5,6 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function trimText(str: string, len: number) {
+  return str.length > len ? `${str.substring(0, len)}...` : str;
+}
+
 export function getHttpErrorDetailsURL(status: number): string {
   return `https://http.cat/${status}`;
 }

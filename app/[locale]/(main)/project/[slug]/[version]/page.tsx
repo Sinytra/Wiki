@@ -29,6 +29,7 @@ import DiscordIcon from "@/components/ui/icons/DiscordIcon";
 import {useTranslations} from "next-intl";
 import {DEFAULT_WIKI_LICENSE} from "@/lib/constants";
 import TooltipText from "@/components/docs/shared/util/TooltipText";
+import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 
 interface PageProps {
   params: {
@@ -150,19 +151,11 @@ export default async function ProjectHomePage({params}: PageProps) {
 
   return (
     <div className="max-w-5xl w-full mx-auto flex flex-col gap-6 mt-1 mb-5">
-      <div className="flex flex-row gap-4 border-b border-secondary pb-2">
-        <div className="flex justify-center items-center">
-          <img src={platformProject.icon_url} alt="Icon" className="size-12 sm:size-14 rounded-sm flex-shrink-0"/>
-        </div>
-        <div className="flex flex-col gap-1">
-          <h1 className="text-primary text-lg sm:text-2xl">
-            {project.name}
-          </h1>
-          <blockquote className="text-secondary text-sm sm:text-base">
-            {platformProject.summary}
-          </blockquote>
-        </div>
-      </div>
+      <DocsSubpageTitle
+        title={project.name}
+        description={platformProject.summary}
+        icon_url={platformProject.icon_url}
+      />
 
       <div className="flex flex-col gap-4">
         <div>

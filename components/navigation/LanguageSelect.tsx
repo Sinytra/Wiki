@@ -48,19 +48,24 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
   const ordered = [lang, ...Object.keys(availableLocales).filter(k => k != lang)];
 
   return (
-    <div className={cn(!mobile && !minimal && styles.socialLinks)}>
-      <div>
+    <div className={cn(minimal && 'w-full', !mobile && !minimal && styles.socialLinks)}>
+      <div className={cn(minimal && 'w-full')}>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             {minimal ?
               <button className="flex w-full items-center text-sm ring-offset-background placeholder:text-secondary
-                                 focus:outline-hidden sm:w-fit sm:min-w-24 sm:max-w-32 h-7 px-2 py-0 test-center
+                                 focus:outline-hidden sm:w-fit sm:min-w-24 sm:max-w-32 h-8 sm:h-7 px-2 py-0 test-center
                                  rounded-sm bg-transparent border-none justify-start hover:bg-secondary
-                                 [&>span]:line-clamp-1 [&>span]:text-sm [&>svg:last-child]:hidden
-                                 [&>span]:text-ellipsis [&>span]:w-full [&>span]:block whitespace-nowrap"
+                                 [&>svg:last-child]:hidden whitespace-nowrap"
               >
                 <Globe className="size-3.5 mr-2.5 shrink-0"/>
-                <span>{selectedLang.name}</span>
+                <div className="sm:hidden inline-flex gap-2 mx-auto">
+                  <CountryFlag className="rounded-xs!" flag={selectedLang.icon}/>
+                  <span className="text-ellipsis line-clamp-1 text-sm">{selectedLang.name}</span>
+                </div>
+                <span className="hidden sm:block text-ellipsis line-clamp-1 text-sm">
+                  {selectedLang.name}
+                </span>
               </button>
               :
               <Button variant="outline" role="combobox" aria-expanded={open} className="px-2 py-1 bg-transparent border-none justify-between">
@@ -81,7 +86,8 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
           </PopoverTrigger>
           <PopoverContent align={mobile ? 'start' : 'end'}
                           onOpenAutoFocus={(e) => e.preventDefault()}
-                          className={cn('p-0 pointer-events-auto!', !mobile && 'w-48')}>
+                          className={cn('p-0 pointer-events-auto!', !mobile && 'w-48 sm:w-48',
+                                        minimal && 'w-[var(--radix-popover-trigger-width)]')}>
             <Command value={value} defaultValue={value}>
               <CommandInput placeholder={t('placeholder')}/>
               <CommandList

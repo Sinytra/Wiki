@@ -30,7 +30,7 @@ export default async function DocsGuideContentRightSidebar({ project, metadata, 
         'data-[open=false]:border-0'
       )}
     >
-      <div className="space-y-2 w-[96vw] sm:w-56">
+      <div className="space-y-2 sm:w-56">
         <div className="mb-6 border border-tertiary m-2 rounded-xs">
           <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto disable-blur"
                              alt={!iconUrl ? undefined : iconUrl.id}/>

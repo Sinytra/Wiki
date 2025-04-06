@@ -10,7 +10,7 @@ import {DevProject} from "@/lib/service";
 import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
-import {cn} from "@/lib/utils";
+import {cn, trimText} from "@/lib/utils";
 import platforms, {PlatformProject} from "@/lib/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {
@@ -80,7 +80,7 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
           </LinkTextButton>
         </div>
         <p className="text-secondary font-normal text-ellipsis overflow-x-hidden max-w-5xl">
-          {project.summary.length > 50 ? `${project.summary.substring(0, 50)}...` : project.summary}
+          {trimText(project.summary, 50)}
         </p>
       </div>
     </div>
@@ -108,7 +108,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
             </LinkTextButton>
           </div>
           <p className="text-secondary font-normal text-sm">
-            {platformProject.summary.length > 100 ? `${platformProject.summary.substring(0, 100)}...` : platformProject.summary}
+            {trimText(platformProject.summary, 100)}
           </p>
         </div>
 

@@ -16,7 +16,7 @@ import {BaseProject} from "@/lib/service";
 import ModVersionRange from "@/components/docs/ModVersionRange";
 import Image from "next/image";
 import {getTranslations} from "next-intl/server";
-import {resolveSoft} from "@/lib/utils";
+import {resolveSoft, trimText} from "@/lib/utils";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
@@ -38,7 +38,7 @@ function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
     <span className="text-sm text-secondary font-normal line-clamp-2 sm:line-clamp-none h-10 sm:h-auto sm:min-h-5">
-      {projectContent.summary.length > 100 ? `${projectContent.summary.substring(0, 100)}...` : projectContent.summary}
+      {trimText(projectContent.summary, 100)}
     </span>
   )
 }

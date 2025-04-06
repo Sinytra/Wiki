@@ -5,6 +5,7 @@ import PageLink from "@/components/docs/PageLink";
 import service from "@/lib/service";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@/lib/platforms";
+import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 
 interface Props {
   params: {
@@ -115,19 +116,12 @@ export default async function ProjectContentPage({params}: Props) {
 
   return (
     <div className="max-w-5xl w-full mx-auto flex flex-col gap-6 mt-1 mb-5">
-      <div className="flex flex-row gap-4 border-b border-secondary pb-2">
-        <div className="flex justify-center items-center">
-          <img src={platformProject.icon_url} alt="Icon" className="w-14 h-14 rounded-sm flex-shrink-0"/>
-        </div>
-        <div className="flex flex-col gap-1">
-          <h1 className="text-primary text-2xl">
-            {project.name} <span className="text-secondary text-xl">/ Content</span>
-          </h1>
-          <blockquote className="text-secondary">
-            {platformProject.summary}
-          </blockquote>
-        </div>
-      </div>
+      <DocsSubpageTitle
+        title={project.name}
+        description={platformProject.summary}
+        icon_url={platformProject.icon_url}
+        subcategory="Content"
+      />
 
       <div className="flex flex-col gap-4">
         {...contents.map(e =>

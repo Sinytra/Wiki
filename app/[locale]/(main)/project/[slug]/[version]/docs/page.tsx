@@ -87,7 +87,7 @@ export default async function Homepage({params}: PageProps) {
   const content = await renderHomepage(projectData.project, platformProject, params.version, params.locale);
 
   return (
-    <DocsInnerLayoutClient title={platformProject.name}
+    <DocsInnerLayoutClient title="Home"
                            project={projectData.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
@@ -105,12 +105,12 @@ export default async function Homepage({params}: PageProps) {
           {platformProject.name}
         </DocsContentTitle>
         : content === null
-        ?
-        <DocsHomepagePlaceholder/>
-        :
-        <DocsMarkdownContent>
-          {content.content}
-        </DocsMarkdownContent>
+          ?
+          <DocsHomepagePlaceholder/>
+          :
+          <DocsMarkdownContent>
+            {content.content}
+          </DocsMarkdownContent>
       }
     </DocsInnerLayoutClient>
   )

@@ -25,9 +25,10 @@
 
 import {CSSTransition} from "react-transition-group";
 import {useEffect, useRef} from "react";
+import {cn} from "@/lib/utils";
 
 // https://github.com/vuejs/vitepress/blob/2e54970f7195c67b63908964575f589ce24b6d29/src/client/theme-default/components/VPNavScreen.vue
-export default function MobileNavScreen({ isVisible, children }: { isVisible: boolean; children: any }) {
+export default function MobileNavScreen({ isVisible, className, children }: { isVisible: boolean; className: string; children: any }) {
   const nodeRef = useRef(null);
 
   function lockScroll() {
@@ -47,7 +48,7 @@ export default function MobileNavScreen({ isVisible, children }: { isVisible: bo
   return (
     <div>
       <CSSTransition nodeRef={nodeRef} in={isVisible} timeout={200} classNames="fade" unmountOnExit onEnter={lockScroll} onExited={unlockScroll}>
-        <div ref={nodeRef} className="fixed bg-primary py-0 px-8 overflow-y-auto top-nav-height right-0 bottom-0 left-0 w-full">
+        <div ref={nodeRef} className={cn('fixed py-0 px-8 overflow-y-auto right-0 bottom-0 left-0 w-full', className)}>
           <div className="mx-auto my-0 max-w-72 pt-8 pb-24 innerFadeContainer">
             {children}
           </div>

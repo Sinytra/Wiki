@@ -1,6 +1,6 @@
 import {redirect, setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from 'next-intl';
-import {cn} from "@/lib/utils";
+import {cn, trimText} from "@/lib/utils";
 import TranslateBanner from "@/components/landing/TranslateBanner";
 import Link from "next/link";
 import crowdin from "@/lib/locales/crowdin";
@@ -41,8 +41,10 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   const t = useTranslations('HomePage');
   const projectTypes = useTranslations('ProjectTypes');
 
+  const height = resolved.length == 1 ? 100 : Math.floor(resolved.length / 3.0);
+
   return resolved.map((project, index) => (
-    <div key={index} className="h-full max-h-[33%] bg-primary-alt p-6 rounded-md shadow-sm flex flex-col">
+    <div key={index} className={cn('h-full bg-primary-alt p-6 rounded-md shadow-sm flex flex-col', `max-h-[${height}%]`)}>
       <div className="flex items-center mb-4">
         <Image
           src={project.icon}
@@ -57,7 +59,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
         </div>
       </div>
       <p className="text-secondary mb-4 grow">
-        {project.summary.length > 100 ? `${project.summary.substring(0, 100)}...` : project.summary}
+        {trimText(project.summary, 100)}
       </p>
       <div className="flex justify-between items-center">
         <div className="flex flex-wrap gap-2">
