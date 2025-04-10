@@ -67,19 +67,21 @@ export default async function ProjectDocsPage({params}: {
   const messages = await getMessages();
   const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
     && page.content.metadata.hide_meta === undefined;
+  const headings = page.content.metadata._headings || [];
 
   return (
     <DocsInnerLayoutClient title={page.content.metadata.title || page.project.name}
                            project={page.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
+                           showRightSidebar={isContentPage || headings.length > 0}
                            rightSidebar={
                              isContentPage
                                ? <DocsGuideContentRightSidebar project={projectData.project}
                                                                metadata={page.content.metadata}
                                                                version={params.version}/>
                                : <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
-                                 <DocsNonContentRightSidebar headings={page.content.metadata._headings || []}/>
+                                 <DocsNonContentRightSidebar headings={headings}/>
                                </NextIntlClientProvider>
                            }
                            footer={

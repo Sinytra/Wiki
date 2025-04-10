@@ -85,15 +85,17 @@ export default async function Homepage({params}: PageProps) {
   const messages = await getMessages();
 
   const content = await renderHomepage(projectData.project, platformProject, params.version, params.locale);
+  const headings = content?.metadata._headings || [];
 
   return (
     <DocsInnerLayoutClient title="Home"
                            project={projectData.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
+                           showRightSidebar={headings.length > 0}
                            rightSidebar={
                              <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
-                               <DocsNonContentRightSidebar headings={content?.metadata._headings || []}/>
+                               <DocsNonContentRightSidebar headings={headings}/>
                              </NextIntlClientProvider>
                            }
                            footer={

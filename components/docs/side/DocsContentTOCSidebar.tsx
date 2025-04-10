@@ -81,7 +81,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
           className="max-h-[80vh] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
         >
           <ul className="space-y-1 text-sm">
-            {headings.slice(1).map((heading, index) => (
+            {headings.map((heading, index) => (
               <li key={heading.id} style={{ paddingLeft: `${(heading.depth - 1) * 0.75}rem` }}>
                 <a
                   href={`#${heading.id}`}

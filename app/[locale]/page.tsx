@@ -44,7 +44,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   const height = resolved.length == 1 ? 100 : Math.floor(resolved.length / 3.0);
 
   return resolved.map((project, index) => (
-    <div key={index} className={cn('h-full bg-primary-alt p-6 rounded-md shadow-sm flex flex-col', `max-h-[${height}%]`)}>
+    <div key={index} className={cn('h-full bg-primary-alt p-6 rounded-md shadow-sm flex flex-col', `sm:max-h-fit max-h-[${height}%]`)}>
       <div className="flex items-center mb-4">
         <Image
           src={project.icon}

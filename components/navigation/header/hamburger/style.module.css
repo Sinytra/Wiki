@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 48px;
+    width: 32px;
 }
 
 .MobileNavHamburger:hover .top    { top: 0; left: 0; transform: translateX(4px); }

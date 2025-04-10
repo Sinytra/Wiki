@@ -3,8 +3,14 @@
 import {useContext} from "react";
 import {DocsSidebarContext} from "@/components/docs/side/DocsSidebarContext";
 import {Info, Menu, X} from "lucide-react";
+import {cn} from "@/lib/utils";
 
-export default function ProjectDocsMobileHeader({children}: {children: any}) {
+interface Props {
+  showRightSidebar?: boolean;
+  children?: any
+}
+
+export default function ProjectDocsMobileHeader({showRightSidebar, children}: Props) {
   const {open, setOpen} = useContext(DocsSidebarContext)!;
 
   return (
@@ -15,7 +21,9 @@ export default function ProjectDocsMobileHeader({children}: {children: any}) {
       <h1 className="text-lg font-bold">
         {children}
       </h1>
-      <button onClick={() => setOpen(open == 'right' ? 'none' : 'right')} className="text-primary">
+      <button onClick={() => setOpen(open == 'right' ? 'none' : 'right')}
+              className={cn('text-primary', showRightSidebar === false && 'invisible')}
+      >
         {open === 'right' ? <X className="w-6 h-6" /> : <Info className="w-6 h-6" />}
       </button>
     </header>

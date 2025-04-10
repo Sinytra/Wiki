@@ -71,7 +71,7 @@ async function ProjectGameVersions({project}: { project: Promise<PlatformProject
   const t = await getTranslations('DocsProjectInfo.latest');
 
   return !projectContent || projectContent.game_versions.length === 0
-    ? <span className="text-base">{t('unknown')}</span>
+    ? <span className="text-sm">{t('unknown')}</span>
     : <ModVersionRange versions={projectContent.game_versions} />;
 }
 
@@ -90,11 +90,11 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
         <ErrorBoundary fallback={<span></span>}>
           <div className="flex flex-row items-center gap-3">
             <div className="flex flex-row items-center gap-2 text-secondary">
-              <TypeIcon className="size-4.5"/>
-              <span className="text-base">{u(base.type)}</span>
+              <TypeIcon className="size-4"/>
+              <span className="text-sm">{u(base.type)}</span>
             </div>
             <div className="flex flex-row items-center gap-2 text-secondary">
-              <MilestoneIcon className="size-4.5"/>
+              <MilestoneIcon className="size-4"/>
               <Suspense>
                 <ProjectGameVersions project={promise} />
               </Suspense>

@@ -93,7 +93,7 @@ export default async function ContentEntryPage({params}: Props) {
 
   return (
     <div className="relative w-full mx-auto flex flex-row justify-center gap-4 ml-auto mt-2 mb-12">
-      <div className="w-64 shrink-0">
+      <div className="w-64 shrink-0 hidden sm:block">
         <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
           <DocsContentTOCSidebar headings={page.content.metadata._headings || []} />
         </NextIntlClientProvider>
@@ -105,7 +105,7 @@ export default async function ContentEntryPage({params}: Props) {
 
         {contents && <ContentListFooter project={page.project} contents={contents} version={params.version} />}
       </div>
-      <div className="w-64 shrink-0">
+      <div className="w-64 shrink-0 hidden sm:block">
         <RightSidebar title={t('title')} project={page.project}
                       metadata={page.content.metadata}
                       version={params.version}/>

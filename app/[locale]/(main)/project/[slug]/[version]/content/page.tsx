@@ -31,16 +31,15 @@ function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; 
   )
 }
 
-function ContentEntryList({entries, slug, version}: {entries: ProjectContentTree; slug: string; version: string} ) {
+function ContentEntryList({entries, slug, version}: { entries: ProjectContentTree; slug: string; version: string }) {
   return (
-    <div className="flex flex-row flex-wrap gap-1 items-center">
+    <div className="columns-[10em] w-full sm:w-fit sm:flex flex-row flex-wrap gap-1 items-center">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
         <div key={c.path} className="flex flex-row flex-wrap gap-1 items-center">
-          {i > 0 && <span className="text-secondary">&bull;</span>}
+          {i > 0 && <span className="text-secondary hidden sm:block">&bull;</span>}
           <ContentEntryLink entry={c} slug={slug} version={version}/>
         </div>
-      )
-      }
+      )}
     </div>
   )
 }
@@ -51,11 +50,11 @@ function ContentSubcategory({entry, slug, version}: { entry: ProjectContentEntry
   }
 
   return (
-    <div className="flex flex-row gap-6 items-center">
-      <div className="w-24 shrink-0 text-end">
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-center">
+      <div className="sm:w-24 shrink-0 text-end">
         <span className="text-sm font-medium">{entry.name}</span>
       </div>
-      <ContentEntryList entries={entry.children} slug={slug} version={version} />
+      <ContentEntryList entries={entry.children} slug={slug} version={version}/>
     </div>
   )
 }
@@ -82,16 +81,16 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
           ?
           <div className="flex flex-col gap-1">
             {...entry.children.filter(c => c.type === 'dir').map(c => (
-              <ContentSubcategory key={c.path} entry={c} slug={slug} version={version} />
+              <ContentSubcategory key={c.path} entry={c} slug={slug} version={version}/>
             ))}
             {children.length > 0 &&
-              <ContentSubcategory entry={{ name: 'Other', children, type: 'dir', path: '' }}
-                                  slug={slug} version={version} />
+              <ContentSubcategory entry={{name: 'Other', children, type: 'dir', path: ''}}
+                                  slug={slug} version={version}/>
             }
           </div>
           :
-          <ContentSubcategory entry={{ name: 'All', children, type: 'dir', path: '' }}
-                              slug={slug} version={version} />
+          <ContentSubcategory entry={{name: 'All', children, type: 'dir', path: ''}}
+                              slug={slug} version={version}/>
         }
       </div>
     </div>

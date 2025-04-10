@@ -6,10 +6,10 @@ export default function ModVersionRange({versions}: { versions: string[] }) {
 
   return (
     <>
-      <span className="text-sm sm:text-base">{versions[versions.length - 1]}</span>
+      <span className="text-sm">{versions[versions.length - 1]}</span>
       {versions.length > 1 &&
         <Popover>
-            <PopoverTrigger className="text-sm sm:text-base">
+            <PopoverTrigger className="text-sm">
                 ({t('desc', {count: versions.length - 1})})
             </PopoverTrigger>
             <PopoverContent className="px-3 py-1.5 text-sm w-fit max-h-56 max-w-32 overflow-y-auto slim-scrollbar" side="bottom">

@@ -8,15 +8,16 @@ interface Props {
   version: string;
   locale: string;
   tree: FileTree;
+  showRightSidebar?: boolean;
   children: any;
 
   rightSidebar?: any;
   footer: any;
 }
 
-export default function DocsInnerLayoutClient({title, project, version, rightSidebar, footer, tree, children}: Props) {
+export default function DocsInnerLayoutClient({title, project, version, rightSidebar, footer, tree, showRightSidebar, children}: Props) {
   return <>
-    <ProjectDocsMobileHeader>
+    <ProjectDocsMobileHeader showRightSidebar={showRightSidebar}>
       {title}
     </ProjectDocsMobileHeader>
 
