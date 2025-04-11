@@ -10,12 +10,9 @@ import {DocsEntryMetadata} from "@/lib/docs/metadata";
 import platforms from "@/lib/platforms";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
-import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRightSidebar";
 import DocsGuideContentRightSidebar from "@/components/docs/side/guide/DocsGuideContentRightSidebar";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
-import {pick} from "lodash";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
+import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -64,7 +61,6 @@ export default async function ProjectDocsPage({params}: {
   }
   if (!page) redirect(`/project/${params.slug}/docs`);
 
-  const messages = await getMessages();
   const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
     && page.content.metadata.hide_meta === undefined;
   const headings = page.content.metadata._headings || [];
@@ -80,9 +76,7 @@ export default async function ProjectDocsPage({params}: {
                                ? <DocsGuideContentRightSidebar project={projectData.project}
                                                                metadata={page.content.metadata}
                                                                version={params.version}/>
-                               : <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
-                                 <DocsNonContentRightSidebar headings={headings}/>
-                               </NextIntlClientProvider>
+                               : <DocsGuideNonContentRightSidebar headings={headings}/>
                            }
                            footer={
                              <DocsPageFooter editUrl={page.edit_url}

@@ -297,7 +297,7 @@
     }
 
     .no-scroll {
-        @apply fixed lg:static;
+        @apply fixed md:static max-w-screen;
     }
 }
 

@@ -44,11 +44,16 @@ export default function DocsGuideFileTreeSidebar({slug, version, tree}: LeftSide
   const t = useTranslations('DocsLeftSidebar');
 
   return (
-    <ScrollableDocsSidebarBase title={t('title')} tagName="nav" type="left" className={cn(
-      'shrink-0 left-0',
-      'w-[96vw] sm:w-64 data-[open=false]:-translate-x-full lg:data-[open=false]:-translate-x-0',
-      'data-[open=false]:border-0'
-    )} innerClassName="overscroll-contain">
+    <ScrollableDocsSidebarBase
+      type="left"
+      title={t('title')}
+      className={cn(
+        'shrink-0 left-0',
+        'w-[96vw] sm:w-64'
+      )}
+      innerClassName="overscroll-contain"
+      tagName="nav"
+    >
       <DocsFileLink href={`/project/${slug}/${version}/docs`}>
         <HomeIcon className="w-4 h-4 mr-2"/>
         {t('homepage')}

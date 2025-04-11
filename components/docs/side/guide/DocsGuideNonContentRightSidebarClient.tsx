@@ -10,7 +10,7 @@ interface ContentRightSidebarProps {
   headings: FileHeading[];
 }
 
-export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarProps) {
+export default function DocsGuideNonContentRightSidebarClient({ headings }: ContentRightSidebarProps) {
   const t = useTranslations('DocsNonContentRightSidebar');
 
   const [activeId, setActiveId] = useState<string>('');
@@ -66,9 +66,8 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
       type="right"
       title={t('title')}
       className={cn(
-        'shrink-0 left-0',
-        'w-[96vw] sm:w-64 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
-        'border-r data-[open=false]:border-0'
+        'shrink-0 right-0',
+        'w-[96vw] sm:w-64'
       )}
       tagName="nav"
     >
@@ -86,7 +85,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "block text-sm py-1 text-secondary hover:text-primary transition-colors",
+                    "block py-1 text-secondary hover:text-primary transition-colors",
                     activeId === heading.id && "text-primary",
                     index === 0 ? 'pt-0!' : ''
                   )}

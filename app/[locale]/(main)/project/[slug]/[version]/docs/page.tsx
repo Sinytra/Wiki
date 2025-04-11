@@ -8,12 +8,9 @@ import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
 import DocsHomepagePlaceholder from "@/components/docs/body/DocsHomepagePlaceholder";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
-import {pick} from "lodash";
-import DocsNonContentRightSidebar from "@/components/docs/side/DocsNonContentRightSidebar";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
+import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -82,7 +79,6 @@ export default async function Homepage({params}: PageProps) {
   }
 
   const platformProject = await platforms.getPlatformProject(projectData.project);
-  const messages = await getMessages();
 
   const content = await renderHomepage(projectData.project, platformProject, params.version, params.locale);
   const headings = content?.metadata._headings || [];
@@ -93,14 +89,8 @@ export default async function Homepage({params}: PageProps) {
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}
                            showRightSidebar={headings.length > 0}
-                           rightSidebar={
-                             <NextIntlClientProvider messages={pick(messages, 'DocsNonContentRightSidebar')}>
-                               <DocsNonContentRightSidebar headings={headings}/>
-                             </NextIntlClientProvider>
-                           }
-                           footer={
-                             <DocsPageFooter/>
-                           }
+                           rightSidebar={<DocsGuideNonContentRightSidebar headings={headings}/>}
+                           footer={<DocsPageFooter/>}
     >
       {content === undefined ?
         <DocsContentTitle>

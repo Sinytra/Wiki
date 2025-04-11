@@ -26,8 +26,7 @@ export default async function DocsGuideContentRightSidebar({ project, metadata, 
       title={t('title')}
       className={cn(
         'shrink-0 right-0',
-        'data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0',
-        'data-[open=false]:border-0'
+        'w-[96vw] sm:w-64'
       )}
     >
       <div className="space-y-2 sm:w-56">
