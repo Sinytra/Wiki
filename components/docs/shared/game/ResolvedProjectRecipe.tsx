@@ -3,8 +3,8 @@ import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemD
 import {GameProjectRecipe, GameRecipeType, ResolvedItem} from "@/lib/service/types";
 import RecipeIngredientDisplay from "@/components/docs/shared/game/RecipeIngredientDisplay";
 import recipes, {ResolvedRecipe, ResolvedSlotItem} from "@/lib/game/recipes";
-import {cn} from "@/lib/utils";
 import {ContentRouteParams} from "@/lib/game/content";
+import ResponsiveTable from "@/components/util/ResponsiveTable";
 
 interface Properties {
   project: string;
@@ -13,7 +13,12 @@ interface Properties {
   params: ContentRouteParams;
 }
 
-async function RecipeBody({slug, recipe, type, params}: { slug: string; recipe: ResolvedRecipe, type: GameRecipeType; params: ContentRouteParams }) {
+async function RecipeBody({slug, recipe, type, params}: {
+  slug: string;
+  recipe: ResolvedRecipe,
+  type: GameRecipeType;
+  params: ContentRouteParams
+}) {
   const background = await service.getAsset(slug, type.background, null);
 
   return (
@@ -61,49 +66,61 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
   const outputCounts = countOccurrences(resolvedRecipe.outputs);
 
   return (
-    <table className={cn('[&_td]:bg-primary-alt/50', embedded && 'mb-0')}>
-      <thead>
-      <tr>
-        <th>Recipe Type</th>
-        <th>Ingredients</th>
-        <th>Outputs</th>
-        <th>Recipe preview</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td className="align-middle whitespace-nowrap">
-          {processed.type.localizedName}
-        </td>
-        <td className="align-top">
-          <ul className="w-max pl-4">
-            {inputCounts
-              .sort((a, b) => b.count - a.count)
-              .map(async ({count, item}, index) => (
-                <li key={index}>
-                  <RecipeIngredientDisplay count={count} item={item} params={params}/>
-                </li>
-              ))}
-          </ul>
-        </td>
-        <td className="align-top">
-          <ul className="w-max max-w-60 pl-4">
-            {outputCounts
-              .sort((a, b) => b.count - a.count)
-              .map(async ({count, item}, index) => (
-                <li key={index}>
-                  <RecipeIngredientDisplay count={count} item={item} params={params}/>
-                </li>
-              ))}
-          </ul>
-        </td>
-        <td>
-          <div className="my-2 w-max">
-            <RecipeBody slug={project} recipe={resolvedRecipe} type={processed.type} params={params}/>
-          </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <ResponsiveTable
+      embedded={embedded}
+      columns={[
+        {key: 'type', label: 'Recipe Type'},
+        {key: 'input', label: 'Ingredients'},
+        {key: 'output', label: 'Outputs'},
+        {key: 'preview', label: 'Recipe preview'}
+      ]}
+      rows={[
+        {
+          type: {
+            className: 'align-middle whitespace-nowrap',
+            data: (
+              <div className="p-1.5 sm:p-0">
+                {processed.type.localizedName}
+              </div>
+            )
+          },
+          input: {
+            className: 'align-top',
+            data: (
+              <ul className="w-max pl-4">
+                {inputCounts
+                  .sort((a, b) => b.count - a.count)
+                  .map(async ({count, item}, index) => (
+                    <li key={index}>
+                      <RecipeIngredientDisplay count={count} item={item} params={params}/>
+                    </li>
+                  ))}
+              </ul>
+            )
+          },
+          output: {
+            className: 'align-top',
+            data: (
+              <ul className="w-max max-w-60 pl-4">
+                {outputCounts
+                  .sort((a, b) => b.count - a.count)
+                  .map(async ({count, item}, index) => (
+                    <li key={index}>
+                      <RecipeIngredientDisplay count={count} item={item} params={params}/>
+                    </li>
+                  ))}
+              </ul>
+            )
+          },
+          preview: {
+            data: (
+              <div className="my-2 w-max p-2 sm:p-0">
+                <RecipeBody slug={project} recipe={resolvedRecipe} type={processed.type} params={params}/>
+              </div>
+            )
+          }
+        }
+      ]}
+    />
   );
 }

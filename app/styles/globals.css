@@ -159,7 +159,7 @@
     html {
         overflow: auto;
         scrollbar-gutter: stable;
-        scroll-padding-top: calc(var(--vp-nav-height) + 6px);
+        scroll-padding-top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height) + 6px);
     }
 
     /*Prevent added margin when opening select*/
@@ -177,7 +177,7 @@
         }
 
         html {
-            scroll-padding-top: 72px;
+            scroll-padding-top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height) + 12px);
         }
     }
 

@@ -33,7 +33,7 @@ function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; 
 
 function ContentEntryList({entries, slug, version}: { entries: ProjectContentTree; slug: string; version: string }) {
   return (
-    <div className="columns-[10em] w-full sm:w-fit sm:flex flex-row flex-wrap gap-1 items-center">
+    <div className="columns-[10em] space-y-2 sm:space-y-0 w-full sm:w-fit sm:flex flex-row flex-wrap gap-1 items-center">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
         <div key={c.path} className="flex flex-row flex-wrap gap-1 items-center">
           {i > 0 && <span className="text-secondary hidden sm:block">&bull;</span>}
