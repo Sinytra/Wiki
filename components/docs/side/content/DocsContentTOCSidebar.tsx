@@ -87,7 +87,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
                   className={cn(
                     "block text-sm py-1 text-secondary hover:text-primary transition-colors",
                     activeId === heading.id && "text-primary",
-                    index === 0 ? 'pt-0!' : ''
+                    index === 0 ? 'pt-0!' : '',
                   )}
                   onClick={(e) => {
                     e.preventDefault()

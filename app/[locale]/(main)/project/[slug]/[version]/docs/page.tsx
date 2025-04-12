@@ -25,16 +25,11 @@ export async function generateMetadata(
   }
 
   const platformProject = await platforms.getPlatformProject(project);
-
   return {
-    title: `${platformProject.name} - ${(await parent).title?.absolute}`,
-    openGraph: {
-      images: [`/api/og?slug=${params.slug}&locale=${params.locale}`],
-    },
     other: {
       docs_source_mod: platformProject.name,
-      docs_source_icon: platformProject.icon_url,
-    },
+      docs_source_icon: platformProject.icon_url
+    }
   };
 }
 

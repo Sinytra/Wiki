@@ -26,6 +26,15 @@ export default function rehypeMarkdownHeadings() {
       }
     });
 
+    if (file.data.matter.title) {
+      headingList.unshift({
+        depth: 1,
+        value: file.data.matter.title,
+        id: '',
+        top: true
+      });
+    }
+
     // @ts-ignore
     file.data.matter = {...file.data.matter, _headings: headingList};
   }

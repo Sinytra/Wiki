@@ -10,18 +10,20 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
 
   return <>
     <div className="flex flex-col gap-3 sm:gap-2">
-      {...results.data.map((m) => (
-        <BrowseProject key={m.id} project={m}/>
-      ))}
-      {results.data.length === 0 &&
+      {!results || results.data.length === 0
+        ?
           <span className="text-center my-3 text-secondary">
               {t('no_results')}
           </span>
+        :
+        results.data.map((m) => (
+          <BrowseProject key={m.id} project={m}/>
+        ))
       }
     </div>
 
     <div className="mt-auto pt-4">
-      <TablePagination current={page} total={results.pages}/>
+      {results && <TablePagination current={page} total={results.pages}/>}
     </div>
   </>
 }

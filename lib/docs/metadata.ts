@@ -8,6 +8,7 @@ export interface FileHeading {
   depth: number;
   value: string;
   id: string;
+  top?: boolean;
 }
 
 type ShortChangelogEntry = {[key: string]: string};

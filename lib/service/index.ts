@@ -1,5 +1,5 @@
-import localService from "@/lib/previewer/localService";
-import remoteService from "@/lib/service/remoteService";
+import {serviceProviderFactory as localServiceProviderFactory} from "@/lib/previewer/localService";
+import remoteService, {serviceProviderFactory as remoteServiceProviderFactory} from "@/lib/service/remoteService";
 import assets, {AssetLocation} from "../assets";
 import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {ComponentPatcher, DocumentationMarkdown} from "@/lib/markdown";
@@ -103,19 +103,52 @@ export interface ContentRecipeUsage {
 }
 
 export interface ServiceProvider {
-  getProject: (slug: string, version: string | null) => Promise<Project | null>;
+  getProject: (slug: string, version: string | null) => Promise<ProjectWithInfo | null>;
   getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
   getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
-  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional: boolean) => Promise<DocumentationPage | undefined | null>;
-  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults>;
+  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional?: boolean) => Promise<DocumentationPage | undefined | null>;
+  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null>;
   getProjectContents: (project: string) => Promise<ProjectContentTree | null>;
   getProjectRecipe: (project: string, recipe: string) => Promise<GameProjectRecipe | null>;
-  getProjectContentPage: (project: string, id: string) => Promise<DocumentationPage | null>;
+  getProjectContentPage: (project: string, id: string, version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
   getContentRecipeUsage: (project: string, id: string) => Promise<ContentRecipeUsage[] | null>;
 }
 
-function isRemoteAvailable() {
-  return process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL != null;
+export interface ServiceProviderFactory {
+  isAvailable: () => boolean;
+  create: () => ServiceProvider
+}
+
+type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
+
+function createProxy<T extends AsyncMethodKey<ServiceProvider>>(
+  callback: (p: ServiceProvider, ...args: Parameters<ServiceProvider[T]>) => ReturnType<ServiceProvider[T]>
+): (...args: Parameters<ServiceProvider[T]>) => Promise<Awaited<ReturnType<ServiceProvider[T]>> | null> {
+  return (...args) => proxyServiceCall((p) => callback(p, ...args));
+}
+
+async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
+  callback: (p: ServiceProvider) => ReturnType<ServiceProvider[T]>
+): Promise<Awaited<ReturnType<ServiceProvider[T]>> | null> {
+  const providers: ServiceProvider[] = [localServiceProviderFactory, remoteServiceProviderFactory]
+    .filter(f => f.isAvailable())
+    .map(f => f.create());
+  for (const provider of providers) {
+    const promise = callback(provider) as ReturnType<ServiceProvider[T]>;
+    const result = await promise;
+    if (result) {
+      return result;
+    }
+  }
+  return null;
+}
+
+function actualVersion(version: string | null): string | null {
+  return version == DEFAULT_DOCS_VERSION ? null : version;
+}
+
+function actualLocale(locale: string | null): string | null {
+  return !locale || locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
 }
 
 function getLocaleName(locale: string) {
@@ -123,32 +156,12 @@ function getLocaleName(locale: string) {
   return loc.prefix ? loc.prefix : `${locale}_${locale}`;
 }
 
-async function getProject(slug: string, version: string | null): Promise<ProjectWithInfo | null> {
-  const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-
-  // TODO Enable
-  // if (process.env.LOCAL_DOCS_ROOTS) {
-  //   const localProject = await localService.getProject(slug);
-  //   if (localProject) {
-  //     return localProject;
-  //   }
-  // }
-
-  return remoteService.getProject(slug, actualVersion);
-}
-
-async function getBackendLayout(slug: string, version: string, locale: string): Promise<LayoutTree | null> {
-  const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-  const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
-
-  if (process.env.LOCAL_DOCS_ROOTS) {
-    const localLayout = await localService.getBackendLayout(slug, actualVersion, actualLocale);
-    if (localLayout) {
-      return localLayout;
-    }
-  }
-  return remoteService.getBackendLayout(slug, actualVersion, actualLocale);
-}
+const getProject: (slug: string, version: string | null) => Promise<ProjectWithInfo | null> = createProxy<'getProject'>(
+  (p, slug, version) => p.getProject(slug, actualVersion(version))
+);
+const getBackendLayout: (slug: string, version: string, locale: string) => Promise<LayoutTree | null> = createProxy<'getBackendLayout'>(
+  (p, slug, version, locale) => p.getBackendLayout(slug, actualVersion(version), actualLocale(locale))
+);
 
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
@@ -156,78 +169,40 @@ async function getAsset(slug: string | null, location: string, version: string |
     const compatibleLocation = location.includes('/') ? location : prefixItemPath(location);
     return assets.getAssetResource(compatibleLocation);
   }
-
-  const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-
-  if (process.env.LOCAL_DOCS_ROOTS) {
-    const asset = await localService.getAsset(slug, location, actualVersion);
-    if (asset) {
-      return asset;
-    }
-  }
-
-  return isRemoteAvailable() ? remoteService.getAsset(slug, location, actualVersion) : null;
+  return proxyServiceCall<'getAsset'>(p => p.getAsset(slug, location, actualVersion(version)));
 }
 
 function getAssetURL(slug: string, location: string, version: string | null): AssetLocation | null {
-  const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-
-  return isRemoteAvailable() ? remoteService.getAssetURL(slug, location, actualVersion) : null;
+  return remoteServiceProviderFactory.isAvailable() ? remoteService.getAssetURL(slug, location, actualVersion(version)) : null;
 }
 
-async function getDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean): Promise<DocumentationPage | null> {
-  const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-  const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
-
-  if (process.env.LOCAL_DOCS_ROOTS) {
-    const localPage = await localService.getDocsPage(slug, path, actualVersion, actualLocale, optional || false);
-    if (localPage !== undefined) {
-      return localPage;
-    }
-  }
-  return remoteService.getDocsPage(slug, path, actualVersion, actualLocale, optional || false);
-}
+const getDocsPage: (slug: string, path: string[], version: string, locale: string, optional?: boolean) => Promise<DocumentationPage | null | undefined> = createProxy<'getDocsPage'>(
+  (p, slug, path, version, locale, optional) => p.getDocsPage(slug, path, actualVersion(version), actualVersion(locale), optional || false)
+)
 
 async function renderDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
-  const raw = await getDocsPage(slug, path, version, locale, optional);
+  const raw = await getDocsPage(slug, path, version, locale, optional) || null;
   return renderMarkdown(raw, patcher);
 }
 
-async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
-  // TODO local
-  return remoteService.searchProjects(query, page, types, sort);
-}
+const searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null> = createProxy<'searchProjects'>(
+  (p, query, page, types, sort) => p.searchProjects(query, page, types, sort)
+);
+const getProjectContents: (project: string) => Promise<ProjectContentTree | null> = createProxy<'getProjectContents'>(
+  (p, project) => p.getProjectContents(project)
+);
+const getProjectContentPage: (slug: string, id: string, version: string, locale: string) => Promise<DocumentationPage | null> = createProxy<'getProjectContentPage'>(
+  (p, slug, id, version, locale) => p.getProjectContentPage(slug, id, actualVersion(version), actualLocale(locale))
+);
+const getContentRecipeUsage: (project: string, id: string) => Promise<ContentRecipeUsage[] | null> = createProxy<'getContentRecipeUsage'>(
+  (p, project, id) => p.getContentRecipeUsage(project, id)
+);
+const getProjectRecipe: (project: string, recipe: string) => Promise<GameProjectRecipe | null> = createProxy<'getProjectRecipe'>(
+  (p, project, recipe) => p.getProjectRecipe(project, recipe)
+);
 
-async function getProjectContents(project: string): Promise<ProjectContentTree | null> {
-  if (process.env.LOCAL_DOCS_ROOTS) {
-    const localContents = await localService.getProjectContents(project);
-    if (localContents) {
-      return localContents;
-    }
-  }
-
-  return isRemoteAvailable() ? remoteService.getProjectContents(project) : null;
-}
-
-async function getProjectContentPage(slug: string, id: string): Promise<DocumentationPage | null> {
-  // const actualVersion = version == DEFAULT_DOCS_VERSION ? null : version;
-  // const actualLocale = locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
-
-  if (process.env.LOCAL_DOCS_ROOTS) {
-    const localPage = await localService.getProjectContentPage(slug, id);
-    if (localPage !== undefined) {
-      return localPage;
-    }
-  }
-  return remoteService.getProjectContentPage(slug, id);
-}
-
-async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
-  return remoteService.getContentRecipeUsage(project, id);
-}
-
-async function renderProjectContentPage(project: string, id: string): Promise<RenderedDocsPage | null> {
-  const raw = await getProjectContentPage(project, id);
+async function renderProjectContentPage(project: string, id: string, version: string, locale: string): Promise<RenderedDocsPage | null> {
+  const raw = await getProjectContentPage(project, id, version, locale);
   return renderMarkdown(raw);
 }
 
@@ -241,10 +216,6 @@ async function renderMarkdown(raw: DocumentationPage | null, patcher?: Component
     };
   }
   return null;
-}
-
-async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
-  return await remoteService.getProjectRecipe(project, recipe);
 }
 
 function prefixItemPath(location: string) {
@@ -263,5 +234,6 @@ export default {
   getProjectRecipe,
   renderProjectContentPage,
   getContentRecipeUsage,
-  getAssetURL
+  getAssetURL,
+  getProjectContentPage
 }

@@ -3,7 +3,7 @@ import {
   DocumentationPage,
   LayoutTree,
   ProjectSearchResults,
-  ProjectWithInfo
+  ProjectWithInfo, ServiceProvider, ServiceProviderFactory
 } from "@/lib/service/index";
 import {AssetLocation} from "@/lib/assets";
 import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
@@ -66,7 +66,7 @@ function getAssetURL(project: string, location: string, version: string | null):
   };
 }
 
-async function getDocsPage(project: string, path: string[], version: string | null, locale: string | null, optional: boolean): Promise<DocumentationPage | null> {
+async function getDocsPage(project: string, path: string[], version: string | null, locale: string | null, optional?: boolean): Promise<DocumentationPage | null | undefined> {
   return wrapNullableServiceCall(
     () => fetchBackendService(project, `docs/${project}/page/${path.join('/')}.mdx`, {
       version,
@@ -81,13 +81,13 @@ async function getDocsPage(project: string, path: string[], version: string | nu
   );
 }
 
-async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults | null> {
   return await wrapNullableServiceCall(() => fetchBackendService('', `browse`, {
     query,
     page: page.toString(),
     types,
     sort
-  }, 'GET', true)) || {pages: 0, total: 0, data: [], size: 0};
+  }, 'GET', true));
 }
 
 async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
@@ -98,15 +98,15 @@ async function getProjectContents(project: string): Promise<ProjectContentTree |
   return wrapNullableServiceCall<ProjectContentTree>(() => fetchBackendService(project, `content/${project}`));
 }
 
-async function getProjectContentPage(project: string, id: string): Promise<DocumentationPage | null> {
-  return wrapNullableServiceCall<DocumentationPage>(() => fetchBackendService(project, `content/${project}/${id}`));
+async function getProjectContentPage(project: string, id: string, version: string | null, locale: string | null): Promise<DocumentationPage | null> {
+  return wrapNullableServiceCall<DocumentationPage>(() => fetchBackendService(project, `content/${project}/${id}`, {version, locale}));
 }
 
 async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
   return wrapNullableServiceCall<ContentRecipeUsage[]>(() => fetchBackendService(project, `content/${project}/${id}/usage`));
 }
 
-export default {
+const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
   getDocsPage,
@@ -115,6 +115,18 @@ export default {
   getProjectRecipe,
   getProjectContents,
   getProjectContentPage,
-  getContentRecipeUsage,
+  getContentRecipeUsage
+}
+
+export const serviceProviderFactory: ServiceProviderFactory = {
+  isAvailable() {
+    return process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL != null;
+  },
+  create() {
+    return serviceProvider;
+  }
+}
+
+export default {
   getAssetURL
 }

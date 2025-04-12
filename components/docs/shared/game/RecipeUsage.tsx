@@ -1,15 +1,15 @@
-import remoteService from "@/lib/service/remoteService";
 import {getParams} from "@nimpl/getters/get-params";
 import UsageContentList from "@/components/docs/shared/game/UsageContentList";
 import PageLink from "@/components/docs/PageLink";
 import {getContentLink} from "@/lib/game/content";
 import Asset from "@/components/docs/shared/Asset";
+import service from "@/lib/service";
 
 export default async function RecipeUsage({id}: { id: string }) {
   const params = getParams() || {};
   const project = params.slug as any;
 
-  const usage = await remoteService.getContentRecipeUsage(project, id);
+  const usage = await service.getContentRecipeUsage(project, id);
   if (!usage) {
     return null;
   }

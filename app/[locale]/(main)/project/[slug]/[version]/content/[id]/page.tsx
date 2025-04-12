@@ -12,6 +12,10 @@ import {NextIntlClientProvider} from "next-intl";
 import ContentListFooter from "@/components/docs/ContentListFooter";
 import ProjectDocsMobileHeader from "@/components/docs/ProjectDocsMobileHeader";
 import DocsContentMetaSidebar from "@/components/docs/side/content/DocsContentMetaSidebar";
+import {Metadata, ResolvingMetadata} from "next";
+import platforms from "@/lib/platforms";
+import matter from "gray-matter";
+import {DocsEntryMetadata} from "@/lib/docs/metadata";
 
 interface Props {
   params: {
@@ -22,14 +26,30 @@ interface Props {
   };
 }
 
+export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const page = await service.getProjectContentPage(params.slug, params.id, params.version, params.locale);
+  if (!page) {
+    return {title: (await parent).title?.absolute};
+  }
+
+  const project = await platforms.getPlatformProject(page.project);
+  const result = matter(page.content).data as DocsEntryMetadata;
+
+  return {
+    title: result.title ? `${result.title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
+    openGraph: {
+      images: [`/api/og?slug=${params.slug}&locale=${params.locale}&id=${params.id}`]
+    }
+  }
+}
+
 export default async function ContentEntryPage({params}: Props) {
   setContextLocale(params.locale);
   const id = decodeURIComponent(params.id);
 
   let page: RenderedDocsPage | null;
   try {
-    // TODO version and locale
-    page = await service.renderProjectContentPage(params.slug, id);
+    page = await service.renderProjectContentPage(params.slug, id, params.version, params.locale);
   } catch (e) {
     console.error('FATAL error rendering content page', e);
     return (

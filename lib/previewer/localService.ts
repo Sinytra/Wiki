@@ -1,11 +1,15 @@
+// noinspection JSUnusedLocalSymbols
+
 import {
   ContentRecipeUsage,
   DocumentationPage,
   FileTreeEntry,
   LayoutTree,
   Project,
-  ProjectSearchResults, ProjectWithInfo,
-  ServiceProvider
+  ProjectSearchResults,
+  ProjectWithInfo,
+  ServiceProvider,
+  ServiceProviderFactory
 } from "@/lib/service";
 import assets, {AssetLocation} from "../assets";
 import platforms from "@/lib/platforms";
@@ -62,7 +66,7 @@ async function getAsset(slug: string, location: string, version: string | null):
   return null;
 }
 
-async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null, optional: boolean): Promise<DocumentationPage | undefined | null> {
+async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null, optional?: boolean): Promise<DocumentationPage | undefined | null> {
   const src = await localDocs.getProjectSource(slug);
   if (src) {
     const platformProject = await platforms.getPlatformProject(src);
@@ -115,8 +119,8 @@ async function getLocalContentTree(slug: string, locale: string | null): Promise
   return null;
 }
 
-async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
-  return {pages: 0, total: 0, data: [], size: 0};
+async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults | null> {
+  return null;
 }
 
 async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
@@ -127,7 +131,7 @@ async function getProjectContents(project: string): Promise<ProjectContentTree |
   return getLocalContentTree(project, null);
 }
 
-async function getProjectContentPage(project: string, id: string): Promise<DocumentationPage | null> {
+async function getProjectContentPage(project: string, id: string, version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   const tree = await getProjectContents(project);
   const findRecursive: (e: ProjectContentEntry) => string | null = (e) => {
     if (e.type === 'dir') {
@@ -155,10 +159,10 @@ async function getProjectContentPage(project: string, id: string): Promise<Docum
 }
 
 async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
-  return null; // TODO
+  return null;
 }
 
-export default {
+const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
   getDocsPage,
@@ -168,4 +172,13 @@ export default {
   getProjectContents,
   getProjectContentPage,
   getContentRecipeUsage
-} satisfies ServiceProvider;
+}
+
+export const serviceProviderFactory: ServiceProviderFactory = {
+  isAvailable() {
+    return process.env.LOCAL_DOCS_ROOTS != null;
+  },
+  create() {
+    return serviceProvider
+  }
+}

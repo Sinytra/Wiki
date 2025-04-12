@@ -21,6 +21,7 @@ interface DocsPathCoords {
   slug: string;
   version: string;
   path?: string;
+  id?: string;
 }
 
 async function getFont() {
@@ -41,8 +42,8 @@ async function getFont() {
   }));
 }
 
-function PagePath({locale, slug, version, path}: DocsPathCoords) {
-  const fullPath = `/${locale === 'en' ? '' : locale + '/'}project/${slug}/${version}${path ? '/' + path : ''}`;
+function PagePath({id, locale, slug, version, path}: DocsPathCoords) {
+  const fullPath = id || `/${locale === 'en' ? '' : locale + '/'}project/${slug}/${version}${path ? '/' + path : ''}`;
 
   return (
     <span style={{
@@ -262,19 +263,21 @@ export async function GET(req: NextRequest) {
   const coords: DocsPathCoords = {locale, slug, version};
 
   const pathVal = searchParams.get('path');
-  if (!pathVal) {
+  const idVal = searchParams.get('id');
+  if (!idVal && !pathVal) {
     const project = await service.getProject(slug, null);
     if (!project) {
-      return NextResponse.json({'error': 'Project not found'}, { status: 400 });
+      return NextResponse.json({'error': 'Project not found'}, {status: 400});
     }
     const platformProject = await platforms.getPlatformProject(project);
     return projectPageImage(coords, platformProject, fonts);
   }
 
-  const path = pathVal.split('/');
-  const page = await service.getDocsPage(slug, path, version, locale);
+  const page = idVal
+    ? await service.getProjectContentPage(slug, idVal, version, locale)
+    : await service.getDocsPage(slug, pathVal!.split('/'), version, locale);
   if (!page) {
-    return NextResponse.json({'error': 'Page not found'}, { status: 400 });
+    return NextResponse.json({'error': 'Page not found'}, {status: 400});
   }
 
   const project = await platforms.getPlatformProject(page.project);
@@ -282,5 +285,9 @@ export async function GET(req: NextRequest) {
 
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(slug, (metadata.icon || metadata.id)!, version);
 
-  return docsEntryPageResponse({...coords, path: pathVal}, project.name, metadata.title || 'Document', iconUrl, fonts);
+  return docsEntryPageResponse({
+    ...coords,
+    path: pathVal || undefined,
+    id: idVal || undefined
+  }, project.name, metadata.title || 'Document', iconUrl, fonts);
 }

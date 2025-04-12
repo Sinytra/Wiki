@@ -13,6 +13,7 @@ import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContex
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import platforms from "@/lib/platforms";
 import {DEFAULT_DOCS_VERSION, LEGACY_DEFAULT_DOCS_VERSION} from "@/lib/constants";
+import {Metadata, ResolvingMetadata} from "next";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -23,6 +24,25 @@ interface LayoutProps {
     slug: string;
     version: string;
     locale: string;
+  };
+}
+
+export async function generateMetadata(
+  {params}: { params: { slug: string; locale: string; version: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const project = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
+  if (!project) {
+    return {title: (await parent).title?.absolute};
+  }
+
+  const platformProject = await platforms.getPlatformProject(project);
+
+  return {
+    title: `${platformProject.name} - ${(await parent).title?.absolute}`,
+    openGraph: {
+      images: [`/api/og?slug=${params.slug}&locale=${params.locale}`],
+    }
   };
 }
 

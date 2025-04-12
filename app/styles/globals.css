@@ -141,6 +141,10 @@
     height: var(--vp-nav-height);
 }
 
+@utility h-subnav {
+    height: var(--vp-sub-nav-height);
+}
+
 @layer utilities {
     .accordion-body {
         display: grid;
