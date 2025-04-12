@@ -2,7 +2,7 @@ import localService from "@/lib/previewer/localService";
 import remoteService from "@/lib/service/remoteService";
 import assets, {AssetLocation} from "../assets";
 import {ProjectPlatform} from "@/lib/platforms/universal";
-import markdown, {DocumentationMarkdown} from "@/lib/markdown";
+import markdown, {ComponentPatcher, DocumentationMarkdown} from "@/lib/markdown";
 import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 import {GameProjectRecipe, ProjectContentTree, ProjectType} from "@/lib/service/types";
@@ -153,7 +153,7 @@ async function getBackendLayout(slug: string, version: string, locale: string): 
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
   // For builtin assets
   if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || location.startsWith(`${DEFAULT_RSLOC_NAMESPACE}:`) || !location.includes(':')) {
-    const compatibleLocation = location.includes('/') ? location :  prefixItemPath(location);
+    const compatibleLocation = location.includes('/') ? location : prefixItemPath(location);
     return assets.getAssetResource(compatibleLocation);
   }
 
@@ -188,9 +188,9 @@ async function getDocsPage(slug: string, path: string[], version: string, locale
   return remoteService.getDocsPage(slug, path, actualVersion, actualLocale, optional || false);
 }
 
-async function renderDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean): Promise<RenderedDocsPage | null> {
+async function renderDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
   const raw = await getDocsPage(slug, path, version, locale, optional);
-  return renderMarkdown(raw);
+  return renderMarkdown(raw, patcher);
 }
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults> {
@@ -231,9 +231,9 @@ async function renderProjectContentPage(project: string, id: string): Promise<Re
   return renderMarkdown(raw);
 }
 
-async function renderMarkdown(raw: DocumentationPage | null): Promise<RenderedDocsPage | null> {
+async function renderMarkdown(raw: DocumentationPage | null, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
   if (raw) {
-    const content = await markdown.renderDocumentationMarkdown(raw.content);
+    const content = await markdown.renderDocumentationMarkdown(raw.content, patcher);
     return {
       project: raw.project,
       content,
@@ -249,7 +249,7 @@ async function getProjectRecipe(project: string, recipe: string): Promise<GamePr
 
 function prefixItemPath(location: string) {
   const parsed = resourceLocation.parse(location);
-  return !parsed ? location : resourceLocation.toString({ namespace: parsed.namespace, path: 'item/' + parsed.path });
+  return !parsed ? location : resourceLocation.toString({namespace: parsed.namespace, path: 'item/' + parsed.path});
 }
 
 export default {

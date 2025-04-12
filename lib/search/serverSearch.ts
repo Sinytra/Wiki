@@ -44,9 +44,9 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
         const hits = body.hits.hits as any[];
 
         const mappedHits = hits.map(hit => {
-          const url_path = hit.fields.url_path[0];
+          const url_path: string = hit.fields.url_path[0];
           const path = url_path.split('/').slice(5).join(' > ');
-          const url = getProcessURL() + url_path.replace('/en/mod/', '/en/project/');
+          const url = getProcessURL() + url_path;
 
           return {
             title: hit.fields.docs_title?.[0],

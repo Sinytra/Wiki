@@ -26,11 +26,14 @@ import ContentLink from "@/components/docs/shared/ContentLink";
 import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
 import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
+import PageLink from "@/components/docs/PageLink";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
   metadata: DocsEntryMetadata;
 }
+
+export type ComponentPatcher = (components: Record<string, any>) => Record<string, any>;
 
 function cleanFrontmatter(input: string) {
   const lines = input.split('\n');
@@ -60,7 +63,7 @@ async function renderMarkdown(content: string): Promise<string> {
   return String(file);
 }
 
-async function renderDocumentationMarkdown(source: string): Promise<DocumentationMarkdown> {
+async function renderDocumentationMarkdown(source: string, patcher?: ComponentPatcher): Promise<DocumentationMarkdown> {
   const icons = Object.keys(LucideReact)
     .filter(key => key.endsWith('Icon'))
     .reduce((obj, key) => {
@@ -68,11 +71,15 @@ async function renderDocumentationMarkdown(source: string): Promise<Documentatio
       obj[key] = LucideReact[key];
       return obj;
     }, {});
-  const components = {
+  let components: Record<string, any> = {
     CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink, RecipeUsage,
     ...icons,
-    h2: LinkAwareHeading
+    h2: LinkAwareHeading,
+    a: PageLink
   };
+  if (patcher) {
+    components = patcher(components);
+  }
   const chConfig = {
     components: {code: 'CodeHikeCode'},
   }

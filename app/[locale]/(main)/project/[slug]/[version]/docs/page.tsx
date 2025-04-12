@@ -47,7 +47,18 @@ interface PageProps {
 }
 
 async function renderHomepage(project: Project, platformProject: PlatformProject, version: string, locale: string): Promise<DocumentationMarkdown | null | undefined> {
-  const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale, true);
+  const patcher = (components: Record<string, any>) => {
+    return {
+      ...components,
+      a: ({href, ...props}: any) => {
+        const Element = components['a'] || 'a';
+        const ignored = href.startsWith('/') || href.includes('://');
+        return <Element href={ignored ? href : 'docs/' + href} {...props} />
+      }
+    }
+  };
+
+  const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale, true, patcher);
   if (result) {
     return result.content;
   }
@@ -56,7 +67,7 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
     return null;
   }
   try {
-    const result = await markdown.renderDocumentationMarkdown(platformProject.description);
+    const result = await markdown.renderDocumentationMarkdown(platformProject.description, patcher);
     return {
       ...result, content: (
         <div className="[&>_:first-child>*]:mt-0!">
