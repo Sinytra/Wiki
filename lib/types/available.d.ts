@@ -13,4 +13,6 @@ export interface Language {
   crowdin?: string;
   /** URL path param */
   prefix?: string;
+  /** Right To Left spelling **/
+  rtl?: boolean;
 }

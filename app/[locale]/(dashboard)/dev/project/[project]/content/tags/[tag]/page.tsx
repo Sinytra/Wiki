@@ -5,7 +5,7 @@ import {NuqsAdapter} from "nuqs/adapters/next/app";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
+import {getMessages, getTranslations} from "next-intl/server";
 import {pick} from "lodash";
 import DevProjectItemsTable from "@/components/dev/table/DevProjectItemsTable";
 import {BreadcrumbLink, BreadcrumbPage} from "@/components/ui/breadcrumb";
@@ -24,8 +24,9 @@ type Properties = {
   }
 }
 
-export default async function ProjectDevContentTagItemsPage({params, searchParams}: Properties) {
+export default async function DevProjectContentTagItemsPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
+  const t = await getTranslations('DevProjectContentTagsPage');
 
   const project = await remoteServiceApi.getDevProject(params.project);
   if (!('id' in project)) {
@@ -53,7 +54,7 @@ export default async function ProjectDevContentTagItemsPage({params, searchParam
       <DevBreadcrumb home={
         <BreadcrumbLink asChild>
           <Link href={`/dev/project/${params.project}/content/tags`}>
-            Tags
+            {t('title')}
           </Link>
         </BreadcrumbLink>
       }>

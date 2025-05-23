@@ -11,7 +11,6 @@ import DevProjectSidebarContextProvider from "@/components/dev/navigation/DevPro
 
 export const dynamic = 'force-dynamic';
 
-// TODO Mobile sidebar
 export default async function DevLayout({params, children}: {
   params: { locale: string; project: string };
   children?: any

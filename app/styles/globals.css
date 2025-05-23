@@ -112,6 +112,10 @@
     .disable-blur {
         image-rendering: pixelated;
     }
+
+    div.rtl * {
+        direction: rtl;
+    }
 }
 
 @utility text-balance {

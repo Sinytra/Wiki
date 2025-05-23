@@ -90,20 +90,20 @@ async function searchProjects(query: string, page: number, types: string | null,
   }, 'GET', true));
 }
 
-async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
-  return wrapNullableServiceCall<GameProjectRecipe>(() => fetchBackendService(project, `content/${project}/recipe/${recipe}`));
-}
-
-async function getProjectContents(project: string): Promise<ProjectContentTree | null> {
-  return wrapNullableServiceCall<ProjectContentTree>(() => fetchBackendService(project, `content/${project}`));
+async function getProjectContents(project: string, version: string | null, locale: string | null): Promise<ProjectContentTree | null> {
+  return wrapNullableServiceCall<ProjectContentTree>(() => fetchBackendService(project, `content/${project}`, {version, locale}));
 }
 
 async function getProjectContentPage(project: string, id: string, version: string | null, locale: string | null): Promise<DocumentationPage | null> {
   return wrapNullableServiceCall<DocumentationPage>(() => fetchBackendService(project, `content/${project}/${id}`, {version, locale}));
 }
 
-async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
-  return wrapNullableServiceCall<ContentRecipeUsage[]>(() => fetchBackendService(project, `content/${project}/${id}/usage`));
+async function getProjectRecipe(project: string, recipe: string, version: string | null, locale: string | null): Promise<GameProjectRecipe | null> {
+  return wrapNullableServiceCall<GameProjectRecipe>(() => fetchBackendService(project, `content/${project}/recipe/${recipe}`, {version, locale}));
+}
+
+async function getContentRecipeUsage(project: string, id: string, version: string | null, locale: string | null): Promise<ContentRecipeUsage[] | null> {
+  return wrapNullableServiceCall<ContentRecipeUsage[]>(() => fetchBackendService(project, `content/${project}/${id}/usage`, {version, locale}));
 }
 
 const serviceProvider: ServiceProvider = {

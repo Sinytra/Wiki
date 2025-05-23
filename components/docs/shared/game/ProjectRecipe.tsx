@@ -1,12 +1,12 @@
-import {getParams} from "@nimpl/getters/get-params";
 import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
 import service from "@/lib/service";
+import {getProjectParams} from "@/lib/utils";
 
 export default async function ProjectRecipe({id, project}: { id: string; project?: string }) {
-  const params = getParams() || {};
-  const slug = project || params.slug as any;
+  const params = getProjectParams();
+  const slug = project || params.slug;
 
-  const recipe = await service.getProjectRecipe(slug, id);
+  const recipe = await service.getProjectRecipe(slug, id, params.version, params.locale);
   if (!recipe) {
     return null;
   }

@@ -30,6 +30,7 @@ import {useTranslations} from "next-intl";
 import {DEFAULT_WIKI_LICENSE} from "@/lib/constants";
 import TooltipText from "@/components/docs/shared/util/TooltipText";
 import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
+import {getTranslations} from "next-intl/server";
 
 interface PageProps {
   params: {
@@ -138,8 +139,9 @@ function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; c
   )
 }
 
-export default async function ProjectHomePage({params}: PageProps) {
+export default async function ProjectHomepage({params}: PageProps) {
   setContextLocale(params.locale);
+  const t = await getTranslations('ProjectHomepage');
 
   const project = await service.getProject(params.slug, null);
   if (!project) {
@@ -159,54 +161,60 @@ export default async function ProjectHomePage({params}: PageProps) {
 
       <div className="flex flex-col gap-4">
         <div>
-          <span className="font-medium">{project.name}</span> is a {project.type} created by {...info.authors.map(a => (
-          <div key={a.name} className="inline-block">
-            <PageLink href={a.url} target="_blank">
-              {a.name}
-            </PageLink>
-          </div>
-        ))}.
+          {t.rich('overview.intro', {
+            project: () => <span className="font-medium">{project.name}</span>,
+            type: project.type,
+            authors: () => info.authors.map(a => (
+              <div key={a.name} className="inline-block">
+                <PageLink href={a.url} target="_blank">
+                  {a.name}
+                </PageLink>
+              </div>
+            ))
+          })}
         </div>
 
         {/*TODO Expand*/}
         <div>
-          Available for <AvailableVersions versions={platformProject.game_versions}/>. Latest version built for <span
-          className="font-medium">
-          {info.latest_version}</span>. First released for <span
-          className="font-medium">{platformProject.game_versions[0]}</span>.
+          {t.rich('overview.availability', {
+            versions: () => <AvailableVersions versions={platformProject.game_versions}/>,
+            latest: () => <span className="font-medium">{info.latest_version}</span>,
+            first: () => <span className="font-medium">{platformProject.game_versions[0]}</span>
+          })}
         </div>
 
         <div className="flex flex-row gap-2 text-secondary text-sm">
           <span>
             <TagIcon className="w-4 h-4 inline-block mr-2"/>
-            Tagged:
+            {t('overview.tags')}
           </span>
           <ProjectTags project={platformProject}/>
         </div>
       </div>
 
-      <Section title="Description" icon={BookOpenIcon}>
+      <Section title={t('description.title')} icon={BookOpenIcon}>
         <ExpandableDescription>
           <MarkdownContent content={platformProject.description}/>
         </ExpandableDescription>
       </Section>
 
-      <Section title="Navigation" icon={MapIcon} className="flex flex-row flex-wrap gap-4">
+      <Section title={t('navigation.title')} icon={MapIcon} className="flex flex-row flex-wrap gap-4">
         {project.info.pageCount > 0 &&
-          <SubpageLink title="Browse documentation" icon={BookMarkedIcon}
-                       desc={`${project.info.pageCount} pages available.`}
+          <SubpageLink title={t('navigation.docs.title')} icon={BookMarkedIcon}
+                       desc={t('navigation.docs.desc', {pages: project.info.pageCount})}
                        href="docs"/>
         }
         {project.info.contentCount > 0 &&
-          <SubpageLink title="Browse content" icon={BoxIcon} desc={`${project.info.contentCount} in-game items.`}
+          <SubpageLink title={t('navigation.content.title')} icon={BoxIcon}
+                       desc={t('navigation.content.desc', {items: project.info.contentCount})}
                        href="content"/>
         }
         {/*<SubpageLink title="Developer information" icon={HammerIcon} desc="Maven and in-game IDs" href="../devs"/>*/}
       </Section>
 
-      <Section title="Links" icon={LinkIcon} className="flex flex-row flex-wrap gap-2">
+      <Section title={t('links.title')} icon={LinkIcon} className="flex flex-row flex-wrap gap-2">
         {project.info.website &&
-          <ExternalLink text="Website" icon={GlobeIcon}
+          <ExternalLink text={t('links.website')} icon={GlobeIcon}
                         href={project.info.website}
                         className="border-primary from-primary to-neutral-800"/>
         }
@@ -236,7 +244,7 @@ export default async function ProjectHomePage({params}: PageProps) {
                         className="border-primary from-primary to-black/20"
           />
           :
-          <ExternalLink text="Source code" icon={CodeIcon}
+          <ExternalLink text={t('links.source_code')} icon={CodeIcon}
                         href={platformProject.source_url}
                         className="border-primary from-primary to-primary-alt"
           />)
@@ -248,15 +256,15 @@ export default async function ProjectHomePage({params}: PageProps) {
 
       {/* Related projects / custom sections? */}
 
-      <Section title="Licenses" icon={ScaleIcon} className="flex flex-row flex-wrap gap-4">
-        <LicenseBadge name="Project License" icon={PencilRulerIcon}>
+      <Section title={t('license.title')} icon={ScaleIcon} className="flex flex-row flex-wrap gap-4">
+        <LicenseBadge name={t('license.project')} icon={PencilRulerIcon}>
           {platformProject.license ? (
               platformProject.license.id == ARRNoLicense
                 ?
                 <div className="m-auto flex flex-row gap-2 items-center">
                   <CopyrightIcon className="w-4 mb-0.5"/>
                   <PageLink href="https://choosealicense.com/no-permission" target="_blank">
-                    All Rights Reserved
+                    {t('license.arr')}
                   </PageLink>
                 </div>
                 :
@@ -268,17 +276,16 @@ export default async function ProjectHomePage({params}: PageProps) {
             ) :
             <p className="text-secondary m-auto flex flex-row gap-2 items-center">
               <HelpCircleIcon className="size-4"/>
-              Unknown
+              {t('license.unknown')}
             </p>
           }
         </LicenseBadge>
-        <LicenseBadge name="Wiki License" icon={BookOpenTextIcon}>
+        <LicenseBadge name={t('license.wiki')} icon={BookOpenTextIcon}>
           <span className="text-base text-center">
-            Wiki content <PageLink href="/about/tos#copyright-policy" className="!text-base"
-                                   target="_blank">partially made available</PageLink> under the <PageLink
-            className="!text-base" href={DEFAULT_WIKI_LICENSE.url} target="_blank">
-            {DEFAULT_WIKI_LICENSE.name}
-            </PageLink> license.
+            {t.rich('license.default', {
+              link: (chunks) => <PageLink href="/about/tos#copyright-policy" className="!text-base" target="_blank">{chunks}</PageLink>,
+              license: () => <PageLink className="!text-base" href={DEFAULT_WIKI_LICENSE.url} target="_blank">{DEFAULT_WIKI_LICENSE.name}</PageLink>
+            })}
           </span>
         </LicenseBadge>
       </Section>

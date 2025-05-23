@@ -15,7 +15,7 @@ interface DocsLayoutClientProps {
 
 export default function DocsLayoutClient({project, platformProject, locale, version, children}: DocsLayoutClientProps) {
   return (
-    <div className="flex flex-col lg:gap-3">
+    <div className="flex flex-col gap-3">
       <div className="h-subnav">
         <DocsSubNavBar project={project} platformProject={platformProject} locale={locale} version={version} />
       </div>

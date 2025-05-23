@@ -5,7 +5,7 @@ import {NuqsAdapter} from "nuqs/adapters/next/app";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
 import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
+import {getMessages, getTranslations} from "next-intl/server";
 import {pick} from "lodash";
 import DevProjectVersionsTable from "@/components/dev/table/DevProjectVersionsTable";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
@@ -23,8 +23,9 @@ type Properties = {
   }
 }
 
-export default async function ProjectDevVersionsPage({params, searchParams}: Properties) {
+export default async function DevProjectVersionsPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
+  const t = await getTranslations('DevProjectVersionsPage');
 
   const project = await remoteServiceApi.getDevProject(params.project);
   if (!('id' in project)) {
@@ -46,7 +47,7 @@ export default async function ProjectDevVersionsPage({params, searchParams}: Pro
 
   return (
     <div className="pt-1 space-y-3">
-      <DevProjectPageTitle title="Project versions" desc="Browse project content versions" />
+      <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
       <NuqsAdapter>
         <NextIntlClientProvider messages={pick(messages, 'DocsVersionSelector')}>

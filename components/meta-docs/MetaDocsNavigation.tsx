@@ -1,15 +1,13 @@
 'use client'
 
 import {
-  ExternalLinkIcon,
+  BookOpenIcon,
   HelpCircleIcon,
   HomeIcon,
   LockKeyholeIcon,
   PencilRulerIcon,
   ScrollTextIcon,
-  ShieldIcon,
-  TypeIcon,
-  UploadIcon, UsersIcon
+  ShieldIcon
 } from "lucide-react";
 import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
@@ -27,7 +25,7 @@ export default function MetaDocsNavigation({messages, docsOnly}: { messages: any
 
         <SidebarNavLink href="/about/devs" icon={PencilRulerIcon} className="flex flex-row justify-between items-center w-full">
           {messages['devs']}
-          <ExternalLinkIcon className="w-4 h-4"/>
+          <BookOpenIcon className="w-4 h-4"/>
         </SidebarNavLink>
 
         <hr/>

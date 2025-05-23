@@ -11,6 +11,7 @@ import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import markdown, {DocumentationMarkdown} from "@/lib/markdown";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
+import {getTranslations} from "next-intl/server";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -76,8 +77,9 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
   }
 }
 
-export default async function Homepage({params}: PageProps) {
+export default async function ProjectDocsHomepage({params}: PageProps) {
   setContextLocale(params.locale);
+  const t = await getTranslations('ProjectDocsHomepage');
 
   const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
   if (!projectData) {
@@ -90,7 +92,7 @@ export default async function Homepage({params}: PageProps) {
   const headings = content?.metadata._headings || [];
 
   return (
-    <DocsInnerLayoutClient title="Home"
+    <DocsInnerLayoutClient title={t('title')}
                            project={projectData.project}
                            tree={projectData.tree}
                            version={params.version} locale={params.locale}

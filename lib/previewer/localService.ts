@@ -123,16 +123,16 @@ async function searchProjects(query: string, page: number, types: string | null,
   return null;
 }
 
-async function getProjectRecipe(project: string, recipe: string): Promise<GameProjectRecipe | null> {
+async function getProjectRecipe(project: string, recipe: string, version: string | null, locale: string | null): Promise<GameProjectRecipe | null> {
   return null;
 }
 
-async function getProjectContents(project: string): Promise<ProjectContentTree | null> {
-  return getLocalContentTree(project, null);
+async function getProjectContents(project: string, version: string | null, locale: string | null): Promise<ProjectContentTree | null> {
+  return getLocalContentTree(project, locale);
 }
 
 async function getProjectContentPage(project: string, id: string, version: string | null, locale: string | null): Promise<DocumentationPage | null> {
-  const tree = await getProjectContents(project);
+  const tree = await getProjectContents(project, version, locale);
   const findRecursive: (e: ProjectContentEntry) => string | null = (e) => {
     if (e.type === 'dir') {
       for (let child of e.children) {
@@ -158,7 +158,7 @@ async function getProjectContentPage(project: string, id: string, version: strin
   return null; // TODO
 }
 
-async function getContentRecipeUsage(project: string, id: string): Promise<ContentRecipeUsage[] | null> {
+async function getContentRecipeUsage(project: string, id: string, version: string | null, locale: string | null): Promise<ContentRecipeUsage[] | null> {
   return null;
 }
 

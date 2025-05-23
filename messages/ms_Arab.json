@@ -279,7 +279,7 @@
         "title": "سره"
     },
     "Callout": {
-        "title": "ڤرهاتين!"
+        "default": "ڤرهاتين!"
     },
     "ProjectRegisterForm": {
         "button": "تمبه ڤروجيک",

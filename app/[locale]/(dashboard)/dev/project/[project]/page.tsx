@@ -71,14 +71,14 @@ async function ProjectPlatforms({project}: { project: Project }) {
   const entries = await Promise.all(Object.keys(project.platforms).map(async platform => {
     const p = ProjectHostingPlatforms[platform as ProjectPlatform]!;
     const value = project.platforms[platform as ProjectPlatform] as any;
-    const url = await platforms.getProjectURL(platform as ProjectPlatform, value); // TODO
+    const url = await platforms.getProjectURL(platform as ProjectPlatform, value);
 
     return <DataField className="font-mono" title={p.name} icon={p.icon} value={value} href={url}/>;
   }));
 
   return (
     <div className="w-full max-w-lg flex flex-col gap-5 min-w-0">
-      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={CloudyIcon}/>
+      <DevProjectSectionTitle title={t('title')} desc={t('desc')} icon={CloudyIcon}/>
 
       <div className="space-y-5">
         {...entries}
@@ -104,7 +104,7 @@ function ProjectInfo({project}: { project: Project }) {
 
   return (
     <div className="w-full max-w-lg flex flex-col gap-4 min-w-0">
-      <DevProjectSectionTitle title={t('title')} desc="Resolved information" icon={InfoIcon}/>
+      <DevProjectSectionTitle title={t('title')} desc={t('desc')} icon={InfoIcon}/>
 
       <div className="space-y-5">
         <DataField title={t('type')} icon={TypeIcon} value={v(project.type)}/>
@@ -134,11 +134,13 @@ function LinkWithFallback({className, href, children}: { className?: string, hre
 }
 
 function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revision?: ProjectRevision }) {
+  const t = useTranslations('DevProjectPage.revision');
+
   return (
     <div className="flex flex-col p-3 rounded-sm border border-tertiary bg-primary-dim gap-2">
       <div className="flex flex-row gap-2 items-center">
         <GitBranchIcon className="size-4"/>
-        <span>Current git revision</span>
+        <span>{t('title')}</span>
       </div>
       {revision ?
         <div className="flex flex-row flex-wrap sm:flex-nowrap gap-4 items-start text-sm">
@@ -158,11 +160,11 @@ function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revis
         : status === ProjectStatus.LOADING
           ?
           <div className="text-secondary text-sm">
-            Reloading project, please stand by...
+            {t('reloading')}
           </div>
           :
           <div className="text-secondary text-sm">
-            No revision found. Try reloading the project.
+            {t('not_found')}
           </div>
       }
     </div>
@@ -172,11 +174,12 @@ function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revis
 async function ProfileProject({project}: { project: DevProject }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectPage');
+  const u = await getTranslations('DevProjectPage.overview');
   const messages = await getMessages();
 
   return (
     <div className="py-1 flex flex-col justify-between gap-3">
-      <DevProjectPageTitle title="Project overview" desc="Project information summary"/>
+      <DevProjectPageTitle title={u('title')} desc={u('desc')}/>
 
       <div
         className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">

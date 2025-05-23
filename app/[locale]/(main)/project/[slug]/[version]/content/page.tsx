@@ -108,7 +108,7 @@ export default async function ProjectContentPage({params}: Props) {
 
   const platformProject = await platforms.getPlatformProject(project);
 
-  const contents = await service.getProjectContents(params.slug);
+  const contents = await service.getProjectContents(params.slug, params.version, params.locale);
   if (!contents) {
     notFound();
   }

@@ -61,7 +61,7 @@ export default async function ContentEntryPage({params}: Props) {
   const t = await getTranslations('DocsContentRightSidebar');
   const messages = await getMessages();
 
-  const contents = await service.getProjectContents(params.slug);
+  const contents = await service.getProjectContents(params.slug, params.version, params.locale);
   const headings = page.content.metadata._headings || [];
 
   return (

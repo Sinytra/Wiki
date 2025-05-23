@@ -1,15 +1,15 @@
-import {getParams} from "@nimpl/getters/get-params";
 import UsageContentList from "@/components/docs/shared/game/UsageContentList";
 import PageLink from "@/components/docs/PageLink";
 import {getContentLink} from "@/lib/game/content";
 import Asset from "@/components/docs/shared/Asset";
 import service from "@/lib/service";
+import {getProjectParams} from "@/lib/utils";
 
 export default async function RecipeUsage({id}: { id: string }) {
-  const params = getParams() || {};
-  const project = params.slug as any;
+  const params = getProjectParams();
+  const project = params.slug;
 
-  const usage = await service.getContentRecipeUsage(project, id);
+  const usage = await service.getContentRecipeUsage(project, id, params.version, params.locale);
   if (!usage) {
     return null;
   }

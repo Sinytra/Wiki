@@ -32,7 +32,11 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
       obj[key] = val;
       return obj;
     }, {}) : allLocales;
-  const [value, setValue] = useState(locale);
+
+  const availableKeys = Object.keys(availableLocales);
+  const coercedLocale = availableKeys.includes(locale) ? locale : DEFAULT_LOCALE;
+
+  const [value, setValue] = useState(coercedLocale);
   const [open, setOpen] = useState(false);
 
   const pathname = usePathname();
@@ -43,9 +47,9 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
     router.replace('/' + parts.join('/'));
   };
 
-  const lang = available.getNextIntlInternal(locale);
-  const selectedLang = available.getForUrlParam(locale);
-  const ordered = [lang, ...Object.keys(availableLocales).filter(k => k != lang)];
+  const lang = available.getNextIntlInternal(coercedLocale);
+  const selectedLang = available.getForUrlParam(coercedLocale);
+  const ordered = [lang, ...availableKeys.filter(k => k != lang)];
 
   return (
     <div className={cn(minimal && 'w-full', !mobile && !minimal && styles.socialLinks)}>

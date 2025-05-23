@@ -13,6 +13,7 @@
     --background-color-code-dim: #0D1117;
     --background-color-table-soft: var(--vp-c-bg-soft);
     --background-color-table-hard: var(--background);
+    --background-color-table-hover: var(--vp-c-bg-elv);
     --background-color-code-tab-active: #1E2127;
 
     --text-color-primary: #FFFFF5DB; /*foreground*/

@@ -393,6 +393,43 @@
             "button": "Read guide"
         }
     },
+    "ProjectHomepage": {
+        "overview": {
+            "intro": "<project></project> is a {type} created by <authors></authors>.",
+            "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
+            "tags": "Tagged:"
+        },
+        "description": {
+            "title": "Description"
+        },
+        "navigation": {
+            "title": "Navigation",
+            "docs": {
+                "title": "Browse documentation",
+                "desc": "{pages} pages available."
+            },
+            "content": {
+                "title": "Browse content",
+                "desc": "{items} in-game items."
+            }
+        },
+        "links": {
+            "title": "Links",
+            "website": "Website",
+            "source_code": "Source code"
+        },
+        "license": {
+            "title": "Licenses",
+            "project": "Project License",
+            "arr": "All Rights Reserved",
+            "unknown": "Unknown",
+            "wiki": "Wiki License",
+            "default": "Wiki content <link>partially made available</link> under the <license></license> license."
+        }
+    },
+    "ProjectDocsHomepage": {
+        "title": "Home"
+    },
     "DocsHomepagePlaceholder": {
         "title": "Homepage placeholder",
         "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
@@ -451,6 +488,10 @@
         "toolbar": {
             "view": "View"
         },
+        "overview": {
+            "title": "Project overview",
+            "desc": "Project information summary"
+        },
         "source": {
             "title": "Project Source",
             "repo": "Repository",
@@ -460,6 +501,7 @@
         },
         "platforms": {
             "title": "Platforms",
+            "desc": "Project hosting platforms",
             "headers": {
                 "platform": "Platform",
                 "slug": "Slug / ID",
@@ -469,10 +511,55 @@
         },
         "information": {
             "title": "Information",
+            "desc": "Resolved information",
             "type": "Type",
             "status": "Status",
             "created_at": "Created at"
+        },
+        "revision": {
+            "title": "Current git revision",
+            "reloading": "Reloading project, please stand by...",
+            "not_found": "No revision found. Try reloading the project."
         }
+    },
+    "DevProjectSettingsPage": {
+        "title": "Project settings",
+        "desc": "Configure project properties"
+    },
+    "DevProjectVersionsPage": {
+        "title": "Project versions",
+        "desc": "Browse project content versions"
+    },
+    "DevProjectHealthPage": {
+        "title": "Project health",
+        "desc": "Monitor project status and errors",
+        "errors": {
+            "title": "Project errors",
+            "desc": "Ongoing issues & warnings",
+            "empty": "No issues found"
+        }
+    },
+    "DevProjectMembersPage": {
+        "title": "Project members",
+        "desc": "Manage project members & permissions",
+        "roles": {
+            "owner": "Owner"
+        },
+        "actions": {
+            "manage": "Manage"
+        }
+    },
+    "DevProjectContentItemsPage": {
+        "title": "Project items",
+        "desc": "Browse project items"
+    },
+    "DevProjectContentRecipesPage": {
+        "title": "Project recipes",
+        "desc": "Browse project crafting recipes"
+    },
+    "DevProjectContentTagsPage": {
+        "title": "Project tag",
+        "desc": "Browse project tags"
     },
     "DevProjectLogs": {
         "title": "Server logs",

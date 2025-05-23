@@ -93,7 +93,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
   const u = await getTranslations('ProjectStatus');
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 w-full justify-between p-3 border border-tertiary rounded-md bg-primary-dim">
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full justify-between p-3 border border-tertiary rounded-md bg-primary-dim">
       <MobileProjectHeader id={project.id} project={platformProject} />
 
       <div className="hidden sm:block shrink-0 my-auto">
