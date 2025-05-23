@@ -27,6 +27,8 @@ import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
 import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 import PageLink from "@/components/docs/PageLink";
+import PrefabObtaining from "@/components/docs/shared/prefab/PrefabObtaining";
+import PrefabUsage from "@/components/docs/shared/prefab/PrefabUsage";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -73,6 +75,7 @@ async function renderDocumentationMarkdown(source: string, patcher?: ComponentPa
     }, {});
   let components: Record<string, any> = {
     CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink, RecipeUsage,
+    PrefabObtaining, PrefabUsage,
     ...icons,
     h2: LinkAwareHeading,
     a: PageLink

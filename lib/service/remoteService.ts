@@ -102,6 +102,10 @@ async function getProjectRecipe(project: string, recipe: string, version: string
   return wrapNullableServiceCall<GameProjectRecipe>(() => fetchBackendService(project, `content/${project}/recipe/${recipe}`, {version, locale}));
 }
 
+async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<GameProjectRecipe[] | null> {
+  return wrapNullableServiceCall<GameProjectRecipe[]>(() => fetchBackendService(project, `content/${project}/${id}/recipe`, {version, locale}));
+}
+
 async function getContentRecipeUsage(project: string, id: string, version: string | null, locale: string | null): Promise<ContentRecipeUsage[] | null> {
   return wrapNullableServiceCall<ContentRecipeUsage[]>(() => fetchBackendService(project, `content/${project}/${id}/usage`, {version, locale}));
 }
@@ -115,7 +119,8 @@ const serviceProvider: ServiceProvider = {
   getProjectRecipe,
   getProjectContents,
   getProjectContentPage,
-  getContentRecipeUsage
+  getContentRecipeUsage,
+  getContentRecipeObtaining
 }
 
 export const serviceProviderFactory: ServiceProviderFactory = {

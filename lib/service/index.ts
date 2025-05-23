@@ -112,6 +112,7 @@ export interface ServiceProvider {
   getProjectContents: (project: string, version: string | null, locale: string | null) => Promise<ProjectContentTree | null>;
   getProjectContentPage: (project: string, id: string, version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
   getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe | null>;
+  getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe[] | null>
   getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null>;
 }
 
@@ -195,6 +196,9 @@ const getProjectContents: (project: string, version: string | null, locale: stri
 const getProjectContentPage: (slug: string, id: string, version: string, locale: string) => Promise<DocumentationPage | null> = createProxy<'getProjectContentPage'>(
   (p, slug, id, version, locale) => p.getProjectContentPage(slug, id, actualVersion(version), actualLocale(locale))
 );
+const getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe[] | null> = createProxy<'getContentRecipeObtaining'>(
+  (p, project, id, version, locale) => p.getContentRecipeObtaining(project, id, actualVersion(version), actualLocale(locale))
+);
 const getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null> = createProxy<'getContentRecipeUsage'>(
   (p, project, id, version, locale) => p.getContentRecipeUsage(project, id, actualVersion(version), actualLocale(locale))
 );
@@ -236,5 +240,6 @@ export default {
   renderProjectContentPage,
   getContentRecipeUsage,
   getAssetURL,
-  getProjectContentPage
+  getProjectContentPage,
+  getContentRecipeObtaining
 }

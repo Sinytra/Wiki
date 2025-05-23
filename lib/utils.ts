@@ -32,12 +32,24 @@ export interface ProjectCoordinates {
   version: string;
 }
 
+export interface ProjectContentCoordinates extends ProjectCoordinates{
+  id: string;
+}
+
 export function getProjectParams(): ProjectCoordinates {
+  return getTypedParams('locale', 'slug', 'version');
+}
+
+export function getProjectContentParams(): ProjectContentCoordinates {
+  return getTypedParams('locale', 'slug', 'version', 'id');
+}
+
+function getTypedParams<T>(...keys: string[]): T {
   const params = getParams() || {};
-  for (const s of ['locale', 'slug', 'version']) {
+  for (const s of keys) {
     if (!(s in params)) {
       throw new Error('Params missing expected property ' + s)
     }
   }
-  return (params as unknown) as ProjectCoordinates;
+  return (params as unknown) as T;
 }

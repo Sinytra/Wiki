@@ -162,6 +162,10 @@ async function getContentRecipeUsage(project: string, id: string, version: strin
   return null;
 }
 
+async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<GameProjectRecipe[] | null> {
+ return null;
+}
+
 const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
@@ -171,7 +175,8 @@ const serviceProvider: ServiceProvider = {
   getProjectRecipe,
   getProjectContents,
   getProjectContentPage,
-  getContentRecipeUsage
+  getContentRecipeUsage,
+  getContentRecipeObtaining
 }
 
 export const serviceProviderFactory: ServiceProviderFactory = {

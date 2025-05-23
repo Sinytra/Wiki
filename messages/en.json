@@ -667,5 +667,11 @@
             "tags": "Tags",
             "recipes": "Recipes"
         }
+    },
+    "PrefabObtaining": {
+        "recipe": "Recipe"
+    },
+    "PrefabUsage": {
+        "usage": "Usage"
     }
 }
