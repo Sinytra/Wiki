@@ -44,61 +44,61 @@
     },
     "HomePage": {
         "title": "欢迎来到 <highlight>Minecraft 模组维基</highlight>",
-        "subtitle": "您对有关Minecraft的项目进行发现，创建，贡献的必备资源。",
+        "subtitle": "您发现、创建和贡献 Minecraft 相关项目的首选资源。",
         "popular": {
-            "title": "热门Wiki",
+            "title": "热门维基",
             "open": "了解更多",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "disclaimer": "这些项目是基于统计的热度而高亮显示的，没有得到 Minecraft 模组维基的正式认可。"
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "加入社区",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "用户",
+                "subtitle": "探索我们的精选项目，并享受以下好处：",
+                "docs": "访问高质量、最新且有版本管理的文档",
+                "contribute": "不需要编程知识也能为项目做出贡献",
+                "ui": "享受所有项目中统一且舒适的界面",
+                "localization": "支持多语言的受益"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "作者",
+                "subtitle": "访问项目仪表盘，并享受以下好处：",
+                "vcs": "为您的文档提供版本管理",
+                "components": "自定义配方、资源等组件",
+                "gradle": "Gradle集成实现无缝工作流",
+                "management": "高级的项目管理工具",
+                "interaction": "直接与您的用户群体互动",
+                "dashboard": "打开仪表盘",
+                "guide": "了解更多"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "浏览项目",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "本地化",
+                "desc": "将您的文档翻译成不同语言"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "无障碍",
+                "desc": "直观且响应迅速的用户界面"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "开放",
+                "desc": "让您的用户在不需要编程知识的情况下，也能为项目做出贡献"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "免费",
+                "desc": "在我们的网站上托管文档是完全免费的！"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "关于我们",
+            "maintainers": "这个维基是由<b> Sinytra </b>团队创建并维护的，这是一群专注于为 Minecraft 模组社区提供高质量、免费且开源软件的热心开发者。",
+            "mission": "我们的目标是通过提供创建、记录和探索 Minecraft 模组的工具和资源，赋予模组开发者和玩家同样的力量，让他们能够尽情探索模组世界的无限可能性。"
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "博客日志",
+            "open": "了解更多"
         }
     },
     "BrowsePage": {
@@ -109,7 +109,7 @@
         },
         "sorting": "排序：",
         "sort": {
-            "relevance": "相关程度",
+            "relevance": "相关度",
             "creation_date": "创建日期",
             "popularity": "热度",
             "az": "A-Z",
@@ -124,7 +124,7 @@
         "modpack": "整合包",
         "resourcepack": "资源包",
         "datapack": "数据包",
-        "shader": "光影",
+        "shader": "光影包",
         "plugin": "插件"
     },
     "ProjectTypes": {
@@ -153,7 +153,7 @@
     "Login": {
         "title": "请先登录",
         "desc": "请先登录以访问该页面。",
-        "prompt": "请使用您的GitHub账户以继续。",
+        "prompt": "请使用您的 GitHub 账号以继续。",
         "button": "使用 Github 登录"
     },
     "Preview": {
@@ -199,26 +199,26 @@
         "utility": "实用",
         "worldgen": "世界生成",
         "server-utility": "服务器工具",
-        "armor-weapons-tools": "道具",
-        "library-api": "LIB",
-        "adventure-rpg": "冒险",
+        "armor-weapons-tools": "盔甲、工具与武器",
+        "library-api": "API与库",
+        "adventure-rpg": "冒险与RPG",
         "world-gen": "世界生成",
         "cosmetic": "装饰",
         "mc-food": "食物",
-        "performance": "性能",
-        "map-information": "信息展示",
+        "performance": "优化",
+        "map-information": "地图与信息",
         "bug-fixes": "Bug修复",
         "mc-addons": "插件",
         "education": "教育",
         "mc-miscellaneous": "杂项",
         "redstone": "红石",
-        "utility-qol": "改良",
+        "utility-qol": "实用与QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "报告本页",
-        "report_button": "Report page",
+        "edit_gh": "编辑该页面",
+        "report": "报告该页面",
+        "report_button": "报告页面",
         "last_updated": "最后更新：<date></date>"
     },
     "Report": {
@@ -248,7 +248,7 @@
                 "copyright": "版权侵犯",
                 "content_rules_violation": "违反《内容规则》",
                 "tos_violation": "违反《服务条款》",
-                "dislike": "就是不顺眼"
+                "dislike": "我就是不喜欢这个"
             },
             "details": {
                 "title": "详细信息*",
@@ -256,12 +256,12 @@
                 "desc": "关于该问题的更多细节。"
             },
             "dislike": {
-                "title": "我们理解您可能认为该页面不顺眼，那真的没关系！",
+                "title": "我们理解您可能不喜欢该页面，这当然没问题！",
                 "desc": "但不幸的是，这并不属于报告项目的合理理由。",
                 "suggestion": "也许您可以换个页面，读点别的？",
                 "explore": "查看项目"
             },
-            "success": "Report submitted successfully"
+            "success": "已成功提交报告"
         }
     },
     "SubmitButton": {
@@ -275,8 +275,8 @@
         "title": "注册项目",
         "desc": "在维基上注册一个新的项目。",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
+            "title": "仓库URL",
+            "desc": "用于克隆您仓库的地址。",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
@@ -295,8 +295,8 @@
             "details": "显示详情"
         },
         "connect_modrinth": {
-            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Open Settings"
+            "desc": "在设置中关联到您的<b> Modrinth 账号</b>，以便随时随地验证平台项目所有权。",
+            "settings": "打开设置"
         },
         "submit": "提交",
         "success": {
@@ -309,44 +309,44 @@
     "ProjectSettingsForm": {
         "title": "编辑项目",
         "desc": "编辑现有的项目设置",
-        "button": "Settings",
+        "button": "设置",
         "success": {
             "title": "项目更新成功",
             "desc": "您现在可以转至更新后的项目文档界面"
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "trigger": "删除",
+        "title": "您确定要删除吗？",
+        "desc": "此操作无法撤销。这将永久删除您的项目，并从我们的服务器上清除所有相关数据。",
+        "cancel": "取消",
+        "submit": "删除",
+        "success": "项目删除成功"
     },
     "ProjectRevalidateForm": {
-        "title": "Reload project pages?",
-        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
+        "title": "重新加载项目页面？",
+        "primary": "所有已存储的文档页面都将被<b>清除</b>，并从源仓库中<b>重新获取</b>。",
         "secondary": "应只在文档源更新时使用此选项。",
         "tertiary": "为了您更加方便，我们建议在发布后使用我们的<link>Gradle插件</link>，以自动重新验证文档。",
-        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "note": "项目注册信息保持不变。要更新元信息（例如源码和平台），请使用“设置”对话框。",
         "cancel": "取消",
-        "submit": "Reload",
-        "success": "Project reload started"
+        "submit": "重新加载",
+        "success": "已开始重新加载项目"
     },
     "FormActions": {
         "errors": {
-            "unauthorized": "User authentication error",
+            "unauthorized": "用户身份验证错误",
             "internal": "服务器内部错误，请稍后再试。",
-            "unknown": "An unknown error has occurred, please try again later.",
-            "no_platforms": "No platform projects defined in metadata.",
+            "unknown": "发生了未知错误，请稍后再试。",
+            "no_platforms": "元数据中没有定义平台项目。",
             "no_project": "未找到平台项目。请确保元数据“slug”字段正确。",
-            "unsupported_type": "Unsupported project type",
+            "unsupported_type": "不支持的项目类型",
             "ownership": "验证项目所有权失败",
             "cf_unavailable": "注册CurseForge项目已禁用",
-            "requires_auth": "Repository connection requires login credentials but none were provided",
-            "no_repository": "Repository not found",
-            "no_branch": "Invalid branch specified",
-            "no_path": "Metadata file not found at specified path",
+            "requires_auth": "未提供仓库连接所需的登录凭据",
+            "no_repository": "未找到仓库",
+            "no_branch": "指定的分支无效",
+            "no_path": "在指定路径中找不到元数据文件",
             "invalid_meta": "元数据文件无效",
             "unsupported": "尚未实现，敬请期待",
             "exists": "项目已存在。",
@@ -365,7 +365,7 @@
         "return": "返回主页"
     },
     "GetStartedButton": {
-        "title": "Create first project"
+        "title": "创建第一个项目"
     },
     "GetStartedModal": {
         "button": "添加项目",
@@ -388,18 +388,18 @@
     },
     "DocsSearchBar": {
         "placeholder": "搜索维基内容...",
-        "no_results": "什么都木有找到！",
+        "no_results": "什么都没找到！",
         "loading": "正在搜索最佳结果...",
         "results": "展示<highlight>{count}</highlight> / <highlight>{total}</highlight> 条结果",
         "close": "按下<kbd>ESC</kbd>以关闭"
     },
     "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
+        "title": "项目信息",
+        "tags": "标签",
         "licenses": {
             "title": "许可证",
             "project": "项目：",
-            "wiki": "维基:"
+            "wiki": "维基："
         },
         "links": "链接",
         "placeholder": {
@@ -423,7 +423,7 @@
     },
     "DocsVersionSelector": {
         "placeholder": "选择版本",
-        "latest": "Latest"
+        "latest": "最新"
     },
     "DocsLanguageSelect": {
         "placeholder": "选择地区"
@@ -452,7 +452,7 @@
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "主页"
         },
         "toolbar": {
             "view": "查看"
@@ -519,49 +519,49 @@
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
-            "settings": "Settings"
+            "home": "主页",
+            "settings": "设置"
         },
         "profile": {
-            "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}"
+            "bio": "Minecraft 模组维基创建者",
+            "join_date": "加入于 {date}"
         },
         "connections": {
-            "title": "Connections",
+            "title": "关联账号",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "Modrint 账号",
+                "desc": "用于验证项目所有权",
+                "connect": "关联",
+                "view": "查看",
+                "disconnect": "取消关联"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "账号",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "删除账号",
+                "desc": "永久删除所有账号数据",
+                "button": "删除账号"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "删除账号",
+                "desc": "您确定要删除此账号吗？这是一个无法撤消的破坏性操作。",
+                "cancel": "取消",
+                "button": "永久删除"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "账号已取消关联",
+                "error": "取消关联账号时出错"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "身份验证失败",
+        "desc": "尝试登录时发生意外错误。请稍后再试。",
+        "status": "检查状态",
+        "return": "返回主页",
+        "report": "报告错误"
     }
 }
