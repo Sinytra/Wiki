@@ -43,62 +43,62 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "<highlight>마인크래프트 모딩 위키</highlight>",
+        "subtitle": "마인크래프트 모딩에 대한 많은 정보를 찾을 수 있는 공간입니다.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "위키 목록",
+            "open": "더 알아보기",
+            "disclaimer": "위의 위키들은 조회수를 기반으로 나열되는 비공식 프로젝트들임."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "커뮤니티에 가입하기",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "유저들을 위한 것",
+                "subtitle": "여러 추천 프로젝트를 살펴보고 혜택도 누려보세요:",
+                "docs": "여기에는 최신 내용이 반영된 상세한 문서를 찾을 수 있어요.",
+                "contribute": "프로그래밍 지식 없이도 프로젝트에 기여할 수 있어요.",
+                "ui": "사용자 친화적인 인터페이스를 누릴 수 있어요.",
+                "localization": "여러분이 원하는 언어로 볼 수 있어요."
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "개발자들을 위한 것",
+                "subtitle": "프로젝트 Dashboard로 디음과 같은 혜택을 누릴 수 있어요:",
+                "vcs": "Versioning 가능한 문서 작성하기",
+                "components": "원하는 에셋이나 레시피를 만들기",
+                "gradle": "Workflow와 Gradle간의 완전한 통합",
+                "management": "고급 프로젝트 관리 도구 사용 가능",
+                "interaction": "사용자와 직접 소통하기",
+                "dashboard": "Dashboard 열기",
+                "guide": "더 알아보기"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "프로젝트 찾기",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "현지화",
+                "desc": "여러분의 문서를 다양한 언어로 변역 가능"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "접근성",
+                "desc": "직관적이고 빠른 인터페이스"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "누구나 가능",
+                "desc": "사용자들이 프로그래밍 지식 없이도 기여하도록 만듭니다"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "무료",
+                "desc": "이 웹사이트에서 무료로 호스팅이 가능합니다!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "우리에 대하여",
+            "maintainers": "이 위키는 <b>Sinytra</b>가 관리합니다. <b>Sinytra</b>는 마인크래프트 모딩 커뮤니티를 위한 자유/오픈소스와, 좋은 정보를 공유하는 데에 노력하는 개발 팀입니다.",
+            "mission": "우리의 목표는 모든 모더와 플레이어에게 마인크래프트 모딩의 무한한 가능성을 탐색하고, 만들고, 기록할 수 있는 도구를 제공하여 더 멋진 일을 해낼 수 있도록 만드는 것입니다."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "블로그 게시물",
+            "open": "더 알아보기"
         }
     },
     "BrowsePage": {
@@ -113,7 +113,7 @@
             "creation_date": "생성일",
             "popularity": "인기도",
             "az": "오름차순",
-            "za": "내림차순"
+            "za": "Z-A"
         },
         "search": "프로젝트 검색...",
         "clear_filter": "필터 초기화",
@@ -141,7 +141,7 @@
     "MetaDocsNavigation": {
         "title": "둘러보기",
         "about": "소개",
-        "devs": "개발자들",
+        "devs": "개발자",
         "format": "형식",
         "publishing": "게시하기",
         "help": "문의하기",
@@ -154,11 +154,11 @@
         "title": "먼저 로그인하세요",
         "desc": "이 페이지에 접근하려면 먼저 로그인해야 합니다.",
         "prompt": "계속하려면 GitHub 계정으로 로그인해주세요.",
-        "button": "GitHub으로 로그인"
+        "button": "GitHub로 로그인"
     },
     "Preview": {
         "title": "미리보기 모드가 활성화됨",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
+        "desc": "Preview 모드는 배포되기 전, 문서를 로컬에서 작성하는 데 도움을 주는 최소한의 유저 인터페이스를 제공합니다.",
         "roots": "사용 가능한 로컬 문서 루트",
         "open": "열기"
     },
@@ -185,7 +185,7 @@
         "economy": "경제",
         "equipment": "장비",
         "food": "음식",
-        "game-mechanics": "Game Mechanics",
+        "game-mechanics": "게임 메카닉",
         "library": "라이브러리",
         "magic": "마법",
         "management": "관리",
@@ -216,52 +216,52 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
+        "edit_gh": "이 페이지 수정하기",
         "report": "이 페이지 신고하기",
-        "report_button": "Report page",
+        "report_button": "페이지 신고하기",
         "last_updated": "<date></date>에 마지막으로 업데이트됨"
     },
     "Report": {
         "title": "문서 페이지 신고",
         "desc": "서비스 약관 또는 콘텐츠 규칙을 위반하는 콘텐츠 신고",
-        "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
-        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
+        "contact": "피드백을 위해 <b>사용자 이름</b>(및 이메일 주소)가 필요합니다.",
+        "confidential": "여러분의 개인정보는 중요하기 때문에, 항상 비밀로 유지됩니다.",
         "privacy": "자세한 내용은 <link>개인정보 보호 정책</link>을 확인하시길 바랍니다.",
         "form": {
             "id": {
                 "title": "프로젝트 ID",
-                "desc": "신고하려는 프로젝트의 ID입니다."
+                "desc": "신고된 프로젝트의 ID."
             },
             "path": {
                 "title": "페이지 경로",
-                "desc": "신고하려는 페이지의 경로입니다."
+                "desc": "신고하려는 페이지의 경로."
             },
             "email": {
                 "title": "회신 이메일 주소",
                 "desc": "(선택사항) 이 신고에 대한 업데이트를 받거나 추가 정보를 요청하기 위해 사용할 수 있는 연락용 이메일 주소."
             },
             "reason": {
-                "title": "사유*",
-                "placeholder": "이 페이지를 신고하는 사유를 선택해주세요",
-                "desc": "이 페이지를 신고하는 사유입니다.",
+                "title": "이유*",
+                "placeholder": "이 페이지를 신고하려는 이유를 선택하세요",
+                "desc": "이 페이지를 신고하는 이유.",
                 "spam": "스팸",
                 "copyright": "저작권 침해",
-                "content_rules_violation": "콘텐츠 규칙 위반",
+                "content_rules_violation": "컨텐츠 규칙 위반",
                 "tos_violation": "이용약관 위반",
-                "dislike": "그냥 마음에 들지 않습니다"
+                "dislike": "그저 마음에 들지 않습니다"
             },
             "details": {
                 "title": "세부 정보*",
                 "placeholder": "이 페이지를 신고하는 사유에 대한 세부 정보를 입력하세요. 입력하지 않으면 이 신고는 무시됩니다.",
-                "desc": "문제 상황에 대한 세부 정보입니다."
+                "desc": "문제에 대한 추가 정보."
             },
             "dislike": {
-                "title": "이 페이지가 마음에 드시지 않을 수도 있다는 걸 이해합니다, 그럴 수도 있죠!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
-                "suggestion": "Would you like to look for something else to read instead?",
+                "title": "이 페이지가 마음에 드시지 않는다는 걸 이해합니다. 그럴 수도 있죠!",
+                "desc": "죄송하지만, 프로젝트를 신고하려면 유효한 사유가 포함되어야 합니다.",
+                "suggestion": "다른걸 읽고 싶으신가요?",
                 "explore": "프로젝트 둘러보기"
             },
-            "success": "Report submitted successfully"
+            "success": "신고가 완료되었습니다"
         }
     },
     "SubmitButton": {
@@ -275,13 +275,13 @@
         "title": "프로젝트 등록하기",
         "desc": "새 프로젝트를 위키에 등록합니다.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
+            "title": "리포지토리 링크",
+            "desc": "이건 리포지토리를 복제하기 위한 링크예요.",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "브랜치",
-            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+            "desc": "기본 브랜치 지정. 메타데이터 파일에 포함시키기 위해 추가 프랜치를 지정할 수 있습니다."
         },
         "path": {
             "title": "문서 루트 경로",
@@ -289,64 +289,64 @@
         },
         "admin": "위키 관리자 설정",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "커뮤니티 관리 프로젝트"
         },
         "errors": {
             "details": "상세 정보 보기"
         },
         "connect_modrinth": {
-            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Open Settings"
+            "desc": "프로젝트 소유권을 인증하려면 설정에서 <b>Modrinth 계정</b>을 연결하세요.",
+            "settings": "설정 열기"
         },
-        "submit": "제출하기",
+        "submit": "제출",
         "success": {
-            "title": "프로젝트를 성공적으로 게시했습니다",
-            "desc": "You can now navigate to the project's docs page"
+            "title": "프로젝트를 게시했습니다",
+            "desc": "이제 프로젝트 문서로 이동할 수 있습니다"
         },
         "submitting": "전송중...",
         "verify_modrinth": "Modrinth를 사용하여 확인"
     },
     "ProjectSettingsForm": {
         "title": "프로젝트 편집",
-        "desc": "Edit an existing project's settings.",
-        "button": "Settings",
+        "desc": "프로젝트 설정 변경하기.",
+        "button": "설정",
         "success": {
-            "title": "프로젝트를 성공적으로 업데이트했습니다",
-            "desc": "You can now navigate to the updated project's docs page"
+            "title": "프로젝트를 업데이트했습니다",
+            "desc": "이제 프로젝트 문서로 이동할 수 있습니다"
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "trigger": "삭제",
+        "title": "정말인가요?",
+        "desc": "이 작업은 취소할 수 없습니다. 계속 진행하면 모든 프로젝트와 데이터가 완전히 삭제됩니다.",
+        "cancel": "취소",
+        "submit": "삭제",
+        "success": "프로젝트가 삭제됨"
     },
     "ProjectRevalidateForm": {
-        "title": "Reload project pages?",
-        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
-        "secondary": "This option should only be used upon updating the documentation source itself.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "title": "이 프로젝트를 리로드할까요?",
+        "primary": "모든 저장된 문서 페이지는 소스로부터 <b>삭제 후 다시 불러오기</b>가 됩니다.",
+        "secondary": "이 의견은 문서의 소스 자체를 업데이트 할 때만 사용해야 합니다.",
+        "tertiary": "여러분의 편의를 위해, <link>Gradle plugin</link>을 사용해 문서를 배포한 후 자동으로 재확인하는 것을 권장합니다.",
+        "note": "프로젝트 등록 정보는 변경되지 않습니다. 소스와 플랫폼과 같은 정보를 변경하려면 설정의 다이얼로그를 사용하세요.",
         "cancel": "취소",
-        "submit": "Reload",
-        "success": "Project reload started"
+        "submit": "새로고침",
+        "success": "프로젝트 새로고침중"
     },
     "FormActions": {
         "errors": {
-            "unauthorized": "User authentication error",
-            "internal": "내부 서버 오류가 발생했습니다, 나중에 다시 시도하십시오.",
-            "unknown": "An unknown error has occurred, please try again later.",
-            "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "플랫폼 프로젝트를 찾을 수 없습니다. 메타데이터의 \"슬러그\" 필드가 올바른지 확인하세요.",
-            "unsupported_type": "Unsupported project type",
+            "unauthorized": "사용지 인증 오류",
+            "internal": "서버 오류가 발생했습니다, 나중에 다시 시도하세요.",
+            "unknown": "알 수 없는 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
+            "no_platforms": "메타데이터에 플랫폼 프로젝트가 없습니다.",
+            "no_project": "플랫폼 프로젝트를 찾을 수 없습니다. 메타데이터의 \"아이디\" 필드가 올바른지 확인하세요.",
+            "unsupported_type": "지원하지 않는 프로젝트 타입",
             "ownership": "프로젝트 소유권 확인에 실패하였습니다",
-            "cf_unavailable": "Registering CurseForge projects is not active",
-            "requires_auth": "Repository connection requires login credentials but none were provided",
-            "no_repository": "Repository not found",
-            "no_branch": "Invalid branch specified",
-            "no_path": "Metadata file not found at specified path",
+            "cf_unavailable": "CurseForge프로젝트 등록이 아직 활성화되지 않았습니다",
+            "requires_auth": "리포지토리 연결에는 로그인 정보가 필요합니다",
+            "no_repository": "리포지토리를 찾을 수 없음",
+            "no_branch": "올바르지 않은 브랜치가 선택됨",
+            "no_path": "해당 경로에 메타데이터 파일이 없습니다",
             "invalid_meta": "메타데이터 파일이 유효하지 않습니다",
             "unsupported": "아직 구현되지 않았습니다",
             "exists": "프로젝트가 이미 존재합니다.",
@@ -355,155 +355,155 @@
     },
     "CommunityBadge": {
         "title": "커뮤니티",
-        "desc": "Unofficial documentation maintained by the community"
+        "desc": "커뮤니티에서 관리하는 비공식 문서"
     },
     "DocsPageNotFoundError": {
         "title": "해당 페이지를 찾지 못했습니다",
-        "desc": "The requested documentation page is not available at the moment.",
+        "desc": "지금은 요청한 문서를 불러올 수 없습니다.",
         "suggestion": "나중에 다시 시도하거나 이 문제를 프로젝트 제작자에게 보고하세요.",
         "submit": "문제 제출",
         "return": "홈으로 돌아가기"
     },
     "GetStartedButton": {
-        "title": "Create first project"
+        "title": "첫 프로젝트 만들기"
     },
     "GetStartedModal": {
         "button": "프로젝트 추가",
-        "title": "I'd like to write documentation for...",
+        "title": "문서를 작성하고 싶은 이유...",
         "dev": {
             "title": "나의 프로젝트",
-            "desc": "Author your own documentation and control who can make changes to it.",
+            "desc": "여러분의 문서를 작성하고, 다른 사람도 수정할 수 있도록 권한을 관리하세요.",
             "button": "프로젝트 만들기"
         },
         "community": {
             "title": "다른 사람들의 프로젝트",
-            "desc": "Contribute to a collection of community docs maintained by wiki editors",
+            "desc": "위키 작성자가 관리하는 커뮤니티 문서들에 기여하기",
             "button": "가이드 읽기"
         }
     },
     "DocsHomepagePlaceholder": {
-        "title": "Homepage placeholder",
-        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
-        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+        "title": "홈페이지 힌트",
+        "subtitle": "API제한에 의해, 프로젝트 메타데이터는 로컬 CurseForge프로젝트에서 사용할 수 없습니다.",
+        "replace": "걱정하지 마세요! 라이브 위키 웹사이트에 배포되면 실제 설명이 보일 거예요."
     },
     "DocsSearchBar": {
         "placeholder": "위키 콘텐츠 검색하기...",
         "no_results": "검색 결과가 없습니다!",
         "loading": "완벽한 결과를 찾는중...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
+        "results": "<highlight>{total}</highlight> 에서 <highlight>{count}</highlight> 결과 표시 중",
         "close": "<kbd>ESC</kbd>를 눌러 종료하기"
     },
     "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
+        "title": "프로젝트 정보",
+        "tags": "태그",
         "licenses": {
-            "title": "Licenses",
-            "project": "Project:",
-            "wiki": "Wiki:"
+            "title": "라이센스",
+            "project": "프로젝트:",
+            "wiki": "위키:"
         },
-        "links": "Links",
+        "links": "링크",
         "placeholder": {
-            "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
+            "summary": "로컬 프로젝트 preview",
+            "author": "제작자",
+            "latest_version": "최신 버전"
         }
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "변경 사항"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Project Homepage"
+        "title": "문서",
+        "homepage": "프로젝트 홈페이지"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "정보"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "이 페이지에서..."
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version",
-        "latest": "Latest"
+        "placeholder": "버전 선택",
+        "latest": "최신"
     },
     "DocsLanguageSelect": {
-        "placeholder": "Select locale"
+        "placeholder": "언어 선택"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "+ {count}개 더 보기"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "언어 검색",
+        "no_results": "언어를 찾을 수 없습니다."
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "loaded": "Loaded",
-        "error": "Errored"
+        "unknown": "알 수 없음",
+        "loading": "초기화 중",
+        "loaded": "로딩됨",
+        "error": "오류"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "관리"
         },
         "empty": {
-            "primary": "Looks like you haven't registered any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "primary": "아직 등록된 프로젝트가 없는 것 같네요",
+            "secondary": "<guide>제작자 가이드</guide>로 시작하세요."
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "홈"
         },
         "toolbar": {
-            "view": "View"
+            "view": "보기"
         },
         "source": {
-            "title": "Project Source",
-            "repo": "Repository",
-            "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "title": "프로젝트 소스",
+            "repo": "리포지토리",
+            "branch": "브랜치",
+            "path": "경로",
+            "public": "퍼블릭"
         },
         "platforms": {
-            "title": "Platforms",
+            "title": "플랫폼",
             "headers": {
-                "platform": "Platform",
-                "slug": "Slug / ID",
-                "link": "Link"
+                "platform": "플랫폼",
+                "slug": "아이디",
+                "link": "링크"
             },
-            "open": "Open"
+            "open": "열기"
         },
         "information": {
-            "title": "Information",
-            "type": "Type",
-            "status": "Status",
-            "created_at": "Created at"
+            "title": "정보",
+            "type": "유형",
+            "status": "상태",
+            "created_at": "생성 시각: "
         }
     },
     "DevProjectLogs": {
-        "title": "Server logs",
-        "show": "Show",
-        "unloaded": "Not loaded",
-        "waiting": "Waiting for server...",
-        "loading": "Loading...",
-        "error": "Error loading logs",
+        "title": "서버 로그",
+        "show": "표시",
+        "unloaded": "로딩되지 않음",
+        "waiting": "응답 기다리는 중...",
+        "loading": "로딩중...",
+        "error": "로그 로딩 실패",
         "toast": {
-            "success": "Project setup complete",
-            "error": "Error during project setup"
+            "success": "프로젝트 세팅 완료",
+            "error": "프로젝트 세팅중 오류가 발생하였습니다"
         }
     },
     "DeveloperSidebar": {
         "teams": {
-            "personal": "Personal"
+            "personal": "개인"
         },
         "groups": {
-            "projects": "Projects",
-            "platform": "Platform"
+            "projects": "프로젝트",
+            "platform": "플랫폼"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
-            "settings": "Settings"
+            "projects": "프로젝트",
+            "documentation": "문서",
+            "settings": "설정"
         }
     },
     "DevSidebarContextSwitcher": {
@@ -511,57 +511,57 @@
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Log out",
-            "title": "Logout",
-            "desc": "Logging out..."
+            "button": "로그아웃",
+            "title": "로그아웃",
+            "desc": "로그아웃 중..."
         },
         "unknown_avatar": "N/A"
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
-            "settings": "Settings"
+            "home": "홈",
+            "settings": "설정"
         },
         "profile": {
-            "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}"
+            "bio": "마인크래프트 모딩 위키 크리에이터",
+            "join_date": "{date}에 가입함"
         },
         "connections": {
-            "title": "Connections",
+            "title": "연결",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "Modrinth 계정",
+                "desc": "프로젝트 소유권을 확인하기 위해 사용돰",
+                "connect": "연결",
+                "view": "보기",
+                "disconnect": "연결 끊기"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "계정",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "계정 삭제",
+                "desc": "모든 데이터 삭제",
+                "button": "계정 삭제"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "계정 삭제",
+                "desc": "정말로 계정을 삭제하시겠어요? 이후엔 되돌릴 수 없어요.",
+                "cancel": "취소",
+                "button": "영구 삭제"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "연동 해제됨",
+                "error": "계정 연동 해재중 오류"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "인증 실패",
+        "desc": "로그인 중 알 수 없는 오류가 발생했습니다. 나중에 다시 시도하세요.",
+        "status": "상태 확인",
+        "return": "홈으로 이동",
+        "report": "오류 보고"
     }
 }
