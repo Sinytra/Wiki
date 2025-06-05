@@ -1,7 +1,7 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest"
+        "local": "ローカル",
+        "latest": "最新"
     },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
@@ -31,7 +31,7 @@
             "resources": {
                 "title": "リソース",
                 "blog": "ブログ",
-                "status": "Status",
+                "status": "ステータス",
                 "translate": "翻訳を手伝う"
             },
             "about": {
@@ -43,97 +43,97 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "ようこそ<highlight>Modded Minecraft Wikiへ</highlight>",
+        "subtitle": "Minecraft関連のプロジェクトを発見、作成、貢献するための頼りになるリソースです。",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "人気のWiki",
+            "open": "続きを読む",
+            "disclaimer": "これらのプロジェクトは、ビューの統計によってその人気に基づいて強調表示されており、Moded Minecraft Wikiによって公式に承認されてはいません。"
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "コミュニティに参加",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "ユーザー",
+                "subtitle": "注目のプロジェクトを探索しこれらをお楽しみください：",
+                "docs": "高品質、最新、バージョン付きドキュメントにアクセス",
+                "contribute": "プログラミング知識なしでプロジェクトに貢献することができます",
+                "ui": "すべてのプロジェクトで一貫したユーザーフレンドリーなインターフェースをお楽しみください",
+                "localization": "様々な言語で利用できます"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "著者",
+                "subtitle": "プロジェクトダッシュボードにアクセスして、以下の特典をご利用ください：",
+                "vcs": "ドキュメントのバージョン管理サポート",
+                "components": "レシピ、アセットなどのカスタムコンポーネント",
+                "gradle": "シームレスなワークフローのためのGradle統合",
+                "management": "高度なプロジェクト管理ツール",
+                "interaction": "ユーザーベースとの直接の高度な接続",
+                "dashboard": "ダッシュボードを開く",
+                "guide": "続きを読む"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "プロジェクトを閲覧",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "ローカライゼーション",
+                "desc": "ドキュメントをさまざまな言語に翻訳する"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "アクセス可能",
+                "desc": "直感的で応答性の高いユーザーインターフェイス"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "開く",
+                "desc": "プログラミング知識がなくてもユーザーが容易に貢献できる仕組みを提供します"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "無料",
+                "desc": "当社のウェブサイトでのホスティングドキュメントは完全に無料です!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "私たちについて",
+            "maintainers": "このWikiは<b>Sinytra</b>によって構築・管理されています。SinytraはMinecraftモッド開発コミュニティ向けに、高品質でフリーかつオープンソースのソフトウェアを提供することに情熱を注ぐ専門チームです。\n",
+            "mission": "私たちの目標は、モッダーとプレイヤーの双方を支援することです。mod入『Minecraft』の無限の可能性を創造・記録・探求するために必要なツールとリソースを提供することで、両者の創造性を最大限に引き出します。\n"
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "ブログ記事",
+            "open": "続きを読む"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "プロジェクトを閲覧",
+            "search_filters": "フィルタを検索...",
+            "categories": "カテゴリ"
         },
-        "sorting": "Sort by",
+        "sorting": "並び替え",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "関連",
+            "creation_date": "作成日時",
+            "popularity": "人気度",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
+        "search": "プロジェクトを検索...",
+        "clear_filter": "フィルタをクリア",
         "no_results": "検索結果はありません！"
     },
     "SearchProjectTypes": {
         "mod": "Mods",
         "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "resourcepack": "リソースパック",
+        "datapack": "データパック",
+        "shader": "シェーダー",
+        "plugin": "プラグイン"
     },
     "ProjectTypes": {
         "mod": "Mod",
         "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
-        "shader": "Shader",
-        "plugin": "Plugin"
+        "resourcepack": "リソースパック",
+        "datapack": "データパック",
+        "shader": "シェーダー",
+        "plugin": "プラグイン"
     },
     "LoadingContent": {
         "message": "読み込み中..."
@@ -147,421 +147,421 @@
         "help": "助けがいる場合",
         "tos": "利用規約",
         "privacy": "プライバシーポリシー",
-        "security": "Security Notice",
-        "community": "Community Docs"
+        "security": "セキュリティ通知",
+        "community": "コミュニティドキュメント"
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "ログインが必要です",
+        "desc": "アクセスしようとしているページにはログインが必要です。",
+        "prompt": "続行するにはGitHubアカウントを使用してください。",
+        "button": "GitHub でログイン"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
+        "title": "プレビューモードが有効です",
+        "desc": "プレビューモードでは最小限のユーザーインターフェースが表示され、ドキュメントを公開する前にローカル環境での作成作業に集中できます。",
+        "roots": "利用可能なローカルドキュメントのルート",
+        "open": "開く"
     },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "プロジェクト情報",
+        "type": "タイプ",
+        "author": "著者",
+        "tags": "タグ",
         "latest": {
-            "title": "Latest version",
-            "unknown": "N/A"
+            "title": "最新バージョン",
+            "unknown": "なし"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
+            "title": "ライセンス",
+            "custom": "カスタム",
+            "unknown": "不明",
             "arr": "All Rights Reserved"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "adventure": "冒険",
+        "cursed": "呪われた",
+        "decoration": "装飾",
+        "economy": "経済",
+        "equipment": "装備",
+        "food": "食べ物",
+        "game-mechanics": "ゲームメカニズム",
+        "library": "ライブラリ",
+        "magic": "魔法",
+        "management": "管理",
+        "minigame": "ミニゲーム",
+        "mobs": "モブ",
+        "optimization": "軽量化",
+        "social": "ソーシャル",
+        "storage": "ストレージ",
+        "technology": "技術",
+        "transportation": "トランスポーテーション",
+        "utility": "ユーティリティ",
+        "worldgen": "ワールド生成",
+        "server-utility": "サーバーユーティリティ",
+        "armor-weapons-tools": "武器、道具、武器",
+        "library-api": "APIとライブラリ",
+        "adventure-rpg": "冒険とRPG",
+        "world-gen": "ワールド生成",
+        "cosmetic": "装飾",
+        "mc-food": "食べ物",
+        "performance": "パフォーマンス",
+        "map-information": "地図と情報",
+        "bug-fixes": "バグ修正",
+        "mc-addons": "アドオン",
+        "education": "教育",
+        "mc-miscellaneous": "その他",
+        "redstone": "レッドストーン",
+        "utility-qol": "ユーティリティ＆QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "Report this page",
-        "report_button": "Report page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "このページを編集",
+        "report": "このページを報告",
+        "report_button": "報告ページ",
+        "last_updated": "最終更新日: <date></date>"
     },
     "Report": {
-        "title": "Report a documentation page",
-        "desc": "Report content that violates our Terms of Service or Content Rules.",
-        "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
-        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
-        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "title": "ドキュメントページを報告",
+        "desc": "利用規約またはコンテンツ規則に違反する内容を報告します。",
+        "contact": "連絡先情報として、<b>ユーザー名</b>（およびメールアドレスをご提供いただいた場合）は報告書に記載されます。",
+        "confidential": "お客様のプライバシーは私たちにとって非常に重要であり、ご提供いただいた情報は常に厳重に管理されます。",
+        "privacy": "詳細については、当社の<link>プライバシーポリシー</link>をご参照ください。",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "プロジェクトID",
+                "desc": "報告されたプロジェクト ID。"
             },
             "path": {
-                "title": "Page path",
-                "desc": "Reported documentation page path."
+                "title": "ページパス",
+                "desc": "報告されたドキュメントページのパス。"
             },
             "email": {
-                "title": "Reply email address",
-                "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
+                "title": "メールアドレスに返信",
+                "desc": "（オプション）本レポートの更新情報をお知らせしたり、追加情報をご依頼する際に使用する連絡先メールアドレス。"
             },
             "reason": {
-                "title": "Reason*",
-                "placeholder": "Select a reason for reporting this page",
-                "desc": "Reason for reporting this page.",
-                "spam": "Spam",
-                "copyright": "Copyright Infringement",
-                "content_rules_violation": "Violates Content Rules",
-                "tos_violation": "Violates Terms of Service",
-                "dislike": "I just don't like it"
+                "title": "理由*",
+                "placeholder": "このページを報告する理由を選択してください",
+                "desc": "このページを報告する理由。",
+                "spam": "スパム",
+                "copyright": "著作権侵害",
+                "content_rules_violation": "コンテンツルールに違反する",
+                "tos_violation": "サービス利用規約に違反する",
+                "dislike": "好きじゃないから"
             },
             "details": {
-                "title": "Details*",
-                "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "title": "詳細*",
+                "placeholder": "このページを報告する理由の詳細を入力してください。空のレポートは無視されます。（訳注：英語に翻訳したほうがいいでしょう）。",
+                "desc": "この問題に関する詳細情報。"
             },
             "dislike": {
-                "title": "We understand that you may not like this page, and that's totally okay!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
-                "suggestion": "Would you like to look for something else to read instead?",
-                "explore": "Explore projects"
+                "title": "このページが気に入らない場合も、まったく問題ございません！",
+                "desc": "しかし残念ながら、プロジェクトを報告する正当な理由ではありません。",
+                "suggestion": "代わりに何か他のものを探したいですか？",
+                "explore": "プロジェクトを探す"
             },
-            "success": "Report submitted successfully"
+            "success": "報告が正常に送信されました"
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "送信"
     },
     "Callout": {
-        "title": "Heads up!"
+        "title": "注意！"
     },
     "ProjectRegisterForm": {
-        "button": "Add Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "button": "プロジェクトを追加",
+        "title": "プロジェクトを登録",
+        "desc": "新しいプロジェクトをWikiに登録します。",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
+            "title": "リポジトリURL",
+            "desc": "リポジトリのクローンに使用するアドレスです。",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
-            "title": "Branch",
-            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+            "title": "ブランチ",
+            "desc": "プライマリブランチ参照。メタデータファイルに含める追加ブランチを指定できます。"
         },
         "path": {
-            "title": "Path to documentation root",
-            "desc": "Path to the folder containing the metadata file."
+            "title": "ドキュメントルートへのパス",
+            "desc": "メタデータファイルを含むフォルダへのパス。"
         },
-        "admin": "Wiki admin settings",
+        "admin": "Wiki管理者の設定",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "コミュニティメンテナンスプロジェクト"
         },
         "errors": {
-            "details": "Show details"
+            "details": "詳細を表示"
         },
         "connect_modrinth": {
-            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Open Settings"
+            "desc": "設定で<b>Modrinthアカウント</b>を接続すると、いつでも簡単にプラットフォーム上のプロジェクト所有権を確認できます。",
+            "settings": "設定を開く"
         },
-        "submit": "Submit",
+        "submit": "送信",
         "success": {
-            "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's docs page"
+            "title": "プロジェクトの登録に成功しました",
+            "desc": "プロジェクトのドキュメントページに移動できるようになりました"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "送信中...",
+        "verify_modrinth": "Modrinth を使用して確認"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
-        "button": "Settings",
+        "title": "プロジェクトを編集",
+        "desc": "既存のプロジェクト設定を編集する。",
+        "button": "設定",
         "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's docs page"
+            "title": "プロジェクトの更新に成功しました",
+            "desc": "更新されたプロジェクトのドキュメントページに移動できるようになりました"
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "trigger": "削除",
+        "title": "本当によろしいですか？",
+        "desc": "この操作は元に戻せません。プロジェクトを完全に削除し、関連するすべてのデータをサーバーから削除します。",
+        "cancel": "キャンセル",
+        "submit": "削除",
+        "success": "プロジェクトが正常に削除されました"
     },
     "ProjectRevalidateForm": {
-        "title": "Reload project pages?",
-        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
-        "secondary": "This option should only be used upon updating the documentation source itself.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Cancel",
-        "submit": "Reload",
-        "success": "Project reload started"
+        "title": "プロジェクトページを再読み込みしますか？",
+        "primary": "すべての保存済みドキュメントページは <b>削除され、ソースから再取得されます</b>。",
+        "secondary": "このオプションは、ドキュメントソース自体を更新する場合にのみ使用してください。",
+        "tertiary": "利便性を考慮し、公開後は<link>Gradleプラグイン</link>を使用して自動的にドキュメントを再検証することをお勧めします。",
+        "note": "プロジェクト登録データは変更されていません。メタ情報（ソースやプラットフォームなど）を更新する場合は、代わりに「設定」ダイアログを使用してください。",
+        "cancel": "キャンセル",
+        "submit": "再読み込み",
+        "success": "プロジェクトの再読み込みが開始されました"
     },
     "FormActions": {
         "errors": {
-            "unauthorized": "User authentication error",
-            "internal": "Internal Server Error, please try again later.",
-            "unknown": "An unknown error has occurred, please try again later.",
-            "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
-            "unsupported_type": "Unsupported project type",
-            "ownership": "Failed to verify project ownership",
-            "cf_unavailable": "Registering CurseForge projects is not active",
-            "requires_auth": "Repository connection requires login credentials but none were provided",
-            "no_repository": "Repository not found",
-            "no_branch": "Invalid branch specified",
-            "no_path": "Metadata file not found at specified path",
-            "invalid_meta": "Metadata file is invalid",
-            "unsupported": "Not yet implemented",
-            "exists": "Project already exists.",
-            "not_found": "Project does not exist"
+            "unauthorized": "ユーザー認証エラー",
+            "internal": "サーバー内部エラーが発生しました。しばらく経ってからもう一度試してみてください。",
+            "unknown": "不明なエラーが発生しました。しばらくしてから再度お試しください。",
+            "no_platforms": "メタデータにプラットフォームプロジェクトが定義されていません。",
+            "no_project": "プラットフォームプロジェクトが見つかりません。メタデータ「slug」フィールドが正しいことを確認してください。",
+            "unsupported_type": "サポートされていないプロジェクトの種類です",
+            "ownership": "プロジェクトの所有権の確認に失敗しました",
+            "cf_unavailable": "CursForgeプロジェクトの登録が有効ではありません",
+            "requires_auth": "リポジトリ接続にはログイン認証情報が必要ですが、提供されていません",
+            "no_repository": "リポジトリが見つかりません",
+            "no_branch": "無効なブランチが指定されました",
+            "no_path": "指定されたパスにメタデータファイルが見つかりません",
+            "invalid_meta": "メタデータファイルが不正です",
+            "unsupported": "まだ実装されていません",
+            "exists": "プロジェクトは既に存在します。",
+            "not_found": "プロジェクトが存在しません"
         }
     },
     "CommunityBadge": {
-        "title": "Community",
-        "desc": "Unofficial documentation maintained by the community"
+        "title": "コミュニティ",
+        "desc": "コミュニティによって維持されている非公式のドキュメント"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
-        "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the project author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "title": "このページを紛失しました",
+        "desc": "リクエストされたドキュメントページは現在ご利用いただけません。",
+        "suggestion": "後ほど再度お試しいただくか、この問題をプロジェクトの作成者に報告してください。",
+        "submit": "問題を送信する",
+        "return": "ホームに戻る"
     },
     "GetStartedButton": {
-        "title": "Create first project"
+        "title": "最初のプロジェクトを作成"
     },
     "GetStartedModal": {
-        "button": "Add project",
-        "title": "I'd like to write documentation for...",
+        "button": "プロジェクトを追加",
+        "title": "ドキュメントを書きたいのですが…",
         "dev": {
-            "title": "My own project",
-            "desc": "Author your own documentation and control who can make changes to it.",
-            "button": "Create project"
+            "title": "自分のプロジェクト",
+            "desc": "独自のドキュメントを作成し、誰が変更を行えるかを管理できます。",
+            "button": "プロジェクトの作成"
         },
         "community": {
-            "title": "Someone else's project",
-            "desc": "Contribute to a collection of community docs maintained by wiki editors",
-            "button": "Read guide"
+            "title": "他人のプロジェクト",
+            "desc": "ウィキ編集者が管理するコミュニティドキュメントのコレクションに貢献する",
+            "button": "ガイドを読んでください"
         }
     },
     "DocsHomepagePlaceholder": {
-        "title": "Homepage placeholder",
-        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
-        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+        "title": "ホームページのプレースホルダー",
+        "subtitle": "API の制限により、ローカル環境の CursForge プロジェクトではプロジェクトのメタデータを使用できません。",
+        "replace": "ご安心ください。このプレースホルダーは、ライブウィキウェブサイトにデプロイされた後、プロジェクトの実際の説明に置き換えられます。"
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "placeholder": "Wikiのコンテンツを検索…",
+        "no_results": "何も見つかりませんでした！",
+        "loading": "完璧な結果を見つけています…",
+        "results": "<highlight>{count}</highlight> 件の結果を <highlight>{total}</highlight> 件中から表示しています",
+        "close": "<kbd>ESC</kbd> で閉じる"
     },
     "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
+        "title": "プロジェクト情報",
+        "tags": "タグ",
         "licenses": {
-            "title": "Licenses",
-            "project": "Project:",
-            "wiki": "Wiki:"
+            "title": "ライセンス",
+            "project": "プロジェクト：",
+            "wiki": "Wiki："
         },
-        "links": "Links",
+        "links": "リンク",
         "placeholder": {
-            "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
+            "summary": "ローカルプロジェクトのプレビュー",
+            "author": "著者",
+            "latest_version": "最新バージョン"
         }
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "変更履歴"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Project Homepage"
+        "title": "ドキュメント",
+        "homepage": "プロジェクトホームページ"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "エントリ情報"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "このページで"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version",
-        "latest": "Latest"
+        "placeholder": "バージョンを選択",
+        "latest": "最新"
     },
     "DocsLanguageSelect": {
-        "placeholder": "Select locale"
+        "placeholder": "言語を選択"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "あと+{count}"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "言語を検索…",
+        "no_results": "言語が見つかりませんでした。"
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "loaded": "Loaded",
-        "error": "Errored"
+        "unknown": "不明",
+        "loading": "初期化中",
+        "loaded": "読み込み完了",
+        "error": "エラー"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "管理"
         },
         "empty": {
-            "primary": "Looks like you haven't registered any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "primary": "まだプロジェクトを登録していないようです",
+            "secondary": "まずは当社の<guide>著者向けガイド</guide>をお読みください。"
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "ホーム"
         },
         "toolbar": {
-            "view": "View"
+            "view": "表示"
         },
         "source": {
-            "title": "Project Source",
-            "repo": "Repository",
-            "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "title": "プロジェクトソース",
+            "repo": "リポジトリ",
+            "branch": "ブランチ",
+            "path": "パス",
+            "public": "公開"
         },
         "platforms": {
-            "title": "Platforms",
+            "title": "プラットフォーム",
             "headers": {
-                "platform": "Platform",
+                "platform": "プラットフォーム",
                 "slug": "Slug / ID",
-                "link": "Link"
+                "link": "リンク"
             },
-            "open": "Open"
+            "open": "開く"
         },
         "information": {
-            "title": "Information",
-            "type": "Type",
-            "status": "Status",
-            "created_at": "Created at"
+            "title": "インフォメーション",
+            "type": "種類",
+            "status": "ステータス",
+            "created_at": "作成日"
         }
     },
     "DevProjectLogs": {
-        "title": "Server logs",
-        "show": "Show",
-        "unloaded": "Not loaded",
-        "waiting": "Waiting for server...",
-        "loading": "Loading...",
-        "error": "Error loading logs",
+        "title": "サーバーログ",
+        "show": "表示",
+        "unloaded": "読み込まれていません",
+        "waiting": "サーバーを待っています...",
+        "loading": "読み込み中...",
+        "error": "ログの読み込みエラー",
         "toast": {
-            "success": "Project setup complete",
-            "error": "Error during project setup"
+            "success": "プロジェクトのセットアップ完了",
+            "error": "プロジェクトのセットアップ中にエラーが発生しました"
         }
     },
     "DeveloperSidebar": {
         "teams": {
-            "personal": "Personal"
+            "personal": "個人用"
         },
         "groups": {
-            "projects": "Projects",
-            "platform": "Platform"
+            "projects": "プロジェクト",
+            "platform": "プラットフォーム"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
-            "settings": "Settings"
+            "projects": "プロジェクト",
+            "documentation": "ドキュメント",
+            "settings": "設定"
         }
     },
     "DevSidebarContextSwitcher": {
-        "title": "Teams"
+        "title": "チーム"
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Log out",
-            "title": "Logout",
-            "desc": "Logging out..."
+            "button": "ログアウト",
+            "title": "ログアウト",
+            "desc": "ログアウト中..."
         },
-        "unknown_avatar": "N/A"
+        "unknown_avatar": "なし"
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
-            "settings": "Settings"
+            "home": "ホーム",
+            "settings": "設定"
         },
         "profile": {
-            "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}"
+            "bio": "Modded Minecraft Wikiのクリエイター",
+            "join_date": "{date} に登録"
         },
         "connections": {
-            "title": "Connections",
+            "title": "連携",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "Modrinthアカウント",
+                "desc": "プロジェクトの所有権を確認するために使用されます",
+                "connect": "接続",
+                "view": "表示",
+                "disconnect": "接続解除"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "アカウント",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "アカウントを削除",
+                "desc": "すべてのアカウントデータを永久に削除する",
+                "button": "アカウントを削除"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "アカウントを削除",
+                "desc": "このアカウントを削除してもよろしいですか？ これは元に戻すことができない破壊的な操作です。",
+                "cancel": "キャンセル",
+                "button": "永久的に削除"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "アカウントの連携が解除されました",
+                "error": "アカウントの連携解除エラー"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "認証に失敗",
+        "desc": "ログイン中に予期しないエラーが発生しました。後でもう一度お試しください。",
+        "status": "ステータス確認",
+        "return": "ホームへ戻る",
+        "report": "バグを報告"
     }
 }
