@@ -1,153 +1,153 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest"
+        "local": "Локально",
+        "latest": "Останній"
     },
     "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
-        "title_short": "Wiki",
+        "title": "Вікі Minecraft-модифікацій",
+        "title_short": "Вікі",
         "badge": {
-            "preview": "PREVIEW MODE",
-            "beta": "Beta"
+            "preview": "РЕЖИМ ПОПЕРЕДНЬОГО ПЕРЕКЛАДУ",
+            "beta": "Бета"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "Головна",
+            "browse": "Огляд",
+            "about": "Про нас"
         }
     },
     "NavigationFooter": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Вікі Minecraft-модифікацій",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "Навігація",
+                "home": "Головна сторінка",
+                "browse": "Огляд",
+                "dev": "Розробники"
             },
             "links": {
-                "title": "Links"
+                "title": "Посилання"
             },
             "resources": {
-                "title": "Resources",
-                "blog": "Blog",
-                "status": "Status",
-                "translate": "Help us translate"
+                "title": "Ресурси",
+                "blog": "Блог",
+                "status": "Статус",
+                "translate": "Допомогти з перекладом"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "Про нас",
+                "tos": "Умови користування",
+                "privacy": "Політика конфіденційності",
+                "contact": "Зв’язатися з нами"
             }
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "Ласкаво просимо на <highlight>Вікі Minecraft-модифікацій</highlight>",
+        "subtitle": "Ваш основний ресурс для пошуку, створення та внесення свого внеску в проєкти, пов’язані з Minecraft.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "Популярні вікі",
+            "open": "Докладніше",
+            "disclaimer": "Ці проєкти відображено на основі їхньої популярності згідно зі статистикою переглядів і вони не є офіційно підтриманими «Вікі Minecraft-модифікацій»."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "Долучайтеся до нашої спільноти",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "Користувачі",
+                "subtitle": "Ознайомтеся з рекомендованими проєктами та скористайтеся такими перевагами:",
+                "docs": "Доступ до якісної, актуальної та версіонованої документації",
+                "contribute": "Можливість долучатися до проєктів без знань програмування",
+                "ui": "Послідовний і зручний інтерфейс у всіх проєктах",
+                "localization": "Підтримка кількох мов інтерфейсу"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Custom components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "Творці",
+                "subtitle": "Отримайте доступ до панелі керування проєктом і скористайтеся такими перевагами:",
+                "vcs": "Підтримка версіонування документації",
+                "components": "Налаштовувані компоненти для рецептів, ресурсів тощо.",
+                "gradle": "Інтеграція з Gradle для плавного робочого процесу",
+                "management": "Розширені інструменти керування проєктом",
+                "interaction": "Прямий зв’язок із вашою спільнотою",
+                "dashboard": "Панель керування",
+                "guide": "Докладніше"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "Переглянути проєкти",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "Локалізація",
+                "desc": "Перекладайте документацію мовами світу"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "Доступність",
+                "desc": "Інтуїтивний та адаптивний інтерфейс користувача"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "Відкритість",
+                "desc": "Дозвольте користувачам долучатися без знань програмування"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "Безкоштовно",
+                "desc": "Хостинг документації на нашому сайті цілком безкоштовний!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "Про нас",
+            "maintainers": "Вікі створена та підтримується командою <b>Sinytra</b> — групою відданих розробників, які зосереджені на створенні високоякісного, вільного та відкритого програмного забезпечення для спільноти розробників модів для Minecraft.",
+            "mission": "Наша мета — надати розробникам і гравцям необхідні інструменти та ресурси для створення, документування та дослідження безмежних можливостей модифікованого Minecraft."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "Дописи блогу",
+            "open": "Докладніше"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "Переглянути проєкти",
+            "search_filters": "Шукати фільтри...",
+            "categories": "Категорії"
         },
-        "sorting": "Sort by",
+        "sorting": "Сортувати",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
-            "az": "A-Z",
-            "za": "Z-A"
+            "relevance": "За релевантністю",
+            "creation_date": "За датою створення",
+            "popularity": "За популярністю",
+            "az": "Від А до Я",
+            "za": "Від Я до А"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
-        "no_results": "Search query returned no results!"
+        "search": "Шукати проєкти...",
+        "clear_filter": "Очистити фільтри",
+        "no_results": "За вашим запитом нічого не знайдено!"
     },
     "SearchProjectTypes": {
-        "mod": "Mods",
-        "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "mod": "Моди",
+        "modpack": "Збірки модів",
+        "resourcepack": "Пакети ресурсів",
+        "datapack": "Пакети даних",
+        "shader": "Шейдери",
+        "plugin": "Плагіни"
     },
     "ProjectTypes": {
-        "mod": "Mod",
-        "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
-        "shader": "Shader",
-        "plugin": "Plugin"
+        "mod": "Мод",
+        "modpack": "Збірка модів",
+        "resourcepack": "Пакет ресурсів",
+        "datapack": "Пакет даних",
+        "shader": "Шейдер",
+        "plugin": "Плагін"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "Завантаження..."
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
+        "title": "Навігація",
         "about": "About",
-        "devs": "Developers",
+        "devs": "Розробники",
         "format": "Format",
         "publishing": "Publishing",
         "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
-        "security": "Security Notice",
+        "tos": "Умови використання",
+        "privacy": "Політика конфіденційності",
+        "security": "Зауваження щодо безпеки",
         "community": "Community Docs"
     },
     "Login": {
@@ -179,47 +179,47 @@
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
+        "adventure": "Пригоди",
+        "cursed": "Прокляті",
+        "decoration": "Декорації",
+        "economy": "Економіка",
+        "equipment": "Спорядження",
+        "food": "Їжа",
+        "game-mechanics": "Ігрові механіки",
+        "library": "Бібліотека",
+        "magic": "Магія",
+        "management": "Керування",
+        "minigame": "Міні-гра",
+        "mobs": "Моби",
+        "optimization": "Оптимізація",
         "social": "Social",
         "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
+        "technology": "Технології",
+        "transportation": "Транспорт",
+        "utility": "Інструменти",
+        "worldgen": "Генерація світу",
+        "server-utility": "Серверні інструменти",
+        "armor-weapons-tools": "Обладунки, інструменти та зброя",
+        "library-api": "API та бібліотека",
+        "adventure-rpg": "Пригоди та RPG",
+        "world-gen": "Генерація світу",
+        "cosmetic": "Косметика",
+        "mc-food": "Їжа",
+        "performance": "Оптимізація",
+        "map-information": "Мапа та інформація",
+        "bug-fixes": "Виправлення помилок",
+        "mc-addons": "Аддони",
         "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
+        "mc-miscellaneous": "Різне",
+        "redstone": "Редстоун",
         "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "Report this page",
-        "report_button": "Report page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "Редагувати цю сторінку",
+        "report": "Поскаржитися на цю сторінку",
+        "report_button": "Поскражитися на сторінку",
+        "last_updated": "Останнє оновлення: <date></date>"
     },
     "Report": {
         "title": "Report a documentation page",
