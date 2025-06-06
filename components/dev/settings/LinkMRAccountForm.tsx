@@ -12,12 +12,15 @@ function SubmitButton() {
 
   return (
     <Button data-pending={pending ? 'true' : 'false'} variant="secondary" size="sm"
-            className="text-brand-modrinth border-brand-modrinth/70 border bg-primary hover:text-brand-modrinth/90 font-semibold data-[pending=true]:text-brand-modrinth/90">
+            className={`
+              border border-brand-modrinth/70 bg-primary font-semibold text-brand-modrinth hover:text-brand-modrinth/90
+              data-[pending=true]:text-brand-modrinth/90
+            `}>
       {pending
         ?
-        <LoaderCircleIcon className="h-4 w-4 mr-2 animate-spin"/>
+        <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin"/>
         :
-        <ModrinthIcon className="w-4 h-4 mr-2"/>
+        <ModrinthIcon className="mr-2 h-4 w-4"/>
       }
       {t('connect')}
     </Button>

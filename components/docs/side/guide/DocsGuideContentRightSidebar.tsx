@@ -25,24 +25,26 @@ export default async function DocsGuideContentRightSidebar({ project, metadata, 
       type="right"
       title={t('title')}
       className={cn(
-        'shrink-0 right-0',
+        'right-0 shrink-0',
         'w-[96vw] sm:w-64'
       )}
     >
       <div className="space-y-2 sm:w-56">
-        <div className="mb-6 border border-tertiary m-2 rounded-xs">
-          <ImageWithFallback src={iconUrl?.src} width={128} height={128} className="docsContentIcon m-4 mx-auto disable-blur"
+        <div className="m-2 mb-6 rounded-xs border border-tertiary">
+          <ImageWithFallback src={iconUrl?.src} width={128} height={128} className={`
+            docsContentIcon disable-blur m-4 mx-auto
+          `}
                              alt={!iconUrl ? undefined : iconUrl.id}/>
         </div>
         {metadata.title &&
-          <h1 className="text-center text-lg text-primarys font-semibold">
+          <h1 className="text-primarys text-center text-lg font-semibold">
             {metadata.title}
           </h1>
         }
 
         <EntryDetails className="pb-2 text-center">
           {metadata.id &&
-            <code className="text-center text-secondary break-all">{metadata.id}</code>
+            <code className="text-center break-all text-secondary">{metadata.id}</code>
           }
         </EntryDetails>
 

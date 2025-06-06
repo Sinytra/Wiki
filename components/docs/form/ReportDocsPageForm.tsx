@@ -49,7 +49,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
 
   return (
     <Form {...form}>
-      <form tabIndex={0} action={action} className="focus:outline-hidden space-y-6">
+      <form tabIndex={0} action={action} className="space-y-6 focus:outline-hidden">
         <FormItem>
           <FormLabel>
             {t.id.title}
@@ -153,7 +153,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
         }
 
         {form.formState.errors.root?.custom?.message &&
-            <p className="text-destructive text-sm">{form.formState.errors.root.custom.message}</p>
+            <p className="text-sm text-destructive">{form.formState.errors.root.custom.message}</p>
         }
 
         {reason === 'dislike'
@@ -166,7 +166,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
 
             <Button asChild className="mt-4 ml-auto text-inverse">
               <LocaleNavLink href="/browse">
-                <CompassIcon className="w-4 h-4 mr-2"/>
+                <CompassIcon className="mr-2 h-4 w-4"/>
                 {t.dislike.explore}
               </LocaleNavLink>
             </Button>

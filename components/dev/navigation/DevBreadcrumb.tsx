@@ -8,9 +8,9 @@ import {SidebarTrigger} from "@/components/ui/sidebar";
 
 export default function DevBreadcrumb({home, children}: { home: any; children?: any }) {
   return (
-    <Breadcrumb className="mt-1 sm:mt-0 mb-4">
+    <Breadcrumb className="mt-1 mb-4 sm:mt-0">
       <BreadcrumbList>
-        <SidebarTrigger className="-ml-1 mr-1 sm:hidden text-primary"/>
+        <SidebarTrigger className="mr-1 -ml-1 text-primary sm:hidden"/>
         <BreadcrumbItem>
           {home}
         </BreadcrumbItem>

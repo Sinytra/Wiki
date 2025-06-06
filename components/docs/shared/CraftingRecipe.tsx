@@ -30,13 +30,15 @@ export default async function CraftingRecipe({slots, result, count}: Props) {
       </div>
 
       {resultAsset &&
-          <div className="absolute flex justify-center items-center top-[42px] left-[194px] w-[52px] h-[52px]">
-              <div className="relative flex justify-center items-center -m-0.5 p-0.5 w-[36px] h-[36px]">
+          <div className="absolute top-[42px] left-[194px] flex h-[52px] w-[52px] items-center justify-center">
+              <div className="relative -m-0.5 flex h-[36px] w-[36px] items-center justify-center p-0.5">
                 <div>
                     <ItemDisplay asset={resultAsset}/>
                 </div>
                 {count && count > 1 &&
-                    <span className="absolute bottom-0 right-0 text-white text-base leading-1 text-left sharpRendering z-10" style={{fontFamily: 'Minecraft, sans-serif', textShadow: '2px 2px 0 #3F3F3F'}}>
+                    <span className={`
+                      sharpRendering absolute right-0 bottom-0 z-10 text-left text-base leading-1 text-white
+                    `} style={{fontFamily: 'Minecraft, sans-serif', textShadow: '2px 2px 0 #3F3F3F'}}>
                       {count}
                     </span>
                 }

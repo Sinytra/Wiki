@@ -124,16 +124,16 @@ export default function ProjectRegisterForm(
         </DialogHeader>
 
         <Form {...form}>
-          <div className="focus:outline-hidden relative" tabIndex={0}>
+          <div className="relative focus:outline-hidden" tabIndex={0}>
             {form.formState.isSubmitting &&
               <div
-                className="inline-flex gap-2 items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                className="absolute top-1/2 left-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-2">
                   <Loader2Icon className="mr-2 h-6 w-6 animate-spin"/>
                   <span className="text-lg">{t('submitting')}</span>
               </div>
             }
             <form ref={formRef} action={action}
-                  className={cn('focus:outline-hidden space-y-6', form.formState.isSubmitting && 'invisible')}>
+                  className={cn('space-y-6 focus:outline-hidden', form.formState.isSubmitting && 'invisible')}>
               <FormField
                 control={form.control}
                 name="repo"
@@ -218,8 +218,8 @@ export default function ProjectRegisterForm(
               }
 
               {form.formState.errors.root?.custom?.message &&
-                <div className="flex flex-col gap-2 sm:flex-row items-center justify-between w-full">
-                    <p className="text-destructive text-sm">
+                <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
+                    <p className="text-sm text-destructive">
                       {form.formState.errors.root.custom.message}
                     </p>
                 </div>
@@ -227,7 +227,7 @@ export default function ProjectRegisterForm(
 
               {/*@ts-ignore*/}
               {form.formState.errors.root?.custom?.details &&
-                <details className="w-fit text-sm text-destructive max-h-20 overflow-y-auto slim-scrollbar">
+                <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
                     <summary className="mb-2">
                       {t('errors.details')}
                     </summary>
@@ -237,10 +237,10 @@ export default function ProjectRegisterForm(
               }
 
               {canVerifyModrinth &&
-                <div className="flex flex-col gap-1 p-3 border border-info rounded-md">
+                <div className="flex flex-col gap-1 rounded-md border border-info p-3">
                     <p className="flex flex-row items-start text-secondary">
-                        <LightbulbIcon className="inline-block shrink-0 mt-0.5 mr-2 h-4 w-4"/>
-                        <span className="text-secondary text-sm">
+                        <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
+                        <span className="text-sm text-secondary">
                             {t.rich('connect_modrinth.desc', {
                               b: (chunks) => <span className="text-primary">{chunks}</span>
                             })}
@@ -250,14 +250,14 @@ export default function ProjectRegisterForm(
                         <Link href="/dev/settings" target="_blank">
                             <Button variant="outline" type="button" size="sm">
                                 {t('connect_modrinth.settings')}
-                                <ExternalLinkIcon className="w-4 h-4 ml-2"/>
+                                <ExternalLinkIcon className="ml-2 h-4 w-4"/>
                             </Button>
                         </Link>
                     </div>
                 </div>
               }
 
-              <DialogFooter className="flex flex-row w-full">
+              <DialogFooter className="flex w-full flex-row">
                 <SubmitButton t={{title: t('submit')}}/>
               </DialogFooter>
             </form>

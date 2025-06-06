@@ -64,11 +64,11 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
 
   return (
     <div className="w-full">
-      <div className="w-full flex flex-row gap-4 justify-between items-center mb-4">
-        <div className="w-full sm:w-fit relative text-secondary">
-          <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
+      <div className="mb-4 flex w-full flex-row items-center justify-between gap-4">
+        <div className="relative w-full text-secondary sm:w-fit">
+          <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
           <Input
-            className="h-9 sm:w-96 pl-9 border-tertiary focus-visible:ring-0 focus-visible:outline-neutral-600"
+            className="h-9 border-tertiary pl-9 focus-visible:ring-0 focus-visible:outline-neutral-600 sm:w-96"
             placeholder={t('filter')}
             onChange={(e) => handleSearch(e.target.value)}
             defaultValue={params.query || ''}
@@ -76,10 +76,13 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
         </div>
         {versions && versions.length > 0 && <DevDocsVersionSelect versions={versions}/>}
       </div>
-      <div className="rounded-sm border border-tertiary overflow-x-auto">
-        <Table className="table table-fixed w-full mb-0!">
+      <div className="overflow-x-auto rounded-sm border border-tertiary">
+        <Table className="mb-0! table w-full table-fixed">
           <TableHeader
-            className="first:rounded-t-sm first:border-t-0 first:[&_th:first-child]:rounded-tl-sm first:[&_tr]:rounded-t-sm first:[&_th:last-child]:rounded-tr-sm">
+            className={`
+              first:rounded-t-sm first:border-t-0 first:[&_th:first-child]:rounded-tl-sm
+              first:[&_th:last-child]:rounded-tr-sm first:[&_tr]:rounded-t-sm
+            `}>
             <TableRow className="first:border-t-0">
               {cols}
             </TableRow>
@@ -88,13 +91,18 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
             {rows.map((row, i) => (
               <React.Fragment key={i}>
                 <TableRow
-                  className={cn('last:border-b-0 last:[&_td]:border-b-0 last:[&_td:first-child]:rounded-bl-sm last:[&_td:last-child]:rounded-br-sm',
-                    expandable && (i % 2 != 0 ? 'bg-table-soft hover:bg-table-hover' : 'hover:bg-table-hover'), expandable && 'cursor-pointer')}
+                  className={cn(`
+                    last:border-b-0 last:[&_td]:border-b-0 last:[&_td:first-child]:rounded-bl-sm
+                    last:[&_td:last-child]:rounded-br-sm
+                  `,
+                    expandable && (i % 2 != 0 ? 'bg-table-soft hover:bg-table-hover' : 'hover:bg-table-hover'), expandable && `
+                      cursor-pointer
+                    `)}
                   onClick={() => expandable && toggleRow(i)}
                 >
                   {row.row}
                   {row.extendedRow &&
-                    <TableCell className="first:border-l-0 last:border-r-0 border-x-0">
+                    <TableCell className="border-x-0 first:border-l-0 last:border-r-0">
                         <Button variant="ghost" className="size-8" size="icon" onClick={() => toggleRow(i)}>
                             <ToggleChevron className="size-5" active={visibleRows[i]} />
                         </Button>

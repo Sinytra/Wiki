@@ -16,7 +16,7 @@ export default async function DevLayout({ children }: { children?: any }) {
   }
 
   return (
-    <div className="w-full mx-auto sm:max-w-[92rem]">
+    <div className="mx-auto w-full sm:max-w-[92rem]">
       <SidebarProvider className="min-h-0">
         <ClientLocaleProvider keys={['DeveloperSidebar', 'DevSidebarContextSwitcher', 'DevSidebarUser']}>
           <DeveloperSidebar profile={response.profile} logoutAction={async () => {
@@ -24,7 +24,7 @@ export default async function DevLayout({ children }: { children?: any }) {
             authSession.logout();
           }}/>
         </ClientLocaleProvider>
-        <SidebarInset className="px-1 sm:px-4 my-4 mx-auto min-h-0 w-full">
+        <SidebarInset className="mx-auto my-4 min-h-0 w-full px-1 sm:px-4">
           {children}
         </SidebarInset>
       </SidebarProvider>

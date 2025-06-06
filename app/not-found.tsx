@@ -6,11 +6,11 @@ import {HouseIcon} from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="m-auto p-4 flex flex-col gap-4 justify-center items-center">
+    <div className="m-auto flex flex-col items-center justify-center gap-4 p-4">
       {/*Image sourced from https://github.com/httpcats/http.cat, licensed under the MIT License*/}
       <Image src={NotFoundImage} alt="Not Found" className="rounded-xs" width={450}/>
 
-      <h1 className="text-primary text-5xl my-2">
+      <h1 className="my-2 text-5xl text-primary">
         404 Not Found
       </h1>
 
@@ -18,7 +18,7 @@ export default function NotFound() {
 
       <Button asChild className="mt-4">
         <NavLink href="/">
-          <HouseIcon className="mr-2 w-4 h-4" />
+          <HouseIcon className="mr-2 h-4 w-4" />
           Return Home
         </NavLink>
       </Button>

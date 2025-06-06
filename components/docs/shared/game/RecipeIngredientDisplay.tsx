@@ -11,10 +11,10 @@ export default function RecipeIngredientDisplay({count, item, params}: { count: 
     <div className="inline-flex items-center">
       <span>{count}x</span>
       <ContentDiv href={href} target="_blank">
-        <div className="inline-block mx-1">
+        <div className="mx-1 inline-block">
           <RotatingItemDisplaySlot noTooltip noLink src={[item]}/>
         </div>
-        <span className={cn('text-primary-alt font-medium', href && 'underline')}>{item.name}</span>
+        <span className={cn('font-medium text-primary-alt', href && 'underline')}>{item.name}</span>
       </ContentDiv>
     </div>
   )

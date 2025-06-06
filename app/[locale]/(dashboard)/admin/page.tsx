@@ -15,13 +15,15 @@ interface Props {
 
 function AdminHeader() {
   return (
-    <div className="w-full flex flex-row bg-primary-alt rounded-sm border border-secondary p-2 shadow-sm justify-between">
-      <span className="text-lg flex flex-row gap-2 items-center">
+    <div className={`
+      flex w-full flex-row justify-between rounded-sm border border-secondary bg-primary-alt p-2 shadow-sm
+    `}>
+      <span className="flex flex-row items-center gap-2 text-lg">
         <WrenchIcon className="size-5" />
         System configuration
       </span>
 
-      <span className="text-base flex flex-row gap-2 items-center">
+      <span className="flex flex-row items-center gap-2 text-base">
         <img src="https://sinytra.org/logo.png" className="size-5" alt="Sinytra" />
         Sinytra
       </span>
@@ -31,8 +33,8 @@ function AdminHeader() {
 
 function DataWidget({title, value, icon}: { title: string; value: any; icon: ReactNode; }) {
   return (
-    <div className="bg-accent flex flex-row border border-secondary rounded-sm [&>div]:py-1">
-      <div className="bg-primary flex flex-row items-center gap-2 pl-2 pr-2 border-r rounded-sm border-secondary">
+    <div className="flex flex-row rounded-sm border border-secondary bg-accent [&>div]:py-1">
+      <div className="flex flex-row items-center gap-2 rounded-sm border-r border-secondary bg-primary pr-2 pl-2">
         <div className="text-primary">
           {icon}
         </div>
@@ -41,8 +43,8 @@ function DataWidget({title, value, icon}: { title: string; value: any; icon: Rea
           {title}
         </span>
       </div>
-      <div className="px-2 min-w-10 text-center rounded-sm">
-        <span className="text-sm font-mono">
+      <div className="min-w-10 rounded-sm px-2 text-center">
+        <span className="font-mono text-sm">
           {value}
         </span>
       </div>

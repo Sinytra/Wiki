@@ -3,37 +3,37 @@ import {Skeleton} from "@/components/ui/skeleton";
 
 export default function DocsLoadingSkeleton() {
   return (
-    <div className="flex flex-col animate-out transition-all fade-out-0">
+    <div className="flex animate-out flex-col transition-all fade-out-0">
       <DocsContentTitle titleClassName="w-full">
-        <Skeleton className="w-full h-8"/>
+        <Skeleton className="h-8 w-full"/>
       </DocsContentTitle>
 
       <div>
-        <Skeleton className="w-full h-8"/>
+        <Skeleton className="h-8 w-full"/>
 
         <div className="flex flex-col gap-4">
-          <Skeleton className="w-full h-10"/>
-          <Skeleton className="w-full h-8"/>
-          <Skeleton className="w-full h-8"/>
+          <Skeleton className="h-10 w-full"/>
+          <Skeleton className="h-8 w-full"/>
+          <Skeleton className="h-8 w-full"/>
 
-          <div className="flex flex-row w-full gap-6">
-            <Skeleton className="w-72 h-72 shrink-0"/>
+          <div className="flex w-full flex-row gap-6">
+            <Skeleton className="h-72 w-72 shrink-0"/>
 
-            <div className="flex flex-col justify-between gap-4 w-full">
-              <Skeleton className="w-full h-8"/>
-              <Skeleton className="w-full h-8"/>
-              <Skeleton className="w-full h-7"/>
-              <Skeleton className="w-full h-7"/>
-              <Skeleton className="w-full h-24"/>
+            <div className="flex w-full flex-col justify-between gap-4">
+              <Skeleton className="h-8 w-full"/>
+              <Skeleton className="h-8 w-full"/>
+              <Skeleton className="h-7 w-full"/>
+              <Skeleton className="h-7 w-full"/>
+              <Skeleton className="h-24 w-full"/>
             </div>
           </div>
 
-          <Skeleton className="w-full h-12 mt-3"/>
+          <Skeleton className="mt-3 h-12 w-full"/>
 
-          <Skeleton className="w-full h-10"/>
-          <Skeleton className="w-full h-6"/>
-          <Skeleton className="w-full h-6"/>
-          <Skeleton className="w-full h-24"/>
+          <Skeleton className="h-10 w-full"/>
+          <Skeleton className="h-6 w-full"/>
+          <Skeleton className="h-6 w-full"/>
+          <Skeleton className="h-24 w-full"/>
         </div>
       </div>
     </div>

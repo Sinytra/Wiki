@@ -21,19 +21,19 @@ export default function DevDocsVersionSelect({versions}: { versions: ProjectVers
   return (
     <Select value={version} onValueChange={changeVersion}>
       <SelectTrigger className={cn(
-        'sm:w-fit py-0 rounded-sm [&>span]:text-sm bg-primary-dim hover:bg-secondary',
-        '[&>span]:text-ellipsis [&>span]:block whitespace-nowrap',
-        'justify-between h-9 sm:min-w-32 sm:max-w-40')}
+        'rounded-sm bg-primary-dim py-0 hover:bg-secondary sm:w-fit [&>span]:text-sm',
+        'whitespace-nowrap [&>span]:block [&>span]:text-ellipsis',
+        'h-9 justify-between sm:max-w-40 sm:min-w-32')}
       >
-        <Tag className="size-3.5 mr-2.5 shrink-0"/>
+        <Tag className="mr-2.5 size-3.5 shrink-0"/>
         <SelectValue placeholder={t('placeholder')}/>
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value={DEFAULT_DOCS_VERSION} className="[&>span]:text-sm py-1">
+        <SelectItem value={DEFAULT_DOCS_VERSION} className="py-1 [&>span]:text-sm">
           {t('latest')}
         </SelectItem>
         {versions.map((key) => (
-          <SelectItem key={key} value={key} className="[&>span]:text-sm py-1">
+          <SelectItem key={key} value={key} className="py-1 [&>span]:text-sm">
             {key}
           </SelectItem>
         ))}

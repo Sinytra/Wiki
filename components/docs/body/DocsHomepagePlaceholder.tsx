@@ -5,18 +5,18 @@ export default function DocsHomepagePlaceholder() {
   const t = useTranslations('DocsHomepagePlaceholder');
   
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-4 border border-secondary rounded-md p-5">
+    <div className="flex w-full flex-col items-center justify-center gap-4 rounded-md border border-secondary p-5">
       <h1 className="text-2xl text-secondary">
         {t('title')}
       </h1>
 
-      <ServerOffIcon className="text-[#3C3C43] opacity-70 my-2" width={116} height={116} />
+      <ServerOffIcon className="my-2 text-[#3C3C43] opacity-70" width={116} height={116} />
       
-      <h2 className="text-lg text-secondary max-w-[85%] text-center">
+      <h2 className="max-w-[85%] text-center text-lg text-secondary">
         {t('subtitle')}
       </h2>
       
-      <span className="text-lg text-secondary max-w-[85%] text-center">
+      <span className="max-w-[85%] text-center text-lg text-secondary">
         {t('replace')}
       </span>
     </div>

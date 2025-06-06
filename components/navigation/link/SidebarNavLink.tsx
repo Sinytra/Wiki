@@ -13,8 +13,8 @@ export default function SidebarNavLink({href, icon: Icon, className, nested, chi
   return (
     <LocaleNavLink href={href}>
       <ActiveNavButton target={href} nested={nested}>
-        {Icon && <Icon className="shrink-0 mr-2 h-4 w-4"/>}
-        <span className={cn('text-ellipsis overflow-hidden', className)}>
+        {Icon && <Icon className="mr-2 h-4 w-4 shrink-0"/>}
+        <span className={cn('overflow-hidden text-ellipsis', className)}>
           {children}
         </span>
       </ActiveNavButton>

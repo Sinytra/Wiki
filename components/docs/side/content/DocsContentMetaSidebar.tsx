@@ -20,20 +20,20 @@ async function SidebarContent({project, metadata, version}: Props) {
 
   return (
     <>
-      <div className="mb-6 border border-tertiary m-2 rounded-sm">
+      <div className="m-2 mb-6 rounded-sm border border-tertiary">
         <ImageWithFallback src={iconUrl?.src} width={112} height={112}
-                           className="docsContentIcon m-4 mx-auto disable-blur"
+                           className="docsContentIcon disable-blur m-4 mx-auto"
                            alt={!iconUrl ? undefined : iconUrl.id}/>
       </div>
       {metadata.title &&
-        <h1 className="text-center text-lg text-primarys font-semibold">
+        <h1 className="text-primarys text-center text-lg font-semibold">
           {metadata.title}
         </h1>
       }
 
       <EntryDetails className="pb-2 text-center">
         {metadata.id &&
-          <code className="text-center text-secondary break-all">{metadata.id}</code>
+          <code className="text-center break-all text-secondary">{metadata.id}</code>
         }
       </EntryDetails>
 
@@ -52,7 +52,7 @@ export default function DocsContentMetaSidebar(props: Props) {
       type="right"
       title={props.title}
       className={cn(
-        'shrink-0 right-0',
+        'right-0 shrink-0',
         'w-[96vw] sm:w-64'
       )}
       tagName="nav"

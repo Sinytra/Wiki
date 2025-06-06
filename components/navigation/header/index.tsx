@@ -17,7 +17,9 @@ import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary text-base font-medium first:pl-0 px-1 sm:px-1.5 lg:px-2.5`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink}
+      px-1 text-base font-medium text-primary first:pl-0 sm:px-1.5 lg:px-2.5
+    `}>
       {children}
     </LocaleNavLink>
   )
@@ -25,7 +27,9 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
 
 function MobileHeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
-    <LocaleNavLink href={href} className={`${styles.menuLink} text-primary text-base font-normal py-3 border-b border-[var(--vp-c-divider)]`}>
+    <LocaleNavLink href={href} className={`${styles.menuLink}
+      border-b border-[var(--vp-c-divider)] py-3 text-base font-normal text-primary
+    `}>
       {children}
     </LocaleNavLink>
   )
@@ -38,18 +42,23 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
   return (
     <HeaderBase unfix={unfix}>
       <div
-        className={cn('max-w-[88rem] h-nav pointer-events-auto! sm:h-fit z-50 flex flex-row gap-1 justify-between items-center px-4 sm:px-8 py-1 mx-auto sm:flex-nowrap sm:whitespace-nowrap', minimal && 'my-2')}>
-        <div className="flex flex-row items-center gap-3 sm:gap-4 mr-auto">
+        className={cn(`
+          pointer-events-auto! z-50 mx-auto flex h-nav max-w-[88rem] flex-row items-center justify-between gap-1 px-4
+          py-1 sm:h-fit sm:flex-nowrap sm:px-8 sm:whitespace-nowrap
+        `, minimal && `my-2`)}>
+        <div className="mr-auto flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
-            <span className="inline-flex text-base font-medium text-primary gap-1 items-center align-bottom">
-              <BookMarkedIcon className="mr-1 w-4 h-4" />
+            <span className={`inline-flex items-center gap-1 align-bottom text-base font-medium text-primary`}>
+              <BookMarkedIcon className="mr-1 h-4 w-4" />
               {t('title')}
             </span>
           </LocaleNavLink>
           {preview && <Badge className="hidden sm:block" variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&
-              <Badge variant="outline"
-                     className="hidden sm:block border-neutral-600 text-secondary font-normal">{t('badge.beta')}</Badge>}
+              <Badge variant="outline" className="hidden border-neutral-600 font-normal text-secondary sm:block">
+                {t('badge.beta')}
+              </Badge>
+          }
         </div>
 
         {!minimal && !preview &&
@@ -58,7 +67,9 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           </ClientLocaleProvider>
         }
 
-        <div className="hidden sm:flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap ml-auto">
+        <div className={`
+          ml-auto hidden flex-row flex-wrap items-center justify-end sm:flex sm:flex-nowrap sm:justify-start
+        `}>
           <nav className="flex flex-row">
             {preview
               ?
@@ -118,7 +129,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
                 </ClientLocaleProvider>
               }
               <hr />
-              <div className="mt-2 mx-auto">
+              <div className="mx-auto mt-2">
                 <SocialButtons large />
               </div>
             </nav>

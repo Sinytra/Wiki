@@ -6,7 +6,7 @@ export default function MutedLinkIconButton({ icon: Icon, href, variant }: { ico
     // @ts-expect-error
     <Button variant={variant || 'ghost'} size="icon" className="text-secondary">
       <LocaleNavLink href={href} target="_blank">
-        <Icon className="w-5 h-5"/>
+        <Icon className="h-5 w-5"/>
       </LocaleNavLink>
     </Button>
   )

@@ -7,7 +7,7 @@ export default function LocaleLayout({ params, children }: Readonly<{
 }>) {
   setContextLocale(params.locale);
 
-  return <div className="flex flex-col min-h-screen mx-4 page-wrapper-base sm:mx-2">
+  return <div className="page-wrapper-base mx-4 flex min-h-screen flex-col sm:mx-2">
     {children}
   </div>;
 }

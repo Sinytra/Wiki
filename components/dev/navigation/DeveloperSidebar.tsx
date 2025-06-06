@@ -55,7 +55,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
   ];
 
   return (
-    <Sidebar variant="floating" className="sticky -ml-[0.7rem] h-[94vh] top-[calc(var(--vp-nav-height))]"
+    <Sidebar variant="floating" className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
              collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <DevSidebarContextSwitcher teams={teams}/>
@@ -74,7 +74,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
 
         {profile.role === UserRole.ADMIN &&
           <div className="mt-auto px-2">
-              <SidebarGroup className="border border-destructive-secondary rounded-sm">
+              <SidebarGroup className="rounded-sm border border-destructive-secondary">
                   <SidebarGroupLabel>
                     {t('groups.admin')}
                   </SidebarGroupLabel>

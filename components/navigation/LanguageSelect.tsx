@@ -57,25 +57,28 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             {minimal ?
-              <button className="flex w-full items-center text-sm ring-offset-background placeholder:text-secondary
-                                 focus:outline-hidden sm:w-fit sm:min-w-24 sm:max-w-32 h-8 sm:h-7 px-2 py-0 test-center
-                                 rounded-sm bg-transparent border-none justify-start hover:bg-secondary
-                                 [&>svg:last-child]:hidden whitespace-nowrap"
+              <button className={`
+                test-center flex h-8 w-full items-center justify-start rounded-sm border-none bg-transparent px-2 py-0
+                text-sm whitespace-nowrap ring-offset-background placeholder:text-secondary hover:bg-secondary
+                focus:outline-hidden sm:h-7 sm:w-fit sm:max-w-32 sm:min-w-24 [&>svg:last-child]:hidden
+              `}
               >
-                <Globe className="size-3.5 mr-2.5 shrink-0"/>
-                <div className="sm:hidden inline-flex gap-2 mx-auto">
+                <Globe className="mr-2.5 size-3.5 shrink-0"/>
+                <div className="mx-auto inline-flex gap-2 sm:hidden">
                   <CountryFlag className="rounded-xs!" flag={selectedLang.icon}/>
-                  <span className="text-ellipsis line-clamp-1 text-sm">{selectedLang.name}</span>
+                  <span className="line-clamp-1 text-sm text-ellipsis">{selectedLang.name}</span>
                 </div>
-                <span className="hidden sm:block text-ellipsis line-clamp-1 text-sm">
+                <span className="line-clamp-1 hidden text-sm text-ellipsis sm:block">
                   {selectedLang.name}
                 </span>
               </button>
               :
-              <Button variant="outline" role="combobox" aria-expanded={open} className="px-2 py-1 bg-transparent border-none justify-between">
-                  <LanguagesIcon className="w-5 h-5"/>
+              <Button variant="outline" role="combobox" aria-expanded={open} className={`
+                justify-between border-none bg-transparent px-2 py-1
+              `}>
+                  <LanguagesIcon className="h-5 w-5"/>
                   {mobile &&
-                    <div className="inline-flex gap-2 ml-3 mr-2">
+                    <div className="mr-2 ml-3 inline-flex gap-2">
                       <CountryFlag className="rounded-xs!" flag={selectedLang.icon}/>
                       {selectedLang.name}
                     </div>
@@ -90,12 +93,15 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
           </PopoverTrigger>
           <PopoverContent align={mobile ? 'start' : 'end'}
                           onOpenAutoFocus={(e) => e.preventDefault()}
-                          className={cn('p-0 pointer-events-auto!', !mobile && 'w-48 sm:w-48',
+                          className={cn('pointer-events-auto! p-0', !mobile && 'w-48 sm:w-48',
                                         minimal && 'w-[var(--radix-popover-trigger-width)]')}>
             <Command value={value} defaultValue={value}>
               <CommandInput placeholder={t('placeholder')}/>
               <CommandList
-                className="[scrollbar-color:var(--background-color-inverse-secondary)_var(--background-color-primary)] overscroll-contain">
+                className={`
+                  overscroll-contain
+                  [scrollbar-color:var(--background-color-inverse-secondary)_var(--background-color-primary)]
+                `}>
                 <CommandEmpty>
                   {t('no_results')}
                 </CommandEmpty>
@@ -108,7 +114,9 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
                       <CommandItem
                         key={id}
                         value={actualId}
-                        className={cn('w-full inline-flex justify-start items-center gap-3 hover:bg-secondary hover:text-primary-alt', value == actualId && 'pointer-events-none')}
+                        className={cn(`
+                          inline-flex w-full items-center justify-start gap-3 hover:bg-secondary hover:text-primary-alt
+                        `, value == actualId && `pointer-events-none`)}
                         onSelect={(currentValue) => {
                           setValue(currentValue === value ? "" : currentValue);
                           setOpen(false);

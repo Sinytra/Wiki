@@ -7,13 +7,13 @@ export default function LandingStarterBase({icon: Icon, title, desc, children}: 
   children?: any
 }) {
   return (
-    <div className="flex flex-col gap-6 justify-between items-center">
-      <div className="inline-flex gap-2 items-center">
+    <div className="flex flex-col items-center justify-between gap-6">
+      <div className="inline-flex items-center gap-2">
         <Icon className="size-8" strokeWidth={1.5}/>
         <span className="text-2xl">{title}</span>
       </div>
 
-      <div className="flex flex-col justify-evenly h-full items-center">
+      <div className="flex h-full flex-col items-center justify-evenly">
         {desc}
       </div>
 

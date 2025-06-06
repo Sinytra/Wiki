@@ -40,7 +40,9 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
           <ItemDisplay noTitle asset={src[currentIndex].src} alt={src[currentIndex].id} className="sharpRendering"/>
           {count && count > 1 &&
             <span
-              className="absolute bottom-0 right-0 text-white text-base leading-1 text-left sharpRendering z-10 font-minecraft"
+              className={`
+                sharpRendering absolute right-0 bottom-0 z-10 text-left font-minecraft text-base leading-1 text-white
+              `}
               style={{textShadow: '2px 2px 0 #3F3F3F'}}>
           {count}
         </span>

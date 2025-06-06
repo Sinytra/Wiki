@@ -19,9 +19,9 @@ function BlogPost({id, name, desc, date, latest}: {
   const t = useTranslations('Badges');
 
   return (
-    <div className={cn('border px-3 py-2 rounded-sm', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600')}>
-      <div className="flex flex-row items-center justify-between w-full">
-        <div className="flex flex-row items-center w-fit gap-2">
+    <div className={cn('rounded-sm border px-3 py-2', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600')}>
+      <div className="flex w-full flex-row items-center justify-between">
+        <div className="flex w-fit flex-row items-center gap-2">
           <Link href={`/blog/${id.replace(".mdx", "")}`} className="text-lg no-underline! hover:underline!">
             {name}
           </Link>
@@ -50,7 +50,7 @@ export default async function Blog() {
     <div className="flex flex-col">
       <BlogHeader hideSubtext={false} />
 
-      <span className="text-xl mb-4 pb-1 border-b border-tertiary">Recent posts</span>
+      <span className="mb-4 border-b border-tertiary pb-1 text-xl">Recent posts</span>
 
       <div className="flex flex-col gap-6">
         {...blogPosts.map((post, index) => (

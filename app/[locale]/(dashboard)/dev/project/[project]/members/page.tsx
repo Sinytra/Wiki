@@ -20,22 +20,22 @@ export default async function DevProjectMembersPage({params}: { params: { locale
   }
 
   return (
-    <div className="pt-1 space-y-3">
+    <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
-      <div className="flex flex-row gap-3 sm:gap-4 p-3 sm:p-4 w-full border border-tertiary rounded-md bg-primary-alt">
-        <ImageWithFallback src={response.avatar_url} width={64} height={64} className="sm:size-21 rounded-sm"
+      <div className="flex w-full flex-row gap-3 rounded-md border border-tertiary bg-primary-alt p-3 sm:gap-4 sm:p-4">
+        <ImageWithFallback src={response.avatar_url} width={64} height={64} className="rounded-sm sm:size-21"
                            alt="avatar"/>
 
-        <div className="flex flex-col w-full justify-between items-end">
-          <div className="flex flex-row gap-2 justify-between w-full">
+        <div className="flex w-full flex-col items-end justify-between">
+          <div className="flex w-full flex-row justify-between gap-2">
             <span className="text-lg sm:text-xl">{response.username}</span>
             <span className="text-secondary">{t('roles.owner')}</span>
           </div>
 
           <div>
             <Button disabled className="h-8 border border-neutral-700" variant="ghost" size="sm">
-              <SettingsIcon className="mr-2 w-4 h-4"/>
+              <SettingsIcon className="mr-2 h-4 w-4"/>
               {t('actions.manage')}
             </Button>
           </div>

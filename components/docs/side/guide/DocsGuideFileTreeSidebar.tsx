@@ -21,7 +21,7 @@ function DocsFileEntry({slug, version, file}: { slug: string; version: string; f
       key={file.path}
       href={`/project/${slug}/${version}/docs/${file.path}`}
     >
-      {Icon && <Icon className="shrink-0 w-4 h-4 mr-2"/>}
+      {Icon && <Icon className="mr-2 h-4 w-4 shrink-0"/>}
       {file.name}
     </DocsFileLink>
   );
@@ -48,14 +48,14 @@ export default function DocsGuideFileTreeSidebar({slug, version, tree}: LeftSide
       type="left"
       title={t('title')}
       className={cn(
-        'shrink-0 left-0',
+        'left-0 shrink-0',
         'w-[96vw] sm:w-64'
       )}
       innerClassName="overscroll-contain"
       tagName="nav"
     >
       <DocsFileLink href={`/project/${slug}/${version}/docs`}>
-        <HomeIcon className="w-4 h-4 mr-2"/>
+        <HomeIcon className="mr-2 h-4 w-4"/>
         {t('homepage')}
       </DocsFileLink>
 

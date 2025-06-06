@@ -17,7 +17,9 @@ function ProjectErrors() {
   const t = useTranslations('DevProjectHealthPage.errors');
 
   return (
-    <div className="w-full h-80 gap-3 rounded-sm border border-tertiary bg-primary-dim flex flex-col justify-center items-center">
+    <div className={`
+      flex h-80 w-full flex-col items-center justify-center gap-3 rounded-sm border border-tertiary bg-primary-dim
+    `}>
       <ShieldCheckIcon className="size-8" />
       <span>{t('empty')}</span>
     </div>
@@ -37,10 +39,10 @@ export default async function DevProjectHealthPage({params}: { params: { locale:
   const token = authSession.getSession()?.token!;
 
   return (
-    <div className="h-full flex flex-col pt-1 gap-y-4">
+    <div className="flex h-full flex-col gap-y-4 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <div className="h-full flex flex-col justify-between gap-4">
+      <div className="flex h-full flex-col justify-between gap-4">
         <div className="space-y-4">
           <DevProjectSectionTitle title={t('errors.title')} desc={t('errors.desc')} icon={ShieldAlertIcon}/>
           <ProjectErrors />

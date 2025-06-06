@@ -12,7 +12,7 @@ function Copyright({ center }: { center: boolean }) {
   return <>
     <div className={cn("flex flex-col items-center md:basis-96", !center && 'md:items-start')}>
       <span className="inline-flex items-center font-medium text-primary">
-        <BookMarkedIcon className="mr-2 w-4 h-4" />
+        <BookMarkedIcon className="mr-2 h-4 w-4" />
         {t('title')}
       </span>
       <p className="mt-6 text-sm">
@@ -27,7 +27,7 @@ function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { ti
     <ul>
       <li>
         <LinkComponent
-          className="hover:text-secondary-alt transition-colors rounded-md py-0.5 text-sm text-secondary outline-hidden"
+          className="rounded-md py-0.5 text-sm text-secondary outline-hidden transition-colors hover:text-secondary-alt"
           href={href}>
           {title}
         </LinkComponent>
@@ -39,7 +39,7 @@ function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { ti
 function LinkColumn({title, className, children}: { title: string, className?: string, children: React.ReactNode }) {
   return <>
     <div className={`flex flex-col gap-4 ${className}`}>
-      <p className="mb-2 text-sm text-primary font-medium">{title}</p>
+      <p className="mb-2 text-sm font-medium text-primary">{title}</p>
 
       {children}
     </div>
@@ -50,7 +50,7 @@ function NavigationColumns() {
   const t = useTranslations('NavigationFooter');
 
   return (
-    <div className="grid w-full ml-auto grid-cols-4 gap-8 sm:px-8">
+    <div className="ml-auto grid w-full grid-cols-4 gap-8 sm:px-8">
       <LinkColumn title={t('links.navigation.title')}>
         <LinkEntry title={t('links.navigation.home')} href="/"/>
         <LinkEntry title={t('links.navigation.browse')} href="/browse"/>
@@ -83,12 +83,15 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full bg-primary-alt pt-10 sm:pt-12 pb-6 mx-auto flex flex-col justify-center items-center border-t border-tertiary"
+      className={`
+        mx-auto flex w-full flex-col items-center justify-center border-t border-tertiary bg-primary-alt pt-10 pb-6
+        sm:pt-12
+      `}
     >
-      <div className="px-8 w-full max-w-[90rem] text-secondary flex flex-col gap-8">
+      <div className="flex w-full max-w-[90rem] flex-col gap-8 px-8 text-secondary">
         <div
           className={cn(
-            "flex flex-wrap md:flex-nowrap md:flex-row w-full justify-center gap-y-10 sm:gap-y-8",
+            "flex w-full flex-wrap justify-center gap-y-10 sm:gap-y-8 md:flex-row md:flex-nowrap",
             !isPreview && 'md:justify-between'
           )}
         >

@@ -12,7 +12,7 @@ export default function ModVersionRange({versions}: { versions: string[] }) {
             <PopoverTrigger className="text-sm">
                 ({t('desc', {count: versions.length - 1})})
             </PopoverTrigger>
-            <PopoverContent className="px-3 py-1.5 text-sm w-fit max-h-56 max-w-32 overflow-y-auto slim-scrollbar" side="bottom">
+            <PopoverContent className="slim-scrollbar max-h-56 w-fit max-w-32 overflow-y-auto px-3 py-1.5 text-sm" side="bottom">
                 <ul>
                   {...versions.reverse().slice(1).map((s, i) => (
                     <li key={i}>{s}</li>

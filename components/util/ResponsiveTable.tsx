@@ -40,15 +40,15 @@ export default function ResponsiveTable({
       {rows.map((row, rowIndex) => (
         <tr
           key={rowIndex}
-          className="block sm:table-row border-0"
+          className="block border-0 sm:table-row"
         >
           {columns.map((col) => (
             <td
               key={col.key}
-              className={cn('block sm:table-cell border-b sm:border', row[col.key].className)}
+              className={cn('block border-b sm:table-cell sm:border', row[col.key].className)}
               data-label={col.label}
             >
-              <div className="sm:hidden mb-1 text-primary-alt font-semibold">
+              <div className="mb-1 font-semibold text-primary-alt sm:hidden">
                 {col.label}
               </div>
               <div>{row[col.key].data}</div>

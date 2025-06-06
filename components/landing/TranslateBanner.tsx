@@ -8,7 +8,7 @@ export default function TranslateBanner({locale}: { locale: string }) {
 
   return (
     <Alert className="border border-warning">
-      <LanguagesIcon className="w-5 h-5" />
+      <LanguagesIcon className="h-5 w-5" />
       <AlertTitle>
         Looks like we're still missing translations for this language!
       </AlertTitle>

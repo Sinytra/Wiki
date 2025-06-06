@@ -4,7 +4,10 @@ export default function LandingWidget({ title, href, link: Link = LocaleNavLink,
   return (
     <Link
       href={href}
-      className="group rounded-lg border border-neutral-800 px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
+      className={`
+        group rounded-lg border border-neutral-800 px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100
+        dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30
+      `}
       rel="noopener noreferrer"
     >
       <h2 className="mb-3 text-2xl font-semibold">
@@ -13,7 +16,7 @@ export default function LandingWidget({ title, href, link: Link = LocaleNavLink,
                   -&gt;
                 </span>
       </h2>
-      <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
+      <p className="m-0 max-w-[30ch] text-sm text-balance opacity-50">
         {children}
       </p>
     </Link>

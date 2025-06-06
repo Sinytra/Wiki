@@ -34,9 +34,9 @@ function LogoutModal({open}: { open: boolean; }) {
           </DialogTitle>
         </VisuallyHidden>
       </DialogHeader>
-      <DialogContent className="flex flex-col gap-6 justify-center items-center outline-hidden! [&>button]:hidden" aria-describedby={undefined}>
+      <DialogContent className="flex flex-col items-center justify-center gap-6 outline-hidden! [&>button]:hidden" aria-describedby={undefined}>
         <span>
-          <LogOutIcon className="mr-2 inline-block w-5 h-5" />
+          <LogOutIcon className="mr-2 inline-block h-5 w-5" />
           {t('desc')}
         </span>
         <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
@@ -109,7 +109,7 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
 
               <DropdownMenuSeparator/>
               <form action={action}>
-                <button className="appearance-none w-full" type="submit">
+                <button className="w-full appearance-none" type="submit">
                   <DropdownMenuItem>
                     <LogOut/>
                     {t('logout.button')}

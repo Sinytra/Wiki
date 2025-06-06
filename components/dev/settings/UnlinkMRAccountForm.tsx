@@ -13,12 +13,15 @@ function SubmitButton() {
 
   return (
     <Button data-pending={pending ? 'true' : 'false'} variant="destructive" size="sm"
-            className="font-semibold bg-primary hover:bg-secondary/80 border border-destructive-secondary data-[pending=true]:text-destructive/90">
+            className={`
+              border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
+              data-[pending=true]:text-destructive/90
+            `}>
       {pending
         ?
-        <LoaderCircleIcon className="h-4 w-4 mr-2 animate-spin"/>
+        <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin"/>
         :
-        <Link2Icon className="w-4 h-4 mr-2"/>
+        <Link2Icon className="mr-2 h-4 w-4"/>
       }
       {t('disconnect')}
     </Button>

@@ -19,11 +19,11 @@ export default async function Preview({params}: { params: { locale: string } }) 
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-center text-3xl mb-6">
+      <h1 className="mb-6 text-center text-3xl">
         {t('title')}
       </h1>
       
-      <span className="text-secondary text-center mb-12">
+      <span className="mb-12 text-center text-secondary">
         {t('desc')}
       </span>
       
@@ -33,18 +33,18 @@ export default async function Preview({params}: { params: { locale: string } }) 
 
       <hr className="my-2 border-neutral-600"/>
 
-      <div className="flex flex-col my-3">
+      <div className="my-3 flex flex-col">
         {localSources.map((s, index) => (
           <div key={s.id} className="flex flex-row items-center gap-4">
             <span>{index + 1}.</span>
-            <div className="flex flex-row justify-between items-center w-full">
+            <div className="flex w-full flex-row items-center justify-between">
               <div className="flex flex-row items-center gap-5">
                 <div className="flex flex-row items-center gap-2">
-                  <PackageIcon className="w-5 h-5"/>
+                  <PackageIcon className="h-5 w-5"/>
                   {s.id}
                 </div>
                 <div className="flex flex-row items-center gap-2">
-                  <FolderOpenIcon className="w-5 h-5"/>
+                  <FolderOpenIcon className="h-5 w-5"/>
                   {s.path}
                 </div>
               </div>

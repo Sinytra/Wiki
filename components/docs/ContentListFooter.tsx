@@ -20,16 +20,18 @@ function Category({content, slug, version}: { content: ProjectContentEntry; slug
   return (
     <ExpandableCategory name={content.name}>
       {subCategories.map(i => (
-        <div key={i.path} className="bg-primary-dark! flex flex-col sm:flex-row sm:items-center gap-2 p-2 first:rounded-t-sm last:rounded-b-sm">
-          <div className="sm:w-[1%] sm:min-w-24 text-sm text-right font-medium self-center">
+        <div key={i.path} className={`
+          flex flex-col gap-2 bg-primary-dark! p-2 first:rounded-t-sm last:rounded-b-sm sm:flex-row sm:items-center
+        `}>
+          <div className="self-center text-right text-sm font-medium sm:w-[1%] sm:min-w-24">
             {i.name}
           </div>
-          <div className="columns-[10em] space-y-2 sm:space-y-0 sm:flex flex-row flex-wrap gap-2">
+          <div className="columns-[10em] flex-row flex-wrap gap-2 space-y-2 sm:flex sm:space-y-0">
             {...i.children.map((c,i) => (
-              <div key={c.path} className="flex flex-row gap-1 items-center text-sm">
-                {i > 0 && <span className="text-secondary hidden sm:block">&bull;</span>}
+              <div key={c.path} className="flex flex-row items-center gap-1 text-sm">
+                {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
                 <PageLink href={`/project/${slug}/${version}/content/${c.id}`} local
-                          className="flex flex-row gap-1 items-center !text-sm">
+                          className="flex flex-row items-center gap-1 !text-sm">
                   <Asset location={c.id!} />
                   {c.name}
                 </PageLink>
@@ -48,11 +50,14 @@ export default function ContentListFooter({project, contents, version}: { projec
       <hr className="mb-8"/>
 
       <div className="p-2">
-        <table className="w-full [&_td]:border-none [&_tr]:bg-primary-dim border-separate bg-primary-dim rounded-sm p-2.5 border border-tertiary">
-          <thead className="table w-full mb-2">
+        <table className={`
+          w-full border-separate rounded-sm border border-tertiary bg-primary-dim p-2.5 [&_td]:border-none
+          [&_tr]:bg-primary-dim
+        `}>
+          <thead className="mb-2 table w-full">
           <tr>
-            <th colSpan={2} className="rounded-sm p-2 bg-secondary">
-              <Link className="hover:underline underline-offset-4 hover:text-primary/80!"
+            <th colSpan={2} className="rounded-sm bg-secondary p-2">
+              <Link className="underline-offset-4 hover:text-primary/80! hover:underline"
                     href={`/project/${project.id}/${version}`}
               >
                 {project.name}

@@ -9,7 +9,7 @@ export default async function DocsEntryPage({page, showHistory}: { page: Rendere
   const project = await platforms.getPlatformProject(page.project);
 
   return (
-    <div className="flex flex-col min-h-[90vh] pb-20">
+    <div className="flex min-h-[90vh] flex-col pb-20">
       <DocsContentTitle className="hidden sm:block" project={page.project} showHistory={showHistory}>
         {page.content.metadata.title || project.name}
       </DocsContentTitle>

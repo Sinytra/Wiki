@@ -24,9 +24,9 @@ function ReportPage({local, slug, path}: { local?: boolean; slug?: string; path?
       <Tooltip>
         <TooltipTrigger asChild>
           <Button asChild variant="outline" size="sm"
-                  className="sm:p-0 text-secondary hover:bg-transparent sm:h-fit font-normal sm:border-none">
+                  className="font-normal text-secondary hover:bg-transparent sm:h-fit sm:border-none sm:p-0">
             <Link href={`/report?slug=${slug}&path=${path.join('/')}`}>
-              <FlagIcon className="w-4 h-4 mr-2 sm:mr-0"/>
+              <FlagIcon className="mr-2 h-4 w-4 sm:mr-0"/>
               <span className="sm:hidden">
                 {t('report_button')}
               </span>
@@ -46,8 +46,10 @@ function EditPage({editUrl} : { editUrl?: string }) {
 
   return editUrl && (
     <Link href={editUrl}
-          className="flex items-center px-3 py-2 sm:p-0 rounded-md border border-quaternary sm:border-none hover:text-primary-alt">
-      <Edit className="w-4 h-4 mr-2"/>
+          className={`
+            flex items-center rounded-md border border-quaternary px-3 py-2 hover:text-primary-alt sm:border-none sm:p-0
+          `}>
+      <Edit className="mr-2 h-4 w-4"/>
       {t('edit_gh')}
     </Link>
   )
@@ -61,12 +63,12 @@ function DesktopDocsFooter({
                            }: FooterProps) {
   return (
     <>
-      <div className="hidden sm:flex flex-nowrap flex-row items-center justify-start gap-4">
+      <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
         <ReportPage local={local} slug={slug} path={path}/>
       </div>
 
-      <div className="hidden sm:flex flex-nowrap flex-row items-center justify-start gap-4">
-        <div className="flex flex-col sm:flex-row items-end sm:items-center gap-y-3 sm:gap-y-0 sm:gap-x-4">
+      <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
+        <div className="flex flex-col items-end gap-y-3 sm:flex-row sm:items-center sm:gap-x-4 sm:gap-y-0">
           <EditPage editUrl={editUrl} />
         </div>
       </div>
@@ -76,7 +78,7 @@ function DesktopDocsFooter({
 
 function MobileDocsFooter({local, slug, path, editUrl}: FooterProps) {
   return (
-    <div className="sm:hidden flex flex-col gap-3">
+    <div className="flex flex-col gap-3 sm:hidden">
       <div className="flex flex-row flex-wrap justify-between gap-2">
         <ReportPage local={local} slug={slug} path={path}/>
         <EditPage editUrl={editUrl} />
@@ -87,9 +89,10 @@ function MobileDocsFooter({local, slug, path, editUrl}: FooterProps) {
 
 export default function DocsPageFooter(props: FooterProps) {
   return (
-    <footer className="border-t border-border px-1 sm:px-4 py-3 flex flex-col-reverse sm:flex-row gap-y-3 sm:gap-y-0 sm:items-center
-                      justify-between text-sm text-secondary relative
-                      shrink-0 bg-primary sm:h-16 w-full">
+    <footer className={`
+      relative flex w-full shrink-0 flex-col-reverse justify-between gap-y-3 border-t border-border bg-primary px-1 py-3
+      text-sm text-secondary sm:h-16 sm:flex-row sm:items-center sm:gap-y-0 sm:px-4
+    `}>
       <DesktopDocsFooter {...props} />
       <MobileDocsFooter {...props} />
     </footer>

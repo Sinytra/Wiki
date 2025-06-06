@@ -22,30 +22,30 @@ function DocumentationOption({title, desc, button, buttonIcon: ButtonIcon, icon:
   href?: string
 }) {
   return (
-    <div className="w-full flex flex-col items-center p-2 gap-4">
-      <span className="text-primary text-lg">
+    <div className="flex w-full flex-col items-center gap-4 p-2">
+      <span className="text-lg text-primary">
         {title}
       </span>
 
       <div className="p-1">
-        <Icon className="w-9 h-9 text-primary" strokeWidth={1.5}/>
+        <Icon className="h-9 w-9 text-primary" strokeWidth={1.5}/>
       </div>
 
-      <span className="text-secondary text-sm text-center">
+      <span className="text-center text-sm text-secondary">
         {desc}
       </span>
 
-      <PrimaryButton variant="muted" size="sm" className="w-36 text-sm! mt-2" onClick={onClick}
+      <PrimaryButton variant="muted" size="sm" className="mt-2 w-36 text-sm!" onClick={onClick}
                      asChild={href !== undefined}>
         {href !== undefined
           ?
           <Link href={href}>
-            <ButtonIcon className="mr-2 w-4 h-4"/>
+            <ButtonIcon className="mr-2 h-4 w-4"/>
             {button}
           </Link>
           :
           <>
-            <ButtonIcon className="mr-2 w-4 h-4"/>
+            <ButtonIcon className="mr-2 h-4 w-4"/>
             {button}
           </>
         }
@@ -73,7 +73,7 @@ export default function GetStartedModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size="sm">
-          <HammerIcon className="mr-2 w-4 h-4"/>
+          <HammerIcon className="mr-2 h-4 w-4"/>
           {t('button')}
         </Button>
       </DialogTrigger>
@@ -83,7 +83,7 @@ export default function GetStartedModal({
             {t('title')}
           </DialogTitle>
         </DialogHeader>
-        <div tabIndex={0} className="flex flex-col sm:flex-row justify-between gap-4 divide-neutral-600">
+        <div tabIndex={0} className="flex flex-col justify-between gap-4 divide-neutral-600 sm:flex-row">
           <DocumentationOption
             title={t('dev.title')}
             desc={t('dev.desc')}
@@ -95,7 +95,7 @@ export default function GetStartedModal({
               setRegisterOpen(true);
             }}
           />
-          <div className="w-full h-[1px] sm:w-[1px] sm:h-full bg-neutral-600" aria-hidden="true"/>
+          <div className="h-[1px] w-full bg-neutral-600 sm:h-full sm:w-[1px]" aria-hidden="true"/>
           <DocumentationOption
             title={t('community.title')}
             desc={t('community.desc')}

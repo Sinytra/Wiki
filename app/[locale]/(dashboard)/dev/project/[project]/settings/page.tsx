@@ -18,7 +18,7 @@ export default async function DevProjectSettingsPage({params}: { params: { local
   }
 
   return (
-    <div className="flex flex-col h-full pt-1 pb-4 gap-y-4">
+    <div className="flex h-full flex-col gap-y-4 pt-1 pb-4">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
       <ClientLocaleProvider keys={['ProjectRegisterForm', 'ProjectSettingsForm', 'ProjectDeleteForm', 'FormActions']}>

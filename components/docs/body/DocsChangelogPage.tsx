@@ -16,16 +16,16 @@ export default function DocsChangelogPage({changelog}: ChangelogProps) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold mb-4">
+      <h2 className="mb-4 text-xl font-semibold">
         {t('title')}
       </h2>
       {entries.map((entry, index) => (
         <div key={index} className="border-b border-border pb-4">
-          <h3 className="text-lg font-semibold flex flex-row items-center justify-between">
+          <h3 className="flex flex-row items-center justify-between text-lg font-semibold">
             {entry.version}
-            {entry.date && <span className="text-sm text-secondary font-medium">{entry.date}</span>}
+            {entry.date && <span className="text-sm font-medium text-secondary">{entry.date}</span>}
           </h3>
-          <ul className="list-disc list-inside mt-2">
+          <ul className="mt-2 list-inside list-disc">
             {(Array.isArray(entry.changes) ? entry.changes : [entry.changes])
               .map((change, changeIndex) => (
                 <li key={changeIndex} className="text-secondary">

@@ -15,7 +15,7 @@ export default function DocsEntryTabs() {
   }
 
   return (
-    <div className="flex flex-col h-full justify-center items-center">
+    <div className="flex h-full flex-col items-center justify-center">
       {tab === 'history'
         ?
         <Button title={t('home')} variant="ghost" size="icon" className="size-8" onClick={() => switchTab('home')}>

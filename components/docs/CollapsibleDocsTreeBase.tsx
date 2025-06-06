@@ -42,28 +42,32 @@ export default function CollapsibleDocsTreeBase({title, icon: Icon, defaultOpen,
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}
-                 className="h-full flex flex-col px-2 [&[data-state=open]_.docsMainTrigger]:rotate-180 sm:min-h-screen">
+                 className="flex h-full flex-col px-2 sm:min-h-screen [&[data-state=open]_.docsMainTrigger]:rotate-180">
       <CollapsibleTrigger className="md:hidden">
         <DocsSidebarTitle offset noSeparator extra={
           <ChevronDownIcon
-            className="docsMainTrigger md:hidden w-5 h-5 text-secondary transition-transform duration-200"/>
+            className="docsMainTrigger h-5 w-5 text-secondary transition-transform duration-200 md:hidden"/>
         }>
-          {Icon && <Icon className="size-4 mr-2"/>}
+          {Icon && <Icon className="mr-2 size-4"/>}
           <span className="text-base">{title}</span>
         </DocsSidebarTitle>
       </CollapsibleTrigger>
       <div className="hidden md:block">
         <DocsSidebarTitle offset noSeparator extra={
           <ChevronDownIcon
-            className="docsMainTrigger md:hidden w-5 h-5 text-secondary transition-transform duration-200"/>
+            className="docsMainTrigger h-5 w-5 text-secondary transition-transform duration-200 md:hidden"/>
         }>
-          {Icon && <Icon className="size-4 mr-2"/>}
+          {Icon && <Icon className="mr-2 size-4"/>}
           <span className="text-lg">{title}</span>
         </DocsSidebarTitle>
       </div>
 
       <CollapsibleContent
-        className="pb-2 overflow-hidden transition-all data-[state=open]:animate-collapsible-down md:data-[state=open]:animate-none data-[state=closed]:animate-collapsible-up md:data-[state=closed]:animate-none md:transition-none md:animate-none">
+        className={`
+          overflow-hidden pb-2 transition-all data-[state=closed]:animate-collapsible-up
+          data-[state=open]:animate-collapsible-down md:animate-none md:transition-none
+          md:data-[state=closed]:animate-none md:data-[state=open]:animate-none
+        `}>
         {children}
       </CollapsibleContent>
     </Collapsible>

@@ -37,18 +37,18 @@ interface Props extends React.ComponentProps<typeof Sidebar> {
 function SidebarProjectHeader({project, platformProject}: { project: DevProject; platformProject: PlatformProject }) {
   // TODO Fallback
   return (
-    <div className="p-1 space-y-3">
+    <div className="space-y-3 p-1">
       <Link href="/dev"
-            className="flex flex-row gap-2 items-center text-sm text-secondary hover:underline underline-offset-4 pb-1">
+            className="flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline">
         <ArrowLeftIcon className="size-4"/>
         <span>Back</span>
       </Link>
-      <h3 className="text-primary-alt/70 text-sm">
+      <h3 className="text-sm text-primary-alt/70">
         Project settings
       </h3>
-      <div className="flex flex-row gap-2 items-center">
-        <img src={platformProject.icon_url} alt="icon" className="rounded-sm size-8"/>
-        <span className="text-primary text-sm text-wrap font-medium">{project.name}</span>
+      <div className="flex flex-row items-center gap-2">
+        <img src={platformProject.icon_url} alt="icon" className="size-8 rounded-sm"/>
+        <span className="text-sm font-medium text-wrap text-primary">{project.name}</span>
       </div>
     </div>
   );
@@ -62,7 +62,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
   const disableContents = project.status !== ProjectStatus.LOADED;
 
   return (
-    <Sidebar variant="floating" className="sticky -ml-[0.7rem] h-[94vh] top-[calc(var(--vp-nav-height))]"
+    <Sidebar variant="floating" className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
              collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarProjectHeader project={project} platformProject={platformProject}/>

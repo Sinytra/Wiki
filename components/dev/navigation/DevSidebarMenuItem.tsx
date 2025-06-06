@@ -27,7 +27,7 @@ export default function DevSidebarMenuItem({title, url, icon: Icon, external, di
         <SidebarMenuButton isActive={isActive} disabled={disabled} tooltip={title}>
           {Icon && <Icon/>}
           <span>{title}</span>
-          {external && <ExternalLinkIcon className="ml-auto w-4 h-4" />}
+          {external && <ExternalLinkIcon className="ml-auto h-4 w-4" />}
           {live && <ConnectionIndicator className="ml-auto" /> }
         </SidebarMenuButton>
       </Link>

@@ -10,33 +10,33 @@ export default function AuthFailure({params}: { params: { locale: string }}) {
   const t = useTranslations('AuthFailure');
 
   return (
-    <div className="my-auto p-4 flex flex-col gap-4 justify-center items-center page-wrapper-ext">
-      <ServerCrashIcon className="w-32 h-32 sm:w-48 sm:h-48" strokeWidth={1.5}/>
+    <div className="page-wrapper-ext my-auto flex flex-col items-center justify-center gap-4 p-4">
+      <ServerCrashIcon className="h-32 w-32 sm:h-48 sm:w-48" strokeWidth={1.5}/>
 
-      <h1 className="text-primary text-3xl sm:text-5xl my-2">
+      <h1 className="my-2 text-3xl text-primary sm:text-5xl">
         {t('title')}
       </h1>
 
-      <p className="text-secondary text-center w-3/4 sm:w-full">
+      <p className="w-3/4 text-center text-secondary sm:w-full">
         {t('desc')}
       </p>
 
-      <div className="inline-flex flex-wrap justify-center gap-4 mt-4">
+      <div className="mt-4 inline-flex flex-wrap justify-center gap-4">
         <Button variant="secondary" asChild>
           <Link href="https://status.moddedmc.org" target="_blank">
-            <ActivityIcon className="mr-2 w-4 h-4" />
+            <ActivityIcon className="mr-2 h-4 w-4" />
             {t('status')}
           </Link>
         </Button>
         <Button asChild>
           <NavLink href="/">
-            <HouseIcon className="mr-2 w-4 h-4" />
+            <HouseIcon className="mr-2 h-4 w-4" />
             {t('return')}
           </NavLink>
         </Button>
         <Button variant="secondary" asChild>
           <Link href="https://github.com/Sinytra/Wiki/issues" target="_blank">
-            <BugIcon className="mr-2 w-4 h-4" />
+            <BugIcon className="mr-2 h-4 w-4" />
             {t('report')}
           </Link>
         </Button>

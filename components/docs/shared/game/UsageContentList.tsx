@@ -10,7 +10,7 @@ export default function UsageContentList({limit, content}: { limit: number; cont
       {expanded ? content : content.slice(0, Math.min(limit, content.length))}
       {!expanded && content.length > limit &&
         <li className="text-secondary">
-            <button className="hover:underline underline-offset-4 decoration-1" onClick={() => setExpanded(true)}>
+            <button className="decoration-1 underline-offset-4 hover:underline" onClick={() => setExpanded(true)}>
                 Show more ...
             </button>
         </li>

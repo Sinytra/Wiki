@@ -31,7 +31,7 @@ export default function DataTable<T>({
   const actualHeaders = expandRows ? [...columns, { id: 'expand', className: 'w-16', header: '' }] : columns;
   const headers = actualHeaders.map(col => (
     <TableHead
-      className={cn('first:border-l-0 border-x-0 last:border-r-0 border-t-0 overflow-auto scrollbar-none', col.className)}
+      className={cn('scrollbar-none overflow-auto border-x-0 border-t-0 first:border-l-0 last:border-r-0', col.className)}
       key={col.id}
     >
       {col.header}
@@ -41,7 +41,7 @@ export default function DataTable<T>({
   const rows = data.total === 0 ?
     [{
       row: (
-        <TableCell colSpan={columns.length} className="h-24 text-center border-0">
+        <TableCell colSpan={columns.length} className="h-24 border-0 text-center">
           {t('no_results')}
         </TableCell>
       )
@@ -50,10 +50,10 @@ export default function DataTable<T>({
     data.data.map((item, i) => {
       const row = (<>
         {columns.map(col => (
-          <TableCell className={cn('first:border-l-0 last:border-r-0 border-x-0', col.className)}
+          <TableCell className={cn('border-x-0 first:border-l-0 last:border-r-0', col.className)}
                      key={col.id}
           >
-            <div className="overflow-auto scrollbar-none">
+            <div className="scrollbar-none overflow-auto">
               {col.cell(item, i + offset, routeParams)}
             </div>
           </TableCell>

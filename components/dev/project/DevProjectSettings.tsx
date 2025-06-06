@@ -97,12 +97,12 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
       <hr/>
 
       <div className="space-y-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="flex flex-col gap-1">
             <span>
               Delete project
             </span>
-            <span className="text-secondary text-sm">
+            <span className="text-sm text-secondary">
               Forever delete all project data. This cannot be undone.
             </span>
           </div>
@@ -168,7 +168,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
 
   return (
     <Form {...form}>
-      <form action={action} className="flex flex-col h-full space-y-5">
+      <form action={action} className="flex h-full flex-col space-y-5">
         <SourceSection form={form}/>
 
         <div className="ml-auto w-fit">
@@ -179,8 +179,8 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
 
         <div>
           {form.formState.errors.root?.custom?.message &&
-            <div className="flex flex-col gap-2 sm:flex-row items-center justify-between w-full">
-                <p className="text-destructive text-sm">
+            <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
+                <p className="text-sm text-destructive">
                   {form.formState.errors.root.custom.message}
                 </p>
             </div>
@@ -188,7 +188,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
 
           {/*@ts-ignore*/}
           {form.formState.errors.root?.custom?.details &&
-            <details className="w-fit text-sm text-destructive max-h-20 overflow-y-auto slim-scrollbar">
+            <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
                 <summary className="mb-2">
                   {t('errors.details')}
                 </summary>
@@ -198,10 +198,10 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
           }
 
           {canVerifyModrinth &&
-            <div className="flex flex-col gap-1 p-3 border border-info/70 rounded-md">
+            <div className="flex flex-col gap-1 rounded-md border border-info/70 p-3">
                 <p className="flex flex-row items-start text-secondary">
-                    <LightbulbIcon className="inline-block shrink-0 mt-0.5 mr-2 h-4 w-4"/>
-                    <span className="text-secondary text-sm">
+                    <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
+                    <span className="text-sm text-secondary">
                             {t.rich('connect_modrinth.desc', {
                               b: (chunks) => <span className="text-primary">{chunks}</span>
                             })}
@@ -211,7 +211,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
                     <Link href="/dev/settings" target="_blank">
                         <Button type="button" size="sm">
                           {t('connect_modrinth.settings')}
-                            <ExternalLinkIcon className="w-4 h-4 ml-2"/>
+                            <ExternalLinkIcon className="ml-2 h-4 w-4"/>
                         </Button>
                     </Link>
                 </div>
@@ -219,7 +219,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
           }
         </div>
 
-        <hr className="border-secondary mt-auto"/>
+        <hr className="mt-auto border-secondary"/>
 
         <DangerSection deleteFunc={deleteFunc}/>
       </form>

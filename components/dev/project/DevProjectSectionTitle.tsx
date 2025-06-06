@@ -5,8 +5,8 @@ export default function DevProjectSectionTitle({title, desc, icon: Icon, ping}: 
   ping?: any;
 }) {
   return (
-    <div className="space-y-1 w-fit">
-      <h3 className="text-lg font-medium flex flex-row items-center gap-2">
+    <div className="w-fit space-y-1">
+      <h3 className="flex flex-row items-center gap-2 text-lg font-medium">
         {<Icon className="size-5"/>}
         {title}
         {ping}

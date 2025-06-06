@@ -16,12 +16,18 @@ function SearchResult({result}: { result: WikiSearchResult }) {
 
   return (
     <Link href={result.url}
-          className="z-50 flex flex-row gap-2 bg-primary-alt text-primary px-1 py-1.5 cursor-pointer border border-neutral-700 rounded-xs">
-      <div className="rounded-xs p-1 shrink-0">
+          className={`
+            z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
+            text-primary
+          `}>
+      <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} loading/>
       </div>
       <div
-        className="flex flex-col justify-between py-0.5 w-full overflow-hidden text-ellipsis [&_span]:text-ellipsis [&_span]:overflow-hidden">
+        className={`
+          flex w-full flex-col justify-between overflow-hidden py-0.5 text-ellipsis [&_span]:overflow-hidden
+          [&_span]:text-ellipsis
+        `}>
         <span>{result.title}</span>
         {!result.path && result.mod_desc
           ?
@@ -47,7 +53,10 @@ function LoadingSearchState() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-secondary h-16 z-50 flex flex-row justify-center items-center gap-2 bg-primary-alt px-1 py-1.5 border border-neutral-700 rounded-xs">
+    <div className={`
+      z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1
+      py-1.5 text-secondary
+    `}>
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       {t('loading')}
     </div>
@@ -58,7 +67,10 @@ function NoSearchResults() {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="text-secondary h-16 z-50 flex flex-row justify-center items-center gap-2 bg-primary-alt px-1 py-1.5 border border-neutral-700 rounded-xs">
+    <div className={`
+      z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1
+      py-1.5 text-secondary
+    `}>
       {t('no_results')}
     </div>
   )
@@ -112,16 +124,18 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
   return (
     <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={200} classNames="fade" unmountOnExit>
       <div ref={nodeRef}
-        className="z-50 fixed bg-primary top-0 right-0 bottom-0 left-0 w-full h-[100vh] overflow-hidden">
-        <div className="p-4 innerFadeContainer flex flex-col gap-4">
+        className="fixed top-0 right-0 bottom-0 left-0 z-50 h-[100vh] w-full overflow-hidden bg-primary">
+        <div className="innerFadeContainer flex flex-col gap-4 p-4">
           <div className="relative">
             <button onClick={() => setOpen(false)}>
-              <ArrowLeftIcon className="w-5 h-5 absolute top-1/2 -translate-y-1/2 left-2 text-secondary"/>
+              <ArrowLeftIcon className="absolute top-1/2 left-2 h-5 w-5 -translate-y-1/2 text-secondary"/>
             </button>
             <input type="text" value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
-                   className="px-8 text-ellipsis cursor-pointer focus:cursor-text border border-neutral-700
-                          focus:outline-1 focus:outline-secondary bg-primary-alt text-sm text-center
-                          placeholder:text-neutral-500 p-2 rounded-xs w-full"
+                   className={`
+                     w-full cursor-pointer rounded-xs border border-neutral-700 bg-primary-alt p-2 px-8 text-center
+                     text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1
+                     focus:outline-secondary
+                   `}
                    placeholder={t('placeholder')}
             />
           </div>
@@ -130,7 +144,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
           {!loading && results && (
             results.hits.length > 0
               ?
-              <div className="flex flex-col gap-2 overflow-y-auto slim-scrollbar h-[90vh]">
+              <div className="slim-scrollbar flex h-[90vh] flex-col gap-2 overflow-y-auto">
                 {...results.hits.map(r => <SearchResult key={r.url} result={r}/>)}
               </div>
               :
@@ -162,7 +176,7 @@ export default function MobileDocsSearch({searchFunc}: { searchFunc: (query: str
   return (
     <div className="sm:hidden">
       <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
-        <SearchIcon className="w-4 h-4 text-[var(--vp-c-text-1)]"/>
+        <SearchIcon className="h-4 w-4 text-[var(--vp-c-text-1)]"/>
       </Button>
       <SearchScreen isOpen={isOpen} setOpen={setIsOpen} searchFunc={searchFunc}/>
     </div>

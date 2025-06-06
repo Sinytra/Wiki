@@ -53,13 +53,16 @@ function DataField({title, className, icon: Icon, value, iconClass, href}: {
         {title}
       </Label>
       <Element href={href} target="_blank" className="relative">
-        {Icon && <Icon className={cn('absolute inset-0 top-1/2 -translate-y-1/2 left-3 size-4', iconClass)}/>}
+        {Icon && <Icon className={cn('absolute inset-0 top-1/2 left-3 size-4 -translate-y-1/2', iconClass)}/>}
         <div
-          className={cn('flex h-10 w-full rounded-md border border-quaternary bg-primary-dim px-3 py-2 text-sm pl-9 align-bottom leading-5.5',
-            Icon && 'pl-9', href && 'hover:underline underline-offset-4', className)}>
+          className={cn(`
+            flex h-10 w-full rounded-md border border-quaternary bg-primary-dim px-3 py-2 pl-9 align-bottom text-sm
+            leading-5.5
+          `,
+            Icon && 'pl-9', href && 'underline-offset-4 hover:underline', className)}>
           {value}
         </div>
-        {href && <ExternalLinkIcon className="absolute top-1/2 -translate-y-1/2 right-3 size-4"/>}
+        {href && <ExternalLinkIcon className="absolute top-1/2 right-3 size-4 -translate-y-1/2"/>}
       </Element>
     </div>
   )
@@ -77,7 +80,7 @@ async function ProjectPlatforms({project}: { project: Project }) {
   }));
 
   return (
-    <div className="w-full max-w-lg flex flex-col gap-5 min-w-0">
+    <div className="flex w-full max-w-lg min-w-0 flex-col gap-5">
       <DevProjectSectionTitle title={t('title')} desc={t('desc')} icon={CloudyIcon}/>
 
       <div className="space-y-5">
@@ -103,7 +106,7 @@ function ProjectInfo({project}: { project: Project }) {
   const StatusIcon = statuses[status].icon;
 
   return (
-    <div className="w-full max-w-lg flex flex-col gap-4 min-w-0">
+    <div className="flex w-full max-w-lg min-w-0 flex-col gap-4">
       <DevProjectSectionTitle title={t('title')} desc={t('desc')} icon={InfoIcon}/>
 
       <div className="space-y-5">
@@ -137,14 +140,14 @@ function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revis
   const t = useTranslations('DevProjectPage.revision');
 
   return (
-    <div className="flex flex-col p-3 rounded-sm border border-tertiary bg-primary-dim gap-2">
-      <div className="flex flex-row gap-2 items-center">
+    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-dim p-3">
+      <div className="flex flex-row items-center gap-2">
         <GitBranchIcon className="size-4"/>
         <span>{t('title')}</span>
       </div>
       {revision ?
-        <div className="flex flex-row flex-wrap sm:flex-nowrap gap-4 items-start text-sm">
-          <LinkWithFallback href={revision.url} className="font-mono text-secondary shrink-0">
+        <div className="flex flex-row flex-wrap items-start gap-4 text-sm sm:flex-nowrap">
+          <LinkWithFallback href={revision.url} className="shrink-0 font-mono text-secondary">
             {revision.hash}
           </LinkWithFallback>
           <span className="text-secondary" title={revision.authorEmail}>
@@ -153,17 +156,17 @@ function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revis
           <LinkWithFallback href={revision.url}>
             {revision.message}
           </LinkWithFallback>
-          <span className="ml-auto text-sm text-secondary shrink-0">
+          <span className="ml-auto shrink-0 text-sm text-secondary">
             <LocalDateTime dateTime={new Date(revision.date)}/>
           </span>
         </div>
         : status === ProjectStatus.LOADING
           ?
-          <div className="text-secondary text-sm">
+          <div className="text-sm text-secondary">
             {t('reloading')}
           </div>
           :
-          <div className="text-secondary text-sm">
+          <div className="text-sm text-secondary">
             {t('not_found')}
           </div>
       }
@@ -177,18 +180,18 @@ async function ProfileProject({project}: { project: DevProject }) {
   const u = await getTranslations('DevProjectPage.overview');
 
   return (
-    <div className="py-1 flex flex-col justify-between gap-3">
+    <div className="flex flex-col justify-between gap-3 py-1">
       <DevProjectPageTitle title={u('title')} desc={u('desc')}/>
 
       <div
-        className="flex flex-row gap-4 p-4 w-full border border-tertiary rounded-md bg-primary-alt">
-        <img className="rounded-sm size-16 sm:size-19" src={platformProject.icon_url} alt="Project icon"/>
+        className="flex w-full flex-row gap-4 rounded-md border border-tertiary bg-primary-alt p-4">
+        <img className="size-16 rounded-sm sm:size-19" src={platformProject.icon_url} alt="Project icon"/>
 
         <div className="flex flex-col justify-between">
-          <p className="text-primary font-medium sm:text-lg">
+          <p className="font-medium text-primary sm:text-lg">
             {platformProject.name}
           </p>
-          <p className="text-secondary font-normal min-h-6 text-sm sm:text-base">
+          <p className="min-h-6 text-sm font-normal text-secondary sm:text-base">
             {platformProject.summary}
           </p>
         </div>
@@ -198,10 +201,10 @@ async function ProfileProject({project}: { project: DevProject }) {
         <ProjectRevisionInfo status={project.status} revision={project.revision}/>
       </div>
 
-      <div className="flex flex-row flex-wrap gap-4 items-center">
+      <div className="flex flex-row flex-wrap items-center gap-4">
         <LocaleNavLink href={`/project/${project.id}`} target="_blank">
           <Button variant="outline" size="sm">
-            <ExternalLinkIcon className="mr-2 w-4 h-4"/>
+            <ExternalLinkIcon className="mr-2 h-4 w-4"/>
             {t('toolbar.view')}
           </Button>
         </LocaleNavLink>

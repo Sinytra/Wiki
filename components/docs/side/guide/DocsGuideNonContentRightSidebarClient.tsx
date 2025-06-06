@@ -66,18 +66,22 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
       type="right"
       title={t('title')}
       className={cn(
-        'shrink-0 right-0',
+        'right-0 shrink-0',
         'w-[96vw] sm:w-64'
       )}
       tagName="nav"
     >
       <div className="relative">
         {showTopGradient && (
-          <div className="absolute top-0 left-0 right-0 h-12 bg-linear-to-b from-background to-transparent pointer-events-none" />
+          <div className={`
+            from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent
+          `} />
         )}
         <div
           ref={listRef}
-          className="max-h-[80vh] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+          className={`
+            scrollbar-thin max-h-[80vh] overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-track-transparent
+          `}
         >
           <ul className="space-y-1 text-sm">
             {headings.map((heading, index) => (
@@ -85,7 +89,7 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "block py-1 text-secondary hover:text-primary transition-colors",
+                    "block py-1 text-secondary transition-colors hover:text-primary",
                     activeId === heading.id && "text-primary",
                     index === 0 ? 'pt-0!' : ''
                   )}
@@ -103,7 +107,9 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
           </ul>
         </div>
         {showBottomGradient && (
-          <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-background to-transparent pointer-events-none" />
+          <div className={`
+            from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent
+          `} />
         )}
       </div>
     </DocsSidebarBase>

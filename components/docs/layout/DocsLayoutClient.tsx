@@ -20,7 +20,7 @@ export default function DocsLayoutClient({project, platformProject, locale, vers
         <DocsSubNavBar project={project} platformProject={platformProject} locale={locale} version={version} />
       </div>
 
-      <div className="flex flex-col items-center flex-1 bg-primary text-primary">
+      <div className="flex flex-1 flex-col items-center bg-primary text-primary">
         {children}
       </div>
     </div>

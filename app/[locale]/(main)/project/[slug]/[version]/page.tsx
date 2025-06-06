@@ -47,9 +47,9 @@ function Section({title, icon: Icon, children, className}: {
   className?: string
 }) {
   return (
-    <div className="flex flex-col gap-4 mb-2">
-      <h2 className="text-xl flex flex-row items-center gap-2 border-b border-secondary pb-2">
-        <Icon className="w-5 h-5"/>
+    <div className="mb-2 flex flex-col gap-4">
+      <h2 className="flex flex-row items-center gap-2 border-b border-secondary pb-2 text-xl">
+        <Icon className="h-5 w-5"/>
         {title}
       </h2>
       <div className={className}>
@@ -63,9 +63,12 @@ function SubpageLink({title, icon: Icon, desc, href}: { title: string; icon: any
   return (
     <a href={`latest/${href}`}>
       <div
-        className="w-fit min-w-[17rem] p-3 rounded-sm border bg-primary-alt/50 border-secondary-dim hover:bg-secondary/20 flex flex-col gap-2">
+        className={`
+          flex w-fit min-w-[17rem] flex-col gap-2 rounded-sm border border-secondary-dim bg-primary-alt/50 p-3
+          hover:bg-secondary/20
+        `}>
         <div className="flex flex-row items-center gap-3 text-lg">
-          <Icon className="w-5 h-5"/>
+          <Icon className="h-5 w-5"/>
           {title}
         </div>
         <span className="text-sm text-secondary">
@@ -85,8 +88,11 @@ function ExternalLink({text, icon: Icon, href, className}: {
   return (
     <a href={href} target="_blank">
       <div
-        className={cn('cursor-pointer w-36 p-2 sm:p-3 flex flex-row justify-center items-center gap-2 rounded-sm border bg-gradient-to-b hover:to-60%', className)}>
-        <Icon className="size-4 sm:size-5 shrink-0"/>
+        className={cn(`
+          flex w-36 cursor-pointer flex-row items-center justify-center gap-2 rounded-sm border bg-gradient-to-b p-2
+          hover:to-60% sm:p-3
+        `, className)}>
+        <Icon className="size-4 shrink-0 sm:size-5"/>
         {text}
       </div>
     </a>
@@ -115,7 +121,7 @@ function ProjectTags({project}: { project: PlatformProject }) {
       {project.categories.filter(t => ProjectCategories[t] !== undefined).map((tag) => (
         <span
           key={tag}
-          className="px-2 py-1 text-xs bg-secondary text-secondary-alt rounded-md"
+          className="rounded-md bg-secondary px-2 py-1 text-xs text-secondary-alt"
         >
           {categories(tag as any)}
         </span>
@@ -126,8 +132,8 @@ function ProjectTags({project}: { project: PlatformProject }) {
 
 function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; children?: any }) {
   return (
-    <div className="flex flex-col border border-secondary/50 rounded-sm bg-primary-dim gap-2 p-4 min-w-72 max-w-84">
-      <div className="font-medium text-base flex flex-row items-center gap-3">
+    <div className="flex max-w-84 min-w-72 flex-col gap-2 rounded-sm border border-secondary/50 bg-primary-dim p-4">
+      <div className="flex flex-row items-center gap-3 text-base font-medium">
         <Icon className="size-5 shrink-0"/>
         <span>{name}</span>
       </div>
@@ -152,7 +158,7 @@ export default async function ProjectHomepage({params}: PageProps) {
   const info = await getPlatformProjectInformation(platformProject); // TODO Suspense?
 
   return (
-    <div className="max-w-5xl w-full mx-auto flex flex-col gap-6 mt-1 mb-5">
+    <div className="mx-auto mt-1 mb-5 flex w-full max-w-5xl flex-col gap-6">
       <DocsSubpageTitle
         title={project.name}
         description={platformProject.summary}
@@ -183,9 +189,9 @@ export default async function ProjectHomepage({params}: PageProps) {
           })}
         </div>
 
-        <div className="flex flex-row gap-2 text-secondary text-sm">
+        <div className="flex flex-row gap-2 text-sm text-secondary">
           <span>
-            <TagIcon className="w-4 h-4 inline-block mr-2"/>
+            <TagIcon className="mr-2 inline-block h-4 w-4"/>
             {t('overview.tags')}
           </span>
           <ProjectTags project={platformProject}/>
@@ -226,15 +232,15 @@ export default async function ProjectHomepage({params}: PageProps) {
         {project.platforms.modrinth &&
           <ExternalLink text="Modrinth" icon={ModrinthIcon}
                         href={await platforms.getProjectURL('modrinth', project.platforms.modrinth)}
-                        className="[&>svg]:text-brand-modrinth border-brand-modrinth/40
-                                   from-primary to-brand-modrinth/20"
+                        className={`
+                          border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth
+                        `}
           />
         }
         {platformProject.discord_url &&
           <ExternalLink text="Discord" icon={DiscordIcon}
                         href={platformProject.discord_url}
-                        className="[&>svg]:text-brand-discord border-brand-discord/70
-                                   from-primary to-brand-discord/20"
+                        className="border-brand-discord/70 from-primary to-brand-discord/20 [&>svg]:text-brand-discord"
           />
         }
         {platformProject.source_url && (platformProject.source_url.startsWith("https://github.com/")
@@ -261,27 +267,27 @@ export default async function ProjectHomepage({params}: PageProps) {
           {platformProject.license ? (
               platformProject.license.id == ARRNoLicense
                 ?
-                <div className="m-auto flex flex-row gap-2 items-center">
-                  <CopyrightIcon className="w-4 mb-0.5"/>
+                <div className="m-auto flex flex-row items-center gap-2">
+                  <CopyrightIcon className="mb-0.5 w-4"/>
                   <PageLink href="https://choosealicense.com/no-permission" target="_blank">
                     {t('license.arr')}
                   </PageLink>
                 </div>
                 :
-                <div className="m-auto flex flex-row gap-2 items-center">
+                <div className="m-auto flex flex-row items-center gap-2">
                   <PageLink href={info.license?.url} className="text-center" target="_blank">
                     {info.license?.name}
                   </PageLink>
                 </div>
             ) :
-            <p className="text-secondary m-auto flex flex-row gap-2 items-center">
+            <p className="m-auto flex flex-row items-center gap-2 text-secondary">
               <HelpCircleIcon className="size-4"/>
               {t('license.unknown')}
             </p>
           }
         </LicenseBadge>
         <LicenseBadge name={t('license.wiki')} icon={BookOpenTextIcon}>
-          <span className="text-base text-center">
+          <span className="text-center text-base">
             {t.rich('license.default', {
               link: (chunks) => <PageLink href="/about/tos#copyright-policy" className="!text-base" target="_blank">{chunks}</PageLink>,
               license: () => <PageLink className="!text-base" href={DEFAULT_WIKI_LICENSE.url} target="_blank">{DEFAULT_WIKI_LICENSE.name}</PageLink>

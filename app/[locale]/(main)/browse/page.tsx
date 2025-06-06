@@ -30,9 +30,12 @@ export default function Browse({params, searchParams}: Properties) {
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
   return (
-    <div className="flex flex-col md:flex-row gap-2 sm:gap-4 w-full md:justify-center page-wrapper-ext">
+    <div className="page-wrapper-ext flex w-full flex-col gap-2 sm:gap-4 md:flex-row md:justify-center">
       <aside
-        className="px-1 md:p-1.5 md:pt-2 bg-primary-alt border border-tertiary rounded-sm w-full md:w-64 mb-2 md:mb-0 shrink-0 md:sticky md:top-[75px] md:h-[calc(100vh_-_8rem)]"
+        className={`
+          mb-2 w-full shrink-0 rounded-sm border border-tertiary bg-primary-alt px-1 md:sticky md:top-[75px] md:mb-0
+          md:h-[calc(100vh_-_8rem)] md:w-64 md:p-1.5 md:pt-2
+        `}
       >
         <CollapsibleDocsTreeBase title={t('sidebar.title')} defaultOpen={false}>
           <ClientLocaleProvider keys={['BrowsePage', 'SearchProjectTypes']}>
@@ -41,9 +44,12 @@ export default function Browse({params, searchParams}: Properties) {
         </CollapsibleDocsTreeBase>
       </aside>
 
-      <div className="w-full sm:max-w-[60rem] flex flex-col gap-2">
+      <div className="flex w-full flex-col gap-2 sm:max-w-[60rem]">
         <div
-          className="flex flex-col gap-4 sm:flex-row flex-wrap items-end sm:items-start justify-between w-full pb-4 mb-2 border-b border-secondary">
+          className={`
+            mb-2 flex w-full flex-col flex-wrap items-end justify-between gap-4 border-b border-secondary pb-4
+            sm:flex-row sm:items-start
+          `}>
           <ProjectSearch placeholder={t('search')}/>
           <ClientLocaleProvider keys={['BrowsePage', 'SearchProjectTypes']}>
             <BrowseSortDropdown/>
@@ -52,7 +58,7 @@ export default function Browse({params, searchParams}: Properties) {
 
         <ClientLocaleProvider keys={['ModVersionRange']}>
           <Suspense fallback={
-            <div className="w-full flex justify-center my-3">
+            <div className="my-3 flex w-full justify-center">
               <LoadingContent/>
             </div>
           }>

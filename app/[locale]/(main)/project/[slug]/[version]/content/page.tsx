@@ -23,7 +23,7 @@ function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; 
   return (
     <div>
       <PageLink href={`/project/${slug}/${version}/content/${entry.id}`} local
-                className="flex flex-row gap-1 items-center !text-sm">
+                className="flex flex-row items-center gap-1 !text-sm">
         <Asset location={entry.id!}/>
         {entry.name}
       </PageLink>
@@ -33,10 +33,10 @@ function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; 
 
 function ContentEntryList({entries, slug, version}: { entries: ProjectContentTree; slug: string; version: string }) {
   return (
-    <div className="columns-[10em] space-y-2 sm:space-y-0 w-full sm:w-fit sm:flex flex-row flex-wrap gap-1 items-center">
+    <div className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
-        <div key={c.path} className="flex flex-row flex-wrap gap-1 items-center">
-          {i > 0 && <span className="text-secondary hidden sm:block">&bull;</span>}
+        <div key={c.path} className="flex flex-row flex-wrap items-center gap-1">
+          {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
           <ContentEntryLink entry={c} slug={slug} version={version}/>
         </div>
       )}
@@ -50,8 +50,8 @@ function ContentSubcategory({entry, slug, version}: { entry: ProjectContentEntry
   }
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-center">
-      <div className="sm:w-24 shrink-0 text-end">
+    <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-6">
+      <div className="shrink-0 text-end sm:w-24">
         <span className="text-sm font-medium">{entry.name}</span>
       </div>
       <ContentEntryList entries={entry.children} slug={slug} version={version}/>
@@ -73,8 +73,8 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
 
   return (
     <div className="bg-primary-alt/50">
-      <div className="px-3 py-2 flex flex-col gap-2 border border-secondary-dim rounded-sm">
-        <span className="text-lg font-medium border-b border-tertiary pb-1">
+      <div className="flex flex-col gap-2 rounded-sm border border-secondary-dim px-3 py-2">
+        <span className="border-b border-tertiary pb-1 text-lg font-medium">
           {entry.name}
         </span>
         {enableCategories
@@ -114,7 +114,7 @@ export default async function ProjectContentPage({params}: Props) {
   }
 
   return (
-    <div className="max-w-5xl w-full mx-auto flex flex-col gap-6 mt-1 mb-5">
+    <div className="mx-auto mt-1 mb-5 flex w-full max-w-5xl flex-col gap-6">
       <DocsSubpageTitle
         title={project.name}
         description={platformProject.summary}

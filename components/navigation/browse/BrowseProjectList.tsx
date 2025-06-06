@@ -12,7 +12,7 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
     <div className="flex flex-col gap-3 sm:gap-2">
       {!results || results.data.length === 0
         ?
-          <span className="text-center my-3 text-secondary">
+          <span className="my-3 text-center text-secondary">
               {t('no_results')}
           </span>
         :

@@ -14,11 +14,14 @@ export default function AboutLayout({params, children}: Readonly<{
   const messages = useMessages();
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 w-full md:justify-center page-wrapper-ext">
-      <aside className="w-full md:w-64 shrink-0 bg-primary-alt rounded-md px-2 mb-2 md:mb-0">
+    <div className="page-wrapper-ext flex w-full flex-col gap-4 md:flex-row md:justify-center">
+      <aside className="mb-2 w-full shrink-0 rounded-md bg-primary-alt px-2 md:mb-0 md:w-64">
         <MetaDevDocsNavigation messages={messages['MetaDevDocsNavigation']}/>
       </aside>
-      <div className="prose prose-h2:border-b prose-h2:border-b-neutral-700 prose-h2:pb-1 dark:prose-invert w-full max-w-[67rem] px-2 md:px-0">
+      <div className={`
+        prose w-full max-w-[67rem] px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-neutral-700
+        prose-h2:pb-1
+      `}>
         {children}
       </div>
     </div>

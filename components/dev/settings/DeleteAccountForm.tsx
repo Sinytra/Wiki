@@ -25,7 +25,9 @@ function DeleteButton({ text }: { text: string }) {
   const {pending} = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} variant="destructive" className="text-primary-alt hover:text-primary bg-destructive!">
+    <Button type="submit" disabled={pending} variant="destructive" className={`
+      bg-destructive! text-primary-alt hover:text-primary
+    `}>
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
       {text}
     </Button>
@@ -45,8 +47,11 @@ export default function DeleteAccountForm({action}: Properties) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive" size="sm" className="font-semibold bg-primary hover:bg-secondary/80 border data-[pending=true]:text-destructive/90 border-destructive-secondary">
-          <TrashIcon className="mr-2 w-4 h-4"/>
+        <Button variant="destructive" size="sm" className={`
+          border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
+          data-[pending=true]:text-destructive/90
+        `}>
+          <TrashIcon className="mr-2 h-4 w-4"/>
           <span>
             {t('delete.button')}
           </span>
@@ -62,7 +67,7 @@ export default function DeleteAccountForm({action}: Properties) {
           </DialogDescription>
         </DialogHeader>
 
-        <form tabIndex={0} action={formAction} className="focus:outline-hidden space-y-6">
+        <form tabIndex={0} action={formAction} className="space-y-6 focus:outline-hidden">
           <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="secondary">

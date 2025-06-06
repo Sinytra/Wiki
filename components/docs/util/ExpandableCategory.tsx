@@ -11,13 +11,14 @@ export default function ExpandableCategory({name, children}: { name: string; chi
   return (
     <tr>
       <td>
-        <div className="w-full mb-0! [&_td]:border-none border-separate">
-          <div className="w-full bg-primary-dim border-none
-                          flex flex-row items-center p-1.5 px-2
-                        hover:bg-secondary/50 rounded-sm cursor-pointer select-none"
+        <div className="mb-0! w-full border-separate [&_td]:border-none">
+          <div className={`
+            flex w-full cursor-pointer flex-row items-center rounded-sm border-none bg-primary-dim p-1.5 px-2
+            select-none hover:bg-secondary/50
+          `}
                onClick={() => setOpen(!open)} data-state={open ? 'open' : 'closed'}
           >
-            <div className="mx-auto flex justify-center w-full text-center font-medium">
+            <div className="mx-auto flex w-full justify-center text-center font-medium">
               {name}
             </div>
             <div className="w-8">
@@ -26,7 +27,7 @@ export default function ExpandableCategory({name, children}: { name: string; chi
           </div>
 
           {open &&
-            <div className="w-full mt-2 flex flex-col rounded-md">
+            <div className="mt-2 flex w-full flex-col rounded-md">
             {children}
             </div>
           }

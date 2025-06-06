@@ -22,10 +22,12 @@ function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any
     <Link href={`/project/${params.slug}/${params.version}/${path}`}
           className={cn('w-full sm:w-fit', disabled && 'pointer-events-none')}
     >
-      <Button variant="ghost" size="sm" className={cn('w-full sm:w-fit h-8! sm:h-7! px-2! rounded-sm', active && 'bg-secondary')}
+      <Button variant="ghost" size="sm" className={cn('h-8! w-full rounded-sm px-2! sm:h-7! sm:w-fit', active && `
+        bg-secondary
+      `)}
               disabled={disabled}>
-        <Icon className="w-4 h-4 mr-auto sm:mr-2"/>
-        <span className="text-sm mr-auto sm:mr-0">{title}</span>
+        <Icon className="mr-auto h-4 w-4 sm:mr-2"/>
+        <span className="mr-auto text-sm sm:mr-0">{title}</span>
       </Button>
     </Link>
   )
@@ -36,9 +38,9 @@ function DocsSubNavProjectTitle({project, platformProject}: {
   platformProject: PlatformProject;
 }) {
   return (
-    <div className="flex flex-row gap-2 items-center overflow-hidden">
-      <img src={platformProject.icon_url} alt="Logo" className="rounded-sm h-6"/>
-      <span className="text-base text-primary font-medium whitespace-nowrap text-ellipsis overflow-hidden">
+    <div className="flex flex-row items-center gap-2 overflow-hidden">
+      <img src={platformProject.icon_url} alt="Logo" className="h-6 rounded-sm"/>
+      <span className="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap text-primary">
         {project.name}
       </span>
     </div>
@@ -50,12 +52,12 @@ function MobileDocsSubNavProjectTitle({project, platformProject}: {
   platformProject: PlatformProject;
 }) {
   return (
-    <div className="flex flex-col gap-2 items-center overflow-hidden">
+    <div className="flex flex-col items-center gap-2 overflow-hidden">
       <img src={platformProject.icon_url} alt="Logo" className="mb-2 size-12 rounded-sm"/>
-      <span className="text-base text-primary font-medium whitespace-nowrap text-ellipsis overflow-hidden">
+      <span className="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap text-primary">
         {project.name}
       </span>
-      <blockquote className="text-secondary text-sm line-clamp-2">
+      <blockquote className="line-clamp-2 text-sm text-secondary">
         {platformProject.summary}
       </blockquote>
     </div>
@@ -71,7 +73,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
   const showLocales = project.locales && project.locales.length > 0;
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 items-center">
+    <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-2">
       <SubPage title="Home" icon={HomeIcon} path=""/>
       <SubPage title="Documentation" icon={BookMarkedIcon} path="docs"/>
       {'info' in project && project.info.contentCount > 0 &&
@@ -82,7 +84,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
 
       {(showVersions || showLocales) &&
         <>
-            <div className="hidden! sm:inline-flex! verticalSeparator"/>
+            <div className="verticalSeparator hidden! sm:inline-flex!"/>
             <hr className="w-full border-tertiary sm:hidden" />
         </>
       }
@@ -104,8 +106,8 @@ export default function DocsSubNavBar({project, platformProject, locale, version
   version: string;
 }) {
   return (
-    <div className="fixed w-full left-0 bg-primary-dim z-40 border-y border-t-tertiary-dim border-tertiary">
-      <div className="max-w-[120rem] w-full mx-auto flex flex-row items-center justify-between px-4 py-2 sm:py-1.5">
+    <div className="fixed left-0 z-40 w-full border-y border-tertiary border-t-tertiary-dim bg-primary-dim">
+      <div className="mx-auto flex w-full max-w-[120rem] flex-row items-center justify-between px-4 py-2 sm:py-1.5">
         <DocsSubNavProjectTitle project={project} platformProject={platformProject} />
 
         <div className="hidden sm:block">

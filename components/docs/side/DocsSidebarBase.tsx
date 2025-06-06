@@ -29,14 +29,26 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
     <aside data-open={open == type}
            className={cn(
              className,
-             'w-full z-30 fixed lg:sticky lg:top-[6rem]! h-[88vh] sm:h-[calc(100vh_-_9.5rem)] transition-all lg:transition-none duration-300 ease-in-out overflow-hidden border-tertiary bg-primary',
-             type == 'left' && 'border-r lg:border-r-0 data-[open=false]:border-0 data-[open=false]:-translate-x-full lg:data-[open=false]:-translate-x-0',
-             type == 'right' && 'border-l lg:border-l-0 data-[open=false]:border-0 data-[open=false]:translate-x-full lg:data-[open=false]:translate-x-0'
+             `
+               fixed z-30 h-[88vh] w-full overflow-hidden border-tertiary bg-primary transition-all duration-300
+               ease-in-out sm:h-[calc(100vh_-_9.5rem)] lg:sticky lg:top-[6rem]! lg:transition-none
+             `,
+             type == 'left' && `
+               border-r data-[open=false]:-translate-x-full data-[open=false]:border-0 lg:border-r-0
+               lg:data-[open=false]:-translate-x-0
+             `,
+             type == 'right' && `
+               border-l data-[open=false]:translate-x-full data-[open=false]:border-0 lg:border-l-0
+               lg:data-[open=false]:translate-x-0
+             `
            )}
     >
       <ContentDiv ref={ref}
-                  className={cn('h-full p-4 space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-secondary/20', innerClassName)}>
-        <div className="mb-4 flex justify-between items-center">
+                  className={cn(`
+                    scrollbar-thumb-secondary scrollbar-track-secondary/20 scrollbar-thin h-full space-y-2
+                    overflow-y-auto p-4
+                  `, innerClassName)}>
+        <div className="mb-4 flex items-center justify-between">
           <h3 className="text-sm font-semibold text-secondary">
             {title}
           </h3>

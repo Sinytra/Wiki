@@ -23,15 +23,15 @@ async function RecipeBody({slug, recipe, type, params}: {
 
   return (
     <div className="relative shrink-0">
-      <img src={background?.src} alt={background?.id} className="sharpRendering shrink-0 min-w-fit"/>
+      <img src={background?.src} alt={background?.id} className="sharpRendering min-w-fit shrink-0"/>
 
       {...recipe.inputs.map(async (input, i) => (
-        <RotatingItemDisplaySlot src={input.items} key={i} className="absolute shrink-0 flex" params={params}
+        <RotatingItemDisplaySlot src={input.items} key={i} className="absolute flex shrink-0" params={params}
                                  style={{left: `${input.slot.x}px`, top: `${input.slot.y}px`}}/>
       ))}
 
       {...recipe.outputs.map(async (output, i) => (
-        <RotatingItemDisplaySlot src={output.items} key={i} className="absolute shrink-0 flex" count={output.count}
+        <RotatingItemDisplaySlot src={output.items} key={i} className="absolute flex shrink-0" count={output.count}
                                  params={params} style={{left: `${output.slot.x}px`, top: `${output.slot.y}px`}}/>
       ))}
     </div>

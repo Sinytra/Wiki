@@ -14,9 +14,9 @@ export default function ReportPage({params, searchParams}: { params: { locale: s
   const messages = useMessages();
 
   return (
-    <div className="flex flex-row gap-4 w-full justify-center page-wrapper-ext">
-      <div className="w-full max-w-[62rem] flex flex-col gap-4">
-        <h1 className="text-center text-2xl text-primary border-b pb-4">
+    <div className="page-wrapper-ext flex w-full flex-row justify-center gap-4">
+      <div className="flex w-full max-w-[62rem] flex-col gap-4">
+        <h1 className="border-b pb-4 text-center text-2xl text-primary">
           {t('title')}
         </h1>
 
@@ -25,12 +25,12 @@ export default function ReportPage({params, searchParams}: { params: { locale: s
           <p className="mt-4"/>
           {t.rich('contact', { b: (chunks) => (<b>{chunks}</b>)})}
           &nbsp;{t('confidential')}
-          &nbsp;{t.rich('privacy', { link: (chunks) => (<Link className="underline font-medium" href="/about/privacy">{chunks}</Link>) })}
+          &nbsp;{t.rich('privacy', { link: (chunks) => (<Link className="font-medium underline" href="/about/privacy">{chunks}</Link>) })}
         </div>
 
         <hr className="my-2" />
 
-        <div className="p-4 bg-primary-alt rounded-md">
+        <div className="rounded-md bg-primary-alt p-4">
           {/*@ts-ignore*/}
           <ReportDocsPageForm projectId={slug} path={path} t={messages['Report']['form']}
                               submitT={messages['SubmitButton']}

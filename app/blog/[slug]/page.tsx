@@ -42,7 +42,7 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
                     {format(parseISO(post.date), 'LLLL d, yyyy')}
                 </time>
                 <h1 className="text-3xl font-bold">{post.title}</h1>
-                <div className="mx-auto text-center flex justify-center gap-4">
+                <div className="mx-auto flex justify-center gap-4 text-center">
                     <SocialButtons enableSharing={true} shareData={{
                         url: `https://moddedmc.wiki/blog/${post._raw.flattenedPath}`,
                         title: post.title,
@@ -50,10 +50,13 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
                     }}/>
                 </div>
             </div>
-            <div className="flex flex-1 min-h-[100vh] mx-2 mt-8 pb-24">
-                <div className="flex flex-col gap-4 w-full items-center">
+            <div className="mx-2 mt-8 flex min-h-[100vh] flex-1 pb-24">
+                <div className="flex w-full flex-col items-center gap-4">
                     <div
-                        className="prose prose-h2:border-b prose-h2:border-b-neutral-700 prose-h2:pb-1 dark:prose-invert w-full max-w-4xl px-2 md:px-0">
+                        className={`
+                          prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b
+                          prose-h2:border-b-neutral-700 prose-h2:pb-1
+                        `}>
                         <MDXContent components={components} />
                     </div>
                 </div>

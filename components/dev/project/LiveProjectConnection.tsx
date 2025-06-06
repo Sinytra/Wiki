@@ -49,7 +49,7 @@ export default function LiveProjectConnection({id, status, token}: Props) {
         error: 'Error reloading project',
         action: (
           <Link href={`/dev/project/${id}/health`} className="ml-auto">
-            <Button size="sm" variant="secondary" className="rounded-sm! text-[12px]! h-6!">
+            <Button size="sm" variant="secondary" className="h-6! rounded-sm! text-[12px]!">
               View logs
             </Button>
           </Link>

@@ -16,7 +16,7 @@ import * as React from "react";
 export default function MetaDevDocsNavigation({messages}: { messages: any }) {
   return (
     <CollapsibleDocsTreeBase title={messages['title']}>
-      <div className="flex flex-col gap-2 my-2">
+      <div className="my-2 flex flex-col gap-2">
         <SidebarNavLink href="/about/overview" icon={Undo2Icon}>
           {messages['back']}
         </SidebarNavLink>

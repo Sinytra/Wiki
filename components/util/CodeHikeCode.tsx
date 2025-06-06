@@ -15,10 +15,10 @@ export default async function CodeHikeCode({codeblock}: { codeblock: RawCode }) 
   const fileName = getFileName(highlighted.meta);
 
   return (
-    <div className="rounded-sm relative group">
+    <div className="group relative rounded-sm">
       <CopyButton text={highlighted.code} offset={fileName == null}/>
       {fileName &&
-        <div className="text-secondary-alt px-2.5 py-1.5 text-sm font-mono bg-code-alt rounded-sm rounded-b-none">
+        <div className="rounded-sm rounded-b-none bg-code-alt px-2.5 py-1.5 font-mono text-sm text-secondary-alt">
           {fileName}
         </div>
       }

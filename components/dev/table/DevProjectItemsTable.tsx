@@ -27,11 +27,11 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
       id: 'icon',
       header: 'Icon',
       cell: item => (
-        <div className="flex shrink-0 items-center justify-center size-7">
+        <div className="flex size-7 shrink-0 items-center justify-center">
           <ImageWithFallback
             src={service.getAssetURL(params.slug, item.id, params.version)?.src}
             alt="icon"
-            className="shrink-0 size-7"
+            className="size-7 shrink-0"
             width={28}
             height={28}
             key={item.id}
@@ -78,7 +78,7 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
             </DropdownMenuLabel>
             <DropdownMenuItem>
               <a href={getInternalWikiLink(item.id, params)} target="_blank"
-                 className="w-full flex flex-row justify-between">
+                 className="flex w-full flex-row justify-between">
                 View
                 <ExternalLinkIcon className="w-5"/>
               </a>

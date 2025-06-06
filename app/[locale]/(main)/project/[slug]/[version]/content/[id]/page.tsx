@@ -68,15 +68,14 @@ export default async function ContentEntryPage({params}: Props) {
         {page.content.metadata.title || page.project.name}
       </ProjectDocsMobileHeader>
 
-      <div className="flex flex-row flex-1 justify-between gap-4 w-full max-w-[1632px]">
+      <div className="flex w-full max-w-[1632px] flex-1 flex-row justify-between gap-4">
         <ClientLocaleProvider keys={['DocsNonContentRightSidebar']}>
           <DocsContentTOCSidebar headings={headings}/>
         </ClientLocaleProvider>
 
-        <main className="flex-1 overflow-auto
-                       mt-4 sm:mt-0
-                       pb-6 sm:pt-4 lg:pt-2 px-2 lg:px-0
-                       min-h-[86vh] sm:min-h-[auto] sm:max-w-5xl"
+        <main className={`
+          mt-4 min-h-[86vh] flex-1 overflow-auto px-2 pb-6 sm:mt-0 sm:min-h-[auto] sm:max-w-5xl sm:pt-4 lg:px-0 lg:pt-2
+        `}
         >
           <Suspense fallback={<DocsLoadingSkeleton/>}>
             <DocsEntryPage page={page}/>

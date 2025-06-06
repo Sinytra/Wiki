@@ -24,7 +24,9 @@ interface Props extends React.ComponentProps<typeof Sidebar> {
 
 function AdminSidebarHeader() {
   return (
-    <div className="flex flex-col gap-4 items-center justify-center w-full py-3 border border-destructive-secondary rounded-sm">
+    <div className={`
+      flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive-secondary py-3
+    `}>
       <div>
         <ServerCogIcon width={32} height={32} />
       </div>
@@ -109,7 +111,7 @@ export function AdminSidebar({profile, ...props}: Props) {
   ];
 
   return (
-    <Sidebar variant="floating" className="sticky -ml-[0.7rem] h-[94vh] top-[calc(var(--vp-nav-height))]"
+    <Sidebar variant="floating" className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
              collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <AdminSidebarHeader />

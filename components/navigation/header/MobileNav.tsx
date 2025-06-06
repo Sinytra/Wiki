@@ -16,7 +16,7 @@ export default function MobileNav({children}: {children: any}) {
   return (
     <div className="sm:hidden">
       <MobileNavHamburger active={subScreenOpen} setOpen={setSubScreenOpen} />
-      <MobileNavScreen className="bg-primary top-nav-height" isVisible={subScreenOpen}>
+      <MobileNavScreen className="top-nav-height bg-primary" isVisible={subScreenOpen}>
         {children}
       </MobileNavScreen>
     </div>

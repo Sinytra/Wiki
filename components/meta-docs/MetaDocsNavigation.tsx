@@ -16,16 +16,18 @@ import * as React from "react";
 export default function MetaDocsNavigation({messages, docsOnly}: { messages: any, docsOnly?: boolean }) {
   return (
     <CollapsibleDocsTreeBase title={messages['title']}>
-      <div className="flex flex-col gap-2 my-2">
+      <div className="my-2 flex flex-col gap-2">
         <SidebarNavLink href="/about/overview" icon={HomeIcon}>
           {messages['about']}
         </SidebarNavLink>
 
         <hr/>
 
-        <SidebarNavLink href="/about/devs" icon={PencilRulerIcon} className="flex flex-row justify-between items-center w-full">
+        <SidebarNavLink href="/about/devs" icon={PencilRulerIcon} className={`
+          flex w-full flex-row items-center justify-between
+        `}>
           {messages['devs']}
-          <BookOpenIcon className="w-4 h-4"/>
+          <BookOpenIcon className="h-4 w-4"/>
         </SidebarNavLink>
 
         <hr/>

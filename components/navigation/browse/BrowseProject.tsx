@@ -22,7 +22,7 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
       <div className="shrink-0">
-        <Image className="rounded-sm w-16 h-16 sm:w-20 sm:h-20"
+        <Image className="h-16 w-16 rounded-sm sm:h-20 sm:w-20"
                src={projectContent.icon_url}
                alt="icon"
                width={64}
@@ -37,7 +37,7 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
 function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
-    <span className="text-sm text-secondary font-normal line-clamp-2 sm:line-clamp-none h-10 sm:h-auto sm:min-h-5">
+    <span className="line-clamp-2 h-10 text-sm font-normal text-secondary sm:line-clamp-none sm:h-auto sm:min-h-5">
       {trimText(projectContent.summary, 100)}
     </span>
   )
@@ -45,7 +45,7 @@ function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
 
 function ProjectIconPlaceholder() {
   return (
-      <div className="shrink-0 flex w-16 h-16 sm:w-20 sm:h-20 border border-tertiary rounded-xs">
+      <div className="flex h-16 w-16 shrink-0 rounded-xs border border-tertiary sm:h-20 sm:w-20">
         <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={56} height={56}/>
       </div>
   )
@@ -84,8 +84,10 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
   const mrLink = base.platforms.modrinth ? await platforms.getProjectURL('modrinth', base.platforms.modrinth) : null;
 
   return (
-      <div className="flex flex-wrap sm:flex-nowrap sm:shrink-0 w-full justify-between items-center mt-auto
-                      gap-2 text-secondary h-5.5 sm:h-auto"
+      <div className={`
+        mt-auto flex h-5.5 w-full flex-wrap items-center justify-between gap-2 text-secondary sm:h-auto sm:shrink-0
+        sm:flex-nowrap
+      `}
       >
         <ErrorBoundary fallback={<span></span>}>
           <div className="flex flex-row items-center gap-3">
@@ -102,23 +104,23 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
           </div>
         </ErrorBoundary>
 
-        <div className="sm:shrink-0 gap-1 sm:gap-2 hidden sm:flex">
+        <div className="hidden gap-1 sm:flex sm:shrink-0 sm:gap-2">
           <Suspense>
             <ProjectSourceUrl project={promise} />
           </Suspense>
           {cfLink &&
               <Button asChild variant="ghost" size="icon"
-                      className="hover:text-brand-curseforge size-8">
+                      className="size-8 hover:text-brand-curseforge">
                   <NavLink href={cfLink} target="_blank">
-                      <CurseForgeIcon className="w-5 h-5"/>
+                      <CurseForgeIcon className="h-5 w-5"/>
                   </NavLink>
               </Button>
           }
           {mrLink &&
               <Button asChild variant="ghost" size="icon"
-                      className="hover:text-brand-modrinth size-8">
+                      className="size-8 hover:text-brand-modrinth">
                   <NavLink href={mrLink} target="_blank">
-                      <ModrinthIcon className="w-5 h-5"/>
+                      <ModrinthIcon className="h-5 w-5"/>
                   </NavLink>
               </Button>
           }
@@ -131,17 +133,22 @@ export default function BrowseProject({project}: { project: BaseProject }) {
   const platformProject = platforms.getPlatformProject(project);
 
   return (
-      <div className="flex flex-row items-center border border-tertiary bg-primary-dim rounded-sm w-full px-3 py-2 sm:py-3 gap-3 sm:gap-4">
+      <div className={`
+        flex w-full flex-row items-center gap-3 rounded-sm border border-tertiary bg-primary-dim px-3 py-2 sm:gap-4
+        sm:py-3
+      `}>
         <ErrorBoundary fallback={<ProjectIconPlaceholder/>}>
           <Suspense fallback={<ProjectIconPlaceholder/>}>
             <ProjectIcon project={platformProject}/>
           </Suspense>
         </ErrorBoundary>
 
-        <div className="flex flex-col gap-1 w-full">
-          <div className="w-full h-full flex flex-col">
-            <div className="w-full inline-flex gap-2">
-              <LinkTextButton href={`/project/${project.id}`} className="[&_]:text-lg w-fit! text-base! font-normal! sm:shrink-0 text-primary">
+        <div className="flex w-full flex-col gap-1">
+          <div className="flex h-full w-full flex-col">
+            <div className="inline-flex w-full gap-2">
+              <LinkTextButton href={`/project/${project.id}`} className={`
+                w-fit! text-base! font-normal! text-primary sm:shrink-0 [&_]:text-lg
+              `}>
                 {project.name}
               </LinkTextButton>
 
@@ -154,7 +161,7 @@ export default function BrowseProject({project}: { project: BaseProject }) {
               </span>
             }>
               <Suspense fallback={
-                <Skeleton className="w-full h-10 sm:h-5"/>
+                <Skeleton className="h-10 w-full sm:h-5"/>
               }>
                 <ProjectDescription project={platformProject}/>
               </Suspense>

@@ -30,48 +30,48 @@ function ProjectsListHeader({defaultValues, isAdmin}: {
   isAdmin: boolean;
 }) {
   return (
-    <div className="w-full flex flex-col mb-2">
+    <div className="mb-2 flex w-full flex-col">
       <div className="flex flex-row items-center justify-end">
-        <SidebarTrigger className="-ml-1 mr-auto md:hidden text-primary"/>
+        <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden"/>
 
         <ClientLocaleProvider keys={['GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition']}>
           <GetStartedModal defaultValues={defaultValues} isAdmin={isAdmin} formAction={handleRegisterProjectForm}/>
         </ClientLocaleProvider>
       </div>
 
-      <hr className="w-full flex my-3 border-neutral-600"/>
+      <hr className="my-3 flex w-full border-neutral-600"/>
     </div>
   )
 }
 
 function ProfileProjectSkeleton() {
   return (
-    <Skeleton className="w-full h-[118px]"/>
+    <Skeleton className="h-[118px] w-full"/>
   )
 }
 
 function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
   return (
     <div className="inline-flex items-center gap-2">
-      <Icon className={cn("w-4 h-4", iconClass)}/>
-      <span className="text-primary align-bottom text-sm">{children}</span>
+      <Icon className={cn("h-4 w-4", iconClass)}/>
+      <span className="align-bottom text-sm text-primary">{children}</span>
     </div>
   )
 }
 
 function MobileProjectHeader({id, project}: { id: string; project: PlatformProject; }) {
   return (
-    <div className="sm:hidden flex flex-row gap-4">
-      <div className="flex shrink-0 w-12 h-12 sm:w-24 sm:h-24">
+    <div className="flex flex-row gap-4 sm:hidden">
+      <div className="flex h-12 w-12 shrink-0 sm:h-24 sm:w-24">
         <img className="rounded-md" src={project.icon_url} alt="Project icon"/>
       </div>
       <div className="flex flex-col">
         <div>
-          <LinkTextButton className="w-fit! text-primary! font-medium! text-lg!" href={getProjectLink(id)}>
+          <LinkTextButton className="w-fit! text-lg! font-medium! text-primary!" href={getProjectLink(id)}>
             {project.name}
           </LinkTextButton>
         </div>
-        <p className="text-secondary font-normal text-ellipsis overflow-x-hidden max-w-5xl">
+        <p className="max-w-5xl overflow-x-hidden font-normal text-ellipsis text-secondary">
           {trimText(project.summary, 50)}
         </p>
       </div>
@@ -85,26 +85,29 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
   const u = await getTranslations('ProjectStatus');
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full justify-between p-3 border border-tertiary rounded-md bg-primary-dim">
+    <div className={`
+      flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-dim p-3 sm:flex-row
+      sm:gap-4
+    `}>
       <MobileProjectHeader id={project.id} project={platformProject} />
 
-      <div className="hidden sm:block shrink-0 my-auto">
-        <img className="rounded-md size-20" src={platformProject.icon_url} alt="Project icon"/>
+      <div className="my-auto hidden shrink-0 sm:block">
+        <img className="size-20 rounded-md" src={platformProject.icon_url} alt="Project icon"/>
       </div>
 
-      <div className="flex flex-col gap-2 w-full">
-        <div className="hidden sm:flex flex-col">
+      <div className="flex w-full flex-col gap-2">
+        <div className="hidden flex-col sm:flex">
           <div>
-            <LinkTextButton className="w-fit! text-primary! font-normal! text-lg!" href={getProjectLink(project.id)}>
+            <LinkTextButton className="w-fit! text-lg! font-normal! text-primary!" href={getProjectLink(project.id)}>
               {platformProject.name}
             </LinkTextButton>
           </div>
-          <p className="text-secondary font-normal text-sm">
+          <p className="text-sm font-normal text-secondary">
             {trimText(platformProject.summary, 100)}
           </p>
         </div>
 
-        <div className="flex flex-row gap-3 w-full flex-wrap">
+        <div className="flex w-full flex-row flex-wrap gap-3">
           <div className="flex flex-row flex-wrap gap-4 gap-y-2 sm:gap-5">
             <Property
               iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-400/70' : 'text-secondary '}
@@ -120,7 +123,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
           <div className="ml-auto">
             <Link href={getProjectLink(project.id)}>
               <Button className="h-8 border border-neutral-700" variant="ghost" size="sm">
-                <SettingsIcon className="mr-2 w-4 h-4"/>
+                <SettingsIcon className="mr-2 h-4 w-4"/>
                 {t('project.manage')}
               </Button>
             </Link>
@@ -145,12 +148,15 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
       </div>
       {projects.length === 0 &&
         <div
-          className="px-4 py-6 text-center w-full border border-tertiary flex flex-col justify-center items-center rounded-xs gap-4">
-          <span className="text-primary font-medium">{t('empty.primary')}</span>
+          className={`
+            flex w-full flex-col items-center justify-center gap-4 rounded-xs border border-tertiary px-4 py-6
+            text-center
+          `}>
+          <span className="font-medium text-primary">{t('empty.primary')}</span>
           <span className="text-secondary">
             {t.rich('empty.secondary', {
               guide: (chunks) => (
-                <LinkTextButton className="text-primary! text-base! font-normal! underline" href="/about/devs">
+                <LinkTextButton className="text-base! font-normal! text-primary! underline" href="/about/devs">
                   {chunks}
                 </LinkTextButton>
               )

@@ -13,7 +13,7 @@ export default function GetStartedButton() {
 
   return (
     <PrimaryButton className="my-1" onClick={() => setOpen(true)}>
-      <RocketIcon className="mr-2 w-4 h-4"/>
+      <RocketIcon className="mr-2 h-4 w-4"/>
       {t('title')}
     </PrimaryButton>
   );

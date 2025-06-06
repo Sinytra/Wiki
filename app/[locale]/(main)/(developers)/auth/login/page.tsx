@@ -22,7 +22,7 @@ export default async function Login({params, searchParams}: {
 
   return (
     <form
-      className="flex w-full h-[50vh] items-center justify-center"
+      className="flex h-[50vh] w-full items-center justify-center"
       action={async () => {
         "use server"
         authSession.login();
@@ -30,11 +30,11 @@ export default async function Login({params, searchParams}: {
     >
       <Card className="w-full max-w-sm shadow-md">
         <CardHeader>
-          <CardTitle className="text-2xl flex flex-row items-center">
-            <KeyRoundIcon className="mr-2 w-6 h-6" strokeWidth={1.8}/>
+          <CardTitle className="flex flex-row items-center text-2xl">
+            <KeyRoundIcon className="mr-2 h-6 w-6" strokeWidth={1.8}/>
             {t('title')}
           </CardTitle>
-          <div className="pt-2 text-sm text-secondary space-y-2">
+          <div className="space-y-2 pt-2 text-sm text-secondary">
             <p>{t('desc')}</p>
             <p>{t('prompt')}</p>
           </div>

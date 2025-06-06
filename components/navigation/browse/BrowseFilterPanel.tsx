@@ -27,11 +27,11 @@ function FilterSearch({filter, setFilter, active, onReset}: {
   const t = useTranslations('BrowsePage');
 
   return (
-      <div className="w-full flex flex-row gap-2 mt-2 pt-2 sm:mt-0">
-        <div className="w-full relative text-secondary">
-          <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
+      <div className="mt-2 flex w-full flex-row gap-2 pt-2 sm:mt-0">
+        <div className="relative w-full text-secondary">
+          <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
           <Input
-              className="pl-9 border-secondary-dim focus-visible:ring-0 focus-visible:outline-hidden"
+              className="border-secondary-dim pl-9 focus-visible:ring-0 focus-visible:outline-hidden"
               type="text"
               placeholder={t("sidebar.search_filters")}
               value={filter || ''}
@@ -39,9 +39,9 @@ function FilterSearch({filter, setFilter, active, onReset}: {
           />
         </div>
         {active &&
-            <Button size="icon" className="text-primary border-secondary-alt" variant="outline" onClick={onReset}>
+            <Button size="icon" className="border-secondary-alt text-primary" variant="outline" onClick={onReset}>
                 <div className="px-4">
-                    <FilterXIcon className="w-4 h-4"/>
+                    <FilterXIcon className="h-4 w-4"/>
                 </div>
             </Button>
         }
@@ -60,7 +60,7 @@ function Category({name, icon: Icon, checked, onChange}: {
         <Checkbox className="border-neutral-600"
                   checked={checked}
                   onCheckedChange={(e) => onChange(e == true)}/>
-        <Icon className="w-4 h-4"/>
+        <Icon className="h-4 w-4"/>
         <span className="text-sm text-primary">{name}</span>
       </div>
   )

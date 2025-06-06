@@ -7,10 +7,12 @@ export default function TooltipText({tooltip, children}: {tooltip: any; children
     <div className="inline-block">
       <div className="sm:hidden">
         <Popover>
-          <PopoverTrigger className={cn('underline decoration-1 decoration-neutral-500 decoration-dashed underline-offset-4')}>
+          <PopoverTrigger className={cn(`
+            underline decoration-neutral-500 decoration-dashed decoration-1 underline-offset-4
+          `)}>
             {children}
           </PopoverTrigger>
-          <PopoverContent className="px-3 py-1.5 text-sm w-fit max-h-56 max-w-32 overflow-y-auto slim-scrollbar" side="bottom">
+          <PopoverContent className="slim-scrollbar max-h-56 w-fit max-w-32 overflow-y-auto px-3 py-1.5 text-sm" side="bottom">
             {tooltip}
           </PopoverContent>
         </Popover>
@@ -18,10 +20,12 @@ export default function TooltipText({tooltip, children}: {tooltip: any; children
       <div className="hidden sm:block">
         <TooltipProvider delayDuration={200}>
           <Tooltip>
-            <TooltipTrigger className={cn('underline decoration-1 decoration-neutral-500 decoration-dashed underline-offset-4')}>
+            <TooltipTrigger className={cn(`
+              underline decoration-neutral-500 decoration-dashed decoration-1 underline-offset-4
+            `)}>
               {children}
             </TooltipTrigger>
-            <TooltipContent className="px-3 py-1.5 text-sm w-fit max-h-56 max-w-32 overflow-y-auto slim-scrollbar" side="top">
+            <TooltipContent className="slim-scrollbar max-h-56 w-fit max-w-32 overflow-y-auto px-3 py-1.5 text-sm" side="top">
               {tooltip}
             </TooltipContent>
           </Tooltip>

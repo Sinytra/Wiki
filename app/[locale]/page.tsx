@@ -44,24 +44,25 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   const height = resolved.length == 1 ? 100 : Math.floor(resolved.length / 3.0);
 
   return resolved.map((project, index) => (
-    <div key={index} className={cn('h-full bg-primary-alt p-6 rounded-md shadow-sm flex flex-col', `sm:max-h-fit max-h-[${height}%]`)}>
-      <div className="flex items-center mb-4">
+    <div key={index} className={cn('flex h-full flex-col rounded-md bg-primary-alt p-6 shadow-sm', `sm:max-h-fit max-h-[${height}%]
+    `)}>
+      <div className="mb-4 flex items-center">
         <Image
           src={project.icon}
           alt={`${project.title} icon`}
           width={48}
           height={48}
-          className="rounded-md mr-4"
+          className="mr-4 rounded-md"
         />
         <div>
           <h4 className="text-xl font-semibold text-primary-alt">{project.title}</h4>
           {projectTypes(project.type)}
         </div>
       </div>
-      <p className="text-secondary mb-4 grow">
+      <p className="mb-4 grow text-secondary">
         {trimText(project.summary, 100)}
       </p>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div className="flex flex-wrap gap-2">
           {project.links.curseforge && (
             <a href={project.links.curseforge} target="_blank" rel="noopener noreferrer">
@@ -98,8 +99,8 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
 
 function FeaturedProjectsFallback() {
   return [0, 1, 2].map(index => (
-    <div key={index} className="h-full bg-primary-alt p-6 rounded-lg shadow-md flex flex-col">
-      <Skeleton className="w-full h-full"/>
+    <div key={index} className="flex h-full flex-col rounded-lg bg-primary-alt p-6 shadow-md">
+      <Skeleton className="h-full w-full"/>
     </div>
   ))
 }
@@ -112,42 +113,48 @@ function HomePageContent() {
   return (
     <main className="container mx-auto px-4">
       <section className="mb-5 pb-4">
-        <div className="text-center text-lg text-secondary mb-2">
+        <div className="mb-2 text-center text-lg text-secondary">
           {t.rich('title', {
             highlight: (chunks) => (
               <h2
-                className="text-center text-5xl font-bold bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 text-transparent bg-clip-text animate-gradient mb-4">
+                className={`
+                  mb-4 animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center
+                  text-5xl font-bold text-transparent
+                `}>
                 {chunks}
               </h2>
             )
           })}
         </div>
-        <p className="text-center text-xl text-secondary mx-auto">
+        <p className="mx-auto text-center text-xl text-secondary">
           {t('subtitle')}
         </p>
-        <div className="text-center mt-8 md:hidden">
+        <div className="mt-8 text-center md:hidden">
           <LocaleNavLink href="/browse"
-            className="w-fit block mx-auto bg-linear-to-r from-blue-500 via-contrast to-blue-500 text-white animate-gradient rounded-sm px-12 py-2">
+            className={`
+              mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast to-blue-500
+              px-12 py-2 text-white
+            `}>
             {t('browse')}
           </LocaleNavLink>
         </div>
       </section>
 
       <section className="mb-16 overflow-x-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-2">
             {/* Left column: Popular Wikis */}
             <div className="flex flex-col">
-              <h3 className="text-2xl font-bold text-primary-alt mb-6 text-center">
+              <h3 className="mb-6 text-center text-2xl font-bold text-primary-alt">
                 {t('popular.title')}
               </h3>
-              <div className="flex flex-col h-full gap-6">
+              <div className="flex h-full flex-col gap-6">
                 <Suspense fallback={<FeaturedProjectsFallback/>}>
                   <FeaturedProjectsContent projects={featuredProjects}/>
                 </Suspense>
               </div>
               <div className="mt-auto">
-                <p className="mt-6 text-secondary text-sm">
+                <p className="mt-6 text-sm text-secondary">
                   {t('popular.disclaimer')}
                 </p>
               </div>
@@ -156,14 +163,14 @@ function HomePageContent() {
             {/* Right column: Authors (top) and Users (below) */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-primary-alt mb-6 text-center">
+                <h3 className="mb-6 text-center text-2xl font-bold text-primary-alt">
                   {t('community.title')}
                 </h3>
-                <div className="bg-primary-alt p-6 rounded-lg shadow-md">
-                  <h4 className="text-2xl font-semibold text-primary-alt mb-4">
+                <div className="rounded-lg bg-primary-alt p-6 shadow-md">
+                  <h4 className="mb-4 text-2xl font-semibold text-primary-alt">
                     {t('community.users.title')}
                   </h4>
-                  <p className="text-secondary mb-4">
+                  <p className="mb-4 text-secondary">
                     {t('community.users.subtitle')}
                   </p>
                   <div className="space-y-4">
@@ -182,17 +189,20 @@ function HomePageContent() {
                   <div className="mt-6 space-y-4">
                     <LocaleNavLink
                       href="/browse"
-                      className="block w-full text-center bg-contrast hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm transition duration-300"
+                      className={`
+                        block w-full rounded-sm bg-contrast px-4 py-2 text-center font-bold text-white transition
+                        duration-300 hover:bg-blue-700
+                      `}
                     >
                       {t('browse')}
                     </LocaleNavLink>
                   </div>
                 </div>
-                <div className="mt-4 bg-primary-alt p-6 rounded-lg shadow-md">
-                  <h4 className="text-2xl font-semibold text-primary-alt mb-4">
+                <div className="mt-4 rounded-lg bg-primary-alt p-6 shadow-md">
+                  <h4 className="mb-4 text-2xl font-semibold text-primary-alt">
                     {t('community.authors.title')}
                   </h4>
-                  <p className="text-secondary mb-4">
+                  <p className="mb-4 text-secondary">
                     {t('community.authors.subtitle')}
                   </p>
                   <div className="space-y-4">
@@ -212,16 +222,22 @@ function HomePageContent() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <Link
                       href="/dev"
-                      className="text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm transition duration-300"
+                      className={`
+                        rounded-sm bg-blue-600 px-4 py-2 text-center font-bold text-white transition duration-300
+                        hover:bg-blue-700
+                      `}
                     >
                       {t('community.authors.dashboard')}
                     </Link>
                     <LocaleNavLink
                       href="/about/devs"
-                      className="text-center bg-neutral-600 hover:bg-neutral-700 text-white font-bold py-2 px-4 rounded-sm transition duration-300"
+                      className={`
+                        rounded-sm bg-neutral-600 px-4 py-2 text-center font-bold text-white transition duration-300
+                        hover:bg-neutral-700
+                      `}
                     >
                       {t('community.authors.guide')}
                     </LocaleNavLink>
@@ -233,8 +249,8 @@ function HomePageContent() {
         </div>
       </section>
 
-      <section className="mt-12 bg-secondary rounded-lg p-8">
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="mt-12 rounded-lg bg-secondary p-8">
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {[
             {icon: GlobeIcon, title: t('highlights.localization.title'), description: t('highlights.localization.desc')},
             {icon: LargePersonStandingIcon, title: t('highlights.accessibility.title'), description: t('highlights.accessibility.desc')},
@@ -246,8 +262,8 @@ function HomePageContent() {
             {icon: HeartHandshakeIcon, title: t('highlights.free.title'), description: t('highlights.free.desc')}
           ].map((feature, index) => (
             <li key={index} className="flex items-start">
-              <span className="text-2xl mr-3 pt-[3px]">
-                <feature.icon className="w-5 h-5" />
+              <span className="mr-3 pt-[3px] text-2xl">
+                <feature.icon className="h-5 w-5" />
               </span>
               <div>
                 <h3 className="font-semibold text-primary-alt">{feature.title}</h3>
@@ -258,36 +274,38 @@ function HomePageContent() {
         </ul>
       </section>
 
-      <section className="mt-12 bg-primary-alt rounded-lg p-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <section className="mt-12 rounded-lg bg-primary-alt p-8">
+        <div className="flex flex-col gap-8 lg:flex-row">
           <div className="lg:w-1/3">
-            <h2 className="text-xl font-semibold mb-4">
+            <h2 className="mb-4 text-xl font-semibold">
               {t('about.title')}
             </h2>
-            <p className="text-secondary mb-4">
+            <p className="mb-4 text-secondary">
               {t.rich('about.maintainers', { b: (chunks) => (<b>{chunks}</b>)})}
             </p>
-            <p className="text-secondary mb-4">
+            <p className="mb-4 text-secondary">
               {t('about.mission')}
             </p>
             <SocialButtons />
           </div>
           <div className="lg:w-2/3">
-            <h2 className="text-xl font-semibold mb-4">
+            <h2 className="mb-4 text-xl font-semibold">
               {t('blog.title')}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {blogPosts.map((post, index) => (
                 <div
                   key={index}
-                  className={`bg-primary rounded-lg p-4 flex flex-col border ${index === 0 ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600'}`}
+                  className={`flex flex-col rounded-lg border bg-primary p-4 ${index === 0 ? `
+                    border-[var(--vp-c-brand-1)]
+                  ` : `border-neutral-600`}`}
                 >
-                  <h4 className="text-lg font-semibold mb-2">{post.title}</h4>
-                  <p className="text-sm text-secondary mb-2">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
-                  <p className="text-secondary grow">{post.excerpt}</p>
+                  <h4 className="mb-2 text-lg font-semibold">{post.title}</h4>
+                  <p className="mb-2 text-sm text-secondary">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
+                  <p className="grow text-secondary">{post.excerpt}</p>
                   <Link
                     href={`/blog/${post._id.replace(".mdx", "")}`}
-                    className="text-primary hover:text-primary/80 mt-2 inline-flex items-center"
+                    className="mt-2 inline-flex items-center text-primary hover:text-primary/80"
                   >
                     {t('blog.open')}
                     <ArrowRight className="ml-2 h-4 w-4"/>
@@ -313,12 +331,14 @@ export default async function Home({params}: { params: { locale: string } }) {
 
   return <>
     {showBanner &&
-      <div className="page-wrapper-base page-wrapper max-w-5xl mx-auto w-full px-5 mb-5">
+      <div className="page-wrapper-base page-wrapper mx-auto mb-5 w-full max-w-5xl px-5">
           <TranslateBanner locale={params.locale}/>
       </div>
     }
 
-    <div className={cn(showBanner && 'pt-0!', 'page-wrapper-base page-wrapper page-wrapper-ext flex flex-1 min-h-[100vh] sm:mx-2')}>
+    <div className={cn(showBanner && 'pt-0!', `
+      page-wrapper-base page-wrapper page-wrapper-ext flex min-h-[100vh] flex-1 sm:mx-2
+    `)}>
       <HomePageContent/>
     </div>
   </>

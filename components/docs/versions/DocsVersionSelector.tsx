@@ -10,19 +10,20 @@ export default function DocsVersionSelector({version, versions}: { version: stri
 
   return (
     <DocsVersionSelectWrapper value={version} defaultValue={DEFAULT_DOCS_VERSION}>
-      <SelectTrigger className="sm:w-fit sm:min-w-24 sm:max-w-32 h-8 sm:h-7 py-0 rounded-sm [&>span]:text-sm
-                                bg-transparent hover:bg-secondary border-none w-full [&>span]:mr-auto [&>span]:sm:mr-0
-                                justify-start [&>svg:last-child]:hidden [&>span]:text-ellipsis [&>span]:block
-                                whitespace-nowrap">
-        <Tag className="size-3.5 mr-auto sm:mr-2.5 shrink-0"/>
+      <SelectTrigger className={`
+        h-8 w-full justify-start rounded-sm border-none bg-transparent py-0 whitespace-nowrap hover:bg-secondary sm:h-7
+        sm:w-fit sm:max-w-32 sm:min-w-24 [&>span]:mr-auto [&>span]:block [&>span]:text-sm [&>span]:text-ellipsis
+        [&>span]:sm:mr-0 [&>svg:last-child]:hidden
+      `}>
+        <Tag className="mr-auto size-3.5 shrink-0 sm:mr-2.5"/>
         <SelectValue placeholder={t('placeholder')}/>
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value={DEFAULT_DOCS_VERSION} className="[&>span]:text-sm py-1">
+        <SelectItem value={DEFAULT_DOCS_VERSION} className="py-1 [&>span]:text-sm">
           {t('latest')}
         </SelectItem>
         {versions.map((key) => (
-          <SelectItem key={key} value={key} className="[&>span]:text-sm py-1">
+          <SelectItem key={key} value={key} className="py-1 [&>span]:text-sm">
             {key}
           </SelectItem>
         ))}

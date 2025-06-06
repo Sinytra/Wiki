@@ -43,7 +43,7 @@ export default async function DevProjectContentRecipesPage({params, searchParams
   }
 
   return (
-    <div className="pt-1 space-y-3">
+    <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
       <ClientLocaleProvider keys={['DocsVersionSelector']}>

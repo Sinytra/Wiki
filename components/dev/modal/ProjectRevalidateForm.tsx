@@ -63,15 +63,15 @@ export default function ProjectRevalidateForm({action}: Properties) {
           <DialogDescription asChild className="mt-4! text-left">
             <div>
               {t.rich('primary', {
-                b: (chunks) => <span className="text-primary font-medium">{chunks}</span>
+                b: (chunks) => <span className="font-medium text-primary">{chunks}</span>
               })}
 
               <p className="mt-4">
                 {t('secondary')}
               </p>
 
-              <p className="flex flex-row items-start mt-4">
-                <LightbulbIcon className="inline-block shrink-0 mt-0.5 mr-2 h-4 w-4"/>
+              <p className="mt-4 flex flex-row items-start">
+                <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
                 <span>
                   {t.rich('tertiary', {
                     link: (chunks) => (
@@ -83,15 +83,15 @@ export default function ProjectRevalidateForm({action}: Properties) {
                 </span>
               </p>
 
-              <p className="flex flex-row items-start mt-4 text-secondary opacity-70">
-                <InfoIcon className="inline-block shrink-0 mt-0.5 mr-2 h-4 w-4"/>
+              <p className="mt-4 flex flex-row items-start text-secondary opacity-70">
+                <InfoIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
                 {t('note')}
               </p>
             </div>
           </DialogDescription>
         </DialogHeader>
 
-        <form tabIndex={0} action={formAction} className="focus:outline-hidden space-y-6">
+        <form tabIndex={0} action={formAction} className="space-y-6 focus:outline-hidden">
         <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="secondary">

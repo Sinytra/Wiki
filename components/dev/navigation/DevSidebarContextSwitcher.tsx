@@ -33,7 +33,9 @@ export function DevSidebarContextSwitcher({teams}: Props) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton size="lg" className="data-[state=open]:bg-secondary data-[state=open]:text-primary-alt">
               <div
-                className="flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600 text-primary-alt">
+                className={`
+                  flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600 text-primary-alt
+                `}>
                 <activeTeam.logo className="size-4"/>
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">

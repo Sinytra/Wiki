@@ -23,12 +23,12 @@ export default async function DevLayout({params, children}: {
 
   return (
     <DevProjectSidebarContextProvider>
-      <div className="w-full mx-auto sm:max-w-[92rem]">
+      <div className="mx-auto w-full sm:max-w-[92rem]">
         <SidebarProvider className="min-h-0">
           <ClientLocaleProvider keys={['DevProjectSidebar']}>
             <DevProjectSidebar project={project} platformProject={platformProject}/>
           </ClientLocaleProvider>
-          <SidebarInset className="px-1 sm:px-4 my-4 mx-auto min-h-0 w-full">
+          <SidebarInset className="mx-auto my-4 min-h-0 w-full px-1 sm:px-4">
             {children}
           </SidebarInset>
         </SidebarProvider>
