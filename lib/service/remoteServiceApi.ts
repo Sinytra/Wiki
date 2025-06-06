@@ -1,7 +1,7 @@
 import {DevProject, PaginatedData, Project} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
-import {GameProjectRecipe, ProjectType} from "@/lib/service/types";
+import {GameProjectRecipe, ProjectType, UserProfile} from "@/lib/service/types";
 import {cookies} from "next/headers";
 
 const ONE_DAY = 60 * 60 * 24;
@@ -11,7 +11,7 @@ interface SuccessResponse {
   message: string;
 }
 
-interface StatusResponse {
+export interface StatusResponse {
   status: number;
 }
 
@@ -50,13 +50,6 @@ interface ProjectUpdateRequest {
 
 interface ProjectUpdateResponse extends SuccessResponse {
   project: Project;
-}
-
-export interface UserProfile {
-  username: string;
-  avatar_url: string;
-  modrinth_id: string | null;
-  created_at: string;
 }
 
 export interface DevProjectsResponse {
@@ -312,7 +305,7 @@ async function sendCachedRequest(path: string, params: Record<string, string | n
   });
 }
 
-async function sendSimpleRequest(path: string, params: Record<string, string | null> = {}, method: string = 'POST') {
+export async function sendSimpleRequest(path: string, params: Record<string, string | null> = {}, method: string = 'POST') {
   const searchParams = urlParams(params);
 
   return fetch(`${assertBackendUrl()}/api/v1/${path}?${searchParams.toString()}`, {

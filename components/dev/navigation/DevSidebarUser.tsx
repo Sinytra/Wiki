@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@/components/ui/sidebar";
-import {UserProfile} from "@/lib/service/remoteServiceApi";
 import {useTranslations} from "next-intl";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
@@ -21,6 +20,7 @@ import {useState} from "react";
 import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
 import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
 import {useProgress} from "@bprogress/next";
+import {UserProfile} from "@/lib/service/types";
 
 function LogoutModal({open}: { open: boolean; }) {
   const t = useTranslations('DevSidebarUser.logout');

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import {Link} from "@/lib/locales/routing";
-import remoteServiceApi, {type UserProfile} from "@/lib/service/remoteServiceApi";
+import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {format} from "date-fns";
 import {Button} from "@/components/ui/button";
 import {deleteUserAccount, linkModrinthAccount, unlinkModrinthAccount} from "@/lib/forms/actions";
@@ -21,6 +21,9 @@ import DeleteAccountForm from "@/components/dev/settings/DeleteAccountForm";
 import {NextIntlClientProvider, useMessages, useTranslations} from "next-intl";
 import {getTranslations} from "next-intl/server";
 import {pick} from "lodash";
+import {UserProfile, UserRole} from "@/lib/service/types";
+import {Badge} from "@/components/ui/badge";
+import AdminBadge from "@/components/util/AdminBadge";
 
 export const dynamic = 'force-dynamic';
 
@@ -35,9 +38,14 @@ function UserProfileInfo({user}: { user: UserProfile }) {
       </div>
 
       <div className="flex flex-col gap-2 justify-between w-full">
-        <span className="text-primary-alt text-lg">
-          {user.username}
-        </span>
+        <div className="flex flex-row justify-between items-center">
+          <span className="text-primary-alt text-lg">
+            {user.username}
+          </span>
+          {user.role === UserRole.ADMIN &&
+            <AdminBadge />
+          }
+        </div>
         <div className="flex justify-between text-secondary text-sm">
           <span>{t('bio')}</span>
           <span>{t('join_date', {date: joinDate})}</span>

@@ -2,17 +2,20 @@
 
 import {Collapsible,} from "@/components/ui/collapsible"
 import {SidebarGroup, SidebarGroupLabel, SidebarMenu,} from "@/components/ui/sidebar"
-import {useTranslations} from "next-intl";
 import DevSidebarMenuItem, {Props as DevSidebarMenuItemProps} from "@/components/dev/navigation/DevSidebarMenuItem";
 import * as React from "react";
 import {usePathname} from "@/lib/locales/routing";
 
-interface Props {
+interface Group {
+  name: string;
   items: DevSidebarMenuItemProps[]
 }
 
-export function DevSidebarMainNav({items}: Props) {
-  const t = useTranslations('DeveloperSidebar');
+interface Props {
+  groups: Group[]
+}
+
+export function DevSidebarMainNav({groups}: Props) {
   const pathname = usePathname();
 
   function isActive(item: DevSidebarMenuItemProps) {
@@ -20,22 +23,26 @@ export function DevSidebarMainNav({items}: Props) {
   }
 
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>
-        {t('groups.platform')}
-      </SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            key={item.title}
-            asChild
-            defaultOpen={isActive(item)}
-            className="group/collapsible"
-          >
-            <DevSidebarMenuItem {...item} />
-          </Collapsible>
-        ))}
-      </SidebarMenu>
-    </SidebarGroup>
+    <div>
+      {...groups.map(group => (
+        <SidebarGroup>
+          <SidebarGroupLabel>
+            {group.name}
+          </SidebarGroupLabel>
+          <SidebarMenu>
+            {group.items.map((item) => (
+              <Collapsible
+                key={item.title}
+                asChild
+                defaultOpen={isActive(item)}
+                className="group/collapsible"
+              >
+                <DevSidebarMenuItem {...item} />
+              </Collapsible>
+            ))}
+          </SidebarMenu>
+        </SidebarGroup>
+      ))}
+    </div>
   )
 }

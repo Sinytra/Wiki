@@ -13,7 +13,7 @@ interface Properties {
 
 export default function DataTablePagination({page, pages, onPageChange}: Properties) {
   return (
-    <div className="flex flex-row items-center justify-end space-x-2 py-4">
+    <div className="mt-auto flex flex-row items-center justify-end space-x-2 py-4">
       <ReactPaginate
         className="flex flex-row gap-1 mx-auto"
         breakLabel="..."

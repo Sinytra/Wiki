@@ -1,7 +1,8 @@
 {
     "Badges": {
         "local": "Local",
-        "latest": "Latest"
+        "latest": "Latest",
+        "admin": "Admin"
     },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
@@ -579,12 +580,14 @@
         },
         "groups": {
             "projects": "Projects",
-            "platform": "Platform"
+            "platform": "Platform",
+            "admin": "Administration"
         },
         "nav": {
             "projects": "Projects",
             "documentation": "Documentation",
-            "settings": "Settings"
+            "settings": "Settings",
+            "admin": "System settings"
         }
     },
     "DevSidebarContextSwitcher": {
@@ -605,7 +608,8 @@
         },
         "profile": {
             "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}"
+            "join_date": "Joined {date}",
+            "admin": "Admin"
         },
         "connections": {
             "title": "Connections",
@@ -673,5 +677,28 @@
     },
     "PrefabUsage": {
         "usage": "Usage"
+    },
+    "AdminSidebar": {
+        "groups": {
+            "home": "Home",
+            "data": "Data",
+            "system": "System",
+            "moderation": "Moderation"
+        },
+        "nav": {
+            "home": "Overview",
+            "data_imports": "Data Imports",
+            "users": "Users",
+            "projects": "Projects",
+            "config": "Configuration",
+            "reports": "Reports",
+            "audit_log": "Audit Log",
+            "logs": "System log",
+            "return": "Return"
+        }
+    },
+    "AdminDataImports": {
+        "title": "System data imports",
+        "desc": "Imported game data"
     }
 }

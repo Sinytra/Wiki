@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react';
-import {BookOpen, PencilRulerIcon, Settings2, UserIcon} from 'lucide-react';
+import {BookOpen, PencilRulerIcon, Settings2, UserIcon, WrenchIcon} from 'lucide-react';
 
 import {DevSidebarMainNav} from "@/components/dev/navigation/DevSidebarMainNav";
 import {DevSidebarUser} from "@/components/dev/navigation/DevSidebarUser";
@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/sidebar";
 import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
-import {UserProfile} from "@/lib/service/remoteServiceApi";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
+import {UserProfile, UserRole} from "@/lib/service/types";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
@@ -37,16 +37,21 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
   ];
   const mainEntries = [
     {
-      title: t('nav.documentation'),
-      url: "/about/devs",
-      icon: BookOpen,
-      external: true
-    },
-    {
-      title: t('nav.settings'),
-      url: "/dev/settings",
-      icon: Settings2
-    },
+      name: t('groups.platform'),
+      items: [
+        {
+          title: t('nav.documentation'),
+          url: "/about/devs",
+          icon: BookOpen,
+          external: true
+        },
+        {
+          title: t('nav.settings'),
+          url: "/dev/settings",
+          icon: Settings2
+        }
+      ]
+    }
   ];
 
   return (
@@ -65,7 +70,20 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
           </SidebarMenu>
         </SidebarGroup>
 
-        <DevSidebarMainNav items={mainEntries}/>
+        <DevSidebarMainNav groups={mainEntries}/>
+
+        {profile.role === UserRole.ADMIN &&
+          <div className="mt-auto px-2">
+              <SidebarGroup className="border border-destructive-secondary rounded-sm">
+                  <SidebarGroupLabel>
+                    {t('groups.admin')}
+                  </SidebarGroupLabel>
+                  <SidebarMenu>
+                      <DevSidebarMenuItem url="/admin" matcher={/^\/admin?$/} icon={WrenchIcon} title={t('nav.admin')} />
+                  </SidebarMenu>
+              </SidebarGroup>
+          </div>
+        }
       </SidebarContent>
       <SidebarFooter>
         <DevSidebarUser profile={profile} logoutAction={logoutAction}/>
