@@ -12,6 +12,10 @@ import {ProjectStatus} from "@/lib/types/serviceTypes";
 
 export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
 
+export interface StatusResponse {
+  status: number;
+}
+
 export interface PaginatedData<T> {
   data: T[];
   total: number;

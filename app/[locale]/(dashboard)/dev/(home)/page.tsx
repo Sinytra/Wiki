@@ -12,12 +12,12 @@ import {cn, trimText} from "@/lib/utils";
 import platforms, {PlatformProject} from "@/lib/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon} from "lucide-react";
-import {Link} from "@/lib/locales/routing";
+import {Link, setContextLocale} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
-import authSession from "@/lib/authSession";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import {UserRole} from "@/lib/service/types";
+import {handleApiResponse} from "@/lib/service/serviceUtil";
 
 export const dynamic = 'force-dynamic';
 
@@ -172,14 +172,9 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
   )
 }
 
-export default async function DevPage() {
-  const response = await remoteServiceApi.getUserDevProjects();
-  if ('status' in response) {
-    if (response.status === 401) {
-      return authSession.refresh();
-    }
-    throw new Error("Unexpected response status: " + response.status);
-  }
+export default async function DevPage({params}: { params: { locale: string; } }) {
+  setContextLocale(params.locale);
+  const response = handleApiResponse(await remoteServiceApi.getUserDevProjects());
 
   const defaultValues = {owner: response.profile.username, repo: '', branch: '', path: ''};
   const isAdmin = response.profile.role === UserRole.ADMIN;

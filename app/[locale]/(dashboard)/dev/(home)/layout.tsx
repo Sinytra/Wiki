@@ -3,17 +3,14 @@ import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import authSession from "@/lib/authSession";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {handleApiResponse} from "@/lib/service/serviceUtil";
+import { setContextLocale } from "@/lib/locales/routing";
 
 export const dynamic = 'force-dynamic';
 
-export default async function DevLayout({ children }: { children?: any }) {
-  const response = await remoteServiceApi.getUserDevProjects();
-  if ('status' in response) {
-    if (response.status === 401) {
-      return authSession.refresh();
-    }
-    throw new Error("Unexpected response status: " + response.status);
-  }
+export default async function DevLayout({ params, children }: { params: { locale: string; }; children?: any }) {
+  setContextLocale(params.locale);
+  const response = handleApiResponse(await remoteServiceApi.getUserDevProjects());
 
   return (
     <div className="mx-auto w-full sm:max-w-[92rem]">

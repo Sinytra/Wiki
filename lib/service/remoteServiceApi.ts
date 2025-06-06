@@ -1,4 +1,4 @@
-import {DevProject, PaginatedData, Project} from "@/lib/service/index";
+import {DevProject, PaginatedData, Project, StatusResponse} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {GameProjectRecipe, ProjectType, UserProfile} from "@/lib/service/types";
@@ -9,10 +9,6 @@ const ONE_WEEK = ONE_DAY * 7;
 
 interface SuccessResponse {
   message: string;
-}
-
-export interface StatusResponse {
-  status: number;
 }
 
 interface SimpleErrorResponse extends StatusResponse {

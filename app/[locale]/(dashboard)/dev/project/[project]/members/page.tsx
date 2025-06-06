@@ -1,23 +1,17 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import authSession from "@/lib/authSession";
 import {Button} from "@/components/ui/button";
 import {SettingsIcon} from "lucide-react";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {getTranslations} from "next-intl/server";
+import {handleApiResponse} from "@/lib/service/serviceUtil";
 
 export default async function DevProjectMembersPage({params}: { params: { locale: string } }) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectMembersPage');
 
-  const response = await remoteServiceApi.getUserProfile();
-  if ('status' in response) {
-    if (response.status === 401) {
-      return authSession.refresh();
-    }
-    throw new Error("Unexpected response status: " + response.status);
-  }
+  const response = handleApiResponse(await remoteServiceApi.getUserProfile());
 
   return (
     <div className="space-y-3 pt-1">

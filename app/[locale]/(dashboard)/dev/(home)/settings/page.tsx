@@ -1,4 +1,3 @@
-import authSession from "@/lib/authSession";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,7 +7,7 @@ import {
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import {SidebarTrigger} from "@/components/ui/sidebar";
-import {Link} from "@/lib/locales/routing";
+import {Link, setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {format} from "date-fns";
 import {Button} from "@/components/ui/button";
@@ -23,6 +22,7 @@ import {getTranslations} from "next-intl/server";
 import {UserProfile, UserRole} from "@/lib/service/types";
 import AdminBadge from "@/components/util/AdminBadge";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {handleApiResponse} from "@/lib/service/serviceUtil";
 
 export const dynamic = 'force-dynamic';
 
@@ -118,15 +118,9 @@ function UserSettings({user}: { user: UserProfile }) {
   );
 }
 
-export default async function DevSettingsPage() {
-  const response = await remoteServiceApi.getUserProfile();
-  if ('status' in response) {
-    if (response.status === 401) {
-      return authSession.refresh();
-    }
-    throw new Error("Unexpected response status: " + response.status);
-  }
-
+export default async function DevSettingsPage({params}: { params: { locale: string; } }) {
+  setContextLocale(params.locale);
+  const response = handleApiResponse(await remoteServiceApi.getUserProfile());
   const t = await getTranslations('UserSettings');
 
   return (
