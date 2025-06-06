@@ -1,13 +1,12 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import adminApi from "@/lib/service/remote/adminApi";
 import {redirect} from "next/navigation";
-import {NuqsAdapter} from "nuqs/adapters/next/app";
 import {parseAsInteger, parseAsString} from "nuqs/server";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages, getTranslations} from "next-intl/server";
+import {getTranslations} from "next-intl/server";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import AdminDataImportsTable from "@/components/admin/table/AdminDataImportsTable";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 type Properties = {
   params: {
@@ -33,20 +32,16 @@ export default async function DataImportsPage({params, searchParams}: Properties
     return redirect('/admin');
   }
 
-  const messages = await getMessages();
-
   return (
     <div className="pt-1 space-y-3">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <NuqsAdapter>
-        <NextIntlClientProvider messages={messages}>
-          <AdminDataImportsTable data={content}
-                                 params={{locale: params.locale, slug: '', version: ''}}
-                                 page={page}
-          />
-        </NextIntlClientProvider>
-      </NuqsAdapter>
+      <ClientLocaleProvider keys={['DataTable']}>
+        <AdminDataImportsTable data={content}
+                               params={{locale: params.locale, slug: '', version: ''}}
+                               page={page}
+        />
+      </ClientLocaleProvider>
     </div>
   )
 }

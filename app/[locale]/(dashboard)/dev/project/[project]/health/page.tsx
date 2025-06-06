@@ -1,17 +1,17 @@
 import {ProjectStatus} from "@/lib/types/serviceTypes";
-import {getMessages, getTranslations} from "next-intl/server";
+import {getTranslations} from "next-intl/server";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import {setContextLocale} from "@/lib/locales/routing";
 import authSession from "@/lib/authSession";
-import {NextIntlClientProvider, useTranslations} from "next-intl";
-import {pick} from "lodash";
+import {useTranslations} from "next-intl";
 import DevProjectLogs from "@/components/dev/project/DevProjectLogs";
 import {fetchProjectLog} from "@/lib/forms/actions";
 import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {ShieldAlertIcon, ShieldCheckIcon} from "lucide-react";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 function ProjectErrors() {
   const t = useTranslations('DevProjectHealthPage.errors');
@@ -33,8 +33,6 @@ export default async function DevProjectHealthPage({params}: { params: { locale:
     return redirect('/dev');
   }
 
-  const messages = await getMessages();
-
   // TODO Find alternative
   const token = authSession.getSession()?.token!;
 
@@ -50,10 +48,10 @@ export default async function DevProjectHealthPage({params}: { params: { locale:
 
         {project.status !== ProjectStatus.UNKNOWN &&
           <div>
-              <NextIntlClientProvider messages={pick(messages, 'DevProjectLogs')}>
+              <ClientLocaleProvider keys={['DevProjectLogs']}>
                   <DevProjectLogs id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}
                                   callback={fetchProjectLog}/>
-              </NextIntlClientProvider>
+              </ClientLocaleProvider>
           </div>
         }
       </div>

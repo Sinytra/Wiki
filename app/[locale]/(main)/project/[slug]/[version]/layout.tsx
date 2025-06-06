@@ -3,10 +3,6 @@ import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import DocsLayoutClient from "@/components/docs/layout/DocsLayoutClient";
 import {redirect} from "next/navigation";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
-import {pick} from "lodash";
-import {NuqsAdapter} from "nuqs/adapters/next/app";
 import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContext";
 import {ErrorBoundary} from "react-error-boundary";
 import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
@@ -14,6 +10,7 @@ import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import platforms from "@/lib/platforms";
 import {DEFAULT_DOCS_VERSION, LEGACY_DEFAULT_DOCS_VERSION} from "@/lib/constants";
 import {Metadata, ResolvingMetadata} from "next";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -49,8 +46,6 @@ export async function generateMetadata(
 export default async function HomepageLayout({children, params}: LayoutProps) {
   setContextLocale(params.locale);
 
-  const messages = await getMessages();
-
   const project = await service.getProject(params.slug, params.version);
   if (!project) {
     if (params.version == LEGACY_DEFAULT_DOCS_VERSION) {
@@ -63,20 +58,17 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
 
   return (
     <ErrorBoundary fallback={<DocsPageNotFoundError project={project}/>}>
-      <NuqsAdapter>
-        <LeftSidebarContextProvider>
-          <DocsSidebarContextProvider>
-            <NextIntlClientProvider
-              messages={pick(messages, 'DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'LanguageSelect', 'ModVersionRange')}>
-              <DocsLayoutClient project={project}
-                                locale={params.locale} version={params.version}
-                                platformProject={platformProject}>
-                {children}
-              </DocsLayoutClient>
-            </NextIntlClientProvider>
-          </DocsSidebarContextProvider>
-        </LeftSidebarContextProvider>
-      </NuqsAdapter>
+      <LeftSidebarContextProvider>
+        <DocsSidebarContextProvider>
+          <ClientLocaleProvider keys={['DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'LanguageSelect', 'ModVersionRange']}>
+            <DocsLayoutClient project={project}
+                              locale={params.locale} version={params.version}
+                              platformProject={platformProject}>
+              {children}
+            </DocsLayoutClient>
+          </ClientLocaleProvider>
+        </DocsSidebarContextProvider>
+      </LeftSidebarContextProvider>
     </ErrorBoundary>
   );
 }

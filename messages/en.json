@@ -700,5 +700,11 @@
     "AdminDataImports": {
         "title": "System data imports",
         "desc": "Imported game data"
+    },
+    "DataTable": {
+        "no_results": "No results.",
+        "filter": "Filter rows...",
+        "previous": "Previous",
+        "next": "Next"
     }
 }

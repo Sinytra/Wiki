@@ -1,15 +1,13 @@
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
-import {NuqsAdapter} from "nuqs/adapters/next/app";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages, getTranslations} from "next-intl/server";
-import {pick} from "lodash";
+import {getTranslations} from "next-intl/server";
 import DevProjectItemsTable from "@/components/dev/table/DevProjectItemsTable";
 import {BreadcrumbLink, BreadcrumbPage} from "@/components/ui/breadcrumb";
 import DevBreadcrumb from "@/components/dev/navigation/DevBreadcrumb";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 type Properties = {
   params: {
@@ -47,8 +45,6 @@ export default async function DevProjectContentTagItemsPage({params, searchParam
     return redirect('/dev');
   }
 
-  const messages = await getMessages();
-
   return (
     <div>
       <DevBreadcrumb home={
@@ -63,15 +59,13 @@ export default async function DevProjectContentTagItemsPage({params, searchParam
         </BreadcrumbPage>
       </DevBreadcrumb>
 
-      <NuqsAdapter>
-        <NextIntlClientProvider messages={pick(messages, 'DocsVersionSelector')}>
-          <DevProjectItemsTable data={content}
-                                versions={project.versions || []}
-                                params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
-                                page={page}
-          />
-        </NextIntlClientProvider>
-      </NuqsAdapter>
+      <ClientLocaleProvider keys={['DocsVersionSelector', 'DevProjectItemsTable']}>
+        <DevProjectItemsTable data={content}
+                              versions={project.versions || []}
+                              params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                              page={page}
+        />
+      </ClientLocaleProvider>
     </div>
   )
 }

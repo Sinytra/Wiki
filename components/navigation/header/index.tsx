@@ -6,14 +6,14 @@ import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {cn} from "@/lib/utils";
-import {NextIntlClientProvider, useMessages, useTranslations} from "next-intl";
+import {useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
 import DocsSearchBar from "@/components/navigation/DocsSearchBar";
-import {pick} from "lodash";
 import {searchWikiServer} from "@/lib/search/serverSearch";
 import MobileNav from "@/components/navigation/header/MobileNav";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
 import MobileDocsSearch from "@/components/navigation/MobileDocsSearch";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -34,7 +34,6 @@ function MobileHeaderLink({href, children}: { href: string, children: ReactNode 
 export default function Header({locale, minimal, unfix}: { locale: string, minimal?: boolean, unfix?: boolean }) {
   const preview = localPreview.isEnabled();
   const t = useTranslations('NavigationHeader');
-  const messages = useMessages();
 
   return (
     <HeaderBase unfix={unfix}>
@@ -54,9 +53,9 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
         </div>
 
         {!minimal && !preview &&
-          <NextIntlClientProvider messages={pick(messages, 'DocsSearchBar')}>
+          <ClientLocaleProvider keys={['DocsSearchBar']}>
               <DocsSearchBar searchFunc={searchWikiServer} />
-          </NextIntlClientProvider>  
+          </ClientLocaleProvider>
         }
 
         <div className="hidden sm:flex flex-row justify-end sm:justify-start items-center flex-wrap sm:flex-nowrap ml-auto">
@@ -81,17 +80,17 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           </nav>
 
           {!minimal &&
-            <NextIntlClientProvider messages={pick(messages, 'LanguageSelect')}>
+            <ClientLocaleProvider keys={['LanguageSelect']}>
               <LanguageSelect locale={locale} />
-            </NextIntlClientProvider>
+            </ClientLocaleProvider>
           }
         </div>
 
         <div className="flex flex-row items-center gap-2">
           {!minimal && !preview &&
-            <NextIntlClientProvider messages={pick(messages, 'DocsSearchBar')}>
+            <ClientLocaleProvider keys={['DocsSearchBar']}>
                 <MobileDocsSearch searchFunc={searchWikiServer} />
-            </NextIntlClientProvider>
+            </ClientLocaleProvider>
           }
 
           <MobileNav>
@@ -114,9 +113,9 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
                 </>
               }
               {!minimal &&
-                <NextIntlClientProvider messages={pick(messages, 'LanguageSelect')}>
+                <ClientLocaleProvider keys={['LanguageSelect']}>
                     <LanguageSelect mobile locale={locale} />
-                </NextIntlClientProvider>
+                </ClientLocaleProvider>
               }
               <hr />
               <div className="mt-2 mx-auto">

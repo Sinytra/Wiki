@@ -1,10 +1,10 @@
 import {Badge} from "@/components/ui/badge";
 import {cn} from "@/lib/utils";
-import {NextIntlClientProvider, useMessages, useTranslations} from "next-intl";
+import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import {Project} from "@/lib/service";
 import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
-import {pick} from "lodash";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 interface Props {
   project?: Project;
@@ -16,7 +16,6 @@ interface Props {
 
 export default function DocsContentTitle({ project, children, titleClassName, showHistory, className }: Props) {
   const t = useTranslations('Badges');
-  const messages = useMessages();
 
   return (
     <div className={cn('mb-4 pb-2 border-b border-secondary', className)}>
@@ -28,9 +27,9 @@ export default function DocsContentTitle({ project, children, titleClassName, sh
           {project?.local && <Badge variant="destructive">{t('local')}</Badge>}
           {project?.is_community && <CommunityDocsBadge />}
           {showHistory &&
-            <NextIntlClientProvider messages={pick(messages, 'DocsEntryTabs')}>
+            <ClientLocaleProvider keys={['DocsEntryTabs']}>
                 <DocsEntryTabs />
-            </NextIntlClientProvider>
+            </ClientLocaleProvider>
           }
         </div>
       </div>

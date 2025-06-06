@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import {Button} from "@/components/ui/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 import * as React from "react";
+import {useTranslations} from "next-intl";
 
 interface Properties {
   page: number;
@@ -12,6 +13,7 @@ interface Properties {
 }
 
 export default function DataTablePagination({page, pages, onPageChange}: Properties) {
+  const t = useTranslations('DataTable');
   return (
     <div className="mt-auto flex flex-row items-center justify-end space-x-2 py-4">
       <ReactPaginate
@@ -20,12 +22,12 @@ export default function DataTablePagination({page, pages, onPageChange}: Propert
         previousLabel={
           <Button variant="ghost" size="sm">
             <ChevronLeft className="mr-1 h-4 w-4"/>
-            <span>Previous</span>
+            <span>{t('previous')}</span>
           </Button>
         }
         nextLabel={
           <Button variant="ghost" size="sm">
-            <span>Next</span>
+            <span>{t('next')}</span>
             <ChevronRight className="ml-1 h-4 w-4"/>
           </Button>
         }

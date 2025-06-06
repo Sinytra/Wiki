@@ -1,15 +1,13 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
-import {NuqsAdapter} from "nuqs/adapters/next/app";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages, getTranslations} from "next-intl/server";
-import {pick} from "lodash";
+import {getTranslations} from "next-intl/server";
 import DevProjectRecipesTable from "@/components/dev/table/DevProjectRecipesTable";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 type Properties = {
   params: {
@@ -44,21 +42,17 @@ export default async function DevProjectContentRecipesPage({params, searchParams
     return redirect('/dev');
   }
 
-  const messages = await getMessages();
-
   return (
     <div className="pt-1 space-y-3">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <NuqsAdapter>
-        <NextIntlClientProvider messages={pick(messages, 'DocsVersionSelector')}>
-          <DevProjectRecipesTable data={content}
-                                  versions={project.versions || []}
-                                  params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
-                                  page={page}
-          />
-        </NextIntlClientProvider>
-      </NuqsAdapter>
+      <ClientLocaleProvider keys={['DocsVersionSelector']}>
+        <DevProjectRecipesTable data={content}
+                                versions={project.versions || []}
+                                params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                                page={page}
+        />
+      </ClientLocaleProvider>
     </div>
   )
 }

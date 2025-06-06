@@ -1,5 +1,3 @@
-'use client'
-
 import {DevProjectVersion, DevProjectVersions} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";

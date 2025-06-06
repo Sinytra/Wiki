@@ -1,11 +1,9 @@
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import {NextIntlClientProvider, useMessages} from "next-intl";
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
-import {pick} from "lodash";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {Suspense} from "react";
 import {handleRegisterProjectForm} from "@/lib/forms/actions";
-import {getMessages, getTranslations} from "next-intl/server";
+import {getTranslations} from "next-intl/server";
 import {DevProject} from "@/lib/service";
 import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
@@ -13,16 +11,13 @@ import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import {cn, trimText} from "@/lib/utils";
 import platforms, {PlatformProject} from "@/lib/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
-import {
-  CircleCheckIcon,
-  HelpCircleIcon,
-  LoaderCircleIcon,
-  SettingsIcon
-} from "lucide-react";
+import {CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon} from "lucide-react";
 import {Link} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import authSession from "@/lib/authSession";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {UserRole} from "@/lib/service/types";
 
 export const dynamic = 'force-dynamic';
 
@@ -34,17 +29,14 @@ function ProjectsListHeader({defaultValues, isAdmin}: {
   defaultValues?: any;
   isAdmin: boolean;
 }) {
-  const messages = useMessages();
-
   return (
     <div className="w-full flex flex-col mb-2">
       <div className="flex flex-row items-center justify-end">
         <SidebarTrigger className="-ml-1 mr-auto md:hidden text-primary"/>
 
-        <NextIntlClientProvider
-          messages={pick(messages, 'GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition')}>
+        <ClientLocaleProvider keys={['GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition']}>
           <GetStartedModal defaultValues={defaultValues} isAdmin={isAdmin} formAction={handleRegisterProjectForm}/>
-        </NextIntlClientProvider>
+        </ClientLocaleProvider>
       </div>
 
       <hr className="w-full flex my-3 border-neutral-600"/>
@@ -141,7 +133,6 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
 
 async function ProfileProjects({projects}: { projects: DevProject[] }) {
   const t = await getTranslations('DevProjectsListPage');
-  const messages = await getMessages();
 
   return (
     <>
@@ -166,9 +157,9 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
             })}
           </span>
 
-          <NextIntlClientProvider messages={pick(messages, 'GetStartedButton')}>
+          <ClientLocaleProvider keys={['GetStartedButton']}>
             <GetStartedButton/>
-          </NextIntlClientProvider>
+          </ClientLocaleProvider>
         </div>
       }
     </>
@@ -185,10 +176,7 @@ export default async function DevPage() {
   }
 
   const defaultValues = {owner: response.profile.username, repo: '', branch: '', path: ''};
-
-  const messages = await getMessages();
-  // const isAdmin = session.user?.name !== undefined && session.user.name !== null && isWikiAdmin(session.user.name);
-  const isAdmin = false; // TODO Store in session
+  const isAdmin = response.profile.role === UserRole.ADMIN;
 
   return (
     <GetStartedContextProvider>
@@ -196,9 +184,9 @@ export default async function DevPage() {
         <ProjectsListHeader defaultValues={defaultValues} isAdmin={isAdmin}/>
 
         <div>
-          <NextIntlClientProvider messages={pick(messages, 'LoadingContent')}>
+          <ClientLocaleProvider keys={['LoadingContent']}>
             <ProfileProjects projects={response.projects}/>
-          </NextIntlClientProvider>
+          </ClientLocaleProvider>
         </div>
       </div>
     </GetStartedContextProvider>

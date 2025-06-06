@@ -16,6 +16,7 @@ import {cn} from "@/lib/utils";
 import {TableRowData} from "@/components/base/data-table/dataTableTypes";
 import ToggleChevron from "@/components/util/ToggleChevron";
 import DataTablePagination from "@/components/base/data-table/DataTablePagination";
+import {useTranslations} from "next-intl";
 
 interface Properties<T> {
   cols: React.JSX.Element[];
@@ -35,6 +36,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
   );
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions({shallow: false}));
   const transition = clientUtil.usePageDataReloadTransition(true);
+  const t = useTranslations('DataTable');
 
   const handleSearch = useDebouncedCallback(async (term) => {
     await setParams({query: term ? term : null, page: null});
@@ -67,7 +69,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
           <SearchIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2"/>
           <Input
             className="h-9 sm:w-96 pl-9 border-tertiary focus-visible:ring-0 focus-visible:outline-neutral-600"
-            placeholder="Filter rows..."
+            placeholder={t('filter')}
             onChange={(e) => handleSearch(e.target.value)}
             defaultValue={params.query || ''}
           />

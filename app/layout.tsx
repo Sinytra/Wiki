@@ -5,6 +5,7 @@ import Providers from "@/components/navigation/nav-progress-bar";
 import {Toaster} from "@/components/ui/sonner";
 import {ReactNode} from "react";
 import {cn, getProcessURL} from "@/lib/utils";
+import {NuqsAdapter} from "nuqs/adapters/next/app";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -41,7 +42,9 @@ export default function LocaleLayout({children}: Readonly<{ children: ReactNode;
     </head>
     <body className={cn(inter.className, 'flex flex-col min-h-screen bg-primary text-primary')}>
     <Providers>
-      {children}
+      <NuqsAdapter>
+        {children}
+      </NuqsAdapter>
     </Providers>
     {/* TODO Font size */}
     <Toaster toastOptions={{

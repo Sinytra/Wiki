@@ -1,13 +1,11 @@
 import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
-import {pick} from "lodash";
 import DevProjectSidebar from "@/components/dev/navigation/DevProjectSidebar";
 import {redirect} from "next/navigation";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@/lib/platforms";
 import DevProjectSidebarContextProvider from "@/components/dev/navigation/DevProjectSidebarContextProvider";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 export const dynamic = 'force-dynamic';
 
@@ -23,15 +21,13 @@ export default async function DevLayout({params, children}: {
   }
   const platformProject = await platforms.getPlatformProject(project);
 
-  const messages = await getMessages();
-
   return (
     <DevProjectSidebarContextProvider>
       <div className="w-full mx-auto sm:max-w-[92rem]">
         <SidebarProvider className="min-h-0">
-          <NextIntlClientProvider messages={pick(messages, 'DevProjectSidebar')}>
+          <ClientLocaleProvider keys={['DevProjectSidebar']}>
             <DevProjectSidebar project={project} platformProject={platformProject}/>
-          </NextIntlClientProvider>
+          </ClientLocaleProvider>
           <SidebarInset className="px-1 sm:px-4 my-4 mx-auto min-h-0 w-full">
             {children}
           </SidebarInset>

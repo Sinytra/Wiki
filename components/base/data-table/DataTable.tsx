@@ -5,6 +5,8 @@ import * as React from "react";
 import {ReactNode} from "react";
 import DataTableClient from "@/components/base/data-table/DataTableClient";
 import {TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
+import {useTranslations} from "next-intl";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 interface Properties<T> {
   expandRows?: (row: T) => ReactNode | null;
@@ -24,6 +26,7 @@ export default function DataTable<T>({
                                                     versions
                                                   }: Properties<T>) {
   const offset = data.size * (page - 1);
+  const t = useTranslations('DataTable');
 
   const actualHeaders = expandRows ? [...columns, { id: 'expand', className: 'w-16', header: '' }] : columns;
   const headers = actualHeaders.map(col => (
@@ -39,7 +42,7 @@ export default function DataTable<T>({
     [{
       row: (
         <TableCell colSpan={columns.length} className="h-24 text-center border-0">
-          No results.
+          {t('no_results')}
         </TableCell>
       )
     }]
@@ -69,7 +72,9 @@ export default function DataTable<T>({
     });
 
   return (
-    <DataTableClient cols={headers} rows={rows} data={data} versions={versions}
-                     expandable={expandRows !== undefined}/>
+    <ClientLocaleProvider keys={['DataTable']}>
+      <DataTableClient cols={headers} rows={rows} data={data} versions={versions}
+                       expandable={expandRows !== undefined}/>
+    </ClientLocaleProvider>
   )
 }

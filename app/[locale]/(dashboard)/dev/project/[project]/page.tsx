@@ -3,10 +3,9 @@ import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {DevProject, Project, ProjectRevision} from "@/lib/service";
-import {getMessages, getTranslations} from "next-intl/server";
-import {NextIntlClientProvider, useTranslations} from "next-intl";
+import {getTranslations} from "next-intl/server";
+import {useTranslations} from "next-intl";
 import ProjectRevalidateForm from "@/components/dev/modal/ProjectRevalidateForm";
-import {pick} from "lodash";
 import {handleRevalidateDocs} from "@/lib/forms/actions";
 import {
   CheckIcon,
@@ -35,6 +34,7 @@ import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTi
 import LocalDateTime from "@/components/util/LocalDateTime";
 import LiveProjectConnection from "@/components/dev/project/LiveProjectConnection";
 import authSession from "@/lib/authSession";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 export const dynamic = 'force-dynamic';
 
@@ -73,7 +73,7 @@ async function ProjectPlatforms({project}: { project: Project }) {
     const value = project.platforms[platform as ProjectPlatform] as any;
     const url = await platforms.getProjectURL(platform as ProjectPlatform, value);
 
-    return <DataField className="font-mono" title={p.name} icon={p.icon} value={value} href={url}/>;
+    return <DataField className="font-mono" key={platform} title={p.name} icon={p.icon} value={value} href={url}/>;
   }));
 
   return (
@@ -175,7 +175,6 @@ async function ProfileProject({project}: { project: DevProject }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectPage');
   const u = await getTranslations('DevProjectPage.overview');
-  const messages = await getMessages();
 
   return (
     <div className="py-1 flex flex-col justify-between gap-3">
@@ -206,9 +205,9 @@ async function ProfileProject({project}: { project: DevProject }) {
             {t('toolbar.view')}
           </Button>
         </LocaleNavLink>
-        <NextIntlClientProvider messages={pick(messages, 'ProjectRevalidateForm', 'FormActions')}>
+        <ClientLocaleProvider keys={['ProjectRevalidateForm', 'FormActions']}>
           <ProjectRevalidateForm action={handleRevalidateDocs.bind(null, project.id)}/>
-        </NextIntlClientProvider>
+        </ClientLocaleProvider>
       </div>
 
       <hr className="my-2"/>

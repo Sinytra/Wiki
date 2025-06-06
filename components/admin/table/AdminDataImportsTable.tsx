@@ -1,9 +1,7 @@
-'use client'
-
-import {DataImport, DataImports} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
 import {TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 import DataTable from "@/components/base/data-table/DataTable";
+import { DataImport, DataImports } from "@/lib/service/remote/adminApi";
 
 export default function AdminDataImportsTable({data, page, params}: {
   data: DataImports;

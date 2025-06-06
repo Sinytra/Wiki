@@ -18,12 +18,11 @@ import UnlinkMRAccountForm from "@/components/dev/settings/UnlinkMRAccountForm";
 import LinkMRAccountForm from "@/components/dev/settings/LinkMRAccountForm";
 import {cn} from "@/lib/utils";
 import DeleteAccountForm from "@/components/dev/settings/DeleteAccountForm";
-import {NextIntlClientProvider, useMessages, useTranslations} from "next-intl";
+import {useTranslations} from "next-intl";
 import {getTranslations} from "next-intl/server";
-import {pick} from "lodash";
 import {UserProfile, UserRole} from "@/lib/service/types";
-import {Badge} from "@/components/ui/badge";
 import AdminBadge from "@/components/util/AdminBadge";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 export const dynamic = 'force-dynamic';
 
@@ -86,10 +85,9 @@ function UserSettingsRow({title, desc, children}: { title: string; desc: string;
 
 function UserSettings({user}: { user: UserProfile }) {
   const t = useTranslations('UserSettings');
-  const messages = useMessages();
 
   return (
-    <NextIntlClientProvider messages={pick(messages, 'UserSettings')}>
+    <ClientLocaleProvider keys={['UserSettings']}>
       <div className="h-full flex flex-col gap-4">
         <UserSettingsCategory title={t('connections.title')}>
           <UserSettingsRow title={t('connections.modrinth.title')} desc={t('connections.modrinth.desc')}>
@@ -116,7 +114,7 @@ function UserSettings({user}: { user: UserProfile }) {
           </UserSettingsRow>
         </UserSettingsCategory>
       </div>
-    </NextIntlClientProvider>
+    </ClientLocaleProvider>
   );
 }
 
