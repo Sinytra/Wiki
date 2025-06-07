@@ -6,6 +6,7 @@ import recipes, {ResolvedRecipe, ResolvedSlotItem} from "@/lib/game/recipes";
 import {ContentRouteParams} from "@/lib/game/content";
 import ResponsiveTable from "@/components/util/ResponsiveTable";
 import {getTranslations} from "next-intl/server";
+import HoverContextProvider from "@/components/util/HoverContextProvider";
 
 interface Properties {
   project: string;
@@ -23,19 +24,21 @@ async function RecipeBody({slug, recipe, type, params}: {
   const background = await service.getAsset(slug, type.background, null);
 
   return (
-    <div className="relative shrink-0">
-      <img src={background?.src} alt={background?.id} className="sharpRendering min-w-fit shrink-0"/>
+    <HoverContextProvider>
+      <div className="relative shrink-0">
+        <img src={background?.src} alt={background?.id} className="sharpRendering min-w-fit shrink-0"/>
 
-      {...recipe.inputs.map(async (input, i) => (
-        <RotatingItemDisplaySlot src={input.items} key={i} className="absolute flex shrink-0" params={params}
-                                 style={{left: `${input.slot.x}px`, top: `${input.slot.y}px`}}/>
-      ))}
+        {...recipe.inputs.map(async (input, i) => (
+          <RotatingItemDisplaySlot src={input.items} key={i} className="absolute flex shrink-0" params={params}
+                                   style={{left: `${input.slot.x}px`, top: `${input.slot.y}px`}}/>
+        ))}
 
-      {...recipe.outputs.map(async (output, i) => (
-        <RotatingItemDisplaySlot src={output.items} key={i} className="absolute flex shrink-0" count={output.count}
-                                 params={params} style={{left: `${output.slot.x}px`, top: `${output.slot.y}px`}}/>
-      ))}
-    </div>
+        {...recipe.outputs.map(async (output, i) => (
+          <RotatingItemDisplaySlot src={output.items} key={i} className="absolute flex shrink-0" count={output.count}
+                                   params={params} style={{left: `${output.slot.x}px`, top: `${output.slot.y}px`}}/>
+        ))}
+      </div>
+    </HoverContextProvider>
   )
 }
 

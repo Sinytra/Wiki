@@ -44,7 +44,7 @@ class Tooltip extends Component<any> {
 
   removeListener = () => {
     document.removeEventListener("mousemove", this.onMouseMove);
-    this.setState({ listenerActive: false });
+    this.setState({ xPosition: 0, yPosition: 0, listenerActive: false });
   };
 
   render() {

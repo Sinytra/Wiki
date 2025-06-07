@@ -1,10 +1,11 @@
 'use client'
 
-import {type ImgHTMLAttributes, useEffect, useState} from "react";
+import {type ImgHTMLAttributes, useContext, useEffect, useState} from "react";
 import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import {ResolvedItem} from "@/lib/service/types";
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
 import {getExternalWikiLink, getResolvedItemLink} from "@/lib/game/content";
+import {HoverContext} from "@/components/util/HoverContextProvider";
 
 interface AdditionalProps {
   src: ResolvedItem[];
@@ -18,19 +19,29 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & AdditionalProps;
 
 const INTERVAL = 2000;
 
-// TODO pause all animations when recipe is hovered
 export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, params, ...props}: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const hoverCtx = useContext(HoverContext);
+
+  // Preload all images
+  useEffect(() => {
+    src.forEach((src) => {
+      const img = new Image();
+      img.src = src.src.src;
+    });
+  }, [src]);
 
   useEffect(() => {
     if (src.length === 0) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % src.length);
+      if (!hoverCtx || !hoverCtx.hover) {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % src.length);
+      }
     }, INTERVAL);
 
     return () => clearInterval(interval);
-  }, [src]);
+  }, [src, hoverCtx]);
 
   const Content = () => {
     const link = params ? getResolvedItemLink(params, src[currentIndex]) : getExternalWikiLink(src[currentIndex].id);
@@ -43,9 +54,10 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
               className={`
                 sharpRendering absolute right-0 bottom-0 z-10 text-left font-minecraft text-base leading-1 text-white
               `}
-              style={{textShadow: '2px 2px 0 #3F3F3F'}}>
-          {count}
-        </span>
+              style={{textShadow: '2px 2px 0 #3F3F3F'}}
+            >
+              {count}
+            </span>
           }
         </div>
       </div>
