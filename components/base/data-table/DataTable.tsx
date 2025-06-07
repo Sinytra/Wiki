@@ -4,7 +4,7 @@ import {cn} from "@/lib/utils";
 import * as React from "react";
 import {ReactNode} from "react";
 import DataTableClient from "@/components/base/data-table/DataTableClient";
-import {TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
+import {TableColumn, TableRouteParams, TableRowLinker} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
@@ -14,21 +14,23 @@ interface Properties<T> {
   data: PaginatedData<T>;
   params: TableRouteParams;
   versions?: ProjectVersions;
+  linker?: TableRowLinker<T>;
   page: number;
 }
 
 export default function DataTable<T>({
-                                                    columns,
-                                                    expandRows,
-                                                    data,
-                                                    params: routeParams,
-                                                    page,
-                                                    versions
-                                                  }: Properties<T>) {
+                                       columns,
+                                       expandRows,
+                                       data,
+                                       params: routeParams,
+                                       page,
+                                       versions,
+                                       linker
+                                     }: Properties<T>) {
   const offset = data.size * (page - 1);
   const t = useTranslations('DataTable');
 
-  const actualHeaders = expandRows ? [...columns, { id: 'expand', className: 'w-16', header: '' }] : columns;
+  const actualHeaders = expandRows ? [...columns, {id: 'expand', className: 'w-16', header: ''}] : columns;
   const headers = actualHeaders.map(col => (
     <TableHead
       className={cn('scrollbar-none overflow-auto border-x-0 border-t-0 first:border-l-0 last:border-r-0', col.className)}
@@ -71,9 +73,11 @@ export default function DataTable<T>({
       return {row};
     });
 
+  const links = linker ? data.data.map(linker) : undefined;
+
   return (
     <ClientLocaleProvider keys={['DataTable']}>
-      <DataTableClient cols={headers} rows={rows} data={data} versions={versions}
+      <DataTableClient cols={headers} rows={rows} data={data} versions={versions} links={links}
                        expandable={expandRows !== undefined}/>
     </ClientLocaleProvider>
   )

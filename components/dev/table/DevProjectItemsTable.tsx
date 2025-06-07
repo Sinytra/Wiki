@@ -14,6 +14,7 @@ import * as React from "react";
 import DataTable from "@/components/base/data-table/DataTable";
 import service, {PaginatedData, ProjectVersions} from "@/lib/service";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
+import {useTranslations} from "next-intl";
 
 export default function DevProjectItemsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentPage>;
@@ -21,11 +22,13 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
   versions: ProjectVersions;
   page: number;
 }) {
+  const t = useTranslations('DevProjectItemsTable');
+
   const columns: TableColumn<ProjectContentPage>[] = [
     ordinalColumn,
     {
       id: 'icon',
-      header: 'Icon',
+      header: t('icon'),
       cell: item => (
         <div className="flex size-7 shrink-0 items-center justify-center">
           <ImageWithFallback
@@ -42,21 +45,21 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
     },
     {
       id: 'id',
-      header: 'Identifier',
+      header: t('id'),
       cell: item => (
         <div className="font-mono text-xs sm:text-sm">{item.id}</div>
       )
     },
     {
       id: 'name',
-      header: 'Name',
+      header: t('name'),
       cell: item => (
         <div>{item.name}</div>
       )
     },
     {
       id: 'path',
-      header: 'Page path (internal)',
+      header: t('path'),
       cell: item => (
         <div className="font-medium">{item.path}</div>
       )
@@ -64,22 +67,24 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
     {
       id: 'link',
       header: '',
-      cell: (item, i, params) => !item.path ? null : (
+      cell: (item, _, params) => !item.path ? null : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="size-7 p-0 focus-visible:ring-0">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">
+                {t('actions.open')}
+              </span>
               <MoreHorizontal className="w-5"/>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>
-              Actions
+              {t('actions.title')}
             </DropdownMenuLabel>
             <DropdownMenuItem>
               <a href={getInternalWikiLink(item.id, params)} target="_blank"
                  className="flex w-full flex-row justify-between">
-                View
+                {t('actions.view')}
                 <ExternalLinkIcon className="w-5"/>
               </a>
             </DropdownMenuItem>

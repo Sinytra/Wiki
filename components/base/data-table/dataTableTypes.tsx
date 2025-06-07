@@ -18,6 +18,8 @@ export interface TableRowData {
   extendedRow?: ReactNode;
 }
 
+export type TableRowLinker<T> = (data: T) => string;
+
 export const ordinalColumn: TableColumn<any> = {
   id: 'select',
   header: 'Num.',

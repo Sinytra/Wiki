@@ -5,6 +5,7 @@ import RecipeIngredientDisplay from "@/components/docs/shared/game/RecipeIngredi
 import recipes, {ResolvedRecipe, ResolvedSlotItem} from "@/lib/game/recipes";
 import {ContentRouteParams} from "@/lib/game/content";
 import ResponsiveTable from "@/components/util/ResponsiveTable";
+import {getTranslations} from "next-intl/server";
 
 interface Properties {
   project: string;
@@ -59,6 +60,8 @@ function countOccurrences(ingredients: ResolvedSlotItem[]): IngredientCount[] {
 
 // TODO Handle missing items
 export default async function ResolvedProjectRecipe({project, recipe, embedded, params}: Properties) {
+  const t = await getTranslations('ResolvedProjectRecipe');
+
   const processed = await recipes.processRecipe(recipe);
   const resolvedRecipe = await recipes.resolveRecipe(processed);
 
@@ -69,10 +72,10 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
     <ResponsiveTable
       embedded={embedded}
       columns={[
-        {key: 'type', label: 'Recipe Type'},
-        {key: 'input', label: 'Ingredients'},
-        {key: 'output', label: 'Outputs'},
-        {key: 'preview', label: 'Recipe preview'}
+        {key: 'type', label: t('type')},
+        {key: 'input', label: t('input')},
+        {key: 'output', label: t('output')},
+        {key: 'preview', label: t('preview')}
       ]}
       rows={[
         {

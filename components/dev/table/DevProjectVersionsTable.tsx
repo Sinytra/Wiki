@@ -2,24 +2,27 @@ import {DevProjectVersion, DevProjectVersions} from "@/lib/service/remoteService
 import * as React from "react";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 import DataTable from "@/components/base/data-table/DataTable";
+import {useTranslations} from "next-intl";
 
 export default function DevProjectVersionsTable({data, page, params}: {
   data: DevProjectVersions;
   params: TableRouteParams;
   page: number;
 }) {
+  const t = useTranslations('DevProjectVersionsTable');
+
   const columns: TableColumn<DevProjectVersion>[] = [
     ordinalColumn,
     {
       id: 'name',
-      header: 'Name',
+      header: t('name'),
       cell: item => (
         <span>{item.name}</span>
       )
     },
     {
       id: 'branch',
-      header: 'Branch',
+      header: t('branch'),
       cell: item => (
         <span>{item.branch}</span>
       )

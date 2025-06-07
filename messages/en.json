@@ -559,7 +559,7 @@
         "desc": "Browse project crafting recipes"
     },
     "DevProjectContentTagsPage": {
-        "title": "Project tag",
+        "title": "Project tags",
         "desc": "Browse project tags"
     },
     "DevProjectLogs": {
@@ -706,5 +706,34 @@
         "filter": "Filter rows...",
         "previous": "Previous",
         "next": "Next"
+    },
+    "DevProjectVersionsTable": {
+        "name": "Name",
+        "branch": "Branch"
+    },
+    "DevProjectItemsTable": {
+        "icon": "Icon",
+        "id": "Identifier",
+        "name": "Name",
+        "path": "Page path (internal)",
+        "actions": {
+            "open": "Open menu",
+            "title": "Actions",
+            "view": "View"
+        }
+    },
+    "DevProjectTagsTable": {
+        "id": "Identifier",
+        "items": "Item count"
+    },
+    "DevProjectRecipesTable": {
+        "type": "Type",
+        "id": "Identifier"
+    },
+    "ResolvedProjectRecipe": {
+        "type": "Recipe Type",
+        "input": "Ingredients",
+        "output": "Outputs",
+        "preview": "Recipe preview"
     }
 }

@@ -98,7 +98,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
       <div className="flex w-full flex-col gap-2">
         <div className="hidden flex-col sm:flex">
           <div>
-            <LinkTextButton className="w-fit! text-lg! font-normal! text-primary!" href={getProjectLink(project.id)}>
+            <LinkTextButton className="w-fit! text-lg font-normal! text-primary!" href={getProjectLink(project.id)}>
               {platformProject.name}
             </LinkTextButton>
           </div>

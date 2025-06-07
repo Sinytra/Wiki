@@ -4,6 +4,7 @@ import {PaginatedData, ProjectVersions} from "@/lib/service";
 import DataTable from "@/components/base/data-table/DataTable";
 import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
+import {useTranslations} from "next-intl";
 
 export default function DevProjectRecipesTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentRecipe>;
@@ -11,18 +12,20 @@ export default function DevProjectRecipesTable({data, params, versions, page}: {
   versions: ProjectVersions;
   page: number;
 }) {
+  const t = useTranslations('DevProjectRecipesTable');
+
   const columns: TableColumn<ProjectContentRecipe>[] = [
     ordinalColumn,
     {
       id: 'type',
-      header: 'Type',
+      header: t('type'),
       cell: recipe => (
         <div className="font-mono text-sm">{recipe.type}</div>
       )
     },
     {
       id: 'id',
-      header: 'Identifier',
+      header: t('id'),
       cell: recipe => (
         <div className="font-mono text-sm">{recipe.id}</div>
       )

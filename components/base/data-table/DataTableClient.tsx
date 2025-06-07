@@ -17,16 +17,18 @@ import {TableRowData} from "@/components/base/data-table/dataTableTypes";
 import ToggleChevron from "@/components/util/ToggleChevron";
 import DataTablePagination from "@/components/base/data-table/DataTablePagination";
 import {useTranslations} from "next-intl";
+import {useRouter as useProgressRouter} from "@bprogress/next";
 
 interface Properties<T> {
   cols: React.JSX.Element[];
   rows: TableRowData[];
   data: PaginatedData<T>;
   versions?: ProjectVersions;
+  links?: string[];
   expandable?: boolean;
 }
 
-export default function DataTableClient<T>({cols, rows, data, versions, expandable}: Properties<T>) {
+export default function DataTableClient<T>({cols, rows, data, versions, expandable, links}: Properties<T>) {
   const [params, setParams] = useQueryStates(
     {
       query: parseAsString,
@@ -37,6 +39,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions({shallow: false}));
   const transition = clientUtil.usePageDataReloadTransition(true);
   const t = useTranslations('DataTable');
+  const router = useProgressRouter();
 
   const handleSearch = useDebouncedCallback(async (term) => {
     await setParams({query: term ? term : null, page: null});
@@ -61,6 +64,17 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
   useEffect(() => {
     window.scrollTo({top: 0});
   }, [page]);
+
+  const LinkableTableRow = ({i, ...props}: any) => {
+    if (links && i < links.length) {
+      return <TableRow
+        {...props}
+        className={cn(props.className, 'hover:cursor-pointer hover:bg-table-hover')}
+        onClick={() => router.push(links[i])}
+      />;
+    }
+    return <TableRow {...props} />
+  }
 
   return (
     <div className="w-full">
@@ -90,14 +104,14 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
           <TableBody>
             {rows.map((row, i) => (
               <React.Fragment key={i}>
-                <TableRow
+                <LinkableTableRow
+                  i={i}
                   className={cn(`
                     last:border-b-0 last:[&_td]:border-b-0 last:[&_td:first-child]:rounded-bl-sm
                     last:[&_td:last-child]:rounded-br-sm
                   `,
-                    expandable && (i % 2 != 0 ? 'bg-table-soft hover:bg-table-hover' : 'hover:bg-table-hover'), expandable && `
-                      cursor-pointer
-                    `)}
+                    expandable && (i % 2 != 0 ? 'bg-table-soft hover:bg-table-hover' : 'hover:bg-table-hover'),
+                    expandable && 'cursor-pointer')}
                   onClick={() => expandable && toggleRow(i)}
                 >
                   {row.row}
@@ -107,7 +121,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
                             <ToggleChevron className="size-5" active={visibleRows[i]} />
                         </Button>
                     </TableCell>}
-                </TableRow>
+                </LinkableTableRow>
                 {row.extendedRow &&
                   <TableRow className={cn('border-b bg-table-hard')}>
                       <td className="no-table-bs overflow-hidden border-0" colSpan={cols.length}>
