@@ -92,6 +92,25 @@ export interface DevProjectVersion {
 }
 export type DevProjectVersions = PaginatedData<DevProjectVersion>;
 
+export enum DeploymentStatus {
+  UNKNOWN = 'unknown',
+  CREATED = 'created',
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error'
+}
+
+export interface DevProjectDeployment {
+  id: string;
+  commit_hash: string;
+  commit_message: string;
+  status: DeploymentStatus;
+  user_id: string;
+  created_at: string;
+  current: boolean;
+}
+export type DevProjectDeployments = PaginatedData<DevProjectDeployment>;
+
 export function assertBackendUrl(): string {
   if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
     throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
@@ -162,6 +181,14 @@ async function getDevProjectContentRecipes(id: string, params: Record<string, st
 
 async function getDevProjectVersions(id: string, params: Record<string, string | null>): Promise<DevProjectVersions | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/versions`, params, 'GET'));
+}
+
+async function getDevProjectDeployments(id: string, params: Record<string, string | null>): Promise<DevProjectDeployments | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/deployments`, params, 'GET'));
+}
+
+async function deleteProjectDeployment(id: string): Promise<SuccessResponse | ErrorResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/deployments/${id}`, {}, 'DELETE'));
 }
 
 async function registerProject(data: ProjectRegisterRequest): Promise<ProjectRegisterResponse | ErrorResponse> {
@@ -332,5 +359,7 @@ export default {
   getDevProjectVersions,
   getDevProjectContentTags,
   getDevProjectContentTagItems,
-  getDevProjectContentRecipes
+  getDevProjectContentRecipes,
+  getDevProjectDeployments,
+  deleteProjectDeployment
 }

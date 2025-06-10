@@ -7,7 +7,6 @@ import {getTranslations} from "next-intl/server";
 import DevProjectVersionsTable from "@/components/dev/table/DevProjectVersionsTable";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 type Properties = {
   params: {
@@ -45,12 +44,10 @@ export default async function DevProjectVersionsPage({params, searchParams}: Pro
     <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <ClientLocaleProvider keys={['DocsVersionSelector']}>
-        <DevProjectVersionsTable data={content}
-                                 params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
-                                 page={page}
-        />
-      </ClientLocaleProvider>
+      <DevProjectVersionsTable data={content}
+                               params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                               page={page}
+      />
     </div>
   )
 }

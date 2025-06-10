@@ -7,7 +7,6 @@ import {getTranslations} from "next-intl/server";
 import DevProjectItemsTable from "@/components/dev/table/DevProjectItemsTable";
 import {BreadcrumbLink, BreadcrumbPage} from "@/components/ui/breadcrumb";
 import DevBreadcrumb from "@/components/dev/navigation/DevBreadcrumb";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 type Properties = {
   params: {
@@ -59,13 +58,11 @@ export default async function DevProjectContentTagItemsPage({params, searchParam
         </BreadcrumbPage>
       </DevBreadcrumb>
 
-      <ClientLocaleProvider keys={['DocsVersionSelector', 'DevProjectItemsTable']}>
-        <DevProjectItemsTable data={content}
-                              versions={project.versions || []}
-                              params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
-                              page={page}
-        />
-      </ClientLocaleProvider>
+      <DevProjectItemsTable data={content}
+                            versions={project.versions || []}
+                            params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                            page={page}
+      />
     </div>
   )
 }

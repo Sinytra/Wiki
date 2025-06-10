@@ -6,7 +6,7 @@ import {
   ActivityIcon,
   ArrowLeftIcon,
   BoxIcon,
-  GitBranchIcon,
+  GitBranchIcon, HardDriveIcon,
   LayoutGridIcon,
   PencilRulerIcon,
   SettingsIcon,
@@ -74,9 +74,10 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
           </SidebarGroupLabel>
           <SidebarMenu>
             <DevSidebarMenuItem url={baseUrl} icon={PencilRulerIcon} title={t('nav.home')}/>
-            <DevSidebarMenuItem url={`${baseUrl}/settings`} icon={SettingsIcon} title={t('nav.settings')}/>
+            <DevSidebarMenuItem url={`${baseUrl}/deployments`} icon={HardDriveIcon} title={t('nav.deployments')}/>
             <DevSidebarMenuItem url={`${baseUrl}/health`} icon={ActivityIcon} title={t('nav.health')} live={connected}/>
             <DevSidebarMenuItem url={`${baseUrl}/members`} icon={UsersIcon} title={t('nav.members')}/>
+            <DevSidebarMenuItem url={`${baseUrl}/settings`} icon={SettingsIcon} title={t('nav.settings')}/>
           </SidebarMenu>
         </SidebarGroup>
 

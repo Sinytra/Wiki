@@ -1,11 +1,11 @@
 'use client'
 
 import * as React from "react"
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import {Table, TableBody, TableCell, TableHeader, TableRow,} from "@/components/ui/table"
 import {Input} from "@/components/ui/input";
 import {PaginatedData, ProjectVersions} from "@/lib/service";
-import {parseAsString, useQueryState, useQueryStates} from "nuqs";
+import {parseAsString, useQueryStates} from "nuqs";
 import {parseAsInteger} from "nuqs/server";
 import {Button} from "@/components/ui/button";
 import {SearchIcon} from "lucide-react";
@@ -36,21 +36,12 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
     },
     {shallow: false}
   );
-  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions({shallow: false}));
-  const transition = clientUtil.usePageDataReloadTransition(true);
   const t = useTranslations('DataTable');
   const router = useProgressRouter();
 
   const handleSearch = useDebouncedCallback(async (term) => {
     await setParams({query: term ? term : null, page: null});
   }, 300);
-  const handlePageClick = async (event: any) => {
-    if (event.selected + 1 != page) {
-      transition(() => {
-        setPage(event.selected + 1)
-      });
-    }
-  };
 
   const contentRefs = clientUtil.useMassRef<HTMLDivElement>();
   const [visibleRows, setVisibleRows] = useState<Record<number, boolean>>({});
@@ -60,10 +51,6 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
       [group]: !prev[group],
     }));
   };
-
-  useEffect(() => {
-    window.scrollTo({top: 0});
-  }, [page]);
 
   const LinkableTableRow = ({i, ...props}: any) => {
     if (links && i < links.length) {
@@ -145,7 +132,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination page={page} pages={data.pages} onPageChange={handlePageClick} />
+      <DataTablePagination pages={data.pages}/>
     </div>
   )
 }

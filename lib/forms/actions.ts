@@ -158,3 +158,12 @@ function saveState(url: string, state: any) {
   const serialized = btoa(JSON.stringify(state));
   return url + '?state=' + serialized;
 }
+
+export async function handleDeleteDeploymentForm(id: string) {
+  const response = await remoteServiceApi.deleteProjectDeployment(id);
+  if ('error' in response) {
+    return {success: false, ...response};
+  }
+
+  return {success: true};
+}

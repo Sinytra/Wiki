@@ -76,7 +76,7 @@ export default function DataTable<T>({
   const links = linker ? data.data.map(linker) : undefined;
 
   return (
-    <ClientLocaleProvider keys={['DataTable']}>
+    <ClientLocaleProvider keys={['DataTable', 'DocsVersionSelector']}>
       <DataTableClient cols={headers} rows={rows} data={data} versions={versions} links={links}
                        expandable={expandRows !== undefined}/>
     </ClientLocaleProvider>

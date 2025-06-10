@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 import {TrashIcon} from "lucide-react";
 import {toast} from "sonner";
 import * as React from "react";
-import {startTransition, useState} from "react";
+import {startTransition, useContext, useState} from "react";
 import {
   Dialog,
   DialogClose,
@@ -17,38 +17,44 @@ import {
 } from "@/components/ui/dialog";
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
+import {DropdownMenuItem} from "@/components/ui/dropdown-menu";
+import {DropdownMenuContext} from "@/components/ui/custom/ContextDropdownMenu";
 import FormDeleteButton from "@/components/ui/custom/FormDeleteButton";
 
 interface Properties {
   action: () => Promise<any>;
 }
 
-export default function ProjectDeleteForm({action}: Properties) {
+export default function DeleteDeploymentModal({action}: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const t = useTranslations('ProjectDeleteForm');
+  const t = useTranslations('DeleteDeploymentModal');
+
+  const dropdownCtx = useContext(DropdownMenuContext);
+  function onOpenChange(open: boolean) {
+    setOpen(open);
+    dropdownCtx?.setModalOpen(open);
+  }
 
   const formAction = async () => {
     await action();
 
-    setOpen(false);
+    onOpenChange(false);
     toast.success(t('success'));
 
     startTransition(() => router.refresh());
   }
 
+  // TODO Warn when removing active deployment
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="destructive" size="sm" className={`
-          border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
-          data-[pending=true]:text-destructive/90
-        `}>
-          <TrashIcon className="mr-2 h-4 w-4"/>
-          <span>
+        <DropdownMenuItem onSelect={e => e.preventDefault()}>
+          <span className="flex cursor-pointer flex-row items-center text-destructive">
+            <TrashIcon className="mr-2 size-3"/>
             {t('trigger')}
           </span>
-        </Button>
+        </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -67,7 +73,7 @@ export default function ProjectDeleteForm({action}: Properties) {
                 {t('cancel')}
               </Button>
             </DialogClose>
-            <FormDeleteButton text={t('submit')} />
+            <FormDeleteButton text={t('submit')}/>
           </DialogFooter>
         </form>
       </DialogContent>

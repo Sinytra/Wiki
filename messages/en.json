@@ -665,6 +665,7 @@
             "home": "Overview",
             "settings": "Settings",
             "members": "Members",
+            "deployments": "Deployments",
             "health": "Health",
             "versions": "Versions",
             "content": "Items",
@@ -735,5 +736,31 @@
         "input": "Ingredients",
         "output": "Outputs",
         "preview": "Recipe preview"
+    },
+    "DevProjectDeploymentsPage": {
+        "title": "Project deployments",
+        "desc": "Manage deployed project versions"
+    },
+    "DevProjectDeploymentsTable": {
+        "id": "ID",
+        "commit": "Commit",
+        "created_at": "Deploy time",
+        "user_id": "Deployed by",
+        "status": "Status"
+    },
+    "DeploymentStatus": {
+        "unknown": "N/A",
+        "created": "Queued",
+        "loading": "Loading",
+        "success": "Success",
+        "error": "Failed"
+    },
+    "DeleteDeploymentModal": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Deployment deleted successfully"
     }
 }
