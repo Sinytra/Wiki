@@ -167,3 +167,7 @@ export async function handleDeleteDeploymentForm(id: string) {
 
   return {success: true};
 }
+
+export async function handleCreateDeploymentForm(id: string) {
+
+}

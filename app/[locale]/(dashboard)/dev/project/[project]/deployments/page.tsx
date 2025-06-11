@@ -6,8 +6,12 @@ import {redirect} from "next/navigation";
 import {parseAsInteger} from "nuqs/server";
 import * as React from "react";
 import DevProjectDeploymentsTable from "@/components/dev/table/DevProjectDeploymentsTable";
-import {HardDriveDownloadIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import DeployProjectModal from "@/components/dev/modal/DeployProjectModal";
+import {handleRevalidateDocs} from "@/lib/forms/actions";
+import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {ProjectStatus} from "@/lib/types/serviceTypes";
+import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDeployConnection";
+import authSession from "@/lib/authSession";
 
 type Properties = {
   params: {
@@ -19,6 +23,8 @@ type Properties = {
   }
 }
 
+// TODO Warn about no active deployment
+// TODO Mobile view
 export default async function DevProjectDeploymentsPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectDeploymentsPage');
@@ -37,17 +43,23 @@ export default async function DevProjectDeploymentsPage({params, searchParams}: 
   if ('status' in content) {
     return redirect('/dev');
   }
+  const token = authSession.getSession()?.token!;
 
   return (
     <div className="space-y-3 pt-1">
+      <ClientLocaleProvider keys={['LiveProjectDeployConnection']}>
+        <LiveProjectDeployConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}/>
+      </ClientLocaleProvider>
+
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-row justify-end">
-          <Button size="sm">
-            <HardDriveDownloadIcon className="mr-2 size-4" />
-            Deploy
-          </Button>
+          <ClientLocaleProvider keys={['DeployProjectModal']}>
+            <div>
+              <DeployProjectModal action={handleRevalidateDocs.bind(null, project.id)} />
+            </div>
+          </ClientLocaleProvider>
         </div>
 
         <DevProjectDeploymentsTable data={content} page={page}/>

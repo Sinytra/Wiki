@@ -14,7 +14,7 @@ import {Button} from "@/components/ui/button";
 import {Badge} from "@/components/ui/badge";
 import LoadingIndicator from "@/components/util/LoadingIndicator";
 import {useTranslations} from "next-intl";
-import DeleteDeploymentModal from "../deployments/DeleteDeploymentModal";
+import DeleteDeploymentModal from "../modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import ContextDropdownMenu from "@/components/ui/custom/ContextDropdownMenu";
 

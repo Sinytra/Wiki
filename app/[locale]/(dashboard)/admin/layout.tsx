@@ -12,7 +12,7 @@ export default async function AdminLayout({ params, children }: {
   children: ReactNode;
 }) {
   setContextLocale(params.locale);
-  const profile = (await assertUserIsAdmin())!!;
+  const profile = (await assertUserIsAdmin())!;
 
   return (
     <div className="mx-auto w-full sm:max-w-[92rem]">

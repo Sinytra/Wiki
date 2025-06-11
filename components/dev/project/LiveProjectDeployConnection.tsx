@@ -6,6 +6,7 @@ import {Link, useRouter} from "@/lib/locales/routing";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
+import {useTranslations} from "next-intl";
 
 interface Props {
   id: string;
@@ -13,10 +14,11 @@ interface Props {
   token: string
 }
 
-export default function LiveProjectConnection({id, status, token}: Props) {
+export default function LiveProjectDeployConnection({id, status, token}: Props) {
   const initialized = useRef(false);
   const router = useRouter();
   const {connected, setConnected} = useContext(DevProjectSidebarContext)!;
+  const t = useTranslations('LiveProjectDeployConnection');
 
   useEffect(() => {
     if (connected || status != ProjectStatus.LOADING || initialized.current) {
@@ -44,13 +46,13 @@ export default function LiveProjectConnection({id, status, token}: Props) {
       setConnected(true);
 
       toast.promise(promise, {
-        loading: 'Reloading project...',
-        success: 'Project reload successful',
-        error: 'Error reloading project',
+        loading: t('loading'),
+        success: t('success'),
+        error: t('error'),
         action: (
           <Link href={`/dev/project/${id}/health`} className="ml-auto">
             <Button size="sm" variant="secondary" className="h-6! rounded-sm! text-[12px]!">
-              View logs
+              {t('logs')}
             </Button>
           </Link>
         )

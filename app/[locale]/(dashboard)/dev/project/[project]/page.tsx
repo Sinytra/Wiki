@@ -5,8 +5,6 @@ import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {DevProject, Project, ProjectRevision} from "@/lib/service";
 import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
-import ProjectRevalidateForm from "@/components/dev/modal/ProjectRevalidateForm";
-import {handleRevalidateDocs} from "@/lib/forms/actions";
 import {
   CheckIcon,
   ClockIcon,
@@ -14,6 +12,7 @@ import {
   ExternalLinkIcon,
   GitBranchIcon,
   GlobeIcon,
+  HardDriveIcon,
   HelpCircleIcon,
   InfoIcon,
   LoaderCircleIcon,
@@ -32,9 +31,6 @@ import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {Label} from "@/components/ui/label";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import LocalDateTime from "@/components/util/LocalDateTime";
-import LiveProjectConnection from "@/components/dev/project/LiveProjectConnection";
-import authSession from "@/lib/authSession";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 
 export const dynamic = 'force-dynamic';
 
@@ -208,9 +204,12 @@ async function ProfileProject({project}: { project: DevProject }) {
             {t('toolbar.view')}
           </Button>
         </LocaleNavLink>
-        <ClientLocaleProvider keys={['ProjectRevalidateForm', 'FormActions']}>
-          <ProjectRevalidateForm action={handleRevalidateDocs.bind(null, project.id)}/>
-        </ClientLocaleProvider>
+        <LocaleNavLink href={`${project.id}/deployments`}>
+          <Button variant="outline" size="sm">
+            <HardDriveIcon className="mr-2 h-4 w-4"/>
+            {t('toolbar.deployments')}
+          </Button>
+        </LocaleNavLink>
       </div>
 
       <hr className="my-2"/>
@@ -231,11 +230,8 @@ export default async function DevProjectPage({params}: { params: { locale: strin
     return redirect('/dev');
   }
 
-  const token = authSession.getSession()?.token!;
-
   return (
     <GetStartedContextProvider>
-      <LiveProjectConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}/>
       <ProfileProject project={project}/>
     </GetStartedContextProvider>
   )

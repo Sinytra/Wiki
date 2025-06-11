@@ -335,16 +335,6 @@
         "submit": "Delete",
         "success": "Project deleted successfully"
     },
-    "ProjectRevalidateForm": {
-        "title": "Reload project pages?",
-        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
-        "secondary": "This option should only be used upon updating the documentation source itself.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Cancel",
-        "submit": "Reload",
-        "success": "Project reload started"
-    },
     "FormActions": {
         "errors": {
             "unauthorized": "User authentication error",
@@ -487,7 +477,8 @@
             "home": "Home"
         },
         "toolbar": {
-            "view": "View"
+            "view": "View",
+            "deployments": "Deployments"
         },
         "overview": {
             "title": "Project overview",
@@ -762,5 +753,21 @@
         "cancel": "Cancel",
         "submit": "Delete",
         "success": "Deployment deleted successfully"
+    },
+    "DeployProjectModal": {
+        "button": "Deploy",
+        "title": "New deployment",
+        "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
+        "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Make Current' option.",
+        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "cancel": "Cancel",
+        "submit": "Deploy"
+    },
+    "LiveProjectDeployConnection": {
+        "loading": "Deploying project...",
+        "success": "Project deploy successful",
+        "error": "Project deploy failed",
+        "logs": "View logs"
     }
 }
