@@ -9,7 +9,10 @@ export default function FormDeleteButton({text}: { text: string }) {
   const {pending} = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} variant="destructive" className="bg-destructive! text-primary-alt!">
+    <Button type="submit" disabled={pending}
+            onClick={event => event.stopPropagation()}
+            variant="destructive" className="bg-destructive! text-primary-alt!"
+    >
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
       {text}
     </Button>

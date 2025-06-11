@@ -31,6 +31,7 @@ export default function DeleteDeploymentModal({action}: Properties) {
   const t = useTranslations('DeleteDeploymentModal');
 
   const dropdownCtx = useContext(DropdownMenuContext);
+
   function onOpenChange(open: boolean) {
     setOpen(open);
     dropdownCtx?.setModalOpen(open);
@@ -49,7 +50,9 @@ export default function DeleteDeploymentModal({action}: Properties) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <DropdownMenuItem onSelect={e => e.preventDefault()}>
+        <DropdownMenuItem onClick={event => event.stopPropagation()}
+                          onSelect={e => e.preventDefault()}
+        >
           <span className="flex cursor-pointer flex-row items-center text-destructive">
             <TrashIcon className="mr-2 size-3"/>
             {t('trigger')}
@@ -69,7 +72,7 @@ export default function DeleteDeploymentModal({action}: Properties) {
         <form tabIndex={0} action={formAction} className="space-y-6 focus:outline-hidden">
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button" variant="secondary">
+              <Button type="button" variant="secondary" onClick={event => event.stopPropagation()}>
                 {t('cancel')}
               </Button>
             </DialogClose>

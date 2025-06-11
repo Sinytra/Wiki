@@ -1,71 +1,22 @@
-import {DeploymentStatus, DevProjectDeployment, DevProjectDeployments} from "@/lib/service/remoteServiceApi";
+import {DevProjectDeployment, DevProjectDeployments} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
 import {GitCommitHorizontal, GlobeIcon, HardDriveUploadIcon, MoreHorizontal} from "lucide-react";
-import {format, parseISO} from "date-fns";
 import DataTablePagination from "@/components/base/data-table/DataTablePagination";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
-import {
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
+import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button";
 import {Badge} from "@/components/ui/badge";
-import LoadingIndicator from "@/components/util/LoadingIndicator";
-import {useTranslations} from "next-intl";
 import DeleteDeploymentModal from "../modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import ContextDropdownMenu from "@/components/ui/custom/ContextDropdownMenu";
-
-function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
-  return (
-    <>
-      {status == DeploymentStatus.UNKNOWN &&
-        <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-neutral-400"/>
-        </div>
-      }
-      {status == DeploymentStatus.CREATED &&
-        <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-blue-400"/>
-        </div>
-      }
-      {status == DeploymentStatus.LOADING &&
-        <LoadingIndicator/>
-      }
-      {status == DeploymentStatus.SUCCESS &&
-        <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-green-400"/>
-        </div>
-      }
-      {status == DeploymentStatus.ERROR &&
-        <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-destructive"/>
-        </div>
-      }
-    </>
-  )
-}
-
-function DeploymentStatusInfo({status}: { status: DeploymentStatus }) {
-  const t = useTranslations('DeploymentStatus');
-
-  return (
-    <div className="flex flex-1 flex-row items-center gap-2">
-      <DeploymentStatusIndicator status={status}/>
-      <span className="flex-auto text-sm">
-        {t(status)}
-      </span>
-    </div>
-  )
-}
+import {Link} from "@/lib/locales/routing";
+import LocalDateTime from "@/components/util/LocalDateTime";
+import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 
 function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
   return (
     <div className={`
-      flex w-full flex-1 flex-row items-center border-secondary bg-primary-dim p-3 first:rounded-t-sm last:rounded-b-sm
-      hover:bg-primary [&:not(:first-of-type)]:border-t
+      flex w-full flex-1 flex-row items-center bg-primary-dim p-3 first:rounded-t-sm last:rounded-b-sm hover:bg-primary
     `}>
       <div className="flex flex-2 flex-row items-center gap-2">
         <span className="font-mono text-sm">
@@ -98,10 +49,7 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
         </div>
       </div>
 
-      {/* TODO Make local */}
-      <time dateTime={deployment.created_at} className="flex flex-1 text-sm">
-        {format(parseISO(deployment.created_at), 'LLL d, yyyy')}
-      </time>
+      <LocalDateTime className="text-sm" form="LLL d, yyyy" dateTime={new Date(deployment.created_at)}/>
 
       <div className="flex flex-1 text-end text-sm">
         <span className="w-full">
@@ -119,7 +67,7 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
             <DropdownMenuItem disabled>
               <span className="flex flex-row items-center">
                 <HardDriveUploadIcon className="mr-2 size-3"/>
-                Make current
+                Redeploy
               </span>
             </DropdownMenuItem>
 
@@ -148,7 +96,9 @@ export default function DevProjectDeploymentsTable({data}: { data: DevProjectDep
       {data.data.length > 0 ?
         <div className="flex border-collapse flex-col rounded-sm border border-secondary">
           {...data.data.map(d => (
-            <DeploymentEntry deployment={d} key={d.id}/>
+            <Link key={d.id} href={`deployments/${d.id}`} className="border-secondary [&:not(:first-of-type)]:border-t">
+              <DeploymentEntry deployment={d}/>
+            </Link>
           ))}
         </div>
         :

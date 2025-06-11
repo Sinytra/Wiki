@@ -2,8 +2,10 @@
 
 import {format} from "date-fns";
 
-export default function LocalDateTime({ dateTime }: { dateTime: Date }) {
+export default function LocalDateTime({ className, dateTime, form }: { className?: string; dateTime: Date; form?: string }) {
   return (
-    <time dateTime={dateTime.toISOString()} suppressHydrationWarning>{format(dateTime, 'yyyy-MM-dd HH:mm')}</time>
+    <time className={className} dateTime={dateTime.toISOString()} suppressHydrationWarning>
+      {format(dateTime, form ?? 'yyyy-MM-dd HH:mm')}
+    </time>
   )
 }

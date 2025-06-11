@@ -20,7 +20,7 @@ export default async function PrefabObtaining() {
       </LinkAwareHeading>
 
       {recipes.map(recipe => (
-        <div>
+        <div key={recipe.id}>
           <ResolvedProjectRecipe project={params.slug} recipe={recipe} params={params as any} />
         </div>
       ))}

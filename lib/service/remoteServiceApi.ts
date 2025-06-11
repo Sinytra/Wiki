@@ -111,6 +111,24 @@ export interface DevProjectDeployment {
 }
 export type DevProjectDeployments = PaginatedData<DevProjectDeployment>;
 
+export interface DeploymentRevision {
+  authorEmail: string;
+  authorName: string;
+  date: string;
+  hash: string;
+  message: string;
+}
+
+export interface FullDevProjectDeployment {
+  id: string;
+  project_id: string;
+  revision: DeploymentRevision | null;
+  status: DeploymentStatus;
+  user_id: string | null;
+  created_at: string;
+  active: boolean;
+}
+
 export function assertBackendUrl(): string {
   if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
     throw new Error('Environment variable NEXT_PUBLIC_BACKEND_SERVICE_URL not set');
@@ -185,6 +203,10 @@ async function getDevProjectVersions(id: string, params: Record<string, string |
 
 async function getDevProjectDeployments(id: string, params: Record<string, string | null>): Promise<DevProjectDeployments | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/deployments`, params, 'GET'));
+}
+
+async function getDevProjectDeployment(id: string): Promise<FullDevProjectDeployment | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/deployments/${id}`, {}, 'GET'));
 }
 
 async function deleteProjectDeployment(id: string): Promise<SuccessResponse | ErrorResponse> {
@@ -361,5 +383,6 @@ export default {
   getDevProjectContentTagItems,
   getDevProjectContentRecipes,
   getDevProjectDeployments,
+  getDevProjectDeployment,
   deleteProjectDeployment
 }

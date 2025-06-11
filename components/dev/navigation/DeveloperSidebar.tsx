@@ -37,6 +37,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
   ];
   const mainEntries = [
     {
+      id: 'platform',
       name: t('groups.platform'),
       items: [
         {

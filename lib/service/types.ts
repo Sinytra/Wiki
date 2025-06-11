@@ -60,6 +60,7 @@ export interface RecipeIngredientItem {
 export type RecipeIngredient = RecipeIngredientItem | RecipeIgredientTag;
 
 export interface GameProjectRecipe {
+  id: string;
   type: GameRecipeType;
   inputs: RecipeIngredient[];
   outputs: RecipeIngredientItem[];

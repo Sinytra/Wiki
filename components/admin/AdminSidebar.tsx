@@ -43,6 +43,7 @@ export function AdminSidebar({profile, ...props}: Props) {
 
   const mainEntries = [
     {
+      id: 'home',
       name: t('groups.home'),
       items: [
         {
@@ -53,6 +54,7 @@ export function AdminSidebar({profile, ...props}: Props) {
       ]
     },
     {
+      id: 'system',
       name: t('groups.system'),
       items: [
         {
@@ -75,6 +77,7 @@ export function AdminSidebar({profile, ...props}: Props) {
       ]
     },
     {
+      id: 'data',
       name: t('groups.data'),
       items: [
         {
@@ -92,6 +95,7 @@ export function AdminSidebar({profile, ...props}: Props) {
       ]
     },
     {
+      id: 'moderation',
       name: t('groups.moderation'),
       items: [
         {

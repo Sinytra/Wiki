@@ -7,6 +7,7 @@ import * as React from "react";
 import {usePathname} from "@/lib/locales/routing";
 
 interface Group {
+  id: string;
   name: string;
   items: DevSidebarMenuItemProps[]
 }
@@ -25,7 +26,7 @@ export function DevSidebarMainNav({groups}: Props) {
   return (
     <div>
       {...groups.map(group => (
-        <SidebarGroup>
+        <SidebarGroup key={group.id}>
           <SidebarGroupLabel>
             {group.name}
           </SidebarGroupLabel>
