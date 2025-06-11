@@ -12,6 +12,7 @@ import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDeployConnection";
 import authSession from "@/lib/authSession";
+import DeployProjectContextProvider from "@/components/dev/modal/DeployProjectContextProvider";
 
 type Properties = {
   params: {
@@ -23,7 +24,6 @@ type Properties = {
   }
 }
 
-// TODO Warn about no active deployment
 // TODO Mobile view
 export default async function DevProjectDeploymentsPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
@@ -51,19 +51,21 @@ export default async function DevProjectDeploymentsPage({params, searchParams}: 
         <LiveProjectDeployConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}/>
       </ClientLocaleProvider>
 
-      <DevProjectPageTitle title={t('title')} desc={t('desc')} />
+      <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-row justify-end">
-          <ClientLocaleProvider keys={['DeployProjectModal']}>
-            <div>
-              <DeployProjectModal action={handleRevalidateDocs.bind(null, project.id)} />
-            </div>
-          </ClientLocaleProvider>
+      <DeployProjectContextProvider>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-row items-center justify-end">
+            <ClientLocaleProvider keys={['DeployProjectModal']}>
+              <div>
+                <DeployProjectModal action={handleRevalidateDocs.bind(null, project.id)}/>
+              </div>
+            </ClientLocaleProvider>
+          </div>
+
+          <DevProjectDeploymentsTable data={content} page={page}/>
         </div>
-
-        <DevProjectDeploymentsTable data={content} page={page}/>
-      </div>
+      </DeployProjectContextProvider>
     </div>
   )
 }

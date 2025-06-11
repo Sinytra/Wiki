@@ -36,6 +36,7 @@ export type ProjectVersions = string[];
 
 export interface ProjectRevision {
   hash: string;
+  fullHash: string;
   message: string;
   authorName: string;
   authorEmail: string;

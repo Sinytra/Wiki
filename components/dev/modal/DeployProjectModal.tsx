@@ -1,9 +1,8 @@
 'use client'
 
 import {Button} from "@/components/ui/button";
-import {toast} from "sonner";
 import * as React from "react";
-import {startTransition, useContext, useState} from "react";
+import {startTransition, useContext} from "react";
 import {
   Dialog,
   DialogClose,
@@ -20,13 +19,15 @@ import {HardDriveDownloadIcon, InfoIcon, ShieldIcon} from "lucide-react";
 import FormSubmitButton from "@/components/ui/custom/FormSubmitButton";
 import IconModalSection from "@/components/util/IconModalSection";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
+import {DeployProjectContext} from "@/components/dev/modal/DeployProjectContextProvider";
+import DeployProjectModalButton from "@/components/dev/modal/DeployProjectModalButton";
 
 interface Properties {
   action: () => Promise<any>;
 }
 
 export default function DeployProjectModal({action}: Properties) {
-  const [open, setOpen] = useState(false);
+  const {open, setOpen} = useContext(DeployProjectContext)!;
   const router = useRouter();
   const t = useTranslations('DeployProjectModal');
   const sidebarCtx = useContext(DevProjectSidebarContext);
@@ -42,10 +43,7 @@ export default function DeployProjectModal({action}: Properties) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm" disabled={sidebarCtx?.connected}>
-          <HardDriveDownloadIcon className="mr-2 size-4"/>
-          {t('button')}
-        </Button>
+        <DeployProjectModalButton disabled={sidebarCtx?.connected}/>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -58,7 +56,7 @@ export default function DeployProjectModal({action}: Properties) {
                 b: (chunks) => <span className="font-medium text-primary">{chunks}</span>
               })}
 
-              <IconModalSection className="mt-4" t={t} tKey="secondary" icon={ShieldIcon} />
+              <IconModalSection className="mt-4" t={t} tKey="secondary" icon={ShieldIcon}/>
               {/*<IconModalSection className="mt-4" t={t} tKey="tertiary" icon={LightbulbIcon} values={{*/}
               {/*  link: (chunks: any) => (*/}
               {/*    <LinkTextButton target="_blank" href="/about" className="font-normal! text-primary!">*/}
@@ -66,7 +64,7 @@ export default function DeployProjectModal({action}: Properties) {
               {/*    </LinkTextButton>*/}
               {/*  )*/}
               {/*}} />*/}
-              <IconModalSection className="mt-4 opacity-70" t={t} tKey="note" icon={InfoIcon} />
+              <IconModalSection className="mt-4 opacity-70" t={t} tKey="note" icon={InfoIcon}/>
             </div>
           </DialogDescription>
         </DialogHeader>

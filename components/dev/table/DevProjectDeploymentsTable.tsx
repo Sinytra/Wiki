@@ -1,6 +1,6 @@
 import {DevProjectDeployment, DevProjectDeployments} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
-import {GitCommitHorizontal, GlobeIcon, HardDriveUploadIcon, MoreHorizontal} from "lucide-react";
+import {GitCommitHorizontal, GlobeIcon, HardDriveUploadIcon, MoreHorizontal, ServerOffIcon} from "lucide-react";
 import DataTablePagination from "@/components/base/data-table/DataTablePagination";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
@@ -12,6 +12,34 @@ import ContextDropdownMenu from "@/components/ui/custom/ContextDropdownMenu";
 import {Link} from "@/lib/locales/routing";
 import LocalDateTime from "@/components/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
+import DeployProjectModalOpenButton from "@/components/dev/modal/DeployProjectModalOpenButton";
+
+function EmptyDeploymentsState() {
+  return (
+    <div className={`
+      flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-sm border border-tertiary bg-primary-dim
+      py-8
+    `}>
+      <div className="opacity-60">
+        <ServerOffIcon className="size-12" />
+      </div>
+
+      <span className="text-lg font-medium">
+        No deployments found
+      </span>
+
+      <span>
+        Create a new deployment to publish your project on the wiki.
+      </span>
+
+      <div className="mt-2">
+        <ClientLocaleProvider keys={['DeployProjectModal']}>
+          <DeployProjectModalOpenButton />
+        </ClientLocaleProvider>
+      </div>
+    </div>
+  )
+}
 
 function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
   return (
@@ -94,18 +122,17 @@ export default function DevProjectDeploymentsTable({data}: { data: DevProjectDep
   return (
     <div>
       {data.data.length > 0 ?
-        <div className="flex border-collapse flex-col rounded-sm border border-secondary">
+        <div className="flex border-collapse flex-col rounded-sm border border-secondary-dim">
           {...data.data.map(d => (
-            <Link key={d.id} href={`deployments/${d.id}`} className="border-secondary [&:not(:first-of-type)]:border-t">
+            <Link key={d.id} href={`deployments/${d.id}`} className={`
+              border-secondary-dim [&:not(:first-of-type)]:border-t
+            `}>
               <DeploymentEntry deployment={d}/>
             </Link>
           ))}
         </div>
         :
-        <div>
-          {/* TODO */}
-          No deployments found.
-        </div>
+        <EmptyDeploymentsState />
       }
 
       <ClientLocaleProvider keys={['DataTable']}>

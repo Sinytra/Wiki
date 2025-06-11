@@ -23,9 +23,10 @@ import FormDeleteButton from "@/components/ui/custom/FormDeleteButton";
 
 interface Properties {
   action: () => Promise<any>;
+  redirectTo?: string;
 }
 
-export default function DeleteDeploymentModal({action}: Properties) {
+export default function DeleteDeploymentModal({action, redirectTo}: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const t = useTranslations('DeleteDeploymentModal');
@@ -43,7 +44,13 @@ export default function DeleteDeploymentModal({action}: Properties) {
     onOpenChange(false);
     toast.success(t('success'));
 
-    startTransition(() => router.refresh());
+    startTransition(() => {
+      if (redirectTo) {
+        router.push({ pathname: redirectTo });
+      } else {
+        router.refresh();
+      }
+    });
   }
 
   // TODO Warn when removing active deployment

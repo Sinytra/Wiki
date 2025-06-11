@@ -2,7 +2,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
-import {DevProject, Project, ProjectRevision} from "@/lib/service";
+import {DevProject, Project} from "@/lib/service";
 import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
 import {
@@ -10,7 +10,6 @@ import {
   ClockIcon,
   CloudyIcon,
   ExternalLinkIcon,
-  GitBranchIcon,
   GlobeIcon,
   HardDriveIcon,
   HelpCircleIcon,
@@ -30,7 +29,7 @@ import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {Label} from "@/components/ui/label";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
-import LocalDateTime from "@/components/util/LocalDateTime";
+import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
 
 export const dynamic = 'force-dynamic';
 
@@ -119,57 +118,6 @@ function ProjectInfo({project}: { project: Project }) {
   )
 }
 
-function LinkWithFallback({className, href, children}: { className?: string, href?: string; children?: any }) {
-  return (
-    href ?
-      <a href={href} target="_blank" className={cn(className, 'hover:underline hover:underline-offset-4')}>
-        {children}
-      </a>
-      :
-      <span className={className}>
-        {children}
-      </span>
-  );
-}
-
-function ProjectRevisionInfo({status, revision}: { status?: ProjectStatus, revision?: ProjectRevision }) {
-  const t = useTranslations('DevProjectPage.revision');
-
-  return (
-    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-dim p-3">
-      <div className="flex flex-row items-center gap-2">
-        <GitBranchIcon className="size-4"/>
-        <span>{t('title')}</span>
-      </div>
-      {revision ?
-        <div className="flex flex-row flex-wrap items-start gap-4 text-sm sm:flex-nowrap">
-          <LinkWithFallback href={revision.url} className="shrink-0 font-mono text-secondary">
-            {revision.hash}
-          </LinkWithFallback>
-          <span className="text-secondary" title={revision.authorEmail}>
-            {revision.authorName}
-          </span>
-          <LinkWithFallback href={revision.url}>
-            {revision.message}
-          </LinkWithFallback>
-          <span className="ml-auto shrink-0 text-sm text-secondary">
-            <LocalDateTime dateTime={new Date(revision.date)}/>
-          </span>
-        </div>
-        : status === ProjectStatus.LOADING
-          ?
-          <div className="text-sm text-secondary">
-            {t('reloading')}
-          </div>
-          :
-          <div className="text-sm text-secondary">
-            {t('not_found')}
-          </div>
-      }
-    </div>
-  )
-}
-
 async function ProfileProject({project}: { project: DevProject }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectPage');
@@ -194,7 +142,11 @@ async function ProfileProject({project}: { project: DevProject }) {
       </div>
 
       <div>
-        <ProjectRevisionInfo status={project.status} revision={project.revision}/>
+        <ProjectGitRevision
+          loading={project.status === ProjectStatus.LOADING}
+          revision={project.revision}
+          current
+        />
       </div>
 
       <div className="flex flex-row flex-wrap items-center gap-4">

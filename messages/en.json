@@ -772,11 +772,15 @@
     },
     "DevProjectDeploymentPage": {
         "deployments": "Deployments",
-        "title": "Deployment Details"
+        "title": "Deployment Details",
+        "git-config": {
+            "title": "Source coordinates"
+        }
     },
-    "DeploymentRevisionInfo": {
+    "ProjectGitRevision": {
         "title": "Git revision",
+        "title_current": "Current Git revision",
         "loading": "Deploying project, please stand by...",
-        "not_found": "No revision found. Try reloading the project."
+        "not_found": "Project has no active deployment"
     }
 }

@@ -1,4 +1,4 @@
-import {DevProject, PaginatedData, Project, StatusResponse} from "@/lib/service/index";
+import {DevProject, PaginatedData, Project, ProjectRevision, StatusResponse} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {GameProjectRecipe, ProjectType, UserProfile} from "@/lib/service/types";
@@ -111,22 +111,18 @@ export interface DevProjectDeployment {
 }
 export type DevProjectDeployments = PaginatedData<DevProjectDeployment>;
 
-export interface DeploymentRevision {
-  authorEmail: string;
-  authorName: string;
-  date: string;
-  hash: string;
-  message: string;
-}
-
 export interface FullDevProjectDeployment {
   id: string;
   project_id: string;
-  revision: DeploymentRevision | null;
+  revision: ProjectRevision | null;
   status: DeploymentStatus;
   user_id: string | null;
   created_at: string;
   active: boolean;
+
+  source_repo: string;
+  source_branch: string;
+  source_path: string;
 }
 
 export function assertBackendUrl(): string {
