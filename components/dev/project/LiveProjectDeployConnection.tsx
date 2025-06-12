@@ -14,6 +14,9 @@ interface Props {
   token: string
 }
 
+const WS_HELLO = '<<hello<<';
+const WS_ERROR = '<<error';
+
 export default function LiveProjectDeployConnection({id, status, token}: Props) {
   const initialized = useRef(false);
   const router = useRouter();
@@ -44,23 +47,26 @@ export default function LiveProjectDeployConnection({id, status, token}: Props) 
     ws.onopen = () => {
       console.debug('Opened WS connection for project', id);
       setConnected(true);
-
-      toast.promise(promise, {
-        loading: t('loading'),
-        success: t('success'),
-        error: t('error'),
-        action: (
-          <Link href={`/dev/project/${id}/health`} className="ml-auto">
-            <Button size="sm" variant="secondary" className="h-6! rounded-sm! text-[12px]!">
-              {t('logs')}
-            </Button>
-          </Link>
-        )
-      });
     }
 
     ws.onmessage = (data: MessageEvent<any>) => {
-      if (data.data == '<<error' && rejector) {
+      if (data.data.startsWith(WS_HELLO)) {
+        const deploymentId = data.data.substring(WS_HELLO.length);
+
+        toast.promise(promise, {
+          loading: t('loading'),
+          success: t('success'),
+          error: t('error'),
+          action: (
+            <Link href={`/dev/project/${id}/deployments/${deploymentId}`} className="ml-auto">
+              <Button size="sm" variant="secondary" className="h-6! rounded-sm! text-[12px]!">
+                {t('view')}
+              </Button>
+            </Link>
+          )
+        });
+      }
+      if (data.data == WS_ERROR && rejector) {
         rejector();
       }
     };

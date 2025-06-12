@@ -3,6 +3,7 @@ import cacheUtil from "@/lib/cacheUtil";
 import platforms, {ProjectPlatform} from "@/lib/platforms";
 import {GameProjectRecipe, ProjectType, UserProfile} from "@/lib/service/types";
 import {cookies} from "next/headers";
+import {DeploymentStatus, ProjectIssue} from "@/lib/types/serviceTypes";
 
 const ONE_DAY = 60 * 60 * 24;
 const ONE_WEEK = ONE_DAY * 7;
@@ -91,14 +92,6 @@ export interface DevProjectVersion {
   branch: string;
 }
 export type DevProjectVersions = PaginatedData<DevProjectVersion>;
-
-export enum DeploymentStatus {
-  UNKNOWN = 'unknown',
-  CREATED = 'created',
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error'
-}
 
 export interface DevProjectDeployment {
   id: string;
@@ -219,6 +212,10 @@ async function updateProject(data: ProjectUpdateRequest): Promise<ProjectUpdateR
 
 async function deleteProject(id: string): Promise<SuccessResponse | ErrorResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}`, {}, 'DELETE'));
+}
+
+async function getDevProjectIssues(id: string): Promise<ProjectIssue[] | StatusResponse> {
+  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/issues`, {}, 'GET'));
 }
 
 async function revalidateProject(id: string, token: string | null = null): Promise<SuccessResponse | ErrorResponse> {
@@ -380,5 +377,6 @@ export default {
   getDevProjectContentRecipes,
   getDevProjectDeployments,
   getDevProjectDeployment,
-  deleteProjectDeployment
+  deleteProjectDeployment,
+  getDevProjectIssues
 }

@@ -1,7 +1,8 @@
-import {DeploymentStatus} from "@/lib/service/remoteServiceApi";
 import LoadingIndicator from "@/components/util/LoadingIndicator";
 import * as React from "react";
 import {useTranslations} from "next-intl";
+
+import {DeploymentStatus} from "@/lib/types/serviceTypes";
 
 function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
   return (

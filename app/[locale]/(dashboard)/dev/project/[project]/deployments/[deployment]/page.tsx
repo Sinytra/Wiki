@@ -2,7 +2,7 @@ import {Link, setContextLocale} from "@/lib/locales/routing";
 import {BreadcrumbLink, BreadcrumbPage} from "@/components/ui/breadcrumb";
 import DevBreadcrumb from "@/components/dev/navigation/DevBreadcrumb";
 import {getTranslations} from "next-intl/server";
-import remoteServiceApi, {DeploymentStatus, FullDevProjectDeployment} from "@/lib/service/remoteServiceApi";
+import remoteServiceApi, {FullDevProjectDeployment} from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import {useTranslations} from "next-intl";
 import {Button} from "@/components/ui/button";
@@ -21,12 +21,16 @@ import * as React from "react";
 import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import DeleteDeploymentModal from "@/components/dev/modal/DeleteDeploymentModal";
-import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
+import {fetchProjectLog, handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import ContextDropdownMenu from "@/components/ui/custom/ContextDropdownMenu";
 import LocalDateTime from "@/components/util/LocalDateTime";
 import {Badge} from "@/components/ui/badge";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
+
+import {DeploymentStatus} from "@/lib/types/serviceTypes";
+import DevProjectLogs from "@/components/dev/project/DevProjectLogs";
+import authSession from "@/lib/authSession";
 
 type Properties = {
   params: {
@@ -89,7 +93,9 @@ function DeploymentGitCoordinates({deployment}: { deployment: FullDevProjectDepl
   return (
     <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-dim p-3">
       <div className="flex flex-row items-center gap-2">
-        <span>{t('title')}</span>
+        <span className="text-base">
+          {t('title')}
+        </span>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex w-full flex-row items-center gap-2">
@@ -199,6 +205,9 @@ export default async function DevProjectDeploymentPage({params}: Properties) {
     return redirect(`/dev/project/${params.project}/deployments`);
   }
 
+  // TODO Find alternative
+  const token = authSession.getSession()?.token!;
+
   return (
     <div>
       <DevBreadcrumb home={
@@ -214,6 +223,15 @@ export default async function DevProjectDeploymentPage({params}: Properties) {
       </DevBreadcrumb>
 
       <DeploymentInfo deployment={content}/>
+
+      {(content.active || content.status == DeploymentStatus.LOADING) && content.status !== DeploymentStatus.UNKNOWN &&
+        <div className="mt-6 px-1">
+            <ClientLocaleProvider keys={['DevProjectLogs']}>
+                <DevProjectLogs id={content.project_id} status={content.status} token={token}
+                                callback={fetchProjectLog}/>
+            </ClientLocaleProvider>
+        </div>
+      }
     </div>
   )
 }

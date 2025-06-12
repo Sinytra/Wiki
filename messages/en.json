@@ -460,7 +460,8 @@
     "ProjectStatus": {
         "unknown": "Unknown",
         "loading": "Initializing",
-        "loaded": "Loaded",
+        "healthy": "Loaded",
+        "at_risk": "Needs attention",
         "error": "Errored"
     },
     "DevProjectsListPage": {
@@ -524,10 +525,10 @@
     },
     "DevProjectHealthPage": {
         "title": "Project health",
-        "desc": "Monitor project status and errors",
+        "desc": "Monitor project status and issues",
         "errors": {
-            "title": "Project errors",
-            "desc": "Ongoing issues & warnings",
+            "title": "Project issue report",
+            "desc": "Ongoing warnings & errors",
             "empty": "No issues found"
         }
     },
@@ -768,7 +769,7 @@
         "loading": "Deploying project...",
         "success": "Project deploy successful",
         "error": "Project deploy failed",
-        "logs": "View logs"
+        "view": "View"
     },
     "DevProjectDeploymentPage": {
         "deployments": "Deployments",
@@ -782,5 +783,15 @@
         "title_current": "Current Git revision",
         "loading": "Deploying project, please stand by...",
         "not_found": "Project has no active deployment"
+    },
+    "ProjectIssueLevel": {
+        "warning": "Warning",
+        "error": "Error",
+        "unknown": "Unknown"
+    },
+    "ProjectIssueType": {
+        "deprecated_usage": "Deprecated usage",
+        "page_render": "Invalid page",
+        "invalid_content": "Invalid content"
     }
 }

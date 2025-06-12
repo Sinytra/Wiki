@@ -2,12 +2,14 @@
     --background-color-primary: #1B1B1F; /*bg-background*/
     --background-color-primary-alt: #161618; /*bg-card*/
     --background-color-primary-dim: #18181A;
+    --background-color-primary-hover: #19191C;
     --background-color-primary-dark: #131314;
     --background-color-secondary: #27272AFF; /*accent*/ /*sidebar-accent*/ /*input*/
     --background-color-tertiary: var(--color-neutral-800);
     --background-color-inverse: #FAFAFAFF;
     --background-color-inverse-secondary: #EBEBF599;
     --background-color-destructive: #E0575BFF;
+    --background-color-destructive-soft: var(--vp-c-caution-soft);
     --background-color-code: #21252b;
     --background-color-code-alt: #2b313a;
     --background-color-code-dim: #0D1117;
@@ -15,6 +17,7 @@
     --background-color-table-hard: var(--background);
     --background-color-table-hover: var(--vp-c-bg-elv);
     --background-color-code-tab-active: #1E2127;
+    --background-color-warning-soft: rgba(234, 179, 8, 0.09);
 
     --text-color-primary: #FFFFF5DB; /*foreground*/
     --text-color-primary-alt: #FAFAFAFF;
@@ -23,7 +26,9 @@
     --text-color-inverse: #1B1B1F;
     --text-color-brand-primary: #5C9DE4FF;
     --text-color-warning: #EFA63E;
+    --text-color-warning-soft: #EFA63EED;
     --text-color-destructive: #FB6C6F;
+    --text-color-success: rgba(5, 223, 114, 0.7);
     --text-color-code: #A9B2C3;
 
     --border-color-primary: var(--color-neutral-600);
@@ -35,6 +40,7 @@
     --border-color-quaternary: #27272AFF; /*input*/
     --border-color-info: #5a96e6;
     --border-color-warning: #DA8B17B2;
+    --border-color-warning-soft: #DA8B1790;
     --border-color-destructive: #E0575BBF;
     --border-color-destructive-secondary: #E0575B8C;
 

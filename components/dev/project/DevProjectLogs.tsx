@@ -2,14 +2,13 @@
 
 import {Button} from "@/components/ui/button";
 import {startTransition, Suspense, use, useEffect, useRef, useState} from 'react';
-import {LoaderCircleIcon, ScrollTextIcon} from "lucide-react";
-
-import {ProjectStatus} from "@/lib/types/serviceTypes";
+import {LoaderCircleIcon} from "lucide-react";
 import {useRouter} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
 import highlighter from "@/lib/markdown/highlighter";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import ConnectionIndicator from "@/components/util/ConnectionIndicator";
+import {DeploymentStatus} from "@/lib/types/serviceTypes";
 
 function Skeleton({children}: { children: any }) {
   return (
@@ -91,7 +90,7 @@ function WaitingLogs() {
 
 export default function DevProjectLogs({id, status, token, callback}: {
   id: string;
-  status: ProjectStatus;
+  status: DeploymentStatus;
   token?: string;
   callback: (id: string) => Promise<string | undefined>;
 }) {
@@ -120,7 +119,7 @@ export default function DevProjectLogs({id, status, token, callback}: {
       keepLogs.current = false;
     }
 
-    if (status != ProjectStatus.LOADING || initialized.current) {
+    if (status != DeploymentStatus.LOADING || initialized.current) {
       return;
     }
 
@@ -159,7 +158,7 @@ export default function DevProjectLogs({id, status, token, callback}: {
 
   return (
     <div className="flex flex-col gap-4">
-      <DevProjectSectionTitle title={t('title')} desc="Server-side project log" icon={ScrollTextIcon}
+      <DevProjectSectionTitle title={t('title')} desc="Server-side project log"
                               ping={wsOpen && <ConnectionIndicator className="ml-1" />}
       />
 

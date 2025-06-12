@@ -11,7 +11,7 @@ import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import {cn, trimText} from "@/lib/utils";
 import platforms, {PlatformProject} from "@/lib/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
-import {CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon} from "lucide-react";
+import {AlertCircleIcon, CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon, XIcon} from "lucide-react";
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
@@ -50,11 +50,11 @@ function ProfileProjectSkeleton() {
   )
 }
 
-function Property({icon: Icon, iconClass, children}: { icon: any, iconClass?: string, children: any }) {
+function Property({icon: Icon, textClass, iconClass, children}: { textClass: string; icon: any, iconClass?: string, children: any }) {
   return (
     <div className="inline-flex items-center gap-2">
       <Icon className={cn("h-4 w-4", iconClass)}/>
-      <span className="align-bottom text-sm text-primary">{children}</span>
+      <span className={cn('align-bottom text-sm', textClass)}>{children}</span>
     </div>
   )
 }
@@ -84,6 +84,15 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
   const t = await getTranslations('DevProjectsListPage');
   const u = await getTranslations('ProjectStatus');
 
+  const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
+    [ProjectStatus.HEALTHY]: {text: 'text-[var(--vp-c-success-2)]', iconClass: 'text-green-400/70', icon: CircleCheckIcon},
+    [ProjectStatus.AT_RISK]: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
+    [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
+    [ProjectStatus.ERROR]: {text: 'text-destructive', iconClass: 'text-destructive', icon: XIcon},
+    [ProjectStatus.UNKNOWN]: {text: '', iconClass: 'text-secondary', icon: HelpCircleIcon}
+  };
+  const status = statuses[project.status || ProjectStatus.UNKNOWN];
+
   return (
     <div className={`
       flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-dim p-3 sm:flex-row
@@ -109,15 +118,9 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
 
         <div className="flex w-full flex-row flex-wrap gap-3">
           <div className="flex flex-row flex-wrap gap-4 gap-y-2 sm:gap-5">
-            <Property
-              iconClass={project.status === ProjectStatus.LOADING ? 'text-yellow-500 animate-spin' : project.status === ProjectStatus.LOADED ? 'text-green-400/70' : 'text-secondary '}
-              icon={project.status === ProjectStatus.LOADED ? CircleCheckIcon : project.status === ProjectStatus.LOADING ? LoaderCircleIcon : HelpCircleIcon}>
+            <Property textClass={status.text} iconClass={status.iconClass} icon={status.icon}>
               {u(project.status || ProjectStatus.UNKNOWN)}
             </Property>
-            {/*<Property icon={BookMarkedIcon}>*/}
-            {/*  <LinkTextButton className="font-normal! align-bottom!" href={project.source_repo!}>{project.source_repo}</LinkTextButton>*/}
-            {/*</Property>*/}
-            {/*<Property icon={GitBranchIcon}>{project.source_branch}</Property>*/}
           </div>
 
           <div className="ml-auto">

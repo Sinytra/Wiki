@@ -6,6 +6,7 @@ import {DevProject, Project} from "@/lib/service";
 import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
 import {
+  AlertCircleIcon,
   CheckIcon,
   ClockIcon,
   CloudyIcon,
@@ -92,7 +93,8 @@ function ProjectInfo({project}: { project: Project }) {
   const TypeIcon = ProjectTypeIcons[project.type];
 
   const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectStatus.LOADED]: {text: 'text-[var(--vp-c-success-2)]', icon: CheckIcon},
+    [ProjectStatus.HEALTHY]: {text: 'text-[var(--vp-c-success-2)]', icon: CheckIcon},
+    [ProjectStatus.AT_RISK]: {text: 'text-[var(--vp-c-danger-1)]', icon: AlertCircleIcon},
     [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
     [ProjectStatus.ERROR]: {text: 'text-destructive', icon: XIcon},
     [ProjectStatus.UNKNOWN]: {text: '', icon: HelpCircleIcon}

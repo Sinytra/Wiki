@@ -3,14 +3,14 @@
 import * as React from 'react';
 import {useContext} from 'react';
 import {
-  ActivityIcon,
+  ActivityIcon, AlertCircleIcon,
   ArrowLeftIcon,
   BoxIcon,
   GitBranchIcon, HardDriveIcon,
   LayoutGridIcon,
   PencilRulerIcon,
   SettingsIcon,
-  TagsIcon,
+  TagsIcon, TriangleAlertIcon,
   UsersIcon
 } from 'lucide-react';
 import {
@@ -27,7 +27,6 @@ import {DevProject} from "@/lib/service";
 import {PlatformProject} from "@/lib/platforms";
 import {Link} from "@/lib/locales/routing";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
-import {ProjectStatus} from "@/lib/types/serviceTypes";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   project: DevProject;
@@ -59,7 +58,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
 
   const baseUrl = `/dev/project/${project.id}`;
   const {connected} = useContext(DevProjectSidebarContext)!;
-  const disableContents = project.status !== ProjectStatus.LOADED;
+  const disableContents = !project.has_active_deployment;
 
   return (
     <Sidebar variant="floating" className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
@@ -79,8 +78,23 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               icon={HardDriveIcon}
               title={t('nav.deployments')}
               matcher={RegExp(`^${baseUrl}\/deployments(\/.*)?$`)}
+              live={connected}
             />
-            <DevSidebarMenuItem url={`${baseUrl}/health`} icon={ActivityIcon} title={t('nav.health')} live={connected}/>
+            <DevSidebarMenuItem
+              url={`${baseUrl}/health`}
+              icon={ActivityIcon}
+              title={t('nav.health')}
+              extra={project.issue_stats.error > 0 ?
+                <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
+                    <AlertCircleIcon className="size-4" />
+                </div>
+                :
+                project.issue_stats.warning > 0 &&
+                <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-warning">
+                    <TriangleAlertIcon className="size-4" />
+                </div>
+              }
+            />
             <DevSidebarMenuItem url={`${baseUrl}/members`} icon={UsersIcon} title={t('nav.members')}/>
             <DevSidebarMenuItem url={`${baseUrl}/settings`} icon={SettingsIcon} title={t('nav.settings')}/>
           </SidebarMenu>

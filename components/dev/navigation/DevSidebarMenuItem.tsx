@@ -5,6 +5,7 @@ import {SidebarMenuButton, SidebarMenuItem} from "@/components/ui/sidebar";
 import {ExternalLinkIcon, type LucideIcon} from "lucide-react";
 import ConnectionIndicator from "@/components/util/ConnectionIndicator";
 import {cn} from "@/lib/utils";
+import {ReactNode} from "react";
 
 export interface Props {
   title: string;
@@ -13,10 +14,11 @@ export interface Props {
   external?: boolean;
   disabled?: boolean;
   live?: boolean;
+  extra?: ReactNode;
   matcher?: RegExp;
 }
 
-export default function DevSidebarMenuItem({title, url, icon: Icon, external, disabled, matcher, live}: Props) {
+export default function DevSidebarMenuItem({title, url, icon: Icon, external, disabled, matcher, live, extra}: Props) {
   const pathname = usePathname();
 
   const isActive = matcher ? matcher.test(pathname) : pathname === url;
@@ -29,6 +31,7 @@ export default function DevSidebarMenuItem({title, url, icon: Icon, external, di
           <span>{title}</span>
           {external && <ExternalLinkIcon className="ml-auto h-4 w-4" />}
           {live && <ConnectionIndicator className="ml-auto" /> }
+          {extra}
         </SidebarMenuButton>
       </Link>
     </SidebarMenuItem>

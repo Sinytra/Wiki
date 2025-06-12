@@ -8,7 +8,7 @@ import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 import {GameProjectRecipe, ProjectContentTree, ProjectType} from "@/lib/service/types";
 import available from "@/lib/locales/available";
 import {Language} from "@/lib/types/available";
-import {ProjectStatus} from "@/lib/types/serviceTypes";
+import {ProjectIssueStats, ProjectStatus} from "@/lib/types/serviceTypes";
 
 export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
 
@@ -51,6 +51,7 @@ export interface Project extends BaseProject {
   locales?: string[];
   local?: boolean;
   status?: ProjectStatus;
+  has_active_deployment?: boolean;
   created_at: string;
 }
 
@@ -59,6 +60,7 @@ export interface DevProject extends Project {
   source_branch: string;
   source_path: string;
   revision: ProjectRevision;
+  issue_stats: ProjectIssueStats;
 }
 
 export interface ProjectInfo {
