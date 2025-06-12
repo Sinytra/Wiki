@@ -3,7 +3,7 @@
 import {useContext, useEffect, useRef} from 'react';
 import {usePathname} from "next/navigation";
 import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
-import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
+import DocsSidebarBase, {DocsSidebarBaseProps} from "@/components/docs/side/DocsSidebarBase";
 
 // @ts-ignore
 export default function ScrollableDocsSidebarBase(props: DocsSidebarBaseProps) {

@@ -70,6 +70,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
         'w-[96vw] sm:w-64'
       )}
       tagName="nav"
+      solid
     >
       <div className="relative">
         {showTopGradient && (

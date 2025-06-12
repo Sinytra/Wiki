@@ -61,6 +61,7 @@ export interface DevProject extends Project {
   source_path: string;
   revision: ProjectRevision;
   issue_stats: ProjectIssueStats;
+  has_failing_deployment: boolean;
 }
 
 export interface ProjectInfo {

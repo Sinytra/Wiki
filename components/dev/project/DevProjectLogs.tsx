@@ -159,6 +159,7 @@ export default function DevProjectLogs({id, status, token, callback}: {
   return (
     <div className="flex flex-col gap-4">
       <DevProjectSectionTitle title={t('title')} desc="Server-side project log"
+                              className="text-base"
                               ping={wsOpen && <ConnectionIndicator className="ml-1" />}
       />
 

@@ -21,16 +21,15 @@ import * as React from "react";
 import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import DeleteDeploymentModal from "@/components/dev/modal/DeleteDeploymentModal";
-import {fetchProjectLog, handleDeleteDeploymentForm} from "@/lib/forms/actions";
+import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import ContextDropdownMenu from "@/components/ui/custom/ContextDropdownMenu";
 import LocalDateTime from "@/components/util/LocalDateTime";
 import {Badge} from "@/components/ui/badge";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
 
-import {DeploymentStatus} from "@/lib/types/serviceTypes";
-import DevProjectLogs from "@/components/dev/project/DevProjectLogs";
-import authSession from "@/lib/authSession";
+import {DeploymentStatus, ProjectIssue} from "@/lib/types/serviceTypes";
+import ProjectIssueWidget from "@/components/dev/project/ProjectIssueWidget";
 
 type Properties = {
   params: {
@@ -49,6 +48,38 @@ function StatusInfoColumn({name, children}: { name: string; children: any; }) {
       <div className="text-sm text-primary">
         {children}
       </div>
+    </div>
+  )
+}
+
+function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
+  const t = useTranslations('DeploymentIssues');
+
+  return (
+    <div className="flex flex-col gap-1 rounded-sm border border-tertiary bg-primary-dim p-3">
+      <div className="flex flex-row items-center gap-2">
+        <span className="text-base">
+          {t('title')}
+        </span>
+      </div>
+      {issues.length > 0 ?
+        <div className="flex flex-col gap-4">
+            <span className="text-sm text-secondary">
+                Found {issues.length} issues that need attention.
+            </span>
+            <div className="flex max-h-72 flex-col gap-2 overflow-y-auto">
+                <ClientLocaleProvider keys={['ProjectIssueType']}>
+                  {issues.map(i => (
+                    <ProjectIssueWidget key={i.id} issue={i}/>
+                  ))}
+                </ClientLocaleProvider>
+            </div>
+        </div>
+        :
+        <span className="text-sm text-secondary">
+          No issues found.
+        </span>
+      }
     </div>
   )
 }
@@ -163,10 +194,7 @@ function DeploymentInfo({deployment}: { deployment: FullDevProjectDeployment }) 
               </DropdownMenuItem>
 
               <ClientLocaleProvider keys={['DeleteDeploymentModal']}>
-                <DeleteDeploymentModal
-                  action={handleDeleteDeploymentForm.bind(null, deployment.id)}
-                  redirectTo={`/dev/project/${deployment.project_id}/deployments`}
-                />
+                <DeleteDeploymentModal action={handleDeleteDeploymentForm.bind(null, deployment.id)}/>
               </ClientLocaleProvider>
             </>}
           >
@@ -191,6 +219,8 @@ function DeploymentInfo({deployment}: { deployment: FullDevProjectDeployment }) 
           revision={deployment.revision}
           loading={deployment.status === DeploymentStatus.LOADING}
         />
+
+        <DeploymentIssues issues={deployment.issues}/>
       </div>
     </div>
   )
@@ -204,9 +234,6 @@ export default async function DevProjectDeploymentPage({params}: Properties) {
   if (!('id' in content)) {
     return redirect(`/dev/project/${params.project}/deployments`);
   }
-
-  // TODO Find alternative
-  const token = authSession.getSession()?.token!;
 
   return (
     <div>
@@ -223,15 +250,6 @@ export default async function DevProjectDeploymentPage({params}: Properties) {
       </DevBreadcrumb>
 
       <DeploymentInfo deployment={content}/>
-
-      {(content.active || content.status == DeploymentStatus.LOADING) && content.status !== DeploymentStatus.UNKNOWN &&
-        <div className="mt-6 px-1">
-            <ClientLocaleProvider keys={['DevProjectLogs']}>
-                <DevProjectLogs id={content.project_id} status={content.status} token={token}
-                                callback={fetchProjectLog}/>
-            </ClientLocaleProvider>
-        </div>
-      }
     </div>
   )
 }

@@ -4,12 +4,13 @@ import {cn} from '@/lib/utils';
 import {forwardRef, useContext} from 'react';
 import {DocsSidebarContext, DocsSidebarType} from "@/components/docs/side/DocsSidebarContext";
 
-interface DocsSidebarBaseProps {
+export interface DocsSidebarBaseProps {
   title: string;
   className?: string;
   innerClassName?: string;
   tagName?: string;
   children?: any;
+  solid?: boolean;
   type: DocsSidebarType;
 }
 
@@ -19,7 +20,8 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
                                                                                                  innerClassName,
                                                                                                  tagName,
                                                                                                  children,
-                                                                                                 type
+                                                                                                 type,
+                                                                                                 solid
                                                                                                }: DocsSidebarBaseProps, ref) {
   const ContentDiv = tagName || 'div' as any;
 
@@ -31,8 +33,9 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
              className,
              `
                fixed z-30 h-[88vh] w-full overflow-hidden border-tertiary bg-primary transition-all duration-300
-               ease-in-out sm:h-[calc(100vh_-_9.5rem)] lg:sticky lg:top-[6rem]! lg:transition-none
+               ease-in-out sm:h-[calc(100vh_-_9.5rem)] lg:top-[6rem]! lg:transition-none
              `,
+             solid ? 'lg:static' : 'lg:sticky',
              type == 'left' && `
                border-r data-[open=false]:-translate-x-full data-[open=false]:border-0 lg:border-r-0
                lg:data-[open=false]:-translate-x-0

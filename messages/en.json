@@ -555,7 +555,7 @@
         "desc": "Browse project tags"
     },
     "DevProjectLogs": {
-        "title": "Server logs",
+        "title": "Deployment log",
         "show": "Show",
         "unloaded": "Not loaded",
         "waiting": "Waiting for server...",
@@ -793,5 +793,9 @@
         "deprecated_usage": "Deprecated usage",
         "page_render": "Invalid page",
         "invalid_content": "Invalid content"
+    },
+    "DeploymentIssues": {
+        "title": "Deployment issues",
+        "empty": "No issues found"
     }
 }

@@ -31,7 +31,7 @@ export default function DevSidebarMenuItem({title, url, icon: Icon, external, di
           <span>{title}</span>
           {external && <ExternalLinkIcon className="ml-auto h-4 w-4" />}
           {live && <ConnectionIndicator className="ml-auto" /> }
-          {extra}
+          {!live && extra}
         </SidebarMenuButton>
       </Link>
     </SidebarMenuItem>

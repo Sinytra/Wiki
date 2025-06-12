@@ -1,12 +1,15 @@
-export default function DevProjectSectionTitle({title, desc, icon: Icon, ping}: {
+import {cn} from "@/lib/utils";
+
+export default function DevProjectSectionTitle({title, desc, icon: Icon, ping, className}: {
   title: string;
   desc?: string;
   icon?: any;
   ping?: any;
+  className?: string;
 }) {
   return (
     <div className="w-fit space-y-1">
-      <h3 className="flex flex-row items-center gap-2 text-lg font-medium">
+      <h3 className={cn('flex flex-row items-center gap-2 text-lg font-medium', className)}>
         {Icon && <Icon className="size-5"/>}
         {title}
         {ping}

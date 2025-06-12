@@ -85,9 +85,9 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
   const u = await getTranslations('ProjectStatus');
 
   const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectStatus.HEALTHY]: {text: 'text-[var(--vp-c-success-2)]', iconClass: 'text-green-400/70', icon: CircleCheckIcon},
+    [ProjectStatus.HEALTHY]: {text: 'text-secondary', iconClass: 'text-green-400/70', icon: CircleCheckIcon},
     [ProjectStatus.AT_RISK]: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
-    [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
+    [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'text-warning animate-spin', icon: LoaderCircleIcon},
     [ProjectStatus.ERROR]: {text: 'text-destructive', iconClass: 'text-destructive', icon: XIcon},
     [ProjectStatus.UNKNOWN]: {text: '', iconClass: 'text-secondary', icon: HelpCircleIcon}
   };

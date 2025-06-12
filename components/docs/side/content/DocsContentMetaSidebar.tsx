@@ -57,6 +57,7 @@ export default function DocsContentMetaSidebar(props: Props) {
       )}
       tagName="nav"
       innerClassName="overscroll-contain"
+      solid
     >
       <SidebarContent {...props}/>
     </ScrollableDocsSidebarBase>

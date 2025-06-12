@@ -79,6 +79,11 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               title={t('nav.deployments')}
               matcher={RegExp(`^${baseUrl}\/deployments(\/.*)?$`)}
               live={connected}
+              extra={project.has_failing_deployment &&
+                <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
+                  <AlertCircleIcon className="size-4" />
+                </div>
+              }
             />
             <DevSidebarMenuItem
               url={`${baseUrl}/health`}

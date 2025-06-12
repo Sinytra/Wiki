@@ -116,6 +116,8 @@ export interface FullDevProjectDeployment {
   source_repo: string;
   source_branch: string;
   source_path: string;
+
+  issues: ProjectIssue[];
 }
 
 export function assertBackendUrl(): string {
