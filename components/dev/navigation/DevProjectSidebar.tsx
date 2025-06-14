@@ -89,16 +89,17 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               url={`${baseUrl}/health`}
               icon={ActivityIcon}
               title={t('nav.health')}
-              extra={project.issue_stats.error > 0 ?
-                <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
-                    <AlertCircleIcon className="size-4" />
-                </div>
-                :
-                project.issue_stats.warning > 0 &&
-                <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-warning">
-                    <TriangleAlertIcon className="size-4" />
-                </div>
-              }
+              extra={project.issue_stats && (
+                project.issue_stats.error > 0 ?
+                  <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
+                      <AlertCircleIcon className="size-4" />
+                  </div>
+                 :
+                  project.issue_stats.warning > 0 &&
+                  <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-warning">
+                      <TriangleAlertIcon className="size-4" />
+                  </div>
+              )}
             />
             <DevSidebarMenuItem url={`${baseUrl}/members`} icon={UsersIcon} title={t('nav.members')}/>
             <DevSidebarMenuItem url={`${baseUrl}/settings`} icon={SettingsIcon} title={t('nav.settings')}/>

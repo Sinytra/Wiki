@@ -13,6 +13,8 @@ import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import DocsGuideContentRightSidebar from "@/components/docs/side/guide/DocsGuideContentRightSidebar";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
+import issuesApi from "@/lib/service/remote/issuesApi";
+import {constructPagePath} from "@/lib/service/serviceUtil";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -55,6 +57,9 @@ export default async function ProjectDocsPage({params}: {
     page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
   } catch (e) {
     console.error('FATAL error rendering page', e);
+
+    await issuesApi.reportPageRenderFailure(projectData.project, constructPagePath(params.path), e, params);
+
     return (
       <DocsPageNotFoundError project={projectData.project}/>
     );

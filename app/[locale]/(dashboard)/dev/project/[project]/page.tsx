@@ -97,7 +97,7 @@ function ProjectInfo({project}: { project: Project }) {
     [ProjectStatus.AT_RISK]: {text: 'text-[var(--vp-c-danger-1)]', icon: AlertCircleIcon},
     [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
     [ProjectStatus.ERROR]: {text: 'text-destructive', icon: XIcon},
-    [ProjectStatus.UNKNOWN]: {text: '', icon: HelpCircleIcon}
+    [ProjectStatus.UNKNOWN]: {text: 'text-secondary', icon: HelpCircleIcon}
   };
   const status = project.status || ProjectStatus.UNKNOWN;
   const StatusIcon = statuses[status].icon;

@@ -119,7 +119,7 @@ export default async function DevProjectHealthPage({params}: { params: { locale:
 
       <DevProjectSectionTitle title={t('errors.title')} desc={t('errors.desc')}/>
 
-      <ProjectIssuesSummary stats={project.issue_stats} />
+      <ProjectIssuesSummary stats={project.issue_stats || {} as ProjectIssueStats} />
 
       <div className="mt-4 flex h-full flex-col gap-y-4">
         <DevProjectSectionTitle

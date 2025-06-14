@@ -23,17 +23,14 @@ export enum ProjectIssueLevel {
 export type ProjectIssueType = 'deprecated_usage' | 'page_render' | 'invalid_content';
 export type ProjectIssueStats = Record<ProjectIssueLevel, number>;
 
-export interface ProjectIssueBody {
-  type: ProjectIssueType;
-  message: string;
-  file: string;
-}
-
 export interface ProjectIssue {
   id: string;
   level: ProjectIssueLevel;
-  page_path: string | null;
   deployment_id: string | null;
+  type: string;
+  subject: string;
+  details: string | null;
+  file: string | null;
+  version_name: string | null;
   created_at: string;
-  body: ProjectIssueBody;
 }

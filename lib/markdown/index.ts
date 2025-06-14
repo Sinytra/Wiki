@@ -29,6 +29,7 @@ import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 import PageLink from "@/components/docs/PageLink";
 import PrefabObtaining from "@/components/docs/shared/prefab/PrefabObtaining";
 import PrefabUsage from "@/components/docs/shared/prefab/PrefabUsage";
+import {formatMarkdownError, MarkdownError} from "@/lib/util/exception";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -120,8 +121,7 @@ async function renderDocumentationMarkdown(source: string, patcher?: ComponentPa
       metadata: frontmatter
     };
   } catch (error: any) {
-    console.error('MDX Compilation error:', error);
-    throw new Error('MDX compilation failed');
+    throw new MarkdownError('MDX compilation failed', formatMarkdownError(error));
   }
 }
 

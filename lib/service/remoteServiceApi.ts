@@ -313,7 +313,7 @@ function urlParams(params: Record<string, string | null>) {
   return searchParams.toString();
 }
 
-async function sendApiRequest(path: string, data: any, params: Record<string, string | null> = {}, options?: Parameters<typeof fetch>[1]) {
+export async function sendApiRequest(path: string, data: any, params: Record<string, string | null> = {}, options?: Parameters<typeof fetch>[1]) {
   const searchParams = urlParams(params);
 
   return fetch(`${assertBackendUrl()}/api/v1/${path}?${searchParams}`, {

@@ -4,11 +4,9 @@ import assets, {AssetLocation} from "../assets";
 import {ProjectPlatform} from "@/lib/platforms/universal";
 import markdown, {ComponentPatcher, DocumentationMarkdown} from "@/lib/markdown";
 import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
-import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
 import {GameProjectRecipe, ProjectContentTree, ProjectType} from "@/lib/service/types";
-import available from "@/lib/locales/available";
-import {Language} from "@/lib/types/available";
 import {ProjectIssueStats, ProjectStatus} from "@/lib/types/serviceTypes";
+import {actualLocale, actualVersion} from "@/lib/service/serviceUtil";
 
 export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
 
@@ -60,7 +58,7 @@ export interface DevProject extends Project {
   source_branch: string;
   source_path: string;
   revision: ProjectRevision;
-  issue_stats: ProjectIssueStats;
+  issue_stats?: ProjectIssueStats;
   has_failing_deployment: boolean;
 }
 
@@ -151,19 +149,6 @@ async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
     }
   }
   return null;
-}
-
-function actualVersion(version: string | null): string | null {
-  return version == DEFAULT_DOCS_VERSION ? null : version;
-}
-
-function actualLocale(locale: string | null): string | null {
-  return !locale || locale == DEFAULT_LOCALE ? null : getLocaleName(locale);
-}
-
-function getLocaleName(locale: string) {
-  const loc: Language = available.getForUrlParam(locale);
-  return loc.prefix ? loc.prefix : `${locale}_${locale}`;
 }
 
 const getProject: (slug: string, version: string | null) => Promise<ProjectWithInfo | null> = createProxy<'getProject'>(

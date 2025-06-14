@@ -89,7 +89,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
     [ProjectStatus.AT_RISK]: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
     [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'text-warning animate-spin', icon: LoaderCircleIcon},
     [ProjectStatus.ERROR]: {text: 'text-destructive', iconClass: 'text-destructive', icon: XIcon},
-    [ProjectStatus.UNKNOWN]: {text: '', iconClass: 'text-secondary', icon: HelpCircleIcon}
+    [ProjectStatus.UNKNOWN]: {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon}
   };
   const status = statuses[project.status || ProjectStatus.UNKNOWN];
 

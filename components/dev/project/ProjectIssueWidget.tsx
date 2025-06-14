@@ -30,7 +30,8 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
           issue.level == ProjectIssueLevel.ERROR && 'text-destructive'
         )}>
           <Icon className="size-4"/>
-          <span className="font-medium">{u(issue.body.type)}</span>
+          {/*TODO TRANSLATE*/}
+          <span className="font-medium">{u(issue.type)}</span>
         </span>
 
         <ChevronDown
@@ -49,11 +50,18 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
             issue.level == ProjectIssueLevel.WARNING && 'text-warning-soft',
             issue.level == ProjectIssueLevel.ERROR && 'text-destructive'
           )}>
-            {issue.body.message}
+            {/*TODO TRANSLATE*/}
+            {issue.subject}
           </span>
 
+          {/*TODO TRANSLATE*/}
+          <pre className="text-xs text-secondary">
+            {issue.details}
+          </pre>
+
           <span className="text-sm text-secondary">
-            Path: {issue.body.file}
+            {/*TODO*/}
+            Path: {issue.file}
           </span>
         </div>
       </div>

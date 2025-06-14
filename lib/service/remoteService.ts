@@ -8,6 +8,7 @@ import {
 import {AssetLocation} from "@/lib/assets";
 import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
 import {GameProjectRecipe, ProjectContentTree} from "@/lib/service/types";
+import {constructPagePath} from "@/lib/service/serviceUtil";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
@@ -68,7 +69,7 @@ function getAssetURL(project: string, location: string, version: string | null):
 
 async function getDocsPage(project: string, path: string[], version: string | null, locale: string | null, optional?: boolean): Promise<DocumentationPage | null | undefined> {
   return wrapNullableServiceCall(
-    () => fetchBackendService(project, `docs/${project}/page/${path.join('/')}.mdx`, {
+    () => fetchBackendService(project, `docs/${project}/page/${constructPagePath(path)}`, {
       version,
       locale,
       optional: optional ? 'true' : null
