@@ -29,7 +29,7 @@ import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo"
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
 
 import {DeploymentStatus, ProjectIssue} from "@/lib/types/serviceTypes";
-import ProjectIssueWidget from "@/components/dev/project/ProjectIssueWidget";
+import ProjectIssuesList from "@/components/dev/project/ProjectIssuesList";
 
 type Properties = {
   params: {
@@ -65,19 +65,15 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
       {issues.length > 0 ?
         <div className="flex flex-col gap-4">
             <span className="text-sm text-secondary">
-                Found {issues.length} issues that need attention.
+              {t('issues_found', { count: issues.length })}
             </span>
             <div className="flex max-h-72 flex-col gap-2 overflow-y-auto">
-                <ClientLocaleProvider keys={['ProjectIssueType']}>
-                  {issues.map(i => (
-                    <ProjectIssueWidget key={i.id} issue={i}/>
-                  ))}
-                </ClientLocaleProvider>
+              <ProjectIssuesList issues={issues} />
             </div>
         </div>
         :
         <span className="text-sm text-secondary">
-          No issues found.
+          {t('empty')}
         </span>
       }
     </div>

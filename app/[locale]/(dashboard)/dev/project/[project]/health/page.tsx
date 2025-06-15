@@ -8,11 +8,15 @@ import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {AlertCircleIcon, ShieldCheckIcon, TriangleAlertIcon} from "lucide-react";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
-import ProjectIssueWidget from "@/components/dev/project/ProjectIssueWidget";
 import {cn} from "@/lib/utils";
+import ProjectIssuesList from "@/components/dev/project/ProjectIssuesList";
 
-function ProjectIssuesStatWidget({className, count, title, icon: Icon}: { title: string; count: number; icon: any; className?: string }) {
+function ProjectIssuesStatWidget({className, count, title, icon: Icon}: {
+  title: string;
+  count: number;
+  icon: any;
+  className?: string
+}) {
   return (
     <div className={cn(
       'flex w-36 flex-row items-center justify-between gap-2 rounded-sm border px-2.5 py-1.5',
@@ -33,9 +37,24 @@ function ProjectIssuesStatWidget({className, count, title, icon: Icon}: { title:
 
 function ProjectIssuesHealthWidget({stats}: { stats: ProjectIssueStats }) {
   const styles = {
-    error: { class: 'text-destructive bg-destructive-soft/50 border-destructive', iconClass: '', icon: AlertCircleIcon, text: 'Project has errors' },
-    warning: { class: 'text-warning-soft bg-warning-soft/50 border-warning-soft', iconClass: '', icon: TriangleAlertIcon, text: 'Project has warnings' },
-    normal: { class: 'text-secondary bg-primary-dim border-secondary', iconClass: 'text-success', icon: ShieldCheckIcon, text: 'No issues found' }
+    error: {
+      class: 'text-destructive bg-destructive-soft/50 border-destructive',
+      iconClass: '',
+      icon: AlertCircleIcon,
+      text: 'Project has errors'
+    },
+    warning: {
+      class: 'text-warning-soft bg-warning-soft/50 border-warning-soft',
+      iconClass: '',
+      icon: TriangleAlertIcon,
+      text: 'Project has warnings'
+    },
+    normal: {
+      class: 'text-secondary bg-primary-dim border-secondary',
+      iconClass: 'text-success',
+      icon: ShieldCheckIcon,
+      text: 'No issues found'
+    }
   };
   const style = styles[stats.error > 0 ? 'error' : stats.warning > 0 ? 'warning' : 'normal'];
   const Icon = style.icon;
@@ -56,7 +75,7 @@ function ProjectIssuesSummary({stats}: { stats: ProjectIssueStats }) {
   return (
     <div className="flex w-full flex-row gap-4">
       <div className="mr-auto">
-        <ProjectIssuesHealthWidget stats={stats} />
+        <ProjectIssuesHealthWidget stats={stats}/>
       </div>
 
       <ProjectIssuesStatWidget
@@ -80,21 +99,17 @@ function ProjectIssuesSection({issues}: { issues: ProjectIssue[] }) {
 
   return (
     <div className="flex h-full w-full flex-col gap-3 rounded-sm">
-      {issues.length > 0 ? (
-        <ClientLocaleProvider keys={['ProjectIssueType']}>
-          {issues.map(i => (
-            <ProjectIssueWidget key={i.id} issue={i} />
-          ))}
-        </ClientLocaleProvider>
-      ) : (
-        <div className={`
-          flex w-full flex-col items-center gap-3 rounded-sm border border-secondary-dim bg-primary-dim py-8
-          text-secondary
-        `}>
-          <ShieldCheckIcon className="size-8" />
-          <span>{t('empty')}</span>
-        </div>
-      )}
+      {issues.length > 0 ?
+        <ProjectIssuesList issues={issues}/>
+        : (
+          <div className={`
+            flex w-full flex-col items-center gap-3 rounded-sm border border-secondary-dim bg-primary-dim py-8
+            text-secondary
+          `}>
+            <ShieldCheckIcon className="size-8"/>
+            <span>{t('empty')}</span>
+          </div>
+        )}
     </div>
   )
 }
@@ -119,7 +134,7 @@ export default async function DevProjectHealthPage({params}: { params: { locale:
 
       <DevProjectSectionTitle title={t('errors.title')} desc={t('errors.desc')}/>
 
-      <ProjectIssuesSummary stats={project.issue_stats || {} as ProjectIssueStats} />
+      <ProjectIssuesSummary stats={project.issue_stats || {} as ProjectIssueStats}/>
 
       <div className="mt-4 flex h-full flex-col gap-y-4">
         <DevProjectSectionTitle

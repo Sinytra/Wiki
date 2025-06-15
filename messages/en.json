@@ -784,18 +784,42 @@
         "loading": "Deploying project, please stand by...",
         "not_found": "Project has no active deployment"
     },
+    "ProjectIssueWidget": {
+        "file": "File: <file></file>",
+        "date": "Created at: <date></date>",
+        "version": "Version: <version></version>"
+    },
     "ProjectIssueLevel": {
         "warning": "Warning",
         "error": "Error",
         "unknown": "Unknown"
     },
     "ProjectIssueType": {
-        "deprecated_usage": "Deprecated usage",
+        "git_clone": "Error cloning repository",
+        "git_info": "Error getting commit information",
+        "ingestor": "Error importing content",
+        "internal": "Internal server error",
         "page_render": "Invalid page",
-        "invalid_content": "Invalid content"
+        "unknown": "Unknown error"
     },
     "DeploymentIssues": {
         "title": "Deployment issues",
-        "empty": "No issues found"
+        "empty": "No issues found.",
+        "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
+    },
+    "ProjectError": {
+        "requires_auth": "Repository connection requires login credentials but none were provided",
+        "no_repository": "Repository not found",
+        "repo_too_large": "Repository exceeds allowed file size",
+        "no_branch": "Invalid branch specified",
+        "no_path": "Metadata file not found at specified path",
+        "invalid_meta": "Metadata file is invalid",
+        "invalid_page": "Failed to render page contents",
+        "duplicate_page": "Duplicate page",
+        "unknown_recipe_type": "Unknown recipe type",
+        "invalid_ingredient": "Invalid ingredient",
+        "invalid_file": "Failed to parse file",
+        "invalid_format": "Invalid file format",
+        "unknown": "Unknown error"
     }
 }
