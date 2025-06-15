@@ -1,11 +1,11 @@
 import {notFound, redirect} from "next/navigation";
 import Asset from "@/components/docs/shared/Asset";
-import {ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
 import PageLink from "@/components/docs/PageLink";
 import service from "@/lib/service";
 import {setContextLocale} from "@/lib/locales/routing";
-import platforms from "@/lib/platforms";
+import platforms from "@repo/platforms";
 import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
+import {ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";
 
 interface Props {
   params: {

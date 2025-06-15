@@ -1,6 +1,5 @@
 import {ReactNode} from "react";
 import styles from './style.module.css';
-import localPreview from "@/lib/previewer/localPreview";
 import {Badge} from "@/components/ui/badge";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";
@@ -14,6 +13,7 @@ import MobileNav from "@/components/navigation/header/MobileNav";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
 import MobileDocsSearch from "@/components/navigation/MobileDocsSearch";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import env from "@repo/shared/env";
 
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
@@ -36,7 +36,7 @@ function MobileHeaderLink({href, children}: { href: string, children: ReactNode 
 }
 
 export default function Header({locale, minimal, unfix}: { locale: string, minimal?: boolean, unfix?: boolean }) {
-  const preview = localPreview.isEnabled();
+  const preview = env.isPreview();
   const t = useTranslations('NavigationHeader');
 
   return (

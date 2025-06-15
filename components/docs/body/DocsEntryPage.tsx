@@ -1,9 +1,9 @@
 import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
-import {RenderedDocsPage} from "@/lib/service";
-import platforms from "@/lib/platforms";
+import platforms from "@repo/platforms";
 import TabSwitchedDocsContent from "@/components/docs/tabs/TabSwitchedDocsContent";
 import DocsChangelogPage from "@/components/docs/body/DocsChangelogPage";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
+import {RenderedDocsPage} from "@repo/shared/types/service";
 
 export default async function DocsEntryPage({page, showHistory}: { page: RenderedDocsPage; showHistory?: boolean }) {
   const project = await platforms.getPlatformProject(page.project);

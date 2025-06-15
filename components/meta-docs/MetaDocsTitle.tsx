@@ -1,4 +1,4 @@
-import {Project} from "@/lib/service";
+import {Project} from "@repo/shared/types/service";
 
 interface Props {
   project?: Project;

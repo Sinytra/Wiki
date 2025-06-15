@@ -1,4 +1,3 @@
-import {PaginatedData, ProjectVersions} from "@/lib/service";
 import {TableCell, TableHead} from "@/components/ui/table";
 import {cn} from "@/lib/utils";
 import * as React from "react";
@@ -7,6 +6,7 @@ import DataTableClient from "@/components/base/data-table/DataTableClient";
 import {TableColumn, TableRouteParams, TableRowLinker} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 
 interface Properties<T> {
   expandRows?: (row: T) => ReactNode | null;

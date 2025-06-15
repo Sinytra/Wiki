@@ -1,13 +1,13 @@
 import {NextRequest, NextResponse} from "next/server";
 import {ImageResponse} from "next/og";
-import platforms, {PlatformProject} from "@/lib/platforms";
+import platforms, {PlatformProject} from "@repo/platforms";
 import sharp from "sharp";
 import {getProcessURL} from "@/lib/utils";
-import {AssetLocation} from "@/lib/assets";
+import {AssetLocation} from "@repo/shared/assets";
 import service from "@/lib/service";
-import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
+import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@repo/shared/constants";
 import matter from "gray-matter";
-import {DocsEntryMetadata} from "@/lib/docs/metadata";
+import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 
 export const runtime = 'nodejs';
 

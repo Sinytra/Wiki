@@ -4,7 +4,6 @@ import {Edit, FlagIcon} from 'lucide-react'
 import Link from "next/link"
 import * as React from "react";
 import {useTranslations} from "next-intl";
-import localPreview from "@/lib/previewer/localPreview";
 import {Button} from "@/components/ui/button";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 
@@ -13,10 +12,15 @@ interface FooterProps {
   path?: string[];
   editUrl?: string;
   local?: boolean;
+  preview: boolean;
 }
 
-function ReportPage({local, slug, path}: { local?: boolean; slug?: string; path?: string[]; }) {
-  const preview = localPreview.isEnabled();
+function ReportPage({local, slug, path, preview}: {
+  local?: boolean;
+  slug?: string;
+  path?: string[];
+  preview: boolean;
+}) {
   const t = useTranslations('PageEditControls');
 
   return !preview && !local && slug && path && (
@@ -41,7 +45,7 @@ function ReportPage({local, slug, path}: { local?: boolean; slug?: string; path?
   )
 }
 
-function EditPage({editUrl} : { editUrl?: string }) {
+function EditPage({editUrl}: { editUrl?: string }) {
   const t = useTranslations('PageEditControls');
 
   return editUrl && (
@@ -59,29 +63,30 @@ function DesktopDocsFooter({
                              slug,
                              path,
                              editUrl,
-                             local
+                             local,
+                             preview
                            }: FooterProps) {
   return (
     <>
       <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
-        <ReportPage local={local} slug={slug} path={path}/>
+        <ReportPage local={local} slug={slug} path={path} preview={preview}/>
       </div>
 
       <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
         <div className="flex flex-col items-end gap-y-3 sm:flex-row sm:items-center sm:gap-x-4 sm:gap-y-0">
-          <EditPage editUrl={editUrl} />
+          <EditPage editUrl={editUrl}/>
         </div>
       </div>
     </>
   )
 }
 
-function MobileDocsFooter({local, slug, path, editUrl}: FooterProps) {
+function MobileDocsFooter({local, slug, path, editUrl, preview}: FooterProps) {
   return (
     <div className="flex flex-col gap-3 sm:hidden">
       <div className="flex flex-row flex-wrap justify-between gap-2">
-        <ReportPage local={local} slug={slug} path={path}/>
-        <EditPage editUrl={editUrl} />
+        <ReportPage local={local} slug={slug} path={path} preview={preview}/>
+        <EditPage editUrl={editUrl}/>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
-import {ProjectType} from "@/lib/service/types";
-
-export type ProjectPlatform = 'modrinth' | 'curseforge';
+import {ProjectPlatform} from "@repo/shared/types/platform";
+import {ProjectType} from "@repo/shared/types/service";
 
 export interface ProjectPlatformProvider {
   getProject: (slug: string) => Promise<PlatformProject>;

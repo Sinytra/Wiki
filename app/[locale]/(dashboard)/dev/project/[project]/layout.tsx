@@ -3,7 +3,7 @@ import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import DevProjectSidebar from "@/components/dev/navigation/DevProjectSidebar";
 import {redirect} from "next/navigation";
 import {setContextLocale} from "@/lib/locales/routing";
-import platforms from "@/lib/platforms";
+import platforms from "@repo/platforms";
 import DevProjectSidebarContextProvider from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 

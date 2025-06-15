@@ -2,7 +2,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
 import {parseAsInteger, parseAsString} from "nuqs/server";
-import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
+import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {getTranslations} from "next-intl/server";
 import DevProjectRecipesTable from "@/components/dev/table/DevProjectRecipesTable";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";

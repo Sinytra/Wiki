@@ -1,9 +1,17 @@
-import {DevProject, PaginatedData, Project, ProjectRevision, StatusResponse} from "@/lib/service/index";
 import cacheUtil from "@/lib/cacheUtil";
-import platforms, {ProjectPlatform} from "@/lib/platforms";
-import {GameProjectRecipe, ProjectType, UserProfile} from "@/lib/service/types";
+import platforms from "@repo/platforms";
+import {UserProfile} from "@/lib/service/types";
 import {cookies} from "next/headers";
 import {DeploymentStatus, ProjectIssue} from "@/lib/types/serviceTypes";
+import {ProjectPlatform} from "@repo/shared/types/platform";
+import {
+  DevProject, GameProjectRecipe,
+  PaginatedData,
+  Project,
+  ProjectRevision,
+  ProjectType,
+  StatusResponse
+} from "@repo/shared/types/service";
 
 const ONE_DAY = 60 * 60 * 24;
 const ONE_WEEK = ONE_DAY * 7;

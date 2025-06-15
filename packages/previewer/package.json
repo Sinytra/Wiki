@@ -1,0 +1,15 @@
+{
+  "name": "@repo/previewer",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./localAssets": "./src/localAssets.ts",
+    "./middleware": "./src/previewMiddleware.ts"
+  },
+  "dependencies": {
+    "@repo/shared": "workspace:*",
+    "@repo/markdown": "workspace:*",
+    "@repo/platforms": "workspace:*"
+  }
+}

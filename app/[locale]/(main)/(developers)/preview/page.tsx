@@ -1,20 +1,20 @@
-import localPreview from "@/lib/previewer/localPreview";
 import {notFound} from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {FolderOpenIcon, PackageIcon} from "lucide-react";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import {getTranslations} from "next-intl/server";
 import {setContextLocale} from "@/lib/locales/routing";
-import localDocs from "@/lib/previewer/localDocs";
+import previewer from "@repo/previewer";
+import env from "@repo/shared/env";
 
 export default async function Preview({params}: { params: { locale: string } }) {
   setContextLocale(params.locale);
 
-  if (!localPreview.isEnabled()) {
+  if (!env.isPreview()) {
     return notFound();
   }
 
-  const localSources = await localDocs.getLocalDocumentationSources();
+  const localSources = await previewer.getLocalDocumentationSources();
   const t = await getTranslations('Preview');
 
   return (

@@ -1,4 +1,4 @@
-import {FileHeading} from "@/lib/docs/metadata";
+import {FileHeading} from "@repo/shared/types/metadata";
 import DocsGuideNonContentRightSidebarClient from "@/components/docs/side/guide/DocsGuideNonContentRightSidebarClient";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 

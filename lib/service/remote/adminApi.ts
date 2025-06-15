@@ -1,5 +1,6 @@
 import {sendSimpleRequest, wrapJsonServiceCall} from "../remoteServiceApi";
-import {PaginatedData, StatusResponse} from "@/lib/service";
+
+import {PaginatedData, StatusResponse} from "@repo/shared/types/service";
 
 export interface DataImport {
   id: number;

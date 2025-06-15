@@ -1,8 +1,7 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {redirect} from "next/navigation";
-import platforms, {ProjectPlatform} from "@/lib/platforms";
-import {DevProject, Project} from "@/lib/service";
+import platforms from "@repo/platforms";
 import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
 import {
@@ -31,6 +30,8 @@ import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {Label} from "@/components/ui/label";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
+import {ProjectPlatform} from "@repo/shared/types/platform";
+import {DevProject, Project} from "@repo/shared/types/service";
 
 export const dynamic = 'force-dynamic';
 

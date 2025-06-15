@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
-import { FileHeading } from "@/lib/docs/metadata";
+import { FileHeading } from "@repo/shared/types/metadata";
 import { cn } from "@/lib/utils";
 import {useTranslations} from "next-intl";
 

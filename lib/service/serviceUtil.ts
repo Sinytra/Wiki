@@ -1,8 +1,8 @@
-import {StatusResponse} from "@/lib/service/index";
 import authSession from "@/lib/authSession";
 import {Language} from "@/lib/types/available";
 import available from "@/lib/locales/available";
-import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@/lib/constants";
+import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@repo/shared/constants";
+import {StatusResponse} from "@repo/shared/types/service";
 
 export function handleApiResponse<T extends object>(response: T | StatusResponse): T {
   if ('status' in response) {

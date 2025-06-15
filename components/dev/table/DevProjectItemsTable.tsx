@@ -12,9 +12,10 @@ import {ExternalLinkIcon, MoreHorizontal} from "lucide-react";
 import {getInternalWikiLink} from "@/lib/game/content";
 import * as React from "react";
 import DataTable from "@/components/base/data-table/DataTable";
-import service, {PaginatedData, ProjectVersions} from "@/lib/service";
+import service from "@/lib/service";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
+import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 
 export default function DevProjectItemsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentPage>;

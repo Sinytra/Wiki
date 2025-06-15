@@ -1,14 +1,13 @@
 import {
   PlatformProject,
   PlatformProjectAuthor,
-  ProjectPlatform,
   ProjectPlatformProvider
-} from "@/lib/platforms/universal";
-import {modrinthModPlatform} from "@/lib/platforms/modrinth";
-import {curseForgeModPlatform} from "@/lib/platforms/curseforge";
-import {ProjectPlatforms} from "@/lib/service";
+} from "./universal";
+import {modrinthModPlatform} from "./modrinth";
+import {curseForgeModPlatform} from "./curseforge";
+import {ProjectPlatform, ProjectPlatforms} from "@repo/shared/types/platform";
 
-export * from '@/lib/platforms/universal';
+export * from './universal';
 
 interface IdentifiableProject {
   id: string;

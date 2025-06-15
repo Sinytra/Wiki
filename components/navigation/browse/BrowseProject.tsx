@@ -1,4 +1,4 @@
-import platforms, {PlatformProject} from "@/lib/platforms";
+import platforms, {PlatformProject} from "@repo/platforms";
 import {Suspense, use} from "react";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
 import {Skeleton} from "@/components/ui/skeleton";
@@ -12,11 +12,11 @@ import {ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import Link from "next/link";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
-import {BaseProject} from "@/lib/service";
 import ModVersionRange from "@/components/docs/ModVersionRange";
 import Image from "next/image";
 import {getTranslations} from "next-intl/server";
 import {resolveSoft, trimText} from "@/lib/utils";
+import {BaseProject} from "@repo/shared/types/service";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);

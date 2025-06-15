@@ -1,0 +1,12 @@
+{
+  "name": "@repo/shared",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./assets": "./src/assets.ts",
+    "./constants": "./src/constants.ts",
+    "./env": "./src/env.ts",
+    "./resourceLocation": "./src/resourceLocation.ts",
+    "./types/*": "./src/types/*.d.ts"
+  }
+}

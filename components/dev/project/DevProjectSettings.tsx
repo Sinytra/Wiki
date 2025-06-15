@@ -1,6 +1,5 @@
 'use client'
 
-import {DevProject} from "@/lib/service";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {z} from "zod";
 import {useForm} from "react-hook-form";
@@ -16,6 +15,7 @@ import {useState} from "react";
 import {toast} from "sonner";
 import {Link} from "@/lib/locales/routing";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
+import {DevProject} from "@repo/shared/types/service";
 
 function SourceSection({form}: { form: any }) {
   return (

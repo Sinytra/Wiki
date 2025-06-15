@@ -1,9 +1,8 @@
-import {ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
-import {Project} from "@/lib/service";
 import ExpandableCategory from "@/components/docs/util/ExpandableCategory";
 import Asset from "@/components/docs/shared/Asset";
 import PageLink from "@/components/docs/PageLink";
 import {Link} from "@/lib/locales/routing";
+import {Project, ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";
 
 function Category({content, slug, version}: { content: ProjectContentEntry; slug: string; version: string }) {
   let subCategories: ProjectContentTree;

@@ -25,14 +25,14 @@ import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import remoteServiceApi, {FeaturedProject} from "@/lib/service/remoteServiceApi";
-import {Suspense, use} from "react";
+import {CSSProperties, Suspense, use} from "react";
 import {Skeleton} from "@/components/ui/skeleton";
 import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
 import LargePersonStandingIcon from "@/components/ui/icons/LargePersonStandingIcon";
-import localPreview from "@/lib/previewer/localPreview";
 import Image from "next/image";
+import env from "@repo/shared/env";
 
 export const dynamic = 'force-static';
 
@@ -42,10 +42,15 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   const projectTypes = useTranslations('ProjectTypes');
 
   const height = resolved.length == 1 ? 100 : Math.floor(resolved.length / 3.0);
+  const style = { "--default-max-h": `${height}%` } as CSSProperties;
 
   return resolved.map((project, index) => (
-    <div key={index} className={cn('flex h-full flex-col rounded-md bg-primary-alt p-6 shadow-sm', `sm:max-h-fit max-h-[${height}%]
-    `)}>
+    <div key={index}
+         className={`
+           flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit
+         `}
+         style={style}
+    >
       <div className="mb-4 flex items-center">
         <Image
           src={project.icon}
@@ -131,10 +136,10 @@ function HomePageContent() {
         </p>
         <div className="mt-8 text-center md:hidden">
           <LocaleNavLink href="/browse"
-            className={`
-              mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast to-blue-500
-              px-12 py-2 text-white
-            `}>
+                         className={`
+                           mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast
+                           to-blue-500 px-12 py-2 text-white
+                         `}>
             {t('browse')}
           </LocaleNavLink>
         </div>
@@ -320,14 +325,15 @@ function HomePageContent() {
   );
 }
 
-export default async function Home({params}: { params: { locale: string } }) {
+export default async function Home(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
 
-  if (localPreview.isEnabled()) {
+  if (env.isPreview()) {
     return redirect({href: '/preview', locale: params.locale});
   }
 
-  const showBanner = params.locale !== 'en' && await crowdin.getCrowdinTranslationStatus(params.locale) < 50;
+  const showBanner = params.locale !== 'en' && (await crowdin.getCrowdinTranslationStatus(params.locale)) < 50;
 
   return <>
     {showBanner &&

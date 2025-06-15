@@ -1,10 +1,10 @@
 import {ProjectContentRecipe} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
-import {PaginatedData, ProjectVersions} from "@/lib/service";
 import DataTable from "@/components/base/data-table/DataTable";
 import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
+import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 
 export default function DevProjectRecipesTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentRecipe>;

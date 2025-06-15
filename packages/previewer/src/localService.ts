@@ -1,21 +1,25 @@
 // noinspection JSUnusedLocalSymbols
 
+import platforms from '@repo/platforms';
+import localDocs, {LocalDocumentationSource} from "./localDocs";
 import {
   ContentRecipeUsage,
   DocumentationPage,
   FileTreeEntry,
+  GameProjectRecipe,
   LayoutTree,
   Project,
+  ProjectContentEntry,
+  ProjectContentTree,
   ProjectSearchResults,
   ProjectWithInfo,
   ServiceProvider,
   ServiceProviderFactory
-} from "@/lib/service";
-import assets, {AssetLocation} from "../assets";
-import platforms from "@/lib/platforms";
-import {GameProjectRecipe, ProjectContentEntry, ProjectContentTree} from "@/lib/service/types";
-import markdown from "@/lib/markdown";
-import localDocs, {LocalDocumentationSource} from "@/lib/previewer/localDocs";
+} from "@repo/shared/types/service";
+import {AssetLocation} from "@repo/shared/assets";
+import localAssets from "./localAssets";
+import {ResourceLocation} from "@repo/shared/resourceLocation";
+import markdown from "@repo/markdown";
 
 async function getProject(slug: string): Promise<ProjectWithInfo | null> {
   const src = await localDocs.getProjectSource(slug);
@@ -58,12 +62,9 @@ async function getBackendLayout(slug: string, version: string | null, locale: st
   return null;
 }
 
-async function getAsset(slug: string, location: string, version: string | null): Promise<AssetLocation | null> {
+async function getAsset(slug: string, location: ResourceLocation, version: string | null): Promise<AssetLocation | null> {
   const src = await localDocs.getProjectSource(slug);
-  if (src) {
-    return assets.getAssetResource(location, src);
-  }
-  return null;
+  return src ? localAssets.resolveAsset(src.path, location) : null;
 }
 
 async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null, optional?: boolean): Promise<DocumentationPage | undefined | null> {
@@ -163,7 +164,7 @@ async function getContentRecipeUsage(project: string, id: string, version: strin
 }
 
 async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<GameProjectRecipe[] | null> {
- return null;
+  return null;
 }
 
 const serviceProvider: ServiceProvider = {

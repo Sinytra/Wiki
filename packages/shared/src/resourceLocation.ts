@@ -1,6 +1,9 @@
-import {ResourceLocation} from "../assets";
+export const DEFAULT_NAMESPACE = "minecraft";
 
-export const DEFAULT_RSLOC_NAMESPACE = "minecraft";
+export interface ResourceLocation {
+  namespace: string;
+  path: string;
+}
 
 function toString(location: ResourceLocation): string {
   return `${location.namespace}:${location.path}`;

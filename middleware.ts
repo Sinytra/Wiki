@@ -1,8 +1,9 @@
 import {NextRequest, NextResponse} from "next/server";
-import localPreview from "@/lib/previewer/localPreview";
 import createMiddleware from "next-intl/middleware";
 import {routing} from "@/lib/locales/routing";
 import authSession from "@/lib/authSession";
+import previewerMiddleware from "@repo/previewer/middleware";
+import env from "@repo/shared/env";
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -13,8 +14,8 @@ export const config = {
 export async function middleware(request: NextRequest, response: NextResponse) {
   console.log('invoking middleware', request.nextUrl.pathname);
 
-  if (localPreview.isEnabled()) {
-    const resp = localPreview.previewMiddleware(request, response);
+  if (env.isPreview()) {
+    const resp = previewerMiddleware.previewMiddleware(request, response);
     if (resp !== null) {
       return resp;
     }

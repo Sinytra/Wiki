@@ -1,10 +1,10 @@
 import React from "react";
-import localPreview from "@/lib/previewer/localPreview";
 import {cn} from "@/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
+import env from "@repo/shared/env";
 
 function Copyright({ center }: { center: boolean }) {
   const t = useTranslations('NavigationFooter');
@@ -79,7 +79,7 @@ function NavigationColumns() {
 }
 
 export default function Footer() {
-  const isPreview = localPreview.isEnabled();
+  const isPreview = env.isPreview();
 
   return (
     <footer

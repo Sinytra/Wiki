@@ -1,7 +1,7 @@
-import {GameProjectRecipe, GameRecipeType, RecipeItem, ResolvedItem, Slot} from "@/lib/service/types";
-import resourceLocation from "@/lib/util/resourceLocation";
+import resourceLocation from "@repo/shared/resourceLocation";
 import service from "@/lib/service";
 import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
+import {GameProjectRecipe, GameRecipeType, RecipeItem, ResolvedItem, Slot} from "@repo/shared/types/service";
 
 export interface ResolvedSlotItem {
   slot: Slot;

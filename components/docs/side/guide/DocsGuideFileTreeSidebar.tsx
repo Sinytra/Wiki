@@ -1,11 +1,11 @@
 import * as LucideIcons from 'lucide-react';
 import {HomeIcon} from 'lucide-react';
-import {FileTree, FileTreeEntry} from "@/lib/service";
 import DocsFileLink from "@/components/docs/util/DocsFileLink";
 import DocsFileTreeFolder from "@/components/docs/layout/DocsFileTreeFolder";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
 import ScrollableDocsSidebarBase from "@/components/docs/side/ScrollableDocsSidebarBase";
+import {FileTree, FileTreeEntry} from "@repo/shared/types/service";
 
 interface LeftSidebarProps {
   slug: string;

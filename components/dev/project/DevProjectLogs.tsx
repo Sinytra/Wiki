@@ -5,7 +5,7 @@ import {startTransition, Suspense, use, useEffect, useRef, useState} from 'react
 import {LoaderCircleIcon} from "lucide-react";
 import {useRouter} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
-import highlighter from "@/lib/markdown/highlighter";
+import highlighter from "@repo/markdown/highlighter";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import ConnectionIndicator from "@/components/util/ConnectionIndicator";
 import {DeploymentStatus} from "@/lib/types/serviceTypes";

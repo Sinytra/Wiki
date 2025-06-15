@@ -1,0 +1,9 @@
+{
+  "name": "@repo/markdown",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./highlighter": "./src/highlighter.tsx"
+  }
+}

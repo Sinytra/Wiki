@@ -1,8 +1,8 @@
-import {Project, StatusResponse} from "@/lib/service";
 import {sendApiRequest} from "@/lib/service/remoteServiceApi";
 import {ProjectIssueLevel} from "@/lib/types/serviceTypes";
-import {MarkdownError} from "@/lib/util/exception";
+import {MarkdownError} from "@repo/markdown";
 import {actualLocale, actualVersion} from "@/lib/service/serviceUtil";
+import {Project, StatusResponse} from "@repo/shared/types/service";
 
 interface AddProjectIssueRequest {
   level: ProjectIssueLevel;

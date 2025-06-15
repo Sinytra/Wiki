@@ -13,7 +13,7 @@ import {cn} from "@/lib/utils";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@/components/ui/command";
 import {useTranslations} from "next-intl";
-import {DEFAULT_LOCALE} from "@/lib/constants";
+import {DEFAULT_LOCALE} from "@repo/shared/constants";
 import {Language} from "@/lib/types/available";
 
 export default function LanguageSelect({locale, locales, mobile, minimal}: {

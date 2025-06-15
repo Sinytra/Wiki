@@ -4,12 +4,11 @@ import LinkTextButton from "@/components/ui/link-text-button";
 import {Suspense} from "react";
 import {handleRegisterProjectForm} from "@/lib/forms/actions";
 import {getTranslations} from "next-intl/server";
-import {DevProject} from "@/lib/service";
 import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import {cn, trimText} from "@/lib/utils";
-import platforms, {PlatformProject} from "@/lib/platforms";
+import platforms, {PlatformProject} from "@repo/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {AlertCircleIcon, CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon, XIcon} from "lucide-react";
 import {Link, setContextLocale} from "@/lib/locales/routing";
@@ -18,6 +17,7 @@ import {SidebarTrigger} from "@/components/ui/sidebar";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import {UserRole} from "@/lib/service/types";
 import {handleApiResponse} from "@/lib/service/serviceUtil";
+import {DevProject} from "@repo/shared/types/service";
 
 export const dynamic = 'force-dynamic';
 

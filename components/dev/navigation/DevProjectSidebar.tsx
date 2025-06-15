@@ -23,10 +23,10 @@ import {
 } from "@/components/ui/sidebar";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
-import {DevProject} from "@/lib/service";
-import {PlatformProject} from "@/lib/platforms";
+import {PlatformProject} from "@repo/platforms";
 import {Link} from "@/lib/locales/routing";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
+import {DevProject} from "@repo/shared/types/service";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   project: DevProject;

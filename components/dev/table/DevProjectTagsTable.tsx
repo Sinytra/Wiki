@@ -1,9 +1,9 @@
 import {ProjectContentTag} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
 import DataTable from "@/components/base/data-table/DataTable";
-import {PaginatedData, ProjectVersions} from "@/lib/service";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
+import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 
 export default function DevProjectTagsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentTag>;

@@ -1,9 +1,8 @@
 'use client'
 
-import {Project, ProjectWithInfo} from "@/lib/service";
-import {PlatformProject} from "@/lib/platforms";
+import {PlatformProject} from "@repo/platforms";
 import {Button} from "@/components/ui/button";
-import {AnvilIcon, BookMarkedIcon, BoxIcon, HammerIcon, HomeIcon} from "lucide-react";
+import {AnvilIcon, BookMarkedIcon, BoxIcon, HomeIcon} from "lucide-react";
 import {Link, usePathname} from "@/lib/locales/routing";
 import {cn} from "@/lib/utils";
 import {useParams} from "next/navigation";
@@ -11,6 +10,7 @@ import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector"
 import * as React from "react";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import SubMobileNav from "@/components/navigation/header/SubMobileNav";
+import {Project, ProjectWithInfo} from "@repo/shared/types/service";
 
 function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any; path: string; disabled?: boolean }) {
   const pathName = usePathname();

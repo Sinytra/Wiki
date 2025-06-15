@@ -2,8 +2,8 @@
 
 import {ReactNode} from "react";
 import DocsSubNavBar from "@/components/docs/layout/DocsSubNavBar";
-import {Project} from "@/lib/service";
-import {PlatformProject} from "@/lib/platforms";
+import {PlatformProject} from "@repo/platforms";
+import {Project} from "@repo/shared/types/service";
 
 interface DocsLayoutClientProps {
   locale: string;

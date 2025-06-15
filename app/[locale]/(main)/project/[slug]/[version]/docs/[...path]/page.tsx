@@ -3,11 +3,11 @@ import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
 import DocsLoadingSkeleton from "@/components/docs/body/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
-import service, {RenderedDocsPage} from "@/lib/service";
+import service from "@/lib/service";
 import {redirect} from "next/navigation";
 import matter from "gray-matter";
-import {DocsEntryMetadata} from "@/lib/docs/metadata";
-import platforms from "@/lib/platforms";
+import {DocsEntryMetadata} from "@repo/shared/types/metadata";
+import platforms from "@repo/platforms";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import DocsGuideContentRightSidebar from "@/components/docs/side/guide/DocsGuideContentRightSidebar";
@@ -15,6 +15,8 @@ import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 import issuesApi from "@/lib/service/remote/issuesApi";
 import {constructPagePath} from "@/lib/service/serviceUtil";
+import env from "@repo/shared/env";
+import {RenderedDocsPage} from "@repo/shared/types/service";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -69,6 +71,7 @@ export default async function ProjectDocsPage({params}: {
   const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
     && page.content.metadata.hide_meta === undefined;
   const headings = page.content.metadata._headings || [];
+  const isPreview = env.isPreview();
 
   return (
     <DocsInnerLayoutClient title={page.content.metadata.title || page.project.name}
@@ -87,6 +90,7 @@ export default async function ProjectDocsPage({params}: {
                              <DocsPageFooter editUrl={page.edit_url}
                                              slug={params.slug} path={params.path}
                                              local={projectData.project.local}
+                                             preview={isPreview}
                              />
                            }
     >

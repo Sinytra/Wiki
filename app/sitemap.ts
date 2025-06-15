@@ -1,7 +1,7 @@
 import type {MetadataRoute} from 'next';
 import available from "@/lib/locales/available";
 import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
+import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!process.env.NEXT_PUBLIC_NEXT_APP_URL) {

@@ -1,10 +1,11 @@
-import localPreview from "@/lib/previewer/localPreview";
 import {unstable_cache} from "next/cache";
 import {promises as fs} from "fs";
-import {DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from "@/lib/constants";
-import metadata, {DocumentationFolderMetadata, ValidationError} from "@/lib/docs/metadata";
-import {FileTree, ProjectPlatforms} from "@/lib/service";
-import localFiles from "@/lib/previewer/localFiles";
+import {DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from "@repo/shared/constants";
+import metadata, {DocumentationFolderMetadata, ValidationError } from "./localMetadata";
+import {FileTree} from "@repo/shared/types/service";
+import {ProjectPlatforms} from "@repo/shared/types/platform";
+import localFiles from "./localFiles";
+import env from "@repo/shared/env";
 
 export interface LocalDocumentationSource {
   id: string;
@@ -24,10 +25,10 @@ async function getProjectSource(slug: string): Promise<LocalDocumentationSource 
   return src || null;
 }
 
-async function getLocalDocumentationSources(): Promise<LocalDocumentationSource[]> {
+export async function getLocalDocumentationSources(): Promise<LocalDocumentationSource[]> {
   const localPaths = process.env.LOCAL_DOCS_ROOTS || '';
 
-  if (localPreview.isEnabled()) {
+  if (env.isPreview()) {
     return computeLocalDocumentationSources(localPaths);
   }
 
@@ -180,7 +181,6 @@ function capitalizeDefaultEntryName(str: string) {
 
 export default {
   getProjectSource,
-  getLocalDocumentationSources,
   getAvailableLocales,
   readDocsTree,
   readDocsFile

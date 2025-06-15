@@ -1,12 +1,13 @@
 import {cn} from "@/lib/utils";
 import ScrollableDocsSidebarBase from "@/components/docs/side/ScrollableDocsSidebarBase";
-import service, {Project} from "@/lib/service";
-import {DocsEntryMetadata} from "@/lib/docs/metadata";
-import {AssetLocation} from "@/lib/assets";
+import service from "@/lib/service";
+import {DocsEntryMetadata} from "@repo/shared/types/metadata";
+import {AssetLocation} from "@repo/shared/assets";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import EntryDetails from "@/components/docs/util/EntryDetails";
 import MetadataGrid from "@/components/docs/util/MetadataGrid";
 import MetadataRowKey from "@/components/docs/util/MetadataRowKey";
+import {Project} from "@repo/shared/types/service";
 
 interface Props {
   title: string;

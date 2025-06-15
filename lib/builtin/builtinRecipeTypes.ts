@@ -1,9 +1,9 @@
 import {getTranslations} from "next-intl/server";
-import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
+import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
 
 async function getRecipeTypeName(id: string): Promise<string | null> {
   const loc = resourceLocation.parse(id);
-  if (!loc || loc.namespace != DEFAULT_RSLOC_NAMESPACE) {
+  if (!loc || loc.namespace != DEFAULT_NAMESPACE) {
     return null;
   }
 

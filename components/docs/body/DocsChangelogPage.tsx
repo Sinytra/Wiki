@@ -1,4 +1,4 @@
-import {Changelog, FullChangelogEntry} from "@/lib/docs/metadata";
+import {Changelog, FullChangelogEntry} from "@repo/shared/types/metadata";
 import {useTranslations} from "next-intl";
 
 interface ChangelogProps {

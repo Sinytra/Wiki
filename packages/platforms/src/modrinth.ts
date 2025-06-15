@@ -1,8 +1,9 @@
-import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "./universal";
-import localPreview from "@/lib/previewer/localPreview";
-import {AVAILABLE_PROJECT_TYPES, ProjectType} from "@/lib/service/types";
+import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from "./universal";
+import env from "@repo/shared/env";
+import {AVAILABLE_PROJECT_TYPES, ProjectType} from "@repo/shared/types/service";
 
-const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (localPreview.isEnabled() ? '/local' : '');
+// TODO
+const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (env.isPreview() ? '/local' : '');
 const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3';
 
 interface ModrinthProject {

@@ -5,7 +5,8 @@ import Link from "next/link";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import PrimaryButton from "@/components/ui/custom/PrimaryButton";
 import {NavLink} from "@/components/navigation/link/NavLink";
-import {Project} from "@/lib/service";
+
+import {Project} from "@repo/shared/types/service";
 
 export default function DocsPageNotFoundError({project}: { project?: Project }) {
   const t = useTranslations('DocsPageNotFoundError');

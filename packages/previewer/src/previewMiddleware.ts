@@ -1,8 +1,6 @@
-import {NextRequest, NextResponse} from "next/server";
+// noinspection JSUnusedLocalSymbols
 
-function isEnabled(): boolean {
-  return process.env.ENABLE_LOCAL_PREVIEW === 'true';
-}
+import {NextRequest, NextResponse} from "next/server";
 
 function previewMiddleware(request: NextRequest, response: NextResponse): NextResponse | null {
   const path = request.nextUrl.pathname;
@@ -12,9 +10,6 @@ function previewMiddleware(request: NextRequest, response: NextResponse): NextRe
   return null;
 }
 
-const localPreview = {
-  isEnabled,
+export default {
   previewMiddleware
-};
-
-export default localPreview;
+}

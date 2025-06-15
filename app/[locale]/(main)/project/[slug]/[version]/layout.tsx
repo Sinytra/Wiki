@@ -7,8 +7,8 @@ import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContex
 import {ErrorBoundary} from "react-error-boundary";
 import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
-import platforms from "@/lib/platforms";
-import {DEFAULT_DOCS_VERSION, LEGACY_DEFAULT_DOCS_VERSION} from "@/lib/constants";
+import platforms from "@repo/platforms";
+import {DEFAULT_DOCS_VERSION, LEGACY_DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {Metadata, ResolvingMetadata} from "next";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 

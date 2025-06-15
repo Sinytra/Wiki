@@ -1,5 +1,6 @@
-import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
-import {ResolvedItem} from "@/lib/service/types";
+import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
+
+import {ResolvedItem} from "@repo/shared/types/service";
 
 export interface ContentRouteParams {
   locale: string;
@@ -21,5 +22,5 @@ export function getInternalWikiLink(id: string, params: ContentRouteParams): str
 
 export function getExternalWikiLink(id: string): string | null {
   const loc = resourceLocation.parse(id);
-  return loc?.namespace === DEFAULT_RSLOC_NAMESPACE ? `https://minecraft.wiki/w/${loc.path}` : null;
+  return loc?.namespace === DEFAULT_NAMESPACE ? `https://minecraft.wiki/w/${loc.path}` : null;
 }

@@ -23,9 +23,12 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
+      "@/app/*": ["./app/*"],
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/messages/*": ["./messages/*"],
+      "@/.contentlayer/*": ["./.contentlayer/*"],
+      "@/public/*": ["./public/*"],
       "contentlayer/generated": [
         "./.contentlayer/generated"
       ]

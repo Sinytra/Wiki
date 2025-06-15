@@ -1,7 +1,7 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import {redirect} from "next/navigation";
-import platforms, {PlatformProject} from "@/lib/platforms";
+import platforms, {PlatformProject} from "@repo/platforms";
 import {ARRNoLicense, getPlatformProjectInformation, ProjectCategories} from "@/lib/docs/projectInfo";
 import MarkdownContent from "@/components/docs/body/MarkdownContent";
 import {
@@ -27,7 +27,7 @@ import {cn} from "@/lib/utils";
 import PageLink from "@/components/docs/PageLink";
 import DiscordIcon from "@/components/ui/icons/DiscordIcon";
 import {useTranslations} from "next-intl";
-import {DEFAULT_WIKI_LICENSE} from "@/lib/constants";
+import {DEFAULT_WIKI_LICENSE} from "@repo/shared/constants";
 import TooltipText from "@/components/docs/shared/util/TooltipText";
 import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 import {getTranslations} from "next-intl/server";

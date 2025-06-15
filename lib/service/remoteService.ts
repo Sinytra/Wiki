@@ -1,14 +1,13 @@
-import {
-  ContentRecipeUsage,
-  DocumentationPage,
-  LayoutTree,
-  ProjectSearchResults,
-  ProjectWithInfo, ServiceProvider, ServiceProviderFactory
-} from "@/lib/service/index";
-import {AssetLocation} from "@/lib/assets";
+import {AssetLocation} from "@repo/shared/assets";
 import {assertBackendUrl, wrapJsonServiceCall} from "@/lib/service/remoteServiceApi";
-import {GameProjectRecipe, ProjectContentTree} from "@/lib/service/types";
 import {constructPagePath} from "@/lib/service/serviceUtil";
+import {
+  ContentRecipeUsage, DocumentationPage, GameProjectRecipe, LayoutTree, ProjectContentTree,
+  ProjectSearchResults, ProjectWithInfo,
+  ServiceProvider,
+  ServiceProviderFactory
+} from "@repo/shared/types/service";
+import resourceLocation, {ResourceLocation} from "@repo/shared/resourceLocation";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
@@ -55,8 +54,8 @@ async function getBackendLayout(project: string, version: string | null, locale:
   return wrapNullableServiceCall<LayoutTree>(() => fetchBackendService(project, `docs/${project}/tree`, {version, locale}));
 }
 
-async function getAsset(project: string, location: string, version: string | null): Promise<AssetLocation | null> {
-  return getAssetURL(project, location, version);
+async function getAsset(project: string, location: ResourceLocation, version: string | null): Promise<AssetLocation | null> {
+  return getAssetURL(project, resourceLocation.toString(location), version);
 }
 
 function getAssetURL(project: string, location: string, version: string | null): AssetLocation | null {

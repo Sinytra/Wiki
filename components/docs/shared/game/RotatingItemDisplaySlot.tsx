@@ -2,10 +2,10 @@
 
 import {type ImgHTMLAttributes, useContext, useEffect, useState} from "react";
 import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
-import {ResolvedItem} from "@/lib/service/types";
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
 import {getExternalWikiLink, getResolvedItemLink} from "@/lib/game/content";
 import {HoverContext} from "@/components/util/HoverContextProvider";
+import {ResolvedItem} from "@repo/shared/types/service";
 
 interface AdditionalProps {
   src: ResolvedItem[];

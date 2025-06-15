@@ -1,5 +1,5 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import service, {RenderedDocsPage} from "@/lib/service";
+import service from "@/lib/service";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import {redirect} from "next/navigation";
 import DocsLoadingSkeleton from "@/components/docs/body/DocsLoadingSkeleton";
@@ -11,10 +11,11 @@ import ContentListFooter from "@/components/docs/ContentListFooter";
 import ProjectDocsMobileHeader from "@/components/docs/ProjectDocsMobileHeader";
 import DocsContentMetaSidebar from "@/components/docs/side/content/DocsContentMetaSidebar";
 import {Metadata, ResolvingMetadata} from "next";
-import platforms from "@/lib/platforms";
+import platforms from "@repo/platforms";
 import matter from "gray-matter";
-import {DocsEntryMetadata} from "@/lib/docs/metadata";
+import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {RenderedDocsPage} from "@repo/shared/types/service";
 
 interface Props {
   params: {

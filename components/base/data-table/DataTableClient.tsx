@@ -4,7 +4,6 @@ import * as React from "react"
 import {useState} from "react"
 import {Table, TableBody, TableCell, TableHeader, TableRow,} from "@/components/ui/table"
 import {Input} from "@/components/ui/input";
-import {PaginatedData, ProjectVersions} from "@/lib/service";
 import {parseAsString, useQueryStates} from "nuqs";
 import {parseAsInteger} from "nuqs/server";
 import {Button} from "@/components/ui/button";
@@ -18,6 +17,7 @@ import ToggleChevron from "@/components/util/ToggleChevron";
 import DataTablePagination from "@/components/base/data-table/DataTablePagination";
 import {useTranslations} from "next-intl";
 import {useRouter as useProgressRouter} from "@bprogress/next";
+import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 
 interface Properties<T> {
   cols: React.JSX.Element[];

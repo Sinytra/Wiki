@@ -1,4 +1,4 @@
-import markdown from "@/lib/markdown";
+import markdown from "@repo/markdown";
 
 export interface Props {
   content: string;

@@ -1,6 +1,6 @@
 import DocsGuideFileTreeSidebar from "@/components/docs/side/guide/DocsGuideFileTreeSidebar";
-import {FileTree, Project} from "@/lib/service";
 import ProjectDocsMobileHeader from "@/components/docs/ProjectDocsMobileHeader";
+import {FileTree, Project} from "@repo/shared/types/service";
 
 interface Props {
   title: string;

@@ -3,7 +3,8 @@ import {cn} from "@/lib/utils";
 import * as React from "react";
 import {GitCommitHorizontalIcon} from "lucide-react";
 import LocalDateTime from "@/components/util/LocalDateTime";
-import {ProjectRevision} from "@/lib/service";
+
+import {ProjectRevision} from "@repo/shared/types/service";
 
 function LinkWithFallback({className, href, children}: { className?: string, href?: string; children?: any }) {
   return (

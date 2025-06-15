@@ -4,32 +4,18 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from "rehype-raw";
-
 import {markdownRehypeSchema} from "./contentFilter";
 import {ReactElement} from "react";
-import {DocsEntryMetadata} from "@/lib/docs/metadata";
-import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
-import Callout from "@/components/docs/shared/Callout";
-import ModAsset from "@/components/docs/shared/ModAsset";
+import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import remarkGfm from "remark-gfm";
-import rehypeMarkdownHeadings from "@/lib/markdown/headings";
+import rehypeMarkdownHeadings from "./headings";
 import {recmaCodeHike, remarkCodeHike} from "codehike/mdx";
 import * as LucideReact from "lucide-react";
-import Asset from "@/components/docs/shared/Asset";
-import CodeTabs from "@/components/docs/shared/CodeTabs";
-import CodeHikeCode from "@/components/util/CodeHikeCode";
 import {VFile} from 'vfile';
 import {matter} from 'vfile-matter';
 import {compile, run} from "@mdx-js/mdx";
 import * as runtime from 'react/jsx-runtime';
-import ContentLink from "@/components/docs/shared/ContentLink";
-import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
-import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
-import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
-import PageLink from "@/components/docs/PageLink";
-import PrefabObtaining from "@/components/docs/shared/prefab/PrefabObtaining";
-import PrefabUsage from "@/components/docs/shared/prefab/PrefabUsage";
-import {formatMarkdownError, MarkdownError} from "@/lib/util/exception";
+import { MarkdownError, formatMarkdownError } from "./exception";
 
 export interface DocumentationMarkdown {
   content: ReactElement;
@@ -66,7 +52,9 @@ async function renderMarkdown(content: string): Promise<string> {
   return String(file);
 }
 
-async function renderDocumentationMarkdown(source: string, patcher?: ComponentPatcher): Promise<DocumentationMarkdown> {
+async function renderDocumentationMarkdown(
+  source: string, includeComponents: Record<string, any>, patcher?: ComponentPatcher
+): Promise<DocumentationMarkdown> {
   const icons = Object.keys(LucideReact)
     .filter(key => key.endsWith('Icon'))
     .reduce((obj, key) => {
@@ -75,11 +63,8 @@ async function renderDocumentationMarkdown(source: string, patcher?: ComponentPa
       return obj;
     }, {});
   let components: Record<string, any> = {
-    CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink, RecipeUsage,
-    PrefabObtaining, PrefabUsage,
     ...icons,
-    h2: LinkAwareHeading,
-    a: PageLink
+    ...includeComponents
   };
   if (patcher) {
     components = patcher(components);

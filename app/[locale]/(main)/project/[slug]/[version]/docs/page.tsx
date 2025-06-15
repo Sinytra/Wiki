@@ -1,17 +1,19 @@
 import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
-import platforms, {PlatformProject} from "@/lib/platforms";
-import {HOMEPAGE_FILE_PATH} from "@/lib/constants";
-import service, {Project} from "@/lib/service";
+import platforms, {PlatformProject} from "@repo/platforms";
+import {HOMEPAGE_FILE_PATH} from "@repo/shared/constants";
+import service from "@/lib/service";
 import {redirect} from "next/navigation";
 import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
 import DocsHomepagePlaceholder from "@/components/docs/body/DocsHomepagePlaceholder";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
-import markdown, {DocumentationMarkdown} from "@/lib/markdown";
+import markdown, {DocumentationMarkdown} from "@repo/markdown";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 import {getTranslations} from "next-intl/server";
+import env from "@repo/shared/env";
+import {Project} from "@repo/shared/types/service";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -90,6 +92,7 @@ export default async function ProjectDocsHomepage({params}: PageProps) {
 
   const content = await renderHomepage(projectData.project, platformProject, params.version, params.locale);
   const headings = content?.metadata._headings || [];
+  const isPreview = env.isPreview();
 
   return (
     <DocsInnerLayoutClient title={t('title')}
@@ -98,7 +101,7 @@ export default async function ProjectDocsHomepage({params}: PageProps) {
                            version={params.version} locale={params.locale}
                            showRightSidebar={headings.length > 0}
                            rightSidebar={<DocsGuideNonContentRightSidebar headings={headings}/>}
-                           footer={<DocsPageFooter/>}
+                           footer={<DocsPageFooter preview={isPreview}/>}
     >
       {content === undefined ?
         <DocsContentTitle>

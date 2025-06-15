@@ -3,7 +3,8 @@ import {createSharedPathnamesNavigation} from "next-intl/navigation";
 import PageLink from "@/components/docs/PageLink";
 import service from "@/lib/service";
 import {getContentLink} from "@/lib/game/content";
-import {ProjectContentEntry} from "@/lib/service/types";
+
+import {ProjectContentEntry} from "@repo/shared/types/service";
 
 type LinkProps = Parameters<ReturnType<typeof createSharedPathnamesNavigation>['Link']>[0] & { id: string };
 

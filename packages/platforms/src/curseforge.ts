@@ -1,6 +1,6 @@
-import {PlatformProjectAuthor, ProjectPlatformProvider, PlatformProject} from "@/lib/platforms/universal";
-import localPreview from "@/lib/previewer/localPreview";
-import {ProjectType} from "@/lib/service/types";
+import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from "./universal";
+import env from "@repo/shared/env";
+import {ProjectType} from "@repo/shared/types/service";
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
@@ -58,7 +58,7 @@ interface PaginatedResults<T> {
 }
 
 function shouldUsePlaceholder(): boolean {
-  return !process.env.CF_API_KEY && localPreview.isEnabled();
+  return !process.env.CF_API_KEY && env.isPreview();
 }
 
 async function getProject(slug: string): Promise<PlatformProject> {

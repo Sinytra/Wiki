@@ -1,6 +1,6 @@
-import {AssetLocation} from "@/lib/assets";
+import {AssetLocation} from "@repo/shared/assets";
 import type {ImgHTMLAttributes} from "react";
-import resourceLocation from "@/lib/util/resourceLocation";
+import resourceLocation from "@repo/shared/resourceLocation";
 
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & { asset: AssetLocation; noTitle?: boolean };
 

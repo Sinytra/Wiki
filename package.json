@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "type": "module",
+  "packageManager": "pnpm@10.12.1",
   "dependencies": {
+    "@repo/previewer": "workspace:*",
+    "@repo/markdown": "workspace:*",
+    "@repo/platforms": "workspace:*",
+    "@repo/shared": "workspace:*",
     "@bprogress/next": "^3.2.10",
     "@hookform/resolvers": "^3.9.0",
     "@mdx-js/loader": "^3.0.1",
@@ -84,7 +90,8 @@
     "use-debounce": "^10.0.2",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "turbo": "^2.5.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
@@ -112,5 +119,8 @@
     "next-contentlayer": {
       "next": "^14"
     }
+  },
+  "engines": {
+    "node": ">=23"
   }
 }

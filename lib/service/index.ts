@@ -1,133 +1,39 @@
-import {serviceProviderFactory as localServiceProviderFactory} from "@/lib/previewer/localService";
 import remoteService, {serviceProviderFactory as remoteServiceProviderFactory} from "@/lib/service/remoteService";
-import assets, {AssetLocation} from "../assets";
-import {ProjectPlatform} from "@/lib/platforms/universal";
-import markdown, {ComponentPatcher, DocumentationMarkdown} from "@/lib/markdown";
-import resourceLocation, {DEFAULT_RSLOC_NAMESPACE} from "@/lib/util/resourceLocation";
-import {GameProjectRecipe, ProjectContentTree, ProjectType} from "@/lib/service/types";
-import {ProjectIssueStats, ProjectStatus} from "@/lib/types/serviceTypes";
+import {AssetLocation} from "@repo/shared/assets";
+import {
+  ContentRecipeUsage,
+  DocumentationPage,
+  GameProjectRecipe,
+  LayoutTree,
+  ProjectContentTree,
+  ProjectSearchResults,
+  ProjectWithInfo,
+  RenderedDocsPage,
+  ServiceProvider,
+  ServiceProviderFactory
+} from "@repo/shared/types/service";
+import markdown, {ComponentPatcher} from "@repo/markdown";
+import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
 import {actualLocale, actualVersion} from "@/lib/service/serviceUtil";
-
-export type ProjectPlatforms = { [key in ProjectPlatform]?: string };
-
-export interface StatusResponse {
-  status: number;
-}
-
-export interface PaginatedData<T> {
-  data: T[];
-  total: number;
-  pages: number;
-  size: number;
-}
-
-export interface BaseProject {
-  id: string;
-  name: string;
-  source_repo?: string;
-  platforms: ProjectPlatforms;
-  is_community: boolean;
-  type: ProjectType;
-}
-
-export type ProjectVersions = string[];
-
-export interface ProjectRevision {
-  hash: string;
-  fullHash: string;
-  message: string;
-  authorName: string;
-  authorEmail: string;
-  date: string;
-
-  url?: string;
-}
-
-export interface Project extends BaseProject {
-  is_public: boolean;
-  versions?: ProjectVersions;
-  locales?: string[];
-  local?: boolean;
-  status?: ProjectStatus;
-  has_active_deployment?: boolean;
-  created_at: string;
-}
-
-export interface DevProject extends Project {
-  source_repo: string;
-  source_branch: string;
-  source_path: string;
-  revision: ProjectRevision;
-  issue_stats?: ProjectIssueStats;
-  has_failing_deployment: boolean;
-}
-
-export interface ProjectInfo {
-  website?: string;
-  pageCount: number;
-  contentCount: number;
-}
-
-export interface ProjectWithInfo extends Project {
-  info: ProjectInfo;
-}
-
-export interface FileTreeEntry {
-  name: string;
-  path: string;
-  icon?: string;
-  type: 'dir' | 'file';
-  children: FileTree;
-}
-
-export type FileTree = FileTreeEntry[];
-
-export interface LayoutTree {
-  project: Project;
-  tree: FileTree;
-}
-
-export interface DocumentationPage {
-  project: Project;
-  content: string;
-  edit_url?: string;
-}
-
-export interface RenderedDocsPage {
-  project: Project;
-  content: DocumentationMarkdown;
-  edit_url?: string;
-}
-
-export type ProjectSearchResults = PaginatedData<BaseProject>;
-
-export interface ContentRecipeUsage {
-  id: string;
-  name?: string;
-  project: string;
-  has_page: boolean;
-}
-
-export interface ServiceProvider {
-  getProject: (slug: string, version: string | null) => Promise<ProjectWithInfo | null>;
-  getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
-  getAsset: (slug: string, location: string, version: string | null) => Promise<AssetLocation | null>;
-  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional?: boolean) => Promise<DocumentationPage | undefined | null>;
-  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null>;
-
-  getProjectContents: (project: string, version: string | null, locale: string | null) => Promise<ProjectContentTree | null>;
-  getProjectContentPage: (project: string, id: string, version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
-  getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe | null>;
-  getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe[] | null>
-  getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null>;
-}
-
-export interface ServiceProviderFactory {
-  isAvailable: () => boolean;
-  create: () => ServiceProvider
-}
+import {localServiceProviderFactory} from "@repo/previewer";
+import builtinAssets from "@/lib/builtin/builtinAssets";
+import PrefabUsage from "@/components/docs/shared/prefab/PrefabUsage";
+import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
+import ContentLink from "@/components/docs/shared/ContentLink";
+import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
+import PrefabObtaining from "@/components/docs/shared/prefab/PrefabObtaining";
+import ModAsset from "@/components/docs/shared/ModAsset";
+import CodeHikeCode from "@/components/util/CodeHikeCode";
+import Callout from "@/components/docs/shared/Callout";
+import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
+import PageLink from "@/components/docs/PageLink";
+import Asset from "@/components/docs/shared/Asset";
+import CodeTabs from "@/components/docs/shared/CodeTabs";
+import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
+
+const installedProviders: ServiceProviderFactory[] = [localServiceProviderFactory, remoteServiceProviderFactory];
 
 function createProxy<T extends AsyncMethodKey<ServiceProvider>>(
   callback: (p: ServiceProvider, ...args: Parameters<ServiceProvider[T]>) => ReturnType<ServiceProvider[T]>
@@ -138,7 +44,7 @@ function createProxy<T extends AsyncMethodKey<ServiceProvider>>(
 async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
   callback: (p: ServiceProvider) => ReturnType<ServiceProvider[T]>
 ): Promise<Awaited<ReturnType<ServiceProvider[T]>> | null> {
-  const providers: ServiceProvider[] = [localServiceProviderFactory, remoteServiceProviderFactory]
+  const providers: ServiceProvider[] = installedProviders
     .filter(f => f.isAvailable())
     .map(f => f.create());
   for (const provider of providers) {
@@ -159,12 +65,19 @@ const getBackendLayout: (slug: string, version: string, locale: string) => Promi
 );
 
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
+  const resource = resourceLocation.parse(location);
+  if (!resource) return null;
+
   // For builtin assets
-  if (!slug || slug === DEFAULT_RSLOC_NAMESPACE || location.startsWith(`${DEFAULT_RSLOC_NAMESPACE}:`) || !location.includes(':')) {
+  if (!slug || resource.namespace === DEFAULT_NAMESPACE) {
     const compatibleLocation = location.includes('/') ? location : prefixItemPath(location);
-    return assets.getAssetResource(compatibleLocation);
+    const compatibleResource = resourceLocation.parse(compatibleLocation);
+    if (!compatibleResource) return null;
+
+    return builtinAssets.getAssetResource(compatibleResource);
   }
-  return proxyServiceCall<'getAsset'>(p => p.getAsset(slug, location, actualVersion(version)));
+
+  return proxyServiceCall<'getAsset'>(p => p.getAsset(slug, resource, actualVersion(version)));
 }
 
 function getAssetURL(slug: string, location: string, version: string | null): AssetLocation | null {
@@ -206,7 +119,14 @@ async function renderProjectContentPage(project: string, id: string, version: st
 
 async function renderMarkdown(raw: DocumentationPage | null, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
   if (raw) {
-    const content = await markdown.renderDocumentationMarkdown(raw.content, patcher);
+    const components = {
+      CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink, RecipeUsage,
+      PrefabObtaining, PrefabUsage,
+      h2: LinkAwareHeading,
+      a: PageLink
+    }
+
+    const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);
     return {
       project: raw.project,
       content,

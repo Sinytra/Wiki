@@ -1,12 +1,12 @@
 import service from "@/lib/service";
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
-import {GameProjectRecipe, GameRecipeType, ResolvedItem} from "@/lib/service/types";
 import RecipeIngredientDisplay from "@/components/docs/shared/game/RecipeIngredientDisplay";
 import recipes, {ResolvedRecipe, ResolvedSlotItem} from "@/lib/game/recipes";
 import {ContentRouteParams} from "@/lib/game/content";
 import ResponsiveTable from "@/components/util/ResponsiveTable";
 import {getTranslations} from "next-intl/server";
 import HoverContextProvider from "@/components/util/HoverContextProvider";
+import {GameProjectRecipe, GameRecipeType, ResolvedItem} from "@repo/shared/types/service";
 
 interface Properties {
   project: string;

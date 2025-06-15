@@ -3,11 +3,11 @@
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {cn} from "@/lib/utils";
 import {Tag} from "lucide-react";
-import {DEFAULT_DOCS_VERSION} from "@/lib/constants";
-import {ProjectVersions} from "@/lib/service";
+import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {useTranslations} from "next-intl";
 import {useQueryState} from "nuqs";
 import {parseAsString} from "nuqs/server";
+import {ProjectVersions} from "@repo/shared/types/service";
 
 export default function DevDocsVersionSelect({versions}: { versions: ProjectVersions; }) {
   const t = useTranslations('DocsVersionSelector');
