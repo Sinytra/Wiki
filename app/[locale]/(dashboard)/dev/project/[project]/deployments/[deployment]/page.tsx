@@ -190,7 +190,10 @@ function DeploymentInfo({deployment}: { deployment: FullDevProjectDeployment }) 
               </DropdownMenuItem>
 
               <ClientLocaleProvider keys={['DeleteDeploymentModal']}>
-                <DeleteDeploymentModal action={handleDeleteDeploymentForm.bind(null, deployment.id)}/>
+                <DeleteDeploymentModal
+                  action={handleDeleteDeploymentForm.bind(null, deployment.id)}
+                  loading={deployment.status == DeploymentStatus.LOADING}
+                />
               </ClientLocaleProvider>
             </>}
           >

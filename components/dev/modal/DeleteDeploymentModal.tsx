@@ -22,10 +22,11 @@ import {DropdownMenuContext} from "@/components/ui/custom/ContextDropdownMenu";
 import FormDeleteButton from "@/components/ui/custom/FormDeleteButton";
 
 interface Properties {
+  loading: boolean;
   action: () => Promise<any>;
 }
 
-export default function DeleteDeploymentModal({action}: Properties) {
+export default function DeleteDeploymentModal({action, loading}: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const t = useTranslations('DeleteDeploymentModal');
@@ -52,6 +53,7 @@ export default function DeleteDeploymentModal({action}: Properties) {
       <DialogTrigger asChild>
         <DropdownMenuItem onClick={event => event.stopPropagation()}
                           onSelect={e => e.preventDefault()}
+                          disabled={loading}
         >
           <span className="flex cursor-pointer flex-row items-center text-destructive">
             <TrashIcon className="mr-2 size-3"/>

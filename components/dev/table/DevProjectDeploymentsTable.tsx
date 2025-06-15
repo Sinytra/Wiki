@@ -13,6 +13,7 @@ import {Link} from "@/lib/locales/routing";
 import LocalDateTime from "@/components/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dev/modal/DeployProjectModalOpenButton";
+import {DeploymentStatus} from "@/lib/types/serviceTypes";
 
 function EmptyDeploymentsState() {
   return (
@@ -100,7 +101,10 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
             </DropdownMenuItem>
 
             <ClientLocaleProvider keys={['DeleteDeploymentModal']}>
-              <DeleteDeploymentModal action={handleDeleteDeploymentForm.bind(null, deployment.id)}/>
+              <DeleteDeploymentModal
+                action={handleDeleteDeploymentForm.bind(null, deployment.id)}
+                loading={deployment.status == DeploymentStatus.LOADING}
+              />
             </ClientLocaleProvider>
           </>}
         >
