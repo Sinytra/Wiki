@@ -23,10 +23,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/app/*": ["./app/*"],
-      "@/components/*": ["./components/*"],
-      "@/lib/*": ["./lib/*"],
-      "@/messages/*": ["./messages/*"],
+      "@/*": ["./src/*"],
       "@/.contentlayer/*": ["./.contentlayer/*"],
       "@/public/*": ["./public/*"],
       "contentlayer/generated": [

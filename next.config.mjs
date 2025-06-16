@@ -1,13 +1,13 @@
 import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
-import available from "./lib/locales/available.js";
+import available from "./src/lib/locales/available.js";
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from "rehype-slug";
 import { withContentlayer } from "next-contentlayer";
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx";
 
 const withNextIntl = createNextIntlPlugin(
-    './components/i18n/request.tsx'
+    './src/components/i18n/request.tsx'
 );
 
 const intlMatcher = available.getLanguagePaths().join('|');

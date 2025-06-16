@@ -17,6 +17,7 @@ import issuesApi from "@/lib/service/remote/issuesApi";
 import {constructPagePath} from "@/lib/service/serviceUtil";
 import env from "@repo/shared/env";
 import {RenderedDocsPage} from "@repo/shared/types/service";
+import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -66,7 +67,7 @@ export default async function ProjectDocsPage({params}: {
       <DocsPageNotFoundError project={projectData.project}/>
     );
   }
-  if (!page) redirect(`/project/${params.slug}/docs`);
+  if (!page) redirect(`/project/${params.slug}/${DEFAULT_DOCS_VERSION}`);
 
   const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
     && page.content.metadata.hide_meta === undefined;
