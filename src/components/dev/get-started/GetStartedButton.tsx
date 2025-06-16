@@ -1,20 +1,20 @@
 'use client'
 
-import {RocketIcon} from "lucide-react";
-import PrimaryButton from "@/components/ui/custom/PrimaryButton";
+import {PlusIcon} from "lucide-react";
 import * as React from "react";
-import {useTranslations} from "next-intl";
 import {useContext} from "react";
+import {useTranslations} from "next-intl";
 import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
+import {Button} from "@/components/ui/button";
 
 export default function GetStartedButton() {
   const t = useTranslations('GetStartedButton');
   const {setOpen} = useContext(GetStartedContext)!;
 
   return (
-    <PrimaryButton className="my-1" onClick={() => setOpen(true)}>
-      <RocketIcon className="mr-2 h-4 w-4"/>
+    <Button className="my-1" onClick={() => setOpen(true)}>
+      <PlusIcon className="mr-2 h-4 w-4"/>
       {t('title')}
-    </PrimaryButton>
+    </Button>
   );
 }

@@ -14,7 +14,7 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import * as React from "react";
-import {useEffect, useRef, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@/components/ui/input";
@@ -22,21 +22,18 @@ import SubmitButton from "@/components/ui/custom/SubmitButton";
 import {useTranslations} from "next-intl";
 import {Switch} from "@/components/ui/switch";
 import {cn} from "@/lib/utils";
-import {ExternalLinkIcon, LightbulbIcon, Loader2Icon} from "lucide-react";
+import {ExternalLinkIcon, LightbulbIcon, Loader2Icon, PlusIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Link, useRouter} from "@/lib/locales/routing";
 import {useRouter as useProgressRouter} from "@bprogress/next";
 import clientUtil from "@/lib/util/clientUtil";
 import {useParams} from "next/navigation";
+import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
 
 export interface ProjectRegisterFormProps {
   defaultValues: any;
   isAdmin: boolean;
-  open: boolean;
-  setOpen: (v: boolean) => void;
   translations?: string;
-  trigger?: any;
-  schema: any;
   redirectToProject?: boolean;
   reloadAfterSubmit?: boolean;
 
@@ -45,14 +42,10 @@ export interface ProjectRegisterFormProps {
 
 export default function ProjectRegisterForm(
   {
-    open,
-    setOpen,
     defaultValues,
     isAdmin,
     formAction,
     translations,
-    trigger,
-    schema,
     redirectToProject,
     reloadAfterSubmit
   }: ProjectRegisterFormProps
@@ -60,6 +53,7 @@ export default function ProjectRegisterForm(
   const params = useParams();
   const progressRouter = useProgressRouter();
   const router = useRouter();
+  const {open, setOpen} = useContext(GetStartedContext)!;
 
   // @ts-ignore
   const v = useTranslations(translations || 'ProjectRegisterForm');
@@ -68,7 +62,7 @@ export default function ProjectRegisterForm(
   const reload = clientUtil.usePageDataReloadTransition();
 
   const form = useForm<z.infer<typeof projectRegisterSchema>>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(projectRegisterSchema),
     defaultValues: defaultValues
   });
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -108,11 +102,12 @@ export default function ProjectRegisterForm(
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {trigger &&
-        <DialogTrigger asChild>
-          {trigger}
-        </DialogTrigger>
-      }
+      <DialogTrigger asChild>
+        <Button size="sm">
+          <PlusIcon className="mr-2 h-4 w-4"/>
+          {t('button')}
+        </Button>
+      </DialogTrigger>
       <DialogContent className="outline-hidden!">
         <DialogHeader>
           <DialogTitle>
@@ -202,7 +197,7 @@ export default function ProjectRegisterForm(
                       name="is_community"
                       render={({field}) => (
                         <FormItem
-                          className="flex flex-row items-center justify-between rounded-lg border border-tertiary p-3">
+                          className="border-tertiary flex flex-row items-center justify-between rounded-lg border p-3">
                           <div className="mb-0!">
                             <FormLabel>
                               {t('is_community.title')}
@@ -219,7 +214,7 @@ export default function ProjectRegisterForm(
 
               {form.formState.errors.root?.custom?.message &&
                 <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                    <p className="text-sm text-destructive">
+                    <p className="text-destructive text-sm">
                       {form.formState.errors.root.custom.message}
                     </p>
                 </div>
@@ -227,7 +222,7 @@ export default function ProjectRegisterForm(
 
               {/*@ts-ignore*/}
               {form.formState.errors.root?.custom?.details &&
-                <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
+                <details className="slim-scrollbar text-destructive max-h-20 w-fit overflow-y-auto text-sm">
                     <summary className="mb-2">
                       {t('errors.details')}
                     </summary>
@@ -237,10 +232,10 @@ export default function ProjectRegisterForm(
               }
 
               {canVerifyModrinth &&
-                <div className="flex flex-col gap-1 rounded-md border border-info p-3">
-                    <p className="flex flex-row items-start text-secondary">
+                <div className="border-info flex flex-col gap-1 rounded-md border p-3">
+                    <p className="text-secondary flex flex-row items-start">
                         <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
-                        <span className="text-sm text-secondary">
+                        <span className="text-secondary text-sm">
                             {t.rich('connect_modrinth.desc', {
                               b: (chunks) => <span className="text-primary">{chunks}</span>
                             })}

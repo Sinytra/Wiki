@@ -1,50 +1,42 @@
 'use client'
 
-import {
-  FileCogIcon,
-  FolderOpenIcon,
-  HomeIcon, ShapesIcon,
-  TypeIcon,
-  Undo2Icon,
-  UploadIcon,
-  UsersIcon
-} from "lucide-react";
+import {FileCogIcon, FolderOpenIcon, HomeIcon, ShapesIcon, TypeIcon, Undo2Icon, UploadIcon} from "lucide-react";
 import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 import * as React from "react";
+import {useTranslations} from "next-intl";
 
-export default function MetaDevDocsNavigation({messages}: { messages: any }) {
+export default function MetaDevDocsNavigation() {
+  const t = useTranslations('MetaDevDocsNavigation');
+
   return (
-    <CollapsibleDocsTreeBase title={messages['title']}>
+    <CollapsibleDocsTreeBase title={t('title')}>
       <div className="my-2 flex flex-col gap-2">
         <SidebarNavLink href="/about/overview" icon={Undo2Icon}>
-          {messages['back']}
+          {t('back')}
         </SidebarNavLink>
 
         <hr/>
 
         <SidebarNavLink href="/about/devs" icon={HomeIcon}>
-          {messages['start']}
+          {t('start')}
         </SidebarNavLink>
         <SidebarNavLink href="/about/devs/structure" icon={FolderOpenIcon}>
-          {messages['structure']}
+          {t('structure')}
         </SidebarNavLink>
         <SidebarNavLink href="/about/devs/config" icon={FileCogIcon}>
-          {messages['config']}
+          {t('config')}
         </SidebarNavLink>
 
         <SidebarNavLink href="/about/devs/format" icon={TypeIcon}>
-          {messages['format']}
+          {t('format')}
         </SidebarNavLink>
         <SidebarNavLink href="/about/devs/components" icon={ShapesIcon} nested>
-          {messages['components']}
+          {t('components')}
         </SidebarNavLink>
 
         <SidebarNavLink href="/about/devs/publishing" icon={UploadIcon}>
-          {messages['publishing']}
-        </SidebarNavLink>
-        <SidebarNavLink href="/about/devs/community" icon={UsersIcon}>
-          {messages['community']}
+          {t('publishing')}
         </SidebarNavLink>
       </div>
     </CollapsibleDocsTreeBase>

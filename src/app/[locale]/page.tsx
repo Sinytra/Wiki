@@ -47,7 +47,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   return resolved.map((project, index) => (
     <div key={index}
          className={`
-           flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit
+           bg-primary-alt flex h-full max-h-[var(--default-max-h)] flex-col rounded-md p-6 shadow-sm sm:max-h-fit
          `}
          style={style}
     >
@@ -60,11 +60,11 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
           className="mr-4 rounded-md"
         />
         <div>
-          <h4 className="text-xl font-semibold text-primary-alt">{project.title}</h4>
+          <h4 className="text-primary-alt text-xl font-semibold">{project.title}</h4>
           {projectTypes(project.type)}
         </div>
       </div>
-      <p className="mb-4 grow text-secondary">
+      <p className="text-secondary mb-4 grow">
         {trimText(project.summary, 100)}
       </p>
       <div className="flex items-center justify-between">
@@ -94,7 +94,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
         <Button variant="link" className="text-primary hover:text-primary/80">
           <LocaleNavLink className="flex flex-row items-center" href={`/project/${project.id}`}>
             {t('popular.open')}
-            <ArrowRight className="ml-2 h-4 w-4 text-contrast"/>
+            <ArrowRight className="text-contrast ml-2 h-4 w-4"/>
           </LocaleNavLink>
         </Button>
       </div>
@@ -104,7 +104,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
 
 function FeaturedProjectsFallback() {
   return [0, 1, 2].map(index => (
-    <div key={index} className="flex h-full flex-col rounded-lg bg-primary-alt p-6 shadow-md">
+    <div key={index} className="bg-primary-alt flex h-full flex-col rounded-lg p-6 shadow-md">
       <Skeleton className="h-full w-full"/>
     </div>
   ))
@@ -118,12 +118,12 @@ function HomePageContent() {
   return (
     <main className="container mx-auto px-4">
       <section className="mb-5 pb-4">
-        <div className="mb-2 text-center text-lg text-secondary">
+        <div className="text-secondary mb-2 text-center text-lg">
           {t.rich('title', {
             highlight: (chunks) => (
               <h2
                 className={`
-                  mb-4 animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center
+                  animate-gradient mb-4 bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center
                   text-5xl font-bold text-transparent
                 `}>
                 {chunks}
@@ -131,13 +131,13 @@ function HomePageContent() {
             )
           })}
         </div>
-        <p className="mx-auto text-center text-xl text-secondary">
+        <p className="text-secondary mx-auto text-center text-xl">
           {t('subtitle')}
         </p>
         <div className="mt-8 text-center md:hidden">
           <LocaleNavLink href="/browse"
                          className={`
-                           mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast
+                           animate-gradient via-contrast mx-auto block w-fit rounded-sm bg-linear-to-r from-blue-500
                            to-blue-500 px-12 py-2 text-white
                          `}>
             {t('browse')}
@@ -150,7 +150,7 @@ function HomePageContent() {
           <div className="grid gap-8 md:grid-cols-2">
             {/* Left column: Popular Wikis */}
             <div className="flex flex-col">
-              <h3 className="mb-6 text-center text-2xl font-bold text-primary-alt">
+              <h3 className="text-primary-alt mb-6 text-center text-2xl font-bold">
                 {t('popular.title')}
               </h3>
               <div className="flex h-full flex-col gap-6">
@@ -159,7 +159,7 @@ function HomePageContent() {
                 </Suspense>
               </div>
               <div className="mt-auto">
-                <p className="mt-6 text-sm text-secondary">
+                <p className="text-secondary mt-6 text-sm">
                   {t('popular.disclaimer')}
                 </p>
               </div>
@@ -168,14 +168,14 @@ function HomePageContent() {
             {/* Right column: Authors (top) and Users (below) */}
             <div className="space-y-8">
               <div>
-                <h3 className="mb-6 text-center text-2xl font-bold text-primary-alt">
+                <h3 className="text-primary-alt mb-6 text-center text-2xl font-bold">
                   {t('community.title')}
                 </h3>
-                <div className="rounded-lg bg-primary-alt p-6 shadow-md">
-                  <h4 className="mb-4 text-2xl font-semibold text-primary-alt">
+                <div className="bg-primary-alt rounded-lg p-6 shadow-md">
+                  <h4 className="text-primary-alt mb-4 text-2xl font-semibold">
                     {t('community.users.title')}
                   </h4>
-                  <p className="mb-4 text-secondary">
+                  <p className="text-secondary mb-4">
                     {t('community.users.subtitle')}
                   </p>
                   <div className="space-y-4">
@@ -186,7 +186,7 @@ function HomePageContent() {
                       {text: t('community.users.localization'), icon: <Globe/>}
                     ].map((item, idx) => (
                       <div key={idx} className="flex items-start">
-                        <div className="mr-3 text-secondary">{item.icon}</div>
+                        <div className="text-secondary mr-3">{item.icon}</div>
                         <p className="text-secondary">{item.text}</p>
                       </div>
                     ))}
@@ -195,7 +195,7 @@ function HomePageContent() {
                     <LocaleNavLink
                       href="/browse"
                       className={`
-                        block w-full rounded-sm bg-contrast px-4 py-2 text-center font-bold text-white transition
+                        bg-contrast block w-full rounded-sm px-4 py-2 text-center font-bold text-white transition
                         duration-300 hover:bg-blue-700
                       `}
                     >
@@ -203,11 +203,11 @@ function HomePageContent() {
                     </LocaleNavLink>
                   </div>
                 </div>
-                <div className="mt-4 rounded-lg bg-primary-alt p-6 shadow-md">
-                  <h4 className="mb-4 text-2xl font-semibold text-primary-alt">
+                <div className="bg-primary-alt mt-4 rounded-lg p-6 shadow-md">
+                  <h4 className="text-primary-alt mb-4 text-2xl font-semibold">
                     {t('community.authors.title')}
                   </h4>
-                  <p className="mb-4 text-secondary">
+                  <p className="text-secondary mb-4">
                     {t('community.authors.subtitle')}
                   </p>
                   <div className="space-y-4">
@@ -222,7 +222,7 @@ function HomePageContent() {
                       {text: t('community.authors.interaction'), icon: <HeartIcon/>},
                     ].map((item, idx) => (
                       <div key={idx} className="flex items-start">
-                        <div className="mr-3 text-secondary">{item.icon}</div>
+                        <div className="text-secondary mr-3">{item.icon}</div>
                         <p className="text-secondary">{item.text}</p>
                       </div>
                     ))}
@@ -254,7 +254,7 @@ function HomePageContent() {
         </div>
       </section>
 
-      <section className="mt-12 rounded-lg bg-secondary p-8">
+      <section className="bg-secondary mt-12 rounded-lg p-8">
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {[
             {icon: GlobeIcon, title: t('highlights.localization.title'), description: t('highlights.localization.desc')},
@@ -271,7 +271,7 @@ function HomePageContent() {
                 <feature.icon className="h-5 w-5" />
               </span>
               <div>
-                <h3 className="font-semibold text-primary-alt">{feature.title}</h3>
+                <h3 className="text-primary-alt font-semibold">{feature.title}</h3>
                 <p className="text-secondary">{feature.description}</p>
               </div>
             </li>
@@ -279,16 +279,16 @@ function HomePageContent() {
         </ul>
       </section>
 
-      <section className="mt-12 rounded-lg bg-primary-alt p-8">
+      <section className="bg-primary-alt mt-12 rounded-lg p-8">
         <div className="flex flex-col gap-8 lg:flex-row">
           <div className="lg:w-1/3">
             <h2 className="mb-4 text-xl font-semibold">
               {t('about.title')}
             </h2>
-            <p className="mb-4 text-secondary">
+            <p className="text-secondary mb-4">
               {t.rich('about.maintainers', { b: (chunks) => (<b>{chunks}</b>)})}
             </p>
-            <p className="mb-4 text-secondary">
+            <p className="text-secondary mb-4">
               {t('about.mission')}
             </p>
             <SocialButtons />
@@ -301,16 +301,16 @@ function HomePageContent() {
               {blogPosts.map((post, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col rounded-lg border bg-primary p-4 ${index === 0 ? `
+                  className={`bg-primary flex flex-col rounded-lg border p-4 ${index === 0 ? `
                     border-[var(--vp-c-brand-1)]
                   ` : `border-neutral-600`}`}
                 >
                   <h4 className="mb-2 text-lg font-semibold">{post.title}</h4>
-                  <p className="mb-2 text-sm text-secondary">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
-                  <p className="grow text-secondary">{post.excerpt}</p>
+                  <p className="text-secondary mb-2 text-sm">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
+                  <p className="text-secondary grow">{post.excerpt}</p>
                   <Link
                     href={`/blog/${post._id.replace(".mdx", "")}`}
-                    className="mt-2 inline-flex items-center text-primary hover:text-primary/80"
+                    className="text-primary mt-2 inline-flex items-center hover:text-primary/80"
                   >
                     {t('blog.open')}
                     <ArrowRight className="ml-2 h-4 w-4"/>

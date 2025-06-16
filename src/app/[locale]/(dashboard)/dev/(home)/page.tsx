@@ -6,11 +6,17 @@ import {handleRegisterProjectForm} from "@/lib/forms/actions";
 import {getTranslations} from "next-intl/server";
 import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
-import GetStartedModal from "@/components/dev/get-started/GetStartedModal";
 import {cn, trimText} from "@/lib/utils";
 import platforms, {PlatformProject} from "@repo/platforms";
 import {ProjectStatus} from "@/lib/types/serviceTypes";
-import {AlertCircleIcon, CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon, XIcon} from "lucide-react";
+import {
+  AlertCircleIcon,
+  CircleCheckIcon,
+  HelpCircleIcon,
+  LoaderCircleIcon,
+  SettingsIcon,
+  XIcon
+} from "lucide-react";
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
@@ -18,6 +24,8 @@ import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import {UserRole} from "@/lib/service/types";
 import {handleApiResponse} from "@/lib/service/serviceUtil";
 import {DevProject} from "@repo/shared/types/service";
+import ProjectRegisterForm from "@/components/dev/modal/ProjectRegisterForm";
+import * as React from "react";
 
 export const dynamic = 'force-dynamic';
 
@@ -32,10 +40,14 @@ function ProjectsListHeader({defaultValues, isAdmin}: {
   return (
     <div className="mb-2 flex w-full flex-col">
       <div className="flex flex-row items-center justify-end">
-        <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden"/>
+        <SidebarTrigger className="text-primary mr-auto -ml-1 md:hidden"/>
 
-        <ClientLocaleProvider keys={['GetStartedModal', 'ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition']}>
-          <GetStartedModal defaultValues={defaultValues} isAdmin={isAdmin} formAction={handleRegisterProjectForm}/>
+        <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition']}>
+          <ProjectRegisterForm defaultValues={defaultValues}
+                               isAdmin={isAdmin}
+                               formAction={handleRegisterProjectForm}
+                               redirectToProject
+          />
         </ClientLocaleProvider>
       </div>
 
@@ -67,11 +79,11 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
       </div>
       <div className="flex flex-col">
         <div>
-          <LinkTextButton className="w-fit! text-lg! font-medium! text-primary!" href={getProjectLink(id)}>
+          <LinkTextButton className="text-primary! w-fit! text-lg! font-medium!" href={getProjectLink(id)}>
             {project.name}
           </LinkTextButton>
         </div>
-        <p className="max-w-5xl overflow-x-hidden font-normal text-ellipsis text-secondary">
+        <p className="text-secondary max-w-5xl overflow-x-hidden font-normal text-ellipsis">
           {trimText(project.summary, 50)}
         </p>
       </div>
@@ -95,7 +107,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
 
   return (
     <div className={`
-      flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-dim p-3 sm:flex-row
+      border-tertiary bg-primary-dim flex w-full flex-col justify-between gap-2 rounded-md border p-3 sm:flex-row
       sm:gap-4
     `}>
       <MobileProjectHeader id={project.id} project={platformProject} />
@@ -107,11 +119,11 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
       <div className="flex w-full flex-col gap-2">
         <div className="hidden flex-col sm:flex">
           <div>
-            <LinkTextButton className="w-fit! text-lg font-normal! text-primary!" href={getProjectLink(project.id)}>
+            <LinkTextButton className="text-primary! w-fit! text-lg font-normal!" href={getProjectLink(project.id)}>
               {platformProject.name}
             </LinkTextButton>
           </div>
-          <p className="text-sm font-normal text-secondary">
+          <p className="text-secondary text-sm font-normal">
             {trimText(platformProject.summary, 100)}
           </p>
         </div>
@@ -152,14 +164,14 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
       {projects.length === 0 &&
         <div
           className={`
-            flex w-full flex-col items-center justify-center gap-4 rounded-xs border border-tertiary px-4 py-6
+            border-tertiary flex w-full flex-col items-center justify-center gap-4 rounded-xs border px-4 py-6
             text-center
           `}>
-          <span className="font-medium text-primary">{t('empty.primary')}</span>
+          <span className="text-primary font-medium">{t('empty.primary')}</span>
           <span className="text-secondary">
             {t.rich('empty.secondary', {
               guide: (chunks) => (
-                <LinkTextButton className="text-base! font-normal! text-primary! underline" href="/about/devs">
+                <LinkTextButton className="text-primary! text-base! font-normal! underline" href="/about/devs">
                   {chunks}
                 </LinkTextButton>
               )

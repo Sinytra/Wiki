@@ -283,7 +283,7 @@
         "danger": "Danger"
     },
     "ProjectRegisterForm": {
-        "button": "Add Project",
+        "button": "New Project",
         "title": "Register project",
         "desc": "Register a new project to the wiki.",
         "repo": {
@@ -368,21 +368,7 @@
         "return": "Return Home"
     },
     "GetStartedButton": {
-        "title": "Create first project"
-    },
-    "GetStartedModal": {
-        "button": "Add project",
-        "title": "I'd like to write documentation for...",
-        "dev": {
-            "title": "My own project",
-            "desc": "Author your own documentation and control who can make changes to it.",
-            "button": "Create project"
-        },
-        "community": {
-            "title": "Someone else's project",
-            "desc": "Contribute to a collection of community docs maintained by wiki editors",
-            "button": "Read guide"
-        }
+        "title": "Create your first project"
     },
     "ProjectHomepage": {
         "overview": {
@@ -469,7 +455,7 @@
             "manage": "Manage"
         },
         "empty": {
-            "primary": "Looks like you haven't registered any projects yet",
+            "primary": "Looks like you haven't created any projects yet",
             "secondary": "Get started by reading our <guide>author guide</guide>."
         }
     },

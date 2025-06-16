@@ -37,7 +37,7 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
 function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
-    <span className="line-clamp-2 h-10 text-sm font-normal text-secondary sm:line-clamp-none sm:h-auto sm:min-h-5">
+    <span className="text-secondary line-clamp-2 h-10 text-sm font-normal sm:line-clamp-none sm:h-auto sm:min-h-5">
       {trimText(projectContent.summary, 100)}
     </span>
   )
@@ -45,8 +45,8 @@ function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
 
 function ProjectIconPlaceholder() {
   return (
-      <div className="flex h-16 w-16 shrink-0 rounded-xs border border-tertiary sm:h-20 sm:w-20">
-        <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={56} height={56}/>
+      <div className="border-tertiary flex h-16 w-16 shrink-0 rounded-xs border sm:h-20 sm:w-20">
+        <BoxIcon strokeWidth={1} className="text-secondary m-auto opacity-20" width={56} height={56}/>
       </div>
   )
 }
@@ -85,17 +85,17 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
 
   return (
       <div className={`
-        mt-auto flex h-5.5 w-full flex-wrap items-center justify-between gap-2 text-secondary sm:h-auto sm:shrink-0
+        text-secondary mt-auto flex h-5.5 w-full flex-wrap items-center justify-between gap-2 sm:h-auto sm:shrink-0
         sm:flex-nowrap
       `}
       >
         <ErrorBoundary fallback={<span></span>}>
           <div className="flex flex-row items-center gap-3">
-            <div className="flex flex-row items-center gap-2 text-secondary">
+            <div className="text-secondary flex flex-row items-center gap-2">
               <TypeIcon className="size-4"/>
               <span className="text-sm">{u(base.type)}</span>
             </div>
-            <div className="flex flex-row items-center gap-2 text-secondary">
+            <div className="text-secondary flex flex-row items-center gap-2">
               <MilestoneIcon className="size-4"/>
               <Suspense>
                 <ProjectGameVersions project={promise} />
@@ -110,7 +110,7 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
           </Suspense>
           {cfLink &&
               <Button asChild variant="ghost" size="icon"
-                      className="size-8 hover:text-brand-curseforge">
+                      className="hover:text-brand-curseforge size-8">
                   <NavLink href={cfLink} target="_blank">
                       <CurseForgeIcon className="h-5 w-5"/>
                   </NavLink>
@@ -118,7 +118,7 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
           }
           {mrLink &&
               <Button asChild variant="ghost" size="icon"
-                      className="size-8 hover:text-brand-modrinth">
+                      className="hover:text-brand-modrinth size-8">
                   <NavLink href={mrLink} target="_blank">
                       <ModrinthIcon className="h-5 w-5"/>
                   </NavLink>
@@ -134,7 +134,7 @@ export default function BrowseProject({project}: { project: BaseProject }) {
 
   return (
       <div className={`
-        flex w-full flex-row items-center gap-3 rounded-sm border border-tertiary bg-primary-dim px-3 py-2 sm:gap-4
+        border-tertiary bg-primary-dim flex w-full flex-row items-center gap-3 rounded-sm border px-3 py-2 sm:gap-4
         sm:py-3
       `}>
         <ErrorBoundary fallback={<ProjectIconPlaceholder/>}>
@@ -147,7 +147,7 @@ export default function BrowseProject({project}: { project: BaseProject }) {
           <div className="flex h-full w-full flex-col">
             <div className="inline-flex w-full gap-2">
               <LinkTextButton href={`/project/${project.id}`} className={`
-                w-fit! text-base! font-normal! text-primary sm:shrink-0 [&_]:text-lg
+                text-primary w-fit! text-base! font-normal! sm:shrink-0 [&_]:text-lg
               `}>
                 {project.name}
               </LinkTextButton>
