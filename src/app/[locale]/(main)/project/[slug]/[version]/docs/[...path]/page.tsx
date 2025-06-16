@@ -13,7 +13,7 @@ import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import DocsGuideContentRightSidebar from "@/components/docs/side/guide/DocsGuideContentRightSidebar";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
-import issuesApi from "@/lib/service/remote/issuesApi";
+import issuesApi from "@/lib/service/api/issuesApi";
 import {constructPagePath} from "@/lib/service/serviceUtil";
 import env from "@repo/shared/env";
 import {RenderedDocsPage} from "@repo/shared/types/service";

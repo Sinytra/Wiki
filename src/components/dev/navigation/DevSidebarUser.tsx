@@ -20,7 +20,8 @@ import {useState} from "react";
 import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
 import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
 import {useProgress} from "@bprogress/next";
-import {UserProfile} from "@/lib/service/types";
+
+import {UserProfile} from "@repo/shared/types/api/auth";
 
 function LogoutModal({open}: { open: boolean; }) {
   const t = useTranslations('DevSidebarUser.logout');

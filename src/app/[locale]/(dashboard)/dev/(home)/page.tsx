@@ -21,11 +21,11 @@ import {Link, setContextLocale} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
-import {UserRole} from "@/lib/service/types";
 import {handleApiResponse} from "@/lib/service/serviceUtil";
 import {DevProject} from "@repo/shared/types/service";
 import ProjectRegisterForm from "@/components/dev/modal/ProjectRegisterForm";
 import * as React from "react";
+import {UserRole} from "@repo/shared/types/api/auth";
 
 export const dynamic = 'force-dynamic';
 

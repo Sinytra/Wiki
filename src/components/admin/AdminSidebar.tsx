@@ -15,8 +15,8 @@ import {DevSidebarMainNav} from "@/components/dev/navigation/DevSidebarMainNav";
 import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu} from "@/components/ui/sidebar";
 import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
-import {UserProfile} from "@/lib/service/types";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
+import {UserProfile} from "@repo/shared/types/api/auth";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
@@ -25,7 +25,7 @@ interface Props extends React.ComponentProps<typeof Sidebar> {
 function AdminSidebarHeader() {
   return (
     <div className={`
-      flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive-secondary py-3
+      border-destructive-secondary flex w-full flex-col items-center justify-center gap-4 rounded-sm border py-3
     `}>
       <div>
         <ServerCogIcon width={32} height={32} />

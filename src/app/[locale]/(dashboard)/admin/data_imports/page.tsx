@@ -1,5 +1,5 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import adminApi from "@/lib/service/remote/adminApi";
+import adminApi from "@/lib/service/api/adminApi";
 import {redirect} from "next/navigation";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {getTranslations} from "next-intl/server";

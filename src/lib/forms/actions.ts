@@ -7,12 +7,9 @@ import cacheUtil from "@/lib/cacheUtil";
 import authSession from "@/lib/authSession";
 import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
+import authApi from "@/lib/service/api/authApi";
 
-export async function fetchProjectLog(id: string): Promise<string | undefined> {
-  const res = await remoteServiceApi.getProjectDevLog(id);
-  return typeof res === 'string' ? res : undefined;
-}
-
+// TODO Cleanup
 export async function handleRegisterProjectForm(rawData: any) {
   const data = await validateProjectFormData(rawData, projectRegisterSchema);
   if ('success' in data) {
@@ -86,9 +83,9 @@ export async function handleRevalidateDocs(id: string) {
 }
 
 export async function handleReportProjectForm(projectId: string, path: string, rawData: any) {
-  const response = await remoteServiceApi.getUserProfile();
-  if ('status' in response) {
-    return {success: false, error: 'unauthenticated'};
+  const response = await authApi.getUserProfile();
+  if (!response.success) {
+    return {success: false, error: response.error};
   }
 
   const validatedFields = docsPageReportSchema.safeParse(rawData)
@@ -101,7 +98,7 @@ export async function handleReportProjectForm(projectId: string, path: string, r
 
   try {
     const sender = {
-      name: response.username || 'Unknown',
+      name: response.data.username || 'Unknown',
       email: rawData.email || 'unknown'
     };
     // Send asynchronously
@@ -115,8 +112,8 @@ export async function handleReportProjectForm(projectId: string, path: string, r
 }
 
 export async function linkModrinthAccount() {
-  const result = await remoteServiceApi.linkModrinthAcount();
-  if ('url' in result) {
+  const result = await authApi.linkModrinthAcount();
+  if (result.type == 'redirect') {
     return redirect(result.url);
   } else {
     return {success: false};
@@ -124,17 +121,13 @@ export async function linkModrinthAccount() {
 }
 
 export async function unlinkModrinthAccount() {
-  const result = await remoteServiceApi.unlinkModrinthAcount();
-  if ('error' in result) {
-    return {success: false, error: result.error};
-  } else {
-    return {success: true};
-  }
+  const result = await authApi.unlinkModrinthAcount();
+  return result.success ? {success: true} : {success: false, error: result.error};
 }
 
 export async function deleteUserAccount() {
-  const result = await remoteServiceApi.deleteUserAcount();
-  if ('error' in result) {
+  const result = await authApi.deleteUserAcount();
+  if (!result.success) {
     return {success: false, error: result.error};
   } else {
     return authSession.logout(); // Remove session cookie
@@ -166,8 +159,4 @@ export async function handleDeleteDeploymentForm(id: string) {
   }
 
   return {success: true};
-}
-
-export async function handleCreateDeploymentForm(id: string) {
-
 }

@@ -1,29 +1,28 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {Button} from "@/components/ui/button";
 import {SettingsIcon} from "lucide-react";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {getTranslations} from "next-intl/server";
-import {handleApiResponse} from "@/lib/service/serviceUtil";
+import {handleApiCall} from "@/lib/service/serviceUtil";
+import authApi from "@/lib/service/api/authApi";
 
 export default async function DevProjectMembersPage({params}: { params: { locale: string } }) {
   setContextLocale(params.locale);
+  const profile = handleApiCall(await authApi.getUserProfile());
   const t = await getTranslations('DevProjectMembersPage');
-
-  const response = handleApiResponse(await remoteServiceApi.getUserProfile());
 
   return (
     <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
-      <div className="flex w-full flex-row gap-3 rounded-md border border-tertiary bg-primary-alt p-3 sm:gap-4 sm:p-4">
-        <ImageWithFallback src={response.avatar_url} width={64} height={64} className="rounded-sm sm:size-21"
+      <div className="border-tertiary bg-primary-alt flex w-full flex-row gap-3 rounded-md border p-3 sm:gap-4 sm:p-4">
+        <ImageWithFallback src={profile.avatar_url} width={64} height={64} className="rounded-sm sm:size-21"
                            alt="avatar"/>
 
         <div className="flex w-full flex-col items-end justify-between">
           <div className="flex w-full flex-row justify-between gap-2">
-            <span className="text-lg sm:text-xl">{response.username}</span>
+            <span className="text-lg sm:text-xl">{profile.username}</span>
             <span className="text-secondary">{t('roles.owner')}</span>
           </div>
 

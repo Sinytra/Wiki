@@ -1,6 +1,5 @@
 import cacheUtil from "@/lib/cacheUtil";
 import platforms from "@repo/platforms";
-import {UserProfile} from "@/lib/service/types";
 import {cookies} from "next/headers";
 import {DeploymentStatus, ProjectIssue} from "@/lib/types/serviceTypes";
 import {ProjectPlatform} from "@repo/shared/types/platform";
@@ -12,6 +11,7 @@ import {
   ProjectType,
   StatusResponse
 } from "@repo/shared/types/service";
+import {UserProfile} from "@repo/shared/types/api/auth";
 
 const ONE_DAY = 60 * 60 * 24;
 const ONE_WEEK = ONE_DAY * 7;
@@ -29,10 +29,6 @@ interface ErrorResponse extends SimpleErrorResponse {
 
   install_url?: string;
   can_verify_mr?: boolean;
-}
-
-interface RedirectResponse {
-  url: string;
 }
 
 interface ProjectRegisterRequest {
@@ -176,10 +172,6 @@ async function getDevProject(id: string): Promise<DevProject | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}`, {}, 'GET'));
 }
 
-async function getProjectDevLog(id: string): Promise<string | SimpleErrorResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/log`, {}, 'GET'), a => a.content);
-}
-
 async function getDevProjectContentPages(id: string, params: Record<string, string | null>): Promise<ProjectContentPages | StatusResponse> {
   return wrapJsonServiceCall(() => sendSimpleRequest(`dev/projects/${id}/content/pages`, params, 'GET'));
 }
@@ -236,42 +228,6 @@ async function revalidateProject(id: string, token: string | null = null): Promi
     console.error('Error invalidating docs for project', id);
   }
   return result;
-}
-
-async function linkModrinthAcount(): Promise<RedirectResponse | SimpleErrorResponse> {
-  try {
-    const resp = await sendSimpleRequest('auth/link/modrinth', {}, 'GET');
-    if (resp.ok) {
-      return {url: resp.url};
-    }
-    const body = await resp.text();
-    return {status: resp.status, error: body};
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function unlinkModrinthAcount(): Promise<SimpleErrorResponse | StatusResponse> {
-  try {
-    const resp = await sendSimpleRequest('auth/unlink/modrinth');
-    if (resp.ok) {
-      return {status: resp.status};
-    }
-    const body = await resp.json();
-    return {status: resp.status, error: body.error};
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-}
-
-async function getUserProfile(): Promise<UserProfile | StatusResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest('auth/user', {}, 'GET'));
-}
-
-async function deleteUserAcount(): Promise<SimpleErrorResponse | StatusResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest('auth/user', {}, 'DELETE'));
 }
 
 async function getProjectLinks(project: Project, sourceUrl?: string): Promise<FeaturedProject["links"]> {
@@ -374,12 +330,7 @@ export default {
   getAllProjectIDs,
   getUserDevProjects,
   getFeaturedProjects,
-  getProjectDevLog,
   getDevProject,
-  getUserProfile,
-  linkModrinthAcount,
-  unlinkModrinthAcount,
-  deleteUserAcount,
   getDevProjectContentPages,
   getDevProjectVersions,
   getDevProjectContentTags,

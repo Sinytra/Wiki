@@ -18,7 +18,7 @@ import {
 import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
-import {UserProfile, UserRole} from "@/lib/service/types";
+import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
@@ -75,7 +75,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
 
         {profile.role === UserRole.ADMIN &&
           <div className="mt-auto px-2">
-              <SidebarGroup className="rounded-sm border border-destructive-secondary">
+              <SidebarGroup className="border-destructive-secondary rounded-sm border">
                   <SidebarGroupLabel>
                     {t('groups.admin')}
                   </SidebarGroupLabel>

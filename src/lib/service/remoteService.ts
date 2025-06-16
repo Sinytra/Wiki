@@ -8,6 +8,7 @@ import {
   ServiceProviderFactory
 } from "@repo/shared/types/service";
 import resourceLocation, {ResourceLocation} from "@repo/shared/resourceLocation";
+import browseApi from "@/lib/service/api/browseApi";
 
 type RequestOptions = Parameters<typeof fetch>[1];
 
@@ -82,12 +83,13 @@ async function getDocsPage(project: string, path: string[], version: string | nu
 }
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults | null> {
-  return await wrapNullableServiceCall(() => fetchBackendService('', `browse`, {
+  const results = await browseApi.searchProjects({
     query,
     page: page.toString(),
     types,
     sort
-  }, 'GET', true));
+  });
+  return results.success ? results.data : null;
 }
 
 async function getProjectContents(project: string, version: string | null, locale: string | null): Promise<ProjectContentTree | null> {

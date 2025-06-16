@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import {Link, setContextLocale} from "@/lib/locales/routing";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {format} from "date-fns";
 import {Button} from "@/components/ui/button";
 import {deleteUserAccount, linkModrinthAccount, unlinkModrinthAccount} from "@/lib/forms/actions";
@@ -19,10 +18,11 @@ import {cn} from "@/lib/utils";
 import DeleteAccountForm from "@/components/dev/settings/DeleteAccountForm";
 import {useTranslations} from "next-intl";
 import {getTranslations} from "next-intl/server";
-import {UserProfile, UserRole} from "@/lib/service/types";
 import AdminBadge from "@/components/util/AdminBadge";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
-import {handleApiResponse} from "@/lib/service/serviceUtil";
+import {handleApiCall} from "@/lib/service/serviceUtil";
+import authApi from "@/lib/service/api/authApi";
+import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
 
 export const dynamic = 'force-dynamic';
 
@@ -31,21 +31,21 @@ function UserProfileInfo({user}: { user: UserProfile }) {
   const joinDate = format(new Date(user.created_at), 'MMMM d, yyyy');
 
   return (
-    <div className="flex w-full flex-row gap-4 rounded-sm border border-tertiary bg-primary-alt p-4">
+    <div className="border-tertiary bg-primary-alt flex w-full flex-row gap-4 rounded-sm border p-4">
       <div>
         <img src={user.avatar_url} width={84} height={84} className="rounded-sm" alt="avatar"/>
       </div>
 
       <div className="flex w-full flex-col justify-between gap-2">
         <div className="flex flex-row items-center justify-between">
-          <span className="text-lg text-primary-alt">
+          <span className="text-primary-alt text-lg">
             {user.username}
           </span>
           {user.role === UserRole.ADMIN &&
             <AdminBadge />
           }
         </div>
-        <div className="flex justify-between text-sm text-secondary">
+        <div className="text-secondary flex justify-between text-sm">
           <span>{t('bio')}</span>
           <span>{t('join_date', {date: joinDate})}</span>
         </div>
@@ -57,7 +57,7 @@ function UserProfileInfo({user}: { user: UserProfile }) {
 function UserSettingsCategory({title, className, children}: { title: string; className?: string; children?: any }) {
   return (
     <div className={cn('flex flex-col gap-4', className)}>
-      <div className="text-lg text-primary-alt">
+      <div className="text-primary-alt text-lg">
         {title}
       </div>
       <div className="flex flex-col gap-2 px-2">
@@ -72,7 +72,7 @@ function UserSettingsRow({title, desc, children}: { title: string; desc: string;
     <div className="flex flex-col justify-between gap-2 sm:flex-row">
       <div className="flex flex-col gap-1">
         <span>{title}</span>
-        <span className="text-sm text-secondary">
+        <span className="text-secondary text-sm">
           {desc}
         </span>
       </div>
@@ -95,7 +95,7 @@ function UserSettings({user}: { user: UserProfile }) {
               ?
               <div className="flex flex-row gap-2">
                 <a href={`https://modrinth.com/user/${user.modrinth_id}`} target="_blank">
-                  <Button variant="secondary" size="sm" className="border border-primary bg-primary font-semibold">
+                  <Button variant="secondary" size="sm" className="border-primary bg-primary border font-semibold">
                     {t('connections.modrinth.view')}
                     <ExternalLinkIcon className="ml-2 h-4 w-4"/>
                   </Button>
@@ -120,14 +120,15 @@ function UserSettings({user}: { user: UserProfile }) {
 
 export default async function DevSettingsPage({params}: { params: { locale: string; } }) {
   setContextLocale(params.locale);
-  const response = handleApiResponse(await remoteServiceApi.getUserProfile());
+
+  const profile = handleApiCall(await authApi.getUserProfile());
   const t = await getTranslations('UserSettings');
 
   return (
     <div className="flex h-full flex-col">
       <Breadcrumb className="mt-1 mb-4 sm:mt-0">
         <BreadcrumbList>
-          <SidebarTrigger className="mr-1 -ml-1 text-primary sm:hidden"/>
+          <SidebarTrigger className="text-primary mr-1 -ml-1 sm:hidden"/>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
               <Link href="/dev">
@@ -145,11 +146,11 @@ export default async function DevSettingsPage({params}: { params: { locale: stri
       </Breadcrumb>
 
       <div className="flex h-full flex-auto flex-col gap-4 pb-4">
-        <UserProfileInfo user={response}/>
+        <UserProfileInfo user={profile}/>
 
         <hr/>
 
-        <UserSettings user={response}/>
+        <UserSettings user={profile}/>
       </div>
     </div>
   )
