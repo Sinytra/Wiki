@@ -5,11 +5,11 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from "@/components/ui/breadcrumb";
-import {SidebarTrigger} from "@/components/ui/sidebar";
+} from "@repo/ui/components/breadcrumb";
+import {SidebarTrigger} from "@repo/ui/components/sidebar";
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import {format} from "date-fns";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {deleteUserAccount, linkModrinthAccount, unlinkModrinthAccount} from "@/lib/forms/actions";
 import {ExternalLinkIcon} from "lucide-react";
 import UnlinkMRAccountForm from "@/components/dev/settings/UnlinkMRAccountForm";

@@ -17,14 +17,14 @@ import {
   XIcon
 } from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {format} from "date-fns";
 import {ProjectHostingPlatforms, ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {cn} from "@/lib/utils";
 import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
-import {Label} from "@/components/ui/label";
+import {Label} from "@repo/ui/components/label";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
 import {ProjectPlatform} from "@repo/shared/types/platform";

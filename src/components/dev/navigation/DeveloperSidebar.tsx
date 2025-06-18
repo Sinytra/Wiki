@@ -14,7 +14,7 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu
-} from "@/components/ui/sidebar";
+} from "@repo/ui/components/sidebar";
 import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";

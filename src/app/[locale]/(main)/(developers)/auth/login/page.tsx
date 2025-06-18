@@ -1,5 +1,5 @@
 import {redirect} from "next/navigation";
-import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@repo/ui/components/card";
 import {KeyRoundIcon} from "lucide-react";
 import {setContextLocale} from "@/lib/locales/routing";
 import LoginSubmitButton from "@/components/util/LoginSubmitButton";
@@ -34,7 +34,7 @@ export default async function Login({params, searchParams}: {
             <KeyRoundIcon className="mr-2 h-6 w-6" strokeWidth={1.8}/>
             {t('title')}
           </CardTitle>
-          <div className="space-y-2 pt-2 text-sm text-secondary">
+          <div className="text-secondary space-y-2 pt-2 text-sm">
             <p>{t('desc')}</p>
             <p>{t('prompt')}</p>
           </div>

@@ -9,14 +9,14 @@ import {
   SwatchBookIcon,
   UnplugIcon
 } from "lucide-react";
-import {Input} from "@/components/ui/input";
-import {Checkbox} from "@/components/ui/checkbox";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
+import {Input} from "@repo/ui/components/input";
+import {Checkbox} from "@repo/ui/components/checkbox";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@repo/ui/components/accordion";
 import {parseAsArrayOf, useQueryState} from "nuqs";
 import {parseAsString} from "nuqs/server";
 import {useTranslations} from "next-intl";
 import {useEffect, useState} from "react";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 
 function FilterSearch({filter, setFilter, active, onReset}: {
   filter: string | null;
@@ -28,7 +28,7 @@ function FilterSearch({filter, setFilter, active, onReset}: {
 
   return (
       <div className="mt-2 flex w-full flex-row gap-2 pt-2 sm:mt-0">
-        <div className="relative w-full text-secondary">
+        <div className="text-secondary relative w-full">
           <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
           <Input
               className="border-secondary-dim pl-9 focus-visible:ring-0 focus-visible:outline-hidden"
@@ -61,7 +61,7 @@ function Category({name, icon: Icon, checked, onChange}: {
                   checked={checked}
                   onCheckedChange={(e) => onChange(e == true)}/>
         <Icon className="h-4 w-4"/>
-        <span className="text-sm text-primary">{name}</span>
+        <span className="text-primary text-sm">{name}</span>
       </div>
   )
 }

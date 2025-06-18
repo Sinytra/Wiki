@@ -1,9 +1,9 @@
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
-import {Skeleton} from "@/components/ui/skeleton";
+import {Skeleton} from "@repo/ui/components/skeleton";
 
 export default function DocsLoadingSkeleton() {
   return (
-    <div className="flex animate-out flex-col transition-all fade-out-0">
+    <div className="animate-out fade-out-0 flex flex-col transition-all">
       <DocsContentTitle titleClassName="w-full">
         <Skeleton className="h-8 w-full"/>
       </DocsContentTitle>

@@ -1,11 +1,11 @@
 import platforms, {PlatformProject} from "@repo/platforms";
 import {Suspense, use} from "react";
 import {BoxIcon, MilestoneIcon} from "lucide-react";
-import {Skeleton} from "@/components/ui/skeleton";
-import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
-import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
-import {Button} from "@/components/ui/button";
-import GitHubIcon from "@/components/ui/icons/GitHubIcon";
+import {Skeleton} from "@repo/ui/components/skeleton";
+import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
+import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
+import {Button} from "@repo/ui/components/button";
+import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 import LinkTextButton from "@/components/ui/link-text-button";
 import {ErrorBoundary} from "react-error-boundary";
 import {ProjectTypeIcons} from "@/lib/docs/projectInfo";

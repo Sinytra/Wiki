@@ -1,6 +1,6 @@
 'use client'
 
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {TrashIcon} from "lucide-react";
 import * as React from "react";
 import {useState} from "react";
@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 import {useTranslations} from "next-intl";
 import FormDeleteButton from "@/components/ui/custom/FormDeleteButton";
 
@@ -35,7 +35,7 @@ export default function DeleteAccountForm({action}: Properties) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="destructive" size="sm" className={`
-          border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
+          border-destructive-secondary bg-primary border font-semibold hover:bg-secondary/80
           data-[pending=true]:text-destructive/90
         `}>
           <TrashIcon className="mr-2 h-4 w-4"/>

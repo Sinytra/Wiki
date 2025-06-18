@@ -1,5 +1,5 @@
 import {notFound} from "next/navigation";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {FolderOpenIcon, PackageIcon} from "lucide-react";
 import {NavLink} from "@/components/navigation/link/NavLink";
 import {getTranslations} from "next-intl/server";
@@ -23,7 +23,7 @@ export default async function Preview({params}: { params: { locale: string } }) 
         {t('title')}
       </h1>
       
-      <span className="mb-12 text-center text-secondary">
+      <span className="text-secondary mb-12 text-center">
         {t('desc')}
       </span>
       

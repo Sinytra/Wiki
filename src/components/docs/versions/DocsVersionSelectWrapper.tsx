@@ -1,7 +1,7 @@
 'use client'
 
 import {useRouter} from '@bprogress/next';
-import {Select} from "@/components/ui/select";
+import {Select} from "@repo/ui/components/select";
 import {usePathname} from "next/navigation";
 
 export default function DocsVersionSelectWrapper({value, defaultValue, children}: { value?: string; defaultValue?: string; children?: any }) {

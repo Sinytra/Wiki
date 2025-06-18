@@ -1,6 +1,6 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {SettingsIcon} from "lucide-react";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {getTranslations} from "next-intl/server";

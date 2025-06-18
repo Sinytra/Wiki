@@ -10,8 +10,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,} from "@/components/ui/sidebar"
+} from "@repo/ui/components/dropdown-menu"
+import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,} from "@repo/ui/components/sidebar"
 import {useTranslations} from "next-intl";
 
 interface Props {
@@ -34,7 +34,7 @@ export function DevSidebarContextSwitcher({teams}: Props) {
             <SidebarMenuButton size="lg" className="data-[state=open]:bg-secondary data-[state=open]:text-primary-alt">
               <div
                 className={`
-                  flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600 text-primary-alt
+                  text-primary-alt flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600
                 `}>
                 <activeTeam.logo className="size-4"/>
               </div>
@@ -52,7 +52,7 @@ export function DevSidebarContextSwitcher({teams}: Props) {
             side={isMobile ? "bottom" : "right"}
             sideOffset={4}
           >
-            <DropdownMenuLabel className="text-xs text-secondary">
+            <DropdownMenuLabel className="text-secondary text-xs">
               {t('title')}
             </DropdownMenuLabel>
             {teams.map((team, index) => (
@@ -61,7 +61,7 @@ export function DevSidebarContextSwitcher({teams}: Props) {
                 onClick={() => setactiveTeam(team)}
                 className="gap-2 p-2"
               >
-                <div className="flex size-6 items-center justify-center rounded-sm border border-tertiary">
+                <div className="border-tertiary flex size-6 items-center justify-center rounded-sm border">
                   <team.logo className="size-4 shrink-0"/>
                 </div>
                 {team.name}

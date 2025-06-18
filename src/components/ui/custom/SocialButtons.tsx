@@ -1,11 +1,11 @@
 "use client";
 
 import {Share2} from "lucide-react";
-import {Button} from "../button";
-import DiscordIcon from "../icons/DiscordIcon";
-import GitHubIcon from "../icons/GitHubIcon";
 import {ReactNode} from "react";
 import {cn} from "@/lib/utils";
+import {Button} from "@repo/ui/components/button";
+import GitHubIcon from "@repo/ui/icons/GitHubIcon";
+import DiscordIcon from "@repo/ui/icons/DiscordIcon";
 
 export default function SocialButtons({ enableSharing, shareData, large }: { enableSharing?: boolean, shareData?: any; large?: boolean }) {
     const isShareSupported = typeof navigator !== "undefined" && typeof navigator.share === "function";

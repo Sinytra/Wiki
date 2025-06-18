@@ -18,18 +18,18 @@ import {
   Layout,
   UserPlus
 } from "lucide-react";
-import GradleIcon from "@/components/ui/icons/GradleIcon";
-import {Button} from "@/components/ui/button";
-import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
-import GitHubIcon from "@/components/ui/icons/GitHubIcon";
-import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
+import GradleIcon from "@repo/ui/icons/GradleIcon";
+import {Button} from "@repo/ui/components/button";
+import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
+import GitHubIcon from "@repo/ui/icons/GitHubIcon";
+import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {CSSProperties, Suspense, use} from "react";
-import {Skeleton} from "@/components/ui/skeleton";
+import {Skeleton} from "@repo/ui/components/skeleton";
 import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
 import SocialButtons from "@/components/ui/custom/SocialButtons";
-import LargePersonStandingIcon from "@/components/ui/icons/LargePersonStandingIcon";
+import LargePersonStandingIcon from "@repo/ui/icons/LargePersonStandingIcon";
 import Image from "next/image";
 import env from "@repo/shared/env";
 import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";

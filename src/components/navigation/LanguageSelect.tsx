@@ -3,15 +3,15 @@
 import styles from "@/components/navigation/header/style.module.css";
 import {Check, ChevronDown, Globe, LanguagesIcon} from "lucide-react";
 import CountryFlag from "@/components/util/CountryFlag";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {usePathname} from "@/lib/locales/routing";
 import {useRouter} from '@bprogress/next';
 import * as React from "react";
 import {useState} from "react";
 import available from "@/lib/locales/available";
 import {cn} from "@/lib/utils";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
-import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@/components/ui/command";
+import {Popover, PopoverContent, PopoverTrigger} from "@repo/ui/components/popover";
+import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@repo/ui/components/command";
 import {useTranslations} from "next-intl";
 import {DEFAULT_LOCALE} from "@repo/shared/constants";
 import {Language} from "@/lib/types/available";
@@ -58,8 +58,8 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
           <PopoverTrigger asChild>
             {minimal ?
               <button className={`
-                test-center flex h-8 w-full items-center justify-start rounded-sm border-none bg-transparent px-2 py-0
-                text-sm whitespace-nowrap ring-offset-background placeholder:text-secondary hover:bg-secondary
+                test-center ring-offset-background flex h-8 w-full items-center justify-start rounded-sm border-none
+                bg-transparent px-2 py-0 text-sm whitespace-nowrap placeholder:text-secondary hover:bg-secondary
                 focus:outline-hidden sm:h-7 sm:w-fit sm:max-w-32 sm:min-w-24 [&>svg:last-child]:hidden
               `}
               >
@@ -115,7 +115,7 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
                         key={id}
                         value={actualId}
                         className={cn(`
-                          inline-flex w-full items-center justify-start gap-3 hover:bg-secondary hover:text-primary-alt
+                          hover:bg-secondary hover:text-primary-alt inline-flex w-full items-center justify-start gap-3
                         `, value == actualId && `pointer-events-none`)}
                         onSelect={(currentValue) => {
                           setValue(currentValue === value ? "" : currentValue);

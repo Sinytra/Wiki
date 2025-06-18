@@ -1,4 +1,4 @@
-import {Badge} from "@/components/ui/badge";
+import {Badge} from "@repo/ui/components/badge";
 import {useTranslations} from "next-intl";
 
 export default function AdminBadge() {

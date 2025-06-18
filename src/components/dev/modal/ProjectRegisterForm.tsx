@@ -3,7 +3,7 @@
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
+import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@repo/ui/components/form";
 import {
   Dialog,
   DialogContent,
@@ -12,18 +12,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 import * as React from "react";
 import {useContext, useEffect, useRef, useState} from "react";
 import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
-import {Input} from "@/components/ui/input";
+import {Input} from "@repo/ui/components/input";
 import SubmitButton from "@/components/ui/custom/SubmitButton";
 import {useTranslations} from "next-intl";
-import {Switch} from "@/components/ui/switch";
+import {Switch} from "@repo/ui/components/switch";
 import {cn} from "@/lib/utils";
 import {ExternalLinkIcon, LightbulbIcon, Loader2Icon, PlusIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {Link, useRouter} from "@/lib/locales/routing";
 import {useRouter as useProgressRouter} from "@bprogress/next";
 import clientUtil from "@/lib/util/clientUtil";

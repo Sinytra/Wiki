@@ -1,11 +1,11 @@
 'use client'
 
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
+import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@repo/ui/components/form";
 import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import {Input} from "@repo/ui/components/input";
+import {Button} from "@repo/ui/components/button";
 import ProjectDeleteForm from "@/components/dev/modal/ProjectDeleteForm";
 import {CodeXmlIcon, ExternalLinkIcon, LightbulbIcon, TriangleAlertIcon} from "lucide-react";
 import {useTranslations} from "next-intl";
@@ -102,7 +102,7 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
             <span>
               Delete project
             </span>
-            <span className="text-sm text-secondary">
+            <span className="text-secondary text-sm">
               Forever delete all project data. This cannot be undone.
             </span>
           </div>
@@ -180,7 +180,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
         <div>
           {form.formState.errors.root?.custom?.message &&
             <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                <p className="text-sm text-destructive">
+                <p className="text-destructive text-sm">
                   {form.formState.errors.root.custom.message}
                 </p>
             </div>
@@ -188,7 +188,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
 
           {/*@ts-ignore*/}
           {form.formState.errors.root?.custom?.details &&
-            <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
+            <details className="slim-scrollbar text-destructive max-h-20 w-fit overflow-y-auto text-sm">
                 <summary className="mb-2">
                   {t('errors.details')}
                 </summary>
@@ -198,10 +198,10 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
           }
 
           {canVerifyModrinth &&
-            <div className="flex flex-col gap-1 rounded-md border border-info/70 p-3">
-                <p className="flex flex-row items-start text-secondary">
+            <div className="border-info/70 flex flex-col gap-1 rounded-md border p-3">
+                <p className="text-secondary flex flex-row items-start">
                     <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
-                    <span className="text-sm text-secondary">
+                    <span className="text-secondary text-sm">
                             {t.rich('connect_modrinth.desc', {
                               b: (chunks) => <span className="text-primary">{chunks}</span>
                             })}
@@ -219,7 +219,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
           }
         </div>
 
-        <hr className="mt-auto border-secondary"/>
+        <hr className="border-secondary mt-auto"/>
 
         <DangerSection deleteFunc={deleteFunc}/>
       </form>

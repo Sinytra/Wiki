@@ -1,5 +1,5 @@
 import {useTranslations} from "next-intl";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
+import {Popover, PopoverContent, PopoverTrigger} from "@repo/ui/components/popover";
 
 export default function ModVersionRange({versions}: { versions: string[] }) {
   const t = useTranslations('ModVersionRange');

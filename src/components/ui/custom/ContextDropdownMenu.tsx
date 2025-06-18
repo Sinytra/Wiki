@@ -1,7 +1,7 @@
 'use client'
 
 import {createContext, useState} from "react";
-import {DropdownMenu, DropdownMenuContent} from "@/components/ui/dropdown-menu";
+import {DropdownMenu, DropdownMenuContent} from "@repo/ui/components/dropdown-menu";
 
 export interface DropdownMenuContextState {
   setModalOpen: (open: boolean) => void;

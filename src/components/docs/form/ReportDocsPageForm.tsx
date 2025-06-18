@@ -3,18 +3,18 @@
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
-import {Button} from "@/components/ui/button";
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
-import {DialogFooter} from "@/components/ui/dialog";
+import {Button} from "@repo/ui/components/button";
+import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@repo/ui/components/form";
+import {DialogFooter} from "@repo/ui/components/dialog";
 import * as React from "react";
 import {toast} from "sonner";
 import {docsPageReportSchema} from "@/lib/forms/schemas";
-import {Input} from "@/components/ui/input";
+import {Input} from "@repo/ui/components/input";
 import SubmitButton from "@/components/ui/custom/SubmitButton";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
 import {CompassIcon} from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {Textarea} from "@/components/ui/textarea";
+import {Textarea} from "@repo/ui/components/textarea";
 import {flushSync} from "react-dom";
 
 interface Properties {
@@ -153,7 +153,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
         }
 
         {form.formState.errors.root?.custom?.message &&
-            <p className="text-sm text-destructive">{form.formState.errors.root.custom.message}</p>
+            <p className="text-destructive text-sm">{form.formState.errors.root.custom.message}</p>
         }
 
         {reason === 'dislike'
@@ -164,7 +164,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
             <p className="my-1"/>
             {t.dislike.suggestion}
 
-            <Button asChild className="mt-4 ml-auto text-inverse">
+            <Button asChild className="text-inverse mt-4 ml-auto">
               <LocaleNavLink href="/browse">
                 <CompassIcon className="mr-2 h-4 w-4"/>
                 {t.dislike.explore}

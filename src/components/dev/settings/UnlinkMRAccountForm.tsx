@@ -3,7 +3,7 @@
 import {toast} from "sonner";
 import {useRouter} from "@bprogress/next";
 import {Link2Icon, LoaderCircleIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {useFormStatus} from "react-dom";
 import {useTranslations} from "next-intl";
 
@@ -14,7 +14,7 @@ function SubmitButton() {
   return (
     <Button data-pending={pending ? 'true' : 'false'} variant="destructive" size="sm"
             className={`
-              border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
+              border-destructive-secondary bg-primary border font-semibold hover:bg-secondary/80
               data-[pending=true]:text-destructive/90
             `}>
       {pending

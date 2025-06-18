@@ -2,7 +2,7 @@
 
 import {useQueryState} from "nuqs";
 import {HistoryIcon, HomeIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {useTranslations} from "next-intl";
 
 export default function DocsEntryTabs() {

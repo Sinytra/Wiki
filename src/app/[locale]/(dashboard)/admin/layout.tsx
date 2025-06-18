@@ -1,4 +1,4 @@
-import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
+import {SidebarInset, SidebarProvider} from "@repo/ui/components/sidebar";
 import {assertUserIsAdmin} from "@/lib/admin";
 import {AdminSidebar} from "@/components/admin/AdminSidebar";
 import {ReactNode} from "react";

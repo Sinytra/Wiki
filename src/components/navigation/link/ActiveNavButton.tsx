@@ -1,6 +1,6 @@
 'use client'
 
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {usePathname} from "@/lib/locales/routing";
 
 export default function ActiveNavButton({target, nested, children}: { target: string; nested?: boolean; children: any }) {

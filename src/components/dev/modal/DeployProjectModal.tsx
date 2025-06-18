@@ -1,6 +1,6 @@
 'use client'
 
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import * as React from "react";
 import {startTransition, useContext} from "react";
 import {
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
 import {HardDriveDownloadIcon, InfoIcon, ShieldIcon} from "lucide-react";
@@ -53,7 +53,7 @@ export default function DeployProjectModal({action}: Properties) {
           <DialogDescription asChild className="mt-4! text-left">
             <div>
               {t.rich('primary', {
-                b: (chunks) => <span className="font-medium text-primary">{chunks}</span>
+                b: (chunks) => <span className="text-primary font-medium">{chunks}</span>
               })}
 
               <IconModalSection className="mt-4" t={t} tKey="secondary" icon={ShieldIcon}/>

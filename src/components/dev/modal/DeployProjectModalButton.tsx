@@ -1,7 +1,7 @@
 'use client'
 
 import {HardDriveDownloadIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import * as React from "react";
 import {useTranslations} from "next-intl";
 

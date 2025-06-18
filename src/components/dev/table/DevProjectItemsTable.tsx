@@ -5,8 +5,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import {Button} from "@/components/ui/button";
+} from "@repo/ui/components/dropdown-menu";
+import {Button} from "@repo/ui/components/button";
 import {ExternalLinkIcon, MoreHorizontal} from "lucide-react";
 import {getInternalWikiLink} from "@/lib/game/content";
 import * as React from "react";

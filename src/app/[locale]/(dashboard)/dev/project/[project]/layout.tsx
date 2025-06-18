@@ -1,4 +1,4 @@
-import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
+import {SidebarInset, SidebarProvider} from "@repo/ui/components/sidebar";
 import DevProjectSidebar from "@/components/dev/navigation/DevProjectSidebar";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@repo/platforms";

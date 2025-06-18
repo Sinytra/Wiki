@@ -1,7 +1,7 @@
 'use client'
 
-import {Collapsible,} from "@/components/ui/collapsible"
-import {SidebarGroup, SidebarGroupLabel, SidebarMenu,} from "@/components/ui/sidebar"
+import {Collapsible,} from "@repo/ui/components/collapsible"
+import {SidebarGroup, SidebarGroupLabel, SidebarMenu,} from "@repo/ui/components/sidebar"
 import DevSidebarMenuItem, {Props as DevSidebarMenuItemProps} from "@/components/dev/navigation/DevSidebarMenuItem";
 import * as React from "react";
 import {usePathname} from "@/lib/locales/routing";

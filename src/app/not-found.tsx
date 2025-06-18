@@ -1,4 +1,4 @@
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import NotFoundImage from '@/components/assets/not-found.jpg';
 import Image from "next/image";
 import {NavLink} from "@/components/navigation/link/NavLink";
@@ -10,7 +10,7 @@ export default function NotFound() {
       {/*Image sourced from https://github.com/httpcats/http.cat, licensed under the MIT License*/}
       <Image src={NotFoundImage} alt="Not Found" className="rounded-xs" width={450}/>
 
-      <h1 className="my-2 text-5xl text-primary">
+      <h1 className="text-primary my-2 text-5xl">
         404 Not Found
       </h1>
 

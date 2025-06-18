@@ -1,7 +1,7 @@
 'use client'
 
 import {Link, usePathname} from "@/lib/locales/routing";
-import {SidebarMenuButton, SidebarMenuItem} from "@/components/ui/sidebar";
+import {SidebarMenuButton, SidebarMenuItem} from "@repo/ui/components/sidebar";
 import {ExternalLinkIcon, type LucideIcon} from "lucide-react";
 import ConnectionIndicator from "@/components/util/ConnectionIndicator";
 import {cn} from "@/lib/utils";

@@ -20,12 +20,12 @@ import {
   TagIcon
 } from "lucide-react";
 import ExpandableDescription from "@/components/docs/layout/ExpandableDescription";
-import CurseForgeColorIcon from "@/components/ui/icons/CurseForgeColorIcon";
-import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
-import GitHubIcon from "@/components/ui/icons/GitHubIcon";
+import CurseForgeColorIcon from "@repo/ui/icons/CurseForgeColorIcon";
+import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
+import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 import {cn} from "@/lib/utils";
 import PageLink from "@/components/docs/PageLink";
-import DiscordIcon from "@/components/ui/icons/DiscordIcon";
+import DiscordIcon from "@repo/ui/icons/DiscordIcon";
 import {useTranslations} from "next-intl";
 import {DEFAULT_WIKI_LICENSE} from "@repo/shared/constants";
 import TooltipText from "@/components/docs/shared/util/TooltipText";
@@ -48,7 +48,7 @@ function Section({title, icon: Icon, children, className}: {
 }) {
   return (
     <div className="mb-2 flex flex-col gap-4">
-      <h2 className="flex flex-row items-center gap-2 border-b border-secondary pb-2 text-xl">
+      <h2 className="border-secondary flex flex-row items-center gap-2 border-b pb-2 text-xl">
         <Icon className="h-5 w-5"/>
         {title}
       </h2>
@@ -64,14 +64,14 @@ function SubpageLink({title, icon: Icon, desc, href}: { title: string; icon: any
     <a href={`latest/${href}`}>
       <div
         className={`
-          flex w-fit min-w-[17rem] flex-col gap-2 rounded-sm border border-secondary-dim bg-primary-alt/50 p-3
+          border-secondary-dim bg-primary-alt/50 flex w-fit min-w-[17rem] flex-col gap-2 rounded-sm border p-3
           hover:bg-secondary/20
         `}>
         <div className="flex flex-row items-center gap-3 text-lg">
           <Icon className="h-5 w-5"/>
           {title}
         </div>
-        <span className="text-sm text-secondary">
+        <span className="text-secondary text-sm">
           {desc}
         </span>
       </div>
@@ -121,7 +121,7 @@ function ProjectTags({project}: { project: PlatformProject }) {
       {project.categories.filter(t => ProjectCategories[t] !== undefined).map((tag) => (
         <span
           key={tag}
-          className="rounded-md bg-secondary px-2 py-1 text-xs text-secondary-alt"
+          className="bg-secondary text-secondary-alt rounded-md px-2 py-1 text-xs"
         >
           {categories(tag as any)}
         </span>
@@ -132,7 +132,7 @@ function ProjectTags({project}: { project: PlatformProject }) {
 
 function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; children?: any }) {
   return (
-    <div className="flex max-w-84 min-w-72 flex-col gap-2 rounded-sm border border-secondary/50 bg-primary-dim p-4">
+    <div className="border-secondary/50 bg-primary-dim flex max-w-84 min-w-72 flex-col gap-2 rounded-sm border p-4">
       <div className="flex flex-row items-center gap-3 text-base font-medium">
         <Icon className="size-5 shrink-0"/>
         <span>{name}</span>
@@ -189,7 +189,7 @@ export default async function ProjectHomepage({params}: PageProps) {
           })}
         </div>
 
-        <div className="flex flex-row gap-2 text-sm text-secondary">
+        <div className="text-secondary flex flex-row gap-2 text-sm">
           <span>
             <TagIcon className="mr-2 inline-block h-4 w-4"/>
             {t('overview.tags')}
@@ -280,7 +280,7 @@ export default async function ProjectHomepage({params}: PageProps) {
                   </PageLink>
                 </div>
             ) :
-            <p className="m-auto flex flex-row items-center gap-2 text-secondary">
+            <p className="text-secondary m-auto flex flex-row items-center gap-2">
               <HelpCircleIcon className="size-4"/>
               {t('license.unknown')}
             </p>

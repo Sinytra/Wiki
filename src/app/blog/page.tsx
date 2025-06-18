@@ -1,7 +1,7 @@
 import Link from "next/link";
 import BlogHeader from "@/components/navigation/BlogHeader";
 import {cn} from "@/lib/utils";
-import {Badge} from "@/components/ui/badge";
+import {Badge} from "@repo/ui/components/badge";
 import {useTranslations} from "next-intl";
 import {setContextLocale} from "@/lib/locales/routing";
 import {allBlogs} from "@/.contentlayer/generated";
@@ -36,7 +36,7 @@ function BlogPost({id, name, desc, date, latest}: {
         <span className="text-secondary">{formatDistanceStrict(date, new Date(), { addSuffix: true })}</span>
       </div>
 
-      <span className="font-normal text-secondary">{desc}</span>
+      <span className="text-secondary font-normal">{desc}</span>
     </div>
   )
 }
@@ -50,7 +50,7 @@ export default async function Blog() {
     <div className="flex flex-col">
       <BlogHeader hideSubtext={false} />
 
-      <span className="mb-4 border-b border-tertiary pb-1 text-xl">Recent posts</span>
+      <span className="border-tertiary mb-4 border-b pb-1 text-xl">Recent posts</span>
 
       <div className="flex flex-col gap-6">
         {...blogPosts.map((post, index) => (

@@ -1,6 +1,6 @@
 'use client'
 
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
 import {cn} from "@/lib/utils";
 import {Tag} from "lucide-react";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
@@ -21,7 +21,7 @@ export default function DevDocsVersionSelect({versions}: { versions: ProjectVers
   return (
     <Select value={version} onValueChange={changeVersion}>
       <SelectTrigger className={cn(
-        'rounded-sm bg-primary-dim py-0 hover:bg-secondary sm:w-fit [&>span]:text-sm',
+        'bg-primary-dim rounded-sm py-0 hover:bg-secondary sm:w-fit [&>span]:text-sm',
         'whitespace-nowrap [&>span]:block [&>span]:text-ellipsis',
         'h-9 justify-between sm:max-w-40 sm:min-w-32')}
       >

@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 import {DevSidebarMainNav} from "@/components/dev/navigation/DevSidebarMainNav";
-import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu} from "@/components/ui/sidebar";
+import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu} from "@repo/ui/components/sidebar";
 import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";

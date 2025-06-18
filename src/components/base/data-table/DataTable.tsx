@@ -1,4 +1,4 @@
-import {TableCell, TableHead} from "@/components/ui/table";
+import {TableCell, TableHead} from "@repo/ui/components/table";
 import {cn} from "@/lib/utils";
 import * as React from "react";
 import {ReactNode} from "react";

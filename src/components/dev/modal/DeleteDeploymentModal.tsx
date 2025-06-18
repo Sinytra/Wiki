@@ -1,6 +1,6 @@
 'use client'
 
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {TrashIcon} from "lucide-react";
 import {toast} from "sonner";
 import * as React from "react";
@@ -14,10 +14,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
-import {DropdownMenuItem} from "@/components/ui/dropdown-menu";
+import {DropdownMenuItem} from "@repo/ui/components/dropdown-menu";
 import {DropdownMenuContext} from "@/components/ui/custom/ContextDropdownMenu";
 import FormDeleteButton from "@/components/ui/custom/FormDeleteButton";
 
@@ -55,7 +55,7 @@ export default function DeleteDeploymentModal({action, loading}: Properties) {
                           onSelect={e => e.preventDefault()}
                           disabled={loading}
         >
-          <span className="flex cursor-pointer flex-row items-center text-destructive">
+          <span className="text-destructive flex cursor-pointer flex-row items-center">
             <TrashIcon className="mr-2 size-3"/>
             {t('trigger')}
           </span>

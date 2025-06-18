@@ -35,8 +35,8 @@ import {
 } from "lucide-react";
 import platforms, {PlatformProject, PlatformProjectAuthor} from "@repo/platforms";
 import {getTranslations} from "next-intl/server";
-import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
-import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
+import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
+import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
 import {ElementType} from "react";
 import { ProjectPlatform } from "packages/shared/src/types/platform";
 import {ProjectType} from "@repo/shared/types/service";

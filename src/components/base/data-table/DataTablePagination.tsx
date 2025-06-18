@@ -1,7 +1,7 @@
 'use client'
 
 import ReactPaginate from "react-paginate";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 import * as React from "react";
 import {useTranslations} from "next-intl";

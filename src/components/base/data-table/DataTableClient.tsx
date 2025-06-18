@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import {useState} from "react"
-import {Table, TableBody, TableCell, TableHeader, TableRow,} from "@/components/ui/table"
-import {Input} from "@/components/ui/input";
+import {Table, TableBody, TableCell, TableHeader, TableRow,} from "@repo/ui/components/table"
+import {Input} from "@repo/ui/components/input";
 import {parseAsString, useQueryStates} from "nuqs";
 import {parseAsInteger} from "nuqs/server";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {SearchIcon} from "lucide-react";
 import {useDebouncedCallback} from "use-debounce";
 import DevDocsVersionSelect from "@/components/docs/versions/DevDocsVersionSelect";
@@ -56,7 +56,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
     if (links && i < links.length) {
       return <TableRow
         {...props}
-        className={cn(props.className, 'hover:cursor-pointer hover:bg-table-hover')}
+        className={cn(props.className, 'hover:bg-table-hover hover:cursor-pointer')}
         onClick={() => router.push(links[i])}
       />;
     }
@@ -66,10 +66,10 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
   return (
     <div className="w-full">
       <div className="mb-4 flex w-full flex-row items-center justify-between gap-4">
-        <div className="relative w-full text-secondary sm:w-fit">
+        <div className="text-secondary relative w-full sm:w-fit">
           <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
           <Input
-            className="h-9 border-tertiary pl-9 focus-visible:ring-0 focus-visible:outline-neutral-600 sm:w-96"
+            className="border-tertiary h-9 pl-9 focus-visible:ring-0 focus-visible:outline-neutral-600 sm:w-96"
             placeholder={t('filter')}
             onChange={(e) => handleSearch(e.target.value)}
             defaultValue={params.query || ''}
@@ -77,7 +77,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
         </div>
         {versions && versions.length > 0 && <DevDocsVersionSelect versions={versions}/>}
       </div>
-      <div className="overflow-x-auto rounded-sm border border-tertiary">
+      <div className="border-tertiary overflow-x-auto rounded-sm border">
         <Table className="mb-0! table w-full table-fixed">
           <TableHeader
             className={`
@@ -110,7 +110,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
                     </TableCell>}
                 </LinkableTableRow>
                 {row.extendedRow &&
-                  <TableRow className={cn('border-b bg-table-hard')}>
+                  <TableRow className={cn('bg-table-hard border-b')}>
                       <td className="no-table-bs overflow-hidden border-0" colSpan={cols.length}>
                           <div ref={contentRefs.set(i)}
                                className={cn('border-hidden transition-[max-height] duration-200 ease-in-out')}

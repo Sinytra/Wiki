@@ -1,7 +1,7 @@
 'use client'
 
 import {SearchIcon} from "lucide-react";
-import {Input} from "@/components/ui/input";
+import {Input} from "@repo/ui/components/input";
 import {useDebouncedCallback} from 'use-debounce';
 import {parseAsInteger, parseAsString, useQueryStates} from "nuqs";
 
@@ -19,7 +19,7 @@ export default function ProjectSearch({placeholder}: { placeholder: string; }) {
   }, 300);
 
   return (
-      <div className="relative w-full text-secondary sm:w-fit">
+      <div className="text-secondary relative w-full sm:w-fit">
         <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
         <Input
             className="border-secondary-dim pl-9 sm:w-96"

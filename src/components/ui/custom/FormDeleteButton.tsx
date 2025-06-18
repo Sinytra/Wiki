@@ -1,7 +1,7 @@
 'use client'
 
 import {useFormStatus} from "react-dom";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {Loader2Icon} from "lucide-react";
 import * as React from "react";
 

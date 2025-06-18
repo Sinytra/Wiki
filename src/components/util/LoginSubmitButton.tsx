@@ -1,9 +1,9 @@
 'use client'
 
 import {useFormStatus} from "react-dom";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {LoaderCircleIcon} from "lucide-react";
-import GitHubIcon from "@/components/ui/icons/GitHubIcon";
+import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 
 export default function LoginSubmitButton({ text }: { text: string }) {
   const {pending} = useFormStatus();

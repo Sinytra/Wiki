@@ -1,4 +1,4 @@
-import {Badge} from "@/components/ui/badge";
+import {Badge} from "@repo/ui/components/badge";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
@@ -18,9 +18,9 @@ export default function DocsContentTitle({ project, children, titleClassName, sh
   const t = useTranslations('Badges');
 
   return (
-    <div className={cn('mb-4 border-b border-secondary pb-2', className)}>
+    <div className={cn('border-secondary mb-4 border-b pb-2', className)}>
       <div className="flex flex-row flex-wrap justify-between gap-2 md:flex-nowrap md:items-center">
-        <h1 className={cn("docsContentTitle text-2xl text-ellipsis text-primary md:overflow-hidden md:whitespace-nowrap", titleClassName)}>
+        <h1 className={cn("docsContentTitle text-primary text-2xl text-ellipsis md:overflow-hidden md:whitespace-nowrap", titleClassName)}>
           {children}
         </h1>
         <div className={cn('not-prose ml-auto flex shrink-0 flex-row items-center justify-between gap-3 md:ml-0')}>

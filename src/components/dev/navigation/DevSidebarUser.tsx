@@ -1,7 +1,7 @@
 'use client'
 
 import {ChevronsUpDown, LoaderCircleIcon, LogOut, LogOutIcon} from "lucide-react";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {Avatar, AvatarFallback, AvatarImage} from "@repo/ui/components/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,15 +9,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@/components/ui/sidebar";
+} from "@repo/ui/components/dropdown-menu";
+import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@repo/ui/components/sidebar";
 import {useTranslations} from "next-intl";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as React from "react";
 import {useState} from "react";
-import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@repo/ui/components/dialog";
 import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
 import {useProgress} from "@bprogress/next";
 

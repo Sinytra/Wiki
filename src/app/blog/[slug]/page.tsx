@@ -54,8 +54,8 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
                 <div className="flex w-full flex-col items-center gap-4">
                     <div
                         className={`
-                          prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b
-                          prose-h2:border-b-neutral-700 prose-h2:pb-1
+                          prose w-full max-w-4xl px-2 dark:prose-invert prose-h2:border-b prose-h2:border-b-neutral-700
+                          prose-h2:pb-1 md:px-0
                         `}>
                         <MDXContent components={components} />
                     </div>

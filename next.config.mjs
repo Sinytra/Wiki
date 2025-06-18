@@ -35,6 +35,7 @@ const nextConfig = {
             }
         ]
     },
+    transpilePackages: ["@repo/ui"],
     experimental: {
         optimizePackageImports: ['shiki']
     }

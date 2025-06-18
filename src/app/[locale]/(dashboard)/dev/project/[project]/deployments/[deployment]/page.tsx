@@ -1,9 +1,9 @@
 import {Link, setContextLocale} from "@/lib/locales/routing";
-import {BreadcrumbLink, BreadcrumbPage} from "@/components/ui/breadcrumb";
+import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
 import DevBreadcrumb from "@/components/dev/navigation/DevBreadcrumb";
 import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {
   BookIcon,
   ClockFadingIcon,
@@ -16,13 +16,13 @@ import {
 } from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import * as React from "react";
-import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@repo/ui/components/dropdown-menu";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import DeleteDeploymentModal from "@/components/dev/modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import ContextDropdownMenu from "@/components/ui/custom/ContextDropdownMenu";
 import LocalDateTime from "@/components/util/LocalDateTime";
-import {Badge} from "@/components/ui/badge";
+import {Badge} from "@repo/ui/components/badge";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
 

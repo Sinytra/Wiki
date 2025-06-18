@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious
-} from "@/components/ui/pagination";
+} from "@repo/ui/components/pagination";
 import {useSearchParams} from "next/navigation";
 import {usePathname} from "@/lib/locales/routing";
 

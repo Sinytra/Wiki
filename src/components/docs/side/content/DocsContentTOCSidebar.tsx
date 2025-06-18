@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
 import { FileHeading } from "@repo/shared/types/metadata";
-import { cn } from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";;
 import {useTranslations} from "next-intl";
 
 interface ContentRightSidebarProps {
@@ -81,7 +81,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
         <div
           ref={listRef}
           className={`
-            scrollbar-thin max-h-[80vh] overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-track-transparent
+            scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent max-h-[80vh] overflow-y-auto pr-4
           `}
         >
           <ul className="space-y-1 text-sm">
@@ -90,7 +90,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "block py-1 text-sm text-secondary transition-colors hover:text-primary",
+                    "text-secondary block py-1 text-sm transition-colors hover:text-primary",
                     activeId === heading.id && "text-primary",
                     index === 0 ? 'pt-0!' : '',
                   )}

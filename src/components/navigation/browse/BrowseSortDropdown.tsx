@@ -1,6 +1,6 @@
 'use client'
 
-import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
 import {useQueryState} from "nuqs";
 import {useTranslations} from "next-intl";
 
@@ -18,12 +18,12 @@ export default function BrowseSortDropdown() {
 
   return (
       <div className="flex flex-row items-center gap-x-4">
-        <span className="text-sm text-primary">
+        <span className="text-primary text-sm">
           {t('sorting')}
         </span>
 
         <Select value={sort as string || undefined} defaultValue="relevance" onValueChange={setSort}>
-          <SelectTrigger className="w-[180px] border-secondary-dim">
+          <SelectTrigger className="border-secondary-dim w-[180px]">
             <SelectValue placeholder="Choose one"/>
           </SelectTrigger>
           <SelectContent>

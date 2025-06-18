@@ -3,7 +3,7 @@
 import {startTransition, useContext, useEffect, useRef} from "react";
 import {Link, useRouter} from "@/lib/locales/routing";
 import {toast} from "sonner";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 import {useTranslations} from "next-intl";
 import {ProjectStatus} from "@repo/shared/types/api/project";

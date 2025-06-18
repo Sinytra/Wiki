@@ -1,7 +1,7 @@
 import {useTranslations} from "next-intl";
-import {Badge} from "@/components/ui/badge";
+import {Badge} from "@repo/ui/components/badge";
 import {UsersIcon} from "lucide-react";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@repo/ui/components/tooltip";
 import {cn} from "@/lib/utils";
 
 export default function CommunityDocsBadge({ bright, small }: { bright?: boolean; small?: boolean }) {

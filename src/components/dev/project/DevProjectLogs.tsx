@@ -1,6 +1,6 @@
 'use client'
 
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {startTransition, Suspense, use, useEffect, useRef, useState} from 'react';
 import {LoaderCircleIcon} from "lucide-react";
 import {useRouter} from "@/lib/locales/routing";

@@ -2,9 +2,9 @@
 
 import {useTranslations} from "next-intl";
 import {ArrowLeftIcon, FileTextIcon, LoaderCircleIcon, SearchIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import {Button} from "@repo/ui/components/button";
 import {useEffect, useRef, useState} from "react";
-import {WikiSearchResult, WikiSearchResults} from "@/lib/search";
+import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
 import Link from "next/link";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {useDebouncedCallback} from "use-debounce";
@@ -17,8 +17,8 @@ function SearchResult({result}: { result: WikiSearchResult }) {
   return (
     <Link href={result.url}
           className={`
-            z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
-            text-primary
+            bg-primary-alt text-primary z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700
+            px-1 py-1.5
           `}>
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} loading/>
@@ -38,7 +38,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
               {result.mod}
             </span>
             {result.path &&
-              <span className="font-normal text-secondary opacity-60">
+              <span className="text-secondary font-normal opacity-60">
                 {result.path}
               </span>
             }
@@ -54,8 +54,8 @@ function LoadingSearchState() {
 
   return (
     <div className={`
-      z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1
-      py-1.5 text-secondary
+      bg-primary-alt text-secondary z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border
+      border-neutral-700 px-1 py-1.5
     `}>
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       {t('loading')}
@@ -68,8 +68,8 @@ function NoSearchResults() {
 
   return (
     <div className={`
-      z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1
-      py-1.5 text-secondary
+      bg-primary-alt text-secondary z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border
+      border-neutral-700 px-1 py-1.5
     `}>
       {t('no_results')}
     </div>
@@ -124,17 +124,17 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
   return (
     <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={200} classNames="fade" unmountOnExit>
       <div ref={nodeRef}
-        className="fixed top-0 right-0 bottom-0 left-0 z-50 h-[100vh] w-full overflow-hidden bg-primary">
+        className="bg-primary fixed top-0 right-0 bottom-0 left-0 z-50 h-[100vh] w-full overflow-hidden">
         <div className="innerFadeContainer flex flex-col gap-4 p-4">
           <div className="relative">
             <button onClick={() => setOpen(false)}>
-              <ArrowLeftIcon className="absolute top-1/2 left-2 h-5 w-5 -translate-y-1/2 text-secondary"/>
+              <ArrowLeftIcon className="text-secondary absolute top-1/2 left-2 h-5 w-5 -translate-y-1/2"/>
             </button>
             <input type="text" value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
                    className={`
-                     w-full cursor-pointer rounded-xs border border-neutral-700 bg-primary-alt p-2 px-8 text-center
-                     text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1
-                     focus:outline-secondary
+                     bg-primary-alt w-full cursor-pointer rounded-xs border border-neutral-700 p-2 px-8 text-center
+                     text-sm text-ellipsis focus:outline-secondary focus:cursor-text focus:outline-1
+                     placeholder:text-neutral-500
                    `}
                    placeholder={t('placeholder')}
             />

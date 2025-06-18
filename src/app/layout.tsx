@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./styles/globals.css";
 import Providers from "@/components/navigation/nav-progress-bar";
-import {Toaster} from "@/components/ui/sonner";
+import {Toaster} from "@repo/ui/components/sonner";
 import {ReactNode} from "react";
 import {cn, getProcessURL} from "@/lib/utils";
 import {NuqsAdapter} from "nuqs/adapters/next/app";
@@ -40,7 +40,7 @@ export default function LocaleLayout({children}: Readonly<{ children: ReactNode;
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
     </head>
-    <body className={cn(inter.className, 'flex min-h-screen flex-col bg-primary text-primary')}>
+    <body className={cn(inter.className, 'bg-primary text-primary flex min-h-screen flex-col')}>
     <Providers>
       <NuqsAdapter>
         {children}

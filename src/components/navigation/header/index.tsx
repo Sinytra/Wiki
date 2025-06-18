@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 import styles from './style.module.css';
-import {Badge} from "@/components/ui/badge";
+import {Badge} from "@repo/ui/components/badge";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import HeaderBase from "@/components/navigation/header/HeaderBase";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
