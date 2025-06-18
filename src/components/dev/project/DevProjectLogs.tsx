@@ -8,12 +8,13 @@ import {useTranslations} from "next-intl";
 import highlighter from "@repo/markdown/highlighter";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import ConnectionIndicator from "@/components/util/ConnectionIndicator";
-import {DeploymentStatus} from "@/lib/types/serviceTypes";
+
+import {DeploymentStatus} from "@repo/shared/types/api/deployment";
 
 function Skeleton({children}: { children: any }) {
   return (
     <div
-      className="flex h-80 w-full flex-col items-center justify-center gap-3 rounded-md bg-code-dim text-secondary">
+      className="bg-code-dim text-secondary flex h-80 w-full flex-col items-center justify-center gap-3 rounded-md">
       {children}
     </div>
   )

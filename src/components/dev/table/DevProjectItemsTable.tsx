@@ -1,4 +1,3 @@
-import {ProjectContentPage} from "@/lib/service/remoteServiceApi";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {
   DropdownMenu,
@@ -16,6 +15,7 @@ import service from "@/lib/service";
 import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
 import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
+import {ProjectContentPage} from "@repo/shared/types/api/devProject";
 
 export default function DevProjectItemsTable({data, params, versions, page}: {
   data: PaginatedData<ProjectContentPage>;

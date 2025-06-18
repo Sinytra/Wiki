@@ -2,8 +2,6 @@ import {Link, setContextLocale} from "@/lib/locales/routing";
 import {BreadcrumbLink, BreadcrumbPage} from "@/components/ui/breadcrumb";
 import DevBreadcrumb from "@/components/dev/navigation/DevBreadcrumb";
 import {getTranslations} from "next-intl/server";
-import remoteServiceApi, {FullDevProjectDeployment} from "@/lib/service/remoteServiceApi";
-import {redirect} from "next/navigation";
 import {useTranslations} from "next-intl";
 import {Button} from "@/components/ui/button";
 import {
@@ -28,8 +26,11 @@ import {Badge} from "@/components/ui/badge";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
 
-import {DeploymentStatus, ProjectIssue} from "@/lib/types/serviceTypes";
 import ProjectIssuesList from "@/components/dev/project/ProjectIssuesList";
+import {handleApiCall} from "@/lib/service/serviceUtil";
+import devProjectApi from "@/lib/service/api/devProjectApi";
+import {DeploymentStatus, FullDevProjectDeployment} from "@repo/shared/types/api/deployment";
+import {ProjectIssue} from "@repo/shared/types/api/project";
 
 type Properties = {
   params: {
@@ -42,10 +43,10 @@ type Properties = {
 function StatusInfoColumn({name, children}: { name: string; children: any; }) {
   return (
     <div className="flex flex-col gap-1 xl:gap-1.5">
-      <span className="text-sm text-secondary">
+      <span className="text-secondary text-sm">
         {name}
       </span>
-      <div className="text-sm text-primary">
+      <div className="text-primary text-sm">
         {children}
       </div>
     </div>
@@ -56,7 +57,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
   const t = useTranslations('DeploymentIssues');
 
   return (
-    <div className="flex flex-col gap-1 rounded-sm border border-tertiary bg-primary-dim p-3">
+    <div className="border-tertiary bg-primary-dim flex flex-col gap-1 rounded-sm border p-3">
       <div className="flex flex-row items-center gap-2">
         <span className="text-base">
           {t('title')}
@@ -64,7 +65,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
       </div>
       {issues.length > 0 ?
         <div className="flex flex-col gap-4">
-            <span className="text-sm text-secondary">
+            <span className="text-secondary text-sm">
               {t('issues_found', { count: issues.length })}
             </span>
             <div className="flex max-h-72 flex-col gap-2 overflow-y-auto">
@@ -72,7 +73,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
             </div>
         </div>
         :
-        <span className="text-sm text-secondary">
+        <span className="text-secondary text-sm">
           {t('empty')}
         </span>
       }
@@ -83,11 +84,11 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
 function DeploymentInfoWdget({deployment}: { deployment: FullDevProjectDeployment }) {
   return (
     <div className={`
-      grid grid-cols-2 gap-4 rounded-sm border border-tertiary bg-primary-dim p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]
+      border-tertiary bg-primary-dim grid grid-cols-2 gap-4 rounded-sm border p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]
     `}>
       <StatusInfoColumn name="Activation">
         {deployment.active ?
-          <Badge variant="secondary" className="border-lightblue-primary px-2 text-lightblue-primary">
+          <Badge variant="secondary" className="border-lightblue-primary text-lightblue-primary px-2">
             <GlobeIcon className="mr-2 size-3"/>
             Current
           </Badge>
@@ -118,7 +119,7 @@ function DeploymentGitCoordinates({deployment}: { deployment: FullDevProjectDepl
   const t = useTranslations('DevProjectDeploymentPage.git-config');
 
   return (
-    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-dim p-3">
+    <div className="border-tertiary bg-primary-dim flex flex-col gap-2 rounded-sm border p-3">
       <div className="flex flex-row items-center gap-2">
         <span className="text-base">
           {t('title')}
@@ -228,11 +229,7 @@ function DeploymentInfo({deployment}: { deployment: FullDevProjectDeployment }) 
 export default async function DevProjectDeploymentPage({params}: Properties) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectDeploymentPage');
-
-  const content = await remoteServiceApi.getDevProjectDeployment(params.deployment);
-  if (!('id' in content)) {
-    return redirect(`/dev/project/${params.project}/deployments`);
-  }
+  const content = handleApiCall(await devProjectApi.getDeployment(params.deployment));
 
   return (
     <div>
@@ -243,7 +240,7 @@ export default async function DevProjectDeploymentPage({params}: Properties) {
           </Link>
         </BreadcrumbLink>
       }>
-        <BreadcrumbPage className="font-mono text-xsm text-primary">
+        <BreadcrumbPage className="text-xsm text-primary font-mono">
           {params.deployment.substring(0, 9)}
         </BreadcrumbPage>
       </DevBreadcrumb>

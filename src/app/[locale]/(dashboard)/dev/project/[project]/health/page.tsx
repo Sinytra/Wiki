@@ -1,7 +1,4 @@
-import {ProjectIssue, ProjectIssueStats} from "@/lib/types/serviceTypes";
 import {getTranslations} from "next-intl/server";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import {redirect} from "next/navigation";
 import {setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
 import * as React from "react";
@@ -10,6 +7,10 @@ import {AlertCircleIcon, ShieldCheckIcon, TriangleAlertIcon} from "lucide-react"
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import {cn} from "@/lib/utils";
 import ProjectIssuesList from "@/components/dev/project/ProjectIssuesList";
+import issuesApi from "@/lib/service/api/issuesApi";
+import {handleApiCall} from "@/lib/service/serviceUtil";
+import devProjectApi from "@/lib/service/api/devProjectApi";
+import {ProjectIssue, ProjectIssueStats} from "@repo/shared/types/api/project";
 
 function ProjectIssuesStatWidget({className, count, title, icon: Icon}: {
   title: string;
@@ -80,7 +81,7 @@ function ProjectIssuesSummary({stats}: { stats: ProjectIssueStats }) {
 
       <ProjectIssuesStatWidget
         title="Warnings"
-        className="border-warning-soft bg-[var(--vp-c-warning-soft)]/50 text-warning-soft"
+        className="border-warning-soft text-warning-soft bg-[var(--vp-c-warning-soft)]/50"
         count={stats.warning || 0}
         icon={TriangleAlertIcon}
       />
@@ -103,8 +104,8 @@ function ProjectIssuesSection({issues}: { issues: ProjectIssue[] }) {
         <ProjectIssuesList issues={issues}/>
         : (
           <div className={`
-            flex w-full flex-col items-center gap-3 rounded-sm border border-secondary-dim bg-primary-dim py-8
-            text-secondary
+            border-secondary-dim bg-primary-dim text-secondary flex w-full flex-col items-center gap-3 rounded-sm border
+            py-8
           `}>
             <ShieldCheckIcon className="size-8"/>
             <span>{t('empty')}</span>
@@ -117,16 +118,8 @@ function ProjectIssuesSection({issues}: { issues: ProjectIssue[] }) {
 export default async function DevProjectHealthPage({params}: { params: { locale: string; project: string } }) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectHealthPage');
-
-  const project = await remoteServiceApi.getDevProject(params.project);
-  if (!('id' in project)) {
-    return redirect('/dev');
-  }
-
-  const issues = await remoteServiceApi.getDevProjectIssues(params.project);
-  if ('status' in issues) {
-    return redirect('/dev');
-  }
+  const project = handleApiCall(await devProjectApi.getProject(params.project));
+  const issues = handleApiCall(await issuesApi.getProjectIssues(params.project));
 
   return (
     <div className="flex h-full flex-col gap-y-4 pt-1">

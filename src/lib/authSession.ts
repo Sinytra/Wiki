@@ -1,7 +1,7 @@
 import {NextRequest} from "next/server";
 import {cookies} from 'next/headers';
 import {redirect} from "next/navigation";
-import {assertBackendUrl} from "@/lib/service/remoteServiceApi";
+import envPublic from "@repo/shared/envPublic";
 
 export const SESSION_KEY = 'sessionid';
 
@@ -20,13 +20,13 @@ function getSession(): Session | null {
 }
 
 function login() {
-  const backendUrl = assertBackendUrl();
+  const backendUrl = envPublic.getBackendEndpointUrl();
 
   redirect(`${backendUrl}/api/v1/auth/login`);
 }
 
 function logout() {
-  const backendUrl = assertBackendUrl();
+  const backendUrl = envPublic.getBackendEndpointUrl();
 
   redirect(`${backendUrl}/api/v1/auth/logout`);
 }

@@ -1,12 +1,12 @@
 'use client'
 
-import {ProjectStatus} from "@/lib/types/serviceTypes";
 import {startTransition, useContext, useEffect, useRef} from "react";
 import {Link, useRouter} from "@/lib/locales/routing";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 import {useTranslations} from "next-intl";
+import {ProjectStatus} from "@repo/shared/types/api/project";
 
 interface Props {
   id: string;

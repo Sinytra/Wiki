@@ -1,12 +1,12 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import adminApi from "@/lib/service/api/adminApi";
-import {redirect} from "next/navigation";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {getTranslations} from "next-intl/server";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import AdminDataImportsTable from "@/components/admin/table/AdminDataImportsTable";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {handleApiCall} from "@/lib/service/serviceUtil";
 
 type Properties = {
   params: {
@@ -27,10 +27,7 @@ export default async function DataImportsPage({params, searchParams}: Properties
   const query = parseAsString.withDefault('').parseServerSide(searchParams.query);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = await adminApi.getDataImports({query, page: page.toString()});
-  if ('status' in content) {
-    return redirect('/admin');
-  }
+  const content = handleApiCall(await adminApi.getDataImports({query, page: page.toString()}));
 
   return (
     <div className="space-y-3 pt-1">

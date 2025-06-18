@@ -1,18 +1,18 @@
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {setContextLocale} from "@/lib/locales/routing";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import {getTranslations} from "next-intl/server";
-import {redirect} from "next/navigation";
 import {parseAsInteger} from "nuqs/server";
 import * as React from "react";
 import DevProjectDeploymentsTable from "@/components/dev/table/DevProjectDeploymentsTable";
 import DeployProjectModal from "@/components/dev/modal/DeployProjectModal";
 import {handleRevalidateDocs} from "@/lib/forms/actions";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
-import {ProjectStatus} from "@/lib/types/serviceTypes";
 import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDeployConnection";
 import authSession from "@/lib/authSession";
 import DeployProjectContextProvider from "@/components/dev/modal/DeployProjectContextProvider";
+import {handleApiCall} from "@/lib/service/serviceUtil";
+import devProjectApi from "@/lib/service/api/devProjectApi";
+import {ProjectStatus} from "@repo/shared/types/api/project";
 
 type Properties = {
   params: {
@@ -28,22 +28,12 @@ type Properties = {
 export default async function DevProjectDeploymentsPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectDeploymentsPage');
-
-  const project = await remoteServiceApi.getDevProject(params.project);
-  if (!('id' in project)) {
-    return redirect('/dev');
-  }
+  const project = handleApiCall(await devProjectApi.getProject(params.project));
 
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = await remoteServiceApi.getDevProjectDeployments(
-    params.project,
-    {page: page.toString()}
-  );
-  if ('status' in content) {
-    return redirect('/dev');
-  }
-  const token = authSession.getSession()?.token!;
+  const content = handleApiCall(await devProjectApi.getProjectDeployments(params.project, {page: page.toString()}));
+  const token = authSession.getSession()?.token!; // TODO
 
   return (
     <div className="space-y-3 pt-1">

@@ -5,8 +5,8 @@ import {ChevronDown, CircleAlertIcon, TriangleAlertIcon} from "lucide-react";
 import {cn} from "@/lib/utils";
 import * as React from "react";
 import {useState} from "react";
-import {ProjectIssue, ProjectIssueLevel} from "@/lib/types/serviceTypes";
 import LocalDateTime from "@/components/util/LocalDateTime";
+import {ProjectIssue, ProjectIssueLevel} from "@repo/shared/types/api/project";
 
 export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
   const t = useTranslations('ProjectIssueType');
@@ -38,7 +38,7 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
     <div
       onClick={() => !expanded && setExpanded(true)}
       className={cn(
-        'group flex w-full flex-col rounded-sm border border-secondary-dim bg-primary-dim',
+        'group border-secondary-dim bg-primary-dim flex w-full flex-col rounded-sm border',
         activeLevel.bg,
         !expanded && 'cursor-pointer', !expanded && activeLevel.bg_hover,
       )}
@@ -61,7 +61,7 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
 
         <ChevronDown
           className={`
-            relative top-[1px] ml-1 size-4 text-secondary transition-transform duration-200
+            text-secondary relative top-[1px] ml-1 size-4 transition-transform duration-200
             group-data-[state=open]:rotate-180
           `}
           aria-hidden="true"
@@ -74,15 +74,15 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
             {u(issue.subject)}
           </span>
 
-          <pre className="my-2 text-xsm text-secondary-alt">
+          <pre className="text-xsm text-secondary-alt my-2">
             {issue.details}
           </pre>
 
           <div className="space-y-1">
-            <p className="text-sm text-secondary">
+            <p className="text-secondary text-sm">
               {v.rich('file', {
                 file: () => (
-                  <span className="font-mono text-sm text-secondary-alt">
+                  <span className="text-secondary-alt font-mono text-sm">
                     {issue.file}
                   </span>
                 )
@@ -90,10 +90,10 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
             </p>
 
             {issue.version_name &&
-              <p className="text-sm text-secondary">
+              <p className="text-secondary text-sm">
                 {v.rich('version', {
                   version: () => (
-                    <span className="font-mono text-xsm text-secondary-alt">
+                    <span className="text-xsm text-secondary-alt font-mono">
                       {issue.version_name}
                     </span>
                   )
@@ -101,10 +101,10 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
               </p>
             }
 
-            <p className="text-sm text-secondary">
+            <p className="text-secondary text-sm">
               {v.rich('date', {
                 date: () => (
-                  <LocalDateTime className="text-sm text-secondary-alt"
+                  <LocalDateTime className="text-secondary-alt text-sm"
                                  form="yyyy-MM-dd HH:mm"
                                  dateTime={new Date(issue.created_at)}
                   />

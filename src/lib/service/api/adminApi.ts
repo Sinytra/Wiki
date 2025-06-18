@@ -1,14 +1,12 @@
-import {sendSimpleRequest, wrapJsonServiceCall} from "../remoteServiceApi";
-
-import {StatusResponse} from "@repo/shared/types/service";
 import {DataImports, SystemInfo} from "@repo/shared/types/api/admin";
+import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
 
-async function getSystemInfo(params: Record<string, string | null>): Promise<SystemInfo | StatusResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest(`system/info`, params, 'GET'));
+async function getSystemInfo(parameters: ApiRouteParameters): Promise<ApiCallResult<SystemInfo>> {
+  return network.resolveApiCall(() => network.sendSimpleRequest('system/info', { parameters }));
 }
 
-async function getDataImports(params: Record<string, string | null>): Promise<DataImports | StatusResponse> {
-  return wrapJsonServiceCall(() => sendSimpleRequest(`system/imports`, params, 'GET'));
+async function getDataImports(parameters: ApiRouteParameters): Promise<ApiCallResult<DataImports>> {
+  return network.resolveApiCall(() => network.sendSimpleRequest('system/imports', { parameters }));
 }
 
 export default {

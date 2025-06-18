@@ -1,7 +1,7 @@
-import network, {ApiCallResult} from "@repo/shared/network";
+import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
 import {ProjectSearchResults} from "@repo/shared/types/service";
 
-interface SearchProjectsParameters extends Record<string, string | null> {
+interface SearchProjectsParameters extends ApiRouteParameters {
   query: string;
   page: string;
   types: string | null;
@@ -12,8 +12,6 @@ async function searchProjects(parameters: SearchProjectsParameters): Promise<Api
   return network.resolveApiCall(() => network.sendSimpleRequest('browse', { parameters }))
 }
 
-const browseApi = {
+export default {
   searchProjects
 };
-
-export default browseApi;

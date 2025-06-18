@@ -1,6 +1,6 @@
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 import LinkTextButton from "@/components/ui/link-text-button";
+import * as React from "react";
 import {Suspense} from "react";
 import {handleRegisterProjectForm} from "@/lib/forms/actions";
 import {getTranslations} from "next-intl/server";
@@ -8,24 +8,17 @@ import {Skeleton} from "@/components/ui/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
 import {cn, trimText} from "@/lib/utils";
 import platforms, {PlatformProject} from "@repo/platforms";
-import {ProjectStatus} from "@/lib/types/serviceTypes";
-import {
-  AlertCircleIcon,
-  CircleCheckIcon,
-  HelpCircleIcon,
-  LoaderCircleIcon,
-  SettingsIcon,
-  XIcon
-} from "lucide-react";
+import {AlertCircleIcon, CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon, XIcon} from "lucide-react";
 import {Link, setContextLocale} from "@/lib/locales/routing";
 import {Button} from "@/components/ui/button";
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
-import {handleApiResponse} from "@/lib/service/serviceUtil";
+import {handleApiCall} from "@/lib/service/serviceUtil";
 import {DevProject} from "@repo/shared/types/service";
 import ProjectRegisterForm from "@/components/dev/modal/ProjectRegisterForm";
-import * as React from "react";
 import {UserRole} from "@repo/shared/types/api/auth";
+import devProjectApi from "@/lib/service/api/devProjectApi";
+import {ProjectStatus} from "@repo/shared/types/api/project";
 
 export const dynamic = 'force-dynamic';
 
@@ -189,10 +182,10 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
 
 export default async function DevPage({params}: { params: { locale: string; } }) {
   setContextLocale(params.locale);
-  const response = handleApiResponse(await remoteServiceApi.getUserDevProjects());
+  const projects = handleApiCall(await devProjectApi.getProjects());
 
-  const defaultValues = {owner: response.profile.username, repo: '', branch: '', path: ''};
-  const isAdmin = response.profile.role === UserRole.ADMIN;
+  const defaultValues = {owner: projects.profile.username, repo: '', branch: '', path: ''};
+  const isAdmin = projects.profile.role === UserRole.ADMIN;
 
   return (
     <GetStartedContextProvider>
@@ -201,7 +194,7 @@ export default async function DevPage({params}: { params: { locale: string; } })
 
         <div>
           <ClientLocaleProvider keys={['LoadingContent']}>
-            <ProfileProjects projects={response.projects}/>
+            <ProfileProjects projects={projects.projects}/>
           </ClientLocaleProvider>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import {NextRequest} from "next/server";
 import {getHttpErrorDetailsURL} from "@/lib/utils";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
+import devProjectApi from "@/lib/service/api/devProjectApi";
 
 export async function POST(request: NextRequest, { params }: { params: { slug: string } }) {
   // Expect authorization using GitHub user token
@@ -9,8 +9,8 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
     return Response.json({ message: 'Unauthorized', details: getHttpErrorDetailsURL(401) }, { status: 401 });
   }
 
-  const response = await remoteServiceApi.revalidateProject(params.slug, auth);
-  if ('error' in response) {
+  const response = await devProjectApi.deployProject(params.slug, auth);
+  if (!response.success) {
     return Response.json({ error: response.error }, {status: 400})
   }
 

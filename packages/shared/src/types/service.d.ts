@@ -1,8 +1,8 @@
 import {DocumentationMarkdown} from "@repo/markdown";
 import {AssetLocation} from "@repo/shared/assets";
-import {ProjectIssueStats, ProjectStatus} from "@/lib/types/serviceTypes";
 import {ProjectPlatforms} from "./platform";
 import {ResourceLocation} from "../resourceLocation";
+import {ProjectIssueStats, ProjectRevision, ProjectStatus} from "./api/project";
 
 export interface FileTreeEntry {
   name: string;
@@ -28,10 +28,6 @@ export const AVAILABLE_PROJECT_TYPES: string[] = [
   ProjectType.SHADER, ProjectType.PLUGIN
 ];
 
-export interface StatusResponse {
-  status: number;
-}
-
 export interface PaginatedData<T> {
   data: T[];
   total: number;
@@ -49,17 +45,6 @@ export interface BaseProject {
 }
 
 export type ProjectVersions = string[];
-
-export interface ProjectRevision {
-  hash: string;
-  fullHash: string;
-  message: string;
-  authorName: string;
-  authorEmail: string;
-  date: string;
-
-  url?: string;
-}
 
 export interface Project extends BaseProject {
   is_public: boolean;

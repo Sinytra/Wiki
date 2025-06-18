@@ -24,7 +24,6 @@ import ModrinthIcon from "@/components/ui/icons/ModrinthIcon";
 import GitHubIcon from "@/components/ui/icons/GitHubIcon";
 import CurseForgeIcon from "@/components/ui/icons/CurseForgeIcon";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import remoteServiceApi, {FeaturedProject} from "@/lib/service/remoteServiceApi";
 import {CSSProperties, Suspense, use} from "react";
 import {Skeleton} from "@/components/ui/skeleton";
 import {allBlogs} from "@/.contentlayer/generated";
@@ -33,6 +32,7 @@ import SocialButtons from "@/components/ui/custom/SocialButtons";
 import LargePersonStandingIcon from "@/components/ui/icons/LargePersonStandingIcon";
 import Image from "next/image";
 import env from "@repo/shared/env";
+import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";
 
 export const dynamic = 'force-static';
 
@@ -112,7 +112,7 @@ function FeaturedProjectsFallback() {
 
 function HomePageContent() {
   const t = useTranslations('HomePage');
-  const featuredProjects = remoteServiceApi.getFeaturedProjects();
+  const projects = featuredProjects.getFeaturedProjects();
   const blogPosts = allBlogs.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3);
 
   return (
@@ -155,7 +155,7 @@ function HomePageContent() {
               </h3>
               <div className="flex h-full flex-col gap-6">
                 <Suspense fallback={<FeaturedProjectsFallback/>}>
-                  <FeaturedProjectsContent projects={featuredProjects}/>
+                  <FeaturedProjectsContent projects={projects}/>
                 </Suspense>
               </div>
               <div className="mt-auto">

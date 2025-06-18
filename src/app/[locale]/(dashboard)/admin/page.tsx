@@ -4,7 +4,7 @@ import adminApi from "@/lib/service/api/adminApi";
 import Asset from "@/components/docs/shared/Asset";
 import {PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon} from "lucide-react";
 import {ReactNode} from "react";
-import {handleApiResponse} from "@/lib/service/serviceUtil";
+import {handleApiCall} from "@/lib/service/serviceUtil";
 
 export const dynamic = 'force-dynamic';
 
@@ -56,7 +56,7 @@ function DataWidget({title, value, icon}: { title: string; value: any; icon: Rea
 export default async function AdminPanelHome({params}: Props) {
   setContextLocale(params.locale);
   await assertUserIsAdmin();
-  const systemInfo = handleApiResponse(await adminApi.getSystemInfo(params));
+  const systemInfo = handleApiCall(await adminApi.getSystemInfo(params));
 
   return (
     <div className="flex flex-col gap-y-4">

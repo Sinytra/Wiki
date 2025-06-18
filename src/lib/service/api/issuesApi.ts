@@ -1,8 +1,9 @@
-import {sendApiRequest} from "@/lib/service/remoteServiceApi";
-import {ProjectIssueLevel} from "@/lib/types/serviceTypes";
 import {MarkdownError} from "@repo/markdown";
 import {actualLocale, actualVersion} from "@/lib/service/serviceUtil";
-import {Project, StatusResponse} from "@repo/shared/types/service";
+import {Project} from "@repo/shared/types/service";
+import {ProjectRouteParams} from "@repo/shared/types/routes";
+import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
+import {ProjectIssue, ProjectIssueLevel} from "@repo/shared/types/api/project";
 
 interface AddProjectIssueRequest {
   level: ProjectIssueLevel;
@@ -10,13 +11,7 @@ interface AddProjectIssueRequest {
   details: string;
 }
 
-interface ProjectPathParams {
-  slug: string;
-  locale: string;
-  version: string;
-}
-
-async function reportPageRenderFailure(project: Project, path: string, error: any, params: ProjectPathParams) {
+async function reportPageRenderFailure(project: Project, path: string, error: any, params: ProjectRouteParams) {
   if (project.local) return;
 
   const details = error instanceof MarkdownError ? error.details : error.toString();
@@ -28,10 +23,15 @@ async function reportPageRenderFailure(project: Project, path: string, error: an
   }, {version: actualVersion(params.version), locale: actualLocale(params.locale)});
 }
 
-async function addProjectPageIssue(id: string, request: AddProjectIssueRequest, params: Record<string, string | null>): Promise<StatusResponse> {
-  return sendApiRequest(`dev/projects/${id}/issues`, request, params);
+async function addProjectPageIssue(id: string, body: AddProjectIssueRequest, parameters: ApiRouteParameters): Promise<ApiCallResult> {
+  return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${id}/issues`, { parameters, body }));
+}
+
+async function getProjectIssues(projectId: string): Promise<ApiCallResult<ProjectIssue[]>> {
+  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/issues`))
 }
 
 export default {
-  reportPageRenderFailure
+  reportPageRenderFailure,
+  getProjectIssues
 }

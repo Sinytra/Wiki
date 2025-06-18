@@ -1,12 +1,12 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import {redirect} from "next/navigation";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {getTranslations} from "next-intl/server";
 import DevProjectItemsTable from "@/components/dev/table/DevProjectItemsTable";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
+import devProjectApi from "@/lib/service/api/devProjectApi";
+import {handleApiCall} from "@/lib/service/serviceUtil";
 
 type Properties = {
   params: {
@@ -23,23 +23,13 @@ type Properties = {
 export default async function DevProjectContentItemsPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectContentItemsPage');
-
-  const project = await remoteServiceApi.getDevProject(params.project);
-  if (!('id' in project)) {
-    return redirect('/dev');
-  }
+  const project = handleApiCall(await devProjectApi.getProject(params.project));
 
   const query = parseAsString.withDefault('').parseServerSide(searchParams.query);
   const version = parseAsString.parseServerSide(searchParams.version);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = await remoteServiceApi.getDevProjectContentPages(
-    params.project,
-    {query, page: page.toString(), version}
-  );
-  if ('status' in content) {
-    return redirect('/dev');
-  }
+  const content = handleApiCall(await devProjectApi.getProjectContentPages(params.project, {query, page: page.toString(), version}));
 
   return (
     <div className="space-y-3 pt-1">

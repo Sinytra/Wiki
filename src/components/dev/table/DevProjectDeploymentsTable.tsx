@@ -1,4 +1,3 @@
-import {DevProjectDeployment, DevProjectDeployments} from "@/lib/service/remoteServiceApi";
 import * as React from "react";
 import {GitCommitHorizontal, GlobeIcon, HardDriveUploadIcon, MoreHorizontal, ServerOffIcon} from "lucide-react";
 import DataTablePagination from "@/components/base/data-table/DataTablePagination";
@@ -13,12 +12,12 @@ import {Link} from "@/lib/locales/routing";
 import LocalDateTime from "@/components/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dev/modal/DeployProjectModalOpenButton";
-import {DeploymentStatus} from "@/lib/types/serviceTypes";
+import {DeploymentStatus, DevProjectDeployment, DevProjectDeployments} from "@repo/shared/types/api/deployment";
 
 function EmptyDeploymentsState() {
   return (
     <div className={`
-      flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-sm border border-tertiary bg-primary-dim
+      border-tertiary bg-primary-dim flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-sm border
       py-8
     `}>
       <div className="opacity-60">
@@ -45,7 +44,7 @@ function EmptyDeploymentsState() {
 function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
   return (
     <div className={`
-      flex w-full flex-1 flex-row items-center bg-primary-dim p-3 first:rounded-t-sm last:rounded-b-sm hover:bg-primary
+      bg-primary-dim flex w-full flex-1 flex-row items-center p-3 hover:bg-primary first:rounded-t-sm last:rounded-b-sm
     `}>
       <div className="flex flex-2 flex-row items-center gap-2">
         <span className="font-mono text-sm">
@@ -71,7 +70,7 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
               <span className="text-sm font-normal">{deployment.commit_message}</span>
             </>
             :
-            <span className="text-sm text-secondary">
+            <span className="text-secondary text-sm">
               N/A
             </span>
           }
@@ -126,7 +125,7 @@ export default function DevProjectDeploymentsTable({data}: { data: DevProjectDep
   return (
     <div>
       {data.data.length > 0 ?
-        <div className="flex border-collapse flex-col rounded-sm border border-secondary-dim">
+        <div className="border-secondary-dim flex border-collapse flex-col rounded-sm border">
           {...data.data.map(d => (
             <Link key={d.id} href={`deployments/${d.id}`} className={`
               border-secondary-dim [&:not(:first-of-type)]:border-t

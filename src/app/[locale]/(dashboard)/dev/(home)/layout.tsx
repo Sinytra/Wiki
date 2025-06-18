@@ -1,16 +1,16 @@
 import {DeveloperSidebar} from "@/components/dev/navigation/DeveloperSidebar";
 import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
 import authSession from "@/lib/authSession";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
-import {handleApiResponse} from "@/lib/service/serviceUtil";
-import { setContextLocale } from "@/lib/locales/routing";
+import {handleApiCall} from "@/lib/service/serviceUtil";
+import {setContextLocale} from "@/lib/locales/routing";
+import devProjectApi from "@/lib/service/api/devProjectApi";
 
 export const dynamic = 'force-dynamic';
 
 export default async function DevLayout({ params, children }: { params: { locale: string; }; children?: any }) {
   setContextLocale(params.locale);
-  const response = handleApiResponse(await remoteServiceApi.getUserDevProjects());
+  const response = handleApiCall(await devProjectApi.getProjects());
 
   return (
     <div className="mx-auto w-full sm:max-w-[92rem]">

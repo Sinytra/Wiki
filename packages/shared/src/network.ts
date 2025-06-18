@@ -9,6 +9,11 @@ type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unkno
 const CONTENT_TYPE = 'content-type';
 const APPLICATION_JSON = 'application/json';
 
+const ONE_DAY = 60 * 60 * 24;
+const ONE_WEEK = ONE_DAY * 7;
+
+export type ApiRouteParameters = Record<string, string | null>;
+
 interface ApiCallResultBase {
   success: boolean;
   type: CallResultType;
@@ -36,6 +41,7 @@ interface ApiErrorResponse extends ApiResponse {
   success: false;
   type: 'known_error';
   error: ApiError;
+  data: unknown;
 }
 
 interface ApiRedirectResponse extends ApiResponse {
@@ -53,9 +59,12 @@ interface ApiSuccessResponse<T> extends ApiResponse {
   data: T;
 }
 
-interface RequestOptions {
+export interface RequestOptions {
   method?: string;
-  parameters?: Record<string, string | null>;
+  parameters?: ApiRouteParameters;
+  cache?: boolean | NextFetchRequestConfig;
+  headers?: HeadersInit;
+  body?: any;
 }
 
 export type ApiCallResult<T = never> =
@@ -111,11 +120,24 @@ async function resolveApiCall<T = never>(callback: () => Promise<Response>): Pro
 
   const json = await resp.json();
   const error = json.error ?? 'unknown' as ApiError;
-  return {type: 'known_error', status: resp.status, success: false, error} satisfies ApiErrorResponse;
+  return {type: 'known_error', status: resp.status, success: false, data: json, error} satisfies ApiErrorResponse;
+}
+
+async function sendDataRequest(path: string, options?: RequestOptions) {
+  return sendSimpleRequest(path, {
+    method: 'POST',
+    ...options,
+    headers: {
+      ...options?.headers,
+      'Content-Type': 'application/json'
+    },
+    cache: false
+  });
 }
 
 async function sendSimpleRequest(path: string, options?: RequestOptions) {
   const url = constructApiUrl(path, options?.parameters);
+  const useCache = options?.cache === true || typeof options?.cache === 'object';
 
   return fetch(url, {
     method: options?.method,
@@ -123,11 +145,16 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
       Authorization: `Bearer ${env.getBackendSecretApiKey()}`,
       cookie: cookies().toString()
     },
-    cache: 'no-store',
+    body: options?.body ? (typeof options?.body === 'string' ? options.body : JSON.stringify(options.body)) : null,
+    cache: !useCache ? 'no-store' : undefined,
+    next: useCache ? {
+      tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
+      revalidate: (typeof options.cache == 'object' ? options.cache.revalidate : undefined) || ONE_WEEK
+    } : undefined
   });
 }
 
-function constructApiUrl(path: string, parameters?: Record<string, string | null>): string {
+function constructApiUrl(path: string, parameters?: ApiRouteParameters): string {
   const endpoint = envPublic.getBackendEndpointUrl();
   const searchParams = serializeUrlParams(parameters);
   return `${endpoint}/api/v1/${path}?${searchParams.toString()}`;
@@ -135,7 +162,9 @@ function constructApiUrl(path: string, parameters?: Record<string, string | null
 
 const network = {
   resolveApiCall,
-  sendSimpleRequest
+  sendSimpleRequest,
+  sendDataRequest,
+  constructApiUrl
 }
 
 export default network;

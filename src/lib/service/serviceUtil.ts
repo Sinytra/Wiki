@@ -2,20 +2,7 @@ import authSession from "@/lib/authSession";
 import {Language} from "@/lib/types/available";
 import available from "@/lib/locales/available";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@repo/shared/constants";
-import {StatusResponse} from "@repo/shared/types/service";
 import {ApiCallResult} from "@repo/shared/network";
-
-export function handleApiResponse<T extends object>(response: T | StatusResponse): T {
-  if ('status' in response) {
-    if (response.status === 401) {
-      authSession.refresh();
-      // @ts-ignore
-      return undefined;
-    }
-    throw new Error("Unexpected response status: " + response.status);
-  }
-  return response;
-}
 
 export function handleApiCall<T>(result: ApiCallResult<T>): T {
   // Success
@@ -52,6 +39,7 @@ export function constructPagePath(path: string[]) {
   return path.join('/');
 }
 
+// TODO Automatic handling
 export function actualVersion(version: string | null): string | null {
   return version == DEFAULT_DOCS_VERSION ? null : version;
 }

@@ -1,8 +1,3 @@
-export interface ProjectSearchResult {
-  id: string;
-  name: string;
-}
-
 export interface WikiSearchResults {
   total: number;
   hits: WikiSearchResult[];

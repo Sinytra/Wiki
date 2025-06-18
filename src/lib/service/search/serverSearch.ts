@@ -1,6 +1,6 @@
 'use server'
 
-import {WikiSearchResult, WikiSearchResults} from "@/lib/search";
+import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
 import {getProcessURL} from "@/lib/utils";
 
 export async function searchWikiServer(query: string): Promise<WikiSearchResults> {

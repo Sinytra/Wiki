@@ -6,12 +6,15 @@ export enum ProjectStatus {
   ERROR = 'error'
 }
 
-export enum DeploymentStatus {
-  UNKNOWN = 'unknown',
-  CREATED = 'created',
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error'
+export interface ProjectRevision {
+  hash: string;
+  fullHash: string;
+  message: string;
+  authorName: string;
+  authorEmail: string;
+  date: string;
+
+  url?: string;
 }
 
 export enum ProjectIssueLevel {
@@ -21,10 +24,12 @@ export enum ProjectIssueLevel {
 }
 
 export type ProjectIssueType = 'git_clone' | 'git_info' | 'page_render' | 'ingestor' | 'internal' | 'unknown';
+
 export type ProjectError = 'requires_auth' | 'no_repository' | 'repo_too_large' | 'no_branch' | 'no_path'
   | 'invalid_meta' | 'invalid_page' | 'duplicate_page' | 'unknown_recipe_type' | 'invalid_ingredient'
   | 'invalid_file' | 'invalid_format'
   | 'unknown';
+
 export type ProjectIssueStats = Record<ProjectIssueLevel, number>;
 
 export interface ProjectIssue {

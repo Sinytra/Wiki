@@ -17,11 +17,9 @@ async function unlinkModrinthAcount(): Promise<ApiCallResult> {
   return network.resolveApiCall(() => network.sendSimpleRequest('auth/unlink/modrinth'));
 }
 
-const authApi = {
+export default {
   getUserProfile,
   deleteUserAcount,
   linkModrinthAcount,
   unlinkModrinthAcount
 }
-
-export default authApi;

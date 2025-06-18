@@ -6,6 +6,7 @@
     "./assets": "./src/assets.ts",
     "./constants": "./src/constants.ts",
     "./env": "./src/env.ts",
+    "./envPublic": "./src/envPublic.ts",
     "./network": "./src/network.ts",
     "./resourceLocation": "./src/resourceLocation.ts",
     "./types/*": "./src/types/*.d.ts"

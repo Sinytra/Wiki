@@ -1,12 +1,12 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import remoteServiceApi from "@/lib/service/remoteServiceApi";
-import {redirect} from "next/navigation";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {getTranslations} from "next-intl/server";
 import DevProjectVersionsTable from "@/components/dev/table/DevProjectVersionsTable";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
+import {handleApiCall} from "@/lib/service/serviceUtil";
+import devProjectApi from "@/lib/service/api/devProjectApi";
 
 type Properties = {
   params: {
@@ -23,22 +23,12 @@ type Properties = {
 export default async function DevProjectVersionsPage({params, searchParams}: Properties) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectVersionsPage');
-
-  const project = await remoteServiceApi.getDevProject(params.project);
-  if (!('id' in project)) {
-    return redirect('/dev');
-  }
+  const project = handleApiCall(await devProjectApi.getProject(params.project));
 
   const query = parseAsString.withDefault('').parseServerSide(searchParams.query);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = await remoteServiceApi.getDevProjectVersions(
-    params.project,
-    {query, page: page.toString()}
-  );
-  if ('status' in content) {
-    return redirect('/dev');
-  }
+  const content = handleApiCall(await devProjectApi.getProjectVersions(params.project, {query, page: page.toString()}));
 
   return (
     <div className="space-y-3 pt-1">

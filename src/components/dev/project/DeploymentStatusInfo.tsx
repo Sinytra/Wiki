@@ -2,7 +2,8 @@ import LoadingIndicator from "@/components/util/LoadingIndicator";
 import * as React from "react";
 import {useTranslations} from "next-intl";
 
-import {DeploymentStatus} from "@/lib/types/serviceTypes";
+
+import {DeploymentStatus} from "@repo/shared/types/api/deployment";
 
 function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
   return (
@@ -27,7 +28,7 @@ function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
       }
       {status == DeploymentStatus.ERROR &&
         <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-destructive"/>
+            <div className="bg-destructive size-2.5 rounded-full"/>
         </div>
       }
     </>
