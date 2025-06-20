@@ -1,5 +1,5 @@
 import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
-import LinkTextButton from "@/components/ui/link-text-button";
+import LinkTextButton from "@/components/util/LinkTextButton";
 import * as React from "react";
 import {Suspense} from "react";
 import {handleRegisterProjectForm} from "@/lib/forms/actions";
@@ -55,7 +55,12 @@ function ProfileProjectSkeleton() {
   )
 }
 
-function Property({icon: Icon, textClass, iconClass, children}: { textClass: string; icon: any, iconClass?: string, children: any }) {
+function Property({icon: Icon, textClass, iconClass, children}: {
+  textClass: string;
+  icon: any,
+  iconClass?: string,
+  children: any
+}) {
   return (
     <div className="inline-flex items-center gap-2">
       <Icon className={cn("h-4 w-4", iconClass)}/>
@@ -103,7 +108,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
       border-tertiary bg-primary-dim flex w-full flex-col justify-between gap-2 rounded-md border p-3 sm:flex-row
       sm:gap-4
     `}>
-      <MobileProjectHeader id={project.id} project={platformProject} />
+      <MobileProjectHeader id={project.id} project={platformProject}/>
 
       <div className="my-auto hidden shrink-0 sm:block">
         <img className="size-20 rounded-md" src={platformProject.icon_url} alt="Project icon"/>
@@ -160,8 +165,10 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
             border-tertiary flex w-full flex-col items-center justify-center gap-4 rounded-xs border px-4 py-6
             text-center
           `}>
-          <span className="text-primary font-medium">{t('empty.primary')}</span>
-          <span className="text-secondary">
+            <span className="text-primary font-medium">
+              {t('empty.primary')}
+            </span>
+            <span className="text-secondary">
             {t.rich('empty.secondary', {
               guide: (chunks) => (
                 <LinkTextButton className="text-primary! text-base! font-normal! underline" href="/about/devs">
@@ -171,9 +178,9 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
             })}
           </span>
 
-          <ClientLocaleProvider keys={['GetStartedButton']}>
-            <GetStartedButton/>
-          </ClientLocaleProvider>
+            <ClientLocaleProvider keys={['GetStartedButton']}>
+                <GetStartedButton/>
+            </ClientLocaleProvider>
         </div>
       }
     </>

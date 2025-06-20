@@ -17,7 +17,7 @@ import {
 } from "@repo/ui/components/dialog";
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
-import FormDeleteButton from "@/components/ui/custom/FormDeleteButton";
+import FormDeleteButton from "@/components/util/FormDeleteButton";
 
 interface Properties {
   action: () => Promise<any>;

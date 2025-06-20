@@ -5,7 +5,7 @@ import {useMDXComponent} from 'next-contentlayer/hooks'
 import {useMDXComponents} from "mdx-components"
 import {setContextLocale} from "@/lib/locales/routing";
 import BlogHeader from "@/components/navigation/BlogHeader"
-import SocialButtons from "@/components/ui/custom/SocialButtons"
+import SocialButtons from "@/components/util/SocialButtons"
 
 export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }))
 

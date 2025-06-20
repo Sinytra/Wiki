@@ -18,8 +18,8 @@ import {
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
 import {DropdownMenuItem} from "@repo/ui/components/dropdown-menu";
-import {DropdownMenuContext} from "@/components/ui/custom/ContextDropdownMenu";
-import FormDeleteButton from "@/components/ui/custom/FormDeleteButton";
+import FormDeleteButton from "@/components/util/FormDeleteButton";
+import { DropdownMenuContext } from "@/components/util/ContextDropdownMenu";
 
 interface Properties {
   loading: boolean;

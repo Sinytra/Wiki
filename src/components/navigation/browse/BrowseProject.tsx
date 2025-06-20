@@ -6,7 +6,7 @@ import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
 import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
 import {Button} from "@repo/ui/components/button";
 import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import LinkTextButton from "@/components/ui/link-text-button";
+import LinkTextButton from "@/components/util/LinkTextButton";
 import {ErrorBoundary} from "react-error-boundary";
 import {ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import {NavLink} from "@/components/navigation/link/NavLink";

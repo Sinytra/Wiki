@@ -7,12 +7,12 @@ import {Button} from "@repo/ui/components/button";
 import {Badge} from "@repo/ui/components/badge";
 import DeleteDeploymentModal from "../modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
-import ContextDropdownMenu from "@/components/ui/custom/ContextDropdownMenu";
 import {Link} from "@/lib/locales/routing";
 import LocalDateTime from "@/components/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dev/modal/DeployProjectModalOpenButton";
 import {DeploymentStatus, DevProjectDeployment, DevProjectDeployments} from "@repo/shared/types/api/deployment";
+import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 
 function EmptyDeploymentsState() {
   return (

@@ -28,7 +28,7 @@ import {CSSProperties, Suspense, use} from "react";
 import {Skeleton} from "@repo/ui/components/skeleton";
 import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
-import SocialButtons from "@/components/ui/custom/SocialButtons";
+import SocialButtons from "@/components/util/SocialButtons";
 import LargePersonStandingIcon from "@repo/ui/icons/LargePersonStandingIcon";
 import Image from "next/image";
 import env from "@repo/shared/env";

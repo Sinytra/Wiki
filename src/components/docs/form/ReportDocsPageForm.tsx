@@ -10,7 +10,7 @@ import * as React from "react";
 import {toast} from "sonner";
 import {docsPageReportSchema} from "@/lib/forms/schemas";
 import {Input} from "@repo/ui/components/input";
-import SubmitButton from "@/components/ui/custom/SubmitButton";
+import SubmitButton from "@/components/util/SubmitButton";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
 import {CompassIcon} from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";

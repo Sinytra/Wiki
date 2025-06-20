@@ -10,7 +10,7 @@ import {BookMarkedIcon} from "lucide-react";
 import DocsSearchBar from "@/components/navigation/DocsSearchBar";
 import {searchWikiServer} from "@/lib/service/search/serverSearch";
 import MobileNav from "@/components/navigation/header/MobileNav";
-import SocialButtons from "@/components/ui/custom/SocialButtons";
+import SocialButtons from "@/components/util/SocialButtons";
 import MobileDocsSearch from "@/components/navigation/MobileDocsSearch";
 import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import env from "@repo/shared/env";

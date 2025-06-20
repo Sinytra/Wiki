@@ -16,11 +16,11 @@ import {
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
 import {HardDriveDownloadIcon, InfoIcon, ShieldIcon} from "lucide-react";
-import FormSubmitButton from "@/components/ui/custom/FormSubmitButton";
 import IconModalSection from "@/components/util/IconModalSection";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 import {DeployProjectContext} from "@/components/dev/modal/DeployProjectContextProvider";
 import DeployProjectModalButton from "@/components/dev/modal/DeployProjectModalButton";
+import FormSubmitButton from "@/components/util/FormSubmitButton";
 
 interface Properties {
   action: () => Promise<any>;
