@@ -19,6 +19,7 @@ import ProjectRegisterForm from "@/components/dev/modal/ProjectRegisterForm";
 import {UserRole} from "@repo/shared/types/api/auth";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 export const dynamic = 'force-dynamic';
 
@@ -72,7 +73,7 @@ function Property({icon: Icon, textClass, iconClass, children}: {
 function MobileProjectHeader({id, project}: { id: string; project: PlatformProject; }) {
   return (
     <div className="flex flex-row gap-4 sm:hidden">
-      <div className="flex h-12 w-12 shrink-0 sm:h-24 sm:w-24">
+      <div className="flex size-12 shrink-0 sm:size-24">
         <img className="rounded-md" src={project.icon_url} alt="Project icon"/>
       </div>
       <div className="flex flex-col">
@@ -110,12 +111,14 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
     `}>
       <MobileProjectHeader id={project.id} project={platformProject}/>
 
-      <div className="my-auto hidden shrink-0 sm:block">
-        <img className="size-20 rounded-md" src={platformProject.icon_url} alt="Project icon"/>
+      <div className="my-auto hidden shrink-0 sm:flex size-20 [&>div]:m-auto">
+        <ImageWithFallback className="rounded-md" src={platformProject.icon_url} alt="Project icon"
+                           width={80} height={80} fbWidth={64} fbHeight={64}
+        />
       </div>
 
       <div className="flex w-full flex-col gap-2">
-        <div className="hidden flex-col sm:flex">
+        <div className="hidden flex-col sm:flex grow">
           <div>
             <LinkTextButton className="text-primary! w-fit! text-lg font-normal!" href={getProjectLink(project.id)}>
               {platformProject.name}

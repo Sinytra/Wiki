@@ -4,7 +4,7 @@ import {ProjectType} from "@repo/shared/types/service";
 export interface ProjectPlatformProvider {
   getProject: (slug: string) => Promise<PlatformProject>;
   getProjectAuthors: (mod: PlatformProject) => Promise<PlatformProjectAuthor[]>;
-  getProjectURL: (slug: string) => Promise<string>;
+  getProjectURL: (slug: string, type: ProjectType) => string;
 }
 
 export interface PlatformProject {

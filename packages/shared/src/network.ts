@@ -142,6 +142,7 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
   return fetch(url, {
     method: options?.method,
     headers: {
+      ...options?.headers,
       Authorization: `Bearer ${env.getBackendSecretApiKey()}`,
       cookie: cookies().toString()
     },

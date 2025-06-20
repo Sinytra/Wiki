@@ -1,6 +1,7 @@
 import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from "./universal";
 import env from "@repo/shared/env";
 import {AVAILABLE_PROJECT_TYPES, ProjectType} from "@repo/shared/types/service";
+import {ProjectNotFoundError} from "./exception";
 
 // TODO
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (env.isPreview() ? '/local' : '');
@@ -72,7 +73,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
     discord_url: mrProject.link_urls?.discord?.url,
 
     platform: 'modrinth',
-    project_url: await getProjectURL(mrProject.slug),
+    project_url: await getProjectURL(mrProject.slug, type),
     type
   }
 }
@@ -120,7 +121,11 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
     }
   });
   if (!response.ok) {
-    throw new Error(`Failed to fetch Modrinth API: ${response.status}`);
+    const msg = `Failed to fetch Modrinth API: ${response.status}`;
+    if (response.status === 404) {
+      throw new ProjectNotFoundError(msg);
+    }
+    throw new Error(msg);
   }
   const body = await response.json();
   return body as T;
@@ -134,7 +139,7 @@ function getUserURL(user: ModrinthUser) {
   return `https://modrinth.com/user/${user.username}`;
 }
 
-async function getProjectURL(slug: string) {
+function getProjectURL(slug: string, type: ProjectType): string {
   return `https://modrinth.com/mod/${slug}`;
 }
 

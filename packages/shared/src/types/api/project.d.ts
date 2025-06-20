@@ -23,11 +23,12 @@ export enum ProjectIssueLevel {
   UNKNOWN = 'unknown'
 }
 
-export type ProjectIssueType = 'git_clone' | 'git_info' | 'page_render' | 'ingestor' | 'internal' | 'unknown';
+export type ProjectIssueType = 'meta' | 'git_clone' | 'git_info' | 'page_render' | 'ingestor' | 'internal' | 'unknown';
 
 export type ProjectError = 'requires_auth' | 'no_repository' | 'repo_too_large' | 'no_branch' | 'no_path'
   | 'invalid_meta' | 'invalid_page' | 'duplicate_page' | 'unknown_recipe_type' | 'invalid_ingredient'
   | 'invalid_file' | 'invalid_format'
+  | 'missing_platform_project'
   | 'unknown';
 
 export type ProjectIssueStats = Record<ProjectIssueLevel, number>;

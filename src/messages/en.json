@@ -781,6 +781,7 @@
         "unknown": "Unknown"
     },
     "ProjectIssueType": {
+        "meta": "Invalid project metadata",
         "git_clone": "Error cloning repository",
         "git_info": "Error getting commit information",
         "ingestor": "Error importing content",
@@ -806,6 +807,7 @@
         "invalid_ingredient": "Invalid ingredient",
         "invalid_file": "Failed to parse file",
         "invalid_format": "Invalid file format",
+        "missing_platform_project": "Missing platform project",
         "unknown": "Unknown error"
     }
 }

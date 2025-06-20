@@ -7,10 +7,10 @@ import {AlertCircleIcon, ShieldCheckIcon, TriangleAlertIcon} from "lucide-react"
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import {cn} from "@/lib/utils";
 import ProjectIssuesList from "@/components/dev/project/ProjectIssuesList";
-import issuesApi from "@/lib/service/api/issuesApi";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectIssue, ProjectIssueStats} from "@repo/shared/types/api/project";
+import issuesApi from "@repo/shared/api/issuesApi";
 
 function ProjectIssuesStatWidget({className, count, title, icon: Icon}: {
   title: string;

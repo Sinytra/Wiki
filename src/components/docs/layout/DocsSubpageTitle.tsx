@@ -1,3 +1,5 @@
+import ImageWithFallback from "@/components/util/ImageWithFallback";
+
 export default function DocsSubpageTitle({icon_url, subcategory, title, description}: {
   title: string;
   description: string;
@@ -7,7 +9,8 @@ export default function DocsSubpageTitle({icon_url, subcategory, title, descript
   return (
     <div className="flex flex-row gap-4 border-b border-secondary pb-2">
       <div className="flex shrink-0 items-center justify-center">
-        <img src={icon_url} alt="Icon" className="size-12 shrink-0 rounded-sm sm:size-14"/>
+        <ImageWithFallback src={icon_url} alt="Icon" className="size-12 shrink-0 rounded-sm sm:size-14"
+                           width={48} height={48}/>
       </div>
       <div className="flex flex-col gap-1">
         <h1 className="flex flex-wrap gap-1 text-lg text-primary sm:block sm:text-2xl">

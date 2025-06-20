@@ -198,11 +198,13 @@ export default async function ProjectHomepage({params}: PageProps) {
         </div>
       </div>
 
-      <Section title={t('description.title')} icon={BookOpenIcon}>
-        <ExpandableDescription>
-          <MarkdownContent content={platformProject.description}/>
-        </ExpandableDescription>
-      </Section>
+      {platformProject.description.length > 0 &&
+        <Section title={t('description.title')} icon={BookOpenIcon}>
+          <ExpandableDescription>
+            <MarkdownContent content={platformProject.description}/>
+          </ExpandableDescription>
+        </Section>
+      }
 
       <Section title={t('navigation.title')} icon={MapIcon} className="flex flex-row flex-wrap gap-4">
         {project.info.pageCount > 0 &&
@@ -226,12 +228,12 @@ export default async function ProjectHomepage({params}: PageProps) {
         }
         {project.platforms.curseforge &&
           <ExternalLink text="CurseForge" icon={CurseForgeColorIcon}
-                        href={await platforms.getProjectURL('curseforge', project.platforms.curseforge)}
+                        href={platforms.getProjectURL('curseforge', project.platforms.curseforge, project.type)}
                         className="border-brand-curseforge/40 from-primary to-brand-curseforge/20"/>
         }
         {project.platforms.modrinth &&
           <ExternalLink text="Modrinth" icon={ModrinthIcon}
-                        href={await platforms.getProjectURL('modrinth', project.platforms.modrinth)}
+                        href={platforms.getProjectURL('modrinth', project.platforms.modrinth, project.type)}
                         className={`
                           border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth
                         `}

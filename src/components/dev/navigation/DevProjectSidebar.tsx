@@ -27,6 +27,7 @@ import {PlatformProject} from "@repo/platforms";
 import {Link} from "@/lib/locales/routing";
 import {DevProjectSidebarContext} from "@/components/dev/navigation/DevProjectSidebarContextProvider";
 import {DevProject} from "@repo/shared/types/service";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   project: DevProject;
@@ -34,7 +35,7 @@ interface Props extends React.ComponentProps<typeof Sidebar> {
 }
 
 function SidebarProjectHeader({project, platformProject}: { project: DevProject; platformProject: PlatformProject }) {
-  // TODO Fallback
+  // TODO Localize
   return (
     <div className="space-y-3 p-1">
       <Link href="/dev"
@@ -46,7 +47,7 @@ function SidebarProjectHeader({project, platformProject}: { project: DevProject;
         Project settings
       </h3>
       <div className="flex flex-row items-center gap-2">
-        <img src={platformProject.icon_url} alt="icon" className="size-8 rounded-sm"/>
+        <ImageWithFallback width={32} height={32} src={platformProject.icon_url} alt="icon" className="rounded-sm"/>
         <span className="text-primary text-sm font-medium text-wrap">{project.name}</span>
       </div>
     </div>

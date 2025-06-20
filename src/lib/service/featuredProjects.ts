@@ -53,7 +53,7 @@ async function constructFeaturedProject({project, resolved}: {project: Project, 
 async function getProjectLinks(project: Project, sourceUrl?: string): Promise<FeaturedProject["links"]> {
   let entries: any = {};
   for (const [key, value] of Object.entries(project.platforms)) {
-    entries[key] = await platforms.getProjectURL(key as ProjectPlatform, value);
+    entries[key] = platforms.getProjectURL(key as ProjectPlatform, value, project.type);
   }
   return {
     ...entries,

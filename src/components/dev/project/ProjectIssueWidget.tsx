@@ -79,15 +79,17 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
           </pre>
 
           <div className="space-y-1">
-            <p className="text-secondary text-sm">
-              {v.rich('file', {
-                file: () => (
-                  <span className="text-secondary-alt font-mono text-sm">
+            {issue.file &&
+              <p className="text-secondary text-sm">
+                {v.rich('file', {
+                  file: () => (
+                    <span className="text-secondary-alt font-mono text-sm">
                     {issue.file}
                   </span>
-                )
-              })}
-            </p>
+                  )
+                })}
+              </p>
+            }
 
             {issue.version_name &&
               <p className="text-secondary text-sm">

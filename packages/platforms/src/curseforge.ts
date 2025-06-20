@@ -1,6 +1,7 @@
 import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from "./universal";
 import env from "@repo/shared/env";
 import {ProjectType} from "@repo/shared/types/service";
+import {ProjectNotFoundError} from "./exception";
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
@@ -13,6 +14,15 @@ const curseforgeProjectTypes: Record<number, ProjectType> = {
   4471: ProjectType.MODPACK,
   5: ProjectType.PLUGIN
 };
+
+const projectTypePaths: Record<ProjectType, string> = {
+  [ProjectType.MOD]: 'mc-mods',
+  [ProjectType.RESOURCEPACK]: 'texture-packs',
+  [ProjectType.DATAPACK]: 'data-packs',
+  [ProjectType.SHADER]: 'shaders',
+  [ProjectType.MODPACK]: 'modpacks',
+  [ProjectType.PLUGIN]: 'bukkit-plugins'
+}
 
 interface CurseForgeProject {
   id: number;
@@ -76,7 +86,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
       source_url: '',
 
       platform: 'curseforge',
-      project_url: await getProjectURL(slug),
+      project_url: getProjectURL(slug, ProjectType.MOD),
       extra: {
         authors: []
       },
@@ -101,7 +111,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
     source_url: project.links.sourceUrl,
 
     platform: 'curseforge',
-    project_url: await getProjectURL(project.slug),
+    project_url: getProjectURL(project.slug, type),
     extra: {
       authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies PlatformProjectAuthor))
     },
@@ -113,13 +123,9 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
   return source.extra.authors as PlatformProjectAuthor[];
 }
 
-async function getProjectURL(slug: string) {
-  if (shouldUsePlaceholder()) {
-    return 'https://www.curseforge.com/';
-  }
-
-  const project = await getCurseForgeProject(slug);
-  return project.links.websiteUrl;
+function getProjectURL(slug: string, type: ProjectType): string {
+  const base = projectTypePaths[type];
+  return `https://www.curseforge.com/${base}/${slug}`;
 }
 
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
@@ -136,6 +142,11 @@ async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
   if (results.pagination.resultCount === 1 && results.data.length === 1) {
     return results.data[0];
   }
+
+  if (results.pagination.resultCount === 0) {
+    throw new ProjectNotFoundError(`No project found for slug ${slug}`);
+  }
+
   throw new Error(`Multiple projects found for slug '${slug}'`)
 }
 

@@ -32,6 +32,7 @@ import {DevProject, Project} from "@repo/shared/types/service";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 export const dynamic = 'force-dynamic';
 
@@ -71,7 +72,7 @@ async function ProjectPlatforms({project}: { project: Project }) {
   const entries = await Promise.all(Object.keys(project.platforms).map(async platform => {
     const p = ProjectHostingPlatforms[platform as ProjectPlatform]!;
     const value = project.platforms[platform as ProjectPlatform] as any;
-    const url = await platforms.getProjectURL(platform as ProjectPlatform, value);
+    const url = platforms.getProjectURL(platform as ProjectPlatform, value, project.type);
 
     return <DataField className="font-mono" key={platform} title={p.name} icon={p.icon} value={value} href={url}/>;
   }));
@@ -132,7 +133,8 @@ async function ProfileProject({project}: { project: DevProject }) {
 
       <div
         className="border-tertiary bg-primary-alt flex w-full flex-row gap-4 rounded-md border p-4">
-        <img className="size-16 rounded-sm sm:size-19" src={platformProject.icon_url} alt="Project icon"/>
+        <ImageWithFallback className="size-16 rounded-sm sm:size-19" src={platformProject.icon_url}
+                           alt="Project icon" width={64} height={64}/>
 
         <div className="flex flex-col justify-between">
           <p className="text-primary font-medium sm:text-lg">

@@ -13,11 +13,11 @@ import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import DocsGuideContentRightSidebar from "@/components/docs/side/guide/DocsGuideContentRightSidebar";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
-import issuesApi from "@/lib/service/api/issuesApi";
-import {constructPagePath} from "@/lib/service/serviceUtil";
+import {actualLocale, actualVersion, constructPagePath} from "@/lib/service/serviceUtil";
 import env from "@repo/shared/env";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
+import issuesApi from "@repo/shared/api/issuesApi";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -61,7 +61,8 @@ export default async function ProjectDocsPage({params}: {
   } catch (e) {
     console.error('FATAL error rendering page', e);
 
-    await issuesApi.reportPageRenderFailure(projectData.project, constructPagePath(params.path), e, params);
+    await issuesApi.reportPageRenderFailure(projectData.project, constructPagePath(params.path), e,
+      actualVersion(params.version), actualLocale(params.locale));
 
     return (
       <DocsPageNotFoundError project={projectData.project}/>

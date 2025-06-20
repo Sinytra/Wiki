@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./api/*": "./src/api/*.ts",
     "./assets": "./src/assets.ts",
     "./constants": "./src/constants.ts",
     "./env": "./src/env.ts",

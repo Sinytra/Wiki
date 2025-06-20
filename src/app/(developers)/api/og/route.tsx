@@ -108,7 +108,7 @@ async function projectPageImage(coords: DocsPathCoords, project: PlatformProject
     };
   };
 
-  const acualUrl = project.icon_url.endsWith('.webp') ? (await getImageBase64(project.icon_url)).url : project.icon_url;
+  const actualUrl = project.icon_url.endsWith('.webp') ? (await getImageBase64(project.icon_url)).url : project.icon_url;
 
   return new ImageResponse(
     (
@@ -165,7 +165,7 @@ async function projectPageImage(coords: DocsPathCoords, project: PlatformProject
           </div>
 
           <div style={{display: 'flex', alignSelf: 'flex-end', flexDirection: 'row'}}>
-            <img src={acualUrl} width={196} height={196} alt={project.name}/>
+            <img src={actualUrl} width={196} height={196} alt={project.name}/>
           </div>
         </div>
 

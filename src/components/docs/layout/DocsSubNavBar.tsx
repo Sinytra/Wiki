@@ -11,6 +11,7 @@ import * as React from "react";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import SubMobileNav from "@/components/navigation/header/SubMobileNav";
 import {Project, ProjectWithInfo} from "@repo/shared/types/service";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any; path: string; disabled?: boolean }) {
   const pathName = usePathname();
@@ -39,7 +40,8 @@ function DocsSubNavProjectTitle({project, platformProject}: {
 }) {
   return (
     <div className="flex flex-row items-center gap-2 overflow-hidden">
-      <img src={platformProject.icon_url} alt="Logo" className="h-6 rounded-sm"/>
+      <ImageWithFallback src={platformProject.icon_url} alt="Logo" className="h-6 rounded-sm"
+                         width={24} height={24}/>
       <span className="text-primary overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap">
         {project.name}
       </span>

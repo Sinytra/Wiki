@@ -6,7 +6,7 @@ import Link from "next/link";
 import crowdin from "@/lib/locales/crowdin";
 import {
   ArrowRight,
-  BookIcon,
+  BookIcon, BoxIcon,
   ComponentIcon,
   FileText,
   GitBranchIcon,
@@ -30,11 +30,11 @@ import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
 import SocialButtons from "@/components/util/SocialButtons";
 import LargePersonStandingIcon from "@repo/ui/icons/LargePersonStandingIcon";
-import Image from "next/image";
 import env from "@repo/shared/env";
 import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";
+import SafeImage from "@/components/util/SafeImage";
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject[]> }) {
   const resolved = use(projects);
@@ -52,12 +52,17 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
          style={style}
     >
       <div className="mb-4 flex items-center">
-        <Image
+        <SafeImage
           src={project.icon}
           alt={`${project.title} icon`}
           width={48}
           height={48}
-          className="mr-4 rounded-md"
+          className="mr-4 rounded-sm"
+          fallback={
+            <div className="mr-4 rounded-sm border-tertiary flex size-12 shrink-0 border">
+              <BoxIcon strokeWidth={1} className="text-secondary m-auto opacity-20" width={32} height={32}/>
+            </div>
+          }
         />
         <div>
           <h4 className="text-primary-alt text-xl font-semibold">{project.title}</h4>
