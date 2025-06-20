@@ -1,5 +1,5 @@
 import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import service from "@/lib/service";
 import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import {AssetLocation} from "@repo/shared/assets";

@@ -1,9 +1,7 @@
-import LoadingIndicator from "@/components/util/LoadingIndicator";
 import * as React from "react";
 import {useTranslations} from "next-intl";
-
-
 import {DeploymentStatus} from "@repo/shared/types/api/deployment";
+import LoadingIndicator from "@repo/ui/components/indicator/LoadingIndicator";
 
 function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
   return (

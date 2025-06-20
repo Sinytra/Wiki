@@ -9,15 +9,15 @@ import {parseAsInteger} from "nuqs/server";
 import {Button} from "@repo/ui/components/button";
 import {SearchIcon} from "lucide-react";
 import {useDebouncedCallback} from "use-debounce";
-import DevDocsVersionSelect from "@/components/docs/versions/DevDocsVersionSelect";
-import clientUtil from "@/lib/util/clientUtil";
-import {cn} from "@/lib/utils";
-import {TableRowData} from "@/components/base/data-table/dataTableTypes";
-import ToggleChevron from "@/components/util/ToggleChevron";
-import DataTablePagination from "@/components/base/data-table/DataTablePagination";
+import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import {useRouter as useProgressRouter} from "@bprogress/next";
 import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
+import useMassRef from "@repo/shared/client/useMassRef";
+import ToggleChevron from "@repo/ui/util/ToggleChevron";
+import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
+import {TableRowData} from "@repo/ui/blocks/data-table/dataTableTypes";
+import DevDocsVersionSelect from "@repo/ui/blocks/data-table/DataTableVersionSelect";
 
 interface Properties<T> {
   cols: React.JSX.Element[];
@@ -43,7 +43,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
     await setParams({query: term ? term : null, page: null});
   }, 300);
 
-  const contentRefs = clientUtil.useMassRef<HTMLDivElement>();
+  const contentRefs = useMassRef<HTMLDivElement>();
   const [visibleRows, setVisibleRows] = useState<Record<number, boolean>>({});
   const toggleRow = (group: number) => {
     setVisibleRows((prev) => ({

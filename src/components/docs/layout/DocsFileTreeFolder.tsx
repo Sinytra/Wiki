@@ -4,7 +4,7 @@ import * as LucideIcons from "lucide-react";
 import {ChevronDown, FolderIcon} from "lucide-react";
 import * as React from "react";
 import {useContext, useEffect, useRef, useState} from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {usePathname} from "@/lib/locales/routing";
 import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
 import {NO_FOLDER_ICON} from "@repo/shared/constants";

@@ -25,7 +25,7 @@
 
 import {CSSTransition} from "react-transition-group";
 import {useEffect, useRef} from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 // https://github.com/vuejs/vitepress/blob/2e54970f7195c67b63908964575f589ce24b6d29/src/client/theme-default/components/VPNavScreen.vue
 export default function MobileNavScreen({ isVisible, className, children }: { isVisible: boolean; className: string; children: any }) {

@@ -1,6 +1,6 @@
 import * as React from "react";
-import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
-import DataTable from "@/components/base/data-table/DataTable";
+import {ordinalColumn, TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
 import {ProjectVersion, ProjectVersions} from "@repo/shared/types/api/devProject";
 

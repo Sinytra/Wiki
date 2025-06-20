@@ -5,8 +5,8 @@ import {getTranslations} from "next-intl/server";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import AdminDataImportsTable from "@/components/admin/table/AdminDataImportsTable";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 type Properties = {
   params: {

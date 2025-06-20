@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function MetadataGrid({className, children}: { className?: string, children?: ReactNode }) {
   return (

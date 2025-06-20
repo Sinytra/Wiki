@@ -1,8 +1,8 @@
 import {useTranslations} from "next-intl";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import {GitCommitHorizontalIcon} from "lucide-react";
-import LocalDateTime from "@/components/util/LocalDateTime";
+import LocalDateTime from "@repo/ui/util/LocalDateTime";
 
 
 import {ProjectRevision} from "@repo/shared/types/api/project";

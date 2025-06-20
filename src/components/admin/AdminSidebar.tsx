@@ -2,9 +2,12 @@
 
 import * as React from 'react';
 import {
-  DatabaseIcon, FlagIcon, HistoryIcon,
+  DatabaseIcon,
+  FlagIcon,
+  HistoryIcon,
   HouseIcon,
-  PencilRulerIcon, ScrollTextIcon,
+  PencilRulerIcon,
+  ScrollTextIcon,
   ServerCogIcon,
   SettingsIcon,
   Undo2Icon,
@@ -13,10 +16,10 @@ import {
 
 import {DevSidebarMainNav} from "@/components/dev/navigation/DevSidebarMainNav";
 import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu} from "@repo/ui/components/sidebar";
-import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
 import {UserProfile} from "@repo/shared/types/api/auth";
+import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
@@ -38,7 +41,7 @@ function AdminSidebarHeader() {
 }
 
 export function AdminSidebar({profile, ...props}: Props) {
-  clientUtil.usePreventBuggyScrollLock();
+  usePreventBuggyScrollLock();
   const t = useTranslations('AdminSidebar');
 
   const mainEntries = [

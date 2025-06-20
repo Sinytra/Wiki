@@ -1,4 +1,4 @@
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function DocsSidebarTitle({ children, extra, offset, noSeparator }: { children?: any, extra?: any, offset?: boolean, noSeparator?: boolean }) {
   return (

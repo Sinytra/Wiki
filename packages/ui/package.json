@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
+  "dependencies": {
+    "@repo/shared": "workspace:*"
+  },
   "devDependencies": {
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -14,6 +17,7 @@
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
-    "./icons/*": "./src/icons/*.tsx"
+    "./icons/*": "./src/icons/*.tsx",
+    "./blocks/*": "./src/blocks/*.tsx"
   }
 }

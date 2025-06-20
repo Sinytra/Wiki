@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import {BoxIcon} from "lucide-react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function ImageWithFallback({
                                             src,

@@ -10,7 +10,7 @@ import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import platforms from "@repo/platforms";
 import {DEFAULT_DOCS_VERSION, LEGACY_DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {Metadata, ResolvingMetadata} from "next";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';

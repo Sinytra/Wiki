@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import styles from './style.module.css';
 
 // Source: https://github.com/vuejs/vitepress/blob/2e54970f7195c67b63908964575f589ce24b6d29/src/client/theme-default/components/VPNavBarHamburger.vue

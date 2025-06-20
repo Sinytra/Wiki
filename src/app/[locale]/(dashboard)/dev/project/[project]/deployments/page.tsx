@@ -6,7 +6,7 @@ import * as React from "react";
 import DevProjectDeploymentsTable from "@/components/dev/table/DevProjectDeploymentsTable";
 import DeployProjectModal from "@/components/dev/modal/DeployProjectModal";
 import {handleRevalidateDocs} from "@/lib/forms/actions";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDeployConnection";
 import authSession from "@/lib/authSession";
 import DeployProjectContextProvider from "@/components/dev/modal/DeployProjectContextProvider";

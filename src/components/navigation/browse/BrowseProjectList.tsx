@@ -1,7 +1,8 @@
 import BrowseProject from "@/components/navigation/browse/BrowseProject";
-import TablePagination from "@/components/navigation/TablePagination";
 import {getTranslations} from "next-intl/server";
 import service from "@/lib/service";
+import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 export default async function BrowseProjectList({ query, page, types, sort }: { query: string; page: number; types: string | null; sort: string | null; }) {
   const results = await service.searchProjects(query, page, types, sort);
@@ -13,7 +14,7 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
       {!results || results.data.length === 0
         ?
           <span className="text-secondary my-3 text-center">
-              {t('no_results')}
+            {t('no_results')}
           </span>
         :
         results.data.map((m) => (
@@ -23,7 +24,9 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
     </div>
 
     <div className="mt-auto pt-4">
-      {results && <TablePagination current={page} total={results.pages}/>}
+      <ClientLocaleProvider keys={['DataTable']}>
+        <DataTablePagination pages={10} pageRangeDisplayed={3} />
+      </ClientLocaleProvider>
     </div>
   </>
 }

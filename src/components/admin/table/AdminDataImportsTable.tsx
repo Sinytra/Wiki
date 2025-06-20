@@ -1,7 +1,7 @@
 import * as React from "react";
-import {TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
-import DataTable from "@/components/base/data-table/DataTable";
 import {DataImport, DataImports} from "@repo/shared/types/api/admin";
+import {TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import DataTable from "@repo/ui/blocks/data-table/DataTable";
 
 export default function AdminDataImportsTable({data, page, params}: {
   data: DataImports;

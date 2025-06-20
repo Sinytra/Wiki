@@ -21,7 +21,7 @@ import {Button} from "@repo/ui/components/button";
 import {format} from "date-fns";
 import {ProjectHostingPlatforms, ProjectTypeIcons} from "@/lib/docs/projectInfo";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {Label} from "@repo/ui/components/label";

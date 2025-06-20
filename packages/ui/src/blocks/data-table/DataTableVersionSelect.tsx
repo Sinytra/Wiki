@@ -1,7 +1,7 @@
 'use client'
 
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {Tag} from "lucide-react";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {useTranslations} from "next-intl";

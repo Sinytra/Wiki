@@ -1,4 +1,4 @@
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function CountryFlag({flag: Flag, className}: { flag: any; className?: string; }) {
   return (

@@ -3,7 +3,15 @@
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@repo/ui/components/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@repo/ui/components/form";
 import {
   Dialog,
   DialogContent,
@@ -21,14 +29,14 @@ import {Input} from "@repo/ui/components/input";
 import SubmitButton from "@/components/util/SubmitButton";
 import {useTranslations} from "next-intl";
 import {Switch} from "@repo/ui/components/switch";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {ExternalLinkIcon, LightbulbIcon, Loader2Icon, PlusIcon} from "lucide-react";
 import {Button} from "@repo/ui/components/button";
 import {Link, useRouter} from "@/lib/locales/routing";
 import {useRouter as useProgressRouter} from "@bprogress/next";
-import clientUtil from "@/lib/util/clientUtil";
 import {useParams} from "next/navigation";
 import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
+import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
 
 export interface ProjectRegisterFormProps {
   defaultValues: any;
@@ -59,7 +67,7 @@ export default function ProjectRegisterForm(
   const v = useTranslations(translations || 'ProjectRegisterForm');
   const t = useTranslations('ProjectRegisterForm');
   const u = useTranslations('FormActions');
-  const reload = clientUtil.usePageDataReloadTransition();
+  const reload = usePageDataReloadTransition();
 
   const form = useForm<z.infer<typeof projectRegisterSchema>>({
     resolver: zodResolver(projectRegisterSchema),
@@ -253,7 +261,7 @@ export default function ProjectRegisterForm(
               }
 
               <DialogFooter className="flex w-full flex-row">
-                <SubmitButton t={{title: t('submit')}}/>
+                <SubmitButton/>
               </DialogFooter>
             </form>
           </div>

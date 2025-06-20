@@ -23,13 +23,13 @@ import ContentLink from "@/components/docs/shared/ContentLink";
 import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
 import PrefabObtaining from "@/components/docs/shared/prefab/PrefabObtaining";
 import ModAsset from "@/components/docs/shared/ModAsset";
-import CodeHikeCode from "@/components/util/CodeHikeCode";
 import Callout from "@/components/docs/shared/Callout";
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 import PageLink from "@/components/docs/PageLink";
 import Asset from "@/components/docs/shared/Asset";
-import CodeTabs from "@/components/docs/shared/CodeTabs";
 import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
+import CodeHikeCode from "@repo/ui/blocks/markdown/CodeHikeCode";
+import CodeTabs from "@repo/ui/blocks/markdown/CodeTabs";
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 

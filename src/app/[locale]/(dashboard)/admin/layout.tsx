@@ -3,7 +3,7 @@ import {assertUserIsAdmin} from "@/lib/admin";
 import {AdminSidebar} from "@/components/admin/AdminSidebar";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 export const dynamic = 'force-dynamic';
 

@@ -1,7 +1,7 @@
 import {DeveloperSidebar} from "@/components/dev/navigation/DeveloperSidebar";
 import {SidebarInset, SidebarProvider} from "@repo/ui/components/sidebar";
 import authSession from "@/lib/authSession";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import {setContextLocale} from "@/lib/locales/routing";
 import devProjectApi from "@/lib/service/api/devProjectApi";

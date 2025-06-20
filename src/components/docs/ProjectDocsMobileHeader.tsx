@@ -3,7 +3,7 @@
 import {useContext} from "react";
 import {DocsSidebarContext} from "@/components/docs/side/DocsSidebarContext";
 import {Info, Menu, X} from "lucide-react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 interface Props {
   showRightSidebar?: boolean;

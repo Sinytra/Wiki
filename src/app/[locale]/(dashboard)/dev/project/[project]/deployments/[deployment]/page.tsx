@@ -17,20 +17,19 @@ import {
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import * as React from "react";
 import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@repo/ui/components/dropdown-menu";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import DeleteDeploymentModal from "@/components/dev/modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
-import LocalDateTime from "@/components/util/LocalDateTime";
 import {Badge} from "@repo/ui/components/badge";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
-
 import ProjectIssuesList from "@/components/dev/project/ProjectIssuesList";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {DeploymentStatus, FullDevProjectDeployment} from "@repo/shared/types/api/deployment";
 import {ProjectIssue} from "@repo/shared/types/api/project";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
+import LocalDateTime from "@repo/ui/util/LocalDateTime";
 
 type Properties = {
   params: {

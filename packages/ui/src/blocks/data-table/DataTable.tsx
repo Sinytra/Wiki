@@ -1,11 +1,11 @@
 import {TableCell, TableHead} from "@repo/ui/components/table";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import {ReactNode} from "react";
-import DataTableClient from "@/components/base/data-table/DataTableClient";
-import {TableColumn, TableRouteParams, TableRowLinker} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import {TableColumn, TableRouteParams, TableRowLinker} from "@repo/ui/blocks/data-table/dataTableTypes";
+import DataTableClient from "@repo/ui/blocks/data-table/DataTableClient";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 
 interface Properties<T> {

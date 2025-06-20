@@ -2,7 +2,7 @@
 
 import {Share2} from "lucide-react";
 import {ReactNode} from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {Button} from "@repo/ui/components/button";
 import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 import DiscordIcon from "@repo/ui/icons/DiscordIcon";

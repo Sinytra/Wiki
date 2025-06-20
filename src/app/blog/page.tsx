@@ -1,6 +1,6 @@
 import Link from "next/link";
 import BlogHeader from "@/components/navigation/BlogHeader";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {Badge} from "@repo/ui/components/badge";
 import {useTranslations} from "next-intl";
 import {setContextLocale} from "@/lib/locales/routing";

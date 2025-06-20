@@ -2,10 +2,10 @@
 
 import {useTranslations} from "next-intl";
 import {ChevronDown, CircleAlertIcon, TriangleAlertIcon} from "lucide-react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import {useState} from "react";
-import LocalDateTime from "@/components/util/LocalDateTime";
+import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import {ProjectIssue, ProjectIssueLevel} from "@repo/shared/types/api/project";
 
 export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {

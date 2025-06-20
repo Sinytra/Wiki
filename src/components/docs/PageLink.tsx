@@ -1,6 +1,6 @@
 import {default as NextLink} from "next/link";
 import {Link as LocaleLink} from "@/lib/locales/routing";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function PageLink({href, target, local, className, children}: {href?: string | null; target?: string; local?: boolean; className?: string; children?: any}) {
   if (!href) {

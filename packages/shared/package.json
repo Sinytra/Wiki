@@ -4,6 +4,7 @@
   "private": true,
   "exports": {
     "./api/*": "./src/api/*.ts",
+    "./client/*": "./src/client/*.ts",
     "./assets": "./src/assets.ts",
     "./constants": "./src/constants.ts",
     "./env": "./src/env.ts",

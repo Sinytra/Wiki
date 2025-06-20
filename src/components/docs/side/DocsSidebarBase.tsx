@@ -1,6 +1,6 @@
 'use client'
 
-import {cn} from '@/lib/utils';
+import {cn} from "@repo/ui/lib/utils";
 import {forwardRef, useContext} from 'react';
 import {DocsSidebarContext, DocsSidebarType} from "@/components/docs/side/DocsSidebarContext";
 

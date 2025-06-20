@@ -3,7 +3,7 @@ import DevProjectSidebar from "@/components/dev/navigation/DevProjectSidebar";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@repo/platforms";
 import DevProjectSidebarContextProvider from "@/components/dev/navigation/DevProjectSidebarContextProvider";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 

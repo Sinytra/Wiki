@@ -1,9 +1,9 @@
 import {Badge} from "@repo/ui/components/badge";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {Project} from "@repo/shared/types/service";
 
 interface Props {

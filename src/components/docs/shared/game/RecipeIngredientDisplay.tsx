@@ -1,6 +1,6 @@
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
 import {ContentRouteParams, getResolvedItemLink} from "@/lib/game/content";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {ResolvedItem} from "@repo/shared/types/service";
 
 export default function RecipeIngredientDisplay({count, item, params}: { count: number; item: ResolvedItem; params: ContentRouteParams }) {

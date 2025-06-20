@@ -1,9 +1,8 @@
 'use client'
 
 import {useState} from "react";
-import {ChevronDown} from "lucide-react";
 import * as React from "react";
-import ToggleChevron from "@/components/util/ToggleChevron";
+import ToggleChevron from "@repo/ui/util/ToggleChevron";
 
 export default function ExpandableCategory({name, children}: { name: string; children: any }) {
   const [open, setOpen] = useState(false);

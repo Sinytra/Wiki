@@ -1,10 +1,4 @@
-import {type ClassValue, clsx} from "clsx"
-import {twMerge} from "tailwind-merge"
 import {getParams} from "@nimpl/getters/get-params";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
 
 export function trimText(str: string, len: number) {
   return str.length > len ? `${str.substring(0, len)}...` : str;

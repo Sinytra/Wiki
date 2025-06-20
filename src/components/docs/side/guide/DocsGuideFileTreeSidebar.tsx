@@ -2,7 +2,7 @@ import * as LucideIcons from 'lucide-react';
 import {HomeIcon} from 'lucide-react';
 import DocsFileLink from "@/components/docs/util/DocsFileLink";
 import DocsFileTreeFolder from "@/components/docs/layout/DocsFileTreeFolder";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import ScrollableDocsSidebarBase from "@/components/docs/side/ScrollableDocsSidebarBase";
 import {FileTree, FileTreeEntry} from "@repo/shared/types/service";

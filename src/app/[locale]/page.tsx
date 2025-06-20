@@ -1,6 +1,7 @@
 import {redirect, setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from 'next-intl';
-import {cn, trimText} from "@/lib/utils";
+import {trimText} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import TranslateBanner from "@/components/landing/TranslateBanner";
 import Link from "next/link";
 import crowdin from "@/lib/locales/crowdin";

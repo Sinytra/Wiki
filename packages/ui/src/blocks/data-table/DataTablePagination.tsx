@@ -4,20 +4,21 @@ import ReactPaginate from "react-paginate";
 import {Button} from "@repo/ui/components/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 import * as React from "react";
+import {useEffect} from "react";
 import {useTranslations} from "next-intl";
 import {useQueryState} from "nuqs";
 import {parseAsInteger} from "nuqs/server";
-import {useEffect} from "react";
-import clientUtil from "@/lib/util/clientUtil";
+import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
 
 interface Properties {
   pages: number;
+  pageRangeDisplayed?: number;
 }
 
-export default function DataTablePagination({pages}: Properties) {
+export default function DataTablePagination({pages, pageRangeDisplayed}: Properties) {
   const t = useTranslations('DataTable');
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions({shallow: false}));
-  const transition = clientUtil.usePageDataReloadTransition(true);
+  const transition = usePageDataReloadTransition(true);
 
   const handlePageClick = async (event: any) => {
     if (event.selected + 1 != page) {
@@ -54,7 +55,7 @@ export default function DataTablePagination({pages}: Properties) {
         activeLinkClassName="border border-secondary"
         initialPage={page - 1}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={pageRangeDisplayed ?? 5}
         pageCount={pages}
         renderOnZeroPageCount={null}
       />

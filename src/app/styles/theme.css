@@ -60,6 +60,7 @@
     --color-brand-modrinth: #00AF5C;
     --color-brand-discord: #5865F2;
     --color-lightblue-primary: var(--vp-c-brand-1);
+    --color-progressbar: #1662C5;
 
     /* Non-standard colors */
     --background-color-popover: var(--background-color-primary-alt);

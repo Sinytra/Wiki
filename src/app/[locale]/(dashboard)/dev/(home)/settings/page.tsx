@@ -14,15 +14,15 @@ import {deleteUserAccount, linkModrinthAccount, unlinkModrinthAccount} from "@/l
 import {ExternalLinkIcon} from "lucide-react";
 import UnlinkMRAccountForm from "@/components/dev/settings/UnlinkMRAccountForm";
 import LinkMRAccountForm from "@/components/dev/settings/LinkMRAccountForm";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import DeleteAccountForm from "@/components/dev/settings/DeleteAccountForm";
 import {useTranslations} from "next-intl";
 import {getTranslations} from "next-intl/server";
-import AdminBadge from "@/components/util/AdminBadge";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import authApi from "@/lib/service/api/authApi";
 import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
+import AdminBadge from "@repo/ui/components/badge/AdminBadge";
 
 export const dynamic = 'force-dynamic';
 

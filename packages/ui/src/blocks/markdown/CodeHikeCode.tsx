@@ -1,6 +1,6 @@
 import {Pre, RawCode, highlight} from "codehike/code"
-import {CopyButton} from "@/components/util/CopyButton";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
+import {CopyButton} from "@repo/ui/components/button/CopyButton";
 
 function getFileName(meta: string): string | null {
   if (meta.length > 0) {
@@ -11,12 +11,14 @@ function getFileName(meta: string): string | null {
 }
 
 export default async function CodeHikeCode({codeblock}: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark");
+  const highlighted = await highlight(codeblock, 'github-dark');
   const fileName = getFileName(highlighted.meta);
 
   return (
     <div className="group relative rounded-sm">
-      <CopyButton text={highlighted.code} offset={fileName == null}/>
+      <div className={cn('absolute', fileName == null ? 'top-1.5 right-1.5 p-1.5' : 'top-1 right-1 p-1')}>
+        <CopyButton text={highlighted.code}/>
+      </div>
       {fileName &&
         <div className="rounded-sm rounded-b-none bg-code-alt px-2.5 py-1.5 font-mono text-sm text-secondary-alt">
           {fileName}

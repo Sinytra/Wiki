@@ -1,18 +1,18 @@
 import * as React from "react";
 import {GitCommitHorizontal, GlobeIcon, HardDriveUploadIcon, MoreHorizontal, ServerOffIcon} from "lucide-react";
-import DataTablePagination from "@/components/base/data-table/DataTablePagination";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@repo/ui/components/dropdown-menu";
 import {Button} from "@repo/ui/components/button";
 import {Badge} from "@repo/ui/components/badge";
 import DeleteDeploymentModal from "../modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import {Link} from "@/lib/locales/routing";
-import LocalDateTime from "@/components/util/LocalDateTime";
+import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dev/modal/DeployProjectModalOpenButton";
 import {DeploymentStatus, DevProjectDeployment, DevProjectDeployments} from "@repo/shared/types/api/deployment";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
+import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
 
 function EmptyDeploymentsState() {
   return (

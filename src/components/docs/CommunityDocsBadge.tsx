@@ -2,7 +2,7 @@ import {useTranslations} from "next-intl";
 import {Badge} from "@repo/ui/components/badge";
 import {UsersIcon} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@repo/ui/components/tooltip";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function CommunityDocsBadge({ bright, small }: { bright?: boolean; small?: boolean }) {
   const t = useTranslations('CommunityBadge');

@@ -1,7 +1,7 @@
 import * as React from "react";
-import DataTable from "@/components/base/data-table/DataTable";
+import {ordinalColumn, TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
-import {ordinalColumn, TableColumn, TableRouteParams} from "@/components/base/data-table/dataTableTypes";
 import {useTranslations} from "next-intl";
 import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentRecipe} from "@repo/shared/types/api/devProject";

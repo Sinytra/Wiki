@@ -4,7 +4,7 @@ import {getTranslations} from "next-intl/server";
 import {handleDeleteProjectForm, handleEditProjectForm} from "@/lib/forms/actions";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import * as React from "react";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 

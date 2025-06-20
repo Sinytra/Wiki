@@ -1,11 +1,12 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./styles/globals.css";
-import Providers from "@/components/navigation/nav-progress-bar";
 import {Toaster} from "@repo/ui/components/sonner";
 import {ReactNode} from "react";
-import {cn, getProcessURL} from "@/lib/utils";
+import {getProcessURL} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {NuqsAdapter} from "nuqs/adapters/next/app";
+import NavProgressBar from "@repo/ui/navigation/NavProgressBar";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -41,11 +42,11 @@ export default function LocaleLayout({children}: Readonly<{ children: ReactNode;
       />
     </head>
     <body className={cn(inter.className, 'bg-primary text-primary flex min-h-screen flex-col')}>
-    <Providers>
+    <NavProgressBar>
       <NuqsAdapter>
         {children}
       </NuqsAdapter>
-    </Providers>
+    </NavProgressBar>
     {/* TODO Font size */}
     <Toaster toastOptions={{
       style: {

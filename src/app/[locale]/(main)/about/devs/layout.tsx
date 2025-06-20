@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import MetaDevDocsNavigation from "@/components/meta-docs/MetaDevDocsNavigation";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 export const dynamic = 'force-static';
 

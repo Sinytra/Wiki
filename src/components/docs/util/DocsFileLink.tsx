@@ -1,6 +1,6 @@
 'use client'
 
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {Link, usePathname} from "@/lib/locales/routing";
 
 export default function DocsFileLink({href, children}: { href: string, children: any }) {

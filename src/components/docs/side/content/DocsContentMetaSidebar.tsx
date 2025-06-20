@@ -1,4 +1,4 @@
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import ScrollableDocsSidebarBase from "@/components/docs/side/ScrollableDocsSidebarBase";
 import service from "@/lib/service";
 import {DocsEntryMetadata} from "@repo/shared/types/metadata";

@@ -1,5 +1,5 @@
 import ProjectIssueWidget from "@/components/dev/project/ProjectIssueWidget";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import * as React from "react";
 
 import {ProjectIssue} from "@repo/shared/types/api/project";

@@ -1,7 +1,7 @@
 'use client'
 
 import {useState} from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function ExpandableDescription({children}: { children?: any }) {
   const [expanded, setExpanded] = useState(false);

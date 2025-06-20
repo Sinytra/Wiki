@@ -23,7 +23,7 @@ import ExpandableDescription from "@/components/docs/layout/ExpandableDescriptio
 import CurseForgeColorIcon from "@repo/ui/icons/CurseForgeColorIcon";
 import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
 import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import PageLink from "@/components/docs/PageLink";
 import DiscordIcon from "@repo/ui/icons/DiscordIcon";
 import {useTranslations} from "next-intl";

@@ -1,5 +1,5 @@
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@repo/ui/components/tooltip";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {Popover, PopoverContent, PopoverTrigger} from "@repo/ui/components/popover";
 
 export default function TooltipText({tooltip, children}: {tooltip: any; children: any}) {

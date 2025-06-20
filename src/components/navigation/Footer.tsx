@@ -1,5 +1,5 @@
 import React from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import Link from "next/link";
 import {useTranslations} from "next-intl";

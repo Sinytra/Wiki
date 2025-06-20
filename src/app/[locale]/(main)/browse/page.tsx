@@ -8,7 +8,7 @@ import BrowseFilterPanel from "@/components/navigation/browse/BrowseFilterPanel"
 import BrowseSortDropdown from "@/components/navigation/browse/BrowseSortDropdown";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 type Properties = {
   params: { locale: string };

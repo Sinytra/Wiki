@@ -15,10 +15,10 @@ import {
   SidebarHeader,
   SidebarMenu
 } from "@repo/ui/components/sidebar";
-import clientUtil from "@/lib/util/clientUtil";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
 import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
+import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
@@ -26,7 +26,7 @@ interface Props extends React.ComponentProps<typeof Sidebar> {
 }
 
 export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
-  clientUtil.usePreventBuggyScrollLock();
+  usePreventBuggyScrollLock();
   const t = useTranslations('DeveloperSidebar');
 
   const teams = [

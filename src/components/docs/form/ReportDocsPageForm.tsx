@@ -16,16 +16,16 @@ import {CompassIcon} from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {Textarea} from "@repo/ui/components/textarea";
 import {flushSync} from "react-dom";
+import {useTranslations} from "next-intl";
 
 interface Properties {
   projectId: string;
   path: string;
-  t: any;
-  submitT: any;
   formAction: (data: any) => Promise<any>;
 }
 
-export default function ReportDocsPageForm({projectId, path, t, submitT, formAction}: Properties) {
+export default function ReportDocsPageForm({projectId, path, formAction}: Properties) {
+  const t = useTranslations('Report.form');
   const form = useForm<z.infer<typeof docsPageReportSchema>>({
     resolver: zodResolver(docsPageReportSchema),
     defaultValues: {}
@@ -34,7 +34,7 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
   const action: () => void = form.handleSubmit(async (data) => {
     const resp = await formAction(data);
     if (resp.success) {
-      toast.success(t.success);
+      toast.success(t('success'));
       flushSync(() => form.reset());
     } else if (resp.error) {
       form.setError('root.custom', {message: resp.error});
@@ -52,26 +52,26 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
       <form tabIndex={0} action={action} className="space-y-6 focus:outline-hidden">
         <FormItem>
           <FormLabel>
-            {t.id.title}
+            {t('id.title')}
           </FormLabel>
           <FormControl>
             <Input placeholder="examplemod" value={projectId} disabled/>
           </FormControl>
           <FormDescription>
-            {t.id.desc}
+            {t('id.desc')}
           </FormDescription>
           <FormMessage/>
         </FormItem>
 
         <FormItem>
           <FormLabel>
-            {t.path.title}
+            {t('path.title')}
           </FormLabel>
           <FormControl>
             <Input placeholder="/blocks/generator" value={path && `/${path}`} disabled/>
           </FormControl>
           <FormDescription>
-            {t.path.desc}
+            {t('path.desc')}
           </FormDescription>
           <FormMessage/>
         </FormItem>
@@ -82,13 +82,13 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
           render={({field}) => (
             <FormItem>
               <FormLabel>
-                {t.email.title}
+                {t('email.title')}
               </FormLabel>
               <FormControl>
                 <Input placeholder="contact@example.com" {...field} />
               </FormControl>
               <FormDescription>
-                {t.email.desc}
+                {t('email.desc')}
               </FormDescription>
               <FormMessage/>
             </FormItem>
@@ -101,24 +101,24 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
           render={({field}) => (
             <FormItem>
               <FormLabel>
-                {t.reason.title}
+                {t('reason.title')}
               </FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value ?? ''}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder={t.reason.placeholder}/>
+                    <SelectValue placeholder={t('reason.placeholder')}/>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="spam">{t.reason.spam}</SelectItem>
-                  <SelectItem value="copyright">{t.reason.copyright}</SelectItem>
-                  <SelectItem value="content_rules_violation">{t.reason.content_rules_violation}</SelectItem>
-                  <SelectItem value="tos_violation">{t.reason.tos_violation}</SelectItem>
-                  <SelectItem value="dislike">{t.reason.dislike}</SelectItem>
+                  <SelectItem value="spam">{t('reason.spam')}</SelectItem>
+                  <SelectItem value="copyright">{t('reason.copyright')}</SelectItem>
+                  <SelectItem value="content_rules_violation">{t('reason.content_rules_violation')}</SelectItem>
+                  <SelectItem value="tos_violation">{t('reason.tos_violation')}</SelectItem>
+                  <SelectItem value="dislike">{t('reason.dislike')}</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>
-                {t.reason.desc}
+                {t('reason.desc')}
               </FormDescription>
               <FormMessage/>
             </FormItem>
@@ -133,18 +133,18 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
                 render={({field}) => (
                   <FormItem>
                     <FormLabel>
-                      {t.details.title}
+                      {t('details.title')}
                     </FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={t.details.placeholder}
+                        placeholder={t('details.placeholder')}
                         className="resize-none"
                         {...field}
                         value={field.value ?? ''}
                       />
                     </FormControl>
                     <FormDescription>
-                      {t.details.desc}
+                      {t('details.desc')}
                     </FormDescription>
                     <FormMessage/>
                   </FormItem>
@@ -159,21 +159,21 @@ export default function ReportDocsPageForm({projectId, path, t, submitT, formAct
         {reason === 'dislike'
           ?
           <div className="flex flex-col text-sm">
-            {t.dislike.title}
-            &nbsp;{t.dislike.desc}
+            {t('dislike.title')}
+            &nbsp;{t('dislike.desc')}
             <p className="my-1"/>
-            {t.dislike.suggestion}
+            {t('dislike.suggestion')}
 
             <Button asChild className="text-inverse mt-4 ml-auto">
               <LocaleNavLink href="/browse">
                 <CompassIcon className="mr-2 h-4 w-4"/>
-                {t.dislike.explore}
+                {t('dislike.explore')}
               </LocaleNavLink>
             </Button>
           </div>
           :
           <DialogFooter>
-            <SubmitButton t={submitT}/>
+            <SubmitButton/>
           </DialogFooter>
         }
       </form>

@@ -5,7 +5,7 @@ import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
 import {AlertCircleIcon, ShieldCheckIcon, TriangleAlertIcon} from "lucide-react";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import ProjectIssuesList from "@/components/dev/project/ProjectIssuesList";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";

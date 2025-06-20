@@ -1,7 +1,7 @@
 'use client'
 
 import {useEffect, useRef, useState} from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 
 export default function HeaderBase({unfix, children}: { unfix?: boolean, children: any }) {
   const binding = useRef<HTMLHeadingElement | null>(null);

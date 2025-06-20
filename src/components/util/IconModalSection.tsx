@@ -1,5 +1,5 @@
 import * as React from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 
 export default function IconModalSection<

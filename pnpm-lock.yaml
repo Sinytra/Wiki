@@ -339,6 +339,10 @@ importers:
   packages/shared: {}
 
   packages/ui:
+    dependencies:
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../shared
     devDependencies:
       '@types/react':
         specifier: ^18

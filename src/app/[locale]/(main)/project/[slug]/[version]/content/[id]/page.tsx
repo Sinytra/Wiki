@@ -14,7 +14,7 @@ import {Metadata, ResolvingMetadata} from "next";
 import platforms from "@repo/platforms";
 import matter from "gray-matter";
 import {DocsEntryMetadata} from "@repo/shared/types/metadata";
-import ClientLocaleProvider from "@/components/util/ClientLocaleProvider";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 
 interface Props {
