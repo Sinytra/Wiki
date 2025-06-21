@@ -104,8 +104,7 @@ export function AdminSidebar({profile, ...props}: Props) {
         {
           title: t('nav.reports'),
           url: "/admin/reports",
-          icon: FlagIcon,
-          disabled: true
+          icon: FlagIcon
         },
         {
           title: t('nav.audit_log'),

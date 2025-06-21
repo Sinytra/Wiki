@@ -16,8 +16,16 @@ export const projectEditSchema = z.object({
   is_community: z.boolean().optional()
 });
 
-export const docsPageReportSchema = z.object({
+export const projectReportSchema = z.object({
+  project_id: z.string(),
+  type: z.string(),
   reason: z.string(),
-  content: z.string(),
-  email: z.string().email().optional()
+  body: z.string(),
+  path: z.string().optional(),
+  locale: z.string().optional(),
+  version: z.string().optional()
 });
+
+export const ruleProjectReportSchema = z.object({
+  resolution: z.enum(['accept', 'dismiss'])
+})

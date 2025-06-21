@@ -158,7 +158,7 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
 function constructApiUrl(path: string, parameters?: ApiRouteParameters): string {
   const endpoint = envPublic.getBackendEndpointUrl();
   const searchParams = serializeUrlParams(parameters);
-  return `${endpoint}/api/v1/${path}?${searchParams.toString()}`;
+  return `${endpoint}/api/v1/${path}?${searchParams}`;
 }
 
 const network = {

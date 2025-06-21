@@ -3,6 +3,7 @@ import {Language} from "@/lib/types/available";
 import available from "@/lib/locales/available";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@repo/shared/constants";
 import {ApiCallResult} from "@repo/shared/network";
+import {notFound} from "next/navigation";
 
 export function handleApiCall<T>(result: ApiCallResult<T>): T {
   // Success
@@ -19,6 +20,11 @@ export function handleApiCall<T>(result: ApiCallResult<T>): T {
     authSession.refresh();
     // @ts-ignore
     return undefined;
+  }
+
+  if (result.status === 404) {
+    // TODO Not found pages
+    notFound();
   }
 
   // Backend returned non-JSON

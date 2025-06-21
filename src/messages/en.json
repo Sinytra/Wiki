@@ -232,8 +232,8 @@
     },
     "Report": {
         "title": "Report a documentation page",
-        "desc": "Report content that violates our Terms of Service or Content Rules.",
-        "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
+        "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
+        "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
         "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
         "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
         "form": {
@@ -245,32 +245,78 @@
                 "title": "Page path",
                 "desc": "Reported documentation page path."
             },
-            "email": {
-                "title": "Reply email address",
-                "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
+            "locale": {
+                "title": "Locale",
+                "desc": "Applied if the content lies within a localized subpath.",
+                "placeholder": "N/A"
+            },
+            "version": {
+                "title": "Version",
+                "desc": "Applied if the content lies within a named version.",
+                "placeholder": "N/A"
             },
             "reason": {
                 "title": "Reason*",
-                "placeholder": "Select a reason for reporting this page",
-                "desc": "Reason for reporting this page.",
-                "spam": "Spam",
-                "copyright": "Copyright Infringement",
-                "content_rules_violation": "Violates Content Rules",
-                "tos_violation": "Violates Terms of Service",
+                "placeholder": "Select a reason for reporting this content",
+                "desc": "Reason for reporting this content.",
                 "dislike": "I just don't like it"
             },
             "details": {
                 "title": "Details*",
-                "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
+                "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
                 "desc": "Additional details about the issue."
             },
             "dislike": {
-                "title": "We understand that you may not like this page, and that's totally okay!",
+                "title": "We understand that you may not like this content, and that's totally okay!",
                 "desc": "Unfortunately, however, it is not a valid reason to report a project.",
-                "suggestion": "Would you like to look for something else to read instead?",
+                "suggestion": "Would you like to look for something else to explore instead?",
                 "explore": "Explore projects"
             },
             "success": "Report submitted successfully"
+        }
+    },
+    "ProjectReportReason": {
+        "spam": "Spam",
+        "copyright": "Copyright Infringement",
+        "content_rules": "Violates Content Rules",
+        "tos": "Violates Terms of Service",
+        "unknown": "Unknown"
+    },
+    "ProjectReportStatus": {
+        "new": "New",
+        "dismissed": "Dismissed",
+        "accepted": "Accepted",
+        "unknown": "Unknown"
+    },
+    "ProjectReportType": {
+        "project": "Project",
+        "docs": "Docs page",
+        "content": "Content page",
+        "unknown": "Unknown"
+    },
+    "ViewReportPage": {
+        "reports": "Reports",
+        "title": "Report details",
+        "desc": "Viewing report details for {id}",
+        "details": {
+            "reporter": "Reported by",
+            "project_id": "Project ID",
+            "path": "Path",
+            "body": "Body",
+            "reason": "Reason",
+            "created_at": "Created at",
+            "status": "Status",
+            "type": "Type",
+            "locale": "Locale",
+            "version": "Version"
+        },
+        "actions": {
+            "dismiss": "Dismiss",
+            "accept": "Accept"
+        },
+        "toast": {
+            "accept": "Report accepted",
+            "dismiss": "Report dismissed"
         }
     },
     "SubmitButton": {
@@ -809,5 +855,9 @@
         "invalid_format": "Invalid file format",
         "missing_platform_project": "Missing platform project",
         "unknown": "Unknown error"
+    },
+    "AdminReports": {
+        "title": "Project Reports",
+        "desc": "Manage project reports"
     }
 }

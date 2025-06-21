@@ -6,30 +6,32 @@ import * as React from "react";
 import {useTranslations} from "next-intl";
 import {Button} from "@repo/ui/components/button";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@repo/ui/components/tooltip";
+import {createReportLink} from "@/lib/clientUtil";
 
 interface FooterProps {
-  slug?: string;
+  slug: string;
   path?: string[];
   editUrl?: string;
   local?: boolean;
   preview: boolean;
 }
 
-function ReportPage({local, slug, path, preview}: {
+function ReportPage({local, project, path, preview}: {
   local?: boolean;
-  slug?: string;
+  project: string;
   path?: string[];
   preview: boolean;
 }) {
   const t = useTranslations('PageEditControls');
+  const reportLink = createReportLink(project, 'docs', path?.join('/') ?? null);
 
-  return !preview && !local && slug && path && (
+  return !preview && !local && project && path && (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button asChild variant="outline" size="sm"
                   className="text-secondary font-normal hover:bg-transparent sm:h-fit sm:border-none sm:p-0">
-            <Link href={`/report?slug=${slug}&path=${path.join('/')}`}>
+            <Link href={reportLink}>
               <FlagIcon className="mr-2 h-4 w-4 sm:mr-0"/>
               <span className="sm:hidden">
                 {t('report_button')}
@@ -69,7 +71,7 @@ function DesktopDocsFooter({
   return (
     <>
       <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
-        <ReportPage local={local} slug={slug} path={path} preview={preview}/>
+        <ReportPage local={local} project={slug} path={path} preview={preview}/>
       </div>
 
       <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
@@ -85,7 +87,7 @@ function MobileDocsFooter({local, slug, path, editUrl, preview}: FooterProps) {
   return (
     <div className="flex flex-col gap-3 sm:hidden">
       <div className="flex flex-row flex-wrap justify-between gap-2">
-        <ReportPage local={local} slug={slug} path={path} preview={preview}/>
+        <ReportPage local={local} project={slug} path={path} preview={preview}/>
         <EditPage editUrl={editUrl}/>
       </div>
     </div>

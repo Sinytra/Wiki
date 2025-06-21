@@ -17,7 +17,7 @@ interface Props {
 function AdminHeader() {
   return (
     <div className={`
-      border-secondary bg-primary-alt flex w-full flex-row justify-between rounded-sm border p-2 shadow-sm
+      border-secondary-dim bg-primary-alt flex w-full flex-row justify-between rounded-sm border p-2 shadow-sm
     `}>
       <span className="flex flex-row items-center gap-2 text-lg">
         <WrenchIcon className="size-5" />
@@ -34,8 +34,8 @@ function AdminHeader() {
 
 function DataWidget({title, value, icon}: { title: string; value: any; icon: ReactNode; }) {
   return (
-    <div className="border-secondary bg-accent flex flex-row rounded-sm border [&>div]:py-1">
-      <div className="border-secondary bg-primary flex flex-row items-center gap-2 rounded-sm border-r pr-2 pl-2">
+    <div className="border-secondary-dim bg-accent flex flex-row rounded-sm border [&>div]:py-1">
+      <div className="border-secondary-dim bg-primary flex flex-row items-center gap-2 rounded-sm border-r pr-2 pl-2">
         <div className="text-primary">
           {icon}
         </div>
@@ -65,7 +65,7 @@ export default async function AdminPanelHome({params}: Props) {
       <div className="flex flex-row flex-wrap gap-4">
         <DataWidget
           title="System version"
-          value={`${systemInfo.version} + ${systemInfo.version_hash}`}
+          value={`${systemInfo.version}+${systemInfo.version_hash}`}
           icon={
             <TagIcon width={18} height={18} />
           }

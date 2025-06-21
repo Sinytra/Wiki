@@ -101,7 +101,7 @@ export default async function ProjectDocsHomepage({params}: PageProps) {
                            version={params.version} locale={params.locale}
                            showRightSidebar={headings.length > 0}
                            rightSidebar={<DocsGuideNonContentRightSidebar headings={headings}/>}
-                           footer={<DocsPageFooter preview={isPreview}/>}
+                           footer={<DocsPageFooter slug={params.slug} preview={isPreview}/>}
     >
       {content === undefined ?
         <DocsContentTitle>

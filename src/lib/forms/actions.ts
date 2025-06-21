@@ -1,7 +1,11 @@
 'use server'
 
-import {docsPageReportSchema, projectEditSchema, projectRegisterSchema} from "@/lib/forms/schemas";
-import email from "@/lib/email";
+import {
+  projectReportSchema,
+  projectEditSchema,
+  projectRegisterSchema,
+  ruleProjectReportSchema
+} from "@/lib/forms/schemas";
 import cacheUtil from "@/lib/cacheUtil";
 import authSession from "@/lib/authSession";
 import {revalidatePath} from "next/cache";
@@ -10,6 +14,7 @@ import authApi from "@/lib/service/api/authApi";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import projectApi from "@/lib/service/api/projectApi";
 import {ZodSchema} from "zod";
+import moderationApi from "@/lib/service/api/moderationApi";
 
 interface ValidationResult { success: boolean; }
 interface ValidationSuccess<T> extends ValidationResult { success: true; data: T }
@@ -78,13 +83,13 @@ export async function handleRevalidateDocs(id: string) {
   return {success: true};
 }
 
-export async function handleReportProjectForm(projectId: string, path: string, rawData: any) {
+export async function handleReportProjectForm(rawData: any) {
   const response = await authApi.getUserProfile();
   if (!response.success) {
     return {success: false, error: response.error};
   }
 
-  const validatedFields = docsPageReportSchema.safeParse(rawData)
+  const validatedFields = projectReportSchema.safeParse(rawData)
   if (!validatedFields.success) {
     return {
       success: false,
@@ -92,16 +97,31 @@ export async function handleReportProjectForm(projectId: string, path: string, r
     }
   }
 
-  try {
-    const sender = {
-      name: response.data.username || 'Unknown',
-      email: rawData.email || 'unknown'
-    };
-    // Send asynchronously
-    email.submitReport(projectId, path, sender, rawData.reason, rawData.content);
-  } catch (e) {
-    console.error('Error submitting report', e);
-    return {success: false, error: 'internal'};
+  const result = await moderationApi.submitProjectReport(validatedFields.data);
+  if (!result.success) {
+    return result;
+  }
+
+  return {success: true};
+}
+
+export async function handleRuleProjectReport(id: string, rawData: any) {
+  const response = await authApi.getUserProfile();
+  if (!response.success) {
+    return {success: false, error: response.error};
+  }
+
+  const validatedFields = ruleProjectReportSchema.safeParse(rawData)
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
+
+  const result = await moderationApi.ruleProjectReport(id, validatedFields.data);
+  if (!result.success) {
+    return result;
   }
 
   return {success: true};

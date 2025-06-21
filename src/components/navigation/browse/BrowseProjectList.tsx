@@ -25,7 +25,7 @@ export default async function BrowseProjectList({ query, page, types, sort }: { 
 
     <div className="mt-auto pt-4">
       <ClientLocaleProvider keys={['DataTable']}>
-        <DataTablePagination pages={10} pageRangeDisplayed={3} />
+        <DataTablePagination pages={results?.pages || 0} pageRangeDisplayed={3} />
       </ClientLocaleProvider>
     </div>
   </>
