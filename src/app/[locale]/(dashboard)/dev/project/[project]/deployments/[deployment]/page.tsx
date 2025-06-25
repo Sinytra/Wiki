@@ -65,11 +65,11 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
       {issues.length > 0 ?
         <div className="flex flex-col gap-4">
             <span className="text-secondary text-sm">
-              {t('issues_found', { count: issues.length })}
+              {t('issues_found', {count: issues.length})}
             </span>
-            <div className="flex max-h-72 flex-col gap-2 overflow-y-auto">
-              <ProjectIssuesList issues={issues} />
-            </div>
+          <div className="flex max-h-72 flex-col gap-2 overflow-y-auto">
+            <ProjectIssuesList issues={issues}/>
+          </div>
         </div>
         :
         <span className="text-secondary text-sm">
@@ -156,7 +156,7 @@ function DeploymentGitCoordinates({deployment}: { deployment: FullDevProjectDepl
   )
 }
 
-function DeploymentInfo({deployment}: { deployment: FullDevProjectDeployment }) {
+function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDeployment; redirectTo: string }) {
   const t = useTranslations('DevProjectDeploymentPage');
 
   return (
@@ -193,6 +193,7 @@ function DeploymentInfo({deployment}: { deployment: FullDevProjectDeployment }) 
                 <DeleteDeploymentModal
                   action={handleDeleteDeploymentForm.bind(null, deployment.id)}
                   loading={deployment.status == DeploymentStatus.LOADING}
+                  redirectTo={redirectTo}
                 />
               </ClientLocaleProvider>
             </>}
@@ -228,7 +229,8 @@ function DeploymentInfo({deployment}: { deployment: FullDevProjectDeployment }) 
 export default async function DevProjectDeploymentPage({params}: Properties) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectDeploymentPage');
-  const content = handleApiCall(await devProjectApi.getDeployment(params.deployment));
+  const fallback = `/dev/project/${params.project}/deployments`;
+  const content = handleApiCall(await devProjectApi.getDeployment(params.deployment), fallback);
 
   return (
     <div>
@@ -244,7 +246,7 @@ export default async function DevProjectDeploymentPage({params}: Properties) {
         </BreadcrumbPage>
       </DevBreadcrumb>
 
-      <DeploymentInfo deployment={content}/>
+      <DeploymentInfo deployment={content} redirectTo={fallback}/>
     </div>
   )
 }

@@ -4,8 +4,10 @@ import available from "@/lib/locales/available";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@repo/shared/constants";
 import {ApiCallResult} from "@repo/shared/network";
 import {notFound} from "next/navigation";
+import {getParams} from "@nimpl/getters/get-params";
+import {redirect} from "@/lib/locales/routing";
 
-export function handleApiCall<T>(result: ApiCallResult<T>): T {
+export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T {
   // Success
   if (result.type == 'success') {
     return result.data;
@@ -23,8 +25,13 @@ export function handleApiCall<T>(result: ApiCallResult<T>): T {
   }
 
   if (result.status === 404) {
-    // TODO Not found pages
-    notFound();
+    if (returnTo) {
+      const params = getParams() as any;
+      redirect({href: returnTo, locale: params.locale});
+    } else {
+      // TODO Not found pages
+      notFound();
+    }
   }
 
   // Backend returned non-JSON
