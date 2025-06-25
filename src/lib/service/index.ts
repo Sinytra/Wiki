@@ -3,12 +3,11 @@ import {AssetLocation} from "@repo/shared/assets";
 import {
   ContentRecipeUsage,
   DocumentationPage,
-  GameProjectRecipe,
   LayoutTree,
   ProjectContentTree,
   ProjectSearchResults,
   ProjectWithInfo,
-  RenderedDocsPage,
+  RenderedDocsPage, ResolvedGameRecipe,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -102,13 +101,13 @@ const getProjectContents: (project: string, version: string | null, locale: stri
 const getProjectContentPage: (slug: string, id: string, version: string, locale: string) => Promise<DocumentationPage | null> = createProxy<'getProjectContentPage'>(
   (p, slug, id, version, locale) => p.getProjectContentPage(slug, id, actualVersion(version), actualLocale(locale))
 );
-const getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe[] | null> = createProxy<'getContentRecipeObtaining'>(
+const getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe[] | null> = createProxy<'getContentRecipeObtaining'>(
   (p, project, id, version, locale) => p.getContentRecipeObtaining(project, id, actualVersion(version), actualLocale(locale))
 );
 const getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null> = createProxy<'getContentRecipeUsage'>(
   (p, project, id, version, locale) => p.getContentRecipeUsage(project, id, actualVersion(version), actualLocale(locale))
 );
-const getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe | null> = createProxy<'getProjectRecipe'>(
+const getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe | null> = createProxy<'getProjectRecipe'>(
   (p, project, recipe, version, locale) => p.getProjectRecipe(project, recipe, actualVersion(version), actualLocale(locale))
 );
 

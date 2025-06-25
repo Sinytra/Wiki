@@ -113,58 +113,52 @@ export interface Slot {
   y: number;
 }
 
-export type SlotMap = Record<number, Slot>;
+export type SlotMap = Record<string, Slot>;
 
 export interface GameRecipeType {
-  localizedName: string | null;
   id: string;
+  localizedName: string | null;
   background: string;
   inputSlots: SlotMap;
   outputSlots: SlotMap;
 }
 
-export interface RecipeItem {
-  id: string;
-  name?: string;
-  sources: string[];
-  has_page: boolean;
-}
-
-export interface RecipeItemStack extends RecipeItem {
-  count: number;
-}
-
-export interface RecipeTag {
-  id: string;
-  items: RecipeItem[];
-}
-
-export interface RecipeIgredientTag {
-  count: number;
-  slot: number;
-  tag: RecipeTag;
-}
-
-export interface RecipeIngredientItem {
-  slot: number;
-  items: RecipeItemStack[];
-}
-
-export type RecipeIngredient = RecipeIngredientItem | RecipeIgredientTag;
-
-export interface GameProjectRecipe {
-  id: string;
-  type: GameRecipeType;
-  inputs: RecipeIngredient[];
-  outputs: RecipeIngredientItem[];
-}
-
 export interface ResolvedItem {
   id: string;
-  src: AssetLocation;
   name: string;
-  project: string | null;
+  project: string;
   has_page: boolean;
+}
+
+export interface ResolvedSlot {
+  input: boolean;
+  slot: string;
+  count: number;
+  items: ResolvedItem[];
+  tag: string | null;
+}
+
+export interface RecipeIngredientSummary {
+  count: number;
+  item: ResolvedItem;
+  tag: string | null;
+}
+
+export interface RecipeSummary {
+  inputs: RecipeIngredientSummary[];
+  outputs: RecipeIngredientSummary[];
+}
+
+export interface ResolvedGameRecipe {
+  id: string;
+  type: GameRecipeType;
+  inputs: ResolvedSlot[];
+  outputs: ResolvedSlot[];
+  summary: RecipeSummary;
+}
+
+export interface DisplayItem extends ResolvedItem {
+  asset: AssetLocation;
 }
 
 export interface ServiceProvider {
@@ -176,8 +170,8 @@ export interface ServiceProvider {
 
   getProjectContents: (project: string, version: string | null, locale: string | null) => Promise<ProjectContentTree | null>;
   getProjectContentPage: (project: string, id: string, version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
-  getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe | null>;
-  getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<GameProjectRecipe[] | null>
+  getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe | null>;
+  getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe[] | null>
   getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null>;
 }
 

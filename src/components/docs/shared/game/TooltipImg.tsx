@@ -44,7 +44,7 @@ class Tooltip extends Component<any> {
 
   removeListener = () => {
     document.removeEventListener("mousemove", this.onMouseMove);
-    this.setState({ xPosition: 0, yPosition: 0, listenerActive: false });
+    this.setState({ xPosition: -100, yPosition: -100, listenerActive: false });
   };
 
   render() {
@@ -63,7 +63,13 @@ class Tooltip extends Component<any> {
   }
 }
 
-export default function TooltipImg(props: any) {
+interface Properties {
+  id: string;
+  tag?: string | null;
+  children?: any;
+}
+
+export default function TooltipImg(props: Properties) {
   const [visible, setVisible] = useState(false);
 
   return <div onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
@@ -73,6 +79,11 @@ export default function TooltipImg(props: any) {
       offsetY={-33}
     >
       {props.id}
+      {props.tag &&
+        <p className="text-secondary text-shadow-none text-xs m-0! mt-1!">
+            #{props.tag}
+        </p>
+      }
     </Tooltip>
     {props.children}
   </div>;

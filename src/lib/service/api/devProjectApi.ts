@@ -32,7 +32,7 @@ async function getDeployment(id: string): Promise<ApiCallResult<FullDevProjectDe
 }
 
 async function deployProject(id: string, token: string | null = null): Promise<ApiCallResult> {
-  const result = await network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${id}/deploy`, {parameters: {token}}));
+  const result = await network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${id}/deploy`, { method: 'POST', parameters: {token}}));
   if (result.success) {
     cacheUtil.invalidateDocs(id); // TODO Keep?
   }

@@ -37,7 +37,7 @@ function ProjectsListHeader({defaultValues, isAdmin}: {
       <div className="flex flex-row items-center justify-end">
         <SidebarTrigger className="text-primary mr-auto -ml-1 md:hidden"/>
 
-        <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'DevPageRefreshTransition', 'SubmitButton']}>
+        <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'SubmitButton']}>
           <ProjectRegisterForm defaultValues={defaultValues}
                                isAdmin={isAdmin}
                                formAction={handleRegisterProjectForm}

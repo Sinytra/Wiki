@@ -5,21 +5,22 @@ import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
 import {getExternalWikiLink, getResolvedItemLink} from "@/lib/game/content";
 import {HoverContext} from "@/components/util/HoverContextProvider";
-import {ResolvedItem} from "@repo/shared/types/service";
+import {DisplayItem} from "@repo/shared/types/service";
 
 interface AdditionalProps {
-  src: ResolvedItem[];
+  src: DisplayItem[];
   count?: number;
   noTooltip?: boolean;
   noLink?: boolean;
   params?: any;
+  tag?: string | null;
 }
 
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & AdditionalProps;
 
 const INTERVAL = 2000;
 
-export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, params, ...props}: Props) {
+export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, params, tag, ...props}: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const hoverCtx = useContext(HoverContext);
 
@@ -27,7 +28,7 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
   useEffect(() => {
     src.forEach((src) => {
       const img = new Image();
-      img.src = src.src.src;
+      img.src = src.asset.src;
     });
   }, [src]);
 
@@ -48,7 +49,8 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
     const element = (
       <div {...props}>
         <div className="relative shrink-0">
-          <ItemDisplay noTitle asset={src[currentIndex].src} alt={src[currentIndex].id} className="sharpRendering"/>
+          <ItemDisplay noTitle asset={src[currentIndex].asset} alt={src[currentIndex].name ?? src[currentIndex].id}
+                       className="sharpRendering"/>
           {count && count > 1 &&
             <span
               className={`
@@ -66,7 +68,7 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
   };
 
   return noTooltip ? <Content/> : (
-    <TooltipImg id={src[currentIndex].name}>
+    <TooltipImg id={src[currentIndex].name} tag={tag}>
       <Content/>
     </TooltipImg>
   );

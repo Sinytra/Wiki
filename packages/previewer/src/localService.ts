@@ -6,13 +6,12 @@ import {
   ContentRecipeUsage,
   DocumentationPage,
   FileTreeEntry,
-  GameProjectRecipe,
   LayoutTree,
   Project,
   ProjectContentEntry,
   ProjectContentTree,
   ProjectSearchResults,
-  ProjectWithInfo,
+  ProjectWithInfo, ResolvedGameRecipe,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -124,7 +123,7 @@ async function searchProjects(query: string, page: number, types: string | null,
   return null;
 }
 
-async function getProjectRecipe(project: string, recipe: string, version: string | null, locale: string | null): Promise<GameProjectRecipe | null> {
+async function getProjectRecipe(project: string, recipe: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipe | null> {
   return null;
 }
 
@@ -163,7 +162,7 @@ async function getContentRecipeUsage(project: string, id: string, version: strin
   return null;
 }
 
-async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<GameProjectRecipe[] | null> {
+async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipe[] | null> {
   return null;
 }
 

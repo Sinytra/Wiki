@@ -1,4 +1,4 @@
-import {GameProjectRecipe, PaginatedData} from "../service";
+import {PaginatedData, ResolvedGameRecipe} from "../service";
 
 export interface ProjectContentPage {
   id: string;
@@ -17,8 +17,7 @@ export type ProjectContentTags = PaginatedData<ProjectContentTag>;
 
 export interface ProjectContentRecipe {
   id: string;
-  type: string;
-  data: GameProjectRecipe;
+  data: ResolvedGameRecipe;
 }
 
 export type ProjectContentRecipes = PaginatedData<ProjectContentRecipe>;

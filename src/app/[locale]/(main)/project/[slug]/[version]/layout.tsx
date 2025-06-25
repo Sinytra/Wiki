@@ -60,7 +60,7 @@ export default async function HomepageLayout({children, params}: LayoutProps) {
     <ErrorBoundary fallback={<DocsPageNotFoundError project={project}/>}>
       <LeftSidebarContextProvider>
         <DocsSidebarContextProvider>
-          <ClientLocaleProvider keys={['DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'DocsLanguageSelect', 'LanguageSelect', 'ModVersionRange']}>
+          <ClientLocaleProvider keys={['DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'LanguageSelect', 'ModVersionRange']}>
             <DocsLayoutClient project={project}
                               locale={params.locale} version={params.version}
                               platformProject={platformProject}>

@@ -3,11 +3,10 @@ import {constructPagePath} from "@/lib/service/serviceUtil";
 import {
   ContentRecipeUsage,
   DocumentationPage,
-  GameProjectRecipe,
   LayoutTree,
   ProjectContentTree,
   ProjectSearchResults,
-  ProjectWithInfo,
+  ProjectWithInfo, ResolvedGameRecipe,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -75,11 +74,11 @@ async function getProjectContentPage(project: string, id: string, version: strin
   return resolveNullableApiCall(() => sendApiRequest(project, `content/${project}/${id}`, { version, locale }));
 }
 
-async function getProjectRecipe(project: string, recipe: string, version: string | null, locale: string | null): Promise<GameProjectRecipe | null> {
+async function getProjectRecipe(project: string, recipe: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipe | null> {
   return resolveNullableApiCall(() => sendApiRequest(project, `content/${project}/recipe/${recipe}`, { version, locale }));
 }
 
-async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<GameProjectRecipe[] | null> {
+async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipe[] | null> {
   return resolveNullableApiCall(() => sendApiRequest(project, `content/${project}/${id}/recipe`, { version, locale }));
 }
 

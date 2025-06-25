@@ -20,7 +20,7 @@ export default function DevProjectRecipesTable({data, params, versions, page}: {
       id: 'type',
       header: t('type'),
       cell: recipe => (
-        <div className="font-mono text-sm">{recipe.type}</div>
+        <div className="font-mono text-sm">{recipe.data.type.id}</div>
       )
     },
     {
