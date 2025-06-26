@@ -6,7 +6,7 @@ import {
   LayoutTree,
   ProjectContentTree,
   ProjectSearchResults,
-  ProjectWithInfo, ResolvedGameRecipe,
+  ProjectWithInfo, ResolvedGameRecipe, ResolvedGameRecipeType,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -86,6 +86,10 @@ async function getContentRecipeUsage(project: string, id: string, version: strin
   return resolveNullableApiCall(() => sendApiRequest(project, `content/${project}/${id}/usage`, { version, locale }));
 }
 
+async function getRecipeType(project: string, type: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipeType | null> {
+  return resolveNullableApiCall(() => sendApiRequest(project, `content/${project}/recipe-type/${type}`, { version, locale }));
+}
+
 const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
@@ -96,7 +100,8 @@ const serviceProvider: ServiceProvider = {
   getProjectContents,
   getProjectContentPage,
   getContentRecipeUsage,
-  getContentRecipeObtaining
+  getContentRecipeObtaining,
+  getRecipeType
 }
 
 export const serviceProviderFactory: ServiceProviderFactory = {

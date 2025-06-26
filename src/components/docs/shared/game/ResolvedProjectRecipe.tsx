@@ -5,8 +5,9 @@ import {ContentRouteParams} from "@/lib/game/content";
 import ResponsiveTable from "@/components/util/ResponsiveTable";
 import {getTranslations} from "next-intl/server";
 import HoverContextProvider from "@/components/util/HoverContextProvider";
-import {DisplayItem, ResolvedGameRecipe, ResolvedItem} from "@repo/shared/types/service";
+import {DisplayItem, GameRecipeType, ResolvedGameRecipe, ResolvedItem} from "@repo/shared/types/service";
 import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 interface Properties {
   project: string;
@@ -25,14 +26,15 @@ async function createDisplayItems(items: ResolvedItem[]): Promise<DisplayItem[]>
   return Promise.all(items.map(createDisplayItem));
 }
 
-async function RecipeBody({slug, recipe, params}: {
+async function RecipeBody({slug, recipe, type, params}: {
   slug: string;
   recipe: ResolvedGameRecipe,
+  type: GameRecipeType,
   params: ContentRouteParams
 }) {
-  const background = await service.getAsset(slug, recipe.type.background, null);
+  const background = await service.getAsset(slug, type.background, null);
   const slot = (idx: string, input: boolean) => {
-    const slots = input ? recipe.type.inputSlots : recipe.type.outputSlots;
+    const slots = input ? type.inputSlots : type.outputSlots;
     return slots[idx];
   };
 
@@ -63,72 +65,106 @@ async function RecipeBody({slug, recipe, params}: {
   )
 }
 
-// TODO Handle missing items
+async function RecipeWorkbenches({workbenches, params}: { workbenches: ResolvedItem[]; params: ContentRouteParams }) {
+  const t = await getTranslations('ResolvedProjectRecipe');
+
+  return (
+    <div className="py-1 px-2">
+      <span className="text-secondary text-xsm">
+        {t('workbenches')}
+      </span>
+
+      <div className="p-2 flex flex-row gap-2 flex-wrap">
+        {...workbenches.map(async (item) => {
+          const disp = await createDisplayItem(item);
+          return (
+            <RotatingItemDisplaySlot src={[disp]} key={item.id} params={params}/>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export default async function ResolvedProjectRecipe({project, recipe, embedded, params}: Properties) {
   const t = await getTranslations('ResolvedProjectRecipe');
 
+  const recipeType = await service.getRecipeType(project, recipe.type, params.version, params.locale);
+  if (!recipeType) {
+    return null; // TODO
+  }
+
   const inputCounts = recipe.summary.inputs;
   const outputCounts = recipe.summary.outputs;
-  const localizedName = recipe.type.localizedName || await builtinRecipeTypes.getRecipeTypeName(recipe.type.id);
+  const localizedName = recipeType.type.localizedName || await builtinRecipeTypes.getRecipeTypeName(recipeType.type.id);
 
   return (
-    <ResponsiveTable
-      embedded={embedded}
-      columns={[
-        {key: 'type', label: t('type')},
-        {key: 'input', label: t('input')},
-        {key: 'output', label: t('output')},
-        {key: 'preview', label: t('preview')}
-      ]}
-      rows={[
-        {
-          type: {
-            className: 'align-middle whitespace-nowrap',
-            data: (
-              <div className="p-1.5 sm:p-0">
-                {localizedName}
-              </div>
-            )
-          },
-          input: {
-            className: 'align-top',
-            data: (
-              <ul className="w-max pl-4">
-                {inputCounts
-                  .sort((a, b) => b.count - a.count)
-                  .map(async ({count, item, tag}, index) => (
-                    <li key={index}>
-                      <RecipeIngredientDisplay tag={tag} count={count} item={await createDisplayItem(item)}
-                                               params={params}/>
-                    </li>
-                  ))}
-              </ul>
-            )
-          },
-          output: {
-            className: 'align-top',
-            data: (
-              <ul className="w-max max-w-60 pl-4">
-                {outputCounts
-                  .sort((a, b) => b.count - a.count)
-                  .map(async ({count, item, tag}, index) => (
-                    <li key={index}>
-                      <RecipeIngredientDisplay tag={tag} count={count} item={await createDisplayItem(item)}
-                                               params={params}/>
-                    </li>
-                  ))}
-              </ul>
-            )
-          },
-          preview: {
-            data: (
-              <div className="my-2 w-max p-2 sm:p-0">
-                <RecipeBody slug={project} recipe={recipe} params={params}/>
-              </div>
-            )
-          }
+    <div className="[&>table]:mt-0 space-y-2!">
+      <ClientLocaleProvider keys={['ResponsiveTable']}>
+      <ResponsiveTable
+        embedded={embedded}
+        expandedBody={recipeType.workbenches.length > 0 &&
+          <div>
+            <RecipeWorkbenches workbenches={recipeType.workbenches} params={params} />
+          </div>
         }
-      ]}
-    />
+        columns={[
+          {key: 'type', label: t('type')},
+          {key: 'input', label: t('input')},
+          {key: 'output', label: t('output')},
+          {key: 'preview', label: t('preview')}
+        ]}
+        rows={[
+          {
+            type: {
+              className: 'align-middle whitespace-nowrap',
+              data: (
+                <div className="p-1.5 sm:p-0">
+                  {localizedName}
+                </div>
+              )
+            },
+            input: {
+              className: 'align-top',
+              data: (
+                <ul className="w-max pl-4">
+                  {inputCounts
+                    .sort((a, b) => b.count - a.count)
+                    .map(async ({count, item, tag}, index) => (
+                      <li key={index}>
+                        <RecipeIngredientDisplay tag={tag} count={count} item={await createDisplayItem(item)}
+                                                 params={params}/>
+                      </li>
+                    ))}
+                </ul>
+              )
+            },
+            output: {
+              className: 'align-top',
+              data: (
+                <ul className="w-max max-w-60 pl-4">
+                  {outputCounts
+                    .sort((a, b) => b.count - a.count)
+                    .map(async ({count, item, tag}, index) => (
+                      <li key={index}>
+                        <RecipeIngredientDisplay tag={tag} count={count} item={await createDisplayItem(item)}
+                                                 params={params}/>
+                      </li>
+                    ))}
+                </ul>
+              )
+            },
+            preview: {
+              data: (
+                <div className="my-2 w-max p-2 sm:p-0">
+                  <RecipeBody slug={project} recipe={recipe} type={recipeType.type} params={params}/>
+                </div>
+              )
+            }
+          }
+        ]}
+      />
+      </ClientLocaleProvider>
+    </div>
   );
 }

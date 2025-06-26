@@ -125,7 +125,7 @@ export interface GameRecipeType {
 
 export interface ResolvedItem {
   id: string;
-  name: string;
+  name: string | null;
   project: string;
   has_page: boolean;
 }
@@ -149,9 +149,14 @@ export interface RecipeSummary {
   outputs: RecipeIngredientSummary[];
 }
 
+export interface ResolvedGameRecipeType {
+  type: GameRecipeType;
+  workbenches: ResolvedItem[];
+}
+
 export interface ResolvedGameRecipe {
   id: string;
-  type: GameRecipeType;
+  type: string;
   inputs: ResolvedSlot[];
   outputs: ResolvedSlot[];
   summary: RecipeSummary;
@@ -171,6 +176,7 @@ export interface ServiceProvider {
   getProjectContents: (project: string, version: string | null, locale: string | null) => Promise<ProjectContentTree | null>;
   getProjectContentPage: (project: string, id: string, version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
   getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe | null>;
+  getRecipeType: (project: string, type: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipeType | null>;
   getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe[] | null>
   getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null>;
 }

@@ -7,7 +7,7 @@ import {
   ProjectContentTree,
   ProjectSearchResults,
   ProjectWithInfo,
-  RenderedDocsPage, ResolvedGameRecipe,
+  RenderedDocsPage, ResolvedGameRecipe, ResolvedGameRecipeType,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -110,6 +110,9 @@ const getContentRecipeUsage: (project: string, id: string, version: string | nul
 const getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe | null> = createProxy<'getProjectRecipe'>(
   (p, project, recipe, version, locale) => p.getProjectRecipe(project, recipe, actualVersion(version), actualLocale(locale))
 );
+const getRecipeType: (project: string, type: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipeType | null> = createProxy<'getRecipeType'>(
+  (p, project, type, version, locale) => p.getRecipeType(project, type, actualVersion(version), actualLocale(locale))
+);
 
 async function renderProjectContentPage(project: string, id: string, version: string, locale: string): Promise<RenderedDocsPage | null> {
   const raw = await getProjectContentPage(project, id, version, locale);
@@ -153,5 +156,6 @@ export default {
   getContentRecipeUsage,
   getAssetURL,
   getProjectContentPage,
-  getContentRecipeObtaining
+  getContentRecipeObtaining,
+  getRecipeType
 }

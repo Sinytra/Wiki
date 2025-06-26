@@ -113,10 +113,10 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
                   <TableRow className={cn('bg-table-hard border-b')}>
                       <td className="no-table-bs overflow-hidden border-0" colSpan={cols.length}>
                           <div ref={contentRefs.set(i)}
-                               className={cn('border-hidden transition-[max-height] duration-200 ease-in-out')}
+                               className={cn('border-hidden transition-all duration-200 ease-in-out')}
                                style={{
                                  maxHeight: visibleRows[i]
-                                   ? `${contentRefs.get(i)?.scrollHeight}px`
+                                   ? `50vh`
                                    : "0px",
                                }}
                           >

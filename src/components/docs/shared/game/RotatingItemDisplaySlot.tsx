@@ -68,7 +68,7 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
   };
 
   return noTooltip ? <Content/> : (
-    <TooltipImg id={src[currentIndex].name} tag={tag}>
+    <TooltipImg id={src[currentIndex].name || src[currentIndex].id} tag={tag}>
       <Content/>
     </TooltipImg>
   );

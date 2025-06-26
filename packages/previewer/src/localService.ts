@@ -11,7 +11,7 @@ import {
   ProjectContentEntry,
   ProjectContentTree,
   ProjectSearchResults,
-  ProjectWithInfo, ResolvedGameRecipe,
+  ProjectWithInfo, ResolvedGameRecipe, ResolvedGameRecipeType,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -166,6 +166,10 @@ async function getContentRecipeObtaining(project: string, id: string, version: s
   return null;
 }
 
+async function getRecipeType(project: string, type: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipeType | null> {
+  return null;
+}
+
 const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
@@ -176,7 +180,8 @@ const serviceProvider: ServiceProvider = {
   getProjectContents,
   getProjectContentPage,
   getContentRecipeUsage,
-  getContentRecipeObtaining
+  getContentRecipeObtaining,
+  getRecipeType
 }
 
 export const serviceProviderFactory: ServiceProviderFactory = {

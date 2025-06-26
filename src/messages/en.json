@@ -759,7 +759,8 @@
         "type": "Recipe Type",
         "input": "Ingredients",
         "output": "Outputs",
-        "preview": "Recipe preview"
+        "preview": "Recipe preview",
+        "workbenches": "You can craft this recipe using:"
     },
     "DevProjectDeploymentsPage": {
         "title": "Project deployments",
@@ -859,5 +860,8 @@
     "AdminReports": {
         "title": "Project Reports",
         "desc": "Manage project reports"
+    },
+    "ResponsiveTable": {
+        "expand": "Expand"
     }
 }
