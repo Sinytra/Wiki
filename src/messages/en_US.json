@@ -399,7 +399,8 @@
             "unsupported": "Not yet implemented",
             "exists": "Project already exists.",
             "not_found": "Project does not exist",
-            "illegal_id": "Illegal project ID"
+            "illegal_id": "Illegal project ID",
+            "not_owner": "User is not authorized to register this project"
         }
     },
     "CommunityBadge": {
