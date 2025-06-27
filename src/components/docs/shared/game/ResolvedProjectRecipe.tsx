@@ -119,7 +119,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
             type: {
               className: 'align-middle whitespace-nowrap',
               data: (
-                <div className="p-1.5 sm:p-0">
+                <div className="text-center p-1.5 sm:p-0">
                   {localizedName}
                 </div>
               )

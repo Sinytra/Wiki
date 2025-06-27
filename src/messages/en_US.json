@@ -675,7 +675,14 @@
         "report": "Report Bug"
     },
     "BuiltinRecipeTypes": {
-        "crafting_shaped": "Shaped Crafting"
+        "blasting": "Blasting",
+        "campfire_cooking": "Campfire cooking",
+        "crafting_shaped": "Shaped Crafting",
+        "crafting_shapeless": "Shapeless Crafting",
+        "smelting": "Smelting",
+        "smithing_transform": "Smithing",
+        "smoking": "Smoking",
+        "stonecutting": "Stonecutting"
     },
     "DocsEntryTabs": {
         "history": "Show history",
