@@ -7,14 +7,13 @@ import {usePathname} from "@/lib/locales/routing";
 import {useRouter} from '@bprogress/next';
 import * as React from "react";
 import {useState} from "react";
-import available from "@/lib/locales/available";
 import {cn} from "@repo/ui/lib/utils";
 import {Popover, PopoverContent, PopoverTrigger} from "@repo/ui/components/popover";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@repo/ui/components/command";
 import {useTranslations} from "next-intl";
 import {DEFAULT_LOCALE} from "@repo/shared/constants";
-import {Language} from "@/lib/types/available";
 import CountryFlag from "@repo/ui/util/CountryFlag";
+import {default as available, Language} from "@repo/shared/lang/locales";
 
 export default function LanguageSelect({locale, locales, mobile, minimal}: {
   locale: string;

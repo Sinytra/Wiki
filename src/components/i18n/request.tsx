@@ -1,10 +1,10 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
-import available from "@/lib/locales/available";
+import locales from "@repo/shared/lang/locales";
 
 export default getRequestConfig(async ({requestLocale}) => {
   const locale = (await requestLocale) ?? 'locale';
-  const lang = available.getForUrlParam(locale);
+  const lang = locales.getForUrlParam(locale);
   if (!lang) {
     notFound();
   }

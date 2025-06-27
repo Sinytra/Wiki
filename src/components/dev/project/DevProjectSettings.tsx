@@ -107,7 +107,10 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
             </span>
           </div>
           <div className="ml-auto sm:ml-0">
-            <ProjectDeleteForm action={deleteFunc}/>
+            <ProjectDeleteForm
+              action={deleteFunc}
+              redirectTo="/dev"
+            />
           </div>
         </div>
       </div>

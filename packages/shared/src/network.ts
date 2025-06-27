@@ -2,6 +2,8 @@ import {cookies} from "next/headers";
 import env from "./env";
 import envPublic from "./envPublic";
 import {serializeUrlParams} from "./util";
+import locales from "@repo/shared/lang/locales";
+import {DEFAULT_DOCS_VERSION} from "./constants";
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';
 type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown';
@@ -155,17 +157,30 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
   });
 }
 
+function preprocessParam(key: string, value: string): string | null {
+  if (key == 'locale') {
+    return locales.actualLocale(value);
+  }
+  if (key == 'version') {
+    return actualVersion(value);
+  }
+  return value;
+}
+
 function constructApiUrl(path: string, parameters?: ApiRouteParameters): string {
   const endpoint = envPublic.getBackendEndpointUrl();
-  const searchParams = serializeUrlParams(parameters);
+  const searchParams = serializeUrlParams(parameters, preprocessParam);
   return `${endpoint}/api/v1/${path}?${searchParams}`;
 }
 
-const network = {
+function actualVersion(version: string | null): string | null {
+  return version == DEFAULT_DOCS_VERSION ? null : version;
+}
+
+export default {
   resolveApiCall,
   sendSimpleRequest,
   sendDataRequest,
-  constructApiUrl
+  constructApiUrl,
+  actualVersion
 }
-
-export default network;

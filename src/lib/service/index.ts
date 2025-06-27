@@ -13,7 +13,6 @@ import {
 } from "@repo/shared/types/service";
 import markdown, {ComponentPatcher} from "@repo/markdown";
 import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
-import {actualLocale, actualVersion} from "@/lib/service/serviceUtil";
 import {localServiceProviderFactory} from "@repo/previewer";
 import builtinAssets from "@/lib/builtin/builtinAssets";
 import PrefabUsage from "@/components/docs/shared/prefab/PrefabUsage";
@@ -57,10 +56,10 @@ async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
 }
 
 const getProject: (slug: string, version: string | null) => Promise<ProjectWithInfo | null> = createProxy<'getProject'>(
-  (p, slug, version) => p.getProject(slug, actualVersion(version))
+  (p, slug, version) => p.getProject(slug, version)
 );
 const getBackendLayout: (slug: string, version: string, locale: string) => Promise<LayoutTree | null> = createProxy<'getBackendLayout'>(
-  (p, slug, version, locale) => p.getBackendLayout(slug, actualVersion(version), actualLocale(locale))
+  (p, slug, version, locale) => p.getBackendLayout(slug, version, locale)
 );
 
 async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
@@ -76,15 +75,15 @@ async function getAsset(slug: string | null, location: string, version: string |
     return builtinAssets.getAssetResource(compatibleResource);
   }
 
-  return proxyServiceCall<'getAsset'>(p => p.getAsset(slug, resource, actualVersion(version)));
+  return proxyServiceCall<'getAsset'>(p => p.getAsset(slug, resource, version));
 }
 
 function getAssetURL(slug: string, location: string, version: string | null): AssetLocation | null {
-  return remoteServiceProviderFactory.isAvailable() ? remoteService.getAssetURL(slug, location, actualVersion(version)) : null;
+  return remoteServiceProviderFactory.isAvailable() ? remoteService.getAssetURL(slug, location, version) : null;
 }
 
 const getDocsPage: (slug: string, path: string[], version: string, locale: string, optional?: boolean) => Promise<DocumentationPage | null | undefined> = createProxy<'getDocsPage'>(
-  (p, slug, path, version, locale, optional) => p.getDocsPage(slug, path, actualVersion(version), actualVersion(locale), optional || false)
+  (p, slug, path, version, locale, optional) => p.getDocsPage(slug, path, version, locale, optional || false)
 )
 
 async function renderDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
@@ -96,22 +95,22 @@ const searchProjects: (query: string, page: number, types: string | null, sort: 
   (p, query, page, types, sort) => p.searchProjects(query, page, types, sort)
 );
 const getProjectContents: (project: string, version: string | null, locale: string | null) => Promise<ProjectContentTree | null> = createProxy<'getProjectContents'>(
-  (p, project, version, locale) => p.getProjectContents(project, actualVersion(version), actualLocale(locale))
+  (p, project, version, locale) => p.getProjectContents(project, version, locale)
 );
 const getProjectContentPage: (slug: string, id: string, version: string, locale: string) => Promise<DocumentationPage | null> = createProxy<'getProjectContentPage'>(
-  (p, slug, id, version, locale) => p.getProjectContentPage(slug, id, actualVersion(version), actualLocale(locale))
+  (p, slug, id, version, locale) => p.getProjectContentPage(slug, id, version, locale)
 );
 const getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe[] | null> = createProxy<'getContentRecipeObtaining'>(
-  (p, project, id, version, locale) => p.getContentRecipeObtaining(project, id, actualVersion(version), actualLocale(locale))
+  (p, project, id, version, locale) => p.getContentRecipeObtaining(project, id, version, locale)
 );
 const getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null> = createProxy<'getContentRecipeUsage'>(
-  (p, project, id, version, locale) => p.getContentRecipeUsage(project, id, actualVersion(version), actualLocale(locale))
+  (p, project, id, version, locale) => p.getContentRecipeUsage(project, id, version, locale)
 );
 const getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe | null> = createProxy<'getProjectRecipe'>(
-  (p, project, recipe, version, locale) => p.getProjectRecipe(project, recipe, actualVersion(version), actualLocale(locale))
+  (p, project, recipe, version, locale) => p.getProjectRecipe(project, recipe, version, locale)
 );
 const getRecipeType: (project: string, type: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipeType | null> = createProxy<'getRecipeType'>(
-  (p, project, type, version, locale) => p.getRecipeType(project, type, actualVersion(version), actualLocale(locale))
+  (p, project, type, version, locale) => p.getRecipeType(project, type, version, locale)
 );
 
 async function renderProjectContentPage(project: string, id: string, version: string, locale: string): Promise<RenderedDocsPage | null> {

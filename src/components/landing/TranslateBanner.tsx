@@ -1,10 +1,10 @@
 import {Alert, AlertDescription, AlertTitle} from "@repo/ui/components/alert";
-import available from "@/lib/locales/available";
 import Link from "next/link";
 import {LanguagesIcon} from "lucide-react";
+import locales from "@repo/shared/lang/locales";
 
 export default function TranslateBanner({locale}: { locale: string }) {
-  const lang = available.getForUrlParam(locale);
+  const lang = locales.getForUrlParam(locale);
 
   return (
     <Alert className="border-warning border">

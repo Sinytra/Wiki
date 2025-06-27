@@ -2,7 +2,7 @@
 
 import {PlatformProject} from "@repo/platforms";
 import {Button} from "@repo/ui/components/button";
-import {AnvilIcon, BookMarkedIcon, BoxIcon, HomeIcon} from "lucide-react";
+import {BookMarkedIcon, BoxIcon, HomeIcon} from "lucide-react";
 import {Link, usePathname} from "@/lib/locales/routing";
 import {cn} from "@repo/ui/lib/utils";
 import {useParams} from "next/navigation";
@@ -81,7 +81,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
       {'info' in project && project.info.contentCount > 0 &&
         <SubPage title="Content" icon={BoxIcon} path="content"/>
       }
-      <SubPage title="Recipes" icon={AnvilIcon} path="recipes" disabled/>
+      {/*<SubPage title="Recipes" icon={AnvilIcon} path="recipes" disabled/>*/}
       {/*<SubPage title="Developers" icon={HammerIcon} path="devs" disabled/>*/}
 
       {(showVersions || showLocales) &&

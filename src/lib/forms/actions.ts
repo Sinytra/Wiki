@@ -23,11 +23,11 @@ interface ValidationError extends ValidationResult { success: false; errors: unk
 // TODO Cleanup
 export async function handleRegisterProjectForm(rawData: any) {
   const data = await validateProjectFormData(rawData, projectRegisterSchema);
-  if ('success' in data) {
+  if (!data.success) {
     return data;
   }
 
-  const response = await projectApi.registerProject(data);
+  const response = await projectApi.registerProject(data.data);
 
   if (!response.success) {
     const can_verify_mr = response.type == 'known_error' ? (response.data as any).can_verify_mr : undefined;

@@ -7,7 +7,8 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import LinkTextButton from "@/components/util/LinkTextButton";
 import {ProjectReportType} from "@repo/shared/types/api/moderation";
 import {notFound} from "next/navigation";
-import {actualLocale, actualVersion} from "@/lib/service/serviceUtil";
+import locales from "@repo/shared/lang/locales";
+import network from "@repo/shared/network";
 
 export default function ReportPage({params, searchParams}: {
   params: { locale: string };
@@ -52,7 +53,7 @@ export default function ReportPage({params, searchParams}: {
         <div className="rounded-md bg-primary-alt p-4">
           <ClientLocaleProvider keys={['Report', 'SubmitButton', 'ProjectReportReason', 'ProjectReportType']}>
             <ProjectReportForm projectId={project} type={type} path={path}
-                               locale={actualLocale(locale)} version={actualVersion(version)}
+                               locale={locales.actualLocale(locale)} version={network.actualVersion(version)}
                                formAction={handleReportProjectForm}/>
           </ClientLocaleProvider>
         </div>

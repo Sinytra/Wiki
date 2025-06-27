@@ -21,9 +21,10 @@ import FormDeleteButton from "@/components/util/FormDeleteButton";
 
 interface Properties {
   action: () => Promise<any>;
+  redirectTo?: string;
 }
 
-export default function ProjectDeleteForm({action}: Properties) {
+export default function ProjectDeleteForm({action, redirectTo}: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const t = useTranslations('ProjectDeleteForm');
@@ -34,7 +35,13 @@ export default function ProjectDeleteForm({action}: Properties) {
     setOpen(false);
     toast.success(t('success'));
 
-    startTransition(() => router.refresh());
+    startTransition(() => {
+      if (redirectTo) {
+        router.push({ pathname: redirectTo });
+      } else {
+        router.refresh();
+      }
+    });
   }
 
   return (

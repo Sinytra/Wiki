@@ -1,9 +1,11 @@
-import {CN, CZ, DE, ES, FR, GB, HU, IT, JP, KR, MY, PL, RU, SE, TR, TW, UA} from "country-flag-icons/react/3x2";
+import {CN, CZ, DE, ES, FR, HU, IT, JP, KR, MY, PL, RU, SE, TR, TW, UA, US} from "country-flag-icons/react/3x2";
+
+const DEFAULT_LOCALE = 'en_us';
 
 /** @returns {LanguageMap} */
 function getAvailableLocales() {
   return {
-    en: { name: 'English', file: 'en', icon: GB },
+    en: { name: 'English', file: 'en_US', icon: US },
     de: { name: 'Deutsch', file: 'de_DE', icon: DE },
     fr: { name: 'Français', file: 'fr_FR', icon: FR },
     es: { name: 'Español', file: 'es_ES', crowdin: 'es-ES', icon: ES },
@@ -74,7 +76,19 @@ function isRTL(locale) {
   return getForUrlParam(locale)?.rtl;
 }
 
-const available = {
+/**
+ * @param locale {string | null}
+ * @returns {string|null}
+ */
+function actualLocale(locale) {
+  if (!locale || locale === DEFAULT_LOCALE) {
+    return null;
+  }
+  const loc = getForUrlParam(locale);
+  return loc.file.toLowerCase();
+}
+
+export default {
   getAvailableLocales,
   getLanguagePaths,
   getNextIntlLocales,
@@ -82,7 +96,6 @@ const available = {
   getForUrlParam,
   getNextIntlInternal,
   getCrowdinLanguageId,
-  isRTL
-}
-
-export default available;
+  isRTL,
+  actualLocale
+};

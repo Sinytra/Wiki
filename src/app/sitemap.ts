@@ -1,7 +1,7 @@
 import type {MetadataRoute} from 'next';
-import available from "@/lib/locales/available";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import projectApi from "@/lib/service/api/projectApi";
+import locales from "@repo/shared/lang/locales";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!process.env.NEXT_PUBLIC_NEXT_APP_URL) {
@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [];
   }
 
-  const languageKeys = available.getLanguagePaths().filter(l => l !== 'en');
+  const languageKeys = locales.getLanguagePaths().filter(l => l !== 'en');
 
   return allProjects.data.map(id => {
     let languages: any = {};

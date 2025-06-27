@@ -6,12 +6,17 @@ export function requireEnvVar(envVar: string): string {
   return value;
 }
 
-export function serializeUrlParams(paramseters?: Record<string, string | null>) {
+export type ParameterProcessor = (key: string, value: string) => string | null;
+
+export function serializeUrlParams(parameters?: Record<string, string | null>, processor?: ParameterProcessor) {
   const searchParams = new URLSearchParams();
-  if (paramseters) {
-    for (const key in paramseters) {
-      if (paramseters[key] != null) {
-        searchParams.set(key, paramseters[key]);
+  if (parameters) {
+    for (const key in parameters) {
+      if (parameters[key] != null) {
+        const value = processor ? processor(key, parameters[key]) : parameters[key];
+        if (value) {
+          searchParams.set(key, value);
+        }
       }
     }
   }

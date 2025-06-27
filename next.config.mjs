@@ -1,16 +1,16 @@
 import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
-import available from "./src/lib/locales/available.js";
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from "rehype-slug";
 import { withContentlayer } from "next-contentlayer";
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx";
+import locales from "./packages/shared/src/lang/locales.js";
 
 const withNextIntl = createNextIntlPlugin(
     './src/components/i18n/request.tsx'
 );
 
-const intlMatcher = available.getLanguagePaths().join('|');
+const intlMatcher = locales.getLanguagePaths().join('|');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

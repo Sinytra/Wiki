@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
-import available from "@/lib/locales/available";
+import locales from "@repo/shared/lang/locales";
  
 export default function robots(): MetadataRoute.Robots {
-  const languages = available.getLanguagePaths()
+  const languages = locales.getLanguagePaths()
   const disallow = ['/dev/', '/report/', ...languages.flatMap(l => [`/${l}/dev/`, `/${l}/report/`])];
 
   return {
