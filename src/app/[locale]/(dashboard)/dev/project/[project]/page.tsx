@@ -33,6 +33,9 @@ import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
+import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDeployConnection";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import authSession from "@/lib/authSession";
 
 export const dynamic = 'force-dynamic';
 
@@ -182,9 +185,14 @@ async function ProfileProject({project}: { project: DevProject }) {
 export default async function DevProjectPage({params}: { params: { locale: string; project: string } }) {
   setContextLocale(params.locale);
   const project = handleApiCall(await devProjectApi.getProject(params.project));
+  const token = authSession.getSession()?.token!;
 
   return (
     <GetStartedContextProvider>
+      <ClientLocaleProvider keys={['LiveProjectDeployConnection']}>
+        <LiveProjectDeployConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}/>
+      </ClientLocaleProvider>
+
       <ProfileProject project={project}/>
     </GetStartedContextProvider>
   )
