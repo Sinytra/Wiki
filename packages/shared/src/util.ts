@@ -1,7 +1,7 @@
 export function requireEnvVar(envVar: string): string {
   const value = process.env[envVar];
   if (value === null || value === undefined) {
-    throw new Error(`Missing environment variable ${value}`);
+    throw new Error(`Missing environment variable ${envVar}`);
   }
   return value;
 }
