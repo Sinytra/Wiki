@@ -1,3 +1,4 @@
+import {withSentryConfig} from '@sentry/nextjs';
 import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
 import remarkGfm from 'remark-gfm';
@@ -53,4 +54,8 @@ const withMDX = createMDX({
   }
 })
 
-export default withContentlayer(withNextIntl(withMDX(nextConfig)));
+export default withSentryConfig(withContentlayer(withNextIntl(withMDX(nextConfig))), {
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  disableLogger: true
+});
