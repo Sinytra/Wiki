@@ -7,7 +7,8 @@ import {getTranslations} from "next-intl/server";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import authApi from "@/lib/service/api/authApi";
 
-export default async function DevProjectMembersPage({params}: { params: { locale: string } }) {
+export default async function DevProjectMembersPage(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const profile = handleApiCall(await authApi.getUserProfile());
   const t = await getTranslations('DevProjectMembersPage');

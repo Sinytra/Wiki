@@ -32,11 +32,11 @@ import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 
 type Properties = {
-  params: {
+  params: Promise<{
     locale: string;
     project: string;
     deployment: string;
-  }
+  }>
 }
 
 function StatusInfoColumn({name, children}: { name: string; children: any; }) {
@@ -226,7 +226,8 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDe
   )
 }
 
-export default async function DevProjectDeploymentPage({params}: Properties) {
+export default async function DevProjectDeploymentPage(props: Properties) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectDeploymentPage');
   const fallback = `/dev/project/${params.project}/deployments`;

@@ -1,4 +1,5 @@
 import { Badge } from "@repo/ui/components/badge";
+import Link from "next/link";
 
 export default function BlogHeader({hideSubtext}: {hideSubtext: boolean}) {
   return (
@@ -15,13 +16,13 @@ export default function BlogHeader({hideSubtext}: {hideSubtext: boolean}) {
       }}
     >
       <img style={{ marginBottom: '1.5rem' }} src="https://sinytra.org/logo.png" width={124} height={124}
-        alt="Sinytra logo" />
+           alt="Sinytra logo" />
 
-      <a href="/blog" className="text-primary flex flex-col items-center no-underline! sm:flex-row"
-        style={{ fontSize: '2rem', marginBottom: '0.1rem' }}>
+      <Link href="/blog" className="flex flex-col items-center text-primary no-underline! sm:flex-row"
+            style={{ fontSize: '2rem', marginBottom: '0.1rem' }}>
         Modded Minecraft Wiki
         <Badge className="ml-3 text-lg" variant="secondary">Blog</Badge>
-      </a>
+      </Link>
       {(hideSubtext ?? false) ? <></> : <span style={{
         color: '#EBEBF599',
         fontSize: '1.5rem'

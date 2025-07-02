@@ -1,3 +1,4 @@
+import { use } from "react";
 import {Button} from "@repo/ui/components/button";
 import {ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon} from "lucide-react";
 import {NavLink} from "@/components/navigation/link/NavLink";
@@ -5,7 +6,8 @@ import Link from "next/link";
 import {useTranslations} from "next-intl";
 import {setContextLocale} from "@/lib/locales/routing";
 
-export default function AuthFailure({params}: { params: { locale: string }}) {
+export default function AuthFailure(props: { params: Promise<{ locale: string }>}) {
+  const params = use(props.params);
   setContextLocale(params.locale);
   const t = useTranslations('AuthFailure');
 

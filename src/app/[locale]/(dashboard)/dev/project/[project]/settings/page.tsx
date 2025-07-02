@@ -8,7 +8,8 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 
-export default async function DevProjectSettingsPage({params}: { params: { locale: string; project: string } }) {
+export default async function DevProjectSettingsPage(props: { params: Promise<{ locale: string; project: string }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectSettingsPage');
   const project = handleApiCall(await devProjectApi.getProject(params.project));

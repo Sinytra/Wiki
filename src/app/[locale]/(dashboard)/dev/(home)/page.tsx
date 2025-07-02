@@ -174,7 +174,7 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
             </span>
             <span className="text-secondary">
             {t.rich('empty.secondary', {
-              guide: (chunks) => (
+              guide: (chunks: any) => (
                 <LinkTextButton className="text-primary! text-base! font-normal! underline" href="/about/devs">
                   {chunks}
                 </LinkTextButton>
@@ -191,7 +191,8 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
   )
 }
 
-export default async function DevPage({params}: { params: { locale: string; } }) {
+export default async function DevPage(props: { params: Promise<{ locale: string; }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const projects = handleApiCall(await devProjectApi.getProjects());
 

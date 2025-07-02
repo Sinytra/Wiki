@@ -12,7 +12,7 @@
     "./envPublic": "./src/envPublic.ts",
     "./network": "./src/network.ts",
     "./resourceLocation": "./src/resourceLocation.ts",
-    "./types/*": "./src/types/*.d.ts",
+    "./types/*": "./src/types/*.ts",
     "./util": "./src/util.ts"
   },
   "type": "module"

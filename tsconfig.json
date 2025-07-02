@@ -29,8 +29,10 @@
       "contentlayer/generated": [
         "./.contentlayer/generated"
       ],
-      "@repo/ui/*": ["./packages/ui/src/*"]
-    }
+      "@repo/ui/*": ["./packages/ui/src/*"],
+      "@repo/shared/*": ["./packages/shared/src/*"]
+    },
+    "target": "ESNext"
   },
   "include": [
     "next-env.d.ts",

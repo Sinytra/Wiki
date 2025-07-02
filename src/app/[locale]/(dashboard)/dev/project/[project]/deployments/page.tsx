@@ -15,17 +15,19 @@ import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 
 type Properties = {
-  params: {
+  params: Promise<{
     locale: string;
     project: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     page?: string | string[];
-  }
+  }>
 }
 
 // TODO Mobile view
-export default async function DevProjectDeploymentsPage({params, searchParams}: Properties) {
+export default async function DevProjectDeploymentsPage(props: Properties) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectDeploymentsPage');
   const project = handleApiCall(await devProjectApi.getProject(params.project));

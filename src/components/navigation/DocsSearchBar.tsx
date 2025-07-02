@@ -76,7 +76,7 @@ function SearchOverlayFooter({visible, total}: { visible: number; total: number 
     <div className="bg-primary-alt text-secondary flex w-full flex-row items-center justify-between rounded-b-sm p-2">
       <div className="text-sm font-light">
         {t.rich('results', {
-          highlight: (chunks) => (
+          highlight: (chunks: any) => (
             <span className="font-normal">
               {chunks}
             </span>
@@ -86,7 +86,7 @@ function SearchOverlayFooter({visible, total}: { visible: number; total: number 
         })}
       </div>
       <span className="text-sm">
-        {t.rich('close', {kbd: (chunks) => (<kbd>{chunks}</kbd>)})}
+        {t.rich('close', {kbd: (chunks: any) => (<kbd>{chunks}</kbd>)})}
       </span>
     </div>
   )

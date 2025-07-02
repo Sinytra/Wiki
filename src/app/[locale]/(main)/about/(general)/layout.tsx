@@ -1,15 +1,16 @@
-import {ReactNode} from "react";
+import { ReactNode, use } from "react";
 import MetaDocsNavigation from "@/components/meta-docs/MetaDocsNavigation";
 import {setContextLocale} from "@/lib/locales/routing";
-import env from "@repo/shared/env";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import env from "@repo/shared/env";
 
 export const dynamic = 'force-static';
 
-export default function AboutLayout({params, children}: Readonly<{
-  params: { locale: string };
-  children: ReactNode
-}>) {
+type Params = Promise<{ locale: string }>;
+
+export default function AboutLayout(props: { params: Params; children: ReactNode; }) {
+  const params = use(props.params);
+  const {children} = props;
   setContextLocale(params.locale);
 
   return (

@@ -6,10 +6,14 @@ import LoginSubmitButton from "@/components/util/LoginSubmitButton";
 import {getTranslations} from "next-intl/server";
 import authSession from "@/lib/authSession";
 
-export default async function Login({params, searchParams}: {
-  params: { locale: string },
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
+export default async function Login(
+  props: {
+    params: Promise<{ locale: string }>,
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   setContextLocale(params.locale);
 
   const session = authSession.getSession();

@@ -59,7 +59,8 @@ function ReportDetails({report}: { report: ProjectReport }) {
   )
 }
 
-export default async function ViewReportPage({params}: { params: { locale: string; report: string; } }) {
+export default async function ViewReportPage(props: { params: Promise<{ locale: string; report: string; }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
 
   const t = await getTranslations('ViewReportPage');

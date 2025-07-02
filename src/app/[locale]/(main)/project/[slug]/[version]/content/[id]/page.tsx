@@ -18,15 +18,16 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
     version: string;
     locale: string;
     id: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const page = await service.getProjectContentPage(params.slug, params.id, params.version, params.locale);
   if (!page) {
     return {title: (await parent).title?.absolute};
@@ -43,7 +44,8 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
   }
 }
 
-export default async function ContentEntryPage({params}: Props) {
+export default async function ContentEntryPage(props: Props) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const id = decodeURIComponent(params.id);
 

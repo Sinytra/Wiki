@@ -7,10 +7,18 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 export const dynamic = 'force-dynamic';
 
-export default async function AdminLayout({ params, children }: {
-  params: { locale: string };
-  children: ReactNode;
-}) {
+export default async function AdminLayout(
+  props: {
+    params: Promise<{ locale: string }>;
+    children: ReactNode;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   setContextLocale(params.locale);
   const profile = (await assertUserIsAdmin())!;
 

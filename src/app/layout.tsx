@@ -1,7 +1,6 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./styles/globals.css";
-import {Toaster} from "@repo/ui/components/sonner";
 import {ReactNode} from "react";
 import {getProcessURL} from "@/lib/utils";
 import {cn} from "@repo/ui/lib/utils";
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function LocaleLayout({children}: Readonly<{ children: ReactNode; }>) {
+export default function RootLayout({children}: Readonly<{ children: ReactNode; }>) {
   const jsonLd = {
     '@context' : 'https://schema.org',
     '@type' : 'WebSite',
@@ -47,13 +46,6 @@ export default function LocaleLayout({children}: Readonly<{ children: ReactNode;
         {children}
       </NuqsAdapter>
     </NavProgressBar>
-    {/* TODO Font size */}
-    <Toaster toastOptions={{
-      style: {
-        background: 'var(--background-color-primary-alt)',
-        fontStyle: 'var(--text-sm)'
-      }
-    }}/>
     </body>
     </html>
   );

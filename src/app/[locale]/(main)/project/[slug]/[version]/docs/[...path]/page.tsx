@@ -24,9 +24,13 @@ import network from "@repo/shared/network";
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
-export async function generateMetadata({params}: {
-  params: { slug: string; path: string[]; locale: string; version: string }
-}, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string; path: string[]; locale: string; version: string }>
+  },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const params = await props.params;
   const page = await service.getDocsPage(params.slug, params.path, params.version, params.locale);
   if (!page) {
     return {title: (await parent).title?.absolute};
@@ -47,9 +51,12 @@ export async function generateMetadata({params}: {
   }
 }
 
-export default async function ProjectDocsPage({params}: {
-  params: { slug: string; path: string[]; locale: string; version: string; }
-}) {
+export default async function ProjectDocsPage(
+  props: {
+    params: Promise<{ slug: string; path: string[]; locale: string; version: string; }>
+  }
+) {
+  const params = await props.params;
   setContextLocale(params.locale);
 
   const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);

@@ -2,7 +2,8 @@ import {NextRequest} from "next/server";
 import {getHttpErrorDetailsURL} from "@/lib/utils";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 
-export async function POST(request: NextRequest, { params }: { params: { slug: string } }) {
+export async function POST(request: NextRequest, props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   // Expect authorization using GitHub user token
   const auth= request.headers.get('Authorization');
   if (!auth) {

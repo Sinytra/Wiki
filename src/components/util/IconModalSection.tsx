@@ -9,8 +9,9 @@ export default function IconModalSection<
     <p className={cn('flex flex-row items-start', className)}>
       <Icon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
       <span>
+        {/*@ts-ignore*/}
         {t.rich(tKey, {
-          b: (chunks) => <span className="font-medium text-primary">{chunks}</span>,
+          b: (chunks: any) => <span className="font-medium text-primary">{chunks}</span>,
           ...values
         })}
       </span>

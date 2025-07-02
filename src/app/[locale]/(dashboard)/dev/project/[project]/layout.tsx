@@ -9,10 +9,18 @@ import devProjectApi from "@/lib/service/api/devProjectApi";
 
 export const dynamic = 'force-dynamic';
 
-export default async function DevLayout({params, children}: {
-  params: { locale: string; project: string };
-  children?: any
-}) {
+export default async function DevLayout(
+  props: {
+    params: Promise<{ locale: string; project: string }>;
+    children?: any
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   setContextLocale(params.locale);
   const project = handleApiCall(await devProjectApi.getProject(params.project));
   const platformProject = await platforms.getPlatformProject(project);

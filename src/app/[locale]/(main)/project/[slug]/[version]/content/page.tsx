@@ -8,11 +8,11 @@ import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 import {ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
     version: string;
     locale: string;
-  };
+  }>;
 }
 
 function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; slug: string; version: string }) {
@@ -97,7 +97,8 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
   )
 }
 
-export default async function ProjectContentPage({params}: Props) {
+export default async function ProjectContentPage(props: Props) {
+  const params = await props.params;
   setContextLocale(params.locale);
 
   const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);

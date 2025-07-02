@@ -9,11 +9,14 @@ import {ProjectReportType} from "@repo/shared/types/api/moderation";
 import {notFound} from "next/navigation";
 import locales from "@repo/shared/lang/locales";
 import network from "@repo/shared/network";
+import {use} from "react";
 
-export default function ReportPage({params, searchParams}: {
-  params: { locale: string };
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
+type Params = Promise<{ locale: string }>;
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default function ReportPage(props: { params: Params; searchParams: SearchParams }) {
+  const params = use(props.params);
+  const searchParams = use(props.searchParams);
   setContextLocale(params.locale);
 
   const project = searchParams.project as string;
@@ -37,12 +40,12 @@ export default function ReportPage({params, searchParams}: {
 
         <div className="my-2">
           {t.rich('desc', {
-            tos: (chunks) => (
+            tos: (chunks: any) => (
               <LinkTextButton className="text-base font-normal! underline" href="/about/tos">
                 {chunks}
               </LinkTextButton>
             ),
-            cr: (chunks) => (
+            cr: (chunks: any) => (
               <LinkTextButton className="text-base font-normal! underline" href="/about/tos#content-rules">
                 {chunks}
               </LinkTextButton>
@@ -60,10 +63,10 @@ export default function ReportPage({params, searchParams}: {
 
         <div>
           <span className="text-sm text-secondary">
-            {t.rich('contact', {b: (chunks) => <span className="font-medium">{chunks}</span>})}
+            {t.rich('contact', {b: (chunks: any) => <span className="font-medium">{chunks}</span>})}
             &nbsp;{t('confidential')}
             &nbsp;{t.rich('privacy', {
-            link: (chunks) => (<Link className="font-medium underline" href="/about/privacy">{chunks}</Link>)
+            link: (chunks: any) => (<Link className="font-medium underline" href="/about/privacy">{chunks}</Link>)
           })}
           </span>
         </div>

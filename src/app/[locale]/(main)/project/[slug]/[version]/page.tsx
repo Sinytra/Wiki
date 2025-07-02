@@ -33,11 +33,11 @@ import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 import {getTranslations} from "next-intl/server";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
     version: string;
     locale: string;
-  };
+  }>;
 }
 
 function Section({title, icon: Icon, children, className}: {
@@ -145,7 +145,8 @@ function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; c
   )
 }
 
-export default async function ProjectHomepage({params}: PageProps) {
+export default async function ProjectHomepage(props: PageProps) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('ProjectHomepage');
 
@@ -291,7 +292,7 @@ export default async function ProjectHomepage({params}: PageProps) {
         <LicenseBadge name={t('license.wiki')} icon={BookOpenTextIcon}>
           <span className="text-center text-base">
             {t.rich('license.default', {
-              link: (chunks) => <PageLink href="/about/tos#copyright-policy" className="!text-base" target="_blank">{chunks}</PageLink>,
+              link: (chunks: any) => <PageLink href="/about/tos#copyright-policy" className="!text-base" target="_blank">{chunks}</PageLink>,
               license: () => <PageLink className="!text-base" href={DEFAULT_WIKI_LICENSE.url} target="_blank">{DEFAULT_WIKI_LICENSE.name}</PageLink>
             })}
           </span>

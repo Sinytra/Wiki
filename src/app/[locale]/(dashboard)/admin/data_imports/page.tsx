@@ -9,18 +9,20 @@ import {handleApiCall} from "@/lib/service/serviceUtil";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 type Properties = {
-  params: {
+  params: Promise<{
     locale: string;
     project: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     query?: string | string[];
     page?: string | string[];
     version?: string;
-  }
+  }>
 }
 
-export default async function DataImportsPage({params, searchParams}: Properties) {
+export default async function DataImportsPage(props: Properties) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('AdminDataImports');
 

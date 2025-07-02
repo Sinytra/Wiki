@@ -1,10 +1,11 @@
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 
-export default async function ProjectLayout({params, children}: Readonly<{
-  params: { locale: string };
-  children: ReactNode;
-}>) {
+type Params = Promise<{ locale: string }>;
+
+export default async function ProjectLayout(props: { params: Params; children: ReactNode; }) {
+  const params = await props.params;
+  const {children} = props;
   setContextLocale(params.locale);
 
   return (

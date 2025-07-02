@@ -9,9 +9,9 @@ import {handleApiCall} from "@/lib/service/serviceUtil";
 export const dynamic = 'force-dynamic';
 
 interface Props {
-  params: {
+  params: Promise<{
     locale: string;
-  }
+  }>
 }
 
 function AdminHeader() {
@@ -53,7 +53,8 @@ function DataWidget({title, value, icon}: { title: string; value: any; icon: Rea
   )
 }
 
-export default async function AdminPanelHome({params}: Props) {
+export default async function AdminPanelHome(props: Props) {
+  const params = await props.params;
   setContextLocale(params.locale);
   await assertUserIsAdmin();
   const systemInfo = handleApiCall(await adminApi.getSystemInfo(params));

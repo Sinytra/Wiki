@@ -18,6 +18,7 @@ export default function HoverContextProvider({ children }: { children: ReactNode
     return cloneElement(child, {
       onMouseEnter: () => setHover(true),
       onMouseLeave: () => setHover(false),
+      // @ts-ignore
       ...child.props
     });
   });

@@ -5,7 +5,7 @@ import {useTranslations} from "next-intl";
 
 type Variant = 'default' | 'info' | 'warning' | 'danger';
 
-export default function Callout({variant = 'default', title, children}: { variant?: Variant; title?: string; children?: ReactElement }) {
+export default function Callout({variant = 'default', title, children}: { variant?: Variant; title?: string; children?: ReactElement<any> }) {
   const t = useTranslations('Callout');
   const icons: {[key in Variant]: any} = {
     default: RocketIcon,

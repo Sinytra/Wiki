@@ -126,7 +126,7 @@ function HomePageContent() {
       <section className="mb-5 pb-4">
         <div className="text-secondary mb-2 text-center text-lg">
           {t.rich('title', {
-            highlight: (chunks) => (
+            highlight: (chunks: any) => (
               <h2
                 className={`
                   animate-gradient mb-4 bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center
@@ -292,7 +292,7 @@ function HomePageContent() {
               {t('about.title')}
             </h2>
             <p className="text-secondary mb-4">
-              {t.rich('about.maintainers', { b: (chunks) => (<b>{chunks}</b>)})}
+              {t.rich('about.maintainers', { b: (chunks: any) => (<b>{chunks}</b>)})}
             </p>
             <p className="text-secondary mb-4">
               {t('about.mission')}

@@ -7,7 +7,8 @@ import {setContextLocale} from "@/lib/locales/routing";
 import previewer from "@repo/previewer";
 import env from "@repo/shared/env";
 
-export default async function Preview({params}: { params: { locale: string } }) {
+export default async function Preview(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
 
   if (!env.isPreview()) {

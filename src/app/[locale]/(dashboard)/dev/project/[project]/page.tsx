@@ -182,7 +182,8 @@ async function ProfileProject({project}: { project: DevProject }) {
   )
 }
 
-export default async function DevProjectPage({params}: { params: { locale: string; project: string } }) {
+export default async function DevProjectPage(props: { params: Promise<{ locale: string; project: string }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const project = handleApiCall(await devProjectApi.getProject(params.project));
   const token = authSession.getSession()?.token!;

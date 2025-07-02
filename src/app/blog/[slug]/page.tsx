@@ -1,7 +1,8 @@
+import { use } from "react";
 import {allBlogs} from "@/.contentlayer/generated"
 import {notFound} from "next/navigation"
 import {format, parseISO} from 'date-fns'
-import {useMDXComponent} from 'next-contentlayer/hooks'
+import {useMDXComponent} from 'next-contentlayer2/hooks'
 import {useMDXComponents} from "mdx-components"
 import {setContextLocale} from "@/lib/locales/routing";
 import BlogHeader from "@/components/navigation/BlogHeader"
@@ -9,7 +10,8 @@ import SocialButtons from "@/components/util/SocialButtons"
 
 export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }))
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+export const generateMetadata = async (props: { params: Promise<{ slug: string }> }) => {
+    const params = await props.params;
     const post = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug)
     if (!post) return { notFound: true }
     return { title: post.title }
@@ -24,7 +26,8 @@ function Embed({src, alt, fig, width, height}: { src?: string; alt?: string; fig
     )
 }
 
-const BlogLayout = ({ params }: { params: { slug: string } }) => {
+const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
+    const params = use(props.params);
     setContextLocale('en');
 
     const post = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug)

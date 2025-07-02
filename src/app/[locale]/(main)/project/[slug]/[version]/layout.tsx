@@ -17,17 +17,18 @@ export const fetchCache = 'force-cache';
 
 interface LayoutProps {
   children: ReactNode;
-  params: {
+  params: Promise<{
     slug: string;
     version: string;
     locale: string;
-  };
+  }>;
 }
 
 export async function generateMetadata(
-  {params}: { params: { slug: string; locale: string; version: string } },
+  props: { params: Promise<{ slug: string; locale: string; version: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
   const project = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
   if (!project) {
     return {title: (await parent).title?.absolute};
@@ -43,7 +44,13 @@ export async function generateMetadata(
   };
 }
 
-export default async function HomepageLayout({children, params}: LayoutProps) {
+export default async function HomepageLayout(props: LayoutProps) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   setContextLocale(params.locale);
 
   const project = await service.getProject(params.slug, params.version);

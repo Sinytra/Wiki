@@ -115,7 +115,8 @@ function ProjectIssuesSection({issues}: { issues: ProjectIssue[] }) {
   )
 }
 
-export default async function DevProjectHealthPage({params}: { params: { locale: string; project: string } }) {
+export default async function DevProjectHealthPage(props: { params: Promise<{ locale: string; project: string }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectHealthPage');
   const project = handleApiCall(await devProjectApi.getProject(params.project));

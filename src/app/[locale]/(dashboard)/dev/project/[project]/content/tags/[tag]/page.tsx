@@ -9,19 +9,21 @@ import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 
 type Properties = {
-  params: {
+  params: Promise<{
     locale: string;
     project: string;
     tag: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     query?: string | string[];
     page?: string | string[];
     version?: string;
-  }
+  }>
 }
 
-export default async function DevProjectContentTagItemsPage({params, searchParams}: Properties) {
+export default async function DevProjectContentTagItemsPage(props: Properties) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectContentTagsPage');
   const project = handleApiCall(await devProjectApi.getProject(params.project));

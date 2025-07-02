@@ -18,7 +18,7 @@ import * as runtime from 'react/jsx-runtime';
 import { MarkdownError, formatMarkdownError } from "./exception";
 
 export interface DocumentationMarkdown {
-  content: ReactElement;
+  content: ReactElement<any>;
   metadata: DocsEntryMetadata;
 }
 

@@ -245,7 +245,7 @@ export default function ProjectRegisterForm(
                         <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
                         <span className="text-secondary text-sm">
                             {t.rich('connect_modrinth.desc', {
-                              b: (chunks) => <span className="text-primary">{chunks}</span>
+                              b: (chunks: any) => <span className="text-primary">{chunks}</span>
                             })}
                         </span>
                     </p>

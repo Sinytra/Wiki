@@ -146,7 +146,7 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
     headers: {
       ...options?.headers,
       Authorization: `Bearer ${env.getBackendSecretApiKey()}`,
-      cookie: cookies().toString()
+      cookie: (await cookies()).toString()
     },
     body: options?.body ? (typeof options?.body === 'string' ? options.body : JSON.stringify(options.body)) : null,
     cache: !useCache ? 'no-store' : undefined,

@@ -1,5 +1,5 @@
 import BrowseProjectList from "@/components/navigation/browse/BrowseProjectList";
-import {Suspense} from "react";
+import { Suspense, use } from "react";
 import ProjectSearch from "@/components/navigation/browse/BrowseSearch";
 import LoadingContent from "@/components/util/LoadingContent";
 import {setContextLocale} from "@/lib/locales/routing";
@@ -11,16 +11,18 @@ import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 type Properties = {
-  params: { locale: string };
-  searchParams: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{
     query?: string | string[];
     page?: string | string[];
     types?: string | string[];
     sort?: string | string[];
-  }
+  }>
 }
 
-export default function Browse({params, searchParams}: Properties) {
+export default function Browse(props: Properties) {
+  const searchParams = use(props.searchParams);
+  const params = use(props.params);
   setContextLocale(params.locale);
   const t = useTranslations('BrowsePage');
 

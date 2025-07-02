@@ -118,7 +118,8 @@ function UserSettings({user}: { user: UserProfile }) {
   );
 }
 
-export default async function DevSettingsPage({params}: { params: { locale: string; } }) {
+export default async function DevSettingsPage(props: { params: Promise<{ locale: string; }> }) {
+  const params = await props.params;
   setContextLocale(params.locale);
 
   const profile = handleApiCall(await authApi.getUserProfile());

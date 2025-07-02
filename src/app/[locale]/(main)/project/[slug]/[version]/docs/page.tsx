@@ -19,9 +19,10 @@ export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
 export async function generateMetadata(
-  {params}: { params: { slug: string; locale: string; version: string } },
+  props: { params: Promise<{ slug: string; locale: string; version: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
   const project = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
   if (!project) {
     return {title: (await parent).title?.absolute};
@@ -37,11 +38,11 @@ export async function generateMetadata(
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
     version: string;
     locale: string;
-  };
+  }>;
 }
 
 async function renderHomepage(project: Project, platformProject: PlatformProject, version: string, locale: string): Promise<DocumentationMarkdown | null | undefined> {
@@ -79,7 +80,8 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
   }
 }
 
-export default async function ProjectDocsHomepage({params}: PageProps) {
+export default async function ProjectDocsHomepage(props: PageProps) {
+  const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('ProjectDocsHomepage');
 
