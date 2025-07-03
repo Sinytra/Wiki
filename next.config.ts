@@ -57,5 +57,6 @@ const withMDX = createMDX({
 export default withSentryConfig(withContentlayer(withNextIntl(withMDX(nextConfig))), {
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  disableLogger: true
+  disableLogger: true,
+  telemetry: false
 });
