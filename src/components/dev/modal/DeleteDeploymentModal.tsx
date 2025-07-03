@@ -62,7 +62,7 @@ export default function DeleteDeploymentModal({action, loading, redirectTo}: Pro
                           onSelect={e => e.preventDefault()}
                           disabled={loading}
         >
-          <span className="text-destructive flex cursor-pointer flex-row items-center">
+          <span className="flex cursor-pointer flex-row items-center text-destructive">
             <TrashIcon className="mr-2 size-3"/>
             {t('trigger')}
           </span>

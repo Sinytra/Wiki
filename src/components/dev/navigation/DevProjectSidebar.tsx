@@ -39,16 +39,16 @@ function SidebarProjectHeader({project, platformProject}: { project: DevProject;
   return (
     <div className="space-y-3 p-1">
       <Link href="/dev"
-            className="text-secondary flex flex-row items-center gap-2 pb-1 text-sm underline-offset-4 hover:underline">
+            className="flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline">
         <ArrowLeftIcon className="size-4"/>
         <span>Back</span>
       </Link>
-      <h3 className="text-primary-alt/70 text-sm">
+      <h3 className="text-sm text-primary-alt/70">
         Project settings
       </h3>
       <div className="flex flex-row items-center gap-2">
         <ImageWithFallback width={32} height={32} src={platformProject.icon_url} alt="icon" className="rounded-sm"/>
-        <span className="text-primary text-sm font-medium text-wrap">{project.name}</span>
+        <span className="text-sm font-medium text-wrap text-primary">{project.name}</span>
       </div>
     </div>
   );
@@ -81,7 +81,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               matcher={RegExp(`^${baseUrl}\/deployments(\/.*)?$`)}
               live={connected}
               extra={project.has_failing_deployment &&
-                <div className="text-destructive ml-auto flex items-center gap-1 align-bottom text-sm">
+                <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
                   <AlertCircleIcon className="size-4" />
                 </div>
               }
@@ -92,12 +92,12 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               title={t('nav.health')}
               extra={project.issue_stats && (
                 project.issue_stats.error > 0 ?
-                  <div className="text-destructive ml-auto flex items-center gap-1 align-bottom text-sm">
+                  <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
                       <AlertCircleIcon className="size-4" />
                   </div>
                  :
                   project.issue_stats.warning > 0 &&
-                  <div className="text-warning ml-auto flex items-center gap-1 align-bottom text-sm">
+                  <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-warning">
                       <TriangleAlertIcon className="size-4" />
                   </div>
               )}

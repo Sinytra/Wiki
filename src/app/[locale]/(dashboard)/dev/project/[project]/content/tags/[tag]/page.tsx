@@ -44,7 +44,7 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
           </Link>
         </BreadcrumbLink>
       }>
-        <BreadcrumbPage className="text-xsm text-primary font-mono">
+        <BreadcrumbPage className="font-mono text-xsm text-primary">
           {tag}
         </BreadcrumbPage>
       </DevBreadcrumb>

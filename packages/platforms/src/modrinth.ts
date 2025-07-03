@@ -52,7 +52,7 @@ interface ModrinthOrganization {
 
 async function getProject(slug: string): Promise<PlatformProject> {
   const mrProject = await getModrinthProject(slug);
-  const type = mrProject.project_types.length < 1 || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0])
+  const type = mrProject.project_types.length < 1 || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0]!)
       ? ProjectType.MOD
       : mrProject.project_types[0] as ProjectType;
 

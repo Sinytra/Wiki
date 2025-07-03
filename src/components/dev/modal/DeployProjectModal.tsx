@@ -53,7 +53,7 @@ export default function DeployProjectModal({action}: Properties) {
           <DialogDescription asChild className="mt-4! text-left">
             <div>
               {t.rich('primary', {
-                b: (chunks: any) => <span className="text-primary font-medium">{chunks}</span>
+                b: (chunks: any) => <span className="font-medium text-primary">{chunks}</span>
               })}
 
               <IconModalSection className="mt-4" t={t} tKey="secondary" icon={ShieldIcon}/>

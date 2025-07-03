@@ -42,6 +42,8 @@
     "@repo/previewer": "workspace:*",
     "@repo/shared": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@sentry/nextjs": "^9.34.0",
     "@shikijs/themes": "^3.1.0",
     "@south-paw/typeface-minecraft": "^1.0.0",

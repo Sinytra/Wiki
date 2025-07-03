@@ -10,7 +10,7 @@ export default function NotFound() {
       {/*Image sourced from https://github.com/httpcats/http.cat, licensed under the MIT License*/}
       <Image src={NotFoundImage} alt="Not Found" className="rounded-xs" width={450}/>
 
-      <h1 className="text-primary my-2 text-5xl">
+      <h1 className="my-2 text-5xl text-primary">
         404 Not Found
       </h1>
 

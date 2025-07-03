@@ -30,7 +30,7 @@ function ReportPage({local, project, path, preview}: {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button asChild variant="outline" size="sm"
-                  className="text-secondary font-normal hover:bg-transparent sm:h-fit sm:border-none sm:p-0">
+                  className="font-normal text-secondary hover:bg-transparent sm:h-fit sm:border-none sm:p-0">
             <Link href={reportLink}>
               <FlagIcon className="mr-2 h-4 w-4 sm:mr-0"/>
               <span className="sm:hidden">
@@ -53,7 +53,7 @@ function EditPage({editUrl}: { editUrl?: string }) {
   return editUrl && (
     <Link href={editUrl}
           className={`
-            border-quaternary flex items-center rounded-md border px-3 py-2 hover:text-primary-alt sm:border-none sm:p-0
+            flex items-center rounded-md border border-quaternary px-3 py-2 hover:text-primary-alt sm:border-none sm:p-0
           `}>
       <Edit className="mr-2 h-4 w-4"/>
       {t('edit_gh')}
@@ -97,8 +97,8 @@ function MobileDocsFooter({local, slug, path, editUrl, preview}: FooterProps) {
 export default function DocsPageFooter(props: FooterProps) {
   return (
     <footer className={`
-      border-border bg-primary text-secondary relative flex w-full shrink-0 flex-col-reverse justify-between gap-y-3
-      border-t px-1 py-3 text-sm sm:h-16 sm:flex-row sm:items-center sm:gap-y-0 sm:px-4
+      relative flex w-full shrink-0 flex-col-reverse justify-between gap-y-3 border-t border-border bg-primary px-1 py-3
+      text-sm text-secondary sm:h-16 sm:flex-row sm:items-center sm:gap-y-0 sm:px-4
     `}>
       <DesktopDocsFooter {...props} />
       <MobileDocsFooter {...props} />

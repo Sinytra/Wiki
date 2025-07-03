@@ -14,14 +14,14 @@ export default function DocsPageNotFoundError({project}: { project?: Project }) 
     <div className="m-auto flex flex-col items-center justify-center gap-4 p-4">
       <FileQuestionIcon className="h-32 w-32 sm:h-48 sm:w-48" strokeWidth={1.5}/>
 
-      <h1 className="text-primary my-2 text-3xl sm:text-5xl">
+      <h1 className="my-2 text-3xl text-primary sm:text-5xl">
         {t('title')}
       </h1>
 
-      <p className="text-secondary w-3/4 text-center sm:w-full">
+      <p className="w-3/4 text-center text-secondary sm:w-full">
         {t('desc')}
       </p>
-      <p className="text-secondary w-3/4 text-center sm:w-full">
+      <p className="w-3/4 text-center text-secondary sm:w-full">
         {t('suggestion')}
       </p>
 

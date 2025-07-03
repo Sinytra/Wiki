@@ -5,8 +5,8 @@ import {cn} from "@repo/ui/lib/utils";
 import {ChevronsDownIcon} from "lucide-react";
 import {useTranslations} from "next-intl";
 
-type Column = {
-  key: string;
+type Column<Key extends string = string> = {
+  key: Key;
   label: string;
 };
 
@@ -15,19 +15,19 @@ type Data = {
   data: ReactNode;
 }
 
-type ResponsiveTableProps = {
-  columns: Column[];
-  rows: Record<string, Data>[];
+type ResponsiveTableProps<Keys extends string> = {
+  columns: readonly Column<Keys>[];
+  rows: Record<Keys, Data>[];
   expandedBody?: any;
   embedded?: boolean;
 };
 
-export default function ResponsiveTable({
+export default function ResponsiveTable<Keys extends string>({
                                           columns,
                                           rows,
                                           embedded,
                                           expandedBody
-                                        }: ResponsiveTableProps) {
+                                        }: ResponsiveTableProps<Keys>) {
   const [expanded, setExpanded] = useState(false);
   const t = useTranslations('ResponsiveTable');
 
@@ -66,9 +66,9 @@ export default function ResponsiveTable({
         </tr>
       ))}
       <tr>
-        <td colSpan={columns.length} className="no-table-bs bg-table-soft! cursor-pointer group"
+        <td colSpan={columns.length} className="no-table-bs group cursor-pointer bg-table-soft!"
             onClick={() => setExpanded(!expanded)} data-open={expanded}>
-          <div className="my-0.5 flex flex-row w-full justify-end gap-4 items-center text-secondary">
+          <div className="my-0.5 flex w-full flex-row items-center justify-end gap-4 text-secondary">
             <span className="text-sm">
               {t('expand')}
             </span>

@@ -57,7 +57,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
       return <TableRow
         {...props}
         className={cn(props.className, 'hover:bg-table-hover hover:cursor-pointer')}
-        onClick={() => router.push(links[i])}
+        onClick={() => router.push(links[i]!)}
       />;
     }
     return <TableRow {...props} />
@@ -105,7 +105,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
                   {row.extendedRow &&
                     <TableCell className="border-x-0 first:border-l-0 last:border-r-0">
                         <Button variant="ghost" className="size-8" size="icon" onClick={() => toggleRow(i)}>
-                            <ToggleChevron className="size-5" active={visibleRows[i]} />
+                            <ToggleChevron className="size-5" active={visibleRows[i]!} />
                         </Button>
                     </TableCell>}
                 </LinkableTableRow>

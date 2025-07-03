@@ -17,7 +17,7 @@ export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T
 
   if (result.status === 401) {
     authSession.refresh();
-    // @ts-ignore
+    // @ts-expect-error refresh will redirect
     return undefined;
   }
 

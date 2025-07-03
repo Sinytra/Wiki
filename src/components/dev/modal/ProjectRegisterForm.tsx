@@ -63,7 +63,6 @@ export default function ProjectRegisterForm(
   const router = useRouter();
   const {open, setOpen} = useContext(GetStartedContext)!;
 
-  // @ts-ignore
   const v = useTranslations(translations || 'ProjectRegisterForm');
   const t = useTranslations('ProjectRegisterForm');
   const u = useTranslations('FormActions');
@@ -89,12 +88,12 @@ export default function ProjectRegisterForm(
         reload(() => router.refresh());
       }
     } else if (resp.error) {
-      // @ts-ignore
+      // @ts-expect-error details
       form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});
       setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');
     } else if (resp.errors) {
       for (const key in resp.errors) {
-        // @ts-ignore
+        // @ts-expect-error message
         form.setError(key, {message: u(`errors.${resp.errors[key][0]}`)});
       }
     }
@@ -205,7 +204,7 @@ export default function ProjectRegisterForm(
                       name="is_community"
                       render={({field}) => (
                         <FormItem
-                          className="border-tertiary flex flex-row items-center justify-between rounded-lg border p-3">
+                          className="flex flex-row items-center justify-between rounded-lg border border-tertiary p-3">
                           <div className="mb-0!">
                             <FormLabel>
                               {t('is_community.title')}
@@ -222,28 +221,28 @@ export default function ProjectRegisterForm(
 
               {form.formState.errors.root?.custom?.message &&
                 <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                    <p className="text-destructive text-sm">
+                    <p className="text-sm text-destructive">
                       {form.formState.errors.root.custom.message}
                     </p>
                 </div>
               }
 
-              {/*@ts-ignore*/}
+              {/*@ts-expect-error details*/}
               {form.formState.errors.root?.custom?.details &&
-                <details className="slim-scrollbar text-destructive max-h-20 w-fit overflow-y-auto text-sm">
+                <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
                     <summary className="mb-2">
                       {t('errors.details')}
                     </summary>
-                  {/*@ts-ignore*/}
+                  {/*@ts-expect-error details*/}
                     <code className="text-xs">{form.formState.errors.root.custom.details}</code>
                 </details>
               }
 
               {canVerifyModrinth &&
-                <div className="border-info flex flex-col gap-1 rounded-md border p-3">
-                    <p className="text-secondary flex flex-row items-start">
+                <div className="flex flex-col gap-1 rounded-md border border-info p-3">
+                    <p className="flex flex-row items-start text-secondary">
                         <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
-                        <span className="text-secondary text-sm">
+                        <span className="text-sm text-secondary">
                             {t.rich('connect_modrinth.desc', {
                               b: (chunks: any) => <span className="text-primary">{chunks}</span>
                             })}

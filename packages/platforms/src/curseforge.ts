@@ -140,7 +140,7 @@ async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
 
   const results = await fetchCurseForgeApiInternal(`/mods/search?gameId=${minecraftGameId}&slug=${slug}`) as PaginatedResults<CurseForgeProject>;
   if (results.pagination.resultCount === 1 && results.data.length === 1) {
-    return results.data[0];
+    return results.data[0]!;
   }
 
   if (results.pagination.resultCount === 0) {

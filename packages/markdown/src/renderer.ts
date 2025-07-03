@@ -26,7 +26,7 @@ export type ComponentPatcher = (components: Record<string, any>) => Record<strin
 
 function cleanFrontmatter(input: string) {
   const lines = input.split('\n');
-  if (lines.length < 1 || !lines[0].startsWith('---')) {
+  if (lines.length < 1 || !lines[0]!.startsWith('---')) {
     return input;
   }
 
@@ -58,7 +58,7 @@ async function renderDocumentationMarkdown(
   const icons = Object.keys(LucideReact)
     .filter(key => key.endsWith('Icon'))
     .reduce((obj, key) => {
-      // @ts-ignore
+      // @ts-expect-error assign icons
       obj[key] = LucideReact[key];
       return obj;
     }, {});
@@ -95,7 +95,6 @@ async function renderDocumentationMarkdown(
 
     const frontmatter = compiledMdx.data.matter ?? {};
 
-    // @ts-ignore
     const {default: MDXContent} = await run(compiledMdx, {
       ...runtime,
       baseUrl: import.meta.url,
@@ -126,7 +125,7 @@ function sanitizeHastTree(tree: any, components: any) {
     }
   }
 
-  let sanitized = tree;
+  const sanitized = tree;
   if (tree.children) {
     sanitized.children = tree.children
       .map((c: any) => sanitizeHastTree(c, components))

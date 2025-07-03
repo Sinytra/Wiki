@@ -75,7 +75,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
 
         {profile.role === UserRole.ADMIN &&
           <div className="mt-auto px-2">
-              <SidebarGroup className="border-destructive-secondary rounded-sm border">
+              <SidebarGroup className="rounded-sm border border-destructive-secondary">
                   <SidebarGroupLabel>
                     {t('groups.admin')}
                   </SidebarGroupLabel>

@@ -10,7 +10,7 @@ export default function DocsChangelogPage({changelog}: ChangelogProps) {
 
   const entries = changelog
     .map(e => Object.entries(e).length === 1
-      ? {version: Object.entries(e)[0][0], changes: [Object.entries(e)[0][1]]} as FullChangelogEntry
+      ? {version: Object.entries(e)![0]![0], changes: [Object.entries(e)![0]![1]]} as FullChangelogEntry
       : e as FullChangelogEntry
     );
 

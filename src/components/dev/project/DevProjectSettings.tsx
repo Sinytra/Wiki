@@ -102,7 +102,7 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
             <span>
               Delete project
             </span>
-            <span className="text-secondary text-sm">
+            <span className="text-sm text-secondary">
               Forever delete all project data. This cannot be undone.
             </span>
           </div>
@@ -183,7 +183,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
         <div>
           {form.formState.errors.root?.custom?.message &&
             <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                <p className="text-destructive text-sm">
+                <p className="text-sm text-destructive">
                   {form.formState.errors.root.custom.message}
                 </p>
             </div>
@@ -191,7 +191,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
 
           {/*@ts-ignore*/}
           {form.formState.errors.root?.custom?.details &&
-            <details className="slim-scrollbar text-destructive max-h-20 w-fit overflow-y-auto text-sm">
+            <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
                 <summary className="mb-2">
                   {t('errors.details')}
                 </summary>
@@ -201,10 +201,10 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
           }
 
           {canVerifyModrinth &&
-            <div className="border-info/70 flex flex-col gap-1 rounded-md border p-3">
-                <p className="text-secondary flex flex-row items-start">
+            <div className="flex flex-col gap-1 rounded-md border border-info/70 p-3">
+                <p className="flex flex-row items-start text-secondary">
                     <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
-                    <span className="text-secondary text-sm">
+                    <span className="text-sm text-secondary">
                             {t.rich('connect_modrinth.desc', {
                               b: (chunks: any) => <span className="text-primary">{chunks}</span>
                             })}
@@ -222,7 +222,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
           }
         </div>
 
-        <hr className="border-secondary mt-auto"/>
+        <hr className="mt-auto border-secondary"/>
 
         <DangerSection deleteFunc={deleteFunc}/>
       </form>

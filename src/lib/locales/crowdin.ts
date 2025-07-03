@@ -24,13 +24,13 @@ async function getCrowdinTranslationStatus(lang: string): Promise<number> {
       if (resp.ok) {
         const data = await resp.json() as CrowdinResponse<CrowdinTranslationResponse<CrowdinLanguageData>[]>;
         if (data.data.length > 0) {
-          return data.data[0].data.translationProgress;
+          return data.data[0]!.data.translationProgress;
         }
       } else {
         console.error('Error response getting crowdin translation status', await resp.text());
       }
-    } catch (e) {
-      console.error(`Error getting crowdin translation status for ${lang}`);
+    } catch (err) {
+      console.error(`Error getting crowdin translation status for ${lang}`, err);
     }
   }
   return 0;

@@ -11,7 +11,7 @@ import {ProjectStatus} from "@repo/shared/types/api/project";
 interface Props {
   id: string;
   status: ProjectStatus;
-  token: string
+  token: string | null
 }
 
 const WS_HELLO = '<<hello<<';
@@ -28,7 +28,7 @@ export default function LiveProjectDeployConnection({id, status, token}: Props) 
       return;
     }
 
-    if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL) {
+    if (!process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL || !token) {
       return;
     }
 

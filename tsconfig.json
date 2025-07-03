@@ -1,27 +1,11 @@
 {
+  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@/.contentlayer/*": ["./.contentlayer/*"],
@@ -31,8 +15,7 @@
       ],
       "@repo/ui/*": ["./packages/ui/src/*"],
       "@repo/shared/*": ["./packages/shared/src/*"]
-    },
-    "target": "ESNext"
+    }
   },
   "include": [
     "next-env.d.ts",

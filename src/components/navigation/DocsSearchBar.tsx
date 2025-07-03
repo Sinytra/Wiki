@@ -16,8 +16,8 @@ function SearchResult({result}: { result: WikiSearchResult }) {
   return (
     <Link href={result.url}
           className={`
-            bg-primary-alt text-primary z-50 flex cursor-pointer flex-row gap-2 px-1 py-1.5 hover:bg-tertiary
-            first:rounded-t-sm last:rounded-b-sm
+            z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary first:rounded-t-sm
+            last:rounded-b-sm hover:bg-tertiary
           `}>
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} loading/>
@@ -34,7 +34,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
           :
           <div className="flex flex-row gap-2">
             <span className="text-secondary">{result.mod}</span>
-            {result.path && <span className="text-secondary font-light">- {result.path}</span>}
+            {result.path && <span className="font-light text-secondary">- {result.path}</span>}
           </div>
         }
       </div>
@@ -47,7 +47,7 @@ function NoSearchResults() {
 
   return (
     <div className={`
-      bg-primary-alt text-secondary z-50 flex h-16 flex-row items-center justify-center gap-2 px-1 py-1.5 font-light
+      z-50 flex h-16 flex-row items-center justify-center gap-2 bg-primary-alt px-1 py-1.5 font-light text-secondary
       first:rounded-t-sm last:rounded-b-sm
     `}>
       {t('no_results')}
@@ -60,7 +60,7 @@ function LoadingSearchState() {
 
   return (
     <div className={`
-      bg-primary-alt text-secondary z-50 flex h-16 flex-row items-center justify-center gap-2 px-1 py-1.5 font-light
+      z-50 flex h-16 flex-row items-center justify-center gap-2 bg-primary-alt px-1 py-1.5 font-light text-secondary
       first:rounded-t-sm last:rounded-b-sm
     `}>
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
@@ -73,7 +73,7 @@ function SearchOverlayFooter({visible, total}: { visible: number; total: number 
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="bg-primary-alt text-secondary flex w-full flex-row items-center justify-between rounded-b-sm p-2">
+    <div className="flex w-full flex-row items-center justify-between rounded-b-sm bg-primary-alt p-2 text-secondary">
       <div className="text-sm font-light">
         {t.rich('results', {
           highlight: (chunks: any) => (
@@ -199,9 +199,9 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
         <SearchIcon className="inset absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 text-neutral-500"/>
         <input type="text" value={searchQuery} ref={inputRef}
                className={`
-                 border-secondary bg-primary-alt w-full cursor-pointer rounded-sm border px-8 py-[0.2rem] text-center
-                 text-sm text-ellipsis focus:border-secondary-alt focus:cursor-text focus:shadow-md focus:outline-none
-                 placeholder:text-neutral-500
+                 w-full cursor-pointer rounded-sm border border-secondary bg-primary-alt px-8 py-[0.2rem] text-center
+                 text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:border-secondary-alt
+                 focus:shadow-md focus:outline-none
                `}
                onChange={(e) => handleSearch(e.target.value)}
                placeholder={t('placeholder')}
@@ -213,8 +213,8 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
       {focused && searchQuery && (loading || (!loading && results)) &&
           <div onMouseDown={e => e.preventDefault()}
               className={`
-                divide-tertiary border-secondary bg-primary-alt absolute top-8 flex w-full flex-col divide-y rounded-sm
-                border shadow-lg
+                absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border border-secondary
+                bg-primary-alt shadow-lg
               `}>
             {loading && <LoadingSearchState/>}
 

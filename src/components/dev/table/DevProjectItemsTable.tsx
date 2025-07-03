@@ -84,7 +84,7 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
             </DropdownMenuLabel>
             <DropdownMenuItem>
               <a href={getInternalWikiLink(item.id, params)} target="_blank"
-                 className="flex w-full flex-row justify-between">
+                 className="flex w-full flex-row justify-between" rel="noreferrer">
                 {t('actions.view')}
                 <ExternalLinkIcon className="w-5"/>
               </a>

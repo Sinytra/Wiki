@@ -34,12 +34,14 @@ export function DevSidebarContextSwitcher({teams}: Props) {
             <SidebarMenuButton size="lg" className="data-[state=open]:bg-secondary data-[state=open]:text-primary-alt">
               <div
                 className={`
-                  text-primary-alt flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600
+                  flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600 text-primary-alt
                 `}>
+                {/*@ts-expect-error min-size*/}
                 <activeTeam.logo className="size-4"/>
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
+                  {/*@ts-expect-error min-size*/}
                   {activeTeam.name}
                 </span>
               </div>
@@ -52,16 +54,16 @@ export function DevSidebarContextSwitcher({teams}: Props) {
             side={isMobile ? "bottom" : "right"}
             sideOffset={4}
           >
-            <DropdownMenuLabel className="text-secondary text-xs">
+            <DropdownMenuLabel className="text-xs text-secondary">
               {t('title')}
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {teams.map((team) => (
               <DropdownMenuItem
                 key={team.name}
                 onClick={() => setactiveTeam(team)}
                 className="gap-2 p-2"
               >
-                <div className="border-tertiary flex size-6 items-center justify-center rounded-sm border">
+                <div className="flex size-6 items-center justify-center rounded-sm border border-tertiary">
                   <team.logo className="size-4 shrink-0"/>
                 </div>
                 {team.name}

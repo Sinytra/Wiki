@@ -46,7 +46,7 @@ export default function CollapsibleDocsTreeBase({title, icon: Icon, defaultOpen,
       <CollapsibleTrigger className="md:hidden">
         <DocsSidebarTitle offset noSeparator extra={
           <ChevronDownIcon
-            className="docsMainTrigger text-secondary h-5 w-5 transition-transform duration-200 md:hidden"/>
+            className="docsMainTrigger h-5 w-5 text-secondary transition-transform duration-200 md:hidden"/>
         }>
           {Icon && <Icon className="mr-2 size-4"/>}
           <span className="text-base">{title}</span>
@@ -55,7 +55,7 @@ export default function CollapsibleDocsTreeBase({title, icon: Icon, defaultOpen,
       <div className="hidden md:block">
         <DocsSidebarTitle offset noSeparator extra={
           <ChevronDownIcon
-            className="docsMainTrigger text-secondary h-5 w-5 transition-transform duration-200 md:hidden"/>
+            className="docsMainTrigger h-5 w-5 text-secondary transition-transform duration-200 md:hidden"/>
         }>
           {Icon && <Icon className="mr-2 size-4"/>}
           <span className="text-lg">{title}</span>
@@ -64,9 +64,9 @@ export default function CollapsibleDocsTreeBase({title, icon: Icon, defaultOpen,
 
       <CollapsibleContent
         className={`
-          data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden pb-2
-          transition-all md:animate-none md:transition-none md:data-[state=closed]:animate-none
-          md:data-[state=open]:animate-none
+          overflow-hidden pb-2 transition-all data-[state=closed]:animate-collapsible-up
+          data-[state=open]:animate-collapsible-down md:animate-none md:transition-none
+          md:data-[state=closed]:animate-none md:data-[state=open]:animate-none
         `}>
         {children}
       </CollapsibleContent>

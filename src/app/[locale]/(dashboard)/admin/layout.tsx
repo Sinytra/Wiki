@@ -20,13 +20,13 @@ export default async function AdminLayout(
   } = props;
 
   setContextLocale(params.locale);
-  const profile = (await assertUserIsAdmin())!;
+  await assertUserIsAdmin();
 
   return (
     <div className="mx-auto w-full sm:max-w-[92rem]">
       <SidebarProvider className="min-h-0">
         <ClientLocaleProvider keys={['AdminSidebar', 'DevSidebarContextSwitcher', 'DevSidebarUser']}>
-          <AdminSidebar profile={profile} />
+          <AdminSidebar />
         </ClientLocaleProvider>
 
         <SidebarInset className="mx-auto my-4 min-h-0 w-full px-1 sm:px-4">

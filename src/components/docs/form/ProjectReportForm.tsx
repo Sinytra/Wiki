@@ -59,7 +59,7 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
       form.setError('root.custom', {message: resp.error});
     } else if (resp.errors) {
       for (const key in resp.errors) {
-        // @ts-ignore
+        // @ts-expect-error keys
         form.setError(key, {message: resp.errors[key][0]});
       }
     }
@@ -82,7 +82,7 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
           <FormMessage/>
         </FormItem>
 
-        <div className="flex flex-row flex-wrap sm:flex-nowrap items-center gap-2 w-full [&>div]:w-full">
+        <div className="flex w-full flex-row flex-wrap items-center gap-2 sm:flex-nowrap [&>div]:w-full">
           <FormField
             control={form.control}
             name="locale"
@@ -199,7 +199,7 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
         }
 
         {form.formState.errors.root?.custom?.message &&
-          <p className="text-destructive text-sm">{form.formState.errors.root.custom.message}</p>
+          <p className="text-sm text-destructive">{form.formState.errors.root.custom.message}</p>
         }
 
         {reason === 'dislike'

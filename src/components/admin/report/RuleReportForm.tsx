@@ -54,7 +54,7 @@ export default function RuleReportForm({disabled, children, formAction}: Params)
       {children}
 
       {!disabled &&
-        <div className="justify-end flex flex-row items-center gap-4">
+        <div className="flex flex-row items-center justify-end gap-4">
             <Button variant="secondary" type="button" onClick={submitForm.bind(null, 'dismiss')}>
               {t('actions.dismiss')}
             </Button>

@@ -25,28 +25,28 @@ interface ApiResponse extends ApiCallResultBase {
   status: number;
 }
 
-interface ApiCallException extends ApiCallResultBase {
+export interface ApiCallException extends ApiCallResultBase {
   success: false;
   type: 'failed';
   error: 'unknown';
   message: string;
 }
 
-interface ApiUnknownErrorResponse extends ApiResponse {
+export interface ApiUnknownErrorResponse extends ApiResponse {
   success: false;
   type: 'unknown_error';
   error: 'unknown';
   message: string;
 }
 
-interface ApiErrorResponse extends ApiResponse {
+export interface ApiErrorResponse extends ApiResponse {
   success: false;
   type: 'known_error';
   error: ApiError;
   data: unknown;
 }
 
-interface ApiRedirectResponse extends ApiResponse {
+export interface ApiRedirectResponse extends ApiResponse {
   // Not always an error, but redirects are not wanted most of the time
   success: false;
   error: 'unknown';

@@ -15,7 +15,7 @@ export function getProcessURL(): string {
 export async function resolveSoft<T>(promise: Promise<T>): Promise<T | null> {
   try {
     return await promise;
-  } catch (e) {
+  } catch {
     return null;
   }
 }

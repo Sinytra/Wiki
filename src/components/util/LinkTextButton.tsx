@@ -9,9 +9,9 @@ export default function LinkTextButton({href, target, className, children}: {
   children: any
 }) {
   return (
-    <div className="text-primary inline-block">
+    <div className="inline-block text-primary">
       <Button type="button" variant="link" asChild
-              className={cn(className, 'hover:text-primary/80! h-fit p-0 font-light text-wrap')}>
+              className={cn(className, 'h-fit p-0 font-light text-wrap hover:text-primary/80!')}>
         <LocaleNavLink href={href} target={target}>
           {children}
         </LocaleNavLink>

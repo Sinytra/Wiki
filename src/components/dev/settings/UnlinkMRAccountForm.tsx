@@ -14,7 +14,7 @@ function SubmitButton() {
   return (
     <Button data-pending={pending ? 'true' : 'false'} variant="destructive" size="sm"
             className={`
-              border-destructive-secondary bg-primary border font-semibold hover:bg-secondary/80
+              border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
               data-[pending=true]:text-destructive/90
             `}>
       {pending

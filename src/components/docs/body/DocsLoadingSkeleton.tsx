@@ -3,7 +3,7 @@ import {Skeleton} from "@repo/ui/components/skeleton";
 
 export default function DocsLoadingSkeleton() {
   return (
-    <div className="animate-out fade-out-0 flex flex-col transition-all">
+    <div className="flex animate-out flex-col transition-all fade-out-0">
       <DocsContentTitle titleClassName="w-full">
         <Skeleton className="h-8 w-full"/>
       </DocsContentTitle>

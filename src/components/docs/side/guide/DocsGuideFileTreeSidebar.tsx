@@ -14,7 +14,7 @@ interface LeftSidebarProps {
 }
 
 function DocsFileEntry({slug, version, file}: { slug: string; version: string; file: FileTreeEntry }) {
-  // @ts-ignore
+  // @ts-expect-error icon
   const Icon = file.icon ? LucideIcons[file.icon + 'Icon'] : null;
   return (
     <DocsFileLink

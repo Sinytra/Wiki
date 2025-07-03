@@ -17,7 +17,7 @@ export default async function DevProjectMembersPage(props: { params: Promise<{ l
     <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
-      <div className="border-tertiary bg-primary-alt flex w-full flex-row gap-3 rounded-md border p-3 sm:gap-4 sm:p-4">
+      <div className="flex w-full flex-row gap-3 rounded-md border border-tertiary bg-primary-alt p-3 sm:gap-4 sm:p-4">
         <ImageWithFallback src={profile.avatar_url} width={64} height={64} className="rounded-sm sm:size-21"
                            alt="avatar"/>
 

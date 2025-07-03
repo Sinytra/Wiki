@@ -94,8 +94,10 @@ async function computeAvailableLocales(source: LocalDocumentationSource): Promis
   const localeDirRegex = /^[a-z]{2}_[a-z]{2}$/;
   try {
     const translations = await localFiles.readShallowFileTree(source, '.translated');
-    return translations.filter(t => t.type === 'dir' && t.name.match(localeDirRegex)).map(t => t.name.split('_')[0]);
-  } catch (e) {
+    return translations
+      .filter(t => t.type === 'dir' && t.name.match(localeDirRegex))
+      .map(t => t.name.split('_')[0]!);
+  } catch {
     return [];
   }
 }
@@ -172,9 +174,9 @@ async function readLocalizedFile(source: LocalDocumentationSource, path: string,
 }
 
 function capitalizeDefaultEntryName(str: string) {
-  const words = str.split('.')[0].replaceAll(/[_\-]/g, ' ').split(' ');
+  const words = str.split('.')[0]!.replaceAll(/[_\-]/g, ' ').split(' ');
   for (let i = 0; i < words.length; i++) {
-    words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+    words[i] = words[i]![0]!.toUpperCase() + words[i]!.substring(1);
   }
   return words.join(' ');
 }

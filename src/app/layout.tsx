@@ -40,7 +40,7 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode; }
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
     </head>
-    <body className={cn(inter.className, 'bg-primary text-primary flex min-h-screen flex-col')}>
+    <body className={cn(inter.className, 'flex min-h-screen flex-col bg-primary text-primary')}>
     <NavProgressBar>
       <NuqsAdapter>
         {children}

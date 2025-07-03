@@ -4,11 +4,13 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@repo/shared": "workspace:*"
+    "@repo/shared": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "tailwindcss": "^4.0.8"
   },
   "exports": {

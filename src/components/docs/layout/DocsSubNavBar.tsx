@@ -42,7 +42,7 @@ function DocsSubNavProjectTitle({project, platformProject}: {
     <div className="flex flex-row items-center gap-2 overflow-hidden">
       <ImageWithFallback src={platformProject.icon_url} alt="Logo" className="h-6 rounded-sm"
                          width={24} height={24}/>
-      <span className="text-primary overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap">
+      <span className="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap text-primary">
         {project.name}
       </span>
     </div>
@@ -56,10 +56,10 @@ function MobileDocsSubNavProjectTitle({project, platformProject}: {
   return (
     <div className="flex flex-col items-center gap-2 overflow-hidden">
       <img src={platformProject.icon_url} alt="Logo" className="mb-2 size-12 rounded-sm"/>
-      <span className="text-primary overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap">
+      <span className="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap text-primary">
         {project.name}
       </span>
-      <blockquote className="text-secondary line-clamp-2 text-sm">
+      <blockquote className="line-clamp-2 text-sm text-secondary">
         {platformProject.summary}
       </blockquote>
     </div>
@@ -87,7 +87,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
       {(showVersions || showLocales) &&
         <>
             <div className="verticalSeparator hidden! sm:inline-flex!"/>
-            <hr className="border-tertiary w-full sm:hidden" />
+            <hr className="w-full border-tertiary sm:hidden" />
         </>
       }
 
@@ -108,7 +108,7 @@ export default function DocsSubNavBar({project, platformProject, locale, version
   version: string;
 }) {
   return (
-    <div className="border-tertiary border-t-tertiary-dim bg-primary-dim fixed left-0 z-40 w-full border-y">
+    <div className="fixed left-0 z-40 w-full border-y border-tertiary border-t-tertiary-dim bg-primary-dim">
       <div className="mx-auto flex w-full max-w-[120rem] flex-row items-center justify-between px-4 py-2 sm:py-1.5">
         <DocsSubNavProjectTitle project={project} platformProject={platformProject} />
 

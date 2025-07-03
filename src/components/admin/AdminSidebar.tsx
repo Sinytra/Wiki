@@ -18,17 +18,14 @@ import {DevSidebarMainNav} from "@/components/dev/navigation/DevSidebarMainNav";
 import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu} from "@repo/ui/components/sidebar";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
-import {UserProfile} from "@repo/shared/types/api/auth";
 import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
 
-interface Props extends React.ComponentProps<typeof Sidebar> {
-  profile: UserProfile;
-}
+type Props = React.ComponentProps<typeof Sidebar>
 
 function AdminSidebarHeader() {
   return (
     <div className={`
-      border-destructive-secondary flex w-full flex-col items-center justify-center gap-4 rounded-sm border py-3
+      flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive-secondary py-3
     `}>
       <div>
         <ServerCogIcon width={32} height={32} />
@@ -40,7 +37,7 @@ function AdminSidebarHeader() {
   )
 }
 
-export function AdminSidebar({profile, ...props}: Props) {
+export function AdminSidebar(props: Props) {
   usePreventBuggyScrollLock();
   const t = useTranslations('AdminSidebar');
 

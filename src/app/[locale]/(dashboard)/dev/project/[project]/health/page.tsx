@@ -81,7 +81,7 @@ function ProjectIssuesSummary({stats}: { stats: ProjectIssueStats }) {
 
       <ProjectIssuesStatWidget
         title="Warnings"
-        className="border-warning-soft text-warning-soft bg-[var(--vp-c-warning-soft)]/50"
+        className="border-warning-soft bg-[var(--vp-c-warning-soft)]/50 text-warning-soft"
         count={stats.warning || 0}
         icon={TriangleAlertIcon}
       />
@@ -104,8 +104,8 @@ function ProjectIssuesSection({issues}: { issues: ProjectIssue[] }) {
         <ProjectIssuesList issues={issues}/>
         : (
           <div className={`
-            border-secondary-dim bg-primary-dim text-secondary flex w-full flex-col items-center gap-3 rounded-sm border
-            py-8
+            flex w-full flex-col items-center gap-3 rounded-sm border border-secondary-dim bg-primary-dim py-8
+            text-secondary
           `}>
             <ShieldCheckIcon className="size-8"/>
             <span>{t('empty')}</span>

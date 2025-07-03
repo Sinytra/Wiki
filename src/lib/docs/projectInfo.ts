@@ -38,8 +38,8 @@ import {getTranslations} from "next-intl/server";
 import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
 import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
 import {ElementType} from "react";
-import { ProjectPlatform } from "packages/shared/src/types/platform";
 import {ProjectType} from "@repo/shared/types/service";
+import {ProjectPlatform} from "@repo/shared/types/platform";
 
 export const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 
@@ -115,10 +115,13 @@ export async function getPlatformProjectInformation(project: PlatformProject): P
   const t = await getTranslations('DocsProjectInfo');
 
   const license = !project.license ? undefined
-    : project.license.id === ARRNoLicense ? { name: t('license.arr'), url: null }
-    : project.license.id.startsWith('LicenseRef') ? { name: t('license.custom'), url: project.license?.url || null }
-    : project.license?.name ? { name: project.license.name, url: project.license?.url ?? `https://spdx.org/licenses/${project.license.name}` }
-    : undefined;
+    : project.license.id === ARRNoLicense ? {name: t('license.arr'), url: null}
+      : project.license.id.startsWith('LicenseRef') ? {name: t('license.custom'), url: project.license?.url || null}
+        : project.license?.name ? {
+            name: project.license.name,
+            url: project.license?.url ?? `https://spdx.org/licenses/${project.license.name}`
+          }
+          : undefined;
 
   return {
     authors,

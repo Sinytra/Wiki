@@ -1,6 +1,6 @@
 'use client'
 
-import {type ImgHTMLAttributes, useContext, useEffect, useState} from "react";
+import {type ImgHTMLAttributes, useContext, useEffect, useMemo, useState} from "react";
 import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
 import {getExternalWikiLink, getResolvedItemLink} from "@/lib/game/content";
@@ -22,6 +22,7 @@ const INTERVAL = 2000;
 
 export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, params, tag, ...props}: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const currentSrc = useMemo(() => src[currentIndex]!, [currentIndex, src]);
   const hoverCtx = useContext(HoverContext);
 
   // Preload all images
@@ -45,11 +46,11 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
   }, [src, hoverCtx]);
 
   const Content = () => {
-    const link = params ? getResolvedItemLink(params, src[currentIndex]) : getExternalWikiLink(src[currentIndex].id);
+    const link = params ? getResolvedItemLink(params, currentSrc) : getExternalWikiLink(currentSrc.id);
     const element = (
       <div {...props}>
         <div className="relative shrink-0">
-          <ItemDisplay noTitle asset={src[currentIndex].asset} alt={src[currentIndex].name ?? src[currentIndex].id}
+          <ItemDisplay noTitle asset={currentSrc.asset} alt={currentSrc.name ?? currentSrc.id}
                        className="sharpRendering"/>
           {count && count > 1 &&
             <span
@@ -64,11 +65,11 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
         </div>
       </div>
     );
-    return link && !noLink ? <a href={link} target="_blank">{element}</a> : element;
+    return link && !noLink ? <a href={link} target="_blank" rel="noreferrer">{element}</a> : element;
   };
 
   return noTooltip ? <Content/> : (
-    <TooltipImg id={src[currentIndex].name || src[currentIndex].id} tag={tag}>
+    <TooltipImg id={currentSrc.name || currentSrc.id} tag={tag}>
       <Content/>
     </TooltipImg>
   );

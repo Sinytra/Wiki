@@ -12,7 +12,7 @@ export default function DocsVersionSelector({version, versions}: { version: stri
   return (
     <DocsVersionSelectWrapper value={version} defaultValue={DEFAULT_DOCS_VERSION}>
       <SelectTrigger className={`
-        hover:bg-secondary h-8 w-full justify-start rounded-sm border-none bg-transparent py-0 whitespace-nowrap sm:h-7
+        h-8 w-full justify-start rounded-sm border-none bg-transparent py-0 whitespace-nowrap hover:bg-secondary sm:h-7
         sm:w-fit sm:max-w-32 sm:min-w-24 [&>span]:mr-auto [&>span]:block [&>span]:text-sm [&>span]:text-ellipsis
         [&>span]:sm:mr-0 [&>svg:last-child]:hidden
       `}>

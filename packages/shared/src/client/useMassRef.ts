@@ -9,7 +9,7 @@ export default function useMassRef<T>(): MassRef<T> {
   const contentRefs = useRef<Record<number, T | null>>({});
 
   return {
-    get: (i: number) => contentRefs.current[i],
+    get: (i: number) => contentRefs.current[i] ?? null,
     set: (i: number) => (node: T | null) => {
       contentRefs.current[i] = node;
       return () => {

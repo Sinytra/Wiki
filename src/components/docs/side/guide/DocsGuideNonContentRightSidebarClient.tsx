@@ -80,7 +80,7 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
         <div
           ref={listRef}
           className={`
-            scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent max-h-[80vh] overflow-y-auto pr-4
+            scrollbar-thin max-h-[80vh] overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-track-transparent
           `}
         >
           <ul className="space-y-1 text-sm">
@@ -89,7 +89,7 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "text-secondary block py-1 transition-colors hover:text-primary",
+                    "block py-1 text-secondary transition-colors hover:text-primary",
                     activeId === heading.id && "text-primary",
                     index === 0 ? 'pt-0!' : ''
                   )}

@@ -8,7 +8,7 @@ export default async function MarkdownPage({ content: Content }: { content: (pro
 
   try {
     return <Content />;
-  } catch (e) {
+  } catch {
     notFound();
   }
 }

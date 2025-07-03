@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const languageKeys = locales.getLanguagePaths().filter(l => l !== 'en');
 
   return allProjects.data.map(id => {
-    let languages: any = {};
+    const languages: any = {};
     languageKeys.forEach(l => {
       languages[l] = `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/${l}/project/${id}`;
     });

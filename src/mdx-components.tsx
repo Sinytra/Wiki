@@ -15,7 +15,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   const icons = Object.keys(LucideReact)
     .filter(key => key.endsWith('Icon'))
     .reduce((obj, key) => {
-      // @ts-ignore
+      // @ts-expect-error assigning icons to object
       obj[key] = LucideReact[key];
       return obj;
     }, {});

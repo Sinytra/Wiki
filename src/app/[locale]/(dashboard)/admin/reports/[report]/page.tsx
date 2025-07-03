@@ -34,7 +34,7 @@ function ReportDetails({report}: { report: ProjectReport }) {
   return (
     <ClientLocaleProvider keys={['ViewReportPage']}>
       <RuleReportForm disabled={report.status !== 'new'} formAction={handleRuleProjectReport.bind(null, report.id)}>
-        <div className="flex flex-row flex-wrap w-full gap-4">
+        <div className="flex w-full flex-row flex-wrap gap-4">
           <LocaleNavLink href={`/project/${report.project_id}`} className="grid w-full max-w-sm items-center gap-3">
             <Label>{t('project_id')}</Label>
             <Input value={report.project_id} className="cursor-pointer" readOnly/>
@@ -52,7 +52,7 @@ function ReportDetails({report}: { report: ProjectReport }) {
 
         <div className="grid w-full items-center gap-3">
           <Label>{t('body')}</Label>
-          <Textarea className="bg-primary-dim min-h-48" value={report.body} readOnly/>
+          <Textarea className="min-h-48 bg-primary-dim" value={report.body} readOnly/>
         </div>
       </RuleReportForm>
     </ClientLocaleProvider>
@@ -75,7 +75,7 @@ export default async function ViewReportPage(props: { params: Promise<{ locale: 
           </Link>
         </BreadcrumbLink>
       }>
-        <BreadcrumbPage className="text-xsm text-primary font-mono">
+        <BreadcrumbPage className="font-mono text-xsm text-primary">
           {params.report}
         </BreadcrumbPage>
       </DevBreadcrumb>

@@ -28,7 +28,7 @@ class Tooltip extends Component<any> {
     this.removeListener();
   }
 
-  // @ts-ignore
+  // @ts-expect-error mouse move
   onMouseMove = ({ clientX: xPosition, clientY: yPosition }) => {
     this.setState({
       xPosition,
@@ -80,7 +80,7 @@ export default function TooltipImg(props: Properties) {
     >
       {props.id}
       {props.tag &&
-        <p className="text-secondary text-shadow-none text-xs m-0! mt-1!">
+        <p className="m-0! mt-1! text-xs text-secondary text-shadow-none">
             #{props.tag}
         </p>
       }

@@ -3,10 +3,10 @@ import {allBlogs} from "@/.contentlayer/generated"
 import {notFound} from "next/navigation"
 import {format, parseISO} from 'date-fns'
 import {useMDXComponent} from 'next-contentlayer2/hooks'
-import {useMDXComponents} from "mdx-components"
 import {setContextLocale} from "@/lib/locales/routing";
 import BlogHeader from "@/components/navigation/BlogHeader"
 import SocialButtons from "@/components/util/SocialButtons"
+import {useMDXComponents} from "@/mdx-components";
 
 export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }))
 
@@ -57,8 +57,8 @@ const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
                 <div className="flex w-full flex-col items-center gap-4">
                     <div
                         className={`
-                          prose w-full max-w-4xl px-2 dark:prose-invert prose-h2:border-b prose-h2:border-b-neutral-700
-                          prose-h2:pb-1 md:px-0
+                          prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b
+                          prose-h2:border-b-neutral-700 prose-h2:pb-1
                         `}>
                         <MDXContent components={components} />
                     </div>

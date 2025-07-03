@@ -28,16 +28,16 @@ export default function DocsFileTreeFolder({name, path, icon, level, children}: 
   const [isOpen, setOpen] = useState(!rendered.current && defaultOpen || folderStates[level] === path);
 
   const defaultIcon = FolderIcon;
-  // @ts-ignore
+  // @ts-expect-error icon
   const Icon = icon === null || icon === NO_FOLDER_ICON ? null : ((icon ? LucideIcons[icon] : defaultIcon) || defaultIcon);
 
   useEffect(() => {
     if (!rendered.current && defaultOpen) {
       rendered.current = true;
 
-      // @ts-ignore
+      // @ts-expect-error keys
       setFolderStates(v => {
-        let newStates = {...v, [level]: path};
+        const newStates = {...v, [level]: path};
         Object.keys(newStates)
           .filter(k => Number(k) > level && !currentPath.startsWith(newStates[k]))
           .forEach(k => delete newStates[k]);
@@ -51,10 +51,10 @@ export default function DocsFileTreeFolder({name, path, icon, level, children}: 
   }, [folderStates]);
 
   function toggleOpen() {
-    // @ts-ignore
+    // @ts-expect-error states
     setFolderStates(v => {
       // Close other folders at the same level
-      let newStates = {...v, [level]: isOpen ? undefined : path};
+      const newStates = {...v, [level]: isOpen ? undefined : path};
       // Close all nested folders
       if (isOpen) {
         Object.keys(newStates)

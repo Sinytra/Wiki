@@ -42,10 +42,10 @@ type Properties = {
 function StatusInfoColumn({name, children}: { name: string; children: any; }) {
   return (
     <div className="flex flex-col gap-1 xl:gap-1.5">
-      <span className="text-secondary text-sm">
+      <span className="text-sm text-secondary">
         {name}
       </span>
-      <div className="text-primary text-sm">
+      <div className="text-sm text-primary">
         {children}
       </div>
     </div>
@@ -56,7 +56,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
   const t = useTranslations('DeploymentIssues');
 
   return (
-    <div className="border-tertiary bg-primary-dim flex flex-col gap-1 rounded-sm border p-3">
+    <div className="flex flex-col gap-1 rounded-sm border border-tertiary bg-primary-dim p-3">
       <div className="flex flex-row items-center gap-2">
         <span className="text-base">
           {t('title')}
@@ -64,7 +64,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
       </div>
       {issues.length > 0 ?
         <div className="flex flex-col gap-4">
-            <span className="text-secondary text-sm">
+            <span className="text-sm text-secondary">
               {t('issues_found', {count: issues.length})}
             </span>
           <div className="flex max-h-72 flex-col gap-2 overflow-y-auto">
@@ -72,7 +72,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
           </div>
         </div>
         :
-        <span className="text-secondary text-sm">
+        <span className="text-sm text-secondary">
           {t('empty')}
         </span>
       }
@@ -83,11 +83,11 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
 function DeploymentInfoWdget({deployment}: { deployment: FullDevProjectDeployment }) {
   return (
     <div className={`
-      border-tertiary bg-primary-dim grid grid-cols-2 gap-4 rounded-sm border p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]
+      grid grid-cols-2 gap-4 rounded-sm border border-tertiary bg-primary-dim p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]
     `}>
       <StatusInfoColumn name="Activation">
         {deployment.active ?
-          <Badge variant="secondary" className="border-lightblue-primary text-lightblue-primary px-2">
+          <Badge variant="secondary" className="border-lightblue-primary px-2 text-lightblue-primary">
             <GlobeIcon className="mr-2 size-3"/>
             Current
           </Badge>
@@ -118,7 +118,7 @@ function DeploymentGitCoordinates({deployment}: { deployment: FullDevProjectDepl
   const t = useTranslations('DevProjectDeploymentPage.git-config');
 
   return (
-    <div className="border-tertiary bg-primary-dim flex flex-col gap-2 rounded-sm border p-3">
+    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-dim p-3">
       <div className="flex flex-row items-center gap-2">
         <span className="text-base">
           {t('title')}
@@ -129,7 +129,7 @@ function DeploymentGitCoordinates({deployment}: { deployment: FullDevProjectDepl
           <div className="flex w-5 items-center justify-center">
             <BookIcon className="size-4"/>
           </div>
-          <a className="text-sm underline-offset-4 hover:underline" href={deployment.source_repo} target="_blank">
+          <a className="text-sm underline-offset-4 hover:underline" href={deployment.source_repo} target="_blank" rel="noreferrer">
             {deployment.source_repo}
           </a>
         </div>
@@ -242,7 +242,7 @@ export default async function DevProjectDeploymentPage(props: Properties) {
           </Link>
         </BreadcrumbLink>
       }>
-        <BreadcrumbPage className="text-xsm text-primary font-mono">
+        <BreadcrumbPage className="font-mono text-xsm text-primary">
           {params.deployment.substring(0, 9)}
         </BreadcrumbPage>
       </DevBreadcrumb>

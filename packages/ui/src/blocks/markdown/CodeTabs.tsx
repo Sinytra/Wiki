@@ -28,7 +28,7 @@ async function CodeTabsVerified(props: { tabs: RawCode[] }) {
       </TabsList>
       {tabs.map((tab, i) => (
         <TabsContent key={tab.meta} value={tab.meta} className="mt-0!">
-          <Pre code={highlighted[i]} className="m-0! rounded-t-none" />
+          <Pre code={highlighted[i]!} className="m-0! rounded-t-none" />
         </TabsContent>
       ))}
     </Tabs>

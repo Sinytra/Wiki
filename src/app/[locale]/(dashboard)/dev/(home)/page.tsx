@@ -35,7 +35,7 @@ function ProjectsListHeader({defaultValues, isAdmin}: {
   return (
     <div className="mb-2 flex w-full flex-col">
       <div className="flex flex-row items-center justify-end">
-        <SidebarTrigger className="text-primary mr-auto -ml-1 md:hidden"/>
+        <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden"/>
 
         <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'SubmitButton']}>
           <ProjectRegisterForm defaultValues={defaultValues}
@@ -79,11 +79,11 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
       </div>
       <div className="flex flex-col">
         <div>
-          <LinkTextButton className="text-primary! w-fit! text-lg! font-medium!" href={getProjectLink(id)}>
+          <LinkTextButton className="w-fit! text-lg! font-medium! text-primary!" href={getProjectLink(id)}>
             {project.name}
           </LinkTextButton>
         </div>
-        <p className="text-secondary max-w-5xl overflow-x-hidden font-normal text-ellipsis">
+        <p className="max-w-5xl overflow-x-hidden font-normal text-ellipsis text-secondary">
           {trimText(project.summary, 50)}
         </p>
       </div>
@@ -107,25 +107,25 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
 
   return (
     <div className={`
-      border-tertiary bg-primary-dim flex w-full flex-col justify-between gap-2 rounded-md border p-3 sm:flex-row
+      flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-dim p-3 sm:flex-row
       sm:gap-4
     `}>
       <MobileProjectHeader id={project.id} project={platformProject}/>
 
-      <div className="my-auto hidden shrink-0 sm:flex size-20 [&>div]:m-auto">
+      <div className="my-auto hidden size-20 shrink-0 sm:flex [&>div]:m-auto">
         <ImageWithFallback className="rounded-md" src={platformProject.icon_url} alt="Project icon"
                            width={80} height={80} fbWidth={64} fbHeight={64}
         />
       </div>
 
       <div className="flex w-full flex-col gap-2">
-        <div className="hidden flex-col sm:flex grow">
+        <div className="hidden grow flex-col sm:flex">
           <div>
-            <LinkTextButton className="text-primary! w-fit! text-lg font-normal!" href={getProjectLink(project.id)}>
+            <LinkTextButton className="w-fit! text-lg font-normal! text-primary!" href={getProjectLink(project.id)}>
               {platformProject.name}
             </LinkTextButton>
           </div>
-          <p className="text-secondary text-sm font-normal">
+          <p className="text-sm font-normal text-secondary">
             {trimText(platformProject.summary, 100)}
           </p>
         </div>
@@ -166,16 +166,16 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
       {projects.length === 0 &&
         <div
           className={`
-            border-tertiary flex w-full flex-col items-center justify-center gap-4 rounded-xs border px-4 py-6
+            flex w-full flex-col items-center justify-center gap-4 rounded-xs border border-tertiary px-4 py-6
             text-center
           `}>
-            <span className="text-primary font-medium">
+            <span className="font-medium text-primary">
               {t('empty.primary')}
             </span>
             <span className="text-secondary">
             {t.rich('empty.secondary', {
               guide: (chunks: any) => (
-                <LinkTextButton className="text-primary! text-base! font-normal! underline" href="/about/devs">
+                <LinkTextButton className="text-base! font-normal! text-primary! underline" href="/about/devs">
                   {chunks}
                 </LinkTextButton>
               )

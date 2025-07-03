@@ -5,7 +5,6 @@ import {usePathname} from "next/navigation";
 import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
 import DocsSidebarBase, {DocsSidebarBaseProps} from "@/components/docs/side/DocsSidebarBase";
 
-// @ts-ignore
 export default function ScrollableDocsSidebarBase(props: DocsSidebarBaseProps) {
   const {scrollPos, setScrollPos} = useContext(LeftSidebarContext)!;
   const sidebarRef = useRef<HTMLElement>(null);

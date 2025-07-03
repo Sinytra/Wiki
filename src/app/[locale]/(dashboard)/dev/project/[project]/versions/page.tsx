@@ -25,7 +25,6 @@ export default async function DevProjectVersionsPage(props: Properties) {
   const params = await props.params;
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectVersionsPage');
-  const project = handleApiCall(await devProjectApi.getProject(params.project));
 
   const query = parseAsString.withDefault('').parseServerSide(searchParams.query);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);

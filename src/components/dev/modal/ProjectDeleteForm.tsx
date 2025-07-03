@@ -48,7 +48,7 @@ export default function ProjectDeleteForm({action, redirectTo}: Properties) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="destructive" size="sm" className={`
-          border-destructive-secondary bg-primary border font-semibold hover:bg-secondary/80
+          border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
           data-[pending=true]:text-destructive/90
         `}>
           <TrashIcon className="mr-2 h-4 w-4"/>

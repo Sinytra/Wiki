@@ -18,7 +18,7 @@ import env from "@repo/shared/env";
 function HeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
     <LocaleNavLink href={href} className={`${styles.menuLink}
-      text-primary px-1 text-base font-medium first:pl-0 sm:px-1.5 lg:px-2.5
+      px-1 text-base font-medium text-primary first:pl-0 sm:px-1.5 lg:px-2.5
     `}>
       {children}
     </LocaleNavLink>
@@ -28,7 +28,7 @@ function HeaderLink({href, children}: { href: string, children: ReactNode }) {
 function MobileHeaderLink({href, children}: { href: string, children: ReactNode }) {
   return (
     <LocaleNavLink href={href} className={`${styles.menuLink}
-      text-primary border-b border-[var(--vp-c-divider)] py-3 text-base font-normal
+      border-b border-[var(--vp-c-divider)] py-3 text-base font-normal text-primary
     `}>
       {children}
     </LocaleNavLink>
@@ -43,19 +43,19 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
     <HeaderBase unfix={unfix}>
       <div
         className={cn(`
-          h-nav pointer-events-auto! z-50 mx-auto flex max-w-[88rem] flex-row items-center justify-between gap-1 px-4
+          pointer-events-auto! z-50 mx-auto flex h-nav max-w-[88rem] flex-row items-center justify-between gap-1 px-4
           py-1 sm:h-fit sm:flex-nowrap sm:px-8 sm:whitespace-nowrap
         `, minimal && `my-2`)}>
         <div className="mr-auto flex flex-row items-center gap-3 sm:gap-4">
           <LocaleNavLink href={preview ? '/preview' : '/'}>
-            <span className={`text-primary inline-flex items-center gap-1 align-bottom text-base font-medium`}>
+            <span className="inline-flex items-center gap-1 align-bottom text-base font-medium text-primary">
               <BookMarkedIcon className="mr-1 h-4 w-4" />
               {t('title')}
             </span>
           </LocaleNavLink>
           {preview && <Badge className="hidden sm:block" variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&
-              <Badge variant="outline" className="text-secondary hidden border-neutral-600 font-normal sm:block">
+              <Badge variant="outline" className="hidden border-neutral-600 font-normal text-secondary sm:block">
                 {t('badge.beta')}
               </Badge>
           }

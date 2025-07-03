@@ -17,7 +17,7 @@ interface Props {
 function AdminHeader() {
   return (
     <div className={`
-      border-secondary-dim bg-primary-alt flex w-full flex-row justify-between rounded-sm border p-2 shadow-sm
+      flex w-full flex-row justify-between rounded-sm border border-secondary-dim bg-primary-alt p-2 shadow-sm
     `}>
       <span className="flex flex-row items-center gap-2 text-lg">
         <WrenchIcon className="size-5" />
@@ -34,8 +34,8 @@ function AdminHeader() {
 
 function DataWidget({title, value, icon}: { title: string; value: any; icon: ReactNode; }) {
   return (
-    <div className="border-secondary-dim bg-accent flex flex-row rounded-sm border [&>div]:py-1">
-      <div className="border-secondary-dim bg-primary flex flex-row items-center gap-2 rounded-sm border-r pr-2 pl-2">
+    <div className="flex flex-row rounded-sm border border-secondary-dim bg-accent [&>div]:py-1">
+      <div className="flex flex-row items-center gap-2 rounded-sm border-r border-secondary-dim bg-primary pr-2 pl-2">
         <div className="text-primary">
           {icon}
         </div>

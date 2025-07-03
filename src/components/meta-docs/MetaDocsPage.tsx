@@ -4,14 +4,14 @@ export default async function MetaDocsPage({name, locale}: { name: string; local
   try {
     const Content = (await import(`../../../docs/${name}/${locale}.mdx`)).default;
     return <Content/>;
-  } catch (error) {
-    
+  } catch {
+    // No op
   }
 
   try {
     const Content = (await import(`../../../docs/${name}/en.mdx`)).default;
     return <Content/>;
-  } catch (e) {
+  } catch {
     notFound();
   }
 }

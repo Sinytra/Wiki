@@ -17,7 +17,7 @@ import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination"
 function EmptyDeploymentsState() {
   return (
     <div className={`
-      border-tertiary bg-primary-dim flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-sm border
+      flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-sm border border-tertiary bg-primary-dim
       py-8
     `}>
       <div className="opacity-60">
@@ -44,7 +44,7 @@ function EmptyDeploymentsState() {
 function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
   return (
     <div className={`
-      bg-primary-dim flex w-full flex-1 flex-row items-center p-3 hover:bg-primary first:rounded-t-sm last:rounded-b-sm
+      flex w-full flex-1 flex-row items-center bg-primary-dim p-3 first:rounded-t-sm last:rounded-b-sm hover:bg-primary
     `}>
       <div className="flex flex-2 flex-row items-center gap-2">
         <span className="font-mono text-sm">
@@ -70,7 +70,7 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
               <span className="text-sm font-normal">{deployment.commit_message}</span>
             </>
             :
-            <span className="text-secondary text-sm">
+            <span className="text-sm text-secondary">
               N/A
             </span>
           }
@@ -125,7 +125,7 @@ export default function DevProjectDeploymentsTable({data}: { data: DevProjectDep
   return (
     <div>
       {data.data.length > 0 ?
-        <div className="border-secondary-dim flex border-collapse flex-col rounded-sm border">
+        <div className="flex border-collapse flex-col rounded-sm border border-secondary-dim">
           {...data.data.map(d => (
             <Link key={d.id} href={`deployments/${d.id}`} className={`
               border-secondary-dim [&:not(:first-of-type)]:border-t

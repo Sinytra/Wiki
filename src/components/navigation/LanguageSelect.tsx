@@ -57,8 +57,8 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
           <PopoverTrigger asChild>
             {minimal ?
               <button className={`
-                test-center ring-offset-background flex h-8 w-full items-center justify-start rounded-sm border-none
-                bg-transparent px-2 py-0 text-sm whitespace-nowrap placeholder:text-secondary hover:bg-secondary
+                test-center flex h-8 w-full items-center justify-start rounded-sm border-none bg-transparent px-2 py-0
+                text-sm whitespace-nowrap ring-offset-background placeholder:text-secondary hover:bg-secondary
                 focus:outline-hidden sm:h-7 sm:w-fit sm:max-w-32 sm:min-w-24 [&>svg:last-child]:hidden
               `}
               >
@@ -107,14 +107,14 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
                 <CommandGroup>
                   {...ordered.map((id) => {
                     const {name, icon, prefix} = availableLocales[id];
-                    let actualId = prefix || id;
+                    const actualId = prefix || id;
 
                     return (
                       <CommandItem
                         key={id}
                         value={actualId}
                         className={cn(`
-                          hover:bg-secondary hover:text-primary-alt inline-flex w-full items-center justify-start gap-3
+                          inline-flex w-full items-center justify-start gap-3 hover:bg-secondary hover:text-primary-alt
                         `, value == actualId && `pointer-events-none`)}
                         onSelect={(currentValue) => {
                           setValue(currentValue === value ? "" : currentValue);

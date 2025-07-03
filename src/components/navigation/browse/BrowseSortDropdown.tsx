@@ -18,19 +18,18 @@ export default function BrowseSortDropdown() {
 
   return (
       <div className="flex flex-row items-center gap-x-4">
-        <span className="text-primary text-sm">
+        <span className="text-sm text-primary">
           {t('sorting')}
         </span>
 
         <Select value={sort as string || undefined} defaultValue="relevance" onValueChange={setSort}>
-          <SelectTrigger className="border-secondary-dim w-[180px]">
+          <SelectTrigger className="w-[180px] border-secondary-dim">
             <SelectValue placeholder="Choose one"/>
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               {...sortTypes.map(type => (
                   <SelectItem key={type} value={type}>
-                    {/*@ts-ignore*/}
                     {t(`sort.${type}`)}
                   </SelectItem>
               ))}

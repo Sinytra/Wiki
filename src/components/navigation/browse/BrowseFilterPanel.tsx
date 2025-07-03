@@ -28,7 +28,7 @@ function FilterSearch({filter, setFilter, active, onReset}: {
 
   return (
       <div className="mt-2 flex w-full flex-row gap-2 pt-2 sm:mt-0">
-        <div className="text-secondary relative w-full">
+        <div className="relative w-full text-secondary">
           <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
           <Input
               className="border-secondary-dim pl-9 focus-visible:ring-0 focus-visible:outline-hidden"
@@ -61,7 +61,7 @@ function Category({name, icon: Icon, checked, onChange}: {
                   checked={checked}
                   onCheckedChange={(e) => onChange(e == true)}/>
         <Icon className="h-4 w-4"/>
-        <span className="text-primary text-sm">{name}</span>
+        <span className="text-sm text-primary">{name}</span>
       </div>
   )
 }

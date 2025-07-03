@@ -57,7 +57,7 @@ function DataField({title, className, icon: Icon, value, iconClass, href}: {
         {Icon && <Icon className={cn('absolute inset-0 top-1/2 left-3 size-4 -translate-y-1/2', iconClass)}/>}
         <div
           className={cn(`
-            border-quaternary bg-primary-dim flex h-10 w-full rounded-md border px-3 py-2 pl-9 align-bottom text-sm
+            flex h-10 w-full rounded-md border border-quaternary bg-primary-dim px-3 py-2 pl-9 align-bottom text-sm
             leading-5.5
           `,
             Icon && 'pl-9', href && 'underline-offset-4 hover:underline', className)}>
@@ -135,15 +135,15 @@ async function ProfileProject({project}: { project: DevProject }) {
       <DevProjectPageTitle title={u('title')} desc={u('desc')}/>
 
       <div
-        className="border-tertiary bg-primary-alt flex w-full flex-row gap-4 rounded-md border p-4">
+        className="flex w-full flex-row gap-4 rounded-md border border-tertiary bg-primary-alt p-4">
         <ImageWithFallback className="size-16 rounded-sm sm:size-19" src={platformProject.icon_url}
                            alt="Project icon" width={64} height={64}/>
 
         <div className="flex flex-col justify-between">
-          <p className="text-primary font-medium sm:text-lg">
+          <p className="font-medium text-primary sm:text-lg">
             {platformProject.name}
           </p>
-          <p className="text-secondary min-h-6 text-sm font-normal sm:text-base">
+          <p className="min-h-6 text-sm font-normal text-secondary sm:text-base">
             {platformProject.summary}
           </p>
         </div>
@@ -186,7 +186,7 @@ export default async function DevProjectPage(props: { params: Promise<{ locale: 
   const params = await props.params;
   setContextLocale(params.locale);
   const project = handleApiCall(await devProjectApi.getProject(params.project));
-  const token = authSession.getSession()?.token!;
+  const token = authSession.getSession()?.token ?? null;
 
   return (
     <GetStartedContextProvider>

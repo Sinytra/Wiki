@@ -24,7 +24,7 @@ export default async function Preview(props: { params: Promise<{ locale: string 
         {t('title')}
       </h1>
       
-      <span className="text-secondary mb-12 text-center">
+      <span className="mb-12 text-center text-secondary">
         {t('desc')}
       </span>
       

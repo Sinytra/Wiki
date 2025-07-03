@@ -38,7 +38,7 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
     <div
       onClick={() => !expanded && setExpanded(true)}
       className={cn(
-        'group border-secondary-dim bg-primary-dim flex w-full flex-col rounded-sm border',
+        'group flex w-full flex-col rounded-sm border border-secondary-dim bg-primary-dim',
         activeLevel.bg,
         !expanded && 'cursor-pointer', !expanded && activeLevel.bg_hover,
       )}
@@ -61,7 +61,7 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
 
         <ChevronDown
           className={`
-            text-secondary relative top-[1px] ml-1 size-4 transition-transform duration-200
+            relative top-[1px] ml-1 size-4 text-secondary transition-transform duration-200
             group-data-[state=open]:rotate-180
           `}
           aria-hidden="true"
@@ -74,16 +74,16 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
             {u(issue.subject)}
           </span>
 
-          <pre className="text-xsm text-secondary-alt my-2">
+          <pre className="my-2 text-xsm text-secondary-alt">
             {issue.details}
           </pre>
 
           <div className="space-y-1">
             {issue.file &&
-              <p className="text-secondary text-sm">
+              <p className="text-sm text-secondary">
                 {v.rich('file', {
                   file: () => (
-                    <span className="text-secondary-alt font-mono text-sm">
+                    <span className="font-mono text-sm text-secondary-alt">
                     {issue.file}
                   </span>
                   )
@@ -92,10 +92,10 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
             }
 
             {issue.version_name &&
-              <p className="text-secondary text-sm">
+              <p className="text-sm text-secondary">
                 {v.rich('version', {
                   version: () => (
-                    <span className="text-xsm text-secondary-alt font-mono">
+                    <span className="font-mono text-xsm text-secondary-alt">
                       {issue.version_name}
                     </span>
                   )
@@ -103,10 +103,10 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
               </p>
             }
 
-            <p className="text-secondary text-sm">
+            <p className="text-sm text-secondary">
               {v.rich('date', {
                 date: () => (
-                  <LocalDateTime className="text-secondary-alt text-sm"
+                  <LocalDateTime className="text-sm text-secondary-alt"
                                  form="yyyy-MM-dd HH:mm"
                                  dateTime={new Date(issue.created_at)}
                   />

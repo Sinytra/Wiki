@@ -33,9 +33,13 @@ async function RecipeBody({slug, recipe, type, params}: {
   params: ContentRouteParams
 }) {
   const background = await service.getAsset(slug, type.background, null);
-  const slot = (idx: string, input: boolean) => {
+  const slot = (key: string, input: boolean) => {
     const slots = input ? type.inputSlots : type.outputSlots;
-    return slots[idx];
+    const result = slots[key];
+    if (!result) {
+      console.error(`Missing recipe slot for recipe "${recipe.id}", key "${key}", input: ${input}`)
+    }
+    return result;
   };
 
   return (
@@ -45,6 +49,8 @@ async function RecipeBody({slug, recipe, type, params}: {
 
         {...recipe.inputs.map(async (input, i) => {
           const s = slot(input.slot, true);
+          if (!s) return null;
+
           const display = await createDisplayItems(input.items);
           return (
             <RotatingItemDisplaySlot src={display} key={i} className="absolute flex shrink-0" params={params}
@@ -54,6 +60,8 @@ async function RecipeBody({slug, recipe, type, params}: {
 
         {...recipe.outputs.map(async (output, i) => {
           const s = slot(output.slot, false);
+          if (!s) return null;
+
           const display = await createDisplayItems(output.items);
           return (
             <RotatingItemDisplaySlot src={display} key={i} className="absolute flex shrink-0" count={output.count}
@@ -69,12 +77,12 @@ async function RecipeWorkbenches({workbenches, params}: { workbenches: ResolvedI
   const t = await getTranslations('ResolvedProjectRecipe');
 
   return (
-    <div className="py-1 px-2">
-      <span className="text-secondary text-xsm">
+    <div className="px-2 py-1">
+      <span className="text-xsm text-secondary">
         {t('workbenches')}
       </span>
 
-      <div className="p-2 flex flex-row gap-2 flex-wrap">
+      <div className="flex flex-row flex-wrap gap-2 p-2">
         {...workbenches.map(async (item) => {
           const disp = await createDisplayItem(item);
           return (
@@ -99,7 +107,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
   const localizedName = recipeType.type.localizedName || await builtinRecipeTypes.getRecipeTypeName(recipeType.type.id);
 
   return (
-    <div className="[&>table]:mt-0 space-y-2!">
+    <div className="space-y-2! [&>table]:mt-0">
       <ClientLocaleProvider keys={['ResponsiveTable']}>
       <ResponsiveTable
         embedded={embedded}
@@ -119,7 +127,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
             type: {
               className: 'align-middle whitespace-nowrap',
               data: (
-                <div className="text-center p-1.5 sm:p-0">
+                <div className="p-1.5 text-center sm:p-0">
                   {localizedName}
                 </div>
               )

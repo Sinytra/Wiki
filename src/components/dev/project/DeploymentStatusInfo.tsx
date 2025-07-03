@@ -26,7 +26,7 @@ function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
       }
       {status == DeploymentStatus.ERROR &&
         <div className="flex w-5 justify-center">
-            <div className="bg-destructive size-2.5 rounded-full"/>
+            <div className="size-2.5 rounded-full bg-destructive"/>
         </div>
       }
     </>

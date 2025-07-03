@@ -56,7 +56,7 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
     resolver: zodResolver(schema)
   });
   const [isOpen, setIsOpen] = useState(false);
-  const action: () => void = form.handleSubmit(async (data) => {
+  const action: () => void = form.handleSubmit(async () => {
     start();
     setTimeout(() => setIsOpen(true), 500);
     await logoutAction();
