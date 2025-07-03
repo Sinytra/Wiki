@@ -93,12 +93,12 @@ async function resolveApiCall<T = never>(callback: () => Promise<Response>): Pro
   const contentType = resp.headers.get(CONTENT_TYPE) || '';
   const jsonBody = contentType.includes(APPLICATION_JSON);
 
-  if (resp.redirected) {
+  if (resp.status >= 300 && resp.status < 400) {
     return {
       type: 'redirect',
       status: resp.status,
       success: false,
-      url: resp.url,
+      url: resp.headers.get('location') || '',
       error: 'unknown'
     } satisfies ApiRedirectResponse;
   }
@@ -153,7 +153,8 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
     next: useCache ? {
       tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
       revalidate: (typeof options.cache == 'object' ? options.cache.revalidate : undefined) || ONE_WEEK
-    } : undefined
+    } : undefined,
+    redirect: 'manual'
   });
 }
 

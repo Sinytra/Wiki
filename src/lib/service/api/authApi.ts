@@ -14,7 +14,7 @@ async function linkModrinthAcount(): Promise<ApiCallResult> {
 }
 
 async function unlinkModrinthAcount(): Promise<ApiCallResult> {
-  return network.resolveApiCall(() => network.sendSimpleRequest('auth/unlink/modrinth'));
+  return network.resolveApiCall(() => network.sendSimpleRequest('auth/unlink/modrinth', { method: 'POST' }));
 }
 
 export default {
