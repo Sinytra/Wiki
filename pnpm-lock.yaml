@@ -141,6 +141,9 @@ importers:
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
       directory-tree:
         specifier: ^3.5.2
         version: 3.5.2

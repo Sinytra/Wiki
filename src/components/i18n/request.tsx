@@ -1,6 +1,7 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
 import locales from "@repo/shared/lang/locales";
+import deepmerge from "deepmerge";
 
 export default getRequestConfig(async ({requestLocale}) => {
   const locale = (await requestLocale) ?? 'locale';
@@ -9,8 +10,12 @@ export default getRequestConfig(async ({requestLocale}) => {
     notFound();
   }
 
+  const langMessages = (await import(`../../messages/${lang.file}.json`)).default;
+  const defaultMessages = (await import(`../../messages/en_US.json`)).default;
+  const messages = deepmerge(defaultMessages, langMessages);
+
   return {
     locale,
-    messages: (await import(`../../messages/${lang.file}.json`)).default
+    messages
   };
 });
