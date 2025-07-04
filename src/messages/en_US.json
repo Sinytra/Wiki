@@ -872,5 +872,8 @@
     },
     "ResponsiveTable": {
         "expand": "Expand"
+    },
+    "UsageContentList": {
+        "more": "Show more ..."
     }
 }

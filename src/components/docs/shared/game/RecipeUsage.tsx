@@ -4,6 +4,7 @@ import {getContentLink} from "@/lib/game/content";
 import Asset from "@/components/docs/shared/Asset";
 import service from "@/lib/service";
 import {getProjectParams} from "@/lib/utils";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 export default async function RecipeUsage({id}: { id: string }) {
   const params = getProjectParams();
@@ -19,12 +20,12 @@ export default async function RecipeUsage({id}: { id: string }) {
     <li key={item.id} className="first:mt-0">
       {item.has_page
         ?
-        <PageLink href={getContentLink(params as any, item.id)}>
+        <PageLink href={getContentLink(params as any, item.id)} className="flex flex-row items-center">
           <Asset project={item.project} location={item.id} className="mr-1.5!"/>
           <span>{item.name || item.id}</span>
         </PageLink>
         :
-        <div>
+        <div className="flex flex-row items-center">
           <Asset project={item.project} location={item.id} className="mr-1.5!"/>
           <span>{item.name || item.id}</span>
         </div>
@@ -39,7 +40,9 @@ export default async function RecipeUsage({id}: { id: string }) {
       </span>
 
       <div className="columns-[20em]">
-        <UsageContentList limit={12} content={rendered} />
+        <ClientLocaleProvider keys={['UsageContentList']}>
+          <UsageContentList limit={12} content={rendered}/>
+        </ClientLocaleProvider>
       </div>
     </div>
   )

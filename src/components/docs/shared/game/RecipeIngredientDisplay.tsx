@@ -10,8 +10,8 @@ export default function RecipeIngredientDisplay({tag, count, item, params}: { ta
   return (
     <div className="inline-flex items-center">
       <span>{count}x</span>
-      <ContentDiv href={href} target="_blank">
-        <div className="mx-1 inline-block">
+      <ContentDiv href={href} target="_blank" className="inline-flex items-center">
+        <div className="mx-1">
           <RotatingItemDisplaySlot noTooltip noLink src={[item]} tag={tag}/>
         </div>
         <span className={cn('font-medium text-primary-alt', href && 'underline')}>
