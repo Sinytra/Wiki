@@ -7,7 +7,6 @@ import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
 import {Suspense} from "react";
 import {getTranslations} from "next-intl/server";
 import DocsContentTOCSidebar from "@/components/docs/side/content/DocsContentTOCSidebar";
-import ContentListFooter from "@/components/docs/ContentListFooter";
 import DocsContentMetaSidebar from "@/components/docs/side/content/DocsContentMetaSidebar";
 import {Metadata, ResolvingMetadata} from "next";
 import platforms from "@repo/platforms";
@@ -17,6 +16,9 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 import DocsContentMetaSidebarBody from "@/components/docs/side/content/DocsContentMetaSidebarBody";
 import DocsSimpleHeader from "@/components/docs/layout/DocsSimpleHeader";
+import TogglableContent from "@/components/docs/content/TogglableContent";
+import ContentChangelog from "@/components/docs/content/ContentChangelog";
+import ContentListFooter from "@/components/docs/ContentListFooter";
 
 interface Props {
   params: Promise<{
@@ -62,6 +64,7 @@ export default async function ContentEntryPage(props: Props) {
   if (!page) redirect(`/project/${params.slug}/${params.version}/content`);
 
   const t = await getTranslations('DocsContentRightSidebar');
+  const u = await getTranslations('ContentChangelog');
 
   const contents = await service.getProjectContents(params.slug, params.version, params.locale);
   const headings = page.content.metadata._headings || [];
@@ -93,7 +96,15 @@ export default async function ContentEntryPage(props: Props) {
             <DocsEntryPage page={page}/>
           </Suspense>
 
-          {contents && <ContentListFooter project={page.project} contents={contents} version={params.version}/>}
+          {page.content.metadata.history &&
+            <TogglableContent title={u('toggle')} className="mb-6">
+                <ContentChangelog changelog={page.content.metadata.history}/>
+            </TogglableContent>
+          }
+
+          {contents &&
+            <ContentListFooter project={page.project} contents={contents} version={params.version} />
+          }
         </main>
 
         <DocsContentMetaSidebar title={t('title')} project={page.project}

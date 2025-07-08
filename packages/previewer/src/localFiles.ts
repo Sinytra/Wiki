@@ -2,7 +2,7 @@ import {FileTree} from "@repo/shared/types/service";
 import dirTee, {DirectoryTree} from "directory-tree";
 import {promises as fs} from "fs";
 import url from "url";
-import {LocalDocumentationFile, LocalDocumentationSource} from "./localDocs";
+import {LocalDocumentationFile, LocalDocumentationSource} from "./localDocsPages";
 
 async function readFileTree(source: LocalDocumentationSource): Promise<FileTree> {
   const tree = dirTee(`${source.path}`, {attributes: ['type']}).children || [];
