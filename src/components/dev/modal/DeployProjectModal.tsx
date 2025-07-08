@@ -56,7 +56,7 @@ export default function DeployProjectModal({action}: Properties) {
                 b: (chunks: any) => <span className="font-medium text-primary">{chunks}</span>
               })}
 
-              <IconModalSection className="mt-4" t={t} tKey="secondary" icon={ShieldIcon}/>
+              <IconModalSection className="mt-4" name="DeployProjectModal" tKey="secondary" icon={ShieldIcon}/>
               {/*<IconModalSection className="mt-4" t={t} tKey="tertiary" icon={LightbulbIcon} values={{*/}
               {/*  link: (chunks: any) => (*/}
               {/*    <LinkTextButton target="_blank" href="/about" className="font-normal! text-primary!">*/}
@@ -64,7 +64,7 @@ export default function DeployProjectModal({action}: Properties) {
               {/*    </LinkTextButton>*/}
               {/*  )*/}
               {/*}} />*/}
-              <IconModalSection className="mt-4 opacity-70" t={t} tKey="note" icon={InfoIcon}/>
+              <IconModalSection className="mt-4 opacity-70" name="DeployProjectModal" tKey="note" icon={InfoIcon}/>
             </div>
           </DialogDescription>
         </DialogHeader>

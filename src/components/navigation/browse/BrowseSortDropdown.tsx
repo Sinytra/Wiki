@@ -4,11 +4,13 @@ import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVal
 import {useQueryState} from "nuqs";
 import {useTranslations} from "next-intl";
 
+type SortType = 'relevance' | 'creation_date' | 'popularity' | 'az' | 'za';
+
 export default function BrowseSortDropdown() {
   const [sort, setSort] = useQueryState('sort', {shallow: false});
 
   const t = useTranslations('BrowsePage');
-  const sortTypes = [
+  const sortTypes: SortType[] = [
     'relevance',
     'creation_date',
     'popularity',

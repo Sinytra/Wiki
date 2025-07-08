@@ -41,7 +41,7 @@ import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTr
 export interface ProjectRegisterFormProps {
   defaultValues: any;
   isAdmin: boolean;
-  translations?: string;
+  translations?: Parameters<typeof useTranslations>[0];
   redirectToProject?: boolean;
   reloadAfterSubmit?: boolean;
 

@@ -157,12 +157,12 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
       //   reload(() => router.refresh());
       // }
     } else if (resp.error) {
-      // @ts-ignore
+      // @ts-expect-error expected
       form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});
       setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');
     } else if (resp.errors) {
       for (const key in resp.errors) {
-        // @ts-ignore
+        // @ts-expect-error expected
         form.setError(key, {message: u(`errors.${resp.errors[key][0]}`)});
       }
     }
@@ -189,13 +189,13 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
             </div>
           }
 
-          {/*@ts-ignore*/}
+          {/*@ts-expect-error expected*/}
           {form.formState.errors.root?.custom?.details &&
             <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
                 <summary className="mb-2">
                   {t('errors.details')}
                 </summary>
-              {/*@ts-ignore*/}
+              {/*@ts-expect-error expected*/}
                 <code className="text-xs">{form.formState.errors.root.custom.details}</code>
             </details>
           }
