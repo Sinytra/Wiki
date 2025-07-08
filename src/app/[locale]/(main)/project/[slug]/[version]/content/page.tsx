@@ -6,6 +6,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@repo/platforms";
 import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 import {ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";
+import {useTranslations} from "next-intl";
 
 interface Props {
   params: Promise<{
@@ -64,6 +65,7 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
     throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
   }
 
+  const t = useTranslations('ContentCategory');
   const enableCategories = entry.children.some(c => c.type === 'dir');
   const children = entry.children.filter(c => c.type == 'file');
 
@@ -84,12 +86,12 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
               <ContentSubcategory key={c.path} entry={c} slug={slug} version={version}/>
             ))}
             {children.length > 0 &&
-              <ContentSubcategory entry={{name: 'Other', children, type: 'dir', path: ''}}
+              <ContentSubcategory entry={{name: t('other'), children, type: 'dir', path: ''}}
                                   slug={slug} version={version}/>
             }
           </div>
           :
-          <ContentSubcategory entry={{name: 'All', children, type: 'dir', path: ''}}
+          <ContentSubcategory entry={{name: t('all'), children, type: 'dir', path: ''}}
                               slug={slug} version={version}/>
         }
       </div>

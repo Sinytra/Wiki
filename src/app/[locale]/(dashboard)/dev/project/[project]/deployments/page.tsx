@@ -35,7 +35,7 @@ export default async function DevProjectDeploymentsPage(props: Properties) {
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
   const content = handleApiCall(await devProjectApi.getProjectDeployments(params.project, {page: page.toString()}));
-  const token = authSession.getSession()?.token ?? null; // TODO
+  const token = (await authSession.getSession())?.token ?? null; // TODO
 
   return (
     <div className="space-y-3 pt-1">

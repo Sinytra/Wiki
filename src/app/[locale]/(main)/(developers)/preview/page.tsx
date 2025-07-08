@@ -6,6 +6,7 @@ import {getTranslations} from "next-intl/server";
 import {setContextLocale} from "@/lib/locales/routing";
 import previewer from "@repo/previewer";
 import env from "@repo/shared/env";
+import navigation from "@/lib/navigation";
 
 export default async function Preview(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
@@ -51,7 +52,7 @@ export default async function Preview(props: { params: Promise<{ locale: string 
               </div>
 
               <Button size="sm" asChild>
-                <NavLink href={`/project/${s.id}`}>
+                <NavLink href={navigation.getProjectLink(s.id)}>
                   {t('open')}
                 </NavLink>
               </Button>

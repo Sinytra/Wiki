@@ -3,17 +3,20 @@ import Asset from "@/components/docs/shared/Asset";
 import PageLink from "@/components/docs/PageLink";
 import {Link} from "@/lib/locales/routing";
 import {Project, ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";
+import {useTranslations} from "next-intl";
 
 function Category({content, slug, version}: { content: ProjectContentEntry; slug: string; version: string }) {
+  const t = useTranslations('ContentCategory');
+
   let subCategories: ProjectContentTree;
   if (content.children.some(c => c.type === 'dir')) {
     subCategories = content.children.filter(c => c.type === 'dir');
     const other = content.children.filter(c => c.type == 'file');
     if (other.length > 0) {
-      subCategories.push({name: 'Other', children: other, type: 'dir', path: ''});
+      subCategories.push({name: t('other'), children: other, type: 'dir', path: ''});
     }
   } else {
-    subCategories = [{name: 'All', children: content.children, type: 'dir', path: ''}];
+    subCategories = [{name: t('all'), children: content.children, type: 'dir', path: ''}];
   }
 
   return (

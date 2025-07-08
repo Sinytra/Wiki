@@ -1,5 +1,5 @@
 import {NextRequest} from "next/server";
-import { cookies, type UnsafeUnwrappedCookies } from 'next/headers';
+import {cookies} from 'next/headers';
 import {redirect} from "next/navigation";
 import envPublic from "@repo/shared/envPublic";
 
@@ -13,8 +13,8 @@ function isAuthenticated(cookies: NextRequest['cookies']) {
   return cookies.has(SESSION_KEY);
 }
 
-function getSession(): Session | null {
-  const store = (cookies() as unknown as UnsafeUnwrappedCookies);
+async function getSession(): Promise<Session | null> {
+  const store = await cookies();
   const result = store.get(SESSION_KEY);
   return result ? { token: result.value } : null;
 }

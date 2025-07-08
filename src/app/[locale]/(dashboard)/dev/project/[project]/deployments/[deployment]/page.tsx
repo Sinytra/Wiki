@@ -30,6 +30,7 @@ import {DeploymentStatus, FullDevProjectDeployment} from "@repo/shared/types/api
 import {ProjectIssue} from "@repo/shared/types/api/project";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
+import navigation from "@/lib/navigation";
 
 type Properties = {
   params: Promise<{
@@ -168,7 +169,7 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDe
 
         <div className="ml-auto flex flex-row gap-2">
           {deployment.active &&
-            <LocaleNavLink href={`/project/${deployment.project_id}`} target="_blank">
+            <LocaleNavLink href={navigation.getProjectLink(deployment.project_id)} target="_blank">
                 <Button size="sm">
                     <ExternalLinkIcon className="mr-2 h-4 w-4"/>
                     Visit

@@ -5,8 +5,10 @@ import Asset from "@/components/docs/shared/Asset";
 import service from "@/lib/service";
 import {getProjectParams} from "@/lib/utils";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import {getTranslations} from "next-intl/server";
 
 export default async function RecipeUsage({id}: { id: string }) {
+  const t = await getTranslations('RecipeUsage');
   const params = getProjectParams();
   const project = params.slug;
 
@@ -36,7 +38,7 @@ export default async function RecipeUsage({id}: { id: string }) {
   return (
     <div className="flex flex-col gap-3">
       <span>
-        Can be used to create the following items:
+        {t('description')}
       </span>
 
       <div className="columns-[20em]">

@@ -17,6 +17,7 @@ import {getTranslations} from "next-intl/server";
 import {resolveSoft, trimText} from "@/lib/utils";
 import {BaseProject} from "@repo/shared/types/service";
 import SafeImage from "@/components/util/SafeImage";
+import navigation from "@/lib/navigation";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
@@ -142,7 +143,7 @@ export default function BrowseProject({project}: { project: BaseProject }) {
       <div className="flex w-full flex-col gap-1">
         <div className="flex h-full w-full flex-col">
           <div className="inline-flex w-full gap-2">
-            <LinkTextButton href={`/project/${project.id}`} className={`
+            <LinkTextButton href={navigation.getProjectLink(project.id)} className={`
               w-fit! text-base! font-normal! text-primary sm:shrink-0 [&_]:text-lg
             `}>
               {project.name}

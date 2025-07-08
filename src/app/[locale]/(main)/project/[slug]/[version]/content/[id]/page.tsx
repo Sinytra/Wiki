@@ -8,7 +8,6 @@ import {Suspense} from "react";
 import {getTranslations} from "next-intl/server";
 import DocsContentTOCSidebar from "@/components/docs/side/content/DocsContentTOCSidebar";
 import ContentListFooter from "@/components/docs/ContentListFooter";
-import ProjectDocsMobileHeader from "@/components/docs/ProjectDocsMobileHeader";
 import DocsContentMetaSidebar from "@/components/docs/side/content/DocsContentMetaSidebar";
 import {Metadata, ResolvingMetadata} from "next";
 import platforms from "@repo/platforms";
@@ -16,6 +15,8 @@ import matter from "gray-matter";
 import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {RenderedDocsPage} from "@repo/shared/types/service";
+import DocsContentMetaSidebarBody from "@/components/docs/side/content/DocsContentMetaSidebarBody";
+import DocsSimpleHeader from "@/components/docs/layout/DocsSimpleHeader";
 
 interface Props {
   params: Promise<{
@@ -67,11 +68,11 @@ export default async function ContentEntryPage(props: Props) {
 
   return (
     <>
-      <ProjectDocsMobileHeader showRightSidebar={headings.length > 0}>
+      <DocsSimpleHeader>
         {page.content.metadata.title || page.project.name}
-      </ProjectDocsMobileHeader>
+      </DocsSimpleHeader>
 
-      <div className="flex w-full max-w-[1632px] flex-1 flex-row justify-between gap-4">
+      <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-between gap-4">
         <ClientLocaleProvider keys={['DocsNonContentRightSidebar']}>
           <DocsContentTOCSidebar headings={headings}/>
         </ClientLocaleProvider>
@@ -80,6 +81,14 @@ export default async function ContentEntryPage(props: Props) {
           mt-4 min-h-[86vh] flex-1 overflow-auto px-2 pb-6 sm:mt-0 sm:min-h-[auto] sm:max-w-5xl sm:pt-4 lg:px-0 lg:pt-2
         `}
         >
+          <div className="mb-6 sm:hidden">
+            <DocsContentMetaSidebarBody title={t('title')} project={page.project}
+                                        metadata={page.content.metadata}
+                                        version={params.version}
+                                        properties={page.properties}
+            />
+          </div>
+
           <Suspense fallback={<DocsLoadingSkeleton/>}>
             <DocsEntryPage page={page}/>
           </Suspense>
@@ -89,7 +98,9 @@ export default async function ContentEntryPage(props: Props) {
 
         <DocsContentMetaSidebar title={t('title')} project={page.project}
                                 metadata={page.content.metadata}
-                                version={params.version}/>
+                                version={params.version}
+                                properties={page.properties}
+        />
       </div>
     </>
   )

@@ -80,16 +80,20 @@ export interface LayoutTree {
   tree: FileTree;
 }
 
+export type ItemProperties = Record<string, any>;
+
 export interface DocumentationPage {
   project: Project;
   content: string;
   edit_url?: string;
+  properties?: ItemProperties | null;
 }
 
 export interface RenderedDocsPage {
   project: Project;
   content: DocumentationMarkdown;
   edit_url?: string;
+  properties?: ItemProperties | null;
 }
 
 export type ProjectSearchResults = PaginatedData<BaseProject>;

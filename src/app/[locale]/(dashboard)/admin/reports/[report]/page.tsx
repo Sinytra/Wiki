@@ -15,6 +15,7 @@ import {Textarea} from "@repo/ui/components/textarea";
 import RuleReportForm from "@/components/admin/report/RuleReportForm";
 import {handleRuleProjectReport} from "@/lib/forms/actions";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import navigation from "@/lib/navigation";
 
 function ReportField({title, value}: { title: string; value: string | null }) {
   return (
@@ -35,7 +36,9 @@ function ReportDetails({report}: { report: ProjectReport }) {
     <ClientLocaleProvider keys={['ViewReportPage']}>
       <RuleReportForm disabled={report.status !== 'new'} formAction={handleRuleProjectReport.bind(null, report.id)}>
         <div className="flex w-full flex-row flex-wrap gap-4">
-          <LocaleNavLink href={`/project/${report.project_id}`} className="grid w-full max-w-sm items-center gap-3">
+          <LocaleNavLink href={navigation.getProjectLink(report.project_id)} className={`
+            grid w-full max-w-sm items-center gap-3
+          `}>
             <Label>{t('project_id')}</Label>
             <Input value={report.project_id} className="cursor-pointer" readOnly/>
           </LocaleNavLink>

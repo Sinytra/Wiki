@@ -10,7 +10,7 @@ interface Props {
   children?: any
 }
 
-export default function ProjectDocsMobileHeader({showRightSidebar, children}: Props) {
+export default function DocsResponsiveHeader({showRightSidebar, children}: Props) {
   const {open, setOpen} = useContext(DocsSidebarContext)!;
 
   return (

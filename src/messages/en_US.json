@@ -875,5 +875,33 @@
     },
     "UsageContentList": {
         "more": "Show more ..."
+    },
+    "RecipeUsage": {
+        "description": "Can be used to create the following items:"
+    },
+    "ContentCategory": {
+        "all": "All",
+        "other": "Other"
+    },
+    "ContentProperties": {
+        "bool": {
+            "true": "Yes",
+            "false": "No"
+        },
+        "type": {
+            "block": "Block",
+            "item": "Item",
+            "other": "Other"
+        },
+        "properties": {
+            "id": "ID",
+            "source_mod": "Source mod",
+            "type": "Type",
+            "stack_size": "Stack size",
+            "required_tool": "Tool",
+            "blast_resistance": "Blast resistance",
+            "hardness": "Hardness",
+            "flammable": "Flammable"
+        }
     }
 }

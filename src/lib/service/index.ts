@@ -131,7 +131,8 @@ async function renderMarkdown(raw: DocumentationPage | null, patcher?: Component
     return {
       project: raw.project,
       content,
-      edit_url: raw.edit_url
+      edit_url: raw.edit_url,
+      properties: raw.properties
     };
   }
   return null;

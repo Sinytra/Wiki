@@ -16,7 +16,7 @@ export default async function Login(
   const params = await props.params;
   setContextLocale(params.locale);
 
-  const session = authSession.getSession();
+  const session = await authSession.getSession();
   if (session) {
     const callbackUrl = searchParams.callbackUrl as string | undefined;
     return redirect(callbackUrl || '/dev');

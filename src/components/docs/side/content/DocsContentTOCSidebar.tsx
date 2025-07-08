@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
-import { FileHeading } from "@repo/shared/types/metadata";
-import {cn} from "@repo/ui/lib/utils";;
+import {FileHeading} from "@repo/shared/types/metadata";
+import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 
 interface ContentRightSidebarProps {
@@ -67,7 +67,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
       title={t('title')}
       className={cn(
         'left-0 shrink-0',
-        'w-[96vw] sm:w-64'
+        'w-[96vw] sm:w-80'
       )}
       tagName="nav"
       solid

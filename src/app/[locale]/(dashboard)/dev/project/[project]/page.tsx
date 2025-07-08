@@ -36,6 +36,7 @@ import ImageWithFallback from "@/components/util/ImageWithFallback";
 import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDeployConnection";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import authSession from "@/lib/authSession";
+import navigation from "@/lib/navigation";
 
 export const dynamic = 'force-dynamic';
 
@@ -158,7 +159,7 @@ async function ProfileProject({project}: { project: DevProject }) {
       </div>
 
       <div className="flex flex-row flex-wrap items-center gap-4">
-        <LocaleNavLink href={`/project/${project.id}`} target="_blank">
+        <LocaleNavLink href={navigation.getProjectLink(project.id)} target="_blank">
           <Button variant="outline" size="sm">
             <ExternalLinkIcon className="mr-2 h-4 w-4"/>
             {t('toolbar.view')}
@@ -186,7 +187,7 @@ export default async function DevProjectPage(props: { params: Promise<{ locale: 
   const params = await props.params;
   setContextLocale(params.locale);
   const project = handleApiCall(await devProjectApi.getProject(params.project));
-  const token = authSession.getSession()?.token ?? null;
+  const token = (await authSession.getSession())?.token ?? null;
 
   return (
     <GetStartedContextProvider>

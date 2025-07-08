@@ -1,6 +1,6 @@
 import DocsGuideFileTreeSidebar from "@/components/docs/side/guide/DocsGuideFileTreeSidebar";
-import ProjectDocsMobileHeader from "@/components/docs/ProjectDocsMobileHeader";
 import {FileTree, Project} from "@repo/shared/types/service";
+import DocsResponsiveHeader from "@/components/docs/layout/DocsResponsiveHeader";
 
 interface Props {
   title: string;
@@ -17,9 +17,9 @@ interface Props {
 
 export default function DocsInnerLayoutClient({title, project, version, rightSidebar, footer, tree, showRightSidebar, children}: Props) {
   return <>
-    <ProjectDocsMobileHeader showRightSidebar={showRightSidebar}>
+    <DocsResponsiveHeader showRightSidebar={showRightSidebar}>
       {title}
-    </ProjectDocsMobileHeader>
+    </DocsResponsiveHeader>
 
     {/* Main Content Area */}
     <div className="flex w-full max-w-[1632px] flex-1 flex-row justify-between gap-4">
