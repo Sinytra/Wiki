@@ -16,10 +16,8 @@ import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGu
 import {constructPagePath} from "@/lib/service/serviceUtil";
 import env from "@repo/shared/env";
 import {RenderedDocsPage} from "@repo/shared/types/service";
-import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import issuesApi from "@repo/shared/api/issuesApi";
-import locales from "@repo/shared/lang/locales";
-import network from "@repo/shared/network";
+import navigation from "@/lib/navigation";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -30,8 +28,9 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const params = await props.params;
-  const page = await service.getDocsPage(params.slug, params.path, params.version, params.locale);
+  const {slug, version, locale, path} = await props.params;
+  const ctx = {id: slug, version, locale};
+  const page = await service.getDocsPage(path, false, ctx);
   if (!page) {
     return {title: (await parent).title?.absolute};
   }
@@ -42,7 +41,7 @@ export async function generateMetadata(
   return {
     title: result.title ? `${result.title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
     openGraph: {
-      images: [`/api/og?slug=${params.slug}&locale=${params.locale}&path=${params.path.join('/')}&version=${params.version}`]
+      images: [`/api/og?slug=${slug}&locale=${locale}&path=${path.join('/')}&version=${version}`]
     },
     other: {
       docs_source_mod: project.name,
@@ -51,33 +50,29 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProjectDocsPage(
-  props: {
-    params: Promise<{ slug: string; path: string[]; locale: string; version: string; }>
-  }
-) {
-  const params = await props.params;
-  setContextLocale(params.locale);
+export default async function ProjectDocsPage(props: { params: Promise<{ slug: string; path: string[]; locale: string; version: string; }> }) {
+  const {slug, version, locale, path} = await props.params;
+  const ctx = {id: slug, version, locale};
+  setContextLocale(locale);
 
-  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
+  const projectData = await service.getBackendLayout(ctx);
   if (!projectData) {
     return redirect('/');
   }
 
   let page: RenderedDocsPage | null;
   try {
-    page = await service.renderDocsPage(params.slug, params.path, params.version, params.locale);
+    page = await service.renderDocsPage(path, false, ctx);
   } catch (e) {
     console.error('FATAL error rendering page', e);
 
-    await issuesApi.reportPageRenderFailure(projectData.project, constructPagePath(params.path), e,
-      network.actualVersion(params.version), locales.actualLocale(params.locale));
+    await issuesApi.reportPageRenderFailure(projectData.project, constructPagePath(path), e, version, locale);
 
     return (
       <DocsPageNotFoundError project={projectData.project}/>
     );
   }
-  if (!page) redirect(`/project/${params.slug}/${DEFAULT_DOCS_VERSION}`);
+  if (!page) redirect(navigation.getProjectLink(slug));
 
   const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
     && page.content.metadata.hide_meta === undefined;
@@ -88,18 +83,18 @@ export default async function ProjectDocsPage(
     <DocsInnerLayoutClient title={page.content.metadata.title || page.project.name}
                            project={page.project}
                            tree={projectData.tree}
-                           version={params.version} locale={params.locale}
+                           version={version} locale={locale}
                            showRightSidebar={isContentPage || headings.length > 0}
                            rightSidebar={
                              isContentPage
                                ? <DocsGuideContentRightSidebar project={projectData.project}
                                                                metadata={page.content.metadata}
-                                                               version={params.version}/>
+                                                               version={version}/>
                                : <DocsGuideNonContentRightSidebar headings={headings}/>
                            }
                            footer={
                              <DocsPageFooter editUrl={page.edit_url}
-                                             slug={params.slug} path={params.path}
+                                             slug={slug} path={path}
                                              local={projectData.project.local}
                                              preview={isPreview}
                              />

@@ -6,9 +6,10 @@ import {getTranslations} from "next-intl/server";
 
 export default async function PrefabObtaining() {
   const params = getProjectContentParams();
+  const ctx = {id: params.slug, version: params.version, locale: params.locale};
   const t = await getTranslations('PrefabObtaining');
 
-  const recipes = await service.getContentRecipeObtaining(params.slug, params.id, params.version, params.locale);
+  const recipes = await service.getContentRecipeObtaining(params.id, ctx);
   // TODO Handle no recipes
   if (!recipes || recipes.length === 0) {
     return null;

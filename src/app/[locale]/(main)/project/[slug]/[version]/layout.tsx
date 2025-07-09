@@ -28,8 +28,8 @@ export async function generateMetadata(
   props: { params: Promise<{ slug: string; locale: string; version: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const params = await props.params;
-  const project = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
+  const {slug, version, locale} = await props.params;
+  const project = (await service.getBackendLayout({id: slug, version, locale}))?.project;
   if (!project) {
     return {title: (await parent).title?.absolute};
   }
@@ -39,24 +39,21 @@ export async function generateMetadata(
   return {
     title: `${platformProject.name} - ${(await parent).title?.absolute}`,
     openGraph: {
-      images: [`/api/og?slug=${params.slug}&locale=${params.locale}`],
+      images: [`/api/og?slug=${slug}&locale=${locale}`],
     }
   };
 }
 
 export default async function HomepageLayout(props: LayoutProps) {
-  const params = await props.params;
+  const {slug, version, locale} = await props.params;
+  const ctx = {id: slug, version, locale};
+  const {children} = props;
+  setContextLocale(locale);
 
-  const {
-    children
-  } = props;
-
-  setContextLocale(params.locale);
-
-  const project = await service.getProject(params.slug, params.version);
+  const project = await service.getProject(ctx);
   if (!project) {
-    if (params.version == LEGACY_DEFAULT_DOCS_VERSION) {
-      return redirect(`/${params.locale}/project/${params.slug}/${DEFAULT_DOCS_VERSION}`);
+    if (version == LEGACY_DEFAULT_DOCS_VERSION) {
+      return redirect(`/${locale}/project/${slug}/${DEFAULT_DOCS_VERSION}`);
     }
     return redirect('/');
   }
@@ -69,7 +66,7 @@ export default async function HomepageLayout(props: LayoutProps) {
         <DocsSidebarContextProvider>
           <ClientLocaleProvider keys={['DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'LanguageSelect', 'ModVersionRange']}>
             <DocsLayoutClient project={project}
-                              locale={params.locale} version={params.version}
+                              locale={locale} version={version}
                               platformProject={platformProject}>
               {children}
             </DocsLayoutClient>

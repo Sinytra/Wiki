@@ -15,7 +15,9 @@ export interface Props {
 }
 
 export default async function DocsContentMetaSidebarBody({project, metadata, version, properties}: Props) {
-  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(project.id, (metadata.icon || metadata.id)!, version);
+  const ctx = {id: project.id, version};
+  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null
+    : await service.getAsset((metadata.icon || metadata.id)!, ctx);
 
   const providedProps = {
     id: metadata.id,

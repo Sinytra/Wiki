@@ -17,7 +17,7 @@ interface Properties {
 }
 
 async function createDisplayItem(item: ResolvedItem): Promise<DisplayItem> {
-  const asset = await service.getAsset(item.project, item.id, null);
+  const asset = await service.getAsset(item.id, { id: item.project });
   return asset ? {...item, asset} satisfies DisplayItem
     : {...item, asset: {id: item.id, src: 'nonexistent'}} satisfies DisplayItem;
 }
@@ -32,7 +32,7 @@ async function RecipeBody({slug, recipe, type, params}: {
   type: GameRecipeType,
   params: ContentRouteParams
 }) {
-  const background = await service.getAsset(slug, type.background, null);
+  const background = await service.getAsset(type.background, { id: slug });
   const slot = (key: string, input: boolean) => {
     const slots = input ? type.inputSlots : type.outputSlots;
     const result = slots[key];
@@ -97,7 +97,8 @@ async function RecipeWorkbenches({workbenches, params}: { workbenches: ResolvedI
 export default async function ResolvedProjectRecipe({project, recipe, embedded, params}: Properties) {
   const t = await getTranslations('ResolvedProjectRecipe');
 
-  const recipeType = await service.getRecipeType(project, recipe.type, params.version, params.locale);
+  const ctx = { id: project, version: params.version, locale: params.locale };
+  const recipeType = await service.getRecipeType(recipe.type, ctx);
   if (!recipeType) {
     return null; // TODO
   }

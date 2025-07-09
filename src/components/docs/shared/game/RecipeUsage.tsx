@@ -10,9 +10,9 @@ import {getTranslations} from "next-intl/server";
 export default async function RecipeUsage({id}: { id: string }) {
   const t = await getTranslations('RecipeUsage');
   const params = getProjectParams();
-  const project = params.slug;
+  const ctx = {id: params.slug, version: params.version, locale: params.locale};
 
-  const usage = await service.getContentRecipeUsage(project, id, params.version, params.locale);
+  const usage = await service.getContentRecipeUsage(id, ctx);
   if (!usage) {
     return null;
   }

@@ -30,8 +30,9 @@ interface Props {
 }
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const params = await props.params;
-  const page = await service.getProjectContentPage(params.slug, params.id, params.version, params.locale);
+  const {id, slug, version, locale} = await props.params;
+  const ctx = {id: slug, version, locale};
+  const page = await service.getProjectContentPage(id, ctx);
   if (!page) {
     return {title: (await parent).title?.absolute};
   }
@@ -42,19 +43,20 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   return {
     title: result.title ? `${result.title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
     openGraph: {
-      images: [`/api/og?slug=${params.slug}&locale=${params.locale}&id=${params.id}`]
+      images: [`/api/og?slug=${slug}&locale=${locale}&id=${id}`]
     }
   }
 }
 
 export default async function ContentEntryPage(props: Props) {
   const params = await props.params;
+  const ctx = {id: params.slug, version: params.version, locale: params.locale};
   setContextLocale(params.locale);
   const id = decodeURIComponent(params.id);
 
   let page: RenderedDocsPage | null;
   try {
-    page = await service.renderProjectContentPage(params.slug, id, params.version, params.locale);
+    page = await service.renderProjectContentPage(id, ctx);
   } catch (e) {
     console.error('FATAL error rendering content page', e);
     return (
@@ -66,7 +68,7 @@ export default async function ContentEntryPage(props: Props) {
   const t = await getTranslations('DocsContentRightSidebar');
   const u = await getTranslations('ContentChangelog');
 
-  const contents = await service.getProjectContents(params.slug, params.version, params.locale);
+  const contents = await service.getProjectContents(ctx);
   const headings = page.content.metadata._headings || [];
 
   return (

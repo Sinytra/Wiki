@@ -13,7 +13,7 @@ import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 import {getTranslations} from "next-intl/server";
 import env from "@repo/shared/env";
-import {Project} from "@repo/shared/types/service";
+import {ProjectContext} from "@repo/shared/types/service";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -22,8 +22,9 @@ export async function generateMetadata(
   props: { params: Promise<{ slug: string; locale: string; version: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const params = await props.params;
-  const project = (await service.getBackendLayout(params.slug, params.version, params.locale))?.project;
+  const {slug, version, locale} = await props.params;
+  const ctx = {id: slug, version, locale};
+  const project = (await service.getBackendLayout(ctx))?.project;
   if (!project) {
     return {title: (await parent).title?.absolute};
   }
@@ -45,7 +46,7 @@ interface PageProps {
   }>;
 }
 
-async function renderHomepage(project: Project, platformProject: PlatformProject, version: string, locale: string): Promise<DocumentationMarkdown | null | undefined> {
+async function renderHomepage(platformProject: PlatformProject, ctx: ProjectContext): Promise<DocumentationMarkdown | null | undefined> {
   const patcher = (components: Record<string, any>) => {
     return {
       ...components,
@@ -57,7 +58,7 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
     }
   };
 
-  const result = await service.renderDocsPage(project.id, [HOMEPAGE_FILE_PATH], version, locale, true, patcher);
+  const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx, patcher);
   if (result) {
     return result.content;
   }
@@ -81,18 +82,19 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
 }
 
 export default async function ProjectDocsHomepage(props: PageProps) {
-  const params = await props.params;
-  setContextLocale(params.locale);
+  const {slug, version, locale} = await props.params;
+  const ctx = {id: slug, version, locale};
+  setContextLocale(locale);
   const t = await getTranslations('ProjectDocsHomepage');
 
-  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
+  const projectData = await service.getBackendLayout(ctx);
   if (!projectData) {
     return redirect('/');
   }
 
   const platformProject = await platforms.getPlatformProject(projectData.project);
 
-  const content = await renderHomepage(projectData.project, platformProject, params.version, params.locale);
+  const content = await renderHomepage(platformProject, ctx);
   const headings = content?.metadata._headings || [];
   const isPreview = env.isPreview();
 
@@ -100,10 +102,10 @@ export default async function ProjectDocsHomepage(props: PageProps) {
     <DocsInnerLayoutClient title={t('title')}
                            project={projectData.project}
                            tree={projectData.tree}
-                           version={params.version} locale={params.locale}
+                           version={version} locale={locale}
                            showRightSidebar={headings.length > 0}
                            rightSidebar={<DocsGuideNonContentRightSidebar headings={headings}/>}
-                           footer={<DocsPageFooter slug={params.slug} preview={isPreview}/>}
+                           footer={<DocsPageFooter slug={slug} preview={isPreview}/>}
     >
       {content === undefined ?
         <DocsContentTitle>

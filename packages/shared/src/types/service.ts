@@ -170,19 +170,25 @@ export interface DisplayItem extends ResolvedItem {
   asset: AssetLocation;
 }
 
+export interface ProjectContext {
+  id: string;
+  version?: string | null;
+  locale?: string | null;
+}
+
 export interface ServiceProvider {
-  getProject: (slug: string, version: string | null) => Promise<ProjectWithInfo | null>;
-  getBackendLayout: (slug: string, version: string | null, locale: string | null) => Promise<LayoutTree | null>;
-  getAsset: (slug: string, location: ResourceLocation, version: string | null) => Promise<AssetLocation | null>;
-  getDocsPage: (slug: string, path: string[], version: string | null, locale: string | null, optional?: boolean) => Promise<DocumentationPage | undefined | null>;
+  getProject: (ctx: ProjectContext) => Promise<ProjectWithInfo | null>;
+  getBackendLayout: (ctx: ProjectContext) => Promise<LayoutTree | null>;
+  getAsset: (location: ResourceLocation, ctx: ProjectContext) => Promise<AssetLocation | null>;
+  getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<DocumentationPage | undefined | null>;
   searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null>;
 
-  getProjectContents: (project: string, version: string | null, locale: string | null) => Promise<ProjectContentTree | null>;
-  getProjectContentPage: (project: string, id: string, version: string | null, locale: string | null) => Promise<DocumentationPage | null>;
-  getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe | null>;
-  getRecipeType: (project: string, type: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipeType | null>;
-  getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe[] | null>
-  getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null>;
+  getProjectContents: (ctx: ProjectContext) => Promise<ProjectContentTree | null>;
+  getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<DocumentationPage | null>;
+  getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe | null>;
+  getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGameRecipeType | null>;
+  getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null>
+  getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ContentRecipeUsage[] | null>;
 }
 
 export interface ServiceProviderFactory {

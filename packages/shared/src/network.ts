@@ -14,7 +14,7 @@ const APPLICATION_JSON = 'application/json';
 const ONE_DAY = 60 * 60 * 24;
 const ONE_WEEK = ONE_DAY * 7;
 
-export type ApiRouteParameters = Record<string, string | null>;
+export type ApiRouteParameters = Record<string, string | undefined | null>;
 
 interface ApiCallResultBase {
   success: boolean;

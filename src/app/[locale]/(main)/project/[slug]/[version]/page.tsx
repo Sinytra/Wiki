@@ -146,11 +146,12 @@ function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; c
 }
 
 export default async function ProjectHomepage(props: PageProps) {
-  const params = await props.params;
-  setContextLocale(params.locale);
+  const {slug, version, locale} = await props.params;
+  const ctx = {id: slug, version, locale};
+  setContextLocale(locale);
   const t = await getTranslations('ProjectHomepage');
 
-  const project = await service.getProject(params.slug, null);
+  const project = await service.getProject(ctx);
   if (!project) {
     return redirect('/');
   }

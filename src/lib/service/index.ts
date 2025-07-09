@@ -4,7 +4,7 @@ import {
   ContentRecipeUsage,
   DocumentationPage,
   LayoutTree,
-  ProjectContentTree,
+  ProjectContentTree, ProjectContext,
   ProjectSearchResults,
   ProjectWithInfo,
   RenderedDocsPage, ResolvedGameRecipe, ResolvedGameRecipeType,
@@ -55,19 +55,17 @@ async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
   return null;
 }
 
-const getProject: (slug: string, version: string | null) => Promise<ProjectWithInfo | null> = createProxy<'getProject'>(
-  (p, slug, version) => p.getProject(slug, version)
-);
-const getBackendLayout: (slug: string, version: string, locale: string) => Promise<LayoutTree | null> = createProxy<'getBackendLayout'>(
-  (p, slug, version, locale) => p.getBackendLayout(slug, version, locale)
-);
+const getProject: (ctx: ProjectContext) => Promise<ProjectWithInfo | null> =
+  createProxy<'getProject'>((p, ctx) => p.getProject(ctx));
+const getBackendLayout: (ctx: ProjectContext) => Promise<LayoutTree | null> =
+  createProxy<'getBackendLayout'>((p, ctx) => p.getBackendLayout(ctx));
 
-async function getAsset(slug: string | null, location: string, version: string | null): Promise<AssetLocation | null> {
+async function getAsset(location: string, ctx: ProjectContext | null): Promise<AssetLocation | null> {
   const resource = resourceLocation.parse(location);
   if (!resource) return null;
 
   // For builtin assets
-  if (!slug || resource.namespace === DEFAULT_NAMESPACE) {
+  if (!ctx || resource.namespace === DEFAULT_NAMESPACE) {
     const compatibleLocation = location.includes('/') ? location : prefixItemPath(location);
     const compatibleResource = resourceLocation.parse(compatibleLocation);
     if (!compatibleResource) return null;
@@ -75,46 +73,39 @@ async function getAsset(slug: string | null, location: string, version: string |
     return builtinAssets.getAssetResource(compatibleResource);
   }
 
-  return proxyServiceCall<'getAsset'>(p => p.getAsset(slug, resource, version));
+  return proxyServiceCall<'getAsset'>(p => p.getAsset(resource, ctx));
 }
 
-function getAssetURL(slug: string, location: string, version: string | null): AssetLocation | null {
-  return remoteServiceProviderFactory.isAvailable() ? remoteService.getAssetURL(slug, location, version) : null;
+function getAssetURL(location: string, ctx: ProjectContext): AssetLocation | null {
+  return remoteServiceProviderFactory.isAvailable() ? remoteService.getAssetURL(location, ctx) : null;
 }
 
-const getDocsPage: (slug: string, path: string[], version: string, locale: string, optional?: boolean) => Promise<DocumentationPage | null | undefined> = createProxy<'getDocsPage'>(
-  (p, slug, path, version, locale, optional) => p.getDocsPage(slug, path, version, locale, optional || false)
-)
+const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<DocumentationPage | null | undefined> =
+  createProxy<'getDocsPage'>((p, path, optional, ctx) => p.getDocsPage(path, optional || false, ctx));
 
-async function renderDocsPage(slug: string, path: string[], version: string, locale: string, optional?: boolean, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
-  const raw = await getDocsPage(slug, path, version, locale, optional) || null;
+async function renderDocsPage(path: string[], optional: boolean, ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
+  const raw = await getDocsPage(path, optional, ctx) || null;
   return renderMarkdown(raw, patcher);
 }
 
 const searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null> = createProxy<'searchProjects'>(
   (p, query, page, types, sort) => p.searchProjects(query, page, types, sort)
 );
-const getProjectContents: (project: string, version: string | null, locale: string | null) => Promise<ProjectContentTree | null> = createProxy<'getProjectContents'>(
-  (p, project, version, locale) => p.getProjectContents(project, version, locale)
-);
-const getProjectContentPage: (slug: string, id: string, version: string, locale: string) => Promise<DocumentationPage | null> = createProxy<'getProjectContentPage'>(
-  (p, slug, id, version, locale) => p.getProjectContentPage(slug, id, version, locale)
-);
-const getContentRecipeObtaining: (project: string, id: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe[] | null> = createProxy<'getContentRecipeObtaining'>(
-  (p, project, id, version, locale) => p.getContentRecipeObtaining(project, id, version, locale)
-);
-const getContentRecipeUsage: (project: string, id: string, version: string | null, locale: string | null) => Promise<ContentRecipeUsage[] | null> = createProxy<'getContentRecipeUsage'>(
-  (p, project, id, version, locale) => p.getContentRecipeUsage(project, id, version, locale)
-);
-const getProjectRecipe: (project: string, recipe: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipe | null> = createProxy<'getProjectRecipe'>(
-  (p, project, recipe, version, locale) => p.getProjectRecipe(project, recipe, version, locale)
-);
-const getRecipeType: (project: string, type: string, version: string | null, locale: string | null) => Promise<ResolvedGameRecipeType | null> = createProxy<'getRecipeType'>(
-  (p, project, type, version, locale) => p.getRecipeType(project, type, version, locale)
-);
+const getProjectContents: (ctx: ProjectContext) => Promise<ProjectContentTree | null> =
+  createProxy<'getProjectContents'>((p, ctx) => p.getProjectContents(ctx));
+const getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<DocumentationPage | null> =
+  createProxy<'getProjectContentPage'>((p, id, ctx) => p.getProjectContentPage(id, ctx));
+const getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null> =
+  createProxy<'getContentRecipeObtaining'>((p, id, ctx) => p.getContentRecipeObtaining(id, ctx));
+const getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ContentRecipeUsage[] | null> =
+  createProxy<'getContentRecipeUsage'>((p, id, ctx) => p.getContentRecipeUsage(id, ctx));
+const getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe | null> =
+  createProxy<'getProjectRecipe'>((p, recipe, ctx) => p.getProjectRecipe(recipe, ctx));
+const getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGameRecipeType | null> =
+  createProxy<'getRecipeType'>((p, type, ctx) => p.getRecipeType(type, ctx));
 
-async function renderProjectContentPage(project: string, id: string, version: string, locale: string): Promise<RenderedDocsPage | null> {
-  const raw = await getProjectContentPage(project, id, version, locale);
+async function renderProjectContentPage(id: string, ctx: ProjectContext): Promise<RenderedDocsPage | null> {
+  const raw = await getProjectContentPage(id, ctx);
   return renderMarkdown(raw);
 }
 

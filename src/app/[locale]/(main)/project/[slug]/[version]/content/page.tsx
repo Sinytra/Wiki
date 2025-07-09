@@ -100,10 +100,11 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
 }
 
 export default async function ProjectContentPage(props: Props) {
-  const params = await props.params;
-  setContextLocale(params.locale);
+  const {slug, version, locale} = await props.params;
+  const ctx = {id: slug, version, locale};
+  setContextLocale(locale);
 
-  const projectData = await service.getBackendLayout(params.slug, params.version, params.locale);
+  const projectData = await service.getBackendLayout(ctx);
   if (!projectData) {
     return redirect('/');
   }
@@ -111,7 +112,7 @@ export default async function ProjectContentPage(props: Props) {
 
   const platformProject = await platforms.getPlatformProject(project);
 
-  const contents = await service.getProjectContents(params.slug, params.version, params.locale);
+  const contents = await service.getProjectContents(ctx);
   if (!contents) {
     notFound();
   }
@@ -127,7 +128,7 @@ export default async function ProjectContentPage(props: Props) {
 
       <div className="flex flex-col gap-4">
         {...contents.map(e =>
-          (<ContentCategory key={e.path} slug={params.slug} version={params.version} entry={e}/>))
+          (<ContentCategory key={e.path} slug={slug} version={version} entry={e}/>))
         }
       </div>
     </div>

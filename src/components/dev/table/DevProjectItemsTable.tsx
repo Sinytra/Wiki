@@ -24,6 +24,7 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
   page: number;
 }) {
   const t = useTranslations('DevProjectItemsTable');
+  const ctx = {id: params.slug, version: params.version, locale: params.locale};
 
   const columns: TableColumn<ProjectContentPage>[] = [
     ordinalColumn,
@@ -33,7 +34,7 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
       cell: item => (
         <div className="flex size-7 shrink-0 items-center justify-center">
           <ImageWithFallback
-            src={service.getAssetURL(params.slug, item.id, params.version)?.src}
+            src={service.getAssetURL(item.id, ctx)?.src}
             alt="icon"
             className="size-7 shrink-0"
             width={28}

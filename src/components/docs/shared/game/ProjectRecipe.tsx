@@ -5,8 +5,9 @@ import {getProjectParams} from "@/lib/utils";
 export default async function ProjectRecipe({id, project}: { id: string; project?: string }) {
   const params = getProjectParams();
   const slug = project || params.slug;
+  const ctx = {id: slug, version: params.version, locale: params.locale};
 
-  const recipe = await service.getProjectRecipe(slug, id, params.version, params.locale);
+  const recipe = await service.getProjectRecipe(id, ctx);
   if (!recipe) {
     return null;
   }

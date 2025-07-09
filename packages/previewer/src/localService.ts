@@ -9,7 +9,7 @@ import {
   LayoutTree,
   Project,
   ProjectContentEntry,
-  ProjectContentTree,
+  ProjectContentTree, ProjectContext,
   ProjectSearchResults,
   ProjectWithInfo,
   ResolvedGameRecipe,
@@ -27,7 +27,7 @@ function findDocsFiles(entry: FileTreeEntry): FileTreeEntry[] {
   return entry.type === 'file' ? [entry] : entry.children.flatMap(findDocsFiles);
 }
 
-async function getLocalSourceContentTree(src: LocalDocumentationSource, locale: string | null): Promise<ProjectContentTree | null> {
+async function getLocalSourceContentTree(src: LocalDocumentationSource, locale?: string | null): Promise<ProjectContentTree | null> {
   const modifiedSrc = {...src, path: src.path + '/.content'};
   const tree = await localDocs.readDocsTree(modifiedSrc, locale || undefined);
   const processEntry: (e: FileTreeEntry) => Promise<ProjectContentEntry | null> = async (entry) => {
@@ -60,8 +60,8 @@ async function getLocalItemProperties(src: LocalDocumentationSource, id: string)
   return null;
 }
 
-async function getProject(slug: string): Promise<ProjectWithInfo | null> {
-  const src = await localDocs.getProjectSource(slug);
+async function getProject(ctx: ProjectContext): Promise<ProjectWithInfo | null> {
+  const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
     return sourceToProject(src)
   }
@@ -93,12 +93,12 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectWi
   };
 }
 
-async function getBackendLayout(slug: string, version: string | null, locale: string | null): Promise<LayoutTree | null> {
-  const src = await localDocs.getProjectSource(slug);
+async function getBackendLayout(ctx: ProjectContext): Promise<LayoutTree | null> {
+  const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
     const project = await sourceToProject(src);
     const locales = await localDocs.getAvailableLocales(src);
-    const tree = await localDocs.readDocsTree(src, locale || undefined);
+    const tree = await localDocs.readDocsTree(src, ctx.locale || undefined);
     return {
       project: {...project, locales},
       tree
@@ -107,13 +107,13 @@ async function getBackendLayout(slug: string, version: string | null, locale: st
   return null;
 }
 
-async function getAsset(slug: string, location: ResourceLocation, version: string | null): Promise<AssetLocation | null> {
-  const src = await localDocs.getProjectSource(slug);
+async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promise<AssetLocation | null> {
+  const src = await localDocs.getProjectSource(ctx.id);
   return src ? localAssets.resolveAsset(src.path, location) : null;
 }
 
-async function getDocsPage(slug: string, path: string[], version: string | null, locale: string | null, optional?: boolean): Promise<DocumentationPage | undefined | null> {
-  const src = await localDocs.getProjectSource(slug);
+async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContext): Promise<DocumentationPage | undefined | null> {
+  const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
     const platformProject = await platforms.getPlatformProject(src);
 
@@ -127,7 +127,7 @@ async function getDocsPage(slug: string, path: string[], version: string | null,
       type: platformProject.type,
       created_at: ''
     };
-    const file = await localDocs.readDocsFile(src, path, locale || undefined, optional);
+    const file = await localDocs.readDocsFile(src, path, ctx.locale || undefined, optional);
     if (file) {
       return {
         project,
@@ -143,20 +143,20 @@ async function searchProjects(query: string, page: number, types: string | null,
   return null;
 }
 
-async function getProjectRecipe(project: string, recipe: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipe | null> {
+async function getProjectRecipe(recipe: string, ctx: ProjectContext): Promise<ResolvedGameRecipe | null> {
   return null;
 }
 
-async function getProjectContents(project: string, version: string | null, locale: string | null): Promise<ProjectContentTree | null> {
-  const src = await localDocs.getProjectSource(project);
+async function getProjectContents(ctx: ProjectContext): Promise<ProjectContentTree | null> {
+  const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
-    return getLocalSourceContentTree(src, locale);
+    return getLocalSourceContentTree(src, ctx.locale);
   }
   return null;
 }
 
-async function getProjectContentPage(project: string, id: string, version: string | null, locale: string | null): Promise<DocumentationPage | null> {
-  const tree = await getProjectContents(project, version, locale);
+async function getProjectContentPage(id: string, ctx: ProjectContext): Promise<DocumentationPage | null> {
+  const tree = await getProjectContents(ctx);
   const findRecursive: (e: ProjectContentEntry) => string | null = (e) => {
     if (e.type === 'dir') {
       for (const child of e.children) {
@@ -174,9 +174,9 @@ async function getProjectContentPage(project: string, id: string, version: strin
     for (const e of tree) {
       const path = findRecursive(e);
       if (path) {
-        const page = await getDocsPage(project, ['.content', path], null, null, false);
+        const page = await getDocsPage(['.content', path], false, ctx);
         if (page) {
-          const src = await localDocs.getProjectSource(project);
+          const src = await localDocs.getProjectSource(ctx.id);
           const properties = await getLocalItemProperties(src!, id);
           return {...page, properties};
         }
@@ -186,15 +186,15 @@ async function getProjectContentPage(project: string, id: string, version: strin
   return null;
 }
 
-async function getContentRecipeUsage(project: string, id: string, version: string | null, locale: string | null): Promise<ContentRecipeUsage[] | null> {
+async function getContentRecipeUsage(id: string, ctx: ProjectContext): Promise<ContentRecipeUsage[] | null> {
   return null;
 }
 
-async function getContentRecipeObtaining(project: string, id: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipe[] | null> {
+async function getContentRecipeObtaining(id: string, ctx: ProjectContext): Promise<ResolvedGameRecipe[] | null> {
   return null;
 }
 
-async function getRecipeType(project: string, type: string, version: string | null, locale: string | null): Promise<ResolvedGameRecipeType | null> {
+async function getRecipeType(type: string, ctx: ProjectContext): Promise<ResolvedGameRecipeType | null> {
   return null;
 }
 

@@ -14,10 +14,12 @@ export default async function CraftingRecipe({slots, result, count}: Props) {
   const params = getParams() || {};
   const slug = params.slug as any;
   const version = (params.version || null) as any;
+  const locale = (params.locale || null) as any;
+  const ctx = {id: slug, version, locale};
 
   const displaySlots = slots.slice(0, Math.min(slots.length, 9));
-  const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : service.getAsset(slug, slot, version)));
-  const resultAsset = await service.getAsset(slug, result, version);
+  const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : service.getAsset(slot, ctx)));
+  const resultAsset = await service.getAsset(result, ctx);
 
   return (
     <div className="relative">

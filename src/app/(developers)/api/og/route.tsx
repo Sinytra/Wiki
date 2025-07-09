@@ -265,7 +265,7 @@ export async function GET(req: NextRequest) {
   const pathVal = searchParams.get('path');
   const idVal = searchParams.get('id');
   if (!idVal && !pathVal) {
-    const project = await service.getProject(slug, null);
+    const project = await service.getProject({id: slug});
     if (!project) {
       return NextResponse.json({'error': 'Project not found'}, {status: 400});
     }
@@ -273,9 +273,10 @@ export async function GET(req: NextRequest) {
     return projectPageImage(coords, platformProject, fonts);
   }
 
+  const ctx = {id: slug, version, locale};
   const page = idVal
-    ? await service.getProjectContentPage(slug, idVal, version, locale)
-    : await service.getDocsPage(slug, pathVal!.split('/'), version, locale);
+    ? await service.getProjectContentPage(idVal, ctx)
+    : await service.getDocsPage(pathVal!.split('/'), false, ctx);
   if (!page) {
     return NextResponse.json({'error': 'Page not found'}, {status: 400});
   }
@@ -283,7 +284,8 @@ export async function GET(req: NextRequest) {
   const project = await platforms.getPlatformProject(page.project);
   const metadata = matter(page.content).data as DocsEntryMetadata;
 
-  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null : await service.getAsset(slug, (metadata.icon || metadata.id)!, version);
+  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null
+    : await service.getAsset((metadata.icon || metadata.id)!, ctx);
 
   return docsEntryPageResponse({
     ...coords,
