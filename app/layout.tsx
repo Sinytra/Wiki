@@ -5,6 +5,7 @@ import Providers from "@/components/navigation/nav-progress-bar";
 import {Toaster} from "@/components/ui/sonner";
 import {ReactNode} from "react";
 import {cn, getProcessURL} from "@/lib/utils";
+import {PostHogProvider} from "@/src/components/integration/providers";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -24,11 +25,11 @@ export const metadata: Metadata = {
 
 export default function LocaleLayout({children}: Readonly<{ children: ReactNode; }>) {
   const jsonLd = {
-    '@context' : 'https://schema.org',
-    '@type' : 'WebSite',
-    name : 'Modded Minecraft Wiki',
-    alternateName : ['Sinytra Wiki', 'MMW'],
-    url : process.env.NEXT_PUBLIC_NEXT_APP_URL
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Modded Minecraft Wiki',
+    alternateName: ['Sinytra Wiki', 'MMW'],
+    url: process.env.NEXT_PUBLIC_NEXT_APP_URL
   };
 
   return (
@@ -36,13 +37,15 @@ export default function LocaleLayout({children}: Readonly<{ children: ReactNode;
     <head>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
       />
     </head>
     <body className={cn(inter.className, 'flex flex-col min-h-screen bg-primary text-primary')}>
-    <Providers>
-      {children}
-    </Providers>
+    <PostHogProvider>
+      <Providers>
+        {children}
+      </Providers>
+    </PostHogProvider>
     <Toaster toastOptions={{
       style: {
         background: 'var(--background-color-primary-alt)'
