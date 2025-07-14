@@ -1,11 +1,11 @@
 'use client'
 
 import {type ImgHTMLAttributes, useContext, useEffect, useMemo, useState} from "react";
-import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
 import {getExternalWikiLink, getResolvedItemLink} from "@/lib/game/content";
 import {HoverContext} from "@/components/util/HoverContextProvider";
 import {DisplayItem} from "@repo/shared/types/service";
+import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
 
 interface AdditionalProps {
   src: DisplayItem[];
@@ -50,8 +50,8 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
     const element = (
       <div {...props}>
         <div className="relative shrink-0">
-          <ItemDisplay noTitle asset={currentSrc.asset} alt={currentSrc.name ?? currentSrc.id}
-                       className="sharpRendering"/>
+          <ItemAssetDisplay noTitle asset={currentSrc.asset} alt={currentSrc.name ?? currentSrc.id}
+                            className="sharpRendering"/>
           {count && count > 1 &&
             <span
               className={`

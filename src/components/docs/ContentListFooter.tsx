@@ -1,5 +1,5 @@
 import ExpandableCategory from "@/components/docs/util/ExpandableCategory";
-import Asset from "@/components/docs/shared/Asset";
+import Asset from "@/components/docs/shared/asset/Asset";
 import PageLink from "@/components/docs/PageLink";
 import {Link} from "@/lib/locales/routing";
 import {Project, ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";

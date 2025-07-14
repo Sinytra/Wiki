@@ -1,5 +1,5 @@
 import {notFound, redirect} from "next/navigation";
-import Asset from "@/components/docs/shared/Asset";
+import Asset from "@/components/docs/shared/asset/Asset";
 import PageLink from "@/components/docs/PageLink";
 import service from "@/lib/service";
 import {setContextLocale} from "@/lib/locales/routing";

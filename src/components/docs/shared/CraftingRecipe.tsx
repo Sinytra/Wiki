@@ -1,8 +1,8 @@
-import ItemDisplay from "@/components/docs/shared/util/ItemDisplay";
 import Image from "next/image";
 import CraftingBackground from '@/components/assets/crafting_background.png';
 import {getParams} from "@nimpl/getters/get-params";
 import service from "@/lib/service";
+import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
 
 interface Props {
   slots: (string | null)[]
@@ -27,7 +27,7 @@ export default async function CraftingRecipe({slots, result, count}: Props) {
 
       <div className="absolute top-4 left-4 grid grid-cols-3 gap-1">
         {assetSlots.map((asset, index) => (
-          asset !== null ? <ItemDisplay key={index} asset={asset}/> : <div key={index}></div>
+          asset !== null ? <ItemAssetDisplay key={index} asset={asset}/> : <div key={index}></div>
         ))}
       </div>
 
@@ -35,7 +35,7 @@ export default async function CraftingRecipe({slots, result, count}: Props) {
           <div className="absolute top-[42px] left-[194px] flex h-[52px] w-[52px] items-center justify-center">
               <div className="relative -m-0.5 flex h-[36px] w-[36px] items-center justify-center p-0.5">
                 <div>
-                    <ItemDisplay asset={resultAsset}/>
+                    <ItemAssetDisplay asset={resultAsset}/>
                 </div>
                 {count && count > 1 &&
                     <span className={`

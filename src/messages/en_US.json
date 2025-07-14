@@ -721,18 +721,22 @@
         "nav": {
             "home": "Overview",
             "data_imports": "Data Imports",
+            "migrations": "Migrations",
             "users": "Users",
             "projects": "Projects",
             "config": "Configuration",
             "reports": "Reports",
             "audit_log": "Audit Log",
-            "logs": "System log",
             "return": "Return"
         }
     },
     "AdminDataImports": {
         "title": "System data imports",
         "desc": "Imported game data"
+    },
+    "AdminMigrations": {
+        "title": "Data migrations",
+        "desc": "Available data migrations"
     },
     "DataTable": {
         "no_results": "No results.",

@@ -6,8 +6,8 @@ import {
   FlagIcon,
   HistoryIcon,
   HouseIcon,
+  MapIcon,
   PencilRulerIcon,
-  ScrollTextIcon,
   ServerCogIcon,
   SettingsIcon,
   Undo2Icon,
@@ -48,7 +48,7 @@ export function AdminSidebar(props: Props) {
       items: [
         {
           title: t('nav.home'),
-          url: "/admin",
+          url: '/admin',
           icon: HouseIcon
         }
       ]
@@ -59,20 +59,19 @@ export function AdminSidebar(props: Props) {
       items: [
         {
           title: t('nav.data_imports'),
-          url: "/admin/data_imports",
+          url: '/admin/data_imports',
           icon: DatabaseIcon
         },
         {
           title: t('nav.config'),
-          url: "/admin/config",
+          url: '/admin/config',
           icon: SettingsIcon,
           disabled: true
         },
         {
-          title: t('nav.logs'),
-          url: "/admin/logs",
-          icon: ScrollTextIcon,
-          disabled: true
+          title: t('nav.migrations'),
+          url: '/admin/migrations',
+          icon: MapIcon
         }
       ]
     },
@@ -82,13 +81,13 @@ export function AdminSidebar(props: Props) {
       items: [
         {
           title: t('nav.projects'),
-          url: "/admin/projects",
+          url: '/admin/projects',
           icon: PencilRulerIcon,
           disabled: true
         },
         {
           title: t('nav.users'),
-          url: "/admin/users",
+          url: '/admin/users',
           icon: UsersIcon,
           disabled: true
         }
@@ -100,12 +99,12 @@ export function AdminSidebar(props: Props) {
       items: [
         {
           title: t('nav.reports'),
-          url: "/admin/reports",
+          url: '/admin/reports',
           icon: FlagIcon
         },
         {
           title: t('nav.audit_log'),
-          url: "/admin/audit_log",
+          url: '/admin/audit_log',
           icon: HistoryIcon,
           disabled: true
         }

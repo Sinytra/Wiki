@@ -7,7 +7,7 @@ import {cn} from "@repo/ui/lib/utils";
 
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & { asset: AssetLocation; noTitle?: boolean };
 
-export default function ItemDisplay({asset, width, height, alt, title, noTitle, ...props}: Props) {
+export default function ItemAssetDisplay({asset, width, height, alt, title, noTitle, ...props}: Props) {
   const imgRef = useRef(null);
   const [src, setSrc] = useState(asset.src);
 

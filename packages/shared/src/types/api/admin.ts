@@ -22,3 +22,9 @@ export interface SystemInfo {
   latest_data: DataImport;
   stats: SystemStats;
 }
+
+export interface DataMigration {
+  id: string;
+  title: string;
+  desc: string;
+}

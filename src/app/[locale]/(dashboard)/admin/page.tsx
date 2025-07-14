@@ -1,7 +1,7 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import {assertUserIsAdmin} from "@/lib/admin";
 import adminApi from "@/lib/service/api/adminApi";
-import Asset from "@/components/docs/shared/Asset";
+import Asset from "@/components/docs/shared/asset/Asset";
 import {PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon} from "lucide-react";
 import {ReactNode} from "react";
 import {handleApiCall} from "@/lib/service/serviceUtil";

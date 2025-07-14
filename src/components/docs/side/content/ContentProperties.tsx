@@ -1,5 +1,5 @@
 import {ItemProperties} from "@repo/shared/types/service";
-import Asset from "@/components/docs/shared/Asset";
+import Asset from "@/components/docs/shared/asset/Asset";
 import {useTranslations} from "next-intl";
 
 interface Props {
