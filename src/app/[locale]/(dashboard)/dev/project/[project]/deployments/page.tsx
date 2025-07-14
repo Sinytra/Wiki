@@ -24,7 +24,6 @@ type Properties = {
   }>
 }
 
-// TODO Mobile view
 export default async function DevProjectDeploymentsPage(props: Properties) {
   const searchParams = await props.searchParams;
   const params = await props.params;

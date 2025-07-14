@@ -44,7 +44,8 @@ function EmptyDeploymentsState() {
 function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
   return (
     <div className={`
-      flex w-full flex-1 flex-row items-center bg-primary-dim p-3 first:rounded-t-sm last:rounded-b-sm hover:bg-primary
+      flex w-full flex-1 flex-col gap-3 rounded-sm bg-primary-dim p-4 hover:bg-primary sm:flex-row sm:items-center
+      sm:gap-0 sm:rounded-none sm:p-3 sm:first:rounded-t-sm sm:last:rounded-b-sm
     `}>
       <div className="flex flex-2 flex-row items-center gap-2">
         <span className="font-mono text-sm">
@@ -77,15 +78,17 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
         </div>
       </div>
 
-      <LocalDateTime className="text-sm" form="LLL d, yyyy" dateTime={new Date(deployment.created_at)}/>
+      <div className="flex w-full flex-1 flex-row justify-between text-secondary sm:w-fit sm:justify-start">
+        <LocalDateTime className="text-sm" form="LLL d, yyyy" dateTime={new Date(deployment.created_at)}/>
 
-      <div className="flex flex-1 text-end text-sm">
-        <span className="w-full">
-          {deployment.user_id || '-'}
-        </span>
+        <div className="flex flex-1 text-end text-sm">
+          <span className="w-full">
+            {deployment.user_id || '-'}
+          </span>
+        </div>
       </div>
 
-      <div className="ml-4 flex items-center">
+      <div className="ml-4 hidden items-center sm:flex">
         <ContextDropdownMenu
           content={<>
             <DropdownMenuLabel>
@@ -125,10 +128,10 @@ export default function DevProjectDeploymentsTable({data}: { data: DevProjectDep
   return (
     <div>
       {data.data.length > 0 ?
-        <div className="flex border-collapse flex-col rounded-sm border border-secondary-dim">
+        <div className="flex border-collapse flex-col gap-2 rounded-sm border-secondary-dim sm:gap-0 sm:border">
           {...data.data.map(d => (
             <Link key={d.id} href={`deployments/${d.id}`} className={`
-              border-secondary-dim [&:not(:first-of-type)]:border-t
+              rounded-sm border border-secondary-dim sm:rounded-none sm:border-0 sm:[&:not(:first-of-type)]:border-t
             `}>
               <DeploymentEntry deployment={d}/>
             </Link>
