@@ -9,6 +9,7 @@ import ComponentWidget from "@/components/meta-docs/ComponentWidget";
 import CountryFlag from '@repo/ui/util/CountryFlag';
 import CodeHikeCode from "@repo/ui/blocks/markdown/CodeHikeCode";
 import CodeTabs from '@repo/ui/blocks/markdown/CodeTabs';
+import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
 
 // Used in meta-docs only
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -29,6 +30,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CodeTabs,
     Asset: BindableAsset.bind(null, null),
     ModAsset: ModAsset.bind(null, null), // Deprecated
+    CraftingRecipe: CraftingRecipe.bind(null, null),
     ComponentWidget,
     ...components,
     ...icons,

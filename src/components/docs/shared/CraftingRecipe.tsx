@@ -8,10 +8,10 @@ interface Props {
   slots: (string | null)[]
   result: string;
   count?: number;
-  ctx: ProjectContext;
+  ctx: ProjectContext | null;
 }
 
-export default async function CraftingRecipe(ctx: ProjectContext, props: Omit<Props, 'ctx'>) {
+export default async function CraftingRecipe(ctx: ProjectContext | null, props: Omit<Props, 'ctx'>) {
   return BoundCraftingRecipe({...props, ctx});
 }
 

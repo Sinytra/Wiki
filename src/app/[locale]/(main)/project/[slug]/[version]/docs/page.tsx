@@ -13,7 +13,8 @@ import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 import {getTranslations} from "next-intl/server";
 import env from "@repo/shared/env";
-import {ProjectContext} from "@repo/shared/types/service";
+import {Project, ProjectContext} from "@repo/shared/types/service";
+import issuesApi from "@repo/shared/api/issuesApi";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -46,7 +47,7 @@ interface PageProps {
   }>;
 }
 
-async function renderHomepage(platformProject: PlatformProject, ctx: ProjectContext): Promise<DocumentationMarkdown | null | undefined> {
+async function renderHomepage(project: Project, platformProject: PlatformProject, ctx: ProjectContext): Promise<DocumentationMarkdown | null | undefined> {
   const patcher = (components: Record<string, any>) => {
     return {
       ...components,
@@ -58,9 +59,15 @@ async function renderHomepage(platformProject: PlatformProject, ctx: ProjectCont
     }
   };
 
-  const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx, patcher);
-  if (result) {
-    return result.content;
+  try {
+    const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx, patcher);
+    if (result) {
+      return result.content;
+    }
+  } catch (err) {
+    console.error('Error rendering homepage!', err);
+
+    await issuesApi.reportPageRenderFailure(project, HOMEPAGE_FILE_PATH, err, ctx.version ?? null, ctx.locale ?? null);
   }
   // File does not exist, fallback to project desc
   if (platformProject.is_placeholder) {
@@ -94,7 +101,7 @@ export default async function ProjectDocsHomepage(props: PageProps) {
 
   const platformProject = await platforms.getPlatformProject(projectData.project);
 
-  const content = await renderHomepage(platformProject, ctx);
+  const content = await renderHomepage(projectData.project, platformProject, ctx);
   const headings = content?.metadata._headings || [];
   const isPreview = env.isPreview();
 
