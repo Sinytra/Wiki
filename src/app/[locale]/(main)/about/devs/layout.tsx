@@ -1,16 +1,13 @@
-import {ReactNode, use} from "react";
+import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import MetaDevDocsNavigation from "@/components/meta-docs/MetaDevDocsNavigation";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
-export const dynamic = 'force-static';
-
 type Params = Promise<{ locale: string }>;
 
-export default function AboutLayout(props: { params: Params; children: ReactNode; }) {
-  const params = use(props.params);
-  const {children} = props;
-  setContextLocale(params.locale);
+export default async function AboutLayout({params, children}: { params: Params; children: ReactNode; }) {
+  const {locale} = await params;
+  setContextLocale(locale);
 
   return (
     <div className="page-wrapper-ext flex w-full flex-col gap-4 md:flex-row md:justify-center">
