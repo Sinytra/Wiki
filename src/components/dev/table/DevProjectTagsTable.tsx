@@ -1,13 +1,12 @@
 import * as React from "react";
-import {ordinalColumn, TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
 import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentTag} from "@repo/shared/types/api/devProject";
 
-export default function DevProjectTagsTable({data, params, versions, page}: {
+export default function DevProjectTagsTable({data, versions, page}: {
   data: PaginatedData<ProjectContentTag>;
-  params: TableRouteParams;
   versions: ProjectVersions;
   page: number;
 }) {
@@ -32,7 +31,7 @@ export default function DevProjectTagsTable({data, params, versions, page}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} params={params} versions={versions} page={page}
+    <DataTable columns={columns} data={data} versions={versions} page={page}
                linker={r => `tags/${encodeURIComponent(r.id)}`}
     />
   )

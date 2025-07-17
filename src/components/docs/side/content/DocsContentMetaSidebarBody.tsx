@@ -2,7 +2,7 @@ import {AssetLocation} from "@repo/shared/assets";
 import service from "@/lib/service";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import ContentProperties from "@/components/docs/side/content/ContentProperties";
-import {ItemProperties, Project} from "@repo/shared/types/service";
+import {ItemProperties, Project, ProjectContext} from "@repo/shared/types/service";
 import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import ProjectLink from "@/components/navigation/paths/ProjectLink";
 
@@ -10,12 +10,11 @@ export interface Props {
   title: string;
   project: Project;
   metadata: DocsEntryMetadata;
-  version: string;
+  ctx: ProjectContext;
   properties?: ItemProperties | null;
 }
 
-export default async function DocsContentMetaSidebarBody({project, metadata, version, properties}: Props) {
-  const ctx = {id: project.id, version};
+export default async function DocsContentMetaSidebarBody({project, metadata, ctx, properties}: Props) {
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null
     : await service.getAsset((metadata.icon || metadata.id)!, ctx);
 
@@ -50,7 +49,7 @@ export default async function DocsContentMetaSidebarBody({project, metadata, ver
       }
 
       {!metadata.hide_meta &&
-        <ContentProperties properties={providedProps}/>
+        <ContentProperties properties={providedProps} ctx={ctx}/>
       }
     </div>
   )

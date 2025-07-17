@@ -11,20 +11,19 @@ import {ExternalLinkIcon, MoreHorizontal} from "lucide-react";
 import {getInternalWikiLink} from "@/lib/game/content";
 import * as React from "react";
 import service from "@/lib/service";
-import {ordinalColumn, TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
-import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
+import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentPage} from "@repo/shared/types/api/devProject";
 
-export default function DevProjectItemsTable({data, params, versions, page}: {
+export default function DevProjectItemsTable({data, ctx, versions, page}: {
   data: PaginatedData<ProjectContentPage>;
-  params: TableRouteParams;
+  ctx: ProjectContext;
   versions: ProjectVersions;
   page: number;
 }) {
   const t = useTranslations('DevProjectItemsTable');
-  const ctx = {id: params.slug, version: params.version, locale: params.locale};
 
   const columns: TableColumn<ProjectContentPage>[] = [
     ordinalColumn,
@@ -69,7 +68,7 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
     {
       id: 'link',
       header: '',
-      cell: (item, _, params) => !item.path ? null : (
+      cell: (item) => !item.path ? null : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="size-7 p-0 focus-visible:ring-0">
@@ -84,7 +83,7 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
               {t('actions.title')}
             </DropdownMenuLabel>
             <DropdownMenuItem>
-              <a href={getInternalWikiLink(item.id, params)} target="_blank"
+              <a href={getInternalWikiLink(item.id, ctx)} target="_blank"
                  className="flex w-full flex-row justify-between" rel="noreferrer">
                 {t('actions.view')}
                 <ExternalLinkIcon className="w-5"/>
@@ -98,6 +97,6 @@ export default function DevProjectItemsTable({data, params, versions, page}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} params={params} versions={versions} page={page} />
+    <DataTable columns={columns} data={data} versions={versions} page={page} />
   )
 }

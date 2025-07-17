@@ -1,14 +1,14 @@
 import * as React from "react";
-import {ordinalColumn, TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
 import {useTranslations} from "next-intl";
-import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
+import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentRecipe} from "@repo/shared/types/api/devProject";
 
-export default function DevProjectRecipesTable({data, params, versions, page}: {
+export default function DevProjectRecipesTable({data, ctx, versions, page}: {
   data: PaginatedData<ProjectContentRecipe>;
-  params: TableRouteParams;
+  ctx: ProjectContext;
   versions: ProjectVersions;
   page: number;
 }) {
@@ -34,12 +34,11 @@ export default function DevProjectRecipesTable({data, params, versions, page}: {
 
   const expander = (recipe: ProjectContentRecipe) => (
     <div className="my-2 prose max-w-fit prose-invert">
-      <ResolvedProjectRecipe project={params.slug} recipe={recipe.data} params={params} embedded/>
+      <ResolvedProjectRecipe recipe={recipe.data} ctx={ctx} embedded/>
     </div>
   );
 
   return (
-    <DataTable expandRows={expander} columns={columns} data={data} params={params} versions={versions}
-               page={page}/>
+    <DataTable expandRows={expander} columns={columns} data={data} versions={versions} page={page}/>
   )
 }

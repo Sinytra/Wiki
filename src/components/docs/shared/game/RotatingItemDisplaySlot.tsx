@@ -4,7 +4,7 @@ import {type ImgHTMLAttributes, useContext, useEffect, useMemo, useState} from "
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
 import {getExternalWikiLink, getResolvedItemLink} from "@/lib/game/content";
 import {HoverContext} from "@/components/util/HoverContextProvider";
-import {DisplayItem} from "@repo/shared/types/service";
+import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
 import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
 
 interface AdditionalProps {
@@ -12,7 +12,7 @@ interface AdditionalProps {
   count?: number;
   noTooltip?: boolean;
   noLink?: boolean;
-  params?: any;
+  ctx?: ProjectContext;
   tag?: string | null;
 }
 
@@ -20,7 +20,7 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & AdditionalProps;
 
 const INTERVAL = 2000;
 
-export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, params, tag, ...props}: Props) {
+export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, ctx, tag, ...props}: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentSrc = useMemo(() => src[currentIndex]!, [currentIndex, src]);
   const hoverCtx = useContext(HoverContext);
@@ -46,7 +46,7 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
   }, [src, hoverCtx]);
 
   const Content = () => {
-    const link = params ? getResolvedItemLink(params, currentSrc) : getExternalWikiLink(currentSrc.id);
+    const link = ctx ? getResolvedItemLink(ctx, currentSrc) : getExternalWikiLink(currentSrc.id);
     const element = (
       <div {...props}>
         <div className="relative shrink-0">

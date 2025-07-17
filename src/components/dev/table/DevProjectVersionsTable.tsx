@@ -1,12 +1,11 @@
 import * as React from "react";
-import {ordinalColumn, TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
 import {ProjectVersion, ProjectVersions} from "@repo/shared/types/api/devProject";
 
-export default function DevProjectVersionsTable({data, page, params}: {
+export default function DevProjectVersionsTable({data, page}: {
   data: ProjectVersions;
-  params: TableRouteParams;
   page: number;
 }) {
   const t = useTranslations('DevProjectVersionsTable');
@@ -30,6 +29,6 @@ export default function DevProjectVersionsTable({data, page, params}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} params={params} page={page} />
+    <DataTable columns={columns} data={data} page={page} />
   )
 }

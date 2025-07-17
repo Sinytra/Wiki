@@ -2,10 +2,16 @@ import ExpandableCategory from "@/components/docs/util/ExpandableCategory";
 import Asset from "@/components/docs/shared/asset/Asset";
 import PageLink from "@/components/docs/PageLink";
 import {Link} from "@/lib/locales/routing";
-import {Project, ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";
+import {Project, ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
 import {useTranslations} from "next-intl";
 
-function Category({content, slug, version}: { content: ProjectContentEntry; slug: string; version: string }) {
+interface Props {
+  project: Project;
+  ctx: ProjectContext;
+  contents: ProjectContentTree;
+}
+
+function Category({content, ctx}: { content: ProjectContentEntry; ctx: ProjectContext; }) {
   const t = useTranslations('ContentCategory');
 
   let subCategories: ProjectContentTree;
@@ -32,9 +38,9 @@ function Category({content, slug, version}: { content: ProjectContentEntry; slug
             {...i.children.map((c,i) => (
               <div key={c.path} className="flex flex-row items-center gap-1 text-sm">
                 {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
-                <PageLink href={`/project/${slug}/${version}/content/${c.id}`} local
+                <PageLink href={`/project/${ctx.id}/${ctx.version}/content/${c.id}`} local
                           className="flex flex-row items-center gap-1 !text-sm">
-                  <Asset location={c.id!} />
+                  <Asset location={c.id!} ctx={ctx} />
                   {c.name}
                 </PageLink>
               </div>
@@ -46,7 +52,7 @@ function Category({content, slug, version}: { content: ProjectContentEntry; slug
   )
 }
 
-export default function ContentListFooter({project, contents, version}: { project: Project, contents: ProjectContentTree; version: string }) {
+export default function ContentListFooter({project, ctx, contents}: Props) {
   return (
     <div className="not-prose">
       <hr className="mb-8"/>
@@ -60,7 +66,7 @@ export default function ContentListFooter({project, contents, version}: { projec
           <tr>
             <th colSpan={2} className="rounded-sm bg-secondary p-2">
               <Link className="underline-offset-4 hover:text-primary/80! hover:underline"
-                    href={`/project/${project.id}/${version}`}
+                    href={`/project/${ctx.id}/${ctx.version}`}
               >
                 {project.name}
               </Link>
@@ -70,7 +76,7 @@ export default function ContentListFooter({project, contents, version}: { projec
           </thead>
           <tbody className="table w-full">
           {...contents.map(c => (
-            <Category key={c.path} content={c} slug={project.id} version={version}/>
+            <Category key={c.path} content={c} ctx={ctx}/>
           ))}
           </tbody>
         </table>

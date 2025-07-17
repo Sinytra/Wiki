@@ -1,11 +1,10 @@
 import * as React from "react";
 import {DataImport, DataImports} from "@repo/shared/types/api/admin";
-import {TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 
-export default function AdminDataImportsTable({data, page, params}: {
+export default function AdminDataImportsTable({data, page}: {
   data: DataImports;
-  params: TableRouteParams;
   page: number;
 }) {
   const columns: TableColumn<DataImport>[] = [
@@ -54,6 +53,6 @@ export default function AdminDataImportsTable({data, page, params}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} params={params} page={page} />
+    <DataTable columns={columns} data={data} page={page} />
   )
 }

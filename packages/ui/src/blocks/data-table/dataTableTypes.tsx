@@ -1,15 +1,9 @@
 import { ReactNode, type JSX } from "react";
 
-export interface TableRouteParams {
-  locale: string;
-  slug: string;
-  version: string;
-}
-
 export interface TableColumn<T> {
   id: string;
   header: string;
-  cell: (item: T, index: number, params: TableRouteParams) => JSX.Element | null;
+  cell: (item: T, index: number) => JSX.Element | null;
   className?: string;
 }
 

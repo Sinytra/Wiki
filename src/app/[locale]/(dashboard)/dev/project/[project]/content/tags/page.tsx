@@ -1,6 +1,5 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import {parseAsInteger, parseAsString} from "nuqs/server";
-import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {getTranslations} from "next-intl/server";
 import DevProjectTagsTable from "@/components/dev/table/DevProjectTagsTable";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
@@ -37,11 +36,7 @@ export default async function DevProjectContentTagsPage(props: Properties) {
     <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <DevProjectTagsTable data={content}
-                           versions={project.versions || []}
-                           params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
-                           page={page}
-      />
+      <DevProjectTagsTable data={content} versions={project.versions || []} page={page}/>
     </div>
   )
 }

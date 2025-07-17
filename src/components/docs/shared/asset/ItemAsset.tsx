@@ -1,8 +1,9 @@
 import type {ImgHTMLAttributes} from "react";
 import AssetBase from "@/components/docs/shared/asset/AssetBase";
 import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
+import {ProjectContext} from "@repo/shared/types/service";
 
-type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & { project?: string; location: string };
+type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & { ctx: ProjectContext | null; location: string };
 
 export default async function ItemAsset({location, ...props}: Props) {
   return (

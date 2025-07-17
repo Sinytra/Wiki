@@ -1,19 +1,23 @@
 import service from "@/lib/service";
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
 import RecipeIngredientDisplay from "@/components/docs/shared/game/RecipeIngredientDisplay";
-import {ContentRouteParams} from "@/lib/game/content";
 import ResponsiveTable from "@/components/util/ResponsiveTable";
 import {getTranslations} from "next-intl/server";
 import HoverContextProvider from "@/components/util/HoverContextProvider";
-import {DisplayItem, GameRecipeType, ResolvedGameRecipe, ResolvedItem} from "@repo/shared/types/service";
+import {
+  DisplayItem,
+  GameRecipeType,
+  ProjectContext,
+  ResolvedGameRecipe,
+  ResolvedItem
+} from "@repo/shared/types/service";
 import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 interface Properties {
-  project: string;
   recipe: ResolvedGameRecipe;
   embedded?: boolean;
-  params: ContentRouteParams;
+  ctx: ProjectContext;
 }
 
 async function createDisplayItem(item: ResolvedItem): Promise<DisplayItem> {
@@ -26,13 +30,12 @@ async function createDisplayItems(items: ResolvedItem[]): Promise<DisplayItem[]>
   return Promise.all(items.map(createDisplayItem));
 }
 
-async function RecipeBody({slug, recipe, type, params}: {
-  slug: string;
+async function RecipeBody({recipe, type, ctx}: {
   recipe: ResolvedGameRecipe,
   type: GameRecipeType,
-  params: ContentRouteParams
+  ctx: ProjectContext
 }) {
-  const background = await service.getAsset(type.background, { id: slug });
+  const background = await service.getAsset(type.background, ctx);
   const slot = (key: string, input: boolean) => {
     const slots = input ? type.inputSlots : type.outputSlots;
     const result = slots[key];
@@ -53,7 +56,7 @@ async function RecipeBody({slug, recipe, type, params}: {
 
           const display = await createDisplayItems(input.items);
           return (
-            <RotatingItemDisplaySlot src={display} key={i} className="absolute flex shrink-0" params={params}
+            <RotatingItemDisplaySlot src={display} key={i} className="absolute flex shrink-0" ctx={ctx}
                                      style={{left: `${s.x}px`, top: `${s.y}px`}} tag={input.tag}/>
           )
         })}
@@ -65,7 +68,7 @@ async function RecipeBody({slug, recipe, type, params}: {
           const display = await createDisplayItems(output.items);
           return (
             <RotatingItemDisplaySlot src={display} key={i} className="absolute flex shrink-0" count={output.count}
-                                     params={params} style={{left: `${s.x}px`, top: `${s.y}px`}} tag={output.tag}/>
+                                     ctx={ctx} style={{left: `${s.x}px`, top: `${s.y}px`}} tag={output.tag}/>
           )
         })}
       </div>
@@ -73,7 +76,7 @@ async function RecipeBody({slug, recipe, type, params}: {
   )
 }
 
-async function RecipeWorkbenches({workbenches, params}: { workbenches: ResolvedItem[]; params: ContentRouteParams }) {
+async function RecipeWorkbenches({workbenches, ctx}: { workbenches: ResolvedItem[]; ctx: ProjectContext }) {
   const t = await getTranslations('ResolvedProjectRecipe');
 
   return (
@@ -86,7 +89,7 @@ async function RecipeWorkbenches({workbenches, params}: { workbenches: ResolvedI
         {...workbenches.map(async (item) => {
           const disp = await createDisplayItem(item);
           return (
-            <RotatingItemDisplaySlot src={[disp]} key={item.id} params={params}/>
+            <RotatingItemDisplaySlot src={[disp]} key={item.id} ctx={ctx}/>
           )
         })}
       </div>
@@ -94,10 +97,9 @@ async function RecipeWorkbenches({workbenches, params}: { workbenches: ResolvedI
   )
 }
 
-export default async function ResolvedProjectRecipe({project, recipe, embedded, params}: Properties) {
+export default async function ResolvedProjectRecipe({recipe, embedded, ctx}: Properties) {
   const t = await getTranslations('ResolvedProjectRecipe');
 
-  const ctx = { id: project, version: params.version, locale: params.locale };
   const recipeType = await service.getRecipeType(recipe.type, ctx);
   if (!recipeType) {
     return null; // TODO
@@ -114,7 +116,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
         embedded={embedded}
         expandedBody={recipeType.workbenches.length > 0 &&
           <div>
-            <RecipeWorkbenches workbenches={recipeType.workbenches} params={params} />
+            <RecipeWorkbenches workbenches={recipeType.workbenches} ctx={ctx} />
           </div>
         }
         columns={[
@@ -142,7 +144,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
                     .map(async ({count, item, tag}, index) => (
                       <li key={index}>
                         <RecipeIngredientDisplay tag={tag} count={count} item={await createDisplayItem(item)}
-                                                 params={params}/>
+                                                 ctx={ctx}/>
                       </li>
                     ))}
                 </ul>
@@ -157,7 +159,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
                     .map(async ({count, item, tag}, index) => (
                       <li key={index}>
                         <RecipeIngredientDisplay tag={tag} count={count} item={await createDisplayItem(item)}
-                                                 params={params}/>
+                                                 ctx={ctx}/>
                       </li>
                     ))}
                 </ul>
@@ -166,7 +168,7 @@ export default async function ResolvedProjectRecipe({project, recipe, embedded, 
             preview: {
               data: (
                 <div className="my-2 w-max p-2 sm:p-0">
-                  <RecipeBody slug={project} recipe={recipe} type={recipeType.type} params={params}/>
+                  <RecipeBody recipe={recipe} type={recipeType.type} ctx={ctx}/>
                 </div>
               )
             }

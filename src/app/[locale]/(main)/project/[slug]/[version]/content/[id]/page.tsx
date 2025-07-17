@@ -13,7 +13,7 @@ import platforms from "@repo/platforms";
 import matter from "gray-matter";
 import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {RenderedDocsPage} from "@repo/shared/types/service";
+import {ProjectContentContext, RenderedDocsPage} from "@repo/shared/types/service";
 import DocsContentMetaSidebarBody from "@/components/docs/side/content/DocsContentMetaSidebarBody";
 import DocsSimpleHeader from "@/components/docs/layout/DocsSimpleHeader";
 import TogglableContent from "@/components/docs/content/TogglableContent";
@@ -50,9 +50,14 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 
 export default async function ContentEntryPage(props: Props) {
   const params = await props.params;
-  const ctx = {id: params.slug, version: params.version, locale: params.locale};
   setContextLocale(params.locale);
   const id = decodeURIComponent(params.id);
+  const ctx = {
+    id: params.slug,
+    version: params.version,
+    locale: params.locale,
+    contentId: id
+  } satisfies ProjectContentContext;
 
   let page: RenderedDocsPage | null;
   try {
@@ -88,8 +93,7 @@ export default async function ContentEntryPage(props: Props) {
         >
           <div className="mb-6 sm:hidden">
             <DocsContentMetaSidebarBody title={t('title')} project={page.project}
-                                        metadata={page.content.metadata}
-                                        version={params.version}
+                                        metadata={page.content.metadata} ctx={ctx}
                                         properties={page.properties}
             />
           </div>
@@ -105,13 +109,12 @@ export default async function ContentEntryPage(props: Props) {
           }
 
           {contents &&
-            <ContentListFooter project={page.project} contents={contents} version={params.version} />
+            <ContentListFooter project={page.project} contents={contents} ctx={ctx}/>
           }
         </main>
 
         <DocsContentMetaSidebar title={t('title')} project={page.project}
-                                metadata={page.content.metadata}
-                                version={params.version}
+                                metadata={page.content.metadata} ctx={ctx}
                                 properties={page.properties}
         />
       </div>

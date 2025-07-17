@@ -5,47 +5,44 @@ import service from "@/lib/service";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@repo/platforms";
 import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
-import {ProjectContentEntry, ProjectContentTree} from "@repo/shared/types/service";
+import {ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
 import {useTranslations} from "next-intl";
+import {ProjectRouteParams} from "@repo/shared/types/routes";
 
 interface Props {
-  params: Promise<{
-    slug: string;
-    version: string;
-    locale: string;
-  }>;
+  params: Promise<ProjectRouteParams>;
 }
 
-function ContentEntryLink({entry, slug, version}: { entry: ProjectContentEntry; slug: string; version: string }) {
+function ContentEntryLink({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
   if (entry.type != 'file') {
     throw new Error('Bug? Unexpected ContentEntryLink entry type ' + entry.type);
   }
 
   return (
     <div>
-      <PageLink href={`/project/${slug}/${version}/content/${entry.id}`} local
+      <PageLink href={`/project/${ctx.id}/${ctx.version}/content/${entry.id}`} local
                 className="flex flex-row items-center gap-1 !text-sm">
-        <Asset location={entry.id!}/>
+        <Asset location={entry.id!} ctx={ctx}/>
         {entry.name}
       </PageLink>
     </div>
   )
 }
 
-function ContentEntryList({entries, slug, version}: { entries: ProjectContentTree; slug: string; version: string }) {
+function ContentEntryList({entries, ctx}: { entries: ProjectContentTree; ctx: ProjectContext; }) {
   return (
     <div className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
         <div key={c.path} className="flex flex-row flex-wrap items-center gap-1">
           {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
-          <ContentEntryLink entry={c} slug={slug} version={version}/>
+          <ContentEntryLink entry={c} ctx={ctx}/>
         </div>
       )}
     </div>
   )
 }
 
-function ContentSubcategory({entry, slug, version}: { entry: ProjectContentEntry; slug: string; version: string }) {
+function ContentSubcategory({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
   if (entry.type != 'dir') {
     throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
   }
@@ -55,12 +52,12 @@ function ContentSubcategory({entry, slug, version}: { entry: ProjectContentEntry
       <div className="shrink-0 text-end sm:w-24">
         <span className="text-sm font-medium">{entry.name}</span>
       </div>
-      <ContentEntryList entries={entry.children} slug={slug} version={version}/>
+      <ContentEntryList entries={entry.children} ctx={ctx}/>
     </div>
   )
 }
 
-function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; slug: string; version: string }) {
+function ContentCategory({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
   if (entry.type != 'dir') {
     throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
   }
@@ -83,16 +80,14 @@ function ContentCategory({entry, slug, version}: { entry: ProjectContentEntry; s
           ?
           <div className="flex flex-col gap-1">
             {...entry.children.filter(c => c.type === 'dir').map(c => (
-              <ContentSubcategory key={c.path} entry={c} slug={slug} version={version}/>
+              <ContentSubcategory key={c.path} entry={c} ctx={ctx}/>
             ))}
             {children.length > 0 &&
-              <ContentSubcategory entry={{name: t('other'), children, type: 'dir', path: ''}}
-                                  slug={slug} version={version}/>
+              <ContentSubcategory entry={{name: t('other'), children, type: 'dir', path: ''}} ctx={ctx}/>
             }
           </div>
           :
-          <ContentSubcategory entry={{name: t('all'), children, type: 'dir', path: ''}}
-                              slug={slug} version={version}/>
+          <ContentSubcategory entry={{name: t('all'), children, type: 'dir', path: ''}} ctx={ctx}/>
         }
       </div>
     </div>
@@ -128,7 +123,7 @@ export default async function ProjectContentPage(props: Props) {
 
       <div className="flex flex-col gap-4">
         {...contents.map(e =>
-          (<ContentCategory key={e.path} slug={slug} version={version} entry={e}/>))
+          (<ContentCategory key={e.path} ctx={ctx} entry={e}/>))
         }
       </div>
     </div>

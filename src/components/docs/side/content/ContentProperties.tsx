@@ -1,12 +1,13 @@
-import {ItemProperties} from "@repo/shared/types/service";
+import {ItemProperties, ProjectContext} from "@repo/shared/types/service";
 import Asset from "@/components/docs/shared/asset/Asset";
 import {useTranslations} from "next-intl";
 
 interface Props {
+  ctx: ProjectContext;
   properties: ItemProperties;
 }
 
-function ContentProperty({name, value}: { name: string; value: any }) {
+function ContentProperty({name, value, ctx}: { name: string; value: any; ctx: ProjectContext }) {
   const t = useTranslations('ContentProperties');
 
   if (name === 'id') {
@@ -19,7 +20,7 @@ function ContentProperty({name, value}: { name: string; value: any }) {
   if (name === 'required_tool') {
     // TODO Link item
     return (
-      <Asset location={value}/>
+      <Asset location={value} ctx={ctx}/>
     )
   }
   if (name === 'hardness' || name === 'blast_resistance') {
@@ -36,7 +37,7 @@ function ContentProperty({name, value}: { name: string; value: any }) {
   return value;
 }
 
-export default function ContentProperties({properties}: Props) {
+export default function ContentProperties({properties, ctx}: Props) {
   const t = useTranslations('ContentProperties');
   const order = ['stack_size', 'required_tool', 'blast_resistance', 'hardness', 'flammable'];
 
@@ -54,7 +55,7 @@ export default function ContentProperties({properties}: Props) {
                 {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}
               </td>
               <td className={`table-padding-sm border-r-0 border-b-0 border-l-0 text-sm`}>
-                <ContentProperty name={key} value={value}/>
+                <ContentProperty name={key} value={value} ctx={ctx}/>
               </td>
             </tr>
           ))}

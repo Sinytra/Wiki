@@ -36,10 +36,7 @@ export default async function DataImportsPage(props: Properties) {
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
       <ClientLocaleProvider keys={['DataTable']}>
-        <AdminDataImportsTable data={content}
-                               params={{locale: params.locale, slug: '', version: ''}}
-                               page={page}
-        />
+        <AdminDataImportsTable data={content} page={page}/>
       </ClientLocaleProvider>
     </div>
   )

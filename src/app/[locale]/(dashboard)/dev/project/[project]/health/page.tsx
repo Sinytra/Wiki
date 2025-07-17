@@ -36,6 +36,7 @@ function ProjectIssuesStatWidget({className, count, title, icon: Icon}: {
   )
 }
 
+// TODO LOCALE
 function ProjectIssuesHealthWidget({stats}: { stats: ProjectIssueStats }) {
   const styles = {
     error: {
@@ -130,6 +131,7 @@ export default async function DevProjectHealthPage(props: { params: Promise<{ lo
 
       <ProjectIssuesSummary stats={project.issue_stats || {} as ProjectIssueStats}/>
 
+      {/* TODO LOCALE */}
       <div className="mt-4 flex h-full flex-col gap-y-4">
         <DevProjectSectionTitle
           title="Issue details"

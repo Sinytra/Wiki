@@ -4,10 +4,14 @@ import {
   ContentRecipeUsage,
   DocumentationPage,
   LayoutTree,
-  ProjectContentTree, ProjectContext,
+  ProjectContentContext,
+  ProjectContentTree,
+  ProjectContext,
   ProjectSearchResults,
   ProjectWithInfo,
-  RenderedDocsPage, ResolvedGameRecipe, ResolvedGameRecipeType,
+  RenderedDocsPage,
+  ResolvedGameRecipe,
+  ResolvedGameRecipeType,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -24,8 +28,8 @@ import ModAsset from "@/components/docs/shared/asset/ModAsset";
 import Callout from "@/components/docs/shared/Callout";
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 import PageLink from "@/components/docs/PageLink";
-import Asset from "@/components/docs/shared/asset/Asset";
-import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
+import {BindableAsset} from "@/components/docs/shared/asset/Asset";
+import {BindableRecipeUsage} from "@/components/docs/shared/game/RecipeUsage";
 import CodeHikeCode from "@repo/ui/blocks/markdown/CodeHikeCode";
 import CodeTabs from "@repo/ui/blocks/markdown/CodeTabs";
 
@@ -85,7 +89,7 @@ const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => P
 
 async function renderDocsPage(path: string[], optional: boolean, ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
   const raw = await getDocsPage(path, optional, ctx) || null;
-  return renderMarkdown(raw, patcher);
+  return renderMarkdown(raw, ctx, patcher);
 }
 
 const searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null> = createProxy<'searchProjects'>(
@@ -104,18 +108,25 @@ const getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<Resolve
 const getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGameRecipeType | null> =
   createProxy<'getRecipeType'>((p, type, ctx) => p.getRecipeType(type, ctx));
 
-async function renderProjectContentPage(id: string, ctx: ProjectContext): Promise<RenderedDocsPage | null> {
+async function renderProjectContentPage(id: string, ctx: ProjectContext | ProjectContentContext): Promise<RenderedDocsPage | null> {
   const raw = await getProjectContentPage(id, ctx);
-  return renderMarkdown(raw);
+  return renderMarkdown(raw, ctx);
 }
 
-async function renderMarkdown(raw: DocumentationPage | null, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
+async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
   if (raw) {
     const components = {
-      CraftingRecipe, Callout, CodeHikeCode, ModAsset, Asset, CodeTabs, ProjectRecipe, ContentLink, RecipeUsage,
-      PrefabObtaining, PrefabUsage,
+      Asset: BindableAsset.bind(null, ctx),
+      ContentLink: ContentLink.bind(null, ctx),
+      CraftingRecipe: CraftingRecipe.bind(null, ctx),
+      ModAsset: ModAsset.bind(null, ctx),
+      ProjectRecipe: ProjectRecipe.bind(null, ctx),
+      RecipeUsage: BindableRecipeUsage.bind(null, ctx),
+      PrefabUsage: PrefabUsage.bind(null, ctx),
+      PrefabObtaining: PrefabObtaining.bind(null, ctx),
       h2: LinkAwareHeading,
-      a: PageLink
+      a: PageLink,
+      Callout, CodeHikeCode, CodeTabs,
     }
 
     const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);

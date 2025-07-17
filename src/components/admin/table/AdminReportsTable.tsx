@@ -1,12 +1,11 @@
 import * as React from "react";
-import {TableColumn, TableRouteParams} from "@repo/ui/blocks/data-table/dataTableTypes";
+import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {ProjectReport, ProjectReports} from "@repo/shared/types/api/moderation";
 import {useTranslations} from "next-intl";
 
-export default function AdminReportsTable({data, page, params}: {
+export default function AdminReportsTable({data, page}: {
   data: ProjectReports;
-  params: TableRouteParams;
   page: number;
 }) {
   const t = useTranslations('ProjectReportReason');
@@ -58,7 +57,7 @@ export default function AdminReportsTable({data, page, params}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} params={params} page={page}
+    <DataTable columns={columns} data={data} page={page}
                linker={r => `reports/${encodeURIComponent(r.id)}`}/>
   )
 }

@@ -3,7 +3,7 @@ import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import {ReactNode} from "react";
 import {useTranslations} from "next-intl";
-import {TableColumn, TableRouteParams, TableRowLinker} from "@repo/ui/blocks/data-table/dataTableTypes";
+import {TableColumn, TableRowLinker} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTableClient from "@repo/ui/blocks/data-table/DataTableClient";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
@@ -12,21 +12,12 @@ interface Properties<T> {
   expandRows?: (row: T) => ReactNode | null;
   columns: TableColumn<T>[];
   data: PaginatedData<T>;
-  params: TableRouteParams;
   versions?: ProjectVersions;
   linker?: TableRowLinker<T>;
   page: number;
 }
 
-export default function DataTable<T>({
-                                       columns,
-                                       expandRows,
-                                       data,
-                                       params: routeParams,
-                                       page,
-                                       versions,
-                                       linker
-                                     }: Properties<T>) {
+export default function DataTable<T>({columns, expandRows, data, page, versions, linker}: Properties<T>) {
   const offset = data.size * (page - 1);
   const t = useTranslations('DataTable');
 
@@ -56,7 +47,7 @@ export default function DataTable<T>({
                      key={col.id}
           >
             <div className="scrollbar-none overflow-auto">
-              {col.cell(item, i + offset, routeParams)}
+              {col.cell(item, i + offset)}
             </div>
           </TableCell>
         ))}

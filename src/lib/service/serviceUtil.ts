@@ -1,8 +1,6 @@
 import authSession from "@/lib/authSession";
 import {ApiCallResult} from "@repo/shared/network";
-import {notFound} from "next/navigation";
-import {getParams} from "@nimpl/getters/get-params";
-import {redirect} from "@/lib/locales/routing";
+import {notFound, redirect} from "next/navigation";
 
 export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T {
   // Success
@@ -23,8 +21,7 @@ export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T
 
   if (result.status === 404) {
     if (returnTo) {
-      const params = getParams() as any;
-      redirect({href: returnTo, locale: params.locale});
+      redirect(returnTo);
     } else {
       // TODO Not found pages
       notFound();

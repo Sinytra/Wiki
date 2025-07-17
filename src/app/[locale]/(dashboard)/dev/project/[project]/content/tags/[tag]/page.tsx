@@ -51,7 +51,7 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
 
       <DevProjectItemsTable data={content}
                             versions={project.versions || []}
-                            params={{locale: params.locale, slug: params.project, version: DEFAULT_DOCS_VERSION}}
+                            ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
                             page={page}
       />
     </div>

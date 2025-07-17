@@ -76,7 +76,7 @@ export default async function AdminPanelHome(props: Props) {
           title="Game version"
           value={systemInfo.latest_data.game_version}
           icon={
-            <Asset location="minecraft:grass_block" width={20} height={20} />
+            <Asset location="minecraft:grass_block" width={20} height={20} ctx={null} />
           }
         />
 

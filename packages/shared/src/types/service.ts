@@ -176,6 +176,10 @@ export interface ProjectContext {
   locale?: string | null;
 }
 
+export interface ProjectContentContext extends ProjectContext {
+  contentId: string;
+}
+
 export interface ServiceProvider {
   getProject: (ctx: ProjectContext) => Promise<ProjectWithInfo | null>;
   getBackendLayout: (ctx: ProjectContext) => Promise<LayoutTree | null>;

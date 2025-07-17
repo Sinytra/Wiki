@@ -1,22 +1,21 @@
 import Image from "next/image";
 import CraftingBackground from '@/components/assets/crafting_background.png';
-import {getParams} from "@nimpl/getters/get-params";
 import service from "@/lib/service";
 import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
+import {ProjectContext} from "@repo/shared/types/service";
 
 interface Props {
   slots: (string | null)[]
   result: string;
   count?: number;
+  ctx: ProjectContext;
 }
 
-export default async function CraftingRecipe({slots, result, count}: Props) {
-  const params = getParams() || {};
-  const slug = params.slug as any;
-  const version = (params.version || null) as any;
-  const locale = (params.locale || null) as any;
-  const ctx = {id: slug, version, locale};
+export default async function CraftingRecipe(ctx: ProjectContext, props: Omit<Props, 'ctx'>) {
+  return BoundCraftingRecipe({...props, ctx});
+}
 
+async function BoundCraftingRecipe({ctx, slots, result, count}: Props) {
   const displaySlots = slots.slice(0, Math.min(slots.length, 9));
   const assetSlots = await Promise.all(displaySlots.map(async slot => slot === null ? null : service.getAsset(slot, ctx)));
   const resultAsset = await service.getAsset(result, ctx);

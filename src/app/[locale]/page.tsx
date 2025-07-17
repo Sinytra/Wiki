@@ -42,7 +42,7 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   const t = useTranslations('HomePage');
   const projectTypes = useTranslations('ProjectTypes');
 
-  const height = resolved.length == 1 ? 100 : Math.floor(resolved.length / 3.0);
+  const height = resolved.length == 1 ? 100 : Math.floor(100 / resolved.length);
   const style = { "--default-max-h": `${height}%` } as CSSProperties;
 
   return resolved.map((project, index) => (

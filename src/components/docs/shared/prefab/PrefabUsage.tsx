@@ -1,10 +1,13 @@
-import {getProjectContentParams} from "@/lib/utils";
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 import {getTranslations} from "next-intl/server";
 import RecipeUsage from "@/components/docs/shared/game/RecipeUsage";
+import {ProjectContentContext, ProjectContext} from "@repo/shared/types/service";
 
-export default async function PrefabUsage() {
-  const params = getProjectContentParams();
+export default async function PrefabUsage(ctx: ProjectContext) {
+  return BoundPrefabUsage({ctx});
+}
+
+async function BoundPrefabUsage({ctx}: { ctx: ProjectContext | ProjectContentContext }) {
   const t = await getTranslations('PrefabUsage');
 
   return (
@@ -13,7 +16,7 @@ export default async function PrefabUsage() {
         {t('usage')}
       </LinkAwareHeading>
 
-      <RecipeUsage id={params.id} />
+      {'contentId' in ctx && <RecipeUsage id={ctx.contentId} ctx={ctx} />}
     </div>
   )
 }

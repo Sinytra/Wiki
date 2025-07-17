@@ -1,23 +1,21 @@
 import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
 
-import {ResolvedItem} from "@repo/shared/types/service";
+import {ProjectContext, ResolvedItem} from "@repo/shared/types/service";
+import {ProjectRouteParams} from "@repo/shared/types/routes";
 
-export interface ContentRouteParams {
-  locale: string;
-  slug: string;
-  version: string;
+export function getResolvedItemLink(params: ProjectRouteParams | ProjectContext, item: ResolvedItem): string | null {
+  const slug = 'slug' in params ? params.slug : params.id;
+  return getExternalWikiLink(item.id) ?? (item.has_page ? `/${params.locale}/project/${slug}/${params.version}/content/${item.id}` : null);
 }
 
-export function getResolvedItemLink(params: ContentRouteParams, item: ResolvedItem): string | null {
-  return getExternalWikiLink(item.id) ?? (item.has_page ? `/${params.locale}/project/${params.slug}/${params.version}/content/${item.id}` : null);
+export function getContentLink(params: ProjectRouteParams | ProjectContext, id: string): string {
+  const slug = 'slug' in params ? params.slug : params.id;
+  return getExternalWikiLink(id) ?? `/${params.locale}/project/${slug}/${params.version}/content/${id}`;
 }
 
-export function getContentLink(params: ContentRouteParams, id: string): string {
-  return getExternalWikiLink(id) ?? `/${params.locale}/project/${params.slug}/${params.version}/content/${id}`;
-}
-
-export function getInternalWikiLink(id: string, params: ContentRouteParams): string {
-  return `/${params.locale}/project/${params.slug}/${params.version}/content/${id}`;
+export function getInternalWikiLink(id: string, params: ProjectRouteParams | ProjectContext): string {
+  const slug = 'slug' in params ? params.slug : params.id;
+  return `/${params.locale}/project/${slug}/${params.version}/content/${id}`;
 }
 
 export function getExternalWikiLink(id: string): string | null {

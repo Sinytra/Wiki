@@ -1,10 +1,10 @@
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
-import {ContentRouteParams, getResolvedItemLink} from "@/lib/game/content";
+import {getResolvedItemLink} from "@/lib/game/content";
 import {cn} from "@repo/ui/lib/utils";
-import {DisplayItem} from "@repo/shared/types/service";
+import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
 
-export default function RecipeIngredientDisplay({tag, count, item, params}: { tag: string | null; count: number; item: DisplayItem; params: ContentRouteParams }) {
-  const href = getResolvedItemLink(params, item);
+export default function RecipeIngredientDisplay({tag, count, item, ctx}: { tag: string | null; count: number; item: DisplayItem; ctx: ProjectContext }) {
+  const href = getResolvedItemLink(ctx, item);
   const ContentDiv: any = href != null ? 'a' : 'div';
 
   return (

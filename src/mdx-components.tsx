@@ -3,7 +3,7 @@ import Callout from "@/components/docs/shared/Callout";
 import ModAsset from "@/components/docs/shared/asset/ModAsset";
 import * as LucideReact from "lucide-react";
 import {DE, FR, TW} from "country-flag-icons/react/3x2";
-import Asset from "@/components/docs/shared/asset/Asset";
+import {BindableAsset} from "@/components/docs/shared/asset/Asset";
 import MetaDocsTitle from "@/components/meta-docs/MetaDocsTitle";
 import ComponentWidget from "@/components/meta-docs/ComponentWidget";
 import CountryFlag from '@repo/ui/util/CountryFlag';
@@ -27,8 +27,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CodeHikeCode,
     Callout,
     CodeTabs,
-    Asset,
-    ModAsset, // Deprecated
+    Asset: BindableAsset.bind(null, null),
+    ModAsset: ModAsset.bind(null, null), // Deprecated
     ComponentWidget,
     ...components,
     ...icons,

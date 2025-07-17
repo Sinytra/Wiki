@@ -36,10 +36,7 @@ export default async function ReportsPage(props: Properties) {
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
       <ClientLocaleProvider keys={['DataTable']}>
-        <AdminReportsTable data={content}
-                           params={{locale: params.locale, slug: '', version: ''}}
-                           page={page}
-        />
+        <AdminReportsTable data={content} page={page}/>
       </ClientLocaleProvider>
     </div>
   )

@@ -20,7 +20,7 @@ type Properties = {
   }>
 }
 
-export default function Browse(props: Properties) {
+export default function BrowsePage(props: Properties) {
   const searchParams = use(props.searchParams);
   const params = use(props.params);
   setContextLocale(params.locale);
@@ -35,8 +35,8 @@ export default function Browse(props: Properties) {
     <div className="page-wrapper-ext flex w-full flex-col gap-2 sm:gap-4 md:flex-row md:justify-center">
       <aside
         className={`
-          mb-2 w-full shrink-0 rounded-sm border border-tertiary bg-primary-alt px-1 md:sticky md:top-[75px] md:mb-0
-          md:h-[calc(100vh_-_8rem)] md:w-64 md:p-1.5 md:pt-2
+          mb-2 w-full shrink-0 rounded-sm border border-tertiary bg-primary-alt px-1 md:mb-0 md:h-[calc(100vh_-_8rem)]
+          md:w-64 md:p-1.5 md:pt-2
         `}
       >
         <CollapsibleDocsTreeBase title={t('sidebar.title')} defaultOpen={false}>
