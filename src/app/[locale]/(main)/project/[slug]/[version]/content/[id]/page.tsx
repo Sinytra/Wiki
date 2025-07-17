@@ -39,11 +39,19 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 
   const project = await platforms.getPlatformProject(page.project);
   const result = matter(page.content).data as DocsEntryMetadata;
+  const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
+    : await service.getAsset((result.icon || result.id)!, ctx);
 
   return {
     title: result.title ? `${result.title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
     openGraph: {
       images: [`/api/og?slug=${slug}&locale=${locale}&id=${id}`]
+    },
+    other: {
+      docs_source_mod: project.name,
+      docs_source_icon: project.icon_url,
+      // @ts-expect-error optional
+      docs_icon: iconUrl ? iconUrl.src : undefined
     }
   }
 }
