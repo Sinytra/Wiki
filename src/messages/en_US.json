@@ -494,7 +494,7 @@
         "unknown": "Unknown",
         "loading": "Initializing",
         "healthy": "Loaded",
-        "at_risk": "Needs attention",
+        "at_risk": "Requires attention",
         "error": "Errored"
     },
     "DevProjectsListPage": {
