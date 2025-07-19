@@ -32,6 +32,7 @@ import {BindableAsset} from "@/components/docs/shared/asset/Asset";
 import {BindableRecipeUsage} from "@/components/docs/shared/game/RecipeUsage";
 import CodeHikeCode from "@repo/ui/blocks/markdown/CodeHikeCode";
 import CodeTabs from "@repo/ui/blocks/markdown/CodeTabs";
+import DocsLink from "@/components/docs/shared/DocsLink";
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -119,6 +120,7 @@ async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext
       Asset: BindableAsset.bind(null, ctx),
       ContentLink: ContentLink.bind(null, ctx),
       CraftingRecipe: CraftingRecipe.bind(null, ctx),
+      DocsLink: DocsLink.bind(null, ctx),
       ModAsset: ModAsset.bind(null, ctx),
       ProjectRecipe: ProjectRecipe.bind(null, ctx),
       RecipeUsage: BindableRecipeUsage.bind(null, ctx),

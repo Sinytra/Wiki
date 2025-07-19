@@ -149,7 +149,7 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
       cookie: (await cookies()).toString()
     },
     body: options?.body ? (typeof options?.body === 'string' ? options.body : JSON.stringify(options.body)) : null,
-    cache: !useCache ? 'no-store' : undefined,
+    cache: useCache ? 'force-cache' : undefined,
     next: useCache ? {
       tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
       revalidate: (typeof options.cache == 'object' ? options.cache.revalidate : undefined) || ONE_WEEK

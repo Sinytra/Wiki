@@ -22,3 +22,7 @@ export function getExternalWikiLink(id: string): string | null {
   const loc = resourceLocation.parse(id);
   return loc?.namespace === DEFAULT_NAMESPACE ? `https://minecraft.wiki/w/${loc.path}` : null;
 }
+
+export function getDocsLink(path: string, ctx: ProjectContext): string {
+  return `/${ctx.locale}/project/${ctx.id}/${ctx.version}/docs/${path}`;
+}

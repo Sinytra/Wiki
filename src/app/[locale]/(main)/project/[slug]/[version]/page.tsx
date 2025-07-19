@@ -172,13 +172,19 @@ export default async function ProjectHomepage(props: PageProps) {
           {t.rich('overview.intro', {
             project: () => <span className="font-medium">{project.name}</span>,
             type: project.type,
-            authors: () => info.authors.map(a => (
-              <div key={a.name} className="inline-block">
-                <PageLink href={a.url} target="_blank">
-                  {a.name}
-                </PageLink>
+            authors: () => (
+              <div className="inline-block">
+                {info.authors.map((a, idx) => (
+                  <div key={a.name} className="inline-block">
+                    <PageLink href={a.url} target="_blank">
+                      {a.name}
+                    </PageLink>
+                    {idx != info.authors.length - 1 &&
+                      <span>,&nbsp;</span>}
+                  </div>
+                ))}
               </div>
-            ))
+            )
           })}
         </div>
 

@@ -99,11 +99,10 @@ export default async function ProjectContentPage(props: Props) {
   const ctx = {id: slug, version, locale};
   setContextLocale(locale);
 
-  const projectData = await service.getBackendLayout(ctx);
-  if (!projectData) {
+  const project = await service.getProject(ctx);
+  if (!project) {
     return redirect('/');
   }
-  const {project} = projectData;
 
   const platformProject = await platforms.getPlatformProject(project);
 

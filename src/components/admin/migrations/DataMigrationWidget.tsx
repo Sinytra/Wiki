@@ -9,24 +9,11 @@ import {ApiCallResult} from "@repo/shared/network";
 
 export default function DataMigrationWidget({migration, action}: { migration: DataMigration, action: () => Promise<ApiCallResult> }) {
   const formAction = async () => {
-    let resolver: any = null;
-    let rejector: any = null;
-    const promise = new Promise((resolve, reject) => {
-      resolver = () => resolve({});
-      rejector = () => reject();
-    });
-
-    toast.promise(promise, {
-      loading: 'Running Data Migration',
-      success: 'Data Migration Successful',
-      error: 'Data Migration Failed'
-    });
-
     const result = await action();
     if (result.success) {
-      resolver();
+      toast.success('Data migration started');
     } else {
-      rejector();
+      toast.error('Data migration failed');
     }
   }
 

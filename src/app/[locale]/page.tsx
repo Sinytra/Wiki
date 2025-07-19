@@ -34,6 +34,7 @@ import LargePersonStandingIcon from "@repo/ui/icons/LargePersonStandingIcon";
 import env from "@repo/shared/env";
 import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";
 import SafeImage from "@/components/util/SafeImage";
+import {DEFAULT_LOCALE} from "@repo/shared/constants";
 
 export const dynamic = 'force-dynamic';
 
@@ -339,7 +340,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
     return redirect({href: '/preview', locale: params.locale});
   }
 
-  const showBanner = params.locale !== 'en' && (await crowdin.getCrowdinTranslationStatus(params.locale)) < 50;
+  const showBanner = params.locale !== DEFAULT_LOCALE && (await crowdin.getCrowdinTranslationStatus(params.locale)) < 50;
 
   return <>
     {showBanner &&

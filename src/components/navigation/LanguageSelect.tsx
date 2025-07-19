@@ -33,9 +33,8 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
     }, {}) : allLocales;
 
   const availableKeys = Object.keys(availableLocales);
-  const coercedLocale = availableKeys.includes(locale) ? locale : DEFAULT_LOCALE;
 
-  const [value, setValue] = useState(coercedLocale);
+  const [value, setValue] = useState(locale);
   const [open, setOpen] = useState(false);
 
   const pathname = usePathname();
@@ -46,8 +45,8 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
     router.replace('/' + parts.join('/'));
   };
 
-  const lang = available.getNextIntlInternal(coercedLocale);
-  const selectedLang = available.getForUrlParam(coercedLocale);
+  const lang = available.getNextIntlInternal(locale);
+  const selectedLang = available.getForUrlParam(locale);
   const ordered = [lang, ...availableKeys.filter(k => k != lang)];
 
   return (
