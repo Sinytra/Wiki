@@ -31,13 +31,31 @@ import {DEFAULT_WIKI_LICENSE} from "@repo/shared/constants";
 import TooltipText from "@/components/docs/shared/util/TooltipText";
 import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 import {getTranslations} from "next-intl/server";
+import {Metadata, ResolvingMetadata} from "next";
+import {ProjectRouteParams} from "@repo/shared/types/routes";
+
+export async function generateMetadata(
+  props: { params: Promise<ProjectRouteParams> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const {slug, version, locale} = await props.params;
+  const ctx = {id: slug, version, locale};
+  const project = (await service.getBackendLayout(ctx))?.project;
+  if (!project) {
+    return {title: (await parent).title?.absolute};
+  }
+
+  const platformProject = await platforms.getPlatformProject(project);
+  return {
+    other: {
+      docs_source_mod: platformProject.name,
+      docs_source_icon: platformProject.icon_url
+    }
+  };
+}
 
 interface PageProps {
-  params: Promise<{
-    slug: string;
-    version: string;
-    locale: string;
-  }>;
+  params: Promise<ProjectRouteParams>;
 }
 
 function Section({title, icon: Icon, children, className}: {

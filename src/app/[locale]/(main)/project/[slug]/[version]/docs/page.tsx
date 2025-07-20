@@ -1,4 +1,3 @@
-import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms, {PlatformProject} from "@repo/platforms";
 import {HOMEPAGE_FILE_PATH} from "@repo/shared/constants";
@@ -18,26 +17,6 @@ import issuesApi from "@repo/shared/api/issuesApi";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
-
-export async function generateMetadata(
-  props: { params: Promise<{ slug: string; locale: string; version: string }> },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const {slug, version, locale} = await props.params;
-  const ctx = {id: slug, version, locale};
-  const project = (await service.getBackendLayout(ctx))?.project;
-  if (!project) {
-    return {title: (await parent).title?.absolute};
-  }
-
-  const platformProject = await platforms.getPlatformProject(project);
-  return {
-    other: {
-      docs_source_mod: platformProject.name,
-      docs_source_icon: platformProject.icon_url
-    }
-  };
-}
 
 interface PageProps {
   params: Promise<{

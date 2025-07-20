@@ -27,7 +27,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
           flex w-full flex-col justify-between overflow-hidden py-0.5 text-ellipsis [&_span]:overflow-hidden
           [&_span]:text-ellipsis
         `}>
-        <span>{result.title}</span>
+        <span>{result.title || result.mod}</span>
         {!result.path && result.mod_desc
           ?
           <span className="text-secondary">{result.mod_desc}</span>
