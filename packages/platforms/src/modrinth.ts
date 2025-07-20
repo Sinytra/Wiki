@@ -115,6 +115,7 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
       'User-Agent': userAgent,
       ...headers
     },
+    cache: 'force-cache',
     next: {
       tags: ['modrinth'],
       revalidate: 60 * 60 * 24 * 14

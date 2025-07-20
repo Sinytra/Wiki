@@ -165,6 +165,7 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
       'x-api-key': process.env.CF_API_KEY,
       ...headers
     },
+    cache: 'force-cache',
     next: {
       tags: ['curseforge'],
       revalidate: 60 * 60 * 24 * 14

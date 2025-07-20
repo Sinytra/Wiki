@@ -36,7 +36,7 @@ import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects"
 import SafeImage from "@/components/util/SafeImage";
 import {DEFAULT_LOCALE} from "@repo/shared/constants";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 1209600; // 60 * 60 * 24 * 14
 
 function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject[]> }) {
   const resolved = use(projects);
