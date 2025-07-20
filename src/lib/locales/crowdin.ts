@@ -19,6 +19,10 @@ async function getCrowdinTranslationStatus(lang: string): Promise<number> {
       const resp = await fetch(`https://api.crowdin.com/api/v2/projects/${process.env.CROWDIN_PROJECT_ID}/languages/progress?languageIds=${crowdinLangId}`, {
         headers: {
           Authorization: `Bearer ${process.env.CROWDIN_API_KEY}`
+        },
+        cache: 'force-cache',
+        next: {
+          revalidate: 60 * 60 * 24 * 7
         }
       });
       if (resp.ok) {

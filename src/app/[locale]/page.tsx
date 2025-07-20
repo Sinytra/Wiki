@@ -7,7 +7,8 @@ import Link from "next/link";
 import crowdin from "@/lib/locales/crowdin";
 import {
   ArrowRight,
-  BookIcon, BoxIcon,
+  BookIcon,
+  BoxIcon,
   ComponentIcon,
   FileText,
   GitBranchIcon,
@@ -25,8 +26,7 @@ import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
 import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {CSSProperties, Suspense, use} from "react";
-import {Skeleton} from "@repo/ui/components/skeleton";
+import {CSSProperties} from "react";
 import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
 import SocialButtons from "@/components/util/SocialButtons";
@@ -36,17 +36,17 @@ import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects"
 import SafeImage from "@/components/util/SafeImage";
 import {DEFAULT_LOCALE} from "@repo/shared/constants";
 
+export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
 
-function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject[]> }) {
-  const resolved = use(projects);
+function FeaturedProjectsContent({projects}: { projects: FeaturedProject[] }) {
   const t = useTranslations('HomePage');
   const projectTypes = useTranslations('ProjectTypes');
 
-  const height = resolved.length == 1 ? 100 : Math.floor(100 / resolved.length);
+  const height = projects.length == 1 ? 100 : Math.floor(100 / projects.length);
   const style = { "--default-max-h": `${height}%` } as CSSProperties;
 
-  return resolved.map((project, index) => (
+  return projects.map((project, index) => (
     <div key={index}
          className={`
            flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit
@@ -109,17 +109,8 @@ function FeaturedProjectsContent({projects}: { projects: Promise<FeaturedProject
   ))
 }
 
-function FeaturedProjectsFallback() {
-  return [0, 1, 2].map(index => (
-    <div key={index} className="flex h-full flex-col rounded-lg bg-primary-alt p-6 shadow-md">
-      <Skeleton className="h-full w-full"/>
-    </div>
-  ))
-}
-
-function HomePageContent() {
+function HomePageContent({projects}: { projects: FeaturedProject[] }) {
   const t = useTranslations('HomePage');
-  const projects = featuredProjects.getFeaturedProjects();
   const blogPosts = allBlogs.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3);
 
   return (
@@ -128,13 +119,15 @@ function HomePageContent() {
         <div className="mb-2 text-center text-lg text-secondary">
           {t.rich('title', {
             highlight: (chunks: any) => (
-              <h2
-                className={`
-                  mb-4 animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center
-                  text-5xl font-bold text-transparent
-                `}>
+              <div className="mb-4">
+                <span
+                  className={`
+                    animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center
+                    text-5xl font-bold text-transparent
+                  `}>
                 {chunks}
-              </h2>
+              </span>
+              </div>
             )
           })}
         </div>
@@ -161,9 +154,7 @@ function HomePageContent() {
                 {t('popular.title')}
               </h3>
               <div className="flex h-full flex-col gap-6">
-                <Suspense fallback={<FeaturedProjectsFallback/>}>
-                  <FeaturedProjectsContent projects={projects}/>
-                </Suspense>
+                <FeaturedProjectsContent projects={projects}/>
               </div>
               <div className="mt-auto">
                 <p className="mt-6 text-sm text-secondary">
@@ -340,6 +331,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
     return redirect({href: '/preview', locale: params.locale});
   }
 
+  const projects = await featuredProjects.getFeaturedProjects();
   const showBanner = params.locale !== DEFAULT_LOCALE && (await crowdin.getCrowdinTranslationStatus(params.locale)) < 50;
 
   return <>
@@ -352,7 +344,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
     <div className={cn(showBanner && 'pt-0!', `
       page-wrapper-base page-wrapper page-wrapper-ext flex min-h-[100vh] flex-1 sm:mx-2
     `)}>
-      <HomePageContent/>
+      <HomePageContent projects={projects}/>
     </div>
   </>
 }
