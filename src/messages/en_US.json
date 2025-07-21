@@ -841,6 +841,7 @@
     },
     "ProjectIssueType": {
         "meta": "Invalid project metadata",
+        "file": "Invalid file",
         "git_clone": "Error cloning repository",
         "git_info": "Error getting commit information",
         "ingestor": "Error importing content",
