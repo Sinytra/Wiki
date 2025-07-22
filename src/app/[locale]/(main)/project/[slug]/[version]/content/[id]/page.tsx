@@ -2,9 +2,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import {redirect} from "next/navigation";
-import DocsLoadingSkeleton from "@/components/docs/body/DocsLoadingSkeleton";
 import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
-import {Suspense} from "react";
 import {getTranslations} from "next-intl/server";
 import DocsContentTOCSidebar from "@/components/docs/side/content/DocsContentTOCSidebar";
 import DocsContentMetaSidebar from "@/components/docs/side/content/DocsContentMetaSidebar";
@@ -106,9 +104,7 @@ export default async function ContentEntryPage(props: Props) {
             />
           </div>
 
-          <Suspense fallback={<DocsLoadingSkeleton/>}>
-            <DocsEntryPage page={page}/>
-          </Suspense>
+          <DocsEntryPage page={page}/>
 
           {page.content.metadata.history &&
             <TogglableContent title={u('toggle')} className="mb-6">

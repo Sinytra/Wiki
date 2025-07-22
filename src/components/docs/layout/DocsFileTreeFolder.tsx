@@ -8,7 +8,6 @@ import {cn} from "@repo/ui/lib/utils";
 import {usePathname} from "@/lib/locales/routing";
 import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
 import {NO_FOLDER_ICON} from "@repo/shared/constants";
-import {undefined} from "zod";
 
 interface DocsFileTreeFolderProps {
   name: any;
@@ -20,7 +19,7 @@ interface DocsFileTreeFolderProps {
 
 export default function DocsFileTreeFolder({name, path, icon, level, children}: DocsFileTreeFolderProps) {
   const {folderStates, setFolderStates} = useContext(LeftSidebarContext)!;
-  const currentPath = usePathname().split('/').slice(4).join('/');
+  const currentPath = usePathname().split('/').slice(5).join('/');
 
   const defaultOpen = currentPath.length > 0 && currentPath.startsWith(path + '/');
 

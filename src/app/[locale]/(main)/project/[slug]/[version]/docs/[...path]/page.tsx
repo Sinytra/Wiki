@@ -1,6 +1,4 @@
-import {Suspense} from "react";
 import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
-import DocsLoadingSkeleton from "@/components/docs/body/DocsLoadingSkeleton";
 import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
@@ -104,9 +102,7 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
                              />
                            }
     >
-      <Suspense fallback={<DocsLoadingSkeleton/>}>
-        <DocsEntryPage page={page} showHistory={page.content.metadata.history !== undefined}/>
-      </Suspense>
+      <DocsEntryPage page={page} showHistory={page.content.metadata.history !== undefined}/>
     </DocsInnerLayoutClient>
   )
 }

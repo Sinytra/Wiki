@@ -36,7 +36,7 @@ function getProjectSourcePlatform(id: ProjectPlatform): ProjectPlatformProvider 
 }
 
 async function getPlatformProject(project: IdentifiableProject, fallback: boolean = true): Promise<PlatformProject> {
-  for (let key in providers) {
+  for (const key in providers) {
     const platform = key as ProjectPlatform;
     if (project.platforms[platform]) {
       try {
