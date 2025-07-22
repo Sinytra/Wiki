@@ -5,7 +5,7 @@ import url from "url";
 import {LocalDocumentationFile, LocalDocumentationSource} from "./localDocsPages";
 
 async function readFileTree(source: LocalDocumentationSource): Promise<FileTree> {
-  const tree = dirTee(`${source.path}`, {attributes: ['type']}).children || [];
+  const tree = dirTee(`${source.path}`, {attributes: ['type']})?.children || [];
   return convertDirectoryTree(tree);
 }
 
