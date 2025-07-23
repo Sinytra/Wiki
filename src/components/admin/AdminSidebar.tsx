@@ -6,6 +6,7 @@ import {
   FlagIcon,
   HistoryIcon,
   HouseIcon,
+  KeyRoundIcon,
   MapIcon,
   PencilRulerIcon,
   ServerCogIcon,
@@ -72,7 +73,12 @@ export function AdminSidebar(props: Props) {
           title: t('nav.migrations'),
           url: '/admin/migrations',
           icon: MapIcon
-        }
+        },
+        {
+          title: t('nav.access_keys'),
+          url: '/admin/access_keys',
+          icon: KeyRoundIcon
+        },
       ]
     },
     {

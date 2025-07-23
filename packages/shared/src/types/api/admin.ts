@@ -28,3 +28,14 @@ export interface DataMigration {
   title: string;
   desc: string;
 }
+
+export interface AccessKey {
+  id: number;
+  name: string;
+  user_id: string;
+  expired: boolean;
+  expires_at: string | null;
+  created_at: string;
+}
+
+export type AccessKeys = PaginatedData<AccessKey>;

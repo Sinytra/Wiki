@@ -721,6 +721,7 @@
         "nav": {
             "home": "Overview",
             "data_imports": "Data Imports",
+            "access_keys": "Access Keys",
             "migrations": "Migrations",
             "users": "Users",
             "projects": "Projects",
@@ -914,5 +915,44 @@
     },
     "DocsLink": {
         "not_found": "(Not found)"
+    },
+    "AdminAccessKeys": {
+        "title": "System access keys",
+        "desc": "Provides auth for when non-interactive access is needed, such as CI"
+    },
+    "CreateAccessKeyModal": {
+        "title": "Create access key",
+        "desc": "New system access key",
+        "button": "Create",
+        "name": {
+            "title": "Name",
+            "desc": "Give your key a name",
+            "placeholder": "Deploy staging"
+        },
+        "days_valid": {
+            "title": "Days of validity",
+            "desc": "Number of days the key is valid for. Use 0 for no expiration."
+        },
+        "submit": "Submit",
+        "submitting": "Submitting..."
+    },
+    "SaveAccessKeyModal": {
+        "title": "Access Key",
+        "desc": "Save your generated access key",
+        "key": "Access Key",
+        "note": "Keep the key value safe. You won't be able to access it again.",
+        "valid": "The key is valid until {expiry}.",
+        "close": "Done"
+    },
+    "DeleteAccessKeyModal": {
+        "title": "Delete Access Key",
+        "desc": "Invalidate and delete access key",
+        "body": "This will forever delete the access key <name></name>.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Access Key deleted successfully"
+    },
+    "CopyButton": {
+        "copied": "Copied to clipboard"
     }
 }

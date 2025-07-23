@@ -1,9 +1,10 @@
 'use server'
 
 import {
-  projectReportSchema,
+  createAccessKeySchema,
   projectEditSchema,
   projectRegisterSchema,
+  projectReportSchema,
   ruleProjectReportSchema
 } from "@/lib/forms/schemas";
 import cacheUtil from "@/lib/cacheUtil";
@@ -15,6 +16,7 @@ import devProjectApi from "@/lib/service/api/devProjectApi";
 import projectApi from "@/lib/service/api/projectApi";
 import {ZodSchema} from "zod";
 import moderationApi from "@/lib/service/api/moderationApi";
+import adminApi from "@/lib/service/api/adminApi";
 
 interface ValidationResult { success: boolean; }
 interface ValidationSuccess<T> extends ValidationResult { success: true; data: T }
@@ -80,6 +82,32 @@ export async function handleRevalidateDocs(id: string) {
   if (!response.success) {
     return response;
   }
+  return {success: true};
+}
+
+export async function handleCreateAccessKeyForm(rawData: any) {
+  const validatedFields = createAccessKeySchema.safeParse(rawData)
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
+
+  const result = await adminApi.createAccessKey(validatedFields.data);
+  if (!result.success) {
+    return result;
+  }
+
+  return {success: true, result: result.data};
+}
+
+export async function handleDeleteAccessKeyForm(id: number) {
+  const response = await adminApi.deleteAccessKey(id);
+  if (!response.success) {
+    return response;
+  }
+
   return {success: true};
 }
 

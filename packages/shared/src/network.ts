@@ -55,7 +55,7 @@ export interface ApiRedirectResponse extends ApiResponse {
   url: string;
 }
 
-interface ApiSuccessResponse<T> extends ApiResponse {
+export interface ApiSuccessResponse<T> extends ApiResponse {
   success: true;
   type: 'success';
   data: T;

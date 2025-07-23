@@ -29,3 +29,8 @@ export const projectReportSchema = z.object({
 export const ruleProjectReportSchema = z.object({
   resolution: z.enum(['accept', 'dismiss'])
 })
+
+export const createAccessKeySchema = z.object({
+  name: z.string(),
+  days_valid: z.coerce.number().min(0).max(365).optional()
+});

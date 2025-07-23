@@ -24,7 +24,6 @@ import GetStartedContextProvider from "@/components/dev/get-started/GetStartedCo
 import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
-import {Label} from "@repo/ui/components/label";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import ProjectGitRevision from "@/components/dev/project/ProjectGitRevision";
 import {ProjectPlatform} from "@repo/shared/types/platform";
@@ -37,38 +36,9 @@ import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDep
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import authSession from "@/lib/authSession";
 import navigation from "@/lib/navigation";
+import DataField from "@/components/util/DataField";
 
 export const dynamic = 'force-dynamic';
-
-function DataField({title, className, icon: Icon, value, iconClass, href}: {
-  title: string;
-  className?: string;
-  icon?: any;
-  value: any;
-  iconClass?: string;
-  href?: string;
-}) {
-  const Element = href ? 'a' : 'div';
-  return (
-    <div className="flex flex-col gap-y-3">
-      <Label>
-        {title}
-      </Label>
-      <Element href={href} target="_blank" className="relative">
-        {Icon && <Icon className={cn('absolute inset-0 top-1/2 left-3 size-4 -translate-y-1/2', iconClass)}/>}
-        <div
-          className={cn(`
-            flex h-10 w-full rounded-md border border-quaternary bg-primary-dim px-3 py-2 pl-9 align-bottom text-sm
-            leading-5.5
-          `,
-            Icon && 'pl-9', href && 'underline-offset-4 hover:underline', className)}>
-          {value}
-        </div>
-        {href && <ExternalLinkIcon className="absolute top-1/2 right-3 size-4 -translate-y-1/2"/>}
-      </Element>
-    </div>
-  )
-}
 
 async function ProjectPlatforms({project}: { project: Project }) {
   const t = await getTranslations('DevProjectPage.platforms');

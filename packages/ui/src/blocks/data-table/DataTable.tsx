@@ -14,10 +14,19 @@ interface Properties<T> {
   data: PaginatedData<T>;
   versions?: ProjectVersions;
   linker?: TableRowLinker<T>;
+  creator?: ReactNode;
   page: number;
 }
 
-export default function DataTable<T>({columns, expandRows, data, page, versions, linker}: Properties<T>) {
+function DataTableToolbar({creator}: Pick<Properties<unknown>, 'creator'>) {
+  return (
+    <div>
+      {creator}
+    </div>
+  )
+}
+
+export default function DataTable<T>({columns, expandRows, data, page, versions, linker, creator}: Properties<T>) {
   const offset = data.size * (page - 1);
   const t = useTranslations('DataTable');
 
@@ -69,7 +78,7 @@ export default function DataTable<T>({columns, expandRows, data, page, versions,
   return (
     <ClientLocaleProvider keys={['DataTable', 'DocsVersionSelector']}>
       <DataTableClient cols={headers} rows={rows} data={data} versions={versions} links={links}
-                       expandable={expandRows !== undefined}/>
+                       expandable={expandRows !== undefined} toolbar={<DataTableToolbar creator={creator} />}/>
     </ClientLocaleProvider>
   )
 }

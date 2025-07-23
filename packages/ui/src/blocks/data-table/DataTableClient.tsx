@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from "react"
-import {useState} from "react"
+import {ReactNode, useState} from "react"
 import {Table, TableBody, TableCell, TableHeader, TableRow,} from "@repo/ui/components/table"
 import {Input} from "@repo/ui/components/input";
 import {parseAsString, useQueryStates} from "nuqs";
@@ -26,9 +26,10 @@ interface Properties<T> {
   versions?: ProjectVersions;
   links?: string[];
   expandable?: boolean;
+  toolbar?: ReactNode
 }
 
-export default function DataTableClient<T>({cols, rows, data, versions, expandable, links}: Properties<T>) {
+export default function DataTableClient<T>({cols, rows, data, versions, expandable, links, toolbar}: Properties<T>) {
   const [params, setParams] = useQueryStates(
     {
       query: parseAsString,
@@ -76,6 +77,7 @@ export default function DataTableClient<T>({cols, rows, data, versions, expandab
           />
         </div>
         {versions && versions.length > 0 && <DevDocsVersionSelect versions={versions}/>}
+        {toolbar}
       </div>
       <div className="border-tertiary overflow-x-auto rounded-sm border">
         <Table className="mb-0! table w-full table-fixed">
