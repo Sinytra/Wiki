@@ -7,13 +7,26 @@
     "./client/*": "./src/client/*.ts",
     "./assets": "./src/assets.ts",
     "./constants": "./src/constants.ts",
-    "./lang/*": "./src/lang/*",
+    "./locales": "./src/locales.ts",
     "./env": "./src/env.ts",
     "./envPublic": "./src/envPublic.ts",
     "./network": "./src/network.ts",
+    "./platforms": "./src/platforms.ts",
     "./resourceLocation": "./src/resourceLocation.ts",
     "./types/*": "./src/types/*.ts",
     "./util": "./src/util.ts"
   },
-  "type": "module"
+  "dependencies": {
+    "@bprogress/next": "^3.2.10",
+    "country-flag-icons": "^1.5.13",
+    "next": "^15.4.3",
+    "react": "19.1.0",
+    "@repo/markdown": "workspace:*",
+    "@repo/lang": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "@types/react": "19.1.8"
+  }
 }

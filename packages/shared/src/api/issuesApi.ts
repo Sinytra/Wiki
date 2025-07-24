@@ -3,7 +3,7 @@ import {Project} from "@repo/shared/types/service";
 import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
 import {ProjectError, ProjectIssue, ProjectIssueLevel, ProjectIssueType} from "@repo/shared/types/api/project";
 import {ProjectPlatform} from "@repo/shared/types/platform";
-import platforms from "@repo/platforms";
+import platforms from "@repo/shared/platforms";
 
 interface AddProjectIssueRequest {
   level: ProjectIssueLevel;

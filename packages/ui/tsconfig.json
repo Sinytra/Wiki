@@ -6,6 +6,7 @@
       "@repo/ui/*": ["./src/*"]
     },
     "outDir": "dist",
+    "module": "ESNext",
     "moduleResolution": "bundler"
   },
   "include": ["src"],

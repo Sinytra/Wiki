@@ -13,11 +13,10 @@ node_modules
 /coverage
 
 # next.js
-/.next/
-/out/
-
-# production
-/build
+.next/
+out/
+build
+dist
 
 # misc
 .DS_Store
@@ -31,6 +30,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# Turbo
+.turbo
+
 # vercel
 .vercel
 
@@ -38,5 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# idea
 .idea
-.vercel

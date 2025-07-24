@@ -8,8 +8,13 @@
     "./middleware": "./src/previewMiddleware.ts"
   },
   "dependencies": {
-    "@repo/shared": "workspace:*",
     "@repo/markdown": "workspace:*",
-    "@repo/platforms": "workspace:*"
+    "@repo/shared": "workspace:*",
+    "directory-tree": "^3.5.2",
+    "json-schema-library": "10.0.0-rc2",
+    "next": "^15.4.3"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*"
   }
 }

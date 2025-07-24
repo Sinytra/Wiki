@@ -1,6 +1,6 @@
 // noinspection JSUnusedLocalSymbols
 
-import platforms from '@repo/platforms';
+import platforms from '@repo/shared/platforms';
 import localDocs, {LocalDocumentationSource} from "./localDocsPages";
 import {
   ContentRecipeUsage,

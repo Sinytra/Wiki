@@ -1,5 +1,5 @@
-import metadataJsonSchema from '@/public/sinytra-wiki.schema.json';
-import folderMetadataJsonSchema from '@/public/_meta.schema.json';
+import metadataJsonSchema from './schemas/sinytra-wiki.schema.json';
+import folderMetadataJsonSchema from './schemas/_meta.schema.json';
 import {Draft, Draft2019, JsonError} from "json-schema-library";
 
 // _meta.json

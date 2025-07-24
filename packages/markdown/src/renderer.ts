@@ -6,7 +6,6 @@ import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from "rehype-raw";
 import {markdownRehypeSchema} from "./contentFilter";
 import {ReactElement} from "react";
-import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import remarkGfm from "remark-gfm";
 import rehypeMarkdownHeadings from "./headings";
 import {recmaCodeHike, remarkCodeHike} from "codehike/mdx";
@@ -16,6 +15,7 @@ import {matter} from 'vfile-matter';
 import {compile, run} from "@mdx-js/mdx";
 import * as runtime from 'react/jsx-runtime';
 import { MarkdownError, formatMarkdownError } from "./exception";
+import { DocsEntryMetadata } from "./metadata";
 
 export interface DocumentationMarkdown {
   content: ReactElement<any>;
