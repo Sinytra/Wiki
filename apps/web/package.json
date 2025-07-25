@@ -92,7 +92,7 @@
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.0",
     "vfile-message": "^4.0.2",
-    "zod": "^3.23.8"
+    "zod": "^4.0.10"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

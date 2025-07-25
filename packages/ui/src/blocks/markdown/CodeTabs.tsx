@@ -6,6 +6,7 @@ import Plastic from '@shikijs/themes/plastic';
 
 const Schema = Block.extend({ tabs: z.array(CodeBlock) })
 export default async function CodeTabs(props: unknown) {
+  //@ts-expect-error schema
   const { tabs } = parseProps(props, Schema)
   return <CodeTabsVerified tabs={tabs} />
 }

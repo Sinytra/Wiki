@@ -4,7 +4,13 @@ import {getPageMap} from 'nextra/page-map';
 import LastUpdated from '@/components/LastUpdated';
 import LocaleSwitch from '@/components/LocaleSwitch';
 import {locales, defaultLocale} from '@/lang';
-import 'nextra-theme-docs/style.css';
+import { Inter } from 'next/font/google';
+import '../styles/globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap'
+});
 
 export const metadata = {
   // Define your metadata here
@@ -28,7 +34,7 @@ export default async function RootLayout({ params, children }: { params: any, ch
 
   const navbar = (
     <Navbar
-      logo={<b>Nextra</b>}
+      logo={<b>Modded Minecraft Wiki</b>}
       logoLink={lang != defaultLocale ? `/${lang}` : '/'}
     >
       <LocaleSwitch locale={lang} locales={locales} defaultLocale={defaultLocale} />
@@ -47,6 +53,7 @@ export default async function RootLayout({ params, children }: { params: any, ch
       dir="ltr"
       // Suggested by `next-themes` package https://github.com/pacocoursey/next-themes#with-app
       suppressHydrationWarning
+      className={inter.className}
     >
     <Head>
       {/* Your additional tags should be passed as `children` of `<Head>` element */}

@@ -24,7 +24,8 @@ export default function LocaleSwitch({locale, locales, defaultLocale, lite, clas
   return (
     <Select
       title="Change language"
-      className={cn('x:flex x:items-center x:gap-2', className)}
+      className={cn('x:flex x:items-center x:gap-2',
+        'focus:ring-0 focus:ring-offset-0 focus-visible:outline-none!', className)}
       onChange={lang => {
         const date = new Date(Date.now() + ONE_YEAR);
         document.cookie = `NEXT_LOCALE=${lang}; expires=${date.toUTCString()}; path=/`;

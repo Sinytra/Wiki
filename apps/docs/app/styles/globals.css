@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+
+@import 'nextra-theme-docs/style.css';
+
+@variant dark (&:where(.dark *));
+
+@theme {
+    --background-color-nextra-soft: #161618;
+    --background-color-nextra-hard: #1b1b1f;
+
+    --text-color-primary: #dfdfd6;
+
+    --text-3xl: 28px;
+    --text-4xl: 32px;
+}
+
+@layer theme {
+    .dark {
+        --x-color-primary-600: #a8b1ff;
+        --nextra-bg-hard: #1b1b1f;
+        --nextra-bg-soft: #161618;
+    }
+
+    body {
+        @apply dark:bg-nextra-hard! dark:text-primary!;
+    }
+}
+
+@layer utilities {
+    .wiki-subtitle {
+        @apply text-lg mb-2 text-neutral-500! md:text-2xl text-center;
+    }
+}
+
+@layer utilities {
+    .nextra-breadcrumb {
+        display: none;
+    }
+
+    .nextra-sidebar a, .nextra-sidebar button {
+        @apply bg-transparent! font-medium;
+    }
+
+    .nextra-navbar-blur {
+        @apply dark:bg-nextra-hard!;
+    }
+
+    .nextra-sidebar, .nextra-mobile-nav, .nextra-sidebar-footer {
+        @apply dark:bg-nextra-soft!;
+    }
+
+    .nextra-sidebar ul {
+        @apply gap-0 pt-0;
+    }
+
+    .nextra-sidebar-footer {
+        border-top: none !important;
+    }
+
+    .nextra-sidebar-footer > button:last-of-type {
+        display: none;
+    }
+
+    .nextra-search > input {
+        @apply dark:bg-nextra-soft!;
+    }
+
+    article * {
+        @apply dark:text-primary!;
+    }
+
+    .doc-wrapper h1 {
+        @apply font-semibold! text-3xl sm:text-4xl;
+    }
+
+    .doc-wrapper h2 {
+        @apply text-2xl;
+    }
+
+    .doc-wrapper h3 {
+        @apply text-xl;
+    }
+}
+
+@layer utilities {
+    #headlessui-portal-root ul {
+        @apply z-50 focus:ring-0 focus:ring-offset-0 focus-visible:outline-none!;
+    }
+
+    .doc-wrapper article main {
+        padding: 16px 16px 32px;
+    }
+
+    @variant sm {
+        .doc-wrapper article main {
+            padding: 16px 32px 32px;
+        }
+    }
+
+    @variant lg {
+        .doc-wrapper aside {
+            @apply w-full flex flex-1 items-end;
+        }
+
+        .doc-wrapper aside > div {
+            width: 16rem;
+        }
+
+        .doc-wrapper > div {
+            @apply m-0 w-full max-w-none justify-center;
+        }
+
+        .doc-wrapper article {
+            @apply flex-2 max-w-[60rem];
+        }
+
+        .doc-wrapper article main {
+            @apply max-w-[50rem] mx-auto;
+        }
+    }
+
+    @variant xl {
+        .doc-wrapper nav {
+            @apply w-full flex flex-1;
+        }
+    }
+}

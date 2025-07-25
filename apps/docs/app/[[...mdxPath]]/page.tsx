@@ -37,7 +37,7 @@ async function resolvePage(params: Params) {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  const { metadata } = await resolvePage(params);
+  const {metadata} = await resolvePage(params);
   return metadata;
 }
 
@@ -46,10 +46,12 @@ const Wrapper = getMDXComponents({}).wrapper;
 export default async function Page(props: Props) {
   const params = await props.params;
   const result = await resolvePage(params);
-  const { default: MDXContent, toc, metadata } = result;
+  const {default: MDXContent, toc, metadata} = result;
   return (
-    <Wrapper toc={toc} metadata={metadata}>
-      <MDXContent {...props} params={params} />
-    </Wrapper>
+    <div className={params.mdxPath ? 'doc-wrapper' : ''}>
+      <Wrapper toc={toc} metadata={metadata}>
+        <MDXContent {...props} params={params}/>
+      </Wrapper>
+    </div>
   );
 }

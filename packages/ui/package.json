@@ -52,7 +52,7 @@
     "sonner": "^2.0.5",
     "tailwind-merge": "^2.5.2",
     "use-debounce": "^10.0.5",
-    "zod": "^3.25.76"
+    "zod": "^4.0.10"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
