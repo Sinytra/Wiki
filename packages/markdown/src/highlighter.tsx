@@ -4,19 +4,19 @@ function highlightParts(text: string) {
 
   const parts = [];
   let lastIndex = 0;
-  // @ts-ignore
+  // @ts-expect-error callback
   text.replace(new RegExp(`${quoteRegex.source}|${urlRegex.source}`, 'g'), (match, quote, content, url, index) => {
     parts.push(text.slice(lastIndex, index));
 
     if (url) {
       parts.push(
-        <span key={index} style={{color: "#A5D6FF"}}>
+        <span key={index} style={{color: '#A5D6FF'}}>
           {url}
         </span>
       );
     } else {
       parts.push(
-        <span key={index} style={{color: "#A5D6FF"}}>
+        <span key={index} style={{color: '#A5D6FF'}}>
           {quote}{content}{quote}
         </span>
       );
@@ -37,7 +37,7 @@ function colorLine(line: string, color: string) {
       <span className="text-[#8B949E]">{line.substring(5, 24)}</span>
       {...highlightParts(line.substring(24))}
     </span>
-  )
+  );
 }
 
 function highlightLine(line: string) {
@@ -60,9 +60,9 @@ function highlightLine(line: string) {
       </span>
     );
   }
-  return <span>{line}</span>
+  return <span>{line}</span>;
 }
 
 export default {
   highlightLine
-}
+};

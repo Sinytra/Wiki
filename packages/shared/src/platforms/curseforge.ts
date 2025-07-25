@@ -1,7 +1,7 @@
-import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from "./universal";
-import env from "@repo/shared/env";
-import {ProjectType} from "@repo/shared/types/service";
-import {ProjectNotFoundError} from "./exception";
+import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from './universal';
+import env from '@repo/shared/env';
+import {ProjectType} from '@repo/shared/types/service';
+import {ProjectNotFoundError} from './exception';
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
@@ -22,7 +22,7 @@ const projectTypePaths: Record<ProjectType, string> = {
   [ProjectType.SHADER]: 'shaders',
   [ProjectType.MODPACK]: 'modpacks',
   [ProjectType.PLUGIN]: 'bukkit-plugins'
-}
+};
 
 interface CurseForgeProject {
   id: number;
@@ -92,7 +92,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
       },
       type: ProjectType.MOD,
       is_placeholder: true
-    }
+    };
   }
 
   const project = await getCurseForgeProject(slug);
@@ -116,7 +116,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
       authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies PlatformProjectAuthor))
     },
     type
-  }
+  };
 }
 
 async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
@@ -147,7 +147,7 @@ async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
     throw new ProjectNotFoundError(`No project found for slug ${slug}`);
   }
 
-  throw new Error(`Multiple projects found for slug '${slug}'`)
+  throw new Error(`Multiple projects found for slug '${slug}'`);
 }
 
 async function getProjectDescription(id: number): Promise<string> {
@@ -157,7 +157,7 @@ async function getProjectDescription(id: number): Promise<string> {
 
 async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promise<T> {
   if (!process.env.CF_API_KEY) {
-    throw new Error(`Missing CurseForge API (CF_API_KEY)`);
+    throw new Error('Missing CurseForge API (CF_API_KEY)');
   }
 
   const response = await fetch(curseForgeApiBaseUrlV1 + path, {
@@ -186,4 +186,4 @@ export const curseForgeModPlatform: ProjectPlatformProvider = {
   getProject,
   getProjectAuthors,
   getProjectURL
-}
+};

@@ -1,5 +1,5 @@
-import {ProjectPlatform} from "@repo/shared/types/platform";
-import {ProjectType} from "@repo/shared/types/service";
+import {ProjectPlatform} from '@repo/shared/types/platform';
+import {ProjectType} from '@repo/shared/types/service';
 
 export interface ProjectPlatformProvider {
   getProject: (slug: string) => Promise<PlatformProject>;

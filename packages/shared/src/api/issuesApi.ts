@@ -1,9 +1,9 @@
-import {MarkdownError} from "@repo/markdown";
-import {Project} from "@repo/shared/types/service";
-import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
-import {ProjectError, ProjectIssue, ProjectIssueLevel, ProjectIssueType} from "@repo/shared/types/api/project";
-import {ProjectPlatform} from "@repo/shared/types/platform";
-import platforms from "@repo/shared/platforms";
+import {MarkdownError} from '@repo/markdown';
+import {Project} from '@repo/shared/types/service';
+import network, {ApiCallResult, ApiRouteParameters} from '@repo/shared/network';
+import {ProjectError, ProjectIssue, ProjectIssueLevel, ProjectIssueType} from '@repo/shared/types/api/project';
+import {ProjectPlatform} from '@repo/shared/types/platform';
+import platforms from '@repo/shared/platforms';
 
 interface AddProjectIssueRequest {
   level: ProjectIssueLevel;
@@ -45,11 +45,11 @@ async function addProjectIssue(id: string, body: AddProjectIssueRequest, paramet
 }
 
 async function getProjectIssues(projectId: string): Promise<ApiCallResult<ProjectIssue[]>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/issues`))
+  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/issues`));
 }
 
 export default {
   reportPageRenderFailure,
   reportMissingPlatformProject,
   getProjectIssues
-}
+};

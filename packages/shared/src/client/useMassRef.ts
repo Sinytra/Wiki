@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useRef} from 'react';
 
 export interface MassRef<T> {
   get: (i: number) => T | null;
@@ -13,8 +13,8 @@ export default function useMassRef<T>(): MassRef<T> {
     set: (i: number) => (node: T | null) => {
       contentRefs.current[i] = node;
       return () => {
-        delete contentRefs.current[i]
+        delete contentRefs.current[i];
       };
     }
-  }
+  };
 }

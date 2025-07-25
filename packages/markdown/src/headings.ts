@@ -1,7 +1,7 @@
 import GithubSlugger from 'github-slugger';
-import {visit} from "unist-util-visit";
-import {headingRank} from "hast-util-heading-rank";
-import {toString} from "mdast-util-to-string";
+import {visit} from 'unist-util-visit';
+import {headingRank} from 'hast-util-heading-rank';
+import {toString} from 'mdast-util-to-string';
 import { FileHeading } from './metadata';
 
 export default function rehypeMarkdownHeadings() {
@@ -35,7 +35,6 @@ export default function rehypeMarkdownHeadings() {
       });
     }
 
-    // @ts-ignore
     file.data.matter = {...file.data.matter, _headings: headingList};
-  }
+  };
 }

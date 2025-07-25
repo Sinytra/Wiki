@@ -2,6 +2,9 @@
   "name": "@repo/markdown",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "lint": "eslint ."
+  },
   "exports": {
     ".": "./src/index.ts",
     "./highlighter": "./src/highlighter.tsx"
@@ -24,7 +27,9 @@
     "vfile-message": "^4.0.2"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "19.1.8"
+    "@types/react": "19.1.8",
+    "eslint": "^9.31.0"
   }
 }

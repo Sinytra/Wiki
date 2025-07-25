@@ -78,7 +78,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               url={`${baseUrl}/deployments`}
               icon={HardDriveIcon}
               title={t('nav.deployments')}
-              matcher={RegExp(`^${baseUrl}\/deployments(\/.*)?$`)}
+              matcher={RegExp(`^${baseUrl}/deployments(/.*)?$`)}
               live={connected}
               extra={project.has_failing_deployment &&
                 <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
@@ -116,7 +116,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
             <DevSidebarMenuItem url={`${baseUrl}/content/items`} icon={BoxIcon} title={t('nav.content')} disabled={disableContents}/>
             <DevSidebarMenuItem url={`${baseUrl}/content/tags`} icon={TagsIcon} title={t('nav.tags')}
                                 disabled={disableContents}
-                                matcher={RegExp(`^${baseUrl}\/content\/tags(\/.*)?$`)}/>
+                                matcher={RegExp(`^${baseUrl}/content/tags(/.*)?$`)}/>
             <DevSidebarMenuItem url={`${baseUrl}/content/recipes`} icon={LayoutGridIcon} title={t('nav.recipes')} disabled={disableContents}/>
           </SidebarMenu>
         </SidebarGroup>

@@ -1,11 +1,11 @@
 import metadataJsonSchema from './schemas/sinytra-wiki.schema.json';
 import folderMetadataJsonSchema from './schemas/_meta.schema.json';
-import {Draft, Draft2019, JsonError} from "json-schema-library";
+import {Draft, Draft2019, JsonError} from 'json-schema-library';
 
 // _meta.json
-export interface RawDocumentationFolderMetadata extends Record<string, string | DocumentationFolderMetadataEntry> {}
+export type RawDocumentationFolderMetadata = Record<string, string | DocumentationFolderMetadataEntry>;
 
-export interface DocumentationFolderMetadata extends Record<string, DocumentationFolderMetadataEntry> {}
+export type DocumentationFolderMetadata = Record<string, DocumentationFolderMetadataEntry>;
 
 export interface DocumentationFolderMetadataEntry {
   name: string;
@@ -21,14 +21,14 @@ function parseFolderMetadata(source: string): DocumentationFolderMetadata {
   return Object.keys(validated)
     .reduce((obj, key) => {
       const value = validated[key];
-      // @ts-ignore
+      // @ts-expect-error assign
       obj[key] = typeof value === 'object' ? value : {name: value};
       return obj;
     }, {});
 }
 
 export class ValidationError extends Error {
-  constructor(message = "",) {
+  constructor(message = '',) {
     super(message);
     this.name = 'ValidationError';
   }

@@ -3,8 +3,8 @@
 // https://support.modrinth.com/en/articles/8801962-advanced-markdown-formatting
 
 // https://github.com/leizongmin/js-xss/blob/master/dist/xss.js#L12
-import {Schema} from "hast-util-sanitize";
-import {defaultSchema} from "rehype-sanitize";
+import {Schema} from 'hast-util-sanitize';
+import {defaultSchema} from 'rehype-sanitize';
 
 export const markdownRehypeSchema: Schema = {
   ...defaultSchema,

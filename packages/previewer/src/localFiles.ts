@@ -1,8 +1,8 @@
-import {FileTree} from "@repo/shared/types/service";
-import dirTee, {DirectoryTree} from "directory-tree";
-import {promises as fs} from "fs";
-import url from "url";
-import {LocalDocumentationFile, LocalDocumentationSource} from "./localDocsPages";
+import {FileTree} from '@repo/shared/types/service';
+import dirTee, {DirectoryTree} from 'directory-tree';
+import {promises as fs} from 'fs';
+import url from 'url';
+import {LocalDocumentationFile, LocalDocumentationSource} from './localDocsPages';
 
 async function readFileTree(source: LocalDocumentationSource): Promise<FileTree> {
   const tree = dirTee(`${source.path}`, {attributes: ['type']})?.children || [];
@@ -21,7 +21,7 @@ function convertDirectoryTree(tree: DirectoryTree[]): FileTree {
 async function readFileContents(source: LocalDocumentationSource, path: string): Promise<LocalDocumentationFile> {
   const filePath = `${source.path}/${path}`;
   const content = await fs.readFile(filePath, 'utf8');
-  return {content, edit_url: null}
+  return {content, edit_url: null};
 }
 
 async function readShallowFileTree(source: LocalDocumentationSource, path: string): Promise<FileTree> {
@@ -39,4 +39,4 @@ export default {
   readFileTree,
   readFileContents,
   readShallowFileTree
-}
+};

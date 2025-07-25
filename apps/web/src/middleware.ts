@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     }
   }
 
-  if (request.nextUrl.pathname.match(/^(\/[^\/]+)?\/(?:dev|report)/)) {
+  if (request.nextUrl.pathname.match(/^(\/[^/]+)?\/(?:dev|report)/)) {
     const localResp = handleI18nRouting(request);
     if (localResp.status !== 200) {
       return localResp;

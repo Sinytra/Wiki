@@ -1,4 +1,4 @@
-import {PaginatedData} from "@repo/shared/types/service";
+import {PaginatedData} from '@repo/shared/types/service';
 
 export type ProjectReportType = 'project' | 'docs' | 'content' | 'unknown';
 export type ProjectReportReason = 'spam' | 'copyright' | 'content_rules' | 'tos' | 'unknown';

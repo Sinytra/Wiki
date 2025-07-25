@@ -1,4 +1,4 @@
-import {PaginatedData} from "@repo/shared/types/service";
+import {PaginatedData} from '@repo/shared/types/service';
 
 export interface DataImport {
   id: number;

@@ -1,4 +1,4 @@
-import {ResourceLocation} from "@repo/shared/resourceLocation";
+import {ResourceLocation} from '@repo/shared/resourceLocation';
 
 export interface AssetLocation {
   id: string;
@@ -18,6 +18,6 @@ function getAssetResourcePath(id: ResourceLocation): string {
 
 const assets = {
   getAssetResourcePath
-}
+};
 
 export default assets;

@@ -1,4 +1,4 @@
-import {CN, CZ, DE, ES, FR, HU, IT, JP, KR, MY, PL, RU, SE, TR, TW, UA, US} from "country-flag-icons/react/3x2";
+import {CN, CZ, DE, ES, FR, HU, IT, JP, KR, MY, PL, RU, SE, TR, TW, UA, US} from 'country-flag-icons/react/3x2';
 
 export type LanguageMap = {[key: string]: Language};
 

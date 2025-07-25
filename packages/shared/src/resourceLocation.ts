@@ -1,4 +1,4 @@
-export const DEFAULT_NAMESPACE = "minecraft";
+export const DEFAULT_NAMESPACE = 'minecraft';
 
 export interface ResourceLocation {
   namespace: string;
@@ -23,4 +23,4 @@ function parse(loc: string): ResourceLocation | null {
 export default {
   toString,
   parse
-}
+};

@@ -1,5 +1,5 @@
-import {PaginatedData} from "../service";
-import {ProjectIssue, ProjectRevision} from "./project";
+import {PaginatedData} from '../service';
+import {ProjectIssue, ProjectRevision} from './project';
 
 export enum DeploymentStatus {
   UNKNOWN = 'unknown',

@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "markdown-to-jsx": "^7.4.0",
     "next": "^15.0.2",
     "nextra": "4.3.0-alpha.31",
@@ -18,7 +21,10 @@
     "react-intersection-observer": "^8.26.2"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@stylistic/eslint-plugin": "^5.2.2",
     "@types/react": "^19.1.8",
-    "@repo/typescript-config": "workspace:*"
+    "eslint": "^9.31.0"
   }
 }

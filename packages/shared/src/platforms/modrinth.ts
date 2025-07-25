@@ -1,7 +1,7 @@
-import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from "./universal";
-import env from "@repo/shared/env";
-import {AVAILABLE_PROJECT_TYPES, ProjectType} from "@repo/shared/types/service";
-import {ProjectNotFoundError} from "./exception";
+import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from './universal';
+import env from '@repo/shared/env';
+import {AVAILABLE_PROJECT_TYPES, ProjectType} from '@repo/shared/types/service';
+import {ProjectNotFoundError} from './exception';
 
 // TODO
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (env.isPreview() ? '/local' : '');
@@ -75,7 +75,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
     platform: 'modrinth',
     project_url: await getProjectURL(mrProject.slug, type),
     type
-  }
+  };
 }
 
 async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
@@ -148,4 +148,4 @@ export const modrinthModPlatform: ProjectPlatformProvider = {
   getProject,
   getProjectAuthors,
   getProjectURL
-}
+};

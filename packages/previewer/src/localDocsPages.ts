@@ -1,11 +1,11 @@
-import {unstable_cache} from "next/cache";
-import {promises as fs} from "fs";
-import {DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from "@repo/shared/constants";
-import metadata, {DocumentationFolderMetadata, ValidationError } from "./localMetadata";
-import {FileTree} from "@repo/shared/types/service";
-import {ProjectPlatforms} from "@repo/shared/types/platform";
-import localFiles from "./localFiles";
-import env from "@repo/shared/env";
+import {unstable_cache} from 'next/cache';
+import {promises as fs} from 'fs';
+import {DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from '@repo/shared/constants';
+import metadata, {DocumentationFolderMetadata, ValidationError } from './localMetadata';
+import {FileTree} from '@repo/shared/types/service';
+import {ProjectPlatforms} from '@repo/shared/types/platform';
+import localFiles from './localFiles';
+import env from '@repo/shared/env';
 
 export interface LocalDocumentationSource {
   id: string;
@@ -142,7 +142,7 @@ async function processFileTree(source: LocalDocumentationSource, root: string, t
         type: entry.type,
         children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : [],
         icon: metadata?.[entry.name]?.icon
-      }
+      };
     }));
 }
 
@@ -165,7 +165,7 @@ async function readLocalizedFile(source: LocalDocumentationSource, path: string,
       const localeFolder = `.translated/${locale}_${locale}/`;
       try {
         return await localFiles.readFileContents(source, localeFolder + path);
-      } catch (e) {
+      } catch {
         // fallback to default locale
       }
     }
@@ -174,7 +174,7 @@ async function readLocalizedFile(source: LocalDocumentationSource, path: string,
 }
 
 function capitalizeDefaultEntryName(str: string) {
-  const words = str.split('.')[0]!.replaceAll(/[_\-]/g, ' ').split(' ');
+  const words = str.split('.')[0]!.replaceAll(/[_-]/g, ' ').split(' ');
   for (let i = 0; i < words.length; i++) {
     words[i] = words[i]![0]!.toUpperCase() + words[i]!.substring(1);
   }
@@ -186,4 +186,4 @@ export default {
   getAvailableLocales,
   readDocsTree,
   readDocsFile
-}
+};

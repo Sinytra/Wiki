@@ -1,4 +1,4 @@
-import {requireEnvVar} from "./util";
+import {requireEnvVar} from './util';
 
 function getBackendEndpointUrl(): string {
   return requireEnvVar('NEXT_PUBLIC_BACKEND_SERVICE_URL');
@@ -6,6 +6,6 @@ function getBackendEndpointUrl(): string {
 
 const envPublic = {
   getBackendEndpointUrl
-}
+};
 
 export default envPublic;

@@ -1,4 +1,4 @@
-import {PaginatedData, ResolvedGameRecipe} from "../service";
+import {PaginatedData, ResolvedGameRecipe} from '../service';
 
 export interface ProjectContentPage {
   id: string;

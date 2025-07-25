@@ -1,7 +1,7 @@
 // noinspection JSUnusedLocalSymbols
 
 import platforms from '@repo/shared/platforms';
-import localDocs, {LocalDocumentationSource} from "./localDocsPages";
+import localDocs, {LocalDocumentationSource} from './localDocsPages';
 import {
   ContentRecipeUsage,
   DocumentationPage,
@@ -16,12 +16,12 @@ import {
   ResolvedGameRecipeType,
   ServiceProvider,
   ServiceProviderFactory
-} from "@repo/shared/types/service";
-import {AssetLocation} from "@repo/shared/assets";
-import localAssets from "./localAssets";
-import {ResourceLocation} from "@repo/shared/resourceLocation";
-import markdown from "@repo/markdown";
-import localFiles from "./localFiles";
+} from '@repo/shared/types/service';
+import {AssetLocation} from '@repo/shared/assets';
+import localAssets from './localAssets';
+import {ResourceLocation} from '@repo/shared/resourceLocation';
+import markdown from '@repo/markdown';
+import localFiles from './localFiles';
 
 function findDocsFiles(entry: FileTreeEntry): FileTreeEntry[] {
   return entry.type === 'file' ? [entry] : entry.children.flatMap(findDocsFiles);
@@ -44,7 +44,7 @@ async function getLocalSourceContentTree(src: LocalDocumentationSource, locale?:
       }
     }
     return null;
-  }
+  };
   const results = await Promise.all(tree.map(e => processEntry(e)));
   return results.filter(c => c != null);
 }
@@ -63,7 +63,7 @@ async function getLocalItemProperties(src: LocalDocumentationSource, id: string)
 async function getProject(ctx: ProjectContext): Promise<ProjectWithInfo | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
-    return sourceToProject(src)
+    return sourceToProject(src);
   }
   return null;
 }
@@ -102,7 +102,7 @@ async function getBackendLayout(ctx: ProjectContext): Promise<LayoutTree | null>
     return {
       project: {...project, locales},
       tree
-    }
+    };
   }
   return null;
 }
@@ -132,7 +132,7 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
       return {
         project,
         content: file.content
-      }
+      };
     }
     return null;
   }
@@ -169,7 +169,7 @@ async function getProjectContentPage(id: string, ctx: ProjectContext): Promise<D
     } else {
       return e.id == id ? e.path : null;
     }
-  }
+  };
   if (tree) {
     for (const e of tree) {
       const path = findRecursive(e);
@@ -210,13 +210,13 @@ const serviceProvider: ServiceProvider = {
   getContentRecipeUsage,
   getContentRecipeObtaining,
   getRecipeType
-}
+};
 
 export const serviceProviderFactory: ServiceProviderFactory = {
   isAvailable() {
     return process.env.LOCAL_DOCS_ROOTS != null;
   },
   create() {
-    return serviceProvider
+    return serviceProvider;
   }
-}
+};

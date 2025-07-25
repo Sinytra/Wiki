@@ -1,6 +1,6 @@
 // noinspection JSUnusedLocalSymbols
 
-import {NextRequest, NextResponse} from "next/server";
+import {NextRequest, NextResponse} from 'next/server';
 
 function previewMiddleware(request: NextRequest, response: NextResponse): NextResponse | null {
   const path = request.nextUrl.pathname;
@@ -12,4 +12,4 @@ function previewMiddleware(request: NextRequest, response: NextResponse): NextRe
 
 export default {
   previewMiddleware
-}
+};

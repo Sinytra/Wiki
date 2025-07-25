@@ -4,6 +4,7 @@ import pluginReact from "eslint-plugin-react"
 import pluginReactHooks from "eslint-plugin-react-hooks"
 import globals from "globals"
 import tseslint from "typescript-eslint"
+import stylistic from '@stylistic/eslint-plugin'
 
 import { config as baseConfig } from "./base.js"
 
@@ -38,4 +39,19 @@ export const config = [
       "react/prop-types": "off",
     },
   },
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'off'
+    }
+  },
+  {
+    plugins: {
+      '@stylistic': stylistic
+    },
+    rules: {
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single']
+    }
+  }
 ]

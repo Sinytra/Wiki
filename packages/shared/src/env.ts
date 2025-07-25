@@ -1,4 +1,4 @@
-import { requireEnvVar } from "./util";
+import { requireEnvVar } from './util';
 
 function isPreview(): boolean {
   return process.env.ENABLE_LOCAL_PREVIEW === 'true';
@@ -11,6 +11,6 @@ function getBackendSecretApiKey(): string {
 const env = {
   isPreview,
   getBackendSecretApiKey
-}
+};
 
 export default env;

@@ -1,8 +1,8 @@
-import {DocumentationMarkdown} from "@repo/markdown";
-import {AssetLocation} from "@repo/shared/assets";
-import {ProjectPlatforms} from "./platform";
-import {ResourceLocation} from "../resourceLocation";
-import {ProjectIssueStats, ProjectRevision, ProjectStatus} from "./api/project";
+import {DocumentationMarkdown} from '@repo/markdown';
+import {AssetLocation} from '@repo/shared/assets';
+import {ProjectPlatforms} from './platform';
+import {ResourceLocation} from '../resourceLocation';
+import {ProjectIssueStats, ProjectRevision, ProjectStatus} from './api/project';
 
 export interface FileTreeEntry {
   name: string;

@@ -2,13 +2,13 @@ import {
   PlatformProject,
   PlatformProjectAuthor,
   ProjectPlatformProvider
-} from "./platforms/universal";
-import {modrinthModPlatform} from "./platforms/modrinth";
-import {curseForgeModPlatform} from "./platforms/curseforge";
-import {ProjectPlatform, ProjectPlatforms} from "@repo/shared/types/platform";
-import {Project, ProjectType} from "@repo/shared/types/service";
-import {ProjectNotFoundError} from "./platforms/exception";
-import issuesApi from "@repo/shared/api/issuesApi";
+} from './platforms/universal';
+import {modrinthModPlatform} from './platforms/modrinth';
+import {curseForgeModPlatform} from './platforms/curseforge';
+import {ProjectPlatform, ProjectPlatforms} from '@repo/shared/types/platform';
+import {Project, ProjectType} from '@repo/shared/types/service';
+import {ProjectNotFoundError} from './platforms/exception';
+import issuesApi from '@repo/shared/api/issuesApi';
 
 export * from './platforms/universal';
 export * from './platforms/exception';
@@ -23,7 +23,7 @@ interface IdentifiableProject {
 const providers: { [key in ProjectPlatform]: ProjectPlatformProvider } = {
   modrinth: modrinthModPlatform,
   curseforge: curseForgeModPlatform
-}
+};
 
 function getProjectSourcePlatform(id: ProjectPlatform): ProjectPlatformProvider {
   const source: ProjectPlatformProvider | undefined = providers[id];

@@ -2,6 +2,9 @@
   "name": "@repo/previewer",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "lint": "eslint ."
+  },
   "exports": {
     ".": "./src/index.ts",
     "./localAssets": "./src/localAssets.ts",
@@ -15,6 +18,8 @@
     "next": "^15.4.3"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*"
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "eslint": "^9.31.0"
   }
 }

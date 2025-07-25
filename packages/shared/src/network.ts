@@ -1,9 +1,9 @@
-import {cookies} from "next/headers";
-import env from "./env";
-import envPublic from "./envPublic";
-import {serializeUrlParams} from "./util";
-import locales from "@repo/lang/locales";
-import {DEFAULT_DOCS_VERSION} from "./constants";
+import {cookies} from 'next/headers';
+import env from './env';
+import envPublic from './envPublic';
+import {serializeUrlParams} from './util';
+import locales from '@repo/lang/locales';
+import {DEFAULT_DOCS_VERSION} from './constants';
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';
 type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown';
@@ -184,4 +184,4 @@ export default {
   sendDataRequest,
   constructApiUrl,
   actualVersion
-}
+};

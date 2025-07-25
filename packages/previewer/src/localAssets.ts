@@ -1,6 +1,6 @@
-import fs from "fs";
-import assets, {AssetLocation, AssetProvider} from "@repo/shared/assets";
-import resourceLocation, {ResourceLocation} from "@repo/shared/resourceLocation";
+import fs from 'fs';
+import assets, {AssetLocation, AssetProvider} from '@repo/shared/assets';
+import resourceLocation, {ResourceLocation} from '@repo/shared/resourceLocation';
 
 async function resolveAsset(source: string, id: ResourceLocation): Promise<AssetLocation | null> {
   const path = source + '/' + assets.getAssetResourcePath(id);
