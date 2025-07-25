@@ -458,6 +458,9 @@ importers:
       codehike:
         specifier: ^1.0.7
         version: 1.0.7
+      github-slugger:
+        specifier: ^2.0.0
+        version: 2.0.0
       hast-util-heading-rank:
         specifier: ^3.0.0
         version: 3.0.0
@@ -467,6 +470,9 @@ importers:
       lucide-react:
         specifier: ^0.513.0
         version: 0.513.0(react@19.1.0)
+      mdast-util-to-string:
+        specifier: ^4.0.0
+        version: 4.0.0
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -491,6 +497,9 @@ importers:
       unified:
         specifier: ^11.0.5
         version: 11.0.5
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
       vfile:
         specifier: ^6.0.3
         version: 6.0.3

@@ -2,7 +2,7 @@ import GithubSlugger from 'github-slugger';
 import {visit} from 'unist-util-visit';
 import {headingRank} from 'hast-util-heading-rank';
 import {toString} from 'mdast-util-to-string';
-import { FileHeading } from './metadata';
+import {FileHeading} from './metadata';
 
 export default function rehypeMarkdownHeadings() {
   const slugs = new GithubSlugger();
