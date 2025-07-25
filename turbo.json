@@ -5,7 +5,8 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "passThroughEnv": ["SENTRY_*", "NEXT_PUBLIC_*", "CF_API_KEY", "BACKEND_API_KEY", "VERCEL_*"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -17,5 +18,14 @@
       "cache": false,
       "persistent": true
     }
-  }
+  },
+  "globalEnv": [
+    "CROWDIN_*",
+    "SEARCH_*",
+    "SENTRY_*",
+    "NEXT_PUBLIC_*",
+    "BACKEND_API_KEY",
+    "CF_API_KEY",
+    "VERCEL_*"
+  ]
 }

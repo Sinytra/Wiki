@@ -461,6 +461,9 @@ importers:
       hast-util-heading-rank:
         specifier: ^3.0.0
         version: 3.0.0
+      hast-util-sanitize:
+        specifier: ^5.0.2
+        version: 5.0.2
       lucide-react:
         specifier: ^0.513.0
         version: 0.513.0(react@19.1.0)
