@@ -13,12 +13,13 @@ export default function LastUpdated({date, children = 'Last updated on', locale}
     return null;
   }
   return (
-    <>
+    <div className="text-sm text-neutral-400! font-medium">
       {children}{' '}
       <time
         dateTime={date.toISOString()}
         // Can provoke React 418 error https://react.dev/errors/418
         suppressHydrationWarning
+        className="text-neutral-400!"
       >
         {date.toLocaleDateString(locale, {
           day: 'numeric',
@@ -26,6 +27,6 @@ export default function LastUpdated({date, children = 'Last updated on', locale}
           year: 'numeric'
         })}
       </time>
-    </>
+    </div>
   );
 }

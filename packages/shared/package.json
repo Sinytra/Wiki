@@ -24,8 +24,7 @@
     "country-flag-icons": "^1.5.13",
     "next": "^15.4.3",
     "react": "19.1.0",
-    "@repo/markdown": "workspace:*",
-    "@repo/lang": "workspace:*"
+    "@repo/markdown": "workspace:*"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

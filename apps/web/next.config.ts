@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import {withContentlayer} from 'next-contentlayer2';
 import {remarkCodeHike, recmaCodeHike, type CodeHikeConfig} from 'codehike/mdx';
-import locales from '@repo/lang/locales';
+import locales from '@repo/shared/locales';
 import type {NextConfig} from 'next';
 
 const withNextIntl = createNextIntlPlugin(

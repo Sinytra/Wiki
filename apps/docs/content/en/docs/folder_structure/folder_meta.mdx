@@ -1,0 +1,48 @@
+# Folder metadata
+
+Folder metadata provides additional information for the documentation page navigation sidebar, such as:
+- The **display names** of folders and files. If not provided, the wiki will use automatically generated display names.
+- The **ordering** of sidebar entries. By default, folders are shown first, followed by regular files, all sorted
+alphabetically.
+
+To avoid potential unwanted display errors, we recommend **always** providing complete folder metadata in your
+documentation.
+
+## File Format
+
+The folder metadata json consists of string key-value pairs, where the keys represent the name of a file or a folder,
+and the values are their display name. When specifying a file name, the full name including the extension is required.
+
+Folder metadata is contained in a file called `_meta.json` and can be placed **inside any folder** within the
+documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
+
+For example:
+
+```json filename="_meta.json"
+{
+    "blocks": "Blocks",
+    "items": "Completely custom name",
+    "introduction.mdx": "Introduction"
+}
+```
+
+The JSON Schema specification for this file can be found [here](/_meta.schema.json).
+
+## Icons
+
+You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
+and supplying the icon's name as shown below.
+
+The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
+More information on icon names can be found on the [Format](./format#icons) page.
+
+To hide the folder icon completely, specify `null`.
+
+```json filename="_meta.json"
+{
+    "blocks": {
+        "name": "Blocks",
+        "icon": "Box"
+    }
+}
+```

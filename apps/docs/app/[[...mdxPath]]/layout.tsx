@@ -3,9 +3,10 @@ import {Head} from 'nextra/components';
 import {getPageMap} from 'nextra/page-map';
 import LastUpdated from '@/components/LastUpdated';
 import LocaleSwitch from '@/components/LocaleSwitch';
-import {locales, defaultLocale} from '@/lang';
-import { Inter } from 'next/font/google';
+import {defaultLocale, locales} from '@/lang';
+import {Inter} from 'next/font/google';
 import '../styles/globals.css';
+import Image from 'next/image';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,7 +35,12 @@ export default async function RootLayout({ params, children }: { params: any, ch
 
   const navbar = (
     <Navbar
-      logo={<b>Modded Minecraft Wiki</b>}
+      logo={
+      <div className="flex flex-row gap-2 items-center">
+        <Image src="/logo.png" alt="Logo" width={24} height={24} />
+        <b>Modded Minecraft Wiki</b>
+      </div>
+      }
       logoLink={lang != defaultLocale ? `/${lang}` : '/'}
     >
       <LocaleSwitch locale={lang} locales={locales} defaultLocale={defaultLocale} />

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import locales from "@repo/lang/locales";
+import locales from "@repo/shared/locales";
  
 export default function robots(): MetadataRoute.Robots {
   const languages = locales.getLanguagePaths()

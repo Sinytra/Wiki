@@ -1,0 +1,50 @@
+# Configuration
+
+## Wiki Metadata
+
+The wiki metadata file specifies project identification information, necessary for the wiki to load the project.
+
+It must be placed in a file called `sinytra-wiki.json` inside the documentation **root directory**.
+
+```json filename="sinytra-wiki.json"
+{
+    "id": "mffs",
+    "platforms": {
+        "curseforge": "mffs",
+        "modrinth": "mffs"
+    }
+}
+```
+
+The wiki metadata file contains the following properties, all of which are **required**:
+
+- `id`: Unique project id used to identify the project across the wiki. We recommend using your mod id
+or hosting platform slug.
+- `platforms`: Your project's distribution platforms. This is map of (platform) -> (platform project slug).
+Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
+
+The project slug can be easily extracted from your project page URL as shown in the examples below, where `{slug}`
+is a placeholder for the actual value.
+- For Modrinth projects: `https://modrinth.com/mod/{slug}`
+- For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+
+The JSON Schema specification for this file can be found [here](/sinytra-wiki.schema.json).
+
+### Versioning
+
+You can show multiple versions of your project's documentation on the wiki by adding a `versions` property to your
+docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector
+as well as in the URL paths) to git branch names.
+
+The documentation folder structure remains the same across all branches with contents being isolated per branch,
+including assets and localization. **Documentation metadata files (`sinytra-wiki.json`) from other branches are ignored**,
+as all necessary information is already contained in the default branch's file.
+
+```json filename="sinytra-wiki.json"
+{
+    "versions": {
+        "1.19.2": "my-git-branch-name",
+        "1.18.2": "another-branch"
+    }
+}
+```

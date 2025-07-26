@@ -1,6 +1,6 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
-import locales from "@repo/lang/locales";
+import locales from "@repo/shared/locales";
 import deepmerge from "deepmerge";
 
 export default getRequestConfig(async ({requestLocale}) => {

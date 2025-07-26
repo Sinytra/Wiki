@@ -24,6 +24,9 @@ importers:
       '@headlessui/react':
         specifier: ^2.2.6
         version: 2.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      acorn:
+        specifier: ^8.15.0
+        version: 8.15.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -148,9 +151,6 @@ importers:
       '@radix-ui/react-visually-hidden':
         specifier: ^1.2.3
         version: 1.2.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@repo/lang':
-        specifier: workspace:*
-        version: link:../../packages/lang
       '@repo/markdown':
         specifier: workspace:*
         version: link:../../packages/markdown
@@ -243,7 +243,7 @@ importers:
         version: 8.0.2
       nuqs:
         specifier: ^2.2.3
-        version: 2.4.3(next@15.4.3(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
+        version: 2.4.3(next@15.4.3(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
       posthog-js:
         specifier: ^1.256.1
         version: 1.258.1
@@ -556,9 +556,6 @@ importers:
       '@bprogress/next':
         specifier: ^3.2.10
         version: 3.2.12(next@15.4.3(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@repo/lang':
-        specifier: workspace:*
-        version: link:../lang
       '@repo/markdown':
         specifier: workspace:*
         version: link:../markdown
@@ -650,6 +647,9 @@ importers:
       '@repo/shared':
         specifier: workspace:*
         version: link:../shared
+      '@shikijs/themes':
+        specifier: ^3.1.0
+        version: 3.8.1
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -683,6 +683,9 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      nuqs:
+        specifier: ^2.4.3
+        version: 2.4.3(next@15.4.3(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -12455,7 +12458,7 @@ snapshots:
 
   npm-to-yarn@3.0.1: {}
 
-  nuqs@2.4.3(next@15.4.3(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0):
+  nuqs@2.4.3(next@15.4.3(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0):
     dependencies:
       mitt: 3.0.1
       react: 19.1.0

@@ -1,4 +1,4 @@
-import locales from "@repo/lang/locales";
+import locales from "@repo/shared/locales";
 
 interface CrowdinResponse<T> {
   data: T

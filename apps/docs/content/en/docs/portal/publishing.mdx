@@ -1,0 +1,133 @@
+import { Callout } from 'nextra/components';
+
+# Publishing
+
+Learn how to publish your documentation on our website!
+
+---
+
+## Developer portal
+
+You can access our [developer portal](../dev) by clicking the `Developer area` button on the home page or in the footer.
+
+### First login
+
+If this is your first time signing in, you'll be redirected to the login page where you can sign in using
+your **GitHub account**.
+
+GitHub will ask you to authorize our GitHub App to access your account. It only requires minimal permissions used to
+verify your identify and repository access permissions. Upon approving the request, you'll be automatically taken
+to the developer portal.
+
+## Registering projects
+
+To add a new project to the wiki, hit the `Add Project` button. This will open a modal dialog, where you'll be asked
+to fill out the following information:
+
+- `Owner` - GitHub repository owner. Can be a user or an organization
+- `Name` - GitHub repository name
+- `Branch` - Name of the branch where the documentation is located
+- `Path to documentation root` - Path to the documentation root folder inside the repository.
+Should begin with a leading `/`.
+
+Once you've filled everything out, hit the `Submit` button to complete the registration process.
+
+If the process completed successfully, you're good to go! Try opening the project on the wiki to see the rendered result.
+
+**Should you run into any errors, please see the Troubleshooting section below. If the issue still persists,
+[reach out to us](./help).**
+
+<Callout>
+    As wiki content is rendered lazily, you may experience slightly increased loading times when first visiting pages,
+    but this only occurs the first time a given page is opened and will be **cached for all visitors** afterward,
+    achieving near-instant navigation times.
+</Callout>
+
+( also don't forget to let your users know they can now find docs for your project here :) )
+
+<Callout>
+    If you change your default branch on GitHub (e.g. as when porting your project to newer versions), don't forget to
+    update the source branch in the wiki project's settings as well, so that the website can keep showing the latest
+    docs version.
+</Callout>
+
+#### Troubleshooting
+
+> Please first install our GitHub app on your repository (here).
+
+1. **Possible cause:** The wiki GitHub app is not installed on the project's GitHub repository, and therefore cannot access it.
+**Fix:** Navigate to the link provided in the error message and grant the wiki GitHub App access to your repository.
+It's enough if you only grant it access to the project's repository rather than all of them at once.
+Don't worry about leaving the page - filled out information will be saved and re-applied when you return.
+
+2. **Possible cause:** The provided GitHub repository does not exist.
+**Fix:** Make sure you've filled out the repository `Owner` and `Name` fields correctly. These should match each the
+repository `owner/name` pair as seen in its URL, e.g. `https://github.com/Sinytra/Wiki` would use `Sinytra` as the owner
+and `Wiki` as the name.
+
+> Verification error
+
+- **Possible cause:** Your hosting platform project (see [documentation metadata](./devs#wiki-metadata)) does not
+provide a Source Code link pointing to your GitHub repository.
+**Fix:** For the purposes of verifying project ownership, please momentarily set the Source Code url of your project
+to match the GitHub repository url.
+
+<details>
+    <summary>Expand to get assistance for Modrinth projects</summary>
+
+    1. Open to your project's settings.
+    2. Navigate to the `Links` tab.
+    3. Enter the GitHub repository url in the `Source code` field.
+    4. Apply the changes.
+
+    ![MR Source](/mr_src_url.png)
+</details>
+<p/>
+<details>
+    <summary>Expand to get assistance for CurseForge projects</summary>
+
+    1. Open your project's settings.
+    2. Navigate to the `Source` tab.
+    3. Enter the GitHub repository url in the `Repository URL` field.
+    4. Apply the changes.
+
+    ![CF Source](/cf_src_url.png)
+</details>
+
+> User does not have access to repository.
+
+Your repository access permissions are insufficient to register it to the wiki. Please make sure you have at least
+**Maintain** or **Admin** access.
+
+> Invalid path provided
+
+The provided path does not exist or is a regular file. Please make sure the path points to an existing directory within
+the repository. There is no need to prefix the path with a branch or tag name.
+
+This field is identical to the `path` parameter of GitHub's "[Get repository content](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content)"
+REST API route.
+
+## Project management
+
+On your developer dashboard, you can find a couple options that let your manage your project. These are described
+in detail below.
+
+### Revalidate project
+
+Purges all cached documentation pages, forcing them to be re-rendered lazily on-demand.
+This option should only be used upon updating the documentation source itself.
+
+For your own convenience, we recommend automatically revalidating docs after publication using our
+[Gradle plugin](./devs#-gradle-plugin-companion) instead.
+
+### Edit project
+
+Edit the project's parameters that have been set during registration. The project's ownership will be re-validated
+during an update.
+
+### Delete a project
+
+Permanently delete the project and removes all associated data from our servers. The cache for documentation pages will
+be immediately purged as well, but it might take some time to propagate to the CDN and browser clients.
+
+**This is a destructive operation and cannot be undone.**

@@ -2,7 +2,7 @@ import Header from "@/components/navigation/header";
 import Footer from "@/components/navigation/Footer";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
-import locales from "@repo/lang/locales";
+import locales from "@repo/shared/locales";
 import {NextIntlClientProvider} from "next-intl";
 import {Toaster} from "@repo/ui/components/sonner";
 

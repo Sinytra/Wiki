@@ -2,7 +2,7 @@ import {cookies} from 'next/headers';
 import env from './env';
 import envPublic from './envPublic';
 import {serializeUrlParams} from './util';
-import locales from '@repo/lang/locales';
+import locales from '@repo/shared/locales';
 import {DEFAULT_DOCS_VERSION} from './constants';
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';

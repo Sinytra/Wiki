@@ -16,7 +16,7 @@
 
 @layer theme {
     .dark {
-        --x-color-primary-600: #a8b1ff;
+        --x-color-primary-600: #5c9de4;
         --nextra-bg-hard: #1b1b1f;
         --nextra-bg-soft: #161618;
     }
@@ -53,6 +53,18 @@
         @apply gap-0 pt-0;
     }
 
+    .nextra-sidebar > .nextra-mask button[data-headlessui-state] {
+        @apply font-semibold text-gray-900 dark:text-white;
+    }
+
+    .nextra-sidebar button[data-headlessui-state] + div ul {
+        @apply ml-0 pl-0;
+    }
+
+    .nextra-sidebar button[data-headlessui-state] + div ul:before {
+        @apply bg-transparent;
+    }
+
     .nextra-sidebar-footer {
         border-top: none !important;
     }
@@ -65,8 +77,28 @@
         @apply dark:bg-nextra-soft!;
     }
 
-    article * {
-        @apply dark:text-primary!;
+    article pre {
+        background: #161618 !important;
+    }
+
+    .nextra-code > div {
+        border: none !important;
+    }
+
+    .nextra-code > pre {
+        box-shadow: none !important;
+    }
+
+    .nextra-code > :not(pre) button[data-headlessui-state] {
+        @apply hidden;
+    }
+
+    .nextra-code:hover > :not(pre) button[data-headlessui-state] {
+        @apply block;
+    }
+
+    .subheading-anchor:where(.dark *):after {
+        color: var(--x-color-primary-600) !important;
     }
 
     .doc-wrapper h1 {
@@ -79,6 +111,14 @@
 
     .doc-wrapper h3 {
         @apply text-xl;
+    }
+
+    article summary h3 {
+        @apply text-base! font-medium!;
+    }
+
+    article *:not(pre,a):not(pre *) {
+        @apply dark:text-primary!;
     }
 }
 
