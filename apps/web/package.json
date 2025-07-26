@@ -113,7 +113,7 @@
     "eslint-plugin-better-tailwindcss": "^3.1.0",
     "postcss": "^8",
     "tailwind-scrollbar": "^4.0.0",
-    "tailwindcss": "^4.0.0",
+    "tailwindcss": "^4.0.8",
     "tw-animate-css": "^1.2.5",
     "typescript": "^5"
   }

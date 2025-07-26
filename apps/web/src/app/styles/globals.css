@@ -6,6 +6,8 @@
 @import 'tailwindcss';
 @import "tw-animate-css";
 
+@source '../../../node_modules/@repo/ui';
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @plugin 'tailwind-scrollbar';
