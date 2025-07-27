@@ -1,0 +1,49 @@
+# Overview
+
+## Example
+
+A minimal example folder layout may look like this:
+
+```
+docs
+├── blocks
+│   ├── generator.mdx
+│   └── _meta.json
+├── introduction.mdx
+├── _meta.json
+└── sinytra-wiki.json
+```
+
+<details>
+    <summary>Show complete example</summary>
+
+    Here is a complete example including assets and translations.
+
+    ```
+    docs
+    ├── .assets
+    │   └── examplemod
+    │       └── generator.png
+    ├── .translated
+    │   └── de_de
+    │       └── blocks
+    │           ├── generator.mdx
+    │           └── _meta.json
+    ├── blocks
+    │   ├── generator.mdx
+    │   └── _meta.json
+    ├── introduction.mdx
+    ├── _meta.json
+    └── sinytra-wiki.json
+    ```
+</details>
+
+Let's talk about what each of these files does:
+- `sinytra-wiki.json`: The main metadata file, the "heart" of the documentation package, carries information about the
+project. For its content format, see the complete explanation below.
+- `_meta.json`: Can be placed in the root folder as well as each subfolder. Provides display names for files and
+folders, which are shown in the documentation navigation sidebar on the wiki, and also specifies the order in which
+they are displayed. If not provided, fallback display names are generated automatically.
+- `*.mdx` files: Contain documentation contents. To learn more about the MDX format, please see their
+[website](https://mdxjs.com/). As MDX compiles to JavaScript, the Wiki imposes certain restrictions on what components
+and tags can be used in addition to standard Markdown. For a complete description, please read below.

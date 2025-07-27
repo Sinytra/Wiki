@@ -1,1 +1,21 @@
+import { Callout } from 'nextra/components';
+
 # Assets
+
+<Callout>
+    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#-gradle-plugin-companion),
+    which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
+</Callout>
+
+Assets are used to display images of items, blocks and other project content across the website. These can be used as
+part of crafting recipes, sidebar information or custom components.
+
+Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
+in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
+
+Rendered project assets including **both items and blocks** should be placed under `.assets/(modid)` inside the
+documentation directory, where `modid` is the namespace of each texture you wish to provide.
+
+Each asset **must be in `.png` format**. The name of the file is up to your choice.
+
+For example, `examplemod:generator` would point to `(root)/.assets/examplemod/generator.png`.

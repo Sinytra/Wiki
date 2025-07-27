@@ -5,7 +5,6 @@ export default {
   },
   'introduction': 'Introduction',
   'getting_started': 'Getting Started',
-  'configuration': 'Configuration',
   '##': {
     type: 'separator'
   },

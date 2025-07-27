@@ -113,6 +113,10 @@
         @apply text-xl;
     }
 
+    .nextra-steps h3:before {
+        border-color: transparent !important;
+    }
+
     article summary h3 {
         @apply text-base! font-medium!;
     }
