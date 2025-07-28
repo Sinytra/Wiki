@@ -9,7 +9,7 @@ interface SearchProjectsParameters extends ApiRouteParameters {
 }
 
 async function searchProjects(parameters: SearchProjectsParameters): Promise<ApiCallResult<ProjectSearchResults>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest('browse', { parameters }))
+  return network.resolveApiCall(() => network.sendSimpleRequest('browse', { parameters, userAuth: false }))
 }
 
 export default {

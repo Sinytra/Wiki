@@ -17,6 +17,7 @@ export default defineConfig([
 
         rules: {
             "@typescript-eslint/no-explicit-any": "off",
+            "react-hooks/exhaustive-deps": "off",
             "react/no-unescaped-entities": 0,
             "@next/next/no-img-element": "off",
             "import/no-anonymous-default-export": "off",

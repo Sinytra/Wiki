@@ -67,6 +67,7 @@ export interface RequestOptions {
   cache?: boolean | NextFetchRequestConfig;
   headers?: HeadersInit;
   body?: any;
+  userAuth?: boolean
 }
 
 export type ApiCallResult<T = never> =
@@ -140,14 +141,17 @@ async function sendDataRequest(path: string, options?: RequestOptions) {
 async function sendSimpleRequest(path: string, options?: RequestOptions) {
   const url = constructApiUrl(path, options?.parameters);
   const useCache = options?.cache === true || typeof options?.cache === 'object';
+  const headers: any = {
+    ...options?.headers,
+    Authorization: `Bearer ${env.getBackendSecretApiKey()}`
+  };
+  if (options?.userAuth === true || options?.userAuth === undefined) {
+    headers.cookies = (await cookies()).toString();
+  }
 
   return fetch(url, {
     method: options?.method,
-    headers: {
-      ...options?.headers,
-      Authorization: `Bearer ${env.getBackendSecretApiKey()}`,
-      cookie: (await cookies()).toString()
-    },
+    headers,
     body: options?.body ? (typeof options?.body === 'string' ? options.body : JSON.stringify(options.body)) : null,
     cache: useCache ? 'force-cache' : undefined,
     next: useCache ? {

@@ -17,6 +17,7 @@ import network, {ApiRouteParameters} from "@repo/shared/network";
 async function sendApiRequest(project: string, path: string, parameters?: ApiRouteParameters) {
   return network.sendSimpleRequest(path, {
     parameters,
+    userAuth: false, // Don't include cookies
     cache: {
       tags: [`backend:${project}`]
     }
