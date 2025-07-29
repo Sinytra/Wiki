@@ -1,6 +1,10 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
 # Folder metadata
 
-Folder metadata provides additional information for the documentation page navigation sidebar, such as:
+Folder metadata provides additional information for pages, such as:
 - The **display names** of folders and files. If not provided, the wiki will use automatically generated display names.
 - The **ordering** of sidebar entries. By default, folders are shown first, followed by regular files, all sorted
 alphabetically.
@@ -8,13 +12,27 @@ alphabetically.
 To avoid potential unwanted display errors, we recommend **always** providing complete folder metadata in your
 documentation.
 
+## Placement
+
+Folder metadata is stored in a file called `_meta.json` and can be placed **inside any folder** within the
+documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="...arbitrarily_nested_path" defaultOpen>
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
+        <FileTreeFile name="_meta.json"/>
+    </FileTreeFolder>
+</FileTree>
+
 ## File Format
 
-The folder metadata json consists of string key-value pairs, where the keys represent the name of a file or a folder,
-and the values are their display name. When specifying a file name, the full name including the extension is required.
+The folder metadata file consists of string key-value pairs, where the keys represent the name of a file or a folder,
+and the values are their display name.
 
-Folder metadata is contained in a file called `_meta.json` and can be placed **inside any folder** within the
-documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
+When specifying a file name, the full name including the extension is required. Specifying nested paths is not
+supported - instead, create a folder metadata file at the nested path.
 
 For example:
 
@@ -26,15 +44,12 @@ For example:
 }
 ```
 
-The JSON Schema specification for this file can be found [here](/_meta.schema.json).
-
 ## Icons
 
 You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
 and supplying the icon's name as shown below.
 
 The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
-More information on icon names can be found on the [Format](./format#icons) page.
 
 To hide the folder icon completely, specify `null`.
 

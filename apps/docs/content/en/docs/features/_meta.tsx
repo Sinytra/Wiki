@@ -1,5 +1,5 @@
 export default {
-  'format': '',
+  'content_pages': '',
   'gradle': '',
   'preview': '',
   'third-party': ''

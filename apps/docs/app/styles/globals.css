@@ -7,8 +7,11 @@
 @theme {
     --background-color-nextra-soft: #161618;
     --background-color-nextra-hard: #1b1b1f;
+    --background-color-code: #161618;
 
     --text-color-primary: #dfdfd6;
+
+    --border-color-divider: #e2e2e3;
 
     --text-3xl: 28px;
     --text-4xl: 32px;
@@ -19,20 +22,20 @@
         --x-color-primary-600: #5c9de4;
         --nextra-bg-hard: #1b1b1f;
         --nextra-bg-soft: #161618;
+
+        --border-color-divider: #2e2e32;
     }
 
     body {
-        @apply dark:bg-nextra-hard! dark:text-primary!;
+        @apply dark:bg-nextra-hard dark:text-primary;
     }
 }
 
 @layer utilities {
     .wiki-subtitle {
-        @apply text-lg mb-2 text-neutral-500! md:text-2xl text-center;
+        @apply text-lg mb-2 text-neutral-400! md:text-2xl text-center;
     }
-}
 
-@layer utilities {
     .nextra-breadcrumb {
         display: none;
     }
@@ -78,7 +81,7 @@
     }
 
     article pre {
-        background: #161618 !important;
+        @apply dark:bg-code!;
     }
 
     .nextra-code > div {
@@ -122,7 +125,27 @@
     }
 
     article *:not(pre,a):not(pre *) {
-        @apply dark:text-primary!;
+        @apply dark:text-primary;
+    }
+
+    .nextra-filetree {
+        @apply dark:bg-code! w-full;
+    }
+
+    .nextra-sidebar > div > div > ul > li > div > ul > li:has(div) > div {
+        @apply h-auto! opacity-100!;
+    }
+
+    .nextra-sidebar > div > div > ul > li > div > ul > li:has(div) > div {
+        @apply ml-2.5 ps-2 border-l border-divider;
+    }
+
+    .nextra-sidebar > div > div > ul > li > div > ul > li:has(div) > a svg {
+        display: none !important;
+    }
+
+    .nextra-mask {
+        mask-image: none !important;
     }
 }
 

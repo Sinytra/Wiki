@@ -57,7 +57,7 @@
     "hast-util-sanitize": "^5.0.2",
     "json-schema-library": "10.0.0-rc2",
     "lodash": "^4.17.21",
-    "lucide-react": "^0.513.0",
+    "lucide-react": "^0.533.0",
     "mdast-util-to-string": "^4.0.0",
     "next": "^15.4.3",
     "next-contentlayer2": "^0.5.8",

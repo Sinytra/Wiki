@@ -7,15 +7,23 @@ import {defaultLocale, locales} from '@/lang';
 import {Inter} from 'next/font/google';
 import '../styles/globals.css';
 import Image from 'next/image';
+import {Metadata} from 'next';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap'
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   // Define your metadata here
   // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+  description:
+    'The Wiki for all of Modded Minecraft',
+  title: {
+    absolute: 'Modded Minecraft Wiki',
+    template: '%s | Modded Minecraft Wiki'
+  },
+  metadataBase: new URL('https://docs.moddedmc.wiki')
 };
 
 const footer = <Footer>{new Date().getFullYear()} © Sinytra.</Footer>;
@@ -29,21 +37,23 @@ function transformPageMap(item: any) {
   }
 }
 
-export default async function RootLayout({ params, children }: { params: any, children: any }) {
+export default async function RootLayout({params, children}: { params: any, children: any }) {
   const {mdxPath} = await params;
   const lang = mdxPath?.length > 0 && locales.includes(mdxPath[0]) ? mdxPath[0] : defaultLocale;
 
   const navbar = (
     <Navbar
       logo={
-      <div className="flex flex-row gap-2 items-center">
-        <Image src="/logo.png" alt="Logo" width={24} height={24} />
-        <b>Modded Minecraft Wiki</b>
-      </div>
+        <div className="flex flex-row gap-2 items-center">
+          <Image src="/logo.png" alt="Logo" width={24} height={24}/>
+          <b>Modded Minecraft Wiki</b>
+        </div>
       }
       logoLink={lang != defaultLocale ? `/${lang}` : '/'}
+      projectLink="https://github.com/Sinytra/Wiki"
+      chatLink="https://discord.sinytra.org"
     >
-      <LocaleSwitch locale={lang} locales={locales} defaultLocale={defaultLocale} />
+      <LocaleSwitch locale={lang} locales={locales} defaultLocale={defaultLocale}/>
     </Navbar>
   );
 
@@ -70,7 +80,7 @@ export default async function RootLayout({ params, children }: { params: any, ch
       pageMap={pageMap}
       docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
       footer={footer}
-      lastUpdated={(<LastUpdated locale={lang} />)}
+      lastUpdated={(<LastUpdated locale={lang}/>)}
     >
       {children}
     </Layout>

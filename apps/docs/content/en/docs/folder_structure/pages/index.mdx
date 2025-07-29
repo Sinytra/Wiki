@@ -1,8 +1,33 @@
-# Page format
+---
+asIndexPage: true
+---
 
-Learn about the format used to write pages on the wiki.
+# Pages
 
-## Syntax
+Page files are used to write the actual documentation text for projects.
+
+## Page types
+
+There are two types of pages available on the wiki, both of which can be used **at the same time**.
+
+### [Content pages](pages/content_pages)
+
+- Found under the "Content" tab on the Wiki
+- Traditional [wiki style](https://minecraft.wiki/w/Furnace)
+- No reading order
+- Recommended for all **in-game content**, such as blocks, items, entities, but also abstract various **concepts**
+and mechanics your mod may add
+
+Content pages allow you to interactively reference in-game content and provide a broader set of components you can use.
+
+### [Documentation pages](pages/docs_pages)
+
+- Found under the "Documentation" tab on the Wiki
+- Contain guide-like documentation similar to this website you're browsing right now
+- Implied reading order
+- Recommended for **guides** and API / **developer documentation**
+
+## Format
 
 The wiki uses [MDX](https://mdxjs.com/) files as its documentation format. In additon, [GitHub Flavored Markdown](https://github.github.com/gfm/)
 (GFM) is also available using [`remark-gfm`](https://github.com/remarkjs/remark-gfm).
@@ -23,7 +48,7 @@ your documentation that isn't available on the wiki, please open an issue on our
 
 ## Metadata
 
-Markdown page metadata, also known as simply "Frontmatter" is used by the wiki to provide additional information about
+Markdown page metadata, also known as simply **Frontmatter** is used by the wiki to provide additional information about
 a page or in-game content. It's located at the very beginning of each file in YAML format.
 
 Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
@@ -44,29 +69,29 @@ Here's an overview of supported attributes:
 
 - `title` - Display name of the page, shown in the content heading and the browser tab title.
 Replaces the `h1` heading in docs.
-- Type: `string`
-- Example: `Fancy Block`
+  - Type: `string`
+  - Example: `Fancy Block`
 - `hide_meta` - Hides sidebar meta information. As a results, all other attributes will be ignored.
-- Type: `boolean`
+  - Type: `boolean`
 - `id` - In-game resource location ID of the content shown. If a matching asset with the same location is found in the
 documentation root's asset folder, it will be used as the `icon`.
-- Type: Resource Location
-- Example: `examplemod:generator`
+  - Type: Resource Location
+  - Example: `examplemod:generator`
 - `icon` - Resource location of an asset that will be shown as the documented item's icon. Its size should be at least
 128x128 pixels.
-- Type: Resource Location
-- Example: `examplemod:fancy_generator`
-- `hide_icon` - Hides the project icon, showing a generic placeholder instead.
-- Type: `boolean`
+  - Type: Resource Location
+  - Example: `examplemod:fancy_generator`
+- `hide_icon` - Hides the icon, showing a generic placeholder instead.
+  - Type: `boolean`
 - `type` - Can be `block`, `item` or `other`
-- Type: `string`
+  - Type: `string`
 - `custom` - A map of custom attributes you wish to display in the sidebar.
-- Type: `string` -> `string` map
-- Example:
-```yaml
-custom:
-  Category: Machines
-    ```
+  - Type: `string` -> `string` map
+  - Example:
+  ```yaml
+  custom:
+    Category: Machines
+  ```
 
 <details>
     <summary>Show complete metadata example</summary>
@@ -78,7 +103,7 @@ custom:
     icon: examplemod:fancy_generator
     type: block
     custom:
-    Subcategory: Machines
+      Subcategory: Machines
     ---
 
     Content comes here
@@ -88,4 +113,3 @@ custom:
 ## Custom components
 
 See the [Components](components) page.
-

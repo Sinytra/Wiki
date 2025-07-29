@@ -21,35 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-'use client';
+import cn from 'clsx';
+import {FileIcon} from 'nextra/icons';
+import type {FC, ReactNode} from 'react';
+import {FileJson2Icon} from 'lucide-react';
 
-import type {ReactNode} from 'react';
+export type FileProps = {
+  name: ReactNode
+  comment?: string
+  active?: boolean
+};
 
-interface Props {
-  date?: Date;
-  children?: ReactNode;
-  locale?: string;
-}
-
-export default function LastUpdated({date, children = 'Last updated on', locale}: Props) {
-  if (!date) {
-    return null;
-  }
+export const FileTreeFile: FC<FileProps> = ({ name, comment, active }) => {
+  const Icon = typeof name == 'string' && name.endsWith('.json') ? FileJson2Icon : FileIcon;
   return (
-    <div className="text-sm text-neutral-400! font-medium">
-      {children}{' '}
-      <time
-        dateTime={date.toISOString()}
-        // Can provoke React 418 error https://react.dev/errors/418
-        suppressHydrationWarning
-        className="text-neutral-400!"
-      >
-        {date.toLocaleDateString(locale, {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        })}
-      </time>
-    </div>
+    <li
+      className={cn(
+        'x:flex x:items-center x:gap-1 x:break-all',
+        active && 'x:text-primary-600'
+      )}
+    >
+      <Icon width="14" height="14" className="x:shrink-0" />
+      {name}
+      {comment &&
+        <span className="ml-1 text-neutral-500!">
+            {'//'} {comment}
+        </span>
+      }
+    </li>
   );
-}
+};
