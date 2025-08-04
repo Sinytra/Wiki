@@ -144,6 +144,10 @@
         display: none !important;
     }
 
+    .nextra-sidebar li:has(hr) {
+        @apply my-3;
+    }
+
     .nextra-mask {
         mask-image: none !important;
     }

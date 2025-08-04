@@ -1,14 +1,36 @@
-import { Callout } from 'nextra/components';
+import {Callout} from 'nextra/components';
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
 
 # Assets
 
 <Callout>
-    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](#-gradle-plugin-companion),
+    Save yourself time manually exporting all assets using our companion [**Gradle plugin**](../features/gradle),
     which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
 </Callout>
 
-Assets are used to display images of items, blocks and other project content across the website. These can be used as
-part of crafting recipes, sidebar information or custom components.
+Assets are used to display images of items, blocks and other project content across the website.<br/>
+These can be used as part of crafting recipes, sidebar information or custom components.
+
+## Placement
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".assets" defaultOpen>
+            <FileTreeFolder name="<namespace>" defaultOpen>
+                <FileTreeFolder name="gui" defaultOpen>
+                    <FileTreeFile name="electric_furnace.png"/>
+                    <FileTreeFile name="progress.gif"/>
+                </FileTreeFolder>
+
+                <FileTreeFile name="example_item.png" comment="Referenced via <namespace>:example_item"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Usage
 
 Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
 in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
@@ -16,6 +38,6 @@ in the game itself. It's recommened to match asset names with the in-game IDs of
 Rendered project assets including **both items and blocks** should be placed under `.assets/(modid)` inside the
 documentation directory, where `modid` is the namespace of each texture you wish to provide.
 
-Each asset **must be in `.png` format**. The name of the file is up to your choice.
+Each asset is in `.png` format by default. The name of the file is up to your choice.
 
 For example, `examplemod:generator` would point to `(root)/.assets/examplemod/generator.png`.

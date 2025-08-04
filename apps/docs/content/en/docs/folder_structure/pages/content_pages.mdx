@@ -1,1 +1,56 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
 # Content pages
+
+Content pages follow a traditional wiki [layout](https://minecraft.wiki/w/Furnace), and are intended to describe
+**in-game content** *(such as items, block, entities)*, but also various abstract concepts *(e.g. mana, energy...)*.
+
+Their **key feature** is that they can display in-game data on the website in a highly intuitive manner.
+This namely includes item/block **properties**, **recipes** (both vanilla and custom), crafting **usage**
+and other data.
+
+On the Wiki website, these are located under the project's "Content" tab.
+
+## Placement
+
+Content pages are all placed inside the `.content` folder within the project.
+
+They must be further nested at least by a single level to "shallow" cateogories, and can be further nested by another
+level to create "deep" categories.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".content" defaultOpen>
+            <FileTreeFolder name="tools" defaultOpen comment="Shallow category">
+                <FileTreeFile name="_meta.json"/>
+
+                <FileTreeFile name="sword.mdx"/>
+            </FileTreeFolder>
+
+            <FileTreeFolder name="machines" defaultOpen comment="Deep category">
+
+                <FileTreeFolder name="basic" defaultOpen>
+                    <FileTreeFile name="_meta.json"/>
+
+                    <FileTreeFile name="electric_furnace.mdx"/>
+                </FileTreeFolder>
+
+                <FileTreeFolder name="advanced">
+                    <FileTreeFile name="_meta.json"/>
+
+                    <FileTreeFile name="grinder.mdx"/>
+                </FileTreeFolder>
+
+                <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Authoring
+
+## Interaction

@@ -1,12 +1,33 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
 # Translations
 
-Documentation can be localized into various languages supported by the wiki. A complete list can be found in the
-language selection dropdown located on the right-most part of the navigation header.
+Documentation can be localized into various languages supported by the wiki.
+
+## Placement
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="..translated" defaultOpen>
+            <FileTreeFolder name="de_de" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+                <FileTreeFile name="introduction.mdx"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+
+        <FileTreeFile name="_meta.json"/>
+        <FileTreeFile name="introduction.mdx"/>
+    </FileTreeFolder>
+</FileTree>
 
 Localized files must be placed under `.translated/(lang)` inside the documentation directory, where
 `(lang)` is the desired language code in `(lang)_(region)` format. Currently, all regions match the language, so
 it's sufficient to take the target language code and complete the region to be the same as the language
 (e.g. German translations (`de`) would be placed under `.translated/de_de`).
+
+## Layout
 
 The localized folder structure follows the same layout as root. Both documentation content files (`.mdx`) and folder
 metadata (`_meta.json`) may be translated. Translated content takes precedence over the default locale when being

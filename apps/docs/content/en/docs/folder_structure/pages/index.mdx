@@ -54,8 +54,8 @@ a page or in-game content. It's located at the very beginning of each file in YA
 Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
 Usually, this includes an icon of the block/item along with its name, id, source project and other handy information.
 
-If your page is not related to a specific object, you can hide all metadata and ignore their values by setting
-`hide_meta: true`. The `title` attribute will still be used, and we recommend providing it at all times.
+If your page is not related to a specific object, you can hide all metadata and ignore their values
+(except for `title`) by setting `hide_meta: true`.
 
 ```markdown
 ---
@@ -67,8 +67,8 @@ Content comes here
 
 Here's an overview of supported attributes:
 
-- `title` - Display name of the page, shown in the content heading and the browser tab title.
-Replaces the `h1` heading in docs.
+- `title` - Display name of the page, shown in the content heading and the browser tab title.<br/>
+If a `h1` heading is available, it will be used instead.
   - Type: `string`
   - Example: `Fancy Block`
 - `hide_meta` - Hides sidebar meta information. As a results, all other attributes will be ignored.
@@ -112,4 +112,4 @@ documentation root's asset folder, it will be used as the `icon`.
 
 ## Custom components
 
-See the [Components](components) page.
+See the [Components](../components/overview) page.

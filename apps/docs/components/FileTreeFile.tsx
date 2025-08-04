@@ -23,8 +23,8 @@
 */
 import cn from 'clsx';
 import {FileIcon} from 'nextra/icons';
-import type {FC, ReactNode} from 'react';
-import {FileJson2Icon} from 'lucide-react';
+import React, {FC, ReactNode} from 'react';
+import {FileImageIcon, FileJson2Icon} from 'lucide-react';
 
 export type FileProps = {
   name: ReactNode
@@ -33,7 +33,15 @@ export type FileProps = {
 };
 
 export const FileTreeFile: FC<FileProps> = ({ name, comment, active }) => {
-  const Icon = typeof name == 'string' && name.endsWith('.json') ? FileJson2Icon : FileIcon;
+  const fileIcons: {[key: string]: FC} = {
+    json: FileJson2Icon,
+    png: FileImageIcon,
+    gif: FileImageIcon
+  };
+  const ext = typeof name === 'string' && name.includes('.')
+    ? name.substring(name.lastIndexOf('.') + 1) : null;
+  const Icon = ext && fileIcons[ext] || FileIcon;
+
   return (
     <li
       className={cn(
