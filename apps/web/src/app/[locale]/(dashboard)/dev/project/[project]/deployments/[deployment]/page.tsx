@@ -81,6 +81,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
   )
 }
 
+// TODO Locales
 function DeploymentInfoWdget({deployment}: { deployment: FullDevProjectDeployment }) {
   return (
     <div className={`

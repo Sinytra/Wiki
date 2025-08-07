@@ -522,6 +522,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../base/typescript-config
+      '@types/hast':
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/react':
         specifier: 19.1.8
         version: 19.1.8

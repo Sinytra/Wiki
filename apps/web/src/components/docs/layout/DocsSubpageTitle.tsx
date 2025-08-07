@@ -1,4 +1,5 @@
 import ImageWithFallback from "@/components/util/ImageWithFallback";
+import LocalBadge from "@/components/util/LocalBadge";
 
 export default function DocsSubpageTitle({icon_url, subcategory, title, description}: {
   title: string;
@@ -19,6 +20,9 @@ export default function DocsSubpageTitle({icon_url, subcategory, title, descript
         <blockquote className="line-clamp-2 text-sm text-secondary sm:text-base">
           {description}
         </blockquote>
+      </div>
+      <div className="ml-auto p-1">
+        <LocalBadge />
       </div>
     </div>
   )

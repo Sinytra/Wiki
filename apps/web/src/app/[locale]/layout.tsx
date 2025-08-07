@@ -20,7 +20,7 @@ export default async function LocaleLayout(props: { params: Params; children: Re
   const isRTL = locales.isRTL(params.locale);
 
   return (
-    <NextIntlClientProvider locale={params.locale}>
+    <NextIntlClientProvider locale={params.locale} messages={null}>
       <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
         <Header locale={params.locale}/>
 
