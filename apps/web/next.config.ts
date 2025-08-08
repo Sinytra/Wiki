@@ -1,10 +1,8 @@
 import {withSentryConfig} from '@sentry/nextjs';
 import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
 import {withContentlayer} from 'next-contentlayer2';
-import {remarkCodeHike, recmaCodeHike, type CodeHikeConfig} from 'codehike/mdx';
+import {type CodeHikeConfig} from 'codehike/mdx';
 import locales from '@repo/shared/locales';
 import type {NextConfig} from 'next';
 
@@ -48,9 +46,12 @@ const chConfig: CodeHikeConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm, [remarkCodeHike, chConfig]],
-    rehypePlugins: [rehypeSlug],
-    recmaPlugins: [[recmaCodeHike, chConfig]]
+    // @ts-expect-error package names
+    remarkPlugins: [['remark-gfm'], ['remark-codehike', chConfig]],
+    // @ts-expect-error package names
+    rehypePlugins: [['rehype-slug']],
+    // @ts-expect-error package names
+    recmaPlugins: [['recma-codehike', chConfig]]
   }
 })
 
