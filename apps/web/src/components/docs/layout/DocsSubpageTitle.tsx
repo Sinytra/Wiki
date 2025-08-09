@@ -1,11 +1,12 @@
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import LocalBadge from "@/components/util/LocalBadge";
 
-export default function DocsSubpageTitle({icon_url, subcategory, title, description}: {
+export default function DocsSubpageTitle({icon_url, subcategory, title, description, local}: {
   title: string;
   description: string;
   icon_url: string;
   subcategory?: string;
+  local?: boolean;
 }) {
   return (
     <div className="flex flex-row gap-4 border-b border-secondary pb-2">
@@ -22,7 +23,7 @@ export default function DocsSubpageTitle({icon_url, subcategory, title, descript
         </blockquote>
       </div>
       <div className="ml-auto p-1">
-        <LocalBadge />
+        {local && <LocalBadge />}
       </div>
     </div>
   )

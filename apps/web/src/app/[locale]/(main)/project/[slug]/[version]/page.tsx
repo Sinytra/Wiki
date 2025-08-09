@@ -183,6 +183,7 @@ export default async function ProjectHomepage(props: PageProps) {
         title={project.name}
         description={platformProject.summary}
         icon_url={platformProject.icon_url}
+        local={project.local}
       />
 
       <div className="flex flex-col gap-4">

@@ -117,7 +117,8 @@ export default async function ProjectContentPage(props: Props) {
         title={project.name}
         description={platformProject.summary}
         icon_url={platformProject.icon_url}
-        subcategory="Content"
+        local={project.local}
+        subcategory="Content" // TODO Locale
       />
 
       <div className="flex flex-col gap-4">

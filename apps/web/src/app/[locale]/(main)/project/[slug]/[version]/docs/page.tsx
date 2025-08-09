@@ -53,14 +53,7 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
     return null;
   }
   try {
-    const result = await markdown.renderDocumentationMarkdown(platformProject.description, patcher);
-    return {
-      ...result, content: (
-        <div className="[&>_:first-child>*]:mt-0!">
-          {result.content}
-        </div>
-      )
-    }
+    return await markdown.renderDocumentationMarkdown(platformProject.description, patcher);
   } catch (e) {
     console.error('Error rendering homepage', e);
     return undefined;

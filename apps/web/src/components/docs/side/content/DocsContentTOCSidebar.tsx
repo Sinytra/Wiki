@@ -67,7 +67,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
       title={t('title')}
       className={cn(
         'left-0 shrink-0',
-        'w-[96vw] sm:w-80'
+        'w-[96vw] sm:w-80' // TODO Make responsive on tablets
       )}
       tagName="nav"
       solid
