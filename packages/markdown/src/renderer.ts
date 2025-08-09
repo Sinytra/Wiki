@@ -9,13 +9,12 @@ import {ReactElement} from 'react';
 import remarkGfm from 'remark-gfm';
 import rehypeMarkdownHeadings from './headings';
 import {recmaCodeHike, remarkCodeHike} from 'codehike/mdx';
-import * as LucideReact from 'lucide-react';
 import {VFile} from 'vfile';
 import {matter} from 'vfile-matter';
 import {compile, run} from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
-import { MarkdownError, formatMarkdownError } from './exception';
-import { DocsEntryMetadata } from './metadata';
+import {MarkdownError, formatMarkdownError} from './exception';
+import {DocsEntryMetadata} from './metadata';
 
 export interface DocumentationMarkdown {
   content: ReactElement<any>;
@@ -55,6 +54,7 @@ async function renderMarkdown(content: string): Promise<string> {
 async function renderDocumentationMarkdown(
   source: string, includeComponents: Record<string, any>, patcher?: ComponentPatcher
 ): Promise<DocumentationMarkdown> {
+  const LucideReact = await import('lucide-react');
   const icons = Object.keys(LucideReact)
     .filter(key => key.endsWith('Icon'))
     .reduce((obj, key) => {

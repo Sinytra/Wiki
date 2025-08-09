@@ -1,18 +1,16 @@
 'use client'
 
-import * as LucideIcons from "lucide-react";
-import {ChevronDown, FolderIcon} from "lucide-react";
+import {ChevronDown} from "lucide-react";
 import * as React from "react";
-import {useContext, useEffect, useRef, useState} from "react";
+import {ReactNode, useContext, useEffect, useRef, useState} from "react";
 import {cn} from "@repo/ui/lib/utils";
 import {usePathname} from "@/lib/locales/routing";
 import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
-import {NO_FOLDER_ICON} from "@repo/shared/constants";
 
 interface DocsFileTreeFolderProps {
   name: any;
   path: string;
-  icon?: any;
+  icon?: ReactNode;
   level: number;
   children: any;
 }
@@ -25,10 +23,6 @@ export default function DocsFileTreeFolder({name, path, icon, level, children}: 
 
   const rendered = useRef(false);
   const [isOpen, setOpen] = useState(!rendered.current && defaultOpen || folderStates[level] === path);
-
-  const defaultIcon = FolderIcon;
-  // @ts-expect-error icon
-  const Icon = icon === null || icon === NO_FOLDER_ICON ? null : ((icon ? LucideIcons[icon] : defaultIcon) || defaultIcon);
 
   useEffect(() => {
     if (!rendered.current && defaultOpen) {
@@ -72,7 +66,7 @@ export default function DocsFileTreeFolder({name, path, icon, level, children}: 
           [&[data-state=open]>svg:last-child]:rotate-180
         `}
       >
-        {Icon && <Icon className="mr-2 h-4 w-4 shrink-0"/>}
+        {icon}
         {name}
         <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200"/>
       </button>
