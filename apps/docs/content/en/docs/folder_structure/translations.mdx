@@ -1,10 +1,24 @@
 import {FileTree} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
+import SystemLocalesTable from '@/components/SystemLocalesTable';
 
 # Translations
 
-Documentation can be localized into various languages supported by the wiki.
+Documentation can be localized into various languages supported by the wiki. This applies to all types of pages,
+folder metadata as well as some game files (such as language files).
+
+## Supported languages
+
+Below is a table of all currently supported translation target languages on the Wiki. The `code` corresponds to the
+name of the folder to use when translating documentation, explained in detail below.
+
+<SystemLocalesTable />
+
+### Didn't find your language?
+
+If your desired language does not appear in the table, let us know on [Discord](https://discord.sinytra.org)
+or [GitHub](https://github.com/Sinytra/Wiki) and we'll be happy to add it.
 
 ## Placement
 
@@ -22,14 +36,14 @@ Documentation can be localized into various languages supported by the wiki.
     </FileTreeFolder>
 </FileTree>
 
-Localized files must be placed under `.translated/(lang)` inside the documentation directory, where
-`(lang)` is the desired language code in `(lang)_(region)` format. Currently, all regions match the language, so
-it's sufficient to take the target language code and complete the region to be the same as the language
-(e.g. German translations (`de`) would be placed under `.translated/de_de`).
+Localized files must be placed under `.translated/<lang>` inside the documentation directory, where
+`<lang>` is the code for your desired language as it appears in the table above.
 
 ## Layout
 
-The localized folder structure follows the same layout as root. Both documentation content files (`.mdx`) and folder
-metadata (`_meta.json`) may be translated. Translated content takes precedence over the default locale when being
-loaded. However, untranslated files will still be shown even when the locale is non-default, therefore it is
-recommended to translate all files whenever possible.
+The localized folder structure follows the same layout as root.
+
+Both documentation content files (`.mdx`) and folder metadata (`_meta.json`) may be translated.
+
+Translated content **takes precedence** over the default locale when being loaded. However, untranslated files will
+still be shown even when the locale is non-default, therefore it is recommended to translate all files whenever possible.

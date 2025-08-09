@@ -5,25 +5,50 @@ import { Callout } from 'nextra/components';
 ---
 
 <Callout type="warning">
-    The documentation is a work in progress and certain parts may still be missing.
+    The Wiki documentation is a work in progress and certain parts may still be missing.<br/>
     If you encounter any issues, please let us know on [Discord](https://discord.sinytra.org)
     or [GitHub](https://github.com/Sinytra/Wiki).
 </Callout>
 
-Learn how to host your project's documentation on the [Modded Minecraft Wiki](https://moddedmc.wiki)!
+Learn how to document your project using the [Modded Minecraft Wiki](https://moddedmc.wiki)!
 
-This guide provides information on local development and the documentation format.
-For a guide on publishing docs onto our website, please see the [Publishing](portal/publishing) page instead.
+This documentation will guide you through the process of creating setting up your project, writing documentation pages,
+all the way up to publishing it on the Wiki website.
+
+We'll introduce you to the festures, page format, components and game data integration, allowing you to write dynamic
+and interactive content pages.
+
+Read below to get started!
 
 ## Prerequisites
 
 In order to start hosting documentation on our wiki, your project only needs to meet a few minimal requirements:
 
-- Be hosted on a Git repository (both private and public repositories work)
+- Be hosted in a Git repository (both private and public repositories work)
+
 - Be approved on either [Modrinth](https://modrinth.com/) or [CurseForge](https://www.curseforge.com/)
-- At the time of registration, CurseForge projects MUST have the Git repository linked as the project's source code
-url (this is currently required to verify project ownership).<br/>
-Modrinth projects can also be easily verified using your Modrinth account.
+
+- At the time of registration, projects must have the Git repository linked as the project's source code
+url (this is currently required to verify project ownership)
+  - Modrinth projects can also be easily verified by linking your Modrinth account in the Wiki's user settings
+
+## Building & Publishing
+
+1. Navigate to the [Getting Started](getting_started) page to quickstart your project
+
+<p/>
+
+2. Explore the [Folder Structure](folder_structure/overview) to learn about available features and how you can
+   customize your documentation
+
+<p/>
+
+3. Integrate your project with [in-game data](features/content_pages) and find handy [tools](features/third-party) in
+   the Features section
+
+<p/>
+
+4. [Publish](portal/publishing) your project on the Wiki
 
 ## Gradle plugin companion
 
@@ -31,8 +56,12 @@ We provide an excellent wiki companion [Gradle plugin](https://github.com/Sinytr
 authoring documentation.
 
 Its features include:
-- Local real-time, accurate preview of your documentation in the exact same look as it will have once uploaded to the wiki
-- Automatically generating asset renders of inventory models for all mod items
-- Revalidating documentation after publishing
+
+- Local real-time, accurate **preview of your documentation** in the exact same look as it will have once uploaded to
+  the wiki
+
+- Automatically generating **asset renders** of inventory models for all mod items
+
+- **Re-deploying** documentation after publishing
 
 Find a complete guide on the [Gradle integration](features/gradle) page.

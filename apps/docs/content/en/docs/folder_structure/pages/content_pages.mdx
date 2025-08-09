@@ -1,11 +1,20 @@
 import {FileTree} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
+import InlineGameItem from '@/components/InlineGameItem';
 
 # Content pages
 
 Content pages follow a traditional wiki [layout](https://minecraft.wiki/w/Furnace), and are intended to describe
 **in-game content** *(such as items, block, entities)*, but also various abstract concepts *(e.g. mana, energy...)*.
+
+<p className="mt-5 space-x-2">
+    <InlineGameItem id="grass_block" size={32} />
+    <InlineGameItem id="furnace" size={32} />
+    <InlineGameItem id="iron_ingot" size={32} />
+    <InlineGameItem id="experience_bottle" size={32} />
+    <InlineGameItem id="piglin_head" size={32} />
+</p>
 
 Their **key feature** is that they can display in-game data on the website in a highly intuitive manner.
 This namely includes item/block **properties**, **recipes** (both vanilla and custom), crafting **usage**
@@ -51,6 +60,29 @@ level to create "deep" categories.
     </FileTreeFolder>
 </FileTree>
 
-## Authoring
+## Metadata
+
+Pages covering in-game content **must** specify the object's in-game `id` in frontmatter attributes. This is
+crucial to interact with game data files in the project.
+
+By default, this ID doubles as the location of the page icon, which is sourced from [assets](../assets).
+
+```mdx
+---
+id: examplemod:electric_furnace
+---
+```
 
 ## Interaction
+
+Content pages allow you to make excellent use of dynamic components provided by the Wiki, which use project game files
+behind the scenes to display information.
+
+TODO LINK INTERACTIVE COMPONENTS
+
+## Authoring
+
+Content pages can make use of available frontmatter properties and all available components, including
+[interactive](#components) ones.
+
+## Example

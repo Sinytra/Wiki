@@ -39,3 +39,9 @@ export interface AccessKey {
 }
 
 export type AccessKeys = PaginatedData<AccessKey>;
+
+export interface SystemLocale {
+  id: string;
+  name: string;
+  code: string;
+}

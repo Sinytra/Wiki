@@ -2,8 +2,15 @@ import {FileTree} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
 import {Callout} from 'nextra/components';
+import InlineGameItem from '@/components/InlineGameItem';
 
-# Overview
+# Folder Structure Overview
+
+<Callout type="info">
+    Some parts of the folder structure may appear inconsistent as we introduce new features while the Wiki is still in
+    active development.
+    Once the Wiki is stable, we plan to introduce a revised format (without breaking existing projects).
+</Callout>
 
 Wiki projects follow a folder structure similar to the one you would find in the game's own
 [Resource Packs](https://minecraft.wiki/w/Resource_pack) or [Data Packs](https://minecraft.wiki/w/Data_pack).
@@ -13,12 +20,6 @@ this format, and also because it requires few to no steps to reuse mod content.
 
 This page gives a basic overview of the folder structure, whereas each of the features is described in more detail on
 their own page within this category.
-
-<Callout type="info">
-    Some parts of the folder structure may appear inconsistent as we introduce new features while the Wiki is still in
-    active development. Once the Wiki is stable, we plan to introduce a revised format  (without breaking existing
-    projects).
-</Callout>
 
 ## Essentials
 
@@ -30,7 +31,7 @@ documentation pages.
 This file acts as the "heart" of the documentation package. It carries basic identifying information about the project
 as well as additional metadata that can be used to display information to users.
 
-Check the [Wiki Metadata](wiki_meta) page for complete details.
+Check the [Wiki Metadata](wiki_meta) page for details.
 
 ### `_meta.json`
 
@@ -40,22 +41,30 @@ they are displayed.
 
 If not provided, fallback display names are generated automatically.
 
-### Page files (`*.mdx`)
+Check the [Folder Metadata](folder_meta) page for details.
+
+## Page files (`*.mdx`)
 
 Page files contain documentation contents in an extended Markdown [format](../features/format).
 
 There are two types of pages available on the wiki, both of which can be used **at the same time**:
 
-- **Content pages**
-  - Traditional [wiki style](https://minecraft.wiki/w/Furnace)
-  - No reading order
-  - Recommended for all **in-game content**, such as blocks, items, entities, but also abstract various **concepts**
-    and mechanics your mod may add
+### <InlineGameItem id="grass_block" /> Content pages
 
-- **Documentation pages**
-  - Contain guide-like documentation similar to this website you're browsing right now
-  - Implied reading order
-  - Recommended for **guides** and API / **developer documentation**
+- Traditional [wiki style](https://minecraft.wiki/w/Furnace)
+
+- No reading order
+
+- Recommended for all **in-game content**, such as blocks, items, entities, but also abstract various **concepts**
+  and mechanics your mod may add
+
+### <InlineGameItem id="book" /> Documentation pages
+
+- Contain guide-like documentation similar to this website you're browsing right now
+
+- Implied reading order
+
+- Recommended for **guides** and API / **developer documentation**
 
 Check the [Pages](pages) page for complete details.
 

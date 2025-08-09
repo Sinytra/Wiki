@@ -12,6 +12,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/shared": "workspace:*",
     "@headlessui/react": "^2.2.6",
     "acorn": "^8.15.0",
     "clsx": "^2.1.1",

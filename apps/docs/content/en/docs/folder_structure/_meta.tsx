@@ -1,5 +1,5 @@
 export default {
-  'overview': '',
+  'overview': 'Overview',
   'wiki_meta': '',
   'pages': '',
   'folder_meta': '',

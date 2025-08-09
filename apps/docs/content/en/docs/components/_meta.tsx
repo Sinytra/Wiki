@@ -1,3 +1,4 @@
 export default {
-  'overview': ''
+  'overview': '',
+  'interactive': 'Interactive'
 };

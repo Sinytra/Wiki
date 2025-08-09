@@ -32,6 +32,10 @@
 }
 
 @layer utilities {
+    .nextra-toc * .toc-hidden {
+        display: none;
+    }
+
     .wiki-subtitle {
         @apply text-lg mb-2 text-neutral-400! md:text-2xl text-center;
     }
@@ -125,7 +129,7 @@
     }
 
     article *:not(pre,a):not(pre *) {
-        @apply dark:text-primary;
+        @apply dark:text-primary!;
     }
 
     .nextra-filetree {

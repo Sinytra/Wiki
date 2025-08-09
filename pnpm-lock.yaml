@@ -24,6 +24,9 @@ importers:
       '@headlessui/react':
         specifier: ^2.2.6
         version: 2.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       acorn:
         specifier: ^8.15.0
         version: 8.15.0

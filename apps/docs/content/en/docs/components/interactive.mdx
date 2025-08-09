@@ -1,0 +1,55 @@
+# Interactive components
+
+Interactive components can be used in [Content Pages](../folder_structure/pages/content_pages) to display dynamic
+information based on [game files](../folder_structure/game_data) in the project.
+
+## Prefab
+
+Prefab components could be described as "drag and drop" building blocks that provide prebuilt parts of documentation.
+
+They usually don't require specifying any attributes and can "magically" resolve them from the context.
+
+### `PrefabObtaining`
+
+Adds a "Recipe" section to the page that displays crafting recipes that can be used to obtain the described item.
+
+*This component requires adding recipes to [game data](../game_data) in your project.*
+
+```jsx
+<PrefabObtaining />
+```
+
+### `PrefabUsage`
+
+Adds a "Usage" section to the page that contains a list of items this item can be used to obtain.
+
+*This component requires adding recipes to [game data](../game_data) in your project.*
+
+```jsx
+<PrefabUsage />
+```
+
+## Navigation
+
+Navigation utility components to make navigating across pages easier, even for referencing vanilla items.
+
+### `ContentLink`
+
+This component allows you to reference any in-game object via its ID, including vanilla items, and creates a link that
+leads to its page, if it exists.
+
+The Content Link component takes a single attribute named `id`, which specifies the in-game item to navigate to.
+This can be an item from the current project or vanilla.
+
+Project content pages are matched based on the `id` frontmatter [attribute](../folder_structure/pages/content_pages#metadata).
+
+```mdx
+{/* Displays "Redstone Dust", links to https://minecraft.wiki/w/redstone */}
+<ContentLink id="redstone" />
+
+{/* Displays "Electric Furnace", links to item content page from the same project */}
+<ContentLink id="examplemod:electric_furnace" />
+
+{/* Same as above - with custom display text */}
+Click <ContentLink id="examplemod:electric_furnace">here</ContentLink> to learn more.
+```

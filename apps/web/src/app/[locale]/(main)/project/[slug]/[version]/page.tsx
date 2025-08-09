@@ -175,7 +175,7 @@ export default async function ProjectHomepage(props: PageProps) {
   }
 
   const platformProject = await platforms.getPlatformProject(project);
-  const info = await getPlatformProjectInformation(platformProject); // TODO Suspense?
+  const info = await getPlatformProjectInformation(platformProject);
 
   return (
     <div className="mx-auto mt-1 mb-5 flex w-full max-w-5xl flex-col gap-6">

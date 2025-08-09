@@ -10,7 +10,8 @@ import {FileTreeFolder} from '@/components/FileTreeFolder';
     which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
 </Callout>
 
-Assets are used to display images of items, blocks and other project content across the website.<br/>
+Assets are used to display images of items, blocks and other project content across the website.
+
 These can be used as part of crafting recipes, sidebar information or custom components.
 
 ## Placement
@@ -30,7 +31,7 @@ These can be used as part of crafting recipes, sidebar information or custom com
     </FileTreeFolder>
 </FileTree>
 
-## Usage
+## Format
 
 Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
 in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
@@ -38,6 +39,22 @@ in the game itself. It's recommened to match asset names with the in-game IDs of
 Rendered project assets including **both items and blocks** should be placed under `.assets/(modid)` inside the
 documentation directory, where `modid` is the namespace of each texture you wish to provide.
 
-Each asset is in `.png` format by default. The name of the file is up to your choice.
+By default, resource locations point to `.png` files. A custom file extension can be appended to the resource location
+if the file is of another format.
 
-For example, `examplemod:generator` would point to `(root)/.assets/examplemod/generator.png`.
+The name of the file is up to your choice.
+
+For example, the location `examplemod:generator` would point to `<root>/.assets/examplemod/generator.png`.
+
+## Usage
+
+You'll encounter assets being used for various different purposes across the wiki depending on the feature.
+
+The most common use cases include:
+
+- Providing icons for [pages](pages#metadata) by specifying the `icon` frontmatter attribute
+
+- Providing icons for [content pages](pages/content_pages), sourced automatically using the page's `id` frontmatter attribute
+as the asset location.
+
+- Showing items in [recipes](game_data)
