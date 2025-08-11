@@ -42,12 +42,13 @@ The Content Link component takes a single attribute named `id`, which specifies 
 This can be an item from the current project or vanilla.
 
 Project content pages are matched based on the `id` frontmatter [attribute](../folder_structure/pages/content_pages#metadata).
+Additionally, non-vanilla items can omit the link text to display the item's page title instead.
 
 ```mdx
-{/* Displays "Redstone Dust", links to https://minecraft.wiki/w/redstone */}
-<ContentLink id="redstone" />
+{/* Links to https://minecraft.wiki/w/redstone */}
+<ContentLink id="redstone">Redstone</ContentLink>
 
-{/* Displays "Electric Furnace", links to item content page from the same project */}
+{/* Shows "Electric Furnace", links to content page from the same project */}
 <ContentLink id="examplemod:electric_furnace" />
 
 {/* Same as above - with custom display text */}

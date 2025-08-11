@@ -128,7 +128,7 @@
         @apply text-base! font-medium!;
     }
 
-    article *:not(pre,a):not(pre *) {
+    article *:not(pre,a,span):not(pre *) {
         @apply dark:text-primary!;
     }
 

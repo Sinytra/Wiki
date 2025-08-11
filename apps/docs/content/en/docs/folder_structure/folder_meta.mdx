@@ -1,11 +1,14 @@
-import {FileTree} from 'nextra/components';
+import {FileTree, Callout} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
 
 # Folder metadata
 
 Folder metadata provides additional information for pages, such as:
-- The **display names** of folders and files. If not provided, the wiki will use automatically generated display names.
+
+- The **display names** of folders and files. If not provided, the wiki will use automatically generated display names
+or page titles.
+
 - The **ordering** of sidebar entries. By default, folders are shown first, followed by regular files, all sorted
 alphabetically.
 
@@ -31,16 +34,23 @@ documentation directory, **including the root** directory itself (e.g. at the sa
 The folder metadata file consists of string key-value pairs, where the keys represent the name of a file or a folder,
 and the values are their display name.
 
-When specifying a file name, the full name including the extension is required. Specifying nested paths is not
-supported - instead, create a folder metadata file at the nested path.
+When specifying a file name, the full name including the extension is required.
+
+You can leave the value of **page names** empty to use the page title as the display name.
+
+<Callout type="warning">
+    Specifying nested paths is not supported - instead, create a folder metadata file at the nested path.
+</Callout>
 
 For example:
 
 ```json filename="_meta.json"
 {
     "blocks": "Blocks",
-    "items": "Completely custom name",
-    "introduction.mdx": "Introduction"
+    "items": "Custom folder name",
+
+    "introduction.mdx": "",
+    "getting_started.mdx": "Custom page name"
 }
 ```
 

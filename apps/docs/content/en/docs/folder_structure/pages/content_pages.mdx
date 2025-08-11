@@ -1,4 +1,4 @@
-import {FileTree} from 'nextra/components';
+import {FileTree, Callout} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
 import InlineGameItem from '@/components/InlineGameItem';
@@ -60,7 +60,54 @@ level to create "deep" categories.
     </FileTreeFolder>
 </FileTree>
 
+## Authoring
+
+Content pages are traditionally focused on describing a specific object or concept rather than providing broader
+tutorials. These descriptions often include technical information, such as IDs, stats and relations.
+
+This is where the Wiki becomes a huge helper. It saves you time doing the boring work of *copy-pasting reference values*
+from the game and gives you the ability to **reuse locales, recipes, tags** and other data files from your project to be
+displayed in content pages, allowing you to focus on writing what's **important**.
+
+When writing content pages, we encourage you to take full advantage of helper components offered by the wiki and
+[automate](../../features/gradle.mdx) copying/generating data files in the project.
+
+### Checklist
+
+Content pages use a broader context which may not always be clear. Below a general list of things to keep in mind
+when authoring documentation.
+It also shows how in-game data files are referenced by content pages and by extent, interactive components.
+
+**Advice for writing top-notch content pages:**
+
+- [x] Specify the ID frontmatter [attribute](#metadata)
+
+<p/>
+
+- [x] Easily [link](../../components/interactive#navigation) to other content pages
+
+<p/>
+
+- [x] Include your item's name in a [Language File](../game_data) to be displayed in recipes and tags
+
+<p/>
+
+- [x] Add [Obtaining](../../components/interactive#prefabobtaining) and [Usage](../../components/interactive#prefabusage)
+  to show how your item can be crafted and used in other recipes
+
+<p/>
+
+- [x] Define [Item Properties](../game_data) to include in the sidebar
+
+<p/>
+
+- [x] Add a [Changelog](../pages#changelog) to inform users of past changes
+
 ## Metadata
+
+<Callout type="important">
+    Make sure to always specify the `id` attribute for pages covering in-game objects!
+</Callout>
 
 Pages covering in-game content **must** specify the object's in-game `id` in frontmatter attributes. This is
 crucial to interact with game data files in the project.
@@ -73,16 +120,103 @@ id: examplemod:electric_furnace
 ---
 ```
 
+### Sideabar
+
+Content pages contain a sidebar that displays various properties and stats about in-game items, which are sourced
+from the [Item Properties](../game_data) file. Additional properties can be specified in frontmatter
+[attributes](../pages#metadata).
+
 ## Interaction
 
-Content pages allow you to make excellent use of dynamic components provided by the Wiki, which use project game files
-behind the scenes to display information.
+Content pages allow you to make excellent use of dynamic [components](../../components/interactive) provided by the
+Wiki, which use project game files behind the scenes to display information.
 
-TODO LINK INTERACTIVE COMPONENTS
-
-## Authoring
-
-Content pages can make use of available frontmatter properties and all available components, including
-[interactive](#components) ones.
+Read the [Game Data](../game_data) page to learn more about how you can easily include game data files in your Wiki
+project.
 
 ## Example
+
+### Describing an in-game object
+
+Below you can find a real-life content page example from [Modular Force Field Systems](https://modrinth.com/mod/mffs)
+describing the Force Field Projector machine.
+
+It demonstrates the clever inclusion of content links, recipe obtaining/usage and changelogs in the page body.
+
+```mdx
+---
+id: mffs:projector
+type: block
+history:
+  - 1.1: Fixed bug
+  - 1.0: Added
+---
+
+# Force Field Projector
+
+The Force Field Projector is a fundamental part of the MFFS family of machines.
+It uses Fortron energy to project force fields of various shapes and sizes into
+the world.
+
+<PrefabObtaining />
+
+## Operation
+
+To make a force field, give the Force Field Projector a supply of
+Fortron by linking it to a nearby <ContentLink id="mffs:fortron_capacitor"/>.
+
+Decide which force field shape to create by crafting one of the projector mode items.
+Right-click the Projector and place the projector mode item into the central (red)
+slot surrounded by outwardly facing arrows.
+
+Craft a number of Scale Module items and place them into the left-hand slot matrix
+of the Force Field Projector's GUI. Each Scale Module used in the Projector's matrix
+slots will increase the force field radius by one block.
+
+To be able to walk through a force field, a
+<ContentLink id="mffs:biometric_identifier"/> is needed.
+
+## Upgradability
+
+A Force Field Projector may be augmented with various modules.
+
+These general modules have the following effects:
+
+- <ContentLink id="mffs:scale_module" />: Adjusts the shape of a projected
+  force field
+- <ContentLink id="mffs:speed_module" />: Allows the Projector to generate
+  a force field more quickly
+- <ContentLink id="mffs:capacity_module" />: Increases the amount of Fortron
+  the Projector is able to store
+
+<PrefabUsage />
+```
+
+### Describing a concept
+
+Below is a simple example of describing a mechanism or system your mod adds to the game.
+In our case, this is Fortron energy provided by [Modular Force Field Systems](https://modrinth.com/mod/mffs).
+
+As Fortron does not exist as an in-game item, we've omitted the `id` attribute and specified the page icon explicitly.
+
+```mdx
+---
+icon: mffs:misc/fortron
+type: other
+---
+
+# Fortron
+
+Fortron is a form of energy that MFFS machines use as a source of power.
+
+It is produced and stored initially by the <ContentLink id="mffs:coercion_deriver"/>
+to then be transferred to other machines by the
+<ContentLink id="mffs:fortron_capacitor"/>.
+
+Another source of Fortron energy is a creative-only item known as the
+Infinite Power Card. It can be placed directly into a Fortron Capacitor
+(left most item slot) to provide an infinite supply of Fortron.
+
+Fortron is able to exist as a liquid. It may be pumped directly from
+a Capacitor and manipulated in the same way Water or Lava can.
+```
