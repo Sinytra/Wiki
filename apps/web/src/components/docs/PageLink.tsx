@@ -1,8 +1,11 @@
 import {default as NextLink} from "next/link";
-import {Link as LocaleLink} from "@/lib/locales/routing";
+import {Link, Link as LocaleLink} from "@/lib/locales/routing";
 import {cn} from "@repo/ui/lib/utils";
+import {ComponentPropsWithoutRef} from "react";
 
-export default function PageLink({href, target, local, className, children}: {href?: string | null; target?: string; local?: boolean; className?: string; children?: any}) {
+type LinkProps = ComponentPropsWithoutRef<typeof Link> & { local?: boolean };
+
+export default function PageLink({href, target, local, className, children}: LinkProps) {
   if (!href) {
     return <span className={className}>{children}</span>;
   }

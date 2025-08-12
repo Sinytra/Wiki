@@ -28,29 +28,3 @@ Adds a "Usage" section to the page that contains a list of items this item can b
 ```jsx
 <PrefabUsage />
 ```
-
-## Navigation
-
-Navigation utility components to make navigating across pages easier, even for referencing vanilla items.
-
-### `ContentLink`
-
-This component allows you to reference any in-game object via its ID, including vanilla items, and creates a link that
-leads to its page, if it exists.
-
-The Content Link component takes a single attribute named `id`, which specifies the in-game item to navigate to.
-This can be an item from the current project or vanilla.
-
-Project content pages are matched based on the `id` frontmatter [attribute](../folder_structure/pages/content_pages#metadata).
-Additionally, non-vanilla items can omit the link text to display the item's page title instead.
-
-```mdx
-{/* Links to https://minecraft.wiki/w/redstone */}
-<ContentLink id="redstone">Redstone</ContentLink>
-
-{/* Shows "Electric Furnace", links to content page from the same project */}
-<ContentLink id="examplemod:electric_furnace" />
-
-{/* Same as above - with custom display text */}
-Click <ContentLink id="examplemod:electric_furnace">here</ContentLink> to learn more.
-```

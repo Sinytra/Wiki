@@ -304,7 +304,7 @@ export default async function ProjectHomepage(props: PageProps) {
                 </div>
                 :
                 <div className="m-auto flex flex-row items-center gap-2">
-                  <PageLink href={info.license?.url} className="text-center" target="_blank">
+                  <PageLink href={info.license?.url || '#'} className="text-center" target="_blank">
                     {info.license?.name}
                   </PageLink>
                 </div>

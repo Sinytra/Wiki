@@ -47,6 +47,38 @@ such as crafting recipes.
 These features are purely optional, and you can always stick to using standard Markdown in your documentation. However,
 the file extension must remain `.mdx`.
 
+### Extensions
+
+We provide an extended link format that lets you quickly reference other pages within the same project.
+
+#### Content page links
+
+To link to [Content pages](pages/content_pages), use the ID metadata attribute of the page you want to link to,
+prefixed with `@`.
+
+For example:
+```md
+<!-- Uses page title as link text -->
+[](@examplemod:electric_furnace)
+
+<!-- Uses custom link text -->
+Click [here](@examplemod:electric_furnace) to learn more.
+```
+
+#### Documentation page links
+
+To link to [Documentation pages](pages/docs_pages), use the path of the page you want to link to (relative to the project
+root), prefixed with `$`.
+
+For example:
+```md
+<!-- Uses page title as link text -->
+[]($tutorials/getting_started)
+
+<!-- Uses custom link text -->
+Click [here]($tutorials/getting_started) to read the first tutorial.
+```
+
 ### Limitations
 
 Because MDX can potentially allow unwanted code injection on the server, we sanitize all sources before they're rendered,

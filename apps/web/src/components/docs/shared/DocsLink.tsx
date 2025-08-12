@@ -8,30 +8,30 @@ import {getTranslations} from "next-intl/server";
 
 type LinkProps = Omit<ComponentPropsWithoutRef<typeof Link>, 'href'> & { path: string; ctx: ProjectContext };
 
-function findNestedPath(path: string[], idx: number, tree: FileTree): FileTreeEntry | null {
+function findNestedPath(path: string[], fullPath: string, idx: number, tree: FileTree): FileTreeEntry | null {
   if (idx >= path.length) {
     return null;
   }
 
-  const target = path[idx]!;
   for (const entry of tree) {
-    if (entry.path == target) {
-      if (entry.type === 'dir') {
-        return findNestedPath(path, idx + 1, entry.children);
-      }
+    if (entry.path === fullPath) {
       return entry;
+    }
+
+    if (entry.type === 'dir' && entry.path == path[idx]!) {
+      return findNestedPath(path, fullPath, idx + 1, entry.children);
     }
   }
 
   return null;
 }
 
-async function getDocsPage(path: string[], ctx: ProjectContext): Promise<FileTreeEntry | null> {
+async function getDocsPage(path: string[], fullPath: string, ctx: ProjectContext): Promise<FileTreeEntry | null> {
   const contents = await service.getBackendLayout(ctx);
   if (!contents) {
     return null;
   }
-  return findNestedPath(path, 0, contents.tree) || null;
+  return findNestedPath(path, fullPath, 0, contents.tree) || null;
 }
 
 export default async function DocsLink(ctx: ProjectContext, props: Omit<LinkProps, 'ctx'>) {
@@ -42,7 +42,7 @@ async function BoundDocsLink(props: LinkProps) {
   const {path, ctx, children} = props;
   const t = await getTranslations('DocsLink');
 
-  const page = await getDocsPage(path.split('/'), ctx);
+  const page = await getDocsPage(path.split('/'), path, ctx);
   if (!page) {
     return (
       <span className="text-destructive">

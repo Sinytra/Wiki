@@ -27,12 +27,12 @@ import PrefabObtaining from "@/components/docs/shared/prefab/PrefabObtaining";
 import ModAsset from "@/components/docs/shared/asset/ModAsset";
 import Callout from "@/components/docs/shared/Callout";
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
-import PageLink from "@/components/docs/PageLink";
 import {BindableAsset} from "@/components/docs/shared/asset/Asset";
 import {BindableRecipeUsage} from "@/components/docs/shared/game/RecipeUsage";
 import CodeHikeCode from "@repo/ui/blocks/markdown/CodeHikeCode";
 import CodeTabs from "@repo/ui/blocks/markdown/CodeTabs";
 import DocsLink from "@/components/docs/shared/DocsLink";
+import ExtendedLink from "@/components/docs/shared/ExtendedLink";
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -111,7 +111,12 @@ const getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGame
 
 async function renderProjectContentPage(id: string, ctx: ProjectContext | ProjectContentContext): Promise<RenderedDocsPage | null> {
   const raw = await getProjectContentPage(id, ctx);
-  return renderMarkdown(raw, ctx);
+  const patcher: ComponentPatcher = (c) => ({
+    PrefabUsage: PrefabUsage.bind(null, ctx),
+    PrefabObtaining: PrefabObtaining.bind(null, ctx),
+    ...c
+  });
+  return renderMarkdown(raw, ctx, patcher);
 }
 
 async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
@@ -124,10 +129,8 @@ async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext
       ModAsset: ModAsset.bind(null, ctx),
       ProjectRecipe: ProjectRecipe.bind(null, ctx),
       RecipeUsage: BindableRecipeUsage.bind(null, ctx),
-      PrefabUsage: PrefabUsage.bind(null, ctx),
-      PrefabObtaining: PrefabObtaining.bind(null, ctx),
       h2: LinkAwareHeading,
-      a: PageLink,
+      a: ExtendedLink.bind(null, ctx),
       Callout, CodeHikeCode, CodeTabs,
     }
 
