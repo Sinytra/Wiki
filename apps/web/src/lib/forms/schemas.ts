@@ -1,26 +1,34 @@
 import {z} from "zod";
 
+const zodStringError = (iss: any) => iss.input === undefined ? "Field is required." : undefined;
+
+const requiredString = z.string({
+  error: zodStringError
+});
+const zodRepoUrl =  z.url({ protocol: /https/, error: zodStringError });
+
 export const projectRegisterSchema = z.object({
-  repo: z.string(),
-  branch: z.string(),
-  path: z.string(),
+  repo: z.url({ protocol: /https/, error: zodStringError }),
+  branch: requiredString,
+  path: requiredString.startsWith('/'),
   is_community: z.boolean().optional()
 });
 
 export const projectEditSchema = z.object({
-  id: z.string(),
+  id: requiredString,
 
-  repo: z.string(),
-  branch: z.string(),
-  path: z.string(),
+  repo: zodRepoUrl,
+  branch: requiredString,
+  path: requiredString.startsWith('/'),
   is_community: z.boolean().optional()
 });
 
 export const projectReportSchema = z.object({
-  project_id: z.string(),
-  type: z.string(),
-  reason: z.string(),
-  body: z.string(),
+  project_id: requiredString,
+  type: requiredString,
+  reason: requiredString,
+  body: requiredString,
+
   path: z.string().optional(),
   locale: z.string().optional(),
   version: z.string().optional()
@@ -31,6 +39,6 @@ export const ruleProjectReportSchema = z.object({
 })
 
 export const createAccessKeySchema = z.object({
-  name: z.string(),
-  days_valid: z.coerce.number().min(0).max(365).optional()
+  name: requiredString,
+  days_valid: z.coerce.number<any>().min(0).max(365).optional()
 });

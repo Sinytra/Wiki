@@ -2,7 +2,6 @@
 
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
-import {z} from "zod"
 import {
   Form,
   FormControl,
@@ -47,7 +46,7 @@ export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalP
   const u = useTranslations('FormActions');
 
   const router = useRouter();
-  const form = useForm<z.infer<typeof createAccessKeySchema>>({
+  const form = useForm({
     resolver: zodResolver(createAccessKeySchema)
   });
   const action: () => void = form.handleSubmit(async (data) => {

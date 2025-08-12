@@ -28,8 +28,7 @@ function getProjectLink(id: string) {
   return `/dev/project/${id}`;
 }
 
-function ProjectsListHeader({defaultValues, isAdmin}: {
-  defaultValues?: any;
+function ProjectsListHeader({isAdmin}: {
   isAdmin: boolean;
 }) {
   return (
@@ -38,8 +37,7 @@ function ProjectsListHeader({defaultValues, isAdmin}: {
         <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden"/>
 
         <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'SubmitButton']}>
-          <ProjectRegisterForm defaultValues={defaultValues}
-                               isAdmin={isAdmin}
+          <ProjectRegisterForm isAdmin={isAdmin}
                                formAction={handleRegisterProjectForm}
                                redirectToProject
           />
@@ -196,13 +194,12 @@ export default async function DevPage(props: { params: Promise<{ locale: string;
   setContextLocale(params.locale);
   const projects = handleApiCall(await devProjectApi.getProjects());
 
-  const defaultValues = {owner: projects.profile.username, repo: '', branch: '', path: ''};
   const isAdmin = projects.profile.role === UserRole.ADMIN;
 
   return (
     <GetStartedContextProvider>
       <div>
-        <ProjectsListHeader defaultValues={defaultValues} isAdmin={isAdmin}/>
+        <ProjectsListHeader isAdmin={isAdmin}/>
 
         <div>
           <ClientLocaleProvider keys={['LoadingContent']}>

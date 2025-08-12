@@ -39,7 +39,6 @@ import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextP
 import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
 
 export interface ProjectRegisterFormProps {
-  defaultValues: any;
   isAdmin: boolean;
   translations?: Parameters<typeof useTranslations>[0];
   redirectToProject?: boolean;
@@ -50,7 +49,6 @@ export interface ProjectRegisterFormProps {
 
 export default function ProjectRegisterForm(
   {
-    defaultValues,
     isAdmin,
     formAction,
     translations,
@@ -69,13 +67,14 @@ export default function ProjectRegisterForm(
   const reload = usePageDataReloadTransition();
 
   const form = useForm<z.infer<typeof projectRegisterSchema>>({
-    resolver: zodResolver(projectRegisterSchema),
-    defaultValues: defaultValues
+    resolver: zodResolver(projectRegisterSchema)
   });
+
   const formRef = useRef<HTMLFormElement | null>(null);
   const [canVerifyModrinth, setCanVerifyModrinth] = useState(false);
   const action: () => void = form.handleSubmit(async (data) => {
     const resp = await formAction(data) as any;
+
     if (resp.success) {
       if (redirectToProject && resp.project.id) {
         progressRouter.push(`/${params.locale}/dev/project/${resp.project.id}`);
@@ -89,7 +88,7 @@ export default function ProjectRegisterForm(
       }
     } else if (resp.error) {
       // @ts-expect-error details
-      form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});
+      form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.data.details});
       setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');
     } else if (resp.errors) {
       for (const key in resp.errors) {
