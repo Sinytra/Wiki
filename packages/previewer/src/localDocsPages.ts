@@ -2,10 +2,11 @@ import {unstable_cache} from 'next/cache';
 import {promises as fs} from 'fs';
 import {DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from '@repo/shared/constants';
 import metadata, {DocumentationFolderMetadata, ValidationError } from './localMetadata';
-import {FileTree} from '@repo/shared/types/service';
+import {FileTree, FileTreeEntry} from '@repo/shared/types/service';
 import {ProjectPlatforms} from '@repo/shared/types/platform';
 import localFiles from './localFiles';
 import env from '@repo/shared/env';
+import markdown from '@repo/markdown';
 
 export interface LocalDocumentationSource {
   id: string;
@@ -136,9 +137,10 @@ async function processFileTree(source: LocalDocumentationSource, root: string, t
     })
     .map(async (entry) => {
       const basePath = root.length === 0 ? entry.name : root + '/' + entry.name;
+      const actualPath = basePath.endsWith('.mdx') ? basePath.substring(0, basePath.length - 4) : basePath;
       return {
-        path: basePath.endsWith('.mdx') ? basePath.substring(0, basePath.length - 4) : basePath,
-        name: metadata?.[entry.name]?.name || capitalizeDefaultEntryName(entry.name),
+        path: actualPath,
+        name: metadata?.[entry.name]?.name || await getPageTitleForFolderMeta(source, actualPath, entry, locale),
         type: entry.type,
         children: entry.children ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale) : [],
         icon: metadata?.[entry.name]?.icon
@@ -171,6 +173,19 @@ async function readLocalizedFile(source: LocalDocumentationSource, path: string,
     }
   }
   return await localFiles.readFileContents(source, path);
+}
+
+async function getPageTitleForFolderMeta(source: LocalDocumentationSource, path: string, entry: FileTreeEntry, locale?: string) {
+  if (entry.type === 'file') {
+    const content = await readDocsFile(source, path.split('/'), locale);
+    if (content) {
+      const frontmatter = await markdown.readProcessedFrontmatter(content.content);
+      if (frontmatter?.title) {
+        return frontmatter.title;
+      }
+    }
+  }
+  return capitalizeDefaultEntryName(entry.name);
 }
 
 function capitalizeDefaultEntryName(str: string) {

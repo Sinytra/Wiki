@@ -13,7 +13,7 @@ import {VFile} from 'vfile';
 import {matter} from 'vfile-matter';
 import {compile, run} from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
-import {MarkdownError, formatMarkdownError} from './exception';
+import {formatMarkdownError, MarkdownError} from './exception';
 import {DocsEntryMetadata} from './metadata';
 
 export interface DocumentationMarkdown {
@@ -140,8 +140,25 @@ function readFrontmatter(source: string): any {
   return vfile.data.matter ?? {};
 }
 
+async function readProcessedFrontmatter(source: string) {
+  try {
+    const file = await unified()
+      .use(remarkParse)
+      .use(remarkRehype, {allowDangerousHtml: true})
+      .use(() => (_, file) => matter(file, {strip: true}))
+      .use(rehypeMarkdownHeadings)
+      .use(rehypeStringify)
+      .process(source);
+    return file.data.matter ?? {};
+  } catch (e) {
+    console.error('Error reading processed frontmatter', e);
+    return {};
+  }
+}
+
 export default {
   renderMarkdown,
   renderDocumentationMarkdown,
-  readFrontmatter
+  readFrontmatter,
+  readProcessedFrontmatter
 };

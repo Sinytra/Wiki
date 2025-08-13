@@ -6,8 +6,7 @@ import {getProcessURL} from "@/lib/utils";
 import {AssetLocation} from "@repo/shared/assets";
 import service from "@/lib/service";
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@repo/shared/constants";
-import matter from "gray-matter";
-import {DocsEntryMetadata} from "@repo/shared/types/metadata";
+import markdown from "@repo/markdown";
 
 export const runtime = 'nodejs';
 
@@ -282,7 +281,7 @@ export async function GET(req: NextRequest) {
   }
 
   const project = await platforms.getPlatformProject(page.project);
-  const metadata = matter(page.content).data as DocsEntryMetadata;
+  const metadata = await markdown.readProcessedFrontmatter(page.content) || {};
 
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null
     : await service.getAsset((metadata.icon || metadata.id)!, ctx);

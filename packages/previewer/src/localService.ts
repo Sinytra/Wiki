@@ -50,12 +50,14 @@ async function getLocalSourceContentTree(src: LocalDocumentationSource, locale?:
 }
 
 async function getLocalItemProperties(src: LocalDocumentationSource, id: string): Promise<ItemProperties | null> {
-  const props = await localFiles.readFileContents(src, '.data/properties.json');
   try {
+    const props = await localFiles.readFileContents(src, '.data/properties.json');
     const parsed = JSON.parse(props.content);
     return parsed[id] ?? null;
-  } catch (e) {
-    console.error('Error reading item properties file', e);
+  } catch (e: any) {
+    if (e.code != 'ENOENT') {
+      console.error('Error reading item properties file', e);
+    }
   }
   return null;
 }

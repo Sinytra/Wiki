@@ -8,8 +8,6 @@ import DocsContentTOCSidebar from "@/components/docs/side/content/DocsContentTOC
 import DocsContentMetaSidebar from "@/components/docs/side/content/DocsContentMetaSidebar";
 import {Metadata, ResolvingMetadata} from "next";
 import platforms from "@repo/shared/platforms";
-import matter from "gray-matter";
-import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {ProjectContentContext, RenderedDocsPage} from "@repo/shared/types/service";
 import DocsContentMetaSidebarBody from "@/components/docs/side/content/DocsContentMetaSidebarBody";
@@ -17,6 +15,7 @@ import DocsSimpleHeader from "@/components/docs/layout/DocsSimpleHeader";
 import TogglableContent from "@/components/docs/content/TogglableContent";
 import ContentChangelog from "@/components/docs/content/ContentChangelog";
 import ContentListFooter from "@/components/docs/ContentListFooter";
+import markdown from "@repo/markdown";
 
 interface Props {
   params: Promise<{
@@ -28,7 +27,8 @@ interface Props {
 }
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const {id, slug, version, locale} = await props.params;
+  const {id: encodedId, slug, version, locale} = await props.params;
+  const id = decodeURIComponent(encodedId);
   const ctx = {id: slug, version, locale};
   const page = await service.getProjectContentPage(id, ctx);
   if (!page) {
@@ -36,7 +36,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   }
 
   const project = await platforms.getPlatformProject(page.project);
-  const result = matter(page.content).data as DocsEntryMetadata;
+  const result = await markdown.readProcessedFrontmatter(page.content) || {};
   const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
     : await service.getAsset((result.icon || result.id)!, ctx);
 

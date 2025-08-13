@@ -3,8 +3,6 @@ import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import {redirect} from "next/navigation";
-import matter from "gray-matter";
-import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import platforms from "@repo/shared/platforms";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
@@ -16,6 +14,7 @@ import env from "@repo/shared/env";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 import issuesApi from "@repo/shared/api/issuesApi";
 import navigation from "@/lib/navigation";
+import markdown from "@repo/markdown";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -34,7 +33,7 @@ export async function generateMetadata(
   }
 
   const project = await platforms.getPlatformProject(page.project);
-  const result = matter(page.content).data as DocsEntryMetadata;
+  const result = await markdown.readProcessedFrontmatter(page.content) || {};
   const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
     : await service.getAsset((result.icon || result.id)!, ctx);
 
