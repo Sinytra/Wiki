@@ -3,19 +3,16 @@ import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProject
 import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
 import {getTranslations} from "next-intl/server";
 import {ProjectContentContext, ProjectContext} from "@repo/shared/types/service";
+import env from "@repo/shared/env";
+import InteractiveComponentPlaceholder from "@/components/docs/InteractiveComponentPlaceholder";
 
 export default async function PrefabObtaining(ctx: ProjectContext | ProjectContentContext) {
   return 'contentId' in ctx ? BoundPrefabObtaining({ctx}) : null;
 }
 
-async function BoundPrefabObtaining({ctx}: {ctx: ProjectContentContext}) {
+async function BoundPrefabObtaining({ctx}: { ctx: ProjectContentContext }) {
   const t = await getTranslations('PrefabObtaining');
-
   const recipes = await service.getContentRecipeObtaining(ctx.contentId, ctx);
-  // TODO Handle no recipes
-  if (!recipes || recipes.length === 0) {
-    return null;
-  }
 
   return (
     <div>
@@ -23,11 +20,14 @@ async function BoundPrefabObtaining({ctx}: {ctx: ProjectContentContext}) {
         {t('recipe')}
       </LinkAwareHeading>
 
-      {recipes.map(recipe => (
-        <div key={recipe.id}>
-          <ResolvedProjectRecipe recipe={recipe} ctx={ctx} />
-        </div>
-      ))}
+      {env.isPreview()
+        ? <InteractiveComponentPlaceholder />
+        : recipes?.map(recipe => (
+          <div key={recipe.id}>
+            <ResolvedProjectRecipe recipe={recipe} ctx={ctx}/>
+          </div>
+        ))
+      }
     </div>
   )
 }

@@ -6,6 +6,8 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {getTranslations} from "next-intl/server";
 import ItemAsset from "@/components/docs/shared/asset/ItemAsset";
 import {ProjectContext} from "@repo/shared/types/service";
+import env from "@repo/shared/env";
+import InteractiveComponentPlaceholder from "@/components/docs/InteractiveComponentPlaceholder";
 
 interface Props {
   id: string;
@@ -18,6 +20,10 @@ export async function BindableRecipeUsage(ctx: ProjectContext, props: Omit<Props
 
 export default async function RecipeUsage({id, ctx}: Props) {
   const t = await getTranslations('RecipeUsage');
+
+  if (env.isPreview()) {
+    return <InteractiveComponentPlaceholder />;
+  }
 
   const usage = await service.getContentRecipeUsage(id, ctx);
   if (!usage) {

@@ -13,6 +13,8 @@ import {
 } from "@repo/shared/types/service";
 import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import env from "@repo/shared/env";
+import InteractiveComponentPlaceholder from "@/components/docs/InteractiveComponentPlaceholder";
 
 interface Properties {
   recipe: ResolvedGameRecipe;
@@ -99,6 +101,10 @@ async function RecipeWorkbenches({workbenches, ctx}: { workbenches: ResolvedItem
 
 export default async function ResolvedProjectRecipe({recipe, embedded, ctx}: Properties) {
   const t = await getTranslations('ResolvedProjectRecipe');
+
+  if (env.isPreview()) {
+    return <InteractiveComponentPlaceholder />;
+  }
 
   const recipeType = await service.getRecipeType(recipe.type, ctx);
   if (!recipeType) {
