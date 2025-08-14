@@ -78,7 +78,8 @@ export default async function RootLayout({params, children}: { params: any, chil
     <Layout
       navbar={navbar}
       pageMap={pageMap}
-      docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
+      docsRepositoryBase="https://github.com/Sinytra/Wiki/tree/master/apps/docs"
+      feedback={{ labels: 'documentation' }}
       footer={footer}
       lastUpdated={(<LastUpdated locale={lang}/>)}
     >

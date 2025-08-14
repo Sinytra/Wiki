@@ -1,1 +1,322 @@
+import {FileTree, Callout} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
 # Game Data
+
+The Wiki can make great use of certain game files to enhance your project with accurate information that is normally
+only available in-game, such as showing recipes, crafting usage, item metadata properties, tags and more.
+
+Mod projects are encouraged to leverage game data files in combination with [content pages](pages/content_pages) for the
+best experience.
+
+## Language files
+
+Language files are used to display the names of blocks and items in other components, such as recipes. They also
+provide names for objects that only exist on the wiki, namely custom [Recipe Types](#custom-recipe-types).
+
+### Placement
+
+Language files are placed under the `.assets` folder and follow the **same structure and file naming** conventions as
+game resource packs, meaning you can easily **copy over** your entire language directory from your mod without
+additional steps.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".assets" defaultOpen>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFolder name="lang" defaultOpen>
+                    <FileTreeFile name="en_us.json"/>
+                    <FileTreeFile name="de_de.json"/>
+                    <FileTreeFile name="<language code>.json"/>
+                </FileTreeFolder>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+### Processing
+
+The wiki will resolve items names by language keys that follow the `item.<namespace>.<path>` format.
+
+For example, the name for `examplemod:generator` would point to `item.examplemod.generator` in the applicable
+language file.
+
+If some of your items are using custom key paths, please adjust them accordingly to follow this convention in Wiki
+language files.
+
+## Tags
+
+Tags are used by the Wiki to resolve items in recipes. It is recommended you include all of your mod's tags in the
+project to avoid issues in resolution.
+
+If your mod defines tags in the `c` namespace or uses tags from another mod, you should include those as well.
+
+### Placement
+
+Tags are placed under the `.data` folder and follow the same structure as in-game data packs.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".data" defaultOpen>
+            <FileTreeFolder name="c">
+                <FileTreeFolder name="tags" defaultOpen>
+                    <FileTreeFolder name="item" defaultOpen>
+                        <FileTreeFolder name="ingots" defaultOpen>
+                            <FileTreeFile name="steel.json"/>
+                        </FileTreeFolder>
+                    </FileTreeFolder>
+                </FileTreeFolder>
+            </FileTreeFolder>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFolder name="tags" defaultOpen>
+                    <FileTreeFile name="generator_fuels.json"/>
+                </FileTreeFolder>
+
+                <FileTreeFile name="..any_tag_path.json"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Recipes
+
+<Callout>
+    Vanilla recipes can be simply copied over to Wiki projects with no additional steps - we'll handle the rest.
+</Callout>
+
+You can import your recipes into the Wiki and display them in pages easily. We support both Vanilla and custom recipes.
+
+The following Vanilla recipe types are supported:
+
+- `minecraft:blasting`
+- `minecraft:campfire_cooking`
+- `minecraft:crafting_shaped`
+- `minecraft:crafting_shapeless`
+- `minecraft:smelting`
+- `minecraft:smithing_transform`
+- `minecraft:smoking`
+- `minecraft:stonecutting`
+
+Custom recipe types must be defined separately and are further explained below.
+
+### Placement
+
+Recipes are placed under the `.data` folder and follow the same structure as in-game data packs.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".data" defaultOpen>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFolder name="recipe" defaultOpen>
+                    <FileTreeFile name="generator.json"/>
+
+                    <FileTreeFile name="..any_recipe_path.json"/>
+                </FileTreeFolder>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Custom recipe types
+
+In addition to vanilla recipes, you may also define your own recipe types that can be displayed on the Wiki.
+
+These are effectively used to tell the Wiki how your recipe display should be layed out and where each item slot is.
+
+### Placement
+
+Custom recipe types are placed under `recipe_type` in a namespaced data directory, at the same level as `recipe`.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".data" defaultOpen>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFolder name="recipe_type" defaultOpen>
+                    <FileTreeFile name="grinding.json"/>
+                    <FileTreeFile name="arbitrary_name.json"/>
+                </FileTreeFolder>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+### Format
+
+Recipe Types are defined using a json file with 3 **required** properties:
+
+- `background`
+  - [Asset](assets) ID pointing to an asset to be used as the recipe display background
+
+- `inputSlots` and `outputSlots`
+  - An object where each key represents the name of a slot, and values provide its `x` and `y` placement coordinates
+  - You may freely choose the names of your slots, which will be matched against slot names in custom recipe
+    [files](#custom-recipe-format) as described further below
+  - The two properties represent recipe inputs and outputs, respectively
+  - Slot coordinates are relative to the background
+
+To find the precise positions of your slots, we recommend using a raster image program such as
+[GIMP](https://www.gimp.org/).
+
+#### Example
+
+<Callout>
+    Any supported asset can be used as a background, including **GIFs**, which can be used to display progress
+    animations similar to in-game recipe viewers.
+</Callout>
+
+```json
+{
+  "background": "examplemod:gui/grinding",
+  "inputSlots": {
+    "in": {"x": 16, "y": 16}
+  },
+  "outputSlots": {
+    "out": {"x": 204, "y": 52}
+  }
+}
+```
+
+For a real world example, check out the internal recipe type file for Vanilla smelting recipes and its background below.
+
+```json
+{
+  "background": "minecraft:gui/recipe/smelting",
+  "inputSlots": {
+    "1": {"x": 14, "y": 14}
+  },
+  "outputSlots": {
+    "1": {"x": 134, "y": 50}
+  }
+}
+```
+
+![](https://r2.sinytra.org/.assets/minecraft/gui/recipe/smelting.png)
+
+## Custom Recipe format
+
+Recipes that use a custom recipe type must use a custom, minimal format specific to the Wiki rather than what vanilla
+recipes use.
+
+The json file format defines the folowing **required** properties:
+
+- `type`
+  - ID of the custom recipe type to use.
+    IDs for recipe types are calculated in the same way as recipe IDs are in datapacks.
+
+- `input`
+  - Map of [input slot](#format) names to input ingredients
+  - Each input ingredient can be one of the following
+    - A single item or tag ID - `minecraft:iron_ingot` / `#c:ingots/iron`
+    - An array of single items or tags: `[ "minecraft:iron_ingot", "#c:ingots/iron" ]`
+    - An object where `item` is one of the above and `count` specifies the input amount
+
+- `output`
+    - Map of [output slot](#format) names to output item stacks
+    - Each output consists of a single item stack
+    - An item stack has two properties: `id` for the item ID and `count`
+
+### Example
+
+```json5
+{
+  "type": "examplemod:grinding",
+  "input": {
+    // Accept a single item
+    "in": "minecraft:iron_ingot",
+    // OR: Accept tag
+    "in": "#c:ingots/iron",
+    // OR: Accept multiple items/tags
+    "in": ["minecraft:iron_ingot", "examplemod:cast_iron_ingot"],
+    // OR: Accept items with count
+    "in": { "item": "#c:ingots/iron", "count": 4 }
+  },
+  "output": {
+    "out": {
+      "id": "minecraft:iron_nugget",
+      "count": 9
+    }
+  }
+}
+```
+
+## Workbenches
+
+Workbenches allows you to specify which blocks can be used to process certain recipe types (both vanilla and custom).
+These will be displayed along with each recipe.
+
+### Placement
+
+Workbenches are defined in a `workbenches.json` file inside the `.data` directory in your project.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".data" defaultOpen>
+            <FileTreeFile name="workbenches.json"/>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+The format is a simple object where keys represent a recipe type ID and values are item IDs.
+
+### Example
+
+A minimal example for vanilla crafting would look like this:
+
+```json
+{
+  "minecraft:crafting_shaped": [
+    "minecraft:crafting_table",
+    "minecraft:crafter"
+  ]
+}
+```
+
+## Item properties
+
+<Callout>
+    The item properties file can be easily generated using our developer [integration](../features/gradle).
+</Callout>
+
+The item properties file is used to define metadata properties of blocks and items to be displayed in the sidebar of
+[content pages](pages/content_pages). These usually include values such as the required tool to break a block, maximum
+item stack size, hardness and explosion resistance.
+
+### Placement
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".data" defaultOpen>
+            <FileTreeFile name="properties.json"/>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+### Format
+
+The file consists of a json object where each key represents an item/block ID and the value contains property
+key-value pairs.
+
+We currently support the following properties:
+
+- `stack_size` - `integer`
+- `required_tool` - `string` representing an Item ID
+- `blast_resistance` - `number`
+- `hardness` - `number`
+- `flammable` - `boolean`
+
+### Example
+
+Below you can find a minimal example containing properties for a custom block.
+
+```json
+{
+  "examplemod:electric_furnace": {
+    "stack_size": 64,
+    "required_tool": "minecraft:iron_pickaxe",
+    "blast_resistance": 3.0,
+    "hardness": 3.0,
+    "flammable": false
+  }
+}
+```
