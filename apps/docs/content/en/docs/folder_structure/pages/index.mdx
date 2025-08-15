@@ -49,7 +49,18 @@ the file extension must remain `.mdx`.
 
 ### Extensions
 
-We provide an extended link format that lets you quickly reference other pages within the same project.
+We provide a few useful markdown extensions that can be used as syntax sugar.
+
+#### Asset images
+
+Display any [asset](assets) image using native markdown syntax by specifying the asset [location](assets#format)
+prefixed with `@`.
+
+For example:
+```md
+<!-- Will display: <root>/.assets/examplemod/generator.png -->
+![](@examplemod:generator)
+```
 
 #### Content page links
 

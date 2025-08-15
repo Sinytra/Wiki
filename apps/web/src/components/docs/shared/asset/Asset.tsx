@@ -10,10 +10,11 @@ export async function BindableAsset(ctx: ProjectContext | null, props: Omit<Prop
 }
 
 export default async function Asset({location, ...props}: Props) {
+  const noCtx = {...props, ctx: undefined};
   return (
     <AssetBase
       display={
-        ({asset}) => <AssetDisplay asset={asset} {...props} />
+        ({asset}) => <AssetDisplay asset={asset} {...noCtx} />
       }
       location={location}
       {...props}

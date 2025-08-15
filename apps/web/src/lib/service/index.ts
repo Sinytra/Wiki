@@ -33,6 +33,7 @@ import CodeHikeCode from "@repo/ui/blocks/markdown/CodeHikeCode";
 import CodeTabs from "@repo/ui/blocks/markdown/CodeTabs";
 import DocsLink from "@/components/docs/shared/DocsLink";
 import ExtendedLink from "@/components/docs/shared/ExtendedLink";
+import ExtendedImg from "@/components/docs/shared/ExtendedImg";
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -131,7 +132,8 @@ async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext
       RecipeUsage: BindableRecipeUsage.bind(null, ctx),
       h2: LinkAwareHeading,
       a: ExtendedLink.bind(null, ctx),
-      Callout, CodeHikeCode, CodeTabs,
+      img: ExtendedImg.bind(null, ctx),
+      Callout, CodeHikeCode, CodeTabs
     }
 
     const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);

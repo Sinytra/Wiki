@@ -12,10 +12,12 @@
   "dependencies": {
     "@mdx-js/mdx": "^3.1.0",
     "codehike": "^1.0.7",
+    "estree-util-visit": "^2.0.0",
     "github-slugger": "^2.0.0",
     "hast-util-heading-rank": "^3.0.0",
     "hast-util-sanitize": "^5.0.2",
     "lucide-react": "^0.513.0",
+    "mdast-util-mdx-jsx": "^3.2.0",
     "mdast-util-to-string": "^4.0.0",
     "react": "19.1.0",
     "rehype-raw": "^7.0.0",
@@ -33,8 +35,8 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "19.1.8",
     "@types/hast": "^3.0.4",
+    "@types/react": "19.1.8",
     "eslint": "^9.31.0"
   }
 }

@@ -7,7 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import {markdownRehypeSchema} from './contentFilter';
 import {ReactElement} from 'react';
 import remarkGfm from 'remark-gfm';
-import rehypeMarkdownHeadings from './headings';
+import {rehypeMarkdownHeadings, rehypeSafeMarkdownAttributes} from './plugins';
 import {recmaCodeHike, remarkCodeHike} from 'codehike/mdx';
 import {VFile} from 'vfile';
 import {matter} from 'vfile-matter';
@@ -85,6 +85,7 @@ async function renderDocumentationMarkdown(
       remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm],
       rehypePlugins: [
         rehypeMarkdownHeadings,
+        rehypeSafeMarkdownAttributes,
         () => (tree: any) => {
           const newTree = {...tree};
           return sanitizeHastTree(newTree, components);

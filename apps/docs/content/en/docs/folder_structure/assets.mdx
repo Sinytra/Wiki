@@ -44,7 +44,17 @@ if the file is of another format.
 
 The name of the file is up to your choice.
 
-For example, the location `examplemod:generator` would point to `<root>/.assets/examplemod/generator.png`.
+### Examples
+
+- `examplemod:generator` - Displays `<root>/.assets/examplemod/generator.png`
+
+<p/>
+
+- `examplemod:gui/grinding.gif` - Displays `<root>/.assets/examplemod/gui/grinding.gif`
+
+<p/>
+
+- `minecraft:crafting_table`, `crafting_table` - Displays a 3D render of the Crafting table
 
 ## Usage
 
@@ -52,9 +62,11 @@ You'll encounter assets being used for various different purposes across the wik
 
 The most common use cases include:
 
+- Displaying images anywhere in [pages](pages#extensions)
+
 - Providing icons for [pages](pages#metadata) by specifying the `icon` frontmatter attribute
 
 - Providing icons for [content pages](pages/content_pages), sourced automatically using the page's `id` frontmatter attribute
-as the asset location.
+  as the asset location
 
-- Showing items in [recipes](game_data)
+- Showing items in [recipes](game_data#recipes)
