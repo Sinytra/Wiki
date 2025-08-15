@@ -12,7 +12,7 @@ export default {
   '#3': {
     type: 'separator'
   },
-  'features': 'Features',
+  'tools': 'Tools',
   '#4': {
     type: 'separator'
   },

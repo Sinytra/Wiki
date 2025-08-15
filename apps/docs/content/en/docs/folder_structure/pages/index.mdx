@@ -132,6 +132,9 @@ documentation root's asset folder, it will be used as the `icon`.
   custom:
     Category: Machines
   ```
+- `history`
+  - Shows a changelog of changes regarding the page's content / item
+  - Read [below](#changelog) for an explanation
 
 <details>
     <summary>Show complete metadata example</summary>
@@ -144,6 +147,14 @@ documentation root's asset folder, it will be used as the `icon`.
     type: block
     custom:
       Subcategory: Machines
+    history:
+      - version: 1.2b
+        date: 15.08.2025
+        changes:
+          - Bugfixes
+          - Add more data generation
+      - 1.1: Fix custom ingredient implementation
+      - 1.0: Added
     ---
 
     Content comes here
@@ -156,3 +167,47 @@ See the [Components](../components/overview) page.
 
 ## Changelog
 
+A changelog acts as a list of changes that have been made to the page's subject under the `history` frontmatter
+attribute.
+
+It is displayed at the bottom of the page as a collapsible element for content pages or as a switchable tab in the
+page title for documentation pages.
+
+### Format
+
+There are 2 ways changelog entries can be written:
+
+**1) Simplified**
+
+A key-value pair where the key represents the version number and the value is a description of changes made.
+
+```yaml
+- 5.6: Fixed spacebar overheating
+```
+
+**2) Detailed**
+
+The detailed syntax allows you to specify a date and multiple changes in a single version.
+
+```yaml
+- version: 1.2b
+  date: 15.08.2025
+  changes:
+    - Example change
+    - Add more data generation
+```
+
+### Example
+
+```yaml
+history:
+  # Detailed entry
+  - version: 1.2b
+    date: 15.08.2025
+    changes:
+      - Example change
+      - Add more data generation
+  # Simple entries
+  - 1.1: Some random change
+  - 1.0: Added
+```
