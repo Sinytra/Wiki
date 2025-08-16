@@ -5,6 +5,7 @@ import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
 import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
 import * as React from "react";
 import {useTranslations} from "next-intl";
+import {WIKI_DOCS_URL} from "@repo/shared/constants";
 
 export default function MetaDocsNavigation({docsOnly}: { docsOnly?: boolean }) {
   const t = useTranslations('MetaDocsNavigation');
@@ -12,15 +13,19 @@ export default function MetaDocsNavigation({docsOnly}: { docsOnly?: boolean }) {
   return (
     <CollapsibleDocsTreeBase title={t('title')}>
       <div className="my-2 flex flex-col gap-2">
-        <SidebarNavLink href="/about/overview" icon={HomeIcon}>
+        <SidebarNavLink href="/about" icon={HomeIcon}>
           {t('about')}
         </SidebarNavLink>
 
         <hr/>
 
-        <SidebarNavLink href="/about/devs" icon={PencilRulerIcon}>
+        <SidebarNavLink href={WIKI_DOCS_URL} icon={PencilRulerIcon}>
           {t('devs')}
         </SidebarNavLink>
+        {/* TODO Complete gallery or move it to the docs website */}
+        {/*<SidebarNavLink href="/about/components" icon={ShapesIcon}>*/}
+        {/*  {t('components')}*/}
+        {/*</SidebarNavLink>*/}
 
         <hr/>
 

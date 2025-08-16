@@ -3,6 +3,19 @@ import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTy
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
 import {ProjectVersion, ProjectVersions} from "@repo/shared/types/api/devProject";
+import DevProjectTableEmptyState from "@/components/dev/table/DevProjectTableEmptyState";
+
+function EmptyPlaceholder() {
+  const t = useTranslations('DevProjectVersionsTable.empty');
+
+  return (
+    <DevProjectTableEmptyState guideLink={(args) => t.rich('desc', args)}>
+      <p className="text-base">
+        {t('title')}
+      </p>
+    </DevProjectTableEmptyState>
+  )
+}
 
 export default function DevProjectVersionsTable({data, page}: {
   data: ProjectVersions;
@@ -29,6 +42,6 @@ export default function DevProjectVersionsTable({data, page}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} page={page} />
+    <DataTable columns={columns} data={data} page={page} emptyState={<EmptyPlaceholder/>}/>
   )
 }

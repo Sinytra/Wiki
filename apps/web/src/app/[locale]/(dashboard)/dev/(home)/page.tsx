@@ -21,6 +21,7 @@ import {UserRole} from "@repo/shared/types/api/auth";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
+import {WIKI_DOCS_URL} from "@repo/shared/constants";
 
 export const dynamic = 'force-dynamic';
 
@@ -173,7 +174,7 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
             <span className="text-secondary">
             {t.rich('empty.secondary', {
               guide: (chunks: any) => (
-                <LinkTextButton className="text-base! font-normal! text-primary! underline" href="/about/devs">
+                <LinkTextButton className="text-base! font-normal! text-primary! underline" href={WIKI_DOCS_URL}>
                   {chunks}
                 </LinkTextButton>
               )

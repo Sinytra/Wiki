@@ -34,7 +34,7 @@ import LargePersonStandingIcon from "@repo/ui/icons/LargePersonStandingIcon";
 import env from "@repo/shared/env";
 import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";
 import SafeImage from "@/components/util/SafeImage";
-import {DEFAULT_LOCALE} from "@repo/shared/constants";
+import {DEFAULT_LOCALE, WIKI_DOCS_URL} from "@repo/shared/constants";
 
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
@@ -236,7 +236,7 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
                       {t('community.authors.dashboard')}
                     </Link>
                     <LocaleNavLink
-                      href="/about/devs"
+                      href={WIKI_DOCS_URL}
                       className={`
                         rounded-sm bg-neutral-600 px-4 py-2 text-center font-bold text-white transition duration-300
                         hover:bg-neutral-700

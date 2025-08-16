@@ -24,6 +24,7 @@ export default async function DevProjectContentItemsPage(props: Properties) {
   const searchParams = await props.searchParams;
   const params = await props.params;
   setContextLocale(params.locale);
+
   const t = await getTranslations('DevProjectContentItemsPage');
   const project = handleApiCall(await devProjectApi.getProject(params.project));
 

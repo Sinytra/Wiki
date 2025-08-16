@@ -143,21 +143,11 @@
         "title": "Navigation",
         "about": "About",
         "devs": "Author guide",
+        "components": "Components",
         "help": "Get help",
         "tos": "Terms of Use",
         "privacy": "Privacy Policy",
         "security": "Security Notice"
-    },
-    "MetaDevDocsNavigation": {
-        "title": "Author guide",
-        "back": "Return home",
-        "start": "Getting started",
-        "structure": "Folder layout",
-        "config": "Configuration",
-        "format": "Format",
-        "components": "Components",
-        "publishing": "Publishing",
-        "community": "Community Docs"
     },
     "Login": {
         "title": "Login required",
@@ -739,6 +729,9 @@
         "title": "Data migrations",
         "desc": "Available data migrations"
     },
+    "EmptyDataTable": {
+        "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
+    },
     "DataTable": {
         "no_results": "No results.",
         "filter": "Filter rows...",
@@ -747,7 +740,11 @@
     },
     "DevProjectVersionsTable": {
         "name": "Name",
-        "branch": "Branch"
+        "branch": "Branch",
+        "empty": {
+            "title": "No additional versions were found in your project.",
+            "desc": "Read the <link>author guide</link> to learn more about project versioning."
+        }
     },
     "DevProjectItemsTable": {
         "icon": "Icon",
@@ -758,15 +755,25 @@
             "open": "Open menu",
             "title": "Actions",
             "view": "View"
+        },
+        "empty": {
+            "title": "No items were found in your project.",
+            "desc": "Project items are automatically detected from content pages and included game files."
         }
     },
     "DevProjectTagsTable": {
         "id": "Identifier",
-        "items": "Item count"
+        "items": "Item count",
+        "empty": {
+            "title": "No tags were found in your project."
+        }
     },
     "DevProjectRecipesTable": {
         "type": "Type",
-        "id": "Identifier"
+        "id": "Identifier",
+        "empty": {
+            "title": "No recipes were found in your project."
+        }
     },
     "ResolvedProjectRecipe": {
         "type": "Recipe Type",

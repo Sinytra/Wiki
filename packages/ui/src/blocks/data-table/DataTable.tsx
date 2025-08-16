@@ -16,6 +16,7 @@ interface Properties<T> {
   linker?: TableRowLinker<T>;
   creator?: ReactNode;
   page: number;
+  emptyState?: ReactNode;
 }
 
 function DataTableToolbar({creator}: Pick<Properties<unknown>, 'creator'>) {
@@ -26,7 +27,16 @@ function DataTableToolbar({creator}: Pick<Properties<unknown>, 'creator'>) {
   )
 }
 
-export default function DataTable<T>({columns, expandRows, data, page, versions, linker, creator}: Properties<T>) {
+export default function DataTable<T>({
+                                       columns,
+                                       expandRows,
+                                       data,
+                                       page,
+                                       versions,
+                                       linker,
+                                       creator,
+                                       emptyState
+                                     }: Properties<T>) {
   const offset = data.size * (page - 1);
   const t = useTranslations('DataTable');
 
@@ -40,11 +50,12 @@ export default function DataTable<T>({columns, expandRows, data, page, versions,
     </TableHead>
   ));
 
-  const rows = data.total === 0 ?
+  const isEmpty = data.total === 0;
+  const rows = isEmpty ?
     [{
       row: (
-        <TableCell colSpan={columns.length} className="h-24 border-0 text-center">
-          {t('no_results')}
+        <TableCell colSpan={actualHeaders.length} className="h-24 border-0 text-center">
+          {emptyState ?? t('no_results')}
         </TableCell>
       )
     }]
@@ -78,7 +89,9 @@ export default function DataTable<T>({columns, expandRows, data, page, versions,
   return (
     <ClientLocaleProvider keys={['DataTable', 'DocsVersionSelector']}>
       <DataTableClient cols={headers} rows={rows} data={data} versions={versions} links={links}
-                       expandable={expandRows !== undefined} toolbar={<DataTableToolbar creator={creator} />}/>
+                       expandable={!isEmpty && expandRows !== undefined}
+                       toolbar={<DataTableToolbar creator={creator}/>}
+      />
     </ClientLocaleProvider>
   )
 }

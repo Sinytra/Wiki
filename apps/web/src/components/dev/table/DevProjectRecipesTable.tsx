@@ -5,6 +5,19 @@ import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProject
 import {useTranslations} from "next-intl";
 import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentRecipe} from "@repo/shared/types/api/devProject";
+import DevProjectTableEmptyState from "@/components/dev/table/DevProjectTableEmptyState";
+
+function EmptyPlaceholder() {
+  const t = useTranslations('DevProjectRecipesTable.empty');
+
+  return (
+    <DevProjectTableEmptyState>
+      <p className="text-base">
+        {t('title')}
+      </p>
+    </DevProjectTableEmptyState>
+  )
+}
 
 export default function DevProjectRecipesTable({data, ctx, versions, page}: {
   data: PaginatedData<ProjectContentRecipe>;
@@ -39,6 +52,8 @@ export default function DevProjectRecipesTable({data, ctx, versions, page}: {
   );
 
   return (
-    <DataTable expandRows={expander} columns={columns} data={data} versions={versions} page={page}/>
+    <DataTable expandRows={expander} columns={columns} data={data} versions={versions} page={page}
+               emptyState={<EmptyPlaceholder/>}
+    />
   )
 }

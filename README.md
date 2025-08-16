@@ -14,15 +14,20 @@ project management and more.
 
 ## Authors
 
+**📘 Read the complete author guide [here](https://docs.moddedmc.wiki).**
+
 An example documentation setup can be found in the `example` directory of this repository.
 
 ## Development
 
-1. Rename `.env.local.example` to `.env.local`
-2. Create a new [GitHub App](https://github.com/settings/apps/new). Fill in the following information:
-  - `AUTH_GITHUB_ID` - Client ID
-  - `AUTH_GITHUB_SECRET` - Client Secret
-3. Run `npm run dev` to start the app
+Ensure you have the latest version of [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io/) installed. 
+
+1. Install dependecies by running `pnpm install`
+2. Rename `.env.local.example` to `.env.local`
+3. Run `pnpm run dev` to start the app
+
+To open the example project, enable local preview mode by setting `ENABLE_LOCAL_PREVIEW=true` or manually navigate
+to `/project/examplemod`.
 
 You can list desired local documentation sources in the `LOCAL_DOCS_ROOTS` env variable as demonstrated in the example.
 

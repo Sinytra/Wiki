@@ -15,3 +15,5 @@ export const DEFAULT_WIKI_LICENSE = {
 };
 
 export const NO_FOLDER_ICON = '_none';
+
+export const WIKI_DOCS_URL = 'https://docs.moddedmc.wiki/';

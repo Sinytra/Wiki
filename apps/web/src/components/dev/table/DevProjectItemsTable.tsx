@@ -16,6 +16,18 @@ import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
 import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentPage} from "@repo/shared/types/api/devProject";
+import DevProjectTableEmptyState from "@/components/dev/table/DevProjectTableEmptyState";
+
+function EmptyPlaceholder() {
+  const t = useTranslations('DevProjectItemsTable.empty');
+
+  return (
+    <DevProjectTableEmptyState>
+      <p className="text-base">{t('title')}</p>
+      <p>{t('desc')}</p>
+    </DevProjectTableEmptyState>
+  )
+}
 
 export default function DevProjectItemsTable({data, ctx, versions, page}: {
   data: PaginatedData<ProjectContentPage>;
@@ -97,6 +109,6 @@ export default function DevProjectItemsTable({data, ctx, versions, page}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} versions={versions} page={page} />
+    <DataTable columns={columns} data={data} versions={versions} page={page} emptyState={<EmptyPlaceholder/>}/>
   )
 }

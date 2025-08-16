@@ -19,6 +19,7 @@ import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dev/navigation/DevSidebarMenuItem";
 import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
 import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
+import {WIKI_DOCS_URL} from "@repo/shared/constants";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
@@ -42,7 +43,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
       items: [
         {
           title: t('nav.documentation'),
-          url: "/about/devs",
+          url: WIKI_DOCS_URL,
           icon: BookOpen,
           external: true
         },

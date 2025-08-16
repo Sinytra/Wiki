@@ -5,10 +5,11 @@ const zodStringError = (iss: any) => iss.input === undefined ? "Field is require
 const requiredString = z.string({
   error: zodStringError
 });
-const zodRepoUrl =  z.url({ protocol: /https/, error: zodStringError });
+const allowedProtocols = process.env.NODE_ENV === 'development' ? /https|file/ : /https/;
+const zodRepoUrl = z.url({ protocol: allowedProtocols, error: zodStringError });
 
 export const projectRegisterSchema = z.object({
-  repo: z.url({ protocol: /https/, error: zodStringError }),
+  repo: zodRepoUrl,
   branch: requiredString,
   path: requiredString.startsWith('/'),
   is_community: z.boolean().optional()
