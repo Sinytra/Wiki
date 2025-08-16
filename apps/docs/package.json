@@ -19,8 +19,8 @@
     "lucide-react": "^0.533.0",
     "markdown-to-jsx": "^7.4.0",
     "next": "^15.0.2",
-    "nextra": "4.3.0-alpha.31",
-    "nextra-theme-docs": "4.3.0-alpha.31",
+    "nextra": "^4.3.0",
+    "nextra-theme-docs": "^4.3.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-intersection-observer": "^9.16.0"

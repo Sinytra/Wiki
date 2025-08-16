@@ -148,33 +148,35 @@ It demonstrates the clever inclusion of content links, recipe obtaining/usage an
 id: mffs:projector
 type: block
 history:
-  - 1.1: Fixed bug
+  - 1.1: Improved performance
   - 1.0: Added
 ---
 
 # Force Field Projector
 
 The Force Field Projector is a fundamental part of the MFFS family of machines.
-It uses Fortron energy to project force fields of various shapes and sizes into
-the world.
+It uses []($fortron) energy to project force fields of various shapes and sizes
+into the world.
 
 <PrefabObtaining />
 
 ## Operation
 
-To make a force field, give the Force Field Projector a supply of
-Fortron by linking it to a nearby <ContentLink id="mffs:fortron_capacitor"/>.
+To make a force field, give the Force Field Projector a supply of []($fortron)
+by linking it to a nearby [](@mffs:fortron_capacitor).
 
-Decide which force field shape to create by crafting one of the projector mode items.
+Decide which force field shape to create by crafting one of the projector mode
+items.
 Right-click the Projector and place the projector mode item into the central (red)
 slot surrounded by outwardly facing arrows.
 
-Craft a number of Scale Module items and place them into the left-hand slot matrix
-of the Force Field Projector's GUI. Each Scale Module used in the Projector's matrix
-slots will increase the force field radius by one block.
+Craft a number of [Scale Modules](@mffs:scale_module) and place them into the
+left-hand slot matrix of the Force Field Projector's GUI.
+Each [](@mffs:scale_module) used in the Projector's matrix slots will increase
+the force field radius by one block.
 
-To be able to walk through a force field, a
-<ContentLink id="mffs:biometric_identifier"/> is needed.
+To be able to walk through a force field, a [](@mffs:biometric_identifier)
+is required.
 
 ## Upgradability
 
@@ -182,12 +184,11 @@ A Force Field Projector may be augmented with various modules.
 
 These general modules have the following effects:
 
-- <ContentLink id="mffs:scale_module" />: Adjusts the shape of a projected
-  force field
-- <ContentLink id="mffs:speed_module" />: Allows the Projector to generate
-  a force field more quickly
-- <ContentLink id="mffs:capacity_module" />: Increases the amount of Fortron
-  the Projector is able to store
+- [](@mffs:scale_module): Adjusts the shape of a projected force field
+- [](@mffs:speed_module): Allows the Projector to generate a force field
+  more quickly
+- [](@mffs:capacity_module): Increases the amount of Fortron the Projector
+  is able to store
 
 <PrefabUsage />
 ```
@@ -209,9 +210,8 @@ type: other
 
 Fortron is a form of energy that MFFS machines use as a source of power.
 
-It is produced and stored initially by the <ContentLink id="mffs:coercion_deriver"/>
-to then be transferred to other machines by the
-<ContentLink id="mffs:fortron_capacitor"/>.
+It is produced and stored initially by the [](@mffs:coercion_deriver)
+to then be transferred to other machines by the [](@mffs:fortron_capacitor).
 
 Another source of Fortron energy is a creative-only item known as the
 Infinite Power Card. It can be placed directly into a Fortron Capacitor

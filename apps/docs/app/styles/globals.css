@@ -88,6 +88,11 @@
         @apply dark:bg-code!;
     }
 
+    .nextra-code {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
     .nextra-code > div {
         border: none !important;
     }
