@@ -11,7 +11,7 @@ interface Props {
 export default function DevProjectTableEmptyState({guideLink, children}: Props) {
   const u = useTranslations('EmptyDataTable');
   const args = {
-    link: (chunks) => <a className="underline" href={WIKI_DOCS_URL}>{chunks}</a>
+    link: (chunks: ReactNode) => <a className="underline" href={WIKI_DOCS_URL}>{chunks}</a>
   };
 
   return (

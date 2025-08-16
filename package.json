@@ -10,7 +10,7 @@
     "preview": "turbo run preview --filter=web"
   },
   "devDependencies": {
-    "turbo": "^2.5.5",
+    "turbo": "^2.5.6",
     "typescript": "5.8.3"
   },
   "packageManager": "pnpm@10.14.0",
