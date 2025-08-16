@@ -16,7 +16,13 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "passThroughEnv": ["ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
+    },
+    "preview": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
     }
   },
   "globalEnv": [
