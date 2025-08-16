@@ -1,6 +1,6 @@
 import metadataJsonSchema from './schemas/sinytra-wiki.schema.json';
 import folderMetadataJsonSchema from './schemas/_meta.schema.json';
-import {Draft, Draft2019, JsonError} from 'json-schema-library';
+import {compileSchema, JsonSchema, SchemaNode, JsonError} from 'json-schema-library';
 
 // _meta.json
 export type RawDocumentationFolderMetadata = Record<string, string | DocumentationFolderMetadataEntry>;
@@ -35,11 +35,9 @@ export class ValidationError extends Error {
 }
 
 function validateMetadataFile(obj: any): boolean {
-  const jsonSchema: Draft = new Draft2019(metadataJsonSchema);
-  const errors: JsonError[] = jsonSchema.validate(obj);
+  const errors: JsonError[] = validateJsonSchema(metadataJsonSchema, obj);
 
   if (errors.length > 0) {
-    console.log('found errors is metadata', errors);
     throw new ValidationError(`Error validating documentation metadata:\n${errors.map(e => `- ${e.message}`).join('\n')}`);
   }
 
@@ -47,14 +45,19 @@ function validateMetadataFile(obj: any): boolean {
 }
 
 function validateFolderMetadataFile(obj: any): boolean {
-  const jsonSchema: Draft = new Draft2019(folderMetadataJsonSchema);
-  const errors: JsonError[] = jsonSchema.validate(obj);
+  const errors = validateJsonSchema(folderMetadataJsonSchema, obj);
 
   if (errors.length > 0) {
     throw new ValidationError(`Error validating folder metadata:\n${errors.map(e => `- ${e.message}`).join('\n')}`);
   }
 
   return true;
+}
+
+function validateJsonSchema(rawSchema: JsonSchema, data: unknown): JsonError[] {
+  const schema: SchemaNode = compileSchema(rawSchema);
+  const { valid, errors } = schema.validate(data);
+  return valid ? [] : errors;
 }
 
 export default {

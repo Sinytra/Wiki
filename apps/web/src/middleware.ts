@@ -12,8 +12,6 @@ export const config = {
 }
 
 export async function middleware(request: NextRequest, response: NextResponse) {
-  console.log('invoking middleware', request.nextUrl.pathname);
-
   if (env.isPreview()) {
     const resp = previewerMiddleware.previewMiddleware(request, response);
     if (resp !== null) {
