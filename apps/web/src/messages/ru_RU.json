@@ -1,44 +1,45 @@
 {
     "Badges": {
-        "local": "Локальный документ",
-        "latest": "Последний документ"
+        "local": "Local",
+        "latest": "Latest",
+        "admin": "Admin"
     },
     "NavigationHeader": {
-        "title": "Вики по модификациям Minecraft",
-        "title_short": "Вики",
+        "title": "Modded Minecraft Wiki",
+        "title_short": "Wiki",
         "badge": {
-            "preview": "РЕЖИМ ПРЕДПРОСМОТРА",
-            "beta": "Бета"
+            "preview": "PREVIEW MODE",
+            "beta": "Beta"
         },
         "link": {
-            "home": "Главная",
-            "browse": "Обзор",
-            "about": "О проекте"
+            "home": "Home",
+            "browse": "Browse",
+            "about": "About"
         }
     },
     "NavigationFooter": {
-        "title": "Вики по модификациям Minecraft",
+        "title": "Modded Minecraft Wiki",
         "links": {
             "navigation": {
-                "title": "Навигация",
-                "home": "Главная страница",
-                "browse": "Обзор",
-                "dev": "Разработчики"
+                "title": "Navigation",
+                "home": "Homepage",
+                "browse": "Browse",
+                "dev": "Developers"
             },
             "links": {
-                "title": "Ссылки"
+                "title": "Links"
             },
             "resources": {
-                "title": "Ресурсы",
-                "blog": "Блог",
-                "status": "Статус",
-                "translate": "Помогите нам с переводом"
+                "title": "Resources",
+                "blog": "Blog",
+                "status": "Status",
+                "translate": "Help us translate"
             },
             "about": {
-                "title": "О проекте",
-                "tos": "Условия использования",
-                "privacy": "Политика конфиденциальности",
-                "contact": "Контакты"
+                "title": "About",
+                "tos": "Terms of Service",
+                "privacy": "Privacy Policy",
+                "contact": "Contact"
             }
         }
     },
@@ -53,7 +54,7 @@
         "community": {
             "title": "Join Our Community",
             "users": {
-                "title": "Пользователи",
+                "title": "Users",
                 "subtitle": "Explore our featured projects and enjoy these benefits:",
                 "docs": "Access high-quality, up-to-date and versioned documentation",
                 "contribute": "Contribute to projects without programming knowledge",
@@ -83,7 +84,7 @@
                 "desc": "Intuitive and responsive user interface"
             },
             "open": {
-                "title": "Открыть",
+                "title": "Open",
                 "desc": "Let your users contribute without any programming knowledge necessary"
             },
             "free": {
@@ -92,339 +93,375 @@
             }
         },
         "about": {
-            "title": "О нас",
+            "title": "About Us",
             "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
             "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
         },
         "blog": {
             "title": "Blog Posts",
-            "open": "Читать больше"
+            "open": "Read More"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Обзор проектов",
-            "search_filters": "Искать по фильтрам...",
-            "categories": "Категории"
+            "title": "Browse projects",
+            "search_filters": "Search filters...",
+            "categories": "Categories"
         },
-        "sorting": "Сортировать по",
+        "sorting": "Sort by",
         "sort": {
-            "relevance": "Релевантности",
-            "creation_date": "Дате создания",
-            "popularity": "Популярности",
-            "az": "Алфавиту",
-            "za": "Обратному алфавиту"
+            "relevance": "Relevance",
+            "creation_date": "Creation date",
+            "popularity": "Popularity",
+            "az": "A-Z",
+            "za": "Z-A"
         },
-        "search": "Искать по проектам…",
-        "clear_filter": "Сбросить фильтры",
-        "no_results": "По запросу ничего не нашлось!"
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
+        "no_results": "Search query returned no results!"
     },
     "SearchProjectTypes": {
-        "mod": "Моды",
-        "modpack": "Сборки модов",
-        "resourcepack": "Ресурспаки",
-        "datapack": "Наборы данных",
-        "shader": "Шейдеры",
-        "plugin": "Плагины"
+        "mod": "Mods",
+        "modpack": "Modpacks",
+        "resourcepack": "Resource packs",
+        "datapack": "Data packs",
+        "shader": "Shaders",
+        "plugin": "Plugins"
     },
     "ProjectTypes": {
-        "mod": "Мод",
-        "modpack": "Модпак",
-        "resourcepack": "Ресурспак",
-        "datapack": "Датапак",
-        "shader": "Шейдер",
-        "plugin": "Плагин"
+        "mod": "Mod",
+        "modpack": "Modpack",
+        "resourcepack": "Resource pack",
+        "datapack": "Data pack",
+        "shader": "Shader",
+        "plugin": "Plugin"
     },
     "LoadingContent": {
-        "message": "Загрузка…"
+        "message": "Loading..."
     },
     "MetaDocsNavigation": {
-        "title": "Навигация",
-        "about": "О проекте",
-        "devs": "Разработчики",
-        "format": "Формат",
-        "publishing": "Публикация",
-        "help": "Получить помощь",
-        "tos": "Условия использования",
-        "privacy": "Политика конфиденциальности",
-        "security": "Про безопасность",
-        "community": "Документы сообщества"
-    },
-    "MetaDevDocsNavigation": {
-        "title": "Author guide",
-        "back": "Return home",
-        "start": "Getting started",
-        "structure": "Folder layout",
-        "config": "Configuration",
-        "format": "Format",
+        "title": "Navigation",
+        "about": "About",
+        "devs": "Author guide",
         "components": "Components",
-        "publishing": "Publishing",
-        "community": "Community Docs"
+        "help": "Get help",
+        "tos": "Terms of Use",
+        "privacy": "Privacy Policy",
+        "security": "Security Notice"
     },
     "Login": {
-        "title": "Требуется вход",
-        "desc": "Вам нужно авторизоваться, чтобы войти на эту страницу.",
-        "prompt": "Для продолжения авторизуйтесь через учётную запись GitHub.",
-        "button": "Войти через GitHub"
+        "title": "Login required",
+        "desc": "The page you are trying to access requires you to log in.",
+        "prompt": "Please use your GitHub account to continue.",
+        "button": "Log in with GitHub"
     },
     "Preview": {
-        "title": "Режим предпросмотра включён",
-        "desc": "Режим предпросмотра активирует минимальный интерфейс, позволяющий вам сфокусироваться на редактировании документации локально прежде чем она будет отправлена на публикацию.",
-        "roots": "Доступные корни локальной документации",
-        "open": "Открыть"
+        "title": "Preview mode is enabled",
+        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
+        "roots": "Available local documentation roots",
+        "open": "Open"
     },
     "DocsProjectInfo": {
-        "title": "Информация о проекте",
-        "type": "Тип",
-        "author": "Автор",
-        "tags": "Теги",
+        "title": "Project information",
+        "type": "Type",
+        "author": "Author",
+        "tags": "Tags",
         "latest": {
-            "title": "Последняя версия",
-            "unknown": "Н/Д"
+            "title": "Latest version",
+            "unknown": "N/A"
         },
         "license": {
-            "title": "Лицензия",
-            "custom": "Своя",
-            "unknown": "Неизвестно",
-            "arr": "Все права защищены"
+            "title": "License",
+            "custom": "Custom",
+            "unknown": "Unknown",
+            "arr": "All Rights Reserved"
         }
     },
     "ProjectCategories": {
-        "adventure": "Приключения",
-        "cursed": "Проклятое",
-        "decoration": "Декорация",
-        "economy": "Экономика",
-        "equipment": "Снаряжение",
-        "food": "Еда",
-        "game-mechanics": "Игровая механика",
-        "library": "Библиотека",
-        "magic": "Магия",
-        "management": "Управление",
-        "minigame": "Мини-игры",
-        "mobs": "Мобы",
-        "optimization": "Оптимизация",
-        "social": "Социальные",
-        "storage": "Хранилище",
-        "technology": "Технологии",
-        "transportation": "Транспортировка",
-        "utility": "Утилиты",
-        "worldgen": "Генерация мира",
-        "server-utility": "Серверные утилиты",
-        "armor-weapons-tools": "Броня, инструменты и оружие",
-        "library-api": "API и библиотеки",
-        "adventure-rpg": "Приключения и RPG",
-        "world-gen": "Генерация мира",
-        "cosmetic": "Косметические",
-        "mc-food": "Еда",
-        "performance": "Производительность",
-        "map-information": "Карты и информация",
-        "bug-fixes": "Исправление багов",
-        "mc-addons": "Дополнения",
-        "education": "Обучение",
-        "mc-miscellaneous": "Разное",
-        "redstone": "Редстоун",
-        "utility-qol": "Утилиты и улучшение процесса игры",
+        "adventure": "Adventure",
+        "cursed": "Cursed",
+        "decoration": "Decoration",
+        "economy": "Economy",
+        "equipment": "Equipment",
+        "food": "Food",
+        "game-mechanics": "Game Mechanics",
+        "library": "Library",
+        "magic": "Magic",
+        "management": "Management",
+        "minigame": "Minigame",
+        "mobs": "Mobs",
+        "optimization": "Optimization",
+        "social": "Social",
+        "storage": "Storage",
+        "technology": "Technology",
+        "transportation": "Transporation",
+        "utility": "Utility",
+        "worldgen": "Worldgen",
+        "server-utility": "Server Utility",
+        "armor-weapons-tools": "Armor, Tools, and Weapons",
+        "library-api": "API and Library",
+        "adventure-rpg": "Adventure and RPG",
+        "world-gen": "World Gen",
+        "cosmetic": "Cosmetic",
+        "mc-food": "Food",
+        "performance": "Performance",
+        "map-information": "Map and Information",
+        "bug-fixes": "Bug Fixes",
+        "mc-addons": "Addons",
+        "education": "Education",
+        "mc-miscellaneous": "Miscellaneous",
+        "redstone": "Redstone",
+        "utility-qol": "Utility & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Редактировать страницу",
-        "report": "Сообщить о нарушении на странице",
+        "edit_gh": "Edit this page",
+        "report": "Report this page",
         "report_button": "Report page",
-        "last_updated": "Дата последнего обновления: <date></date>"
+        "last_updated": "Last updated: <date></date>"
     },
     "Report": {
-        "title": "Сообщить о нарушении на странице документации",
-        "desc": "Сообщайте о нарушениях наших условий использования и правил контента.",
-        "contact": "Чтобы нам было удобнее связаться с вами, в отчёт будет включено ваше <b>имя</b> (и адрес электронной почты, если вы его предоставите).",
-        "confidential": "Нам важна ваша конфиденциальность и эта информация всегда будет оставаться в секрете.",
-        "privacy": "Чтобы узнать больше, обратитесь к нашей <link>политике конфиденциальности</link>.",
+        "title": "Report a documentation page",
+        "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
+        "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
+        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
         "form": {
             "id": {
-                "title": "Идентификатор проекта",
-                "desc": "Идентификатор проекта с нарушением."
+                "title": "Project ID",
+                "desc": "Reported project ID."
             },
             "path": {
-                "title": "Путь к странице",
-                "desc": "Путь к странице документации, содержащей нарушение."
+                "title": "Page path",
+                "desc": "Reported documentation page path."
             },
-            "email": {
-                "title": "Контактный адрес электронной почты",
-                "desc": "Необязательно: адрес электронной почты, по которому мы можем информировать вас о течении дела, касаемого жалобы, либо запросить уточнения."
+            "locale": {
+                "title": "Locale",
+                "desc": "Applied if the content lies within a localized subpath.",
+                "placeholder": "N/A"
+            },
+            "version": {
+                "title": "Version",
+                "desc": "Applied if the content lies within a named version.",
+                "placeholder": "N/A"
             },
             "reason": {
-                "title": "Причина*",
-                "placeholder": "Выберите причину, по которой вы хотите пожаловаться на страницу",
-                "desc": "Причина, по которой отправляется жалоба на страницу.",
-                "spam": "Спам",
-                "copyright": "Нарушение авторских прав",
-                "content_rules_violation": "Нарушение правил контента",
-                "tos_violation": "Нарушение условий использования",
-                "dislike": "Просто не понравилось"
+                "title": "Reason*",
+                "placeholder": "Select a reason for reporting this content",
+                "desc": "Reason for reporting this content.",
+                "dislike": "I just don't like it"
             },
             "details": {
-                "title": "Подробности*",
-                "placeholder": "Предоставьте подробное объяснение, почему вы хотите подать жалобу на эту страницу. Пустые жалобы будут проигнорированы.",
-                "desc": "Дополнительные сведения по проблеме."
+                "title": "Details*",
+                "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+                "desc": "Additional details about the issue."
             },
             "dislike": {
-                "title": "Каждому может что-то не понравиться, мы понимаем!",
-                "desc": "Однако, к сожалению, это не весомая причина для подачи жалобы на проект.",
-                "suggestion": "Может, вы захотите поискать и прочесть чего-то ещё?",
-                "explore": "Поискать проекты"
+                "title": "We understand that you may not like this content, and that's totally okay!",
+                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
+                "suggestion": "Would you like to look for something else to explore instead?",
+                "explore": "Explore projects"
             },
             "success": "Report submitted successfully"
         }
     },
+    "ProjectReportReason": {
+        "spam": "Spam",
+        "copyright": "Copyright Infringement",
+        "content_rules": "Violates Content Rules",
+        "tos": "Violates Terms of Service",
+        "unknown": "Unknown"
+    },
+    "ProjectReportStatus": {
+        "new": "New",
+        "dismissed": "Dismissed",
+        "accepted": "Accepted",
+        "unknown": "Unknown"
+    },
+    "ProjectReportType": {
+        "project": "Project",
+        "docs": "Docs page",
+        "content": "Content page",
+        "unknown": "Unknown"
+    },
+    "ViewReportPage": {
+        "reports": "Reports",
+        "title": "Report details",
+        "desc": "Viewing report details for {id}",
+        "details": {
+            "reporter": "Reported by",
+            "project_id": "Project ID",
+            "path": "Path",
+            "body": "Body",
+            "reason": "Reason",
+            "created_at": "Created at",
+            "status": "Status",
+            "type": "Type",
+            "locale": "Locale",
+            "version": "Version"
+        },
+        "actions": {
+            "dismiss": "Dismiss",
+            "accept": "Accept"
+        },
+        "toast": {
+            "accept": "Report accepted",
+            "dismiss": "Report dismissed"
+        }
+    },
     "SubmitButton": {
-        "title": "Отправить"
+        "title": "Submit"
     },
     "Callout": {
-        "title": "Важно!"
+        "default": "Heads up!",
+        "info": "Info",
+        "warning": "Warning",
+        "danger": "Danger"
     },
     "ProjectRegisterForm": {
-        "button": "Добавить проект",
-        "title": "Зарегистрировать проект",
-        "desc": "Зарегистрируйте новый проект в вики.",
+        "button": "New Project",
+        "title": "Register project",
+        "desc": "Register a new project to the wiki.",
         "repo": {
-            "title": "URL Репозитория",
+            "title": "Repository URL",
             "desc": "This is the address you use to clone your repository.",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
-            "title": "Ветка",
-            "desc": "Основная ветка. Вы можете указать дополнительные ветки, которые будут включены в файл метаданных."
+            "title": "Branch",
+            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
         },
         "path": {
-            "title": "Путь к корню документации",
-            "desc": "Путь к папке, содержащей файл метаданных."
+            "title": "Path to documentation root",
+            "desc": "Path to the folder containing the metadata file."
         },
-        "admin": "Админ-панель",
+        "admin": "Wiki admin settings",
         "is_community": {
-            "title": "Проект, поддерживаемый сообществом"
+            "title": "Community-maintained project"
         },
         "errors": {
-            "details": "Подробнее"
+            "details": "Show details"
         },
         "connect_modrinth": {
             "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Открыть Настройки"
+            "settings": "Open Settings"
         },
-        "submit": "Отправить",
+        "submit": "Submit",
         "success": {
-            "title": "Проект успешно зарегистрирован",
-            "desc": "Теперь вы можете перейти на страницу документации проекта"
+            "title": "Project registered successfully",
+            "desc": "You can now navigate to the project's docs page"
         },
-        "submitting": "Отправка...",
-        "verify_modrinth": "Верифицировать через Modrinth"
+        "submitting": "Submitting...",
+        "verify_modrinth": "Verify using Modrinth"
     },
     "ProjectSettingsForm": {
-        "title": "Отредактировать проект",
-        "desc": "Редактировать настройки существующего проекта.",
-        "button": "Настройки",
+        "title": "Edit project",
+        "desc": "Edit an existing project's settings.",
+        "button": "Settings",
         "success": {
-            "title": "Проект успешно обновлён",
-            "desc": "Теперь вы можете перейти на обновлённую страницу документации проекта"
+            "title": "Project updated successfully",
+            "desc": "You can now navigate to the updated project's docs page"
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Удалить",
+        "trigger": "Delete project",
         "title": "Are you absolutely sure?",
         "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Отменить",
-        "submit": "Удалить",
+        "cancel": "Cancel",
+        "submit": "Delete",
         "success": "Project deleted successfully"
-    },
-    "ProjectRevalidateForm": {
-        "title": "Reload project pages?",
-        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
-        "secondary": "Эту опцию следует использовать только при обновлении самого источника документации.",
-        "tertiary": "Для облегчения работы мы рекомендуем автоматически перепроверять документацию после публикации с помощью <link>нашего плагина для Gradle</link>.",
-        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Отменить",
-        "submit": "Reload",
-        "success": "Project reload started"
     },
     "FormActions": {
         "errors": {
             "unauthorized": "User authentication error",
-            "internal": "Внутренняя ошибка сервера. Пожалуйста, попробуйте позже.",
+            "internal": "Internal Server Error, please try again later.",
             "unknown": "An unknown error has occurred, please try again later.",
             "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "Проект платформы не найден. Пожалуйста, убедитесь, что поле метаданных «slug» заполнено правильно.",
+            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
             "unsupported_type": "Unsupported project type",
-            "ownership": "Не удалось проверить права на владение проектом",
-            "cf_unavailable": "Регистрация проектов CurseForge не активна",
+            "ownership": "Failed to verify project ownership",
+            "cf_unavailable": "Registering CurseForge projects is not active",
             "requires_auth": "Repository connection requires login credentials but none were provided",
             "no_repository": "Repository not found",
             "no_branch": "Invalid branch specified",
             "no_path": "Metadata file not found at specified path",
-            "invalid_meta": "Неправильный файл метаданных",
-            "unsupported": "В разработке",
-            "exists": "Проект уже существует.",
-            "not_found": "Проект не существует"
+            "invalid_meta": "Metadata file is invalid",
+            "unsupported": "Not yet implemented",
+            "exists": "Project already exists.",
+            "not_found": "Project does not exist",
+            "illegal_id": "Illegal project ID",
+            "not_owner": "User is not authorized to register this project"
         }
     },
     "CommunityBadge": {
-        "title": "Сообщество",
-        "desc": "Неофициальная документация, поддерживаемая сообществом"
+        "title": "Community",
+        "desc": "Unofficial documentation maintained by the community"
     },
     "DocsPageNotFoundError": {
-        "title": "Мы потеряли эту страницу",
-        "desc": "Запрашиваемая страница документации в данный момент недоступна.",
-        "suggestion": "Попробуйте снова позже или сообщите об этой проблеме автору проекта.",
-        "submit": "Отправить сообщение о проблеме",
-        "return": "Вернуться на главную"
+        "title": "We lost this page",
+        "desc": "The requested documentation page is not available at the moment.",
+        "suggestion": "Please try again later or report this issue to the project author.",
+        "submit": "Submit issue",
+        "return": "Return Home"
     },
     "GetStartedButton": {
-        "title": "Create first project"
+        "title": "Create your first project"
     },
-    "GetStartedModal": {
-        "button": "Добавить проект",
-        "title": "Я хочу написать документацию для…",
-        "dev": {
-            "title": "Мой собственный проект",
-            "desc": "Создавайте собственную документацию и управляйте правами на её редактирование.",
-            "button": "Создать проект"
+    "ProjectHomepage": {
+        "overview": {
+            "intro": "<project></project> is a {type} created by <authors></authors>.",
+            "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
+            "tags": "Tagged:"
         },
-        "community": {
-            "title": "Чей-то проект",
-            "desc": "Вносите вклад в коллекцию документации сообщества, поддерживаемую редакторами вики",
-            "button": "Прочитать руководство"
+        "description": {
+            "title": "Description"
+        },
+        "navigation": {
+            "title": "Navigation",
+            "docs": {
+                "title": "Browse documentation",
+                "desc": "{pages} pages available."
+            },
+            "content": {
+                "title": "Browse content",
+                "desc": "{items} in-game items."
+            }
+        },
+        "links": {
+            "title": "Links",
+            "website": "Website",
+            "source_code": "Source code"
+        },
+        "license": {
+            "title": "Licenses",
+            "project": "Project License",
+            "arr": "All Rights Reserved",
+            "unknown": "Unknown",
+            "wiki": "Wiki License",
+            "default": "Wiki content <link>partially made available</link> under the <license></license> license."
         }
+    },
+    "ProjectDocsHomepage": {
+        "title": "Home"
     },
     "DocsHomepagePlaceholder": {
-        "title": "Заполнитель главной страницы",
-        "subtitle": "Из-за ограничений API метаданные проекта недоступны для проектов CurseForge в локальной среде.",
-        "replace": "Не переживайте! Мы заменим этот заполнитель на реальное описание проекта после публикации на сайте вики."
+        "title": "Homepage placeholder",
+        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
+        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
     },
     "DocsSearchBar": {
-        "placeholder": "Искать по содержимому вики…",
-        "no_results": "Ничего не нашлось!",
-        "loading": "Поиск хороших результатов…",
-        "results": "Показано <highlight>{count}</highlight> результатов из <highlight>{total}</highlight>",
-        "close": "<kbd>ESC</kbd> — закрыть"
-    },
-    "DocsProjectRightSidebar": {
-        "title": "Project Information",
-        "tags": "Tags",
-        "licenses": {
-            "title": "Licenses",
-            "project": "Project:",
-            "wiki": "Wiki:"
-        },
-        "links": "Links",
-        "placeholder": {
-            "summary": "Local project preview",
-            "author": "Author",
-            "latest_version": "Latest version"
-        }
+        "placeholder": "Search wiki contents...",
+        "no_results": "No results found!",
+        "loading": "Finding the perfect results...",
+        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
+        "close": "<kbd>ESC</kbd> to close"
     },
     "DocsChangelogPage": {
         "title": "Changelog"
     },
     "DocsLeftSidebar": {
         "title": "Documentation",
-        "homepage": "Project Homepage"
+        "homepage": "Home"
     },
     "DocsContentRightSidebar": {
         "title": "Entry information"
@@ -436,9 +473,6 @@
         "placeholder": "Select version",
         "latest": "Latest"
     },
-    "DocsLanguageSelect": {
-        "placeholder": "Select locale"
-    },
     "ModVersionRange": {
         "desc": "+{count} more"
     },
@@ -449,7 +483,8 @@
     "ProjectStatus": {
         "unknown": "Unknown",
         "loading": "Initializing",
-        "loaded": "Loaded",
+        "healthy": "Loaded",
+        "at_risk": "Requires attention",
         "error": "Errored"
     },
     "DevProjectsListPage": {
@@ -457,7 +492,7 @@
             "manage": "Manage"
         },
         "empty": {
-            "primary": "Looks like you haven't registered any projects yet",
+            "primary": "Looks like you haven't created any projects yet",
             "secondary": "Get started by reading our <guide>author guide</guide>."
         }
     },
@@ -466,7 +501,12 @@
             "home": "Home"
         },
         "toolbar": {
-            "view": "View"
+            "view": "View",
+            "deployments": "Deployments"
+        },
+        "overview": {
+            "title": "Project overview",
+            "desc": "Project information summary"
         },
         "source": {
             "title": "Project Source",
@@ -477,22 +517,68 @@
         },
         "platforms": {
             "title": "Platforms",
+            "desc": "Project hosting platforms",
             "headers": {
                 "platform": "Platform",
                 "slug": "Slug / ID",
-                "link": "Ссылка"
+                "link": "Link"
             },
-            "open": "Открыть"
+            "open": "Open"
         },
         "information": {
-            "title": "Информация",
+            "title": "Information",
+            "desc": "Resolved information",
             "type": "Type",
             "status": "Status",
             "created_at": "Created at"
+        },
+        "revision": {
+            "title": "Current git revision",
+            "reloading": "Reloading project, please stand by...",
+            "not_found": "No revision found. Try reloading the project."
         }
     },
+    "DevProjectSettingsPage": {
+        "title": "Project settings",
+        "desc": "Configure project properties"
+    },
+    "DevProjectVersionsPage": {
+        "title": "Project versions",
+        "desc": "Browse project content versions"
+    },
+    "DevProjectHealthPage": {
+        "title": "Project health",
+        "desc": "Monitor project status and issues",
+        "errors": {
+            "title": "Project issue report",
+            "desc": "Ongoing warnings & errors",
+            "empty": "No issues found"
+        }
+    },
+    "DevProjectMembersPage": {
+        "title": "Project members",
+        "desc": "Manage project members & permissions",
+        "roles": {
+            "owner": "Owner"
+        },
+        "actions": {
+            "manage": "Manage"
+        }
+    },
+    "DevProjectContentItemsPage": {
+        "title": "Project items",
+        "desc": "Browse project items"
+    },
+    "DevProjectContentRecipesPage": {
+        "title": "Project recipes",
+        "desc": "Browse project crafting recipes"
+    },
+    "DevProjectContentTagsPage": {
+        "title": "Project tags",
+        "desc": "Browse project tags"
+    },
     "DevProjectLogs": {
-        "title": "Server logs",
+        "title": "Deployment log",
         "show": "Show",
         "unloaded": "Not loaded",
         "waiting": "Waiting for server...",
@@ -509,12 +595,14 @@
         },
         "groups": {
             "projects": "Projects",
-            "platform": "Platform"
+            "platform": "Platform",
+            "admin": "Administration"
         },
         "nav": {
             "projects": "Projects",
             "documentation": "Documentation",
-            "settings": "Settings"
+            "settings": "Settings",
+            "admin": "System settings"
         }
     },
     "DevSidebarContextSwitcher": {
@@ -522,57 +610,360 @@
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Выйти",
-            "title": "Выйти",
-            "desc": "Выход из..."
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
         },
-        "unknown_avatar": "Н/Д"
+        "unknown_avatar": "N/A"
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Главная",
-            "settings": "Настройки"
+            "home": "Home",
+            "settings": "Settings"
         },
         "profile": {
             "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Зарегистрирован(а) с {date}"
+            "join_date": "Joined {date}",
+            "admin": "Admin"
         },
         "connections": {
             "title": "Connections",
             "modrinth": {
-                "title": "Аккаунт Modrinth",
+                "title": "Modrinth account",
                 "desc": "Used to verify project ownership",
-                "connect": "Подключиться",
-                "view": "Смотреть",
-                "disconnect": "Отключить"
+                "connect": "Connect",
+                "view": "View",
+                "disconnect": "Disconnect"
             }
         },
         "account": {
-            "title": "Аккаунт",
+            "title": "Account",
             "delete": {
-                "title": "Удалить аккаунт",
-                "desc": "Удалить все данные аккаунта навсегда",
-                "button": "Удалить аккаунт"
+                "title": "Delete account",
+                "desc": "Forever delete all account data",
+                "button": "Delete account"
             },
             "delete_modal": {
-                "title": "Удалить аккаунт",
-                "desc": "Вы уверены, что хотите удалить эту учетную запись? Это действие, которое не может быть отменено.",
-                "cancel": "Отменить",
-                "button": "Удалить навсегда"
+                "title": "Delete account",
+                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
+                "cancel": "Cancel",
+                "button": "Delete forever"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Учетная запись успешно удалена",
-                "error": "Ошибка при отключении учетной записи"
+                "success": "Account unlinked successfully",
+                "error": "Error unlinking account"
             }
         }
     },
     "AuthFailure": {
-        "title": "Ошибка аутентификации",
-        "desc": "Произошла непредвиденная ошибка при попытке входа. Пожалуйста, повторите попытку позже.",
-        "status": "Проверить статус",
-        "return": "Вернуться на главную",
-        "report": "Сообщить об ошибке"
+        "title": "Authentication failure",
+        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
+        "status": "Check status",
+        "return": "Return home",
+        "report": "Report Bug"
+    },
+    "BuiltinRecipeTypes": {
+        "blasting": "Blasting",
+        "campfire_cooking": "Campfire cooking",
+        "crafting_shaped": "Shaped Crafting",
+        "crafting_shapeless": "Shapeless Crafting",
+        "smelting": "Smelting",
+        "smithing_transform": "Smithing",
+        "smoking": "Smoking",
+        "stonecutting": "Stonecutting"
+    },
+    "DocsEntryTabs": {
+        "history": "Show history",
+        "home": "Show content"
+    },
+    "DevProjectSidebar": {
+        "groups": {
+            "project": "Project",
+            "content": "Content"
+        },
+        "nav": {
+            "home": "Overview",
+            "settings": "Settings",
+            "members": "Members",
+            "deployments": "Deployments",
+            "health": "Health",
+            "versions": "Versions",
+            "content": "Items",
+            "tags": "Tags",
+            "recipes": "Recipes"
+        }
+    },
+    "PrefabObtaining": {
+        "recipe": "Recipe"
+    },
+    "PrefabUsage": {
+        "usage": "Usage"
+    },
+    "AdminSidebar": {
+        "groups": {
+            "home": "Home",
+            "data": "Data",
+            "system": "System",
+            "moderation": "Moderation"
+        },
+        "nav": {
+            "home": "Overview",
+            "data_imports": "Data Imports",
+            "access_keys": "Access Keys",
+            "migrations": "Migrations",
+            "users": "Users",
+            "projects": "Projects",
+            "config": "Configuration",
+            "reports": "Reports",
+            "audit_log": "Audit Log",
+            "return": "Return"
+        }
+    },
+    "AdminDataImports": {
+        "title": "System data imports",
+        "desc": "Imported game data"
+    },
+    "AdminMigrations": {
+        "title": "Data migrations",
+        "desc": "Available data migrations"
+    },
+    "EmptyDataTable": {
+        "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
+    },
+    "DataTable": {
+        "no_results": "No results.",
+        "filter": "Filter rows...",
+        "previous": "Previous",
+        "next": "Next"
+    },
+    "DevProjectVersionsTable": {
+        "name": "Name",
+        "branch": "Branch",
+        "empty": {
+            "title": "No additional versions were found in your project.",
+            "desc": "Read the <link>author guide</link> to learn more about project versioning."
+        }
+    },
+    "DevProjectItemsTable": {
+        "icon": "Icon",
+        "id": "Identifier",
+        "name": "Name",
+        "path": "Page path (internal)",
+        "actions": {
+            "open": "Open menu",
+            "title": "Actions",
+            "view": "View"
+        },
+        "empty": {
+            "title": "No items were found in your project.",
+            "desc": "Project items are automatically detected from content pages and included game files."
+        }
+    },
+    "DevProjectTagsTable": {
+        "id": "Identifier",
+        "items": "Item count",
+        "empty": {
+            "title": "No tags were found in your project."
+        }
+    },
+    "DevProjectRecipesTable": {
+        "type": "Type",
+        "id": "Identifier",
+        "empty": {
+            "title": "No recipes were found in your project."
+        }
+    },
+    "ResolvedProjectRecipe": {
+        "type": "Recipe Type",
+        "input": "Ingredients",
+        "output": "Outputs",
+        "preview": "Recipe preview",
+        "workbenches": "You can craft this recipe using:"
+    },
+    "DevProjectDeploymentsPage": {
+        "title": "Project deployments",
+        "desc": "Manage deployed project versions"
+    },
+    "DevProjectDeploymentsTable": {
+        "id": "ID",
+        "commit": "Commit",
+        "created_at": "Deploy time",
+        "user_id": "Deployed by",
+        "status": "Status"
+    },
+    "DeploymentStatus": {
+        "unknown": "N/A",
+        "created": "Queued",
+        "loading": "Loading",
+        "success": "Success",
+        "error": "Failed"
+    },
+    "DeleteDeploymentModal": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Deployment deleted successfully"
+    },
+    "DeployProjectModal": {
+        "button": "Deploy",
+        "title": "New deployment",
+        "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
+        "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
+        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "cancel": "Cancel",
+        "submit": "Deploy"
+    },
+    "LiveProjectDeployConnection": {
+        "loading": "Deploying project...",
+        "success": "Project deploy successful",
+        "error": "Project deploy failed",
+        "view": "View"
+    },
+    "DevProjectDeploymentPage": {
+        "deployments": "Deployments",
+        "title": "Deployment Details",
+        "git-config": {
+            "title": "Source coordinates"
+        }
+    },
+    "ProjectGitRevision": {
+        "title": "Git revision",
+        "title_current": "Current Git revision",
+        "loading": "Deploying project, please stand by...",
+        "not_found": "Project has no active deployment"
+    },
+    "ProjectIssueWidget": {
+        "file": "File: <file></file>",
+        "date": "Created at: <date></date>",
+        "version": "Version: <version></version>"
+    },
+    "ProjectIssueLevel": {
+        "warning": "Warning",
+        "error": "Error",
+        "unknown": "Unknown"
+    },
+    "ProjectIssueType": {
+        "meta": "Invalid project metadata",
+        "file": "Invalid file",
+        "git_clone": "Error cloning repository",
+        "git_info": "Error getting commit information",
+        "ingestor": "Error importing content",
+        "internal": "Internal server error",
+        "page_render": "Invalid page",
+        "unknown": "Unknown error"
+    },
+    "DeploymentIssues": {
+        "title": "Deployment issues",
+        "empty": "No issues found.",
+        "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
+    },
+    "ProjectError": {
+        "requires_auth": "Repository connection requires login credentials but none were provided",
+        "no_repository": "Repository not found",
+        "repo_too_large": "Repository exceeds allowed file size",
+        "no_branch": "Invalid branch specified",
+        "no_path": "Metadata file not found at specified path",
+        "invalid_meta": "Metadata file is invalid",
+        "invalid_page": "Failed to render page contents",
+        "duplicate_page": "Duplicate page",
+        "unknown_recipe_type": "Unknown recipe type",
+        "invalid_ingredient": "Invalid ingredient",
+        "invalid_file": "Failed to parse file",
+        "invalid_format": "Invalid file format",
+        "invalid_resloc": "Invalid Resource Location",
+        "missing_platform_project": "Missing platform project",
+        "unknown": "Unknown error"
+    },
+    "AdminReports": {
+        "title": "Project Reports",
+        "desc": "Manage project reports"
+    },
+    "ResponsiveTable": {
+        "expand": "Expand"
+    },
+    "UsageContentList": {
+        "more": "Show more ..."
+    },
+    "RecipeUsage": {
+        "description": "Can be used to create the following items:"
+    },
+    "ContentCategory": {
+        "all": "All",
+        "other": "Other"
+    },
+    "ContentChangelog": {
+        "toggle": "Show changelog"
+    },
+    "ContentProperties": {
+        "bool": {
+            "true": "Yes",
+            "false": "No"
+        },
+        "type": {
+            "block": "Block",
+            "item": "Item",
+            "other": "Other"
+        },
+        "properties": {
+            "id": "ID",
+            "source_mod": "Source mod",
+            "type": "Type",
+            "stack_size": "Stack size",
+            "required_tool": "Tool",
+            "blast_resistance": "Blast resistance",
+            "hardness": "Hardness",
+            "flammable": "Flammable"
+        }
+    },
+    "DocsLink": {
+        "not_found": "(Not found)"
+    },
+    "AdminAccessKeys": {
+        "title": "System access keys",
+        "desc": "Provides auth for when non-interactive access is needed, such as CI"
+    },
+    "CreateAccessKeyModal": {
+        "title": "Create access key",
+        "desc": "New system access key",
+        "button": "Create",
+        "name": {
+            "title": "Name",
+            "desc": "Give your key a name",
+            "placeholder": "Deploy staging"
+        },
+        "days_valid": {
+            "title": "Days of validity",
+            "desc": "Number of days the key is valid for. Use 0 for no expiration."
+        },
+        "submit": "Submit",
+        "submitting": "Submitting..."
+    },
+    "SaveAccessKeyModal": {
+        "title": "Access Key",
+        "desc": "Save your generated access key",
+        "key": "Access Key",
+        "note": "Keep the key value safe. You won't be able to access it again.",
+        "valid": "The key is valid until {expiry}.",
+        "close": "Done"
+    },
+    "DeleteAccessKeyModal": {
+        "title": "Delete Access Key",
+        "desc": "Invalidate and delete access key",
+        "body": "This will forever delete the access key <name></name>.",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "success": "Access Key deleted successfully"
+    },
+    "CopyButton": {
+        "copied": "Copied to clipboard"
+    },
+    "InteractiveComponentPlaceholder": {
+        "title": "Content unavailable in preview mode",
+        "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
     }
 }
