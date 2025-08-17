@@ -7,61 +7,61 @@
         "title": "Modded Minecraft Wiki",
         "title_short": "Wiki",
         "badge": {
-            "preview": "PREVIEW MODE",
+            "preview": "MODALITA' ANTEPRIMA",
             "beta": "Beta"
         },
         "link": {
             "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "browse": "Esplora",
+            "about": "Info"
         }
     },
     "NavigationFooter": {
         "title": "Modded Minecraft Wiki",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "Esplora",
+                "home": "Home",
+                "browse": "Esplora",
+                "dev": "Sviluppatori"
             },
             "links": {
-                "title": "Links"
+                "title": "Link"
             },
             "resources": {
-                "title": "Resources",
+                "title": "Risorse",
                 "blog": "Blog",
-                "status": "Status",
-                "translate": "Help us translate"
+                "status": "Stato",
+                "translate": "Aiutaci nelle traduzioni"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "Info",
+                "tos": "Termini di Servizio",
+                "privacy": "Informativa sulla Privacy",
+                "contact": "Contatti"
             }
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "Benvenuto nella <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "La tua miglior risorsa per scoprire, creare, e contribuire a progetti relativi a Minecraft.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "Wiki Popolari",
+            "open": "Leggi di più",
+            "disclaimer": "Questi progetti sono evidenziati basandosi sulla loro popolarità attraverso statistiche di visualizzazioni e non sono ufficialmente supportate da Moded Minecraft Wiki."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "Entra nella nostra Community",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "title": "Utenti",
+                "subtitle": "Esploare i progetti in evidenza e goditi quesiti vantaggi:",
                 "docs": "Access high-quality, up-to-date and versioned documentation",
                 "contribute": "Contribute to projects without programming knowledge",
                 "ui": "Enjoy a consistent, user-friendly interface across all projects",
                 "localization": "Benefit from multi-language support"
             },
             "authors": {
-                "title": "Authors",
+                "title": "Autori",
                 "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
                 "vcs": "Versioning support for your documentation",
                 "components": "Built-in components for recipes, assets, etc.",
@@ -69,21 +69,21 @@
                 "management": "Advanced project management tools",
                 "interaction": "Direct interaction with your user base",
                 "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "guide": "Leggi di più"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "Scopri progetti",
         "highlights": {
             "localization": {
-                "title": "Localization",
+                "title": "Localizzazione",
                 "desc": "Translate your docs into world languages"
             },
             "accessibility": {
                 "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "desc": "Un interfaccia utente intuitiva e responsiva"
             },
             "open": {
-                "title": "Open",
+                "title": "Aperto",
                 "desc": "Let your users contribute without any programming knowledge necessary"
             },
             "free": {
@@ -531,48 +531,48 @@
     "UserSettings": {
         "breadcrumbs": {
             "home": "Home",
-            "settings": "Settings"
+            "settings": "Impostazioni"
         },
         "profile": {
             "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}"
+            "join_date": "Entrato il {date}"
         },
         "connections": {
-            "title": "Connections",
+            "title": "Connessioni",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "Account Modrinth",
+                "desc": "Usato per verificare la proprietà del progetto",
+                "connect": "Connetti",
+                "view": "Visualizza",
+                "disconnect": "Disconnettiti"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "Profilo",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "Elimina account",
+                "desc": "Elimina per sempre tutti i dati dell'account",
+                "button": "Elimina account"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "Elimina account",
+                "desc": "Sei sicuro di voler eliminare questo account? Questa è un'azione distruttiva che non può essere annullata.",
+                "cancel": "Annulla",
+                "button": "Elimina per sempre"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "Account scollegato con successo",
+                "error": "Errore nello scollegare l'account"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "Errore di autenticazione",
+        "desc": "Si è verificato un errore imprevisto durante l'accesso. Riprova più tardi.",
+        "status": "Verifica stato",
+        "return": "Torna alla home",
+        "report": "Segnala un Problema"
     }
 }

@@ -31,7 +31,7 @@
             "resources": {
                 "title": "Recursos",
                 "blog": "Blog",
-                "status": "Status",
+                "status": "Estado",
                 "translate": "Ayúdanos a traducir"
             },
             "about": {
@@ -43,7 +43,7 @@
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
+        "title": "Bienvenido a la <highlight>Wiki de Modificaciones de Minecraft</highlight>",
         "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
         "popular": {
             "title": "Wikis Populares",
@@ -51,9 +51,9 @@
             "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "¡Únete a nuestra comunidad!",
             "users": {
-                "title": "Users",
+                "title": "Usuarios",
                 "subtitle": "Explore our featured projects and enjoy these benefits:",
                 "docs": "Access high-quality, up-to-date and versioned documentation",
                 "contribute": "Contribute to projects without programming knowledge",
@@ -61,7 +61,7 @@
                 "localization": "Benefit from multi-language support"
             },
             "authors": {
-                "title": "Authors",
+                "title": "Autores",
                 "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
                 "vcs": "Versioning support for your documentation",
                 "components": "Built-in components for recipes, assets, etc.",
@@ -104,14 +104,14 @@
     "BrowsePage": {
         "sidebar": {
             "title": "Browse projects",
-            "search_filters": "Search filters...",
+            "search_filters": "Filtros de búsqueda...",
             "categories": "Categories"
         },
         "sorting": "Sort by",
         "sort": {
             "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "creation_date": "Fecha de creación",
+            "popularity": "Popularidad",
             "az": "A-Z",
             "za": "Z-A"
         },
@@ -227,7 +227,7 @@
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
+        "edit_gh": "Edita esta página",
         "report": "Reportar esta página",
         "report_button": "Report page",
         "last_updated": "Última actualización: <date></date>"
@@ -320,7 +320,7 @@
     "ProjectSettingsForm": {
         "title": "Editar proyecto",
         "desc": "Editar la configuración de un proyecto existente.",
-        "button": "Settings",
+        "button": "Configuración",
         "success": {
             "title": "Proyecto actualizado correctamente",
             "desc": "You can now navigate to the updated project's docs page"
@@ -330,8 +330,8 @@
         "trigger": "Delete",
         "title": "Are you absolutely sure?",
         "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
+        "cancel": "Cancelar",
+        "submit": "Eliminar",
         "success": "Project deleted successfully"
     },
     "ProjectRevalidateForm": {
@@ -412,10 +412,10 @@
             "project": "Project:",
             "wiki": "Wiki:"
         },
-        "links": "Links",
+        "links": "Enlaces",
         "placeholder": {
             "summary": "Local project preview",
-            "author": "Author",
+            "author": "Autor",
             "latest_version": "Latest version"
         }
     },
@@ -423,7 +423,7 @@
         "title": "Changelog"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
+        "title": "Documentación",
         "homepage": "Project Homepage"
     },
     "DocsContentRightSidebar": {
@@ -466,7 +466,7 @@
             "home": "Home"
         },
         "toolbar": {
-            "view": "View"
+            "view": "Ver"
         },
         "source": {
             "title": "Project Source",
@@ -478,14 +478,14 @@
         "platforms": {
             "title": "Platforms",
             "headers": {
-                "platform": "Platform",
+                "platform": "Plataforma",
                 "slug": "Slug / ID",
-                "link": "Link"
+                "link": "Enlace"
             },
             "open": "Open"
         },
         "information": {
-            "title": "Information",
+            "title": "Información",
             "type": "Type",
             "status": "Status",
             "created_at": "Created at"
@@ -542,9 +542,9 @@
             "modrinth": {
                 "title": "Modrinth account",
                 "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "connect": "Conectar",
+                "view": "Ver",
+                "disconnect": "Desconectar"
             }
         },
         "account": {
