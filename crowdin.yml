@@ -1,3 +1,3 @@
 files:
-  - source: /messages/en.json
-    translation: /messages/%locale_with_underscore%.json
+  - source: apps/web/src/messages/en_us.json
+    translation: apps/web/src/messages/%locale_with_underscore%.json

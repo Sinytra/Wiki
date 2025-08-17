@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+  - packages/*
+  - packages/base/*
+
+onlyBuiltDependencies:
+  - contentlayer2

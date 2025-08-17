@@ -1,0 +1,37 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "passThroughEnv": ["SENTRY_*", "NEXT_PUBLIC_*", "CF_API_KEY", "BACKEND_API_KEY", "VERCEL_*"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
+    },
+    "preview": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
+    }
+  },
+  "globalEnv": [
+    "CROWDIN_*",
+    "SEARCH_*",
+    "SENTRY_*",
+    "NEXT_PUBLIC_*",
+    "BACKEND_API_KEY",
+    "CF_API_KEY",
+    "VERCEL_*"
+  ]
+}

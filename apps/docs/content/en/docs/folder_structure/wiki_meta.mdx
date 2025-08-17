@@ -1,0 +1,92 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Wiki metadata
+
+This file acts as the "heart" of the documentation package. It carries basic identifying information about the project
+as well as additional metadata that can be used to display information to users.
+
+## Placement
+
+Wiki metadata must be placed in a file called `sinytra-wiki.json` inside the documentation **root directory**.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFile name="sinytra-wiki.json"/>
+    </FileTreeFolder>
+</FileTree>
+
+## Format
+
+The following properties are available:
+- `id` <span className="text-rose-400!">*</span>
+  - Type: `string`
+  - Should be a unique string used to identify your project across the wiki.
+  - We recommend using your mod id, or if not available, your CurseForge/Modrinth project slug.
+  - May only contain lowercase alphanumeric characters (`a-z0-9`) and hyphens (`-`).<br/>
+    Must not begin with a number.
+- `platforms` <span className="text-rose-400!">*</span>
+  - Type: `string -> string`
+  - Map of [slugs](#slug) of your project's distribution platforms.
+  - Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
+  - At least one platform is required
+- `modid` <span className="text-rose-400!">*</span>
+  - Type: `string`
+  - In-game mod id, used to identify mod content data
+  - Multiple wiki projects may share the same value
+- `owners`
+  - Type: `string[]`
+  - Usernames of wiki accounts authorized to register this project<br/>
+    *(currently, these are the lowercase forms of respective GitHub username)*
+  - Useful for public repositories to prevent unauthorized users from registering the project on the Wiki
+- `versions`
+  - Type: `string -> string`
+  - A map of additional minecraft versions to git branch names to make available.
+  - The default branch can not be included - we'll do that automatically
+
+**required*
+
+### Finding the project slug [#slug]
+
+The project slug can be easily extracted from your project page URL as shown in the examples below, where `{slug}`
+is a placeholder for the actual value.
+
+- For Modrinth projects: `https://modrinth.com/mod/{slug}`
+
+- For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+
+## Example
+
+```json filename="sinytra-wiki.json"
+{
+    "id": "examplemod",
+    "platforms": {
+        "curseforge": "example_mod",
+        "modrinth": "example-mod"
+    },
+    "modid": "examplemod",
+    "owners": [ "Su5eD" ]
+}
+```
+
+The JSON Schema specification for this file can be found [here](/sinytra-wiki.schema.json).
+
+## Versioning
+
+You can show multiple versions of your project's documentation on the wiki by adding a `versions` property to your
+docs metadata file, which contains a map of minecraft version names (these will be displayed in the version selector
+as well as in the URL paths) to git branch names.
+
+The documentation folder structure remains the same across all branches with contents being isolated per branch,
+including assets and localization. **Documentation metadata files (`sinytra-wiki.json`) from other branches are ignored**,
+as all necessary information is already contained in the default branch's file.
+
+```json filename="sinytra-wiki.json"
+{
+    "versions": {
+        "1.19.2": "my-git-branch-name",
+        "1.18.2": "another-branch"
+    }
+}
+```

@@ -1,0 +1,578 @@
+{
+    "Badges": {
+        "local": "Tempatan",
+        "latest": "Terkini"
+    },
+    "NavigationHeader": {
+        "title": "Wiki Minecraft Modded",
+        "title_short": "Wiki",
+        "badge": {
+            "preview": "MOD PRALIHAT",
+            "beta": "Beta"
+        },
+        "link": {
+            "home": "Laman Utama",
+            "browse": "Semak Imbas",
+            "about": "Tentang"
+        }
+    },
+    "NavigationFooter": {
+        "title": "Wiki Minecraft Modded",
+        "links": {
+            "navigation": {
+                "title": "Navigasi",
+                "home": "Laman Utama",
+                "browse": "Semak Imbas",
+                "dev": "Pembangun"
+            },
+            "links": {
+                "title": "Pautan"
+            },
+            "resources": {
+                "title": "Sumber",
+                "blog": "Blog",
+                "status": "Status",
+                "translate": "Bantu kami menterjemah"
+            },
+            "about": {
+                "title": "Tentang",
+                "tos": "Syarat Perkhidmatan",
+                "privacy": "Dasar Privasi",
+                "contact": "Hubungi"
+            }
+        }
+    },
+    "HomePage": {
+        "title": "Selamat datang ke <highlight>Wiki Minecraft Modded</highlight>",
+        "subtitle": "Sumber utama anda untuk menemui, mencipta dan menyumbang kepada projek berkaitan Minecraft.",
+        "popular": {
+            "title": "Wiki Popular",
+            "open": "Baca lebih lanjut",
+            "disclaimer": "Projek-projek ini diserlahkan berdasarkan popularitinya melalui statistik paparan dan tidak disahkan secara rasmi oleh Wiki Minecraft Modded."
+        },
+        "community": {
+            "title": "Sertai Komuniti Kami",
+            "users": {
+                "title": "Pengguna",
+                "subtitle": "Terokai projek yang ditampilkan oleh kami dan nikmati faedah ini:",
+                "docs": "Akses dokumentasi yang terkini, berkualiti tinggi dan berversi",
+                "contribute": "Bersumbang kepada projek tanpa pengetahuan pengaturcaraan",
+                "ui": "Nikmati antara muka yang konsisten dan mesra pengguna merentasi semua projek",
+                "localization": "Manfaat daripada sokongan multibahasa"
+            },
+            "authors": {
+                "title": "Pengarang",
+                "subtitle": "Dapatkan akses kepada Papan Pemuka Projek dan nikmati faedah ini:",
+                "vcs": "Sokongan pemversian untuk dokumentasi anda",
+                "components": "Komponen tersuai untuk resipi, aset, dsb.",
+                "gradle": "Penyepaduan Gradle untuk aliran kerja yang lancar",
+                "management": "Alat pengurusan projek lanjutan",
+                "interaction": "Interaksi langsung dengan pangkalan pengguna anda",
+                "dashboard": "Buka Papan Pemuka",
+                "guide": "Baca Lebih Lanjut"
+            }
+        },
+        "browse": "Semak Imbas Projek",
+        "highlights": {
+            "localization": {
+                "title": "Penyetempatan",
+                "desc": "Terjemahkan dokumentasi anda ke dalam bahasa-bahasa dunia"
+            },
+            "accessibility": {
+                "title": "Mudah Diakses",
+                "desc": "Antara muka pengguna yang intuitif dan responsif"
+            },
+            "open": {
+                "title": "Terbuka",
+                "desc": "Biarkan pengguna anda menyumbang tanpa pengetahuan pengaturcaraan yang diperlukan"
+            },
+            "free": {
+                "title": "Percuma",
+                "desc": "Pengehosan dokumentasi pada laman sesawang kami adalah percuma sepenuhnya!"
+            }
+        },
+        "about": {
+            "title": "Tentang Kami",
+            "maintainers": "Wiki ini dibina dan diselenggara oleh <b>Sinytra</b>, sebuah pasukan pembangun yang berdedikasi yang bersemangat yang menumpukan pada penyampaian perisian Sumber Terbuka dan Percuma yang berkualiti tinggi untuk komuniti pengubahsuaian Minecraft.",
+            "mission": "Matlamat kami adalah untuk memperkasakan pengubahsuai dan pemain dengan menyediakan alatan dan sumber yang diperlukan untuk mencipta, mendokumenkan dan meneroka kemungkinan yang tidak berkesudahan Minecraft yang diubah suai."
+        },
+        "blog": {
+            "title": "Siaran Blog",
+            "open": "Baca Lebih Lanjut"
+        }
+    },
+    "BrowsePage": {
+        "sidebar": {
+            "title": "Semak imbas projek",
+            "search_filters": "Penapis carian...",
+            "categories": "Kategori"
+        },
+        "sorting": "Isih mengikut",
+        "sort": {
+            "relevance": "Kaitan",
+            "creation_date": "Tarikh penciptaan",
+            "popularity": "Populariti",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Cari projek...",
+        "clear_filter": "Kosongkan penapis",
+        "no_results": "Carian tidak mengembalikan hasil!"
+    },
+    "SearchProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Pek mod",
+        "resourcepack": "Pek sumber",
+        "datapack": "Pek data",
+        "shader": "Pembayang",
+        "plugin": "Pemalam"
+    },
+    "ProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Pek mod",
+        "resourcepack": "Pek sumber",
+        "datapack": "Pek data",
+        "shader": "Pembayang",
+        "plugin": "Pemalam"
+    },
+    "LoadingContent": {
+        "message": "Memuatkan..."
+    },
+    "MetaDocsNavigation": {
+        "title": "Navigasi",
+        "about": "Tentang",
+        "devs": "Pembangun",
+        "format": "Format",
+        "publishing": "Menyiarkan",
+        "help": "Dapatkan bantuan",
+        "tos": "Syarat Penggunaan",
+        "privacy": "Dasar Privasi",
+        "security": "Notis Keselamatan",
+        "community": "Dokumentasi Komuniti"
+    },
+    "MetaDevDocsNavigation": {
+        "title": "Author guide",
+        "back": "Return home",
+        "start": "Getting started",
+        "structure": "Folder layout",
+        "config": "Configuration",
+        "format": "Format",
+        "components": "Components",
+        "publishing": "Publishing",
+        "community": "Community Docs"
+    },
+    "Login": {
+        "title": "Log masuk diperlukan",
+        "desc": "Laman yang anda cuba akses memerlukan anda untuk log masuk.",
+        "prompt": "Sila gunakan akaun GitHub anda untuk meneruskan.",
+        "button": "Log masuk dengan GitHub"
+    },
+    "Preview": {
+        "title": "Mod pralihat sedang didayakan",
+        "desc": "Mod pralihat mendayakan antara muka pengguna yang minimum, membolehkan anda menumpukan pada mendraf dokumentasi anda secara setempat sebelum diterbitkan.",
+        "roots": "Akar dokumentasi tempatan yang tersedia",
+        "open": "Buka"
+    },
+    "DocsProjectInfo": {
+        "title": "Maklumat projek",
+        "type": "Jenis",
+        "author": "Pengarang",
+        "tags": "Tag",
+        "latest": {
+            "title": "Versi terkini",
+            "unknown": "N/A"
+        },
+        "license": {
+            "title": "Lesen",
+            "custom": "Tersuai",
+            "unknown": "Tidak diketahui",
+            "arr": "Hak Cipta Terpelihara"
+        }
+    },
+    "ProjectCategories": {
+        "adventure": "Pengembaraan",
+        "cursed": "Pelik",
+        "decoration": "Hiasan",
+        "economy": "Ekonomi",
+        "equipment": "Peralatan",
+        "food": "Makanan",
+        "game-mechanics": "Mekanik Permainan",
+        "library": "Pustaka",
+        "magic": "Magik",
+        "management": "Pengurusan",
+        "minigame": "Permainan Mini",
+        "mobs": "Makhluk",
+        "optimization": "Pengoptimuman",
+        "social": "Sosial",
+        "storage": "Penyimpanan",
+        "technology": "Teknologi",
+        "transportation": "Pengangkutan",
+        "utility": "Utiliti",
+        "worldgen": "Penjanaan Dunia",
+        "server-utility": "Utiliti Pelayan",
+        "armor-weapons-tools": "Zirah, Alatan dan Senjata",
+        "library-api": "API dan Pustaka",
+        "adventure-rpg": "Pengembaraan dan RPG",
+        "world-gen": "Penjanaan Dunia",
+        "cosmetic": "Kosmetik",
+        "mc-food": "Makanan",
+        "performance": "Prestasi",
+        "map-information": "Peta dan Maklumat",
+        "bug-fixes": "Pembaikan Pepijat",
+        "mc-addons": "Penambahan",
+        "education": "Pendidikan",
+        "mc-miscellaneous": "Lain-lain",
+        "redstone": "Redstone",
+        "utility-qol": "Utiliti & QoL",
+        "mc-creator": "MCreator"
+    },
+    "PageEditControls": {
+        "edit_gh": "Sunting halaman ini",
+        "report": "Laporkan laman ini",
+        "report_button": "Laporkan laman",
+        "last_updated": "Kemas kini terakhir: <date></date>"
+    },
+    "Report": {
+        "title": "Laporkan laman dokumentasi",
+        "desc": "Laporkan kandungan yang melanggar Syarat Perkhidmatan atau Peraturan Kandungan kami.",
+        "contact": "Untuk tujuan hubungan, <b>nama pengguna</b> anda (dan alamat e-mel, jika anda memberikannya) akan disertakan dalam laporan.",
+        "confidential": "Privasi anda adalah penting bagi kami, dan maklumat ini akan sentiasa dirahsiakan.",
+        "privacy": "Untuk maklumat lanjut, sila rujuk <link>Dasar Privasi</link> kami.",
+        "form": {
+            "id": {
+                "title": "ID Projek",
+                "desc": "ID projek yang dilaporkan."
+            },
+            "path": {
+                "title": "Laluan laman",
+                "desc": "Laluan laman dokumentasi yang dilaporkan."
+            },
+            "email": {
+                "title": "Alamat e-mel untuk maklum balas",
+                "desc": "(Pilihan) Alamat e-mel hubungan yang boleh kami gunakan untuk memaklumkan anda tentang kemas kini laporan ini, atau untuk meminta maklumat tambahan."
+            },
+            "reason": {
+                "title": "Sebab*",
+                "placeholder": "Pilih sebab untuk melaporkan laman ini",
+                "desc": "Sebab untuk melaporkan laman ini.",
+                "spam": "Pengspaman",
+                "copyright": "Pelanggaran Hak Cipta",
+                "content_rules_violation": "Melanggar Peraturan Kandungan",
+                "tos_violation": "Melanggar Syarat Perkhidmatan",
+                "dislike": "Saya sekadar tidak suka"
+            },
+            "details": {
+                "title": "Butiran*",
+                "placeholder": "Sila berikan butiran lanjut tentang sebab anda melaporkan laman ini. Ambil perhatian bahawa laporan kosong akan diabaikan.",
+                "desc": "Butiran tambahan tentang isu tersebut."
+            },
+            "dislike": {
+                "title": "Kami faham bahawa anda mungkin tidak menyukai laman ini, dan itu tidak mengapa!",
+                "desc": "Malangnya, bagaimanapun, ia bukan alasan yang sah untuk melaporkan projek.",
+                "suggestion": "Adakah anda ingin mencari sesuatu yang lain untuk dibaca?",
+                "explore": "Terokai projek"
+            },
+            "success": "Laporan berjaya dihantar"
+        }
+    },
+    "SubmitButton": {
+        "title": "Serah"
+    },
+    "Callout": {
+        "title": "Perhatian!"
+    },
+    "ProjectRegisterForm": {
+        "button": "Tambah Projek",
+        "title": "Daftar projek",
+        "desc": "Daftarkan projek baharu ke dalam wiki.",
+        "repo": {
+            "title": "URL Repositori",
+            "desc": "Ini adalah alamat yang anda gunakan untuk mengklon repositori anda.",
+            "placeholder": "https://github.com/ContohPengguna/ContohMod"
+        },
+        "branch": {
+            "title": "Cabang",
+            "desc": "Rujukan cabang utama. Anda boleh menentukan cabang tambahan untuk disertakan dalam fail metadata anda."
+        },
+        "path": {
+            "title": "Laluan ke akar dokumentasi",
+            "desc": "Laluan ke folder yang mengandungi fail metadata."
+        },
+        "admin": "Tetapan pentadbir wiki",
+        "is_community": {
+            "title": "Projek yang diselenggara komuniti"
+        },
+        "errors": {
+            "details": "Paparkan butiran"
+        },
+        "connect_modrinth": {
+            "desc": "Sambungkan <b>akaun Modrinth</b> anda dalam Tetapan untuk mengesahkan pemilikan projek platform dengan mudah pada bila-bila masa.",
+            "settings": "Buka Tetapan"
+        },
+        "submit": "Serah",
+        "success": {
+            "title": "Projek berjaya didaftarkan",
+            "desc": "Anda kini boleh menavigasi ke laman dokumentasi projek"
+        },
+        "submitting": "Menyerahkan...",
+        "verify_modrinth": "Sahkan menggunakan Modrinth"
+    },
+    "ProjectSettingsForm": {
+        "title": "Sunting projek",
+        "desc": "Sunting tetapan projek sedia ada.",
+        "button": "Tetapan",
+        "success": {
+            "title": "Projek berjaya dikemas kini",
+            "desc": "Anda kini boleh menavigasi ke laman dokumentasi projek yang dikemas kini"
+        }
+    },
+    "ProjectDeleteForm": {
+        "trigger": "Padam",
+        "title": "Adakah anda benar-benar pasti?",
+        "desc": "Tindakan ini tidak boleh dibuat asal. Ini akan memadamkan projek anda secara kekal dan mengalih keluar semua data yang berkaitan daripada pelayan kami.",
+        "cancel": "Batal",
+        "submit": "Padam",
+        "success": "Projek berjaya dipadam"
+    },
+    "ProjectRevalidateForm": {
+        "title": "Muat semula laman-laman projek?",
+        "primary": "Semua halaman dokumentasi yang disimpan akan <b>dibersihkan dan diambil semula</b> daripada sumber.",
+        "secondary": "Pilihan ini hanya boleh digunakan apabila mengemas kini sumber dokumentasi itu sendiri.",
+        "tertiary": "Untuk kemudahan anda sendiri, kami mengesyorkan agar anda sebaliknya mengesahkan semula dokumentasi secara automatik selepas diterbitkan menggunakan <link>pemalam Gradle</link> kami.",
+        "note": "Data pendaftaran projek kekal tidak berubah. Untuk mengemas kini maklumat meta (cth. sumber dan platform), sila sebaliknya gunakan dialog Tetapan.",
+        "cancel": "Batal",
+        "submit": "Muat Semula",
+        "success": "Pemuatan semula projek dimulakan"
+    },
+    "FormActions": {
+        "errors": {
+            "unauthorized": "Ralat pengesahan pengguna",
+            "internal": "Ralat Pelayan Dalaman, sila cuba lagi kemudian.",
+            "unknown": "Sebuah ralat yang tidak diketahui telah berlaku, sila cuba sebentar lagi.",
+            "no_platforms": "Tiada projek platform ditakrifkan dalam metadata.",
+            "no_project": "Platform projek tidak ditemui. Sila pastikan medan \"slug\" metadata adalah betul.",
+            "unsupported_type": "Jenis projek tidak disokong",
+            "ownership": "Gagal mengesahkan pemilikan projek",
+            "cf_unavailable": "Pendaftaran projek CurseForge tidak aktif",
+            "requires_auth": "Sambungan repositori memerlukan kelayakan log masuk tetapi tiada yang diberikan",
+            "no_repository": "Repositori tidak ditemui",
+            "no_branch": "Cabang tidak sah ditentukan",
+            "no_path": "Fail metadata tidak ditemui pada laluan yang ditentukan",
+            "invalid_meta": "Fail metadata tidak sah",
+            "unsupported": "Belum dilaksanakan",
+            "exists": "Projek sudah wujud.",
+            "not_found": "Projek tidak wujud"
+        }
+    },
+    "CommunityBadge": {
+        "title": "Komuniti",
+        "desc": "Dokumentasi tidak rasmi yang diselenggara oleh komuniti"
+    },
+    "DocsPageNotFoundError": {
+        "title": "Kami kehilangan laman ini",
+        "desc": "Laman dokumentasi yang diminta tidak tersedia pada masa ini.",
+        "suggestion": "Sila cuba sebentar lagi atau laporkan isu ini kepada pengarang projek.",
+        "submit": "Serahkan isu",
+        "return": "Kembali ke Laman Utama"
+    },
+    "GetStartedButton": {
+        "title": "Cipta projek pertama"
+    },
+    "GetStartedModal": {
+        "button": "Tambah projek",
+        "title": "Saya ingin menulis dokumentasi untuk...",
+        "dev": {
+            "title": "Projek saya sendiri",
+            "desc": "Karang dokumentasi anda sendiri dan kawal siapa yang boleh membuat perubahan padanya.",
+            "button": "Cipta projek"
+        },
+        "community": {
+            "title": "Projek orang lain",
+            "desc": "Bersumbang kepada koleksi dokumentasi komuniti yang diselenggara oleh editor wiki",
+            "button": "Baca panduan"
+        }
+    },
+    "DocsHomepagePlaceholder": {
+        "title": "Pemegang tempat laman utama",
+        "subtitle": "Disebabkan oleh sekatan API, metadata projek tidak tersedia untuk projek CurseForge dalam persekitaran tempatan.",
+        "replace": "Jangan risau! Kami akan menggantikan ruang letak ini dengan penerangan sebenar projek sebaik sahaja digunakan di tapak web wiki langsung."
+    },
+    "DocsSearchBar": {
+        "placeholder": "Cari kandungan wiki...",
+        "no_results": "Tiada hasil carian ditemui!",
+        "loading": "Mencari hasil yang sempurna...",
+        "results": "Menunjukkan <highlight>{count}</highlight> hasil daripada <highlight>{total}</highlight>",
+        "close": "<kbd>ESC</kbd> untuk tutup"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Maklumat Projek",
+        "tags": "Tag",
+        "licenses": {
+            "title": "Lesen",
+            "project": "Projek:",
+            "wiki": "Wiki:"
+        },
+        "links": "Pautan",
+        "placeholder": {
+            "summary": "Pralihat projek tempatan",
+            "author": "Pengarang",
+            "latest_version": "Versi terkini"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Log Perubahan"
+    },
+    "DocsLeftSidebar": {
+        "title": "Dokumentasi",
+        "homepage": "Laman Utama Projek"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Maklumat entri"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "Pada laman ini"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Pilih versi",
+        "latest": "Terkini"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Pilih bahasa"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} lagi"
+    },
+    "LanguageSelect": {
+        "placeholder": "Cari bahasa...",
+        "no_results": "Tiada bahasa ditemui."
+    },
+    "ProjectStatus": {
+        "unknown": "Tidak diketahui",
+        "loading": "Dimulakan",
+        "loaded": "Dimuatkan",
+        "error": "Telah Ralat"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Urus"
+        },
+        "empty": {
+            "primary": "Nampaknya anda belum mendaftar sebarang projek lagi",
+            "secondary": "Mulakan dengan membaca <guide>panduan pengarang</guide> kami."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "home": "Laman Utama"
+        },
+        "toolbar": {
+            "view": "Lihat"
+        },
+        "source": {
+            "title": "Sumber Projek",
+            "repo": "Repositori",
+            "branch": "Cabang",
+            "path": "Laluan",
+            "public": "Awam"
+        },
+        "platforms": {
+            "title": "Platform",
+            "headers": {
+                "platform": "Platform",
+                "slug": "Slug / ID",
+                "link": "Pautan"
+            },
+            "open": "Buka"
+        },
+        "information": {
+            "title": "Maklumat",
+            "type": "Jenis",
+            "status": "Status",
+            "created_at": "Dicipta pada"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Log pelayan",
+        "show": "Tunjukkan",
+        "unloaded": "Tidak dimuatkan",
+        "waiting": "Menunggu pelayan...",
+        "loading": "Memuat...",
+        "error": "Ralat dalam memuat log",
+        "toast": {
+            "success": "Persediaan projek selesai",
+            "error": "Ralat semasa persediaan projek"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Peribadi"
+        },
+        "groups": {
+            "projects": "Projek",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projek",
+            "documentation": "Dokumentasi",
+            "settings": "Tetapan"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Pasukan"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log keluar",
+            "title": "Log keluar",
+            "desc": "Sedang log keluar..."
+        },
+        "unknown_avatar": "N/A"
+    },
+    "UserSettings": {
+        "breadcrumbs": {
+            "home": "Laman Utama",
+            "settings": "Tetapan"
+        },
+        "profile": {
+            "bio": "Pencipta Wiki Minecraft Modded",
+            "join_date": "Menyertai pada {date}"
+        },
+        "connections": {
+            "title": "Sambungan",
+            "modrinth": {
+                "title": "Akaun Modrinth",
+                "desc": "Digunakan untuk mengesahkan pemilikan projek",
+                "connect": "Sambung",
+                "view": "Lihat",
+                "disconnect": "Putuskan"
+            }
+        },
+        "account": {
+            "title": "Akaun",
+            "delete": {
+                "title": "Padam akaun",
+                "desc": "Padam semua data akaun buat selama-lamanya",
+                "button": "Padam akaun"
+            },
+            "delete_modal": {
+                "title": "Padam akaun",
+                "desc": "Adakah anda pasti mahu memadamkan akaun ini? Ini adalah tindakan yang merosakkan dan tidak boleh dibuat asal.",
+                "cancel": "Batal",
+                "button": "Padam selama-lamanya"
+            }
+        },
+        "toast": {
+            "unlink": {
+                "success": "Akaun berjaya dinyahpaut",
+                "error": "Ralat dalam menyahpaut akaun"
+            }
+        }
+    },
+    "AuthFailure": {
+        "title": "Kegagalan pengesahan",
+        "desc": "Sebuah ralat yang tidak dijangka telah berlaku semasa cuba log masuk. Sila cuba sebentar lagi.",
+        "status": "Semak status",
+        "return": "Kembali ke laman utama",
+        "report": "Laporkan Pepijat"
+    }
+}

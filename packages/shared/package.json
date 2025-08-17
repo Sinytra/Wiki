@@ -1,0 +1,36 @@
+{
+  "name": "@repo/shared",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "exports": {
+    "./api/*": "./src/api/*.ts",
+    "./client/*": "./src/client/*.ts",
+    "./assets": "./src/assets.ts",
+    "./constants": "./src/constants.ts",
+    "./locales": "./src/locales.ts",
+    "./env": "./src/env.ts",
+    "./envPublic": "./src/envPublic.ts",
+    "./network": "./src/network.ts",
+    "./platforms": "./src/platforms.ts",
+    "./resourceLocation": "./src/resourceLocation.ts",
+    "./types/*": "./src/types/*.ts",
+    "./util": "./src/util.ts"
+  },
+  "dependencies": {
+    "@bprogress/next": "^3.2.10",
+    "country-flag-icons": "^1.5.13",
+    "next": "^15.4.3",
+    "react": "19.1.0",
+    "@repo/markdown": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "@types/react": "19.1.8",
+    "eslint": "^9.31.0"
+  }
+}

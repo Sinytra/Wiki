@@ -1,0 +1,20 @@
+import {InfoIcon, CodeIcon, SquirrelIcon} from 'lucide-react';
+
+# Components
+
+<Callout>
+    Didn't find what you were looking for? Head over to our [GitHub repository](https://github.com/Sinytra/Wiki/issues)
+    and open a new issue or pull request proposing your desired component!
+</Callout>
+
+The wiki adds a selection of useful components that you can use in your documentation.
+
+Import statements are not required for built-in wiki components.
+
+## Available components
+
+<div className="flex flex-row flex-wrap gap-4">
+    <ComponentWidget href="callout" name="Callout" desc="Draw the reader's attention" icon={InfoIcon} />
+    <ComponentWidget href="codetabs" name="Code tabs" desc="Show multiple variants in one codeblock" icon={CodeIcon} />
+    <ComponentWidget href="icon" name="Icon" desc="Display a built-in icon, like this squirrel" icon={SquirrelIcon} />
+</div>

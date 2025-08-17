@@ -1,0 +1,25 @@
+{
+  "name": "@repo/previewer",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./localAssets": "./src/localAssets.ts",
+    "./middleware": "./src/previewMiddleware.ts"
+  },
+  "dependencies": {
+    "@repo/markdown": "workspace:*",
+    "@repo/shared": "workspace:*",
+    "directory-tree": "^3.5.2",
+    "json-schema-library": "^10.1.2",
+    "next": "^15.4.3"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "eslint": "^9.31.0"
+  }
+}

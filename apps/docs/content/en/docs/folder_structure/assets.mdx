@@ -1,0 +1,72 @@
+import {Callout} from 'nextra/components';
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Assets
+
+<Callout>
+    Save yourself time manually exporting item renders using our companion [**Gradle plugin**](../tools/gradle),
+    which integrates with popular mod loader toolchains and can **automatically generate rendered assets** for you!
+</Callout>
+
+Assets are used to display images of items, blocks and other project content across the website.
+
+These can be used as part of crafting recipes, sidebar information or custom components.
+
+## Placement
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".assets" defaultOpen>
+            <FileTreeFolder name="<namespace>" defaultOpen>
+                <FileTreeFolder name="gui" defaultOpen>
+                    <FileTreeFile name="electric_furnace.png"/>
+                    <FileTreeFile name="progress.gif"/>
+                </FileTreeFolder>
+
+                <FileTreeFile name="example_item.png" comment="Referenced via <namespace>:example_item"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Format
+
+Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
+in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
+
+Rendered project assets including **both items and blocks** should be placed under `.assets/(modid)` inside the
+documentation directory, where `modid` is the namespace of each texture you wish to provide.
+
+By default, resource locations point to `.png` files. A custom file extension can be appended to the resource location
+if the file is of another format.
+
+The name of the file is up to your choice.
+
+### Examples
+
+- `examplemod:generator` - Displays `<root>/.assets/examplemod/generator.png`
+
+<p/>
+
+- `examplemod:gui/grinding.gif` - Displays `<root>/.assets/examplemod/gui/grinding.gif`
+
+<p/>
+
+- `minecraft:crafting_table`, `crafting_table` - Displays a 3D render of the Crafting table
+
+## Usage
+
+You'll encounter assets being used for various different purposes across the wiki depending on the feature.
+
+The most common use cases include:
+
+- Displaying images anywhere in [pages](pages#extensions)
+
+- Providing icons for [pages](pages#metadata) by specifying the `icon` frontmatter attribute
+
+- Providing icons for [content pages](pages/content_pages), sourced automatically using the page's `id` frontmatter attribute
+  as the asset location
+
+- Showing items in [recipes](game_data#recipes)

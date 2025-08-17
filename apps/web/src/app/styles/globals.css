@@ -1,0 +1,396 @@
+@import './ghmd.css' layer(base);
+@import './colors.css';
+@import './fonts.css';
+@import "./theme.css" layer(theme);
+
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@source '../../../node_modules/@repo/ui';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@plugin 'tailwind-scrollbar';
+@plugin '@tailwindcss/typography';
+
+@theme inline {
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+    --animate-collapsible-down: collapsible-down 0.3s cubic-bezier(0.57, 0, 0.43, 0.98);
+    --animate-collapsible-up: collapsible-up 0.3s cubic-bezier(0.57, 0, 0.43, 0.98);
+    --animate-gradient: gradient 12s ease infinite;
+
+    @keyframes gradient {
+        0% {
+            background-size: 200% 100%;
+        }
+        50% {
+            background-size: 100% 100%;
+        }
+        100% {
+            background-size: 200% 100%;
+        }
+    }
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes accordion-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes accordion-up {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes collapsible-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-collapsible-content-height);
+        }
+    }
+    /*noinspection CssUnresolvedCustomProperty*/
+    @keyframes collapsible-up {
+        from {
+            height: var(--radix-collapsible-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
+}
+
+@layer base {
+    :root {
+        --background: var(--vp-c-bg);
+        --foreground: var(--vp-c-text-1);
+        --card: var(--vp-c-bg-alt);
+        --card-foreground: 0 0% 98%;
+        --popover: var(--vp-c-bg-alt);
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 240 5.9% 10%;
+        --secondary: 240 3.7% 15.9%;
+        --secondary-foreground: rgba(235, 235, 245, 0.74);
+        --muted: var(--vp-c-bg-alt);
+        --muted-foreground: var(--vp-c-text-2);
+        --accent: 240 3.7% 15.9%;
+        --accent-foreground: 0 0% 98%;
+        --warning: rgb(239, 166, 62);
+        --warning-border: rgba(218, 139, 23, 70%);
+        --destructive: var(--vp-c-danger-3);
+        --destructive-bright: rgb(251, 108, 111);
+        --destructive-border: rgba(224, 87, 91, 75%);
+        --destructive-border-dim: rgba(224, 87, 91, 55%);
+        --destructive-foreground: 0 0% 98%;
+        --callout-border: rgba(235, 235, 245, 40%);
+        --border: 240 3.7% 15.9%;
+        --input: 240 3.7% 15.9%;
+        --ring: var(--vp-c-text-3);
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
+
+    hr {
+        @apply border-tertiary;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    .disable-blur {
+        image-rendering: pixelated;
+    }
+
+    div.rtl * {
+        direction: rtl;
+    }
+}
+
+@utility text-balance {
+    text-wrap: balance;
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+    /*@media (width >= --theme(--breakpoint-sm)) {*/
+    /*    max-width: none;*/
+    /*}*/
+    @media (width >= 1400px) {
+        max-width: 1400px;
+    }
+}
+
+@utility top-nav-height {
+    top: calc(var(--vp-nav-height));
+}
+
+@utility top-nav-height-ext {
+    top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height));
+}
+
+@utility h-nav {
+    height: var(--vp-nav-height);
+}
+
+@utility h-subnav {
+    height: var(--vp-sub-nav-height);
+}
+
+@layer utilities {
+    .accordion-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: 200ms grid-template-rows ease;
+    }
+
+    .accordion.open > .accordion-body {
+        grid-template-rows: 1fr;
+    }
+
+    .accordion-body > div {
+        overflow: hidden;
+    }
+
+    html {
+        overflow: auto;
+        scrollbar-gutter: stable;
+        scroll-padding-top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height) + 6px);
+    }
+
+    /*Prevent added margin when opening select*/
+    html body[data-scroll-locked] {
+        margin-right: 0 !important;
+    }
+
+    .page-wrapper-base {
+        padding-top: calc(var(--vp-nav-height));
+    }
+
+    @media screen and (min-width: 768px) {
+        .page-wrapper {
+            padding-top: calc(var(--vp-nav-height) + 1rem);
+        }
+
+        html {
+            scroll-padding-top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height) + 12px);
+        }
+    }
+
+    .prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        @apply border-b border-secondary pb-2 mb-4;
+    }
+
+    .prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        display: inline;
+        margin: 0;
+    }
+
+    .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        text-decoration: none;
+        @apply font-normal;
+    }
+
+    .prose :where(hr):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        margin: 20px 0;
+    }
+
+    .prose
+    :where(:not(pre) > code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
+        border-radius: 4px;
+        padding: 3px 6px;
+        background-color: var(--vp-code-bg);
+        font-size: var(--vp-code-font-size);
+        color: var(--vp-code-color);
+        font-family: var(--vp-font-family-mono), ui-monospace;
+    }
+
+    .prose
+    :where(a:has(code)):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
+        text-decoration-color: var(--vp-code-color) !important;
+    }
+
+    .prose
+    :where(:not(strong) > code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
+        font-weight: normal;
+    }
+
+    .prose
+    :where(code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    )::before {
+        content: '' !important;
+    }
+
+    .prose
+    :where(code):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    )::after {
+        content: '' !important;
+    }
+
+    .prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        @apply bg-code text-code;
+    }
+
+    .prose
+    :where(details):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        cursor: pointer;
+    }
+
+    .prose :where(.prose > ul > li > p:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        margin-top: 1.25em;
+    }
+    .prose :where(.prose > ul > li > p:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        margin-bottom: 1.25em;
+    }
+}
+
+@layer base {
+    :root {
+        color-scheme: dark;
+        @apply scrollbar-thin;
+    }
+
+    .page-wrapper-ext {
+        @apply mt-4 sm:mt-0 pb-10 sm:pt-5;
+    }
+
+    .prose :where(h1,h2,h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        @apply text-primary! font-medium!;
+    }
+
+    .slim-scrollbar {
+        @apply scrollbar-thin scrollbar-thumb-scrollbar-secondary;
+        /*TODO*/
+    }
+
+    .slim-scrollbar-muted {
+        @apply scrollbar-thin scrollbar-thumb-[#404043];
+        /*TODO*/
+    }
+
+    .scrollLock {
+        /*@apply lg:m-0 lg:h-full lg:overflow-hidden; TODO*/
+    }
+
+    .navScrollLock {
+        @apply overflow-hidden! pointer-events-none sm:overflow-auto sm:pointer-events-auto;
+    }
+
+    kbd {
+        @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-xs;
+    }
+
+    .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        @apply scrollbar-thin scrollbar-thumb-[#404043];
+    }
+
+    .no-scroll {
+        @apply fixed md:static max-w-screen;
+    }
+}
+
+.myItems *:not(:first-child):before {
+    content: ' ';
+    white-space: pre;
+}
+
+.myItems *:not(:last-child):after {
+    content: ',';
+}
+
+.sharpRendering {
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.fade-enter .innerFadeContainer,
+.fade-exit-active .innerFadeContainer {
+    transform: translateY(-8px);
+}
+
+.fade-enter-active .innerFadeContainer,
+.fade-exit-active .innerFadeContainer {
+    transform: translateY(0);
+    transition: transform 0.25s ease;
+}
+
+.masked-overflow:not(:hover) {
+    --mask-height: 10%;
+
+    --mask-image-content: linear-gradient(
+            to bottom,
+            transparent,
+            0,
+            black calc(100% - var(--mask-height)),
+            transparent
+    );
+
+    --mask-size-content: 100% 100%;
+
+    --mask-image-scrollbar: linear-gradient(black, black);
+
+    --mask-size-scrollbar: 0 100%;
+
+    mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+    mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+
+    mask-position: 0 0, 100% 0;
+
+    mask-repeat: no-repeat, no-repeat;
+}
+
+.verticalSeparator {
+    display: inline-flex;
+}
+
+.verticalSeparator::before {
+    width: 1px;
+    height: 24px;
+    background-color: var(--vp-c-divider);
+    content: "";
+}

@@ -1,0 +1,578 @@
+{
+    "Badges": {
+        "local": "Local",
+        "latest": "Latest"
+    },
+    "NavigationHeader": {
+        "title": "Wiki de Modificaciones de Minecraft",
+        "title_short": "Wiki",
+        "badge": {
+            "preview": "MODO DE PREVISUALIZACIÓN",
+            "beta": "Beta"
+        },
+        "link": {
+            "home": "Inicio",
+            "browse": "Explorar",
+            "about": "Acerca de"
+        }
+    },
+    "NavigationFooter": {
+        "title": "Wiki de Modificaciones de Minecraft",
+        "links": {
+            "navigation": {
+                "title": "Navegación",
+                "home": "Página de inicio",
+                "browse": "Explorar",
+                "dev": "Desarrolladores"
+            },
+            "links": {
+                "title": "Links"
+            },
+            "resources": {
+                "title": "Recursos",
+                "blog": "Blog",
+                "status": "Estado",
+                "translate": "Ayúdanos a traducir"
+            },
+            "about": {
+                "title": "Acerca de",
+                "tos": "Términos de Servicio",
+                "privacy": "Política de Privacidad",
+                "contact": "Contacto"
+            }
+        }
+    },
+    "HomePage": {
+        "title": "Bienvenido a la <highlight>Wiki de Modificaciones de Minecraft</highlight>",
+        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "popular": {
+            "title": "Wikis Populares",
+            "open": "Leer Más",
+            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+        },
+        "community": {
+            "title": "¡Únete a nuestra comunidad!",
+            "users": {
+                "title": "Usuarios",
+                "subtitle": "Explore our featured projects and enjoy these benefits:",
+                "docs": "Access high-quality, up-to-date and versioned documentation",
+                "contribute": "Contribute to projects without programming knowledge",
+                "ui": "Enjoy a consistent, user-friendly interface across all projects",
+                "localization": "Benefit from multi-language support"
+            },
+            "authors": {
+                "title": "Autores",
+                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
+                "vcs": "Versioning support for your documentation",
+                "components": "Built-in components for recipes, assets, etc.",
+                "gradle": "Gradle integration for seamless workflow",
+                "management": "Advanced project management tools",
+                "interaction": "Direct interaction with your user base",
+                "dashboard": "Open Dashboard",
+                "guide": ""
+            }
+        },
+        "browse": "Browse Projects",
+        "highlights": {
+            "localization": {
+                "title": "Localization",
+                "desc": "Translate your docs into world languages"
+            },
+            "accessibility": {
+                "title": "Accessible",
+                "desc": "Intuitive and responsive user interface"
+            },
+            "open": {
+                "title": "Open",
+                "desc": "Let your users contribute without any programming knowledge necessary"
+            },
+            "free": {
+                "title": "Free",
+                "desc": "Hosting docs on our website is completely free of charge!"
+            }
+        },
+        "about": {
+            "title": "About Us",
+            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
+            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+        },
+        "blog": {
+            "title": "Blog Posts",
+            "open": "Read More"
+        }
+    },
+    "BrowsePage": {
+        "sidebar": {
+            "title": "Browse projects",
+            "search_filters": "Filtros de búsqueda...",
+            "categories": "Categories"
+        },
+        "sorting": "Sort by",
+        "sort": {
+            "relevance": "Relevance",
+            "creation_date": "Fecha de creación",
+            "popularity": "Popularidad",
+            "az": "A-Z",
+            "za": "Z-A"
+        },
+        "search": "Search projects...",
+        "clear_filter": "Clear filters",
+        "no_results": "¡La consulta de búsqueda no ha devuelto resultados!"
+    },
+    "SearchProjectTypes": {
+        "mod": "Mods",
+        "modpack": "Modpacks",
+        "resourcepack": "Resource packs",
+        "datapack": "Data packs",
+        "shader": "Shaders",
+        "plugin": "Plugins"
+    },
+    "ProjectTypes": {
+        "mod": "Mod",
+        "modpack": "Modpack",
+        "resourcepack": "Resource pack",
+        "datapack": "Data pack",
+        "shader": "Shader",
+        "plugin": "Plugin"
+    },
+    "LoadingContent": {
+        "message": "Cargando..."
+    },
+    "MetaDocsNavigation": {
+        "title": "Navegación",
+        "about": "Acerca de",
+        "devs": "Desarrolladores",
+        "format": "Formato",
+        "publishing": "Publicación",
+        "help": "Obtener ayuda",
+        "tos": "Términos de Uso",
+        "privacy": "Política de Privacidad",
+        "security": "Aviso de Seguridad",
+        "community": "Documentos Comunitarios"
+    },
+    "MetaDevDocsNavigation": {
+        "title": "Author guide",
+        "back": "Return home",
+        "start": "Getting started",
+        "structure": "Folder layout",
+        "config": "Configuration",
+        "format": "Format",
+        "components": "Components",
+        "publishing": "Publishing",
+        "community": "Community Docs"
+    },
+    "Login": {
+        "title": "Se requiere iniciar sesión",
+        "desc": "La página a la que está intentando acceder requiere que inicie sesión.",
+        "prompt": "Por favor, utiliza tu cuenta de GitHub para continuar.",
+        "button": "Iniciar sesión con GitHub"
+    },
+    "Preview": {
+        "title": "El modo de previsualización está habilitado",
+        "desc": "El modo de previsualización permite una interfaz de usuario mínima, permitiéndole enfocarse en redactar sus documentos localmente antes de que sean publicados.",
+        "roots": "Raíces de documentación local disponibles",
+        "open": "Abrir"
+    },
+    "DocsProjectInfo": {
+        "title": "Project information",
+        "type": "Type",
+        "author": "Author",
+        "tags": "Tags",
+        "latest": {
+            "title": "Latest version",
+            "unknown": "N/A"
+        },
+        "license": {
+            "title": "License",
+            "custom": "Custom",
+            "unknown": "Unknown",
+            "arr": "All Rights Reserved"
+        }
+    },
+    "ProjectCategories": {
+        "adventure": "Adventure",
+        "cursed": "Cursed",
+        "decoration": "Decoration",
+        "economy": "Economy",
+        "equipment": "Equipment",
+        "food": "Food",
+        "game-mechanics": "Game Mechanics",
+        "library": "Library",
+        "magic": "Magic",
+        "management": "Management",
+        "minigame": "Minigame",
+        "mobs": "Mobs",
+        "optimization": "Optimization",
+        "social": "Social",
+        "storage": "Storage",
+        "technology": "Technology",
+        "transportation": "Transporation",
+        "utility": "Utility",
+        "worldgen": "Worldgen",
+        "server-utility": "Server Utility",
+        "armor-weapons-tools": "Armor, Tools, and Weapons",
+        "library-api": "API and Library",
+        "adventure-rpg": "Adventure and RPG",
+        "world-gen": "World Gen",
+        "cosmetic": "Cosmetic",
+        "mc-food": "Food",
+        "performance": "Performance",
+        "map-information": "Map and Information",
+        "bug-fixes": "Bug Fixes",
+        "mc-addons": "Addons",
+        "education": "Education",
+        "mc-miscellaneous": "Miscellaneous",
+        "redstone": "Redstone",
+        "utility-qol": "Utility & QoL",
+        "mc-creator": "MCreator"
+    },
+    "PageEditControls": {
+        "edit_gh": "Edita esta página",
+        "report": "Reportar esta página",
+        "report_button": "Report page",
+        "last_updated": "Última actualización: <date></date>"
+    },
+    "Report": {
+        "title": "Reportar una página de documentación",
+        "desc": "Informar del contenido que viola nuestros Términos de Servicio o nuestras Normas de Contenido.",
+        "contact": "For contact purposes, your <b>username</b> (and email address, if you provide us one) will be included in the report.",
+        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
+        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "form": {
+            "id": {
+                "title": "ID de proyecto",
+                "desc": "Reported project ID."
+            },
+            "path": {
+                "title": "Page path",
+                "desc": "Reported documentation page path."
+            },
+            "email": {
+                "title": "Reply email address",
+                "desc": "(Optional) Contact email address we can use to inform you about updates on this report, or to request additional information."
+            },
+            "reason": {
+                "title": "Reason*",
+                "placeholder": "Select a reason for reporting this page",
+                "desc": "Reason for reporting this page.",
+                "spam": "Spam",
+                "copyright": "Infracción de derechos de autor",
+                "content_rules_violation": "Viola las normas de contenido",
+                "tos_violation": "Violates Terms of Service",
+                "dislike": "I just don't like it"
+            },
+            "details": {
+                "title": "Details*",
+                "placeholder": "Please provide more details on why you're reporting this page. Note that empty reports will be ignored.",
+                "desc": "Detalles adicionales sobre el problema."
+            },
+            "dislike": {
+                "title": "We understand that you may not like this page, and that's totally okay!",
+                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
+                "suggestion": "Would you like to look for something else to read instead?",
+                "explore": "Explore projects"
+            },
+            "success": "Report submitted successfully"
+        }
+    },
+    "SubmitButton": {
+        "title": "Submit"
+    },
+    "Callout": {
+        "title": "Heads up!"
+    },
+    "ProjectRegisterForm": {
+        "button": "Añadir Proyecto",
+        "title": "Registrar proyecto",
+        "desc": "Registrar un nuevo proyecto en la wiki.",
+        "repo": {
+            "title": "Repository URL",
+            "desc": "This is the address you use to clone your repository.",
+            "placeholder": "https://github.com/ExampleUser/ExampleMod"
+        },
+        "branch": {
+            "title": "Rama",
+            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+        },
+        "path": {
+            "title": "Ruta a la raíz de documentación",
+            "desc": "Path to the folder containing the metadata file."
+        },
+        "admin": "Configuración del admin de Wiki",
+        "is_community": {
+            "title": "Proyecto mantenido por la Comunidad"
+        },
+        "errors": {
+            "details": "Mostrar detalles"
+        },
+        "connect_modrinth": {
+            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
+            "settings": "Open Settings"
+        },
+        "submit": "Submit",
+        "success": {
+            "title": "Project registered successfully",
+            "desc": "You can now navigate to the project's docs page"
+        },
+        "submitting": "Submitting...",
+        "verify_modrinth": "Verificar usando Modrinth"
+    },
+    "ProjectSettingsForm": {
+        "title": "Editar proyecto",
+        "desc": "Editar la configuración de un proyecto existente.",
+        "button": "Configuración",
+        "success": {
+            "title": "Proyecto actualizado correctamente",
+            "desc": "You can now navigate to the updated project's docs page"
+        }
+    },
+    "ProjectDeleteForm": {
+        "trigger": "Delete",
+        "title": "Are you absolutely sure?",
+        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
+        "cancel": "Cancelar",
+        "submit": "Eliminar",
+        "success": "Project deleted successfully"
+    },
+    "ProjectRevalidateForm": {
+        "title": "Reload project pages?",
+        "primary": "All stored documentation pages will be <b>purged and re-fetched</b> from the source.",
+        "secondary": "Esta opción solo debería utilizarse cuando se actualice la fuente de documentación en sí.",
+        "tertiary": "Para su propia comodidad, le recomendamos que vuelva a validar automáticamente los documentos después de su publicación utilizando nuestro <link>plugin de Gradle</link> en su lugar.",
+        "note": "Project registration data remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+        "cancel": "Cancelar",
+        "submit": "Reload",
+        "success": "Project reload started"
+    },
+    "FormActions": {
+        "errors": {
+            "unauthorized": "User authentication error",
+            "internal": "Internal Server Error, please try again later.",
+            "unknown": "An unknown error has occurred, please try again later.",
+            "no_platforms": "No platform projects defined in metadata.",
+            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
+            "unsupported_type": "Unsupported project type",
+            "ownership": "Failed to verify project ownership",
+            "cf_unavailable": "Registering CurseForge projects is not active",
+            "requires_auth": "Repository connection requires login credentials but none were provided",
+            "no_repository": "Repository not found",
+            "no_branch": "Invalid branch specified",
+            "no_path": "Metadata file not found at specified path",
+            "invalid_meta": "El archivo de metadatos no es válido",
+            "unsupported": "Not yet implemented",
+            "exists": "El proyecto ya existe.",
+            "not_found": "Project does not exist"
+        }
+    },
+    "CommunityBadge": {
+        "title": "Comunidad",
+        "desc": "Documentación no oficial mantenida por la comunidad"
+    },
+    "DocsPageNotFoundError": {
+        "title": "Perdimos esta página",
+        "desc": "La página de documentación solicitada no está disponible por el momento.",
+        "suggestion": "Please try again later or report this issue to the project author.",
+        "submit": "Enviar un problema",
+        "return": "Volver al Inicio"
+    },
+    "GetStartedButton": {
+        "title": "Create first project"
+    },
+    "GetStartedModal": {
+        "button": "Agregar proyecto",
+        "title": "I'd like to write documentation for...",
+        "dev": {
+            "title": "My own project",
+            "desc": "Author your own documentation and control who can make changes to it.",
+            "button": "Crear un proyecto"
+        },
+        "community": {
+            "title": "Someone else's project",
+            "desc": "Contribute to a collection of community docs maintained by wiki editors",
+            "button": "Leer la guía"
+        }
+    },
+    "DocsHomepagePlaceholder": {
+        "title": "Homepage placeholder",
+        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
+        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+    },
+    "DocsSearchBar": {
+        "placeholder": "Buscar contenido de la wiki...",
+        "no_results": "¡No se encontraron resultados!",
+        "loading": "Buscando los resultados perfectos...",
+        "results": "Mostrando <highlight>{count}</highlight> de <highlight>{total}</highlight> resultados",
+        "close": "<kbd>ESC</kbd> para cerrar"
+    },
+    "DocsProjectRightSidebar": {
+        "title": "Project Information",
+        "tags": "Tags",
+        "licenses": {
+            "title": "Licenses",
+            "project": "Project:",
+            "wiki": "Wiki:"
+        },
+        "links": "Enlaces",
+        "placeholder": {
+            "summary": "Local project preview",
+            "author": "Autor",
+            "latest_version": "Latest version"
+        }
+    },
+    "DocsChangelogPage": {
+        "title": "Changelog"
+    },
+    "DocsLeftSidebar": {
+        "title": "Documentación",
+        "homepage": "Project Homepage"
+    },
+    "DocsContentRightSidebar": {
+        "title": "Entry information"
+    },
+    "DocsNonContentRightSidebar": {
+        "title": "On this page"
+    },
+    "DocsVersionSelector": {
+        "placeholder": "Select version",
+        "latest": "Latest"
+    },
+    "DocsLanguageSelect": {
+        "placeholder": "Select locale"
+    },
+    "ModVersionRange": {
+        "desc": "+{count} more"
+    },
+    "LanguageSelect": {
+        "placeholder": "Search languages...",
+        "no_results": "No language found."
+    },
+    "ProjectStatus": {
+        "unknown": "Unknown",
+        "loading": "Initializing",
+        "loaded": "Loaded",
+        "error": "Errored"
+    },
+    "DevProjectsListPage": {
+        "project": {
+            "manage": "Manage"
+        },
+        "empty": {
+            "primary": "Looks like you haven't registered any projects yet",
+            "secondary": "Get started by reading our <guide>author guide</guide>."
+        }
+    },
+    "DevProjectPage": {
+        "breadcrumbs": {
+            "home": "Home"
+        },
+        "toolbar": {
+            "view": "Ver"
+        },
+        "source": {
+            "title": "Project Source",
+            "repo": "Repository",
+            "branch": "Branch",
+            "path": "Path",
+            "public": "Public"
+        },
+        "platforms": {
+            "title": "Platforms",
+            "headers": {
+                "platform": "Plataforma",
+                "slug": "Slug / ID",
+                "link": "Enlace"
+            },
+            "open": "Open"
+        },
+        "information": {
+            "title": "Información",
+            "type": "Type",
+            "status": "Status",
+            "created_at": "Created at"
+        }
+    },
+    "DevProjectLogs": {
+        "title": "Server logs",
+        "show": "Show",
+        "unloaded": "Not loaded",
+        "waiting": "Waiting for server...",
+        "loading": "Loading...",
+        "error": "Error loading logs",
+        "toast": {
+            "success": "Project setup complete",
+            "error": "Error during project setup"
+        }
+    },
+    "DeveloperSidebar": {
+        "teams": {
+            "personal": "Personal"
+        },
+        "groups": {
+            "projects": "Projects",
+            "platform": "Platform"
+        },
+        "nav": {
+            "projects": "Projects",
+            "documentation": "Documentation",
+            "settings": "Settings"
+        }
+    },
+    "DevSidebarContextSwitcher": {
+        "title": "Teams"
+    },
+    "DevSidebarUser": {
+        "logout": {
+            "button": "Log out",
+            "title": "Logout",
+            "desc": "Logging out..."
+        },
+        "unknown_avatar": "N/A"
+    },
+    "UserSettings": {
+        "breadcrumbs": {
+            "home": "Home",
+            "settings": "Settings"
+        },
+        "profile": {
+            "bio": "Modded Minecraft Wiki creator",
+            "join_date": "Joined {date}"
+        },
+        "connections": {
+            "title": "Connections",
+            "modrinth": {
+                "title": "Modrinth account",
+                "desc": "Used to verify project ownership",
+                "connect": "Conectar",
+                "view": "Ver",
+                "disconnect": "Desconectar"
+            }
+        },
+        "account": {
+            "title": "Account",
+            "delete": {
+                "title": "Delete account",
+                "desc": "Forever delete all account data",
+                "button": "Delete account"
+            },
+            "delete_modal": {
+                "title": "Delete account",
+                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
+                "cancel": "Cancel",
+                "button": "Delete forever"
+            }
+        },
+        "toast": {
+            "unlink": {
+                "success": "Account unlinked successfully",
+                "error": "Error unlinking account"
+            }
+        }
+    },
+    "AuthFailure": {
+        "title": "Authentication failure",
+        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
+        "status": "Check status",
+        "return": "Return home",
+        "report": "Report Bug"
+    }
+}

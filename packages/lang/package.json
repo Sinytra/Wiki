@@ -1,0 +1,14 @@
+{
+  "name": "@repo/lang",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "country-flag-icons": "^1.5.13"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*"
+  }
+}

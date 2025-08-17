@@ -1,0 +1,121 @@
+import { Callout } from 'nextra/components';
+
+# Publishing
+
+Learn how to publish your documentation on our website!
+
+## Developer portal
+
+You can access our [developer portal](https://moddedmc.wiki/dev) by clicking the `Open Dashboard` button on the home
+page or the `Developers` link in the footer.
+
+### First login
+
+If this is your first time signing in, you'll be redirected to the login page where you can sign in using
+your **GitHub account**.
+
+GitHub will ask you to authorize our GitHub App to access your account. It only requires minimal permissions used to
+verify your identify and repository access permissions. Upon approving the request, you'll be automatically taken
+to the developer portal.
+
+## Ownership verification
+
+<Callout type="important">
+    Make sure your platform projects' URLs are set to the repository address at the time of registration for ownership
+    verification to succeed.
+</Callout>
+
+The Wiki uses a simple ownership check process to authorize project creation. This is conducted in 2 steps at the time
+of adding the project or later when updating project settings:
+
+- Matching the platform projects' (CurseForge/Modrinth) source URLs with the Wiki project's repository URL
+
+- Matching the username of the GitHub account you used to log in with the `owners` array in the Wiki project's
+  [metadata](../folder_structure/wiki_meta)
+
+### Where to set the source code URL
+
+<details>
+    <summary>Expand to get assistance for Modrinth projects</summary>
+
+    1. Open to your project's settings.
+    2. Navigate to the `Links` tab.
+    3. Enter the repository url in the `Source code` field.
+    4. Apply the changes.
+
+    ![MR Source](/mr_src_url.png)
+</details>
+<p/>
+<details>
+    <summary>Expand to get assistance for CurseForge projects</summary>
+
+    1. Open your project's settings.
+    2. Navigate to the `Source` tab.
+    3. Enter the repository url in the `Repository URL` field.
+    4. Apply the changes.
+
+    ![CF Source](/cf_src_url.png)
+</details>
+
+## Registering projects
+
+To create a new project on the wiki, hit the `New Project` button. This will open a modal dialog, where you'll be asked
+to fill out the following information:
+
+- `Repository URL`
+  - The web address you use to clone your repository. Note that it not contain the `.git` extension.
+  - Example: `https://github.com/exampleuser/Examplemod`
+
+- `Branch`
+  - Default branch to fetch Wiki project information from. You can specify additional branches to load in your
+    [Wiki metadata](../folder_structure/wiki_meta#versioning) file.
+  - Example: `master`
+
+- `Path to documentation root`
+  - Path to the documentation root folder inside the repository. Should begin with a leading `/`.
+  - Example: `/docs`
+
+Once you've filled everything out, hit the `Submit` button to complete the registration process.
+
+## Troubleshooting
+
+<Callout>
+    If you change your default branch on GitHub (e.g. as when porting your project to newer versions), don't forget to
+    update the source branch in the wiki project's settings as well, so that the website can keep showing the latest
+    docs version.
+</Callout>
+
+Below you can find a list of common issues that may occur when you register your project. If your issue does appear
+in the list, please tell us about your problem on [Discord](https://discord.sinytra.org).
+
+### Ownership Verification error
+
+- **Possible cause:** Your hosting platform project does not provide a Source Code link pointing to your repository.
+
+- **Fix:** For the purposes of verifying project ownership, please momentarily set the Source Code url of your project
+to match the repository url.
+
+### Repository is private
+
+- **Possible cause:** Your repository is private or otherwise requires authentication to access.
+
+- **Fix:** Please include credentials in the repository URL with sufficient permissions to clone the repository.
+  The credentials format for HTTP URLs is as follows: `https://username:password@domain.com`.
+
+### Invalid path provided
+
+The provided path does not exist or is a regular file. Please make sure the path points to an existing directory within
+the repository. There is no need to prefix the path with a branch or tag name.
+
+## Project management
+
+When your project registration succeeds, you'll be redirected to the project management dashboard and a
+new deployment will be created automatically.
+
+### Deployments
+
+Deployments serve as a version history for Wiki projects. Every time you make changes to your documentation in the
+source repository, you'll need to create a new Deployment to publish them on the website.
+
+For your own convenience, we recommend automatically revalidating docs after publication using our
+[Gradle plugin](./devs#-gradle-plugin-companion) instead.

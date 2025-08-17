@@ -1,0 +1,69 @@
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import { Summary } from '@/components/Summary';
+
+# Getting Started
+
+Create the directory where your documentation will be located and learn about the wiki folder structure.
+
+<Steps>
+    ### Create the documentation root directory
+
+    Start by creating a new directory inside your project. This can be located at any path of your choice.
+    For example, you can use `docs/(your modid here)` or simply `docs`, both are equally valid.
+
+    <Callout>
+        We also support scenarios where multiple projects have their documentation hosted in a single repository, as long
+        as they're located in separate folders.
+        This is useful if you're looking to store documentation for multiple of your projects in a single place.
+    </Callout>
+
+    ### Configure project metadata
+
+    Inside the newly created directory, create a file named [`sinytra-wiki.json`](folder_structure/wiki_meta),
+    which is used to provide basic information about the project.
+
+    Inside, define the following **required** properties:
+    - `id`
+      - Should be a unique string used to identify your project across the wiki.
+      - We recommend using your mod id, or if not available, your CurseForge/Modrinth project slug.
+    - `modid`
+      - In-game mod id, used to identify mod content data
+      - Multiple wiki projects may share the same value
+    - `platforms`
+      - Map of slugs of your project's distribution platforms.
+      - Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
+
+    <details>
+        <Summary>Where do I find the project slug?</Summary>
+
+        The project slug can be easily extracted from your project page URL as shown in the examples below, where `{slug}`
+        is a placeholder for the actual value.
+        - For Modrinth projects: `https://modrinth.com/mod/{slug}`
+        - For CurseForge projects: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+    </details>
+
+    A basic example may look as follows:
+
+    ```json filename="sinytra-wiki.json"
+    {
+        "id": "examplemod",
+        "modid": "examplemod",
+        "platforms": {
+            "curseforge": "example-mod",
+            "modrinth": "example-mod"
+        }
+    }
+    ```
+
+    For additional settings, check out the [Wiki Metadata](folder_structure/wiki_meta) page.
+
+    ### You're good to go!
+
+    With the metadata file added, you're ready to start writing documentation for your mod!
+
+    What you can do next:
+    - Familiarize yourself with the wiki [folder structure](folder_structure/overview) and available features
+    - Learn about the wiki page [format](folder_structure/pages#format) you'll use to write documentation
+    - Start writing [pages](folder_structure/pages)!
+</Steps>

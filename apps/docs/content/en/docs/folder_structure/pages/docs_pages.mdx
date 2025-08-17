@@ -1,0 +1,70 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Documentation pages
+
+Documentation pages follow a guide-like layout *(such as the documentation you're reading right now)* and are best
+suited for writing user guides, tutorials and developer documentation for your project.
+
+On the Wiki website, these are located under the project's "Documentation" tab.
+
+## Placement
+
+Documentation pages can be arbitrarily named and nested inside the project. They must use the `.mdx` extension.
+
+Folders created in the file tree will also show up as folders in the wiki documentation sidebar.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="...arbitrarily_nested_path" defaultOpen>
+            <FileTreeFile name="arbitrary_name.mdx"/>
+        </FileTreeFolder>
+        <FileTreeFile name="example_block.mdx"/>
+    </FileTreeFolder>
+</FileTree>
+
+## Authoring
+
+Documentation pages can make use of available frontmatter properties and all non-interactive components.
+
+The Markdown [format](../pages#format) is shared across all types of pages.
+
+### Checklist
+
+Here's a basic list of things to keep in mind when writing documentation pages:
+
+- Specify [frontmatter](../pages#metadata) properties as desired
+
+- Create a [folder metadata](../folder_meta) file to specify sidebar page/folder names
+
+- Check out available [components](../../components/overview) to include
+
+## Example
+
+Following is an example of a simple documentation page. Notice how an import is not required for wiki components.
+
+```mdx
+# Introduction
+
+Introduction to Example Mod.
+
+<Callout variant="info">This is a sample info callout</Callout>
+
+-- Your text comes here --
+
+Now, have some *lorem ipsum*.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna enim,
+vestibulum non justo nec, euismod venenatis mauris. Curabitur metus massa,
+aliquet non dapibus eget, porttitor eu lorem. Vestibulum et sagittis justo.
+
+Integer a velit quis est auctor finibus. Vivamus libero lorem, vehicula eu
+est ut, pellentesque dignissim enim. Integer iaculis turpis id neque eleifend
+malesuada. Curabitur convallis ultrices orci. Phasellus imperdiet pulvinar
+lacus, id luctus
+```
+
+## Next steps
+
+Once ready, preview your pages using our [local previewer](../../tools/preview)!

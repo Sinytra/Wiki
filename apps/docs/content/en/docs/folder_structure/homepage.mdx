@@ -1,0 +1,28 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Homepage
+
+The wiki provides a dedicated landing page for documentation pages called the "Homepage".
+By default, this shows the linked platform project's description.
+
+## Placement
+
+The custom homepage is located inside a `_homepage.mdx` file in the project root.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFile name="_homepage.mdx"/>
+    </FileTreeFolder>
+</FileTree>
+
+## Usage
+
+If you'd like to provide your own contents instead, you can do so by creating a `_homepage.mdx` file in your
+documentation's root folder (at the same level as `sinytra-wiki.json`).
+
+The file's contents follow the same format as [documentation pages](pages/docs_pages), except for frontmatter
+metadata, which is ignored.
+
+The homepage's title will always match the project's name.

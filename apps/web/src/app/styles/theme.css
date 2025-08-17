@@ -1,0 +1,104 @@
+@theme {
+    --background-color-primary: #1B1B1F; /*bg-background*/
+    --background-color-primary-alt: #161618; /*bg-card*/
+    --background-color-primary-dim: #18181A;
+    --background-color-primary-hover: #19191C;
+    --background-color-primary-dark: #131314;
+    --background-color-secondary: #27272AFF; /*accent*/ /*sidebar-accent*/ /*input*/
+    --background-color-tertiary: var(--color-neutral-800);
+    --background-color-inverse: #FAFAFAFF;
+    --background-color-inverse-secondary: #EBEBF599;
+    --background-color-destructive: #E0575BFF;
+    --background-color-destructive-soft: var(--vp-c-caution-soft);
+    --background-color-code: #21252b;
+    --background-color-code-alt: #2b313a;
+    --background-color-code-dim: #0D1117;
+    --background-color-table-soft: var(--vp-c-bg-soft);
+    --background-color-table-hard: var(--background);
+    --background-color-table-hover: var(--vp-c-bg-elv);
+    --background-color-code-tab-active: #1E2127;
+    --background-color-warning-soft: rgba(234, 179, 8, 0.09);
+
+    --text-color-primary: #FFFFF5DB; /*foreground*/
+    --text-color-primary-alt: #FAFAFAFF;
+    --text-color-secondary: #EBEBF599; /*muted-foreground*/
+    --text-color-secondary-alt: #EBEBF5BC; /*secondary-foreground*/
+    --text-color-inverse: #1B1B1F;
+    --text-color-brand-primary: #5C9DE4FF;
+    --text-color-warning: #EFA63E;
+    --text-color-warning-soft: #EFA63EED;
+    --text-color-destructive: #FB6C6F;
+    --text-color-success: rgba(5, 223, 114, 0.7);
+    --text-color-code: #A9B2C3;
+
+    --border-color-primary: var(--color-neutral-600);
+    --border-color-secondary: #404040FF;
+    --border-color-secondary-alt: #EBEBF599;
+    --border-color-secondary-dim: color-mix(in oklab, var(--border-color-secondary) 50%, transparent);
+    --border-color-tertiary: #27272AFF; /*border*/
+    --border-color-tertiary-dim: #212123;
+    --border-color-quaternary: #27272AFF; /*input*/
+    --border-color-info: #5a96e6;
+    --border-color-warning: #DA8B17B2;
+    --border-color-warning-soft: #DA8B1790;
+    --border-color-destructive: #E0575BBF;
+    --border-color-destructive-secondary: #E0575B8C;
+
+    --outline-color-secondary: #EBEBF599;
+
+    --divide-color-tertiary: var(--border-color-tertiary);
+
+    --ring-offset-color-background: var(--background-color-primary);
+
+    --shadow-color-secondary: #27272AFF; /*sidebar-border*/
+    --color-scrollbar-primary: #161618;
+    --color-scrollbar-secondary: #EBEBF599;
+
+    --color-ring: #EBEBF560;
+    --color-contrast: var(--color-blue-600);
+    --color-brand-curseforge: #F16436;
+    --color-brand-modrinth: #00AF5C;
+    --color-brand-discord: #5865F2;
+    --color-lightblue-primary: var(--vp-c-brand-1);
+    --color-progressbar: #1662C5;
+
+    /* Non-standard colors */
+    --background-color-popover: var(--background-color-primary-alt);
+    --background-color-accent: var(--background-color-secondary);
+    --text-color-popover-foreground: var(--text-color-primary);
+    --border-color-border: var(--border-color-tertiary);
+
+    /* Font */
+    --font-size-modifier: 0.98;
+    --font-minecraft: 'Minecraft';
+
+    --text-xs: calc(0.75rem * var(--font-size-modifier));
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: calc(0.875rem * var(--font-size-modifier));
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: calc(1rem * var(--font-size-modifier));
+    --text-base--line-height: calc(1.5 / 1);
+    --text-lg: calc(1.125rem * var(--font-size-modifier));
+    --text-lg--line-height: calc(1.75 / 1.125);
+    --text-xl: calc(1.25rem * var(--font-size-modifier));
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: calc(1.5rem * var(--font-size-modifier));
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: calc(1.875rem * var(--font-size-modifier));
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --text-4xl: calc(2.25rem * var(--font-size-modifier));
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --text-5xl: calc(3rem * var(--font-size-modifier));
+    --text-5xl--line-height: 1;
+    --text-6xl: 3.75rem;
+    --text-6xl--line-height: 1;
+    --text-7xl: 4.5rem;
+    --text-7xl--line-height: 1;
+    --text-8xl: 6rem;
+    --text-8xl--line-height: 1;
+    --text-9xl: 8rem;
+    --text-9xl--line-height: 1;
+
+    --text-xsm: calc(0.83rem * var(--font-size-modifier));
+    --text-xsm--line-height: calc(1 / 0.75);
+}

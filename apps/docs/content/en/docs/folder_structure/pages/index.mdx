@@ -1,0 +1,224 @@
+---
+asIndexPage: true
+---
+
+import InlineGameItem from '@/components/InlineGameItem';
+
+# Pages
+
+Page files are used to write the actual documentation text for projects.
+
+## Page types
+
+There are two types of pages available on the wiki, both of which can be used **at the same time**.
+
+### <InlineGameItem id="grass_block" /> [Content pages](pages/content_pages)
+
+- Found under the "Content" tab on the Wiki
+
+- Traditional [wiki style](https://minecraft.wiki/w/Furnace)
+
+- No reading order
+
+- Recommended for all **in-game content**, such as blocks, items, entities, but also abstract various **concepts**
+  and mechanics your mod may add
+
+Content pages allow you to interactively reference in-game content and provide a broader set of components you can use.
+
+### <InlineGameItem id="book" /> [Documentation pages](pages/docs_pages)
+
+- Found under the "Documentation" tab on the Wiki
+
+- Contain guide-like documentation similar to this website you're browsing right now
+
+- Implied reading order
+
+- Recommended for **guides** and API / **developer documentation**
+
+## Format
+
+The wiki uses [MDX](https://mdxjs.com/) files as its documentation format. In additon, [GitHub Flavored Markdown](https://github.github.com/gfm/)
+(GFM) is also available using [`remark-gfm`](https://github.com/remarkjs/remark-gfm).
+
+If you're not yet familiar with MDX, don't worry - it is an extension of the simple [Markdown](https://www.markdownguide.org/)
+format with added JSX capabilities, meaning you can include fancy custom components in your documentation,
+such as crafting recipes.
+
+These features are purely optional, and you can always stick to using standard Markdown in your documentation. However,
+the file extension must remain `.mdx`.
+
+### Extensions
+
+We provide a few useful markdown extensions that can be used as syntax sugar.
+
+#### Asset images
+
+Display any [asset](assets) image using native markdown syntax by specifying the asset [location](assets#format)
+prefixed with `@`.
+
+For example:
+```md
+<!-- Will display: <root>/.assets/examplemod/generator.png -->
+![](@examplemod:generator)
+```
+
+#### Content page links
+
+To link to [Content pages](pages/content_pages), use the ID metadata attribute of the page you want to link to,
+prefixed with `@`.
+
+For example:
+```md
+<!-- Uses page title as link text -->
+[](@examplemod:electric_furnace)
+
+<!-- Uses custom link text -->
+Click [here](@examplemod:electric_furnace) to learn more.
+```
+
+#### Documentation page links
+
+To link to [Documentation pages](pages/docs_pages), use the path of the page you want to link to (relative to the project
+root), prefixed with `$`.
+
+For example:
+```md
+<!-- Uses page title as link text -->
+[]($tutorials/getting_started)
+
+<!-- Uses custom link text -->
+Click [here]($tutorials/getting_started) to read the first tutorial.
+```
+
+### Limitations
+
+Because MDX can potentially allow unwanted code injection on the server, we sanitize all sources before they're rendered,
+which can result in certain features of MDX being unavailable. That said, if there's a safe feature you'd like to use in
+your documentation that isn't available on the wiki, please open an issue on our
+[GitHub repository](https://github.com/Sinytra/Wiki/issues).
+
+## Metadata
+
+Markdown page metadata, also known as simply **Frontmatter** is used by the wiki to provide additional information about
+a page or in-game content. It's located at the very beginning of each file in YAML format.
+
+Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
+Usually, this includes an icon of the block/item along with its name, id, source project and other handy information.
+
+If your page is not related to a specific object, you can hide all metadata and ignore their values
+(except for `title`) by setting `hide_meta: true`.
+
+```markdown
+---
+title: Hello World
+---
+
+Content comes here
+```
+
+Here's an overview of supported attributes:
+
+- `title` - Display name of the page, shown in the content heading and the browser tab title.<br/>
+If a `h1` heading is available, it will be used instead.
+  - Type: `string`
+  - Example: `Fancy Block`
+- `hide_meta` - Hides sidebar meta information. As a results, all other attributes will be ignored.
+  - Type: `boolean`
+- `id` - In-game resource location ID of the content shown. If a matching asset with the same location is found in the
+documentation root's asset folder, it will be used as the `icon`.
+  - Type: Resource Location
+  - Example: `examplemod:generator`
+- `icon` - Resource location of an asset that will be shown as the documented item's icon. Its size should be at least
+128x128 pixels.
+  - Type: Resource Location
+  - Example: `examplemod:fancy_generator`
+- `hide_icon` - Hides the icon, showing a generic placeholder instead.
+  - Type: `boolean`
+- `type` - Can be `block`, `item` or `other`
+  - Type: `string`
+- `custom` - A map of custom attributes you wish to display in the sidebar.
+  - Type: `string` -> `string` map
+  - Example:
+  ```yaml
+  custom:
+    Category: Machines
+  ```
+- `history`
+  - Shows a changelog of changes regarding the page's content / item
+  - Read [below](#changelog) for an explanation
+
+<details>
+    <summary>Show complete metadata example</summary>
+
+    ```markdown
+    ---
+    title: Generator
+    id: examplemod:generator
+    icon: examplemod:fancy_generator
+    type: block
+    custom:
+      Subcategory: Machines
+    history:
+      - version: 1.2b
+        date: 15.08.2025
+        changes:
+          - Bugfixes
+          - Add more data generation
+      - 1.1: Fix custom ingredient implementation
+      - 1.0: Added
+    ---
+
+    Content comes here
+    ```
+</details>
+
+## Custom components
+
+See the [Components](../components/overview) page.
+
+## Changelog
+
+A changelog acts as a list of changes that have been made to the page's subject under the `history` frontmatter
+attribute.
+
+It is displayed at the bottom of the page as a collapsible element for content pages or as a switchable tab in the
+page title for documentation pages.
+
+### Format
+
+There are 2 ways changelog entries can be written:
+
+**1) Simplified**
+
+A key-value pair where the key represents the version number and the value is a description of changes made.
+
+```yaml
+- 5.6: Fixed spacebar overheating
+```
+
+**2) Detailed**
+
+The detailed syntax allows you to specify a date and multiple changes in a single version.
+
+```yaml
+- version: 1.2b
+  date: 15.08.2025
+  changes:
+    - Example change
+    - Add more data generation
+```
+
+### Example
+
+```yaml
+history:
+  # Detailed entry
+  - version: 1.2b
+    date: 15.08.2025
+    changes:
+      - Example change
+      - Add more data generation
+  # Simple entries
+  - 1.1: Some random change
+  - 1.0: Added
+```

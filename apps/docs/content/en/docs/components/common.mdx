@@ -1,0 +1,172 @@
+import {Callout} from 'nextra/components';
+import {SquirrelIcon} from 'lucide-react';
+
+# Common components
+
+## Styling
+
+### `Callout`
+
+Draw the reader's attention with callouts.
+
+#### Properties
+
+- `variant`
+  - Can be either of [`default`, `info`, `warning`, `danger`] (default: `default`)
+- `title`
+  - Custom title to display. Optional
+
+#### Code
+
+```jsx
+<Callout>
+    This is a sample callout
+</Callout>
+
+<Callout variant="info">
+    This is a sample info callout
+</Callout>
+```
+
+### `CodeTabs`
+
+The Wiki implements CodeHike's [CodeTabs](https://codehike.org/docs/code/tabs) component as shown below.
+
+This can be useful if you want to show separate variants for Gradle/Kotlin DSL code in developer documentation.
+
+#### Code
+
+````jsx
+<CodeTabs>
+
+```js !!tabs main.js
+function lorem(ipsum, dolor = 1) {
+    const sit = ipsum == null ? 0 : ipsum.sit
+    dolor = sit - amet(dolor)
+    return sit ? consectetur(ipsum) : []
+}
+```
+
+```css !!tabs styles.css
+body {
+    margin: 0;
+    padding: 0;
+}
+```
+
+</CodeTabs>
+````
+
+## Game content
+
+### `Asset`
+
+<Callout type="important">
+   It is recommened to use the shorthand [asset syntax](../folder_structure/pages#extensions) for displaying assets.
+</Callout>
+
+Displays an [asset](../folder_structure/assets) image.
+
+#### Properties
+
+- `location`*
+  - Resource Location of the asset you wish to display
+
+All properties of `img` except for `src` are also accepted.
+
+#### Code
+
+```jsx
+<Asset width={64} height={64} location="minecraft:furnace" title="Furnace" />
+```
+
+## Icons
+
+The entire collection of [Lucide icons](https://lucide.dev/icons/) is available to use in documentation files via
+React components.
+
+Names of icon components consist of an icon's "component name" (which you can find on the website or make an educated
+guess by converting the icon id to PascalCase (e.g. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`)
+and the `Icon` suffix.
+
+All properties supported by [Lucide React](https://lucide.dev/guide/packages/lucide-react) are available as well.
+
+### Code
+
+```jsx
+<SquirrelIcon width={64} height={64} strokeWidth={1} />
+```
+
+### Result
+
+<SquirrelIcon width={64} height={64} strokeWidth={1} className="mt-5" />
+
+## Recipes
+
+<Callout type="important">
+    In content pages, prefer using [Prefab components](interactive#prefab) to show obtaining and usage.
+</Callout>
+
+### `ProjectRecipe`
+
+Displays an interactive [recipe](../folder_structure/game_data#recipes) for a single item. This is similar to pressing
+`R` on your keyboard when using in-game recipe viewers.
+
+#### Properties
+
+- `id`*
+  - ID of the recipe to display
+
+### `RecipeUsage`
+
+Displays a list of items that can be crafted/obtained through [recipes](../folder_structure/game_data#recipes) using
+this item. This is similar to pressing `U` on your keyboard when using in-game recipe viewers.
+
+#### Properties
+
+- `id`*
+  - ID of the item to show the usage of
+
+## Navigation
+
+<Callout type="important">
+    While these components are documented here for the sake of completeness, it is recommened to use the shorthand
+    [link format](../folder_structure/pages#extensions) for linking to other pages.
+</Callout>
+
+Navigation utility components to make navigating across pages easier, even for referencing vanilla items.
+
+### `DocsLink`
+
+Allows linking to documentation pages within the same project.
+
+The Docs Link takes a single attribute named `path`, which specified the path to the page to link, relative to the
+project root.
+
+You can omit the body to show the page title instead.
+
+```mdx
+<DocsLink path="getting_started/first_steps"/>
+```
+
+### `ContentLink`
+
+This component allows you to reference any in-game object via its ID, including vanilla items, and creates a link that
+leads to its page, if it exists.
+
+The Content Link component takes a single attribute named `id`, which specifies the in-game item to navigate to.
+This can be an item from the current project or vanilla.
+
+Project content pages are matched based on the `id` frontmatter [attribute](../folder_structure/pages/content_pages#metadata).
+Additionally, non-vanilla items can omit the link text to display the item's page title instead.
+
+```mdx
+{/* Links to https://minecraft.wiki/w/redstone */}
+<ContentLink id="redstone">Redstone</ContentLink>
+
+{/* Shows "Electric Furnace", links to content page from the same project */}
+<ContentLink id="examplemod:electric_furnace" />
+
+{/* Same as above - with custom display text */}
+Click <ContentLink id="examplemod:electric_furnace">here</ContentLink> to learn more.
+```

@@ -1,0 +1,37 @@
+# Local preview
+
+The Wiki provides a local previewer that you can use to get a nearly identical preview of your documentation locally
+compared to what will be shown once it is published on the website.
+
+## Prerequisites
+
+To run the local previewer, you'll need to do the following:
+
+- [x] Install the Wiki's [Gradle Plugin](gradle) in your project
+
+<p/>
+
+- [x] Install [Node.js](https://nodejs.org) version **24 or above** on your machine
+
+## Usage
+
+To start the local preview, run the `previewDocs` task. This will set up and launch the local wiki environment.
+
+Once ready, it will be available at `http://localhost:3000`.
+
+## Known issues
+
+Using `org.gradle.daemon=false` will prevent the npm task from existing when gradle is stopped, keeping it running
+in the background. Please check your `gradle.properties` file and make sure this property is either set to `true` or
+removed entirely.
+
+## Limitations
+
+Certain features may be unailable in local previews do to technical limitations. Placeholders will be shown in their
+place where applicable.
+
+These include, but are not limited to:
+
+- CurseForge project information (due to API restrictions on CF's side)
+
+- Game Recipes and Tags
