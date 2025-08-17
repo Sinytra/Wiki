@@ -7,13 +7,15 @@ import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
 import DocsHomepagePlaceholder from "@/components/docs/body/DocsHomepagePlaceholder";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
-import markdown, {DocumentationMarkdown} from "@repo/markdown";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 import {getTranslations} from "next-intl/server";
 import env from "@repo/shared/env";
 import {Project, ProjectContext} from "@repo/shared/types/service";
 import issuesApi from "@repo/shared/api/issuesApi";
+import {ReactNode} from "react";
+import {RenderedMarkdownContent} from "@/components/docs/body/MarkdownContent";
+import markdown, {DocsEntryMetadata} from "@repo/markdown";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -26,7 +28,12 @@ interface PageProps {
   }>;
 }
 
-async function renderHomepage(project: Project, platformProject: PlatformProject, ctx: ProjectContext): Promise<DocumentationMarkdown | null | undefined> {
+interface RenderedHomepage {
+  content: ReactNode;
+  metadata: DocsEntryMetadata;
+}
+
+async function renderHomepage(project: Project, platformProject: PlatformProject, ctx: ProjectContext): Promise<RenderedHomepage | null | undefined> {
   const patcher = (components: Record<string, any>) => {
     return {
       ...components,
@@ -41,7 +48,12 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
   try {
     const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx, patcher);
     if (result) {
-      return result.content;
+      const content = (
+        <DocsMarkdownContent>
+          {result.content.content}
+        </DocsMarkdownContent>
+      );
+      return { content, metadata: result.content.metadata };
     }
   } catch (err) {
     console.error('Error rendering homepage!', err);
@@ -53,7 +65,11 @@ async function renderHomepage(project: Project, platformProject: PlatformProject
     return null;
   }
   try {
-    return await markdown.renderDocumentationMarkdown(platformProject.description, patcher);
+    const htmlContent = await markdown.renderMarkdown(platformProject.description);
+    const content = (
+      <RenderedMarkdownContent htmlContent={htmlContent}/>
+    );
+    return { content, metadata: {} }
   } catch (e) {
     console.error('Error rendering homepage', e);
     return undefined;
@@ -94,9 +110,7 @@ export default async function ProjectDocsHomepage(props: PageProps) {
           ?
           <DocsHomepagePlaceholder/>
           :
-          <DocsMarkdownContent>
-            {content.content}
-          </DocsMarkdownContent>
+          content.content
       }
     </DocsInnerLayoutClient>
   )
