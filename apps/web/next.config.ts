@@ -34,6 +34,21 @@ const nextConfig: NextConfig = {
       }
     ]
   },
+  // Backwards compatibility only
+  async redirects() {
+    return [
+      {
+        source: '/:lang/mod/:project/docs/:path*',
+        destination: '/:lang/project/:project/latest/docs/:path*',
+        permanent: true
+      },
+      {
+        source: '/:lang/project/:project/docs/:path*',
+        destination: '/:lang/project/:project/latest/docs/:path*',
+        permanent: true
+      }
+    ];
+  },
   transpilePackages: ['@repo/ui'],
   experimental: {
     optimizePackageImports: ['shiki']
