@@ -29,8 +29,7 @@ import {Select} from 'nextra/components';
 import {GlobeIcon} from 'nextra/icons';
 import {usePathname} from 'next/navigation';
 import {languages} from '@/lang';
-
-const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
+import {time} from '@repo/shared/constants';
 
 interface LocaleSwitchProps {
   locale: string
@@ -50,7 +49,7 @@ export default function LocaleSwitch({locale, locales, defaultLocale, lite, clas
       className={cn('x:flex x:items-center x:gap-2',
         'focus:ring-0 focus:ring-offset-0 focus-visible:outline-none!', className)}
       onChange={lang => {
-        const date = new Date(Date.now() + ONE_YEAR);
+        const date = new Date(Date.now() + time.ONE_YEAR * 1000);
         document.cookie = `NEXT_LOCALE=${lang}; expires=${date.toUTCString()}; path=/`;
 
         const parts = pathname.substring(1).split('/');

@@ -17,3 +17,14 @@ export const DEFAULT_WIKI_LICENSE = {
 export const NO_FOLDER_ICON = '_none';
 
 export const WIKI_DOCS_URL = 'https://docs.moddedmc.wiki/';
+
+const ONE_MINUTE = 60;
+const ONE_HOUR = 60 * ONE_MINUTE;
+const ONE_DAY = ONE_HOUR * 24;
+const ONE_WEEK = ONE_DAY * 7;
+const TWO_WEEKS = 2 * ONE_WEEK;
+const ONE_YEAR = 365 * ONE_DAY;
+
+export const time = {
+  ONE_DAY, ONE_WEEK, TWO_WEEKS, ONE_MINUTE, ONE_YEAR
+};

@@ -24,7 +24,7 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   return (
     <div className="shrink-0">
       <SafeImage
-        className="h-16 w-16 rounded-sm sm:h-20 sm:w-20"
+        className="size-16 rounded-sm sm:size-20"
         src={projectContent.icon_url}
         alt={projectContent.name}
         width={64}
@@ -97,8 +97,8 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
             <span className="text-sm">{u(base.type)}</span>
           </div>
           <div className="flex flex-row items-center gap-2 text-secondary">
-            <MilestoneIcon className="size-4"/>
             <Suspense>
+              <MilestoneIcon className="size-4"/>
               <ProjectGameVersions project={promise}/>
             </Suspense>
           </div>
@@ -138,7 +138,13 @@ export default function BrowseProject({project}: { project: BaseProject }) {
       flex w-full flex-row items-center gap-3 rounded-sm border border-tertiary bg-primary-dim px-3 py-2 sm:gap-4
       sm:py-3
     `}>
-      <ProjectIcon project={platformProject}/>
+      <Suspense fallback={
+        <div className="flex size-16 shrink-0 items-center justify-center rounded-sm bg-primary-dim sm:size-20">
+          <BoxIcon strokeWidth={1} className="size-12 text-secondary opacity-20 sm:size-16"/>
+        </div>
+      }>
+        <ProjectIcon project={platformProject}/>
+      </Suspense>
 
       <div className="flex w-full flex-col gap-1">
         <div className="flex h-full w-full flex-col">
@@ -154,8 +160,8 @@ export default function BrowseProject({project}: { project: BaseProject }) {
 
           <ErrorBoundary fallback={
             <span className="h-10 sm:h-5">
-                &nbsp;
-              </span>
+              &nbsp;
+            </span>
           }>
             <Suspense fallback={
               <Skeleton className="h-10 w-full sm:h-5"/>

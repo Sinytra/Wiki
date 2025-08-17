@@ -1,4 +1,5 @@
 import locales from "@repo/shared/locales";
+import {time} from "@repo/shared/constants";
 
 interface CrowdinResponse<T> {
   data: T
@@ -22,7 +23,7 @@ async function getCrowdinTranslationStatus(lang: string): Promise<number> {
         },
         cache: 'force-cache',
         next: {
-          revalidate: 60 * 60 * 24 * 7
+          revalidate: time.ONE_WEEK
         }
       });
       if (resp.ok) {

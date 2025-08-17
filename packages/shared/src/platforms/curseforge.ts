@@ -2,6 +2,7 @@ import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from '.
 import env from '@repo/shared/env';
 import {ProjectType} from '@repo/shared/types/service';
 import {ProjectNotFoundError} from './exception';
+import {time} from '@repo/shared/constants';
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
@@ -168,7 +169,7 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
     cache: 'force-cache',
     next: {
       tags: ['curseforge'],
-      revalidate: 60 * 60 * 24 * 14
+      revalidate: time.TWO_WEEKS
     }
   });
   if (!response.ok) {

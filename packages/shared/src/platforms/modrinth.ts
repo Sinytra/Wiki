@@ -2,6 +2,7 @@ import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from '.
 import env from '@repo/shared/env';
 import {AVAILABLE_PROJECT_TYPES, ProjectType} from '@repo/shared/types/service';
 import {ProjectNotFoundError} from './exception';
+import {time} from '@repo/shared/constants';
 
 // TODO
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (env.isPreview() ? '/local' : '');
@@ -118,7 +119,7 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
     cache: 'force-cache',
     next: {
       tags: ['modrinth'],
-      revalidate: 60 * 60 * 24 * 14
+      revalidate: time.TWO_WEEKS
     }
   });
   if (!response.ok) {

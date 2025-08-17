@@ -1,28 +1,23 @@
 "use client"
 
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { VariantProps, cva } from "class-variance-authority"
-import { PanelLeft } from "lucide-react"
-
-import { Button } from "@repo/ui/components/button"
-import { Input } from "@repo/ui/components/input"
-import { Separator } from "@repo/ui/components/separator"
+import {useEffect} from "react"
+import {Slot} from "@radix-ui/react-slot"
+import {cva, VariantProps} from "class-variance-authority"
+import {PanelLeft} from "lucide-react"
+import {Button} from "@repo/ui/components/button"
+import {Input} from "@repo/ui/components/input"
+import {Separator} from "@repo/ui/components/separator"
 import {Sheet, SheetContent, SheetDescription, SheetTitle} from "@repo/ui/components/sheet"
-import { Skeleton } from "@repo/ui/components/skeleton"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@repo/ui/components/tooltip"
+import {Skeleton} from "@repo/ui/components/skeleton"
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger,} from "@repo/ui/components/tooltip"
 import {usePathname} from "next/navigation";
-import {useEffect} from "react";
 import {useIsMobile} from "@repo/ui/hooks/use-mobile";
 import {cn} from "@repo/ui/lib/utils";
+import {time} from "@repo/shared/constants";
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
-const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
+const SIDEBAR_COOKIE_MAX_AGE = time.ONE_WEEK
 const SIDEBAR_WIDTH = "16rem"
 const SIDEBAR_WIDTH_MOBILE = "18rem"
 const SIDEBAR_WIDTH_ICON = "3rem"

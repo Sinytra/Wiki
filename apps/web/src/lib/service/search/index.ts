@@ -10,5 +10,5 @@ export interface WikiSearchResult {
   icon?: string;
   mod_icon: string;
   mod_desc?: string;
-  path?: string;
+  path: string;
 }

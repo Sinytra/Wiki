@@ -3,16 +3,13 @@ import env from './env';
 import envPublic from './envPublic';
 import {serializeUrlParams} from './util';
 import locales from '@repo/shared/locales';
-import {DEFAULT_DOCS_VERSION} from './constants';
+import {DEFAULT_DOCS_VERSION, time} from './constants';
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';
 type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown';
 
 const CONTENT_TYPE = 'content-type';
 const APPLICATION_JSON = 'application/json';
-
-const ONE_DAY = 60 * 60 * 24;
-const ONE_WEEK = ONE_DAY * 7;
 
 export type ApiRouteParameters = Record<string, string | undefined | null>;
 
@@ -156,7 +153,7 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
     cache: useCache ? 'force-cache' : undefined,
     next: useCache ? {
       tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
-      revalidate: (typeof options.cache == 'object' ? options.cache.revalidate : undefined) || ONE_WEEK
+      revalidate: (typeof options.cache == 'object' ? options.cache.revalidate : undefined) || time.ONE_WEEK
     } : undefined,
     redirect: 'manual'
   });
