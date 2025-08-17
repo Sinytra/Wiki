@@ -22,7 +22,7 @@
   "dependencies": {
     "@bprogress/next": "^3.2.10",
     "country-flag-icons": "^1.5.13",
-    "next": "^15.4.3",
+    "next": "^15.4.6",
     "react": "19.1.0",
     "@repo/markdown": "workspace:*"
   },

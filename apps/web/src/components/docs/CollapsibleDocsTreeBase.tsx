@@ -42,7 +42,7 @@ export default function CollapsibleDocsTreeBase({title, icon: Icon, defaultOpen,
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}
-                 className="flex h-full flex-col px-2 sm:min-h-screen [&[data-state=open]_.docsMainTrigger]:rotate-180">
+                 className="flex h-full flex-col px-2 [&[data-state=open]_.docsMainTrigger]:rotate-180">
       <CollapsibleTrigger className="md:hidden">
         <DocsSidebarTitle offset noSeparator extra={
           <ChevronDownIcon

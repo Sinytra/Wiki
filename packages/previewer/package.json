@@ -15,7 +15,7 @@
     "@repo/shared": "workspace:*",
     "directory-tree": "^3.5.2",
     "json-schema-library": "^10.1.2",
-    "next": "^15.4.3"
+    "next": "^15.4.6"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

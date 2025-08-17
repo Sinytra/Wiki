@@ -1,5 +1,5 @@
 import BrowseProjectList from "@/components/navigation/browse/BrowseProjectList";
-import { Suspense, use } from "react";
+import {Suspense, use} from "react";
 import ProjectSearch from "@/components/navigation/browse/BrowseSearch";
 import LoadingContent from "@/components/util/LoadingContent";
 import {setContextLocale} from "@/lib/locales/routing";
