@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/:lang/mod/:project',
+        destination: '/:lang/project/:project/latest',
+        permanent: true
+      },
+      {
         source: '/:lang/mod/:project/docs/:path*',
         destination: '/:lang/project/:project/latest/docs/:path*',
         permanent: true
