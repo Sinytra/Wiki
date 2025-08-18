@@ -19,33 +19,38 @@ Wiki metadata must be placed in a file called `sinytra-wiki.json` inside the doc
 
 ## Format
 
-The following properties are available:
+Available properties are listed below. Those marked with an asterisk (<span className="text-rose-400!">*</span>)
+are **required**.
+
 - `id` <span className="text-rose-400!">*</span>
   - Type: `string`
   - Should be a unique string used to identify your project across the wiki.
   - We recommend using your mod id, or if not available, your CurseForge/Modrinth project slug.
   - May only contain lowercase alphanumeric characters (`a-z0-9`) and hyphens (`-`).<br/>
     Must not begin with a number.
+
 - `platforms` <span className="text-rose-400!">*</span>
   - Type: `string -> string`
   - Map of [slugs](#slug) of your project's distribution platforms.
   - Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
   - At least one platform is required
-- `modid` <span className="text-rose-400!">*</span>
+
+- `modid`
   - Type: `string`
   - In-game mod id, used to identify mod content data
   - Multiple wiki projects may share the same value
+  - Required to make use of [game data](game_data)
+
 - `owners`
   - Type: `string[]`
   - Usernames of wiki accounts authorized to register this project<br/>
     *(currently, these are the lowercase forms of respective GitHub username)*
   - Useful for public repositories to prevent unauthorized users from registering the project on the Wiki
+
 - `versions`
   - Type: `string -> string`
   - A map of additional minecraft versions to git branch names to make available.
   - The default branch can not be included - we'll do that automatically
-
-**required*
 
 ### Finding the project slug [#slug]
 
