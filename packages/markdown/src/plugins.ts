@@ -48,7 +48,7 @@ const allowedNodeTypes = [
   'Program',
   'ExpressionStatement',
   'ObjectExpression', 'ArrayExpression',
-  'Property', 'Literal'
+  'Property', 'Literal', 'Identifier'
 ];
 
 function isAttributeAllowed(attr: MdxJsxAttribute | MdxJsxExpressionAttribute): boolean {
