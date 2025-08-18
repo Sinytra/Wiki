@@ -3,6 +3,7 @@
 import {useState} from "react";
 import {BoxIcon} from "lucide-react";
 import {cn} from "@repo/ui/lib/utils";
+import Image from "next/image";
 
 export default function ImageWithFallback({
                                             src,
@@ -38,10 +39,11 @@ export default function ImageWithFallback({
   return (
     <div className="shrink-0">
       {src && !error &&
-        <img src={src} alt={alt} width={width} height={height} className={className}
-             style={{display: !loading || loaded ? 'block' : 'none'}}
-             onLoad={() => setLoaded(true)}
-             onError={() => setError(true)}
+        <Image src={src} alt={alt || ''} width={width} height={height} className={className}
+               style={{display: !loading || loaded ? 'block' : 'none'}}
+               onLoad={() => setLoaded(true)}
+               onError={() => setError(true)}
+               unoptimized
         />
       }
       {(!src || (loading && !loaded) || error) && <Fallback/>}
