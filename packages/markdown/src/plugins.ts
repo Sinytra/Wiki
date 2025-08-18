@@ -44,6 +44,13 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
   };
 }
 
+const allowedNodeTypes = [
+  'Program',
+  'ExpressionStatement',
+  'ObjectExpression', 'ArrayExpression',
+  'Property', 'Literal'
+];
+
 function isAttributeAllowed(attr: MdxJsxAttribute | MdxJsxExpressionAttribute): boolean {
   if (attr.type !== 'mdxJsxAttribute') {
     return false;
@@ -56,7 +63,7 @@ function isAttributeAllowed(attr: MdxJsxAttribute | MdxJsxExpressionAttribute): 
 
     let disallow = false;
     visitEsTree(attr.value.data.estree, (node) => {
-      if (!['Program', 'ExpressionStatement', 'ArrayExpression', 'Literal'].includes(node.type)) {
+      if (!allowedNodeTypes.includes(node.type)) {
         disallow = true;
       }
     });
