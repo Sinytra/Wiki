@@ -6,7 +6,7 @@ import InlineGameItem from '@/components/InlineGameItem';
 # Content pages
 
 Content pages follow a traditional wiki [layout](https://minecraft.wiki/w/Furnace), and are intended to describe
-**in-game content** *(such as items, block, entities)*, but also various abstract concepts *(e.g. mana, energy...)*.
+**in-game content**, such as *items, block, entities and others*.
 
 <p className="mt-5 space-x-2">
     <InlineGameItem id="grass_block" size={32} />
@@ -62,8 +62,8 @@ level to create "deep" categories.
 
 ## Authoring
 
-Content pages are traditionally focused on describing a specific object or concept rather than providing broader
-tutorials. These descriptions often include technical information, such as IDs, stats and relations.
+Content pages are traditionally focused on describing a specific object rather than providing broader tutorials.
+These descriptions often include technical information, such as IDs, stats and relations.
 
 This is where the Wiki becomes a huge helper. It saves you time doing the boring work of *copy-pasting reference values*
 from the game and gives you the ability to **reuse locales, recipes, tags** and other data files from your project to be
@@ -106,11 +106,11 @@ It also shows how in-game data files are referenced by content pages and by exte
 ## Metadata
 
 <Callout type="important">
-    Make sure to always specify the `id` attribute for pages covering in-game objects!
+    Make sure to always specify the `id` attribute for content pages!
 </Callout>
 
-Pages covering in-game content **must** specify the object's in-game `id` in frontmatter attributes. This is
-crucial to interact with game data files in the project.
+Content pages **must** always specify the object's in-game `id` in frontmatter attributes.
+This is crucial to interact with game data files in the project.
 
 By default, this ID doubles as the location of the page icon, which is sourced from [assets](../assets).
 
@@ -191,32 +191,4 @@ These general modules have the following effects:
   is able to store
 
 <PrefabUsage />
-```
-
-### Describing a concept
-
-Below is a simple example of describing a mechanism or system your mod adds to the game.
-In our case, this is Fortron energy provided by [Modular Force Field Systems](https://modrinth.com/mod/mffs).
-
-As Fortron does not exist as an in-game item, we've omitted the `id` attribute and specified the page icon explicitly.
-
-```mdx
----
-icon: mffs:misc/fortron
-type: other
----
-
-# Fortron
-
-Fortron is a form of energy that MFFS machines use as a source of power.
-
-It is produced and stored initially by the [](@mffs:coercion_deriver)
-to then be transferred to other machines by the [](@mffs:fortron_capacitor).
-
-Another source of Fortron energy is a creative-only item known as the
-Infinite Power Card. It can be placed directly into a Fortron Capacitor
-(left most item slot) to provide an infinite supply of Fortron.
-
-Fortron is able to exist as a liquid. It may be pumped directly from
-a Capacitor and manipulated in the same way Water or Lava can.
 ```
