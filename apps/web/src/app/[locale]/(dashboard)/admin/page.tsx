@@ -5,6 +5,9 @@ import Asset from "@/components/docs/shared/asset/Asset";
 import {PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon} from "lucide-react";
 import {ReactNode} from "react";
 import {handleApiCall} from "@/lib/service/serviceUtil";
+import {RevalidateCacheModal} from "@/components/admin/modal/RevalidateCacheModal";
+import {handleRevalidateCacheTag} from "@/lib/forms/actions";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 export const dynamic = 'force-dynamic';
 
@@ -17,10 +20,10 @@ interface Props {
 function AdminHeader() {
   return (
     <div className={`
-      flex w-full flex-row justify-between rounded-sm border border-secondary-dim bg-primary-alt p-2 shadow-sm
+      flex w-full flex-row justify-between rounded-sm border border-secondary-dim bg-primary-alt px-4 py-2.5 shadow-sm
     `}>
-      <span className="flex flex-row items-center gap-2 text-lg">
-        <WrenchIcon className="size-5" />
+      <span className="flex flex-row items-center gap-2 text-base">
+        <WrenchIcon className="size-4.5" />
         System configuration
       </span>
 
@@ -103,6 +106,20 @@ export default async function AdminPanelHome(props: Props) {
             <UsersIcon width={18} height={18} />
           }
         />
+      </div>
+
+      <hr />
+
+      <div className="space-y-2">
+        <p>Utilities</p>
+
+        <div>
+          <ClientLocaleProvider
+            keys={['RevalidateCacheModal', 'FormActions', 'SubmitButton']}
+          >
+            <RevalidateCacheModal formAction={handleRevalidateCacheTag} />
+          </ClientLocaleProvider>
+        </div>
       </div>
     </div>
   )
