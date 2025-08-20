@@ -71,7 +71,7 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
       <div className="max-h-0 overflow-hidden transition-all group-data-[state=open]:max-h-96">
         <div className="flex flex-col gap-2 p-2 pt-1">
           <span className={cn('text-sm', activeLevel.fg)}>
-            {u('no_page_title')}
+            {u(issue.subject)}
           </span>
 
           <pre className="my-2 text-xsm text-secondary-alt">

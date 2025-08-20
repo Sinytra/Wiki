@@ -879,6 +879,7 @@
         "invalid_version_branch": "Version branch does not exist",
         "missing_platform_project": "Missing platform project",
         "no_page_title": "Page is missing title",
+        "missing_required_attribute": "Page is missing a required metadata attribute",
         "unknown": "Unknown error"
     },
     "AdminReports": {
