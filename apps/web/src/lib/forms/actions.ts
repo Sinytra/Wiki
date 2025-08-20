@@ -4,12 +4,12 @@ import {
   createAccessKeySchema,
   projectEditSchema,
   projectRegisterSchema,
-  projectReportSchema,
+  projectReportSchema, revalidateCacheSchema,
   ruleProjectReportSchema
 } from "@/lib/forms/schemas";
 import cacheUtil from "@/lib/cacheUtil";
 import authSession from "@/lib/authSession";
-import {revalidatePath} from "next/cache";
+import {revalidatePath, revalidateTag} from "next/cache";
 import {redirect} from "next/navigation";
 import authApi from "@/lib/service/api/authApi";
 import devProjectApi from "@/lib/service/api/devProjectApi";
@@ -196,6 +196,20 @@ export async function handleDeleteDeploymentForm(id: string) {
   if (!response.success) {
     return response;
   }
+
+  return {success: true};
+}
+
+export async function handleRevalidateCacheTag(rawData: any) {
+  const validatedFields = revalidateCacheSchema.safeParse(rawData)
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
+
+  revalidateTag(validatedFields.data.tag);
 
   return {success: true};
 }

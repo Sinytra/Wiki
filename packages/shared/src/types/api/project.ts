@@ -27,8 +27,8 @@ export type ProjectIssueType = 'meta' | 'file' | 'git_clone' | 'git_info' | 'pag
 
 export type ProjectError = 'requires_auth' | 'no_repository' | 'repo_too_large' | 'no_branch' | 'no_path'
   | 'invalid_meta' | 'invalid_page' | 'duplicate_page' | 'unknown_recipe_type' | 'invalid_ingredient'
-  | 'invalid_file' | 'invalid_format'
-  | 'missing_platform_project'
+  | 'invalid_file' | 'invalid_format' | 'invalid_resloc' | 'invalid_version_branch'
+  | 'missing_platform_project' | 'no_page_title'
   | 'unknown';
 
 export type ProjectIssueStats = Record<ProjectIssueLevel, number>;

@@ -23,16 +23,17 @@ Create the directory where your documentation will be located and learn about th
     Inside the newly created directory, create a file named [`sinytra-wiki.json`](folder_structure/wiki_meta),
     which is used to provide basic information about the project.
 
-    Inside, define the following **required** properties:
-    - `id`
+    Inside, define the following properties:
+    - `id`*
       - Should be a unique string used to identify your project across the wiki.
       - We recommend using your mod id, or if not available, your CurseForge/Modrinth project slug.
-    - `modid`
-      - In-game mod id, used to identify mod content data
-      - Multiple wiki projects may share the same value
-    - `platforms`
+    - `platforms`*
       - Map of slugs of your project's distribution platforms.
       - Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
+    - `modid` (optional)
+      - In-game mod id, used to identify mod content data
+      - Multiple wiki projects may share the same value
+      - Required to make use of [game data](folder_structure/game_data)
 
     <details>
         <Summary>Where do I find the project slug?</Summary>

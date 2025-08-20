@@ -2,10 +2,11 @@ import {defineRouting} from "next-intl/routing";
 import {createNavigation} from "next-intl/navigation";
 import {setRequestLocale} from "next-intl/server";
 import locales from "@repo/shared/locales";
+import {DEFAULT_LOCALE} from "@repo/shared/constants";
 
 export const routing = defineRouting({
   locales: locales.getNextIntlLocales(),
-  defaultLocale: 'en',
+  defaultLocale: DEFAULT_LOCALE,
   localePrefix: {
     mode: 'always',
     prefixes: locales.getPathPrefixes()

@@ -43,3 +43,7 @@ export const createAccessKeySchema = z.object({
   name: requiredString,
   days_valid: z.coerce.number<any>().min(0).max(365).optional()
 });
+
+export const revalidateCacheSchema = z.object({
+  tag: requiredString
+});
