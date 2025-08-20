@@ -1,6 +1,7 @@
 import metadataJsonSchema from './schemas/sinytra-wiki.schema.json';
 import folderMetadataJsonSchema from './schemas/_meta.schema.json';
 import {compileSchema, JsonSchema, SchemaNode, JsonError} from 'json-schema-library';
+import {NO_FOLDER_ICON} from '@repo/shared/constants';
 
 // _meta.json
 export type RawDocumentationFolderMetadata = Record<string, string | DocumentationFolderMetadataEntry>;
@@ -21,8 +22,15 @@ function parseFolderMetadata(source: string): DocumentationFolderMetadata {
   return Object.keys(validated)
     .reduce((obj, key) => {
       const value = validated[key];
+      const newValue = typeof value === 'object' ? value : {name: value};
+
+      if ('icon' in newValue && newValue['icon'] === null) {
+        newValue.icon = NO_FOLDER_ICON;
+      }
+
       // @ts-expect-error assign
-      obj[key] = typeof value === 'object' ? value : {name: value};
+      obj[key] = newValue;
+
       return obj;
     }, {});
 }

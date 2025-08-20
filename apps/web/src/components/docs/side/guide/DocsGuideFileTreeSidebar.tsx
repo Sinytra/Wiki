@@ -36,7 +36,7 @@ async function DocsFileTree({slug, version, tree, level}: { slug: string; versio
   return tree.map(file => {
     if (file.type == 'dir') {
       // @ts-expect-error icon
-      const Icon = file.icon === null || file.icon === NO_FOLDER_ICON ? null : ((file.icon ? LucideReact[file.icon] : defaultIcon) || defaultIcon);
+      const Icon = file.icon === NO_FOLDER_ICON ? null : ((file.icon ? LucideReact[file.icon] : defaultIcon) || defaultIcon);
 
       return (
         <DocsFileTreeFolder key={file.path} name={file.name} path={file.path} level={level}
