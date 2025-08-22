@@ -1,26 +1,24 @@
 'use client'
 
 import {LinkIcon} from "lucide-react";
+import {cn} from "@repo/ui/lib/utils";
+import {ComponentPropsWithoutRef} from "react";
 
-export default function LinkAwareHeading(props: any) {
+type LinkAwareHeadingProps = ComponentPropsWithoutRef<'h2'> & { id?: string };
+
+export default function LinkAwareHeading(props: LinkAwareHeadingProps) {
   const id = props.id;
 
-  const Base = (
-    <h2 {...props}>
-      {props.children}
-    </h2>
-  )
-
-  if (!id) {
-    return Base;
-  }
-
   return (
-    <div className="group relative">
-      <a href={`#${id}`} className="absolute -left-7 z-50 pr-2 opacity-0 group-hover:opacity-100 hover:opacity-100">
-        <LinkIcon className="mt-1.5 h-5 w-5 text-primary" />
-      </a>
-      {Base}
-    </div>
+    <h2 {...{...props, className: undefined}} className={cn(props.className, 'group')}>
+      {props.children}
+      {id &&
+        <a href={`#${id}`} className={`
+          inline-block pl-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:opacity-100
+        `}>
+            <LinkIcon className="h-5 w-5 text-primary"/>
+        </a>
+      }
+    </h2>
   );
 }

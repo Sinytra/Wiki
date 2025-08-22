@@ -14,7 +14,7 @@ async function BoundPrefabUsage({ctx}: { ctx: ProjectContext | ProjectContentCon
 
   return (
     <div>
-      <LinkAwareHeading>
+      <LinkAwareHeading id="usage">
         {t('usage')}
       </LinkAwareHeading>
 
