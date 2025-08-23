@@ -51,7 +51,7 @@ export default async function RecipeUsage({id, ctx}: Props) {
   return (
     <div className="flex flex-col gap-3">
       <span>
-        {t('description')}
+        {t(rendered.length > 0 ? 'description' : 'empty')}
       </span>
 
       <div className="columns-[20em]">

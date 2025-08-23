@@ -893,7 +893,8 @@
         "more": "Show more ..."
     },
     "RecipeUsage": {
-        "description": "Can be used to create the following items:"
+        "description": "Can be used to create the following items:",
+        "empty": "Has no known usages in crafting."
     },
     "ContentCategory": {
         "all": "All",
