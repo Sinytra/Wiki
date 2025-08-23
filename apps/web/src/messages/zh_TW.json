@@ -1,239 +1,239 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest",
+        "local": "本機",
+        "latest": "最新",
         "admin": "Admin"
     },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
         "title_short": "Wiki",
         "badge": {
-            "preview": "PREVIEW MODE",
-            "beta": "Beta"
+            "preview": "預覽模式",
+            "beta": "Beta 版"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "首頁",
+            "browse": "瀏覽",
+            "about": "關於"
         }
     },
     "NavigationFooter": {
         "title": "Modded Minecraft Wiki",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "導覽",
+                "home": "首頁",
+                "browse": "瀏覽",
+                "dev": "開發人員"
             },
             "links": {
-                "title": "Links"
+                "title": "連結"
             },
             "resources": {
-                "title": "Resources",
-                "blog": "Blog",
-                "status": "Status",
-                "translate": "Help us translate"
+                "title": "資源",
+                "blog": "部落格",
+                "status": "狀態",
+                "translate": "協助我們翻譯"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "關於",
+                "tos": "服務條款",
+                "privacy": "隱私權政策",
+                "contact": "聯絡我們"
             }
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "歡迎使用 <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "您探索、建立和貢獻 Minecraft 相關專案的首選資源。",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "熱門 Wiki",
+            "open": "閱讀更多",
+            "disclaimer": "這些專案是根據其透過瀏覽次數統計所顯示的受歡迎程度來突顯的，且並未獲得 Modded Minecraft Wiki 的官方認可。"
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "加入我們的社群",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "使用者",
+                "subtitle": "探索我們的精選專案，並體驗以下優點：",
+                "docs": "取得高品質、即時更新且區分版本的文件",
+                "contribute": "即使不懂程式設計，也能參與專案貢獻",
+                "ui": "在所有專案中，都能享有一致且使用者友善的介面。",
+                "localization": "受益於多語言支援"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
+                "title": "作者",
+                "subtitle": "取得專案儀表板的存取權，並體驗以下優點：",
+                "vcs": "您的文件版本控制支援",
                 "components": "Built-in components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "gradle": "Gradle 整合，帶來無縫的工作流程",
+                "management": "進階專案管理工具",
+                "interaction": "與您的使用者群直接互動",
+                "dashboard": "開啟儀表板",
+                "guide": "閱讀更多"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "瀏覽專案",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "在地化",
+                "desc": "讓文件走向世界"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "無障礙",
+                "desc": "直覺且反應靈敏的使用者介面"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "開放",
+                "desc": "讓使用者共同參與，無需任何程式設計知識"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "免費",
+                "desc": "在我們的網站上託管文件完全免費！"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "關於我們",
+            "maintainers": "這個 Wiki 是由 <0>Sinytra</0> 建立及維護，他們是由一群充滿熱忱的開發人員組成的專門團隊，致力於為 Minecraft 模組社群提供高品質、自由且開放原始碼的軟體。",
+            "mission": "我們的目標是協助模組製作者和玩家，提供他們所需的工具與資源，以便創造、記錄並探索經由模組改造的 Minecraft 所帶來的無限可能。"
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "部落格文章",
+            "open": "閱讀更多"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "瀏覽專案",
+            "search_filters": "搜尋篩選...",
+            "categories": "分類"
         },
-        "sorting": "Sort by",
+        "sorting": "排序依據",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "相關度",
+            "creation_date": "建立日期",
+            "popularity": "熱門程度",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
-        "no_results": "Search query returned no results!"
+        "search": "搜尋專案...",
+        "clear_filter": "清除篩選器",
+        "no_results": "搜尋查詢沒有結果！"
     },
     "SearchProjectTypes": {
-        "mod": "Mods",
-        "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "mod": "模組",
+        "modpack": "模組包",
+        "resourcepack": "資源包",
+        "datapack": "資料包",
+        "shader": "光影包",
+        "plugin": "插件"
     },
     "ProjectTypes": {
-        "mod": "Mod",
-        "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
-        "shader": "Shader",
-        "plugin": "Plugin"
+        "mod": "模組",
+        "modpack": "模組包",
+        "resourcepack": "資源包",
+        "datapack": "資料包",
+        "shader": "光影包",
+        "plugin": "插件"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "載入中..."
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
-        "about": "About",
+        "title": "導覽",
+        "about": "關於",
         "devs": "Author guide",
         "components": "Components",
-        "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
-        "security": "Security Notice"
+        "help": "取得協助",
+        "tos": "使用規定",
+        "privacy": "隱私權政策",
+        "security": "安全性通知"
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "需要登入",
+        "desc": "您嘗試存取的頁面需要登入。",
+        "prompt": "請使用您的 GitHub 帳號繼續。",
+        "button": "使用 GitHub 登入"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
+        "title": "預覽模式已啟用",
+        "desc": "預覽模式會啟用最小的使用者介面，讓您可以在發布前專注於在本機撰寫文件草稿。",
+        "roots": "可用的本機文件根目錄",
+        "open": "開啟"
     },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "專案資訊",
+        "type": "類型",
+        "author": "作者",
+        "tags": "標籤",
         "latest": {
-            "title": "Latest version",
+            "title": "最新版本",
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "授權條款",
+            "custom": "自訂",
+            "unknown": "未知",
+            "arr": "版權所有"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
+        "adventure": "冒險",
+        "cursed": "惡搞",
+        "decoration": "裝飾",
+        "economy": "經濟",
+        "equipment": "裝備",
+        "food": "食物",
+        "game-mechanics": "遊戲機制",
+        "library": "程式庫",
+        "magic": "魔法",
+        "management": "管理",
+        "minigame": "小遊戲",
+        "mobs": "生物",
+        "optimization": "最佳化",
+        "social": "社交",
+        "storage": "儲物",
+        "technology": "科技",
+        "transportation": "運輸",
+        "utility": "便利工具",
+        "worldgen": "世界生成",
+        "server-utility": "伺服器實用工具",
+        "armor-weapons-tools": "盔甲、工具和武器",
+        "library-api": "API 和程式庫",
+        "adventure-rpg": "冒險和 RPG",
+        "world-gen": "世界生成",
+        "cosmetic": "外觀",
+        "mc-food": "食物",
+        "performance": "效能",
+        "map-information": "地圖和資訊",
+        "bug-fixes": "錯誤修正",
         "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "education": "教育",
+        "mc-miscellaneous": "其他",
+        "redstone": "紅石",
+        "utility-qol": "便利工具與生活品質",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "Report this page",
+        "edit_gh": "編輯這個頁面",
+        "report": "檢舉這個頁面",
         "report_button": "Report page",
-        "last_updated": "Last updated: <date></date>"
+        "last_updated": "上次更新時間：<date></date>"
     },
     "Report": {
-        "title": "Report a documentation page",
+        "title": "檢舉文件頁面",
         "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
         "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
-        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
-        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "confidential": "我們很重視您的隱私，這些資訊會永遠保密。",
+        "privacy": "如需詳細資訊，請參閱我們的《<link>隱私權政策</link>》。",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "專案 ID",
+                "desc": "被檢舉的專案 ID。"
             },
             "path": {
-                "title": "Page path",
-                "desc": "Reported documentation page path."
+                "title": "頁面路徑",
+                "desc": "被檢舉的文件頁面路徑。"
             },
             "locale": {
                 "title": "Locale",
@@ -246,43 +246,43 @@
                 "placeholder": "N/A"
             },
             "reason": {
-                "title": "Reason*",
+                "title": "原因*",
                 "placeholder": "Select a reason for reporting this content",
                 "desc": "Reason for reporting this content.",
-                "dislike": "I just don't like it"
+                "dislike": "我不喜歡它"
             },
             "details": {
-                "title": "Details*",
+                "title": "詳細資訊*",
                 "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "desc": "關於這個問題的額外詳細資訊。"
             },
             "dislike": {
                 "title": "We understand that you may not like this content, and that's totally okay!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
+                "desc": "但很遺憾的是，這不是檢舉專案的有效理由。",
                 "suggestion": "Would you like to look for something else to explore instead?",
-                "explore": "Explore projects"
+                "explore": "瀏覽專案"
             },
-            "success": "Report submitted successfully"
+            "success": "檢舉提交成功"
         }
     },
     "ProjectReportReason": {
-        "spam": "Spam",
-        "copyright": "Copyright Infringement",
-        "content_rules": "Violates Content Rules",
-        "tos": "Violates Terms of Service",
-        "unknown": "Unknown"
+        "spam": "垃圾內容",
+        "copyright": "侵犯版權",
+        "content_rules": "違反《內容規範》",
+        "tos": "違反《服務條款》",
+        "unknown": "未知"
     },
     "ProjectReportStatus": {
         "new": "New",
         "dismissed": "Dismissed",
         "accepted": "Accepted",
-        "unknown": "Unknown"
+        "unknown": "未知"
     },
     "ProjectReportType": {
         "project": "Project",
         "docs": "Docs page",
         "content": "Content page",
-        "unknown": "Unknown"
+        "unknown": "未知"
     },
     "ViewReportPage": {
         "reports": "Reports",
@@ -290,13 +290,13 @@
         "desc": "Viewing report details for {id}",
         "details": {
             "reporter": "Reported by",
-            "project_id": "Project ID",
+            "project_id": "專案 ID",
             "path": "Path",
             "body": "Body",
-            "reason": "Reason",
+            "reason": "原因",
             "created_at": "Created at",
-            "status": "Status",
-            "type": "Type",
+            "status": "狀態",
+            "type": "類型",
             "locale": "Locale",
             "version": "Version"
         },
@@ -310,99 +310,99 @@
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "提交"
     },
     "Callout": {
-        "default": "Heads up!",
+        "default": "注意！",
         "info": "Info",
         "warning": "Warning",
         "danger": "Danger"
     },
     "ProjectRegisterForm": {
         "button": "New Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "title": "登錄專案",
+        "desc": "向 Wiki 登錄一個新專案。",
         "repo": {
             "title": "Repository URL",
             "desc": "This is the address you use to clone your repository.",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
-            "title": "Branch",
-            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+            "title": "分支",
+            "desc": "主要分支參考。您可以在中繼資料檔案中指定要包含的其他分支。"
         },
         "path": {
-            "title": "Path to documentation root",
-            "desc": "Path to the folder containing the metadata file."
+            "title": "文件根目錄的路徑",
+            "desc": "包含中繼資料檔案的資料夾路徑。"
         },
-        "admin": "Wiki admin settings",
+        "admin": "Wiki 管理員設定",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "社群維護的專案"
         },
         "errors": {
-            "details": "Show details"
+            "details": "顯示詳細資訊"
         },
         "connect_modrinth": {
             "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
             "settings": "Open Settings"
         },
-        "submit": "Submit",
+        "submit": "提交",
         "success": {
-            "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's docs page"
+            "title": "專案登錄成功",
+            "desc": "您現在可以導覽至專案的文件頁面"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "提交中...",
+        "verify_modrinth": "使用 Modrinth 驗證"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
+        "title": "編輯專案",
+        "desc": "編輯現有專案的設定。",
         "button": "Settings",
         "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's docs page"
+            "title": "專案更新成功",
+            "desc": "您現在可以導覽至已更新的專案的文件頁面"
         }
     },
     "ProjectDeleteForm": {
         "trigger": "Delete project",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "title": "您確定嗎？",
+        "desc": "這項操作無法復原。這會永久刪除您的專案，並從我們的伺服器中移除所有相關資料。",
+        "cancel": "取消",
+        "submit": "刪除",
+        "success": "專案已成功刪除"
     },
     "FormActions": {
         "errors": {
             "unauthorized": "User authentication error",
-            "internal": "Internal Server Error, please try again later.",
+            "internal": "內部伺服器錯誤，請稍後再試。",
             "unknown": "An unknown error has occurred, please try again later.",
-            "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
+            "no_platforms": "中繼資料中未定義任何平台專案。",
+            "no_project": "找不到平台專案。請確認中繼資料的「slug」欄位正確。",
             "unsupported_type": "Unsupported project type",
-            "ownership": "Failed to verify project ownership",
-            "cf_unavailable": "Registering CurseForge projects is not active",
+            "ownership": "無法驗證專案擁有權",
+            "cf_unavailable": "CurseForge 專案登錄尚未啟用",
             "requires_auth": "Repository connection requires login credentials but none were provided",
             "no_repository": "Repository not found",
             "no_branch": "Invalid branch specified",
             "no_path": "Metadata file not found at specified path",
-            "invalid_meta": "Metadata file is invalid",
-            "unsupported": "Not yet implemented",
-            "exists": "Project already exists.",
-            "not_found": "Project does not exist",
+            "invalid_meta": "中繼資料檔案無效",
+            "unsupported": "尚未實作",
+            "exists": "專案已存在。",
+            "not_found": "專案不存在",
             "illegal_id": "Illegal project ID",
             "not_owner": "User is not authorized to register this project"
         }
     },
     "CommunityBadge": {
-        "title": "Community",
-        "desc": "Unofficial documentation maintained by the community"
+        "title": "社群",
+        "desc": "由社群維護的非官方文件"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
-        "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the project author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "title": "我們找不到這個頁面",
+        "desc": "目前無法使用所請求的文件頁面。",
+        "suggestion": "請稍後再試，或向專案作者回報這個問題。",
+        "submit": "提交問題",
+        "return": "返回首頁"
     },
     "GetStartedButton": {
         "title": "Create your first project"
@@ -417,7 +417,7 @@
             "title": "Description"
         },
         "navigation": {
-            "title": "Navigation",
+            "title": "導覽",
             "docs": {
                 "title": "Browse documentation",
                 "desc": "{pages} pages available."
@@ -428,60 +428,60 @@
             }
         },
         "links": {
-            "title": "Links",
+            "title": "連結",
             "website": "Website",
             "source_code": "Source code"
         },
         "license": {
-            "title": "Licenses",
+            "title": "授權條款",
             "project": "Project License",
-            "arr": "All Rights Reserved",
-            "unknown": "Unknown",
+            "arr": "版權所有",
+            "unknown": "未知",
             "wiki": "Wiki License",
             "default": "Wiki content <link>partially made available</link> under the <license></license> license."
         }
     },
     "ProjectDocsHomepage": {
-        "title": "Home"
+        "title": "首頁"
     },
     "DocsHomepagePlaceholder": {
-        "title": "Homepage placeholder",
-        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
-        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+        "title": "首頁預留位置",
+        "subtitle": "由於 API 限制，在本機環境中無法取得 CurseForge 專案的中繼資料。",
+        "replace": "別擔心！部署到線上 Wiki 網站後，我們會將這個預留位置替換為專案的實際描述。"
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "placeholder": "搜尋 Wiki 內容...",
+        "no_results": "找不到結果！",
+        "loading": "正在尋找最完美的結果...",
+        "results": "顯示 <highlight>{count}</highlight> / <highlight>{total}</highlight> 個結果",
+        "close": "<kbd>ESC</kbd> 關閉"
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "變更記錄"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Home"
+        "title": "文件",
+        "homepage": "首頁"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "條目資訊"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "本頁內容"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version",
-        "latest": "Latest"
+        "placeholder": "選擇版本",
+        "latest": "最新"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "以及其他 {count} 個"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "搜尋語言...",
+        "no_results": "找不到語言。"
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
+        "unknown": "未知",
         "loading": "Initializing",
         "healthy": "Loaded",
         "at_risk": "Requires attention",
@@ -493,12 +493,12 @@
         },
         "empty": {
             "primary": "Looks like you haven't created any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "secondary": "請先閱讀我們的<guide>作者指南</guide>開始。"
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "首頁"
         },
         "toolbar": {
             "view": "View",
@@ -511,7 +511,7 @@
         "source": {
             "title": "Project Source",
             "repo": "Repository",
-            "branch": "Branch",
+            "branch": "分支",
             "path": "Path",
             "public": "Public"
         },
@@ -523,13 +523,13 @@
                 "slug": "Slug / ID",
                 "link": "Link"
             },
-            "open": "Open"
+            "open": "開放"
         },
         "information": {
-            "title": "Information",
+            "title": "資訊",
             "desc": "Resolved information",
-            "type": "Type",
-            "status": "Status",
+            "type": "類型",
+            "status": "狀態",
             "created_at": "Created at"
         },
         "revision": {
@@ -559,7 +559,7 @@
         "title": "Project members",
         "desc": "Manage project members & permissions",
         "roles": {
-            "owner": "Owner"
+            "owner": "擁有者"
         },
         "actions": {
             "manage": "Manage"
@@ -582,7 +582,7 @@
         "show": "Show",
         "unloaded": "Not loaded",
         "waiting": "Waiting for server...",
-        "loading": "Loading...",
+        "loading": "載入中...",
         "error": "Error loading logs",
         "toast": {
             "success": "Project setup complete",
@@ -594,13 +594,13 @@
             "personal": "Personal"
         },
         "groups": {
-            "projects": "Projects",
+            "projects": "專案",
             "platform": "Platform",
             "admin": "Administration"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
+            "projects": "專案",
+            "documentation": "文件",
             "settings": "Settings",
             "admin": "System settings"
         }
@@ -611,14 +611,14 @@
     "DevSidebarUser": {
         "logout": {
             "button": "Log out",
-            "title": "Logout",
+            "title": "登出",
             "desc": "Logging out..."
         },
         "unknown_avatar": "N/A"
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
+            "home": "首頁",
             "settings": "Settings"
         },
         "profile": {
@@ -646,7 +646,7 @@
             "delete_modal": {
                 "title": "Delete account",
                 "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
+                "cancel": "取消",
                 "button": "Delete forever"
             }
         },
@@ -689,9 +689,9 @@
             "members": "Members",
             "deployments": "Deployments",
             "health": "Health",
-            "versions": "Versions",
+            "versions": "版本",
             "content": "Items",
-            "tags": "Tags",
+            "tags": "標籤",
             "recipes": "Recipes"
         }
     },
@@ -703,7 +703,7 @@
     },
     "AdminSidebar": {
         "groups": {
-            "home": "Home",
+            "home": "首頁",
             "data": "Data",
             "system": "System",
             "moderation": "Moderation"
@@ -713,8 +713,8 @@
             "data_imports": "Data Imports",
             "access_keys": "Access Keys",
             "migrations": "Migrations",
-            "users": "Users",
-            "projects": "Projects",
+            "users": "使用者",
+            "projects": "專案",
             "config": "Configuration",
             "reports": "Reports",
             "audit_log": "Audit Log",
@@ -739,8 +739,8 @@
         "next": "Next"
     },
     "DevProjectVersionsTable": {
-        "name": "Name",
-        "branch": "Branch",
+        "name": "名稱",
+        "branch": "分支",
         "empty": {
             "title": "No additional versions were found in your project.",
             "desc": "Read the <link>author guide</link> to learn more about project versioning."
@@ -749,7 +749,7 @@
     "DevProjectItemsTable": {
         "icon": "Icon",
         "id": "Identifier",
-        "name": "Name",
+        "name": "名稱",
         "path": "Page path (internal)",
         "actions": {
             "open": "Open menu",
@@ -769,7 +769,7 @@
         }
     },
     "DevProjectRecipesTable": {
-        "type": "Type",
+        "type": "類型",
         "id": "Identifier",
         "empty": {
             "title": "No recipes were found in your project."
@@ -791,7 +791,7 @@
         "commit": "Commit",
         "created_at": "Deploy time",
         "user_id": "Deployed by",
-        "status": "Status"
+        "status": "狀態"
     },
     "DeploymentStatus": {
         "unknown": "N/A",
@@ -801,11 +801,11 @@
         "error": "Failed"
     },
     "DeleteDeploymentModal": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
+        "trigger": "刪除",
+        "title": "您確定嗎？",
         "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
+        "cancel": "取消",
+        "submit": "刪除",
         "success": "Deployment deleted successfully"
     },
     "DeployProjectModal": {
@@ -813,9 +813,9 @@
         "title": "New deployment",
         "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
         "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "tertiary": "為了您的方便，我們建議您在發布後使用我們的 <link>Gradle 延伸模組</link>自動重新驗證文件",
         "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Cancel",
+        "cancel": "取消",
         "submit": "Deploy"
     },
     "LiveProjectDeployConnection": {
@@ -845,7 +845,7 @@
     "ProjectIssueLevel": {
         "warning": "Warning",
         "error": "Error",
-        "unknown": "Unknown"
+        "unknown": "未知"
     },
     "ProjectIssueType": {
         "meta": "Invalid project metadata",
@@ -868,7 +868,7 @@
         "repo_too_large": "Repository exceeds allowed file size",
         "no_branch": "Invalid branch specified",
         "no_path": "Metadata file not found at specified path",
-        "invalid_meta": "Metadata file is invalid",
+        "invalid_meta": "中繼資料檔案無效",
         "invalid_page": "Failed to render page contents",
         "duplicate_page": "Duplicate page",
         "unknown_recipe_type": "Unknown recipe type",
@@ -876,7 +876,10 @@
         "invalid_file": "Failed to parse file",
         "invalid_format": "Invalid file format",
         "invalid_resloc": "Invalid Resource Location",
+        "invalid_version_branch": "Version branch does not exist",
         "missing_platform_project": "Missing platform project",
+        "no_page_title": "Page is missing title",
+        "missing_required_attribute": "Page is missing a required metadata attribute",
         "unknown": "Unknown error"
     },
     "AdminReports": {
@@ -895,7 +898,7 @@
     },
     "ContentCategory": {
         "all": "All",
-        "other": "Other"
+        "other": "其他"
     },
     "ContentChangelog": {
         "toggle": "Show changelog"
@@ -906,14 +909,14 @@
             "false": "No"
         },
         "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
+            "block": "方塊",
+            "item": "物品",
+            "other": "其他"
         },
         "properties": {
             "id": "ID",
             "source_mod": "Source mod",
-            "type": "Type",
+            "type": "類型",
             "stack_size": "Stack size",
             "required_tool": "Tool",
             "blast_resistance": "Blast resistance",
@@ -922,7 +925,7 @@
         }
     },
     "DocsLink": {
-        "not_found": "(Not found)"
+        "not_found": "(找不到)"
     },
     "AdminAccessKeys": {
         "title": "System access keys",
@@ -933,7 +936,7 @@
         "desc": "New system access key",
         "button": "Create",
         "name": {
-            "title": "Name",
+            "title": "名稱",
             "desc": "Give your key a name",
             "placeholder": "Deploy staging"
         },
@@ -941,8 +944,8 @@
             "title": "Days of validity",
             "desc": "Number of days the key is valid for. Use 0 for no expiration."
         },
-        "submit": "Submit",
-        "submitting": "Submitting..."
+        "submit": "提交",
+        "submitting": "提交中..."
     },
     "SaveAccessKeyModal": {
         "title": "Access Key",
@@ -956,8 +959,8 @@
         "title": "Delete Access Key",
         "desc": "Invalidate and delete access key",
         "body": "This will forever delete the access key <name></name>.",
-        "cancel": "Cancel",
-        "submit": "Delete",
+        "cancel": "取消",
+        "submit": "刪除",
         "success": "Access Key deleted successfully"
     },
     "CopyButton": {
@@ -966,5 +969,15 @@
     "InteractiveComponentPlaceholder": {
         "title": "Content unavailable in preview mode",
         "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
+    },
+    "RevalidateCacheModal": {
+        "title": "Revalidate cache tag",
+        "desc": "Manually revalidate a cache tag. Used for diagnostic purposes.",
+        "button": "Revalidate cache tag",
+        "tag": {
+            "title": "Cache Tag",
+            "desc": "The cache tag to revalidate"
+        },
+        "success": "Cache tag invalidated successfully"
     }
 }

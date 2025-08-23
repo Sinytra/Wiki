@@ -1,20 +1,20 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest",
+        "local": "Lokal",
+        "latest": "Neuste",
         "admin": "Admin"
     },
     "NavigationHeader": {
         "title": "Modded Minecraft Wiki",
         "title_short": "Wiki",
         "badge": {
-            "preview": "PREVIEW MODE",
+            "preview": "VORSCHAUMODUS",
             "beta": "Beta"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "Startseite",
+            "browse": "Durchsuchen",
+            "about": "Über uns"
         }
     },
     "NavigationFooter": {
@@ -22,587 +22,587 @@
         "links": {
             "navigation": {
                 "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "home": "Startseite",
+                "browse": "Durchsuchen",
+                "dev": "Entwickler"
             },
             "links": {
                 "title": "Links"
             },
             "resources": {
-                "title": "Resources",
+                "title": "Ressourcen",
                 "blog": "Blog",
                 "status": "Status",
-                "translate": "Help us translate"
+                "translate": "Hilf uns übersetzen"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "Über uns",
+                "tos": "Nutzungsbedingungen",
+                "privacy": "Datenschutzerklärung",
+                "contact": "Kontakt"
             }
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "Willkommen im <highlight>Modded Minecraft Wiki</highlight>",
+        "subtitle": "Deine Anlaufstelle, um Minecraft-bezogene Projekte zu entdecken, zu erstellen und an ihnen mitzuwirken.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "Beliebte Wikis",
+            "open": "Mehr erfahren",
+            "disclaimer": "Diese Projekte werden anhand ihrer Beliebtheit über die Aufrufstatistiken hervorgehoben und werden nicht offiziell vom Modded Minecraft Wiki unterstützt."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "Werde Teil unserer Community",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "Benutzer",
+                "subtitle": "Entdecke unsere vorgestellten Projekte und genieße diese Vorteile:",
+                "docs": "Greife auf hochwertige, aktuelle und versionierte Dokumentationen zu",
+                "contribute": "Trage zu Projekten bei, auch ohne Programmierkenntnisse",
+                "ui": "Profitiere von einer einheitlichen, benutzerfreundlichen Oberfläche bei allen Projekten",
+                "localization": "Profitiere von mehrsprachiger Unterstützung"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
-                "components": "Built-in components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "title": "Autoren",
+                "subtitle": "Erhalte Zugriff auf das Projekt-Dashboard und genieße diese Vorteile:",
+                "vcs": "Versionierung für deine Dokumentation",
+                "components": "Integrierte Bausteine für Rezepte, Assets usw.",
+                "gradle": "Gradle-Integration für einen nahtlosen Arbeitsablauf",
+                "management": "Fortgeschrittene Projektmanagement-Tools",
+                "interaction": "Direkte Interaktion mit deiner Nutzerbasis",
+                "dashboard": "Dashboard öffnen",
+                "guide": "Mehr erfahren"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "Projekte durchsuchen",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "Lokalisierung",
+                "desc": "Übersetze deine Dokumentation in weltweite Sprachen"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "Zugänglich",
+                "desc": "Intuitive und reaktionsschnelle Benutzeroberfläche"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "Offen",
+                "desc": "Ermögliche es deinen Nutzern, beizutragen, ohne dass Programmierkenntnisse erforderlich sind"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "Kostenlos",
+                "desc": "Das Hosten von Dokumentationen auf unserer Website ist völlig kostenlos!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "Über uns",
+            "maintainers": "Das Wiki wird von <b>Sinytra</b> erstellt und gepflegt, einem engagierten Team leidenschaftlicher Entwickler, das sich darauf konzentriert, hochwertige, kostenlose und Open-Source-Software für die Minecraft-Modding-Community bereitzustellen.",
+            "mission": "Unser Ziel ist es, sowohl Modder als auch Spieler zu befähigen, indem wir die Werkzeuge und Ressourcen bereitstellen, die notwendig sind, um die unendlichen Möglichkeiten von modifiziertem Minecraft zu erstellen, zu dokumentieren und zu entdecken."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "Blog-Beiträge",
+            "open": "Mehr erfahren"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "Projekte durchsuchen",
+            "search_filters": "Suchfilter...",
+            "categories": "Kategorien"
         },
-        "sorting": "Sort by",
+        "sorting": "Sortieren nach",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "Relevanz",
+            "creation_date": "Erstellungsdatum",
+            "popularity": "Beliebtheit",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
-        "no_results": "Search query returned no results!"
+        "search": "Projekte durchsuchen...",
+        "clear_filter": "Filter zurücksetzen",
+        "no_results": "Die Suche ergab keine Ergebnisse!"
     },
     "SearchProjectTypes": {
         "mod": "Mods",
         "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
+        "resourcepack": "Ressourcenpakete",
+        "datapack": "Datenpakete",
+        "shader": "Shader",
         "plugin": "Plugins"
     },
     "ProjectTypes": {
         "mod": "Mod",
         "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
+        "resourcepack": "Ressourcenpaket",
+        "datapack": "Datenpaket",
         "shader": "Shader",
         "plugin": "Plugin"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "Wird geladen..."
     },
     "MetaDocsNavigation": {
         "title": "Navigation",
-        "about": "About",
-        "devs": "Author guide",
-        "components": "Components",
-        "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
-        "security": "Security Notice"
+        "about": "Über uns",
+        "devs": "Autorenleitfaden",
+        "components": "Komponenten",
+        "help": "Hilfe",
+        "tos": "Nutzungsbedingungen",
+        "privacy": "Datenschutzerklärung",
+        "security": "Sicherheitshinweis"
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "Anmeldung erforderlich",
+        "desc": "Die Seite, die du aufrufen möchtest, erfordert eine Anmeldung.",
+        "prompt": "Bitte verwende dein GitHub-Konto, um fortzufahren.",
+        "button": "Mit GitHub anmelden"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
+        "title": "Der Vorschaumodus ist aktiviert",
+        "desc": "Der Vorschaumodus aktiviert eine minimalistische Benutzeroberfläche, sodass du dich auf das Erstellen deiner Dokumentation lokal konzentrieren kannst, bevor sie veröffentlicht wird.",
+        "roots": "Verfügbare lokale Dokumentationsstämme",
+        "open": "Öffnen"
     },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "Projektinformationen",
+        "type": "Typ",
+        "author": "Autor",
+        "tags": "Kategorien",
         "latest": {
-            "title": "Latest version",
-            "unknown": "N/A"
+            "title": "Neueste Version",
+            "unknown": "Nicht verfügbar"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "Lizenz",
+            "custom": "Benutzerdefiniert",
+            "unknown": "Unbekannt",
+            "arr": "Alle Rechte vorbehalten"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
+        "adventure": "Abenteuer",
+        "cursed": "Verflucht",
+        "decoration": "Dekoration",
+        "economy": "Wirtschaft",
+        "equipment": "Ausrüstung",
+        "food": "Essen",
+        "game-mechanics": "Spielmechaniken",
+        "library": "Bibliothek",
+        "magic": "Magie",
+        "management": "Verwaltung",
+        "minigame": "Minispiel",
+        "mobs": "Kreaturen",
+        "optimization": "Optimierung",
+        "social": "Sozial",
+        "storage": "Lagerung",
+        "technology": "Technologie",
+        "transportation": "Transport",
+        "utility": "Hilfsmittel",
+        "worldgen": "Weltgenerierung",
+        "server-utility": "Server-Hilfsmittel",
+        "armor-weapons-tools": "Rüstung, Werkzeuge und Waffen",
+        "library-api": "API und Bibliothek",
+        "adventure-rpg": "Abenteuer und Rollenspiel",
+        "world-gen": "Weltgenerierung",
+        "cosmetic": "Kosmetik",
+        "mc-food": "Essen",
+        "performance": "Leistung",
+        "map-information": "Karte und Information",
+        "bug-fixes": "Fehlerbehebungen",
+        "mc-addons": "Erweiterungen",
+        "education": "Bildung",
+        "mc-miscellaneous": "Verschiedenes",
         "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "utility-qol": "Hilfsmittel & Quality of Life",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "Report this page",
-        "report_button": "Report page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "Seite bearbeiten",
+        "report": "Seite melden",
+        "report_button": "Seite melden",
+        "last_updated": "Zuletzt aktualisiert: <date></date>"
     },
     "Report": {
-        "title": "Report a documentation page",
-        "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-        "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
-        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
-        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "title": "Eine Dokumentationsseite melden",
+        "desc": "Melde Inhalte, die gegen unsere <tos>Nutzungsbedingungen</tos> oder <cr>Inhaltsregeln</cr> verstoßen.",
+        "contact": "Zu Prüfungszwecken wird dein <b>Benutzername</b> in der Meldung enthalten sein.",
+        "confidential": "Deine Privatsphäre ist uns wichtig, und diese Informationen werden stets vertraulich behandelt.",
+        "privacy": "Für weitere Informationen lies bitte unsere <link>Datenschutzerklärung</link>.",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "Projekt-ID",
+                "desc": "ID des gemeldeten Projekts."
             },
             "path": {
-                "title": "Page path",
-                "desc": "Reported documentation page path."
+                "title": "Seitenpfad",
+                "desc": "Pfad der gemeldeten Dokumentationsseite."
             },
             "locale": {
-                "title": "Locale",
-                "desc": "Applied if the content lies within a localized subpath.",
-                "placeholder": "N/A"
+                "title": "Sprache",
+                "desc": "Wird angewendet, wenn sich der Inhalt in einem lokalisierten Unterpfad befindet.",
+                "placeholder": "Nicht verfügbar"
             },
             "version": {
                 "title": "Version",
-                "desc": "Applied if the content lies within a named version.",
-                "placeholder": "N/A"
+                "desc": "Wird angewendet, wenn sich der Inhalt innerhalb einer benannten Version befindet.",
+                "placeholder": "Nicht verfügbar"
             },
             "reason": {
-                "title": "Reason*",
-                "placeholder": "Select a reason for reporting this content",
-                "desc": "Reason for reporting this content.",
-                "dislike": "I just don't like it"
+                "title": "Grund*",
+                "placeholder": "Wähle einen Grund, um diesen Inhalt zu melden",
+                "desc": "Grund für die Meldung dieses Inhalts.",
+                "dislike": "Es gefällt mir einfach nicht"
             },
             "details": {
                 "title": "Details*",
-                "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "placeholder": "Bitte gib weitere Details an, warum du diesen Inhalt meldest. Leere Meldungen werden ignoriert.",
+                "desc": "Weitere Details zum Problem."
             },
             "dislike": {
-                "title": "We understand that you may not like this content, and that's totally okay!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
-                "suggestion": "Would you like to look for something else to explore instead?",
-                "explore": "Explore projects"
+                "title": "Wir verstehen, dass dir dieser Inhalt möglicherweise nicht gefällt – und das ist völlig in Ordnung!",
+                "desc": "Leider ist dies jedoch kein gültiger Grund, ein Projekt zu melden.",
+                "suggestion": "Möchtest du stattdessen nach etwas anderem zum Entdecken suchen?",
+                "explore": "Projekte entdecken"
             },
-            "success": "Report submitted successfully"
+            "success": "Meldung erfolgreich eingereicht"
         }
     },
     "ProjectReportReason": {
         "spam": "Spam",
-        "copyright": "Copyright Infringement",
-        "content_rules": "Violates Content Rules",
-        "tos": "Violates Terms of Service",
-        "unknown": "Unknown"
+        "copyright": "Urheberrechtsverletzung",
+        "content_rules": "Verstößt gegen Inhaltsregeln",
+        "tos": "Verstößt gegen die Nutzungsbedingungen",
+        "unknown": "Unbekannt"
     },
     "ProjectReportStatus": {
-        "new": "New",
-        "dismissed": "Dismissed",
-        "accepted": "Accepted",
-        "unknown": "Unknown"
+        "new": "Neu",
+        "dismissed": "Verworfen",
+        "accepted": "Akzeptiert",
+        "unknown": "Unbekannt"
     },
     "ProjectReportType": {
-        "project": "Project",
-        "docs": "Docs page",
-        "content": "Content page",
-        "unknown": "Unknown"
+        "project": "Projekt",
+        "docs": "Dokumentationsseite",
+        "content": "Inhaltsseite",
+        "unknown": "Unbekannt"
     },
     "ViewReportPage": {
-        "reports": "Reports",
-        "title": "Report details",
-        "desc": "Viewing report details for {id}",
+        "reports": "Meldungen",
+        "title": "Meldungsdetails",
+        "desc": "Meldungsdetails für {id} anzeigen",
         "details": {
-            "reporter": "Reported by",
-            "project_id": "Project ID",
-            "path": "Path",
+            "reporter": "Gemeldet von",
+            "project_id": "Projekt-ID",
+            "path": "Pfad",
             "body": "Body",
-            "reason": "Reason",
-            "created_at": "Created at",
+            "reason": "Grund",
+            "created_at": "Erstellt am",
             "status": "Status",
-            "type": "Type",
-            "locale": "Locale",
+            "type": "Typ",
+            "locale": "Sprache",
             "version": "Version"
         },
         "actions": {
-            "dismiss": "Dismiss",
-            "accept": "Accept"
+            "dismiss": "Verwerfen",
+            "accept": "Akzeptieren"
         },
         "toast": {
-            "accept": "Report accepted",
-            "dismiss": "Report dismissed"
+            "accept": "Meldung akzeptiert",
+            "dismiss": "Meldung verworfen"
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "Einreichen"
     },
     "Callout": {
-        "default": "Heads up!",
+        "default": "Achtung!",
         "info": "Info",
-        "warning": "Warning",
-        "danger": "Danger"
+        "warning": "Warnung",
+        "danger": "Gefahr"
     },
     "ProjectRegisterForm": {
-        "button": "New Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "button": "Neues Projekt",
+        "title": "Projekt registrieren",
+        "desc": "Ein neues Projekt im Wiki registrieren.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
+            "title": "Repository-URL",
+            "desc": "Dies ist die Adresse, die du zum Klonen deines Repositories verwendest.",
             "placeholder": "https://github.com/ExampleUser/ExampleMod"
         },
         "branch": {
             "title": "Branch",
-            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+            "desc": "Primärer Branch-Verweis. Du kannst zusätzliche Branches angeben, die in deiner Metadatendatei enthalten sein sollen."
         },
         "path": {
-            "title": "Path to documentation root",
-            "desc": "Path to the folder containing the metadata file."
+            "title": "Pfad zum Dokumentationsstamm",
+            "desc": "Pfad zum Ordner, der die Metadatendatei enthält."
         },
-        "admin": "Wiki admin settings",
+        "admin": "Wiki-Admin-Einstellungen",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "Community-gepflegtes Projekt"
         },
         "errors": {
-            "details": "Show details"
+            "details": "Details anzeigen"
         },
         "connect_modrinth": {
-            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Open Settings"
+            "desc": "Verbinde deinen <b>Modrinth-Account</b> in den Einstellungen, um jederzeit die Projektzugehörigkeit auf der Plattform einfach zu verifizieren.",
+            "settings": "Einstellungen öffnen"
         },
-        "submit": "Submit",
+        "submit": "Einreichen",
         "success": {
-            "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's docs page"
+            "title": "Projekt erfolgreich registriert",
+            "desc": "Du kannst jetzt zur Dokumentationsseite des Projekts navigieren"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "Wird übermittelt...",
+        "verify_modrinth": "Mit Modrinth verifizieren"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
-        "button": "Settings",
+        "title": "Projekt bearbeiten",
+        "desc": "Die Einstellungen eines bestehenden Projekts bearbeiten.",
+        "button": "Einstellungen",
         "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's docs page"
+            "title": "Projekt erfolgreich aktualisiert",
+            "desc": "Du kannst jetzt zur aktualisierten Dokumentationsseite des Projekts navigieren"
         }
     },
     "ProjectDeleteForm": {
-        "trigger": "Delete project",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "trigger": "Projekt löschen",
+        "title": "Bist du dir absolut sicher?",
+        "desc": "Diese Aktion kann nicht rückgängig gemacht werden. Dein Projekt wird dauerhaft gelöscht und alle zugehörigen Daten von unseren Servern entfernt.",
+        "cancel": "Abbrechen",
+        "submit": "Löschen",
+        "success": "Projekt erfolgreich gelöscht"
     },
     "FormActions": {
         "errors": {
-            "unauthorized": "User authentication error",
-            "internal": "Internal Server Error, please try again later.",
-            "unknown": "An unknown error has occurred, please try again later.",
-            "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
-            "unsupported_type": "Unsupported project type",
-            "ownership": "Failed to verify project ownership",
-            "cf_unavailable": "Registering CurseForge projects is not active",
-            "requires_auth": "Repository connection requires login credentials but none were provided",
-            "no_repository": "Repository not found",
-            "no_branch": "Invalid branch specified",
-            "no_path": "Metadata file not found at specified path",
-            "invalid_meta": "Metadata file is invalid",
-            "unsupported": "Not yet implemented",
-            "exists": "Project already exists.",
-            "not_found": "Project does not exist",
-            "illegal_id": "Illegal project ID",
-            "not_owner": "User is not authorized to register this project"
+            "unauthorized": "Benutzerauthentifizierungsfehler",
+            "internal": "Interner Serverfehler, bitte versuche es später erneut.",
+            "unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es später erneut.",
+            "no_platforms": "Keine Plattformprojekte in den Metadaten definiert.",
+            "no_project": "Plattformprojekt nicht gefunden. Bitte überprüfe, ob das \"Slug\"-Feld in den Metadaten korrekt ist.",
+            "unsupported_type": "Nicht unterstützter Projekttyp",
+            "ownership": "Projektbesitz konnte nicht verifiziert werden",
+            "cf_unavailable": "Die Registrierung von CurseForge-Projekten ist nicht aktiv",
+            "requires_auth": "Die Verbindung zum Repository erfordert Anmeldedaten, es wurden jedoch keine angegeben",
+            "no_repository": "Repository nicht gefunden",
+            "no_branch": "Ungültiger Branch angegeben",
+            "no_path": "Metadatendatei nicht am angegebenen Pfad gefunden",
+            "invalid_meta": "Metadatendatei ist ungültig",
+            "unsupported": "Noch nicht implementiert",
+            "exists": "Projekt existiert bereits.",
+            "not_found": "Projekt existiert nicht",
+            "illegal_id": "Ungültige Projekt-ID",
+            "not_owner": "Der Benutzer ist nicht berechtigt, dieses Projekt zu registrieren"
         }
     },
     "CommunityBadge": {
         "title": "Community",
-        "desc": "Unofficial documentation maintained by the community"
+        "desc": "Inoffizielle Dokumentation, die von der Community gepflegt wird"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
-        "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the project author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "title": "Wir haben diese Seite verloren",
+        "desc": "Die angeforderte Dokumentationsseite ist momentan nicht verfügbar.",
+        "suggestion": "Bitte versuche es später erneut oder melde dieses Problem dem Projektautor.",
+        "submit": "Problem melden",
+        "return": "Zur Startseite zurückkehren"
     },
     "GetStartedButton": {
-        "title": "Create your first project"
+        "title": "Erstelle dein erstes Projekt"
     },
     "ProjectHomepage": {
         "overview": {
-            "intro": "<project></project> is a {type} created by <authors></authors>.",
-            "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
-            "tags": "Tagged:"
+            "intro": "<project></project> ist ein {type}, erstellt von <authors></authors>.",
+            "availability": "Verfügbar für <versions></versions>. Die neueste Version wurde für <latest></latest> erstellt. Erste Veröffentlichung für <first></first>.",
+            "tags": "Getaggt:"
         },
         "description": {
-            "title": "Description"
+            "title": "Beschreibung"
         },
         "navigation": {
             "title": "Navigation",
             "docs": {
-                "title": "Browse documentation",
-                "desc": "{pages} pages available."
+                "title": "Dokumentation durchsuchen",
+                "desc": "{pages} Seiten verfügbar."
             },
             "content": {
-                "title": "Browse content",
-                "desc": "{items} in-game items."
+                "title": "Inhalte durchsuchen",
+                "desc": "{items} In-Game-Items."
             }
         },
         "links": {
             "title": "Links",
-            "website": "Website",
-            "source_code": "Source code"
+            "website": "Webseite",
+            "source_code": "Quellcode"
         },
         "license": {
-            "title": "Licenses",
-            "project": "Project License",
-            "arr": "All Rights Reserved",
-            "unknown": "Unknown",
-            "wiki": "Wiki License",
-            "default": "Wiki content <link>partially made available</link> under the <license></license> license."
+            "title": "Lizenzen",
+            "project": "Projektlizenz",
+            "arr": "Alle Rechte vorbehalten",
+            "unknown": "Unbekannt",
+            "wiki": "Wiki-Lizenz",
+            "default": "Wiki-Inhalte <link>teilweise verfügbar gemacht</link> unter der <license></license> Lizenz."
         }
     },
     "ProjectDocsHomepage": {
-        "title": "Home"
+        "title": "Startseite"
     },
     "DocsHomepagePlaceholder": {
-        "title": "Homepage placeholder",
-        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
-        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+        "title": "Platzhalter für Homepage",
+        "subtitle": "Aufgrund von API-Beschränkungen sind Projektmetadaten für CurseForge-Projekte in lokalen Umgebungen nicht verfügbar.",
+        "replace": "Keine Sorge! Wir ersetzen diesen Platzhalter durch die tatsächliche Projektbeschreibung, sobald das Projekt auf der Live-Wiki-Website veröffentlicht wird."
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "placeholder": "Wiki-Inhalte durchsuchen...",
+        "no_results": "Keine Ergebnisse gefunden!",
+        "loading": "Die perfekten Ergebnisse werden gesucht...",
+        "results": "Zeige <highlight>{count}</highlight> von <highlight>{total}</highlight> Ergebnissen",
+        "close": "<kbd>ESC</kbd> zum Schließen"
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "Änderungsprotokoll"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Home"
+        "title": "Dokumentation",
+        "homepage": "Startseite"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "Eintragsinformationen"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "Auf dieser Seite"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version",
-        "latest": "Latest"
+        "placeholder": "Version auswählen",
+        "latest": "Neuste"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "+{count} weitere"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "Sprachen durchsuchen...",
+        "no_results": "Keine Sprache gefunden."
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "healthy": "Loaded",
-        "at_risk": "Requires attention",
-        "error": "Errored"
+        "unknown": "Unbekannt",
+        "loading": "Initialisiere",
+        "healthy": "Geladen",
+        "at_risk": "Erfordert Aufmerksamkeit",
+        "error": "Fehlerhaft"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "Verwalten"
         },
         "empty": {
-            "primary": "Looks like you haven't created any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "primary": "Es sieht so aus, als hättest du noch keine Projekte erstellt",
+            "secondary": "Fange an, indem du unser <guide>Autorenleitfaden</guide> liest."
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "Startseite"
         },
         "toolbar": {
-            "view": "View",
-            "deployments": "Deployments"
+            "view": "Ansehen",
+            "deployments": "Bereitstellungen"
         },
         "overview": {
-            "title": "Project overview",
-            "desc": "Project information summary"
+            "title": "Projektübersicht",
+            "desc": "Zusammenfassung der Projektinformationen"
         },
         "source": {
-            "title": "Project Source",
+            "title": "Projektquelle",
             "repo": "Repository",
             "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "path": "Pfad",
+            "public": "Öffentlich"
         },
         "platforms": {
-            "title": "Platforms",
-            "desc": "Project hosting platforms",
+            "title": "Plattformen",
+            "desc": "Projekt-Hosting-Plattformen",
             "headers": {
-                "platform": "Platform",
+                "platform": "Plattform",
                 "slug": "Slug / ID",
                 "link": "Link"
             },
-            "open": "Open"
+            "open": "Öffnen"
         },
         "information": {
             "title": "Information",
-            "desc": "Resolved information",
-            "type": "Type",
+            "desc": "Gelöste Informationen",
+            "type": "Typ",
             "status": "Status",
-            "created_at": "Created at"
+            "created_at": "Erstellt am"
         },
         "revision": {
-            "title": "Current git revision",
-            "reloading": "Reloading project, please stand by...",
-            "not_found": "No revision found. Try reloading the project."
+            "title": "Aktuelle Git-Revision",
+            "reloading": "Projekt wird neu geladen, bitte warten...",
+            "not_found": "Keine Revision gefunden. Versuche, das Projekt neu zu laden."
         }
     },
     "DevProjectSettingsPage": {
-        "title": "Project settings",
-        "desc": "Configure project properties"
+        "title": "Projekteinstellungen",
+        "desc": "Projekteigenschaften konfigurieren"
     },
     "DevProjectVersionsPage": {
-        "title": "Project versions",
-        "desc": "Browse project content versions"
+        "title": "Projektversionen",
+        "desc": "Projektinhaltsversionen durchsuchen"
     },
     "DevProjectHealthPage": {
         "title": "Project health",
-        "desc": "Monitor project status and issues",
+        "desc": "Projektstatus und -probleme überwachen",
         "errors": {
             "title": "Project issue report",
-            "desc": "Ongoing warnings & errors",
-            "empty": "No issues found"
+            "desc": "Laufende Warnungen & Fehler",
+            "empty": "Keine Probleme gefunden"
         }
     },
     "DevProjectMembersPage": {
-        "title": "Project members",
-        "desc": "Manage project members & permissions",
+        "title": "Projektmitglieder",
+        "desc": "Projektmitglieder & Berechtigungen verwalten",
         "roles": {
-            "owner": "Owner"
+            "owner": "Besitzer"
         },
         "actions": {
-            "manage": "Manage"
+            "manage": "Verwalten"
         }
     },
     "DevProjectContentItemsPage": {
-        "title": "Project items",
-        "desc": "Browse project items"
+        "title": "Projektgegenstände",
+        "desc": "Projektgegenstände durchsuchen"
     },
     "DevProjectContentRecipesPage": {
-        "title": "Project recipes",
-        "desc": "Browse project crafting recipes"
+        "title": "Projektrezepte",
+        "desc": "Projektrezepte durchsuchen"
     },
     "DevProjectContentTagsPage": {
-        "title": "Project tags",
-        "desc": "Browse project tags"
+        "title": "Projekt-Tags",
+        "desc": "Projekt-Tags durchsuchen"
     },
     "DevProjectLogs": {
-        "title": "Deployment log",
-        "show": "Show",
-        "unloaded": "Not loaded",
-        "waiting": "Waiting for server...",
-        "loading": "Loading...",
-        "error": "Error loading logs",
+        "title": "Bereitstellungsprotokoll",
+        "show": "Anzeigen",
+        "unloaded": "Nicht geladen",
+        "waiting": "Warte auf Server...",
+        "loading": "Wird geladen...",
+        "error": "Fehler beim Laden der Protokolle",
         "toast": {
-            "success": "Project setup complete",
-            "error": "Error during project setup"
+            "success": "Projekteinrichtung abgeschlossen",
+            "error": "Fehler während der Projekteinrichtung"
         }
     },
     "DeveloperSidebar": {
         "teams": {
-            "personal": "Personal"
+            "personal": "Persönlich"
         },
         "groups": {
-            "projects": "Projects",
-            "platform": "Platform",
+            "projects": "Projekte",
+            "platform": "Plattform",
             "admin": "Administration"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
-            "settings": "Settings",
-            "admin": "System settings"
+            "projects": "Projekte",
+            "documentation": "Dokumentation",
+            "settings": "Einstellungen",
+            "admin": "Systemeinstellungen"
         }
     },
     "DevSidebarContextSwitcher": {
@@ -610,115 +610,115 @@
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Log out",
-            "title": "Logout",
-            "desc": "Logging out..."
+            "button": "Abmelden",
+            "title": "Abmelden",
+            "desc": "Abmeldung wird durchgeführt..."
         },
-        "unknown_avatar": "N/A"
+        "unknown_avatar": "Nicht verfügbar"
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
-            "settings": "Settings"
+            "home": "Startseite",
+            "settings": "Einstellungen"
         },
         "profile": {
-            "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}",
+            "bio": "Modded Minecraft Wiki Autor",
+            "join_date": "Beigetreten am {date}",
             "admin": "Admin"
         },
         "connections": {
-            "title": "Connections",
+            "title": "Verknüpfungen",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "Modrinth-Konto",
+                "desc": "Wird verwendet, um den Projektbesitz zu verifizieren",
+                "connect": "Verbinden",
+                "view": "Ansehen",
+                "disconnect": "Trennen"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "Konto",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "Konto löschen",
+                "desc": "Alle Kontodaten dauerhaft löschen",
+                "button": "Konto löschen"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "Konto löschen",
+                "desc": "Bist du sicher, dass du dieses Konto löschen möchtest? Dies ist eine irreversible Aktion, die nicht rückgängig gemacht werden kann.",
+                "cancel": "Abbrechen",
+                "button": "Dauerhaft löschen"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "Konto erfolgreich getrennt",
+                "error": "Fehler beim Trennen des Kontos"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "Authentifizierungsfehler",
+        "desc": "Beim Anmeldeversuch, ist ein unerwarteter Fehler aufgetreten. Bitte versuche es später erneut.",
+        "status": "Status prüfen",
+        "return": "Zur Startseite zurückkehren",
+        "report": "Fehler melden"
     },
     "BuiltinRecipeTypes": {
-        "blasting": "Blasting",
+        "blasting": "Schmelzen (Schmelzofen)",
         "campfire_cooking": "Campfire cooking",
         "crafting_shaped": "Shaped Crafting",
         "crafting_shapeless": "Shapeless Crafting",
-        "smelting": "Smelting",
-        "smithing_transform": "Smithing",
-        "smoking": "Smoking",
+        "smelting": "Schmelzen",
+        "smithing_transform": "Schmieden",
+        "smoking": "Räuchern",
         "stonecutting": "Stonecutting"
     },
     "DocsEntryTabs": {
-        "history": "Show history",
-        "home": "Show content"
+        "history": "Verlauf anzeigen",
+        "home": "Inhalt anzeigen"
     },
     "DevProjectSidebar": {
         "groups": {
-            "project": "Project",
-            "content": "Content"
+            "project": "Projekt",
+            "content": "Inhalt"
         },
         "nav": {
-            "home": "Overview",
-            "settings": "Settings",
-            "members": "Members",
-            "deployments": "Deployments",
-            "health": "Health",
-            "versions": "Versions",
+            "home": "Übersicht",
+            "settings": "Einstellungen",
+            "members": "Mitglieder",
+            "deployments": "Bereitstellungen",
+            "health": "Gesundheit",
+            "versions": "Versionen",
             "content": "Items",
             "tags": "Tags",
-            "recipes": "Recipes"
+            "recipes": "Rezepte"
         }
     },
     "PrefabObtaining": {
-        "recipe": "Recipe"
+        "recipe": "Rezept"
     },
     "PrefabUsage": {
-        "usage": "Usage"
+        "usage": "Verwendung"
     },
     "AdminSidebar": {
         "groups": {
-            "home": "Home",
+            "home": "Startseite",
             "data": "Data",
             "system": "System",
             "moderation": "Moderation"
         },
         "nav": {
-            "home": "Overview",
-            "data_imports": "Data Imports",
-            "access_keys": "Access Keys",
+            "home": "Übersicht",
+            "data_imports": "Datenimporte",
+            "access_keys": "Zugangsschlüssel",
             "migrations": "Migrations",
-            "users": "Users",
-            "projects": "Projects",
-            "config": "Configuration",
-            "reports": "Reports",
+            "users": "Benutzer",
+            "projects": "Projekte",
+            "config": "Konfiguration",
+            "reports": "Meldungen",
             "audit_log": "Audit Log",
-            "return": "Return"
+            "return": "Zurück"
         }
     },
     "AdminDataImports": {
@@ -730,241 +730,254 @@
         "desc": "Available data migrations"
     },
     "EmptyDataTable": {
-        "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
+        "guide": "Lies den <link>Autorenleitfaden</link>, um mehr darüber zu erfahren, wie du Spieldaten in dein Projekt integrieren kannst."
     },
     "DataTable": {
-        "no_results": "No results.",
-        "filter": "Filter rows...",
-        "previous": "Previous",
-        "next": "Next"
+        "no_results": "Keine Ergebnisse.",
+        "filter": "Zeilen filtern...",
+        "previous": "Vorherige",
+        "next": "Nächste"
     },
     "DevProjectVersionsTable": {
         "name": "Name",
         "branch": "Branch",
         "empty": {
-            "title": "No additional versions were found in your project.",
-            "desc": "Read the <link>author guide</link> to learn more about project versioning."
+            "title": "Es wurden keine zusätzlichen Versionen in deinem Projekt gefunden.",
+            "desc": "Lies den <link>Autorenleitfaden</link>, um mehr über die Versionierung von Projekten zu erfahren."
         }
     },
     "DevProjectItemsTable": {
         "icon": "Icon",
         "id": "Identifier",
         "name": "Name",
-        "path": "Page path (internal)",
+        "path": "Seitenpfad (intern)",
         "actions": {
             "open": "Open menu",
-            "title": "Actions",
-            "view": "View"
+            "title": "Aktionen",
+            "view": "Ansehen"
         },
         "empty": {
-            "title": "No items were found in your project.",
-            "desc": "Project items are automatically detected from content pages and included game files."
+            "title": "In deinem Projekt wurden keine Gegenstände gefunden.",
+            "desc": "Projektgegenstände werden automatisch aus Inhaltsseiten und eingebundenen Spieldateien erkannt."
         }
     },
     "DevProjectTagsTable": {
         "id": "Identifier",
         "items": "Item count",
         "empty": {
-            "title": "No tags were found in your project."
+            "title": "In deinem Projekt wurden keine Tags gefunden."
         }
     },
     "DevProjectRecipesTable": {
-        "type": "Type",
+        "type": "Typ",
         "id": "Identifier",
         "empty": {
-            "title": "No recipes were found in your project."
+            "title": "In deinem Projekt wurden keine Rezepte gefunden."
         }
     },
     "ResolvedProjectRecipe": {
-        "type": "Recipe Type",
-        "input": "Ingredients",
-        "output": "Outputs",
-        "preview": "Recipe preview",
-        "workbenches": "You can craft this recipe using:"
+        "type": "Rezepttyp",
+        "input": "Zutaten",
+        "output": "Ausgaben",
+        "preview": "Rezeptvorschau",
+        "workbenches": "Dieses Rezept kann mit folgenden Materialien hergestellt werden:"
     },
     "DevProjectDeploymentsPage": {
-        "title": "Project deployments",
-        "desc": "Manage deployed project versions"
+        "title": "Projektbereitstellungen",
+        "desc": "Bereitgestellte Projektversionen verwalten"
     },
     "DevProjectDeploymentsTable": {
         "id": "ID",
         "commit": "Commit",
         "created_at": "Deploy time",
-        "user_id": "Deployed by",
+        "user_id": "Bereitgestellt von",
         "status": "Status"
     },
     "DeploymentStatus": {
-        "unknown": "N/A",
+        "unknown": "Nicht verfügbar",
         "created": "Queued",
-        "loading": "Loading",
-        "success": "Success",
-        "error": "Failed"
+        "loading": "Wird geladen",
+        "success": "Erfolgreich",
+        "error": "Fehlgeschlagen"
     },
     "DeleteDeploymentModal": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Deployment deleted successfully"
+        "trigger": "Löschen",
+        "title": "Bist du dir absolut sicher?",
+        "desc": "Diese Aktion kann nicht rückgängig gemacht werden. Diese Bereitstellung wird dauerhaft von unseren Servern gelöscht.",
+        "cancel": "Abbrechen",
+        "submit": "Löschen",
+        "success": "Bereitstellung erfolgreich gelöscht"
     },
     "DeployProjectModal": {
-        "button": "Deploy",
-        "title": "New deployment",
-        "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
-        "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
-        "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Cancel",
-        "submit": "Deploy"
+        "button": "Bereitstellen",
+        "title": "Neue Bereitstellung",
+        "primary": "Alle Projektinhalte werden <b>erneut vom Ursprung abgerufen</b>. Diese Option sollte verwendet werden, wenn die Dokumentationsquelle selbst aktualisiert wurde.",
+        "secondary": "Wenn die neue Bereitstellung fehlschlägt, werden die aktuell gespeicherten Daten <b>nicht</b> ersetzt. Du kannst jederzeit über die Option ‚Erneut bereitstellen‘ zu vorherigen Bereitstellungen <b>zurückkehren</b>.",
+        "tertiary": "Zu deiner eigenen Bequemlichkeit empfehlen wir stattdessen, die Dokumentation nach der Veröffentlichung automatisch mit unserem <link>Gradle-Plugin</link> zu revalidieren.",
+        "note": "Die Projekteinstellungen bleiben unverändert. Zum Aktualisieren von Metainformationen (z. B. Quelle und Plattformen) verwende bitte stattdessen den Einstellungsdialog.",
+        "cancel": "Abbrechen",
+        "submit": "Bereitstellen"
     },
     "LiveProjectDeployConnection": {
-        "loading": "Deploying project...",
-        "success": "Project deploy successful",
-        "error": "Project deploy failed",
-        "view": "View"
+        "loading": "Projekt wird bereitgestellt...",
+        "success": "Projektbereitstellung erfolgreich",
+        "error": "Projektbereitstellung fehlgeschlagen",
+        "view": "Ansehen"
     },
     "DevProjectDeploymentPage": {
-        "deployments": "Deployments",
-        "title": "Deployment Details",
+        "deployments": "Bereitstellungen",
+        "title": "Bereitstellungsdetails",
         "git-config": {
             "title": "Source coordinates"
         }
     },
     "ProjectGitRevision": {
-        "title": "Git revision",
-        "title_current": "Current Git revision",
-        "loading": "Deploying project, please stand by...",
-        "not_found": "Project has no active deployment"
+        "title": "Git-Revision",
+        "title_current": "Aktuelle Git-Revision",
+        "loading": "Projekt wird bereitgestellt, bitte warten...",
+        "not_found": "Das Projekt hat keine aktive Bereitstellung"
     },
     "ProjectIssueWidget": {
-        "file": "File: <file></file>",
-        "date": "Created at: <date></date>",
+        "file": "Datei: <file></file>",
+        "date": "Erstellt am: <date></date>",
         "version": "Version: <version></version>"
     },
     "ProjectIssueLevel": {
-        "warning": "Warning",
-        "error": "Error",
-        "unknown": "Unknown"
+        "warning": "Warnung",
+        "error": "Fehler",
+        "unknown": "Unbekannt"
     },
     "ProjectIssueType": {
-        "meta": "Invalid project metadata",
-        "file": "Invalid file",
-        "git_clone": "Error cloning repository",
-        "git_info": "Error getting commit information",
-        "ingestor": "Error importing content",
-        "internal": "Internal server error",
-        "page_render": "Invalid page",
-        "unknown": "Unknown error"
+        "meta": "Ungültige Projektmetadaten",
+        "file": "Ungültige Datei",
+        "git_clone": "Fehler beim Klonen des Repositories",
+        "git_info": "Fehler beim Abrufen der Commit-Informationen",
+        "ingestor": "Fehler beim Importieren der Inhalte",
+        "internal": "Interner Serverfehler",
+        "page_render": "Ungültige Seite",
+        "unknown": "Unbekannter Fehler"
     },
     "DeploymentIssues": {
-        "title": "Deployment issues",
-        "empty": "No issues found.",
-        "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
+        "title": "Probleme bei der Bereitstellung",
+        "empty": "Keine Probleme gefunden.",
+        "issues_found": "Es {count, plural, =1 {wurde 1 Problem gefunden, das Aufmerksamkeit erfordert} other {wurden # Probleme gefunden, die Aufmerksamkeit erfordern}}."
     },
     "ProjectError": {
-        "requires_auth": "Repository connection requires login credentials but none were provided",
-        "no_repository": "Repository not found",
-        "repo_too_large": "Repository exceeds allowed file size",
-        "no_branch": "Invalid branch specified",
-        "no_path": "Metadata file not found at specified path",
-        "invalid_meta": "Metadata file is invalid",
-        "invalid_page": "Failed to render page contents",
-        "duplicate_page": "Duplicate page",
-        "unknown_recipe_type": "Unknown recipe type",
-        "invalid_ingredient": "Invalid ingredient",
-        "invalid_file": "Failed to parse file",
-        "invalid_format": "Invalid file format",
+        "requires_auth": "Die Verbindung zum Repository erfordert Anmeldedaten, es wurden jedoch keine angegeben",
+        "no_repository": "Repository nicht gefunden",
+        "repo_too_large": "Repository überschreitet die zulässige Dateigröße",
+        "no_branch": "Ungültiger Branch angegeben",
+        "no_path": "Metadatendatei am angegebenen Pfad nicht gefunden",
+        "invalid_meta": "Metadatendatei ist ungültig",
+        "invalid_page": "Seiteninhalt konnte nicht dargestellt werden",
+        "duplicate_page": "Doppelte Seite",
+        "unknown_recipe_type": "Unbekannter Rezepttyp",
+        "invalid_ingredient": "Ungültige Zutat",
+        "invalid_file": "Datei konnte nicht geparst werden",
+        "invalid_format": "Ungültiges Dateiformat",
         "invalid_resloc": "Invalid Resource Location",
-        "missing_platform_project": "Missing platform project",
-        "unknown": "Unknown error"
+        "invalid_version_branch": "Der Versions-Branch existiert nicht",
+        "missing_platform_project": "Fehlendes Plattformprojekt",
+        "no_page_title": "Seite hat keinen Titel",
+        "missing_required_attribute": "Seite fehlt ein erforderliches Metadatenattribut",
+        "unknown": "Unbekannter Fehler"
     },
     "AdminReports": {
         "title": "Project Reports",
         "desc": "Manage project reports"
     },
     "ResponsiveTable": {
-        "expand": "Expand"
+        "expand": "Erweitern"
     },
     "UsageContentList": {
-        "more": "Show more ..."
+        "more": "Mehr anzeigen ..."
     },
     "RecipeUsage": {
-        "description": "Can be used to create the following items:",
+        "description": "Kann verwendet werden, um die folgenden Items herzustellen:",
         "empty": "Has no known usages in crafting."
     },
     "ContentCategory": {
-        "all": "All",
-        "other": "Other"
+        "all": "Alle",
+        "other": "Andere"
     },
     "ContentChangelog": {
-        "toggle": "Show changelog"
+        "toggle": "Änderungsprotokoll anzeigen"
     },
     "ContentProperties": {
         "bool": {
-            "true": "Yes",
-            "false": "No"
+            "true": "Ja",
+            "false": "Nein"
         },
         "type": {
             "block": "Block",
-            "item": "Item",
-            "other": "Other"
+            "item": "Gegenstand",
+            "other": "Andere"
         },
         "properties": {
             "id": "ID",
             "source_mod": "Source mod",
-            "type": "Type",
-            "stack_size": "Stack size",
-            "required_tool": "Tool",
-            "blast_resistance": "Blast resistance",
-            "hardness": "Hardness",
-            "flammable": "Flammable"
+            "type": "Typ",
+            "stack_size": "Stapelgröße",
+            "required_tool": "Werkzeug",
+            "blast_resistance": "Explosionswiderstand",
+            "hardness": "Härte",
+            "flammable": "Entflammbar"
         }
     },
     "DocsLink": {
-        "not_found": "(Not found)"
+        "not_found": "(Nicht gefunden)"
     },
     "AdminAccessKeys": {
-        "title": "System access keys",
-        "desc": "Provides auth for when non-interactive access is needed, such as CI"
+        "title": "System-Zugangsschlüssel",
+        "desc": "Bietet Authentifizierung für nicht-interaktiven Zugriff, z. B. für CI"
     },
     "CreateAccessKeyModal": {
-        "title": "Create access key",
-        "desc": "New system access key",
-        "button": "Create",
+        "title": "Zugangsschlüssel erstellen",
+        "desc": "Neuer System-Zugangsschlüssel",
+        "button": "Erstellen",
         "name": {
             "title": "Name",
-            "desc": "Give your key a name",
+            "desc": "Gib deinem Schlüssel einen Namen",
             "placeholder": "Deploy staging"
         },
         "days_valid": {
-            "title": "Days of validity",
-            "desc": "Number of days the key is valid for. Use 0 for no expiration."
+            "title": "Gültigkeit in Tagen",
+            "desc": "Anzahl der Tage, für die der Schlüssel gültig ist. Verwende 0 für unbegrenzte Gültigkeit."
         },
-        "submit": "Submit",
-        "submitting": "Submitting..."
+        "submit": "Einreichen",
+        "submitting": "Wird übermittelt..."
     },
     "SaveAccessKeyModal": {
-        "title": "Access Key",
-        "desc": "Save your generated access key",
-        "key": "Access Key",
-        "note": "Keep the key value safe. You won't be able to access it again.",
-        "valid": "The key is valid until {expiry}.",
-        "close": "Done"
+        "title": "Zugangsschlüssel",
+        "desc": "Speichere deinen generierten Zugangsschlüssel",
+        "key": "Zugangsschlüssel",
+        "note": "Bewahre den Schlüsselwert sicher auf. Du wirst später keinen Zugriff mehr darauf haben.",
+        "valid": "Der Schlüssel ist gültig bis {expiry}.",
+        "close": "Fertig"
     },
     "DeleteAccessKeyModal": {
-        "title": "Delete Access Key",
-        "desc": "Invalidate and delete access key",
-        "body": "This will forever delete the access key <name></name>.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Access Key deleted successfully"
+        "title": "Zugangsschlüssel löschen",
+        "desc": "Zugangsschlüssel ungültig machen und löschen",
+        "body": "Dies löscht den Zugangsschlüssel <name></name> dauerhaft.",
+        "cancel": "Abbrechen",
+        "submit": "Löschen",
+        "success": "Zugangsschlüssel erfolgreich gelöscht"
     },
     "CopyButton": {
-        "copied": "Copied to clipboard"
+        "copied": "In die Zwischenablage kopiert"
     },
     "InteractiveComponentPlaceholder": {
-        "title": "Content unavailable in preview mode",
-        "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
+        "title": "Inhalt im Vorschaumodus nicht verfügbar",
+        "desc": "Interaktive Komponenten werden im lokalen Vorschau-Modus derzeit nicht unterstützt. Die tatsächlichen Inhalte werden hier angezeigt, sobald das Projekt auf der Wiki-Website bereitgestellt wird."
+    },
+    "RevalidateCacheModal": {
+        "title": "Cache-Tag revalidieren",
+        "desc": "Einen Cache-Tag manuell revalidieren. Wird für Diagnosezwecke verwendet.",
+        "button": "Cache-Tag revalidieren",
+        "tag": {
+            "title": "Cache-Tag",
+            "desc": "Der zu revalidierende Cache-Tag"
+        },
+        "success": "Cache-Tag erfolgreich ungültig gemacht"
     }
 }
