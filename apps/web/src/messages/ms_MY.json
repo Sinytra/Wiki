@@ -1,239 +1,239 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest",
+        "local": "Tempatan",
+        "latest": "Terkini",
         "admin": "Admin"
     },
     "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Wiki Minecraft Modded",
         "title_short": "Wiki",
         "badge": {
-            "preview": "PREVIEW MODE",
+            "preview": "MOD PRALIHAT",
             "beta": "Beta"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "Laman Utama",
+            "browse": "Semak Imbas",
+            "about": "Tentang"
         }
     },
     "NavigationFooter": {
-        "title": "Modded Minecraft Wiki",
+        "title": "Wiki Minecraft Modded",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "Navigasi",
+                "home": "Laman Utama",
+                "browse": "Semak Imbas",
+                "dev": "Pembangun"
             },
             "links": {
-                "title": "Links"
+                "title": "Pautan"
             },
             "resources": {
-                "title": "Resources",
+                "title": "Sumber",
                 "blog": "Blog",
                 "status": "Status",
-                "translate": "Help us translate"
+                "translate": "Bantu kami menterjemah"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "Tentang",
+                "tos": "Syarat Perkhidmatan",
+                "privacy": "Dasar Privasi",
+                "contact": "Hubungi"
             }
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "Selamat datang ke <highlight>Wiki Minecraft Modded</highlight>",
+        "subtitle": "Sumber utama anda untuk menemui, mencipta dan menyumbang kepada projek berkaitan Minecraft.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "Wiki Popular",
+            "open": "Baca lebih lanjut",
+            "disclaimer": "Projek-projek ini diserlahkan berdasarkan popularitinya melalui statistik paparan dan tidak disahkan secara rasmi oleh Wiki Minecraft Modded."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "Sertai Komuniti Kami",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "Pengguna",
+                "subtitle": "Terokai projek yang ditampilkan oleh kami dan nikmati faedah ini:",
+                "docs": "Akses dokumentasi yang terkini, berkualiti tinggi dan berversi",
+                "contribute": "Bersumbang kepada projek tanpa pengetahuan pengaturcaraan",
+                "ui": "Nikmati antara muka yang konsisten dan mesra pengguna merentasi semua projek",
+                "localization": "Manfaat daripada sokongan multibahasa"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
+                "title": "Pengarang",
+                "subtitle": "Dapatkan akses kepada Papan Pemuka Projek dan nikmati faedah ini:",
+                "vcs": "Sokongan pemversian untuk dokumentasi anda",
                 "components": "Built-in components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "gradle": "Penyepaduan Gradle untuk aliran kerja yang lancar",
+                "management": "Alat pengurusan projek lanjutan",
+                "interaction": "Interaksi langsung dengan pangkalan pengguna anda",
+                "dashboard": "Buka Papan Pemuka",
+                "guide": "Baca Lebih Lanjut"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "Semak Imbas Projek",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "Penyetempatan",
+                "desc": "Terjemahkan dokumentasi anda ke dalam bahasa-bahasa dunia"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "Mudah Diakses",
+                "desc": "Antara muka pengguna yang intuitif dan responsif"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "Terbuka",
+                "desc": "Biarkan pengguna anda menyumbang tanpa pengetahuan pengaturcaraan yang diperlukan"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "Percuma",
+                "desc": "Pengehosan dokumentasi pada laman sesawang kami adalah percuma sepenuhnya!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "Tentang Kami",
+            "maintainers": "Wiki ini dibina dan diselenggara oleh <b>Sinytra</b>, sebuah pasukan pembangun yang berdedikasi yang bersemangat yang menumpukan pada penyampaian perisian Sumber Terbuka dan Percuma yang berkualiti tinggi untuk komuniti pengubahsuaian Minecraft.",
+            "mission": "Matlamat kami adalah untuk memperkasakan pengubahsuai dan pemain dengan menyediakan alatan dan sumber yang diperlukan untuk mencipta, mendokumenkan dan meneroka kemungkinan yang tidak berkesudahan Minecraft yang diubah suai."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "Siaran Blog",
+            "open": "Baca Lebih Lanjut"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "Semak imbas projek",
+            "search_filters": "Penapis carian...",
+            "categories": "Kategori"
         },
-        "sorting": "Sort by",
+        "sorting": "Isih mengikut",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "Kaitan",
+            "creation_date": "Tarikh penciptaan",
+            "popularity": "Populariti",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
-        "no_results": "Search query returned no results!"
+        "search": "Cari projek...",
+        "clear_filter": "Kosongkan penapis",
+        "no_results": "Carian tidak mengembalikan hasil!"
     },
     "SearchProjectTypes": {
-        "mod": "Mods",
-        "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "mod": "Mod",
+        "modpack": "Pek mod",
+        "resourcepack": "Pek sumber",
+        "datapack": "Pek data",
+        "shader": "Pembayang",
+        "plugin": "Pemalam"
     },
     "ProjectTypes": {
         "mod": "Mod",
-        "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
-        "shader": "Shader",
-        "plugin": "Plugin"
+        "modpack": "Pek mod",
+        "resourcepack": "Pek sumber",
+        "datapack": "Pek data",
+        "shader": "Pembayang",
+        "plugin": "Pemalam"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "Memuatkan..."
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
-        "about": "About",
+        "title": "Navigasi",
+        "about": "Tentang",
         "devs": "Author guide",
         "components": "Components",
-        "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
-        "security": "Security Notice"
+        "help": "Dapatkan bantuan",
+        "tos": "Syarat Penggunaan",
+        "privacy": "Dasar Privasi",
+        "security": "Notis Keselamatan"
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "Log masuk diperlukan",
+        "desc": "Laman yang anda cuba akses memerlukan anda untuk log masuk.",
+        "prompt": "Sila gunakan akaun GitHub anda untuk meneruskan.",
+        "button": "Log masuk dengan GitHub"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
+        "title": "Mod pralihat sedang didayakan",
+        "desc": "Mod pralihat mendayakan antara muka pengguna yang minimum, membolehkan anda menumpukan pada mendraf dokumentasi anda secara setempat sebelum diterbitkan.",
+        "roots": "Akar dokumentasi tempatan yang tersedia",
+        "open": "Buka"
     },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "Maklumat projek",
+        "type": "Jenis",
+        "author": "Pengarang",
+        "tags": "Tag",
         "latest": {
-            "title": "Latest version",
+            "title": "Versi terkini",
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "Lesen",
+            "custom": "Tersuai",
+            "unknown": "Tidak diketahui",
+            "arr": "Hak Cipta Terpelihara"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
+        "adventure": "Pengembaraan",
+        "cursed": "Pelik",
+        "decoration": "Hiasan",
+        "economy": "Ekonomi",
+        "equipment": "Peralatan",
+        "food": "Makanan",
+        "game-mechanics": "Mekanik Permainan",
+        "library": "Pustaka",
+        "magic": "Magik",
+        "management": "Pengurusan",
+        "minigame": "Permainan Mini",
+        "mobs": "Makhluk",
+        "optimization": "Pengoptimuman",
+        "social": "Sosial",
+        "storage": "Penyimpanan",
+        "technology": "Teknologi",
+        "transportation": "Pengangkutan",
+        "utility": "Utiliti",
+        "worldgen": "Penjanaan Dunia",
+        "server-utility": "Utiliti Pelayan",
+        "armor-weapons-tools": "Zirah, Alatan dan Senjata",
+        "library-api": "API dan Pustaka",
+        "adventure-rpg": "Pengembaraan dan RPG",
+        "world-gen": "Penjanaan Dunia",
+        "cosmetic": "Kosmetik",
+        "mc-food": "Makanan",
+        "performance": "Prestasi",
+        "map-information": "Peta dan Maklumat",
+        "bug-fixes": "Pembaikan Pepijat",
+        "mc-addons": "Penambahan",
+        "education": "Pendidikan",
+        "mc-miscellaneous": "Lain-lain",
         "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "utility-qol": "Utiliti & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "Report this page",
-        "report_button": "Report page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "Sunting halaman ini",
+        "report": "Laporkan laman ini",
+        "report_button": "Laporkan laman",
+        "last_updated": "Kemas kini terakhir: <date></date>"
     },
     "Report": {
-        "title": "Report a documentation page",
+        "title": "Laporkan laman dokumentasi",
         "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
         "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
-        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
-        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "confidential": "Privasi anda adalah penting bagi kami, dan maklumat ini akan sentiasa dirahsiakan.",
+        "privacy": "Untuk maklumat lanjut, sila rujuk <link>Dasar Privasi</link> kami.",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "ID Projek",
+                "desc": "ID projek yang dilaporkan."
             },
             "path": {
-                "title": "Page path",
-                "desc": "Reported documentation page path."
+                "title": "Laluan laman",
+                "desc": "Laluan laman dokumentasi yang dilaporkan."
             },
             "locale": {
                 "title": "Locale",
@@ -246,43 +246,43 @@
                 "placeholder": "N/A"
             },
             "reason": {
-                "title": "Reason*",
+                "title": "Sebab*",
                 "placeholder": "Select a reason for reporting this content",
                 "desc": "Reason for reporting this content.",
-                "dislike": "I just don't like it"
+                "dislike": "Saya sekadar tidak suka"
             },
             "details": {
-                "title": "Details*",
+                "title": "Butiran*",
                 "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "desc": "Butiran tambahan tentang isu tersebut."
             },
             "dislike": {
                 "title": "We understand that you may not like this content, and that's totally okay!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
+                "desc": "Malangnya, bagaimanapun, ia bukan alasan yang sah untuk melaporkan projek.",
                 "suggestion": "Would you like to look for something else to explore instead?",
-                "explore": "Explore projects"
+                "explore": "Terokai projek"
             },
-            "success": "Report submitted successfully"
+            "success": "Laporan berjaya dihantar"
         }
     },
     "ProjectReportReason": {
-        "spam": "Spam",
-        "copyright": "Copyright Infringement",
-        "content_rules": "Violates Content Rules",
-        "tos": "Violates Terms of Service",
-        "unknown": "Unknown"
+        "spam": "Pengspaman",
+        "copyright": "Pelanggaran Hak Cipta",
+        "content_rules": "Melanggar Peraturan Kandungan",
+        "tos": "Melanggar Syarat Perkhidmatan",
+        "unknown": "Tidak diketahui"
     },
     "ProjectReportStatus": {
         "new": "New",
         "dismissed": "Dismissed",
         "accepted": "Accepted",
-        "unknown": "Unknown"
+        "unknown": "Tidak diketahui"
     },
     "ProjectReportType": {
-        "project": "Project",
+        "project": "Projek",
         "docs": "Docs page",
         "content": "Content page",
-        "unknown": "Unknown"
+        "unknown": "Tidak diketahui"
     },
     "ViewReportPage": {
         "reports": "Reports",
@@ -290,13 +290,13 @@
         "desc": "Viewing report details for {id}",
         "details": {
             "reporter": "Reported by",
-            "project_id": "Project ID",
-            "path": "Path",
+            "project_id": "ID Projek",
+            "path": "Laluan",
             "body": "Body",
-            "reason": "Reason",
-            "created_at": "Created at",
+            "reason": "Sebab",
+            "created_at": "Dicipta pada",
             "status": "Status",
-            "type": "Type",
+            "type": "Jenis",
             "locale": "Locale",
             "version": "Version"
         },
@@ -310,99 +310,99 @@
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "Serah"
     },
     "Callout": {
-        "default": "Heads up!",
+        "default": "Perhatian!",
         "info": "Info",
         "warning": "Warning",
         "danger": "Danger"
     },
     "ProjectRegisterForm": {
         "button": "New Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "title": "Daftar projek",
+        "desc": "Daftarkan projek baharu ke dalam wiki.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
-            "placeholder": "https://github.com/ExampleUser/ExampleMod"
+            "title": "URL Repositori",
+            "desc": "Ini adalah alamat yang anda gunakan untuk mengklon repositori anda.",
+            "placeholder": "https://github.com/ContohPengguna/ContohMod"
         },
         "branch": {
-            "title": "Branch",
-            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+            "title": "Cabang",
+            "desc": "Rujukan cabang utama. Anda boleh menentukan cabang tambahan untuk disertakan dalam fail metadata anda."
         },
         "path": {
-            "title": "Path to documentation root",
-            "desc": "Path to the folder containing the metadata file."
+            "title": "Laluan ke akar dokumentasi",
+            "desc": "Laluan ke folder yang mengandungi fail metadata."
         },
-        "admin": "Wiki admin settings",
+        "admin": "Tetapan pentadbir wiki",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "Projek yang diselenggara komuniti"
         },
         "errors": {
-            "details": "Show details"
+            "details": "Paparkan butiran"
         },
         "connect_modrinth": {
-            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Open Settings"
+            "desc": "Sambungkan <b>akaun Modrinth</b> anda dalam Tetapan untuk mengesahkan pemilikan projek platform dengan mudah pada bila-bila masa.",
+            "settings": "Buka Tetapan"
         },
-        "submit": "Submit",
+        "submit": "Serah",
         "success": {
-            "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's docs page"
+            "title": "Projek berjaya didaftarkan",
+            "desc": "Anda kini boleh menavigasi ke laman dokumentasi projek"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "Menyerahkan...",
+        "verify_modrinth": "Sahkan menggunakan Modrinth"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
-        "button": "Settings",
+        "title": "Sunting projek",
+        "desc": "Sunting tetapan projek sedia ada.",
+        "button": "Tetapan",
         "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's docs page"
+            "title": "Projek berjaya dikemas kini",
+            "desc": "Anda kini boleh menavigasi ke laman dokumentasi projek yang dikemas kini"
         }
     },
     "ProjectDeleteForm": {
         "trigger": "Delete project",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "title": "Adakah anda benar-benar pasti?",
+        "desc": "Tindakan ini tidak boleh dibuat asal. Ini akan memadamkan projek anda secara kekal dan mengalih keluar semua data yang berkaitan daripada pelayan kami.",
+        "cancel": "Batal",
+        "submit": "Padam",
+        "success": "Projek berjaya dipadam"
     },
     "FormActions": {
         "errors": {
-            "unauthorized": "User authentication error",
-            "internal": "Internal Server Error, please try again later.",
-            "unknown": "An unknown error has occurred, please try again later.",
-            "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
-            "unsupported_type": "Unsupported project type",
-            "ownership": "Failed to verify project ownership",
-            "cf_unavailable": "Registering CurseForge projects is not active",
-            "requires_auth": "Repository connection requires login credentials but none were provided",
-            "no_repository": "Repository not found",
-            "no_branch": "Invalid branch specified",
-            "no_path": "Metadata file not found at specified path",
-            "invalid_meta": "Metadata file is invalid",
-            "unsupported": "Not yet implemented",
-            "exists": "Project already exists.",
-            "not_found": "Project does not exist",
+            "unauthorized": "Ralat pengesahan pengguna",
+            "internal": "Ralat Pelayan Dalaman, sila cuba lagi kemudian.",
+            "unknown": "Sebuah ralat yang tidak diketahui telah berlaku, sila cuba sebentar lagi.",
+            "no_platforms": "Tiada projek platform ditakrifkan dalam metadata.",
+            "no_project": "Platform projek tidak ditemui. Sila pastikan medan \"slug\" metadata adalah betul.",
+            "unsupported_type": "Jenis projek tidak disokong",
+            "ownership": "Gagal mengesahkan pemilikan projek",
+            "cf_unavailable": "Pendaftaran projek CurseForge tidak aktif",
+            "requires_auth": "Sambungan repositori memerlukan kelayakan log masuk tetapi tiada yang diberikan",
+            "no_repository": "Repositori tidak ditemui",
+            "no_branch": "Cabang tidak sah ditentukan",
+            "no_path": "Fail metadata tidak ditemui pada laluan yang ditentukan",
+            "invalid_meta": "Fail metadata tidak sah",
+            "unsupported": "Belum dilaksanakan",
+            "exists": "Projek sudah wujud.",
+            "not_found": "Projek tidak wujud",
             "illegal_id": "Illegal project ID",
             "not_owner": "User is not authorized to register this project"
         }
     },
     "CommunityBadge": {
-        "title": "Community",
-        "desc": "Unofficial documentation maintained by the community"
+        "title": "Komuniti",
+        "desc": "Dokumentasi tidak rasmi yang diselenggara oleh komuniti"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
-        "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the project author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "title": "Kami kehilangan laman ini",
+        "desc": "Laman dokumentasi yang diminta tidak tersedia pada masa ini.",
+        "suggestion": "Sila cuba sebentar lagi atau laporkan isu ini kepada pengarang projek.",
+        "submit": "Serahkan isu",
+        "return": "Kembali ke Laman Utama"
     },
     "GetStartedButton": {
         "title": "Create your first project"
@@ -417,7 +417,7 @@
             "title": "Description"
         },
         "navigation": {
-            "title": "Navigation",
+            "title": "Navigasi",
             "docs": {
                 "title": "Browse documentation",
                 "desc": "{pages} pages available."
@@ -428,80 +428,80 @@
             }
         },
         "links": {
-            "title": "Links",
+            "title": "Pautan",
             "website": "Website",
             "source_code": "Source code"
         },
         "license": {
-            "title": "Licenses",
+            "title": "Lesen",
             "project": "Project License",
-            "arr": "All Rights Reserved",
-            "unknown": "Unknown",
+            "arr": "Hak Cipta Terpelihara",
+            "unknown": "Tidak diketahui",
             "wiki": "Wiki License",
             "default": "Wiki content <link>partially made available</link> under the <license></license> license."
         }
     },
     "ProjectDocsHomepage": {
-        "title": "Home"
+        "title": "Laman Utama"
     },
     "DocsHomepagePlaceholder": {
-        "title": "Homepage placeholder",
-        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
-        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+        "title": "Pemegang tempat laman utama",
+        "subtitle": "Disebabkan oleh sekatan API, metadata projek tidak tersedia untuk projek CurseForge dalam persekitaran tempatan.",
+        "replace": "Jangan risau! Kami akan menggantikan ruang letak ini dengan penerangan sebenar projek sebaik sahaja digunakan di tapak web wiki langsung."
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "placeholder": "Cari kandungan wiki...",
+        "no_results": "Tiada hasil carian ditemui!",
+        "loading": "Mencari hasil yang sempurna...",
+        "results": "Menunjukkan <highlight>{count}</highlight> hasil daripada <highlight>{total}</highlight>",
+        "close": "<kbd>ESC</kbd> untuk tutup"
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "Log Perubahan"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Home"
+        "title": "Dokumentasi",
+        "homepage": "Laman Utama"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "Maklumat entri"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "Pada laman ini"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version",
-        "latest": "Latest"
+        "placeholder": "Pilih versi",
+        "latest": "Terkini"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "+{count} lagi"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "Cari bahasa...",
+        "no_results": "Tiada bahasa ditemui."
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "healthy": "Loaded",
+        "unknown": "Tidak diketahui",
+        "loading": "Dimulakan",
+        "healthy": "Dimuatkan",
         "at_risk": "Requires attention",
-        "error": "Errored"
+        "error": "Telah Ralat"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "Urus"
         },
         "empty": {
             "primary": "Looks like you haven't created any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "secondary": "Mulakan dengan membaca <guide>panduan pengarang</guide> kami."
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "Laman Utama"
         },
         "toolbar": {
-            "view": "View",
+            "view": "Lihat",
             "deployments": "Deployments"
         },
         "overview": {
@@ -509,28 +509,28 @@
             "desc": "Project information summary"
         },
         "source": {
-            "title": "Project Source",
-            "repo": "Repository",
-            "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "title": "Sumber Projek",
+            "repo": "Repositori",
+            "branch": "Cabang",
+            "path": "Laluan",
+            "public": "Awam"
         },
         "platforms": {
-            "title": "Platforms",
+            "title": "Platform",
             "desc": "Project hosting platforms",
             "headers": {
                 "platform": "Platform",
                 "slug": "Slug / ID",
-                "link": "Link"
+                "link": "Pautan"
             },
-            "open": "Open"
+            "open": "Buka"
         },
         "information": {
-            "title": "Information",
+            "title": "Maklumat",
             "desc": "Resolved information",
-            "type": "Type",
+            "type": "Jenis",
             "status": "Status",
-            "created_at": "Created at"
+            "created_at": "Dicipta pada"
         },
         "revision": {
             "title": "Current git revision",
@@ -559,10 +559,10 @@
         "title": "Project members",
         "desc": "Manage project members & permissions",
         "roles": {
-            "owner": "Owner"
+            "owner": "Pemilik"
         },
         "actions": {
-            "manage": "Manage"
+            "manage": "Urus"
         }
     },
     "DevProjectContentItemsPage": {
@@ -579,90 +579,90 @@
     },
     "DevProjectLogs": {
         "title": "Deployment log",
-        "show": "Show",
-        "unloaded": "Not loaded",
-        "waiting": "Waiting for server...",
-        "loading": "Loading...",
-        "error": "Error loading logs",
+        "show": "Tunjukkan",
+        "unloaded": "Tidak dimuatkan",
+        "waiting": "Menunggu pelayan...",
+        "loading": "Memuat...",
+        "error": "Ralat dalam memuat log",
         "toast": {
-            "success": "Project setup complete",
-            "error": "Error during project setup"
+            "success": "Persediaan projek selesai",
+            "error": "Ralat semasa persediaan projek"
         }
     },
     "DeveloperSidebar": {
         "teams": {
-            "personal": "Personal"
+            "personal": "Peribadi"
         },
         "groups": {
-            "projects": "Projects",
+            "projects": "Projek",
             "platform": "Platform",
             "admin": "Administration"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
-            "settings": "Settings",
+            "projects": "Projek",
+            "documentation": "Dokumentasi",
+            "settings": "Tetapan",
             "admin": "System settings"
         }
     },
     "DevSidebarContextSwitcher": {
-        "title": "Teams"
+        "title": "Pasukan"
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Log out",
-            "title": "Logout",
-            "desc": "Logging out..."
+            "button": "Log keluar",
+            "title": "Log keluar",
+            "desc": "Sedang log keluar..."
         },
         "unknown_avatar": "N/A"
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
-            "settings": "Settings"
+            "home": "Laman Utama",
+            "settings": "Tetapan"
         },
         "profile": {
-            "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}",
+            "bio": "Pencipta Wiki Minecraft Modded",
+            "join_date": "Menyertai pada {date}",
             "admin": "Admin"
         },
         "connections": {
-            "title": "Connections",
+            "title": "Sambungan",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "Akaun Modrinth",
+                "desc": "Digunakan untuk mengesahkan pemilikan projek",
+                "connect": "Sambung",
+                "view": "Lihat",
+                "disconnect": "Putuskan"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "Akaun",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "Padam akaun",
+                "desc": "Padam semua data akaun buat selama-lamanya",
+                "button": "Padam akaun"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "Padam akaun",
+                "desc": "Adakah anda pasti mahu memadamkan akaun ini? Ini adalah tindakan yang merosakkan dan tidak boleh dibuat asal.",
+                "cancel": "Batal",
+                "button": "Padam selama-lamanya"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "Akaun berjaya dinyahpaut",
+                "error": "Ralat dalam menyahpaut akaun"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "Kegagalan pengesahan",
+        "desc": "Sebuah ralat yang tidak dijangka telah berlaku semasa cuba log masuk. Sila cuba sebentar lagi.",
+        "status": "Semak status",
+        "return": "Kembali ke laman utama",
+        "report": "Laporkan Pepijat"
     },
     "BuiltinRecipeTypes": {
         "blasting": "Blasting",
@@ -680,18 +680,18 @@
     },
     "DevProjectSidebar": {
         "groups": {
-            "project": "Project",
+            "project": "Projek",
             "content": "Content"
         },
         "nav": {
             "home": "Overview",
-            "settings": "Settings",
+            "settings": "Tetapan",
             "members": "Members",
             "deployments": "Deployments",
             "health": "Health",
-            "versions": "Versions",
+            "versions": "Versi",
             "content": "Items",
-            "tags": "Tags",
+            "tags": "Tag",
             "recipes": "Recipes"
         }
     },
@@ -703,7 +703,7 @@
     },
     "AdminSidebar": {
         "groups": {
-            "home": "Home",
+            "home": "Laman Utama",
             "data": "Data",
             "system": "System",
             "moderation": "Moderation"
@@ -713,8 +713,8 @@
             "data_imports": "Data Imports",
             "access_keys": "Access Keys",
             "migrations": "Migrations",
-            "users": "Users",
-            "projects": "Projects",
+            "users": "Pengguna",
+            "projects": "Projek",
             "config": "Configuration",
             "reports": "Reports",
             "audit_log": "Audit Log",
@@ -739,8 +739,8 @@
         "next": "Next"
     },
     "DevProjectVersionsTable": {
-        "name": "Name",
-        "branch": "Branch",
+        "name": "Nama",
+        "branch": "Cabang",
         "empty": {
             "title": "No additional versions were found in your project.",
             "desc": "Read the <link>author guide</link> to learn more about project versioning."
@@ -749,12 +749,12 @@
     "DevProjectItemsTable": {
         "icon": "Icon",
         "id": "Identifier",
-        "name": "Name",
+        "name": "Nama",
         "path": "Page path (internal)",
         "actions": {
             "open": "Open menu",
             "title": "Actions",
-            "view": "View"
+            "view": "Lihat"
         },
         "empty": {
             "title": "No items were found in your project.",
@@ -769,7 +769,7 @@
         }
     },
     "DevProjectRecipesTable": {
-        "type": "Type",
+        "type": "Jenis",
         "id": "Identifier",
         "empty": {
             "title": "No recipes were found in your project."
@@ -801,11 +801,11 @@
         "error": "Failed"
     },
     "DeleteDeploymentModal": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
+        "trigger": "Padam",
+        "title": "Adakah anda benar-benar pasti?",
         "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
+        "cancel": "Batal",
+        "submit": "Padam",
         "success": "Deployment deleted successfully"
     },
     "DeployProjectModal": {
@@ -813,16 +813,16 @@
         "title": "New deployment",
         "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
         "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "tertiary": "Untuk kemudahan anda sendiri, kami mengesyorkan agar anda sebaliknya mengesahkan semula dokumentasi secara automatik selepas diterbitkan menggunakan <link>pemalam Gradle</link> kami.",
         "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Cancel",
+        "cancel": "Batal",
         "submit": "Deploy"
     },
     "LiveProjectDeployConnection": {
         "loading": "Deploying project...",
         "success": "Project deploy successful",
         "error": "Project deploy failed",
-        "view": "View"
+        "view": "Lihat"
     },
     "DevProjectDeploymentPage": {
         "deployments": "Deployments",
@@ -845,7 +845,7 @@
     "ProjectIssueLevel": {
         "warning": "Warning",
         "error": "Error",
-        "unknown": "Unknown"
+        "unknown": "Tidak diketahui"
     },
     "ProjectIssueType": {
         "meta": "Invalid project metadata",
@@ -863,12 +863,12 @@
         "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
     },
     "ProjectError": {
-        "requires_auth": "Repository connection requires login credentials but none were provided",
-        "no_repository": "Repository not found",
+        "requires_auth": "Sambungan repositori memerlukan kelayakan log masuk tetapi tiada yang diberikan",
+        "no_repository": "Repositori tidak ditemui",
         "repo_too_large": "Repository exceeds allowed file size",
-        "no_branch": "Invalid branch specified",
-        "no_path": "Metadata file not found at specified path",
-        "invalid_meta": "Metadata file is invalid",
+        "no_branch": "Cabang tidak sah ditentukan",
+        "no_path": "Fail metadata tidak ditemui pada laluan yang ditentukan",
+        "invalid_meta": "Fail metadata tidak sah",
         "invalid_page": "Failed to render page contents",
         "duplicate_page": "Duplicate page",
         "unknown_recipe_type": "Unknown recipe type",
@@ -876,7 +876,10 @@
         "invalid_file": "Failed to parse file",
         "invalid_format": "Invalid file format",
         "invalid_resloc": "Invalid Resource Location",
+        "invalid_version_branch": "Version branch does not exist",
         "missing_platform_project": "Missing platform project",
+        "no_page_title": "Page is missing title",
+        "missing_required_attribute": "Page is missing a required metadata attribute",
         "unknown": "Unknown error"
     },
     "AdminReports": {
@@ -895,7 +898,7 @@
     },
     "ContentCategory": {
         "all": "All",
-        "other": "Other"
+        "other": "Lain-lain"
     },
     "ContentChangelog": {
         "toggle": "Show changelog"
@@ -906,14 +909,14 @@
             "false": "No"
         },
         "type": {
-            "block": "Block",
+            "block": "Blok",
             "item": "Item",
-            "other": "Other"
+            "other": "Lain-lain"
         },
         "properties": {
             "id": "ID",
             "source_mod": "Source mod",
-            "type": "Type",
+            "type": "Jenis",
             "stack_size": "Stack size",
             "required_tool": "Tool",
             "blast_resistance": "Blast resistance",
@@ -933,7 +936,7 @@
         "desc": "New system access key",
         "button": "Create",
         "name": {
-            "title": "Name",
+            "title": "Nama",
             "desc": "Give your key a name",
             "placeholder": "Deploy staging"
         },
@@ -941,8 +944,8 @@
             "title": "Days of validity",
             "desc": "Number of days the key is valid for. Use 0 for no expiration."
         },
-        "submit": "Submit",
-        "submitting": "Submitting..."
+        "submit": "Serah",
+        "submitting": "Menyerahkan..."
     },
     "SaveAccessKeyModal": {
         "title": "Access Key",
@@ -956,8 +959,8 @@
         "title": "Delete Access Key",
         "desc": "Invalidate and delete access key",
         "body": "This will forever delete the access key <name></name>.",
-        "cancel": "Cancel",
-        "submit": "Delete",
+        "cancel": "Batal",
+        "submit": "Padam",
         "success": "Access Key deleted successfully"
     },
     "CopyButton": {
@@ -966,5 +969,15 @@
     "InteractiveComponentPlaceholder": {
         "title": "Content unavailable in preview mode",
         "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
+    },
+    "RevalidateCacheModal": {
+        "title": "Revalidate cache tag",
+        "desc": "Manually revalidate a cache tag. Used for diagnostic purposes.",
+        "button": "Revalidate cache tag",
+        "tag": {
+            "title": "Cache Tag",
+            "desc": "The cache tag to revalidate"
+        },
+        "success": "Cache tag invalidated successfully"
     }
 }
