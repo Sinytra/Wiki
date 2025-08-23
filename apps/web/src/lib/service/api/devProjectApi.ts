@@ -1,7 +1,11 @@
 import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
 import {DevProject} from "@repo/shared/types/service";
 import cacheUtil from "@/lib/cacheUtil";
-import {DevProjectDeployments, FullDevProjectDeployment} from "@repo/shared/types/api/deployment";
+import {
+  DevProjectDeployments,
+  FullDevProjectDeployment,
+  PartialDevProjectDeployment
+} from "@repo/shared/types/api/deployment";
 import {UserProfile} from "@repo/shared/types/api/auth";
 import {
   ProjectContentPages,
@@ -34,13 +38,17 @@ async function getDeployment(id: string): Promise<ApiCallResult<FullDevProjectDe
 async function deployProject(id: string, token: string | null = null): Promise<ApiCallResult> {
   const result = await network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${id}/deploy`, { method: 'POST', parameters: {token}}));
   if (result.success) {
-    cacheUtil.invalidateDocs(id); // TODO Keep?
+    cacheUtil.invalidateDocs(id);
   }
   return result;
 }
 
-async function deleteDeployment(id: string): Promise<ApiCallResult> {
-  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/deployments/${id}`, {method: 'DELETE'}));
+async function deleteDeployment(id: string): Promise<ApiCallResult<PartialDevProjectDeployment>> {
+  const result = await network.resolveApiCall<PartialDevProjectDeployment>(() => network.sendSimpleRequest(`dev/deployments/${id}`, {method: 'DELETE'}));
+  if (result.success && result.data.active) {
+    cacheUtil.invalidateDocs(result.data.project_id);
+  }
+  return result;
 }
 
 async function getProjectVersions(projectId: string, parameters: ApiRouteParameters): Promise<ApiCallResult<ProjectVersions>> {

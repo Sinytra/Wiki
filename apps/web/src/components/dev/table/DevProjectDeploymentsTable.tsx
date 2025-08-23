@@ -10,7 +10,7 @@ import {Link} from "@/lib/locales/routing";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dev/modal/DeployProjectModalOpenButton";
-import {DeploymentStatus, DevProjectDeployment, DevProjectDeployments} from "@repo/shared/types/api/deployment";
+import {DeploymentStatus, DevProjectDeploymentRow, DevProjectDeployments} from "@repo/shared/types/api/deployment";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
 
@@ -41,7 +41,7 @@ function EmptyDeploymentsState() {
   )
 }
 
-function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
+function DeploymentEntry({deployment}: { deployment: DevProjectDeploymentRow }) {
   return (
     <div className={`
       flex w-full flex-1 flex-col gap-3 rounded-sm bg-primary-dim p-4 hover:bg-primary sm:flex-row sm:items-center
@@ -52,7 +52,7 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeployment }) {
           {deployment.id.substring(0, 9)}
         </span>
 
-        {deployment.current &&
+        {deployment.active &&
           <Badge variant="secondary" className={`border-[var(--vp-c-brand-1)] px-2 text-[var(--vp-c-brand-1)]`}>
               <GlobeIcon className="mr-2 size-3"/>
               Current

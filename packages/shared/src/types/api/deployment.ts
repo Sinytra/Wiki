@@ -9,22 +9,21 @@ export enum DeploymentStatus {
   ERROR = 'error'
 }
 
-export interface DevProjectDeployment {
+export interface DevProjectDeploymentRow {
   id: string;
   commit_hash: string;
   commit_message: string;
   status: DeploymentStatus;
   user_id: string;
   created_at: string;
-  current: boolean;
+  active: boolean;
 }
 
-export type DevProjectDeployments = PaginatedData<DevProjectDeployment>;
+export type DevProjectDeployments = PaginatedData<DevProjectDeploymentRow>;
 
-export interface FullDevProjectDeployment {
+export interface PartialDevProjectDeployment {
   id: string;
   project_id: string;
-  revision: ProjectRevision | null;
   status: DeploymentStatus;
   user_id: string | null;
   created_at: string;
@@ -33,6 +32,9 @@ export interface FullDevProjectDeployment {
   source_repo: string;
   source_branch: string;
   source_path: string;
+}
 
+export interface FullDevProjectDeployment extends PartialDevProjectDeployment {
+  revision: ProjectRevision | null;
   issues: ProjectIssue[];
 }
