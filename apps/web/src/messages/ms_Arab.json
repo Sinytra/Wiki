@@ -1,239 +1,239 @@
 {
     "Badges": {
-        "local": "Local",
-        "latest": "Latest",
+        "local": "تمڤتن",
+        "latest": "ترکيني",
         "admin": "Admin"
     },
     "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
-        "title_short": "Wiki",
+        "title": "ويکي ماءينکرف‌ت موديد",
+        "title_short": "ويکي",
         "badge": {
-            "preview": "PREVIEW MODE",
-            "beta": "Beta"
+            "preview": "مود ڤراليهت",
+            "beta": "بيتا"
         },
         "link": {
-            "home": "Home",
-            "browse": "Browse",
-            "about": "About"
+            "home": "لامن اوتام",
+            "browse": "سيمق ايمبس",
+            "about": "تنتڠ"
         }
     },
     "NavigationFooter": {
-        "title": "Modded Minecraft Wiki",
+        "title": "ويکي ماءينکرف‌ت موديد",
         "links": {
             "navigation": {
-                "title": "Navigation",
-                "home": "Homepage",
-                "browse": "Browse",
-                "dev": "Developers"
+                "title": "ناۏيݢاسي",
+                "home": "لامن اوتام",
+                "browse": "سيمق ايمبس",
+                "dev": "ڤمباڠون"
             },
             "links": {
-                "title": "Links"
+                "title": "ڤاءوتن"
             },
             "resources": {
-                "title": "Resources",
-                "blog": "Blog",
-                "status": "Status",
-                "translate": "Help us translate"
+                "title": "سومبر",
+                "blog": "بلوݢ",
+                "status": "ستاتوس",
+                "translate": "بنتو کامي منترجمه"
             },
             "about": {
-                "title": "About",
-                "tos": "Terms of Service",
-                "privacy": "Privacy Policy",
-                "contact": "Contact"
+                "title": "تنتڠ",
+                "tos": "شرط ڤرخدمتن",
+                "privacy": "داسر ڤريۏاسي",
+                "contact": "هوبوڠي"
             }
         }
     },
     "HomePage": {
-        "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-        "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+        "title": "سلامت داتڠ ک<highlight>ويکي ماءينکرف‌ت موديد</highlight>",
+        "subtitle": "سومبر اوتام اندا اونتوق منموءي⹁ منچيڤتا دان مڽومبڠ کڤد ڤروجيک برکاءيتن ماءينکرف‌ت.",
         "popular": {
-            "title": "Popular Wikis",
-            "open": "Read more",
-            "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+            "title": "ويکي ڤوڤولر",
+            "open": "باچ لبيه لنجوت",
+            "disclaimer": "ڤروجيک٢ اين دسرلهکن برداسرکن ڤوڤولاريتيڽ ملالوءي ستاتيستيک ڤاڤرن دان تيدق دصحکن سچارا راسمي اوليه ويکي ماءينکرف‌ت موديد."
         },
         "community": {
-            "title": "Join Our Community",
+            "title": "سرتاي کومونيتي کامي",
             "users": {
-                "title": "Users",
-                "subtitle": "Explore our featured projects and enjoy these benefits:",
-                "docs": "Access high-quality, up-to-date and versioned documentation",
-                "contribute": "Contribute to projects without programming knowledge",
-                "ui": "Enjoy a consistent, user-friendly interface across all projects",
-                "localization": "Benefit from multi-language support"
+                "title": "ڤڠݢونا",
+                "subtitle": "تروکي ڤروجيک يڠ دتمڤيلکن اوليه کامي دان نعمتي فاءيده اين:",
+                "docs": "اکسيس دوکومنتاسي يڠ ترکيني⹁ برکواليتي تيڠݢي دان برۏرسي",
+                "contribute": "بر سومبڠ کڤد ڤروجيک تنڤا ڤڠتاهوان ڤڠاتورچاراءن",
+                "ui": "نعمتي انتارا موک يڠ کونسيستن دان مسرا ڤڠݢونا مرنتسي سموا ڤروجيک",
+                "localization": "منفعت درڤد سوکوڠن مولتيبهاس"
             },
             "authors": {
-                "title": "Authors",
-                "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-                "vcs": "Versioning support for your documentation",
+                "title": "ڤڠارڠ",
+                "subtitle": "داڤتکن اکسيس کڤد ڤاڤن ڤموک ڤروجيک دان نعمتي فاءيده اين:",
+                "vcs": "سوکوڠن ڤمۏرسين اونتوق دوکومنتاسي اندا",
                 "components": "Built-in components for recipes, assets, etc.",
-                "gradle": "Gradle integration for seamless workflow",
-                "management": "Advanced project management tools",
-                "interaction": "Direct interaction with your user base",
-                "dashboard": "Open Dashboard",
-                "guide": "Read More"
+                "gradle": "ڤڽڤادوان Gradle اونتوق اليرن کرجا يڠ لنچر",
+                "management": "الت ڤڠوروسن ڤروجيک لنجوتن",
+                "interaction": "اينترکسي لڠسوڠ دڠن ڤڠکلن ڤڠݢونا اندا",
+                "dashboard": "بوک ڤاڤن ڤموک",
+                "guide": "باچ لبيه لنجوت"
             }
         },
-        "browse": "Browse Projects",
+        "browse": "سيمق ايمبس ڤروجيک",
         "highlights": {
             "localization": {
-                "title": "Localization",
-                "desc": "Translate your docs into world languages"
+                "title": "ڤڽتمڤتن",
+                "desc": "ترجمهکن دوکومنتاسي اندا کدالم بهاس٢ دنيا"
             },
             "accessibility": {
-                "title": "Accessible",
-                "desc": "Intuitive and responsive user interface"
+                "title": "موده داکسيس",
+                "desc": "انتارا موک ڤڠݢونا يڠ اينتويتيف دان ريسڤونسيف"
             },
             "open": {
-                "title": "Open",
-                "desc": "Let your users contribute without any programming knowledge necessary"
+                "title": "تربوک",
+                "desc": "بيارکن ڤڠݢونا اندا مڽومبڠ تنڤا ڤڠتاهوان ڤڠاتورچاراءن يڠ دڤرلوکن"
             },
             "free": {
-                "title": "Free",
-                "desc": "Hosting docs on our website is completely free of charge!"
+                "title": "ڤرچوما",
+                "desc": "ڤڠهوسن دوکومنتاسي ڤد لامن سساوڠ کامي اداله ڤرچوما سڤنوهڽ!"
             }
         },
         "about": {
-            "title": "About Us",
-            "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-            "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+            "title": "تنتڠ کامي",
+            "maintainers": "ويکي اين دبينا دان دسلڠݢارا اوليه <b>Sinytra</b>⹁ سبواه ڤاسوقن ڤمباڠون يڠ برديديکاسي يڠ برسماڠت يڠ منومڤوکن ڤد ڤڽمڤاين ڤرايسين سومبر تربوک دان ڤرچوما يڠ برکواليتي تيڠݢي اونتوق کومونيتي ڤڠوبهسواين ماءينکرف‌ت.",
+            "mission": "متلامت کامي اداله اونتوق ممڤرکاساکن ڤڠوبهسواي دان ڤماءين دڠن مڽدياکن التن دان سومبر يڠ دڤرلوکن اونتوق منچيڤتا⹁ مندوکومنکن دان منروک کموڠکينن يڠ تيدق برکسودهن ماءينکرف‌ت يڠ دأوبه سواي."
         },
         "blog": {
-            "title": "Blog Posts",
-            "open": "Read More"
+            "title": "سيارن بلوݢ",
+            "open": "باچ لبيه لنجوت"
         }
     },
     "BrowsePage": {
         "sidebar": {
-            "title": "Browse projects",
-            "search_filters": "Search filters...",
-            "categories": "Categories"
+            "title": "سيمق ايمبس ڤروجيک",
+            "search_filters": "ڤناڤيس چارين...",
+            "categories": "کاتݢوري"
         },
-        "sorting": "Sort by",
+        "sorting": "ايسيه مڠيکوت",
         "sort": {
-            "relevance": "Relevance",
-            "creation_date": "Creation date",
-            "popularity": "Popularity",
+            "relevance": "کاءيتن",
+            "creation_date": "تاريخ ڤنچيڤتاءن",
+            "popularity": "ڤوڤولاريتي",
             "az": "A-Z",
             "za": "Z-A"
         },
-        "search": "Search projects...",
-        "clear_filter": "Clear filters",
-        "no_results": "Search query returned no results!"
+        "search": "چاري ڤروجيک...",
+        "clear_filter": "کوسوڠکن ڤناڤيس",
+        "no_results": "چارين تيدق مڠمباليکن حاصيل!"
     },
     "SearchProjectTypes": {
-        "mod": "Mods",
-        "modpack": "Modpacks",
-        "resourcepack": "Resource packs",
-        "datapack": "Data packs",
-        "shader": "Shaders",
-        "plugin": "Plugins"
+        "mod": "مود",
+        "modpack": "ڤيک مود",
+        "resourcepack": "ڤيک سومبر",
+        "datapack": "ڤيک داتا",
+        "shader": "ڤمبايڠ",
+        "plugin": "ڤمالم"
     },
     "ProjectTypes": {
-        "mod": "Mod",
-        "modpack": "Modpack",
-        "resourcepack": "Resource pack",
-        "datapack": "Data pack",
-        "shader": "Shader",
-        "plugin": "Plugin"
+        "mod": "مود",
+        "modpack": "ڤيک مود",
+        "resourcepack": "ڤيک سومبر",
+        "datapack": "ڤيک داتا",
+        "shader": "ڤمبايڠ",
+        "plugin": "ڤمالم"
     },
     "LoadingContent": {
-        "message": "Loading..."
+        "message": "ممواتکن..."
     },
     "MetaDocsNavigation": {
-        "title": "Navigation",
-        "about": "About",
+        "title": "ناۏيݢاسي",
+        "about": "ڤريحال",
         "devs": "Author guide",
         "components": "Components",
-        "help": "Get help",
-        "tos": "Terms of Use",
-        "privacy": "Privacy Policy",
-        "security": "Security Notice"
+        "help": "داڤتکن بنتوان",
+        "tos": "شرط ڤڠݢوناءن",
+        "privacy": "داسر ڤريۏاسي",
+        "security": "نوتيس کسلامتن"
     },
     "Login": {
-        "title": "Login required",
-        "desc": "The page you are trying to access requires you to log in.",
-        "prompt": "Please use your GitHub account to continue.",
-        "button": "Log in with GitHub"
+        "title": "لوݢ ماسوق دڤرلوکن",
+        "desc": "لامن يڠ اندا چوبا اکسيس ممرلوکن اندا اونتوق لوݢ ماسوق.",
+        "prompt": "سيلا ݢوناکن اکاءون GitHub اندا اونتوق منروسکن.",
+        "button": "لوݢ ماسوق دڠن GitHub"
     },
     "Preview": {
-        "title": "Preview mode is enabled",
-        "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-        "roots": "Available local documentation roots",
-        "open": "Open"
+        "title": "مود ڤراليهت سدڠ دداياکن",
+        "desc": "مود ڤراليهت منداياکن انتارا موک ڤڠݢونا يڠ مينيموم⹁ ممبوليهکن اندا منومڤوکن ڤد مندرف دوکومن اندا سچارا ستمڤت سبلوم دتربيتکن.",
+        "roots": "اکر دوکومنتاسي تمڤتن يڠ ترسديا",
+        "open": "بوک"
     },
     "DocsProjectInfo": {
-        "title": "Project information",
-        "type": "Type",
-        "author": "Author",
-        "tags": "Tags",
+        "title": "معلومت ڤروجيک",
+        "type": "جنيس",
+        "author": "ڤڠارڠ",
+        "tags": "تݢ",
         "latest": {
-            "title": "Latest version",
+            "title": "ۏرسي ترکيني",
             "unknown": "N/A"
         },
         "license": {
-            "title": "License",
-            "custom": "Custom",
-            "unknown": "Unknown",
-            "arr": "All Rights Reserved"
+            "title": "ليسين",
+            "custom": "ترسواي",
+            "unknown": "تيدق دکتاهوءي",
+            "arr": "حق چيڤتا ترڤليهارا"
         }
     },
     "ProjectCategories": {
-        "adventure": "Adventure",
-        "cursed": "Cursed",
-        "decoration": "Decoration",
-        "economy": "Economy",
-        "equipment": "Equipment",
-        "food": "Food",
-        "game-mechanics": "Game Mechanics",
-        "library": "Library",
-        "magic": "Magic",
-        "management": "Management",
-        "minigame": "Minigame",
-        "mobs": "Mobs",
-        "optimization": "Optimization",
-        "social": "Social",
-        "storage": "Storage",
-        "technology": "Technology",
-        "transportation": "Transporation",
-        "utility": "Utility",
-        "worldgen": "Worldgen",
-        "server-utility": "Server Utility",
-        "armor-weapons-tools": "Armor, Tools, and Weapons",
-        "library-api": "API and Library",
-        "adventure-rpg": "Adventure and RPG",
-        "world-gen": "World Gen",
-        "cosmetic": "Cosmetic",
-        "mc-food": "Food",
-        "performance": "Performance",
-        "map-information": "Map and Information",
-        "bug-fixes": "Bug Fixes",
-        "mc-addons": "Addons",
-        "education": "Education",
-        "mc-miscellaneous": "Miscellaneous",
-        "redstone": "Redstone",
-        "utility-qol": "Utility & QoL",
+        "adventure": "ڤڠمباراءن",
+        "cursed": "ڤليق",
+        "decoration": "هياسن",
+        "economy": "ايکونومي",
+        "equipment": "ڤرالتن",
+        "food": "ماکنن",
+        "game-mechanics": "ميکانيک ڤرماءينن",
+        "library": "ڤوستاک",
+        "magic": "ماجيک",
+        "management": "ڤڠوروسن",
+        "minigame": "ڤرماءينن ميني",
+        "mobs": "مخلوق",
+        "optimization": "ڤڠوڤتيمومن",
+        "social": "سوسيال",
+        "storage": "ڤڽيمڤنن",
+        "technology": "تيکنولوݢي",
+        "transportation": "ڤڠڠکوتن",
+        "utility": "اوتيليتي",
+        "worldgen": "ڤنجاناءن دنيا",
+        "server-utility": "اوتيليتي ڤلاين",
+        "armor-weapons-tools": "زيره⹁ التن دان سنجات",
+        "library-api": "API دان ڤوستاک",
+        "adventure-rpg": "ڤڠمباراءن دان RPG",
+        "world-gen": "ڤنجاناءن دنيا",
+        "cosmetic": "کوسميتيک",
+        "mc-food": "ماکنن",
+        "performance": "ڤريستاسي",
+        "map-information": "ڤتا دان معلومت",
+        "bug-fixes": "ڤمباءيقن ڤڤيجت",
+        "mc-addons": "ڤنمبهن",
+        "education": "ڤنديديقن",
+        "mc-miscellaneous": "لاءين٢",
+        "redstone": "ريدستون",
+        "utility-qol": "اوتيليتي & QoL",
         "mc-creator": "MCreator"
     },
     "PageEditControls": {
-        "edit_gh": "Edit this page",
-        "report": "Report this page",
-        "report_button": "Report page",
-        "last_updated": "Last updated: <date></date>"
+        "edit_gh": "سونتيڠ هلامن اين",
+        "report": "لاڤورکن لامن اين",
+        "report_button": "لاڤورکن لامن",
+        "last_updated": "کمس کيني تراخير: <date></date>"
     },
     "Report": {
-        "title": "Report a documentation page",
+        "title": "لاڤورکن لامن دوکومنتاسي",
         "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
         "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
-        "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
-        "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
+        "confidential": "ڤريۏاسي اندا اداله ڤنتيڠ باݢي کامي⹁ دان معلومت اين اکن سنتياس درهسياکن.",
+        "privacy": "اونتوق معلومت لنجوت⹁ سيلا روجوع <link>داسر ڤريۏاسي</link> کامي.",
         "form": {
             "id": {
-                "title": "Project ID",
-                "desc": "Reported project ID."
+                "title": "ID ڤروجيک",
+                "desc": "ID ڤروجيک يڠ دلاڤورکن."
             },
             "path": {
-                "title": "Page path",
-                "desc": "Reported documentation page path."
+                "title": "لالوان لامن",
+                "desc": "لالوان لامن دوکومنتاسي يڠ دلاڤورکن."
             },
             "locale": {
                 "title": "Locale",
@@ -246,43 +246,43 @@
                 "placeholder": "N/A"
             },
             "reason": {
-                "title": "Reason*",
+                "title": "سبب*",
                 "placeholder": "Select a reason for reporting this content",
                 "desc": "Reason for reporting this content.",
-                "dislike": "I just don't like it"
+                "dislike": "ساي سقدر تيدق سوک"
             },
             "details": {
-                "title": "Details*",
+                "title": "بوتيرن*",
                 "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
-                "desc": "Additional details about the issue."
+                "desc": "بوتيرن تمبهن تنتڠ ايسو ترسبوت."
             },
             "dislike": {
                 "title": "We understand that you may not like this content, and that's totally okay!",
-                "desc": "Unfortunately, however, it is not a valid reason to report a project.",
+                "desc": "مالڠڽ⹁ باݢايماناڤون⹁ اي بوکن السن يڠ صح اونتوق ملاڤورکن ڤروجيک.",
                 "suggestion": "Would you like to look for something else to explore instead?",
-                "explore": "Explore projects"
+                "explore": "تروکي ڤروجيک"
             },
-            "success": "Report submitted successfully"
+            "success": "لاڤورن برجاي دهانتر"
         }
     },
     "ProjectReportReason": {
-        "spam": "Spam",
-        "copyright": "Copyright Infringement",
-        "content_rules": "Violates Content Rules",
-        "tos": "Violates Terms of Service",
-        "unknown": "Unknown"
+        "spam": "ڤڠسڤامن",
+        "copyright": "ڤلڠݢرن حق چيڤتا",
+        "content_rules": "ملڠݢر ڤراتورن کاندوڠن",
+        "tos": "ملڠݢر شرط ڤرخدمتن",
+        "unknown": "تيدق دکتاهوءي"
     },
     "ProjectReportStatus": {
         "new": "New",
         "dismissed": "Dismissed",
         "accepted": "Accepted",
-        "unknown": "Unknown"
+        "unknown": "تيدق دکتاهوءي"
     },
     "ProjectReportType": {
-        "project": "Project",
+        "project": "ڤروجيک",
         "docs": "Docs page",
         "content": "Content page",
-        "unknown": "Unknown"
+        "unknown": "تيدق دکتاهوءي"
     },
     "ViewReportPage": {
         "reports": "Reports",
@@ -290,13 +290,13 @@
         "desc": "Viewing report details for {id}",
         "details": {
             "reporter": "Reported by",
-            "project_id": "Project ID",
-            "path": "Path",
+            "project_id": "ID ڤروجيک",
+            "path": "لالوان",
             "body": "Body",
-            "reason": "Reason",
-            "created_at": "Created at",
-            "status": "Status",
-            "type": "Type",
+            "reason": "سبب",
+            "created_at": "دچيڤتا ڤد",
+            "status": "ستاتوس",
+            "type": "جنيس",
             "locale": "Locale",
             "version": "Version"
         },
@@ -310,99 +310,99 @@
         }
     },
     "SubmitButton": {
-        "title": "Submit"
+        "title": "سره"
     },
     "Callout": {
-        "default": "Heads up!",
+        "default": "ڤرهاتين!",
         "info": "Info",
         "warning": "Warning",
         "danger": "Danger"
     },
     "ProjectRegisterForm": {
         "button": "New Project",
-        "title": "Register project",
-        "desc": "Register a new project to the wiki.",
+        "title": "دفتر ڤروجيک",
+        "desc": "دفترکن ڤروجيک بهارو ک دالم ويکي.",
         "repo": {
-            "title": "Repository URL",
-            "desc": "This is the address you use to clone your repository.",
-            "placeholder": "https://github.com/ExampleUser/ExampleMod"
+            "title": "URL ريڤوسيتوري",
+            "desc": "اين اداله علامت يڠ اندا ݢوناکن اونتوق مڠکلون ريڤوسيتوري اندا.",
+            "placeholder": "https://github.com/ContohPengguna/ContohMod"
         },
         "branch": {
-            "title": "Branch",
-            "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+            "title": "چابڠ",
+            "desc": "روجوعن چابڠ اوتام. اندا بوليه مننتوکن چابڠ تمبهن اونتوق دسرتاکن دالم فاءيل ميتاداتا اندا."
         },
         "path": {
-            "title": "Path to documentation root",
-            "desc": "Path to the folder containing the metadata file."
+            "title": "لالوان کاکر دوکومنتاسي",
+            "desc": "لالوان کفولدر يڠ مڠاندوڠي فاءيل ميتاداتا."
         },
-        "admin": "Wiki admin settings",
+        "admin": "تتڤن ڤنتدبير ويکي",
         "is_community": {
-            "title": "Community-maintained project"
+            "title": "ڤروجيک يڠ دسلڠݢارا کومونيتي"
         },
         "errors": {
-            "details": "Show details"
+            "details": "ڤاڤرکن بوتيرن"
         },
         "connect_modrinth": {
-            "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-            "settings": "Open Settings"
+            "desc": "سامبوڠکن <b>اکاءون Modrinth</b> اندا دالم تتڤن اونتوق مڠصحکن ڤميليقن ڤروجيک ڤلتفوم دڠن موده ڤد بيلا‌٢ ماس.",
+            "settings": "بوک تتڤن"
         },
-        "submit": "Submit",
+        "submit": "سره",
         "success": {
-            "title": "Project registered successfully",
-            "desc": "You can now navigate to the project's docs page"
+            "title": "ڤروجيک برجاي ددفترکن",
+            "desc": "اندا کيني بوليه مناۏيݢاسي کلامن دوکومنتاسي ڤروجيک"
         },
-        "submitting": "Submitting...",
-        "verify_modrinth": "Verify using Modrinth"
+        "submitting": "مڽرهکن...",
+        "verify_modrinth": "صحکن مڠݢوناکن Modrinth"
     },
     "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
-        "button": "Settings",
+        "title": "سونتيڠ ڤروجيک",
+        "desc": "سونتيڠ تتڤن ڤروجيک سديا اد.",
+        "button": "تتڤن",
         "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's docs page"
+            "title": "ڤروجيک برجاي دکمس کيني",
+            "desc": "اندا کيني بوليه مناۏيݢاسي کلامن دوکومنتاسي ڤروجيک يڠ دکمس کيني"
         }
     },
     "ProjectDeleteForm": {
         "trigger": "Delete project",
-        "title": "Are you absolutely sure?",
-        "desc": "This action cannot be undone. This will permanently delete your project and remove all associated data from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
-        "success": "Project deleted successfully"
+        "title": "اداکه اندا بنر٢ ڤستي؟",
+        "desc": "تيندقن اين تيدق بوليه دبوات اصل. اين اکن ممادمکن ڤروجيک اندا سچارا ککل دان مڠاليه کلوار سموا داتا يڠ برکاءيتن درڤد ڤلاين کامي.",
+        "cancel": "بطل",
+        "submit": "ڤادم",
+        "success": "ڤروجيک برجاي دڤادم"
     },
     "FormActions": {
         "errors": {
-            "unauthorized": "User authentication error",
-            "internal": "Internal Server Error, please try again later.",
-            "unknown": "An unknown error has occurred, please try again later.",
-            "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
-            "unsupported_type": "Unsupported project type",
-            "ownership": "Failed to verify project ownership",
-            "cf_unavailable": "Registering CurseForge projects is not active",
-            "requires_auth": "Repository connection requires login credentials but none were provided",
-            "no_repository": "Repository not found",
-            "no_branch": "Invalid branch specified",
-            "no_path": "Metadata file not found at specified path",
-            "invalid_meta": "Metadata file is invalid",
-            "unsupported": "Not yet implemented",
-            "exists": "Project already exists.",
-            "not_found": "Project does not exist",
+            "unauthorized": "رالت ڤڠصحن ڤڠݢونا",
+            "internal": "رالت ڤلاين دالمن⹁ سيلا چوبا لاݢي کمودين.",
+            "unknown": "سبواه رالت يڠ تيدق دکتاهوءي تله برلاکو⹁ سيلا چوبا سبنتر لاݢي.",
+            "no_platforms": "تياد ڤروجيک ڤلتفوم دتعريفکن دالم ميتاداتا.",
+            "no_project": "ڤلتفوم ڤروجيک تيدق دتموءي. سيلا ڤستيکن ميدن \"slug\" ميتاداتا اداله بتول.",
+            "unsupported_type": "جنيس ڤروجيک تيدق دسوکوڠ",
+            "ownership": "ݢاݢل مڠصحکن ڤميليقن ڤروجيک",
+            "cf_unavailable": "ڤندفترن ڤروجيک CurseForge تيدق اکتيف",
+            "requires_auth": "سامبوڠن ريڤوسيتوري ممرلوکن کلايقن لوݢ ماسوق تتاڤي تياد يڠ دبريکن",
+            "no_repository": "ريڤوسيتوري تيدق دتموءي",
+            "no_branch": "چابڠ تيدق صح دتنتوکن",
+            "no_path": "فاءيل ميتاداتا تيدق دتموءي ڤد لالوان يڠ دتنتوکن",
+            "invalid_meta": "فاءيل ميتاداتا تيدق صح",
+            "unsupported": "بلوم دلقساناکن",
+            "exists": "ڤروجيک سوده وجود.",
+            "not_found": "ڤروجيک تيدق وجود",
             "illegal_id": "Illegal project ID",
             "not_owner": "User is not authorized to register this project"
         }
     },
     "CommunityBadge": {
-        "title": "Community",
-        "desc": "Unofficial documentation maintained by the community"
+        "title": "کومونيتي",
+        "desc": "دوکومنتاسي تيدق راسمي يڠ دسلڠݢارا اوليه کومونيتي"
     },
     "DocsPageNotFoundError": {
-        "title": "We lost this page",
-        "desc": "The requested documentation page is not available at the moment.",
-        "suggestion": "Please try again later or report this issue to the project author.",
-        "submit": "Submit issue",
-        "return": "Return Home"
+        "title": "کامي کهيلڠن لامن اين",
+        "desc": "لامن دوکومنتاسي يڠ دمينتا تيدق ترسديا ڤد ماس اين.",
+        "suggestion": "سيلا چوبا سبنتر لاݢي اتاو لاڤورکن ايسو اين کڤد ڤڠارڠ ڤروجيک.",
+        "submit": "سرهکن ايسو",
+        "return": "کمبالي ک لامن اوتام"
     },
     "GetStartedButton": {
         "title": "Create your first project"
@@ -417,7 +417,7 @@
             "title": "Description"
         },
         "navigation": {
-            "title": "Navigation",
+            "title": "ناۏيݢاسي",
             "docs": {
                 "title": "Browse documentation",
                 "desc": "{pages} pages available."
@@ -428,80 +428,80 @@
             }
         },
         "links": {
-            "title": "Links",
+            "title": "ڤاءوتن",
             "website": "Website",
             "source_code": "Source code"
         },
         "license": {
-            "title": "Licenses",
+            "title": "ليسين",
             "project": "Project License",
-            "arr": "All Rights Reserved",
-            "unknown": "Unknown",
+            "arr": "حق چيڤتا ترڤليهارا",
+            "unknown": "تيدق دکتاهوءي",
             "wiki": "Wiki License",
             "default": "Wiki content <link>partially made available</link> under the <license></license> license."
         }
     },
     "ProjectDocsHomepage": {
-        "title": "Home"
+        "title": "لامن اوتام"
     },
     "DocsHomepagePlaceholder": {
-        "title": "Homepage placeholder",
-        "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
-        "replace": "Don't worry! We'll replace this placeholder with the project's actual description once deployed on the live wiki website."
+        "title": "ڤمݢڠ تمڤت لامن اوتام",
+        "subtitle": "دسببکن اوليه سکتن API⹁ ميتاداتا ڤروجيک تيدق ترسديا اونتوق ڤروجيک کرس‌فورج دالم ڤرسکيترن تمڤتن.",
+        "replace": "جاڠن ريساو! کامي اکن مڠݢنتيکن رواڠ لتق اين دڠن ڤنرڠن سبنر ڤروجيک سباءيق سهاج دݢوناکن د تاڤق ويب ويکي لڠسوڠ."
     },
     "DocsSearchBar": {
-        "placeholder": "Search wiki contents...",
-        "no_results": "No results found!",
-        "loading": "Finding the perfect results...",
-        "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-        "close": "<kbd>ESC</kbd> to close"
+        "placeholder": "چاري کاندوڠن ويکي...",
+        "no_results": "تياد حاصيل چارين دتموءي!",
+        "loading": "منچاري حاصيل يڠ سمڤورنا...",
+        "results": "منونجوقکن <highlight>{count}</highlight> حاصيل درڤد <highlight>{total}</highlight>",
+        "close": "<kbd>ESC</kbd> اونتوق توتوڤ"
     },
     "DocsChangelogPage": {
-        "title": "Changelog"
+        "title": "لوݢ ڤروبهن"
     },
     "DocsLeftSidebar": {
-        "title": "Documentation",
-        "homepage": "Home"
+        "title": "دوکومنتاسي",
+        "homepage": "لامن اوتام"
     },
     "DocsContentRightSidebar": {
-        "title": "Entry information"
+        "title": "معلومت اينتري"
     },
     "DocsNonContentRightSidebar": {
-        "title": "On this page"
+        "title": "ڤد لامن اين"
     },
     "DocsVersionSelector": {
-        "placeholder": "Select version",
-        "latest": "Latest"
+        "placeholder": "ڤيليه ۏرسي",
+        "latest": "ترکيني"
     },
     "ModVersionRange": {
-        "desc": "+{count} more"
+        "desc": "+{count} لاݢي"
     },
     "LanguageSelect": {
-        "placeholder": "Search languages...",
-        "no_results": "No language found."
+        "placeholder": "چاري بهاس...",
+        "no_results": "تياد بهاس دتموءي."
     },
     "ProjectStatus": {
-        "unknown": "Unknown",
-        "loading": "Initializing",
-        "healthy": "Loaded",
+        "unknown": "تيدق دکتاهوءي",
+        "loading": "دمولاکن",
+        "healthy": "دمواتکن",
         "at_risk": "Requires attention",
-        "error": "Errored"
+        "error": "تله رالت"
     },
     "DevProjectsListPage": {
         "project": {
-            "manage": "Manage"
+            "manage": "اوروس"
         },
         "empty": {
             "primary": "Looks like you haven't created any projects yet",
-            "secondary": "Get started by reading our <guide>author guide</guide>."
+            "secondary": "مولاکن دڠن ممباچ <guide>ڤندوان ڤڠارڠ</guide> کامي."
         }
     },
     "DevProjectPage": {
         "breadcrumbs": {
-            "home": "Home"
+            "home": "لامن اوتام"
         },
         "toolbar": {
-            "view": "View",
+            "view": "ليهت",
             "deployments": "Deployments"
         },
         "overview": {
@@ -509,28 +509,28 @@
             "desc": "Project information summary"
         },
         "source": {
-            "title": "Project Source",
-            "repo": "Repository",
-            "branch": "Branch",
-            "path": "Path",
-            "public": "Public"
+            "title": "سومبر ڤروجيک",
+            "repo": "ريڤوسيتوري",
+            "branch": "چابڠ",
+            "path": "لالوان",
+            "public": "عوام"
         },
         "platforms": {
-            "title": "Platforms",
+            "title": "ڤلتفوم",
             "desc": "Project hosting platforms",
             "headers": {
-                "platform": "Platform",
-                "slug": "Slug / ID",
-                "link": "Link"
+                "platform": "ڤلتفوم",
+                "slug": "سلوݢ / ID",
+                "link": "ڤاءوتن"
             },
-            "open": "Open"
+            "open": "بوک"
         },
         "information": {
-            "title": "Information",
+            "title": "معلومت",
             "desc": "Resolved information",
-            "type": "Type",
-            "status": "Status",
-            "created_at": "Created at"
+            "type": "جنيس",
+            "status": "ستاتوس",
+            "created_at": "دچيڤتا ڤد"
         },
         "revision": {
             "title": "Current git revision",
@@ -559,10 +559,10 @@
         "title": "Project members",
         "desc": "Manage project members & permissions",
         "roles": {
-            "owner": "Owner"
+            "owner": "ڤميليق"
         },
         "actions": {
-            "manage": "Manage"
+            "manage": "اوروس"
         }
     },
     "DevProjectContentItemsPage": {
@@ -579,90 +579,90 @@
     },
     "DevProjectLogs": {
         "title": "Deployment log",
-        "show": "Show",
-        "unloaded": "Not loaded",
-        "waiting": "Waiting for server...",
-        "loading": "Loading...",
-        "error": "Error loading logs",
+        "show": "تونجوقکن",
+        "unloaded": "تيدق دمواتکن",
+        "waiting": "منوڠݢو ڤلاين...",
+        "loading": "مموات...",
+        "error": "رالت دالم مموات لوݢ",
         "toast": {
-            "success": "Project setup complete",
-            "error": "Error during project setup"
+            "success": "ڤرسدياءن ڤروجيک سلساي",
+            "error": "رالت سماس ڤرسدياءن ڤروجيک"
         }
     },
     "DeveloperSidebar": {
         "teams": {
-            "personal": "Personal"
+            "personal": "ڤريبادي"
         },
         "groups": {
-            "projects": "Projects",
-            "platform": "Platform",
+            "projects": "ڤروجيک",
+            "platform": "ڤلتفوم",
             "admin": "Administration"
         },
         "nav": {
-            "projects": "Projects",
-            "documentation": "Documentation",
-            "settings": "Settings",
+            "projects": "ڤروجيک",
+            "documentation": "دوکومنتاسي",
+            "settings": "تتڤن",
             "admin": "System settings"
         }
     },
     "DevSidebarContextSwitcher": {
-        "title": "Teams"
+        "title": "ڤاسوقن"
     },
     "DevSidebarUser": {
         "logout": {
-            "button": "Log out",
-            "title": "Logout",
-            "desc": "Logging out..."
+            "button": "لوݢ کلوار",
+            "title": "لوݢ کلوار",
+            "desc": "سدڠ لوݢ کلوار..."
         },
         "unknown_avatar": "N/A"
     },
     "UserSettings": {
         "breadcrumbs": {
-            "home": "Home",
-            "settings": "Settings"
+            "home": "لامن اوتام",
+            "settings": "تتڤن"
         },
         "profile": {
-            "bio": "Modded Minecraft Wiki creator",
-            "join_date": "Joined {date}",
+            "bio": "ڤنچيڤتا ويکي ماءينکرف‌ت موديد",
+            "join_date": "مڽرتاءي ڤد {date}",
             "admin": "Admin"
         },
         "connections": {
-            "title": "Connections",
+            "title": "سامبوڠن",
             "modrinth": {
-                "title": "Modrinth account",
-                "desc": "Used to verify project ownership",
-                "connect": "Connect",
-                "view": "View",
-                "disconnect": "Disconnect"
+                "title": "اکاءون Modrinth",
+                "desc": "دݢوناکن اونتوق مڠصحکن ڤميليقن ڤروجيک",
+                "connect": "سامبوڠ",
+                "view": "ليهت",
+                "disconnect": "ڤوتوسکن"
             }
         },
         "account": {
-            "title": "Account",
+            "title": "اکاءون",
             "delete": {
-                "title": "Delete account",
-                "desc": "Forever delete all account data",
-                "button": "Delete account"
+                "title": "ڤادم اکاءون",
+                "desc": "ڤادم سموا داتا اکاءون بوات سلاما-لاماڽ",
+                "button": "ڤادم اکاءون"
             },
             "delete_modal": {
-                "title": "Delete account",
-                "desc": "Are you sure you want to delete this account? This is a destructive action that cannot be undone.",
-                "cancel": "Cancel",
-                "button": "Delete forever"
+                "title": "ڤادم اکاءون",
+                "desc": "اداکه اندا ڤستي ماهو ممادمکن اکاءون اين؟ اين اداله تيندقن يڠ مروسقکن دان تيدق بوليه دبوات اصل.",
+                "cancel": "بطل",
+                "button": "ڤادم سلاما-لاماڽ"
             }
         },
         "toast": {
             "unlink": {
-                "success": "Account unlinked successfully",
-                "error": "Error unlinking account"
+                "success": "اکاءون برجاي دڽهڤاءوت",
+                "error": "رالت دالم مڽهڤاءوت اکاءون"
             }
         }
     },
     "AuthFailure": {
-        "title": "Authentication failure",
-        "desc": "An unexpected error has occured while trying to log in. Please try again later.",
-        "status": "Check status",
-        "return": "Return home",
-        "report": "Report Bug"
+        "title": "کݢاݢلن ڤڠصحن",
+        "desc": "سبواه رالت يڠ تيدق دجڠک تله برلاکو سماس چوبا لوݢ ماسوق. سيلا چوبا سبنتر لاݢي.",
+        "status": "سيمق ستاتوس",
+        "return": "کمبالي کلامن اوتام",
+        "report": "لاڤورکن ڤڤيجت"
     },
     "BuiltinRecipeTypes": {
         "blasting": "Blasting",
@@ -680,18 +680,18 @@
     },
     "DevProjectSidebar": {
         "groups": {
-            "project": "Project",
+            "project": "ڤروجيک",
             "content": "Content"
         },
         "nav": {
             "home": "Overview",
-            "settings": "Settings",
+            "settings": "تتڤن",
             "members": "Members",
             "deployments": "Deployments",
             "health": "Health",
-            "versions": "Versions",
+            "versions": "ۏرسي",
             "content": "Items",
-            "tags": "Tags",
+            "tags": "تݢ",
             "recipes": "Recipes"
         }
     },
@@ -703,7 +703,7 @@
     },
     "AdminSidebar": {
         "groups": {
-            "home": "Home",
+            "home": "لامن اوتام",
             "data": "Data",
             "system": "System",
             "moderation": "Moderation"
@@ -713,8 +713,8 @@
             "data_imports": "Data Imports",
             "access_keys": "Access Keys",
             "migrations": "Migrations",
-            "users": "Users",
-            "projects": "Projects",
+            "users": "ڤڠݢونا",
+            "projects": "ڤروجيک",
             "config": "Configuration",
             "reports": "Reports",
             "audit_log": "Audit Log",
@@ -739,8 +739,8 @@
         "next": "Next"
     },
     "DevProjectVersionsTable": {
-        "name": "Name",
-        "branch": "Branch",
+        "name": "نام",
+        "branch": "چابڠ",
         "empty": {
             "title": "No additional versions were found in your project.",
             "desc": "Read the <link>author guide</link> to learn more about project versioning."
@@ -749,12 +749,12 @@
     "DevProjectItemsTable": {
         "icon": "Icon",
         "id": "Identifier",
-        "name": "Name",
+        "name": "نام",
         "path": "Page path (internal)",
         "actions": {
             "open": "Open menu",
             "title": "Actions",
-            "view": "View"
+            "view": "ليهت"
         },
         "empty": {
             "title": "No items were found in your project.",
@@ -769,7 +769,7 @@
         }
     },
     "DevProjectRecipesTable": {
-        "type": "Type",
+        "type": "جنيس",
         "id": "Identifier",
         "empty": {
             "title": "No recipes were found in your project."
@@ -791,7 +791,7 @@
         "commit": "Commit",
         "created_at": "Deploy time",
         "user_id": "Deployed by",
-        "status": "Status"
+        "status": "ستاتوس"
     },
     "DeploymentStatus": {
         "unknown": "N/A",
@@ -801,11 +801,11 @@
         "error": "Failed"
     },
     "DeleteDeploymentModal": {
-        "trigger": "Delete",
-        "title": "Are you absolutely sure?",
+        "trigger": "ڤادم",
+        "title": "اداکه اندا بنر٢ ڤستي؟",
         "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
-        "cancel": "Cancel",
-        "submit": "Delete",
+        "cancel": "بطل",
+        "submit": "ڤادم",
         "success": "Deployment deleted successfully"
     },
     "DeployProjectModal": {
@@ -813,16 +813,16 @@
         "title": "New deployment",
         "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
         "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
-        "tertiary": "For your own convenience, we recommend automatically revalidating docs after publication using our <link>Gradle plugin</link> instead.",
+        "tertiary": "اونتوق کمودهن اندا سنديري⹁ کامي مڠشورکن اݢر اندا سباليقڽ مڠصحکن سمولا دوکومن سچارا اءوتوماتيک سلڤس دتربيتکن مڠݢوناکن <link>ڤمالم Gradle</link> کامي.",
         "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Cancel",
+        "cancel": "بطل",
         "submit": "Deploy"
     },
     "LiveProjectDeployConnection": {
         "loading": "Deploying project...",
         "success": "Project deploy successful",
         "error": "Project deploy failed",
-        "view": "View"
+        "view": "ليهت"
     },
     "DevProjectDeploymentPage": {
         "deployments": "Deployments",
@@ -845,7 +845,7 @@
     "ProjectIssueLevel": {
         "warning": "Warning",
         "error": "Error",
-        "unknown": "Unknown"
+        "unknown": "تيدق دکتاهوءي"
     },
     "ProjectIssueType": {
         "meta": "Invalid project metadata",
@@ -863,12 +863,12 @@
         "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
     },
     "ProjectError": {
-        "requires_auth": "Repository connection requires login credentials but none were provided",
-        "no_repository": "Repository not found",
+        "requires_auth": "سامبوڠن ريڤوسيتوري ممرلوکن کلايقن لوݢ ماسوق تتاڤي تياد يڠ دبريکن",
+        "no_repository": "ريڤوسيتوري تيدق دتموءي",
         "repo_too_large": "Repository exceeds allowed file size",
-        "no_branch": "Invalid branch specified",
-        "no_path": "Metadata file not found at specified path",
-        "invalid_meta": "Metadata file is invalid",
+        "no_branch": "چابڠ تيدق صح دتنتوکن",
+        "no_path": "فاءيل ميتاداتا تيدق دتموءي ڤد لالوان يڠ دتنتوکن",
+        "invalid_meta": "فاءيل ميتاداتا تيدق صح",
         "invalid_page": "Failed to render page contents",
         "duplicate_page": "Duplicate page",
         "unknown_recipe_type": "Unknown recipe type",
@@ -876,7 +876,10 @@
         "invalid_file": "Failed to parse file",
         "invalid_format": "Invalid file format",
         "invalid_resloc": "Invalid Resource Location",
+        "invalid_version_branch": "Version branch does not exist",
         "missing_platform_project": "Missing platform project",
+        "no_page_title": "Page is missing title",
+        "missing_required_attribute": "Page is missing a required metadata attribute",
         "unknown": "Unknown error"
     },
     "AdminReports": {
@@ -895,7 +898,7 @@
     },
     "ContentCategory": {
         "all": "All",
-        "other": "Other"
+        "other": "لاءين٢"
     },
     "ContentChangelog": {
         "toggle": "Show changelog"
@@ -906,14 +909,14 @@
             "false": "No"
         },
         "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
+            "block": "بلوک",
+            "item": "اءيتم",
+            "other": "لاءين٢"
         },
         "properties": {
             "id": "ID",
             "source_mod": "Source mod",
-            "type": "Type",
+            "type": "جنيس",
             "stack_size": "Stack size",
             "required_tool": "Tool",
             "blast_resistance": "Blast resistance",
@@ -933,7 +936,7 @@
         "desc": "New system access key",
         "button": "Create",
         "name": {
-            "title": "Name",
+            "title": "نام",
             "desc": "Give your key a name",
             "placeholder": "Deploy staging"
         },
@@ -941,8 +944,8 @@
             "title": "Days of validity",
             "desc": "Number of days the key is valid for. Use 0 for no expiration."
         },
-        "submit": "Submit",
-        "submitting": "Submitting..."
+        "submit": "سره",
+        "submitting": "مڽرهکن..."
     },
     "SaveAccessKeyModal": {
         "title": "Access Key",
@@ -956,8 +959,8 @@
         "title": "Delete Access Key",
         "desc": "Invalidate and delete access key",
         "body": "This will forever delete the access key <name></name>.",
-        "cancel": "Cancel",
-        "submit": "Delete",
+        "cancel": "بطل",
+        "submit": "ڤادم",
         "success": "Access Key deleted successfully"
     },
     "CopyButton": {
@@ -966,5 +969,15 @@
     "InteractiveComponentPlaceholder": {
         "title": "Content unavailable in preview mode",
         "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
+    },
+    "RevalidateCacheModal": {
+        "title": "Revalidate cache tag",
+        "desc": "Manually revalidate a cache tag. Used for diagnostic purposes.",
+        "button": "Revalidate cache tag",
+        "tag": {
+            "title": "Cache Tag",
+            "desc": "The cache tag to revalidate"
+        },
+        "success": "Cache tag invalidated successfully"
     }
 }
