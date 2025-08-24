@@ -5,7 +5,7 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 function getFileName(meta: string): string | null {
   if (meta.length > 0) {
-    const parsedMeta = new RegExp('^title="(?<file>.*)"$').exec(meta);
+    const parsedMeta = new RegExp('title="(?<file>.*)"').exec(meta);
     return parsedMeta?.groups?.file ?? meta;
   }
   return null;
@@ -17,7 +17,7 @@ export default async function CodeHikeCode({codeblock}: { codeblock: RawCode }) 
 
   return (
     <div className="group relative rounded-sm">
-      <div className={cn('absolute', fileName == null ? 'top-1.5 right-1.5 p-1.5' : 'top-1 right-1 p-1')}>
+      <div className={cn('absolute', fileName == null ? 'top-1.5 right-1.5 p-1.5' : 'top-8 right-1 p-1')}>
         <ClientLocaleProvider keys={['CopyButton']}>
           <CopyButton text={highlighted.code}/>
         </ClientLocaleProvider>
