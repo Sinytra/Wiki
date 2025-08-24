@@ -13,7 +13,7 @@ export default function PageLink({href, target, local, className, children}: Lin
   const Element = local ? LocaleLink : NextLink;
   return (
     <Element href={href} target={target} className={cn(className, `
-      text-blue-400 decoration-1 underline-offset-4 hover:text-blue-400/80 hover:underline
+      text-link decoration-1 underline-offset-4 hover:text-blue-400/80 hover:underline
     `)}>
       {children}
     </Element>

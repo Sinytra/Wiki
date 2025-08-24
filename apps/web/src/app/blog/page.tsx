@@ -50,7 +50,9 @@ export default async function Blog() {
     <div className="flex flex-col">
       <BlogHeader hideSubtext={false} />
 
-      <span className="mb-4 border-b border-tertiary pb-1 text-xl">Recent posts</span>
+      <span className="mb-4 border-b border-tertiary pb-1 text-xl">
+        Recent posts
+      </span>
 
       <div className="flex flex-col gap-6">
         {...blogPosts.map((post, index) => (

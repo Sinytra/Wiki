@@ -30,6 +30,8 @@
     --text-color-destructive: #FB6C6F;
     --text-color-success: rgba(5, 223, 114, 0.7);
     --text-color-code: #A9B2C3;
+    --text-color-link: var(--color-blue-400);
+    --text-color-link-hover: color-mix(in oklab, var(--color-blue-400) 80%, transparent);
 
     --border-color-primary: var(--color-neutral-600);
     --border-color-secondary: #404040FF;
