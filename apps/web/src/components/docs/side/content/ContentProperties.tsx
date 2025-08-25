@@ -1,6 +1,8 @@
 import {ItemProperties, ProjectContext} from "@repo/shared/types/service";
 import Asset from "@/components/docs/shared/asset/Asset";
 import {useTranslations} from "next-intl";
+import {getContentLink} from "@/lib/game/content";
+import Link from "next/link";
 
 interface Props {
   ctx: ProjectContext;
@@ -18,9 +20,11 @@ function ContentProperty({name, value, ctx}: { name: string; value: any; ctx: Pr
     );
   }
   if (name === 'required_tool') {
-    // TODO Link item
+    const link = getContentLink(ctx, value);
     return (
-      <Asset location={value} ctx={ctx}/>
+      <Link href={link}>
+        <Asset location={value} ctx={ctx}/>
+      </Link>
     )
   }
   if (name === 'hardness' || name === 'blast_resistance') {
@@ -50,7 +54,7 @@ export default function ContentProperties({properties, ctx}: Props) {
           .sort(([a, _], [b, __]) => order.indexOf(a) - order.indexOf(b))
           .map(([key, value]) => (
             <tr key={key}>
-              <td className="border-r-0 border-b-0 border-l-0 text-sm font-medium">
+              <td className="border-r-0 border-b-0 border-l-0 text-sm font-medium break-all">
                 {/*@ts-expect-error has message*/}
                 {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}
               </td>
