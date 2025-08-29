@@ -3,46 +3,20 @@
 import {
   createAccessKeySchema,
   projectEditSchema,
-  projectRegisterSchema,
-  projectReportSchema, revalidateCacheSchema,
+  projectReportSchema,
+  revalidateCacheSchema,
   ruleProjectReportSchema
 } from "@/lib/forms/schemas";
 import cacheUtil from "@/lib/cacheUtil";
 import authSession from "@/lib/authSession";
-import {revalidatePath, revalidateTag} from "next/cache";
+import {revalidateTag} from "next/cache";
 import {redirect} from "next/navigation";
 import authApi from "@/lib/service/api/authApi";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import projectApi from "@/lib/service/api/projectApi";
-import {ZodSchema} from "zod";
 import moderationApi from "@/lib/service/api/moderationApi";
 import adminApi from "@/lib/service/api/adminApi";
-
-interface ValidationResult { success: boolean; }
-interface ValidationSuccess<T> extends ValidationResult { success: true; data: T }
-interface ValidationError extends ValidationResult { success: false; errors: unknown }
-
-// TODO Cleanup
-export async function handleRegisterProjectForm(rawData: any) {
-  const data = await validateProjectFormData(rawData, projectRegisterSchema);
-  if (!data.success) {
-    return data;
-  }
-
-  const response = await projectApi.registerProject(data.data);
-
-  if (!response.success) {
-    const can_verify_mr = response.type == 'known_error' ? (response.data as any).can_verify_mr : undefined;
-    return {
-      ...response,
-      can_verify_mr
-    };
-  }
-
-  revalidatePath('/[locale]/(dashboard)/dev');
-
-  return {success: true, project: response.data.project};
-}
+import {validateProjectFormData} from "@/lib/forms/commonActions";
 
 export async function handleEditProjectForm(rawData: any) {
   const validated = await validateProjectFormData(rawData, projectEditSchema);
@@ -176,14 +150,6 @@ export async function deleteUserAccount() {
   } else {
     return authSession.logout(); // Remove session cookie
   }
-}
-
-async function validateProjectFormData<T>(rawData: any, schema: ZodSchema<T>): Promise<ValidationSuccess<T> | ValidationError> {
-  const validated = schema.safeParse(rawData);
-  if (!validated.success) {
-    return { success: false, errors: validated.error.flatten().fieldErrors }
-  }
-  return { success: true, data: validated.data };
 }
 
 function saveState(url: string, state: any) {

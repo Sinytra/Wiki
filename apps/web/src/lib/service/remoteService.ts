@@ -12,7 +12,8 @@ import {
 } from "@repo/shared/types/service";
 import resourceLocation, {ResourceLocation} from "@repo/shared/resourceLocation";
 import browseApi from "@/lib/service/api/browseApi";
-import network, {ApiRouteParameters} from "@repo/shared/network";
+import network from "@repo/shared/network";
+import commonNetwork, {ApiRouteParameters} from '@repo/shared/commonNetwork';
 
 async function sendApiRequest(project: string, path: string, parameters?: ApiRouteParameters) {
   return network.sendSimpleRequest(path, {
@@ -42,7 +43,7 @@ async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promis
 }
 
 function getAssetURL(location: string, {id, version}: ProjectContext): AssetLocation | null {
-  const url = network.constructApiUrl(`docs/${id}/asset/${location}`, {version});
+  const url = commonNetwork.constructApiUrl(`docs/${id}/asset/${location}`, {version});
   return {
     id: location,
     src: url

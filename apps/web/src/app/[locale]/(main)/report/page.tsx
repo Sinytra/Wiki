@@ -8,8 +8,8 @@ import LinkTextButton from "@/components/util/LinkTextButton";
 import {ProjectReportType} from "@repo/shared/types/api/moderation";
 import {notFound} from "next/navigation";
 import locales from "@repo/shared/locales";
-import network from "@repo/shared/network";
 import {use} from "react";
+import commonNetwork from "@repo/shared/commonNetwork";
 
 type Params = Promise<{ locale: string }>;
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -56,7 +56,7 @@ export default function ReportPage(props: { params: Params; searchParams: Search
         <div className="rounded-md bg-primary-alt p-4">
           <ClientLocaleProvider keys={['Report', 'SubmitButton', 'ProjectReportReason', 'ProjectReportType']}>
             <ProjectReportForm projectId={project} type={type} path={path}
-                               locale={locales.actualLocale(locale)} version={network.actualVersion(version)}
+                               locale={locales.actualLocale(locale)} version={commonNetwork.actualVersion(version)}
                                formAction={handleReportProjectForm}/>
           </ClientLocaleProvider>
         </div>

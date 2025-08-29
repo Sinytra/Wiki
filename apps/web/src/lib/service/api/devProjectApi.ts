@@ -1,4 +1,5 @@
-import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
+import network from "@repo/shared/network";
+import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
 import {DevProject} from "@repo/shared/types/service";
 import cacheUtil from "@/lib/cacheUtil";
 import {

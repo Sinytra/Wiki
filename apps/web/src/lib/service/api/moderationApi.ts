@@ -1,4 +1,5 @@
-import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
+import network from "@repo/shared/network";
+import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
 import {z} from "zod";
 import {projectReportSchema, ruleProjectReportSchema} from "@/lib/forms/schemas";
 import {ProjectReport, ProjectReports} from "@repo/shared/types/api/moderation";

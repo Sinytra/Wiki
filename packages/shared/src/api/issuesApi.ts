@@ -1,9 +1,10 @@
 import {MarkdownError} from '@repo/markdown';
 import {Project} from '@repo/shared/types/service';
-import network, {ApiCallResult, ApiRouteParameters} from '@repo/shared/network';
+import network from '@repo/shared/network';
 import {ProjectError, ProjectIssue, ProjectIssueLevel, ProjectIssueType} from '@repo/shared/types/api/project';
 import {ProjectPlatform} from '@repo/shared/types/platform';
 import platforms from '@repo/shared/platforms';
+import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
 
 interface AddProjectIssueRequest {
   level: ProjectIssueLevel;

@@ -1,4 +1,5 @@
-import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
+import network from "@repo/shared/network";
+import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
 import {ProjectSearchResults} from "@repo/shared/types/service";
 import {time} from "@repo/shared/constants";
 

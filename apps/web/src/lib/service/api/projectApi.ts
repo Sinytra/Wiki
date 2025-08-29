@@ -1,7 +1,8 @@
-import network, {ApiCallResult} from "@repo/shared/network";
+import network from "@repo/shared/network";
+import {ApiCallResult} from '@repo/shared/commonNetwork';
 import {Project} from "@repo/shared/types/service";
 import {z} from "zod";
-import {projectEditSchema, projectRegisterSchema} from "@/lib/forms/schemas";
+import {projectEditSchema} from "@/lib/forms/schemas";
 
 export interface ProjectResponse {
   project: Project;
@@ -15,10 +16,6 @@ async function getPopularProjects(): Promise<ApiCallResult<Project[]>> {
   return network.resolveApiCall(() => network.sendSimpleRequest('projects/popular', {cache: true, userAuth: false}));
 }
 
-async function registerProject(body: z.infer<typeof projectRegisterSchema>): Promise<ApiCallResult<ProjectResponse>> {
-  return network.resolveApiCall(() => network.sendDataRequest('dev/projects', {body}));
-}
-
 async function updateProject(body: z.infer<typeof projectEditSchema>): Promise<ApiCallResult<ProjectResponse>> {
   return network.resolveApiCall(() => network.sendDataRequest('dev/projects', {method: 'PUT', body}));
 }
@@ -30,7 +27,6 @@ async function deleteProject(id: string): Promise<ApiCallResult> {
 export default {
   getAllProjectIDs,
   getPopularProjects,
-  registerProject,
   updateProject,
   deleteProject
 }

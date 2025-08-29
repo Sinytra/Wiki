@@ -2,7 +2,6 @@ import GetStartedButton from "@/components/dev/get-started/GetStartedButton";
 import LinkTextButton from "@/components/util/LinkTextButton";
 import * as React from "react";
 import {Suspense} from "react";
-import {handleRegisterProjectForm} from "@/lib/forms/actions";
 import {getTranslations} from "next-intl/server";
 import {Skeleton} from "@repo/ui/components/skeleton";
 import GetStartedContextProvider from "@/components/dev/get-started/GetStartedContextProvider";
@@ -39,7 +38,6 @@ function ProjectsListHeader({isAdmin}: {
 
         <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'SubmitButton']}>
           <ProjectRegisterForm isAdmin={isAdmin}
-                               formAction={handleRegisterProjectForm}
                                redirectToProject
           />
         </ClientLocaleProvider>

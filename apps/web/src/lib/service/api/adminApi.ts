@@ -1,5 +1,6 @@
 import {AccessKey, AccessKeys, DataImports, DataMigration, SystemInfo} from "@repo/shared/types/api/admin";
-import network, {ApiCallResult, ApiRouteParameters} from "@repo/shared/network";
+import network from "@repo/shared/network";
+import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
 import {z} from "zod";
 import {createAccessKeySchema} from "@/lib/forms/schemas";
 

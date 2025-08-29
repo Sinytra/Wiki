@@ -1,4 +1,5 @@
-import network, {ApiCallResult} from '@repo/shared/network';
+import network from '@repo/shared/network';
+import {ApiCallResult} from '@repo/shared/commonNetwork';
 import {SystemLocale} from '@repo/shared/types/api/admin';
 
 async function getSupportedLocales(): Promise<ApiCallResult<SystemLocale[]>> {

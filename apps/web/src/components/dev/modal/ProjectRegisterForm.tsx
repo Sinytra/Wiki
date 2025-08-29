@@ -37,20 +37,18 @@ import {useRouter as useProgressRouter} from "@bprogress/next";
 import {useParams} from "next/navigation";
 import {GetStartedContext} from "@/components/dev/get-started/GetStartedContextProvider";
 import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
+import clientActions from "@/lib/forms/clientActions";
 
 export interface ProjectRegisterFormProps {
   isAdmin: boolean;
   translations?: Parameters<typeof useTranslations>[0];
   redirectToProject?: boolean;
   reloadAfterSubmit?: boolean;
-
-  formAction: (data: any) => Promise<any>
 }
 
 export default function ProjectRegisterForm(
   {
     isAdmin,
-    formAction,
     translations,
     redirectToProject,
     reloadAfterSubmit
@@ -73,7 +71,7 @@ export default function ProjectRegisterForm(
   const formRef = useRef<HTMLFormElement | null>(null);
   const [canVerifyModrinth, setCanVerifyModrinth] = useState(false);
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await formAction(data) as any;
+    const resp = await clientActions.handleRegisterProjectFormClient(data) as any;
 
     if (resp.success) {
       if (redirectToProject && resp.project.id) {
@@ -127,10 +125,22 @@ export default function ProjectRegisterForm(
         <Form {...form}>
           <div className="relative focus:outline-hidden" tabIndex={0}>
             {form.formState.isSubmitting &&
-              <div
-                className="absolute top-1/2 left-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-2">
-                  <Loader2Icon className="mr-2 h-6 w-6 animate-spin"/>
-                  <span className="text-lg">{t('submitting')}</span>
+              <div className={`
+                absolute top-1/2 left-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center
+                gap-2
+              `}>
+                  <div className="inline-flex flex-10 items-center gap-2">
+                      <Loader2Icon className="mr-2 h-6 w-6 animate-spin"/>
+                      <span className="text-xl">{t('submitting')}</span>
+                  </div>
+
+                  <div className="flex-1 text-center text-base text-secondary">
+                      {t('submission.clone')}
+
+                      <p className="mt-4 text-sm text-secondary">
+                          *{t('submission.note')}
+                      </p>
+                  </div>
               </div>
             }
             <form ref={formRef} action={action}

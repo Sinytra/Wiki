@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import {ReactNode, useState} from "react"
-import {Table, TableBody, TableCell, TableHeader, TableRow,} from "@repo/ui/components/table"
+import {Table, TableBody, TableCell, TableHeader, TableRow} from "@repo/ui/components/table"
 import {Input} from "@repo/ui/components/input";
 import {parseAsString, useQueryStates} from "nuqs";
 import {parseAsInteger} from "nuqs/server";

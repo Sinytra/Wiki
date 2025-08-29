@@ -1,4 +1,5 @@
-import network, {ApiCallResult} from "@repo/shared/network";
+import network from "@repo/shared/network";
+import {ApiCallResult} from '@repo/shared/commonNetwork';
 import {UserProfile} from "@repo/shared/types/api/auth";
 
 async function getUserProfile(): Promise<ApiCallResult<UserProfile>> {

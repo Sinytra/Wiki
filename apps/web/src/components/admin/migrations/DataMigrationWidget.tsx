@@ -5,7 +5,7 @@ import {Button} from "@repo/ui/components/button";
 import {SettingsIcon} from "lucide-react";
 import * as React from "react";
 import {toast} from "sonner";
-import {ApiCallResult} from "@repo/shared/network";
+import {ApiCallResult} from '@repo/shared/commonNetwork';
 
 export default function DataMigrationWidget({migration, action}: { migration: DataMigration, action: () => Promise<ApiCallResult> }) {
   const formAction = async () => {
