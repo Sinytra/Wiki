@@ -13,9 +13,10 @@ import {projectEditSchema} from "@/lib/forms/schemas";
 import * as React from "react";
 import {useState} from "react";
 import {toast} from "sonner";
-import {Link} from "@/lib/locales/routing";
+import {Link, useRouter} from "@/lib/locales/routing";
 import DevProjectSectionTitle from "@/components/dev/project/DevProjectSectionTitle";
 import {DevProject} from "@repo/shared/types/service";
+import clientActions from "@/lib/forms/clientActions";
 
 function SourceSection({form}: { form: any }) {
   return (
@@ -118,7 +119,7 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
   );
 }
 
-export default function DevProjectSettings({project, formAction, deleteFunc}: { project: DevProject; formAction: (data: any) => Promise<any>; deleteFunc: any }) {
+export default function DevProjectSettings({project, deleteFunc}: { project: DevProject; deleteFunc: any }) {
   const form = useForm<z.infer<typeof projectEditSchema>>({
     resolver: zodResolver(projectEditSchema),
     defaultValues: {
@@ -133,6 +134,7 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
   const t = useTranslations('ProjectRegisterForm');
   const u = useTranslations('FormActions');
   const [canVerifyModrinth, setCanVerifyModrinth] = useState(false);
+  const router = useRouter();
 
   const action: () => void = form.handleSubmit(async (data) => {
     let resolver: any = null;
@@ -143,19 +145,16 @@ export default function DevProjectSettings({project, formAction, deleteFunc}: { 
     });
     toast.promise(promise, {
       loading: 'Updating project...',
+      description: t('submission.note'),
       success: 'Project updated successfully',
       error: 'Error updating project',
     });
-    const resp = await formAction(data) as any;
+    const resp = await clientActions.handleEditProjectFormClient(data) as any;
     if (resp.success) resolver();
     else rejector();
 
     if (resp.success) {
-      // toast.success(v('success.title'), {description: v('success.desc')});
-
-      // if (reloadAfterSubmit) {
-      //   reload(() => router.refresh());
-      // }
+      router.refresh();
     } else if (resp.error) {
       // @ts-expect-error expected
       form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});

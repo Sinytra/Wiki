@@ -2,7 +2,6 @@
 
 import {
   createAccessKeySchema,
-  projectEditSchema,
   projectReportSchema,
   revalidateCacheSchema,
   ruleProjectReportSchema
@@ -16,29 +15,6 @@ import devProjectApi from "@/lib/service/api/devProjectApi";
 import projectApi from "@/lib/service/api/projectApi";
 import moderationApi from "@/lib/service/api/moderationApi";
 import adminApi from "@/lib/service/api/adminApi";
-import {validateProjectFormData} from "@/lib/forms/commonActions";
-
-export async function handleEditProjectForm(rawData: any) {
-  const validated = await validateProjectFormData(rawData, projectEditSchema);
-  if (!validated.success) {
-    return validated;
-  }
-  const response = await projectApi.updateProject(validated.data);
-
-  if (!response.success) {
-    const can_verify_mr = response.type === 'known_error' ? (response.data as any).can_verify_mr : undefined;
-    const install_url = response.type === 'known_error' ? saveState((response.data as any).install_url, validated.data) : undefined;
-    return {
-      ...response,
-      can_verify_mr,
-      install_url
-    };
-  }
-
-  cacheUtil.invalidateDocs(response.data.project.id);
-
-  return {success: true};
-}
 
 export async function handleDeleteProjectForm(id: string) {
   const response = await projectApi.deleteProject(id);
@@ -150,11 +126,6 @@ export async function deleteUserAccount() {
   } else {
     return authSession.logout(); // Remove session cookie
   }
-}
-
-function saveState(url: string, state: any) {
-  const serialized = btoa(JSON.stringify(state));
-  return url + '?state=' + serialized;
 }
 
 export async function handleDeleteDeploymentForm(id: string) {
