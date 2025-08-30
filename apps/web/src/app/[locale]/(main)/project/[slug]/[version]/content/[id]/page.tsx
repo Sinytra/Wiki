@@ -16,6 +16,7 @@ import TogglableContent from "@/components/docs/content/TogglableContent";
 import ContentChangelog from "@/components/docs/content/ContentChangelog";
 import ContentListFooter from "@/components/docs/ContentListFooter";
 import markdown from "@repo/markdown";
+import DocsContentPageToolsFooter from "@/components/docs/layout/DocsContentPageToolsFooter";
 
 interface Props {
   params: Promise<{
@@ -94,7 +95,7 @@ export default async function ContentEntryPage(props: Props) {
         </ClientLocaleProvider>
 
         <main className={`
-          mt-4 min-h-[86vh] flex-1 overflow-auto px-2 pb-6 sm:mt-0 sm:min-h-[auto] sm:max-w-5xl sm:pt-4 lg:px-0 lg:pt-2
+          mt-4 min-h-[86vh] flex-1 overflow-auto px-2 pb-4 sm:mt-0 sm:min-h-[auto] sm:max-w-5xl sm:pt-4 lg:px-0 lg:pt-2
         `}
         >
           <div className="mb-6 sm:hidden">
@@ -115,12 +116,12 @@ export default async function ContentEntryPage(props: Props) {
           {contents &&
             <ContentListFooter project={page.project} contents={contents} ctx={ctx}/>
           }
+
+          <DocsContentPageToolsFooter project={page.project.id} local={page.project.local} id={id}
+                                      editUrl={page.edit_url}/>
         </main>
 
-        <DocsContentMetaSidebar title={t('title')} project={page.project}
-                                metadata={page.content.metadata} ctx={ctx}
-                                properties={page.properties}
-        />
+        <DocsContentMetaSidebar id={id} title={t('title')} ctx={ctx} page={page}/>
       </div>
     </>
   )
