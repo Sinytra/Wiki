@@ -73,7 +73,7 @@ function RenderedProperty({name, type, value, ctx}: {
     )
   }
 
-  if (type === 'damage') {
+  if (type === 'damage' && Number.isInteger(value) && value >= 0) {
     const visual = Array(Math.floor(value / 2)).fill(0).map((_, i) => (
       <Asset key={i} ctx={ctx} location="icon/heart" alt={"\u2764\uFE0F"}
              className="inline-block" width={9} height={9}/>
@@ -83,14 +83,14 @@ function RenderedProperty({name, type, value, ctx}: {
         <Asset key="half" ctx={ctx} location="icon/half_heart" alt={"\u{1F494}"}
                className="inline-block" width={9} height={9}/>));
     }
-    return (
+    return visual.length < 1 ? value : (
       <span>
         {value} (<span>{visual}</span>)
       </span>
     )
   }
 
-  if (type === 'hunger' && Number.isInteger(value)) {
+  if (type === 'hunger' && Number.isInteger(value) && value >= 0) {
     const visual = Array(Math.floor(value / 2)).fill(0).map((_, i) => (
       <Asset key={i} ctx={ctx} location="icon/hunger" alt={"\u{1F357}"}
              className="inline-block" width={9} height={9}/>
@@ -100,7 +100,7 @@ function RenderedProperty({name, type, value, ctx}: {
         <Asset alt={"\u{1F356}"} key="half" ctx={ctx} className="inline-block" location="icon/half_hunger" width={9}
                height={9}/>));
     }
-    return (
+    return visual.length < 1 ? value : (
       <span>
         {value} (<span>{visual}</span>)
       </span>
