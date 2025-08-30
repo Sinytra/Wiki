@@ -4,14 +4,20 @@ import PageLink from "@/components/docs/PageLink";
 import {Link} from "@/lib/locales/routing";
 import {Project, ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
 import {useTranslations} from "next-intl";
+import {cn} from "@repo/ui/lib/utils";
 
 interface Props {
+  currentId: string;
   project: Project;
   ctx: ProjectContext;
   contents: ProjectContentTree;
 }
 
-function Category({content, ctx}: { content: ProjectContentEntry; ctx: ProjectContext; }) {
+function Category({currentId, content, ctx}: {
+  currentId: string;
+  content: ProjectContentEntry;
+  ctx: ProjectContext;
+}) {
   const t = useTranslations('ContentCategory');
 
   let subCategories: ProjectContentTree;
@@ -25,8 +31,10 @@ function Category({content, ctx}: { content: ProjectContentEntry; ctx: ProjectCo
     subCategories = [{name: t('all'), children: content.children, type: 'dir', path: ''}];
   }
 
+  const active = subCategories.flatMap(c => c.children).some(c => c.id === currentId);
+
   return (
-    <ExpandableCategory name={content.name}>
+    <ExpandableCategory name={content.name} defaultOpen={active}>
       {subCategories.map(i => (
         <div key={i.path} className={`
           flex flex-col gap-2 bg-primary-dark! p-2 first:rounded-t-sm last:rounded-b-sm sm:flex-row sm:items-center
@@ -35,12 +43,15 @@ function Category({content, ctx}: { content: ProjectContentEntry; ctx: ProjectCo
             {i.name}
           </div>
           <div className="columns-[10em] flex-row flex-wrap gap-2 space-y-2 sm:flex sm:space-y-0">
-            {...i.children.map((c,i) => (
+            {...i.children.map((c, i) => (
               <div key={c.path} className="flex flex-row items-center gap-1 text-sm">
                 {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
                 <PageLink href={`/project/${ctx.id}/${ctx.version}/content/${c.id}`} local
-                          className="flex flex-row items-center gap-1 !text-sm">
-                  <Asset location={c.id!} ctx={ctx} />
+                          className={cn(
+                            'flex flex-row items-center gap-1 rounded-sm !text-sm',
+                            c.id === currentId && 'font-semibold bg-primary'
+                          )}>
+                  <Asset location={c.id!} ctx={ctx}/>
                   {c.name}
                 </PageLink>
               </div>
@@ -52,7 +63,7 @@ function Category({content, ctx}: { content: ProjectContentEntry; ctx: ProjectCo
   )
 }
 
-export default function ContentListFooter({project, ctx, contents}: Props) {
+export default function ContentListFooter({currentId, project, ctx, contents}: Props) {
   return (
     <div className="not-prose">
       <hr className="mb-8"/>
@@ -76,7 +87,7 @@ export default function ContentListFooter({project, ctx, contents}: Props) {
           </thead>
           <tbody className="table w-full">
           {...contents.map(c => (
-            <Category key={c.path} content={c} ctx={ctx}/>
+            <Category key={c.path} currentId={currentId} content={c} ctx={ctx}/>
           ))}
           </tbody>
         </table>

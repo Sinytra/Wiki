@@ -4,8 +4,12 @@ import {useState} from "react";
 import * as React from "react";
 import ToggleChevron from "@repo/ui/util/ToggleChevron";
 
-export default function ExpandableCategory({name, children}: { name: string; children: any }) {
-  const [open, setOpen] = useState(false);
+export default function ExpandableCategory({name, defaultOpen, children}: {
+  name: string;
+  defaultOpen: boolean;
+  children: any
+}) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
     <tr>
@@ -21,13 +25,13 @@ export default function ExpandableCategory({name, children}: { name: string; chi
               {name}
             </div>
             <div className="w-8">
-              <ToggleChevron className="ml-auto h-4 w-4" active={open} />
+              <ToggleChevron className="ml-auto h-4 w-4" active={open}/>
             </div>
           </div>
 
           {open &&
             <div className="mt-2 flex w-full flex-col rounded-md">
-            {children}
+              {children}
             </div>
           }
         </div>

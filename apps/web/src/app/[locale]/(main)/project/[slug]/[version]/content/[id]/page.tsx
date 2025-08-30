@@ -114,7 +114,7 @@ export default async function ContentEntryPage(props: Props) {
           }
 
           {contents &&
-            <ContentListFooter project={page.project} contents={contents} ctx={ctx}/>
+            <ContentListFooter currentId={id} project={page.project} contents={contents} ctx={ctx}/>
           }
 
           <DocsContentPageToolsFooter project={page.project.id} local={page.project.local} id={id}
