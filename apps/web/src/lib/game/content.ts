@@ -23,6 +23,10 @@ export function getExternalWikiLink(id: string): string | null {
   return loc?.namespace === DEFAULT_NAMESPACE ? `https://minecraft.wiki/w/${loc.path}` : null;
 }
 
+export function getVanillaWikiLink(page: string): string {
+  return `https://minecraft.wiki/w/${page}`;
+}
+
 export function getDocsLink(path: string, ctx: ProjectContext): string {
   return `/${ctx.locale}/project/${ctx.id}/${ctx.version}/docs/${path}`;
 }

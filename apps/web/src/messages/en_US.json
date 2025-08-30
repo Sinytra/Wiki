@@ -909,6 +909,17 @@
         "toggle": "Show changelog"
     },
     "ContentProperties": {
+        "weighted_flag": {
+            "true": "Yes ({count})",
+            "false": "No"
+        },
+        "rarity": {
+            "common": "Common",
+            "uncommon": "Uncommon",
+            "rare": "Rare",
+            "epic": "Epic",
+            "unknown": "Unknown"
+        },
         "bool": {
             "true": "Yes",
             "false": "No"
@@ -916,17 +927,25 @@
         "type": {
             "block": "Block",
             "item": "Item",
-            "other": "Other"
+            "other": "Other",
+            "unknown": "Other"
         },
         "properties": {
             "id": "ID",
             "source_mod": "Source mod",
             "type": "Type",
-            "stack_size": "Stack size",
+            "stack_size": "Stackable",
             "required_tool": "Tool",
             "blast_resistance": "Blast resistance",
             "hardness": "Hardness",
-            "flammable": "Flammable"
+            "flammable": "Flammable",
+            "rarity": "Rarity tier",
+            "durability": "Durability",
+            "mining_speed": "Mining efficiency",
+            "attack_damage": "Attack damage",
+            "attack_speed": "Attack speed",
+            "enchantability": "Enchantability",
+            "nutrition": "Restores"
         }
     },
     "DocsLink": {
