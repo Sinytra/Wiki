@@ -126,7 +126,7 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
 
 function getProjectURL(slug: string, type: ProjectType): string {
   const base = projectTypePaths[type];
-  return `https://www.curseforge.com/${base}/${slug}`;
+  return `https://www.curseforge.com/minecraft/${base}/${slug}`;
 }
 
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
