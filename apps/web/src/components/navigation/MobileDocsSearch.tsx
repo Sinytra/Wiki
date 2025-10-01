@@ -37,11 +37,6 @@ function SearchResult({result}: { result: WikiSearchResult }) {
             <span className="text-secondary">
               {result.mod}
             </span>
-            {result.path &&
-              <span className="font-normal text-secondary opacity-60">
-                {result.path}
-              </span>
-            }
           </div>
         }
       </div>
@@ -136,7 +131,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
                      text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1
                      focus:outline-secondary
                    `}
-                   placeholder={t('placeholder')}
+                   placeholder={t('placeholder')} autoFocus
             />
           </div>
           {loading && <LoadingSearchState/>}

@@ -34,7 +34,6 @@ function SearchResult({result}: { result: WikiSearchResult }) {
           :
           <div className="flex flex-row gap-2">
             <span className="text-secondary">{result.mod}</span>
-            {result.path && <span className="font-light text-secondary">- {result.path}</span>}
           </div>
         }
       </div>

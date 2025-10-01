@@ -18,7 +18,7 @@ export default function DocsSubpageTitle({icon_url, subcategory, title, descript
         <h1 className="flex flex-wrap gap-1 text-lg text-primary sm:block sm:text-2xl">
           {title} {subcategory && <span className="text-lg text-secondary sm:text-xl">/ {subcategory}</span>}
         </h1>
-        <blockquote className="line-clamp-2 text-sm text-secondary sm:text-base">
+        <blockquote className="projectSummary line-clamp-2 text-sm text-secondary sm:text-base">
           {description}
         </blockquote>
       </div>
