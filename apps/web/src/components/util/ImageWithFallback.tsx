@@ -13,11 +13,10 @@ export default function ImageWithFallback({
                                             fbWidth,
                                             fbHeight,
                                             className,
-                                            loading,
                                             strokeWidth = 1,
+                                            fixedSize,
                                             fallback: FallbackIcon = BoxIcon
                                           }: {
-  loading?: boolean,
   src?: string,
   width: number,
   height: number,
@@ -27,8 +26,8 @@ export default function ImageWithFallback({
   fallback?: any,
   fbWidth?: number,
   fbHeight?: number
+  fixedSize?: boolean
 }) {
-  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
   const Fallback = () => <FallbackIcon strokeWidth={strokeWidth}
@@ -37,16 +36,14 @@ export default function ImageWithFallback({
                                        height={fbHeight || height}/>;
 
   return (
-    <div className="shrink-0">
+    <div className="shrink-0" style={fixedSize ? { width: `${width}px`, height: `${height}px` } : undefined}>
       {src && !error &&
         <Image src={src} alt={alt || ''} width={width} height={height} className={className}
-               style={{display: !loading || loaded ? 'block' : 'none'}}
-               onLoad={() => setLoaded(true)}
                onError={() => setError(true)}
                unoptimized
         />
       }
-      {(!src || (loading && !loaded) || error) && <Fallback/>}
+      {(!src || error) && <Fallback/>}
     </div>
   );
 }
