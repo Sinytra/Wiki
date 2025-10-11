@@ -10,8 +10,9 @@ async function getAllProjectIDs(): Promise<ApiCallResult<string[]>> {
   return network.resolveApiCall(() => network.sendSimpleRequest('projects', {userAuth: false}));
 }
 
-async function getPopularProjects(): Promise<ApiCallResult<Project[]>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest('projects/popular', {cache: true, userAuth: false}));
+async function getProjectsByID(ids: string[]): Promise<ApiCallResult<Project[]>> {
+  const body = {ids};
+  return network.resolveApiCall(() => network.sendDataRequest('projects/bulk', {cache: true, userAuth: false, body}));
 }
 
 async function deleteProject(id: string): Promise<ApiCallResult> {
@@ -20,6 +21,6 @@ async function deleteProject(id: string): Promise<ApiCallResult> {
 
 export default {
   getAllProjectIDs,
-  getPopularProjects,
+  getProjectsByID,
   deleteProject
 }

@@ -2,6 +2,7 @@ import platforms, {PlatformProject} from "@repo/shared/platforms";
 import {Project, ProjectType} from "@repo/shared/types/service";
 import {ProjectPlatform} from "@repo/shared/types/platform";
 import projectApi from "@/lib/service/api/projectApi";
+import posthog from "@/lib/service/external/posthog";
 
 export interface FeaturedProject {
   id: string;
@@ -18,7 +19,9 @@ export interface FeaturedProject {
 
 async function getFeaturedProjects(): Promise<FeaturedProject[]> {
   try {
-    const popular = await projectApi.getPopularProjects();
+    const ids = await posthog.getMostPopularProjectIDs();
+
+    const popular = await projectApi.getProjectsByID(ids);
     if (!popular.success) {
       return [];
     }
@@ -32,7 +35,7 @@ async function getFeaturedProjects(): Promise<FeaturedProject[]> {
   }
 }
 
-async function resolveProject(project: Project): Promise<{project: Project, resolved: PlatformProject  }> {
+async function resolveProject(project: Project): Promise<{project: Project, resolved: PlatformProject}> {
   const resolved = await platforms.getPlatformProject(project);
   return {project, resolved}
 }
