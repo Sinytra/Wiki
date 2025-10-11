@@ -419,7 +419,8 @@
             "tags": "Tagged:"
         },
         "description": {
-            "title": "Description"
+            "title": "Description",
+            "placeholder": "Description not available"
         },
         "navigation": {
             "title": "Navigation",

@@ -3,7 +3,6 @@ import service from "@/lib/service";
 import {redirect} from "next/navigation";
 import platforms, {PlatformProject} from "@repo/shared/platforms";
 import {ARRNoLicense, getPlatformProjectInformation, ProjectCategories} from "@/lib/docs/projectInfo";
-import MarkdownContent from "@/components/docs/body/MarkdownContent";
 import {
   BookMarkedIcon,
   BookOpenIcon,
@@ -33,6 +32,7 @@ import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 import {getTranslations} from "next-intl/server";
 import {Metadata, ResolvingMetadata} from "next";
 import {ProjectRouteParams} from "@repo/shared/types/routes";
+import DocsHomepage from "@/components/docs/DocsHomepage";
 
 export async function generateMetadata(
   props: { params: Promise<ProjectRouteParams> },
@@ -107,8 +107,8 @@ function ExternalLink({text, icon: Icon, href, className}: {
     <a href={href} target="_blank" rel="noreferrer">
       <div
         className={cn(`
-          flex w-36 cursor-pointer flex-row items-center justify-center gap-2 rounded-sm border bg-gradient-to-b p-2
-          hover:to-60% sm:p-3
+          flex max-w-48 min-w-36 cursor-pointer flex-row items-center justify-center gap-2 rounded-sm border
+          bg-gradient-to-b p-2 hover:to-60% sm:p-3
         `, className)}>
         <Icon className="size-4 shrink-0 sm:size-5"/>
         {text}
@@ -176,6 +176,11 @@ export default async function ProjectHomepage(props: PageProps) {
 
   const platformProject = await platforms.getPlatformProject(project);
   const info = await getPlatformProjectInformation(platformProject);
+  const descriptionPlaceholder = (
+    <div className="min-h-16 text-secondary">
+      {t('description.placeholder')}
+    </div>
+  );
 
   return (
     <div className="mx-auto mt-1 mb-5 flex w-full max-w-5xl flex-col gap-6">
@@ -227,9 +232,15 @@ export default async function ProjectHomepage(props: PageProps) {
 
       {platformProject.description.length > 0 &&
         <Section title={t('description.title')} icon={BookOpenIcon}>
-          <ExpandableDescription>
-            <MarkdownContent content={platformProject.description}/>
-          </ExpandableDescription>
+            <DocsHomepage project={project} platformProject={platformProject} ctx={ctx}
+                          placeholder={descriptionPlaceholder}
+                          errorPlaceholder={descriptionPlaceholder}
+                          wrapper={content => (
+                            <ExpandableDescription>
+                              {content}
+                            </ExpandableDescription>
+                          )}
+            />
         </Section>
       }
 
@@ -286,10 +297,13 @@ export default async function ProjectHomepage(props: PageProps) {
         }
       </Section>
 
-      {/*<Section title="In-game content" icon={BoxIcon}>*/}
-      {/*</Section>*/}
+      {/*<Section title="In-game content" icon={BoxIcon}>*/
+      }
+      {/*</Section>*/
+      }
 
-      {/* Related projects / custom sections? */}
+      {/* Related projects / custom sections? */
+      }
 
       <Section title={t('license.title')} icon={ScaleIcon} className="flex flex-row flex-wrap gap-4">
         <LicenseBadge name={t('license.project')} icon={PencilRulerIcon}>
@@ -318,8 +332,10 @@ export default async function ProjectHomepage(props: PageProps) {
         <LicenseBadge name={t('license.wiki')} icon={BookOpenTextIcon}>
           <span className="text-center text-base">
             {t.rich('license.default', {
-              link: (chunks: any) => <PageLink href="/about/tos#copyright-policy" className="!text-base" target="_blank">{chunks}</PageLink>,
-              license: () => <PageLink className="!text-base" href={DEFAULT_WIKI_LICENSE.url} target="_blank">{DEFAULT_WIKI_LICENSE.name}</PageLink>
+              link: (chunks: any) => <PageLink href="/about/tos#copyright-policy" className="!text-base"
+                                               target="_blank">{chunks}</PageLink>,
+              license: () => <PageLink className="!text-base" href={DEFAULT_WIKI_LICENSE.url}
+                                       target="_blank">{DEFAULT_WIKI_LICENSE.name}</PageLink>
             })}
           </span>
         </LicenseBadge>

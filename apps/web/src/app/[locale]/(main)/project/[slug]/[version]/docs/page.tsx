@@ -1,21 +1,13 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import platforms, {PlatformProject} from "@repo/shared/platforms";
-import {HOMEPAGE_FILE_PATH} from "@repo/shared/constants";
+import platforms from "@repo/shared/platforms";
 import service from "@/lib/service";
 import {redirect} from "next/navigation";
-import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
-import DocsHomepagePlaceholder from "@/components/docs/body/DocsHomepagePlaceholder";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
-import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 import {getTranslations} from "next-intl/server";
 import env from "@repo/shared/env";
-import {Project, ProjectContext} from "@repo/shared/types/service";
-import issuesApi from "@repo/shared/api/issuesApi";
-import {ReactNode} from "react";
-import {RenderedMarkdownContent} from "@/components/docs/body/MarkdownContent";
-import markdown, {DocsEntryMetadata} from "@repo/markdown";
+import {RenderedDocsHomepage, renderHomepage} from "@/components/docs/DocsHomepage";
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -26,54 +18,6 @@ interface PageProps {
     version: string;
     locale: string;
   }>;
-}
-
-interface RenderedHomepage {
-  content: ReactNode;
-  metadata: DocsEntryMetadata;
-}
-
-async function renderHomepage(project: Project, platformProject: PlatformProject, ctx: ProjectContext): Promise<RenderedHomepage | null | undefined> {
-  const patcher = (components: Record<string, any>) => {
-    return {
-      ...components,
-      a: ({href, ...props}: any) => {
-        const Element = components['a'] || 'a';
-        const ignored = href.startsWith('/') || href.includes('://');
-        return <Element href={ignored ? href : 'docs/' + href} {...props} />
-      }
-    }
-  };
-
-  try {
-    const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx, patcher);
-    if (result) {
-      const content = (
-        <DocsMarkdownContent>
-          {result.content.content}
-        </DocsMarkdownContent>
-      );
-      return { content, metadata: result.content.metadata };
-    }
-  } catch (err) {
-    console.error('Error rendering homepage!', err);
-
-    await issuesApi.reportPageRenderFailure(project, HOMEPAGE_FILE_PATH, err, ctx.version ?? null, ctx.locale ?? null);
-  }
-  // File does not exist, fallback to project desc
-  if (platformProject.is_placeholder) {
-    return null;
-  }
-  try {
-    const htmlContent = await markdown.renderMarkdown(platformProject.description);
-    const content = (
-      <RenderedMarkdownContent htmlContent={htmlContent}/>
-    );
-    return { content, metadata: {} }
-  } catch (e) {
-    console.error('Error rendering homepage', e);
-    return undefined;
-  }
 }
 
 export default async function ProjectDocsHomepage(props: PageProps) {
@@ -102,16 +46,7 @@ export default async function ProjectDocsHomepage(props: PageProps) {
                            rightSidebar={<DocsGuideNonContentRightSidebar headings={headings}/>}
                            footer={<DocsPageFooter slug={slug} preview={isPreview}/>}
     >
-      {content === undefined ?
-        <DocsContentTitle>
-          {platformProject.name}
-        </DocsContentTitle>
-        : content === null
-          ?
-          <DocsHomepagePlaceholder/>
-          :
-          content.content
-      }
+      <RenderedDocsHomepage content={content} />
     </DocsInnerLayoutClient>
   )
 }

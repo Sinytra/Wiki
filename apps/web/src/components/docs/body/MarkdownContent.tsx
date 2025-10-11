@@ -1,15 +1,5 @@
-import markdown from "@repo/markdown";
-
 export interface Props {
   content: string;
-}
-
-export default async function MarkdownContent({content}: Props) {
-  const htmlContent = await markdown.renderMarkdown(content);
-
-  return (
-    <RenderedMarkdownContent htmlContent={htmlContent} />
-  )
 }
 
 export function RenderedMarkdownContent({ htmlContent }: { htmlContent: string; }) {
