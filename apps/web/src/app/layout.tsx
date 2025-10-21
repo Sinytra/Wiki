@@ -33,7 +33,7 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode; }
   };
 
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="dark" className="cc--darkmode">
     <head>
       <script
         type="application/ld+json"

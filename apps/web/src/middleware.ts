@@ -4,6 +4,7 @@ import {routing} from "@/lib/locales/routing";
 import authSession from "@/lib/authSession";
 import previewerMiddleware from "@repo/previewer/middleware";
 import env from "@repo/shared/env";
+import {USER_COUNTRY_COOKIE} from "@/lib/cookies";
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -33,5 +34,10 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     return localResp;
   }
 
-  return handleI18nRouting(request);
+  const resp = handleI18nRouting(request);
+  const countryCode = request.headers.get('x-vercel-ip-country');
+  if (countryCode) {
+    resp.cookies.set(USER_COUNTRY_COOKIE, countryCode, { path: "/" });
+  }
+  return resp;
 }

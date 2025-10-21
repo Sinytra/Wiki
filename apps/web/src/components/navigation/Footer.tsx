@@ -5,6 +5,8 @@ import Link from "next/link";
 import {useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
 import env from "@repo/shared/env";
+import ManageCookiesButton from "@/components/cookies/ManageCookiesButton";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
 function Copyright({ center }: { center: boolean }) {
   const t = useTranslations('NavigationFooter');
@@ -18,6 +20,11 @@ function Copyright({ center }: { center: boolean }) {
       <p className="mt-6 text-sm">
         © {new Date().getFullYear()} The Sinytra Project.
       </p>
+      <div className="mt-auto pt-3 font-normal! text-secondary">
+        <ClientLocaleProvider keys={['ManageCookiesButton']}>
+          <ManageCookiesButton />
+        </ClientLocaleProvider>
+      </div>
     </div>
   </>
 }

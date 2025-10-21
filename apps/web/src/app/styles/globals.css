@@ -309,6 +309,10 @@
     .no-scroll {
         @apply fixed md:static max-w-screen;
     }
+
+    .video-embed {
+        @apply w-full sm:w-[560px] h-[315px];
+    }
 }
 
 .myItems *:not(:first-child):before {
