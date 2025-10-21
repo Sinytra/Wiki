@@ -17,8 +17,8 @@ export default function VideoEmbedPlaceholder({id, children}: {
   children: ReactNode
 }) {
   const t = useTranslations('VideoEmbedPlaceholder');
-  const context = useContext(CookieConsentContext)!;
-  if (!context.enableCookieManagement || context?.hasConsentToEmbeddedVideos) {
+  const context = useContext(CookieConsentContext);
+  if (!context || !context.enableCookieManagement || context?.hasConsentToEmbeddedVideos) {
     return children;
   }
   const videoId = id && id.includes('?') ? id.split('?')[0] : id;

@@ -6,8 +6,8 @@ import {useTranslations} from "next-intl";
 
 export default function ManageCookiesButton() {
   const t = useTranslations('ManageCookiesButton');
-  const context = useContext(CookieConsentContext)!;
-  if (!context.enableCookieManagement) {
+  const context = useContext(CookieConsentContext);
+  if (!context || !context.enableCookieManagement) {
     return null;
   }
 
