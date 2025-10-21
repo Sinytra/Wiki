@@ -5,6 +5,9 @@ import {setContextLocale} from "@/lib/locales/routing";
 import locales from "@repo/shared/locales";
 import {NextIntlClientProvider} from "next-intl";
 import {Toaster} from "@repo/ui/components/sonner";
+import CookieConsentContextProvider from "@/components/cookies/CookieConsentContextProvider";
+import {getMessages} from "next-intl/server";
+import {pick} from "lodash";
 
 export async function generateStaticParams() {
   return locales.getLanguagePaths().map(locale => ({locale}));
@@ -18,25 +21,28 @@ export default async function LocaleLayout(props: { params: Params; children: Re
   setContextLocale(params.locale);
 
   const isRTL = locales.isRTL(params.locale);
+  const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider locale={params.locale} messages={null}>
-      <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
-        <Header locale={params.locale}/>
+    <NextIntlClientProvider locale={params.locale} messages={pick(messages, 'CookieConsent')}>
+      <CookieConsentContextProvider>
+        <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
+          <Header locale={params.locale}/>
 
-        <div>
-          {children}
+          <div>
+            {children}
+          </div>
+
+          <Footer/>
         </div>
-
-        <Footer/>
-      </div>
-      {/* TODO Font size */}
-      <Toaster toastOptions={{
-        style: {
-          background: 'var(--background-color-primary-alt)',
-          fontStyle: 'var(--text-sm)'
-        }
-      }}/>
+        {/* TODO Font size */}
+        <Toaster toastOptions={{
+          style: {
+            background: 'var(--background-color-primary-alt)',
+            fontStyle: 'var(--text-sm)'
+          }
+        }}/>
+      </CookieConsentContextProvider>
     </NextIntlClientProvider>
   )
 }

@@ -1004,5 +1004,51 @@
             "desc": "The cache tag to revalidate"
         },
         "success": "Cache tag invalidated successfully"
+    },
+    "CookieConsent": {
+        "popup": {
+            "title": "This website uses cookies",
+            "description": "This site uses cookies to improve your browsing experience and show embedded content.",
+            "show_preferences": "Manage Individual preferences"
+        },
+        "modal": {
+            "title": "Manage cookie preferences",
+            "save": "Accept current selection",
+            "close": "Close modal"
+        },
+        "sections": {
+            "summary": {
+                "title": "Cookie preferences",
+                "description": "Customize your privacy settings here. You can choose which types of cookies and tracking technologies you allow."
+            },
+            "necessary": {
+                "title": "Strictly Necessary cookies",
+                "description": "These cookies are essential for the proper functioning of the website and cannot be disabled."
+            },
+            "experience": {
+                "title": "Experience",
+                "description": "These cookies are used to enable certain parts of the website, such as video embeds, and may be used to track you.",
+                "services": {
+                    "embeds": "Enables displaying embedded YouTube videos."
+                }
+            },
+            "more_info": {
+                "title": "More information",
+                "description": "For further information on how we use cookies on our website, please refer to our <a href=\"/about/privacy\">Privacy Policy</a>."
+            }
+        },
+        "actions": {
+            "accept_all": "Accept all",
+            "reject_all": "Reject all"
+        }
+    },
+    "VideoEmbedPlaceholder": {
+        "title": "Video preview unavailable",
+        "description": "Cookie consent is required to play embedded videos.",
+        "accept": "Allow YouTube embeds",
+        "watch": "Watch on Youtube"
+    },
+    "ManageCookiesButton": {
+        "text": "Manage cookie preferences"
     }
 }

@@ -3,7 +3,34 @@ import {SquirrelIcon} from 'lucide-react';
 
 # Common components
 
+Available components:
+
+- [Video embeds](#video-embeds)
+- [Code blocks](#code-blocks)
+- [Callouts](#callout)
+- [Code Tabs](#codetabs)
+- [Icons](#icons)
+
+Reference only:
+
+- [Game Content](#game-content)
+- [Recipes](#recipes)
+- [Navigation](#navigation)
+
 ## Builtin
+
+### Video embeds
+
+Embed YouTube videos using the `VideoEmbed` component. To use this component, you will need to get the ID of the video
+you want to embed, which can be easily copied from the video URL's `v` parameter.
+
+For example, the ID for `https://www.youtube.com/watch?v=Y_WnAEKoeA4` would be `Y_WnAEKoeA4`.
+
+You can then directly pass this ID to the component as shown below.
+
+```mdx
+<VideoEmbed id="Y_WnAEKoeA4"/>
+```
 
 ### Code blocks
 
