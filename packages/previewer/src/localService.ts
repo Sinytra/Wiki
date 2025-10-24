@@ -39,7 +39,7 @@ async function getLocalSourceContentTree(src: LocalDocumentationSource, locale?:
       if (file) {
         const frontmatter = markdown.readFrontmatter(file.content);
         if (frontmatter.id) {
-          return {id: frontmatter.id, name: entry.name, path: entry.path, type: entry.type, children: []};
+          return {id: frontmatter.id, icon: frontmatter.icon, name: entry.name, path: entry.path, type: entry.type, children: []};
         }
       }
     }
