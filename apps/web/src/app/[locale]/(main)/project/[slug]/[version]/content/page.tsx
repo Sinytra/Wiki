@@ -22,7 +22,7 @@ function ContentEntryLink({entry, ctx}: { entry: ProjectContentEntry; ctx: Proje
     <div>
       <PageLink href={`/project/${ctx.id}/${ctx.version}/content/${entry.id}`} local
                 className="flex flex-row items-center gap-1 !text-sm">
-        <Asset location={entry.id!} ctx={ctx}/>
+        <Asset location={entry.icon || entry.id!} ctx={ctx}/>
         {entry.name}
       </PageLink>
     </div>

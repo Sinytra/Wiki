@@ -21,8 +21,8 @@ async function reportPageRenderFailure(project: Project, path: string, error: an
 
   await addProjectIssue(project.id, {
     level: ProjectIssueLevel.ERROR,
-    type: 'page_render',
-    subject: 'invalid_page',
+    type: 'page',
+    subject: 'page_render',
     path,
     details
   }, {version, locale});

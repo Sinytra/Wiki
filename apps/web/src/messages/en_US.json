@@ -860,7 +860,7 @@
         "git_info": "Error getting commit information",
         "ingestor": "Error importing content",
         "internal": "Internal server error",
-        "page_render": "Invalid page",
+        "page": "Invalid page",
         "unknown": "Unknown error"
     },
     "DeploymentIssues": {
@@ -875,7 +875,7 @@
         "no_branch": "Invalid branch specified",
         "no_path": "Metadata file not found at specified path",
         "invalid_meta": "Metadata file is invalid",
-        "invalid_page": "Failed to render page contents",
+        "page_render": "Failed to render page contents",
         "duplicate_page": "Duplicate page",
         "unknown_recipe_type": "Unknown recipe type",
         "invalid_ingredient": "Invalid ingredient",
@@ -886,6 +886,7 @@
         "missing_platform_project": "Missing platform project",
         "no_page_title": "Page is missing title",
         "missing_required_attribute": "Page is missing a required metadata attribute",
+        "invalid_frontmatter": "Invalid page frontmatter",
         "unknown": "Unknown error"
     },
     "AdminReports": {
