@@ -17,6 +17,7 @@ import {useTranslations} from "next-intl";
 import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentPage} from "@repo/shared/types/api/devProject";
 import DevProjectTableEmptyState from "@/components/dev/table/DevProjectTableEmptyState";
+import {Suspense} from "react";
 
 function EmptyPlaceholder() {
   const t = useTranslations('DevProjectItemsTable.empty');
@@ -27,6 +28,19 @@ function EmptyPlaceholder() {
       <p>{t('desc')}</p>
     </DevProjectTableEmptyState>
   )
+}
+
+async function ItemIcon({icon, ctx}: { icon: string; ctx: ProjectContext; }) {
+  const iconRes = await service.getAsset(icon, ctx);
+  return (
+    <ImageWithFallback
+      src={iconRes?.src}
+      alt="icon"
+      className="size-7 shrink-0"
+      width={28}
+      height={28}
+    />
+  );
 }
 
 export default function DevProjectItemsTable({data, ctx, versions, page}: {
@@ -42,18 +56,16 @@ export default function DevProjectItemsTable({data, ctx, versions, page}: {
     {
       id: 'icon',
       header: t('icon'),
-      cell: item => (
-        <div className="flex size-7 shrink-0 items-center justify-center">
-          <ImageWithFallback
-            src={service.getAssetURL(item.id, ctx)?.src}
-            alt="icon"
-            className="size-7 shrink-0"
-            width={28}
-            height={28}
-            key={item.id}
-          />
-        </div>
-      ),
+      cell: item => {
+        const icon = item.icon || item.id;
+        return (
+          <div className="flex size-7 shrink-0 items-center justify-center">
+            <Suspense>
+              <ItemIcon icon={icon} ctx={ctx} key={icon} />
+            </Suspense>
+          </div>
+        );
+      },
       className: 'w-14'
     },
     {

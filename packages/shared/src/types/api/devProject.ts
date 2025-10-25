@@ -3,6 +3,7 @@ import {PaginatedData, ResolvedGameRecipe} from '../service';
 export interface ProjectContentPage {
   id: string;
   name: string;
+  icon: string | null;
   path: string | null;
 }
 
