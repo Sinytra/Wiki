@@ -23,11 +23,11 @@ type ResponsiveTableProps<Keys extends string> = {
 };
 
 export default function ResponsiveTable<Keys extends string>({
-                                          columns,
-                                          rows,
-                                          embedded,
-                                          expandedBody
-                                        }: ResponsiveTableProps<Keys>) {
+                                                               columns,
+                                                               rows,
+                                                               embedded,
+                                                               expandedBody
+                                                             }: ResponsiveTableProps<Keys>) {
   const [expanded, setExpanded] = useState(false);
   const t = useTranslations('ResponsiveTable');
 
@@ -74,7 +74,7 @@ export default function ResponsiveTable<Keys extends string>({
             </span>
 
             <span>
-              <ChevronsDownIcon className="size-4 group-data-[open=true]:rotate-180" />
+              <ChevronsDownIcon className="size-4 group-data-[open=true]:rotate-180"/>
             </span>
           </div>
         </td>

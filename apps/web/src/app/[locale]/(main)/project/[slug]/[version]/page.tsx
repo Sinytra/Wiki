@@ -2,7 +2,8 @@ import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import {redirect} from "next/navigation";
 import platforms, {PlatformProject} from "@repo/shared/platforms";
-import {ARRNoLicense, getPlatformProjectInformation, ProjectCategories} from "@/lib/docs/projectInfo";
+import {ARRNoLicense, getPlatformProjectInformation} from "@/lib/project/projectInfo";
+import {ProjectCategories} from '@/lib/project/projectTypes';
 import {
   BookMarkedIcon,
   BookOpenIcon,
@@ -296,14 +297,6 @@ export default async function ProjectHomepage(props: PageProps) {
           />)
         }
       </Section>
-
-      {/*<Section title="In-game content" icon={BoxIcon}>*/
-      }
-      {/*</Section>*/
-      }
-
-      {/* Related projects / custom sections? */
-      }
 
       <Section title={t('license.title')} icon={ScaleIcon} className="flex flex-row flex-wrap gap-4">
         <LicenseBadge name={t('license.project')} icon={PencilRulerIcon}>

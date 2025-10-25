@@ -1,11 +1,11 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {getTranslations} from "next-intl/server";
-import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import AdminReportsTable from "@/components/admin/table/AdminReportsTable";
+import AdminReportsTable from "@/components/dashboard/admin/table/AdminReportsTable";
 import moderationApi from "@/lib/service/api/moderationApi";
 
 type Properties = {

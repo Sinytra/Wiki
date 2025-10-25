@@ -3,7 +3,7 @@ import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {Project} from "@repo/shared/types/service";
-import LocalBadge from "@/components/util/LocalBadge";
+import LocalBadge from "@repo/ui/components/badge/LocalBadge";
 
 interface Props {
   project?: Project;

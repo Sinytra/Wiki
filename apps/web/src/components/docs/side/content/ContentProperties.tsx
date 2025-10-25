@@ -1,7 +1,7 @@
 import {ItemProperties, ProjectContext} from "@repo/shared/types/service";
 import Asset from "@/components/docs/shared/asset/Asset";
 import {useTranslations} from "next-intl";
-import {getContentLink, getVanillaWikiLink} from "@/lib/game/content";
+import {getContentLink, getVanillaWikiLink} from "@/lib/project/game/content";
 import Link from "next/link";
 import PageLink from "@/components/docs/PageLink";
 

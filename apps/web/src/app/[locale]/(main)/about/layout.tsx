@@ -1,5 +1,5 @@
 import { ReactNode, use } from "react";
-import MetaDocsNavigation from "@/components/meta-docs/MetaDocsNavigation";
+import MetaDocsNavigation from "@/components/about/MetaDocsNavigation";
 import {setContextLocale} from "@/lib/locales/routing";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import env from "@repo/shared/env";

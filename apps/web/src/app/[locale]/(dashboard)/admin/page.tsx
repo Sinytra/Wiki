@@ -5,7 +5,7 @@ import Asset from "@/components/docs/shared/asset/Asset";
 import {PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon} from "lucide-react";
 import {ReactNode} from "react";
 import {handleApiCall} from "@/lib/service/serviceUtil";
-import {RevalidateCacheModal} from "@/components/admin/modal/RevalidateCacheModal";
+import {RevalidateCacheModal} from "@/components/dashboard/admin/modal/RevalidateCacheModal";
 import {handleRevalidateCacheTag} from "@/lib/forms/actions";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 

@@ -1,5 +1,5 @@
 import PageLink from "@/components/docs/PageLink";
-import {getDocsLink} from "@/lib/game/content";
+import {getDocsLink} from "@/lib/project/game/content";
 import {Link} from "@/lib/locales/routing";
 import {ComponentPropsWithoutRef} from "react";
 import {FileTree, FileTreeEntry, ProjectContext} from "@repo/shared/types/service";

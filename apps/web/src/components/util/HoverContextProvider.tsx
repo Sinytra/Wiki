@@ -7,9 +7,9 @@ export interface HoverContextData {
   setHover: (hover: boolean) => void;
 }
 
-export const HoverContext = createContext<HoverContextData|null>(null);
+export const HoverContext = createContext<HoverContextData | null>(null);
 
-export default function HoverContextProvider({ children }: { children: ReactNode }) {
+export default function HoverContextProvider({children}: { children: ReactNode }) {
   const [hover, setHover] = useState(false);
 
   const enhanceChildren = Children.map(children, (child) => {

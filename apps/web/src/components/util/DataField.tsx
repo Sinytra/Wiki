@@ -34,7 +34,7 @@ export default function DataField({title, desc, className, icon: Icon, value, ic
         {copiable &&
           <CopyButton text={value} showToast className={`
             h-10 w-11 rounded-md rounded-l-none border border-l-0 border-quaternary bg-primary-dim opacity-100
-          `} />
+          `}/>
         }
       </Element>
       {desc &&

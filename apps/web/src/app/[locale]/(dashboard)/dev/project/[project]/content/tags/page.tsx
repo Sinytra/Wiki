@@ -1,8 +1,8 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {getTranslations} from "next-intl/server";
-import DevProjectTagsTable from "@/components/dev/table/DevProjectTagsTable";
-import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
+import DevProjectTagsTable from "@/components/dashboard/dev/table/DevProjectTagsTable";
+import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";

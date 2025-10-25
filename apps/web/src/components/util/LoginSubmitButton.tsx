@@ -5,7 +5,7 @@ import {Button} from "@repo/ui/components/button";
 import {LoaderCircleIcon} from "lucide-react";
 import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 
-export default function LoginSubmitButton({ text }: { text: string }) {
+export default function LoginSubmitButton({text}: { text: string }) {
   const {pending} = useFormStatus();
 
   return (

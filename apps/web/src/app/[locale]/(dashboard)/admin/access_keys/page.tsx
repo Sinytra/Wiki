@@ -2,12 +2,12 @@ import {setContextLocale} from "@/lib/locales/routing";
 import adminApi from "@/lib/service/api/adminApi";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {getTranslations} from "next-intl/server";
-import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {LocaleRouteParams, TableSearchParams} from "@repo/shared/types/routes";
-import AdminAccessKeysTable from "@/components/admin/table/AdminAccessKeysTable";
+import AdminAccessKeysTable from "@/components/dashboard/admin/table/AdminAccessKeysTable";
 
 type Properties = {
   params: Promise<LocaleRouteParams>;

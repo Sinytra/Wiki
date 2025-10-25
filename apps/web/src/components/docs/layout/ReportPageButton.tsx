@@ -1,11 +1,17 @@
 import {useTranslations} from "next-intl";
-import {createReportLink} from "@/lib/clientUtil";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@repo/ui/components/tooltip";
 import {Button} from "@repo/ui/components/button";
 import Link from "next/link";
 import {FlagIcon} from "lucide-react";
 import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
+import {ProjectReportType} from "@repo/shared/types/api/moderation";
+import {serializeUrlParams} from "@repo/shared/util";
+
+function createReportLink(project: string, type: ProjectReportType, path: string | null) {
+  const params = serializeUrlParams({ project, type, path });
+  return `/report?${params}`;
+}
 
 export default function ReportPageButton({local, project, path, preview, full}: {
   local?: boolean;

@@ -2,7 +2,13 @@ import * as React from "react";
 import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 
-export default function IconModalSection({name, tKey, icon: Icon, className, values}: { name: Parameters<typeof useTranslations>[0]; tKey: string; icon: any; className: string; values?: any }) {
+export default function IconModalSection({name, tKey, icon: Icon, className, values}: {
+  name: Parameters<typeof useTranslations>[0];
+  tKey: string;
+  icon: any;
+  className: string;
+  values?: any
+}) {
   const t = useTranslations(name) as any;
   const subs = {
     b: (chunks: any) => <span className="font-medium text-primary">{chunks}</span>,

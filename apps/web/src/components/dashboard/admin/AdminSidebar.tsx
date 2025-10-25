@@ -1,0 +1,137 @@
+'use client'
+
+import * as React from 'react';
+import {
+  DatabaseIcon,
+  FlagIcon,
+  HistoryIcon,
+  HouseIcon,
+  KeyRoundIcon,
+  MapIcon,
+  PencilRulerIcon,
+  ServerCogIcon,
+  SettingsIcon,
+  Undo2Icon,
+  UsersIcon
+} from 'lucide-react';
+
+import {DevSidebarMainNav} from "@/components/dashboard/dev/navigation/DevSidebarMainNav";
+import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu} from "@repo/ui/components/sidebar";
+import {useTranslations} from "next-intl";
+import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
+import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
+
+type Props = React.ComponentProps<typeof Sidebar>
+
+function AdminSidebarHeader() {
+  return (
+    <div className={`
+      flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive-secondary py-3
+    `}>
+      <div>
+        <ServerCogIcon width={32} height={32} />
+      </div>
+      <span className="text-lg">
+        Administrator area
+      </span>
+    </div>
+  )
+}
+
+export function AdminSidebar(props: Props) {
+  usePreventBuggyScrollLock();
+  const t = useTranslations('AdminSidebar');
+
+  const mainEntries = [
+    {
+      id: 'home',
+      name: t('groups.home'),
+      items: [
+        {
+          title: t('nav.home'),
+          url: '/admin',
+          icon: HouseIcon
+        }
+      ]
+    },
+    {
+      id: 'system',
+      name: t('groups.system'),
+      items: [
+        {
+          title: t('nav.data_imports'),
+          url: '/admin/data_imports',
+          icon: DatabaseIcon
+        },
+        {
+          title: t('nav.config'),
+          url: '/admin/config',
+          icon: SettingsIcon,
+          disabled: true
+        },
+        {
+          title: t('nav.migrations'),
+          url: '/admin/migrations',
+          icon: MapIcon
+        },
+        {
+          title: t('nav.access_keys'),
+          url: '/admin/access_keys',
+          icon: KeyRoundIcon
+        },
+      ]
+    },
+    {
+      id: 'data',
+      name: t('groups.data'),
+      items: [
+        {
+          title: t('nav.projects'),
+          url: '/admin/projects',
+          icon: PencilRulerIcon,
+          disabled: true
+        },
+        {
+          title: t('nav.users'),
+          url: '/admin/users',
+          icon: UsersIcon,
+          disabled: true
+        }
+      ]
+    },
+    {
+      id: 'moderation',
+      name: t('groups.moderation'),
+      items: [
+        {
+          title: t('nav.reports'),
+          url: '/admin/reports',
+          icon: FlagIcon
+        },
+        {
+          title: t('nav.audit_log'),
+          url: '/admin/audit_log',
+          icon: HistoryIcon,
+          disabled: true
+        }
+      ]
+    }
+  ];
+
+  return (
+    <Sidebar variant="floating" className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
+             collapsible="offcanvas" {...props}>
+      <SidebarHeader>
+        <AdminSidebarHeader />
+      </SidebarHeader>
+      <SidebarContent>
+        <DevSidebarMainNav groups={mainEntries}/>
+      </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <DevSidebarMenuItem url="/dev" icon={Undo2Icon} title={t('nav.return')}/>
+        </SidebarMenu>
+      </SidebarFooter>
+    </Sidebar>
+  )
+}

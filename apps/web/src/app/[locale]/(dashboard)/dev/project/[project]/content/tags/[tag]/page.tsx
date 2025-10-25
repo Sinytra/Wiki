@@ -2,9 +2,9 @@ import {Link, setContextLocale} from "@/lib/locales/routing";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {getTranslations} from "next-intl/server";
-import DevProjectItemsTable from "@/components/dev/table/DevProjectItemsTable";
+import DevProjectItemsTable from "@/components/dashboard/dev/table/DevProjectItemsTable";
 import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
-import DevBreadcrumb from "@/components/dev/navigation/DevBreadcrumb";
+import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 

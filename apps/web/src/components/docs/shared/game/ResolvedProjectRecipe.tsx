@@ -11,7 +11,7 @@ import {
   ResolvedGameRecipe,
   ResolvedItem
 } from "@repo/shared/types/service";
-import builtinRecipeTypes from "@/lib/builtin/builtinRecipeTypes";
+import builtinRecipeTypes from "@/lib/project/builtin/builtinRecipeTypes";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import env from "@repo/shared/env";
 import InteractiveComponentPlaceholder from "@/components/docs/InteractiveComponentPlaceholder";

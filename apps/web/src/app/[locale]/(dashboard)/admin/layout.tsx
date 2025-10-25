@@ -1,6 +1,6 @@
 import {SidebarInset, SidebarProvider} from "@repo/ui/components/sidebar";
 import {assertUserIsAdmin} from "@/lib/admin";
-import {AdminSidebar} from "@/components/admin/AdminSidebar";
+import {AdminSidebar} from "@/components/dashboard/admin/AdminSidebar";
 import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";

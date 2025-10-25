@@ -24,13 +24,18 @@ function getPosthogPopularProjectsIndexName(): string | null {
   return process.env.POSTHOG_POPULAR_PROJECTS_INDEX ?? null;
 }
 
+function getCrowdinUrl(): string | null {
+  return process.env.CROWDIN_URL ?? null;
+}
+
 const env = {
   isPreview,
   getBackendSecretApiKey,
   getPosthogEndpointURL,
   getPosthogProjectID,
   getPosthogAPIKey,
-  getPosthogPopularProjectsIndexName
+  getPosthogPopularProjectsIndexName,
+  getCrowdinUrl
 };
 
 export default env;

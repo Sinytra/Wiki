@@ -1,5 +1,5 @@
 import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
-import {getResolvedItemLink} from "@/lib/game/content";
+import {getResolvedItemLink} from "@/lib/project/game/content";
 import {cn} from "@repo/ui/lib/utils";
 import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
 import Link from "next/link";

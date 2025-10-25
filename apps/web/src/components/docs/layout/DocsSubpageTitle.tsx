@@ -1,5 +1,5 @@
 import ImageWithFallback from "@/components/util/ImageWithFallback";
-import LocalBadge from "@/components/util/LocalBadge";
+import LocalBadge from "@repo/ui/components/badge/LocalBadge";
 
 export default function DocsSubpageTitle({icon_url, subcategory, title, description, local}: {
   title: string;

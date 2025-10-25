@@ -17,7 +17,6 @@ import {DialogFooter} from "@repo/ui/components/dialog";
 import * as React from "react";
 import {toast} from "sonner";
 import {Input} from "@repo/ui/components/input";
-import SubmitButton from "@/components/util/SubmitButton";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
 import {CompassIcon} from "lucide-react";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
@@ -26,6 +25,7 @@ import {flushSync} from "react-dom";
 import {useTranslations} from "next-intl";
 import {projectReportSchema} from "@/lib/forms/schemas";
 import {ProjectReportType} from "@repo/shared/types/api/moderation";
+import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
 
 interface Properties {
   projectId: string;
@@ -219,7 +219,9 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
           </div>
           :
           <DialogFooter>
-            <SubmitButton/>
+            <FormSubmitButton>
+              {t('submit')}
+            </FormSubmitButton>
           </DialogFooter>
         }
       </form>

@@ -23,9 +23,7 @@ export default async function DocsContentMetaSidebarBody({project, metadata, ctx
     type: metadata.type,
     ...metadata.custom,
     source_mod: (
-      <ProjectLink project={project.id}>
-        {project.name}
-      </ProjectLink>
+      <ProjectLink project={project} />
     ),
     ...(properties ?? {})
   };

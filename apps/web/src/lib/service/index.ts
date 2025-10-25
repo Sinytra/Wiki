@@ -18,7 +18,7 @@ import {
 import markdown, {ComponentPatcher} from "@repo/markdown";
 import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
 import {localServiceProviderFactory} from "@repo/previewer";
-import builtinAssets from "@/lib/builtin/builtinAssets";
+import builtinAssets from "@/lib/project/builtin/builtinAssets";
 import PrefabUsage from "@/components/docs/shared/prefab/PrefabUsage";
 import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
 import ContentLink from "@/components/docs/shared/ContentLink";

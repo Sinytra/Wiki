@@ -1,5 +1,5 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import {Button} from "@repo/ui/components/button";
 import {SettingsIcon} from "lucide-react";
 import ImageWithFallback from "@/components/util/ImageWithFallback";

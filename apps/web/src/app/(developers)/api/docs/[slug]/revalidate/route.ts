@@ -1,5 +1,4 @@
 import {NextRequest} from "next/server";
-import {getHttpErrorDetailsURL} from "@/lib/utils";
 import cacheUtil from "@/lib/cacheUtil";
 
 // Internal BE->FE route used to revalidate docs page cache for new deployments
@@ -10,7 +9,7 @@ export async function POST(request: NextRequest, props: { params: Promise<{ slug
   if (process.env.FRONTEND_API_KEY) {
     const auth= request.headers.get('Authorization');
     if (!auth || auth.substring(7) !== process.env.FRONTEND_API_KEY) {
-      return Response.json({ message: 'Unauthorized', details: getHttpErrorDetailsURL(401) }, { status: 401 });
+      return Response.json({ message: 'Unauthorized' }, { status: 401 });
     }
   }
 

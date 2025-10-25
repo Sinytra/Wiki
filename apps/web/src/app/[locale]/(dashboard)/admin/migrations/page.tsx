@@ -1,11 +1,11 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import {getTranslations} from "next-intl/server";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import adminApi from "@/lib/service/api/adminApi";
 import {handleDataMigration} from "@/lib/forms/adminForms";
-import DataMigrationWidget from "@/components/admin/migrations/DataMigrationWidget";
+import DataMigrationWidget from "@/components/dashboard/admin/migrations/DataMigrationWidget";
 
 type Properties = {
   params: Promise<{

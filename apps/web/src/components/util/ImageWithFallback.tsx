@@ -36,7 +36,8 @@ export default function ImageWithFallback({
                                        height={fbHeight || height}/>;
 
   return (
-    <div className="shrink-0 overflow-hidden" style={fixedSize ? { width: `${width}px`, height: `${height}px` } : undefined}>
+    <div className="shrink-0 overflow-hidden"
+         style={fixedSize ? {width: `${width}px`, height: `${height}px`} : undefined}>
       {src && !error &&
         <Image src={src} alt={alt || ''} width={width} height={height} className={className}
                onError={() => setError(true)}

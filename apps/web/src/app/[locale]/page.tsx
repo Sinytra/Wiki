@@ -2,7 +2,7 @@ import {redirect, setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from 'next-intl';
 import {trimText} from "@/lib/utils";
 import {cn} from "@repo/ui/lib/utils";
-import TranslateBanner from "@/components/landing/TranslateBanner";
+import TranslateBanner from "@/components/navigation/TranslateBanner";
 import Link from "next/link";
 import crowdin from "@/lib/locales/crowdin";
 import {
@@ -335,7 +335,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
   const showBanner = params.locale !== DEFAULT_LOCALE && (await crowdin.getCrowdinTranslationStatus(params.locale)) < 50;
 
   return <>
-    {showBanner &&
+    {showBanner && env.getCrowdinUrl() &&
       <div className="page-wrapper-base page-wrapper mx-auto mb-5 w-full max-w-5xl px-5">
           <TranslateBanner locale={params.locale}/>
       </div>

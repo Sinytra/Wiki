@@ -7,11 +7,11 @@ import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
-import DocsSearchBar from "@/components/navigation/DocsSearchBar";
+import DocsSearchBar from "@/components/navigation/search/DocsSearchBar";
 import {searchWikiServer} from "@/lib/service/search/serverSearch";
 import MobileNav from "@/components/navigation/header/MobileNav";
 import SocialButtons from "@/components/util/SocialButtons";
-import MobileDocsSearch from "@/components/navigation/MobileDocsSearch";
+import MobileDocsSearch from "@/components/navigation/search/MobileDocsSearch";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import env from "@repo/shared/env";
 

@@ -1,14 +1,11 @@
 import {Button} from "@repo/ui/components/button";
-import NotFoundImage from '@/components/assets/not-found.jpg';
-import Image from "next/image";
 import {NavLink} from "@/components/navigation/link/NavLink";
-import {HouseIcon} from "lucide-react";
+import {HouseIcon, TelescopeIcon} from "lucide-react";
 
 export default function NotFound() {
   return (
     <div className="m-auto flex flex-col items-center justify-center gap-4 p-4">
-      {/*Image sourced from https://github.com/httpcats/http.cat, licensed under the MIT License*/}
-      <Image src={NotFoundImage} alt="Not Found" className="rounded-xs" width={450}/>
+      <TelescopeIcon className="size-32 rounded-xs opacity-100"/>
 
       <h1 className="my-2 text-5xl text-primary">
         404 Not Found

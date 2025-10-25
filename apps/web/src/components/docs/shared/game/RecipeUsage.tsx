@@ -1,6 +1,6 @@
 import UsageContentList from "@/components/docs/shared/game/UsageContentList";
 import PageLink from "@/components/docs/PageLink";
-import {getContentLink} from "@/lib/game/content";
+import {getContentLink} from "@/lib/project/game/content";
 import service from "@/lib/service";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {getTranslations} from "next-intl/server";

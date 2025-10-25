@@ -1,4 +1,4 @@
-import MetaDocsPage from "@/components/meta-docs/MetaDocsPage";
+import MetaDocsPage from "@/components/about/MetaDocsPage";
 import {setContextLocale} from "@/lib/locales/routing";
 import {LocaleRouteParams} from "@repo/shared/types/routes";
 

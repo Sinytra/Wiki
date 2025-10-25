@@ -262,6 +262,7 @@
                 "suggestion": "Would you like to look for something else to explore instead?",
                 "explore": "Explore projects"
             },
+            "submit": "Submit",
             "success": "Report submitted successfully"
         }
     },
@@ -308,9 +309,6 @@
             "accept": "Report accepted",
             "dismiss": "Report dismissed"
         }
-    },
-    "SubmitButton": {
-        "title": "Submit"
     },
     "Callout": {
         "default": "Heads up!",
@@ -1004,6 +1002,7 @@
             "title": "Cache Tag",
             "desc": "The cache tag to revalidate"
         },
+        "submit": "Submit",
         "success": "Cache tag invalidated successfully"
     },
     "CookieConsent": {

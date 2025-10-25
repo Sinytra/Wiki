@@ -1,8 +1,8 @@
 import {SidebarInset, SidebarProvider} from "@repo/ui/components/sidebar";
-import DevProjectSidebar from "@/components/dev/navigation/DevProjectSidebar";
+import DevProjectSidebar from "@/components/dashboard/dev/navigation/DevProjectSidebar";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@repo/shared/platforms";
-import DevProjectSidebarContextProvider from "@/components/dev/navigation/DevProjectSidebarContextProvider";
+import DevProjectSidebarContextProvider from "@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";

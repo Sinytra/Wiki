@@ -2,7 +2,7 @@
 
 import {type ImgHTMLAttributes, useContext, useEffect, useMemo, useState} from "react";
 import TooltipImg from "@/components/docs/shared/game/TooltipImg";
-import {getExternalWikiLink, getResolvedItemLink} from "@/lib/game/content";
+import {getExternalWikiLink, getResolvedItemLink} from "@/lib/project/game/content";
 import {HoverContext} from "@/components/util/HoverContextProvider";
 import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
 import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";

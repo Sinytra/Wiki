@@ -4,7 +4,7 @@ import {Link, setContextLocale} from "@/lib/locales/routing";
 import {useTranslations} from "next-intl";
 import {handleReportProjectForm} from "@/lib/forms/actions";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import LinkTextButton from "@/components/util/LinkTextButton";
+import LinkTextButton from "@/components/navigation/link/LinkTextButton";
 import {ProjectReportType} from "@repo/shared/types/api/moderation";
 import {notFound} from "next/navigation";
 import locales from "@repo/shared/locales";

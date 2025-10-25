@@ -1,13 +1,13 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import DevProjectSettings from "@/components/dev/project/DevProjectSettings";
+import DevProjectSettings from "@/components/dashboard/dev/project/DevProjectSettings";
 import {getTranslations} from "next-intl/server";
 import {handleDeleteProjectForm} from "@/lib/forms/actions";
-import DevProjectPageTitle from "@/components/dev/project/DevProjectPageTitle";
+import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
-import LiveProjectDeployConnection from "@/components/dev/project/LiveProjectDeployConnection";
+import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import authSession from "@/lib/authSession";
 

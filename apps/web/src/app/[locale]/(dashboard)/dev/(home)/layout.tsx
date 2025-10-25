@@ -1,4 +1,4 @@
-import {DeveloperSidebar} from "@/components/dev/navigation/DeveloperSidebar";
+import {DeveloperSidebar} from "@/components/dashboard/dev/navigation/DeveloperSidebar";
 import {SidebarInset, SidebarProvider} from "@repo/ui/components/sidebar";
 import authSession from "@/lib/authSession";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";

@@ -1,4 +1,4 @@
-import MarkdownPage from "@/components/meta-docs/MarkdownPage";
+import MarkdownPage from "@/components/about/MarkdownPage";
 import Content from './content.mdx';
 
 export default function PrivacyPage() {
