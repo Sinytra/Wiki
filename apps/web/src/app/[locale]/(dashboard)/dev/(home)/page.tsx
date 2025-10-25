@@ -36,7 +36,7 @@ function ProjectsListHeader({isAdmin}: {
       <div className="flex flex-row items-center justify-end">
         <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden"/>
 
-        <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'SubmitButton']}>
+        <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions']}>
           <ProjectRegisterForm isAdmin={isAdmin}
                                redirectToProject
           />

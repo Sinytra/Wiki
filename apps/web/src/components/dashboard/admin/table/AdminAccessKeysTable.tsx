@@ -71,7 +71,7 @@ export default function AdminAccessKeysTable({data, page}: {
     <div>
       <DataTable columns={columns} data={data} page={page} creator={
         <ClientLocaleProvider
-          keys={['CreateAccessKeyModal', 'FormActions', 'SubmitButton', 'SaveAccessKeyModal', 'CopyButton']}
+          keys={['CreateAccessKeyModal', 'FormActions', 'SaveAccessKeyModal', 'CopyButton']}
         >
           <CreateAccessKeyModal formAction={handleCreateAccessKeyForm}/>
         </ClientLocaleProvider>

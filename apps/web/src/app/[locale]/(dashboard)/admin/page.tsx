@@ -115,7 +115,7 @@ export default async function AdminPanelHome(props: Props) {
 
         <div>
           <ClientLocaleProvider
-            keys={['RevalidateCacheModal', 'FormActions', 'SubmitButton']}
+            keys={['RevalidateCacheModal', 'FormActions']}
           >
             <RevalidateCacheModal formAction={handleRevalidateCacheTag} />
           </ClientLocaleProvider>

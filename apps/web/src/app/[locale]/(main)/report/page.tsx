@@ -54,7 +54,7 @@ export default function ReportPage(props: { params: Params; searchParams: Search
         </div>
 
         <div className="rounded-md bg-primary-alt p-4">
-          <ClientLocaleProvider keys={['Report', 'SubmitButton', 'ProjectReportReason', 'ProjectReportType']}>
+          <ClientLocaleProvider keys={['Report', 'ProjectReportReason', 'ProjectReportType']}>
             <ProjectReportForm projectId={project} type={type} path={path}
                                locale={locales.actualLocale(locale)} version={commonNetwork.actualVersion(version)}
                                formAction={handleReportProjectForm}/>
