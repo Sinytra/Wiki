@@ -1043,7 +1043,7 @@
         }
     },
     "VideoEmbedPlaceholder": {
-        "title": "Video preview unavailable",
+        "title": "Video embed unavailable",
         "description": "Cookie consent is required to play embedded videos.",
         "accept": "Allow YouTube embeds",
         "watch": "Watch on Youtube"

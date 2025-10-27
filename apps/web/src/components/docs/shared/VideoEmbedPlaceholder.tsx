@@ -27,29 +27,32 @@ export default function VideoEmbedPlaceholder({id, children}: {
     CookieConsent.acceptService(EMBED_SERVICE_COOKIES, CATEGORY_EXPERIENCE);
   }
 
+  const thumbnailSrc = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+
   return (
-    <div className={cn(`
-      video-embed flex flex-col items-center justify-center gap-5 rounded-sm border border-tertiary bg-primary-alt p-4
-      text-center
-    `)}>
-      <TvMinimalPlayIcon className="size-12 text-secondary-alt" strokeWidth={1.5}/>
-      <div className="text-xl">
-        <div className="flex flex-col gap-1">
-          <span>{t('title')}</span>
-          <span className="text-sm text-secondary">{t('description')}</span>
+    <div className={cn(`video-embed relative flex rounded-sm border border-tertiary bg-primary-alt text-center`)}>
+      <img src={thumbnailSrc} alt="thumbnail" width={560}/>
+
+      <div className={`absolute-center flex h-full w-full flex-col items-center justify-center gap-5 bg-primary/80`}>
+        <TvMinimalPlayIcon className="size-12 text-secondary-alt" strokeWidth={1.5}/>
+        <div className="text-xl">
+          <div className="flex flex-col gap-1">
+            <span>{t('title')}</span>
+            <span className="text-sm text-secondary">{t('description')}</span>
+          </div>
         </div>
-      </div>
-      <div className="mt-2 flex flex-row flex-wrap justify-center gap-3">
-        <Button onClick={() => acceptService()}>
-          {t('accept')}
-        </Button>
-        {videoId && (
-          <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noreferrer">
-            <Button variant="outline">
-              {t('watch')}
-            </Button>
-          </a>
-        )}
+        <div className="mt-2 flex flex-row flex-wrap justify-center gap-3">
+          <Button onClick={() => acceptService()}>
+            {t('accept')}
+          </Button>
+          {videoId && (
+            <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noreferrer">
+              <Button variant="outline">
+                {t('watch')}
+              </Button>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
