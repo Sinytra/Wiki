@@ -11,8 +11,7 @@ const zodRepoUrl = z.url({ protocol: allowedProtocols, error: zodStringError });
 export const projectRegisterSchema = z.object({
   repo: zodRepoUrl,
   branch: requiredString,
-  path: requiredString.startsWith('/'),
-  is_community: z.boolean().optional()
+  path: requiredString.startsWith('/')
 });
 
 export const projectEditSchema = z.object({

@@ -88,12 +88,19 @@ Once you've filled everything out, hit the `Submit` button to complete the regis
 Below you can find a list of common issues that may occur when you register your project. If your issue does appear
 in the list, please tell us about your problem on [Discord](https://discord.sinytra.org).
 
-### Ownership Verification error
+### Failed to verify project ownership
 
 - **Possible cause:** Your hosting platform project does not provide a Source Code link pointing to your repository.
 
 - **Fix:** For the purposes of verifying project ownership, please momentarily set the Source Code url of your project
-to match the repository url.
+to match the repository url. See [Ownership verification](#ownership-verification) for details.
+
+### User is not authorized to register this project
+
+- **Possible cause:** The username of the Wiki account trying to register this project does not match any usernames in
+the project metadata's [`owners` field](http://localhost:3000/docs/folder_structure/wiki_meta#format).
+
+- **Fix:** Make sure you are logged in using the correct account, or include your current username in `owners`.
 
 ### Repository is private
 
@@ -102,7 +109,7 @@ to match the repository url.
 - **Fix:** Please include credentials in the repository URL with sufficient permissions to clone the repository.
   The credentials format for HTTP URLs is as follows: `https://username:password@domain.com`.
 
-### Repository is too large
+### Repository exceeds maximum allowed size
 
 - **Cause:** Your repository size exceeds the maximum limit of 500 MB.
 

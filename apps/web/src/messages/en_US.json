@@ -394,7 +394,8 @@
             "illegal_id": "Illegal project ID",
             "not_owner": "User is not authorized to register this project",
             "repo_too_large": "Repository exceeds maximum allowed size of 500MB"
-        }
+        },
+        "get_help": "Find out more about this error in our <link>documentation</link>."
     },
     "CommunityBadge": {
         "title": "Community",

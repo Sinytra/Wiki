@@ -28,6 +28,7 @@
     --text-color-warning: #EFA63E;
     --text-color-warning-soft: #EFA63EED;
     --text-color-destructive: #FB6C6F;
+    --text-color-destructive-secondary: #dd5a5d;
     --text-color-success: rgba(5, 223, 114, 0.7);
     --text-color-code: #A9B2C3;
     --text-color-link: var(--color-blue-400);

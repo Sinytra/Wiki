@@ -16,7 +16,6 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import {DevProject} from "@repo/shared/types/service";
 import ProjectRegisterForm from "@/components/dashboard/dev/modal/ProjectRegisterForm";
-import {UserRole} from "@repo/shared/types/api/auth";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
@@ -28,18 +27,14 @@ function getProjectLink(id: string) {
   return `/dev/project/${id}`;
 }
 
-function ProjectsListHeader({isAdmin}: {
-  isAdmin: boolean;
-}) {
+function ProjectsListHeader() {
   return (
     <div className="mb-2 flex w-full flex-col">
       <div className="flex flex-row items-center justify-end">
         <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden"/>
 
         <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions']}>
-          <ProjectRegisterForm isAdmin={isAdmin}
-                               redirectToProject
-          />
+          <ProjectRegisterForm redirectToProject/>
         </ClientLocaleProvider>
       </div>
 
@@ -193,12 +188,10 @@ export default async function DevPage(props: { params: Promise<{ locale: string;
   setContextLocale(params.locale);
   const projects = handleApiCall(await devProjectApi.getProjects());
 
-  const isAdmin = projects.profile.role === UserRole.ADMIN;
-
   return (
     <GetStartedContextProvider>
       <div>
-        <ProjectsListHeader isAdmin={isAdmin}/>
+        <ProjectsListHeader/>
 
         <div>
           <ClientLocaleProvider keys={['LoadingContent']}>

@@ -27,7 +27,6 @@ import {toast} from "sonner";
 import {projectRegisterSchema} from "@/lib/forms/schemas";
 import {Input} from "@repo/ui/components/input";
 import {useTranslations} from "next-intl";
-import {Switch} from "@repo/ui/components/switch";
 import {cn} from "@repo/ui/lib/utils";
 import {ExternalLinkIcon, LightbulbIcon, Loader2Icon, PlusIcon} from "lucide-react";
 import {Button} from "@repo/ui/components/button";
@@ -38,17 +37,18 @@ import {GetStartedContext} from "@/components/dashboard/dev/get-started/GetStart
 import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
 import clientActions from "@/lib/forms/clientActions";
 import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
+import envPublic from "@repo/shared/envPublic";
 
 export interface ProjectRegisterFormProps {
-  isAdmin: boolean;
   translations?: Parameters<typeof useTranslations>[0];
   redirectToProject?: boolean;
   reloadAfterSubmit?: boolean;
 }
 
+const TROUBLESHOOTING_DOCS_URL = 'docs/portal/publishing#troubleshooting';
+
 export default function ProjectRegisterForm(
   {
-    isAdmin,
     translations,
     redirectToProject,
     reloadAfterSubmit
@@ -135,7 +135,7 @@ export default function ProjectRegisterForm(
                   </div>
 
                   <div className="flex-1 text-center text-base text-secondary">
-                      {t('submission.clone')}
+                    {t('submission.clone')}
 
                       <p className="mt-4 text-sm text-secondary">
                           *{t('submission.note')}
@@ -202,32 +202,6 @@ export default function ProjectRegisterForm(
                 )}
               />
 
-              {isAdmin &&
-                <div className="mt-2 flex flex-col gap-4">
-                    <FormLabel className="text-base">
-                      {t('admin')}
-                    </FormLabel>
-
-                    <FormField
-                      control={form.control}
-                      name="is_community"
-                      render={({field}) => (
-                        <FormItem
-                          className="flex flex-row items-center justify-between rounded-lg border border-tertiary p-3">
-                          <div className="mb-0!">
-                            <FormLabel>
-                              {t('is_community.title')}
-                            </FormLabel>
-                          </div>
-                          <FormControl>
-                            <Switch className="mt-0! mb-0!" checked={field.value} onCheckedChange={field.onChange}/>
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                </div>
-              }
-
               {form.formState.errors.root?.custom?.message &&
                 <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
                     <p className="text-sm text-destructive">
@@ -247,6 +221,23 @@ export default function ProjectRegisterForm(
                 </details>
               }
 
+              {form.formState.errors.root?.custom?.message && envPublic.getDocsUrl() &&
+                <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
+                    <p className="flex flex-row items-start text-secondary">
+                        <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
+                        <span className="text-sm text-secondary">
+                          {u.rich('get_help', {
+                            link: (chunks) =>
+                              <Link className={`underline underline-offset-4 hover:text-secondary/80`}
+                                    href={`${envPublic.getDocsUrl()}/${TROUBLESHOOTING_DOCS_URL}`} target="_blank">
+                                {chunks}
+                              </Link>
+                          })}
+                    </span>
+                    </p>
+                </div>
+              }
+
               {canVerifyModrinth &&
                 <div className="flex flex-col gap-1 rounded-md border border-info p-3">
                     <p className="flex flex-row items-start text-secondary">
@@ -260,7 +251,7 @@ export default function ProjectRegisterForm(
                     <div className="ml-auto">
                         <Link href="/dev/settings" target="_blank">
                             <Button variant="outline" type="button" size="sm">
-                                {t('connect_modrinth.settings')}
+                              {t('connect_modrinth.settings')}
                                 <ExternalLinkIcon className="ml-2 h-4 w-4"/>
                             </Button>
                         </Link>
