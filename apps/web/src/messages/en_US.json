@@ -172,7 +172,7 @@
         },
         "license": {
             "title": "License",
-            "custom": "Custom",
+            "custom": "Custom license",
             "unknown": "Unknown",
             "arr": "All Rights Reserved"
         }

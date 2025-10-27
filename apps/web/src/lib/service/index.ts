@@ -1,4 +1,4 @@
-import remoteService, {serviceProviderFactory as remoteServiceProviderFactory} from "@/lib/service/remoteService";
+import {serviceProviderFactory as remoteServiceProviderFactory} from "@/lib/service/remoteService";
 import {AssetLocation} from "@repo/shared/assets";
 import {
   ContentRecipeUsage,
@@ -83,10 +83,6 @@ async function getAsset(location: string, ctx: ProjectContext | null): Promise<A
   return proxyServiceCall<'getAsset'>(p => p.getAsset(resource, ctx));
 }
 
-function getAssetURL(location: string, ctx: ProjectContext): AssetLocation | null {
-  return remoteServiceProviderFactory.isAvailable() ? remoteService.getAssetURL(location, ctx) : null;
-}
-
 const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<DocumentationPage | null | undefined> =
   createProxy<'getDocsPage'>((p, path, optional, ctx) => p.getDocsPage(path, optional || false, ctx));
 
@@ -164,7 +160,6 @@ export default {
   getProjectRecipe,
   renderProjectContentPage,
   getContentRecipeUsage,
-  getAssetURL,
   getProjectContentPage,
   getContentRecipeObtaining,
   getRecipeType

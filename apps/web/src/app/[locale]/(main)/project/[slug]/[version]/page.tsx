@@ -2,7 +2,7 @@ import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import {redirect} from "next/navigation";
 import platforms, {PlatformProject} from "@repo/shared/platforms";
-import {ARRNoLicense, getPlatformProjectInformation} from "@/lib/project/projectInfo";
+import projectInfo, {ResolvedLicense} from "@/lib/project/projectInfo";
 import {ProjectCategories} from '@/lib/project/projectTypes';
 import {
   BookMarkedIcon,
@@ -164,6 +164,48 @@ function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; c
   )
 }
 
+function ProjectLicenseBody({license}: { license: ResolvedLicense | undefined | null }) {
+  const t = useTranslations('ProjectHomepage');
+
+  // None / unknown license
+  if (!license) {
+    return (
+      <p className="m-auto flex flex-row items-center gap-2 text-secondary">
+        <HelpCircleIcon className="size-4"/>
+        {t('license.unknown')}
+      </p>
+    );
+  }
+
+  // All Rights Reserved
+  if (license.isDefaultArrLicense) {
+    return (
+      <div className="m-auto flex flex-row items-center gap-2">
+        <CopyrightIcon className="mb-0.5 w-4"/>
+        <PageLink href="https://choosealicense.com/no-permission" target="_blank">
+          {t('license.arr')}
+        </PageLink>
+      </div>
+    );
+  }
+
+  const Wrapper = license.url
+    ? ({children}: any) => (
+      <PageLink href={license.url!} className="text-center" target="_blank">
+        {children}
+      </PageLink>
+    )
+    : ({children}: any) => (children);
+
+  return (
+    <div className="m-auto flex flex-row items-center gap-2 text-center">
+      <Wrapper>
+        {license.name}
+      </Wrapper>
+    </div>
+  )
+}
+
 export default async function ProjectHomepage(props: PageProps) {
   const {slug, version, locale} = await props.params;
   const ctx = {id: slug, version, locale};
@@ -176,7 +218,8 @@ export default async function ProjectHomepage(props: PageProps) {
   }
 
   const platformProject = await platforms.getPlatformProject(project);
-  const info = await getPlatformProjectInformation(platformProject);
+  const info = await projectInfo.getPlatformProjectInformation(project, platformProject);
+
   const descriptionPlaceholder = (
     <div className="min-h-16 text-secondary">
       {t('description.placeholder')}
@@ -300,27 +343,7 @@ export default async function ProjectHomepage(props: PageProps) {
 
       <Section title={t('license.title')} icon={ScaleIcon} className="flex flex-row flex-wrap gap-4">
         <LicenseBadge name={t('license.project')} icon={PencilRulerIcon}>
-          {platformProject.license ? (
-              platformProject.license.id == ARRNoLicense
-                ?
-                <div className="m-auto flex flex-row items-center gap-2">
-                  <CopyrightIcon className="mb-0.5 w-4"/>
-                  <PageLink href="https://choosealicense.com/no-permission" target="_blank">
-                    {t('license.arr')}
-                  </PageLink>
-                </div>
-                :
-                <div className="m-auto flex flex-row items-center gap-2">
-                  <PageLink href={info.license?.url || '#'} className="text-center" target="_blank">
-                    {info.license?.name}
-                  </PageLink>
-                </div>
-            ) :
-            <p className="m-auto flex flex-row items-center gap-2 text-secondary">
-              <HelpCircleIcon className="size-4"/>
-              {t('license.unknown')}
-            </p>
-          }
+          <ProjectLicenseBody license={info.licenses?.project} />
         </LicenseBadge>
         <LicenseBadge name={t('license.wiki')} icon={BookOpenTextIcon}>
           <span className="text-center text-base">

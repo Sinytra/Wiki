@@ -114,7 +114,3 @@ export const serviceProviderFactory: ServiceProviderFactory = {
     return serviceProvider;
   }
 }
-
-export default {
-  getAssetURL
-}

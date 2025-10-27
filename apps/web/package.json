@@ -69,6 +69,7 @@
     "sharp": "^0.33.5",
     "shiki": "^1.27.2",
     "sonner": "^2.0.5",
+    "spdx-license-list": "^6.10.0",
     "tailwind-merge": "^2.5.2",
     "turbo": "^2.5.8",
     "unified": "^11.0.5",

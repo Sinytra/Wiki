@@ -65,10 +65,17 @@ export interface DevProject extends Project {
   has_failing_deployment: boolean;
 }
 
+export type ProjectLicense = ({ id: string } | { name: string }) & { url?: string | null };
+
+export interface ProjectLicenses {
+  project: ProjectLicense
+}
+
 export interface ProjectInfo {
   website?: string;
   pageCount: number;
   contentCount: number;
+  licenses?: ProjectLicenses
 }
 
 export interface ProjectWithInfo extends Project {
