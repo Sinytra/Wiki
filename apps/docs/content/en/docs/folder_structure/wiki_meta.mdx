@@ -52,6 +52,45 @@ are **required**.
   - A map of additional minecraft versions to git branch names to make available.
   - The default branch can not be included - we'll do that automatically
 
+- `licenses`
+  - Contains licensing information for the project
+  - See the [Licenses](#licenses) section for details
+
+### Licenses
+
+You can add licensing information to your metadata to be displayed on the *project's homepage* instead of relying
+on hosting platforms, some of which do not provide this data.
+
+Currently, you can specify a single license under `project`, which corresponds to the license of your origin project
+(not the wiki project hosting its documentation!). In other words, this is the license of your
+mod/modpack/datapack/etc.
+
+Each license can specify either of a valid SPDX identifier under `id` or an arbitrary name under `name`, but not both at
+the same time. In addition to these properties, a `url` pointing to a page with the full license text can be optionally
+provided.
+
+Below are some examples:
+```json5
+{
+    // ...
+    "licenses": {
+        // Specify SPDX identifier only
+        "project": {
+            "id": "MIT"
+        },
+        // Specify custom name only
+        "project": {
+            "name": "MIT License"
+        },
+        // Specify ID/Name + URL
+        "project": {
+            "id": "MIT",
+            "url": "https://github.com/Example/ExampleMod/blob/master/LICENSE"
+        }
+    }
+}
+```
+
 ### Finding the project slug [#slug]
 
 The project slug can be easily extracted from your project page URL as shown in the examples below, where `{slug}`
