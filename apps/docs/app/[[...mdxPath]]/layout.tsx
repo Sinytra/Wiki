@@ -65,9 +65,7 @@ export default async function RootLayout({params, children}: { params: any, chil
   return (
     <html
       lang={lang}
-      // Required to be set
       dir="ltr"
-      // Suggested by `next-themes` package https://github.com/pacocoursey/next-themes#with-app
       suppressHydrationWarning
       className={inter.className}
     >
