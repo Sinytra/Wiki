@@ -31,7 +31,18 @@ const nextConfig: NextConfig = {
             value: 's-maxage=31536000, stale-while-revalidate=86400',
           }
         ]
-      }
+      },
+      ...(process.env.STATIC_ASSETS_URL ? [
+        {
+          source: '/(.*)',
+          headers: [
+            {
+              key: 'Content-Security-Policy',
+              value: `default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' ${process.env.STATIC_ASSETS_URL}; font-src 'self' ${process.env.STATIC_ASSETS_URL};`,
+            },
+          ],
+        }
+      ] : [])
     ]
   },
   // Backwards compatibility only
@@ -57,7 +68,8 @@ const nextConfig: NextConfig = {
   transpilePackages: ['@repo/ui'],
   experimental: {
     optimizePackageImports: ['shiki']
-  }
+  },
+  assetPrefix: process.env.STATIC_ASSETS_URL
 };
 
 const chConfig: CodeHikeConfig = {
