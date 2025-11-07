@@ -38,7 +38,7 @@ const nextConfig: NextConfig = {
           headers: [
             {
               key: 'Content-Security-Policy',
-              value: `default-src 'self'; script-src 'self' ${process.env.STATIC_ASSETS_URL}; style-src 'self' ${process.env.STATIC_ASSETS_URL}; img-src 'self' ${process.env.STATIC_ASSETS_URL}; font-src 'self' ${process.env.STATIC_ASSETS_URL};`,
+              value: `default-src 'self'; script-src 'self' ${process.env.STATIC_ASSETS_URL}; style-src 'self' ${process.env.STATIC_ASSETS_URL} 'unsafe-inline'; img-src 'self' ${process.env.STATIC_ASSETS_URL}; font-src 'self' ${process.env.STATIC_ASSETS_URL};`,
             },
           ],
         }
