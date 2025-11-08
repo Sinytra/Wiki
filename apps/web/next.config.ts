@@ -31,18 +31,7 @@ const nextConfig: NextConfig = {
             value: 's-maxage=31536000, stale-while-revalidate=86400',
           }
         ]
-      },
-      ...(process.env.STATIC_ASSETS_URL ? [
-        {
-          source: '/(.*)',
-          headers: [
-            {
-              key: 'Content-Security-Policy',
-              value: `default-src 'self'; script-src 'self' ${process.env.STATIC_ASSETS_URL} 'unsafe-inline'; style-src 'self' ${process.env.STATIC_ASSETS_URL} 'unsafe-inline'; img-src 'self' ${process.env.STATIC_ASSETS_URL}; font-src 'self' ${process.env.STATIC_ASSETS_URL};`,
-            },
-          ],
-        }
-      ] : [])
+      }
     ]
   },
   // Backwards compatibility only
