@@ -48,7 +48,7 @@
     "next-intl": "^4.1.0",
     "normalize-url": "^8.0.1",
     "nuqs": "^2.5.1",
-    "posthog-js": "^1.256.1",
+    "posthog-js": "^1.298.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-error-boundary": "^4.0.13",

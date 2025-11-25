@@ -200,8 +200,8 @@ importers:
         specifier: ^2.5.1
         version: 2.5.1(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
       posthog-js:
-        specifier: ^1.256.1
-        version: 1.258.1
+        specifier: ^1.298.0
+        version: 1.298.0
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -2023,6 +2023,9 @@ packages:
   '@pkgr/core@0.2.9':
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@posthog/core@1.6.0':
+    resolution: {integrity: sha512-Tbh8UACwbb7jFdDC7wwXHtfNzO+4wKh3VbyMHmp2UBe6w1jliJixexTJNfkqdGZm+ht3M10mcKvGGPnoZ2zLBg==}
 
   '@prisma/instrumentation@6.11.1':
     resolution: {integrity: sha512-mrZOev24EDhnefmnZX7WVVT7v+r9LttPRqf54ONvj6re4XMF7wFTpK2tLJi4XHB7fFp/6xhYbgRel8YV7gQiyA==}
@@ -5765,16 +5768,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.258.1:
-    resolution: {integrity: sha512-xywALQKdXP/GN+99Z8+ROFd9Q9CtUhsqxHWEw8Lk8oAyCgHlLYCyyYHy2Heh+0nvyDdjr5njLOYOs0m04BQ70A==}
-    peerDependencies:
-      '@rrweb/types': 2.0.0-alpha.17
-      rrweb-snapshot: 2.0.0-alpha.17
-    peerDependenciesMeta:
-      '@rrweb/types':
-        optional: true
-      rrweb-snapshot:
-        optional: true
+  posthog-js@1.298.0:
+    resolution: {integrity: sha512-Zwzsf7TO8qJ6DFLuUlQSsT/5OIOcxSBZlKOSk3satkEnwKdmnBXUuxgVXRHrvq1kj7OB2PVAPgZiQ8iHHj9DRA==}
 
   preact@10.26.9:
     resolution: {integrity: sha512-SSjF9vcnF27mJK1XyFMNJzFd5u3pQiATFqoaDy03XuN00u4ziveVVEGt5RKJrDR8MHE/wJo9Nnad56RLzS2RMA==}
@@ -8195,6 +8190,10 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.2.9': {}
+
+  '@posthog/core@1.6.0':
+    dependencies:
+      cross-spawn: 7.0.6
 
   '@prisma/instrumentation@6.11.1(@opentelemetry/api@1.9.0)':
     dependencies:
@@ -12752,8 +12751,9 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.258.1:
+  posthog-js@1.298.0:
     dependencies:
+      '@posthog/core': 1.6.0
       core-js: 3.44.0
       fflate: 0.4.8
       preact: 10.26.9
