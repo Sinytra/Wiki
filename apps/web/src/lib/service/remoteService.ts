@@ -1,6 +1,7 @@
 import {AssetLocation} from "@repo/shared/assets";
 import {constructPagePath} from "@/lib/service/serviceUtil";
 import {
+  ContentItemName,
   ContentRecipeUsage,
   DocumentationPage,
   LayoutTree,
@@ -10,7 +11,7 @@ import {
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
-import resourceLocation, {ResourceLocation} from "@repo/shared/resourceLocation";
+import resourceLocation, {DEFAULT_NAMESPACE, ResourceLocation} from "@repo/shared/resourceLocation";
 import browseApi from "@/lib/service/api/browseApi";
 import network from "@repo/shared/network";
 import commonNetwork, {ApiRouteParameters} from '@repo/shared/commonNetwork';
@@ -89,7 +90,13 @@ async function getContentRecipeUsage(id: string, {id: project, version, locale}:
 }
 
 async function getRecipeType(type: string, {id, version, locale}: ProjectContext): Promise<ResolvedGameRecipeType | null> {
-  return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}/recipe-type/${type}`, { version, locale }));
+  const actualProjectId = resourceLocation.parse(type)?.namespace == DEFAULT_NAMESPACE ? DEFAULT_NAMESPACE : id;
+  return resolveNullableApiCall(() => sendApiRequest(actualProjectId, `content/${actualProjectId}/recipe-type/${type}`, { version, locale }));
+}
+
+async function getContentItemName(id: string, {id: project, version, locale}: ProjectContext): Promise<ContentItemName | null> {
+  const actualProjectId = resourceLocation.parse(id)?.namespace == DEFAULT_NAMESPACE ? DEFAULT_NAMESPACE : id;
+  return resolveNullableApiCall(() => sendApiRequest(actualProjectId, `content/${project}/${actualProjectId}/name`, { version, locale }));
 }
 
 const serviceProvider: ServiceProvider = {
@@ -103,7 +110,8 @@ const serviceProvider: ServiceProvider = {
   getProjectContentPage,
   getContentRecipeUsage,
   getContentRecipeObtaining,
-  getRecipeType
+  getRecipeType,
+  getContentItemName
 }
 
 export const serviceProviderFactory: ServiceProviderFactory = {

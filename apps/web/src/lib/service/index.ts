@@ -1,6 +1,7 @@
 import {serviceProviderFactory as remoteServiceProviderFactory} from "@/lib/service/remoteService";
 import {AssetLocation} from "@repo/shared/assets";
 import {
+  ContentItemName,
   ContentRecipeUsage,
   DocumentationPage,
   LayoutTree,
@@ -106,6 +107,8 @@ const getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<Resolve
   createProxy<'getProjectRecipe'>((p, recipe, ctx) => p.getProjectRecipe(recipe, ctx));
 const getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGameRecipeType | null> =
   createProxy<'getRecipeType'>((p, type, ctx) => p.getRecipeType(type, ctx));
+const getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentItemName | null> =
+  createProxy<'getContentItemName'>((p, id, ctx) => p.getContentItemName(id, ctx));
 
 async function renderProjectContentPage(id: string, ctx: ProjectContext | ProjectContentContext): Promise<RenderedDocsPage | null> {
   const raw = await getProjectContentPage(id, ctx);
@@ -162,5 +165,6 @@ export default {
   getContentRecipeUsage,
   getProjectContentPage,
   getContentRecipeObtaining,
-  getRecipeType
+  getRecipeType,
+  getContentItemName
 }

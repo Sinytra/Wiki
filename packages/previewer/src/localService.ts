@@ -3,6 +3,7 @@
 import platforms from '@repo/shared/platforms';
 import localDocs, {LocalDocumentationSource} from './localDocsPages';
 import {
+  ContentItemName,
   ContentRecipeUsage,
   DocumentationPage,
   FileTreeEntry, ItemProperties,
@@ -200,6 +201,24 @@ async function getRecipeType(type: string, ctx: ProjectContext): Promise<Resolve
   return null;
 }
 
+function flattenChildren(entries: ProjectContentEntry[]): ProjectContentEntry[] {
+  return [...entries, ...entries.flatMap(e => flattenChildren(e.children || []))];
+}
+
+async function getContentItemName(id: string, ctx: ProjectContext): Promise<ContentItemName | null> {
+  const contents = await getProjectContents(ctx);
+  if (!contents) {
+    return null;
+  }
+  const flat = flattenChildren(contents);
+  for (const entry of flat) {
+    if (entry.id === id) {
+      return { source: id, id, name: entry.name };
+    }
+  }
+  return null;
+}
+
 const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
@@ -211,7 +230,8 @@ const serviceProvider: ServiceProvider = {
   getProjectContentPage,
   getContentRecipeUsage,
   getContentRecipeObtaining,
-  getRecipeType
+  getRecipeType,
+  getContentItemName
 };
 
 export const serviceProviderFactory: ServiceProviderFactory = {
