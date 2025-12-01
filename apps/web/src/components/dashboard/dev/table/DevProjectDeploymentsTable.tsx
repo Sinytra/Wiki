@@ -78,8 +78,8 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeploymentRow }) 
         </div>
       </div>
 
-      <div className="flex w-full flex-1 flex-row justify-between text-secondary sm:w-fit sm:justify-start">
-        <LocalDateTime className="text-sm" form="LLL d, yyyy" dateTime={new Date(deployment.created_at)}/>
+      <div className="flex w-full flex-1 flex-row justify-between gap-1 text-secondary sm:w-fit sm:justify-start">
+        <LocalDateTime className="text-sm whitespace-nowrap" form="LLL d, yyyy" dateTime={new Date(deployment.created_at)}/>
 
         <div className="flex flex-1 text-end text-sm">
           <span className="w-full">

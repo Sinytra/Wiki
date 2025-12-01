@@ -187,6 +187,12 @@ export interface ProjectContentContext extends ProjectContext {
   contentId: string;
 }
 
+export interface ContentItemName {
+  source: string;
+  id: string;
+  name: string;
+}
+
 export interface ServiceProvider {
   getProject: (ctx: ProjectContext) => Promise<ProjectWithInfo | null>;
   getBackendLayout: (ctx: ProjectContext) => Promise<LayoutTree | null>;
@@ -200,6 +206,7 @@ export interface ServiceProvider {
   getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGameRecipeType | null>;
   getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null>
   getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ContentRecipeUsage[] | null>;
+  getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentItemName | null>;
 }
 
 export interface ServiceProviderFactory {
