@@ -29,7 +29,7 @@ export async function renderHomepage(project: Project, platformProject: Platform
       ...components,
       a: ({href, ...props}: any) => {
         const Element = components['a'] || 'a';
-        const ignored = href.startsWith('/') || href.includes('://');
+        const ignored = href.startsWith('$') || href.startsWith('@') || href.startsWith('/') || href.includes('://');
         return <Element href={ignored ? href : 'docs/' + href} {...props} />
       }
     }
