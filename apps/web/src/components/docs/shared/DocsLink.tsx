@@ -31,7 +31,7 @@ async function getDocsPage(path: string[], fullPath: string, ctx: ProjectContext
   if (!contents) {
     return null;
   }
-  return findNestedPath(path, fullPath, 0, contents.tree) || null;
+  return findNestedPath(path, fullPath, 0, contents.tree) || null; // TODO Add API Route
 }
 
 export default async function DocsLink(ctx: ProjectContext, props: Omit<LinkProps, 'ctx'>) {

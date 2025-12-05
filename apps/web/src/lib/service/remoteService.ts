@@ -14,15 +14,16 @@ import {
 import resourceLocation, {DEFAULT_NAMESPACE, ResourceLocation} from "@repo/shared/resourceLocation";
 import browseApi from "@/lib/service/api/browseApi";
 import network from "@repo/shared/network";
-import commonNetwork, {ApiRouteParameters} from '@repo/shared/commonNetwork';
+import commonNetwork, {ApiRouteParameters, RequestOptions} from '@repo/shared/commonNetwork';
 
-async function sendApiRequest(project: string, path: string, parameters?: ApiRouteParameters) {
+async function sendApiRequest(project: string, path: string, parameters?: ApiRouteParameters, options?: RequestOptions) {
   return network.sendSimpleRequest(path, {
     parameters,
     userAuth: false, // Don't include cookies
     cache: {
       tags: [`backend:${project}`]
-    }
+    },
+    ...options
   });
 }
 
@@ -36,7 +37,8 @@ async function getProject({id, version}: ProjectContext): Promise<ProjectWithInf
 }
 
 async function getBackendLayout({id, version, locale}: ProjectContext): Promise<LayoutTree | null> {
-  return resolveNullableApiCall(() => sendApiRequest(id, `docs/${id}/tree`, {version, locale}));
+  return resolveNullableApiCall(() =>
+    sendApiRequest(id, `docs/${id}/tree`, {version, locale}, {cache: false}));
 }
 
 async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promise<AssetLocation | null> {
@@ -52,11 +54,8 @@ function getAssetURL(location: string, {id, version}: ProjectContext): AssetLoca
 }
 
 async function getDocsPage(path: string[], optional: boolean, {id, version, locale}: ProjectContext): Promise<DocumentationPage | null> {
-  return await resolveNullableApiCall(() => sendApiRequest(id, `docs/${id}/page/${constructPagePath(path)}`, {
-    version,
-    locale,
-    optional: optional ? 'true' : null
-  }));
+  return await resolveNullableApiCall(() =>
+    sendApiRequest(id, `docs/${id}/page/${constructPagePath(path)}`, {version, locale, optional: optional ? 'true' : null}, {cache: false}));
 }
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<ProjectSearchResults | null> {
@@ -70,33 +69,38 @@ async function searchProjects(query: string, page: number, types: string | null,
 }
 
 async function getProjectContents({id, version, locale}: ProjectContext): Promise<ProjectContentTree | null> {
-  return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}`, { version, locale }));
+  return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}`, {version, locale}, {cache: false}));
 }
 
 async function getProjectContentPage(id: string, {id: project, version, locale}: ProjectContext): Promise<DocumentationPage | null> {
-  return resolveNullableApiCall(() => sendApiRequest(project, `content/${project}/${id}`, { version, locale }));
+  return resolveNullableApiCall(() =>
+    sendApiRequest(project, `content/${project}/${id}`, {version, locale}, {cache: false}));
 }
 
 async function getProjectRecipe(recipe: string, {id, version, locale}: ProjectContext): Promise<ResolvedGameRecipe | null> {
-  return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}/recipe/${recipe}`, { version, locale }));
+  return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}/recipe/${recipe}`, {version, locale}));
 }
 
 async function getContentRecipeObtaining(id: string, {id: project, version, locale}: ProjectContext): Promise<ResolvedGameRecipe[] | null> {
-  return resolveNullableApiCall(() => sendApiRequest(project, `content/${project}/${id}/recipe`, { version, locale }));
+  return resolveNullableApiCall(() =>
+    sendApiRequest(project, `content/${project}/${id}/recipe`, {version, locale}, {cache: false}));
 }
 
 async function getContentRecipeUsage(id: string, {id: project, version, locale}: ProjectContext): Promise<ContentRecipeUsage[] | null> {
-  return resolveNullableApiCall(() => sendApiRequest(id, `content/${project}/${id}/usage`, { version, locale }));
+  return resolveNullableApiCall(() =>
+    sendApiRequest(id, `content/${project}/${id}/usage`, {version, locale}, {cache: false}));
 }
 
 async function getRecipeType(type: string, {id, version, locale}: ProjectContext): Promise<ResolvedGameRecipeType | null> {
   const actualProjectId = resourceLocation.parse(type)?.namespace == DEFAULT_NAMESPACE ? DEFAULT_NAMESPACE : id;
-  return resolveNullableApiCall(() => sendApiRequest(actualProjectId, `content/${actualProjectId}/recipe-type/${type}`, { version, locale }));
+  return resolveNullableApiCall(() =>
+    sendApiRequest(actualProjectId, `content/${actualProjectId}/recipe-type/${type}`, {version, locale}));
 }
 
 async function getContentItemName(id: string, {id: project, version, locale}: ProjectContext): Promise<ContentItemName | null> {
   const actualProjectId = resourceLocation.parse(id)?.namespace == DEFAULT_NAMESPACE ? DEFAULT_NAMESPACE : id;
-  return resolveNullableApiCall(() => sendApiRequest(actualProjectId, `content/${project}/${actualProjectId}/name`, { version, locale }));
+  return resolveNullableApiCall(() =>
+    sendApiRequest(actualProjectId, `content/${project}/${actualProjectId}/name`, {version, locale}));
 }
 
 const serviceProvider: ServiceProvider = {

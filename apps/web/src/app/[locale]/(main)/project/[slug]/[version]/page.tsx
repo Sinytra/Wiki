@@ -41,7 +41,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const {slug, version, locale} = await props.params;
   const ctx = {id: slug, version, locale};
-  const project = (await service.getBackendLayout(ctx))?.project;
+  const project = await service.getProject(ctx);
   if (!project) {
     return {title: (await parent).title?.absolute};
   }
