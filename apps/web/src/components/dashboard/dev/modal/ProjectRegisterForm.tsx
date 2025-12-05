@@ -222,13 +222,15 @@ export default function ProjectRegisterForm(
               }
 
               {form.formState.errors.root?.custom?.message && envPublic.getDocsUrl() &&
-                <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                    <p className="flex flex-row items-start text-secondary">
+                <div className={`
+                  flex w-full flex-col items-center justify-between gap-2 rounded-sm border border-info p-3 sm:flex-row
+                `}>
+                    <p className="flex flex-row items-start text-primary">
                         <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
-                        <span className="text-sm text-secondary">
+                        <span className="text-sm text-primary">
                           {u.rich('get_help', {
                             link: (chunks) =>
-                              <Link className={`underline underline-offset-4 hover:text-secondary/80`}
+                              <Link className={`underline underline-offset-4 hover:text-primary/80`}
                                     href={`${envPublic.getDocsUrl()}/${TROUBLESHOOTING_DOCS_URL}`} target="_blank">
                                 {chunks}
                               </Link>
@@ -239,12 +241,12 @@ export default function ProjectRegisterForm(
               }
 
               {canVerifyModrinth &&
-                <div className="flex flex-col gap-1 rounded-md border border-info p-3">
-                    <p className="flex flex-row items-start text-secondary">
+                <div className="flex flex-col gap-1 rounded-sm border border-info p-3">
+                    <p className="flex flex-row items-start text-primary">
                         <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
-                        <span className="text-sm text-secondary">
+                        <span className="text-sm text-primary">
                             {t.rich('connect_modrinth.desc', {
-                              b: (chunks: any) => <span className="text-primary">{chunks}</span>
+                              b: (chunks: any) => <span className="font-medium">{chunks}</span>
                             })}
                         </span>
                     </p>
