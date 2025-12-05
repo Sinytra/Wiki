@@ -43,7 +43,7 @@
     "lucide-react": "^0.533.0",
     "mdast-util-to-string": "^4.0.0",
     "mdx-bundler": "^10.1.1",
-    "next": "^15.5.6",
+    "next": "^15.5.7",
     "next-contentlayer2": "^0.5.8",
     "next-intl": "^4.1.0",
     "normalize-url": "^8.0.1",
