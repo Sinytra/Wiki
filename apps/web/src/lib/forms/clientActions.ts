@@ -1,8 +1,9 @@
 'use client'
 
-import {projectEditSchema, projectRegisterSchema} from "@/lib/forms/schemas";
+import {projectEditSchema, projectRegisterSchema, updateGameDataSchema} from "@/lib/forms/schemas";
 import projectApiClient from "@/lib/service/api/projectApiClient";
 import {ZodSchema} from "zod";
+import adminApiClient from "@/lib/service/api/adminApiClient";
 
 interface ValidationResult { success: boolean; }
 interface ValidationSuccess<T> extends ValidationResult { success: true; data: T }
@@ -55,6 +56,20 @@ async function handleEditProjectFormClient(rawData: any) {
   return {success: true};
 }
 
+export async function handleUpdateGameDataFormClient(rawData: any) {
+  const data = await validateProjectFormData(rawData, updateGameDataSchema);
+  if (!data.success) {
+    return data;
+  }
+
+  const result = await adminApiClient.updateGameData(data.data);
+  if (!result.success) {
+    return result;
+  }
+
+  return {success: true, result: result.data};
+}
+
 function saveState(url: string, state: any) {
   const serialized = btoa(JSON.stringify(state));
   return url + '?state=' + serialized;
@@ -62,5 +77,6 @@ function saveState(url: string, state: any) {
 
 export default {
   handleRegisterProjectFormClient,
-  handleEditProjectFormClient
+  handleEditProjectFormClient,
+  handleUpdateGameDataFormClient
 }

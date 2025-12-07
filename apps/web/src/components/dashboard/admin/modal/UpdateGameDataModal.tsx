@@ -2,15 +2,7 @@
 
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@repo/ui/components/form";
+import {Form, FormControl, FormField, FormItem, FormLabel,} from "@repo/ui/components/form";
 import {
   Dialog,
   DialogContent,
@@ -22,37 +14,40 @@ import {
 } from "@repo/ui/components/dialog";
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {revalidateCacheSchema} from "@/lib/forms/schemas";
-import {Input} from "@repo/ui/components/input";
+import {updateGameDataSchema} from "@/lib/forms/schemas";
 import {useTranslations} from "next-intl";
 import {cn} from "@repo/ui/lib/utils";
 import {RefreshCcwIcon} from "lucide-react";
 import {Button} from "@repo/ui/components/button";
 import {useRouter} from "@/lib/locales/routing";
-import {toast} from "sonner";
 import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
+import {Switch} from "@repo/ui/components/switch";
+import clientActions from "@/lib/forms/clientActions";
+import {toast} from "sonner";
+import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
 
-export interface RevalidateCacheModalProps {
-  formAction: (data: any) => Promise<any>
-}
-
-export function RevalidateCacheModal({formAction}: RevalidateCacheModalProps) {
+export default function UpdateGameDataModal() {
   const [open, setOpen] = useState(false);
+  const reload = usePageDataReloadTransition();
 
-  const t = useTranslations('RevalidateCacheModal');
+  const t = useTranslations('UpdateGameDataModal');
   const u = useTranslations('FormActions');
 
   const router = useRouter();
   const form = useForm({
-    resolver: zodResolver(revalidateCacheSchema)
+    resolver: zodResolver(updateGameDataSchema)
   });
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await formAction(data) as any;
-    if (resp.success) {
-      router.refresh();
-      setOpen(false);
+    const resp = await clientActions.handleUpdateGameDataFormClient(data) as any;
 
-      toast.success(t('success'));
+    if (resp.success) {
+      setOpen(false);
+      toast.success(t('success.title'), {description: t('success.desc')});
+
+      reload(() => router.refresh());
+    } else if (resp.error) {
+      // @ts-expect-error details
+      form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.data.details});
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-expect-error message
@@ -90,22 +85,20 @@ export function RevalidateCacheModal({formAction}: RevalidateCacheModalProps) {
           <Form {...form}>
             <div className="relative focus:outline-hidden" tabIndex={0}>
               <form action={action} className={cn('space-y-6 focus:outline-hidden')}>
-
                 <FormField
                   control={form.control}
-                  name="tag"
+                  name="update_loader"
                   render={({field}) => (
-                    <FormItem>
-                      <FormLabel>
-                        {t('tag.title')}
-                      </FormLabel>
+                    <FormItem
+                      className="flex flex-row items-center justify-between rounded-lg border border-tertiary p-3">
+                      <div className="mb-0!">
+                        <FormLabel>
+                          {t('update_loader.title')}
+                        </FormLabel>
+                      </div>
                       <FormControl>
-                        <Input {...field} />
+                        <Switch className="mt-0! mb-0!" checked={field.value} onCheckedChange={field.onChange}/>
                       </FormControl>
-                      <FormDescription>
-                        {t('tag.desc')}
-                      </FormDescription>
-                      <FormMessage/>
                     </FormItem>
                   )}
                 />

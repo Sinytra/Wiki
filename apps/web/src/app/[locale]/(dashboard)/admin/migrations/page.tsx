@@ -29,6 +29,11 @@ export default async function AdminMigrationsPage(props: Properties) {
         <DataMigrationWidget key={migration.id} migration={migration}
                              action={handleDataMigration.bind(null, migration.id)} />
       ))}
+      {migrations.length < 1 &&
+        <p className="text-secondary">
+          {t('empty')}
+        </p>
+      }
     </div>
   )
 }

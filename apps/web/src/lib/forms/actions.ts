@@ -4,7 +4,7 @@ import {
   createAccessKeySchema,
   projectReportSchema,
   revalidateCacheSchema,
-  ruleProjectReportSchema
+  ruleProjectReportSchema, updateGameDataSchema
 } from "@/lib/forms/schemas";
 import cacheUtil from "@/lib/cacheUtil";
 import authSession from "@/lib/authSession";

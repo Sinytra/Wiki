@@ -732,7 +732,8 @@
     },
     "AdminMigrations": {
         "title": "Data migrations",
-        "desc": "Available data migrations"
+        "desc": "Available data migrations",
+        "empty": "No migrations available."
     },
     "EmptyDataTable": {
         "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
@@ -1051,5 +1052,19 @@
     },
     "ManageCookiesButton": {
         "text": "Manage cookie preferences"
+    },
+    "UpdateGameDataModal": {
+        "title": "Update game data",
+        "desc": "Fetch latest game data and run ingestion.",
+        "button": "Update",
+        "update_loader": {
+            "title": "Update loader version"
+        },
+        "success": {
+            "title": "Game data updated successfully",
+            "desc": "Updated game data to latest version"
+        },
+        "submit": "Submit",
+        "submitting": "Submitting..."
     }
 }

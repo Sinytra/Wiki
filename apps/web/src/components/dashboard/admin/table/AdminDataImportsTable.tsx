@@ -2,6 +2,8 @@ import * as React from "react";
 import {DataImport, DataImports} from "@repo/shared/types/api/admin";
 import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
+import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import UpdateGameDataModal from "@/components/dashboard/admin/modal/UpdateGameDataModal";
 
 export default function AdminDataImportsTable({data, page}: {
   data: DataImports;
@@ -53,6 +55,10 @@ export default function AdminDataImportsTable({data, page}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} page={page} />
+    <DataTable columns={columns} data={data} page={page} creator={
+      <ClientLocaleProvider keys={['UpdateGameDataModal', 'FormActions']}>
+        <UpdateGameDataModal />
+      </ClientLocaleProvider>
+    }/>
   )
 }

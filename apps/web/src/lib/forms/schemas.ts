@@ -46,3 +46,7 @@ export const createAccessKeySchema = z.object({
 export const revalidateCacheSchema = z.object({
   tag: requiredString
 });
+
+export const updateGameDataSchema = z.object({
+  update_loader: z.boolean().default(false)
+});
