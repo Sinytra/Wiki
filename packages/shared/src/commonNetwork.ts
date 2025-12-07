@@ -145,6 +145,7 @@ function createPostFetchOptions(options?: RequestOptions) {
 
 function createFetchOptions(options?: RequestOptions): RequestInit {
   const useCache = options?.cache === true || typeof options?.cache === 'object';
+  const disableCache = options?.cache === false;
   const headers: any = {
     ...options?.headers
   };
@@ -153,7 +154,7 @@ function createFetchOptions(options?: RequestOptions): RequestInit {
     method: options?.method,
     headers,
     body: options?.body ? (typeof options?.body === 'string' ? options.body : JSON.stringify(options.body)) : null,
-    cache: useCache ? 'force-cache' : undefined,
+    cache: disableCache ? 'no-store' : useCache ? 'force-cache' : undefined,
     next: useCache ? {
       tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
       revalidate: (typeof options.cache == 'object' ? options.cache.revalidate : undefined) || time.ONE_WEEK
@@ -192,7 +193,5 @@ export default {
   sendSimpleRequest,
   sendDataRequest,
   constructApiUrl,
-  actualVersion,
-  createPostFetchOptions,
-  createFetchOptions
+  actualVersion
 };
