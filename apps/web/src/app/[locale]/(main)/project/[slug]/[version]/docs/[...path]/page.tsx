@@ -17,7 +17,7 @@ import navigation from "@/lib/navigation";
 import markdown from "@repo/markdown";
 
 export const dynamic = 'force-static';
-export const fetchCache = 'force-cache';
+export const fetchCache = 'default-cache';
 
 export async function generateMetadata(
   props: {

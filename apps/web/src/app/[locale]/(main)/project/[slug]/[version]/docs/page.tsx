@@ -10,7 +10,7 @@ import env from "@repo/shared/env";
 import {RenderedDocsHomepage, renderHomepage} from "@/components/docs/DocsHomepage";
 
 export const dynamic = 'force-static';
-export const fetchCache = 'force-cache';
+export const fetchCache = 'default-cache';
 
 interface PageProps {
   params: Promise<{
