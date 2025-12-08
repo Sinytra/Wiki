@@ -5,8 +5,9 @@ import {BoxIcon} from "lucide-react";
 import {cn} from "@repo/ui/lib/utils";
 import Image from "next/image";
 
-type Props = Omit<ComponentProps<typeof Image>, 'src'> & {
-  src: string | undefined | null;
+type Props = Omit<ComponentProps<typeof Image>, 'src' | 'alt'> & {
+  src: string | undefined | null,
+  alt?: string,
   strokeWidth?: number,
   fallback?: ReactNode,
   fbIcon?: any,
