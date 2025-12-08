@@ -20,7 +20,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
             last:rounded-b-sm hover:bg-tertiary
           `}>
       <div className="shrink-0 rounded-xs p-1">
-        <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fallback={FileTextIcon} fixedSize/>
+        <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize/>
       </div>
       <div
         className={`

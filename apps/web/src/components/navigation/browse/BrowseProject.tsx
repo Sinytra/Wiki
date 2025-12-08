@@ -16,14 +16,14 @@ import ModVersionRange from "@/components/docs/ModVersionRange";
 import {getTranslations} from "next-intl/server";
 import {resolveSoft, trimText} from "@/lib/utils";
 import {BaseProject} from "@repo/shared/types/service";
-import SafeImage from "@/components/util/SafeImage";
 import navigation from "@/lib/navigation";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
     <div className="shrink-0">
-      <SafeImage
+      <ImageWithFallback
         className="size-16 rounded-sm sm:size-20"
         src={projectContent.icon_url}
         alt={projectContent.name}

@@ -43,6 +43,11 @@ const nextConfig: NextConfig = {
         permanent: true
       },
       {
+        source: '/:lang/project/:project',
+        destination: '/:lang/project/:project/latest',
+        permanent: true
+      },
+      {
         source: '/:lang/mod/:project/docs/:path*',
         destination: '/:lang/project/:project/latest/docs/:path*',
         permanent: true

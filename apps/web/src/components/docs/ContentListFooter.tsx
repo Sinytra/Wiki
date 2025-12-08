@@ -13,6 +13,7 @@ interface Props {
   contents: ProjectContentTree;
 }
 
+// TODO Cleanup: navigation.ts links + reusable component for ProjectContentEntry
 function Category({currentId, content, ctx}: {
   currentId: string;
   content: ProjectContentEntry;
@@ -51,7 +52,7 @@ function Category({currentId, content, ctx}: {
                             'flex flex-row items-center gap-1 rounded-sm !text-sm',
                             c.id === currentId && 'font-semibold bg-primary'
                           )}>
-                  <Asset location={c.id!} ctx={ctx}/>
+                  <Asset location={c.icon || c.id!} ctx={ctx}/>
                   {c.name}
                 </PageLink>
               </div>

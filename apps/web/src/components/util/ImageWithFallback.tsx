@@ -1,50 +1,43 @@
 'use client'
 
-import {useState} from "react";
+import {ComponentProps, ReactNode, useState} from "react";
 import {BoxIcon} from "lucide-react";
 import {cn} from "@repo/ui/lib/utils";
 import Image from "next/image";
 
-export default function ImageWithFallback({
-                                            src,
-                                            alt,
-                                            width,
-                                            height,
-                                            fbWidth,
-                                            fbHeight,
-                                            className,
-                                            strokeWidth = 1,
-                                            fixedSize,
-                                            fallback: FallbackIcon = BoxIcon
-                                          }: {
-  src?: string,
-  width: number,
-  height: number,
+type Props = Omit<ComponentProps<typeof Image>, 'src'> & {
+  src: string | undefined | null;
   strokeWidth?: number,
-  className?: string,
-  alt?: string,
-  fallback?: any,
+  fallback?: ReactNode,
+  fbIcon?: any,
   fbWidth?: number,
   fbHeight?: number
   fixedSize?: boolean
-}) {
-  const [error, setError] = useState(false);
+};
 
-  const Fallback = () => <FallbackIcon strokeWidth={strokeWidth}
+export default function ImageWithFallback(
+  {
+    src, alt, width, height, fbWidth, fbHeight, className, title,
+    strokeWidth = 1, fixedSize,
+    fbIcon: FallbackIcon = BoxIcon,
+    fallback: Fallback = <FallbackIcon strokeWidth={strokeWidth}
                                        className={cn(className, 'text-secondary opacity-20')}
                                        width={fbWidth || width}
-                                       height={fbHeight || height}/>;
+                                       height={fbHeight || height}/>,
+    ...rest
+  }: Props) {
+  const [error, setError] = useState(false);
 
   return (
-    <div className="shrink-0 overflow-hidden"
+    <div className="shrink-0 overflow-hidden" title={title}
          style={fixedSize ? {width: `${width}px`, height: `${height}px`} : undefined}>
       {src && !error &&
-        <Image src={src} alt={alt || ''} width={width} height={height} className={className}
+        <Image src={src} alt={alt || ''} width={width} height={height} className={className} unoptimized
                onError={() => setError(true)}
-               unoptimized
+               {...rest}
         />
       }
-      {(!src || error) && <Fallback/>}
+      {(!src || error) && Fallback}
     </div>
   );
 }

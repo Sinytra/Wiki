@@ -33,8 +33,8 @@ import SocialButtons from "@/components/util/SocialButtons";
 import LargePersonStandingIcon from "@repo/ui/icons/LargePersonStandingIcon";
 import env from "@repo/shared/env";
 import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";
-import SafeImage from "@/components/util/SafeImage";
 import {DEFAULT_LOCALE, WIKI_DOCS_URL} from "@repo/shared/constants";
+import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
@@ -54,7 +54,7 @@ function FeaturedProjectsContent({projects}: { projects: FeaturedProject[] }) {
          style={style}
     >
       <div className="mb-4 flex items-center">
-        <SafeImage
+        <ImageWithFallback
           src={project.icon}
           alt={`${project.title} icon`}
           width={48}
