@@ -24,10 +24,10 @@ import {
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
 import {PlatformProject} from "@repo/shared/platforms";
-import {Link} from "@/lib/locales/routing";
 import {DevProjectSidebarContext} from "@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider";
 import {DevProject} from "@repo/shared/types/service";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   project: DevProject;
@@ -38,11 +38,11 @@ function SidebarProjectHeader({project, platformProject}: { project: DevProject;
   // TODO Localize
   return (
     <div className="space-y-3 p-1">
-      <Link href="/dev"
+      <LocaleNavLink href="/dev"
             className="flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline">
         <ArrowLeftIcon className="size-4"/>
         <span>Back</span>
-      </Link>
+      </LocaleNavLink>
       <h3 className="text-sm text-primary-alt/70">
         Project settings
       </h3>

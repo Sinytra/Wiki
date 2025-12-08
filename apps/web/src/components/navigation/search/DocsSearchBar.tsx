@@ -4,21 +4,21 @@ import {useDebouncedCallback} from "use-debounce";
 import {useEffect, useLayoutEffect, useRef, useState} from "react";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {FileTextIcon, LoaderCircleIcon, SearchIcon} from "lucide-react";
-import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 function SearchResult({result}: { result: WikiSearchResult }) {
   const icon = !result.path ? result.mod_icon : result.icon;
 
   return (
-    <Link href={result.url}
-          className={`
-            z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary first:rounded-t-sm
-            last:rounded-b-sm hover:bg-tertiary
-          `}>
+    <NavLink href={result.url}
+             className={`
+               z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary first:rounded-t-sm
+               last:rounded-b-sm hover:bg-tertiary
+             `}>
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize/>
       </div>
@@ -37,7 +37,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
           </div>
         }
       </div>
-    </Link>
+    </NavLink>
   )
 }
 
@@ -91,7 +91,7 @@ function SearchOverlayFooter({visible, total}: { visible: number; total: number 
   )
 }
 
-export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string) => Promise<WikiSearchResults>}) {
+export default function DocsSearchBar({searchFunc}: { searchFunc: (query: string) => Promise<WikiSearchResults> }) {
   const t = useTranslations('DocsSearchBar');
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<WikiSearchResults | null>(null);
@@ -210,19 +210,19 @@ export default function DocsSearchBar({searchFunc}: {searchFunc: (query: string)
         />
       </div>
       {focused && searchQuery && (loading || (!loading && results)) &&
-          <div onMouseDown={e => e.preventDefault()}
-              className={`
-                absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border border-secondary
-                bg-primary-alt shadow-lg
-              `}>
-            {loading && <LoadingSearchState/>}
+        <div onMouseDown={e => e.preventDefault()}
+             className={`
+               absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border border-secondary
+               bg-primary-alt shadow-lg
+             `}>
+          {loading && <LoadingSearchState/>}
 
-            {!loading && results && results.hits.map(r => <SearchResult key={r.url} result={r}/>)}
+          {!loading && results && results.hits.map(r => <SearchResult key={r.url} result={r}/>)}
 
-            {!loading && results && results.hits.length === 0 && <NoSearchResults/>}
+          {!loading && results && results.hits.length === 0 && <NoSearchResults/>}
 
-            {!loading && results && <SearchOverlayFooter visible={results.hits.length} total={results.total} />}
-          </div>
+          {!loading && results && <SearchOverlayFooter visible={results.hits.length} total={results.total}/>}
+        </div>
       }
     </div>
   );

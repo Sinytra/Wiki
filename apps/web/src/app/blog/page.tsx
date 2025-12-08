@@ -1,4 +1,3 @@
-import Link from "next/link";
 import BlogHeader from "@/components/navigation/BlogHeader";
 import {cn} from "@repo/ui/lib/utils";
 import {Badge} from "@repo/ui/components/badge";
@@ -6,6 +5,7 @@ import {useTranslations} from "next-intl";
 import {setContextLocale} from "@/lib/locales/routing";
 import {allBlogs} from "@/.contentlayer/generated";
 import {compareDesc, formatDistanceStrict} from "date-fns";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 export const dynamic = 'force-static';
 
@@ -22,9 +22,9 @@ function BlogPost({id, name, desc, date, latest}: {
     <div className={cn('rounded-sm border px-3 py-2', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600')}>
       <div className="flex w-full flex-row items-center justify-between">
         <div className="flex w-fit flex-row items-center gap-2">
-          <Link href={`/blog/${id.replace(".mdx", "")}`} className="text-lg no-underline! hover:underline!">
+          <NavLink href={`/blog/${id.replace(".mdx", "")}`} className="text-lg no-underline! hover:underline!">
             {name}
-          </Link>
+          </NavLink>
 
           {latest &&
             <Badge variant="secondary" className="border-[var(--vp-c-brand-1)]">

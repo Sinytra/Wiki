@@ -1,8 +1,8 @@
 import {Alert, AlertDescription, AlertTitle} from "@repo/ui/components/alert";
-import Link from "next/link";
 import {LanguagesIcon} from "lucide-react";
 import locales from "@repo/shared/locales";
 import env from "@repo/shared/env";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 export default function TranslateBanner({locale}: { locale: string }) {
   const url = env.getCrowdinUrl();
@@ -17,9 +17,9 @@ export default function TranslateBanner({locale}: { locale: string }) {
       </AlertTitle>
       <AlertDescription className="mt-2">
         Please help us translate the wiki's user interface into <span className="font-medium">{lang?.name}</span> on
-        our <Link
+        our <NavLink
         className="text-brand-primary underline underline-offset-2"
-        href={url}>Crowdin page</Link>.
+        href={url}>Crowdin page</NavLink>.
       </AlertDescription>
     </Alert>
   )

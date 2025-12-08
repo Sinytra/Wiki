@@ -1,10 +1,10 @@
 import {ComponentPropsWithoutRef, forwardRef} from "react"
-import {Link, Link as NextLink} from "@/lib/locales/routing";
+import {LocaleLink as NextLink} from "@/lib/locales/routing";
 
 // https://github.com/vercel/next.js/discussions/24009#discussioncomment-8267656
 export const LocaleNavLink = forwardRef<
   HTMLAnchorElement,
-  ComponentPropsWithoutRef<typeof Link>
+  ComponentPropsWithoutRef<typeof NextLink>
 >(
   function LinkWithRef(
     {

@@ -30,7 +30,7 @@ import {useTranslations} from "next-intl";
 import {cn} from "@repo/ui/lib/utils";
 import {ExternalLinkIcon, LightbulbIcon, Loader2Icon, PlusIcon} from "lucide-react";
 import {Button} from "@repo/ui/components/button";
-import {Link, useRouter} from "@/lib/locales/routing";
+import {useRouter} from "@/lib/locales/routing";
 import {useRouter as useProgressRouter} from "@bprogress/next";
 import {useParams} from "next/navigation";
 import {GetStartedContext} from "@/components/dashboard/dev/get-started/GetStartedContextProvider";
@@ -38,6 +38,7 @@ import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTr
 import clientActions from "@/lib/forms/clientActions";
 import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
 import envPublic from "@repo/shared/envPublic";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 export interface ProjectRegisterFormProps {
   translations?: Parameters<typeof useTranslations>[0];
@@ -230,10 +231,10 @@ export default function ProjectRegisterForm(
                         <span className="text-sm text-primary">
                           {u.rich('get_help', {
                             link: (chunks) =>
-                              <Link className={`underline underline-offset-4 hover:text-primary/80`}
+                              <LocaleNavLink className={`underline underline-offset-4 hover:text-primary/80`}
                                     href={`${envPublic.getDocsUrl()}/${TROUBLESHOOTING_DOCS_URL}`} target="_blank">
                                 {chunks}
-                              </Link>
+                              </LocaleNavLink>
                           })}
                     </span>
                     </p>
@@ -251,12 +252,12 @@ export default function ProjectRegisterForm(
                         </span>
                     </p>
                     <div className="ml-auto">
-                        <Link href="/dev/settings" target="_blank">
+                        <LocaleNavLink href="/dev/settings" target="_blank">
                             <Button variant="outline" type="button" size="sm">
                               {t('connect_modrinth.settings')}
                                 <ExternalLinkIcon className="ml-2 h-4 w-4"/>
                             </Button>
-                        </Link>
+                        </LocaleNavLink>
                     </div>
                 </div>
               }

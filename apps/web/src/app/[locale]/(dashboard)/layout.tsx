@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { setContextLocale } from "@/lib/locales/routing";
+import {ReactNode} from "react";
+import {setContextLocale} from "@/lib/locales/routing";
 
 type Params = Promise<{ locale: string }>;
 

@@ -1,4 +1,4 @@
-import {Link, setContextLocale} from "@/lib/locales/routing";
+import {setContextLocale} from "@/lib/locales/routing";
 import {parseAsInteger, parseAsString} from "nuqs/server";
 import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {getTranslations} from "next-intl/server";
@@ -7,6 +7,7 @@ import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
 import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 type Properties = {
   params: Promise<{
@@ -39,9 +40,9 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
     <div>
       <DevBreadcrumb home={
         <BreadcrumbLink asChild>
-          <Link href={`/dev/project/${params.project}/content/tags`}>
+          <LocaleNavLink href={`/dev/project/${params.project}/content/tags`}>
             {t('title')}
-          </Link>
+          </LocaleNavLink>
         </BreadcrumbLink>
       }>
         <BreadcrumbPage className="font-mono text-xsm text-primary">

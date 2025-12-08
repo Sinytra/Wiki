@@ -8,7 +8,6 @@ import {ErrorBoundary} from "react-error-boundary";
 import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
 import platforms from "@repo/shared/platforms";
-import {DEFAULT_DOCS_VERSION, LEGACY_DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
 import {Metadata, ResolvingMetadata} from "next";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
@@ -52,9 +51,6 @@ export default async function HomepageLayout(props: LayoutProps) {
 
   const project = await service.getProject(ctx);
   if (!project) {
-    if (version == LEGACY_DEFAULT_DOCS_VERSION) {
-      return redirect(`/${locale}/project/${slug}/${DEFAULT_DOCS_VERSION}`);
-    }
     return notFound();
   }
 

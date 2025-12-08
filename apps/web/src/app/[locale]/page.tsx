@@ -3,7 +3,6 @@ import {useTranslations} from 'next-intl';
 import {trimText} from "@/lib/utils";
 import {cn} from "@repo/ui/lib/utils";
 import TranslateBanner from "@/components/navigation/TranslateBanner";
-import Link from "next/link";
 import crowdin from "@/lib/locales/crowdin";
 import {
   ArrowRight,
@@ -35,6 +34,7 @@ import env from "@repo/shared/env";
 import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";
 import {DEFAULT_LOCALE, WIKI_DOCS_URL} from "@repo/shared/constants";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
@@ -226,7 +226,7 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
                     ))}
                   </div>
                   <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <Link
+                    <NavLink
                       href="/dev"
                       className={`
                         rounded-sm bg-blue-600 px-4 py-2 text-center font-bold text-white transition duration-300
@@ -234,7 +234,7 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
                       `}
                     >
                       {t('community.authors.dashboard')}
-                    </Link>
+                    </NavLink>
                     <LocaleNavLink
                       href={WIKI_DOCS_URL}
                       className={`
@@ -306,13 +306,13 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
                   <h4 className="mb-2 text-lg font-semibold">{post.title}</h4>
                   <p className="mb-2 text-sm text-secondary">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
                   <p className="grow text-secondary">{post.excerpt}</p>
-                  <Link
+                  <NavLink
                     href={`/blog/${post._id.replace(".mdx", "")}`}
                     className="mt-2 inline-flex items-center text-primary hover:text-primary/80"
                   >
                     {t('blog.open')}
                     <ArrowRight className="ml-2 h-4 w-4"/>
-                  </Link>
+                  </NavLink>
                 </div>
               ))}
             </div>

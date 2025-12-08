@@ -1,7 +1,6 @@
 import {useTranslations} from "next-intl";
 import {FileQuestionIcon, HouseIcon} from "lucide-react";
 import {Button} from "@repo/ui/components/button";
-import Link from "next/link";
 import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 import {NavLink} from "@/components/navigation/link/NavLink";
 
@@ -28,10 +27,10 @@ export default function DocsPageNotFoundError({project}: { project?: Project }) 
       <div className="mt-4 inline-flex gap-4">
         {project?.source_repo &&
           <Button variant="secondary" asChild>
-              <Link href={project.source_repo} target="_blank">
+              <NavLink href={project.source_repo} target="_blank">
                   <GitHubIcon className="mr-2 h-4 w-4"/>
                 {t('submit')}
-              </Link>
+              </NavLink>
           </Button>
         }
         <Button asChild>

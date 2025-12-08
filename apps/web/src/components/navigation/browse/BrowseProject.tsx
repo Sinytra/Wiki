@@ -10,7 +10,6 @@ import LinkTextButton from "@/components/navigation/link/LinkTextButton";
 import {ErrorBoundary} from "react-error-boundary";
 import {ProjectTypeIcons} from "@/lib/project/projectTypes";
 import {NavLink} from "@/components/navigation/link/NavLink";
-import Link from "next/link";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import ModVersionRange from "@/components/docs/ModVersionRange";
 import {getTranslations} from "next-intl/server";
@@ -55,9 +54,9 @@ function ProjectIconPlaceholder() {
 async function GitHubProjectLink({url}: { url: string }) {
   return (
     <Button variant="ghost" size="icon" className="size-8" asChild>
-      <Link href={url} target="_blank">
+      <NavLink href={url} target="_blank">
         <GitHubIcon className="size-5"/>
-      </Link>
+      </NavLink>
     </Button>
   )
 }

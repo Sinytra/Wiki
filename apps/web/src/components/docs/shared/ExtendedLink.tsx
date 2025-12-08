@@ -1,11 +1,10 @@
-import {Link} from "@/lib/locales/routing";
 import ContentLink from "@/components/docs/shared/ContentLink";
 import {ComponentPropsWithoutRef} from "react";
 import {ProjectContext} from "@repo/shared/types/service";
 import PageLink from "@/components/docs/PageLink";
 import DocsLink from "@/components/docs/shared/DocsLink";
 
-type LinkProps = ComponentPropsWithoutRef<typeof Link> & { ctx: ProjectContext };
+type LinkProps = ComponentPropsWithoutRef<typeof PageLink> & { ctx: ProjectContext };
 
 export default function ExtendedLink(ctx: ProjectContext, props: Omit<LinkProps, 'ctx'>) {
   return BoundExtendedLink({...props, ctx});

@@ -3,7 +3,7 @@
 import {PlatformProject} from "@repo/shared/platforms";
 import {Button} from "@repo/ui/components/button";
 import {BookMarkedIcon, BoxIcon, HomeIcon} from "lucide-react";
-import {Link, usePathname} from "@/lib/locales/routing";
+import {LocaleLink, usePathname} from "@/lib/locales/routing";
 import {cn} from "@repo/ui/lib/utils";
 import {useParams} from "next/navigation";
 import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector";
@@ -20,8 +20,8 @@ function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any
   const active = parts.length == 4 && path.length == 0 || parts.length >= 5 && parts[4] == path;
 
   return (
-    <Link href={`/project/${params.slug}/${params.version}/${path}`}
-          className={cn('w-full sm:w-fit', disabled && 'pointer-events-none')}
+    <LocaleLink href={`/project/${params.slug}/${params.version}/${path}`}
+                className={cn('w-full sm:w-fit', disabled && 'pointer-events-none')}
     >
       <Button variant="ghost" size="sm" className={cn('h-8! w-full rounded-sm px-2! sm:h-7! sm:w-fit', active && `
         bg-secondary
@@ -30,7 +30,7 @@ function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any
         <Icon className="mr-auto h-4 w-4 sm:mr-2"/>
         <span className="mr-auto text-sm sm:mr-0">{title}</span>
       </Button>
-    </Link>
+    </LocaleLink>
   )
 }
 
@@ -87,7 +87,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
       {(showVersions || showLocales) &&
         <>
             <div className="verticalSeparator hidden! sm:inline-flex!"/>
-            <hr className="w-full border-tertiary sm:hidden" />
+            <hr className="w-full border-tertiary sm:hidden"/>
         </>
       }
 
@@ -110,7 +110,7 @@ export default function DocsSubNavBar({project, platformProject, locale, version
   return (
     <div className="fixed left-0 z-40 w-full border-y border-tertiary border-t-tertiary-dim bg-primary-dim">
       <div className="mx-auto flex w-full max-w-[120rem] flex-row items-center justify-between px-4 py-2 sm:py-1.5">
-        <DocsSubNavProjectTitle project={project} platformProject={platformProject} />
+        <DocsSubNavProjectTitle project={project} platformProject={platformProject}/>
 
         <div className="hidden sm:block">
           <DocsSubNavBarLinks project={project} locale={locale} version={version}/>
@@ -118,7 +118,7 @@ export default function DocsSubNavBar({project, platformProject, locale, version
 
         <SubMobileNav>
           <div className="flex flex-col gap-8">
-            <MobileDocsSubNavProjectTitle project={project} platformProject={platformProject} />
+            <MobileDocsSubNavProjectTitle project={project} platformProject={platformProject}/>
 
             <DocsSubNavBarLinks project={project} locale={locale} version={version}/>
           </div>

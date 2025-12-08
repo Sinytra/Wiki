@@ -1,7 +1,7 @@
-import { Badge } from "@repo/ui/components/badge";
-import Link from "next/link";
+import {Badge} from "@repo/ui/components/badge";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
-export default function BlogHeader({hideSubtext}: {hideSubtext: boolean}) {
+export default function BlogHeader({hideSubtext}: { hideSubtext: boolean }) {
   return (
     <div
       style={{
@@ -15,14 +15,14 @@ export default function BlogHeader({hideSubtext}: {hideSubtext: boolean}) {
         textAlign: 'center'
       }}
     >
-      <img style={{ marginBottom: '1.5rem' }} src="https://sinytra.org/logo.png" width={124} height={124}
-           alt="Sinytra logo" />
+      <img style={{marginBottom: '1.5rem'}} src="https://sinytra.org/logo.png" width={124} height={124}
+           alt="Sinytra logo"/>
 
-      <Link href="/blog" className="flex flex-col items-center text-primary no-underline! sm:flex-row"
-            style={{ fontSize: '2rem', marginBottom: '0.1rem' }}>
+      <NavLink href="/blog" className="flex flex-col items-center text-primary no-underline! sm:flex-row"
+               style={{fontSize: '2rem', marginBottom: '0.1rem'}}>
         Modded Minecraft Wiki
         <Badge className="ml-3 text-lg" variant="secondary">Blog</Badge>
-      </Link>
+      </NavLink>
       {(hideSubtext ?? false) ? <></> : <span style={{
         color: '#EBEBF599',
         fontSize: '1.5rem'

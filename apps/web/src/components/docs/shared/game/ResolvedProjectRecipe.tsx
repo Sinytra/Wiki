@@ -38,6 +38,10 @@ async function RecipeBody({recipe, type, ctx}: {
   ctx: ProjectContext
 }) {
   const background = await service.getAsset(type.background, ctx);
+  if (!background) {
+    console.warn(`Missing background for recipe type ${type.id}: ${type.background}`);
+  }
+
   const slot = (key: string, input: boolean) => {
     const slots = input ? type.inputSlots : type.outputSlots;
     const result = slots[key];

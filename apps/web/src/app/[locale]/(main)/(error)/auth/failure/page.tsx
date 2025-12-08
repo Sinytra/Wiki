@@ -2,7 +2,6 @@ import { use } from "react";
 import {Button} from "@repo/ui/components/button";
 import {ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon} from "lucide-react";
 import {NavLink} from "@/components/navigation/link/NavLink";
-import Link from "next/link";
 import {useTranslations} from "next-intl";
 import {setContextLocale} from "@/lib/locales/routing";
 
@@ -25,10 +24,10 @@ export default function AuthFailure(props: { params: Promise<{ locale: string }>
 
       <div className="mt-4 inline-flex flex-wrap justify-center gap-4">
         <Button variant="secondary" asChild>
-          <Link href="https://status.moddedmc.org" target="_blank">
+          <NavLink href="https://status.moddedmc.org" target="_blank">
             <ActivityIcon className="mr-2 h-4 w-4" />
             {t('status')}
-          </Link>
+          </NavLink>
         </Button>
         <Button asChild>
           <NavLink href="/">
@@ -37,10 +36,10 @@ export default function AuthFailure(props: { params: Promise<{ locale: string }>
           </NavLink>
         </Button>
         <Button variant="secondary" asChild>
-          <Link href="https://github.com/Sinytra/Wiki/issues" target="_blank">
+          <NavLink href="https://github.com/Sinytra/Wiki/issues" target="_blank">
             <BugIcon className="mr-2 h-4 w-4" />
             {t('report')}
-          </Link>
+          </NavLink>
         </Button>
       </div>
     </div>

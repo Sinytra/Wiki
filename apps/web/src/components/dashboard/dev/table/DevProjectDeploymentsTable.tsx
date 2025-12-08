@@ -6,13 +6,13 @@ import {Button} from "@repo/ui/components/button";
 import {Badge} from "@repo/ui/components/badge";
 import DeleteDeploymentModal from "../modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
-import {Link} from "@/lib/locales/routing";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dashboard/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dashboard/dev/modal/DeployProjectModalOpenButton";
 import {DeploymentStatus, DevProjectDeploymentRow, DevProjectDeployments} from "@repo/shared/types/api/deployment";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 function EmptyDeploymentsState() {
   return (
@@ -130,11 +130,11 @@ export default function DevProjectDeploymentsTable({data}: { data: DevProjectDep
       {data.data.length > 0 ?
         <div className="flex border-collapse flex-col gap-2 rounded-sm border-secondary-dim sm:gap-0 sm:border">
           {...data.data.map(d => (
-            <Link key={d.id} href={`deployments/${d.id}`} className={`
+            <LocaleNavLink key={d.id} href={`deployments/${d.id}`} className={`
               rounded-sm border border-secondary-dim sm:rounded-none sm:border-0 sm:[&:not(:first-of-type)]:border-t
             `}>
               <DeploymentEntry deployment={d}/>
-            </Link>
+            </LocaleNavLink>
           ))}
         </div>
         :

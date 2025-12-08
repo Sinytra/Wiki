@@ -6,7 +6,7 @@ import {getExternalWikiLink, getResolvedItemLink} from "@/lib/project/game/conte
 import {HoverContext} from "@/components/util/HoverContextProvider";
 import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
 import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
-import Link from "next/link";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 interface AdditionalProps {
   src: DisplayItem[];
@@ -66,7 +66,7 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
         </div>
       </div>
     );
-    return link && !noLink ? <Link href={link} rel="noreferrer">{element}</Link> : element;
+    return link && !noLink ? <NavLink href={link} rel="noreferrer">{element}</NavLink> : element;
   };
 
   return noTooltip ? <Content/> : (

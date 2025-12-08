@@ -4,7 +4,6 @@ import {Button} from "@repo/ui/components/button";
 import {ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon} from "lucide-react";
 import {useEffect} from "react";
 import {NavLink} from "@/components/navigation/link/NavLink";
-import Link from "next/link";
   
 export default function Error({error}: { error: Error & { digest?: string }}) {
   useEffect(() => {
@@ -26,10 +25,10 @@ export default function Error({error}: { error: Error & { digest?: string }}) {
 
       <div className="mt-4 inline-flex flex-wrap justify-center gap-4">
         <Button variant="secondary" asChild>
-          <Link href="https://status.moddedmc.org" target="_blank">
+          <NavLink href="https://status.moddedmc.org" target="_blank">
             <ActivityIcon className="mr-2 h-4 w-4" />
             Check status
-          </Link>
+          </NavLink>
         </Button>
         <Button asChild>
           <NavLink href="/">
@@ -38,10 +37,10 @@ export default function Error({error}: { error: Error & { digest?: string }}) {
           </NavLink>
         </Button>
         <Button variant="secondary" asChild>
-          <Link href="https://github.com/Sinytra/Wiki/issues" target="_blank">
+          <NavLink href="https://github.com/Sinytra/Wiki/issues" target="_blank">
             <BugIcon className="mr-2 h-4 w-4" />
             Report Bug
-          </Link>
+          </NavLink>
         </Button>
       </div>
     </div>

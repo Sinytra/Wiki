@@ -2,8 +2,8 @@ import {ItemProperties, ProjectContext} from "@repo/shared/types/service";
 import Asset from "@/components/docs/shared/asset/Asset";
 import {useTranslations} from "next-intl";
 import {getContentLink, getVanillaWikiLink} from "@/lib/project/game/content";
-import Link from "next/link";
 import PageLink from "@/components/docs/PageLink";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 interface Props {
   ctx: ProjectContext;
@@ -67,9 +67,9 @@ function RenderedProperty({name, type, value, ctx}: {
   if (type === 'item') {
     const link = getContentLink(ctx, value);
     return (
-      <Link href={link}>
+      <NavLink href={link}>
         <Asset location={value} ctx={ctx}/>
-      </Link>
+      </NavLink>
     )
   }
 

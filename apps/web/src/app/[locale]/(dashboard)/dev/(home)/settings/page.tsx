@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator
 } from "@repo/ui/components/breadcrumb";
 import {SidebarTrigger} from "@repo/ui/components/sidebar";
-import {Link, setContextLocale} from "@/lib/locales/routing";
+import {setContextLocale} from "@/lib/locales/routing";
 import {format} from "date-fns";
 import {Button} from "@repo/ui/components/button";
 import {deleteUserAccount, linkModrinthAccount, unlinkModrinthAccount} from "@/lib/forms/actions";
@@ -23,6 +23,7 @@ import {handleApiCall} from "@/lib/service/serviceUtil";
 import authApi from "@/lib/service/api/authApi";
 import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
 import AdminBadge from "@repo/ui/components/badge/AdminBadge";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 export const dynamic = 'force-dynamic';
 
@@ -132,9 +133,9 @@ export default async function DevSettingsPage(props: { params: Promise<{ locale:
           <SidebarTrigger className="mr-1 -ml-1 text-primary sm:hidden"/>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/dev">
+              <LocaleNavLink href="/dev">
                 {t('breadcrumbs.home')}
-              </Link>
+              </LocaleNavLink>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator/>

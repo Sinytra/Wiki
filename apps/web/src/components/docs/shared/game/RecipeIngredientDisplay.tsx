@@ -2,11 +2,11 @@ import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemD
 import {getResolvedItemLink} from "@/lib/project/game/content";
 import {cn} from "@repo/ui/lib/utils";
 import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
-import Link from "next/link";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 export default function RecipeIngredientDisplay({tag, count, item, ctx}: { tag: string | null; count: number; item: DisplayItem; ctx: ProjectContext }) {
   const href = getResolvedItemLink(ctx, item);
-  const ContentDiv: any = href != null ? Link : 'div';
+  const ContentDiv: any = href != null ? NavLink : 'div';
 
   return (
     <div className="inline-flex items-center">

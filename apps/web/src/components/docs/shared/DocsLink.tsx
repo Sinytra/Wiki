@@ -1,12 +1,12 @@
 import PageLink from "@/components/docs/PageLink";
 import {getDocsLink} from "@/lib/project/game/content";
-import {Link} from "@/lib/locales/routing";
 import {ComponentPropsWithoutRef} from "react";
 import {FileTree, FileTreeEntry, ProjectContext} from "@repo/shared/types/service";
 import service from "@/lib/service";
 import {getTranslations} from "next-intl/server";
+import {LocaleLink} from "@/lib/locales/routing";
 
-type LinkProps = Omit<ComponentPropsWithoutRef<typeof Link>, 'href'> & { path: string; ctx: ProjectContext };
+type LinkProps = Omit<ComponentPropsWithoutRef<typeof LocaleLink>, 'href'> & { path: string; ctx: ProjectContext };
 
 function findNestedPath(path: string[], fullPath: string, idx: number, tree: FileTree): FileTreeEntry | null {
   if (idx >= path.length) {

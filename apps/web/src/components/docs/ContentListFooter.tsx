@@ -1,10 +1,10 @@
 import ExpandableCategory from "@/components/docs/util/ExpandableCategory";
 import Asset from "@/components/docs/shared/asset/Asset";
 import PageLink from "@/components/docs/PageLink";
-import {Link} from "@/lib/locales/routing";
 import {Project, ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
 import {useTranslations} from "next-intl";
 import {cn} from "@repo/ui/lib/utils";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 interface Props {
   currentId: string;
@@ -77,11 +77,11 @@ export default function ContentListFooter({currentId, project, ctx, contents}: P
           <thead className="mb-2 table w-full">
           <tr>
             <th colSpan={2} className="rounded-sm bg-secondary p-2">
-              <Link className="underline-offset-4 hover:text-primary/80! hover:underline"
-                    href={`/project/${ctx.id}/${ctx.version}`}
+              <LocaleNavLink className="underline-offset-4 hover:text-primary/80! hover:underline"
+                             href={`/project/${ctx.id}/${ctx.version}`}
               >
                 {project.name}
-              </Link>
+              </LocaleNavLink>
               <span className="float-right min-w-[1em]">&nbsp;</span>
             </th>
           </tr>

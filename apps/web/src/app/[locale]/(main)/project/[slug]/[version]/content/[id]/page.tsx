@@ -1,7 +1,7 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
-import {redirect} from "next/navigation";
+import {notFound} from "next/navigation";
 import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
 import {getTranslations} from "next-intl/server";
 import DocsContentTOCSidebar from "@/components/docs/side/content/DocsContentTOCSidebar";
@@ -75,7 +75,9 @@ export default async function ContentEntryPage(props: Props) {
       <DocsPageNotFoundError/>
     );
   }
-  if (!page) redirect(`/project/${params.slug}/${params.version}/content`);
+  if (!page) {
+    return notFound();
+  }
 
   const t = await getTranslations('DocsContentRightSidebar');
   const u = await getTranslations('ContentChangelog');

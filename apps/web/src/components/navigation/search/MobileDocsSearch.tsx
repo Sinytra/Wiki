@@ -5,17 +5,17 @@ import {ArrowLeftIcon, FileTextIcon, LoaderCircleIcon, SearchIcon} from "lucide-
 import {Button} from "@repo/ui/components/button";
 import {useEffect, useRef, useState} from "react";
 import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
-import Link from "next/link";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {useDebouncedCallback} from "use-debounce";
 import {CSSTransition} from "react-transition-group";
 import {usePathname} from "next/navigation";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 function SearchResult({result}: { result: WikiSearchResult }) {
   const icon = !result.path ? result.mod_icon : result.icon;
 
   return (
-    <Link href={result.url}
+    <NavLink href={result.url}
           className={`
             z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
             text-primary
@@ -40,7 +40,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
           </div>
         }
       </div>
-    </Link>
+    </NavLink>
   )
 }
 

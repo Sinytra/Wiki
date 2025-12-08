@@ -1,4 +1,4 @@
-import {Link, setContextLocale} from "@/lib/locales/routing";
+import {setContextLocale} from "@/lib/locales/routing";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import moderationApi from "@/lib/service/api/moderationApi";
 import {getTranslations} from "next-intl/server";
@@ -73,9 +73,9 @@ export default async function ViewReportPage(props: { params: Promise<{ locale: 
     <div>
       <DevBreadcrumb home={
         <BreadcrumbLink asChild>
-          <Link href="/admin/reports">
+          <LocaleNavLink href="/admin/reports">
             {t('reports')}
-          </Link>
+          </LocaleNavLink>
         </BreadcrumbLink>
       }>
         <BreadcrumbPage className="font-mono text-xsm text-primary">

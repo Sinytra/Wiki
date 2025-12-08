@@ -18,4 +18,4 @@ export function setContextLocale(locale: string) {
   setRequestLocale(internal);
 }
 
-export const {Link, redirect, usePathname, useRouter} = createNavigation(routing);
+export const {Link: LocaleLink, redirect, usePathname, useRouter} = createNavigation(routing);

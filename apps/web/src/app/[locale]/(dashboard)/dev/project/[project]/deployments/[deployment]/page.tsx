@@ -1,4 +1,4 @@
-import {Link, setContextLocale} from "@/lib/locales/routing";
+import {LocaleLink, setContextLocale} from "@/lib/locales/routing";
 import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
 import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
 import {getTranslations} from "next-intl/server";
@@ -239,9 +239,9 @@ export default async function DevProjectDeploymentPage(props: Properties) {
     <div>
       <DevBreadcrumb home={
         <BreadcrumbLink asChild>
-          <Link href={`/dev/project/${params.project}/deployments`}>
+          <LocaleLink href={`/dev/project/${params.project}/deployments`}>
             {t('deployments')}
-          </Link>
+          </LocaleLink>
         </BreadcrumbLink>
       }>
         <BreadcrumbPage className="font-mono text-xsm text-primary">

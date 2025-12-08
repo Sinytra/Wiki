@@ -9,7 +9,7 @@ import {trimText} from "@/lib/utils";
 import {cn} from "@repo/ui/lib/utils";
 import platforms, {PlatformProject} from "@repo/shared/platforms";
 import {AlertCircleIcon, CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon, XIcon} from "lucide-react";
-import {Link, setContextLocale} from "@/lib/locales/routing";
+import {setContextLocale} from "@/lib/locales/routing";
 import {Button} from "@repo/ui/components/button";
 import {SidebarTrigger} from "@repo/ui/components/sidebar";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
@@ -20,6 +20,7 @@ import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {WIKI_DOCS_URL} from "@repo/shared/constants";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 export const dynamic = 'force-dynamic';
 
@@ -130,12 +131,12 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
           </div>
 
           <div className="ml-auto">
-            <Link href={getProjectLink(project.id)}>
+            <LocaleNavLink href={getProjectLink(project.id)}>
               <Button className="h-8 border border-neutral-700" variant="ghost" size="sm">
                 <SettingsIcon className="mr-2 h-4 w-4"/>
                 {t('project.manage')}
               </Button>
-            </Link>
+            </LocaleNavLink>
           </div>
         </div>
       </div>

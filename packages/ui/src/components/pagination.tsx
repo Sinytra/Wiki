@@ -47,6 +47,7 @@ const PaginationLink = ({
                         }: PaginationLinkProps) => (
   //@ts-expect-error
   <Link
+    prefetch={false}
     aria-current={isActive ? "page" : undefined}
     className={cn(
       buttonVariants({

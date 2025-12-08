@@ -1,6 +1,14 @@
 'use client'
 
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@repo/ui/components/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "@repo/ui/components/form";
 import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -13,10 +21,11 @@ import {projectEditSchema} from "@/lib/forms/schemas";
 import * as React from "react";
 import {useState} from "react";
 import {toast} from "sonner";
-import {Link, useRouter} from "@/lib/locales/routing";
+import {useRouter} from "@/lib/locales/routing";
 import DevProjectSectionTitle from "@/components/dashboard/dev/project/DevProjectSectionTitle";
 import {DevProject} from "@repo/shared/types/service";
 import clientActions from "@/lib/forms/clientActions";
+import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
 function SourceSection({form}: { form: any }) {
   return (
@@ -210,12 +219,12 @@ export default function DevProjectSettings({project, deleteFunc}: { project: Dev
                         </span>
                 </p>
                 <div className="ml-auto">
-                    <Link href="/dev/settings" target="_blank">
+                    <LocaleNavLink href="/dev/settings" target="_blank">
                         <Button type="button" size="sm">
                           {t('connect_modrinth.settings')}
                             <ExternalLinkIcon className="ml-2 h-4 w-4"/>
                         </Button>
-                    </Link>
+                    </LocaleNavLink>
                 </div>
             </div>
           }

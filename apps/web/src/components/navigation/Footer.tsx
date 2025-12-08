@@ -1,12 +1,12 @@
 import React from "react";
 import {cn} from "@repo/ui/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import Link from "next/link";
 import {useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
 import env from "@repo/shared/env";
 import ManageCookiesButton from "@/components/cookies/ManageCookiesButton";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import {NavLink} from "@/components/navigation/link/NavLink";
 
 function Copyright({ center }: { center: boolean }) {
   const t = useTranslations('NavigationFooter');
@@ -71,7 +71,7 @@ function NavigationColumns() {
       </LinkColumn>
 
       <LinkColumn title={t('links.resources.title')}>
-        <LinkEntry title={t('links.resources.blog')} href="/blog" component={Link}/>
+        <LinkEntry title={t('links.resources.blog')} href="/blog" component={NavLink}/>
         <LinkEntry title={t('links.resources.status')} href="https://status.moddedmc.org"/>
         <LinkEntry title={t('links.resources.translate')} href="https://crowdin.com/project/sinytra-wiki"/>
       </LinkColumn>

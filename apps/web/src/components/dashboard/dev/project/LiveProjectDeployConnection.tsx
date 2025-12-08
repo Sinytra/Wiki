@@ -1,7 +1,7 @@
 'use client'
 
 import {startTransition, useContext, useEffect, useRef} from "react";
-import {Link, useRouter} from "@/lib/locales/routing";
+import {LocaleLink, useRouter} from "@/lib/locales/routing";
 import {toast} from "sonner";
 import {Button} from "@repo/ui/components/button";
 import {DevProjectSidebarContext} from "@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider";
@@ -58,11 +58,11 @@ export default function LiveProjectDeployConnection({id, status, token}: Props) 
           success: t('success'),
           error: t('error'),
           action: (
-            <Link href={`/dev/project/${id}/deployments/${deploymentId}`} className="ml-auto">
+            <LocaleLink href={`/dev/project/${id}/deployments/${deploymentId}`} className="ml-auto">
               <Button size="sm" variant="secondary" className="h-6! rounded-sm! text-[12px]!">
                 {t('view')}
               </Button>
-            </Link>
+            </LocaleLink>
           )
         });
       }
