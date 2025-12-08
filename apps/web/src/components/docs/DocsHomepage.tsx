@@ -24,19 +24,8 @@ interface RenderedHomepage {
 }
 
 export async function renderHomepage(project: Project, platformProject: PlatformProject, ctx: ProjectContext): Promise<RenderedHomepage | null | undefined> {
-  const patcher = (components: Record<string, any>) => {
-    return {
-      ...components,
-      a: ({href, ...props}: any) => {
-        const Element = components['a'] || 'a';
-        const ignored = href.startsWith('$') || href.startsWith('@') || href.startsWith('/') || href.includes('://');
-        return <Element href={ignored ? href : 'docs/' + href} {...props} />
-      }
-    }
-  };
-
   try {
-    const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx, patcher);
+    const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx);
     if (result) {
       const content = (
         <DocsMarkdownContent>

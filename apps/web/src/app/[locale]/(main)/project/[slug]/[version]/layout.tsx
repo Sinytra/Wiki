@@ -2,7 +2,7 @@ import {ReactNode} from "react";
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
 import DocsLayoutClient from "@/components/docs/layout/DocsLayoutClient";
-import {redirect} from "next/navigation";
+import {notFound, redirect} from "next/navigation";
 import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContext";
 import {ErrorBoundary} from "react-error-boundary";
 import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
@@ -55,7 +55,7 @@ export default async function HomepageLayout(props: LayoutProps) {
     if (version == LEGACY_DEFAULT_DOCS_VERSION) {
       return redirect(`/${locale}/project/${slug}/${DEFAULT_DOCS_VERSION}`);
     }
-    return redirect('/');
+    return notFound();
   }
 
   const platformProject = await platforms.getPlatformProject(project);

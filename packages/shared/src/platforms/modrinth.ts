@@ -119,7 +119,7 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
     cache: 'force-cache',
     next: {
       tags: ['modrinth'],
-      revalidate: time.TWO_WEEKS
+      revalidate: time.ONE_MONTH
     }
   });
   if (!response.ok) {

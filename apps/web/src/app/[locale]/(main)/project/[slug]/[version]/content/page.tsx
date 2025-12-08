@@ -1,4 +1,4 @@
-import {notFound, redirect} from "next/navigation";
+import {notFound} from "next/navigation";
 import Asset from "@/components/docs/shared/asset/Asset";
 import PageLink from "@/components/docs/PageLink";
 import service from "@/lib/service";
@@ -101,7 +101,7 @@ export default async function ProjectContentPage(props: Props) {
 
   const project = await service.getProject(ctx);
   if (!project) {
-    return redirect('/');
+    return notFound();
   }
 
   const platformProject = await platforms.getPlatformProject(project);

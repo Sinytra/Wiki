@@ -169,7 +169,7 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
     cache: 'force-cache',
     next: {
       tags: ['curseforge'],
-      revalidate: time.TWO_WEEKS
+      revalidate: time.ONE_MONTH
     }
   });
   if (!response.ok) {

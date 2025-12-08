@@ -2,7 +2,7 @@ import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
 import {Metadata, ResolvingMetadata} from "next";
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
-import {redirect} from "next/navigation";
+import {notFound} from "next/navigation";
 import platforms from "@repo/shared/platforms";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
@@ -13,11 +13,7 @@ import {constructPagePath} from "@/lib/service/serviceUtil";
 import env from "@repo/shared/env";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 import issuesApi from "@repo/shared/api/issuesApi";
-import navigation from "@/lib/navigation";
 import markdown from "@repo/markdown";
-
-export const dynamic = 'force-static';
-export const fetchCache = 'default-cache';
 
 export async function generateMetadata(
   props: {
@@ -58,7 +54,7 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
 
   const projectData = await service.getBackendLayout(ctx);
   if (!projectData) {
-    return redirect('/');
+    return notFound();
   }
 
   let page: RenderedDocsPage | null;
@@ -73,7 +69,9 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
       <DocsPageNotFoundError project={projectData.project}/>
     );
   }
-  if (!page) redirect(navigation.getProjectLink(slug));
+  if (!page) {
+    return notFound();
+  }
 
   const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
     && page.content.metadata.hide_meta === undefined;

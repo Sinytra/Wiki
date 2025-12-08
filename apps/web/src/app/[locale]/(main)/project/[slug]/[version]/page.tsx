@@ -1,6 +1,6 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import service from "@/lib/service";
-import {redirect} from "next/navigation";
+import {notFound} from "next/navigation";
 import platforms, {PlatformProject} from "@repo/shared/platforms";
 import projectInfo, {ResolvedLicense} from "@/lib/project/projectInfo";
 import {ProjectCategories} from '@/lib/project/projectTypes';
@@ -214,7 +214,7 @@ export default async function ProjectHomepage(props: PageProps) {
 
   const project = await service.getProject(ctx);
   if (!project) {
-    return redirect('/');
+    return notFound();
   }
 
   const platformProject = await platforms.getPlatformProject(project);

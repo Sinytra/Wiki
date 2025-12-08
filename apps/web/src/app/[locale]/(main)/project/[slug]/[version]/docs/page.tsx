@@ -1,16 +1,13 @@
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@repo/shared/platforms";
 import service from "@/lib/service";
-import {redirect} from "next/navigation";
+import {notFound} from "next/navigation";
 import DocsInnerLayoutClient from "@/components/docs/layout/DocsInnerLayoutClient";
 import DocsPageFooter from "@/components/docs/layout/DocsPageFooter";
 import DocsGuideNonContentRightSidebar from "@/components/docs/side/guide/DocsGuideNonContentRightSidebar";
 import {getTranslations} from "next-intl/server";
 import env from "@repo/shared/env";
 import {RenderedDocsHomepage, renderHomepage} from "@/components/docs/DocsHomepage";
-
-export const dynamic = 'force-static';
-export const fetchCache = 'default-cache';
 
 interface PageProps {
   params: Promise<{
@@ -28,7 +25,7 @@ export default async function ProjectDocsHomepage(props: PageProps) {
 
   const projectData = await service.getBackendLayout(ctx);
   if (!projectData) {
-    return redirect('/');
+    return notFound();
   }
 
   const platformProject = await platforms.getPlatformProject(projectData.project);

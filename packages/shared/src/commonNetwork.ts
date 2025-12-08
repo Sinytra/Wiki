@@ -1,6 +1,6 @@
 import {serializeUrlParams} from './util';
 import locales from '@repo/shared/locales';
-import {DEFAULT_DOCS_VERSION, time} from './constants';
+import {DEFAULT_DOCS_VERSION} from './constants';
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';
 type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown';
@@ -157,7 +157,7 @@ function createFetchOptions(options?: RequestOptions): RequestInit {
     cache: disableCache ? 'no-store' : useCache ? 'force-cache' : undefined,
     next: useCache ? {
       tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
-      revalidate: (typeof options.cache == 'object' ? options.cache.revalidate : undefined) || time.ONE_WEEK
+      revalidate: typeof options.cache == 'object' ? options.cache.revalidate : undefined
     } : undefined,
     redirect: 'manual',
     credentials: options?.includeCredentials ? 'include' : undefined

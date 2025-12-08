@@ -23,7 +23,7 @@ async function getCrowdinTranslationStatus(lang: string): Promise<number> {
         },
         cache: 'force-cache',
         next: {
-          revalidate: time.ONE_WEEK
+          revalidate: time.ONE_MONTH
         }
       });
       if (resp.ok) {
