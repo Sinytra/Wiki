@@ -12,8 +12,9 @@ They usually don't require specifying any attributes and can "magically" resolve
 ### `PrefabObtaining`
 
 Adds a "Recipe" section to the page that displays crafting recipes that can be used to obtain the described item.
+The item's ID is obtained from the page's frontmatter `id` property.
 
-*This component requires adding recipes to [game data](../game_data) in your project.*
+*This component requires adding recipes to [game data](/docs/folder_structure/game_data) in your project.*
 
 ```jsx
 <PrefabObtaining />
@@ -22,8 +23,9 @@ Adds a "Recipe" section to the page that displays crafting recipes that can be u
 ### `PrefabUsage`
 
 Adds a "Usage" section to the page that contains a list of items this item can be used to obtain.
+The item's ID is obtained from the page's frontmatter `id` property.
 
-*This component requires adding recipes to [game data](../game_data) in your project.*
+*This component requires adding recipes to [game data](/docs/folder_structure/game_data) in your project.*
 
 ```jsx
 <PrefabUsage />

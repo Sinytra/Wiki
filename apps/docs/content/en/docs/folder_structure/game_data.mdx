@@ -122,6 +122,27 @@ Recipes are placed under the `.data` folder and follow the same structure as in-
     </FileTreeFolder>
 </FileTree>
 
+### Usage
+
+To display recipes (including custom ones) in content pages, you can use the
+[`PrefabObtaining`](/docs/components/interactive#prefabobtaining) component to automatically show a recipe matching the
+page's ID (recommended). Alternatively, the [`ProjectRecipe`](/docs/components/common#projectrecipe) component lets you
+display a recipe for a given ID.
+
+For example:
+
+```markdown
+---
+id: examplemod:steel_ingot
+---
+
+<!-- Will display recipe that outputs "examplemod:steel_ingot" -->
+<PrefabObtaining/>
+
+<!-- Will display recipe with the given ID -->
+<ProjectRecipe id="examplemod:steel_ingot_from_nuggets"/>
+```
+
 ## Custom recipe types
 
 In addition to vanilla recipes, you may also define your own recipe types that can be displayed on the Wiki.
@@ -158,6 +179,7 @@ Recipe Types are defined using a json file with 3 **required** properties:
     [files](#custom-recipe-format) as described further below
   - The two properties represent recipe inputs and outputs, respectively
   - Slot coordinates are relative to the background
+  - **Each slot is 32 pixels in size** (as opposed to 16 pixels in-game!). Items displayed in slots will use this size.
 
 To find the precise positions of your slots, we recommend using a raster image program such as
 [GIMP](https://www.gimp.org/).
