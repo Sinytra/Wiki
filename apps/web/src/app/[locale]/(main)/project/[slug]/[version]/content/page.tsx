@@ -8,6 +8,7 @@ import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
 import {ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
 import {useTranslations} from "next-intl";
 import {ProjectRouteParams} from "@repo/shared/types/routes";
+import {getContentLink} from "@/lib/project/game/content";
 
 interface Props {
   params: Promise<ProjectRouteParams>;
@@ -20,7 +21,7 @@ function ContentEntryLink({entry, ctx}: { entry: ProjectContentEntry; ctx: Proje
 
   return (
     <div>
-      <PageLink href={`/project/${ctx.id}/${ctx.version}/content/${entry.id}`} local
+      <PageLink href={getContentLink(ctx, entry.id!)}
                 className="flex flex-row items-center gap-1 !text-sm">
         <Asset location={entry.icon || entry.id!} ctx={ctx}/>
         {entry.name}

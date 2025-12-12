@@ -5,6 +5,7 @@ import {Project, ProjectContentEntry, ProjectContentTree, ProjectContext} from "
 import {useTranslations} from "next-intl";
 import {cn} from "@repo/ui/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {getContentLink} from "@/lib/project/game/content";
 
 interface Props {
   currentId: string;
@@ -47,7 +48,7 @@ function Category({currentId, content, ctx}: {
             {...i.children.map((c, i) => (
               <div key={c.path} className="flex flex-row items-center gap-1 text-sm">
                 {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
-                <PageLink href={`/project/${ctx.id}/${ctx.version}/content/${c.id}`} local
+                <PageLink href={getContentLink(ctx, c.id!)}
                           className={cn(
                             'flex flex-row items-center gap-1 rounded-sm !text-sm',
                             c.id === currentId && 'font-semibold bg-primary'

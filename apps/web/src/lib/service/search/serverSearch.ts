@@ -3,6 +3,7 @@
 import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
 import {getProcessURL} from "@/lib/utils";
 
+// TODO Move to client
 export async function searchWikiServer(query: string): Promise<WikiSearchResults> {
   if (!process.env.SEARCH_ENDPOINT || !process.env.SEARCH_INDEX || !process.env.SEARCH_API_KEY) {
     return {total: 0, hits: []};
