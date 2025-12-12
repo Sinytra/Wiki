@@ -67,18 +67,19 @@ function MobileDocsSubNavProjectTitle({project, platformProject}: {
 }
 
 function DocsSubNavBarLinks({project, locale, version}: {
-  project: Project | ProjectWithInfo;
+  project: ProjectWithInfo;
   locale: string;
   version: string;
 }) {
   const showVersions = project.versions && project.versions.length > 0;
   const showLocales = project.locales && project.locales.length > 0;
 
+  // TODO Localization
   return (
     <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-2">
       <SubPage title="Home" icon={HomeIcon} path=""/>
       <SubPage title="Documentation" icon={BookMarkedIcon} path="docs"/>
-      {'info' in project && project.info.contentCount > 0 &&
+      {project.info.contentCount > 0 &&
         <SubPage title="Content" icon={BoxIcon} path="content"/>
       }
       {/*<SubPage title="Recipes" icon={AnvilIcon} path="recipes" disabled/>*/}
@@ -102,7 +103,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
 }
 
 export default function DocsSubNavBar({project, platformProject, locale, version}: {
-  project: Project | ProjectWithInfo;
+  project: ProjectWithInfo;
   platformProject: PlatformProject;
   locale: string;
   version: string;

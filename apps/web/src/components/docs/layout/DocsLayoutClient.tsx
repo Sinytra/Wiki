@@ -3,12 +3,12 @@
 import {ReactNode} from "react";
 import DocsSubNavBar from "@/components/docs/layout/DocsSubNavBar";
 import {PlatformProject} from "@repo/shared/platforms";
-import {Project} from "@repo/shared/types/service";
+import {ProjectWithInfo} from "@repo/shared/types/service";
 
 interface DocsLayoutClientProps {
   locale: string;
   version: string;
-  project: Project;
+  project: ProjectWithInfo;
   platformProject: PlatformProject;
   children: ReactNode;
 }

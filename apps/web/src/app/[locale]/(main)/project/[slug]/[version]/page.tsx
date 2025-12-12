@@ -289,11 +289,9 @@ export default async function ProjectHomepage(props: PageProps) {
       }
 
       <Section title={t('navigation.title')} icon={MapIcon} className="flex flex-row flex-wrap gap-4">
-        {project.info.pageCount > 0 &&
-          <SubpageLink title={t('navigation.docs.title')} icon={BookMarkedIcon}
-                       desc={t('navigation.docs.desc', {pages: project.info.pageCount})}
-                       href="docs"/>
-        }
+        <SubpageLink title={t('navigation.docs.title')} icon={BookMarkedIcon}
+                     desc={t('navigation.docs.desc', {pages: project.info.pageCount})}
+                     href="docs"/>
         {project.info.contentCount > 0 &&
           <SubpageLink title={t('navigation.content.title')} icon={BoxIcon}
                        desc={t('navigation.content.desc', {items: project.info.contentCount})}
