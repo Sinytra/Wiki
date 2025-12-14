@@ -11,7 +11,6 @@ import platforms from "@repo/shared/platforms";
 import {Metadata, ResolvingMetadata} from "next";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 
-export const dynamic = 'force-static';
 export const fetchCache = 'default-cache';
 
 interface LayoutProps {
