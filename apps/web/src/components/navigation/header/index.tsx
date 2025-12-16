@@ -8,7 +8,6 @@ import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import {BookMarkedIcon} from "lucide-react";
 import DocsSearchBar from "@/components/navigation/search/DocsSearchBar";
-import {searchWikiServer} from "@/lib/service/search/serverSearch";
 import MobileNav from "@/components/navigation/header/MobileNav";
 import SocialButtons from "@/components/util/SocialButtons";
 import MobileDocsSearch from "@/components/navigation/search/MobileDocsSearch";
@@ -63,7 +62,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
 
         {!minimal && !preview &&
           <ClientLocaleProvider keys={['DocsSearchBar']}>
-              <DocsSearchBar searchFunc={searchWikiServer} />
+              <DocsSearchBar />
           </ClientLocaleProvider>
         }
 
@@ -100,7 +99,7 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
         <div className="flex flex-row items-center gap-2">
           {!minimal && !preview &&
             <ClientLocaleProvider keys={['DocsSearchBar']}>
-                <MobileDocsSearch searchFunc={searchWikiServer} />
+                <MobileDocsSearch />
             </ClientLocaleProvider>
           }
 

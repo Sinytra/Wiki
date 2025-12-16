@@ -1,11 +1,10 @@
-'use server'
+'use client'
 
 import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
 import {getProcessURL} from "@/lib/utils";
 
-// TODO Move to client
-export async function searchWikiServer(query: string): Promise<WikiSearchResults> {
-  if (!process.env.SEARCH_ENDPOINT || !process.env.SEARCH_INDEX || !process.env.SEARCH_API_KEY) {
+async function searchWiki(query: string): Promise<WikiSearchResults> {
+  if (!process.env.NEXT_PUBLIC_SEARCH_ENDPOINT || !process.env.NEXT_PUBLIC_SEARCH_INDEX || !process.env.NEXT_PUBLIC_SEARCH_API_KEY) {
     return {total: 0, hits: []};
   }
 
@@ -29,10 +28,10 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
       _source: false
     };
 
-    const results = await fetch(`${process.env.SEARCH_ENDPOINT}/${process.env.SEARCH_INDEX}/_search?pretty`, {
+    const results = await fetch(`${process.env.NEXT_PUBLIC_SEARCH_ENDPOINT}/${process.env.NEXT_PUBLIC_SEARCH_INDEX}/_search?pretty`, {
       method: 'POST',
       headers: {
-        Authorization: `ApiKey ${process.env.SEARCH_API_KEY}`,
+        Authorization: `ApiKey ${process.env.NEXT_PUBLIC_SEARCH_API_KEY}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload),
@@ -73,4 +72,8 @@ export async function searchWikiServer(query: string): Promise<WikiSearchResults
   }
 
   return {total: 0, hits: []};
+}
+
+export default {
+  searchWiki
 }

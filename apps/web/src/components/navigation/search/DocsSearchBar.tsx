@@ -9,6 +9,7 @@ import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import wikiSearchClient from "@/lib/service/search/wikiSearchClient";
 
 function SearchResult({result}: { result: WikiSearchResult }) {
   const icon = !result.path ? result.mod_icon : result.icon;
@@ -91,7 +92,7 @@ function SearchOverlayFooter({visible, total}: { visible: number; total: number 
   )
 }
 
-export default function DocsSearchBar({searchFunc}: { searchFunc: (query: string) => Promise<WikiSearchResults> }) {
+export default function DocsSearchBar() {
   const t = useTranslations('DocsSearchBar');
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<WikiSearchResults | null>(null);
@@ -106,7 +107,7 @@ export default function DocsSearchBar({searchFunc}: { searchFunc: (query: string
       }
     }, 500);
 
-    const res = await searchFunc(query);
+    const res = await wikiSearchClient.searchWiki(query);
     setResults(res);
 
     pending = false;

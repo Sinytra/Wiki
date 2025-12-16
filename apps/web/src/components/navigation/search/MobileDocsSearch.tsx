@@ -10,13 +10,14 @@ import {useDebouncedCallback} from "use-debounce";
 import {CSSTransition} from "react-transition-group";
 import {usePathname} from "next/navigation";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import wikiSearchClient from "@/lib/service/search/wikiSearchClient";
 
 function SearchResult({result}: { result: WikiSearchResult }) {
   const icon = !result.path ? result.mod_icon : result.icon;
 
   return (
     <NavLink href={result.url}
-          className={`
+             className={`
             z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
             text-primary
           `}>
@@ -71,10 +72,9 @@ function NoSearchResults() {
   )
 }
 
-function SearchScreen({isOpen, setOpen, searchFunc}: {
+function SearchScreen({isOpen, setOpen}: {
   isOpen: boolean;
   setOpen: (open: boolean) => void;
-  searchFunc: (query: string) => Promise<WikiSearchResults>
 }) {
   const t = useTranslations('DocsSearchBar');
 
@@ -98,7 +98,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
       }
     }, 500);
 
-    const res = await searchFunc(query);
+    const res = await wikiSearchClient.searchWiki(query);
     setResults(res);
 
     pending = false;
@@ -119,7 +119,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
   return (
     <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={200} classNames="fade" unmountOnExit>
       <div ref={nodeRef}
-        className="fixed top-0 right-0 bottom-0 left-0 z-50 h-[100vh] w-full overflow-hidden bg-primary">
+           className="fixed top-0 right-0 bottom-0 left-0 z-50 h-[100vh] w-full overflow-hidden bg-primary">
         <div className="innerFadeContainer flex flex-col gap-4 p-4">
           <div className="relative">
             <button onClick={() => setOpen(false)}>
@@ -144,7 +144,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
               </div>
               :
               <NoSearchResults/>
-            )
+          )
           }
         </div>
       </div>
@@ -152,7 +152,7 @@ function SearchScreen({isOpen, setOpen, searchFunc}: {
   )
 }
 
-export default function MobileDocsSearch({searchFunc}: { searchFunc: (query: string) => Promise<WikiSearchResults> }) {
+export default function MobileDocsSearch() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -173,7 +173,7 @@ export default function MobileDocsSearch({searchFunc}: { searchFunc: (query: str
       <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
         <SearchIcon className="h-4 w-4 text-[var(--vp-c-text-1)]"/>
       </Button>
-      <SearchScreen isOpen={isOpen} setOpen={setIsOpen} searchFunc={searchFunc}/>
+      <SearchScreen isOpen={isOpen} setOpen={setIsOpen}/>
     </div>
   )
 }
