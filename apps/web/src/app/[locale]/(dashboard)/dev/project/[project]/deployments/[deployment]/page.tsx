@@ -82,7 +82,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
 }
 
 // TODO Locales
-function DeploymentInfoWdget({deployment}: { deployment: FullDevProjectDeployment }) {
+function DeploymentInfoWidget({deployment}: { deployment: FullDevProjectDeployment }) {
   return (
     <div className={`
       grid grid-cols-2 gap-4 rounded-sm border border-tertiary bg-primary-dim p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]
@@ -213,7 +213,7 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDe
       </div>
 
       <div className="space-y-4">
-        <DeploymentInfoWdget deployment={deployment}/>
+        <DeploymentInfoWidget deployment={deployment}/>
 
         <DeploymentGitCoordinates deployment={deployment}/>
 

@@ -17,7 +17,7 @@ import {useTranslations} from "next-intl";
 import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
 import {ProjectContentPage} from "@repo/shared/types/api/devProject";
 import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
-import {Suspense} from "react";
+import {ReactNode, Suspense} from "react";
 
 function EmptyPlaceholder() {
   const t = useTranslations('DevProjectItemsTable.empty');
@@ -43,11 +43,12 @@ async function ItemIcon({icon, ctx}: { icon: string; ctx: ProjectContext; }) {
   );
 }
 
-export default function DevProjectItemsTable({data, ctx, versions, page}: {
+export default function DevProjectItemsTable({data, ctx, versions, page, emptyState}: {
   data: PaginatedData<ProjectContentPage>;
   ctx: ProjectContext;
   versions: ProjectVersions;
   page: number;
+  emptyState?: ReactNode;
 }) {
   const t = useTranslations('DevProjectItemsTable');
 
@@ -61,7 +62,7 @@ export default function DevProjectItemsTable({data, ctx, versions, page}: {
         return (
           <div className="flex size-7 shrink-0 items-center justify-center">
             <Suspense>
-              <ItemIcon icon={icon} ctx={ctx} key={icon} />
+              <ItemIcon icon={icon} ctx={ctx} key={icon}/>
             </Suspense>
           </div>
         );
@@ -121,6 +122,7 @@ export default function DevProjectItemsTable({data, ctx, versions, page}: {
   ];
 
   return (
-    <DataTable columns={columns} data={data} versions={versions} page={page} emptyState={<EmptyPlaceholder/>}/>
+    <DataTable columns={columns} data={data} versions={versions} page={page}
+               emptyState={emptyState ?? <EmptyPlaceholder/>}/>
   )
 }

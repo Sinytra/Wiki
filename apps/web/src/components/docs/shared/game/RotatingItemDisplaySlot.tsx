@@ -46,6 +46,10 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
     return () => clearInterval(interval);
   }, [src, hoverCtx]);
 
+  if (src.length < 1) {
+    return null;
+  }
+
   const Content = () => {
     const link = ctx ? getResolvedItemLink(ctx, currentSrc) : getExternalWikiLink(currentSrc.id);
     const element = (

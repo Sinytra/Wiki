@@ -45,7 +45,7 @@ export default function DevProjectTagsTable({data, versions, page}: {
 
   return (
     <DataTable columns={columns} data={data} versions={versions} page={page}
-               linker={r => `tags/${encodeURIComponent(r.id)}`} emptyState={<EmptyPlaceholder />}
+               linker={r => `tags/${encodeURIComponent(r.id)}`} emptyState={<EmptyPlaceholder/>}
     />
   )
 }

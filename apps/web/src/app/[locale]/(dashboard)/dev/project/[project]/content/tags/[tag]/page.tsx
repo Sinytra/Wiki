@@ -8,6 +8,9 @@ import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {useTranslations} from "next-intl";
+import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
+import * as React from "react";
 
 type Properties = {
   params: Promise<{
@@ -20,6 +23,17 @@ type Properties = {
     page?: string | string[];
     version?: string;
   }>
+}
+
+function EmptyItemTableTagState() {
+  const t = useTranslations('DevProjectTagItemsTable.empty');
+
+  return (
+    <DevProjectTableEmptyState>
+      <p className="text-base">{t('title')}</p>
+      <p>{t('desc')}</p>
+    </DevProjectTableEmptyState>
+  )
 }
 
 export default async function DevProjectContentTagItemsPage(props: Properties) {
@@ -54,6 +68,7 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
                             versions={project.versions || []}
                             ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
                             page={page}
+                            emptyState={<EmptyItemTableTagState />}
       />
     </div>
   )

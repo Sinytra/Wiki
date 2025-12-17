@@ -1066,5 +1066,11 @@
         },
         "submit": "Submit",
         "submitting": "Submitting..."
+    },
+    "DevProjectTagItemsTable": {
+        "empty": {
+            "title": "No items were found in this tag.",
+            "desc": "Project tag entries are automatically detected from included game files."
+        }
     }
 }
