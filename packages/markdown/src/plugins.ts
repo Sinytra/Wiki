@@ -18,7 +18,7 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
     visit(tree, 'element', (node, index, parent) => {
       const depth = headingRank(node);
 
-      if (depth === 1 && !file.data.matter?.title && node.children?.length === 1) {
+      if (depth === 1 && node.children?.length === 1) {
         const child = node.children[0];
         if (child?.type === 'text') {
           file.data.matter!.title = child.value;
