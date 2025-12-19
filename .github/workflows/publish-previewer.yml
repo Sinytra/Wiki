@@ -38,6 +38,5 @@ jobs:
       - name: Publish to npm
         working-directory: build/output
         run: |
-          echo "//registry.npmjs.org/:token_exchange_url=https://id.npmjs.org/token-exchange/github" >> .npmrc
-          echo "//registry.npmjs.org/:always-auth=true" >> .npmrc
-          pnpm publish --access public --provenance --no-git-checks
+          echo 'registry="https://registry.npmjs.org/"' > ./.npmrc
+          npm publish --access public --provenance --no-git-checks --regsitry=https://registry.npmjs.org/ --userconfig=./.npmrc
