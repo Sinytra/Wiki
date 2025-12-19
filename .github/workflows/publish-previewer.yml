@@ -38,4 +38,4 @@ jobs:
 
       - name: Publish to npm
         working-directory: build/output
-        run: pnpm publish --access public
+        run: pnpm publish --access public --provenance
