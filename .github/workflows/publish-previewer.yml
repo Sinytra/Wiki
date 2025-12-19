@@ -36,4 +36,8 @@ jobs:
         run: ./build-previewer.sh
 
       - name: Publish to npm
-        run: pnpm publish --access public --provenance --no-git-checks build/output
+        working-directory: build/output
+        run: |
+          echo "//registry.npmjs.org/:token_exchange_url=https://id.npmjs.org/token-exchange/github" >> .npmrc
+          echo "//registry.npmjs.org/:always-auth=true" >> .npmrc
+          pnpm publish --access public --provenance --no-git-checks
