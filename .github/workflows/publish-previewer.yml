@@ -37,6 +37,4 @@ jobs:
 
       - name: Publish to npm
         working-directory: build/output
-        run: |
-          echo 'registry="https://registry.npmjs.org/"' > ./.npmrc
-          npm publish --access public --provenance --no-git-checks --regsitry=https://registry.npmjs.org/ --userconfig=./.npmrc
+        run: npm publish --access public --provenance --no-git-checks

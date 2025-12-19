@@ -9,6 +9,10 @@
     "type": "git",
     "url": "https://github.com/Sinytra/Wiki.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "dependencies": {
     "@next/mdx": "^15.4.1",
     "@repo/markdown": "workspace:*",
