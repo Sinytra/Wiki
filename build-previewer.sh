@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+BUILD="build/previewer"
+ORIG_BUILD=$(realpath apps/previewer)
+ORIG_APP=$(realpath apps/web)
+OUTPUT=$(realpath build/output)
+
+# Create build folder
+rm -rfd "$BUILD"
+rm -rfd "$OUTPUT"
+mkdir -p "$BUILD"
+
+# Copy source
+rsync -avh --progress \
+  --exclude='node_modules/' \
+  --exclude='.*' \
+  --exclude='contentlayer.config.ts' \
+  --exclude='src/instrumentation*.ts' \
+  --exclude='src/sentry.*.config.ts' \
+  --exclude='src/app/(developers)' \
+  --exclude='src/app/blog' \
+  --exclude='src/app/\[locale\]/\(dashboard\)' \
+  --exclude='src/app/\[locale\]/\(main\)/about' \
+  --exclude='src/app/\[locale\]/\(main\)/browse' \
+  --exclude='src/app/\[locale\]/\(main\)/report' \
+  --exclude='src/app/\[locale\]/\(main\)/\(developers\)/auth' \
+  --exclude='src/app/\[locale\]/\(main\)/\(error\)' \
+  --exclude='src/docs' \
+  apps/web/ \
+  "$BUILD"
+
+rsync -avh --progress \
+  --exclude='tsconfig.json' \
+  $ORIG_BUILD/ \
+  "$BUILD"
+
+# Override deps
+jq --slurpfile root "$ORIG_APP/package.json" '
+  .dependencies = $root[0].dependencies |
+  .devDependencies = $root[0].devDependencies
+' "$BUILD/package.json" > "$BUILD/package.json.tmp" && mv "$BUILD/package.json.tmp" "$BUILD/package.json"
+
+# Change app name
+cd "$BUILD"
+npm pkg set name="@sinytra/wiki-previewer"
+# Set app version
+VERSION=$(git describe --tags --long --match "v[0-9]*.[0-9]*" | sed -E 's/^v?([0-9]+\.[0-9]+)\.[0-9]+-([0-9]+)-g.*/\1.\2/')
+npm pkg set version="$VERSION"
+npm pkg set scripts.build="next build"
+
+# Install
+pnpm install
+
+# Build
+pnpm run build
+
+# Grab output
+cp -r public .next/standalone/$BUILD/ && cp -r .next/static .next/standalone/$BUILD/.next/
+cp -a .next/standalone/$BUILD $OUTPUT/
+cp -a $ORIG_BUILD/bin $OUTPUT/
+
+# Filter dependencies
+cd "$OUTPUT"
+DEPS_TO_COPY='["concurrently", "chokidar", "ws", "next", "react", "react-dom", "require-in-the-middle", "import-in-the-middle"]'
+
+# Filter production dependencies
+jq --argjson list "$DEPS_TO_COPY" --slurpfile src "$ORIG_APP/package.json" '
+  .dependencies = (
+    $src[0].dependencies
+    | with_entries(select(.key as $k | $list | index($k)))
+  ) | del(.devDependencies) | del(.scripts)
+' package.json > package.json.tmp && mv package.json.tmp package.json
+
+# Add production dependencies from apps/previewer
+jq --argjson list "$DEPS_TO_COPY" --slurpfile src "$ORIG_BUILD/package.json" '
+  .dependencies += (
+    $src[0].dependencies
+    | with_entries(select(.key as $k | $list | index($k)))
+  )
+' package.json > package.json.tmp && mv package.json.tmp package.json

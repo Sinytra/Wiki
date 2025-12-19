@@ -33,6 +33,10 @@ const CONSENT_COUNTRIES = [
 export const USER_COUNTRY_COOKIE = 'wiki-user-country';
 
 function userRequiresCookieConsent() {
+  if (process.env.NEXT_PUBLIC_DISABLE_COOKIE_CONSENT == 'true') {
+    return false;
+  }
+
   const country = Cookies.get(USER_COUNTRY_COOKIE);
   return !country || CONSENT_COUNTRIES.includes(country);
 }

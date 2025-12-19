@@ -1,0 +1,42 @@
+name: Publish previewer to npm
+
+on:
+  push:
+    branches: ['master']
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Version and Build
+        run: ./build-previewer.sh
+
+      - name: Publish to npm
+        working-directory: build/output
+        run: pnpm publish --access public

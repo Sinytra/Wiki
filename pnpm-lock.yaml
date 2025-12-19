@@ -86,6 +86,106 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11
 
+  apps/previewer:
+    dependencies:
+      '@next/mdx':
+        specifier: ^15.4.1
+        version: 15.4.3(@mdx-js/loader@3.1.0(acorn@8.15.0)(webpack@5.100.2))(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))
+      '@repo/markdown':
+        specifier: workspace:*
+        version: link:../../packages/markdown
+      '@repo/previewer':
+        specifier: workspace:*
+        version: link:../../packages/previewer
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      acorn:
+        specifier: ^8.15.0
+        version: 8.15.0
+      chokidar:
+        specifier: ^5.0.0
+        version: 5.0.0
+      codehike:
+        specifier: ^1.0.7
+        version: 1.0.7
+      concurrently:
+        specifier: ^9.2.1
+        version: 9.2.1
+      lucide-react:
+        specifier: ^0.533.0
+        version: 0.533.0(react@19.1.0)
+      next:
+        specifier: 15.5.9
+        version: 15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
+      next-intl:
+        specifier: ^4.1.0
+        version: 4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
+      react:
+        specifier: 19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: 19.1.0
+        version: 19.1.0(react@19.1.0)
+      ws:
+        specifier: ^8.18.3
+        version: 8.18.3
+    devDependencies:
+      '@eslint/eslintrc':
+        specifier: ^3.3.1
+        version: 3.3.1
+      '@eslint/js':
+        specifier: ^9.28.0
+        version: 9.31.0
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/base/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/base/typescript-config
+      '@tailwindcss/postcss':
+        specifier: ^4.0.0
+        version: 4.1.11
+      '@types/node':
+        specifier: ^20
+        version: 20.19.9
+      '@types/react':
+        specifier: 19.1.8
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: 19.1.6
+        version: 19.1.6(@types/react@19.1.8)
+      '@types/react-transition-group':
+        specifier: ^4.4.12
+        version: 4.4.12(@types/react@19.1.8)
+      '@typescript-eslint/parser':
+        specifier: ^8.33.1
+        version: 8.38.0(eslint@9.31.0(jiti@2.5.1))(typescript@5.8.3)
+      eslint:
+        specifier: ^9
+        version: 9.31.0(jiti@2.5.1)
+      eslint-config-next:
+        specifier: 15.4.1
+        version: 15.4.1(eslint@9.31.0(jiti@2.5.1))(typescript@5.8.3)
+      eslint-plugin-better-tailwindcss:
+        specifier: ^3.1.0
+        version: 3.7.1(eslint@9.31.0(jiti@2.5.1))(tailwindcss@4.1.11)
+      postcss:
+        specifier: ^8
+        version: 8.5.6
+      tailwind-scrollbar:
+        specifier: ^4.0.0
+        version: 4.0.2(react@19.1.0)(tailwindcss@4.1.11)
+      tailwindcss:
+        specifier: ^4.0.8
+        version: 4.1.11
+      typescript:
+        specifier: ^5
+        version: 5.8.3
+
   apps/web:
     dependencies:
       '@bprogress/next':
@@ -123,7 +223,7 @@ importers:
         version: link:../../packages/ui
       '@sentry/nextjs':
         specifier: ^9.39.0
-        version: 9.41.0(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(webpack@5.100.2(esbuild@0.25.8))
+        version: 9.41.0(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(webpack@5.100.2(esbuild@0.25.8))
       '@shikijs/themes':
         specifier: ^3.1.0
         version: 3.8.1
@@ -189,10 +289,287 @@ importers:
         version: 15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
       next-contentlayer2:
         specifier: ^0.5.8
-        version: 0.5.8(acorn@8.15.0)(contentlayer2@0.5.8(acorn@8.15.0)(esbuild@0.25.8))(esbuild@0.25.8)(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 0.5.8(acorn@8.15.0)(contentlayer2@0.5.8(acorn@8.15.0)(esbuild@0.25.8))(esbuild@0.25.8)(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-intl:
         specifier: ^4.1.0
-        version: 4.3.4(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
+        version: 4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
+      normalize-url:
+        specifier: ^8.0.1
+        version: 8.0.2
+      nuqs:
+        specifier: ^2.5.1
+        version: 2.5.1(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
+      posthog-js:
+        specifier: ^1.298.0
+        version: 1.298.0
+      react:
+        specifier: 19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: 19.1.0
+        version: 19.1.0(react@19.1.0)
+      react-error-boundary:
+        specifier: ^4.0.13
+        version: 4.1.2(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.62.0
+        version: 7.62.0(react@19.1.0)
+      react-paginate:
+        specifier: ^8.3.0
+        version: 8.3.0(react@19.1.0)
+      react-transition-group:
+        specifier: ^4.4.5
+        version: 4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      recma-codehike:
+        specifier: ^0.0.1
+        version: 0.0.1
+      rehype-raw:
+        specifier: ^7.0.0
+        version: 7.0.0
+      rehype-sanitize:
+        specifier: ^6.0.0
+        version: 6.0.0
+      rehype-slug:
+        specifier: ^6.0.0
+        version: 6.0.0
+      rehype-stringify:
+        specifier: ^10.0.0
+        version: 10.0.1
+      remark:
+        specifier: ^15.0.1
+        version: 15.0.1
+      remark-codehike:
+        specifier: ^0.0.1
+        version: 0.0.1
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
+      remark-rehype:
+        specifier: ^11.1.0
+        version: 11.1.2
+      require-in-the-middle:
+        specifier: ^7.5.2
+        version: 7.5.2
+      sharp:
+        specifier: ^0.33.5
+        version: 0.33.5
+      shiki:
+        specifier: ^1.27.2
+        version: 1.29.2
+      sonner:
+        specifier: ^2.0.5
+        version: 2.0.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      spdx-license-list:
+        specifier: ^6.10.0
+        version: 6.10.0
+      tailwind-merge:
+        specifier: ^2.5.2
+        version: 2.6.0
+      turbo:
+        specifier: ^2.5.8
+        version: 2.5.8
+      unified:
+        specifier: ^11.0.5
+        version: 11.0.5
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
+      use-debounce:
+        specifier: ^10.0.2
+        version: 10.0.5(react@19.1.0)
+      vanilla-cookieconsent:
+        specifier: ^3.1.0
+        version: 3.1.0
+      vfile:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vfile-matter:
+        specifier: ^5.0.0
+        version: 5.0.1
+      vfile-message:
+        specifier: ^4.0.2
+        version: 4.0.2
+      zod:
+        specifier: ^4.0.10
+        version: 4.0.10
+    devDependencies:
+      '@eslint/eslintrc':
+        specifier: ^3.3.1
+        version: 3.3.1
+      '@eslint/js':
+        specifier: ^9.28.0
+        version: 9.31.0
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/base/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/base/typescript-config
+      '@shikijs/rehype':
+        specifier: ^1.16.2
+        version: 1.29.2
+      '@tailwindcss/postcss':
+        specifier: ^4.0.0
+        version: 4.1.11
+      '@tailwindcss/typography':
+        specifier: ^0.5.16
+        version: 0.5.16(tailwindcss@4.1.11)
+      '@types/js-cookie':
+        specifier: ^3.0.6
+        version: 3.0.6
+      '@types/lodash':
+        specifier: ^4.17.9
+        version: 4.17.20
+      '@types/node':
+        specifier: ^20
+        version: 20.19.9
+      '@types/react':
+        specifier: 19.1.8
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: 19.1.6
+        version: 19.1.6(@types/react@19.1.8)
+      '@types/react-transition-group':
+        specifier: ^4.4.12
+        version: 4.4.12(@types/react@19.1.8)
+      '@typescript-eslint/parser':
+        specifier: ^8.33.1
+        version: 8.38.0(eslint@9.31.0(jiti@2.5.1))(typescript@5.8.3)
+      eslint:
+        specifier: ^9
+        version: 9.31.0(jiti@2.5.1)
+      eslint-config-next:
+        specifier: 15.4.1
+        version: 15.4.1(eslint@9.31.0(jiti@2.5.1))(typescript@5.8.3)
+      eslint-plugin-better-tailwindcss:
+        specifier: ^3.1.0
+        version: 3.7.1(eslint@9.31.0(jiti@2.5.1))(tailwindcss@4.1.11)
+      postcss:
+        specifier: ^8
+        version: 8.5.6
+      tailwind-scrollbar:
+        specifier: ^4.0.0
+        version: 4.0.2(react@19.1.0)(tailwindcss@4.1.11)
+      tailwindcss:
+        specifier: ^4.0.8
+        version: 4.1.11
+      tw-animate-css:
+        specifier: ^1.2.5
+        version: 1.3.5
+      typescript:
+        specifier: ^5
+        version: 5.8.3
+
+  build/previewer:
+    dependencies:
+      '@bprogress/next':
+        specifier: ^3.2.12
+        version: 3.2.12(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@hookform/resolvers':
+        specifier: ^5.2.1
+        version: 5.2.1(react-hook-form@7.62.0(react@19.1.0))
+      '@mdx-js/loader':
+        specifier: ^3.1.0
+        version: 3.1.0(acorn@8.15.0)(webpack@5.100.2(esbuild@0.25.8))
+      '@mdx-js/mdx':
+        specifier: ^3.1.0
+        version: 3.1.0(acorn@8.15.0)
+      '@mdx-js/react':
+        specifier: ^3.1.0
+        version: 3.1.0(@types/react@19.1.8)(react@19.1.0)
+      '@next/mdx':
+        specifier: ^15.4.1
+        version: 15.4.3(@mdx-js/loader@3.1.0(acorn@8.15.0)(webpack@5.100.2(esbuild@0.25.8)))(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))
+      '@radix-ui/react-visually-hidden':
+        specifier: ^1.2.3
+        version: 1.2.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@repo/markdown':
+        specifier: workspace:*
+        version: link:../../packages/markdown
+      '@repo/previewer':
+        specifier: workspace:*
+        version: link:../../packages/previewer
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@sentry/nextjs':
+        specifier: ^9.39.0
+        version: 9.41.0(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(webpack@5.100.2(esbuild@0.25.8))
+      '@shikijs/themes':
+        specifier: ^3.1.0
+        version: 3.8.1
+      '@south-paw/typeface-minecraft':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@types/mdx':
+        specifier: ^2.0.13
+        version: 2.0.13
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      codehike:
+        specifier: ^1.0.7
+        version: 1.0.7
+      contentlayer2:
+        specifier: ^0.5.8
+        version: 0.5.8(acorn@8.15.0)(esbuild@0.25.8)
+      country-flag-icons:
+        specifier: ^1.5.13
+        version: 1.5.19
+      date-fns:
+        specifier: ^3.6.0
+        version: 3.6.0
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
+      directory-tree:
+        specifier: ^3.5.2
+        version: 3.5.2
+      github-slugger:
+        specifier: ^2.0.0
+        version: 2.0.0
+      hast-util-heading-rank:
+        specifier: ^3.0.0
+        version: 3.0.0
+      hast-util-sanitize:
+        specifier: ^5.0.2
+        version: 5.0.2
+      import-in-the-middle:
+        specifier: ^1.14.2
+        version: 1.14.2
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      lucide-react:
+        specifier: ^0.533.0
+        version: 0.533.0(react@19.1.0)
+      mdast-util-to-string:
+        specifier: ^4.0.0
+        version: 4.0.0
+      mdx-bundler:
+        specifier: ^10.1.1
+        version: 10.1.1(acorn@8.15.0)(esbuild@0.25.8)
+      next:
+        specifier: 15.5.9
+        version: 15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
+      next-contentlayer2:
+        specifier: ^0.5.8
+        version: 0.5.8(acorn@8.15.0)(contentlayer2@0.5.8(acorn@8.15.0)(esbuild@0.25.8))(esbuild@0.25.8)(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      next-intl:
+        specifier: ^4.1.0
+        version: 4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
       normalize-url:
         specifier: ^8.0.1
         version: 8.0.2
@@ -658,7 +1035,7 @@ importers:
         version: 15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
       next-intl:
         specifier: ^4.1.0
-        version: 4.3.4(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
+        version: 4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
       nuqs:
         specifier: ^2.5.1
         version: 2.5.1(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
@@ -3704,6 +4081,10 @@ packages:
     resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
 
+  chokidar@5.0.0:
+    resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
+    engines: {node: '>= 20.19.0'}
+
   chownr@3.0.0:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
@@ -3811,6 +4192,11 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+
+  concurrently@9.2.1:
+    resolution: {integrity: sha512-fsfrO0MxV64Znoy8/l1vVIjjHa29SZyyqPgQBwhiDcaW8wJc2W3XWVOGx4M3oJBnv/zdUZIIp1gDeS98GzP8Ng==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   confbox@0.1.8:
     resolution: {integrity: sha512-RMtmw0iFkeR4YV+fUOSucriAQNb9g8zFR52MWCtl+cCZOFRNL6zeB395vPzFhEjjn4fMxXudmELnl/KF/WrK6w==}
@@ -5918,6 +6304,10 @@ packages:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
 
+  readdirp@5.0.0:
+    resolution: {integrity: sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==}
+    engines: {node: '>= 20.19.0'}
+
   reading-time@1.5.0:
     resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
 
@@ -6100,6 +6490,9 @@ packages:
   rw@1.3.3:
     resolution: {integrity: sha512-PdhdWy89SiZogBLaw42zdeqtRJ//zFd2PgQavcICDUgJT5oW10QCRKbJ6bg4r0/UY2M6BWd5tkxuGFRvCkgfHQ==}
 
+  rxjs@7.8.2:
+    resolution: {integrity: sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==}
+
   safe-array-concat@1.1.3:
     resolution: {integrity: sha512-AURm5f0jYEOydBj7VQlVvDrjeFgthDdEF5H1dP+6mNpoXOMo1quQqJ4wvJDyRZ9+pO3kGWoOdmV08cSv2aJV6Q==}
     engines: {node: '>=0.4'}
@@ -6179,6 +6572,10 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+
+  shell-quote@1.8.3:
+    resolution: {integrity: sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==}
+    engines: {node: '>= 0.4'}
 
   shiki@1.29.2:
     resolution: {integrity: sha512-njXuliz/cP+67jU2hukkxCNuH1yUi4QfdZZY+sMr5PPrIyXSu5iTb/qYC4BiWWB0vZ+7TbdvYUCeL23zpwCfbg==}
@@ -6446,6 +6843,10 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  tree-kill@1.2.2:
+    resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
+    hasBin: true
 
   trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
@@ -6802,6 +7203,18 @@ packages:
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
+
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
 
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
@@ -7641,6 +8054,17 @@ snapshots:
       - acorn
       - supports-color
 
+  '@mdx-js/loader@3.1.0(acorn@8.15.0)(webpack@5.100.2)':
+    dependencies:
+      '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
+      source-map: 0.7.6
+    optionalDependencies:
+      webpack: 5.100.2
+    transitivePeerDependencies:
+      - acorn
+      - supports-color
+    optional: true
+
   '@mdx-js/mdx@3.1.0(acorn@8.15.0)':
     dependencies:
       '@types/estree': 1.0.8
@@ -7762,6 +8186,13 @@ snapshots:
       source-map: 0.7.6
     optionalDependencies:
       '@mdx-js/loader': 3.1.0(acorn@8.15.0)(webpack@5.100.2(esbuild@0.25.8))
+      '@mdx-js/react': 3.1.0(@types/react@19.1.8)(react@19.1.0)
+
+  '@next/mdx@15.4.3(@mdx-js/loader@3.1.0(acorn@8.15.0)(webpack@5.100.2))(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))':
+    dependencies:
+      source-map: 0.7.6
+    optionalDependencies:
+      '@mdx-js/loader': 3.1.0(acorn@8.15.0)(webpack@5.100.2)
       '@mdx-js/react': 3.1.0(@types/react@19.1.8)(react@19.1.0)
 
   '@next/swc-darwin-arm64@15.5.7':
@@ -8980,7 +9411,7 @@ snapshots:
 
   '@sentry/core@9.41.0': {}
 
-  '@sentry/nextjs@9.41.0(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(webpack@5.100.2(esbuild@0.25.8))':
+  '@sentry/nextjs@9.41.0(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(webpack@5.100.2(esbuild@0.25.8))':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/semantic-conventions': 1.36.0
@@ -10055,6 +10486,10 @@ snapshots:
       readdirp: 4.1.2
     optional: true
 
+  chokidar@5.0.0:
+    dependencies:
+      readdirp: 5.0.0
+
   chownr@3.0.0: {}
 
   chrome-trace-event@1.0.4: {}
@@ -10170,6 +10605,15 @@ snapshots:
   compute-scroll-into-view@3.1.1: {}
 
   concat-map@0.0.1: {}
+
+  concurrently@9.2.1:
+    dependencies:
+      chalk: 4.1.2
+      rxjs: 7.8.2
+      shell-quote: 1.8.3
+      supports-color: 8.1.1
+      tree-kill: 1.2.2
+      yargs: 17.7.2
 
   confbox@0.1.8: {}
 
@@ -12369,7 +12813,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-contentlayer2@0.5.8(acorn@8.15.0)(contentlayer2@0.5.8(acorn@8.15.0)(esbuild@0.25.8))(esbuild@0.25.8)(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  next-contentlayer2@0.5.8(acorn@8.15.0)(contentlayer2@0.5.8(acorn@8.15.0)(esbuild@0.25.8))(esbuild@0.25.8)(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@contentlayer2/core': 0.5.8(acorn@8.15.0)(esbuild@0.25.8)
       '@contentlayer2/utils': 0.5.8
@@ -12384,7 +12828,7 @@ snapshots:
       - markdown-wasm
       - supports-color
 
-  next-intl@4.3.4(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3):
+  next-intl@4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.10
       negotiator: 1.0.0
@@ -12900,6 +13344,8 @@ snapshots:
   readdirp@4.1.2:
     optional: true
 
+  readdirp@5.0.0: {}
+
   reading-time@1.5.0: {}
 
   recma-build-jsx@1.0.0:
@@ -13241,6 +13687,10 @@ snapshots:
 
   rw@1.3.3: {}
 
+  rxjs@7.8.2:
+    dependencies:
+      tslib: 2.8.1
+
   safe-array-concat@1.1.3:
     dependencies:
       call-bind: 1.0.8
@@ -13384,6 +13834,8 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
+
+  shell-quote@1.8.3: {}
 
   shiki@1.29.2:
     dependencies:
@@ -13642,6 +14094,16 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.8
 
+  terser-webpack-plugin@5.3.14(webpack@5.100.2):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.29
+      jest-worker: 27.5.1
+      schema-utils: 4.3.2
+      serialize-javascript: 6.0.2
+      terser: 5.43.1
+      webpack: 5.100.2
+    optional: true
+
   terser@5.43.1:
     dependencies:
       '@jridgewell/source-map': 0.3.10
@@ -13677,6 +14139,8 @@ snapshots:
   tree-dump@1.0.3(tslib@2.8.1):
     dependencies:
       tslib: 2.8.1
+
+  tree-kill@1.2.2: {}
 
   trim-lines@3.0.1: {}
 
@@ -14037,6 +14501,39 @@ snapshots:
 
   webpack-virtual-modules@0.5.0: {}
 
+  webpack@5.100.2:
+    dependencies:
+      '@types/eslint-scope': 3.7.7
+      '@types/estree': 1.0.8
+      '@types/json-schema': 7.0.15
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      acorn: 8.15.0
+      acorn-import-phases: 1.0.4(acorn@8.15.0)
+      browserslist: 4.25.1
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 5.18.2
+      es-module-lexer: 1.7.0
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 4.3.2
+      tapable: 2.2.2
+      terser-webpack-plugin: 5.3.14(webpack@5.100.2)
+      watchpack: 2.4.4
+      webpack-sources: 3.3.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+    optional: true
+
   webpack@5.100.2(esbuild@0.25.8):
     dependencies:
       '@types/eslint-scope': 3.7.7
@@ -14133,6 +14630,8 @@ snapshots:
       ansi-styles: 4.3.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
+
+  ws@8.18.3: {}
 
   xtend@4.0.2: {}
 

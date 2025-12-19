@@ -7,8 +7,7 @@
   },
   "exports": {
     ".": "./src/index.ts",
-    "./localAssets": "./src/localAssets.ts",
-    "./middleware": "./src/previewMiddleware.ts"
+    "./localAssets": "./src/localAssets.ts"
   },
   "dependencies": {
     "@repo/markdown": "workspace:*",

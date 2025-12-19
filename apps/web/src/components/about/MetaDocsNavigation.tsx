@@ -7,7 +7,7 @@ import * as React from "react";
 import {useTranslations} from "next-intl";
 import {WIKI_DOCS_URL} from "@repo/shared/constants";
 
-export default function MetaDocsNavigation({docsOnly}: { docsOnly?: boolean }) {
+export default function MetaDocsNavigation() {
   const t = useTranslations('MetaDocsNavigation');
 
   return (
@@ -32,17 +32,15 @@ export default function MetaDocsNavigation({docsOnly}: { docsOnly?: boolean }) {
         <SidebarNavLink href="/about/help" icon={HelpCircleIcon}>
           {t('help')}
         </SidebarNavLink>
-        {!docsOnly && <>
-            <SidebarNavLink href="/about/tos" icon={ScrollTextIcon}>
-              {t('tos')}
-            </SidebarNavLink>
-            <SidebarNavLink href="/about/privacy" icon={LockKeyholeIcon}>
-              {t('privacy')}
-            </SidebarNavLink>
-            <SidebarNavLink href="/about/security" icon={ShieldIcon}>
-              {t('security')}
-            </SidebarNavLink>
-        </>}
+        <SidebarNavLink href="/about/tos" icon={ScrollTextIcon}>
+          {t('tos')}
+        </SidebarNavLink>
+        <SidebarNavLink href="/about/privacy" icon={LockKeyholeIcon}>
+          {t('privacy')}
+        </SidebarNavLink>
+        <SidebarNavLink href="/about/security" icon={ShieldIcon}>
+          {t('security')}
+        </SidebarNavLink>
       </div>
     </CollapsibleDocsTreeBase>
   )

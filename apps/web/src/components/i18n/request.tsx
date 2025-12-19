@@ -7,6 +7,7 @@ export default getRequestConfig(async ({requestLocale}) => {
   const locale = (await requestLocale) ?? 'locale';
   const lang = locales.getForUrlParam(locale);
   if (!lang) {
+    console.error('Locale not found:', locale);
     notFound();
   }
 

@@ -327,10 +327,6 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
   const params = await props.params;
   setContextLocale(params.locale);
 
-  if (env.isPreview()) {
-    return redirect({href: '/preview', locale: params.locale});
-  }
-
   const projects = await featuredProjects.getFeaturedProjects();
   const showBanner = params.locale !== DEFAULT_LOCALE && (await crowdin.getCrowdinTranslationStatus(params.locale)) < 50;
 

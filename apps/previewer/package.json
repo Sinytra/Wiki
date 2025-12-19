@@ -1,0 +1,44 @@
+{
+  "name": "previewer",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "wiki-previewer": "./bin/entrypoint.mjs"
+  },
+  "dependencies": {
+    "@next/mdx": "^15.4.1",
+    "@repo/markdown": "workspace:*",
+    "@repo/previewer": "workspace:*",
+    "@repo/shared": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "acorn": "^8.15.0",
+    "chokidar": "^5.0.0",
+    "codehike": "^1.0.7",
+    "concurrently": "^9.2.1",
+    "lucide-react": "^0.533.0",
+    "next": "15.5.9",
+    "next-intl": "^4.1.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.28.0",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^20",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "@types/react-transition-group": "^4.4.12",
+    "@typescript-eslint/parser": "^8.33.1",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.1",
+    "eslint-plugin-better-tailwindcss": "^3.1.0",
+    "postcss": "^8",
+    "tailwind-scrollbar": "^4.0.0",
+    "tailwindcss": "^4.0.8",
+    "typescript": "^5"
+  }
+}
