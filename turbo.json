@@ -17,12 +17,12 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "passThroughEnv": ["ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
+      "passThroughEnv": ["NEXT_PUBLIC_ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
     },
     "preview": {
       "cache": false,
       "persistent": true,
-      "passThroughEnv": ["ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
+      "passThroughEnv": ["NEXT_PUBLIC_ENABLE_LOCAL_PREVIEW", "LOCAL_DOCS_ROOTS"]
     }
   },
   "globalEnv": [

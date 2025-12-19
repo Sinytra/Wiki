@@ -46,23 +46,23 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           py-1 sm:h-fit sm:flex-nowrap sm:px-8 sm:whitespace-nowrap
         `, minimal && `my-2`)}>
         <div className="mr-auto flex flex-row items-center gap-3 sm:gap-4">
-          <LocaleNavLink href={preview ? '/preview' : '/'}>
+          <LocaleNavLink href="/">
             <span className="inline-flex items-center gap-1 align-bottom text-base font-medium text-primary">
-              <BookMarkedIcon className="mr-1 h-4 w-4" />
+              <BookMarkedIcon className="mr-1 h-4 w-4"/>
               {t('title')}
             </span>
           </LocaleNavLink>
           {preview && <Badge className="hidden sm:block" variant="secondary">{t('badge.preview')}</Badge>}
           {!preview &&
-              <Badge variant="outline" className="hidden border-neutral-600 font-normal text-secondary sm:block">
-                {t('badge.beta')}
-              </Badge>
+            <Badge variant="outline" className="hidden border-neutral-600 font-normal text-secondary sm:block">
+              {t('badge.beta')}
+            </Badge>
           }
         </div>
 
         {!minimal && !preview &&
           <ClientLocaleProvider keys={['DocsSearchBar']}>
-              <DocsSearchBar />
+              <DocsSearchBar/>
           </ClientLocaleProvider>
         }
 
@@ -70,28 +70,18 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
           ml-auto hidden flex-row flex-wrap items-center justify-end sm:flex sm:flex-nowrap sm:justify-start
         `}>
           <nav className="flex flex-row">
-            {preview
-              ?
+            <HeaderLink href="/">{t('link.home')}</HeaderLink>
+            {!preview && !minimal &&
               <>
-                <HeaderLink href="/preview">{t('link.home')}</HeaderLink>
-                <HeaderLink href="/about">{t('link.about')}</HeaderLink>
-              </>
-              :
-              <>
-                <HeaderLink href="/">{t('link.home')}</HeaderLink>
-                {!minimal &&
-                    <>
-                        <HeaderLink href="/browse">{t('link.browse')}</HeaderLink>
-                        <HeaderLink href="/about">{t('link.about')}</HeaderLink>
-                    </>
-                }
+                  <HeaderLink href="/browse">{t('link.browse')}</HeaderLink>
+                  <HeaderLink href="/about">{t('link.about')}</HeaderLink>
               </>
             }
           </nav>
 
           {!minimal &&
             <ClientLocaleProvider keys={['LanguageSelect']}>
-              <LanguageSelect locale={locale} />
+                <LanguageSelect locale={locale}/>
             </ClientLocaleProvider>
           }
         </div>
@@ -99,37 +89,27 @@ export default function Header({locale, minimal, unfix}: { locale: string, minim
         <div className="flex flex-row items-center gap-2">
           {!minimal && !preview &&
             <ClientLocaleProvider keys={['DocsSearchBar']}>
-                <MobileDocsSearch />
+                <MobileDocsSearch/>
             </ClientLocaleProvider>
           }
 
           <MobileNav>
             <nav className="flex flex-col gap-2">
-              {preview
-                ?
+              <MobileHeaderLink href="/">{t('link.home')}</MobileHeaderLink>
+              {!preview && !minimal &&
                 <>
-                  <MobileHeaderLink href="/preview">{t('link.home')}</MobileHeaderLink>
-                  <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
-                </>
-                :
-                <>
-                  <MobileHeaderLink href="/">{t('link.home')}</MobileHeaderLink>
-                  {!minimal &&
-                    <>
-                        <MobileHeaderLink href="/browse">{t('link.browse')}</MobileHeaderLink>
-                        <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
-                    </>
-                  }
+                    <MobileHeaderLink href="/browse">{t('link.browse')}</MobileHeaderLink>
+                    <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
                 </>
               }
               {!minimal &&
                 <ClientLocaleProvider keys={['LanguageSelect']}>
-                    <LanguageSelect mobile locale={locale} />
+                    <LanguageSelect mobile locale={locale}/>
                 </ClientLocaleProvider>
               }
-              <hr />
+              <hr/>
               <div className="mx-auto mt-2">
-                <SocialButtons large />
+                <SocialButtons large/>
               </div>
             </nav>
           </MobileNav>

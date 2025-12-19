@@ -57,6 +57,10 @@ npm pkg set scripts.build="next build"
 pnpm install
 
 # Build
+cat <<EOF > .env
+NEXT_PUBLIC_DISABLE_COOKIE_CONSENT=true
+NEXT_PUBLIC_ENABLE_LOCAL_PREVIEW=true
+EOF
 pnpm run build
 
 # Grab output
@@ -64,6 +68,7 @@ cp -a public ".next/standalone/$BUILD/"
 cp -a .next/static ".next/standalone/$BUILD/.next/"
 cp -a ".next/standalone/$BUILD" "$OUTPUT_PATH"
 cp -a "$SRC_PATH/bin" "$OUTPUT_PATH"
+rm "$OUTPUT_PATH/.env"
 
 # Filter dependencies
 cd "$OUTPUT_PATH"

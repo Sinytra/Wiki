@@ -1,7 +1,7 @@
 import { requireEnvVar } from './util';
 
 function isPreview(): boolean {
-  return process.env.ENABLE_LOCAL_PREVIEW === 'true';
+  return process.env.NEXT_PUBLIC_ENABLE_LOCAL_PREVIEW === 'true';
 }
 
 function getBackendSecretApiKey(): string {
