@@ -9,6 +9,10 @@ function toString(location: ResourceLocation): string {
   return `${location.namespace}:${location.path}`;
 }
 
+function extractPath(loc: string) {
+  return parse(loc)?.path ?? loc;
+}
+
 function parse(loc: string): ResourceLocation | null {
   if (loc.length === 0) {
     return null;
@@ -22,5 +26,6 @@ function parse(loc: string): ResourceLocation | null {
 
 export default {
   toString,
-  parse
+  parse,
+  extractPath
 };

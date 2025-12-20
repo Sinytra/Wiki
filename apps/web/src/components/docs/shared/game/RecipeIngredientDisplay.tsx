@@ -3,8 +3,14 @@ import {getResolvedItemLink} from "@/lib/project/game/content";
 import {cn} from "@repo/ui/lib/utils";
 import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import resourceLocation from "@repo/shared/resourceLocation";
 
-export default function RecipeIngredientDisplay({tag, count, item, ctx}: { tag: string | null; count: number; item: DisplayItem; ctx: ProjectContext }) {
+export default function RecipeIngredientDisplay({tag, count, item, ctx}: {
+  tag: string | null;
+  count: number;
+  item: DisplayItem;
+  ctx: ProjectContext
+}) {
   const href = getResolvedItemLink(ctx, item);
   const ContentDiv: any = href != null ? NavLink : 'div';
 
@@ -15,8 +21,14 @@ export default function RecipeIngredientDisplay({tag, count, item, ctx}: { tag: 
         <div className="mx-1">
           <RotatingItemDisplaySlot noTooltip noLink src={[item]} tag={tag}/>
         </div>
-        <span className={cn('font-medium text-primary-alt', href && 'underline')}>
-          {item.name}
+        <span className={cn('font-medium text-ellipsis text-primary-alt', href && 'underline')}>
+          {item.name
+            || (
+              <span className="block max-w-[8rem] overflow-hidden text-ellipsis">
+                {resourceLocation.extractPath(item.id)}
+              </span>
+            )
+          }
         </span>
       </ContentDiv>
     </div>
