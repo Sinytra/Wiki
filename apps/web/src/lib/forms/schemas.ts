@@ -8,6 +8,8 @@ const requiredString = z.string({
 const allowedProtocols = process.env.NODE_ENV === 'development' ? /https|file/ : /https/;
 const zodRepoUrl = z.url({ protocol: allowedProtocols, error: zodStringError });
 
+export const emptySchema = z.object({});
+
 export const projectRegisterSchema = z.object({
   repo: zodRepoUrl,
   branch: requiredString,

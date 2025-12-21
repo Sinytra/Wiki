@@ -13,6 +13,7 @@ import {DeploymentStatus, DevProjectDeploymentRow, DevProjectDeployments} from "
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import FormWrapper from "@/components/modal/FormWrapper";
 
 function EmptyDeploymentsState() {
   return (
@@ -102,12 +103,12 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeploymentRow }) 
               </span>
             </DropdownMenuItem>
 
-            <ClientLocaleProvider keys={['DeleteDeploymentModal']}>
+            <FormWrapper keys={['DeleteDeploymentModal']}>
               <DeleteDeploymentModal
-                action={handleDeleteDeploymentForm.bind(null, deployment.id)}
+                formAction={handleDeleteDeploymentForm.bind(null, deployment.id)}
                 loading={deployment.status == DeploymentStatus.LOADING}
               />
-            </ClientLocaleProvider>
+            </FormWrapper>
           </>}
         >
           <DropdownMenuTrigger asChild>

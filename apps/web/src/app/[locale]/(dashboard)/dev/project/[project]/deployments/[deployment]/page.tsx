@@ -17,7 +17,6 @@ import {
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import * as React from "react";
 import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@repo/ui/components/dropdown-menu";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import DeleteDeploymentModal from "@/components/dashboard/dev/modal/DeleteDeploymentModal";
 import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import {Badge} from "@repo/ui/components/badge";
@@ -31,6 +30,7 @@ import {ProjectIssue} from "@repo/shared/types/api/project";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import navigation from "@/lib/navigation";
+import FormWrapper from "@/components/modal/FormWrapper";
 
 type Properties = {
   params: Promise<{
@@ -191,13 +191,13 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDe
               </span>
               </DropdownMenuItem>
 
-              <ClientLocaleProvider keys={['DeleteDeploymentModal']}>
+              <FormWrapper keys={['DeleteDeploymentModal']}>
                 <DeleteDeploymentModal
-                  action={handleDeleteDeploymentForm.bind(null, deployment.id)}
+                  formAction={handleDeleteDeploymentForm.bind(null, deployment.id)}
                   loading={deployment.status == DeploymentStatus.LOADING}
                   redirectTo={redirectTo}
                 />
-              </ClientLocaleProvider>
+              </FormWrapper>
             </>}
           >
             <DropdownMenuTrigger asChild>

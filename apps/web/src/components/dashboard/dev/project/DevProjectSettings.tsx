@@ -30,7 +30,7 @@ import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 function SourceSection({form}: { form: any }) {
   return (
     <div className="space-y-5">
-      <DevProjectSectionTitle title="Source" desc="Project source repository coordinates." icon={CodeXmlIcon} />
+      <DevProjectSectionTitle title="Source" desc="Project source repository coordinates." icon={CodeXmlIcon}/>
 
       <hr/>
 
@@ -100,8 +100,8 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
   return (
     <div className="space-y-5">
       <DevProjectSectionTitle title="Danger zone"
-                     desc="These are destcructive actions. Proceed with caution."
-                     icon={TriangleAlertIcon}
+                              desc="These are destcructive actions. Proceed with caution."
+                              icon={TriangleAlertIcon}
       />
 
       <hr/>
@@ -118,7 +118,7 @@ function DangerSection({deleteFunc}: { deleteFunc: any }) {
           </div>
           <div className="ml-auto sm:ml-0">
             <ProjectDeleteForm
-              action={deleteFunc}
+              formAction={deleteFunc}
               redirectTo="/dev"
             />
           </div>

@@ -39,6 +39,7 @@ import clientActions from "@/lib/forms/clientActions";
 import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
 import envPublic from "@repo/shared/envPublic";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {useFormHandlingAction} from "@/lib/forms/forms";
 
 export interface ProjectRegisterFormProps {
   translations?: Parameters<typeof useTranslations>[0];
@@ -71,12 +72,12 @@ export default function ProjectRegisterForm(
 
   const formRef = useRef<HTMLFormElement | null>(null);
   const [canVerifyModrinth, setCanVerifyModrinth] = useState(false);
-  const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await clientActions.handleRegisterProjectFormClient(data) as any;
-
-    if (resp.success) {
-      if (redirectToProject && resp.project.id) {
-        progressRouter.push(`/${params.locale}/dev/project/${resp.project.id}`);
+  const action = useFormHandlingAction(
+    form,
+    (data) => clientActions.handleRegisterProjectFormClient(data),
+    (data) => {
+      if (redirectToProject && data.project.id) {
+        progressRouter.push(`/${params.locale}/dev/project/${data.project.id}`);
       }
 
       setOpen(false);
@@ -85,18 +86,9 @@ export default function ProjectRegisterForm(
       if (reloadAfterSubmit) {
         reload(() => router.refresh());
       }
-    } else if (resp.error) {
-      // @ts-expect-error details
-      form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.data.details});
-      setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');
-    } else if (resp.errors) {
-      for (const key in resp.errors) {
-        // @ts-expect-error message
-        form.setError(key, {message: u(`errors.${resp.errors[key][0]}`)});
-      }
-    }
-    return resp;
-  });
+    },
+    (resp: any) => setCanVerifyModrinth(resp.can_verify_mr)
+  )
 
   useEffect(() => {
     if (open) {

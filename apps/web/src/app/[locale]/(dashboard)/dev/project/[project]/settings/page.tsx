@@ -10,6 +10,7 @@ import devProjectApi from "@/lib/service/api/devProjectApi";
 import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import authSession from "@/lib/authSession";
+import FormWrapper from "@/components/modal/FormWrapper";
 
 export default async function DevProjectSettingsPage(props: { params: Promise<{ locale: string; project: string }> }) {
   const params = await props.params;
@@ -26,12 +27,12 @@ export default async function DevProjectSettingsPage(props: { params: Promise<{ 
 
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <ClientLocaleProvider keys={['ProjectRegisterForm', 'ProjectSettingsForm', 'ProjectDeleteForm', 'FormActions']}>
+      <FormWrapper keys={['ProjectRegisterForm', 'ProjectSettingsForm', 'ProjectDeleteForm']}>
         <DevProjectSettings
           project={project}
           deleteFunc={handleDeleteProjectForm.bind(null, project.id)}
         />
-      </ClientLocaleProvider>
+      </FormWrapper>
     </div>
   );
 }

@@ -6,11 +6,13 @@ import {
   ContentItemName,
   ContentRecipeUsage,
   DocumentationPage,
-  FileTreeEntry, ItemProperties,
+  FileTreeEntry,
+  ItemProperties,
   LayoutTree,
   Project,
   ProjectContentEntry,
-  ProjectContentTree, ProjectContext,
+  ProjectContentTree,
+  ProjectContext,
   ProjectSearchResults,
   ProjectWithInfo,
   ResolvedGameRecipe,
@@ -23,6 +25,7 @@ import localAssets from './localAssets';
 import {ResourceLocation} from '@repo/shared/resourceLocation';
 import markdown from '@repo/markdown';
 import localFiles from './localFiles';
+import {ProjectMemberRole} from '@repo/shared/types/api/devProject';
 
 function findDocsFiles(entry: FileTreeEntry): FileTreeEntry[] {
   return entry.type === 'file' ? [entry] : entry.children.flatMap(findDocsFiles);
@@ -92,7 +95,8 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectWi
     info: {
       pageCount: filePages.length,
       contentCount: fileContentPages.length
-    }
+    },
+    access_level: ProjectMemberRole.OWNER
   };
 }
 
@@ -128,7 +132,8 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
       is_public: false,
       local: true,
       type: platformProject.type,
-      created_at: ''
+      created_at: '',
+      access_level: ProjectMemberRole.OWNER
     };
     const file = await localDocs.readDocsFile(src, path, ctx.locale || undefined, optional);
     if (file) {

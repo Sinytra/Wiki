@@ -3,7 +3,8 @@
 import {
   addProjectMemberSchema,
   createAccessKeySchema,
-  projectReportSchema, removeProjectMemberSchema,
+  projectReportSchema,
+  removeProjectMemberSchema,
   revalidateCacheSchema,
   ruleProjectReportSchema
 } from "@/lib/forms/schemas";
@@ -15,64 +16,58 @@ import authApi from "@/lib/service/api/authApi";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import projectApi from "@/lib/service/api/projectApi";
 import moderationApi from "@/lib/service/api/moderationApi";
-import adminApi from "@/lib/service/api/adminApi";
-import {z, ZodType} from "zod";
-import {ApiCallResult} from "@repo/shared/commonNetwork";
+import adminApi, {AccessKeyCreationResult} from "@/lib/service/api/adminApi";
+import forms, {asFormResponse, FormActionResult} from "@/lib/forms/forms";
+import {PartialDevProjectDeployment} from "@repo/shared/types/api/deployment";
 
-export async function handleDeleteProjectForm(id: string) {
+export async function handleDeleteProjectForm(id: string): Promise<FormActionResult> {
   const response = await projectApi.deleteProject(id);
   if (!response.success) {
     return response;
   }
   cacheUtil.invalidateDocs(id);
-  return {success: true};
+  return {success: true, data: null};
 }
 
-export async function handleRevalidateDocs(id: string) {
+export async function handleRevalidateDocs(id: string): Promise<FormActionResult> {
   const response = await devProjectApi.deployProject(id);
-  if (!response.success) {
-    return response;
-  }
-  return {success: true};
+  return asFormResponse(response);
 }
 
-export async function handleCreateAccessKeyForm(rawData: any) {
-  return handleDataForm(createAccessKeySchema, rawData, adminApi.createAccessKey);
+export async function handleCreateAccessKeyForm(rawData: any): Promise<FormActionResult<AccessKeyCreationResult>> {
+  return forms.handleDataForm(createAccessKeySchema, rawData, adminApi.createAccessKey);
 }
 
-export async function handleDeleteAccessKeyForm(id: number) {
+export async function handleDeleteAccessKeyForm(id: number): Promise<FormActionResult> {
   const response = await adminApi.deleteAccessKey(id);
-  if (!response.success) {
-    return response;
-  }
-  return {success: true};
+  return asFormResponse(response);
 }
 
-export async function handleReportProjectForm(rawData: any) {
+export async function handleReportProjectForm(rawData: any): Promise<FormActionResult> {
   const response = await authApi.getUserProfile();
   if (!response.success) {
-    return {success: false, error: response.error};
+    return asFormResponse(response);
   }
-  return handleDataForm(projectReportSchema, rawData, moderationApi.submitProjectReport);
+  return forms.handleDataForm(projectReportSchema, rawData, moderationApi.submitProjectReport);
 }
 
-export async function handleRuleProjectReport(id: string, rawData: any) {
+export async function handleRuleProjectReport(id: string, rawData: any): Promise<FormActionResult> {
   const response = await authApi.getUserProfile();
   if (!response.success) {
-    return {success: false, error: response.error};
+    return asFormResponse(response);
   }
-  return handleDataForm(ruleProjectReportSchema, rawData, data => moderationApi.ruleProjectReport(id, data));
+  return forms.handleDataForm(ruleProjectReportSchema, rawData, data => moderationApi.ruleProjectReport(id, data));
 }
 
-export async function handleAddProjectMember(id: string, rawData: any) {
-  return handleDataForm(addProjectMemberSchema, rawData, (data) => devProjectApi.addProjectMember(id, data));
+export async function handleAddProjectMember(id: string, rawData: any): Promise<FormActionResult> {
+  return forms.handleDataForm(addProjectMemberSchema, rawData, (data) => devProjectApi.addProjectMember(id, data));
 }
 
-export async function handleRemoveProjectMember(id: string, rawData: any) {
-  return handleDataForm(removeProjectMemberSchema, rawData, (data) => devProjectApi.removeProjectMember(id, data));
+export async function handleRemoveProjectMember(id: string, rawData: any): Promise<FormActionResult> {
+  return forms.handleDataForm(removeProjectMemberSchema, rawData, (data) => devProjectApi.removeProjectMember(id, data));
 }
 
-export async function linkModrinthAccount() {
+export async function linkModrinthAccount(): Promise<FormActionResult> {
   const result = await authApi.linkModrinthAcount();
   if (result.type == 'redirect') {
     return redirect(result.url);
@@ -81,29 +76,25 @@ export async function linkModrinthAccount() {
   }
 }
 
-export async function unlinkModrinthAccount() {
-  const result = await authApi.unlinkModrinthAcount();
-  return result.success ? {success: true} : {success: false, error: result.error};
+export async function unlinkModrinthAccount(): Promise<FormActionResult> {
+  const response = await authApi.unlinkModrinthAcount();
+  return asFormResponse(response);
 }
 
-export async function deleteUserAccount() {
-  const result = await authApi.deleteUserAcount();
-  if (!result.success) {
-    return {success: false, error: result.error};
-  } else {
-    return authSession.logout(); // Remove session cookie
+export async function deleteUserAccount(): Promise<FormActionResult> {
+  const response = await authApi.deleteUserAcount();
+  if (response.success) {
+    authSession.logout(); // Remove session cookie
   }
+  return asFormResponse(response);
 }
 
-export async function handleDeleteDeploymentForm(id: string) {
+export async function handleDeleteDeploymentForm(id: string): Promise<FormActionResult> {
   const response = await devProjectApi.deleteDeployment(id);
-  if (!response.success) {
-    return response;
-  }
-  return {success: true};
+  return asFormResponse(response) as FormActionResult;
 }
 
-export async function handleRevalidateCacheTag(rawData: any) {
+export async function handleRevalidateCacheTag(rawData: any): Promise<FormActionResult> {
   const validatedFields = revalidateCacheSchema.safeParse(rawData)
   if (!validatedFields.success) {
     return {
@@ -112,22 +103,5 @@ export async function handleRevalidateCacheTag(rawData: any) {
     }
   }
   revalidateTag(validatedFields.data.tag);
-  return {success: true};
-}
-
-async function handleDataForm<SCHEMA extends ZodType, T>(schema: SCHEMA, rawData: any, action: (data: z.infer<SCHEMA>) => Promise<ApiCallResult<T>>) {
-  const validatedFields = schema.safeParse(rawData)
-  if (!validatedFields.success) {
-    return {
-      success: false,
-      errors: validatedFields.error.flatten().fieldErrors,
-    }
-  }
-
-  const result = await action(validatedFields.data);
-  if (!result.success) {
-    return result;
-  }
-
-  return {success: true, result: result.data};
+  return {success: true, data: null};
 }

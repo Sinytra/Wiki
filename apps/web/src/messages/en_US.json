@@ -1098,10 +1098,8 @@
             "desc": "Determines the user's permission level",
             "placeholder": "Select role"
         },
-        "success": {
-            "title": "Project member added",
-            "desc": "User added to project"
-        },
+        "success": "Project member added successfully",
+        "cancel": "Cancel",
         "submit": "Submit"
     },
     "RemoveProjectMemberModal": {
@@ -1117,5 +1115,10 @@
         "cancel": "Cancel",
         "submit": "Leave",
         "success": "Project left successfully"
+    },
+    "GenericForm": {
+        "submit": "Submit",
+        "submitting": "Submitting...",
+        "cancel": "Cancel"
     }
 }

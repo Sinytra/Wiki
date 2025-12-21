@@ -3,7 +3,7 @@ import locales from '@repo/shared/locales';
 import {DEFAULT_DOCS_VERSION} from './constants';
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';
-type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown';
+type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown' | 'ownership';
 
 const CONTENT_TYPE = 'content-type';
 const APPLICATION_JSON = 'application/json';

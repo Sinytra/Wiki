@@ -13,9 +13,9 @@ import * as React from "react";
 import {getGitHubAvatarUrl} from "@repo/shared/util";
 import AddProjectMemberForm from "@/components/dashboard/dev/modal/AddProjectMemberForm";
 import {handleAddProjectMember, handleRemoveProjectMember} from "@/lib/forms/actions";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import GenericDeleteModal from "@/components/dashboard/dev/modal/GenericDeleteModal";
+import GenericDeleteModal from "@/components/modal/GenericDeleteModal";
 import navigation from "@/lib/navigation";
+import FormWrapper from "@/components/modal/FormWrapper";
 
 type Properties = {
   params: Promise<DevProjectRouteParams>;
@@ -45,17 +45,17 @@ function ProjectMemberWidget({projectId, canEdit, canLeave, member}: {
 
         <div>
           {(member.isActor || canEdit) &&
-            <ClientLocaleProvider keys={[modalLocale]}>
+            <FormWrapper keys={[modalLocale]}>
                 <GenericDeleteModal localeNamespace={modalLocale}
-                                    formAction={handleRemoveProjectMember.bind(null, projectId, { username: member.username })}
-                                    redirectTo={ member.isActor ? navigation.authorDashboard() : undefined }
+                                    formAction={handleRemoveProjectMember.bind(null, projectId, {username: member.username})}
+                                    redirectTo={member.isActor ? navigation.authorDashboard() : undefined}
                                     trigger={
                                       <Button variant="destructive" size="sm" disabled={member.isActor && !canLeave}>
                                         <DeleteIcon className="mr-2 h-4 w-4"/>
                                         {t(member.isActor ? 'actions.leave' : 'actions.remove')}
                                       </Button>
                                     }/>
-            </ClientLocaleProvider>
+            </FormWrapper>
           }
         </div>
       </div>
@@ -76,9 +76,9 @@ export default async function DevProjectMembersPage(props: Properties) {
       <div className="flex flex-col gap-4">
         {data.canEdit &&
           <div className="flex flex-row items-center justify-end">
-              <ClientLocaleProvider keys={['AddProjectMemberForm', 'ProjectMemberRole', 'FormActions']}>
+              <FormWrapper keys={['AddProjectMemberForm', 'ProjectMemberRole']}>
                   <AddProjectMemberForm formAction={handleAddProjectMember.bind(null, params.project)}/>
-              </ClientLocaleProvider>
+              </FormWrapper>
           </div>
         }
 

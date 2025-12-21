@@ -2,77 +2,48 @@
 
 import {projectEditSchema, projectRegisterSchema, updateGameDataSchema} from "@/lib/forms/schemas";
 import projectApiClient from "@/lib/service/api/projectApiClient";
-import {ZodSchema} from "zod";
 import adminApiClient from "@/lib/service/api/adminApiClient";
+import forms, {asFormResponse, FormActionResult} from "@/lib/forms/forms";
+import {ProjectResponse} from "@/lib/service/api/projectApi";
 
-interface ValidationResult { success: boolean; }
-interface ValidationSuccess<T> extends ValidationResult { success: true; data: T }
-interface ValidationError extends ValidationResult { success: false; errors: unknown }
-
-export async function validateProjectFormData<T>(rawData: any, schema: ZodSchema<T>): Promise<ValidationSuccess<T> | ValidationError> {
-  const validated = schema.safeParse(rawData);
-  if (!validated.success) {
-    return { success: false, errors: validated.error.flatten().fieldErrors }
-  }
-  return { success: true, data: validated.data };
-}
-
-async function handleRegisterProjectFormClient(rawData: any) {
-  const data = await validateProjectFormData(rawData, projectRegisterSchema);
+async function handleRegisterProjectFormClient(rawData: any): Promise<FormActionResult<ProjectResponse>> {
+  const data = await forms.validateProjectFormData(rawData, projectRegisterSchema);
   if (!data.success) {
     return data;
   }
 
-  const response: any = await projectApiClient.registerProject(data.data);
-
+  const response = await projectApiClient.registerProject(data.data);
   if (!response.success) {
     const can_verify_mr = response.type == 'known_error' ? (response.data as any).can_verify_mr : undefined;
     return {
-      ...response,
+      ...asFormResponse(response),
+      can_verify_mr
+    } as any;
+  }
+
+  return asFormResponse(response);
+}
+
+async function handleEditProjectFormClient(rawData: any) {
+  const validated = await forms.validateProjectFormData(rawData, projectEditSchema);
+  if (!validated.success) {
+    return validated;
+  }
+
+  const response = await projectApiClient.updateProject(validated.data);
+  if (!response.success) {
+    const can_verify_mr = response.type === 'known_error' ? (response.data as any).can_verify_mr : undefined;
+    return {
+      ...asFormResponse(response),
       can_verify_mr
     };
   }
 
-  return {success: true, project: response.data.project};
-}
-
-async function handleEditProjectFormClient(rawData: any) {
-  const validated = await validateProjectFormData(rawData, projectEditSchema);
-  if (!validated.success) {
-    return validated;
-  }
-  const response = await projectApiClient.updateProject(validated.data);
-
-  if (!response.success) {
-    const can_verify_mr = response.type === 'known_error' ? (response.data as any).can_verify_mr : undefined;
-    const install_url = response.type === 'known_error' ? saveState((response.data as any).install_url, validated.data) : undefined;
-    return {
-      ...response,
-      can_verify_mr,
-      install_url
-    };
-  }
-
-  return {success: true};
+  return asFormResponse(response);
 }
 
 export async function handleUpdateGameDataFormClient(rawData: any) {
-  const data = await validateProjectFormData(rawData, updateGameDataSchema);
-  if (!data.success) {
-    return data;
-  }
-
-  const result = await adminApiClient.updateGameData(data.data);
-  if (!result.success) {
-    return result;
-  }
-
-  return {success: true, result: result.data};
-}
-
-function saveState(url: string, state: any) {
-  const serialized = btoa(JSON.stringify(state));
-  return url + '?state=' + serialized;
+  return forms.handleDataForm(updateGameDataSchema, rawData, adminApiClient.updateGameData);
 }
 
 export default {
