@@ -88,8 +88,7 @@ export function AdminSidebar(props: Props) {
         {
           title: t('nav.projects'),
           url: '/admin/projects',
-          icon: PencilRulerIcon,
-          disabled: true
+          icon: PencilRulerIcon
         },
         {
           title: t('nav.users'),

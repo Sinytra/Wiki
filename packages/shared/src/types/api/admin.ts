@@ -45,3 +45,13 @@ export interface SystemLocale {
   name: string;
   code: string;
 }
+
+export interface AdminProject {
+  id: string;
+  name: string;
+  type: string;
+  modid: string | null;
+  created_at: string;
+}
+
+export type AdminProjects = PaginatedData<AdminProject>;

@@ -1072,5 +1072,9 @@
             "title": "No items were found in this tag.",
             "desc": "Project tag entries are automatically detected from included game files."
         }
+    },
+    "AdminProjectsPage": {
+        "title": "Projects",
+        "desc": "List of all registered projects"
     }
 }

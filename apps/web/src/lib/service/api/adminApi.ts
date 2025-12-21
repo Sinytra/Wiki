@@ -1,4 +1,11 @@
-import {AccessKey, AccessKeys, DataImports, DataMigration, SystemInfo} from "@repo/shared/types/api/admin";
+import {
+  AccessKey,
+  AccessKeys,
+  AdminProjects,
+  DataImports,
+  DataMigration,
+  SystemInfo
+} from "@repo/shared/types/api/admin";
 import network from "@repo/shared/network";
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
 import {z} from "zod";
@@ -37,6 +44,10 @@ async function deleteAccessKey(id: number): Promise<ApiCallResult> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`system/keys/${id}`, {method: 'DELETE'}));
 }
 
+async function getAllProjects(parameters: ApiRouteParameters): Promise<ApiCallResult<AdminProjects>> {
+  return network.resolveApiCall(() => network.sendSimpleRequest('system/projects', { parameters }));
+}
+
 export default {
   getSystemInfo,
   getDataImports,
@@ -44,5 +55,6 @@ export default {
   runDataMigration,
   getAccessKeys,
   createAccessKey,
-  deleteAccessKey
+  deleteAccessKey,
+  getAllProjects
 }
