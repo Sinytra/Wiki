@@ -11,7 +11,7 @@ export default function FormDeleteButton({children}: { children?: any }) {
   return (
     <Button type="submit" disabled={pending}
             onClick={event => event.stopPropagation()}
-            variant="destructive" className="bg-destructive! text-primary-alt!"
+            variant="destructiveSecondary"
     >
       {pending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/>}
       {children}

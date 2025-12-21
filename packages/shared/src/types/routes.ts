@@ -11,3 +11,7 @@ export interface TableSearchParams {
   query?: string | string[];
   page?: string | string[];
 }
+
+export interface DevProjectRouteParams extends LocaleRouteParams {
+  project: string;
+}

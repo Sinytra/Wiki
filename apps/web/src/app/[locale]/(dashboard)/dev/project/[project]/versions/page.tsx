@@ -6,16 +6,13 @@ import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPa
 import * as React from "react";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
+import {DevProjectRouteParams} from "@repo/shared/types/routes";
 
 type Properties = {
-  params: Promise<{
-    locale: string;
-    project: string;
-  }>;
+  params: Promise<DevProjectRouteParams>;
   searchParams: Promise<{
     query?: string | string[];
     page?: string | string[];
-    version?: string;
   }>
 }
 

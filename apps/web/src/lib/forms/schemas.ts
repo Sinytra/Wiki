@@ -1,6 +1,6 @@
 import {z} from "zod";
 
-const zodStringError = (iss: any) => iss.input === undefined ? "Field is required." : undefined;
+const zodStringError = (iss: any) => iss.input === undefined ? "This field is required." : undefined;
 
 const requiredString = z.string({
   error: zodStringError
@@ -49,4 +49,12 @@ export const revalidateCacheSchema = z.object({
 
 export const updateGameDataSchema = z.object({
   update_loader: z.boolean().default(false)
+});
+
+export const addProjectMemberSchema = z.object({
+  username: requiredString,
+  role: requiredString
+});
+export const removeProjectMemberSchema = z.object({
+  username: requiredString
 });

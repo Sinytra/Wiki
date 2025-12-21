@@ -7,7 +7,12 @@ function getDevProjectLink(id: string): string {
   return `/en/dev/project/${id}`;
 }
 
+function authorDashboard(): string {
+  return `/dev`;
+}
+
 export default {
   getProjectLink,
-  getDevProjectLink
+  getDevProjectLink,
+  authorDashboard
 }

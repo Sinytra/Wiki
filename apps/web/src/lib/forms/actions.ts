@@ -1,10 +1,11 @@
 'use server'
 
 import {
+  addProjectMemberSchema,
   createAccessKeySchema,
-  projectReportSchema,
+  projectReportSchema, removeProjectMemberSchema,
   revalidateCacheSchema,
-  ruleProjectReportSchema, updateGameDataSchema
+  ruleProjectReportSchema
 } from "@/lib/forms/schemas";
 import cacheUtil from "@/lib/cacheUtil";
 import authSession from "@/lib/authSession";
@@ -15,15 +16,15 @@ import devProjectApi from "@/lib/service/api/devProjectApi";
 import projectApi from "@/lib/service/api/projectApi";
 import moderationApi from "@/lib/service/api/moderationApi";
 import adminApi from "@/lib/service/api/adminApi";
+import {z, ZodType} from "zod";
+import {ApiCallResult} from "@repo/shared/commonNetwork";
 
 export async function handleDeleteProjectForm(id: string) {
   const response = await projectApi.deleteProject(id);
   if (!response.success) {
     return response;
   }
-
   cacheUtil.invalidateDocs(id);
-
   return {success: true};
 }
 
@@ -36,20 +37,7 @@ export async function handleRevalidateDocs(id: string) {
 }
 
 export async function handleCreateAccessKeyForm(rawData: any) {
-  const validatedFields = createAccessKeySchema.safeParse(rawData)
-  if (!validatedFields.success) {
-    return {
-      success: false,
-      errors: validatedFields.error.flatten().fieldErrors,
-    }
-  }
-
-  const result = await adminApi.createAccessKey(validatedFields.data);
-  if (!result.success) {
-    return result;
-  }
-
-  return {success: true, result: result.data};
+  return handleDataForm(createAccessKeySchema, rawData, adminApi.createAccessKey);
 }
 
 export async function handleDeleteAccessKeyForm(id: number) {
@@ -57,7 +45,6 @@ export async function handleDeleteAccessKeyForm(id: number) {
   if (!response.success) {
     return response;
   }
-
   return {success: true};
 }
 
@@ -66,21 +53,7 @@ export async function handleReportProjectForm(rawData: any) {
   if (!response.success) {
     return {success: false, error: response.error};
   }
-
-  const validatedFields = projectReportSchema.safeParse(rawData)
-  if (!validatedFields.success) {
-    return {
-      success: false,
-      errors: validatedFields.error.flatten().fieldErrors,
-    }
-  }
-
-  const result = await moderationApi.submitProjectReport(validatedFields.data);
-  if (!result.success) {
-    return result;
-  }
-
-  return {success: true};
+  return handleDataForm(projectReportSchema, rawData, moderationApi.submitProjectReport);
 }
 
 export async function handleRuleProjectReport(id: string, rawData: any) {
@@ -88,21 +61,15 @@ export async function handleRuleProjectReport(id: string, rawData: any) {
   if (!response.success) {
     return {success: false, error: response.error};
   }
+  return handleDataForm(ruleProjectReportSchema, rawData, data => moderationApi.ruleProjectReport(id, data));
+}
 
-  const validatedFields = ruleProjectReportSchema.safeParse(rawData)
-  if (!validatedFields.success) {
-    return {
-      success: false,
-      errors: validatedFields.error.flatten().fieldErrors,
-    }
-  }
+export async function handleAddProjectMember(id: string, rawData: any) {
+  return handleDataForm(addProjectMemberSchema, rawData, (data) => devProjectApi.addProjectMember(id, data));
+}
 
-  const result = await moderationApi.ruleProjectReport(id, validatedFields.data);
-  if (!result.success) {
-    return result;
-  }
-
-  return {success: true};
+export async function handleRemoveProjectMember(id: string, rawData: any) {
+  return handleDataForm(removeProjectMemberSchema, rawData, (data) => devProjectApi.removeProjectMember(id, data));
 }
 
 export async function linkModrinthAccount() {
@@ -133,7 +100,6 @@ export async function handleDeleteDeploymentForm(id: string) {
   if (!response.success) {
     return response;
   }
-
   return {success: true};
 }
 
@@ -145,8 +111,23 @@ export async function handleRevalidateCacheTag(rawData: any) {
       errors: validatedFields.error.flatten().fieldErrors,
     }
   }
-
   revalidateTag(validatedFields.data.tag);
-
   return {success: true};
+}
+
+async function handleDataForm<SCHEMA extends ZodType, T>(schema: SCHEMA, rawData: any, action: (data: z.infer<SCHEMA>) => Promise<ApiCallResult<T>>) {
+  const validatedFields = schema.safeParse(rawData)
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
+
+  const result = await action(validatedFields.data);
+  if (!result.success) {
+    return result;
+  }
+
+  return {success: true, result: result.data};
 }

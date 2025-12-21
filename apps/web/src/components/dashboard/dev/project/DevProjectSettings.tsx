@@ -230,9 +230,13 @@ export default function DevProjectSettings({project, deleteFunc}: { project: Dev
           }
         </div>
 
-        <hr className="mt-auto border-secondary"/>
+        {project.access_level == 'owner' &&
+          <>
+              <hr className="mt-auto border-secondary"/>
 
-        <DangerSection deleteFunc={deleteFunc}/>
+              <DangerSection deleteFunc={deleteFunc}/>
+          </>
+        }
       </form>
     </Form>
   );

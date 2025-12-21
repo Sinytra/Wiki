@@ -22,3 +22,7 @@ export function serializeUrlParams(parameters?: Record<string, string | undefine
   }
   return searchParams.toString();
 }
+
+export function getGitHubAvatarUrl(username: string) {
+  return `https://github.com/${username}.png`;
+}

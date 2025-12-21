@@ -393,7 +393,11 @@
             "not_found": "Project does not exist",
             "illegal_id": "Illegal project ID",
             "not_owner": "User is not authorized to register this project",
-            "repo_too_large": "Repository exceeds maximum allowed size of 500MB"
+            "repo_too_large": "Repository exceeds maximum allowed size of 500MB",
+            "insufficient_permissions": "You don't have permission to perform this action",
+            "user_not_found": "User not found",
+            "duplicate_member": "Project member already exists",
+            "single_owner": "Cannot remove the only owner"
         },
         "get_help": "Find out more about this error in our <link>documentation</link>."
     },
@@ -560,14 +564,17 @@
             "empty": "No issues found"
         }
     },
+    "ProjectMemberRole": {
+        "owner": "Owner",
+        "member": "Member",
+        "unknown": "Unknown"
+    },
     "DevProjectMembersPage": {
         "title": "Project members",
         "desc": "Manage project members & permissions",
-        "roles": {
-            "owner": "Owner"
-        },
         "actions": {
-            "manage": "Manage"
+            "remove": "Remove",
+            "leave": "Leave project"
         }
     },
     "DevProjectContentItemsPage": {
@@ -1076,5 +1083,39 @@
     "AdminProjectsPage": {
         "title": "Projects",
         "desc": "List of all registered projects"
+    },
+    "AddProjectMemberForm": {
+        "button": "Add member",
+        "title": "Add project member",
+        "desc": "Add a new user to this project",
+        "username": {
+            "title": "Username",
+            "desc": "Wiki (GitHub) username of the user.",
+            "placeholder": "johndoe"
+        },
+        "role": {
+            "title": "User role",
+            "desc": "Determines the user's permission level",
+            "placeholder": "Select role"
+        },
+        "success": {
+            "title": "Project member added",
+            "desc": "User added to project"
+        },
+        "submit": "Submit"
+    },
+    "RemoveProjectMemberModal": {
+        "title": "Remove project member",
+        "desc": "Are you sure you want to remove this member? This action cannot be undone.",
+        "cancel": "Cancel",
+        "submit": "Remove",
+        "success": "Project member removed successfully"
+    },
+    "LeaveProjectModal": {
+        "title": "Leave project",
+        "desc": "Are you sure you want to leave this project? This action cannot be undone.",
+        "cancel": "Cancel",
+        "submit": "Leave",
+        "success": "Project left successfully"
     }
 }

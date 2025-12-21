@@ -29,3 +29,21 @@ export interface ProjectVersion {
 }
 
 export type ProjectVersions = PaginatedData<ProjectVersion>;
+
+export enum ProjectMemberRole {
+  OWNER = 'owner',
+  MEMBER = 'member',
+  UNKNOWN = 'unknown'
+}
+
+export interface ProjectMember {
+  username: string;
+  role: ProjectMemberRole;
+  isActor: boolean;
+}
+
+export interface ProjectMembersData {
+  members: ProjectMember[];
+  canEdit: boolean;
+  canLeave: boolean;
+}

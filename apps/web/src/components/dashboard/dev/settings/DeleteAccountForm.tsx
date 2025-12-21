@@ -34,10 +34,7 @@ export default function DeleteAccountForm({action}: Properties) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive" size="sm" className={`
-          border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
-          data-[pending=true]:text-destructive/90
-        `}>
+        <Button variant="destructive" size="sm">
           <TrashIcon className="mr-2 h-4 w-4"/>
           <span>
             {t('delete.button')}

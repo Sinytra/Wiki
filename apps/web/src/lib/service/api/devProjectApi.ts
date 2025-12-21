@@ -12,8 +12,11 @@ import {
   ProjectContentPages,
   ProjectContentRecipes,
   ProjectContentTags,
+  ProjectMembersData,
   ProjectVersions
 } from "@repo/shared/types/api/devProject";
+import {z} from "zod";
+import {addProjectMemberSchema, removeProjectMemberSchema} from "@/lib/forms/schemas";
 
 export interface DevProjectsOverview {
   profile: UserProfile;
@@ -48,6 +51,18 @@ async function deleteDeployment(id: string): Promise<ApiCallResult<PartialDevPro
   return result;
 }
 
+async function getProjectMembers(projectId: string): Promise<ApiCallResult<ProjectMembersData>> {
+  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/members`))
+}
+
+async function addProjectMember(projectId: string, body: z.infer<typeof addProjectMemberSchema>): Promise<ApiCallResult> {
+  return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${projectId}/members`, {body}))
+}
+
+async function removeProjectMember(projectId: string, body: z.infer<typeof removeProjectMemberSchema>): Promise<ApiCallResult> {
+  return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${projectId}/members`, {method: 'DELETE', body}))
+}
+
 async function getProjectVersions(projectId: string, parameters: ApiRouteParameters): Promise<ApiCallResult<ProjectVersions>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/versions`, {parameters}))
 }
@@ -79,5 +94,8 @@ export default {
   getProjectContentPages,
   getProjectContentTags,
   getProjectContentTagItems,
-  getProjectContentRecipes
+  getProjectContentRecipes,
+  getProjectMembers,
+  addProjectMember,
+  removeProjectMember
 };

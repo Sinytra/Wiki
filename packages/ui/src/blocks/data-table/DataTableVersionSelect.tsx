@@ -21,7 +21,7 @@ export default function DevDocsVersionSelect({versions}: { versions: ProjectVers
   return (
     <Select value={version} onValueChange={changeVersion}>
       <SelectTrigger className={cn(
-        'bg-primary-dim rounded-sm py-0 hover:bg-secondary sm:w-fit [&>span]:text-sm',
+        'rounded-sm py-0 hover:bg-secondary sm:w-fit [&>span]:text-sm',
         'whitespace-nowrap [&>span]:block [&>span]:text-ellipsis',
         'h-9 justify-between sm:max-w-40 sm:min-w-32')}
       >

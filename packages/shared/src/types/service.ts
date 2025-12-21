@@ -3,6 +3,7 @@ import {AssetLocation} from '@repo/shared/assets';
 import {ProjectPlatforms} from './platform';
 import {ResourceLocation} from '../resourceLocation';
 import {ProjectIssueStats, ProjectRevision, ProjectStatus} from './api/project';
+import {ProjectMemberRole} from './api/devProject';
 
 export interface FileTreeEntry {
   name: string;
@@ -53,6 +54,7 @@ export interface Project extends BaseProject {
   local?: boolean;
   status?: ProjectStatus;
   has_active_deployment?: boolean;
+  access_level: ProjectMemberRole;
   created_at: string;
 }
 
