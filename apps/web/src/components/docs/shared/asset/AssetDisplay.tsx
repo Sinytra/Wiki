@@ -21,7 +21,7 @@ export default function AssetDisplay({asset, width, height, alt, title, noTitle,
          src={asset.src} alt={alt || asset.id}
          title={noTitle ? undefined : title || resourceLocation.parse(asset.id)?.path}
          strokeWidth={1.5}
-         wrapper={{className: "inline"}}
+         wrapper={{className: "inline sharpRendering"}}
          {...props}
     />
   )
