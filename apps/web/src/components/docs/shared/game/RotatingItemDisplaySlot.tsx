@@ -7,6 +7,7 @@ import {HoverContext} from "@/components/util/HoverContextProvider";
 import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
 import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import {cn} from "@repo/ui/lib/utils";
 
 interface AdditionalProps {
   src: DisplayItem[];
@@ -53,21 +54,19 @@ export default function RotatingItemDisplaySlot({noTooltip, noLink, src, count, 
   const Content = () => {
     const link = ctx ? getResolvedItemLink(ctx, currentSrc) : getExternalWikiLink(currentSrc.id);
     const element = (
-      <div {...props}>
-        <div className="relative shrink-0">
-          <ItemAssetDisplay noTitle asset={currentSrc.asset} alt={currentSrc.name ?? currentSrc.id}
-                            className="sharpRendering"/>
-          {count && count > 1 &&
-            <span
-              className={`
-                sharpRendering absolute right-0 bottom-0 z-10 text-left font-minecraft text-base leading-1 text-white
-              `}
-              style={{textShadow: '2px 2px 0 #3F3F3F'}}
-            >
-              {count}
-            </span>
-          }
-        </div>
+      <div {...props} className={cn('relative shrink-0', props.className)}>
+        <ItemAssetDisplay noTitle asset={currentSrc.asset} alt={currentSrc.name ?? currentSrc.id}
+                          className="sharpRendering"/>
+        {count && count > 1 &&
+          <span
+            className={`
+              sharpRendering absolute right-0 bottom-0 z-10 text-left font-minecraft text-base leading-1 text-white
+            `}
+            style={{textShadow: '2px 2px 0 #3F3F3F'}}
+          >
+            {count}
+          </span>
+        }
       </div>
     );
     return link && !noLink ? <NavLink href={link} rel="noreferrer">{element}</NavLink> : element;

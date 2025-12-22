@@ -31,7 +31,7 @@ export default function ImageWithFallback(
   const [error, setError] = useState(false);
 
   return (
-    <div className="shrink-0 overflow-hidden" title={title}
+    <span className="shrink-0 overflow-hidden" title={title}
          style={fixedSize ? {width: `${width}px`, height: `${height}px`} : undefined}
          {...wrapper}>
       {src && !error &&
@@ -41,6 +41,6 @@ export default function ImageWithFallback(
         />
       }
       {(!src || error) && Fallback}
-    </div>
+    </span>
   );
 }
