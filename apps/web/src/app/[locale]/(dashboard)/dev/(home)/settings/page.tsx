@@ -37,14 +37,17 @@ function UserProfileInfo({user}: { user: UserProfile }) {
         <img src={user.avatar_url} width={84} height={84} className="rounded-sm" alt="avatar"/>
       </div>
 
-      <div className="flex w-full flex-col justify-between gap-2">
-        <div className="flex flex-row items-center justify-between">
-          <span className="text-lg text-primary-alt">
-            {user.username}
+      <div className="flex w-full flex-col">
+        <div className="mb-0.5 flex flex-row items-center justify-between">
+          <span className="text-lg leading-5 text-primary-alt">
+            {user.name}
           </span>
           {user.role === UserRole.ADMIN &&
             <AdminBadge />
           }
+        </div>
+        <div className="mb-auto text-sm text-secondary">
+          {user.username}
         </div>
         <div className="flex justify-between text-sm text-secondary">
           <span>{t('bio')}</span>

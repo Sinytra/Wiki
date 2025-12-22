@@ -1,0 +1,38 @@
+import {Callout} from 'nextra/components';
+
+# Project management
+
+The project dashboard is where you find all your project information. You can tweak project settings, deploy new
+versions, list registered game content and more.
+
+## Deployments
+
+Deployments serve as a version history for Wiki projects. Every time you make changes to your documentation in the
+source repository, you'll need to create a new Deployment to publish them on the website.
+
+For your own convenience, we recommend automatically revalidating docs after publication using our
+[Gradle plugin](./devs#-gradle-plugin-companion) instead.
+
+## Members
+
+You can grant access to your project to other Wiki users under the "Members" tab.
+
+Members can be added by their Wiki username, which can be found in the [User Settings](https://moddedmc.wiki/en/dev/settings) page.
+Generally, this will be the lowercase username of the GitHub account you use to sign in to the Wiki.
+
+<Callout type="warning">
+    A user must have an active Wiki account to be added to projects. If you're getting a *User not found* error when
+    trying to add your teammates by their GitHub username, make sure they log in to the Wiki first!
+</Callout>
+
+### Roles
+
+When adding team members, you can choose between two available roles:
+
+- **Owner** - has **full access** to the project. This includes deleting the project or removing other owners!
+- **Member** - can edit project settings and create new deployments. Cannot manage members nor delete the project.
+
+### Leaving projects
+
+Users with the "Member" role may leave projects on their own at any time by using the Members tab.
+However, owners can only leave as long as they are not the only owner.

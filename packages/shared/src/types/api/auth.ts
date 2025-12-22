@@ -4,6 +4,7 @@ export enum UserRole {
 }
 
 export interface UserProfile {
+  name: string;
   username: string;
   avatar_url: string;
   modrinth_id: string | null;
