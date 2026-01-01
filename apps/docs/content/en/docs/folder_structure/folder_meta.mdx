@@ -1,6 +1,7 @@
 import {FileTree, Callout} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
+import FormatHeader from '@/components/FormatHeader.tsx';
 
 # Folder metadata
 
@@ -29,7 +30,7 @@ documentation directory, **including the root** directory itself (e.g. at the sa
     </FileTreeFolder>
 </FileTree>
 
-## File Format
+<FormatHeader schema="_meta">File Format</FormatHeader>
 
 The folder metadata file consists of string key-value pairs, where the keys represent the name of a file or a folder,
 and the values are their display name.

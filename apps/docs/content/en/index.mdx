@@ -1,15 +1,29 @@
+import {BookOpenIcon} from 'lucide-react';
+
 <p align="center">
-    <img src="/logo.png" width={96} height={96} />
+    <img src="/logo.png" width={96} height={96}/>
 </p>
 
 # Modded Minecraft Wiki
 
-<p className="wiki-subtitle">Developer Guide</p>
+<p className="wiki-subtitle">Author Guide</p>
 
 Welcome to the official Modded Minecraft Wiki documentation website, created as a guide for Wiki authors and developers.
 
 Click below to get started documenting your mod on the Wiki.
 
-<div className="text-center font-semibold my-6">
-    [Get started](docs/introduction)・[GitHub](https://github.com/Sinytra/Wiki)・[Discord](https://discord.sinytra.org)
+<div className="text-center my-7">
+    <a href="docs/introduction">
+        <button
+          className="px-6 py-2 rounded-sm font-bold bg-blue-600 cursor-pointer duration-300 transition-colors hover:bg-blue-700">
+            <span className="flex items-center gap-2">
+                <BookOpenIcon className="size-4" strokeWidth={2.5}/>
+                <span>Get started</span>
+            </span>
+        </button>
+    </a>
+</div>
+
+<div className="text-center font-semibold my-7">
+    [Website](https://moddedmc.wiki)・[GitHub](https://github.com/Sinytra/Wiki)・[Discord](https://discord.sinytra.org)
 </div>

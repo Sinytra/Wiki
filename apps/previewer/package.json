@@ -20,7 +20,7 @@
     "chokidar": "^5.0.0",
     "codehike": "^1.0.7",
     "concurrently": "^9.2.1",
-    "lucide-react": "^0.533.0",
+    "lucide-react": "^0.562.0",
     "next": "15.5.9",
     "next-intl": "^4.1.0",
     "react": "19.1.0",

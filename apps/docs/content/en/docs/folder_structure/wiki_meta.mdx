@@ -1,6 +1,7 @@
 import {FileTree, Callout} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
+import FormatHeader from '@/components/FormatHeader.tsx';
 
 # Wiki metadata
 
@@ -17,7 +18,7 @@ Wiki metadata must be placed in a file called `sinytra-wiki.json` inside the doc
     </FileTreeFolder>
 </FileTree>
 
-## Format
+<FormatHeader schema="sinytra-wiki">Format</FormatHeader>
 
 Available properties are listed below. Those marked with an asterisk (<span className="text-rose-400!">*</span>)
 are **required**.
@@ -118,8 +119,6 @@ is a placeholder for the actual value.
     "owners": [ "Su5eD" ]
 }
 ```
-
-The JSON Schema specification for this file can be found [here](/sinytra-wiki.schema.json).
 
 ## Versioning
 
