@@ -14,6 +14,7 @@ import env from "@repo/shared/env";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 import issuesApi from "@repo/shared/api/issuesApi";
 import markdown from "@repo/markdown";
+import * as Sentry from '@sentry/nextjs';
 
 export async function generateMetadata(
   props: {
@@ -29,7 +30,8 @@ export async function generateMetadata(
   }
 
   const project = await platforms.getPlatformProject(page.project);
-  const result = await markdown.readProcessedFrontmatter(page.content) || {};
+  const result = await Sentry.startSpan({ name: 'Read frontmatter', op: 'meta.frontmatter' },
+    async () => await markdown.readProcessedFrontmatter(page.content) || {});
   const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
     : await service.getAsset((result.icon || result.id)!, ctx);
 
