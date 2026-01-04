@@ -37,8 +37,7 @@ async function getProject({id, version}: ProjectContext): Promise<ProjectWithInf
 }
 
 async function getBackendLayout({id, version, locale}: ProjectContext): Promise<LayoutTree | null> {
-  return resolveNullableApiCall(() =>
-    sendApiRequest(id, `docs/${id}/tree`, {version, locale}, {cache: false}));
+  return resolveNullableApiCall(() => sendApiRequest(id, `docs/${id}/tree`, {version, locale}));
 }
 
 async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promise<AssetLocation | null> {
