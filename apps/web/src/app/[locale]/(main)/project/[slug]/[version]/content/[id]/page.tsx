@@ -17,6 +17,7 @@ import ContentChangelog from "@/components/docs/content/ContentChangelog";
 import ContentListFooter from "@/components/docs/ContentListFooter";
 import markdown from "@repo/markdown";
 import DocsContentPageToolsFooter from "@/components/docs/layout/DocsContentPageToolsFooter";
+import * as Sentry from '@sentry/nextjs';
 
 interface Props {
   params: Promise<{
@@ -68,7 +69,8 @@ export default async function ContentEntryPage(props: Props) {
 
   let page: RenderedDocsPage | null;
   try {
-    page = await service.renderProjectContentPage(id, ctx);
+    page = await Sentry.startSpan({ name: 'Render content page', op: 'markdown.content' },
+      async () => service.renderProjectContentPage(id, ctx));
   } catch (e) {
     console.error('FATAL error rendering content page', e);
     return (

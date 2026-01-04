@@ -36,6 +36,7 @@ import DocsLink from "@/components/docs/shared/DocsLink";
 import ExtendedLink from "@/components/docs/shared/ExtendedLink";
 import ExtendedImg from "@/components/docs/shared/ExtendedImg";
 import VideoEmbed from "@/components/docs/shared/VideoEmbed";
+import * as Sentry from '@sentry/nextjs';
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -88,7 +89,8 @@ const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => P
   createProxy<'getDocsPage'>((p, path, optional, ctx) => p.getDocsPage(path, optional || false, ctx));
 
 async function renderDocsPage(path: string[], optional: boolean, ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
-  const raw = await getDocsPage(path, optional, ctx) || null;
+  const raw = await Sentry.startSpan({ name: 'Get docs pge', op: 'fetch.docs_page' },
+    async () => getDocsPage(path, optional, ctx)) || null;
   return renderMarkdown(raw, ctx, patcher);
 }
 
@@ -111,7 +113,8 @@ const getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentIt
   createProxy<'getContentItemName'>((p, id, ctx) => p.getContentItemName(id, ctx));
 
 async function renderProjectContentPage(id: string, ctx: ProjectContext | ProjectContentContext): Promise<RenderedDocsPage | null> {
-  const raw = await getProjectContentPage(id, ctx);
+  const raw = await Sentry.startSpan({ name: 'Get content pge', op: 'fetch.content_page' },
+    async () => getProjectContentPage(id, ctx));
   const patcher: ComponentPatcher = (c) => ({
     PrefabUsage: PrefabUsage.bind(null, ctx),
     PrefabObtaining: PrefabObtaining.bind(null, ctx),

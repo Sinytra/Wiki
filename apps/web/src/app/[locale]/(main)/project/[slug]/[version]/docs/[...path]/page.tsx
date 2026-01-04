@@ -61,7 +61,8 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
 
   let page: RenderedDocsPage | null;
   try {
-    page = await service.renderDocsPage(path, false, ctx);
+    page = await Sentry.startSpan({ name: 'Render docs page', op: 'markdown.docs' },
+      async () => service.renderDocsPage(path, false, ctx));
   } catch (e) {
     console.error('FATAL error rendering page', e);
 
