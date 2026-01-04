@@ -124,30 +124,32 @@ async function renderProjectContentPage(id: string, ctx: ProjectContext | Projec
 }
 
 async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
-  if (raw) {
-    const components = {
-      Asset: BindableAsset.bind(null, ctx),
-      ContentLink: ContentLink.bind(null, ctx),
-      CraftingRecipe: CraftingRecipe.bind(null, ctx),
-      DocsLink: DocsLink.bind(null, ctx),
-      ModAsset: ModAsset.bind(null, ctx),
-      ProjectRecipe: ProjectRecipe.bind(null, ctx),
-      RecipeUsage: BindableRecipeUsage.bind(null, ctx),
-      h2: LinkAwareHeading,
-      a: ExtendedLink.bind(null, ctx),
-      img: ExtendedImg.bind(null, ctx),
-      Callout, CodeHikeCode, CodeTabs, VideoEmbed
-    }
+  return Sentry.startSpan({ name: 'Render markdown', op: 'markdown.render' }, async () => {
+    if (raw) {
+      const components = {
+        Asset: BindableAsset.bind(null, ctx),
+        ContentLink: ContentLink.bind(null, ctx),
+        CraftingRecipe: CraftingRecipe.bind(null, ctx),
+        DocsLink: DocsLink.bind(null, ctx),
+        ModAsset: ModAsset.bind(null, ctx),
+        ProjectRecipe: ProjectRecipe.bind(null, ctx),
+        RecipeUsage: BindableRecipeUsage.bind(null, ctx),
+        h2: LinkAwareHeading,
+        a: ExtendedLink.bind(null, ctx),
+        img: ExtendedImg.bind(null, ctx),
+        Callout, CodeHikeCode, CodeTabs, VideoEmbed
+      }
 
-    const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);
-    return {
-      project: raw.project,
-      content,
-      edit_url: raw.edit_url,
-      properties: raw.properties
-    };
-  }
-  return null;
+      const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);
+      return {
+        project: raw.project,
+        content,
+        edit_url: raw.edit_url,
+        properties: raw.properties
+      };
+    }
+    return null;
+  })
 }
 
 function prefixItemPath(location: string) {
