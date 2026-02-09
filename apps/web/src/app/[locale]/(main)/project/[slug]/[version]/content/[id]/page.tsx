@@ -17,6 +17,7 @@ import ContentChangelog from "@/components/docs/content/ContentChangelog";
 import ContentListFooter from "@/components/docs/ContentListFooter";
 import markdown from "@repo/markdown";
 import DocsContentPageToolsFooter from "@/components/docs/layout/DocsContentPageToolsFooter";
+import issuesApi from "@repo/shared/api/issuesApi";
 
 interface Props {
   params: Promise<{
@@ -71,6 +72,12 @@ export default async function ContentEntryPage(props: Props) {
     page = await service.renderProjectContentPage(id, ctx);
   } catch (e) {
     console.error('FATAL error rendering content page', e);
+
+    const project = await service.getProject(ctx);
+    if (project) {
+      await issuesApi.reportPageRenderFailure(project, ctx.contentId, e, ctx.version, ctx.locale);
+    }
+
     return (
       <DocsPageNotFoundError/>
     );
