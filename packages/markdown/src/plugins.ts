@@ -15,14 +15,23 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
     slugs.reset();
 
     const headingList: FileHeading[] = [];
+    let foundTitle = false;
     visit(tree, 'element', (node, index, parent) => {
       const depth = headingRank(node);
 
       if (depth === 1 && node.children?.length === 1) {
         const child = node.children[0];
         if (child?.type === 'text') {
-          file.data.matter!.title = child.value;
-          parent?.children.splice(index!, 1);
+          // First H1 gets used as title
+          if (!foundTitle) {
+            file.data.matter!.title = child.value;
+            parent?.children.splice(index!, 1);
+            foundTitle = true;
+          }
+          // Remaining H1 headings will be changed to a H2
+          else {
+            node.tagName = 'h2';
+          }
           return;
         }
       }
