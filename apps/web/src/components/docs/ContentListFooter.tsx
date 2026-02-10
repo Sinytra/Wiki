@@ -36,7 +36,7 @@ function Category({currentId, content, ctx}: {
   const active = subCategories.flatMap(c => c.children).some(c => c.id === currentId);
 
   return (
-    <ExpandableCategory name={content.name} defaultOpen={active}>
+    <ExpandableCategory name={content.name} defaultOpen={active} className="gap-1.5">
       {subCategories.map(i => (
         <div key={i.path} className={`
           flex flex-col gap-2 bg-primary-dark! p-2 first:rounded-t-sm last:rounded-b-sm sm:flex-row sm:items-center

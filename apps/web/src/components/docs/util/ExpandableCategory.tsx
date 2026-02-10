@@ -3,10 +3,12 @@
 import {useState} from "react";
 import * as React from "react";
 import ToggleChevron from "@repo/ui/util/ToggleChevron";
+import {cn} from "@repo/ui/lib/utils";
 
-export default function ExpandableCategory({name, defaultOpen, children}: {
+export default function ExpandableCategory({name, defaultOpen, className, children}: {
   name: string;
   defaultOpen: boolean;
+  className?: string;
   children: any
 }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -30,7 +32,7 @@ export default function ExpandableCategory({name, defaultOpen, children}: {
           </div>
 
           {open &&
-            <div className="mt-2 flex w-full flex-col rounded-md">
+            <div className={cn(className, 'mt-2 flex w-full flex-col rounded-md')}>
               {children}
             </div>
           }

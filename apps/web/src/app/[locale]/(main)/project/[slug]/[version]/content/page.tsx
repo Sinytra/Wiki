@@ -9,6 +9,7 @@ import {ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/sha
 import {useTranslations} from "next-intl";
 import {ProjectRouteParams} from "@repo/shared/types/routes";
 import {getContentLink} from "@/lib/project/game/content";
+import {Fragment} from "react";
 
 interface Props {
   params: Promise<ProjectRouteParams>;
@@ -81,7 +82,10 @@ function ContentCategory({entry, ctx}: { entry: ProjectContentEntry; ctx: Projec
           ?
           <div className="flex flex-col gap-1">
             {...entry.children.filter(c => c.type === 'dir').map(c => (
-              <ContentSubcategory key={c.path} entry={c} ctx={ctx}/>
+              <Fragment key={c.path}>
+                <ContentSubcategory entry={c} ctx={ctx}/>
+                <hr className="my-1.5 border-tertiary last:hidden" />
+              </Fragment>
             ))}
             {children.length > 0 &&
               <ContentSubcategory entry={{name: t('other'), children, type: 'dir', path: ''}} ctx={ctx}/>
