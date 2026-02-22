@@ -12,10 +12,11 @@ export default async function CodeTabs(props: unknown) {
 }
 
 async function CodeTabsVerified(props: { tabs: RawCode[] }) {
-  const { tabs } = props
+  const { tabs } = props;
   const highlighted = await Promise.all(
     tabs.map((tab) => highlight(tab, Plastic)),
-  )
+  );
+
   return (
     <Tabs defaultValue={tabs[0]?.meta}>
       <TabsList className="bg-code-alt w-full justify-start rounded-b-none">

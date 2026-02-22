@@ -14,123 +14,83 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "@repo/ui/components/input";
 import {Button} from "@repo/ui/components/button";
-import ProjectDeleteForm from "@/components/dashboard/dev/modal/ProjectDeleteForm";
-import {CodeXmlIcon, ExternalLinkIcon, LightbulbIcon, TriangleAlertIcon} from "lucide-react";
+import {ExternalLinkIcon, LightbulbIcon} from "lucide-react";
 import {useTranslations} from "next-intl";
-import {projectEditSchema} from "@/lib/forms/schemas";
+import {projectUpdateSourceSchema} from "@/lib/forms/schemas";
 import * as React from "react";
 import {useState} from "react";
 import {toast} from "sonner";
 import {useRouter} from "@/lib/locales/routing";
-import DevProjectSectionTitle from "@/components/dashboard/dev/project/DevProjectSectionTitle";
 import {DevProject} from "@repo/shared/types/service";
 import clientActions from "@/lib/forms/clientActions";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
-function SourceSection({form}: { form: any }) {
+function ProjectSourceFormBody({form}: { form: any }) {
   return (
-    <div className="space-y-5">
-      <DevProjectSectionTitle title="Source" desc="Project source repository coordinates." icon={CodeXmlIcon}/>
+    <div className="space-y-8">
+      <FormField
+        control={form.control}
+        name="repo"
+        render={({field}) => (
+          <FormItem>
+            <FormLabel>
+              Repository URL
+            </FormLabel>
+            <FormControl>
+              <Input placeholder="https://github.com/ExampleUser/ExampleMod" {...field} />
+            </FormControl>
+            <FormDescription>
+              This is the address you use to clone your repository.
+            </FormDescription>
+            <FormMessage/>
+          </FormItem>
+        )}
+      />
 
-      <hr/>
+      <FormField
+        control={form.control}
+        name="branch"
+        render={({field}) => (
+          <FormItem>
+            <FormLabel>
+              Branch
+            </FormLabel>
+            <FormControl>
+              <Input placeholder="main" {...field} />
+            </FormControl>
+            <FormDescription>
+              Primary branch name. You can specify additional branches to include in your metadata file.
+            </FormDescription>
+            <FormMessage/>
+          </FormItem>
+        )}
+      />
 
-      <div className="space-y-6">
-        <FormField
-          control={form.control}
-          name="repo"
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>
-                Repository URL
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="https://github.com/ExampleUser/ExampleMod" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is the address you use to clone your repository.
-              </FormDescription>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="branch"
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>
-                Branch
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="main" {...field} />
-              </FormControl>
-              <FormDescription>
-                Primary branch name. You can specify additional branches to include in your metadata file.
-              </FormDescription>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="path"
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>
-                Path to documentation root
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="/docs" {...field} />
-              </FormControl>
-              <FormDescription>
-                Path to the folder containing the metadata file.
-              </FormDescription>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-      </div>
+      <FormField
+        control={form.control}
+        name="path"
+        render={({field}) => (
+          <FormItem>
+            <FormLabel>
+              Path to documentation root
+            </FormLabel>
+            <FormControl>
+              <Input placeholder="/docs" {...field} />
+            </FormControl>
+            <FormDescription>
+              Path to the folder containing the metadata file.
+            </FormDescription>
+            <FormMessage/>
+          </FormItem>
+        )}
+      />
     </div>
   )
 }
 
-function DangerSection({deleteFunc}: { deleteFunc: any }) {
-  return (
-    <div className="space-y-5">
-      <DevProjectSectionTitle title="Danger zone"
-                              desc="These are destcructive actions. Proceed with caution."
-                              icon={TriangleAlertIcon}
-      />
-
-      <hr/>
-
-      <div className="space-y-6">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <div className="flex flex-col gap-1">
-            <span>
-              Delete project
-            </span>
-            <span className="text-sm text-secondary">
-              Forever delete all project data. This cannot be undone.
-            </span>
-          </div>
-          <div className="ml-auto sm:ml-0">
-            <ProjectDeleteForm
-              formAction={deleteFunc}
-              redirectTo="/dev"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function DevProjectSettings({project, deleteFunc}: { project: DevProject; deleteFunc: any }) {
-  const form = useForm<z.infer<typeof projectEditSchema>>({
-    resolver: zodResolver(projectEditSchema),
+export default function DevProjectSourceSettings({project}: { project: DevProject }) {
+  const form = useForm<z.infer<typeof projectUpdateSourceSchema>>({
+    resolver: zodResolver(projectUpdateSourceSchema),
     defaultValues: {
       id: project.id,
       repo: project.source_repo,
@@ -142,6 +102,7 @@ export default function DevProjectSettings({project, deleteFunc}: { project: Dev
 
   const t = useTranslations('ProjectRegisterForm');
   const u = useTranslations('FormActions');
+  const v = useTranslations('DevProjectSourceSettingsPage');
   const [canVerifyModrinth, setCanVerifyModrinth] = useState(false);
   const router = useRouter();
 
@@ -179,12 +140,12 @@ export default function DevProjectSettings({project, deleteFunc}: { project: Dev
 
   return (
     <Form {...form}>
-      <form action={action} className="flex h-full flex-col space-y-5">
-        <SourceSection form={form}/>
+      <form action={action} className="mt-4 flex h-full flex-col space-y-5">
+        <ProjectSourceFormBody form={form}/>
 
         <div className="ml-auto w-fit">
           <Button type="submit">
-            Save changes
+            {v('save')}
           </Button>
         </div>
 
@@ -229,14 +190,6 @@ export default function DevProjectSettings({project, deleteFunc}: { project: Dev
             </div>
           }
         </div>
-
-        {project.access_level == 'owner' &&
-          <>
-              <hr className="mt-auto border-secondary"/>
-
-              <DangerSection deleteFunc={deleteFunc}/>
-          </>
-        }
       </form>
     </Form>
   );

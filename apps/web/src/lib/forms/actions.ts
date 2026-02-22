@@ -4,6 +4,7 @@ import {
   addProjectMemberSchema,
   createAccessKeySchema,
   projectReportSchema,
+  projectUpdateSchema,
   removeProjectMemberSchema,
   revalidateCacheSchema,
   ruleProjectReportSchema
@@ -18,7 +19,6 @@ import projectApi from "@/lib/service/api/projectApi";
 import moderationApi from "@/lib/service/api/moderationApi";
 import adminApi, {AccessKeyCreationResult} from "@/lib/service/api/adminApi";
 import forms, {asFormResponse, FormActionResult} from "@/lib/forms/forms";
-import {PartialDevProjectDeployment} from "@repo/shared/types/api/deployment";
 
 export async function handleDeleteProjectForm(id: string): Promise<FormActionResult> {
   const response = await projectApi.deleteProject(id);
@@ -27,6 +27,10 @@ export async function handleDeleteProjectForm(id: string): Promise<FormActionRes
   }
   cacheUtil.invalidateDocs(id);
   return {success: true, data: null};
+}
+
+export async function handleUpdateProjectSettingsForm(id: string, rawData: any): Promise<FormActionResult> {
+  return forms.handleDataForm(projectUpdateSchema, rawData, (data) => devProjectApi.updateProject(id, data));
 }
 
 export async function handleRevalidateDocs(id: string): Promise<FormActionResult> {

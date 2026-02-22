@@ -27,6 +27,7 @@ export default function ProjectDeleteForm({formAction, redirectTo}: Properties) 
       }
       localeNamespace="ProjectDeleteForm"
       formAction={formAction}
-    redirectTo={redirectTo}/>
+      redirectTo={redirectTo}
+    />
   )
 }

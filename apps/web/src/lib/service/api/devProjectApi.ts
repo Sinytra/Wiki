@@ -16,7 +16,7 @@ import {
   ProjectVersions
 } from "@repo/shared/types/api/devProject";
 import {z} from "zod";
-import {addProjectMemberSchema, removeProjectMemberSchema} from "@/lib/forms/schemas";
+import {addProjectMemberSchema, projectUpdateSchema, removeProjectMemberSchema} from "@/lib/forms/schemas";
 
 export interface DevProjectsOverview {
   profile: UserProfile;
@@ -31,12 +31,16 @@ async function getProject(id: string): Promise<ApiCallResult<DevProject>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${id}`));
 }
 
+async function updateProject(projectId: string, body: z.infer<typeof projectUpdateSchema>): Promise<ApiCallResult> {
+  return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${projectId}`, { method: 'PUT' , body}));
+}
+
 async function getProjectDeployments(projectId: string, parameters: ApiRouteParameters): Promise<ApiCallResult<DevProjectDeployments>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/deployments`, {parameters}))
+  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/deployments`, {parameters}));
 }
 
 async function getDeployment(id: string): Promise<ApiCallResult<FullDevProjectDeployment>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/deployments/${id}`))
+  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/deployments/${id}`));
 }
 
 async function deployProject(id: string, token: string | null = null): Promise<ApiCallResult> {
@@ -86,6 +90,7 @@ async function getProjectContentRecipes(id: string, parameters: ApiRouteParamete
 export default {
   getProjects,
   getProject,
+  updateProject,
   getProjectDeployments,
   getDeployment,
   deployProject,

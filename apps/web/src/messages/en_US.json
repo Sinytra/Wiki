@@ -356,15 +356,6 @@
             "note": "This may take a while for larger repositories. Please stand by."
         }
     },
-    "ProjectSettingsForm": {
-        "title": "Edit project",
-        "desc": "Edit an existing project's settings.",
-        "button": "Settings",
-        "success": {
-            "title": "Project updated successfully",
-            "desc": "You can now navigate to the updated project's docs page"
-        }
-    },
     "ProjectDeleteForm": {
         "trigger": "Delete project",
         "title": "Are you absolutely sure?",
@@ -379,7 +370,7 @@
             "internal": "Internal Server Error, please try again later.",
             "unknown": "An unknown error has occurred, please try again later.",
             "no_platforms": "No platform projects defined in metadata.",
-            "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
+            "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
             "unsupported_type": "Unsupported project type",
             "ownership": "Failed to verify project ownership",
             "cf_unavailable": "Registering CurseForge projects is not active",
@@ -496,6 +487,12 @@
         "at_risk": "Requires attention",
         "error": "Errored"
     },
+    "ProjectVisibility": {
+        "public": "Public",
+        "unlisted": "Unlisted",
+        "private": "Private",
+        "unknown": "Unknown"
+    },
     "DevProjectsListPage": {
         "project": {
             "manage": "Manage"
@@ -549,7 +546,25 @@
     },
     "DevProjectSettingsPage": {
         "title": "Project settings",
-        "desc": "Configure project properties"
+        "desc": "Configure project properties",
+        "form": {
+            "visibility": {
+                "title": "Project Visibility",
+                "public_desc": "Public projects are visible in search.",
+                "unlisted_desc": "Unlisted projects are published, but not visible in search.",
+                "private_desc": "Private projects are only accessible by members of the project.",
+                "placeholder": "Select visibility"
+            }
+        },
+        "toast": {
+            "success": "Project settings updated successfully"
+        },
+        "save": "Save"
+    },
+    "DevProjectSourceSettingsPage": {
+        "title": "Project settings - Source",
+        "desc": "Configure project source repository",
+        "save": "Save"
     },
     "DevProjectVersionsPage": {
         "title": "Project versions",
@@ -705,6 +720,11 @@
             "content": "Items",
             "tags": "Tags",
             "recipes": "Recipes"
+        },
+        "settings": {
+            "group": "Settings",
+            "general": "General",
+            "source": "Source"
         }
     },
     "PrefabObtaining": {

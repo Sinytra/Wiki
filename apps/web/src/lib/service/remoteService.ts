@@ -19,7 +19,6 @@ import commonNetwork, {ApiRouteParameters, RequestOptions} from '@repo/shared/co
 async function sendApiRequest(project: string, path: string, parameters?: ApiRouteParameters, options?: RequestOptions) {
   return network.sendSimpleRequest(path, {
     parameters,
-    userAuth: false, // Don't include cookies
     cache: {
       tags: [`backend:${project}`]
     },

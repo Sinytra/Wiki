@@ -8,19 +8,28 @@ import GetStartedContextProvider from "@/components/dashboard/dev/get-started/Ge
 import {trimText} from "@/lib/utils";
 import {cn} from "@repo/ui/lib/utils";
 import platforms, {PlatformProject} from "@repo/shared/platforms";
-import {AlertCircleIcon, CircleCheckIcon, HelpCircleIcon, LoaderCircleIcon, SettingsIcon, XIcon} from "lucide-react";
+import {
+  AlertCircleIcon,
+  CircleCheckIcon,
+  GlobeIcon,
+  HelpCircleIcon, Link2Icon,
+  LoaderCircleIcon, LockIcon,
+  SettingsIcon,
+  XIcon
+} from "lucide-react";
 import {setContextLocale} from "@/lib/locales/routing";
 import {Button} from "@repo/ui/components/button";
 import {SidebarTrigger} from "@repo/ui/components/sidebar";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
-import {DevProject} from "@repo/shared/types/service";
+import {DevProject, ProjectVisibility} from "@repo/shared/types/service";
 import ProjectRegisterForm from "@/components/dashboard/dev/modal/ProjectRegisterForm";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {WIKI_DOCS_URL} from "@repo/shared/constants";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {LocaleRouteParams} from "@repo/shared/types/routes";
 
 export const dynamic = 'force-dynamic';
 
@@ -88,15 +97,24 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectsListPage');
   const u = await getTranslations('ProjectStatus');
+  const v = await getTranslations('ProjectVisibility');
 
   const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectStatus.HEALTHY]: {text: 'text-secondary', iconClass: 'text-green-400/70', icon: CircleCheckIcon},
+    [ProjectStatus.HEALTHY]: {text: 'text-secondary', iconClass: 'text-secondary', icon: CircleCheckIcon},
     [ProjectStatus.AT_RISK]: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
     [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'text-warning animate-spin', icon: LoaderCircleIcon},
     [ProjectStatus.ERROR]: {text: 'text-destructive', iconClass: 'text-destructive', icon: XIcon},
     [ProjectStatus.UNKNOWN]: {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon}
   };
   const status = statuses[project.status || ProjectStatus.UNKNOWN];
+
+  const visibilities: { [key in ProjectVisibility]: { text: string; icon: any, iconClass?: string; } } = {
+    [ProjectVisibility.PUBLIC]: { text: 'text-secondary', iconClass: 'text-secondary', icon: GlobeIcon },
+    [ProjectVisibility.UNLISTED]: { text: 'text-secondary', iconClass: 'text-secondary', icon: Link2Icon },
+    [ProjectVisibility.PRIVATE]: { text: 'text-secondary', iconClass: 'text-secondary', icon: LockIcon },
+    [ProjectVisibility.UNKNOWN]:  {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon},
+  }
+  const visibility = visibilities[project.visibility];
 
   return (
     <div className={`
@@ -125,6 +143,10 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
 
         <div className="flex w-full flex-row flex-wrap gap-3">
           <div className="flex flex-row flex-wrap gap-4 gap-y-2 sm:gap-5">
+            <Property textClass={visibility.text} iconClass={visibility.iconClass} icon={visibility.icon}>
+              {v(project.visibility)}
+            </Property>
+
             <Property textClass={status.text} iconClass={status.iconClass} icon={status.icon}>
               {u(project.status || ProjectStatus.UNKNOWN)}
             </Property>
@@ -166,14 +188,14 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
               {t('empty.primary')}
             </span>
             <span className="text-secondary">
-            {t.rich('empty.secondary', {
-              guide: (chunks: any) => (
-                <LinkTextButton className="text-base! font-normal! text-primary! underline" href={WIKI_DOCS_URL}>
-                  {chunks}
-                </LinkTextButton>
-              )
-            })}
-          </span>
+              {t.rich('empty.secondary', {
+                guide: (chunks: any) => (
+                  <LinkTextButton className="text-base! font-normal! text-primary! underline" href={WIKI_DOCS_URL}>
+                    {chunks}
+                  </LinkTextButton>
+                )
+              })}
+            </span>
 
             <ClientLocaleProvider keys={['GetStartedButton']}>
                 <GetStartedButton/>
@@ -184,7 +206,7 @@ async function ProfileProjects({projects}: { projects: DevProject[] }) {
   )
 }
 
-export default async function DevPage(props: { params: Promise<{ locale: string; }> }) {
+export default async function DevPage(props: { params: Promise<LocaleRouteParams> }) {
   const params = await props.params;
   setContextLocale(params.locale);
   const projects = handleApiCall(await devProjectApi.getProjects());

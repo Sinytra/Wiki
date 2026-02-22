@@ -1,6 +1,6 @@
 'use client'
 
-import {projectEditSchema, projectRegisterSchema, updateGameDataSchema} from "@/lib/forms/schemas";
+import {projectUpdateSourceSchema, projectRegisterSchema, updateGameDataSchema} from "@/lib/forms/schemas";
 import projectApiClient from "@/lib/service/api/projectApiClient";
 import adminApiClient from "@/lib/service/api/adminApiClient";
 import forms, {asFormResponse, FormActionResult} from "@/lib/forms/forms";
@@ -25,7 +25,7 @@ async function handleRegisterProjectFormClient(rawData: any): Promise<FormAction
 }
 
 async function handleEditProjectFormClient(rawData: any) {
-  const validated = await forms.validateProjectFormData(rawData, projectEditSchema);
+  const validated = await forms.validateProjectFormData(rawData, projectUpdateSourceSchema);
   if (!validated.success) {
     return validated;
   }

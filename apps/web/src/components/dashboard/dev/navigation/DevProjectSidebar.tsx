@@ -3,14 +3,18 @@
 import * as React from 'react';
 import {useContext} from 'react';
 import {
-  ActivityIcon, AlertCircleIcon,
+  ActivityIcon,
+  AlertCircleIcon,
   ArrowLeftIcon,
   BoxIcon,
-  GitBranchIcon, HardDriveIcon,
+  ChevronDown,
+  GitBranchIcon,
+  HardDriveIcon,
   LayoutGridIcon,
   PencilRulerIcon,
   SettingsIcon,
-  TagsIcon, TriangleAlertIcon,
+  TagsIcon,
+  TriangleAlertIcon,
   UsersIcon
 } from 'lucide-react';
 import {
@@ -19,7 +23,10 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub
 } from "@repo/ui/components/sidebar";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
@@ -28,7 +35,10 @@ import {DevProjectSidebarContext} from "@/components/dashboard/dev/navigation/De
 import {DevProject} from "@repo/shared/types/service";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@repo/ui/components/collapsible";
+import DevSidebarMenuSubItem from "@/components/dashboard/dev/navigation/DevSidebarMenuSubItem";
 
+// TODO Cleanup
 interface Props extends React.ComponentProps<typeof Sidebar> {
   project: DevProject;
   platformProject: PlatformProject;
@@ -39,7 +49,9 @@ function SidebarProjectHeader({project, platformProject}: { project: DevProject;
   return (
     <div className="space-y-3 p-1">
       <LocaleNavLink href="/dev"
-            className="flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline">
+                     className={`
+                       flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline
+                     `}>
         <ArrowLeftIcon className="size-4"/>
         <span>Back</span>
       </LocaleNavLink>
@@ -82,7 +94,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               live={connected}
               extra={project.has_failing_deployment &&
                 <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
-                  <AlertCircleIcon className="size-4" />
+                    <AlertCircleIcon className="size-4"/>
                 </div>
               }
             />
@@ -93,17 +105,35 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               extra={project.issue_stats && (
                 project.issue_stats.error > 0 ?
                   <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
-                      <AlertCircleIcon className="size-4" />
+                    <AlertCircleIcon className="size-4"/>
                   </div>
-                 :
+                  :
                   project.issue_stats.warning > 0 &&
                   <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-warning">
-                      <TriangleAlertIcon className="size-4" />
+                      <TriangleAlertIcon className="size-4"/>
                   </div>
               )}
             />
             <DevSidebarMenuItem url={`${baseUrl}/members`} icon={UsersIcon} title={t('nav.members')}/>
-            <DevSidebarMenuItem url={`${baseUrl}/settings`} icon={SettingsIcon} title={t('nav.settings')}/>
+
+            <Collapsible className="group/collapsible">
+              <SidebarMenuItem>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton>
+                    <SettingsIcon/>
+                    {t('settings.group')}
+                    <ChevronDown
+                      className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"/>
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    <DevSidebarMenuSubItem url={`${baseUrl}/settings/general`} title={t('settings.general')}/>
+                    <DevSidebarMenuSubItem url={`${baseUrl}/settings/source`} title={t('settings.source')}/>
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
           </SidebarMenu>
         </SidebarGroup>
 
@@ -112,18 +142,18 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
             {t('groups.content')}
           </SidebarGroupLabel>
           <SidebarMenu>
-            <DevSidebarMenuItem url={`${baseUrl}/versions`} icon={GitBranchIcon} title={t('nav.versions')} disabled={disableContents}/>
-            <DevSidebarMenuItem url={`${baseUrl}/content/items`} icon={BoxIcon} title={t('nav.content')} disabled={disableContents}/>
+            <DevSidebarMenuItem url={`${baseUrl}/versions`} icon={GitBranchIcon} title={t('nav.versions')}
+                                disabled={disableContents}/>
+            <DevSidebarMenuItem url={`${baseUrl}/content/items`} icon={BoxIcon} title={t('nav.content')}
+                                disabled={disableContents}/>
             <DevSidebarMenuItem url={`${baseUrl}/content/tags`} icon={TagsIcon} title={t('nav.tags')}
                                 disabled={disableContents}
                                 matcher={RegExp(`^${baseUrl}/content/tags(/.*)?$`)}/>
-            <DevSidebarMenuItem url={`${baseUrl}/content/recipes`} icon={LayoutGridIcon} title={t('nav.recipes')} disabled={disableContents}/>
+            <DevSidebarMenuItem url={`${baseUrl}/content/recipes`} icon={LayoutGridIcon} title={t('nav.recipes')}
+                                disabled={disableContents}/>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      {/*<SidebarFooter>*/}
-      {/*  <DevSidebarUser profile={profile} logoutAction={logoutAction}/>*/}
-      {/*</SidebarFooter>*/}
     </Sidebar>
   )
 }

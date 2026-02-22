@@ -1,4 +1,5 @@
 import {z} from "zod";
+import {ProjectVisibility} from "@repo/shared/types/service";
 
 const zodStringError = (iss: any) => iss.input === undefined ? "This field is required." : undefined;
 
@@ -16,13 +17,17 @@ export const projectRegisterSchema = z.object({
   path: requiredString.startsWith('/')
 });
 
-export const projectEditSchema = z.object({
+export const projectUpdateSourceSchema = z.object({
   id: requiredString,
 
   repo: zodRepoUrl,
   branch: requiredString,
   path: requiredString.startsWith('/'),
   is_community: z.boolean().optional()
+});
+
+export const projectUpdateSchema = z.object({
+  visibility: z.enum([ProjectVisibility.PUBLIC, ProjectVisibility.PRIVATE, ProjectVisibility.UNLISTED])
 });
 
 export const projectReportSchema = z.object({

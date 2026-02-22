@@ -1,7 +1,6 @@
 import {setContextLocale} from "@/lib/locales/routing";
-import DevProjectSettings from "@/components/dashboard/dev/project/DevProjectSettings";
+import DevProjectSourceSettings from "@/components/dashboard/dev/project/DevProjectSourceSettings";
 import {getTranslations} from "next-intl/server";
-import {handleDeleteProjectForm} from "@/lib/forms/actions";
 import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
@@ -11,11 +10,13 @@ import LiveProjectDeployConnection from "@/components/dashboard/dev/project/Live
 import {ProjectStatus} from "@repo/shared/types/api/project";
 import authSession from "@/lib/authSession";
 import FormWrapper from "@/components/modal/FormWrapper";
+import {DevProjectRouteParams} from "@repo/shared/types/routes";
 
-export default async function DevProjectSettingsPage(props: { params: Promise<{ locale: string; project: string }> }) {
+export default async function DevProjectSourceSettingsPage(props: { params: Promise<DevProjectRouteParams> }) {
   const params = await props.params;
   setContextLocale(params.locale);
-  const t = await getTranslations('DevProjectSettingsPage');
+
+  const t = await getTranslations('DevProjectSourceSettingsPage');
   const project = handleApiCall(await devProjectApi.getProject(params.project));
   const token = (await authSession.getSession())?.token ?? null;
 
@@ -27,11 +28,8 @@ export default async function DevProjectSettingsPage(props: { params: Promise<{ 
 
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <FormWrapper keys={['ProjectRegisterForm', 'ProjectSettingsForm', 'ProjectDeleteForm']}>
-        <DevProjectSettings
-          project={project}
-          deleteFunc={handleDeleteProjectForm.bind(null, project.id)}
-        />
+      <FormWrapper keys={['ProjectRegisterForm', 'DevProjectSourceSettingsPage']}>
+        <DevProjectSourceSettings project={project}/>
       </FormWrapper>
     </div>
   );

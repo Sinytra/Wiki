@@ -47,6 +47,13 @@ export interface BaseProject {
 
 export type ProjectVersions = string[];
 
+export enum ProjectVisibility {
+  PUBLIC = 'public',
+  PRIVATE = 'private',
+  UNLISTED = 'unlisted',
+  UNKNOWN = 'unknown'
+}
+
 export interface Project extends BaseProject {
   is_public: boolean;
   versions?: ProjectVersions;
@@ -55,6 +62,7 @@ export interface Project extends BaseProject {
   status?: ProjectStatus;
   has_active_deployment?: boolean;
   access_level: ProjectMemberRole;
+  visibility: ProjectVisibility;
   created_at: string;
 }
 
