@@ -33,11 +33,11 @@ jobs:
       - run: npm install -g npm@latest
 
       - name: Install Dependencies
-        run: pnpm i --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Generate Version and Build
         run: ./build-previewer.sh
 
       - name: Publish to npm
         working-directory: build/output
-        run: pnpm publish --access public --provenance
+        run: pnpm publish --access public --provenance --no-git-checks

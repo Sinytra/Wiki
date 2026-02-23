@@ -54,7 +54,7 @@ npm pkg set version="$VERSION"
 npm pkg set scripts.build="next build"
 
 # Install
-pnpm install
+pnpm install --no-frozen-lockfile
 
 # Build
 cat <<EOF > .env
