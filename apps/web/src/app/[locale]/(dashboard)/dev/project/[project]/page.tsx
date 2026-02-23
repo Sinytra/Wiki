@@ -9,7 +9,6 @@ import {
   CloudyIcon,
   ExternalLinkIcon,
   GlobeIcon,
-  HardDriveIcon,
   HelpCircleIcon,
   InfoIcon,
   LoaderCircleIcon,
@@ -131,22 +130,16 @@ async function ProfileProject({project}: { project: DevProject }) {
         />
       </div>
 
-      <div className="flex flex-row flex-wrap items-center gap-4">
-        <LocaleNavLink href={`${project.id}/deployments`}>
-          <Button variant="outline" size="sm">
-            <HardDriveIcon className="mr-2 h-4 w-4"/>
-            {t('toolbar.deployments')}
-          </Button>
-        </LocaleNavLink>
+      <div className="flex flex-row flex-wrap items-center justify-end gap-4">
         <LocaleNavLink href={navigation.getProjectLink(project.id)} target="_blank">
-          <Button variant="outline" size="sm">
+          <Button size="sm">
             <ExternalLinkIcon className="mr-2 h-4 w-4"/>
             {t('toolbar.view')}
           </Button>
         </LocaleNavLink>
       </div>
 
-      <hr className="my-2"/>
+      <hr className="my-1"/>
 
       <div className="flex flex-row flex-wrap justify-between gap-5">
         <ProjectInfo project={project}/>
