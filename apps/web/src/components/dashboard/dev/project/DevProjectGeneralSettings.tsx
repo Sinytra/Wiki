@@ -11,7 +11,7 @@ import * as React from "react";
 import {useRouter} from "@/lib/locales/routing";
 import {DevProject, ProjectVisibility} from "@repo/shared/types/service";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
-import {FormActionResult} from "@/lib/forms/forms";
+import {FormActionResult, useFormHandlingAction} from "@/lib/forms/forms";
 import {toast} from "sonner";
 
 interface Props {
@@ -74,22 +74,9 @@ export default function DevProjectGeneralSettings({project, formAction}: Props) 
   const u = useTranslations('DevProjectSettingsPage');
   const router = useRouter();
 
-  const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await formAction(data) as any;
-
-    if (resp.success) {
-      toast.success(u('toast.success'));
-      router.refresh();
-    } else if (resp.error) {
-      // @ts-expect-error expected
-      form.setError('root.custom', {message: t(`errors.${resp.error}`), details: resp.details});
-    } else if (resp.errors) {
-      for (const key in resp.errors) {
-        // @ts-expect-error expected
-        form.setError(key, {message: t(`errors.${resp.errors[key][0]}`)});
-      }
-    }
-    return resp;
+  const action = useFormHandlingAction(form, formAction, () => {
+    toast.success(u('toast.success'));
+    router.refresh();
   });
 
   return (

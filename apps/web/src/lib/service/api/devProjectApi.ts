@@ -1,6 +1,6 @@
 import network from "@repo/shared/network";
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
-import {DevProject} from "@repo/shared/types/service";
+import {DevProject, ProjectFlag} from "@repo/shared/types/service";
 import cacheUtil from "@/lib/cacheUtil";
 import {
   DevProjectDeployments,
@@ -55,6 +55,10 @@ async function deleteDeployment(id: string): Promise<ApiCallResult<PartialDevPro
   return result;
 }
 
+async function removeProjectFlag(projectId: string, flag: ProjectFlag): Promise<ApiCallResult> {
+  return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/flags/${flag}`, { method: 'DELETE'}));
+}
+
 async function getProjectMembers(projectId: string): Promise<ApiCallResult<ProjectMembersData>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/members`))
 }
@@ -102,5 +106,6 @@ export default {
   getProjectContentRecipes,
   getProjectMembers,
   addProjectMember,
-  removeProjectMember
+  removeProjectMember,
+  removeProjectFlag
 };

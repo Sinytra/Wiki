@@ -27,7 +27,7 @@ import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPa
 import DevProjectSectionTitle from "@/components/dashboard/dev/project/DevProjectSectionTitle";
 import ProjectGitRevision from "@/components/dashboard/dev/project/ProjectGitRevision";
 import {ProjectPlatform} from "@repo/shared/types/platform";
-import {DevProject, Project} from "@repo/shared/types/service";
+import {DevProject, Project, ProjectFlag} from "@repo/shared/types/service";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {ProjectStatus} from "@repo/shared/types/api/project";
@@ -37,6 +37,7 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import authSession from "@/lib/authSession";
 import navigation from "@/lib/navigation";
 import DataField from "@/components/util/DataField";
+import NewProjectBanner from "@/components/dashboard/dev/banner/NewProjectBanner";
 
 export const dynamic = 'force-dynamic';
 
@@ -104,6 +105,8 @@ async function ProfileProject({project}: { project: DevProject }) {
   return (
     <div className="flex flex-col justify-between gap-3 py-1">
       <DevProjectPageTitle title={u('title')} desc={u('desc')}/>
+
+      {project.flags.includes(ProjectFlag.UNPUBLISHED) && <NewProjectBanner projectId={project.id}/>}
 
       <div
         className="flex w-full flex-row gap-4 rounded-md border border-tertiary bg-primary-alt p-4">

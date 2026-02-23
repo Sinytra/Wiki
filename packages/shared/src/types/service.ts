@@ -66,6 +66,11 @@ export interface Project extends BaseProject {
   created_at: string;
 }
 
+export enum ProjectFlag {
+  UNPUBLISHED = 'unpublished',
+  UNKNOWN = 'unknown'
+}
+
 export interface DevProject extends Project {
   source_repo: string;
   source_branch: string;
@@ -73,6 +78,7 @@ export interface DevProject extends Project {
   revision: ProjectRevision;
   issue_stats?: ProjectIssueStats;
   has_failing_deployment: boolean;
+  flags: ProjectFlag[];
 }
 
 export type ProjectLicense = ({ id: string } | { name: string }) & { url?: string | null };

@@ -2,6 +2,9 @@ import network from "@repo/shared/network";
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
 import {ProjectSearchResults} from "@repo/shared/types/service";
 import {time} from "@repo/shared/constants";
+import {revalidateTag} from "next/cache";
+
+const SEARCH_PROJECTS_TAG = 'search-projects';
 
 interface SearchProjectsParameters extends ApiRouteParameters {
   query: string;
@@ -15,12 +18,17 @@ async function searchProjects(parameters: SearchProjectsParameters): Promise<Api
     parameters,
     userAuth: false,
     cache: {
-      tags: ['search-projects'],
+      tags: [SEARCH_PROJECTS_TAG],
       revalidate: time.ONE_MINUTE * 15
     }
   }))
 }
 
+function invalidateBrowseSearch() {
+  revalidateTag(SEARCH_PROJECTS_TAG);
+}
+
 export default {
-  searchProjects
+  searchProjects,
+  invalidateBrowseSearch
 };

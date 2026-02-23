@@ -19,18 +19,37 @@ import projectApi from "@/lib/service/api/projectApi";
 import moderationApi from "@/lib/service/api/moderationApi";
 import adminApi, {AccessKeyCreationResult} from "@/lib/service/api/adminApi";
 import forms, {asFormResponse, FormActionResult} from "@/lib/forms/forms";
+import {ProjectFlag, ProjectVisibility} from "@repo/shared/types/service";
+import browseApi from "@/lib/service/api/browseApi";
 
 export async function handleDeleteProjectForm(id: string): Promise<FormActionResult> {
   const response = await projectApi.deleteProject(id);
   if (!response.success) {
     return response;
   }
+  browseApi.invalidateBrowseSearch();
   cacheUtil.invalidateDocs(id);
   return {success: true, data: null};
 }
 
 export async function handleUpdateProjectSettingsForm(id: string, rawData: any): Promise<FormActionResult> {
+  browseApi.invalidateBrowseSearch();
+
   return forms.handleDataForm(projectUpdateSchema, rawData, (data) => devProjectApi.updateProject(id, data));
+}
+
+export async function handlePublishProject(id: string): Promise<FormActionResult> {
+  await devProjectApi.removeProjectFlag(id, ProjectFlag.UNPUBLISHED);
+  const response = await devProjectApi.updateProject(id, { visibility: ProjectVisibility.PUBLIC });
+
+  browseApi.invalidateBrowseSearch();
+
+  return asFormResponse(response);
+}
+
+export async function handleRemoveProjectFlag(id: string, flag: ProjectFlag): Promise<FormActionResult> {
+  const response = await devProjectApi.removeProjectFlag(id, flag);
+  return asFormResponse(response);
 }
 
 export async function handleRevalidateDocs(id: string): Promise<FormActionResult> {

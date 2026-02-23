@@ -1140,5 +1140,11 @@
         "submit": "Submit",
         "submitting": "Submitting...",
         "cancel": "Cancel"
+    },
+    "NewProjectBanner": {
+        "title": "Ready when you are",
+        "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
+        "submit": "Publish",
+        "success": "Project visibility set to public"
     }
 }
