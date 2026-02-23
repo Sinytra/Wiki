@@ -14,6 +14,7 @@ import {
   ProjectContentTree,
   ProjectContext,
   ProjectSearchResults,
+  ProjectVisibility,
   ProjectWithInfo,
   ResolvedGameRecipe,
   ResolvedGameRecipeType,
@@ -96,7 +97,8 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectWi
       pageCount: filePages.length,
       contentCount: fileContentPages.length
     },
-    access_level: ProjectMemberRole.OWNER
+    access_level: ProjectMemberRole.OWNER,
+    visibility: ProjectVisibility.PUBLIC
   };
 }
 
@@ -133,7 +135,8 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
       local: true,
       type: platformProject.type,
       created_at: '',
-      access_level: ProjectMemberRole.OWNER
+      access_level: ProjectMemberRole.OWNER,
+      visibility: ProjectVisibility.PUBLIC
     };
     const file = await localDocs.readDocsFile(src, path, ctx.locale || undefined, optional);
     if (file) {
