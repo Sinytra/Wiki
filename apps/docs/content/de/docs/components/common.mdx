@@ -1,0 +1,210 @@
+import {Callout} from 'nextra/components';
+import {SquirrelIcon} from 'lucide-react';
+
+# Allgemeine Komponenten
+
+Verfügbare Komponenten:
+
+- [Video-Einbettungen](#video-einbettungen)
+- [Code-Blöcke](#code-blöcke)
+- [Hervorhebungen](#callout)
+- [Code-Tabs](#codetabs)
+- [Icons](#icons)
+
+Nur als Referenz:
+
+- [Spielinhalte](#spielinhalte)
+- [Rezepte](#rezepte)
+- [Navigation](#navigation)
+
+## Integriert
+
+### Video-Einbettungen
+
+Bette YouTube-Videos mit der Komponente `VideoEmbed` ein. Um diese Komponente zu nutzen, benötigst du die ID des Videos, das du einbetten möchtest. Diese lässt sich leicht aus dem `v`-Parameter der Video-URL kopieren.
+
+Beispiel: Die ID für `https://www.youtube.com/watch?v=Y_WnAEKoeA4` ist `Y_WnAEKoeA4`.
+
+Diese ID kannst du dann direkt an die Komponente übergeben, wie unten gezeigt.
+
+```mdx
+<VideoEmbed id="Y_WnAEKoeA4"/>
+```
+
+### Code-Blöcke
+
+Code-Blöcke im Wiki sind mit Syntax-Highlighting ausgestattet und können optional auch einen Dateinamen anzeigen.
+
+````md
+<!-- Mit Sprache und Dateiname -->
+```json my-file.json
+{
+    "id": "hello-world"
+}
+```
+
+<!-- Nur Sprache -->
+```json
+{
+    "id": "hello-world"
+}
+```
+````
+
+## Gestaltung
+
+### `Callout`
+
+Lenke die Aufmerksamkeit des Lesers mit Hervorhebungen auf bestimmte Informationen.
+
+#### Eigenschaften
+
+- `variant`
+  - Kann einer der folgenden Werte sein: [`default`, `info`, `warning`, `danger`]<br/>(Standard: `default`)
+- `title`
+  - Benutzerdefinierter Titel, der angezeigt werden soll. Optional.
+
+#### Code
+
+```jsx
+<Callout>
+    Dies ist eine Standard-Hervorhebung.
+</Callout>
+
+<Callout variant="info">
+    Dies ist ein Info-Hervorhebung.
+</Callout>
+```
+
+### `CodeTabs`
+
+Das Wiki implementiert die [CodeTabs](https://codehike.org/docs/code/tabs)-Komponente von CodeHike, wie unten gezeigt.
+
+Dies ist nützlich, wenn du separate Varianten für Gradle/Kotlin-DSL-Code in der Entwickler-Dokumentation zeigen möchtest.
+
+#### Code
+
+````jsx
+<CodeTabs>
+
+```js !!tabs main.js
+function lorem(ipsum, dolor = 1) {
+    const sit = ipsum == null ? 0 : ipsum.sit
+    dolor = sit - amet(dolor)
+    return sit ? consectetur(ipsum) : []
+}
+```
+
+```css !!tabs styles.css
+body {
+    margin: 0;
+    padding: 0;
+}
+```
+
+</CodeTabs>
+````
+
+## Spielinhalte
+
+### `Asset`
+
+<Callout type="important">
+    Es wird empfohlen, die Kurzschreibweise für [Asset-Syntax](../folder_structure/pages#erweiterungen) zu verwenden, um Bilder anzuzeigen.
+</Callout>
+
+Zeigt ein [Asset](../folder_structure/assets)-Bild an.
+
+#### Eigenschaften
+
+- `location`*
+  - Die ID des Assets, das du anzeigen möchtest.
+
+Zusätzlich werden alle Attribute des `img`-Tags (außer `src`) akzeptiert.
+
+#### Code
+
+```jsx
+<Asset width={64} height={64} location="minecraft:furnace" title="Ofen" />
+```
+
+## Icons
+
+Die gesamte Kollektion der [Lucide Icons](https://lucide.dev/icons/) steht in den Dokumentationsdateien über React-Komponenten zur Verfügung.
+
+Die Namen der Komponenten bestehen aus dem Namen des Icons (den du auf der Website finden oder durch Umwandlung der Icon-ID in PascalCase ableiten kannst, z. B. `align-vertical-justify-start` -> `AlignVerticalJustifyStart`) und dem Suffix `Icon`.
+
+Alle von [Lucide React](https://lucide.dev/guide/packages/lucide-react) unterstützten Eigenschaften sind ebenfalls verfügbar.
+
+### Code
+
+```jsx
+<SquirrelIcon width={64} height={64} strokeWidth={1} />
+```
+
+### Ergebnis
+
+<SquirrelIcon width={64} height={64} strokeWidth={1} className="mt-5" />
+
+## Rezepte
+
+<Callout type="important">
+    Verwende auf Inhaltsseiten bevorzugt die [Prefab-Komponenten](interactive#prefab), um Herstellung und Verwendung anzuzeigen.
+</Callout>
+
+### `ProjectRecipe`
+
+Zeigt ein interaktives [Rezept](../folder_structure/game_data#rezepte) für ein einzelnes Item an. Dies entspricht dem Drücken von `R` in Rezeptanzeigen im Spiel.
+
+#### Eigenschaften
+
+- `id`*
+  - Die ID des anzuzeigenden Rezepts.
+
+### `RecipeUsage`
+
+Zeigt eine Liste von Items an, die durch [Rezepte](../folder_structure/game_data#rezepte) unter Verwendung dieses Items hergestellt oder erhalten werden können. Dies entspricht dem Drücken von `U` in Rezeptanzeigen im Spiel.
+
+#### Eigenschaften
+
+- `id`*
+  - Die ID des Items, dessen Verwendung angezeigt werden soll.
+
+## Navigation
+
+<Callout type="important">
+    Diese Komponenten werden hier der Vollständigkeit halber aufgeführt; es wird jedoch empfohlen, das Kurzformat für [Links](../folder_structure/pages#erweiterungen) zu verwenden, um auf andere Seiten zu verweisen.
+</Callout>
+
+Hilfskomponenten, um die Navigation zwischen Seiten zu erleichtern, auch für Verweise auf Vanilla-Inhalte.
+
+### `DocsLink`
+
+Ermöglicht das Verlinken auf Dokumentationsseiten innerhalb desselben Projekts.
+
+Die Komponente benötigt ein Attribut namens `path`, welches den Pfad zur Zielseite relativ zum Projekt-Root angibt.
+
+Du kannst den Textinhalt weglassen, um stattdessen den Seitentitel anzuzeigen.
+
+```mdx
+<DocsLink path="getting_started/first_steps"/>
+```
+
+### `ContentLink`
+
+Diese Komponente erlaubt es dir, jedes In-Game-Objekt über seine ID zu referenzieren (einschließlich Vanilla-Items) und erstellt einen Link zur entsprechenden Seite, sofern diese existiert.
+
+Die Komponente benötigt ein Attribut namens `id`, welches das Ziel-Item spezifiziert. Dies kann ein Item aus dem aktuellen Projekt oder aus Vanilla Minecraft sein.
+
+Projekt-Inhaltsseiten werden basierend auf dem `id`-Attribut im [Frontmatter](../folder_structure/pages/content_pages#metadaten) zugeordnet. Bei Items, die nicht aus Vanilla stammen, kann der Linktext weggelassen werden, um automatisch den Seitentitel anzuzeigen.
+
+```mdx
+{/* Verlinkt auf https://minecraft.wiki/w/redstone */}
+<ContentLink id="redstone">Redstone</ContentLink>
+
+{/* Zeigt "Electric Furnace" an, verlinkt auf die Inhaltsseite im selben Projekt */}
+<ContentLink id="examplemod:electric_furnace" />
+
+{/* Wie oben – mit benutzerdefiniertem Anzeigetext */}
+Klicke <ContentLink id="examplemod:electric_furnace">hier</ContentLink>, für mehr Infos.
+```

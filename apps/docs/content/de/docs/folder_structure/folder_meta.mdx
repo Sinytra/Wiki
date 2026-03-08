@@ -1,0 +1,68 @@
+import {FileTree, Callout} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+import FormatHeader from '@/components/FormatHeader.tsx';
+
+# Ordner-Metadaten
+
+Ordner-Metadaten liefern zusätzliche Informationen für Seiten, wie zum Beispiel:
+
+- Die **Anzeigenamen** von Ordnern und Dateien. Falls keine angegeben werden, nutzt das Wiki automatisch generierte Namen oder die Seitentitel.
+
+- Die **Sortierung** in der Seitenleiste. Standardmäßig werden Ordner zuerst angezeigt, gefolgt von normalen Dateien, jeweils alphabetisch sortiert.
+
+Um potenzielle Anzeigefehler zu vermeiden, empfehlen wir, **immer** vollständige Ordner-Metadaten in deiner Dokumentation bereitzustellen.
+
+## Platzierung
+
+Ordner-Metadaten werden in einer Datei namens `_meta.json` gespeichert. Diese kann **in jedem beliebigen Ordner** innerhalb des Dokumentationsverzeichnisses platziert werden, **einschließlich des Root-Verzeichnisses** selbst (z. B. auf derselben Ebene wie die `sinytra-wiki.json`).
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
+        <FileTreeFile name="_meta.json"/>
+    </FileTreeFolder>
+</FileTree>
+
+<FormatHeader schema="_meta">Dateiformat</FormatHeader>
+
+Die Ordner-Metadatendatei besteht aus Schlüssel-Wert-Paaren, wobei die Schlüssel den Namen einer Datei oder eines Ordners repräsentieren und die Werte deren Anzeigenamen sind.
+
+Bei Dateinamen muss der vollständige Name inklusive Dateiendung angegeben werden.
+
+Du kannst den Wert bei **Seitennamen** leer lassen, um den Titel der Seite als Anzeigenamen zu verwenden.
+
+<Callout type="warning">
+    Die Angabe von verschachtelten Pfaden wird nicht unterstützt – erstelle stattdessen eine eigene Metadatendatei im jeweiligen Unterordner.
+</Callout>
+
+Beispiel:
+
+```json filename="_meta.json"
+{
+    "blocks": "Blöcke",
+    "items": "Benutzerdefinierter Ordnername",
+
+    "introduction.mdx": "",
+    "getting_started.mdx": "Eigener Seitenname"
+}
+```
+
+## Icons
+
+Du kannst Icons für jeden Metadaten-Eintrag hinzufügen, die in der Navigations-Sidebar angezeigt werden. Wandle dazu den Wert in ein Objekt um und gib den Namen des Icons wie unten gezeigt an.
+
+Der angegebene Icon-Name sollte ein [Lucide-Icon](https://lucide.dev/icons/) Komponentenname sein (ohne das Suffix `Icon`).
+
+Um das Icon für einen Ordner komplett auszublenden, gib `null` an.
+
+```json filename="_meta.json"
+{
+    "blocks": {
+        "name": "Blöcke",
+        "icon": "Box"
+    }
+}
+```

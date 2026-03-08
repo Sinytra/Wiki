@@ -1,0 +1,205 @@
+---
+asIndexPage: true
+---
+
+import InlineGameItem from '@/components/InlineGameItem';
+
+# Seiten
+
+Seitendateien werden verwendet, um die eigentlichen Dokumentationstexte für deine Projekte zu schreiben.
+
+## Seitentypen
+
+Es gibt zwei Arten von Seiten im Wiki, die beide **gleichzeitig** genutzt werden können.
+
+### <InlineGameItem id="grass_block" /> [Inhaltsseiten](pages/content_pages)
+
+- Zu finden unter dem Reiter „Inhalte“ im Wiki
+
+- Traditioneller [Wiki-Stil](https://minecraft.wiki/w/Furnace)
+
+- Keine feste Lesereihenfolge
+
+- Empfohlen für alle **In-Game-Inhalte** wie Blöcke, Items, Entities usw.
+
+Inhaltsseiten ermöglichen es dir, interaktiv auf Spielinhalte zu verweisen, und bieten eine breitere Palette an Komponenten, die du nutzen kannst.
+
+### <InlineGameItem id="book" /> [Dokumentationsseiten](pages/docs_pages)
+
+- Zu finden unter dem Reiter „Dokumentation“ im Wiki
+
+- Enthalten leitfadenähnliche Dokumentationen, ähnlich wie diese Website, auf der du dich gerade befindest
+
+- Vorgegebene Lesereihenfolge
+
+- Empfohlen für **Anleitungen** (Guides) und API- / **Entwickler-Dokumentation**
+
+## Format
+
+Das Wiki verwendet [MDX](https://mdxjs.com/) als Format für die Dokumentation. Zusätzlich ist [GitHub Flavored Markdown](https://github.github.com/gfm/) (GFM) über [`remark-gfm`](https://github.com/remarkjs/remark-gfm) verfügbar.
+
+Falls du mit MDX noch nicht vertraut bist, keine Sorge – es ist im Grunde eine Erweiterung des einfachen [Markdown](https://www.markdownguide.org/)-Formats um JSX-Funktionen. Das bedeutet, du kannst schicke eigene Komponenten in deine Dokumentation einbinden, wie zum Beispiel Crafting-Rezepte.
+
+Diese Funktionen sind rein optional. Du kannst in deiner Dokumentation auch jederzeit bei Standard-Markdown bleiben. Die Dateiendung muss jedoch zwingend `.mdx` lauten.
+
+### Erweiterungen
+
+Wir bieten ein paar nützliche Markdown-Erweiterungen an.
+
+#### Asset-Bilder
+
+Du kannst jedes [Asset](assets)-Bild mit der nativen Markdown-Syntax anzeigen, indem du dem [Pfad des Assets](assets#format) ein `@` voranstellst.
+
+Beispiel:
+```md
+<!-- Wird anzeigen: <root>/.assets/examplemod/generator.png -->
+![](@examplemod:generator)
+```
+
+#### Links zu Inhaltsseiten
+
+Um auf [Inhaltsseiten](pages/content_pages) zu verlinken, verwende das `id`-Attribut aus den Metadaten der Zielseite mit einem vorangestellten `@`.
+
+Beispiel:
+```md
+<!-- Verwendet Seitentitel als Linktext -->
+[](@examplemod:electric_furnace)
+
+<!-- Verwendet benutzerdefinierten Linktext -->
+Klicke [hier](@examplemod:electric_furnace), um mehr zu erfahren.
+```
+
+#### Links zu Dokumentationsseiten
+
+Um auf [Dokumentationsseiten](pages/docs_pages) zu verlinken, verwende den Pfad der Seite (relativ zum Projekt-Root) mit einem vorangestellten `$`.
+
+Beispiel:
+```md
+<!-- Verwendet Seitentitel als Linktext -->
+[]($tutorials/getting_started)
+
+<!-- Verwendet benutzerdefinierten Linktext -->
+Klicke [hier]($tutorials/getting_started), um das erste Tutorial zu lesen.
+```
+
+### Einschränkungen
+
+Da MDX potenziell unerwünschte Code-Injektionen auf dem Server ermöglichen könnte, bereinigen wir alle Quellen vor dem Rendern. Dies kann dazu führen, dass bestimmte MDX-Funktionen nicht verfügbar sind. Falls es jedoch ein sicheres Feature gibt, das du gerne nutzen möchtest, eröffne bitte ein Issue in unserem [GitHub-Repository](https://github.com/Sinytra/Wiki/issues).
+
+## Metadaten
+
+Metadaten für Markdown-Seiten, auch bekannt als **Frontmatter**, werden vom Wiki genutzt, um zusätzliche Informationen über eine Seite oder einen Spielinhalt bereitzustellen. Sie befinden sich ganz am Anfang jeder Datei im YAML-Format.
+
+Informationen aus dem Frontmatter werden in der rechten Sidebar jeder Seite unter „Informationen“ angezeigt. Normalerweise umfasst dies ein Icon des Blocks/Items zusammen mit Name, ID, Ursprungsprojekt und anderen praktischen Infos.
+
+Falls deine Seite nicht auf ein spezifisches Objekt bezogen ist, kannst du alle Metadaten ausblenden und deren Werte (außer `title`) ignorieren, indem du `hide_meta: true` setzt.
+
+```markdown
+---
+title: Hallo Welt
+---
+
+Hier kommt der Inhalt hin
+```
+
+Hier ist eine Übersicht der unterstützten Attribute:
+
+- `title` - Anzeigename der Seite, der in der Hauptüberschrift und im Browser-Tab erscheint.<br/>Falls eine `h1`-Überschrift im Text vorhanden ist, wird diese stattdessen verwendet.
+  - Typ: `string`
+  - Beispiel: `Schicker Block`
+- `hide_meta` - Blendet die Metainformationen in der Sidebar aus. Alle anderen Attribute werden dadurch ignoriert.
+  - Typ: `boolean`
+- `id` - Der In-Game Identifier des Inhalts. Wenn ein passendes Asset mit derselben ID im Asset-Ordner gefunden wird, wird dieses automatisch als `icon` verwendet.
+  - Typ: Identifier
+  - Beispiel: `examplemod:generator`
+- `icon` - Identifier eines Assets, das als Icon angezeigt werden soll. Die Größe sollte mindestens 128x128 Pixel betragen.
+  - Typ: Identifier
+  - Beispiel: `examplemod:fancy_generator`
+- `hide_icon` - Blendet das Icon aus und zeigt stattdessen einen Standard-Platzhalter.
+  - Typ: `boolean`
+- `type` - Kann `block`, `item` oder `other` sein.
+  - Typ: `string`
+- `custom` - Eine Liste von eigenen Attributen, die du in der Sidebar anzeigen möchtest.
+  - Typ: `string` -> `string` Map
+  - Beispiel:
+  ```yaml
+  custom:
+    Kategorie: Maschinen
+  ```
+- `history`
+  - Zeigt ein Changelog der Änderungen am Seiteninhalt oder dem Item an.
+  - Erklärung siehe [unten](#changelog).
+
+<details>
+    <summary>Vollständiges Metadaten-Beispiel anzeigen</summary>
+
+    ```markdown
+    ---
+    title: Generator
+    id: examplemod:generator
+    icon: examplemod:fancy_generator
+    type: block
+    custom:
+      Unterkategorie: Maschinen
+    history:
+      - version: 1.2b
+        date: 15.08.2025
+        changes:
+          - Bugfixes
+          - Mehr Datengenerierung hinzugefügt
+      - 1.1: Implementierung benutzerdefinierter Zutaten korrigiert
+      - 1.0: Hinzugefügt
+    ---
+
+    Hier kommt der Inhalt hin
+    ```
+</details>
+
+## Eigene Komponenten
+
+Siehe die Seite [Komponenten](../components/overview).
+
+## Changelog
+
+Ein Changelog dient als Liste von Änderungen am Thema der Seite unter dem Frontmatter-Attribut `history`.
+
+Es wird am Ende der Seite als ausklappbares Element (bei Inhaltsseiten) oder als umschaltbarer Tab im Seitentitel (bei Dokumentationsseiten) angezeigt.
+
+### Format
+
+Es gibt zwei Arten, Changelog-Einträge zu schreiben:
+
+**1) Vereinfacht**
+
+Ein Schlüssel-Wert-Paar, bei dem der Schlüssel die Versionsnummer und der Wert die Beschreibung der Änderungen ist.
+
+```yaml
+- 5.6: Überhitzung der Leertaste behoben
+```
+
+**2) Detailliert**
+
+Die detaillierte Syntax erlaubt die Angabe eines Datums und mehrerer Änderungspunkte pro Version.
+
+```yaml
+- version: 1.2b
+  date: 15.08.2025
+  changes:
+    - Beispieländerung
+    - Mehr Datengenerierung hinzugefügt
+```
+
+### Beispiel
+
+```yaml
+history:
+  # Detaillierter Eintrag
+  - version: 1.2b
+    date: 15.08.2025
+    changes:
+      - Beispieländerung
+      - Mehr Datengenerierung hinzugefügt
+  # Einfache Einträge
+  - 1.1: Eine beliebige Änderung
+  - 1.0: Hinzugefügt
+```

@@ -1,0 +1,33 @@
+# Lokale Vorschau
+
+Das Wiki bietet ein lokales Vorschau-Tool an. Damit kannst du eine nahezu identische Vorschau deiner Dokumentation direkt auf deinem Rechner aufrufen, bevor sie offiziell auf der Website veröffentlicht wird.
+
+## Voraussetzungen
+
+Um die lokale Vorschau zu nutzen, müssen folgende Bedingungen erfüllt sein:
+
+- [x] Installiere das [Gradle-Plugin](gradle) des Wikis in deinem Projekt.
+
+<p/>
+
+- [x] Installiere [Node.js](https://nodejs.org) Version **24 oder höher** auf deinem System.
+
+## Verwendung
+
+Um die lokale Vorschau zu starten, führe den Gradle-Task `previewDocs` aus. Dieser richtet die lokale Wiki-Umgebung ein und startet sie.
+
+Sobald der Vorgang abgeschlossen ist, ist die Vorschau unter `http://localhost:3000` erreichbar.
+
+## Bekannte Probleme
+
+Die Verwendung von `org.gradle.daemon=false` verhindert, dass der npm-Task beendet wird, wenn Gradle gestoppt wird, wodurch er im Hintergrund weiterläuft. Bitte überprüfe deine `gradle.properties`-Datei und stelle sicher, dass diese Eigenschaft entweder auf `true` gesetzt oder komplett entfernt ist.
+
+## Einschränkungen
+
+Aufgrund technischer Limitierungen sind bestimmte Funktionen in der lokalen Vorschau eventuell nicht verfügbar. An deren Stelle werden, wo möglich, Platzhalter angezeigt.
+
+Dies betrifft unter anderem:
+
+- CurseForge-Projektinformationen (aufgrund von API-Beschränkungen seitens CurseForge).
+
+- Spieldaten wie Rezepte und Tags.
