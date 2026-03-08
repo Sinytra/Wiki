@@ -1,0 +1,116 @@
+import { Callout } from 'nextra/components';
+
+# Veröffentlichung
+
+Hier erfährst du, wie du deine Dokumentation auf unserer Website veröffentlichst!
+
+## Entwickler-Portal
+
+Du erreichst unser [Entwickler-Portal](https://moddedmc.wiki/dev), indem du auf der Startseite auf die Schaltfläche `Dashboard öffnen` klickst oder den Link `Entwickler` im Footer nutzt.
+
+### Erste Anmeldung
+
+Wenn du dich zum ersten Mal anmeldest, wirst du zur Login-Seite weitergeleitet, auf der du dich mit deinem **GitHub-Account** einloggen kannst.
+
+GitHub wird dich bitten, unsere GitHub-App zu autorisieren. Wir benötigen nur minimale Berechtigungen, um deine Identität zu verifizieren und deine Zugriffsrechte auf Repositories zu prüfen. Sobald du die Anfrage bestätigt hast, wirst du automatisch zum Entwickler-Portal weitergeleitet.
+
+## Inhaberschaft verifizieren
+
+<Callout type="important">
+    Stelle sicher, dass die URLs deiner Plattform-Projekte (CurseForge/Modrinth) zum Zeitpunkt der Registrierung auf die Adresse deines Repositories verweisen, damit die Verifizierung erfolgreich ist.
+</Callout>
+
+Das Wiki nutzt einen einfachen Prozess zur Prüfung der Inhaberschaft, um die Erstellung von Projekten zu autorisieren. Dies geschieht in zwei Schritten beim Hinzufügen des Projekts oder später beim Aktualisieren der Projekteinstellungen:
+
+- Abgleich der Quellcode-URLs deiner Plattform-Projekte (CurseForge/Modrinth) mit der Repository-URL des Wiki-Projekts.
+
+- Abgleich des Benutzernamens des GitHub-Accounts, mit dem du eingeloggt bist, mit dem `owners`-Array in den [Metadaten](../folder_structure/wiki_meta) deines Wiki-Projekts.
+
+### Wo man die Quellcode-URL einstellt
+
+<details>
+    <summary>Hilfe für Modrinth-Projekte ausklappen</summary>
+
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Reiter `Links`.
+    3. Gib die Repository-URL im Feld `Source code` ein.
+    4. Speichere die Änderungen.
+
+    ![MR Source](/mr_src_url.png)
+</details>
+<p/>
+<details>
+    <summary>Hilfe für CurseForge-Projekte ausklappen</summary>
+
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Reiter `Source`.
+    3. Gib die Repository-URL im Feld `Repository URL` ein.
+    4. Speichere die Änderungen.
+
+    ![CF Source](/cf_src_url.png)
+</details>
+
+## Projekte registrieren
+
+Um ein neues Projekt im Wiki zu erstellen, klicke auf die Schaltfläche `Neues Projekt`. Es öffnet sich ein Dialogfenster, in dem du folgende Informationen ausfüllen musst:
+
+- `Repository-URL`
+  - Die Webadresse, die du zum Klonen deines Repositories verwendest. Beachte, dass sie die Endung `.git` **nicht** enthalten darf.
+  - Beispiel: `https://github.com/beispielnutzer/Beispielmod`
+
+- `Branch`
+  - Der Standard-Branch, von dem die Wiki-Projektinformationen geladen werden sollen. Zusätzliche Branches kannst du in deiner [Wiki-Metadaten](../folder_structure/wiki_meta#versionierung)-Datei festlegen.
+  - Beispiel: `master`
+
+- `Pfad zum Dokumentationsstamm`
+  - Der Pfad zum Root-Verzeichnis der Dokumentation innerhalb des Repositories. Er sollte mit einem führenden `/` beginnen.
+  - Beispiel: `/docs`
+
+Sobald du alles ausgefüllt hast, klicke auf `Einreichen`, um den Registrierungsprozess abzuschließen.
+
+## Fehlerbehebung
+
+<Callout>
+    Wenn du deinen Standard-Branch auf GitHub änderst (z. B. beim Portieren auf neuere Versionen), vergiss nicht, den Quell-Branch auch in den Wiki-Projekteinstellungen zu aktualisieren, damit die Website immer die aktuellste Version anzeigt.
+</Callout>
+
+Hier findest du eine Liste häufiger Probleme, die bei der Registrierung auftreten können. Falls dein Problem nicht aufgeführt ist, kontaktiere uns bitte auf [Discord](https://discord.sinytra.org).
+
+### Projektbesitz konnte nicht verifiziert werden
+*(Failed to verify project ownership)*
+
+- **Mögliche Ursache:** Dein Projekt auf der Hosting-Plattform (Modrinth/CurseForge) enthält keinen Link zum Quellcode (Source Code), der auf dein Repository verweist.
+
+- **Lösung:** Setze für die Verifizierung kurzzeitig die Quellcode-URL deines Projekts so, dass sie exakt mit der Repository-URL übereinstimmt. Siehe [Inhaberschaft verifizieren](#inhaberschaft-verifizieren) für Details.
+
+### Benutzer ist nicht berechtigt, dieses Projekt zu registrieren
+*(User is not authorized to register this project)*
+
+- **Mögliche Ursache:** Der Benutzername des Wiki-Accounts entspricht keinem der Namen im [`owners`-Feld](../folder_structure/wiki_meta#format) der Projekt-Metadaten.
+
+- **Lösung:** Vergewissere dich, dass du mit dem richtigen Account eingeloggt bist, oder füge deinen aktuellen Benutzernamen dem `owners`-Feld hinzu.
+
+### Repository ist privat
+*(Repository is private)*
+
+- **Mögliche Ursache:** Dein Repository ist privat oder erfordert anderweitig eine Authentifizierung.
+
+- **Lösung:** Füge Zugangsdaten mit ausreichenden Berechtigungen in die Repository-URL ein. Das Format für HTTP-URLs lautet: `https://nutzername:passwort@domain.com`.
+
+### Das Repository überschreitet die maximal zulässige Größe
+*(Repository exceeds maximum allowed size)*
+
+- **Ursache:** Dein Repository ist größer als das Limit von 500 MB.
+
+- **Lösung:** Erwäge, deine Dokumentation in ein separates, eigenständiges Repository auszulagern oder versuche, die Größe des aktuellen Repositories zu reduzieren.
+
+### Ungültiger Pfad angegeben
+*(Invalid path provided)*
+
+Der angegebene Pfad existiert nicht oder ist eine Datei statt eines Ordners. Bitte stelle sicher, dass der Pfad auf ein existierendes Verzeichnis innerhalb des Repositories verweist. Der Branch- oder Tag-Name muss im Pfad nicht angegeben werden.
+
+## Projektverwaltung
+
+Nach erfolgreicher Registrierung wirst du zum Dashboard der Projektverwaltung weitergeleitet, und es wird automatisch ein neues Deployment (Veröffentlichung) erstellt.
+
+Schau dir die Seite [Projektverwaltung](management) an, um mehr über die Funktionen des Dashboards zu erfahren.

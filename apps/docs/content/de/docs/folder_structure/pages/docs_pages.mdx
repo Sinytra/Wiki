@@ -1,0 +1,69 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Dokumentationsseiten
+
+Dokumentationsseiten folgen einem Leitfaden-ähnlichen Layout *(genau wie die Dokumentation, die du gerade liest)*. Sie eignen sich am besten für Benutzerhandbücher, Tutorials und Entwickler-Dokumentationen deines Projekts.
+
+Auf der Wiki-Webseite findest du diese unter dem Reiter „Dokumentation“ des jeweiligen Projekts.
+
+## Platzierung
+
+Dokumentationsseiten können beliebig benannt und innerhalb des Projekts verschachtelt werden. Sie müssen zwingend die Dateiendung `.mdx` verwenden.
+
+Ordner, die du im Dateibaum erstellst, erscheinen im Wiki ebenfalls als Ordner in der Sidebar der Dokumentation.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+            <FileTreeFile name="beliebiger_name.mdx"/>
+        </FileTreeFolder>
+        <FileTreeFile name="beispiel_block.mdx"/>
+    </FileTreeFolder>
+</FileTree>
+
+## Erstellung
+
+Dokumentationsseiten können die verfügbaren Frontmatter-Eigenschaften sowie alle nicht-interaktiven Komponenten nutzen.
+
+Das Markdown-[Format](../pages#format) ist für alle Seitentypen identisch.
+
+### Checkliste
+
+Hier ist eine grundlegende Liste von Dingen, die du beim Schreiben von Dokumentationsseiten beachten solltest:
+
+- Lege [Frontmatter](../pages#metadata)-Eigenschaften nach Bedarf fest.
+
+- Erstelle eine [Ordner-Metadaten](../folder_meta)-Datei, um die Anzeigenamen der Seiten/Ordner in der Sidebar festzulegen.
+
+- Schau dir die verfügbaren [Komponenten](../../components/overview) an, die du einbinden kannst.
+
+## Beispiel
+
+Hier ist ein Beispiel für eine einfache Dokumentationsseite. Beachte, dass für Wiki-Komponenten kein Import erforderlich ist.
+
+```mdx
+# Einleitung
+
+Einleitung zur Beispiel-Mod.
+
+<Callout variant="info">Dies ist ein Info-Callout-Beispiel.</Callout>
+
+-- Hier kommt dein Text hin --
+
+Und hier noch etwas *Lorem Ipsum*.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna enim,
+vestibulum non justo nec, euismod venenatis mauris. Curabitur metus massa,
+aliquet non dapibus eget, porttitor eu lorem. Vestibulum et sagittis justo.
+
+Integer a velit quis est auctor finibus. Vivamus libero lorem, vehicula eu
+est ut, pellentesque dignissim enim. Integer iaculis turpis id neque eleifend
+malesuada. Curabitur convallis ultrices orci. Phasellus imperdiet pulvinar
+lacus, id luctus
+```
+
+## Nächste Schritte
+
+Sobald du fertig bist, kannst du dir eine Vorschau deiner Seiten mit unserem [lokalen Vorschau-Tool](../../tools/preview) ansehen!

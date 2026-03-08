@@ -1,0 +1,26 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Startseite (Homepage)
+
+Das Wiki bietet eine eigene Landingpage für Dokumentationsseiten, die sogenannte „Homepage“.
+Standardmäßig wird hier die Projektbeschreibung der verknüpften Plattform (z. B. Modrinth oder CurseForge) angezeigt.
+
+## Platzierung
+
+Die benutzerdefinierte Startseite wird in einer Datei namens `_homepage.mdx` im Root-Verzeichnis des Projekts abgelegt.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFile name="_homepage.mdx"/>
+    </FileTreeFolder>
+</FileTree>
+
+## Verwendung
+
+Wenn du stattdessen eigene Inhalte bereitstellen möchtest, kannst du dies tun, indem du eine `_homepage.mdx`-Datei in deinem Root-Verzeichnis erstellst (auf derselben Ebene wie die `sinytra-wiki.json`).
+
+Der Inhalt der Datei folgt demselben Format wie [Dokumentationsseiten](pages/docs_pages), mit Ausnahme der Frontmatter-Metadaten, die hier ignoriert werden.
+
+Der Titel der Startseite entspricht immer dem Namen des Projekts.

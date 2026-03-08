@@ -1,0 +1,125 @@
+import {FileTree, Callout} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+import FormatHeader from '@/components/FormatHeader.tsx';
+
+# Wiki-Metadaten
+
+Diese Datei ist das „Herz“ deines Dokumentationspakets. Sie enthält grundlegende Informationen zur Identifizierung des Projekts sowie zusätzliche Metadaten, die den Nutzern angezeigt werden können.
+
+## Platzierung
+
+Die Wiki-Metadaten müssen in einer Datei namens `sinytra-wiki.json` direkt im **Root-Verzeichnis** deiner Dokumentation liegen.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFile name="sinytra-wiki.json"/>
+    </FileTreeFolder>
+</FileTree>
+
+<FormatHeader schema="sinytra-wiki">Format</FormatHeader>
+
+Die verfügbaren Eigenschaften sind unten aufgelistet. Die mit einem Sternchen (<span className="text-rose-400!">*</span>) markierten Felder sind **Pflichtfelder**.
+
+- `id` <span className="text-rose-400!">*</span>
+  - Typ: `string`
+  - Ein eindeutiger String, um dein Projekt im gesamten Wiki zu identifizieren.
+  - Wir empfehlen deine Mod-ID oder, falls nicht vorhanden, den Projekt-Slug von CurseForge/Modrinth.
+  - Darf nur kleingeschriebene alphanumerische Zeichen (`a-z0-9`) und Bindestriche (`-`) enthalten.<br/>Darf nicht mit einer Zahl beginnen.
+
+- `platforms` <span className="text-rose-400!">*</span>
+  - Typ: `string -> string`
+  - Eine Map der [Slugs](#slug) deiner Projektseiten auf den jeweiligen Plattformen.
+  - Aktuell unterstützte Plattformen sind `modrinth` und `curseforge`. Bei CurseForge-Projekten kann auch die eindeutige Projekt-ID verwendet werden.
+  - Mindestens eine Plattform muss angegeben werden.
+
+- `modid`
+  - Typ: `string`
+  - Die In-Game Mod-ID, die zur Identifizierung von Inhaltsdaten verwendet wird.
+  - Mehrere Wiki-Projekte können denselben Wert verwenden.
+  - Erforderlich, um [Spieldaten](game_data) zu nutzen.
+
+- `owners`
+  - Typ: `string[]`
+  - Benutzernamen der Wiki-Accounts, die berechtigt sind, dieses Projekt zu registrieren.<br/>*(Aktuell sind dies die kleingeschriebenen Varianten der jeweiligen GitHub-Benutzernamen)*.
+  - Nützlich für öffentliche Repositories, um zu verhindern, dass unbefugte Nutzer das Projekt im Wiki registrieren.
+
+- `versions`
+  - Typ: `string -> string`
+  - Eine Map von zusätzlichen Minecraft-Versionen zu Git-Branch-Namen, die verfügbar gemacht werden sollen.
+  - Der Standard-Branch darf hier nicht aufgeführt werden – das erledigen wir automatisch.
+
+- `licenses`
+  - Enthält Lizenzinformationen für das Projekt.
+  - Details findest du im Abschnitt [Lizenzen](#licenses).
+
+### Lizenzen
+
+<Callout type="info">
+    Wenn dein Projekt keine spezifische Lizenz hat (also „Alle Rechte vorbehalten“ / „All Rights Reserved“), lass das Lizenzfeld einfach leer.
+</Callout>
+
+Du kannst Lizenzinformationen in deinen Metadaten hinzufügen, damit diese auf der *Projekt-Startseite* angezeigt werden. Das ist oft besser, als sich auf die Hosting-Plattformen zu verlassen, da einige diese Daten nicht konsistent bereitstellen.
+
+Aktuell kannst du eine einzelne Lizenz unter `project` angeben. Diese bezieht sich auf die Lizenz deines Originalprojekts (nicht das Wiki-Projekt selbst!). Mit anderen Worten: Es ist die Lizenz deiner Mod, deines Modpacks, Datapacks etc.
+
+Jede Lizenz kann entweder über einen gültigen SPDX-Identifier unter `id` oder einen beliebigen Namen unter `name` definiert werden (aber nicht beides gleichzeitig). Zusätzlich kann optional eine `url` zum vollständigen Lizenztext angegeben werden.
+
+Hier sind einige Beispiele:
+```json5
+{
+    // ...
+    "licenses": {
+        // Nur SPDX-Identifier angeben
+        "project": {
+            "id": "MIT"
+        },
+        // Nur benutzerdefinierten Namen angeben
+        "project": {
+            "name": "MIT License"
+        },
+        // ID/Name + URL angeben
+        "project": {
+            "id": "MIT",
+            "url": "https://github.com/Beispiel/BeispielMod/blob/master/LICENSE"
+        }
+    }
+}
+```
+
+### Den Projekt-Slug finden [#slug]
+
+Den Projekt-Slug kannst du ganz einfach aus der URL deiner Projektseite kopieren (siehe Beispiele unten), wobei `{slug}` der jeweilige Wert ist.
+
+- Für Modrinth-Projekte: `https://modrinth.com/mod/{slug}`
+
+- Für CurseForge-Projekte: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+
+## Beispiel
+
+```json filename="sinytra-wiki.json"
+{
+    "id": "examplemod",
+    "platforms": {
+        "curseforge": "example_mod",
+        "modrinth": "example-mod"
+    },
+    "modid": "examplemod",
+    "owners": [ "Su5eD" ]
+}
+```
+
+## Versionierung
+
+Du kannst mehrere Versionen deiner Projektdokumentation im Wiki anzeigen lassen, indem du die Eigenschaft `versions` in deiner Metadaten-Datei hinzufügst. Diese enthält eine Map von Minecraft-Versionsnamen (diese werden im Versionswähler und in der URL angezeigt) zu Git-Branch-Namen.
+
+Die Ordnerstruktur der Dokumentation bleibt über alle Branches hinweg gleich. Die Inhalte (einschließlich Assets und Lokalisierungen) sind jedoch pro Branch isoliert. **Metadaten-Dateien (`sinytra-wiki.json`) aus anderen Branches werden ignoriert**, da alle notwendigen Informationen bereits in der Datei des Standard-Branches enthalten sind.
+
+```json filename="sinytra-wiki.json"
+{
+    "versions": {
+        "1.19.2": "mein-git-branch-name",
+        "1.18.2": "ein-anderer-branch"
+    }
+}
+```

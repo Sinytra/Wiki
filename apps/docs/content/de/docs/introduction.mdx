@@ -1,0 +1,74 @@
+import { Callout } from 'nextra/components';
+
+# Modded Minecraft Wiki Autorenleitfaden
+
+---
+
+<Callout type="warning">
+    Die Wiki-Dokumentation ist noch in Arbeit, daher können einige Teile noch fehlen.<br/>
+    Falls du auf Probleme stößt, lass es uns bitte auf [Discord](https://discord.sinytra.org)
+    oder [GitHub](https://github.com/Sinytra/Wiki) wissen.
+</Callout>
+
+Hier lernst du, wie du dein Projekt mit dem [Modded Minecraft Wiki](https://moddedmc.wiki) dokumentierst!
+
+Diese Dokumentation führt dich durch den gesamten Prozess: vom Einrichten deines Projekts über das Schreiben der Wiki-Seiten bis hin zur Veröffentlichung auf der Website.
+
+Wir stellen dir die Funktionen, das Seitenformat, die Komponenten und die Integration von Spieldaten vor, damit du dynamische und interaktive Inhaltsseiten erstellen kannst.
+
+Lies weiter, um loszulegen!
+
+## Voraussetzungen
+
+Um deine Dokumentation auf unserem Wiki zu hosten, muss dein Projekt lediglich ein paar Mindestanforderungen erfüllen:
+
+- Es muss in einem Git-Repository gehostet werden (sowohl private als auch öffentliche Repositories funktionieren).
+
+- Es muss entweder auf [Modrinth](https://modrinth.com/) oder [CurseForge](https://www.curseforge.com/) freigegeben sein.
+
+- Zum Zeitpunkt der Registrierung muss das Git-Repository als Quellcode-URL des Projekts hinterlegt sein (dies ist aktuell notwendig, um die Inhaberschaft zu verifizieren).
+  - Modrinth-Projekte können alternativ ganz einfach verifiziert werden, indem du deinen Modrinth-Account in den Wiki-Benutzereinstellungen verknüpfst.
+
+## Erstellung & Veröffentlichung
+
+1. Besuche die Seite [Erste Schritte](getting_started), um dein Projekt schnell an den Start zu bringen.
+
+<p/>
+
+2. Erkunde die [Ordnerstruktur](folder_structure/overview), um mehr über die verfügbaren Funktionen zu erfahren und wie du deine Dokumentation anpassen kannst.
+
+<p/>
+
+3. Integriere dein Projekt mit [In-Game-Daten](tools/content_pages) und finde nützliche [Tools](tools/third-party) im Bereich "Features".
+
+<p/>
+
+4. [Veröffentliche](portal/publishing) dein Projekt im Wiki.
+
+## In-Game Dokumentation
+
+Du möchtest die Wiki-Inhalte direkt im Spiel ansehen? Schau dir [Oracle Index](https://modrinth.com/mod/oracle-index) an!
+
+> "Eine Client-seitige Dokumentations-Mod für Minecraft Fabric / NeoForge, die speziell für die Nutzung mit Wikis wie moddedmc.wiki entwickelt wurde."
+
+![In-game preview](https://github.com/user-attachments/assets/e2649e0e-4827-46df-8309-adbafe2d1730)
+
+**Bitte beachte, dass Oracle Index nicht vom Wiki-Team entwickelt wird. Schau auf deren Website vorbei, um Support zu erhalten oder Fehler zu melden.*
+
+## Integration
+
+Wir bieten ein hervorragendes Set an Tools für Autoren an. Diese helfen dir dabei, dich voll auf das Schreiben zu konzentrieren, ohne dich mit der mühsamen Suche und dem Kopieren von In-Game-Informationen aufhalten zu müssen.
+
+Mit unseren Tools kannst du:
+
+- Eine lokale Echtzeit-**Vorschau deiner Dokumentation** erhalten, die exakt so aussieht wie die spätere Veröffentlichung im Wiki.
+
+- Automatisch **Asset-Renders** von Inventar-Modellen für alle Mod-Items generieren und Metainformationen des Spiels exportieren.
+
+- Die Dokumentation nach der Veröffentlichung jederzeit **neu deployen**.
+
+Erfahre mehr auf den jeweiligen Tool-Seiten:
+
+- [Gradle-Integration](tools/gradle)
+
+- [Spieldaten-Exporte](tools/exports)

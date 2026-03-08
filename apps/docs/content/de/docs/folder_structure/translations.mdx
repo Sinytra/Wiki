@@ -1,0 +1,44 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+import SystemLocalesTable from '@/components/SystemLocalesTable';
+
+# Übersetzungen
+
+Die Dokumentation kann in verschiedene vom Wiki unterstützte Sprachen lokalisiert werden. Dies gilt für alle Seitentypen, Ordner-Metadaten sowie einige Spieldateien (wie z. B. Sprachdateien).
+
+## Unterstützte Sprachen
+
+Unten findest du eine Tabelle aller aktuell im Wiki unterstützten Zielsprachen. Der `code` entspricht dem Namen des Ordners, der für die Übersetzung der Dokumentation verwendet werden muss (Details dazu weiter unten).
+
+<SystemLocalesTable />
+
+### Deine Sprache nicht gefunden?
+
+Falls deine gewünschte Sprache nicht in der Tabelle aufgeführt ist, lass es uns auf [Discord](https://discord.sinytra.org) oder [GitHub](https://github.com/Sinytra/Wiki) wissen – wir fügen sie gerne hinzu.
+
+## Platzierung
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".translated" defaultOpen>
+            <FileTreeFolder name="de_de" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+                <FileTreeFile name="introduction.mdx"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+
+        <FileTreeFile name="_meta.json"/>
+        <FileTreeFile name="introduction.mdx"/>
+    </FileTreeFolder>
+</FileTree>
+
+Lokalisierte Dateien müssen unter `.translated/<lang>` im Dokumentationsverzeichnis abgelegt werden, wobei `<lang>` der Code für die gewünschte Sprache aus der obigen Tabelle ist.
+
+## Struktur
+
+Die Struktur des Übersetzungsordners folgt demselben Layout wie das Root-Verzeichnis.
+
+Sowohl Dokumentationsseiten (`.mdx`) als auch Ordner-Metadaten (`_meta.json`) können übersetzt werden.
+
+Übersetzte Inhalte haben beim Laden **Vorrang** gegenüber der Standardsprache. Nicht übersetzte Dateien werden jedoch auch dann angezeigt, wenn eine andere Sprache als der Standard ausgewählt ist. Daher wird empfohlen, nach Möglichkeit alle Dateien zu übersetzen.

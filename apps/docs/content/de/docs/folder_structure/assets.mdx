@@ -1,0 +1,67 @@
+import {Callout} from 'nextra/components';
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Assets
+
+<Callout>
+    Spare dir die Zeit, deine Item-Render manuell zu exportieren! Unser zugehöriges [**Gradle-Plugin**](../tools/gradle) lässt sich in gängige Modloader-Toolchains integrieren und kann **automatisch gerenderte Assets** für dich generieren.
+</Callout>
+
+Assets werden verwendet, um Bilder von Items, Blöcken und anderen Projektinhalten auf der gesamten Website anzuzeigen.
+
+Diese können als Teil von Crafting-Rezepten, Sidebar-Informationen oder in eigenen Komponenten genutzt werden.
+
+## Platzierung
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name=".assets" defaultOpen>
+            <FileTreeFolder name="<namespace>" defaultOpen>
+                <FileTreeFolder name="gui" defaultOpen>
+                    <FileTreeFile name="electric_furnace.png"/>
+                    <FileTreeFile name="progress.gif"/>
+                </FileTreeFolder>
+
+                <FileTreeFile name="example_item.png" comment="Referenziert über <namespace>:example_item"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Format
+
+Assets werden über [Identifier](https://minecraft.wiki/w/Identifier) identifiziert, wobei dieselbe Syntax wie im Spiel verwendet wird. Es wird empfohlen, die Namen der Assets mit den In-Game-IDs der Objekte abzugleichen, zu denen sie gehören.
+
+Gerenderte Projekt-Assets (sowohl **Items als auch Blöcke**) sollten unter `.assets/(modid)` im Dokumentationsverzeichnis abgelegt werden, wobei `modid` der Namespace der jeweiligen Textur ist.
+
+Standardmäßig verweisen Identifier auf `.png`-Dateien. Falls eine Datei ein anderes Format hat, kann die entsprechende Dateiendung einfach an den Identifier angehängt werden.
+
+Der Name der Datei kann frei gewählt werden.
+
+### Beispiele
+
+- `examplemod:generator` - Zeigt `<root>/.assets/examplemod/generator.png`
+
+<p/>
+
+- `examplemod:gui/grinding.gif` - Zeigt `<root>/.assets/examplemod/gui/grinding.gif`
+
+<p/>
+
+- `minecraft:crafting_table`, `crafting_table` - Zeigt einen 3D-Render der Werkbank an.
+
+## Verwendung
+
+Assets werden im Wiki je nach Feature für verschiedene Zwecke eingesetzt.
+
+Die häufigsten Anwendungsfälle sind:
+
+- Anzeigen von Bildern an beliebigen Stellen auf [Seiten](pages#erweiterungen).
+
+- Bereitstellen von Icons für [Seiten](pages#metadaten) durch Angabe des `icon`-Attributs im Frontmatter.
+
+- Bereitstellen von Icons für [Inhaltsseiten](pages/content_pages). Hierbei wird die `id` aus dem Frontmatter automatisch als Pfad für das Asset verwendet.
+
+- Darstellung von Items in [Rezepten](game_data#rezepte).
