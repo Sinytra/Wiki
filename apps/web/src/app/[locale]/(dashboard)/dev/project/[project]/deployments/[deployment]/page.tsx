@@ -193,7 +193,7 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDe
 
               <FormWrapper keys={['DeleteDeploymentModal']}>
                 <DeleteDeploymentModal
-                  formAction={handleDeleteDeploymentForm.bind(null, deployment.id)}
+                  formAction={handleDeleteDeploymentForm.bind(null, deployment.project_id, deployment.id)}
                   loading={deployment.status == DeploymentStatus.LOADING}
                   redirectTo={redirectTo}
                 />
@@ -233,7 +233,7 @@ export default async function DevProjectDeploymentPage(props: Properties) {
   setContextLocale(params.locale);
   const t = await getTranslations('DevProjectDeploymentPage');
   const fallback = `/dev/project/${params.project}/deployments`;
-  const content = handleApiCall(await devProjectApi.getDeployment(params.deployment), fallback);
+  const content = handleApiCall(await devProjectApi.getDeployment(params.project, params.deployment), fallback);
 
   return (
     <div>

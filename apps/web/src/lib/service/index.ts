@@ -138,7 +138,6 @@ async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext
 
     const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);
     return {
-      project: raw.project,
       content,
       edit_url: raw.edit_url,
       properties: raw.properties

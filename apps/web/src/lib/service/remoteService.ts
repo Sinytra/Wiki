@@ -28,7 +28,7 @@ async function sendApiRequest(project: string, path: string, parameters?: ApiRou
 
 async function resolveNullableApiCall<T extends object = never>(callback: () => Promise<Response>): Promise<T | null> {
   const res = await network.resolveApiCall<T>(callback);
-  return res.success && !('error' in res.data) ? res.data : null;
+  return res.success && res.data != null && !('error' in res.data) ? res.data : null;
 }
 
 async function getProject({id, version}: ProjectContext): Promise<ProjectWithInfo | null> {

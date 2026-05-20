@@ -261,14 +261,15 @@ export async function GET(req: NextRequest) {
 
   const coords: DocsPathCoords = {locale, slug, version};
 
+  const project = await service.getProject({id: slug});
+  if (!project) {
+    return NextResponse.json({'error': 'Project not found'}, {status: 400});
+  }
+  const platformProject = await platforms.getPlatformProject(project);
+
   const pathVal = searchParams.get('path');
   const idVal = searchParams.get('id');
   if (!idVal && !pathVal) {
-    const project = await service.getProject({id: slug});
-    if (!project) {
-      return NextResponse.json({'error': 'Project not found'}, {status: 400});
-    }
-    const platformProject = await platforms.getPlatformProject(project);
     return projectPageImage(coords, platformProject, fonts);
   }
 
@@ -280,7 +281,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({'error': 'Page not found'}, {status: 400});
   }
 
-  const project = await platforms.getPlatformProject(page.project);
   const metadata = await markdown.readProcessedFrontmatter(page.content) || {};
 
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null

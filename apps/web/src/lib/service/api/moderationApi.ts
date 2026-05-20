@@ -5,7 +5,7 @@ import {projectReportSchema, ruleProjectReportSchema} from "@/lib/forms/schemas"
 import {ProjectReport, ProjectReports} from "@repo/shared/types/api/moderation";
 
 async function submitProjectReport(body: z.infer<typeof projectReportSchema>): Promise<ApiCallResult> {
-  return network.resolveApiCall(() => network.sendDataRequest('moderation/reports', {body}));
+  return network.resolveApiCall(() => network.sendDataRequest(`moderation/report/${body.project_id}`, {body}));
 }
 
 async function getProjectReports(parameters: ApiRouteParameters): Promise<ApiCallResult<ProjectReports>> {

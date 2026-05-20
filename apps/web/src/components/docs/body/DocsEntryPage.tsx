@@ -1,16 +1,13 @@
 import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
-import platforms from "@repo/shared/platforms";
 import TabSwitchedDocsContent from "@/components/docs/tabs/TabSwitchedDocsContent";
 import DocsChangelogPage from "@/components/docs/body/DocsChangelogPage";
 import DocsContentTitle from "@/components/docs/layout/DocsContentTitle";
-import {RenderedDocsPage} from "@repo/shared/types/service";
+import {Project, RenderedDocsPage} from "@repo/shared/types/service";
 
-export default async function DocsEntryPage({page, showHistory}: { page: RenderedDocsPage; showHistory?: boolean }) {
-  const project = await platforms.getPlatformProject(page.project);
-
+export default async function DocsEntryPage({project, page, showHistory}: { project: Project; page: RenderedDocsPage; showHistory?: boolean }) {
   return (
     <div className="flex min-h-[90vh] flex-col pb-20">
-      <DocsContentTitle className="hidden sm:block" project={page.project} showHistory={showHistory}>
+      <DocsContentTitle className="hidden sm:block" project={project} showHistory={showHistory}>
         {page.content.metadata.title || project.name}
       </DocsContentTitle>
 

@@ -13,7 +13,7 @@ export async function POST(request: NextRequest, props: { params: Promise<{ slug
     }
   }
 
-  console.log('Received BE revalidation request for project ', params.slug);
+  console.log('Received BE revalidation request for project', params.slug);
   cacheUtil.invalidateDocs(params.slug);
 
   return Response.json({ message: 'Docs page cache invalidated successfully' });

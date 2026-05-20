@@ -8,7 +8,7 @@ import ReportPageButton from "@/components/docs/layout/ReportPageButton";
 import EditPageButton from "@/components/docs/layout/EditPageButton";
 import {RenderedDocsPage} from "@repo/shared/types/service";
 
-type Props = Omit<BodyProps, 'project' | 'metadata' | 'properties'> & { id: string; page: RenderedDocsPage };
+type Props = Omit<BodyProps, 'metadata' | 'properties'> & { id: string; page: RenderedDocsPage };
 
 export default function DocsContentMetaSidebar(props: Props) {
   return (
@@ -25,7 +25,7 @@ export default function DocsContentMetaSidebar(props: Props) {
         </h3>
       </div>
 
-      <DocsContentMetaSidebarBody project={props.page.project} metadata={props.page.content.metadata}
+      <DocsContentMetaSidebarBody metadata={props.page.content.metadata}
                                   properties={props.page.properties} {...props}/>
 
       <ClientLocaleProvider keys={['PageEditControls']}>
@@ -34,7 +34,7 @@ export default function DocsContentMetaSidebar(props: Props) {
 
           <EditPageButton editUrl={props.page.edit_url}/>
 
-          <ReportPageButton full project={props.page.project.id} path={[props.id]}
+          <ReportPageButton full project={props.project.id} path={[props.id]}
                             preview={env.isPreview()}/>
         </div>
       </ClientLocaleProvider>

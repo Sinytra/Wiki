@@ -69,7 +69,7 @@ export default async function AdminPanelHome(props: Props) {
       <div className="flex flex-row flex-wrap gap-4">
         <DataWidget
           title="System version"
-          value={`${systemInfo.version}+${systemInfo.version_hash}`}
+          value={systemInfo.version}
           icon={
             <TagIcon width={18} height={18} />
           }
@@ -77,7 +77,7 @@ export default async function AdminPanelHome(props: Props) {
 
         <DataWidget
           title="Game version"
-          value={systemInfo.latest_data.game_version}
+          value={systemInfo.latest_data?.game_version || '_'}
           icon={
             <Asset location="minecraft:grass_block" width={20} height={20} ctx={null} />
           }
@@ -85,7 +85,7 @@ export default async function AdminPanelHome(props: Props) {
 
         <DataWidget
           title="Loader version"
-          value={systemInfo.latest_data.loader_version}
+          value={systemInfo.latest_data?.loader_version || '-'}
           icon={
             <img src="/blog-assets/neo_logo.png" width={20} height={20} alt="Loader" />
           }

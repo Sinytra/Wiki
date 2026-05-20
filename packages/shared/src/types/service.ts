@@ -55,14 +55,15 @@ export enum ProjectVisibility {
 }
 
 export interface Project extends BaseProject {
-  is_public: boolean;
   versions?: ProjectVersions;
   locales?: string[];
   local?: boolean;
+  // Dev
   status?: ProjectStatus;
   has_active_deployment?: boolean;
   access_level: ProjectMemberRole;
   visibility: ProjectVisibility;
+  is_public: boolean;
   created_at: string;
 }
 
@@ -99,21 +100,18 @@ export interface ProjectWithInfo extends Project {
 }
 
 export interface LayoutTree {
-  project: Project;
   tree: FileTree;
 }
 
 export type ItemProperties = Record<string, any>;
 
 export interface DocumentationPage {
-  project: Project;
   content: string;
   edit_url?: string;
   properties?: ItemProperties | null;
 }
 
 export interface RenderedDocsPage {
-  project: Project;
   content: DocumentationMarkdown;
   edit_url?: string;
   properties?: ItemProperties | null;

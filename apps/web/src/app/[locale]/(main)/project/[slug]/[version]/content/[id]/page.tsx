@@ -32,24 +32,30 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   const {id: encodedId, slug, version, locale} = await props.params;
   const id = decodeURIComponent(encodedId);
   const ctx = {id: slug, version, locale};
+
+  const project = await service.getProject(ctx);
+  if (!project) {
+    return {title: (await parent).title?.absolute};
+  }
+
   const page = await service.getProjectContentPage(id, ctx);
   if (!page) {
     return {title: (await parent).title?.absolute};
   }
 
-  const project = await platforms.getPlatformProject(page.project);
+  const platformProject = await platforms.getPlatformProject(project);
   const result = await markdown.readProcessedFrontmatter(page.content) || {};
   const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
     : await service.getAsset((result.icon || result.id)!, ctx);
 
   return {
-    title: result.title ? `${result.title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
+    title: result.title ? `${result.title} - ${platformProject.name}` : `${platformProject.name} - ${(await parent).title?.absolute}`,
     openGraph: {
       images: [`/api/og?slug=${slug}&locale=${locale}&id=${id}`]
     },
     other: {
-      docs_source_mod: project.name,
-      docs_source_icon: project.icon_url,
+      docs_source_mod: platformProject.name,
+      docs_source_icon: platformProject.icon_url,
       // @ts-expect-error optional
       docs_icon: iconUrl ? iconUrl.src : undefined
     }
@@ -66,6 +72,11 @@ export default async function ContentEntryPage(props: Props) {
     locale: params.locale,
     contentId: id
   } satisfies ProjectContentContext;
+
+  const project = await service.getProject(ctx);
+  if (!project) {
+    return notFound();
+  }
 
   let page: RenderedDocsPage | null;
   try {
@@ -95,7 +106,7 @@ export default async function ContentEntryPage(props: Props) {
   return (
     <>
       <DocsSimpleHeader>
-        {page.content.metadata.title || page.project.name}
+        {page.content.metadata.title || project.name}
       </DocsSimpleHeader>
 
       <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-between gap-4">
@@ -108,13 +119,13 @@ export default async function ContentEntryPage(props: Props) {
         `}
         >
           <div className="mb-6 sm:hidden">
-            <DocsContentMetaSidebarBody title={t('title')} project={page.project}
+            <DocsContentMetaSidebarBody title={t('title')} project={project}
                                         metadata={page.content.metadata} ctx={ctx}
                                         properties={page.properties}
             />
           </div>
 
-          <DocsEntryPage page={page}/>
+          <DocsEntryPage page={page} project={project}/>
 
           {page.content.metadata.history &&
             <TogglableContent title={u('toggle')} className="mb-6">
@@ -123,14 +134,14 @@ export default async function ContentEntryPage(props: Props) {
           }
 
           {contents &&
-            <ContentListFooter currentId={id} project={page.project} contents={contents} ctx={ctx}/>
+            <ContentListFooter currentId={id} project={project} contents={contents} ctx={ctx}/>
           }
 
-          <DocsContentPageToolsFooter project={page.project.id} local={page.project.local} id={id}
+          <DocsContentPageToolsFooter project={project.id} local={project.local} id={id}
                                       editUrl={page.edit_url}/>
         </main>
 
-        <DocsContentMetaSidebar id={id} title={t('title')} ctx={ctx} page={page}/>
+        <DocsContentMetaSidebar id={id} project={project} title={t('title')} ctx={ctx} page={page}/>
       </div>
     </>
   )

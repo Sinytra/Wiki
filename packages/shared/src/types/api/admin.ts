@@ -18,8 +18,7 @@ export interface SystemStats {
 
 export interface SystemInfo {
   version: string;
-  version_hash: string;
-  latest_data: DataImport;
+  latest_data: DataImport | null;
   stats: SystemStats;
 }
 

@@ -33,7 +33,6 @@ import {ProjectStatus} from "@repo/shared/types/api/project";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import authSession from "@/lib/authSession";
 import navigation from "@/lib/navigation";
 import DataField from "@/components/util/DataField";
 import NewProjectBanner from "@/components/dashboard/dev/banner/NewProjectBanner";
@@ -153,12 +152,11 @@ export default async function DevProjectPage(props: { params: Promise<{ locale: 
   const params = await props.params;
   setContextLocale(params.locale);
   const project = handleApiCall(await devProjectApi.getProject(params.project));
-  const token = (await authSession.getSession())?.token ?? null;
 
   return (
     <GetStartedContextProvider>
       <ClientLocaleProvider keys={['LiveProjectDeployConnection']}>
-        <LiveProjectDeployConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}/>
+        <LiveProjectDeployConnection id={project.id}/>
       </ClientLocaleProvider>
 
       <ProfileProject project={project}/>

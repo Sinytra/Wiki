@@ -9,7 +9,7 @@ import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dashboard/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dashboard/dev/modal/DeployProjectModalOpenButton";
-import {DeploymentStatus, DevProjectDeploymentRow, DevProjectDeployments} from "@repo/shared/types/api/deployment";
+import {DeploymentStatus, DevProjectDeployments, PartialDevProjectDeployment} from "@repo/shared/types/api/deployment";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
@@ -42,7 +42,7 @@ function EmptyDeploymentsState() {
   )
 }
 
-function DeploymentEntry({deployment}: { deployment: DevProjectDeploymentRow }) {
+function DeploymentEntry({deployment}: { deployment: PartialDevProjectDeployment }) {
   return (
     <div className={`
       flex w-full flex-1 flex-col gap-3 rounded-sm bg-primary-dim p-4 hover:bg-primary sm:flex-row sm:items-center
@@ -66,10 +66,10 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeploymentRow }) 
       <div className="flex flex-3 flex-row gap-1">
         <GitCommitHorizontal width={20} height={20}/>
         <div className="flex flex-row gap-2">
-          {deployment.commit_hash ?
+          {deployment.revision ?
             <>
-              <span className="font-mono text-sm font-light">{deployment.commit_hash}</span>
-              <span className="text-sm font-normal">{deployment.commit_message}</span>
+              <span className="font-mono text-sm font-light">{deployment.revision.hash}</span>
+              <span className="text-sm font-normal">{deployment.revision.message}</span>
             </>
             :
             <span className="text-sm text-secondary">
@@ -105,7 +105,7 @@ function DeploymentEntry({deployment}: { deployment: DevProjectDeploymentRow }) 
 
             <FormWrapper keys={['DeleteDeploymentModal']}>
               <DeleteDeploymentModal
-                formAction={handleDeleteDeploymentForm.bind(null, deployment.id)}
+                formAction={handleDeleteDeploymentForm.bind(null, deployment.project_id, deployment.id)}
                 loading={deployment.status == DeploymentStatus.LOADING}
               />
             </FormWrapper>

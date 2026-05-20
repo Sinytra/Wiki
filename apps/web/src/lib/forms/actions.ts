@@ -52,7 +52,7 @@ export async function handleRemoveProjectFlag(id: string, flag: ProjectFlag): Pr
   return asFormResponse(response);
 }
 
-export async function handleRevalidateDocs(id: string): Promise<FormActionResult> {
+export async function handleDeployProject(id: string): Promise<FormActionResult> {
   const response = await devProjectApi.deployProject(id);
   return asFormResponse(response);
 }
@@ -112,8 +112,8 @@ export async function deleteUserAccount(): Promise<FormActionResult> {
   return asFormResponse(response);
 }
 
-export async function handleDeleteDeploymentForm(id: string): Promise<FormActionResult> {
-  const response = await devProjectApi.deleteDeployment(id);
+export async function handleDeleteDeploymentForm(projectId: string, deploymentId: string): Promise<FormActionResult> {
+  const response = await devProjectApi.deleteDeployment(projectId, deploymentId);
   return asFormResponse(response) as FormActionResult;
 }
 

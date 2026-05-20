@@ -5,10 +5,9 @@ import {parseAsInteger} from "nuqs/server";
 import * as React from "react";
 import DevProjectDeploymentsTable from "@/components/dashboard/dev/table/DevProjectDeploymentsTable";
 import DeployProjectModal from "@/components/dashboard/dev/modal/DeployProjectModal";
-import {handleRevalidateDocs} from "@/lib/forms/actions";
+import {handleDeployProject} from "@/lib/forms/actions";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
-import authSession from "@/lib/authSession";
 import DeployProjectContextProvider from "@/components/dashboard/dev/modal/DeployProjectContextProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
@@ -34,12 +33,11 @@ export default async function DevProjectDeploymentsPage(props: Properties) {
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
   const content = handleApiCall(await devProjectApi.getProjectDeployments(params.project, {page: page.toString()}));
-  const token = (await authSession.getSession())?.token ?? null; // TODO
 
   return (
     <div className="space-y-3 pt-1">
       <ClientLocaleProvider keys={['LiveProjectDeployConnection']}>
-        <LiveProjectDeployConnection id={project.id} status={project.status || ProjectStatus.UNKNOWN} token={token}/>
+        <LiveProjectDeployConnection id={project.id}/>
       </ClientLocaleProvider>
 
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
@@ -49,7 +47,7 @@ export default async function DevProjectDeploymentsPage(props: Properties) {
           <div className="flex flex-row items-center justify-end">
             <ClientLocaleProvider keys={['DeployProjectModal']}>
               <div>
-                <DeployProjectModal action={handleRevalidateDocs.bind(null, project.id)}/>
+                <DeployProjectModal action={handleDeployProject.bind(null, project.id)}/>
               </div>
             </ClientLocaleProvider>
           </div>

@@ -39,7 +39,7 @@ export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T
   }
 
   // Backend returned JSON
-  throw new Error(`API call returned error: ${result.error}`);
+  throw new Error(`API call returned error: ${result.status} ${result.error}`);
 }
 
 export function constructPagePath(path: string[]) {

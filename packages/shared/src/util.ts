@@ -6,6 +6,13 @@ export function requireEnvVar(envVar: string): string {
   return value;
 }
 
+export function assertEnvVar(key: string, value: string | undefined): string {
+  if (value === null || value === undefined) {
+    throw new Error(`Missing environment variable ${key}`);
+  }
+  return value;
+}
+
 export type ParameterProcessor = (key: string, value: string) => string | undefined | null;
 
 export function serializeUrlParams(parameters?: Record<string, string | undefined | null>, processor?: ParameterProcessor) {

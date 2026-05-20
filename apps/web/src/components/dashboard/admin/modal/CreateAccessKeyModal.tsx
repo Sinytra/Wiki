@@ -53,7 +53,7 @@ export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalP
     const resp = await formAction(data) as any;
     if (resp.success) {
       router.refresh();
-      setResult(resp.result);
+      setResult(resp.data);
       setOpen(false);
       setResultOpen(true);
     } else if (resp.errors) {

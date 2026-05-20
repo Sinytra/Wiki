@@ -23,24 +23,30 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const {slug, version, locale, path} = await props.params;
   const ctx = {id: slug, version, locale};
+
+  const project = await service.getProject(ctx);
+  if (!project) {
+    return {title: (await parent).title?.absolute};
+  }
+
   const page = await service.getDocsPage(path, false, ctx);
   if (!page) {
     return {title: (await parent).title?.absolute};
   }
 
-  const project = await platforms.getPlatformProject(page.project);
+  const platformProject = await platforms.getPlatformProject(project);
   const result = await markdown.readProcessedFrontmatter(page.content) || {};
   const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
     : await service.getAsset((result.icon || result.id)!, ctx);
 
   return {
-    title: result.title ? `${result.title} - ${project.name}` : `${project.name} - ${(await parent).title?.absolute}`,
+    title: result.title ? `${result.title} - ${platformProject.name}` : `${platformProject.name} - ${(await parent).title?.absolute}`,
     openGraph: {
       images: [`/api/og?slug=${slug}&locale=${locale}&path=${path.join('/')}&version=${version}`]
     },
     other: {
-      docs_source_mod: project.name,
-      docs_source_icon: project.icon_url,
+      docs_source_mod: platformProject.name,
+      docs_source_icon: platformProject.icon_url,
       // @ts-expect-error optional
       docs_icon: iconUrl ? iconUrl.src : undefined
     }
@@ -51,6 +57,11 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
   const {slug, version, locale, path} = await props.params;
   const ctx = {id: slug, version, locale};
   setContextLocale(locale);
+
+  const project = await service.getProject(ctx);
+  if (!project) {
+    return notFound();
+  }
 
   const projectData = await service.getBackendLayout(ctx);
   if (!projectData) {
@@ -63,10 +74,10 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
   } catch (e) {
     console.error('FATAL error rendering page', e);
 
-    await issuesApi.reportPageRenderFailure(projectData.project, constructPagePath(path), e, version, locale);
+    await issuesApi.reportPageRenderFailure(project, constructPagePath(path), e, version, locale);
 
     return (
-      <DocsPageNotFoundError project={projectData.project}/>
+      <DocsPageNotFoundError project={project}/>
     );
   }
   if (!page) {
@@ -79,14 +90,14 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
   const isPreview = env.isPreview();
 
   return (
-    <DocsInnerLayoutClient title={page.content.metadata.title || page.project.name}
-                           project={page.project}
+    <DocsInnerLayoutClient title={page.content.metadata.title || project.name}
+                           project={project}
                            tree={projectData.tree}
                            version={version} locale={locale}
                            showRightSidebar={isContentPage || headings.length > 0}
                            rightSidebar={
                              isContentPage
-                               ? <DocsGuideContentRightSidebar project={projectData.project}
+                               ? <DocsGuideContentRightSidebar project={project}
                                                                metadata={page.content.metadata}
                                                                version={version}/>
                                : <DocsGuideNonContentRightSidebar headings={headings}/>
@@ -94,12 +105,12 @@ export default async function ProjectDocsPage(props: { params: Promise<{ slug: s
                            footer={
                              <DocsPageFooter editUrl={page.edit_url}
                                              slug={slug} path={path}
-                                             local={projectData.project.local}
+                                             local={project.local}
                                              preview={isPreview}
                              />
                            }
     >
-      <DocsEntryPage page={page} showHistory={page.content.metadata.history !== undefined}/>
+      <DocsEntryPage page={page} project={project} showHistory={page.content.metadata.history !== undefined}/>
     </DocsInnerLayoutClient>
   )
 }

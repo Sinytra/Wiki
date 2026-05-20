@@ -44,7 +44,14 @@ async function getLocalSourceContentTree(src: LocalDocumentationSource, locale?:
       if (file) {
         const frontmatter = markdown.readFrontmatter(file.content);
         if (frontmatter.id) {
-          return {id: frontmatter.id, icon: frontmatter.icon, name: entry.name, path: entry.path, type: entry.type, children: []};
+          return {
+            id: frontmatter.id,
+            icon: frontmatter.icon,
+            name: entry.name,
+            path: entry.path,
+            type: entry.type,
+            children: []
+          };
         }
       }
     }
@@ -105,13 +112,8 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectWi
 async function getBackendLayout(ctx: ProjectContext): Promise<LayoutTree | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
-    const project = await sourceToProject(src);
-    const locales = await localDocs.getAvailableLocales(src);
     const tree = await localDocs.readDocsTree(src, ctx.locale || undefined);
-    return {
-      project: {...project, locales},
-      tree
-    };
+    return {tree};
   }
   return null;
 }
@@ -140,10 +142,7 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
     };
     const file = await localDocs.readDocsFile(src, path, ctx.locale || undefined, optional);
     if (file) {
-      return {
-        project,
-        content: file.content
-      };
+      return {content: file.content};
     }
     return null;
   }
@@ -221,7 +220,7 @@ async function getContentItemName(id: string, ctx: ProjectContext): Promise<Cont
   const flat = flattenChildren(contents);
   for (const entry of flat) {
     if (entry.id === id) {
-      return { source: id, id, name: entry.name };
+      return {source: id, id, name: entry.name};
     }
   }
   return null;

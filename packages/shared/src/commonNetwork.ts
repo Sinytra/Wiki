@@ -106,7 +106,7 @@ async function resolveApiCall<T = never>(callback: () => Promise<Response>): Pro
 
   if (!jsonBody) {
     const body = await resp.text();
-    console.error('Unexpected API response', body);
+    console.error('Unexpected API response', resp.status, body);
     return {
       type: 'unknown_error',
       status: resp.status,
