@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import {usePathname} from "@/lib/locales/routing";
-import {SidebarMenuSubButton, SidebarMenuSubItem} from "@repo/ui/components/sidebar";
-import {ExternalLinkIcon} from "lucide-react";
-import {ReactNode} from "react";
-import ConnectionIndicator from "@repo/ui/components/indicator/ConnectionIndicator";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {usePathname} from '@/lib/locales/routing';
+import {SidebarMenuSubButton, SidebarMenuSubItem} from '@repo/ui/components/sidebar';
+import {ExternalLinkIcon} from 'lucide-react';
+import {ReactNode} from 'react';
+import ConnectionIndicator from '@repo/ui/components/indicator/ConnectionIndicator';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
 
 export interface Props {
   title: string;

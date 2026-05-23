@@ -1,7 +1,8 @@
 import {FileBracesCornerIcon} from 'lucide-react';
 import {useMDXComponents} from 'nextra-theme-docs';
+import {ReactNode} from 'react';
 
-export default function FormatHeader({schema, children}: { schema: string, children: any }) {
+export default function FormatHeader({schema, children}: { schema: string, children: ReactNode }) {
   const {h2: H2} = useMDXComponents();
   return (
     <H2 className="flex items-center justify-between gap-4">

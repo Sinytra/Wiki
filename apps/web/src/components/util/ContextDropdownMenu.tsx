@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import {createContext, useState} from "react";
-import {DropdownMenu, DropdownMenuContent} from "@repo/ui/components/dropdown-menu";
+import {createContext, useState} from 'react';
+import {DropdownMenu, DropdownMenuContent} from '@repo/ui/components/dropdown-menu';
 
 export interface DropdownMenuContextState {
   setModalOpen: (open: boolean) => void;
@@ -43,5 +43,5 @@ export default function ContextDropdownMenu({children, content}: { children: any
         </DropdownMenuContent>
       </DropdownMenu>
     </DropdownMenuContext.Provider>
-  )
+  );
 }

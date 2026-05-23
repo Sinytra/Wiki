@@ -1,9 +1,9 @@
-import {useTranslations} from "next-intl";
-import {TrafficConeIcon} from "lucide-react";
-import DismissBannerButton from "@/components/dashboard/dev/banner/DismissBannerButton";
-import {handlePublishProject, handleRemoveProjectFlag} from "@/lib/forms/actions";
-import FormWrapper from "@/components/modal/FormWrapper";
-import PublishProjectButton from "@/components/dashboard/dev/banner/PublishProjectButton";
+import {useTranslations} from 'next-intl';
+import {TrafficConeIcon} from 'lucide-react';
+import DismissBannerButton from '@/components/dashboard/dev/banner/DismissBannerButton';
+import {handlePublishProject, handleRemoveProjectFlag} from '@/lib/forms/actions';
+import FormWrapper from '@/components/modal/FormWrapper';
+import PublishProjectButton from '@/components/dashboard/dev/banner/PublishProjectButton';
 
 interface Props {
   projectId: string;
@@ -40,5 +40,5 @@ export default function NewProjectBanner({projectId}: Props) {
         </FormWrapper>
       </div>
     </div>
-  )
+  );
 }

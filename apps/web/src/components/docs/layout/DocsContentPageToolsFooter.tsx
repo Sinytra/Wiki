@@ -1,7 +1,7 @@
-import * as React from "react";
-import ReportPageButton from "@/components/docs/layout/ReportPageButton";
-import EditPageButton from "@/components/docs/layout/EditPageButton";
-import env from "@repo/shared/env";
+import * as React from 'react';
+import ReportPageButton from '@/components/docs/layout/ReportPageButton';
+import EditPageButton from '@/components/docs/layout/EditPageButton';
+import env from '@repo/shared/env';
 
 interface Props {
   project: string;
@@ -23,5 +23,5 @@ export default function DocsContentPageToolsFooter({project, id, local, editUrl}
         </div>
       </div>
     </footer>
-  )
+  );
 }

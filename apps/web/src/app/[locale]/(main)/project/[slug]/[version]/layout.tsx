@@ -1,15 +1,15 @@
-import {ReactNode} from "react";
-import {setContextLocale} from "@/lib/locales/routing";
-import service from "@/lib/service";
-import DocsLayoutClient from "@/components/docs/layout/DocsLayoutClient";
-import {notFound, redirect} from "next/navigation";
-import LeftSidebarContextProvider from "@/components/docs/side/LeftSidebarContext";
-import {ErrorBoundary} from "react-error-boundary";
-import DocsSidebarContextProvider from "@/components/docs/side/DocsSidebarContext";
-import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
-import platforms from "@repo/shared/platforms";
-import {Metadata, ResolvingMetadata} from "next";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import {ReactNode} from 'react';
+import {setContextLocale} from '@/lib/locales/routing';
+import service from '@/lib/service';
+import DocsLayoutClient from '@/components/docs/layout/DocsLayoutClient';
+import {notFound} from 'next/navigation';
+import LeftSidebarContextProvider from '@/components/docs/side/LeftSidebarContext';
+import {ErrorBoundary} from 'react-error-boundary';
+import DocsSidebarContextProvider from '@/components/docs/side/DocsSidebarContext';
+import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
+import platforms from '@repo/shared/platforms';
+import {Metadata, ResolvingMetadata} from 'next';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 
 export const fetchCache = 'default-cache';
 
@@ -59,7 +59,8 @@ export default async function HomepageLayout(props: LayoutProps) {
     <ErrorBoundary fallback={<DocsPageNotFoundError project={project}/>}>
       <LeftSidebarContextProvider>
         <DocsSidebarContextProvider>
-          <ClientLocaleProvider keys={['DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'LanguageSelect', 'ModVersionRange']}>
+          <ClientLocaleProvider
+            keys={['DocsPageNotFoundError', 'ProjectTypes', 'ProjectCategories', 'PageEditControls', 'DocsVersionSelector', 'LanguageSelect', 'ModVersionRange']}>
             <DocsLayoutClient project={project}
                               locale={locale} version={version}
                               platformProject={platformProject}>

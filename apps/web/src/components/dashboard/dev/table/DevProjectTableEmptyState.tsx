@@ -1,7 +1,7 @@
-import {ReactNode} from "react";
-import {useTranslations} from "next-intl";
-import {WIKI_DOCS_URL} from "@repo/shared/constants";
-import * as React from "react";
+import {ReactNode} from 'react';
+import {useTranslations} from 'next-intl';
+import {WIKI_DOCS_URL} from '@repo/shared/constants';
+import * as React from 'react';
 
 interface Props {
   guideLink?: (args: any) => ReactNode;
@@ -22,5 +22,5 @@ export default function DevProjectTableEmptyState({guideLink, children}: Props) 
         {guideLink ? guideLink(args) : u.rich('guide', args)}
       </p>
     </div>
-  )
+  );
 }

@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import {TvMinimalPlayIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {cn} from "@repo/ui/lib/utils";
-import {ReactNode, useContext} from "react";
+import {TvMinimalPlayIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import {cn} from '@repo/ui/lib/utils';
+import {ReactNode, useContext} from 'react';
 import {
   CATEGORY_EXPERIENCE,
   CookieConsentContext,
   EMBED_SERVICE_COOKIES
-} from "@/components/cookies/CookieConsentContextProvider";
-import * as CookieConsent from "vanilla-cookieconsent";
-import {useTranslations} from "next-intl";
+} from '@/components/cookies/CookieConsentContextProvider';
+import * as CookieConsent from 'vanilla-cookieconsent';
+import {useTranslations} from 'next-intl';
 
 export default function VideoEmbedPlaceholder({id, children}: {
   id: string;
@@ -30,10 +30,10 @@ export default function VideoEmbedPlaceholder({id, children}: {
   const thumbnailSrc = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
   return (
-    <div className={cn(`video-embed relative flex rounded-sm border border-tertiary bg-primary-alt text-center`)}>
+    <div className={cn('video-embed relative flex rounded-sm border border-tertiary bg-primary-alt text-center')}>
       <img src={thumbnailSrc} alt="thumbnail" width={560}/>
 
-      <div className={`absolute-center flex h-full w-full flex-col items-center justify-center gap-5 bg-primary/80`}>
+      <div className={'absolute-center flex h-full w-full flex-col items-center justify-center gap-5 bg-primary/80'}>
         <TvMinimalPlayIcon className="size-12 text-secondary-alt" strokeWidth={1.5}/>
         <div className="text-xl">
           <div className="flex flex-col gap-1">

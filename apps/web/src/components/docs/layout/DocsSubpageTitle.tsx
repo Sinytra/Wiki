@@ -1,5 +1,5 @@
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import LocalBadge from "@repo/ui/components/badge/LocalBadge";
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import LocalBadge from '@repo/ui/components/badge/LocalBadge';
 
 export default function DocsSubpageTitle({icon_url, subcategory, title, description, local}: {
   title: string;
@@ -23,8 +23,8 @@ export default function DocsSubpageTitle({icon_url, subcategory, title, descript
         </blockquote>
       </div>
       <div className="ml-auto p-1">
-        {local && <LocalBadge />}
+        {local && <LocalBadge/>}
       </div>
     </div>
-  )
+  );
 }

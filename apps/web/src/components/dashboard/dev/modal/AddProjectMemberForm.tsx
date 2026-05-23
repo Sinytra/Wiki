@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import {FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@repo/ui/components/form";
-import * as React from "react";
-import {addProjectMemberSchema} from "@/lib/forms/schemas";
-import {Input} from "@repo/ui/components/input";
-import {useTranslations} from "next-intl";
-import {PlusIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
-import GenericFormModal from "@/components/modal/GenericFormModal";
-import {FormActionResult} from "@/lib/forms/forms";
+import {FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from '@repo/ui/components/form';
+import * as React from 'react';
+import {addProjectMemberSchema} from '@/lib/forms/schemas';
+import {Input} from '@repo/ui/components/input';
+import {useTranslations} from 'next-intl';
+import {PlusIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@repo/ui/components/select';
+import GenericFormModal from '@/components/modal/GenericFormModal';
+import {FormActionResult} from '@/lib/forms/forms';
 
 interface Props {
   formAction: (rawData: any) => Promise<FormActionResult>;
@@ -81,5 +81,5 @@ export default function AddProjectMemberForm({formAction}: Props) {
         </>
       )}
     </GenericFormModal>
-  )
+  );
 }

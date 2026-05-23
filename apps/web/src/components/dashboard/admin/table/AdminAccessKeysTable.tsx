@@ -1,12 +1,12 @@
-import * as React from "react";
-import {AccessKeyInfo, PaginatedData} from "@sinytra/wiki-api-types";
-import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import {cn} from "@repo/ui/lib/utils";
-import CreateAccessKeyModal from "@/components/dashboard/admin/modal/CreateAccessKeyModal";
-import {handleCreateAccessKeyForm, handleDeleteAccessKeyForm} from "@/lib/forms/actions";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import DeleteAccessKeyModal from "@/components/dashboard/admin/modal/DeleteAccessKeyModal";
+import * as React from 'react';
+import {AccessKeyInfo, PaginatedData} from '@sinytra/wiki-api-types';
+import {TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import {cn} from '@repo/ui/lib/utils';
+import CreateAccessKeyModal from '@/components/dashboard/admin/modal/CreateAccessKeyModal';
+import {handleCreateAccessKeyForm, handleDeleteAccessKeyForm} from '@/lib/forms/actions';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import DeleteAccessKeyModal from '@/components/dashboard/admin/modal/DeleteAccessKeyModal';
 
 export default function AdminAccessKeysTable({data, page}: {
   data: PaginatedData<AccessKeyInfo>;
@@ -60,7 +60,7 @@ export default function AdminAccessKeysTable({data, page}: {
       header: '',
       cell: item => (
         <ClientLocaleProvider keys={['DeleteAccessKeyModal']}>
-          <DeleteAccessKeyModal accessKey={item} action={handleDeleteAccessKeyForm.bind(null, item.id)} />
+          <DeleteAccessKeyModal accessKey={item} action={handleDeleteAccessKeyForm.bind(null, item.id)}/>
         </ClientLocaleProvider>
       ),
       className: 'w-14'
@@ -77,5 +77,5 @@ export default function AdminAccessKeysTable({data, page}: {
         </ClientLocaleProvider>
       }/>
     </div>
-  )
+  );
 }

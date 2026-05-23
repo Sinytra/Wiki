@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import {ReactNode} from 'react';
 
 export function IconRow({icon: Icon, children}: { icon?: any, children: any }) {
   return (
@@ -6,7 +6,7 @@ export function IconRow({icon: Icon, children}: { icon?: any, children: any }) {
       {Icon && <Icon className="h-4 w-4"/>}
       <span className="text-sm font-medium text-secondary">{children}</span>
     </div>
-  )
+  );
 }
 
 export default function MetadataRowKey({title, icon, children}: { title: string; icon?: any; children?: ReactNode }) {
@@ -18,5 +18,5 @@ export default function MetadataRowKey({title, icon, children}: { title: string;
         {children}
       </div>
     </div>
-  )
+  );
 }

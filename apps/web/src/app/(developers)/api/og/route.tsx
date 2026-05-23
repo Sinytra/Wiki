@@ -1,19 +1,19 @@
-import {NextRequest, NextResponse} from "next/server";
-import {ImageResponse} from "next/og";
-import platforms, {PlatformProject} from "@repo/shared/platforms";
-import sharp from "sharp";
-import {getProcessURL} from "@/lib/utils";
-import {AssetLocation} from "@repo/shared/assets";
-import service from "@/lib/service";
-import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from "@repo/shared/constants";
-import markdown from "@repo/markdown";
+import {NextRequest, NextResponse} from 'next/server';
+import {ImageResponse} from 'next/og';
+import platforms, {PlatformProject} from '@repo/shared/platforms';
+import sharp from 'sharp';
+import {getProcessURL} from '@/lib/utils';
+import {AssetLocation} from '@repo/shared/assets';
+import service from '@/lib/service';
+import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from '@repo/shared/constants';
+import markdown from '@repo/markdown';
 
 export const runtime = 'nodejs';
 
 const size = {
   width: 1200,
   height: 630
-}
+};
 
 interface DocsPathCoords {
   locale: string;
@@ -37,7 +37,7 @@ async function getFont() {
       name: e[0],
       data: data,
       style: 'normal'
-    }
+    };
   }));
 }
 
@@ -93,7 +93,7 @@ function WikiHeader() {
         marginBottom: '2rem'
       }}/>
     </div>
-  )
+  );
 }
 
 async function projectPageImage(coords: DocsPathCoords, project: PlatformProject, fonts: any) {
@@ -101,7 +101,7 @@ async function projectPageImage(coords: DocsPathCoords, project: PlatformProject
     const resp = await fetch(url);
     const buf = await resp.arrayBuffer();
 
-    const buffer = await sharp(buf).toFormat('png').toBuffer()
+    const buffer = await sharp(buf).toFormat('png').toBuffer();
     return {
       url: `data:image/png;base64,${buffer.toString('base64')}`,
     };
@@ -252,7 +252,7 @@ export async function GET(req: NextRequest) {
   const {searchParams} = req.nextUrl;
   const slug = searchParams.get('slug');
   if (!slug) {
-    return NextResponse.json({'error': 'Missing slug parameter'}, {status: 400})
+    return NextResponse.json({'error': 'Missing slug parameter'}, {status: 400});
   }
 
   const fonts = await getFont();

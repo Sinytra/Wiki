@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React, { Component, useState } from "react";
+import React, {Component, useState} from 'react';
 
 class Tooltip extends Component<any> {
   state = {
@@ -29,7 +29,7 @@ class Tooltip extends Component<any> {
   }
 
   // @ts-expect-error mouse move
-  onMouseMove = ({ clientX: xPosition, clientY: yPosition }) => {
+  onMouseMove = ({clientX: xPosition, clientY: yPosition}) => {
     this.setState({
       xPosition,
       yPosition,
@@ -38,13 +38,13 @@ class Tooltip extends Component<any> {
   };
 
   addListener = () => {
-    document.addEventListener("mousemove", this.onMouseMove);
-    this.setState({ listenerActive: true });
+    document.addEventListener('mousemove', this.onMouseMove);
+    this.setState({listenerActive: true});
   };
 
   removeListener = () => {
-    document.removeEventListener("mousemove", this.onMouseMove);
-    this.setState({ xPosition: -100, yPosition: -100, listenerActive: false });
+    document.removeEventListener('mousemove', this.onMouseMove);
+    this.setState({xPosition: -100, yPosition: -100, listenerActive: false});
   };
 
   render() {
@@ -52,7 +52,7 @@ class Tooltip extends Component<any> {
       <div
         className="minetip-tooltip"
         style={{
-          display: this.props.visible && this.state.mouseMoved ? "block" : "none",
+          display: this.props.visible && this.state.mouseMoved ? 'block' : 'none',
           top: this.state.yPosition + this.props.offsetY,
           left: this.state.xPosition + this.props.offsetX
         }}
@@ -81,7 +81,7 @@ export default function TooltipImg(props: Properties) {
       {props.id}
       {props.tag &&
         <p className="m-0! mt-1! text-xs text-secondary text-shadow-none">
-            #{props.tag}
+          #{props.tag}
         </p>
       }
     </Tooltip>

@@ -43,4 +43,4 @@ function userRequiresCookieConsent() {
 
 export default {
   userRequiresCookieConsent
-}
+};

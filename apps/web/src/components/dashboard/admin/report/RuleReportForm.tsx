@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import {Button} from "@repo/ui/components/button";
-import * as React from "react";
-import {useRef} from "react";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {z} from "zod";
-import {ruleProjectReportSchema} from "@/lib/forms/schemas";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {toast} from "sonner";
-import {useTranslations} from "next-intl";
-import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
-import {useRouter} from "@/lib/locales/routing";
+import {Button} from '@repo/ui/components/button';
+import * as React from 'react';
+import {useRef} from 'react';
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {z} from 'zod';
+import {ruleProjectReportSchema} from '@/lib/forms/schemas';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {toast} from 'sonner';
+import {useTranslations} from 'next-intl';
+import usePageDataReloadTransition from '@repo/shared/client/usePageDataReloadTransition';
+import {useRouter} from '@/lib/locales/routing';
 
 interface Params {
   disabled: boolean;
@@ -41,7 +41,7 @@ export default function RuleReportForm({disabled, children, formAction}: Params)
     } else {
       console.error(resp);
     }
-  }
+  };
 
   function submitForm(resolution: Schema['resolution']) {
     form.setValue('resolution', resolution);
@@ -55,15 +55,15 @@ export default function RuleReportForm({disabled, children, formAction}: Params)
 
       {!disabled &&
         <div className="flex flex-row items-center justify-end gap-4">
-            <Button variant="secondary" type="button" onClick={submitForm.bind(null, 'dismiss')}>
-              {t('actions.dismiss')}
-            </Button>
+          <Button variant="secondary" type="button" onClick={submitForm.bind(null, 'dismiss')}>
+            {t('actions.dismiss')}
+          </Button>
 
-            <Button type="button" onClick={submitForm.bind(null, 'accept')}>
-              {t('actions.accept')}
-            </Button>
+          <Button type="button" onClick={submitForm.bind(null, 'accept')}>
+            {t('actions.accept')}
+          </Button>
         </div>
       }
     </form>
-  )
+  );
 }

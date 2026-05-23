@@ -1,16 +1,16 @@
 'use client';
 
 import {useEffect, useRef, useState} from 'react';
-import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
-import {FileHeading} from "@repo/shared/types/metadata";
-import {cn} from "@repo/ui/lib/utils";
-import {useTranslations} from "next-intl";
+import DocsSidebarBase from '@/components/docs/side/DocsSidebarBase';
+import {FileHeading} from '@repo/shared/types/metadata';
+import {cn} from '@repo/ui/lib/utils';
+import {useTranslations} from 'next-intl';
 
 interface ContentRightSidebarProps {
   headings: FileHeading[];
 }
 
-export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarProps) {
+export default function DocsContentTOCSidebar({headings}: ContentRightSidebarProps) {
   const t = useTranslations('DocsNonContentRightSidebar');
 
   const [activeId, setActiveId] = useState<string>('');
@@ -40,11 +40,11 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
   useEffect(() => {
     const checkOverflow = () => {
       if (listRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = listRef.current;
+        const {scrollTop, scrollHeight, clientHeight} = listRef.current;
         setShowTopGradient(scrollTop > 0);
         setShowBottomGradient(scrollTop + clientHeight < scrollHeight);
       }
-    }
+    };
 
     const listElement = listRef.current;
     if (listElement) {
@@ -58,7 +58,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
         listElement.removeEventListener('scroll', checkOverflow);
       }
       window.removeEventListener('resize', checkOverflow);
-    }
+    };
   }, [headings]);
 
   return (
@@ -76,7 +76,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
         {showTopGradient && (
           <div className={`
             from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent
-          `} />
+          `}/>
         )}
         <div
           ref={listRef}
@@ -86,19 +86,19 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
         >
           <ul className="space-y-1 text-sm">
             {headings.map((heading, index) => (
-              <li key={heading.id} style={{ paddingLeft: `${(heading.depth - 1) * 0.75}rem` }}>
+              <li key={heading.id} style={{paddingLeft: `${(heading.depth - 1) * 0.75}rem`}}>
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "block py-1 text-sm text-secondary transition-colors hover:text-primary",
-                    activeId === heading.id && "text-primary",
+                    'block py-1 text-sm text-secondary transition-colors hover:text-primary',
+                    activeId === heading.id && 'text-primary',
                     index === 0 ? 'pt-0!' : '',
                   )}
                   onClick={(e) => {
-                    e.preventDefault()
+                    e.preventDefault();
                     document.getElementById(heading.id)?.scrollIntoView({
                       behavior: 'smooth'
-                    })
+                    });
                   }}
                 >
                   {heading.value}
@@ -110,7 +110,7 @@ export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarP
         {showBottomGradient && (
           <div className={`
             from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent
-          `} />
+          `}/>
         )}
       </div>
     </DocsSidebarBase>

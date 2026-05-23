@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import {useState} from "react";
-import * as React from "react";
-import ToggleChevron from "@repo/ui/util/ToggleChevron";
-import {cn} from "@repo/ui/lib/utils";
+import {useState} from 'react';
+import * as React from 'react';
+import ToggleChevron from '@repo/ui/util/ToggleChevron';
+import {cn} from '@repo/ui/lib/utils';
 
 export default function ExpandableCategory({name, defaultOpen, className, children}: {
   name: string;
@@ -39,5 +39,5 @@ export default function ExpandableCategory({name, defaultOpen, className, childr
         </div>
       </td>
     </tr>
-  )
+  );
 }

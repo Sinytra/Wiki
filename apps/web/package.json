@@ -87,7 +87,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@shikijs/rehype": "^1.16.2",
-    "@sinytra/wiki-api-types": "^0.1.1",
+    "@sinytra/wiki-api-types": "^0.1.2",
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/js-cookie": "^3.0.6",

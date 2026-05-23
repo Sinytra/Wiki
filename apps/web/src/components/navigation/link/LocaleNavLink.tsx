@@ -1,5 +1,5 @@
-import {ComponentPropsWithoutRef, forwardRef} from "react"
-import {LocaleLink as NextLink} from "@/lib/locales/routing";
+import {ComponentPropsWithoutRef, forwardRef} from 'react';
+import {LocaleLink as NextLink} from '@/lib/locales/routing';
 
 // https://github.com/vercel/next.js/discussions/24009#discussioncomment-8267656
 export const LocaleNavLink = forwardRef<
@@ -15,6 +15,6 @@ export const LocaleNavLink = forwardRef<
     },
     ref
   ) {
-    return <NextLink prefetch={prefetch} {...rest} ref={ref} />
+    return <NextLink prefetch={prefetch} {...rest} ref={ref}/>;
   }
-)
+);

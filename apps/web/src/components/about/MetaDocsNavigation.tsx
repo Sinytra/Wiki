@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import {HelpCircleIcon, HomeIcon, LockKeyholeIcon, PencilRulerIcon, ScrollTextIcon, ShieldIcon} from "lucide-react";
-import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
-import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
-import * as React from "react";
-import {useTranslations} from "next-intl";
-import {WIKI_DOCS_URL} from "@repo/shared/constants";
+import {HelpCircleIcon, HomeIcon, LockKeyholeIcon, PencilRulerIcon, ScrollTextIcon, ShieldIcon} from 'lucide-react';
+import SidebarNavLink from '@/components/navigation/link/SidebarNavLink';
+import CollapsibleDocsTreeBase from '@/components/docs/CollapsibleDocsTreeBase';
+import * as React from 'react';
+import {useTranslations} from 'next-intl';
+import {WIKI_DOCS_URL} from '@repo/shared/constants';
 
 export default function MetaDocsNavigation() {
   const t = useTranslations('MetaDocsNavigation');
@@ -43,5 +43,5 @@ export default function MetaDocsNavigation() {
         </SidebarNavLink>
       </div>
     </CollapsibleDocsTreeBase>
-  )
+  );
 }

@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import {PlatformProject} from "@repo/shared/platforms";
-import {Button} from "@repo/ui/components/button";
-import {BookMarkedIcon, BoxIcon, HomeIcon} from "lucide-react";
-import {LocaleLink, usePathname} from "@/lib/locales/routing";
-import {cn} from "@repo/ui/lib/utils";
-import {useParams} from "next/navigation";
-import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector";
-import * as React from "react";
-import LanguageSelect from "@/components/navigation/LanguageSelect";
-import SubMobileNav from "@/components/navigation/header/SubMobileNav";
-import {ProjectData} from "@sinytra/wiki-api-types";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
+import {PlatformProject} from '@repo/shared/platforms';
+import {Button} from '@repo/ui/components/button';
+import {BookMarkedIcon, BoxIcon, HomeIcon} from 'lucide-react';
+import {LocaleLink, usePathname} from '@/lib/locales/routing';
+import {cn} from '@repo/ui/lib/utils';
+import {useParams} from 'next/navigation';
+import DocsVersionSelector from '@/components/docs/versions/DocsVersionSelector';
+import * as React from 'react';
+import LanguageSelect from '@/components/navigation/LanguageSelect';
+import SubMobileNav from '@/components/navigation/header/SubMobileNav';
+import {ProjectData} from '@sinytra/wiki-api-types';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
 
 function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any; path: string; disabled?: boolean }) {
   const pathName = usePathname();
   const params = useParams();
-  const parts = pathName.split("/");
+  const parts = pathName.split('/');
   const active = parts.length == 4 && path.length == 0 || parts.length >= 5 && parts[4] == path;
 
   return (
@@ -31,7 +31,7 @@ function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any
         <span className="mr-auto text-sm sm:mr-0">{title}</span>
       </Button>
     </LocaleLink>
-  )
+  );
 }
 
 function DocsSubNavProjectTitle({project, platformProject}: {
@@ -46,7 +46,7 @@ function DocsSubNavProjectTitle({project, platformProject}: {
         {project.name}
       </span>
     </div>
-  )
+  );
 }
 
 function MobileDocsSubNavProjectTitle({project, platformProject}: {
@@ -63,7 +63,7 @@ function MobileDocsSubNavProjectTitle({project, platformProject}: {
         {platformProject.summary}
       </blockquote>
     </div>
-  )
+  );
 }
 
 function DocsSubNavBarLinks({project, locale, version}: {
@@ -87,8 +87,8 @@ function DocsSubNavBarLinks({project, locale, version}: {
 
       {(showVersions || showLocales) &&
         <>
-            <div className="verticalSeparator hidden! sm:inline-flex!"/>
-            <hr className="w-full border-tertiary sm:hidden"/>
+          <div className="verticalSeparator hidden! sm:inline-flex!"/>
+          <hr className="w-full border-tertiary sm:hidden"/>
         </>
       }
 
@@ -99,7 +99,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
         <LanguageSelect locale={locale} locales={project.locales!} minimal/>
       }
     </div>
-  )
+  );
 }
 
 export default function DocsSubNavBar({project, platformProject, locale, version}: {
@@ -126,5 +126,5 @@ export default function DocsSubNavBar({project, platformProject, locale, version
         </SubMobileNav>
       </div>
     </div>
-  )
+  );
 }

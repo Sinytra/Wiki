@@ -1,8 +1,8 @@
-import ContentLink from "@/components/docs/shared/ContentLink";
-import {ComponentPropsWithoutRef} from "react";
-import {ProjectContext} from "@repo/shared/types/service";
-import PageLink from "@/components/docs/PageLink";
-import DocsLink from "@/components/docs/shared/DocsLink";
+import ContentLink from '@/components/docs/shared/ContentLink';
+import {ComponentPropsWithoutRef} from 'react';
+import {ProjectContext} from '@repo/shared/types/service';
+import PageLink from '@/components/docs/PageLink';
+import DocsLink from '@/components/docs/shared/DocsLink';
 
 type LinkProps = ComponentPropsWithoutRef<typeof PageLink> & { ctx: ProjectContext };
 
@@ -21,5 +21,5 @@ function BoundExtendedLink(props: LinkProps) {
     }
   }
 
-  return <PageLink {...props} />
+  return <PageLink {...props} />;
 }

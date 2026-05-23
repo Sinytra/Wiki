@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import {toast} from "sonner";
-import {useRouter} from "@bprogress/next";
-import {Link2Icon, LoaderCircleIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {useFormStatus} from "react-dom";
-import {useTranslations} from "next-intl";
+import {toast} from 'sonner';
+import {useRouter} from '@bprogress/next';
+import {Link2Icon, LoaderCircleIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import {useFormStatus} from 'react-dom';
+import {useTranslations} from 'next-intl';
 
 function SubmitButton() {
   const {pending} = useFormStatus();
@@ -14,9 +14,9 @@ function SubmitButton() {
   return (
     <Button data-pending={pending ? 'true' : 'false'} variant="destructive" size="sm"
             className={`
-              border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
-              data-[pending=true]:text-destructive/90
-            `}>
+        border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80
+        data-[pending=true]:text-destructive/90
+      `}>
       {pending
         ?
         <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin"/>
@@ -44,7 +44,7 @@ export default function UnlinkMRAccountForm({callback}: { callback: () => Promis
 
   return (
     <form action={action}>
-      <SubmitButton />
+      <SubmitButton/>
     </form>
-  )
+  );
 }

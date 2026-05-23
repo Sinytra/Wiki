@@ -1,20 +1,20 @@
-import React from "react";
-import {cn} from "@repo/ui/lib/utils";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {useTranslations} from "next-intl";
-import {BookMarkedIcon} from "lucide-react";
-import env from "@repo/shared/env";
-import ManageCookiesButton from "@/components/cookies/ManageCookiesButton";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {NavLink} from "@/components/navigation/link/NavLink";
+import React from 'react';
+import {cn} from '@repo/ui/lib/utils';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {useTranslations} from 'next-intl';
+import {BookMarkedIcon} from 'lucide-react';
+import env from '@repo/shared/env';
+import ManageCookiesButton from '@/components/cookies/ManageCookiesButton';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import {NavLink} from '@/components/navigation/link/NavLink';
 
-function Copyright({ center }: { center: boolean }) {
+function Copyright({center}: { center: boolean }) {
   const t = useTranslations('NavigationFooter');
 
   return <>
-    <div className={cn("flex flex-col items-center md:basis-96", !center && 'md:items-start')}>
+    <div className={cn('flex flex-col items-center md:basis-96', !center && 'md:items-start')}>
       <span className="inline-flex items-center font-medium text-primary">
-        <BookMarkedIcon className="mr-2 h-4 w-4" />
+        <BookMarkedIcon className="mr-2 h-4 w-4"/>
         {t('title')}
       </span>
       <p className="mt-6 text-sm">
@@ -22,14 +22,18 @@ function Copyright({ center }: { center: boolean }) {
       </p>
       <div className="mt-auto pt-3 font-normal! text-secondary">
         <ClientLocaleProvider keys={['ManageCookiesButton']}>
-          <ManageCookiesButton />
+          <ManageCookiesButton/>
         </ClientLocaleProvider>
       </div>
     </div>
-  </>
+  </>;
 }
 
-function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { title: string, href: string, component?: any }) {
+function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: {
+  title: string,
+  href: string,
+  component?: any
+}) {
   return <>
     <ul>
       <li>
@@ -40,7 +44,7 @@ function LinkEntry({title, href, component: LinkComponent = LocaleNavLink}: { ti
         </LinkComponent>
       </li>
     </ul>
-  </>
+  </>;
 }
 
 function LinkColumn({title, className, children}: { title: string, className?: string, children: React.ReactNode }) {
@@ -50,7 +54,7 @@ function LinkColumn({title, className, children}: { title: string, className?: s
 
       {children}
     </div>
-  </>
+  </>;
 }
 
 function NavigationColumns() {
@@ -98,13 +102,13 @@ export default function Footer() {
       <div className="flex w-full max-w-[90rem] flex-col gap-8 px-8 text-secondary">
         <div
           className={cn(
-            "flex w-full flex-wrap justify-center gap-y-10 sm:gap-y-8 md:flex-row md:flex-nowrap",
+            'flex w-full flex-wrap justify-center gap-y-10 sm:gap-y-8 md:flex-row md:flex-nowrap',
             !isPreview && 'md:justify-between'
           )}
         >
-          <Copyright center={isPreview} />
+          <Copyright center={isPreview}/>
 
-          { !isPreview && <NavigationColumns /> }
+          {!isPreview && <NavigationColumns/>}
         </div>
         <div className="text-center">
           <span className="text-xs text-secondary">
@@ -113,5 +117,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

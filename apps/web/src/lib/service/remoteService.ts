@@ -1,14 +1,14 @@
-import {AssetLocation} from "@repo/shared/assets";
-import {constructPagePath} from "@/lib/service/serviceUtil";
+import {AssetLocation} from '@repo/shared/assets';
+import {constructPagePath} from '@/lib/service/serviceUtil';
 import {
   ContentFileTree,
   ProjectContext,
   ServiceProvider,
   ServiceProviderFactory
-} from "@repo/shared/types/service";
-import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
-import browseApi from "@/lib/service/api/browseApi";
-import network from "@repo/shared/network";
+} from '@repo/shared/types/service';
+import resourceLocation, {DEFAULT_NAMESPACE} from '@repo/shared/resourceLocation';
+import browseApi from '@/lib/service/api/browseApi';
+import network from '@repo/shared/network';
 import commonNetwork, {ApiRouteParameters, RequestOptions} from '@repo/shared/commonNetwork';
 import {
   BrowseResponse,
@@ -20,7 +20,7 @@ import {
   ResolvedItem,
   ResourceLocation,
   TreeResponse
-} from "@sinytra/wiki-api-types";
+} from '@sinytra/wiki-api-types';
 
 async function sendApiRequest(project: string, path: string, parameters?: ApiRouteParameters, options?: RequestOptions) {
   return network.sendSimpleRequest(path, {
@@ -57,9 +57,17 @@ function getAssetURL(location: string, {id, version}: ProjectContext): AssetLoca
   };
 }
 
-async function getDocsPage(path: string[], optional: boolean, {id, version, locale}: ProjectContext): Promise<ContentItemResponse | null> {
+async function getDocsPage(path: string[], optional: boolean, {
+  id,
+  version,
+  locale
+}: ProjectContext): Promise<ContentItemResponse | null> {
   return await resolveNullableApiCall(() =>
-    sendApiRequest(id, `docs/${id}/page/${constructPagePath(path)}`, {version, locale, optional: optional ? 'true' : null}, {cache: false}));
+    sendApiRequest(id, `docs/${id}/page/${constructPagePath(path)}`, {
+      version,
+      locale,
+      optional: optional ? 'true' : null
+    }, {cache: false}));
 }
 
 async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<BrowseResponse | null> {
@@ -76,21 +84,37 @@ async function getProjectContents({id, version, locale}: ProjectContext): Promis
   return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}`, {version, locale}, {cache: false}));
 }
 
-async function getProjectContentPage(id: string, {id: project, version, locale}: ProjectContext): Promise<ContentItemResponse | null> {
+async function getProjectContentPage(id: string, {
+  id: project,
+  version,
+  locale
+}: ProjectContext): Promise<ContentItemResponse | null> {
   return resolveNullableApiCall(() =>
     sendApiRequest(project, `content/${project}/${id}`, {version, locale}, {cache: false}));
 }
 
-async function getProjectRecipe(recipe: string, {id, version, locale}: ProjectContext): Promise<ResolvedGameRecipe | null> {
+async function getProjectRecipe(recipe: string, {
+  id,
+  version,
+  locale
+}: ProjectContext): Promise<ResolvedGameRecipe | null> {
   return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}/recipe/${recipe}`, {version, locale}));
 }
 
-async function getContentRecipeObtaining(id: string, {id: project, version, locale}: ProjectContext): Promise<ResolvedGameRecipe[] | null> {
+async function getContentRecipeObtaining(id: string, {
+  id: project,
+  version,
+  locale
+}: ProjectContext): Promise<ResolvedGameRecipe[] | null> {
   return resolveNullableApiCall(() =>
     sendApiRequest(project, `content/${project}/${id}/recipe`, {version, locale}, {cache: false}));
 }
 
-async function getContentRecipeUsage(id: string, {id: project, version, locale}: ProjectContext): Promise<ResolvedItem[] | null> {
+async function getContentRecipeUsage(id: string, {
+  id: project,
+  version,
+  locale
+}: ProjectContext): Promise<ResolvedItem[] | null> {
   return resolveNullableApiCall(() =>
     sendApiRequest(id, `content/${project}/${id}/usage`, {version, locale}, {cache: false}));
 }
@@ -101,7 +125,11 @@ async function getRecipeType(type: string, {id, version, locale}: ProjectContext
     sendApiRequest(actualProjectId, `content/${actualProjectId}/recipe-type/${type}`, {version, locale}));
 }
 
-async function getContentItemName(id: string, {id: project, version, locale}: ProjectContext): Promise<ContentItemNameResponse | null> {
+async function getContentItemName(id: string, {
+  id: project,
+  version,
+  locale
+}: ProjectContext): Promise<ContentItemNameResponse | null> {
   const actualProjectId = resourceLocation.parse(id)?.namespace == DEFAULT_NAMESPACE ? DEFAULT_NAMESPACE : id;
   return resolveNullableApiCall(() =>
     sendApiRequest(actualProjectId, `content/${project}/${actualProjectId}/name`, {version, locale}));
@@ -120,7 +148,7 @@ const serviceProvider: ServiceProvider = {
   getContentRecipeObtaining,
   getRecipeType,
   getContentItemName
-}
+};
 
 export const serviceProviderFactory: ServiceProviderFactory = {
   isAvailable() {
@@ -129,4 +157,4 @@ export const serviceProviderFactory: ServiceProviderFactory = {
   create() {
     return serviceProvider;
   }
-}
+};

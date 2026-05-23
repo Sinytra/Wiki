@@ -1,13 +1,16 @@
-'use client'
+'use client';
 
-import {Button} from "@repo/ui/components/button";
-import {SettingsIcon} from "lucide-react";
-import * as React from "react";
-import {toast} from "sonner";
+import {Button} from '@repo/ui/components/button';
+import {SettingsIcon} from 'lucide-react';
+import * as React from 'react';
+import {toast} from 'sonner';
 import {ApiCallResult} from '@repo/shared/commonNetwork';
 import {DataMigration} from '@sinytra/wiki-api-types';
 
-export default function DataMigrationWidget({migration, action}: { migration: DataMigration, action: () => Promise<ApiCallResult> }) {
+export default function DataMigrationWidget({migration, action}: {
+  migration: DataMigration,
+  action: () => Promise<ApiCallResult>
+}) {
   const formAction = async () => {
     const result = await action();
     if (result.success) {
@@ -15,7 +18,7 @@ export default function DataMigrationWidget({migration, action}: { migration: Da
     } else {
       toast.error('Data migration failed');
     }
-  }
+  };
 
   return (
     <form action={formAction}
@@ -27,7 +30,7 @@ export default function DataMigrationWidget({migration, action}: { migration: Da
       </div>
 
       <Button size="sm">
-        <SettingsIcon className="mr-2 size-4" />
+        <SettingsIcon className="mr-2 size-4"/>
         Run
       </Button>
     </form>

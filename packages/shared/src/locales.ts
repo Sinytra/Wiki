@@ -59,8 +59,8 @@ function getNextIntlInternal(locale: string): string {
 
 function getPathPrefixes(): PathPrefixMap {
   return Object.entries(getAvailableLocales())
-      .filter(e => e[1].prefix !== undefined)
-      .reduce((p, e) => ({...p, [e[0]]: '/' + e[1].prefix}), {});
+    .filter(e => e[1].prefix !== undefined)
+    .reduce((p, e) => ({...p, [e[0]]: '/' + e[1].prefix}), {});
 }
 
 function getForUrlParam(locale: string): Language | undefined {

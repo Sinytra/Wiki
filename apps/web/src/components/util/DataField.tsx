@@ -1,8 +1,8 @@
-import {Label} from "@repo/ui/components/label";
-import {cn} from "@repo/ui/lib/utils";
-import {ExternalLinkIcon} from "lucide-react";
-import {CopyButton} from "@repo/ui/components/button/CopyButton";
-import * as React from "react";
+import {Label} from '@repo/ui/components/label';
+import {cn} from '@repo/ui/lib/utils';
+import {ExternalLinkIcon} from 'lucide-react';
+import {CopyButton} from '@repo/ui/components/button/CopyButton';
+import * as React from 'react';
 
 export default function DataField({title, desc, className, icon: Icon, value, iconClass, href, copiable}: {
   title: string;
@@ -43,5 +43,5 @@ export default function DataField({title, desc, className, icon: Icon, value, ic
         </p>
       }
     </div>
-  )
+  );
 }

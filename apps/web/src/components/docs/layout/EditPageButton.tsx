@@ -1,7 +1,7 @@
-import {useTranslations} from "next-intl";
-import {Edit} from "lucide-react";
-import * as React from "react";
-import {NavLink} from "@/components/navigation/link/NavLink";
+import {useTranslations} from 'next-intl';
+import {Edit} from 'lucide-react';
+import * as React from 'react';
+import {NavLink} from '@/components/navigation/link/NavLink';
 
 export default function EditPageButton({editUrl}: { editUrl?: string | null }) {
   const t = useTranslations('PageEditControls');
@@ -14,5 +14,5 @@ export default function EditPageButton({editUrl}: { editUrl?: string | null }) {
       <Edit className="mr-2 h-4 w-4"/>
       {t('edit_gh')}
     </NavLink>
-  )
+  );
 }

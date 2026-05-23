@@ -1,7 +1,7 @@
-import type {HTMLAttributes, ImgHTMLAttributes} from "react";
-import AssetBase from "@/components/docs/shared/asset/AssetBase";
-import AssetDisplay from "@/components/docs/shared/asset/AssetDisplay";
-import {ProjectContext} from "@repo/shared/types/service";
+import type {HTMLAttributes, ImgHTMLAttributes} from 'react';
+import AssetBase from '@/components/docs/shared/asset/AssetBase';
+import AssetDisplay from '@/components/docs/shared/asset/AssetDisplay';
+import {ProjectContext} from '@repo/shared/types/service';
 
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   ctx: ProjectContext | null;
@@ -23,5 +23,5 @@ export default async function Asset({location, ...props}: Props) {
       location={location}
       {...props}
     />
-  )
+  );
 }

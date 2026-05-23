@@ -1,12 +1,12 @@
-import ExpandableCategory from "@/components/docs/util/ExpandableCategory";
-import Asset from "@/components/docs/shared/asset/Asset";
-import PageLink from "@/components/docs/PageLink";
-import {ContentFileTree, ProjectContext} from "@repo/shared/types/service";
-import {ContentFileTreeEntry, ProjectData} from "@sinytra/wiki-api-types";
-import {useTranslations} from "next-intl";
-import {cn} from "@repo/ui/lib/utils";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {getContentLink} from "@/lib/project/game/content";
+import ExpandableCategory from '@/components/docs/util/ExpandableCategory';
+import Asset from '@/components/docs/shared/asset/Asset';
+import PageLink from '@/components/docs/PageLink';
+import {ContentFileTree, ProjectContext} from '@repo/shared/types/service';
+import {ContentFileTreeEntry, ProjectData} from '@sinytra/wiki-api-types';
+import {useTranslations} from 'next-intl';
+import {cn} from '@repo/ui/lib/utils';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {getContentLink} from '@/lib/project/game/content';
 
 interface Props {
   currentId: string;
@@ -63,7 +63,7 @@ function Category({currentId, content, ctx}: {
         </div>
       ))}
     </ExpandableCategory>
-  )
+  );
 }
 
 export default function ContentListFooter({currentId, project, ctx, contents}: Props) {
@@ -96,5 +96,5 @@ export default function ContentListFooter({currentId, project, ctx, contents}: P
         </table>
       </div>
     </div>
-  )
+  );
 }

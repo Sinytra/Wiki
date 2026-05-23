@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   Form,
@@ -8,23 +8,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from "@repo/ui/components/form";
-import {z} from "zod";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {Input} from "@repo/ui/components/input";
-import {Button} from "@repo/ui/components/button";
-import {ExternalLinkIcon} from "lucide-react";
-import {useTranslations} from "next-intl";
-import {projectUpdateSourceSchema} from "@/lib/forms/schemas";
-import * as React from "react";
-import {useState} from "react";
-import {toast} from "sonner";
-import {useRouter} from "@/lib/locales/routing";
-import clientActions from "@/lib/forms/clientActions";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
-import {DevProjectData} from "@sinytra/wiki-api-types";
+} from '@repo/ui/components/form';
+import {z} from 'zod';
+import {useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {Input} from '@repo/ui/components/input';
+import {Button} from '@repo/ui/components/button';
+import {ExternalLinkIcon} from 'lucide-react';
+import {useTranslations} from 'next-intl';
+import {projectUpdateSourceSchema} from '@/lib/forms/schemas';
+import * as React from 'react';
+import {useState} from 'react';
+import {toast} from 'sonner';
+import {useRouter} from '@/lib/locales/routing';
+import clientActions from '@/lib/forms/clientActions';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
+import {DevProjectData} from '@sinytra/wiki-api-types';
 
 function ProjectSourceFormBody({form}: { form: any }) {
   return (
@@ -86,7 +86,7 @@ function ProjectSourceFormBody({form}: { form: any }) {
         )}
       />
     </div>
-  )
+  );
 }
 
 export default function DevProjectSourceSettings({project}: { project: DevProjectData }) {
@@ -154,41 +154,41 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
         <div className="space-y-4">
           {form.formState.errors.root?.custom?.message &&
             <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                <p className="text-sm text-destructive">
-                  {form.formState.errors.root.custom.message}
-                </p>
+              <p className="text-sm text-destructive">
+                {form.formState.errors.root.custom.message}
+              </p>
             </div>
           }
 
           {/*@ts-expect-error expected*/}
           {form.formState.errors.root?.custom?.details &&
             <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
-                <summary className="mb-2">
-                  {t('errors.details')}
-                </summary>
+              <summary className="mb-2">
+                {t('errors.details')}
+              </summary>
               {/*@ts-expect-error expected*/}
-                <code className="text-xs">{form.formState.errors.root.custom.details}</code>
+              <code className="text-xs">{form.formState.errors.root.custom.details}</code>
             </details>
           }
 
           {canVerifyModrinth &&
             <div className="flex flex-col gap-1 rounded-md border border-brand-modrinth/70 bg-primary-dim p-3">
-                <p className="flex flex-row items-start text-secondary">
-                    <ModrinthIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0 text-brand-modrinth"/>
-                    <span className="text-sm text-secondary">
-                      {t.rich('connect_modrinth.desc', {
-                        b: (chunks: any) => <span className="text-primary">{chunks}</span>
-                      })}
-                    </span>
-                </p>
-                <div className="ml-auto">
-                    <LocaleNavLink href="/dev/settings" target="_blank">
-                        <Button type="button" size="sm">
-                          {t('connect_modrinth.settings')}
-                            <ExternalLinkIcon className="ml-2 h-4 w-4"/>
-                        </Button>
-                    </LocaleNavLink>
-                </div>
+              <p className="flex flex-row items-start text-secondary">
+                <ModrinthIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0 text-brand-modrinth"/>
+                <span className="text-sm text-secondary">
+                  {t.rich('connect_modrinth.desc', {
+                    b: (chunks: any) => <span className="text-primary">{chunks}</span>
+                  })}
+                </span>
+              </p>
+              <div className="ml-auto">
+                <LocaleNavLink href="/dev/settings" target="_blank">
+                  <Button type="button" size="sm">
+                    {t('connect_modrinth.settings')}
+                    <ExternalLinkIcon className="ml-2 h-4 w-4"/>
+                  </Button>
+                </LocaleNavLink>
+              </div>
             </div>
           }
         </div>

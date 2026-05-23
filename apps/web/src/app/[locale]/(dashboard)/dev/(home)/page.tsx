@@ -1,13 +1,13 @@
-import GetStartedButton from "@/components/dashboard/dev/get-started/GetStartedButton";
-import LinkTextButton from "@/components/navigation/link/LinkTextButton";
-import * as React from "react";
-import {Suspense} from "react";
-import {getTranslations} from "next-intl/server";
-import {Skeleton} from "@repo/ui/components/skeleton";
-import GetStartedContextProvider from "@/components/dashboard/dev/get-started/GetStartedContextProvider";
-import {trimText} from "@/lib/utils";
-import {cn} from "@repo/ui/lib/utils";
-import platforms, {PlatformProject} from "@repo/shared/platforms";
+import GetStartedButton from '@/components/dashboard/dev/get-started/GetStartedButton';
+import LinkTextButton from '@/components/navigation/link/LinkTextButton';
+import * as React from 'react';
+import {Suspense} from 'react';
+import {getTranslations} from 'next-intl/server';
+import {Skeleton} from '@repo/ui/components/skeleton';
+import GetStartedContextProvider from '@/components/dashboard/dev/get-started/GetStartedContextProvider';
+import {trimText} from '@/lib/utils';
+import {cn} from '@repo/ui/lib/utils';
+import platforms, {PlatformProject} from '@repo/shared/platforms';
 import {
   AlertCircleIcon,
   CircleCheckIcon,
@@ -16,20 +16,20 @@ import {
   LoaderCircleIcon, LockIcon,
   SettingsIcon,
   XIcon
-} from "lucide-react";
-import {setContextLocale} from "@/lib/locales/routing";
-import {Button} from "@repo/ui/components/button";
-import {SidebarTrigger} from "@repo/ui/components/sidebar";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import {DevProjectData, ProjectVisibility} from "@sinytra/wiki-api-types";
-import ProjectRegisterForm from "@/components/dashboard/dev/modal/ProjectRegisterForm";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectStatus} from "@sinytra/wiki-api-types";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import {WIKI_DOCS_URL} from "@repo/shared/constants";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {LocaleRouteParams} from "@repo/shared/types/routes";
+} from 'lucide-react';
+import {setContextLocale} from '@/lib/locales/routing';
+import {Button} from '@repo/ui/components/button';
+import {SidebarTrigger} from '@repo/ui/components/sidebar';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import {DevProjectData, ProjectVisibility} from '@sinytra/wiki-api-types';
+import ProjectRegisterForm from '@/components/dashboard/dev/modal/ProjectRegisterForm';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {ProjectStatus} from '@sinytra/wiki-api-types';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import {WIKI_DOCS_URL} from '@repo/shared/constants';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {LocaleRouteParams} from '@repo/shared/types/routes';
 
 export const dynamic = 'force-dynamic';
 
@@ -50,13 +50,13 @@ function ProjectsListHeader() {
 
       <hr className="my-3 flex w-full border-neutral-600"/>
     </div>
-  )
+  );
 }
 
 function ProfileProjectSkeleton() {
   return (
     <Skeleton className="h-[118px] w-full"/>
-  )
+  );
 }
 
 function Property({icon: Icon, textClass, iconClass, children}: {
@@ -67,10 +67,10 @@ function Property({icon: Icon, textClass, iconClass, children}: {
 }) {
   return (
     <div className="inline-flex items-center gap-2">
-      <Icon className={cn("h-4 w-4", iconClass)}/>
+      <Icon className={cn('h-4 w-4', iconClass)}/>
       <span className={cn('align-bottom text-sm', textClass)}>{children}</span>
     </div>
-  )
+  );
 }
 
 function MobileProjectHeader({id, project}: { id: string; project: PlatformProject; }) {
@@ -90,7 +90,7 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 async function DevProjectsListEntry({project}: { project: DevProjectData }) {
@@ -109,10 +109,10 @@ async function DevProjectsListEntry({project}: { project: DevProjectData }) {
   const status = statuses[project.status || 'unknown'];
 
   const visibilities: { [key in ProjectVisibility]: { text: string; icon: any, iconClass?: string; } } = {
-    public: { text: 'text-secondary', iconClass: 'text-secondary', icon: GlobeIcon },
-    unlisted: { text: 'text-secondary', iconClass: 'text-secondary', icon: Link2Icon },
-    private: { text: 'text-secondary', iconClass: 'text-secondary', icon: LockIcon }
-  }
+    public: {text: 'text-secondary', iconClass: 'text-secondary', icon: GlobeIcon},
+    unlisted: {text: 'text-secondary', iconClass: 'text-secondary', icon: Link2Icon},
+    private: {text: 'text-secondary', iconClass: 'text-secondary', icon: LockIcon}
+  };
   const visibility = visibilities[project.visibility];
 
   return (
@@ -162,7 +162,7 @@ async function DevProjectsListEntry({project}: { project: DevProjectData }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 async function ProfileProjects({projects}: { projects: DevProjectData[] }) {
@@ -183,26 +183,26 @@ async function ProfileProjects({projects}: { projects: DevProjectData[] }) {
             flex w-full flex-col items-center justify-center gap-4 rounded-xs border border-tertiary px-4 py-6
             text-center
           `}>
-            <span className="font-medium text-primary">
-              {t('empty.primary')}
-            </span>
-            <span className="text-secondary">
-              {t.rich('empty.secondary', {
-                guide: (chunks: any) => (
-                  <LinkTextButton className="text-base! font-normal! text-primary! underline" href={WIKI_DOCS_URL}>
-                    {chunks}
-                  </LinkTextButton>
-                )
-              })}
-            </span>
+          <span className="font-medium text-primary">
+            {t('empty.primary')}
+          </span>
+          <span className="text-secondary">
+            {t.rich('empty.secondary', {
+              guide: (chunks: any) => (
+                <LinkTextButton className="text-base! font-normal! text-primary! underline" href={WIKI_DOCS_URL}>
+                  {chunks}
+                </LinkTextButton>
+              )
+            })}
+          </span>
 
-            <ClientLocaleProvider keys={['GetStartedButton']}>
-                <GetStartedButton/>
-            </ClientLocaleProvider>
+          <ClientLocaleProvider keys={['GetStartedButton']}>
+            <GetStartedButton/>
+          </ClientLocaleProvider>
         </div>
       }
     </>
-  )
+  );
 }
 
 export default async function DevPage(props: { params: Promise<LocaleRouteParams> }) {
@@ -222,5 +222,5 @@ export default async function DevPage(props: { params: Promise<LocaleRouteParams
         </div>
       </div>
     </GetStartedContextProvider>
-  )
+  );
 }

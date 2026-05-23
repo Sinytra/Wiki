@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import {Share2} from "lucide-react";
-import {ReactNode} from "react";
-import {cn} from "@repo/ui/lib/utils";
-import {Button} from "@repo/ui/components/button";
-import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import DiscordIcon from "@repo/ui/icons/DiscordIcon";
+import {Share2} from 'lucide-react';
+import {ReactNode} from 'react';
+import {cn} from '@repo/ui/lib/utils';
+import {Button} from '@repo/ui/components/button';
+import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import DiscordIcon from '@repo/ui/icons/DiscordIcon';
 
 export default function SocialButtons({enableSharing, shareData, large}: {
   enableSharing?: boolean,
   shareData?: any;
   large?: boolean
 }) {
-  const isShareSupported = typeof navigator !== "undefined" && typeof navigator.share === "function";
+  const isShareSupported = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share(shareData).catch((error) => {
-        console.error("Error sharing:", error);
+        console.error('Error sharing:', error);
       });
     } else {
-      alert("Sharing is not supported on this browser.");
+      alert('Sharing is not supported on this browser.');
     }
   };
 

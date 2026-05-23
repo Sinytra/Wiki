@@ -1,8 +1,8 @@
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@repo/ui/components/tooltip";
-import {cn} from "@repo/ui/lib/utils";
-import {Popover, PopoverContent, PopoverTrigger} from "@repo/ui/components/popover";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '@repo/ui/components/tooltip';
+import {cn} from '@repo/ui/lib/utils';
+import {Popover, PopoverContent, PopoverTrigger} from '@repo/ui/components/popover';
 
-export default function TooltipText({tooltip, children}: {tooltip: any; children: any}) {
+export default function TooltipText({tooltip, children}: { tooltip: any; children: any }) {
   return (
     <div className="inline-block">
       <div className="sm:hidden">
@@ -12,7 +12,8 @@ export default function TooltipText({tooltip, children}: {tooltip: any; children
           `)}>
             {children}
           </PopoverTrigger>
-          <PopoverContent className="slim-scrollbar max-h-56 w-fit max-w-32 overflow-y-auto px-3 py-1.5 text-sm" side="bottom">
+          <PopoverContent className="slim-scrollbar max-h-56 w-fit max-w-32 overflow-y-auto px-3 py-1.5 text-sm"
+                          side="bottom">
             {tooltip}
           </PopoverContent>
         </Popover>
@@ -25,12 +26,13 @@ export default function TooltipText({tooltip, children}: {tooltip: any; children
             `)}>
               {children}
             </TooltipTrigger>
-            <TooltipContent className="slim-scrollbar max-h-56 w-fit max-w-32 overflow-y-auto px-3 py-1.5 text-sm" side="top">
+            <TooltipContent className="slim-scrollbar max-h-56 w-fit max-w-32 overflow-y-auto px-3 py-1.5 text-sm"
+                            side="top">
               {tooltip}
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </div>
     </div>
-  )
+  );
 }

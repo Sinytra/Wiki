@@ -1,8 +1,8 @@
-import {Alert, AlertDescription, AlertTitle} from "@repo/ui/components/alert";
-import {LanguagesIcon} from "lucide-react";
-import locales from "@repo/shared/locales";
-import env from "@repo/shared/env";
-import {NavLink} from "@/components/navigation/link/NavLink";
+import {Alert, AlertDescription, AlertTitle} from '@repo/ui/components/alert';
+import {LanguagesIcon} from 'lucide-react';
+import locales from '@repo/shared/locales';
+import env from '@repo/shared/env';
+import {NavLink} from '@/components/navigation/link/NavLink';
 
 export default function TranslateBanner({locale}: { locale: string }) {
   const url = env.getCrowdinUrl();
@@ -22,5 +22,5 @@ export default function TranslateBanner({locale}: { locale: string }) {
         href={url}>Crowdin page</NavLink>.
       </AlertDescription>
     </Alert>
-  )
+  );
 }

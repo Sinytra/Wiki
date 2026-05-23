@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import {useTranslations} from "next-intl";
-import {ArrowLeftIcon, FileTextIcon, LoaderCircleIcon, SearchIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {useEffect, useRef, useState} from "react";
-import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import {useDebouncedCallback} from "use-debounce";
-import {CSSTransition} from "react-transition-group";
-import {usePathname} from "next/navigation";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import wikiSearchClient from "@/lib/service/search/wikiSearchClient";
+import {useTranslations} from 'next-intl';
+import {ArrowLeftIcon, FileTextIcon, LoaderCircleIcon, SearchIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import {useEffect, useRef, useState} from 'react';
+import {WikiSearchResult, WikiSearchResults} from '@/lib/service/search';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import {useDebouncedCallback} from 'use-debounce';
+import {CSSTransition} from 'react-transition-group';
+import {usePathname} from 'next/navigation';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import wikiSearchClient from '@/lib/service/search/wikiSearchClient';
 
 function SearchResult({result}: { result: WikiSearchResult }) {
   const icon = !result.path ? result.mod_icon : result.icon;
@@ -18,9 +18,9 @@ function SearchResult({result}: { result: WikiSearchResult }) {
   return (
     <NavLink href={result.url}
              className={`
-               z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
-               text-primary
-             `}>
+        z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
+        text-primary
+      `}>
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize/>
       </div>
@@ -42,7 +42,7 @@ function SearchResult({result}: { result: WikiSearchResult }) {
         }
       </div>
     </NavLink>
-  )
+  );
 }
 
 function LoadingSearchState() {
@@ -56,7 +56,7 @@ function LoadingSearchState() {
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       {t('loading')}
     </div>
-  )
+  );
 }
 
 function NoSearchResults() {
@@ -69,7 +69,7 @@ function NoSearchResults() {
     `}>
       {t('no_results')}
     </div>
-  )
+  );
 }
 
 function SearchScreen({isOpen, setOpen}: {
@@ -127,10 +127,9 @@ function SearchScreen({isOpen, setOpen}: {
             </button>
             <input type="text" value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
                    className={`
-                     w-full cursor-pointer rounded-xs border border-neutral-700 bg-primary-alt p-2 px-8 text-center
-                     text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1
-                     focus:outline-secondary
-                   `}
+                w-full cursor-pointer rounded-xs border border-neutral-700 bg-primary-alt p-2 px-8 text-center text-sm
+                text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1 focus:outline-secondary
+              `}
                    placeholder={t('placeholder')} autoFocus
             />
           </div>
@@ -149,7 +148,7 @@ function SearchScreen({isOpen, setOpen}: {
         </div>
       </div>
     </CSSTransition>
-  )
+  );
 }
 
 export default function MobileDocsSearch() {
@@ -175,5 +174,5 @@ export default function MobileDocsSearch() {
       </Button>
       <SearchScreen isOpen={isOpen} setOpen={setIsOpen}/>
     </div>
-  )
+  );
 }

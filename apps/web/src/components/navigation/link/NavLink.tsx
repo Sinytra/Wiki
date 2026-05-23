@@ -1,7 +1,9 @@
-import { forwardRef, type AnchorHTMLAttributes, type ReactNode } from "react"
-import NextLink, { type LinkProps as NextLinkProps } from "next/link"
+import {forwardRef, type AnchorHTMLAttributes, type ReactNode} from 'react';
+import NextLink, {type LinkProps as NextLinkProps} from 'next/link';
 
-type LinkProps = NextLinkProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof NextLinkProps> & { children?: ReactNode };
+type LinkProps = NextLinkProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof NextLinkProps> & {
+  children?: ReactNode
+};
 
 // https://github.com/vercel/next.js/discussions/24009#discussioncomment-8267656
 export const NavLink = forwardRef<HTMLAnchorElement, LinkProps>(
@@ -14,6 +16,6 @@ export const NavLink = forwardRef<HTMLAnchorElement, LinkProps>(
     },
     ref
   ) {
-    return <NextLink prefetch={prefetch} {...rest} ref={ref} />
+    return <NextLink prefetch={prefetch} {...rest} ref={ref}/>;
   }
-)
+);

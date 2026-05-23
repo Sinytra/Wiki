@@ -1,13 +1,13 @@
 import {FolderIcon, HomeIcon} from 'lucide-react';
-import DocsFileLink from "@/components/docs/util/DocsFileLink";
-import DocsFileTreeFolder from "@/components/docs/layout/DocsFileTreeFolder";
-import {cn} from "@repo/ui/lib/utils";
-import {useTranslations} from "next-intl";
-import ScrollableDocsSidebarBase from "@/components/docs/side/ScrollableDocsSidebarBase";
-import {FileTree} from "@repo/shared/types/service";
-import {FileTreeEntry} from "@sinytra/wiki-api-types";
-import {NO_FOLDER_ICON} from "@repo/shared/constants";
-import * as React from "react";
+import DocsFileLink from '@/components/docs/util/DocsFileLink';
+import DocsFileTreeFolder from '@/components/docs/layout/DocsFileTreeFolder';
+import {cn} from '@repo/ui/lib/utils';
+import {useTranslations} from 'next-intl';
+import ScrollableDocsSidebarBase from '@/components/docs/side/ScrollableDocsSidebarBase';
+import {FileTree} from '@repo/shared/types/service';
+import {FileTreeEntry} from '@sinytra/wiki-api-types';
+import {NO_FOLDER_ICON} from '@repo/shared/constants';
+import * as React from 'react';
 
 interface LeftSidebarProps {
   slug: string;
@@ -30,7 +30,12 @@ async function DocsFileEntry({slug, version, file}: { slug: string; version: str
   );
 }
 
-async function DocsFileTree({slug, version, tree, level}: { slug: string; version: string; tree: FileTree; level: number }) {
+async function DocsFileTree({slug, version, tree, level}: {
+  slug: string;
+  version: string;
+  tree: FileTree;
+  level: number
+}) {
   const defaultIcon = FolderIcon;
   const LucideReact = await import('lucide-react');
 
@@ -47,8 +52,8 @@ async function DocsFileTree({slug, version, tree, level}: { slug: string; versio
         </DocsFileTreeFolder>
       );
     }
-    return <DocsFileEntry key={file.path} slug={slug} version={version} file={file}/>
-  })
+    return <DocsFileEntry key={file.path} slug={slug} version={version} file={file}/>;
+  });
 }
 
 export default function DocsGuideFileTreeSidebar({slug, version, tree}: LeftSidebarProps) {
@@ -74,6 +79,6 @@ export default function DocsGuideFileTreeSidebar({slug, version, tree}: LeftSide
 
       <DocsFileTree slug={slug} version={version} tree={tree} level={1}/>
     </ScrollableDocsSidebarBase>
-  )
+  );
 }
 

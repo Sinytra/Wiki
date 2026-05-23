@@ -1,5 +1,5 @@
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import VideoEmbedPlaceholder from "@/components/docs/shared/VideoEmbedPlaceholder";
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import VideoEmbedPlaceholder from '@/components/docs/shared/VideoEmbedPlaceholder';
 
 export default function VideoEmbed({id}: { id: string; }) {
   const src = `https://www.youtube-nocookie.com/embed/${id}`;
@@ -13,5 +13,5 @@ export default function VideoEmbed({id}: { id: string; }) {
         </iframe>
       </VideoEmbedPlaceholder>
     </ClientLocaleProvider>
-  )
+  );
 }

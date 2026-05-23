@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import {ChevronsUpDown, LoaderCircleIcon, LogOut, LogOutIcon} from "lucide-react";
-import {Avatar, AvatarFallback, AvatarImage} from "@repo/ui/components/avatar";
+import {ChevronsUpDown, LoaderCircleIcon, LogOut, LogOutIcon} from 'lucide-react';
+import {Avatar, AvatarFallback, AvatarImage} from '@repo/ui/components/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,19 +9,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from "@repo/ui/components/dropdown-menu";
-import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@repo/ui/components/sidebar";
-import {useTranslations} from "next-intl";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
-import * as React from "react";
-import {useState} from "react";
-import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@repo/ui/components/dialog";
-import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
-import {useProgress} from "@bprogress/next";
+} from '@repo/ui/components/dropdown-menu';
+import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from '@repo/ui/components/sidebar';
+import {useTranslations} from 'next-intl';
+import {useForm} from 'react-hook-form';
+import {z} from 'zod';
+import {zodResolver} from '@hookform/resolvers/zod';
+import * as React from 'react';
+import {useState} from 'react';
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from '@repo/ui/components/dialog';
+import {VisuallyHidden} from '@radix-ui/react-visually-hidden';
+import {useProgress} from '@bprogress/next';
 
-import {UserProfile} from "@sinytra/wiki-api-types";
+import {UserProfile} from '@sinytra/wiki-api-types';
 
 function LogoutModal({open}: { open: boolean; }) {
   const t = useTranslations('DevSidebarUser.logout');
@@ -35,15 +35,16 @@ function LogoutModal({open}: { open: boolean; }) {
           </DialogTitle>
         </VisuallyHidden>
       </DialogHeader>
-      <DialogContent className="flex flex-col items-center justify-center gap-6 outline-hidden! [&>button]:hidden" aria-describedby={undefined}>
+      <DialogContent className="flex flex-col items-center justify-center gap-6 outline-hidden! [&>button]:hidden"
+                     aria-describedby={undefined}>
         <span>
-          <LogOutIcon className="mr-2 inline-block h-5 w-5" />
+          <LogOutIcon className="mr-2 inline-block h-5 w-5"/>
           {t('desc')}
         </span>
         <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
 export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; logoutAction: () => Promise<void> }) {
@@ -65,7 +66,7 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
 
   return (
     <>
-      <LogoutModal open={isOpen} />
+      <LogoutModal open={isOpen}/>
 
       <SidebarMenu>
         <SidebarMenuItem>
@@ -89,7 +90,7 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
 
             <DropdownMenuContent
               className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-xs"
-              side={isMobile ? "bottom" : "right"}
+              side={isMobile ? 'bottom' : 'right'}
               align="end"
               sideOffset={4}
             >
@@ -122,5 +123,5 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
         </SidebarMenuItem>
       </SidebarMenu>
     </>
-  )
+  );
 }

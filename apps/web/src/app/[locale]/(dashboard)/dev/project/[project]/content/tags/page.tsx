@@ -1,11 +1,11 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import {parseAsInteger, parseAsString} from "nuqs/server";
-import {getTranslations} from "next-intl/server";
-import DevProjectTagsTable from "@/components/dashboard/dev/table/DevProjectTagsTable";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import * as React from "react";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
+import {setContextLocale} from '@/lib/locales/routing';
+import {parseAsInteger, parseAsString} from 'nuqs/server';
+import {getTranslations} from 'next-intl/server';
+import DevProjectTagsTable from '@/components/dashboard/dev/table/DevProjectTagsTable';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import * as React from 'react';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
 
 type Properties = {
   params: Promise<{
@@ -17,7 +17,7 @@ type Properties = {
     page?: string | string[];
     version?: string;
   }>
-}
+};
 
 export default async function DevProjectContentTagsPage(props: Properties) {
   const searchParams = await props.searchParams;
@@ -30,13 +30,19 @@ export default async function DevProjectContentTagsPage(props: Properties) {
   const version = parseAsString.parseServerSide(searchParams.version);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = handleApiCall(await devProjectApi.getProjectContentTags(params.project, {query, page: page.toString(), version}));
+  const content = handleApiCall(await devProjectApi.getProjectContentTags(params.project, {
+    query,
+    page: page.toString(),
+    version
+  }));
 
   return (
     <div className="space-y-3 pt-1">
-      <DevProjectPageTitle title={t('title')} desc={t('desc')} />
+      <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
-      <DevProjectTagsTable data={content} versions={[] /* TODO: re-add project.versions when DevProjectData exposes it */} page={page}/>
+      <DevProjectTagsTable data={content}
+                           versions={project.version_names || []}
+                           page={page}/>
     </div>
-  )
+  );
 }

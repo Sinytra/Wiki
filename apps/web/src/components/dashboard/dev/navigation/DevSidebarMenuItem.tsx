@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import {usePathname} from "@/lib/locales/routing";
-import {SidebarMenuButton, SidebarMenuItem} from "@repo/ui/components/sidebar";
-import {ExternalLinkIcon, type LucideIcon} from "lucide-react";
-import {cn} from "@repo/ui/lib/utils";
-import {ReactNode} from "react";
-import ConnectionIndicator from "@repo/ui/components/indicator/ConnectionIndicator";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {usePathname} from '@/lib/locales/routing';
+import {SidebarMenuButton, SidebarMenuItem} from '@repo/ui/components/sidebar';
+import {ExternalLinkIcon, type LucideIcon} from 'lucide-react';
+import {cn} from '@repo/ui/lib/utils';
+import {ReactNode} from 'react';
+import ConnectionIndicator from '@repo/ui/components/indicator/ConnectionIndicator';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
 
 export interface Props {
   title: string;
@@ -26,12 +26,13 @@ export default function DevSidebarMenuItem({title, url, icon: Icon, external, di
 
   return (
     <SidebarMenuItem>
-      <LocaleNavLink href={url} target={external ? '_blank' : undefined} className={cn(disabled && 'pointer-events-none')}>
+      <LocaleNavLink href={url} target={external ? '_blank' : undefined}
+                     className={cn(disabled && 'pointer-events-none')}>
         <SidebarMenuButton isActive={isActive} disabled={disabled} tooltip={title}>
           {Icon && <Icon/>}
           <span>{title}</span>
-          {external && <ExternalLinkIcon className="ml-auto h-4 w-4" />}
-          {live && <ConnectionIndicator className="ml-auto" /> }
+          {external && <ExternalLinkIcon className="ml-auto h-4 w-4"/>}
+          {live && <ConnectionIndicator className="ml-auto"/>}
           {!live && extra}
         </SidebarMenuButton>
       </LocaleNavLink>

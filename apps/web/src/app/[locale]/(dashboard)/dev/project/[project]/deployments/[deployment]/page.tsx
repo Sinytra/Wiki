@@ -1,9 +1,9 @@
-import {LocaleLink, setContextLocale} from "@/lib/locales/routing";
-import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
-import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
-import {getTranslations} from "next-intl/server";
-import {useTranslations} from "next-intl";
-import {Button} from "@repo/ui/components/button";
+import {LocaleLink, setContextLocale} from '@/lib/locales/routing';
+import {BreadcrumbLink, BreadcrumbPage} from '@repo/ui/components/breadcrumb';
+import DevBreadcrumb from '@/components/dashboard/dev/navigation/DevBreadcrumb';
+import {getTranslations} from 'next-intl/server';
+import {useTranslations} from 'next-intl';
+import {Button} from '@repo/ui/components/button';
 import {
   BookIcon,
   ClockFadingIcon,
@@ -13,23 +13,23 @@ import {
   GlobeIcon,
   HardDriveUploadIcon,
   MoreHorizontal
-} from "lucide-react";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import * as React from "react";
-import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@repo/ui/components/dropdown-menu";
-import DeleteDeploymentModal from "@/components/dashboard/dev/modal/DeleteDeploymentModal";
-import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
-import {Badge} from "@repo/ui/components/badge";
-import DeploymentStatusInfo from "@/components/dashboard/dev/project/DeploymentStatusInfo";
-import ProjectGitRevision from "@/components/dashboard/dev/project/ProjectGitRevision";
-import ProjectIssuesList from "@/components/dashboard/dev/project/ProjectIssuesList";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {DeploymentInfo as DeploymentInfoType, ProjectIssueInfo} from "@sinytra/wiki-api-types";
-import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
-import LocalDateTime from "@repo/ui/util/LocalDateTime";
-import navigation from "@/lib/navigation";
-import FormWrapper from "@/components/modal/FormWrapper";
+} from 'lucide-react';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import * as React from 'react';
+import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from '@repo/ui/components/dropdown-menu';
+import DeleteDeploymentModal from '@/components/dashboard/dev/modal/DeleteDeploymentModal';
+import {handleDeleteDeploymentForm} from '@/lib/forms/actions';
+import {Badge} from '@repo/ui/components/badge';
+import DeploymentStatusInfo from '@/components/dashboard/dev/project/DeploymentStatusInfo';
+import ProjectGitRevision from '@/components/dashboard/dev/project/ProjectGitRevision';
+import ProjectIssuesList from '@/components/dashboard/dev/project/ProjectIssuesList';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {DeploymentInfo as DeploymentInfoType, ProjectIssueInfo} from '@sinytra/wiki-api-types';
+import ContextDropdownMenu from '@/components/util/ContextDropdownMenu';
+import LocalDateTime from '@repo/ui/util/LocalDateTime';
+import navigation from '@/lib/navigation';
+import FormWrapper from '@/components/modal/FormWrapper';
 
 type Properties = {
   params: Promise<{
@@ -37,7 +37,7 @@ type Properties = {
     project: string;
     deployment: string;
   }>
-}
+};
 
 function StatusInfoColumn({name, children}: { name: string; children: any; }) {
   return (
@@ -49,7 +49,7 @@ function StatusInfoColumn({name, children}: { name: string; children: any; }) {
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 function DeploymentIssues({issues}: { issues: ProjectIssueInfo[] }) {
@@ -64,9 +64,9 @@ function DeploymentIssues({issues}: { issues: ProjectIssueInfo[] }) {
       </div>
       {issues.length > 0 ?
         <div className="flex flex-col gap-4">
-            <span className="text-sm text-secondary">
-              {t('issues_found', {count: issues.length})}
-            </span>
+          <span className="text-sm text-secondary">
+            {t('issues_found', {count: issues.length})}
+          </span>
           <div className="flex max-h-72 flex-col gap-2 overflow-y-auto">
             <ProjectIssuesList issues={issues}/>
           </div>
@@ -77,7 +77,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssueInfo[] }) {
         </span>
       }
     </div>
-  )
+  );
 }
 
 // TODO Locales
@@ -112,7 +112,7 @@ function DeploymentInfoWidget({deployment}: { deployment: DeploymentInfoType }) 
         <LocalDateTime className="text-sm" form="LLL d, yyyy" dateTime={new Date(deployment.created_at)}/>
       </StatusInfoColumn>
     </div>
-  )
+  );
 }
 
 function DeploymentGitCoordinates({deployment}: { deployment: DeploymentInfoType; }) {
@@ -130,7 +130,8 @@ function DeploymentGitCoordinates({deployment}: { deployment: DeploymentInfoType
           <div className="flex w-5 items-center justify-center">
             <BookIcon className="size-4"/>
           </div>
-          <a className="text-sm underline-offset-4 hover:underline" href={deployment.source_repo} target="_blank" rel="noreferrer">
+          <a className="text-sm underline-offset-4 hover:underline" href={deployment.source_repo} target="_blank"
+             rel="noreferrer">
             {deployment.source_repo}
           </a>
         </div>
@@ -154,7 +155,7 @@ function DeploymentGitCoordinates({deployment}: { deployment: DeploymentInfoType
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function DeploymentInfo({deployment, redirectTo}: { deployment: DeploymentInfoType; redirectTo: string }) {
@@ -170,10 +171,10 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: DeploymentInfoTy
         <div className="ml-auto flex flex-row gap-2">
           {deployment.active &&
             <LocaleNavLink href={navigation.getProjectLink(deployment.project_id)} target="_blank">
-                <Button size="sm">
-                    <ExternalLinkIcon className="mr-2 h-4 w-4"/>
-                    Visit
-                </Button>
+              <Button size="sm">
+                <ExternalLinkIcon className="mr-2 h-4 w-4"/>
+                Visit
+              </Button>
             </LocaleNavLink>
           }
 
@@ -184,10 +185,10 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: DeploymentInfoTy
               </DropdownMenuLabel>
 
               <DropdownMenuItem disabled>
-              <span className="flex flex-row items-center">
-                <HardDriveUploadIcon className="mr-2 size-3"/>
-                Redeploy
-              </span>
+                <span className="flex flex-row items-center">
+                  <HardDriveUploadIcon className="mr-2 size-3"/>
+                  Redeploy
+                </span>
               </DropdownMenuItem>
 
               <FormWrapper keys={['DeleteDeploymentModal']}>
@@ -201,9 +202,9 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: DeploymentInfoTy
           >
             <DropdownMenuTrigger asChild>
               <Button className="size-9! p-0!">
-              <span className="sr-only">
-                Open
-              </span>
+                <span className="sr-only">
+                  Open
+                </span>
                 <MoreHorizontal className="w-5"/>
               </Button>
             </DropdownMenuTrigger>
@@ -224,7 +225,7 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: DeploymentInfoTy
         <DeploymentIssues issues={deployment.issues}/>
       </div>
     </div>
-  )
+  );
 }
 
 export default async function DevProjectDeploymentPage(props: Properties) {
@@ -250,5 +251,5 @@ export default async function DevProjectDeploymentPage(props: Properties) {
 
       <DeploymentInfo deployment={content} redirectTo={fallback}/>
     </div>
-  )
+  );
 }

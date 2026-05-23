@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 import {createContext, useEffect, useState} from 'react';
-import {usePathname} from "@/lib/locales/routing";
+import {usePathname} from '@/lib/locales/routing';
 
 export type DocsSidebarType = 'left' | 'right' | 'none';
 
@@ -32,5 +32,5 @@ export default function DocsSidebarContextProvider({children}: { children: any }
     <DocsSidebarContext.Provider value={{open, setOpen}}>
       {children}
     </DocsSidebarContext.Provider>
-  )
+  );
 }

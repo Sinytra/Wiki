@@ -1,10 +1,12 @@
-'use client'
+'use client';
 
-import {Collapsible,} from "@repo/ui/components/collapsible"
-import {SidebarGroup, SidebarGroupLabel, SidebarMenu,} from "@repo/ui/components/sidebar"
-import DevSidebarMenuItem, {Props as DevSidebarMenuItemProps} from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
-import * as React from "react";
-import {usePathname} from "@/lib/locales/routing";
+import {Collapsible,} from '@repo/ui/components/collapsible';
+import {SidebarGroup, SidebarGroupLabel, SidebarMenu,} from '@repo/ui/components/sidebar';
+import DevSidebarMenuItem, {
+  Props as DevSidebarMenuItemProps
+} from '@/components/dashboard/dev/navigation/DevSidebarMenuItem';
+import * as React from 'react';
+import {usePathname} from '@/lib/locales/routing';
 
 interface Group {
   id: string;
@@ -45,5 +47,5 @@ export function DevSidebarMainNav({groups}: Props) {
         </SidebarGroup>
       ))}
     </div>
-  )
+  );
 }

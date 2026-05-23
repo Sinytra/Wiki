@@ -1,13 +1,13 @@
-import service from "@/lib/service";
-import {HOMEPAGE_FILE_PATH} from "@repo/shared/constants";
-import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
-import issuesApi from "@repo/shared/api/issuesApi";
-import markdown, {DocsEntryMetadata} from "@repo/markdown";
-import {RenderedMarkdownContent} from "@/components/docs/body/MarkdownContent";
-import {ProjectContext} from "@repo/shared/types/service";
-import {ProjectData} from "@sinytra/wiki-api-types";
-import {PlatformProject} from "@repo/shared/platforms";
-import {ReactNode} from "react";
+import service from '@/lib/service';
+import {HOMEPAGE_FILE_PATH} from '@repo/shared/constants';
+import DocsMarkdownContent from '@/components/docs/body/DocsMarkdownContent';
+import issuesApi from '@repo/shared/api/issuesApi';
+import markdown, {DocsEntryMetadata} from '@repo/markdown';
+import {RenderedMarkdownContent} from '@/components/docs/body/MarkdownContent';
+import {ProjectContext} from '@repo/shared/types/service';
+import {ProjectData} from '@sinytra/wiki-api-types';
+import {PlatformProject} from '@repo/shared/platforms';
+import {ReactNode} from 'react';
 
 interface Props {
   project: ProjectData;
@@ -49,7 +49,7 @@ export async function renderHomepage(project: ProjectData, platformProject: Plat
     const content = (
       <RenderedMarkdownContent htmlContent={htmlContent}/>
     );
-    return {content, metadata: {}}
+    return {content, metadata: {}};
   } catch (e) {
     console.error('Error rendering homepage', e);
     return undefined;
@@ -77,5 +77,5 @@ export default async function DocsHomepage({
   const content = await renderHomepage(project, platformProject, ctx);
   return content === undefined ? errorPlaceholder
     : content == null ? placeholder
-      : (wrapper?.(content.content) ?? content.content)
+      : (wrapper?.(content.content) ?? content.content);
 }

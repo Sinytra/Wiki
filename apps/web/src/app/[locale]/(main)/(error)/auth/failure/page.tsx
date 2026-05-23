@@ -1,11 +1,11 @@
-import { use } from "react";
-import {Button} from "@repo/ui/components/button";
-import {ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon} from "lucide-react";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {useTranslations} from "next-intl";
-import {setContextLocale} from "@/lib/locales/routing";
+import {use} from 'react';
+import {Button} from '@repo/ui/components/button';
+import {ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon} from 'lucide-react';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import {useTranslations} from 'next-intl';
+import {setContextLocale} from '@/lib/locales/routing';
 
-export default function AuthFailure(props: { params: Promise<{ locale: string }>}) {
+export default function AuthFailure(props: { params: Promise<{ locale: string }> }) {
   const params = use(props.params);
   setContextLocale(params.locale);
   const t = useTranslations('AuthFailure');
@@ -25,23 +25,23 @@ export default function AuthFailure(props: { params: Promise<{ locale: string }>
       <div className="mt-4 inline-flex flex-wrap justify-center gap-4">
         <Button variant="secondary" asChild>
           <NavLink href="https://status.moddedmc.org" target="_blank">
-            <ActivityIcon className="mr-2 h-4 w-4" />
+            <ActivityIcon className="mr-2 h-4 w-4"/>
             {t('status')}
           </NavLink>
         </Button>
         <Button asChild>
           <NavLink href="/">
-            <HouseIcon className="mr-2 h-4 w-4" />
+            <HouseIcon className="mr-2 h-4 w-4"/>
             {t('return')}
           </NavLink>
         </Button>
         <Button variant="secondary" asChild>
           <NavLink href="https://github.com/Sinytra/Wiki/issues" target="_blank">
-            <BugIcon className="mr-2 h-4 w-4" />
+            <BugIcon className="mr-2 h-4 w-4"/>
             {t('report')}
           </NavLink>
         </Button>
       </div>
     </div>
-  )
+  );
 }

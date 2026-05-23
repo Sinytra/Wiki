@@ -1,18 +1,18 @@
-import {getTranslations} from "next-intl/server";
-import {setContextLocale} from "@/lib/locales/routing";
-import {useTranslations} from "next-intl";
-import * as React from "react";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import {AlertCircleIcon, ShieldCheckIcon, TriangleAlertIcon} from "lucide-react";
-import DevProjectSectionTitle from "@/components/dashboard/dev/project/DevProjectSectionTitle";
-import {cn} from "@repo/ui/lib/utils";
-import ProjectIssuesList from "@/components/dashboard/dev/project/ProjectIssuesList";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectIssueInfo, ProjectIssueLevel} from "@sinytra/wiki-api-types";
+import {getTranslations} from 'next-intl/server';
+import {setContextLocale} from '@/lib/locales/routing';
+import {useTranslations} from 'next-intl';
+import * as React from 'react';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import {AlertCircleIcon, ShieldCheckIcon, TriangleAlertIcon} from 'lucide-react';
+import DevProjectSectionTitle from '@/components/dashboard/dev/project/DevProjectSectionTitle';
+import {cn} from '@repo/ui/lib/utils';
+import ProjectIssuesList from '@/components/dashboard/dev/project/ProjectIssuesList';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {ProjectIssueInfo, ProjectIssueLevel} from '@sinytra/wiki-api-types';
 
 type ProjectIssueStats = { [key in ProjectIssueLevel]?: number };
-import issuesApi from "@repo/shared/api/issuesApi";
+import issuesApi from '@repo/shared/api/issuesApi';
 
 function ProjectIssuesStatWidget({className, count, title, icon: Icon}: {
   title: string;
@@ -35,7 +35,7 @@ function ProjectIssuesStatWidget({className, count, title, icon: Icon}: {
         {count}
       </span>
     </div>
-  )
+  );
 }
 
 // TODO LOCALE
@@ -72,7 +72,7 @@ function ProjectIssuesHealthWidget({stats}: { stats: ProjectIssueStats }) {
         {style.text}
       </span>
     </div>
-  )
+  );
 }
 
 function ProjectIssuesSummary({stats}: { stats: ProjectIssueStats }) {
@@ -95,7 +95,7 @@ function ProjectIssuesSummary({stats}: { stats: ProjectIssueStats }) {
         icon={AlertCircleIcon}
       />
     </div>
-  )
+  );
 }
 
 function ProjectIssuesSection({issues}: { issues: ProjectIssueInfo[] }) {
@@ -115,7 +115,7 @@ function ProjectIssuesSection({issues}: { issues: ProjectIssueInfo[] }) {
           </div>
         )}
     </div>
-  )
+  );
 }
 
 export default async function DevProjectHealthPage(props: { params: Promise<{ locale: string; project: string }> }) {
@@ -143,5 +143,5 @@ export default async function DevProjectHealthPage(props: { params: Promise<{ lo
         <ProjectIssuesSection issues={issues}/>
       </div>
     </div>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import {LoaderCircleIcon} from "lucide-react";
-import {useTranslations} from "next-intl";
+import {LoaderCircleIcon} from 'lucide-react';
+import {useTranslations} from 'next-intl';
 
 export default function LoadingContent() {
   const t = useTranslations('LoadingContent');
@@ -9,5 +9,5 @@ export default function LoadingContent() {
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin"/>
       {t('message')}
     </div>
-  )
+  );
 }

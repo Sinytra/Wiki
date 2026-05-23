@@ -1,5 +1,5 @@
-import * as React from "react";
-import {SidebarTrigger} from "@repo/ui/components/sidebar";
+import * as React from 'react';
+import {SidebarTrigger} from '@repo/ui/components/sidebar';
 
 interface Properties {
   title: string;
@@ -16,7 +16,7 @@ export default function DevProjectPageTitle({title, desc, icon: Icon}: Propertie
         </div>
         <div className="space-y-1">
           <h3 className="flex flex-row items-center gap-2 text-lg font-medium sm:text-xl">
-            {Icon && <Icon className="size-5" />}
+            {Icon && <Icon className="size-5"/>}
             {title}
           </h3>
           <p className="text-sm text-secondary">
@@ -26,5 +26,5 @@ export default function DevProjectPageTitle({title, desc, icon: Icon}: Propertie
       </div>
       <hr className="border-primary"/>
     </div>
-  )
+  );
 }

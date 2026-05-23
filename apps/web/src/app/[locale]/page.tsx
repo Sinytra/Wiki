@@ -1,9 +1,9 @@
-import {redirect, setContextLocale} from "@/lib/locales/routing";
+import {setContextLocale} from '@/lib/locales/routing';
 import {useTranslations} from 'next-intl';
-import {trimText} from "@/lib/utils";
-import {cn} from "@repo/ui/lib/utils";
-import TranslateBanner from "@/components/navigation/TranslateBanner";
-import crowdin from "@/lib/locales/crowdin";
+import {trimText} from '@/lib/utils';
+import {cn} from '@repo/ui/lib/utils';
+import TranslateBanner from '@/components/navigation/TranslateBanner';
+import crowdin from '@/lib/locales/crowdin';
 import {
   ArrowRight,
   BookIcon,
@@ -18,23 +18,23 @@ import {
   HeartIcon,
   Layout,
   UserPlus
-} from "lucide-react";
-import GradleIcon from "@repo/ui/icons/GradleIcon";
-import {Button} from "@repo/ui/components/button";
-import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
-import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {CSSProperties} from "react";
-import {allBlogs} from "@/.contentlayer/generated";
-import {compareDesc, formatDistanceStrict} from "date-fns";
-import SocialButtons from "@/components/util/SocialButtons";
-import LargePersonStandingIcon from "@repo/ui/icons/LargePersonStandingIcon";
-import env from "@repo/shared/env";
-import featuredProjects, {FeaturedProject} from "@/lib/service/featuredProjects";
-import {DEFAULT_LOCALE, WIKI_DOCS_URL} from "@repo/shared/constants";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import {NavLink} from "@/components/navigation/link/NavLink";
+} from 'lucide-react';
+import GradleIcon from '@repo/ui/icons/GradleIcon';
+import {Button} from '@repo/ui/components/button';
+import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
+import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import CurseForgeIcon from '@repo/ui/icons/CurseForgeIcon';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {CSSProperties} from 'react';
+import {allBlogs} from '@/.contentlayer/generated';
+import {compareDesc, formatDistanceStrict} from 'date-fns';
+import SocialButtons from '@/components/util/SocialButtons';
+import LargePersonStandingIcon from '@repo/ui/icons/LargePersonStandingIcon';
+import env from '@repo/shared/env';
+import featuredProjects, {FeaturedProject} from '@/lib/service/featuredProjects';
+import {DEFAULT_LOCALE, WIKI_DOCS_URL} from '@repo/shared/constants';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import {NavLink} from '@/components/navigation/link/NavLink';
 
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
@@ -44,13 +44,13 @@ function FeaturedProjectsContent({projects}: { projects: FeaturedProject[] }) {
   const projectTypes = useTranslations('ProjectTypes');
 
   const height = projects.length == 1 ? 100 : Math.floor(100 / projects.length);
-  const style = { "--default-max-h": `${height}%` } as CSSProperties;
+  const style = {'--default-max-h': `${height}%`} as CSSProperties;
 
   return projects.map((project, index) => (
     <div key={index}
          className={`
-           flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit
-         `}
+        flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit
+      `}
          style={style}
     >
       <div className="mb-4 flex items-center">
@@ -106,7 +106,7 @@ function FeaturedProjectsContent({projects}: { projects: FeaturedProject[] }) {
         </Button>
       </div>
     </div>
-  ))
+  ));
 }
 
 function HomePageContent({projects}: { projects: FeaturedProject[] }) {
@@ -125,8 +125,8 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
                     animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center
                     text-5xl font-bold text-transparent
                   `}>
-                {chunks}
-              </span>
+                  {chunks}
+                </span>
               </div>
             )
           })}
@@ -137,9 +137,9 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
         <div className="mt-8 text-center md:hidden">
           <LocaleNavLink href="/browse"
                          className={`
-                           mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast
-                           to-blue-500 px-12 py-2 text-white
-                         `}>
+              mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast to-blue-500
+              px-12 py-2 text-white
+            `}>
             {t('browse')}
           </LocaleNavLink>
         </div>
@@ -255,8 +255,16 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
       <section className="mt-12 rounded-lg bg-secondary p-8">
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {[
-            {icon: GlobeIcon, title: t('highlights.localization.title'), description: t('highlights.localization.desc')},
-            {icon: LargePersonStandingIcon, title: t('highlights.accessibility.title'), description: t('highlights.accessibility.desc')},
+            {
+              icon: GlobeIcon,
+              title: t('highlights.localization.title'),
+              description: t('highlights.localization.desc')
+            },
+            {
+              icon: LargePersonStandingIcon,
+              title: t('highlights.accessibility.title'),
+              description: t('highlights.accessibility.desc')
+            },
             {
               icon: GitPullRequestArrowIcon,
               title: t('highlights.open.title'),
@@ -266,7 +274,7 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
           ].map((feature, index) => (
             <li key={index} className="flex items-start">
               <span className="mr-3 pt-[3px] text-2xl">
-                <feature.icon className="h-5 w-5" />
+                <feature.icon className="h-5 w-5"/>
               </span>
               <div>
                 <h3 className="font-semibold text-primary-alt">{feature.title}</h3>
@@ -284,12 +292,12 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
               {t('about.title')}
             </h2>
             <p className="mb-4 text-secondary">
-              {t.rich('about.maintainers', { b: (chunks: any) => (<b>{chunks}</b>)})}
+              {t.rich('about.maintainers', {b: (chunks: any) => (<b>{chunks}</b>)})}
             </p>
             <p className="mb-4 text-secondary">
               {t('about.mission')}
             </p>
-            <SocialButtons />
+            <SocialButtons/>
           </div>
           <div className="lg:w-2/3">
             <h2 className="mb-4 text-xl font-semibold">
@@ -301,13 +309,14 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
                   key={index}
                   className={`flex flex-col rounded-lg border bg-primary p-4 ${index === 0 ? `
                     border-[var(--vp-c-brand-1)]
-                  ` : `border-neutral-600`}`}
+                  ` : 'border-neutral-600'}`}
                 >
                   <h4 className="mb-2 text-lg font-semibold">{post.title}</h4>
-                  <p className="mb-2 text-sm text-secondary">{formatDistanceStrict(post.date, new Date(), { addSuffix: true })}</p>
+                  <p
+                    className="mb-2 text-sm text-secondary">{formatDistanceStrict(post.date, new Date(), {addSuffix: true})}</p>
                   <p className="grow text-secondary">{post.excerpt}</p>
                   <NavLink
-                    href={`/blog/${post._id.replace(".mdx", "")}`}
+                    href={`/blog/${post._id.replace('.mdx', '')}`}
                     className="mt-2 inline-flex items-center text-primary hover:text-primary/80"
                   >
                     {t('blog.open')}
@@ -333,7 +342,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
   return <>
     {showBanner && env.getCrowdinUrl() &&
       <div className="page-wrapper-base page-wrapper mx-auto mb-5 w-full max-w-5xl px-5">
-          <TranslateBanner locale={params.locale}/>
+        <TranslateBanner locale={params.locale}/>
       </div>
     }
 
@@ -342,5 +351,5 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
     `)}>
       <HomePageContent projects={projects}/>
     </div>
-  </>
+  </>;
 }

@@ -1,12 +1,12 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import {parseAsInteger, parseAsString} from "nuqs/server";
-import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
-import {getTranslations} from "next-intl/server";
-import DevProjectRecipesTable from "@/components/dashboard/dev/table/DevProjectRecipesTable";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import * as React from "react";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
+import {setContextLocale} from '@/lib/locales/routing';
+import {parseAsInteger, parseAsString} from 'nuqs/server';
+import {DEFAULT_DOCS_VERSION} from '@repo/shared/constants';
+import {getTranslations} from 'next-intl/server';
+import DevProjectRecipesTable from '@/components/dashboard/dev/table/DevProjectRecipesTable';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import * as React from 'react';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
 
 type Properties = {
   params: Promise<{
@@ -18,7 +18,7 @@ type Properties = {
     page?: string | string[];
     version?: string;
   }>
-}
+};
 
 export default async function DevProjectContentRecipesPage(props: Properties) {
   const searchParams = await props.searchParams;
@@ -42,10 +42,10 @@ export default async function DevProjectContentRecipesPage(props: Properties) {
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
       <DevProjectRecipesTable data={content}
-                              versions={[] /* TODO: re-add project.versions when DevProjectData exposes it */}
+                              versions={project.version_names || []}
                               ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
                               page={page}
       />
     </div>
-  )
+  );
 }

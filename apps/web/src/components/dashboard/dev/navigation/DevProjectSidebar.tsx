@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 import {useContext} from 'react';
@@ -27,16 +27,16 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub
-} from "@repo/ui/components/sidebar";
-import {useTranslations} from "next-intl";
-import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
-import {PlatformProject} from "@repo/shared/platforms";
-import {DevProjectSidebarContext} from "@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider";
-import {DevProjectData} from "@sinytra/wiki-api-types";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@repo/ui/components/collapsible";
-import DevSidebarMenuSubItem from "@/components/dashboard/dev/navigation/DevSidebarMenuSubItem";
+} from '@repo/ui/components/sidebar';
+import {useTranslations} from 'next-intl';
+import DevSidebarMenuItem from '@/components/dashboard/dev/navigation/DevSidebarMenuItem';
+import {PlatformProject} from '@repo/shared/platforms';
+import {DevProjectSidebarContext} from '@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider';
+import {DevProjectData} from '@sinytra/wiki-api-types';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from '@repo/ui/components/collapsible';
+import DevSidebarMenuSubItem from '@/components/dashboard/dev/navigation/DevSidebarMenuSubItem';
 
 // TODO Cleanup
 interface Props extends React.ComponentProps<typeof Sidebar> {
@@ -44,14 +44,15 @@ interface Props extends React.ComponentProps<typeof Sidebar> {
   platformProject: PlatformProject;
 }
 
-function SidebarProjectHeader({project, platformProject}: { project: DevProjectData; platformProject: PlatformProject }) {
+function SidebarProjectHeader({project, platformProject}: {
+  project: DevProjectData;
+  platformProject: PlatformProject
+}) {
   // TODO Localize
   return (
     <div className="space-y-3 p-1">
       <LocaleNavLink href="/dev"
-                     className={`
-                       flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline
-                     `}>
+                     className={'flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline'}>
         <ArrowLeftIcon className="size-4"/>
         <span>Back</span>
       </LocaleNavLink>
@@ -94,7 +95,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               live={connected}
               extra={project.has_failing_deployment &&
                 <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
-                    <AlertCircleIcon className="size-4"/>
+                  <AlertCircleIcon className="size-4"/>
                 </div>
               }
             />
@@ -110,7 +111,7 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
                   :
                   (project.issue_stats.warning ?? 0) > 0 &&
                   <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-warning">
-                      <TriangleAlertIcon className="size-4"/>
+                    <TriangleAlertIcon className="size-4"/>
                   </div>
               )}
             />
@@ -155,5 +156,5 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }

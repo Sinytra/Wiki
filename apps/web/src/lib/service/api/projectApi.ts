@@ -1,6 +1,6 @@
-import network from "@repo/shared/network";
+import network from '@repo/shared/network';
 import {ApiCallResult} from '@repo/shared/commonNetwork';
-import {ProjectSummary} from "@sinytra/wiki-api-types";
+import {ProjectSummary} from '@sinytra/wiki-api-types';
 
 async function getAllProjectIDs(): Promise<ApiCallResult<string[]>> {
   return network.resolveApiCall(() => network.sendSimpleRequest('projects', {userAuth: false}));
@@ -19,4 +19,4 @@ export default {
   getAllProjectIDs,
   getProjectsByID,
   deleteProject
-}
+};

@@ -1,12 +1,12 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import {parseAsInteger, parseAsString} from "nuqs/server";
-import {getTranslations} from "next-intl/server";
-import DevProjectVersionsTable from "@/components/dashboard/dev/table/DevProjectVersionsTable";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import * as React from "react";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {DevProjectRouteParams} from "@repo/shared/types/routes";
+import {setContextLocale} from '@/lib/locales/routing';
+import {parseAsInteger, parseAsString} from 'nuqs/server';
+import {getTranslations} from 'next-intl/server';
+import DevProjectVersionsTable from '@/components/dashboard/dev/table/DevProjectVersionsTable';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import * as React from 'react';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {DevProjectRouteParams} from '@repo/shared/types/routes';
 
 type Properties = {
   params: Promise<DevProjectRouteParams>;
@@ -14,7 +14,7 @@ type Properties = {
     query?: string | string[];
     page?: string | string[];
   }>
-}
+};
 
 export default async function DevProjectVersionsPage(props: Properties) {
   const searchParams = await props.searchParams;
@@ -29,9 +29,9 @@ export default async function DevProjectVersionsPage(props: Properties) {
 
   return (
     <div className="space-y-3 pt-1">
-      <DevProjectPageTitle title={t('title')} desc={t('desc')} />
+      <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
       <DevProjectVersionsTable data={content} page={page}/>
     </div>
-  )
+  );
 }

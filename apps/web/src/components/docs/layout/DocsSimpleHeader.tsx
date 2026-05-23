@@ -5,5 +5,5 @@ export default function DocsSimpleHeader({children}: { children?: any }) {
         {children}
       </h1>
     </header>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import network from "@repo/shared/network";
+import network from '@repo/shared/network';
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
-import {time} from "@repo/shared/constants";
-import {revalidateTag} from "next/cache";
-import {BrowseResponse} from "@sinytra/wiki-api-types";
+import {time} from '@repo/shared/constants';
+import {revalidateTag} from 'next/cache';
+import {BrowseResponse} from '@sinytra/wiki-api-types';
 
 const SEARCH_PROJECTS_TAG = 'search-projects';
 
@@ -21,7 +21,7 @@ async function searchProjects(parameters: SearchProjectsParameters): Promise<Api
       tags: [SEARCH_PROJECTS_TAG],
       revalidate: time.ONE_MINUTE * 15
     }
-  }))
+  }));
 }
 
 function invalidateBrowseSearch() {

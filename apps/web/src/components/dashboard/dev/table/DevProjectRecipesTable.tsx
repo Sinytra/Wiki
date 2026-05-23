@@ -1,11 +1,11 @@
-import * as React from "react";
-import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
-import {useTranslations} from "next-intl";
-import {ProjectContext, ProjectVersions} from "@repo/shared/types/service";
-import {FullRecipeData, PaginatedData} from "@sinytra/wiki-api-types";
-import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
+import * as React from 'react';
+import {ordinalColumn, TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import ResolvedProjectRecipe from '@/components/docs/shared/game/ResolvedProjectRecipe';
+import {useTranslations} from 'next-intl';
+import {ProjectContext, ProjectVersions} from '@repo/shared/types/service';
+import {FullRecipeData, PaginatedData} from '@sinytra/wiki-api-types';
+import DevProjectTableEmptyState from '@/components/dashboard/dev/table/DevProjectTableEmptyState';
 
 function EmptyPlaceholder() {
   const t = useTranslations('DevProjectRecipesTable.empty');
@@ -16,7 +16,7 @@ function EmptyPlaceholder() {
         {t('title')}
       </p>
     </DevProjectTableEmptyState>
-  )
+  );
 }
 
 export default function DevProjectRecipesTable({data, ctx, versions, page}: {
@@ -55,5 +55,5 @@ export default function DevProjectRecipesTable({data, ctx, versions, page}: {
     <DataTable expandRows={expander} columns={columns} data={data} versions={versions} page={page}
                emptyState={<EmptyPlaceholder/>}
     />
-  )
+  );
 }

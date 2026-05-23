@@ -1,9 +1,9 @@
-import * as React from "react";
-import {DataImportInfo, PaginatedData} from "@sinytra/wiki-api-types";
-import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import UpdateGameDataModal from "@/components/dashboard/admin/modal/UpdateGameDataModal";
+import * as React from 'react';
+import {DataImportInfo, PaginatedData} from '@sinytra/wiki-api-types';
+import {TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import UpdateGameDataModal from '@/components/dashboard/admin/modal/UpdateGameDataModal';
 
 export default function AdminDataImportsTable({data, page}: {
   data: PaginatedData<DataImportInfo>;
@@ -57,8 +57,8 @@ export default function AdminDataImportsTable({data, page}: {
   return (
     <DataTable columns={columns} data={data} page={page} creator={
       <ClientLocaleProvider keys={['UpdateGameDataModal', 'FormActions']}>
-        <UpdateGameDataModal />
+        <UpdateGameDataModal/>
       </ClientLocaleProvider>
     }/>
-  )
+  );
 }

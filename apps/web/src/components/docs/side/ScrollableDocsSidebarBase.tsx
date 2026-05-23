@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import {useContext, useEffect, useRef} from 'react';
-import {usePathname} from "next/navigation";
-import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
-import DocsSidebarBase, {DocsSidebarBaseProps} from "@/components/docs/side/DocsSidebarBase";
+import {usePathname} from 'next/navigation';
+import {LeftSidebarContext} from '@/components/docs/side/LeftSidebarContext';
+import DocsSidebarBase, {DocsSidebarBaseProps} from '@/components/docs/side/DocsSidebarBase';
 
 export default function ScrollableDocsSidebarBase(props: DocsSidebarBaseProps) {
   const {scrollPos, setScrollPos} = useContext(LeftSidebarContext)!;
@@ -33,9 +33,9 @@ export default function ScrollableDocsSidebarBase(props: DocsSidebarBaseProps) {
     if (sidebarRef.current) {
       sidebarRef.current.scrollTop = scrollPos;
     }
-  }, [pathname])
+  }, [pathname]);
 
   return (
-    <DocsSidebarBase {...props} ref={sidebarRef} />
-  )
+    <DocsSidebarBase {...props} ref={sidebarRef}/>
+  );
 }

@@ -1,19 +1,19 @@
-import * as React from "react";
-import {GitCommitHorizontal, GlobeIcon, HardDriveUploadIcon, MoreHorizontal, ServerOffIcon} from "lucide-react";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from "@repo/ui/components/dropdown-menu";
-import {Button} from "@repo/ui/components/button";
-import {Badge} from "@repo/ui/components/badge";
-import DeleteDeploymentModal from "../modal/DeleteDeploymentModal";
-import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
-import LocalDateTime from "@repo/ui/util/LocalDateTime";
-import DeploymentStatusInfo from "@/components/dashboard/dev/project/DeploymentStatusInfo";
-import DeployProjectModalOpenButton from "@/components/dashboard/dev/modal/DeployProjectModalOpenButton";
-import {DeploymentInfo, PaginatedData} from "@sinytra/wiki-api-types";
-import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
-import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import FormWrapper from "@/components/modal/FormWrapper";
+import * as React from 'react';
+import {GitCommitHorizontal, GlobeIcon, HardDriveUploadIcon, MoreHorizontal, ServerOffIcon} from 'lucide-react';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import {DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger} from '@repo/ui/components/dropdown-menu';
+import {Button} from '@repo/ui/components/button';
+import {Badge} from '@repo/ui/components/badge';
+import DeleteDeploymentModal from '../modal/DeleteDeploymentModal';
+import {handleDeleteDeploymentForm} from '@/lib/forms/actions';
+import LocalDateTime from '@repo/ui/util/LocalDateTime';
+import DeploymentStatusInfo from '@/components/dashboard/dev/project/DeploymentStatusInfo';
+import DeployProjectModalOpenButton from '@/components/dashboard/dev/modal/DeployProjectModalOpenButton';
+import {DeploymentInfo, PaginatedData} from '@sinytra/wiki-api-types';
+import ContextDropdownMenu from '@/components/util/ContextDropdownMenu';
+import DataTablePagination from '@repo/ui/blocks/data-table/DataTablePagination';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import FormWrapper from '@/components/modal/FormWrapper';
 
 function EmptyDeploymentsState() {
   return (
@@ -22,7 +22,7 @@ function EmptyDeploymentsState() {
       py-8
     `}>
       <div className="opacity-60">
-        <ServerOffIcon className="size-12" />
+        <ServerOffIcon className="size-12"/>
       </div>
 
       <span className="text-lg font-medium">
@@ -35,11 +35,11 @@ function EmptyDeploymentsState() {
 
       <div className="mt-2">
         <ClientLocaleProvider keys={['DeployProjectModal']}>
-          <DeployProjectModalOpenButton />
+          <DeployProjectModalOpenButton/>
         </ClientLocaleProvider>
       </div>
     </div>
-  )
+  );
 }
 
 function DeploymentEntry({deployment}: { deployment: DeploymentInfo }) {
@@ -54,9 +54,9 @@ function DeploymentEntry({deployment}: { deployment: DeploymentInfo }) {
         </span>
 
         {deployment.active &&
-          <Badge variant="secondary" className={`border-[var(--vp-c-brand-1)] px-2 text-[var(--vp-c-brand-1)]`}>
-              <GlobeIcon className="mr-2 size-3"/>
-              Current
+          <Badge variant="secondary" className={'border-[var(--vp-c-brand-1)] px-2 text-[var(--vp-c-brand-1)]'}>
+            <GlobeIcon className="mr-2 size-3"/>
+            Current
           </Badge>
         }
       </div>
@@ -80,7 +80,8 @@ function DeploymentEntry({deployment}: { deployment: DeploymentInfo }) {
       </div>
 
       <div className="flex w-full flex-1 flex-row justify-between gap-1 text-secondary sm:w-fit sm:justify-start">
-        <LocalDateTime className="text-sm whitespace-nowrap" form="LLL d, yyyy" dateTime={new Date(deployment.created_at)}/>
+        <LocalDateTime className="text-sm whitespace-nowrap" form="LLL d, yyyy"
+                       dateTime={new Date(deployment.created_at)}/>
 
         <div className="flex flex-1 text-end text-sm">
           <span className="w-full">
@@ -122,7 +123,7 @@ function DeploymentEntry({deployment}: { deployment: DeploymentInfo }) {
         </ContextDropdownMenu>
       </div>
     </div>
-  )
+  );
 }
 
 export default function DevProjectDeploymentsTable({data}: { data: PaginatedData<DeploymentInfo>; page: number; }) {
@@ -139,12 +140,12 @@ export default function DevProjectDeploymentsTable({data}: { data: PaginatedData
           ))}
         </div>
         :
-        <EmptyDeploymentsState />
+        <EmptyDeploymentsState/>
       }
 
       <ClientLocaleProvider keys={['DataTable']}>
         <DataTablePagination pages={data.pages}/>
       </ClientLocaleProvider>
     </div>
-  )
+  );
 }

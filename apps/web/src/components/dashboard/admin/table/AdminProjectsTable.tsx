@@ -1,9 +1,9 @@
-import * as React from "react";
-import {AdminProjectInfo, PaginatedData} from "@sinytra/wiki-api-types";
-import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import LocalDateTime from "@repo/ui/util/LocalDateTime";
-import navigation from "@/lib/navigation";
+import * as React from 'react';
+import {AdminProjectInfo, PaginatedData} from '@sinytra/wiki-api-types';
+import {TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import LocalDateTime from '@repo/ui/util/LocalDateTime';
+import navigation from '@/lib/navigation';
 
 export default function AdminProjectsTable({data, page}: {
   data: PaginatedData<AdminProjectInfo>;
@@ -51,5 +51,5 @@ export default function AdminProjectsTable({data, page}: {
     <DataTable columns={columns} data={data} page={page}
                linker={r => navigation.getDevProjectLink(r.id)}
     />
-  )
+  );
 }

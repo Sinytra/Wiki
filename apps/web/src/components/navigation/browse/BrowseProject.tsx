@@ -1,22 +1,22 @@
-import platforms, {PlatformProject} from "@repo/shared/platforms";
-import {Suspense, use} from "react";
-import {BoxIcon, MilestoneIcon} from "lucide-react";
-import {Skeleton} from "@repo/ui/components/skeleton";
-import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
-import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
-import {Button} from "@repo/ui/components/button";
-import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import LinkTextButton from "@/components/navigation/link/LinkTextButton";
-import {ErrorBoundary} from "react-error-boundary";
-import {ProjectTypeIcons} from "@/lib/project/projectTypes";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
-import ModVersionRange from "@/components/docs/ModVersionRange";
-import {getTranslations} from "next-intl/server";
-import {resolveSoft, trimText} from "@/lib/utils";
-import {BrowseProject as BrowseProjectData} from "@sinytra/wiki-api-types";
-import navigation from "@/lib/navigation";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
+import platforms, {PlatformProject} from '@repo/shared/platforms';
+import {Suspense, use} from 'react';
+import {BoxIcon, MilestoneIcon} from 'lucide-react';
+import {Skeleton} from '@repo/ui/components/skeleton';
+import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
+import CurseForgeIcon from '@repo/ui/icons/CurseForgeIcon';
+import {Button} from '@repo/ui/components/button';
+import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import LinkTextButton from '@/components/navigation/link/LinkTextButton';
+import {ErrorBoundary} from 'react-error-boundary';
+import {ProjectTypeIcons} from '@/lib/project/projectTypes';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import CommunityDocsBadge from '@/components/docs/CommunityDocsBadge';
+import ModVersionRange from '@/components/docs/ModVersionRange';
+import {getTranslations} from 'next-intl/server';
+import {resolveSoft, trimText} from '@/lib/utils';
+import {BrowseProject as BrowseProjectData} from '@sinytra/wiki-api-types';
+import navigation from '@/lib/navigation';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
 
 function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
@@ -28,10 +28,10 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
         alt={projectContent.name}
         width={64}
         height={64}
-        fallback={<ProjectIconPlaceholder />}
+        fallback={<ProjectIconPlaceholder/>}
       />
     </div>
-  )
+  );
 }
 
 function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
@@ -40,7 +40,7 @@ function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
     <span className="line-clamp-2 h-10 text-sm font-normal text-secondary sm:line-clamp-none sm:h-auto sm:min-h-5">
       {trimText(projectContent.summary, 100)}
     </span>
-  )
+  );
 }
 
 function ProjectIconPlaceholder() {
@@ -48,7 +48,7 @@ function ProjectIconPlaceholder() {
     <div className="flex h-16 w-16 shrink-0 rounded-xs border border-tertiary sm:h-20 sm:w-20">
       <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={56} height={56}/>
     </div>
-  )
+  );
 }
 
 async function GitHubProjectLink({url}: { url: string }) {
@@ -58,7 +58,7 @@ async function GitHubProjectLink({url}: { url: string }) {
         <GitHubIcon className="size-5"/>
       </NavLink>
     </Button>
-  )
+  );
 }
 
 function ProjectSourceUrl({project}: { project: Promise<PlatformProject | null> }) {
@@ -111,22 +111,22 @@ async function ProjectMetaInfo({base, project}: { base: BrowseProjectData, proje
         {cfLink &&
           <Button asChild variant="ghost" size="icon"
                   className="size-8 hover:text-brand-curseforge">
-              <NavLink href={cfLink} target="_blank">
-                  <CurseForgeIcon className="h-5 w-5"/>
-              </NavLink>
+            <NavLink href={cfLink} target="_blank">
+              <CurseForgeIcon className="h-5 w-5"/>
+            </NavLink>
           </Button>
         }
         {mrLink &&
           <Button asChild variant="ghost" size="icon"
                   className="size-8 hover:text-brand-modrinth">
-              <NavLink href={mrLink} target="_blank">
-                  <ModrinthIcon className="h-5 w-5"/>
-              </NavLink>
+            <NavLink href={mrLink} target="_blank">
+              <ModrinthIcon className="h-5 w-5"/>
+            </NavLink>
           </Button>
         }
       </div>
     </div>
-  )
+  );
 }
 
 export default function BrowseProject({project}: { project: BrowseProjectData }) {
@@ -173,5 +173,5 @@ export default function BrowseProject({project}: { project: BrowseProjectData })
         <ProjectMetaInfo base={project} project={platformProject}/>
       </div>
     </div>
-  )
+  );
 }

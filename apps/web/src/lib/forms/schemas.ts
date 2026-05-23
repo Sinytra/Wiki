@@ -1,12 +1,12 @@
-import {z} from "zod";
+import {z} from 'zod';
 
-const zodStringError = (iss: any) => iss.input === undefined ? "This field is required." : undefined;
+const zodStringError = (iss: any) => iss.input === undefined ? 'This field is required.' : undefined;
 
 const requiredString = z.string({
   error: zodStringError
 });
 const allowedProtocols = process.env.NODE_ENV === 'development' ? /https|file/ : /https/;
-const zodRepoUrl = z.url({ protocol: allowedProtocols, error: zodStringError });
+const zodRepoUrl = z.url({protocol: allowedProtocols, error: zodStringError});
 
 export const emptySchema = z.object({});
 
@@ -42,7 +42,7 @@ export const projectReportSchema = z.object({
 
 export const ruleProjectReportSchema = z.object({
   resolution: z.enum(['accept', 'dismiss'])
-})
+});
 
 export const createAccessKeySchema = z.object({
   name: requiredString,

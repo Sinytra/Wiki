@@ -143,7 +143,7 @@ function getUserURL(user: ModrinthUser) {
   return `https://modrinth.com/user/${user.username}`;
 }
 
-function getProjectURL(slug: string, type: ProjectType): string {
+function getProjectURL(slug: string, _type: ProjectType): string {
   return `https://modrinth.com/mod/${slug}`;
 }
 

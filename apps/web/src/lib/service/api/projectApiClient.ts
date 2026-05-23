@@ -1,7 +1,7 @@
-import {z} from "zod";
-import {projectUpdateSourceSchema, projectRegisterSchema} from "@/lib/forms/schemas";
-import commonNetwork, {ApiCallResult} from "@repo/shared/commonNetwork";
-import {MessageResponse, ProjectCreatedResponse} from "@sinytra/wiki-api-types";
+import {z} from 'zod';
+import {projectUpdateSourceSchema, projectRegisterSchema} from '@/lib/forms/schemas';
+import commonNetwork, {ApiCallResult} from '@repo/shared/commonNetwork';
+import {MessageResponse, ProjectCreatedResponse} from '@sinytra/wiki-api-types';
 
 async function registerProject(body: z.infer<typeof projectRegisterSchema>): Promise<ApiCallResult<ProjectCreatedResponse>> {
   return commonNetwork.resolveApiCall(() => commonNetwork.sendDataRequest('dev/projects', {
@@ -21,4 +21,4 @@ async function updateProject(body: z.infer<typeof projectUpdateSourceSchema>): P
 export default {
   registerProject,
   updateProject
-}
+};

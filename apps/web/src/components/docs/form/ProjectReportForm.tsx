@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
-import {Button} from "@repo/ui/components/button";
+import {zodResolver} from '@hookform/resolvers/zod';
+import {useForm} from 'react-hook-form';
+import {z} from 'zod';
+import {Button} from '@repo/ui/components/button';
 import {
   Form,
   FormControl,
@@ -12,20 +12,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@repo/ui/components/form";
-import {DialogFooter} from "@repo/ui/components/dialog";
-import * as React from "react";
-import {toast} from "sonner";
-import {Input} from "@repo/ui/components/input";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
-import {CompassIcon} from "lucide-react";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {Textarea} from "@repo/ui/components/textarea";
-import {flushSync} from "react-dom";
-import {useTranslations} from "next-intl";
-import {projectReportSchema} from "@/lib/forms/schemas";
-import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
-import {ReportType} from "@sinytra/wiki-api-types";
+} from '@repo/ui/components/form';
+import {DialogFooter} from '@repo/ui/components/dialog';
+import * as React from 'react';
+import {toast} from 'sonner';
+import {Input} from '@repo/ui/components/input';
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@repo/ui/components/select';
+import {CompassIcon} from 'lucide-react';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {Textarea} from '@repo/ui/components/textarea';
+import {flushSync} from 'react-dom';
+import {useTranslations} from 'next-intl';
+import {projectReportSchema} from '@/lib/forms/schemas';
+import FormSubmitButton from '@repo/ui/components/forms/FormSubmitButton';
+import {ReportType} from '@sinytra/wiki-api-types';
 
 interface Properties {
   projectId: string;
@@ -226,5 +226,5 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
         }
       </form>
     </Form>
-  )
+  );
 }

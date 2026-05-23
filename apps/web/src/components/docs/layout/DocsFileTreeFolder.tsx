@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import {ChevronDown} from "lucide-react";
-import * as React from "react";
-import {ReactNode, useContext, useEffect, useRef, useState} from "react";
-import {cn} from "@repo/ui/lib/utils";
-import {usePathname} from "@/lib/locales/routing";
-import {LeftSidebarContext} from "@/components/docs/side/LeftSidebarContext";
+import {ChevronDown} from 'lucide-react';
+import * as React from 'react';
+import {ReactNode, useContext, useEffect, useRef, useState} from 'react';
+import {cn} from '@repo/ui/lib/utils';
+import {usePathname} from '@/lib/locales/routing';
+import {LeftSidebarContext} from '@/components/docs/side/LeftSidebarContext';
 
 interface DocsFileTreeFolderProps {
   name: any;
@@ -61,7 +61,7 @@ export default function DocsFileTreeFolder({name, path, icon, level, children}: 
   return (
     <div className={cn('accordion flex flex-col', isOpen && 'open')}>
       <button onClick={toggleOpen} data-state={isOpen ? 'open' : 'closed'}
-        className={`
+              className={`
           flex items-center rounded-md px-3 py-2 text-sm text-secondary hover:bg-secondary hover:text-primary-alt
           [&[data-state=open]>svg:last-child]:rotate-180
         `}

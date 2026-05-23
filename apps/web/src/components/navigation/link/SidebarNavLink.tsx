@@ -1,7 +1,7 @@
-import {ReactNode} from "react";
-import ActiveNavButton from "@/components/navigation/link/ActiveNavButton";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {cn} from "@repo/ui/lib/utils";
+import {ReactNode} from 'react';
+import ActiveNavButton from '@/components/navigation/link/ActiveNavButton';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {cn} from '@repo/ui/lib/utils';
 
 export default function SidebarNavLink({href, icon: Icon, className, nested, children}: {
   href: string;
@@ -19,5 +19,5 @@ export default function SidebarNavLink({href, icon: Icon, className, nested, chi
         </span>
       </ActiveNavButton>
     </LocaleNavLink>
-  )
+  );
 }

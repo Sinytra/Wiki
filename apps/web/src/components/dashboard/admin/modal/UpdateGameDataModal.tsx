@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import {zodResolver} from "@hookform/resolvers/zod"
-import {useForm} from "react-hook-form"
-import {Form, FormControl, FormField, FormItem, FormLabel,} from "@repo/ui/components/form";
+import {zodResolver} from '@hookform/resolvers/zod';
+import {useForm} from 'react-hook-form';
+import {Form, FormControl, FormField, FormItem, FormLabel,} from '@repo/ui/components/form';
 import {
   Dialog,
   DialogContent,
@@ -11,20 +11,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@repo/ui/components/dialog";
-import * as React from "react";
-import {useEffect, useState} from "react";
-import {updateGameDataSchema} from "@/lib/forms/schemas";
-import {useTranslations} from "next-intl";
-import {cn} from "@repo/ui/lib/utils";
-import {RefreshCcwIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {useRouter} from "@/lib/locales/routing";
-import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
-import {Switch} from "@repo/ui/components/switch";
-import clientActions from "@/lib/forms/clientActions";
-import {toast} from "sonner";
-import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
+} from '@repo/ui/components/dialog';
+import * as React from 'react';
+import {useEffect, useState} from 'react';
+import {updateGameDataSchema} from '@/lib/forms/schemas';
+import {useTranslations} from 'next-intl';
+import {cn} from '@repo/ui/lib/utils';
+import {RefreshCcwIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import {useRouter} from '@/lib/locales/routing';
+import FormSubmitButton from '@repo/ui/components/forms/FormSubmitButton';
+import {Switch} from '@repo/ui/components/switch';
+import clientActions from '@/lib/forms/clientActions';
+import {toast} from 'sonner';
+import usePageDataReloadTransition from '@repo/shared/client/usePageDataReloadTransition';
 
 export default function UpdateGameDataModal() {
   const [open, setOpen] = useState(false);
@@ -105,9 +105,9 @@ export default function UpdateGameDataModal() {
 
                 {form.formState.errors.root?.custom?.message &&
                   <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                      <p className="text-sm text-destructive">
-                        {form.formState.errors.root.custom.message}
-                      </p>
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.root.custom.message}
+                    </p>
                   </div>
                 }
 
@@ -122,5 +122,5 @@ export default function UpdateGameDataModal() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

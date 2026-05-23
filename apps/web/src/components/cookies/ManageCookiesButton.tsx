@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, {useContext} from "react";
-import {CookieConsentContext} from "@/components/cookies/CookieConsentContextProvider";
-import {useTranslations} from "next-intl";
+import React, {useContext} from 'react';
+import {CookieConsentContext} from '@/components/cookies/CookieConsentContextProvider';
+import {useTranslations} from 'next-intl';
 
 export default function ManageCookiesButton() {
   const t = useTranslations('ManageCookiesButton');

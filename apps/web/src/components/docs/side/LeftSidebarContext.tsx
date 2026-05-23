@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {createContext, useState} from 'react';
 
@@ -15,9 +15,9 @@ export interface LeftSidebarContext extends SidebarContext {
   setScrollPos: (scrollPos: number) => void;
 }
 
-export const LeftSidebarContext = createContext<LeftSidebarContext|null>(null);
+export const LeftSidebarContext = createContext<LeftSidebarContext | null>(null);
 
-export default function LeftSidebarContextProvider({ children }: { children: any }) {
+export default function LeftSidebarContextProvider({children}: { children: any }) {
   const [open, setOpen] = useState(false);
   const [folderStates, setFolderStates] = useState<Record<number, string>>({});
   const [scrollPos, setScrollPos] = useState<number>(0);
@@ -26,5 +26,5 @@ export default function LeftSidebarContextProvider({ children }: { children: any
     <LeftSidebarContext.Provider value={{open, setOpen, folderStates, setFolderStates, scrollPos, setScrollPos}}>
       {children}
     </LeftSidebarContext.Provider>
-  )
+  );
 }

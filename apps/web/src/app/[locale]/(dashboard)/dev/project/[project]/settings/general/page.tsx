@@ -1,17 +1,16 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import {getTranslations} from "next-intl/server";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import * as React from "react";
-import DevProjectSectionTitle from "@/components/dashboard/dev/project/DevProjectSectionTitle";
-import ProjectDeleteForm from "@/components/dashboard/dev/modal/ProjectDeleteForm";
-import {TriangleAlertIcon} from "lucide-react";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {DevProjectRouteParams} from "@repo/shared/types/routes";
-import {handleDeleteProjectForm, handleUpdateProjectSettingsForm} from "@/lib/forms/actions";
-import FormWrapper from "@/components/modal/FormWrapper";
-import DevProjectGeneralSettings from "@/components/dashboard/dev/project/DevProjectGeneralSettings";
-import {ProjectMemberRole} from "@sinytra/wiki-api-types";
+import {setContextLocale} from '@/lib/locales/routing';
+import {getTranslations} from 'next-intl/server';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import * as React from 'react';
+import DevProjectSectionTitle from '@/components/dashboard/dev/project/DevProjectSectionTitle';
+import ProjectDeleteForm from '@/components/dashboard/dev/modal/ProjectDeleteForm';
+import {TriangleAlertIcon} from 'lucide-react';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {DevProjectRouteParams} from '@repo/shared/types/routes';
+import {handleDeleteProjectForm, handleUpdateProjectSettingsForm} from '@/lib/forms/actions';
+import FormWrapper from '@/components/modal/FormWrapper';
+import DevProjectGeneralSettings from '@/components/dashboard/dev/project/DevProjectGeneralSettings';
 
 function DangerSection({deleteFunc}: { deleteFunc: any }) {
   return (
@@ -68,9 +67,9 @@ export default async function DevProjectGeneralSettingsPage(props: { params: Pro
       <div className="flex h-full flex-col space-y-5">
         {project.access_level == 'owner' &&
           <>
-              <hr className="mt-auto border-secondary"/>
+            <hr className="mt-auto border-secondary"/>
 
-              <DangerSection deleteFunc={handleDeleteProjectForm.bind(null, project.id)}/>
+            <DangerSection deleteFunc={handleDeleteProjectForm.bind(null, project.id)}/>
           </>
         }
       </div>

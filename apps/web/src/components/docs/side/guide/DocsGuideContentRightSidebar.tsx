@@ -1,14 +1,14 @@
-import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
-import {cn} from "@repo/ui/lib/utils";
-import service from "@/lib/service";
-import {DocsEntryMetadata} from "@repo/shared/types/metadata";
-import {AssetLocation} from "@repo/shared/assets";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import EntryDetails from "@/components/docs/util/EntryDetails";
-import MetadataRowKey from "@/components/docs/util/MetadataRowKey";
-import MetadataGrid from "@/components/docs/util/MetadataGrid";
-import {getTranslations} from "next-intl/server";
-import {ProjectData} from "@sinytra/wiki-api-types";
+import DocsSidebarBase from '@/components/docs/side/DocsSidebarBase';
+import {cn} from '@repo/ui/lib/utils';
+import service from '@/lib/service';
+import {DocsEntryMetadata} from '@repo/shared/types/metadata';
+import {AssetLocation} from '@repo/shared/assets';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import EntryDetails from '@/components/docs/util/EntryDetails';
+import MetadataRowKey from '@/components/docs/util/MetadataRowKey';
+import MetadataGrid from '@/components/docs/util/MetadataGrid';
+import {getTranslations} from 'next-intl/server';
+import {ProjectData} from '@sinytra/wiki-api-types';
 
 interface ContentRightSidebarProps {
   project: ProjectData;
@@ -16,7 +16,7 @@ interface ContentRightSidebarProps {
   version: string;
 }
 
-export default async function DocsGuideContentRightSidebar({ project, metadata, version }: ContentRightSidebarProps) {
+export default async function DocsGuideContentRightSidebar({project, metadata, version}: ContentRightSidebarProps) {
   const t = await getTranslations('DocsContentRightSidebar');
   const ctx = {id: project.id, version};
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null

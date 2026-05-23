@@ -1,16 +1,16 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import {parseAsInteger, parseAsString} from "nuqs/server";
-import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
-import {getTranslations} from "next-intl/server";
-import DevProjectItemsTable from "@/components/dashboard/dev/table/DevProjectItemsTable";
-import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
-import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {useTranslations} from "next-intl";
-import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
-import * as React from "react";
+import {setContextLocale} from '@/lib/locales/routing';
+import {parseAsInteger, parseAsString} from 'nuqs/server';
+import {DEFAULT_DOCS_VERSION} from '@repo/shared/constants';
+import {getTranslations} from 'next-intl/server';
+import DevProjectItemsTable from '@/components/dashboard/dev/table/DevProjectItemsTable';
+import {BreadcrumbLink, BreadcrumbPage} from '@repo/ui/components/breadcrumb';
+import DevBreadcrumb from '@/components/dashboard/dev/navigation/DevBreadcrumb';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {useTranslations} from 'next-intl';
+import DevProjectTableEmptyState from '@/components/dashboard/dev/table/DevProjectTableEmptyState';
+import * as React from 'react';
 
 type Properties = {
   params: Promise<{
@@ -23,7 +23,7 @@ type Properties = {
     page?: string | string[];
     version?: string;
   }>
-}
+};
 
 function EmptyItemTableTagState() {
   const t = useTranslations('DevProjectTagItemsTable.empty');
@@ -33,7 +33,7 @@ function EmptyItemTableTagState() {
       <p className="text-base">{t('title')}</p>
       <p>{t('desc')}</p>
     </DevProjectTableEmptyState>
-  )
+  );
 }
 
 export default async function DevProjectContentTagItemsPage(props: Properties) {
@@ -48,7 +48,11 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
   const version = parseAsString.parseServerSide(searchParams.version);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = handleApiCall(await devProjectApi.getProjectContentTagItems(params.project, tag, {query, page: page.toString(), version}));
+  const content = handleApiCall(await devProjectApi.getProjectContentTagItems(params.project, tag, {
+    query,
+    page: page.toString(),
+    version
+  }));
 
   return (
     <div>
@@ -65,11 +69,11 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
       </DevBreadcrumb>
 
       <DevProjectItemsTable data={content}
-                            versions={[] /* TODO: re-add project.versions when DevProjectData exposes it */}
+                            versions={project.version_names || []}
                             ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
                             page={page}
-                            emptyState={<EmptyItemTableTagState />}
+                            emptyState={<EmptyItemTableTagState/>}
       />
     </div>
-  )
+  );
 }

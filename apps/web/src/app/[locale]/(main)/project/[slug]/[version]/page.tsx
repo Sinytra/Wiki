@@ -1,8 +1,8 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import service from "@/lib/service";
-import {notFound} from "next/navigation";
-import platforms, {PlatformProject} from "@repo/shared/platforms";
-import projectInfo, {ResolvedLicense} from "@/lib/project/projectInfo";
+import {setContextLocale} from '@/lib/locales/routing';
+import service from '@/lib/service';
+import {notFound} from 'next/navigation';
+import platforms, {PlatformProject} from '@repo/shared/platforms';
+import projectInfo, {ResolvedLicense} from '@/lib/project/projectInfo';
 import {ProjectCategories} from '@/lib/project/projectTypes';
 import {
   BookMarkedIcon,
@@ -11,29 +11,28 @@ import {
   BoxIcon,
   CodeIcon,
   CopyrightIcon,
-  GlobeIcon,
   HelpCircleIcon,
   LinkIcon,
   MapIcon,
   PencilRulerIcon,
   ScaleIcon,
   TagIcon
-} from "lucide-react";
-import ExpandableDescription from "@/components/docs/layout/ExpandableDescription";
-import CurseForgeColorIcon from "@repo/ui/icons/CurseForgeColorIcon";
-import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
-import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import {cn} from "@repo/ui/lib/utils";
-import PageLink from "@/components/docs/PageLink";
-import DiscordIcon from "@repo/ui/icons/DiscordIcon";
-import {useTranslations} from "next-intl";
-import {DEFAULT_WIKI_LICENSE} from "@repo/shared/constants";
-import TooltipText from "@/components/docs/shared/util/TooltipText";
-import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
-import {getTranslations} from "next-intl/server";
-import {Metadata, ResolvingMetadata} from "next";
-import {ProjectRouteParams} from "@repo/shared/types/routes";
-import DocsHomepage from "@/components/docs/DocsHomepage";
+} from 'lucide-react';
+import ExpandableDescription from '@/components/docs/layout/ExpandableDescription';
+import CurseForgeColorIcon from '@repo/ui/icons/CurseForgeColorIcon';
+import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
+import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import {cn} from '@repo/ui/lib/utils';
+import PageLink from '@/components/docs/PageLink';
+import DiscordIcon from '@repo/ui/icons/DiscordIcon';
+import {useTranslations} from 'next-intl';
+import {DEFAULT_WIKI_LICENSE} from '@repo/shared/constants';
+import TooltipText from '@/components/docs/shared/util/TooltipText';
+import DocsSubpageTitle from '@/components/docs/layout/DocsSubpageTitle';
+import {getTranslations} from 'next-intl/server';
+import {Metadata, ResolvingMetadata} from 'next';
+import {ProjectRouteParams} from '@repo/shared/types/routes';
+import DocsHomepage from '@/components/docs/DocsHomepage';
 
 export async function generateMetadata(
   props: { params: Promise<ProjectRouteParams> },
@@ -75,7 +74,7 @@ function Section({title, icon: Icon, children, className}: {
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 function SubpageLink({title, icon: Icon, desc, href}: { title: string; icon: any; desc: string; href: string }) {
@@ -129,7 +128,7 @@ function AvailableVersions({versions}: { versions: string[] }) {
     }>
       {versions.length} game versions
     </TooltipText>
-  )
+  );
 }
 
 function ProjectTags({project}: { project: PlatformProject }) {
@@ -146,7 +145,7 @@ function ProjectTags({project}: { project: PlatformProject }) {
         </span>
       ))}
     </div>
-  )
+  );
 }
 
 function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; children?: any }) {
@@ -161,7 +160,7 @@ function LicenseBadge({name, icon: Icon, children}: { name: string; icon: any; c
 
       {children}
     </div>
-  )
+  );
 }
 
 function ProjectLicenseBody({license}: { license: ResolvedLicense | undefined | null }) {
@@ -203,7 +202,7 @@ function ProjectLicenseBody({license}: { license: ResolvedLicense | undefined | 
         {license.name}
       </Wrapper>
     </div>
-  )
+  );
 }
 
 export default async function ProjectHomepage(props: PageProps) {
@@ -276,15 +275,15 @@ export default async function ProjectHomepage(props: PageProps) {
 
       {platformProject.description.length > 0 &&
         <Section title={t('description.title')} icon={BookOpenIcon}>
-            <DocsHomepage project={project} platformProject={platformProject} ctx={ctx}
-                          placeholder={descriptionPlaceholder}
-                          errorPlaceholder={descriptionPlaceholder}
-                          wrapper={content => (
-                            <ExpandableDescription>
-                              {content}
-                            </ExpandableDescription>
-                          )}
-            />
+          <DocsHomepage project={project} platformProject={platformProject} ctx={ctx}
+                        placeholder={descriptionPlaceholder}
+                        errorPlaceholder={descriptionPlaceholder}
+                        wrapper={content => (
+                          <ExpandableDescription>
+                            {content}
+                          </ExpandableDescription>
+                        )}
+          />
         </Section>
       }
 
@@ -301,7 +300,6 @@ export default async function ProjectHomepage(props: PageProps) {
       </Section>
 
       <Section title={t('links.title')} icon={LinkIcon} className="flex flex-row flex-wrap gap-2">
-        {/* TODO: re-add project.info.website link when ProjectInfo exposes it again */}
         {project.platforms.curseforge &&
           <ExternalLink text="CurseForge" icon={CurseForgeColorIcon}
                         href={platforms.getProjectURL('curseforge', project.platforms.curseforge, project.type)}
@@ -310,9 +308,7 @@ export default async function ProjectHomepage(props: PageProps) {
         {project.platforms.modrinth &&
           <ExternalLink text="Modrinth" icon={ModrinthIcon}
                         href={platforms.getProjectURL('modrinth', project.platforms.modrinth, project.type)}
-                        className={`
-                          border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth
-                        `}
+                        className={'border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth'}
           />
         }
         {platformProject.discord_url &&
@@ -321,7 +317,7 @@ export default async function ProjectHomepage(props: PageProps) {
                         className="border-brand-discord/70 from-primary to-brand-discord/20 [&>svg]:text-brand-discord"
           />
         }
-        {platformProject.source_url && (platformProject.source_url.startsWith("https://github.com/")
+        {platformProject.source_url && (platformProject.source_url.startsWith('https://github.com/')
           ?
           <ExternalLink text="GitHub" icon={GitHubIcon}
                         href={platformProject.source_url}
@@ -337,7 +333,7 @@ export default async function ProjectHomepage(props: PageProps) {
 
       <Section title={t('license.title')} icon={ScaleIcon} className="flex flex-row flex-wrap gap-4">
         <LicenseBadge name={t('license.project')} icon={PencilRulerIcon}>
-          <ProjectLicenseBody license={info.licenses?.project} />
+          <ProjectLicenseBody license={info.licenses?.project}/>
         </LicenseBadge>
         <LicenseBadge name={t('license.wiki')} icon={BookOpenTextIcon}>
           <span className="text-center text-base">
@@ -351,5 +347,5 @@ export default async function ProjectHomepage(props: PageProps) {
         </LicenseBadge>
       </Section>
     </div>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import * as React from "react";
-import ReportPageButton from "@/components/docs/layout/ReportPageButton";
-import EditPageButton from "@/components/docs/layout/EditPageButton";
+import * as React from 'react';
+import ReportPageButton from '@/components/docs/layout/ReportPageButton';
+import EditPageButton from '@/components/docs/layout/EditPageButton';
 
 interface FooterProps {
   slug: string;
@@ -25,7 +25,7 @@ function DesktopDocsFooter({slug, path, editUrl, local, preview}: FooterProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function MobileDocsFooter({local, slug, path, editUrl, preview}: FooterProps) {
@@ -48,5 +48,5 @@ export default function DocsPageFooter(props: FooterProps) {
       <DesktopDocsFooter {...props} />
       <MobileDocsFooter {...props} />
     </footer>
-  )
+  );
 }

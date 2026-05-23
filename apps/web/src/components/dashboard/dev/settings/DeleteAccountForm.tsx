@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import {Button} from "@repo/ui/components/button";
-import {TrashIcon} from "lucide-react";
-import * as React from "react";
-import {useState} from "react";
+import {Button} from '@repo/ui/components/button';
+import {TrashIcon} from 'lucide-react';
+import * as React from 'react';
+import {useState} from 'react';
 import {
   Dialog,
   DialogClose,
@@ -13,9 +13,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@repo/ui/components/dialog";
-import {useTranslations} from "next-intl";
-import FormDeleteButton from "@repo/ui/components/forms/FormDeleteButton";
+} from '@repo/ui/components/dialog';
+import {useTranslations} from 'next-intl';
+import FormDeleteButton from '@repo/ui/components/forms/FormDeleteButton';
 
 interface Properties {
   action: () => Promise<any>;
@@ -29,7 +29,7 @@ export default function DeleteAccountForm({action}: Properties) {
     await action();
 
     setOpen(false);
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -65,5 +65,5 @@ export default function DeleteAccountForm({action}: Properties) {
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

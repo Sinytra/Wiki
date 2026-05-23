@@ -1,8 +1,8 @@
-import type { MetadataRoute } from 'next';
-import locales from "@repo/shared/locales";
- 
+import type {MetadataRoute} from 'next';
+import locales from '@repo/shared/locales';
+
 export default function robots(): MetadataRoute.Robots {
-  const languages = locales.getLanguagePaths()
+  const languages = locales.getLanguagePaths();
   const disallow = ['/dev/', '/report/', ...languages.flatMap(l => [`/${l}/dev/`, `/${l}/report/`])];
 
   return {
@@ -12,5 +12,5 @@ export default function robots(): MetadataRoute.Robots {
       disallow: disallow,
     },
     sitemap: process.env.NEXT_PUBLIC_NEXT_APP_URL ? `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/sitemap.xml` : undefined,
-  }
+  };
 }

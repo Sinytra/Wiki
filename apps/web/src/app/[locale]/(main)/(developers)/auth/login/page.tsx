@@ -1,10 +1,10 @@
-import {redirect} from "next/navigation";
-import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@repo/ui/components/card";
-import {KeyRoundIcon} from "lucide-react";
-import {setContextLocale} from "@/lib/locales/routing";
-import LoginSubmitButton from "@/components/util/LoginSubmitButton";
-import {getTranslations} from "next-intl/server";
-import authSession from "@/lib/authSession";
+import {redirect} from 'next/navigation';
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from '@repo/ui/components/card';
+import {KeyRoundIcon} from 'lucide-react';
+import {setContextLocale} from '@/lib/locales/routing';
+import LoginSubmitButton from '@/components/util/LoginSubmitButton';
+import {getTranslations} from 'next-intl/server';
+import authSession from '@/lib/authSession';
 
 export default async function Login(
   props: {
@@ -28,7 +28,7 @@ export default async function Login(
     <form
       className="flex h-[50vh] w-full items-center justify-center"
       action={async () => {
-        "use server"
+        'use server';
         authSession.login();
       }}
     >
@@ -51,5 +51,5 @@ export default async function Login(
         </CardFooter>
       </Card>
     </form>
-  )
+  );
 }

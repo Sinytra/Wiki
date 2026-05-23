@@ -1,11 +1,11 @@
-import {AssetLocation} from "@repo/shared/assets";
-import service from "@/lib/service";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import ContentProperties from "@/components/docs/side/content/ContentProperties";
-import {ItemProperties, ProjectContext, ResolvedItemProperties} from "@repo/shared/types/service";
-import {ProjectData} from "@sinytra/wiki-api-types";
-import {DocsEntryMetadata} from "@repo/shared/types/metadata";
-import ProjectLink from "@/components/navigation/paths/ProjectLink";
+import {AssetLocation} from '@repo/shared/assets';
+import service from '@/lib/service';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import ContentProperties from '@/components/docs/side/content/ContentProperties';
+import {ItemProperties, ProjectContext, ResolvedItemProperties} from '@repo/shared/types/service';
+import {ProjectData} from '@sinytra/wiki-api-types';
+import {DocsEntryMetadata} from '@repo/shared/types/metadata';
+import ProjectLink from '@/components/navigation/paths/ProjectLink';
 
 export interface Props {
   title: string;
@@ -24,7 +24,7 @@ export default async function DocsContentMetaSidebarBody({project, metadata, ctx
     type: metadata.type,
     ...metadata.custom,
     source_mod: (
-      <ProjectLink project={project} />
+      <ProjectLink project={project}/>
     ),
     ...(properties ?? {})
   };
@@ -41,9 +41,9 @@ export default async function DocsContentMetaSidebarBody({project, metadata, ctx
 
       {!metadata.hide_icon &&
         <div className="my-2 p-4">
-            <ImageWithFallback src={iconUrl?.src} width={128} height={128}
-                               className="docsContentIcon disable-blur mx-auto"
-                               alt={!iconUrl ? undefined : iconUrl.id}/>
+          <ImageWithFallback src={iconUrl?.src} width={128} height={128}
+                             className="docsContentIcon disable-blur mx-auto"
+                             alt={!iconUrl ? undefined : iconUrl.id}/>
         </div>
       }
 
@@ -51,5 +51,5 @@ export default async function DocsContentMetaSidebarBody({project, metadata, ctx
         <ContentProperties properties={providedProps} ctx={ctx}/>
       }
     </div>
-  )
+  );
 }

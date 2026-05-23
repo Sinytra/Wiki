@@ -1,4 +1,4 @@
-import {Changelog, FullChangelogEntry} from "@repo/shared/types/metadata";
+import {Changelog, FullChangelogEntry} from '@repo/shared/types/metadata';
 
 interface ChangelogProps {
   changelog: Changelog;
@@ -30,6 +30,6 @@ export default function ContentChangelog({changelog}: ChangelogProps) {
         </div>
       ))}
     </div>
-  )
+  );
 }
 

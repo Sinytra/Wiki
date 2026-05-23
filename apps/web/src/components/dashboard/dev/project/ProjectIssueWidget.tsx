@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import {useTranslations} from "next-intl";
-import {ChevronDown, CircleAlertIcon, TriangleAlertIcon} from "lucide-react";
-import {cn} from "@repo/ui/lib/utils";
-import * as React from "react";
-import {useState} from "react";
-import LocalDateTime from "@repo/ui/util/LocalDateTime";
-import {ProjectIssueInfo, ProjectIssueLevel} from "@sinytra/wiki-api-types";
+import {useTranslations} from 'next-intl';
+import {ChevronDown, CircleAlertIcon, TriangleAlertIcon} from 'lucide-react';
+import {cn} from '@repo/ui/lib/utils';
+import * as React from 'react';
+import {useState} from 'react';
+import LocalDateTime from '@repo/ui/util/LocalDateTime';
+import {ProjectIssueInfo, ProjectIssueLevel} from '@sinytra/wiki-api-types';
 
 export default function ProjectIssueWidget({issue}: { issue: ProjectIssueInfo }) {
   const t = useTranslations('ProjectIssueType');
@@ -79,8 +79,8 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssueInfo })
                 {v.rich('file', {
                   file: () => (
                     <span className="font-mono text-sm text-secondary-alt">
-                    {issue.file}
-                  </span>
+                      {issue.file}
+                    </span>
                   )
                 })}
               </p>
@@ -112,5 +112,5 @@ export default function ProjectIssueWidget({issue}: { issue: ProjectIssueInfo })
         </div>
       </div>
     </div>
-  )
+  );
 }

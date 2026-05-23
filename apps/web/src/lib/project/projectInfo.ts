@@ -1,7 +1,7 @@
-import platforms, {PlatformProject, PlatformProjectAuthor} from "@repo/shared/platforms";
-import {getTranslations} from "next-intl/server";
-import spdxLicenseList from "spdx-license-list";
-import {ProjectData, ProjectLicense} from "@sinytra/wiki-api-types";
+import platforms, {PlatformProject, PlatformProjectAuthor} from '@repo/shared/platforms';
+import {getTranslations} from 'next-intl/server';
+import spdxLicenseList from 'spdx-license-list';
+import {ProjectData, ProjectLicense} from '@sinytra/wiki-api-types';
 
 const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 
@@ -35,15 +35,15 @@ function resolveLicense(license: ProjectLicense | undefined, fallbackName: strin
     const spdxLicense = spdxLicenseList[license.id];
     // Backend should ensure this doesn't happen
     if (!spdxLicense) {
-      return { name: fallbackName, url: license.url || null };
+      return {name: fallbackName, url: license.url || null};
     }
 
     const actualUrl = license.url || spdxLicense.url;
-    return { name: spdxLicense.name, url: actualUrl };
+    return {name: spdxLicense.name, url: actualUrl};
   }
 
   if (license.name) {
-    return { name: license.name, url: license.url || null };
+    return {name: license.name, url: license.url || null};
   }
 
   return null;
@@ -63,21 +63,21 @@ function getProjectLicenseInfo(project: ProjectData, platformProject: PlatformPr
     // All Rights Reserved
     if (platformProject.license.id === ARRNoLicense) {
       return {
-        project: { isDefaultArrLicense: true, name: t('license.arr'), url: null }
-      }
+        project: {isDefaultArrLicense: true, name: t('license.arr'), url: null}
+      };
     }
     // Non-SDPX custom license
     if (platformProject.license.id.startsWith('LicenseRef')) {
       return {
         project: {name: customLicenseName, url: platformProject.license?.url}
-      }
+      };
     }
     // SPDX License
-    const spdxLicense = spdxLicenseList[platformProject.license.id]
+    const spdxLicense = spdxLicenseList[platformProject.license.id];
     if (spdxLicense) {
       return {
         project: {name: spdxLicense.name, url: platformProject.license?.url || spdxLicense.url}
-      }
+      };
     }
   }
   // Custom name license
@@ -87,10 +87,10 @@ function getProjectLicenseInfo(project: ProjectData, platformProject: PlatformPr
         name: platformProject.license.name,
         url: platformProject.license?.url
       }
-    }
+    };
   }
 
-  return { project: null };
+  return {project: null};
 }
 
 async function getPlatformProjectInformation(project: ProjectData, platformProject: PlatformProject): Promise<ProjectDisplayInformation> {
@@ -106,4 +106,4 @@ async function getPlatformProjectInformation(project: ProjectData, platformProje
 
 export default {
   getPlatformProjectInformation
-}
+};

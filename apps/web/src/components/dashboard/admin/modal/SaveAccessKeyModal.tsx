@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   Dialog,
@@ -8,13 +8,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle
-} from "@repo/ui/components/dialog";
-import * as React from "react";
-import {useTranslations} from "next-intl";
-import {CreateAccessKeyResponse} from "@sinytra/wiki-api-types";
-import {Button} from "@repo/ui/components/button";
-import {LockIcon} from "lucide-react";
-import DataField from "@/components/util/DataField";
+} from '@repo/ui/components/dialog';
+import * as React from 'react';
+import {useTranslations} from 'next-intl';
+import {CreateAccessKeyResponse} from '@sinytra/wiki-api-types';
+import {Button} from '@repo/ui/components/button';
+import {LockIcon} from 'lucide-react';
+import DataField from '@/components/util/DataField';
 
 export interface CreateAccessKeyModalProps {
   open: boolean;
@@ -46,7 +46,7 @@ export default function SaveAccessKeyModal({result, open, setOpen}: CreateAccess
 
         {result?.key?.expires_at &&
           <span className="text-sm text-secondary">
-            {t('valid', { expiry: result.key.expires_at })}
+            {t('valid', {expiry: result.key.expires_at})}
           </span>
         }
 
@@ -59,5 +59,5 @@ export default function SaveAccessKeyModal({result, open, setOpen}: CreateAccess
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

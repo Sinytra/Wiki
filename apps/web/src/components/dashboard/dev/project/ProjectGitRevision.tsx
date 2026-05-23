@@ -1,14 +1,15 @@
-import {useTranslations} from "next-intl";
-import {cn} from "@repo/ui/lib/utils";
-import * as React from "react";
-import {GitCommitHorizontalIcon} from "lucide-react";
-import LocalDateTime from "@repo/ui/util/LocalDateTime";
-import {GitRevision} from "@sinytra/wiki-api-types";
+import {useTranslations} from 'next-intl';
+import {cn} from '@repo/ui/lib/utils';
+import * as React from 'react';
+import {GitCommitHorizontalIcon} from 'lucide-react';
+import LocalDateTime from '@repo/ui/util/LocalDateTime';
+import {GitRevision} from '@sinytra/wiki-api-types';
 
 function LinkWithFallback({className, href, children}: { className?: string, href: string | null; children?: any }) {
   return (
     href ?
-      <a href={href} target="_blank" className={cn(className, 'hover:underline hover:underline-offset-4')} rel="noreferrer">
+      <a href={href} target="_blank" className={cn(className, 'hover:underline hover:underline-offset-4')}
+         rel="noreferrer">
         {children}
       </a>
       :
@@ -64,5 +65,5 @@ export default function ProjectGitRevision({revision, loading, current}: {
         </div>
       </div>
     </div>
-  )
+  );
 }

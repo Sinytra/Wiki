@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import {TrashIcon} from "lucide-react";
-import * as React from "react";
-import {useContext} from "react";
-import {useTranslations} from "next-intl";
-import {DropdownMenuItem} from "@repo/ui/components/dropdown-menu";
-import {DropdownMenuContext} from "@/components/util/ContextDropdownMenu";
-import GenericDeleteModal from "@/components/modal/GenericDeleteModal";
-import {FormActionResult} from "@/lib/forms/forms";
+import {TrashIcon} from 'lucide-react';
+import * as React from 'react';
+import {useContext} from 'react';
+import {useTranslations} from 'next-intl';
+import {DropdownMenuItem} from '@repo/ui/components/dropdown-menu';
+import {DropdownMenuContext} from '@/components/util/ContextDropdownMenu';
+import GenericDeleteModal from '@/components/modal/GenericDeleteModal';
+import {FormActionResult} from '@/lib/forms/forms';
 
 interface Properties {
   loading: boolean;
@@ -37,5 +37,5 @@ export default function DeleteDeploymentModal({formAction, loading, redirectTo}:
       onOpenChange={(open) => dropdownCtx?.setModalOpen(open)}
       redirectTo={redirectTo}
     />
-  )
+  );
 }

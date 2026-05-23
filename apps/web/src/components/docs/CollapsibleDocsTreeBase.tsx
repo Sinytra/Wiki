@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import {useLayoutEffect, useState} from "react";
-import DocsSidebarTitle from "@/components/docs/layout/DocsSidebarTitle";
-import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@repo/ui/components/collapsible";
-import {usePathname} from "@/lib/locales/routing";
-import {ChevronDownIcon} from "lucide-react";
+import {useLayoutEffect, useState} from 'react';
+import DocsSidebarTitle from '@/components/docs/layout/DocsSidebarTitle';
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from '@repo/ui/components/collapsible';
+import {usePathname} from '@/lib/locales/routing';
+import {ChevronDownIcon} from 'lucide-react';
 
 export default function CollapsibleDocsTreeBase({title, icon: Icon, defaultOpen, children}: {
   title: string;

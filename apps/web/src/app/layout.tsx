@@ -1,13 +1,13 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
-import "./styles/globals.css";
-import {ReactNode} from "react";
-import {getProcessURL} from "@/lib/utils";
-import {cn} from "@repo/ui/lib/utils";
-import {NuqsAdapter} from "nuqs/adapters/next/app";
-import NavProgressBar from "@repo/ui/navigation/NavProgressBar";
+import type {Metadata} from 'next';
+import {Inter} from 'next/font/google';
+import './styles/globals.css';
+import {ReactNode} from 'react';
+import {getProcessURL} from '@/lib/utils';
+import {cn} from '@repo/ui/lib/utils';
+import {NuqsAdapter} from 'nuqs/adapters/next/app';
+import NavProgressBar from '@repo/ui/navigation/NavProgressBar';
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
   title: 'Modded Minecraft Wiki',
@@ -25,11 +25,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{ children: ReactNode; }>) {
   const jsonLd = {
-    '@context' : 'https://schema.org',
-    '@type' : 'WebSite',
-    name : 'Modded Minecraft Wiki',
-    alternateName : ['Sinytra Wiki', 'MMW'],
-    url : process.env.NEXT_PUBLIC_NEXT_APP_URL
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Modded Minecraft Wiki',
+    alternateName: ['Sinytra Wiki', 'MMW'],
+    url: process.env.NEXT_PUBLIC_NEXT_APP_URL
   };
 
   return (
@@ -37,7 +37,7 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode; }
     <head>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
       />
     </head>
     <body className={cn(inter.className, 'flex min-h-screen flex-col bg-primary text-primary')}>

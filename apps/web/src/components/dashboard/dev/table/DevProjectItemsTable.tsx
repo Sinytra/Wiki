@@ -1,23 +1,23 @@
-import ImageWithFallback from "@/components/util/ImageWithFallback";
+import ImageWithFallback from '@/components/util/ImageWithFallback';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger
-} from "@repo/ui/components/dropdown-menu";
-import {Button} from "@repo/ui/components/button";
-import {ExternalLinkIcon, MoreHorizontal} from "lucide-react";
-import {getInternalWikiLink} from "@/lib/project/game/content";
-import * as React from "react";
-import service from "@/lib/service";
-import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import {useTranslations} from "next-intl";
-import {ProjectContext, ProjectVersions} from "@repo/shared/types/service";
-import {ItemContentPage, PaginatedData} from "@sinytra/wiki-api-types";
-import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
-import {ReactNode, Suspense} from "react";
+} from '@repo/ui/components/dropdown-menu';
+import {Button} from '@repo/ui/components/button';
+import {ExternalLinkIcon, MoreHorizontal} from 'lucide-react';
+import {getInternalWikiLink} from '@/lib/project/game/content';
+import * as React from 'react';
+import service from '@/lib/service';
+import {ordinalColumn, TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import {useTranslations} from 'next-intl';
+import {ProjectContext, ProjectVersions} from '@repo/shared/types/service';
+import {ItemContentPage, PaginatedData} from '@sinytra/wiki-api-types';
+import DevProjectTableEmptyState from '@/components/dashboard/dev/table/DevProjectTableEmptyState';
+import {ReactNode, Suspense} from 'react';
 
 function EmptyPlaceholder() {
   const t = useTranslations('DevProjectItemsTable.empty');
@@ -27,7 +27,7 @@ function EmptyPlaceholder() {
       <p className="text-base">{t('title')}</p>
       <p>{t('desc')}</p>
     </DevProjectTableEmptyState>
-  )
+  );
 }
 
 async function ItemIcon({icon, ctx}: { icon: string; ctx: ProjectContext; }) {
@@ -124,5 +124,5 @@ export default function DevProjectItemsTable({data, ctx, versions, page, emptySt
   return (
     <DataTable columns={columns} data={data} versions={versions} page={page}
                emptyState={emptyState ?? <EmptyPlaceholder/>}/>
-  )
+  );
 }

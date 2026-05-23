@@ -1,13 +1,23 @@
 {
-  "extends": ["//"],
+  "extends": [
+    "//"
+  ],
   "tasks": {
     "blog": {
-      "inputs": ["../../blogs/**"],
-      "outputs": [".contentlayer/**"]
+      "inputs": [
+        "../../blogs/**"
+      ],
+      "outputs": [
+        ".contentlayer/**"
+      ]
     },
     "preview": {
-      "dependsOn": ["blog"],
-      "with": ["dev"]
+      "dependsOn": [
+        "blog"
+      ],
+      "with": [
+        "dev"
+      ]
     }
   }
 }

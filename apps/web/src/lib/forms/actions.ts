@@ -1,4 +1,4 @@
-'use server'
+'use server';
 
 import {
   addProjectMemberSchema,
@@ -8,20 +8,20 @@ import {
   removeProjectMemberSchema,
   revalidateCacheSchema,
   ruleProjectReportSchema
-} from "@/lib/forms/schemas";
-import cacheUtil from "@/lib/cacheUtil";
-import authSession from "@/lib/authSession";
-import {revalidateTag} from "next/cache";
-import {redirect} from "next/navigation";
-import authApi from "@/lib/service/api/authApi";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import projectApi from "@/lib/service/api/projectApi";
-import moderationApi from "@/lib/service/api/moderationApi";
-import adminApi from "@/lib/service/api/adminApi";
-import {CreateAccessKeyResponse} from "@sinytra/wiki-api-types";
-import forms, {asFormResponse, FormActionResult} from "@/lib/forms/forms";
-import {ProjectFlag} from "@sinytra/wiki-api-types";
-import browseApi from "@/lib/service/api/browseApi";
+} from '@/lib/forms/schemas';
+import cacheUtil from '@/lib/cacheUtil';
+import authSession from '@/lib/authSession';
+import {revalidateTag} from 'next/cache';
+import {redirect} from 'next/navigation';
+import authApi from '@/lib/service/api/authApi';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import projectApi from '@/lib/service/api/projectApi';
+import moderationApi from '@/lib/service/api/moderationApi';
+import adminApi from '@/lib/service/api/adminApi';
+import {CreateAccessKeyResponse} from '@sinytra/wiki-api-types';
+import forms, {asFormResponse, FormActionResult} from '@/lib/forms/forms';
+import {ProjectFlag} from '@sinytra/wiki-api-types';
+import browseApi from '@/lib/service/api/browseApi';
 
 export async function handleDeleteProjectForm(id: string): Promise<FormActionResult> {
   const response = await projectApi.deleteProject(id);
@@ -41,7 +41,7 @@ export async function handleUpdateProjectSettingsForm(id: string, rawData: any):
 
 export async function handlePublishProject(id: string): Promise<FormActionResult> {
   await devProjectApi.removeProjectFlag(id, 'unpublished');
-  const response = await devProjectApi.updateProject(id, { visibility: 'public' });
+  const response = await devProjectApi.updateProject(id, {visibility: 'public'});
 
   browseApi.invalidateBrowseSearch();
 
@@ -119,12 +119,12 @@ export async function handleDeleteDeploymentForm(projectId: string, deploymentId
 }
 
 export async function handleRevalidateCacheTag(rawData: any): Promise<FormActionResult> {
-  const validatedFields = revalidateCacheSchema.safeParse(rawData)
+  const validatedFields = revalidateCacheSchema.safeParse(rawData);
   if (!validatedFields.success) {
     return {
       success: false,
       errors: validatedFields.error.flatten().fieldErrors,
-    }
+    };
   }
   revalidateTag(validatedFields.data.tag);
   return {success: true, data: null};

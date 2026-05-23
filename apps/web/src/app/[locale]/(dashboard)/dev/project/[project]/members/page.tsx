@@ -1,25 +1,25 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import {Button} from "@repo/ui/components/button";
-import {DoorOpenIcon, TrashIcon} from "lucide-react";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import {getTranslations} from "next-intl/server";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {DevProjectRouteParams} from "@repo/shared/types/routes";
-import {ProjectMember} from "@sinytra/wiki-api-types";
-import {useTranslations} from "next-intl";
-import * as React from "react";
-import {getGitHubAvatarUrl} from "@repo/shared/util";
-import AddProjectMemberForm from "@/components/dashboard/dev/modal/AddProjectMemberForm";
-import {handleAddProjectMember, handleRemoveProjectMember} from "@/lib/forms/actions";
-import GenericDeleteModal from "@/components/modal/GenericDeleteModal";
-import navigation from "@/lib/navigation";
-import FormWrapper from "@/components/modal/FormWrapper";
+import {setContextLocale} from '@/lib/locales/routing';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import {Button} from '@repo/ui/components/button';
+import {DoorOpenIcon, TrashIcon} from 'lucide-react';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import {getTranslations} from 'next-intl/server';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {DevProjectRouteParams} from '@repo/shared/types/routes';
+import {ProjectMember} from '@sinytra/wiki-api-types';
+import {useTranslations} from 'next-intl';
+import * as React from 'react';
+import {getGitHubAvatarUrl} from '@repo/shared/util';
+import AddProjectMemberForm from '@/components/dashboard/dev/modal/AddProjectMemberForm';
+import {handleAddProjectMember, handleRemoveProjectMember} from '@/lib/forms/actions';
+import GenericDeleteModal from '@/components/modal/GenericDeleteModal';
+import navigation from '@/lib/navigation';
+import FormWrapper from '@/components/modal/FormWrapper';
 
 type Properties = {
   params: Promise<DevProjectRouteParams>;
-}
+};
 
 function ProjectMemberWidget({projectId, canEdit, canLeave, member}: {
   projectId: string;
@@ -46,21 +46,21 @@ function ProjectMemberWidget({projectId, canEdit, canLeave, member}: {
         <div>
           {(member.is_actor || canEdit) &&
             <FormWrapper keys={[modalLocale]}>
-                <GenericDeleteModal localeNamespace={modalLocale}
-                                    formAction={handleRemoveProjectMember.bind(null, projectId, {username: member.username})}
-                                    redirectTo={member.is_actor ? navigation.authorDashboard() : undefined}
-                                    trigger={
-                                      <Button variant="destructive" size="sm" disabled={member.is_actor && !canLeave}>
-                                        <DeleteIcon className="mr-2 h-4 w-4"/>
-                                        {t(member.is_actor ? 'actions.leave' : 'actions.remove')}
-                                      </Button>
-                                    }/>
+              <GenericDeleteModal localeNamespace={modalLocale}
+                                  formAction={handleRemoveProjectMember.bind(null, projectId, {username: member.username})}
+                                  redirectTo={member.is_actor ? navigation.authorDashboard() : undefined}
+                                  trigger={
+                                    <Button variant="destructive" size="sm" disabled={member.is_actor && !canLeave}>
+                                      <DeleteIcon className="mr-2 h-4 w-4"/>
+                                      {t(member.is_actor ? 'actions.leave' : 'actions.remove')}
+                                    </Button>
+                                  }/>
             </FormWrapper>
           }
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default async function DevProjectMembersPage(props: Properties) {
@@ -76,9 +76,9 @@ export default async function DevProjectMembersPage(props: Properties) {
       <div className="flex flex-col gap-4">
         {data.canEdit &&
           <div className="flex flex-row items-center justify-end">
-              <FormWrapper keys={['AddProjectMemberForm', 'ProjectMemberRole']}>
-                  <AddProjectMemberForm formAction={handleAddProjectMember.bind(null, params.project)}/>
-              </FormWrapper>
+            <FormWrapper keys={['AddProjectMemberForm', 'ProjectMemberRole']}>
+              <AddProjectMemberForm formAction={handleAddProjectMember.bind(null, params.project)}/>
+            </FormWrapper>
           </div>
         }
 
@@ -90,5 +90,5 @@ export default async function DevProjectMembersPage(props: Properties) {
         </div>
       </div>
     </div>
-  )
+  );
 }

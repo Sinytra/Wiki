@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import {Button} from "@repo/ui/components/button";
-import {TrashIcon} from "lucide-react";
-import {toast} from "sonner";
-import * as React from "react";
-import {startTransition, useState} from "react";
+import {Button} from '@repo/ui/components/button';
+import {TrashIcon} from 'lucide-react';
+import {toast} from 'sonner';
+import * as React from 'react';
+import {startTransition, useState} from 'react';
 import {
   Dialog,
   DialogClose,
@@ -14,11 +14,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@repo/ui/components/dialog";
-import {useTranslations} from "next-intl";
-import {useRouter} from "@/lib/locales/routing";
-import FormDeleteButton from "@repo/ui/components/forms/FormDeleteButton";
-import {AccessKeyInfo} from "@sinytra/wiki-api-types";
+} from '@repo/ui/components/dialog';
+import {useTranslations} from 'next-intl';
+import {useRouter} from '@/lib/locales/routing';
+import FormDeleteButton from '@repo/ui/components/forms/FormDeleteButton';
+import {AccessKeyInfo} from '@sinytra/wiki-api-types';
 
 interface Properties {
   accessKey: AccessKeyInfo;
@@ -36,7 +36,7 @@ export default function DeleteAccessKeyModal({action, accessKey}: Properties) {
     toast.success(t('success'));
 
     startTransition(() => router.refresh());
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -75,5 +75,5 @@ export default function DeleteAccessKeyModal({action, accessKey}: Properties) {
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

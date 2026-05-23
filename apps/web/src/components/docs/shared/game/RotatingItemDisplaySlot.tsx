@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import {type ImgHTMLAttributes, useContext, useEffect, useMemo, useState} from "react";
-import TooltipImg from "@/components/docs/shared/game/TooltipImg";
-import {getExternalWikiLink, getResolvedItemLink} from "@/lib/project/game/content";
-import {HoverContext} from "@/components/util/HoverContextProvider";
-import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
-import ItemAssetDisplay from "@/components/docs/shared/asset/ItemAssetDisplay";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {cn} from "@repo/ui/lib/utils";
+import {type ImgHTMLAttributes, useContext, useEffect, useMemo, useState} from 'react';
+import TooltipImg from '@/components/docs/shared/game/TooltipImg';
+import {getExternalWikiLink, getResolvedItemLink} from '@/lib/project/game/content';
+import {HoverContext} from '@/components/util/HoverContextProvider';
+import {DisplayItem, ProjectContext} from '@repo/shared/types/service';
+import ItemAssetDisplay from '@/components/docs/shared/asset/ItemAssetDisplay';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import {cn} from '@repo/ui/lib/utils';
 
 interface AdditionalProps {
   src: DisplayItem[];

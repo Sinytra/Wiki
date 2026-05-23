@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import {Button} from "@repo/ui/components/button";
-import {toast} from "sonner";
-import * as React from "react";
-import {ReactNode, useRef, useState} from "react";
+import {Button} from '@repo/ui/components/button';
+import {toast} from 'sonner';
+import * as React from 'react';
+import {ReactNode, useRef, useState} from 'react';
 import {
   Dialog,
   DialogClose,
@@ -13,16 +13,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@repo/ui/components/dialog";
-import {useTranslations} from "next-intl";
-import {useRouter} from "@/lib/locales/routing";
-import FormDeleteButton from "@repo/ui/components/forms/FormDeleteButton";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
-import {emptySchema} from "@/lib/forms/schemas";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {FormActionResult, useFormHandlingAction} from "@/lib/forms/forms";
-import {Form} from "@repo/ui/components/form";
+} from '@repo/ui/components/dialog';
+import {useTranslations} from 'next-intl';
+import {useRouter} from '@/lib/locales/routing';
+import FormDeleteButton from '@repo/ui/components/forms/FormDeleteButton';
+import {useForm} from 'react-hook-form';
+import {z} from 'zod';
+import {emptySchema} from '@/lib/forms/schemas';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {FormActionResult, useFormHandlingAction} from '@/lib/forms/forms';
+import {Form} from '@repo/ui/components/form';
 
 interface Properties {
   trigger: ReactNode;
@@ -32,7 +32,13 @@ interface Properties {
   onOpenChange?: (open: boolean) => void;
 }
 
-export default function GenericDeleteModal({trigger, localeNamespace, formAction, redirectTo, onOpenChange}: Properties) {
+export default function GenericDeleteModal({
+                                             trigger,
+                                             localeNamespace,
+                                             formAction,
+                                             redirectTo,
+                                             onOpenChange
+                                           }: Properties) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const t = useTranslations(localeNamespace as any) as any;
@@ -52,7 +58,7 @@ export default function GenericDeleteModal({trigger, localeNamespace, formAction
     toast.success(t('success'));
 
     if (redirectTo) {
-      router.push({ pathname: redirectTo });
+      router.push({pathname: redirectTo});
     } else {
       router.refresh();
     }
@@ -78,20 +84,20 @@ export default function GenericDeleteModal({trigger, localeNamespace, formAction
             <form ref={formRef} action={action} className="space-y-6 focus:outline-hidden">
               {form.formState.errors.root?.custom?.message &&
                 <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                    <p className="text-sm text-destructive">
-                      {form.formState.errors.root.custom.message}
-                    </p>
+                  <p className="text-sm text-destructive">
+                    {form.formState.errors.root.custom.message}
+                  </p>
                 </div>
               }
 
               {/*@ts-expect-error details*/}
               {form.formState.errors.root?.custom?.details &&
                 <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
-                    <summary className="mb-2">
-                      {t('errors.details')}
-                    </summary>
+                  <summary className="mb-2">
+                    {t('errors.details')}
+                  </summary>
                   {/*@ts-expect-error details*/}
-                    <code className="text-xs">{form.formState.errors.root.custom.details}</code>
+                  <code className="text-xs">{form.formState.errors.root.custom.details}</code>
                 </details>
               }
 
@@ -110,5 +116,5 @@ export default function GenericDeleteModal({trigger, localeNamespace, formAction
         </Form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   BoxIcon,
@@ -8,15 +8,15 @@ import {
   SearchIcon,
   SwatchBookIcon,
   UnplugIcon
-} from "lucide-react";
-import {Input} from "@repo/ui/components/input";
-import {Checkbox} from "@repo/ui/components/checkbox";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@repo/ui/components/accordion";
-import {parseAsArrayOf, useQueryState} from "nuqs";
-import {parseAsString} from "nuqs/server";
-import {useTranslations} from "next-intl";
-import {useEffect, useState} from "react";
-import {Button} from "@repo/ui/components/button";
+} from 'lucide-react';
+import {Input} from '@repo/ui/components/input';
+import {Checkbox} from '@repo/ui/components/checkbox';
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@repo/ui/components/accordion';
+import {parseAsArrayOf, useQueryState} from 'nuqs';
+import {parseAsString} from 'nuqs/server';
+import {useTranslations} from 'next-intl';
+import {useEffect, useState} from 'react';
+import {Button} from '@repo/ui/components/button';
 
 function FilterSearch({filter, setFilter, active, onReset}: {
   filter: string | null;
@@ -27,26 +27,26 @@ function FilterSearch({filter, setFilter, active, onReset}: {
   const t = useTranslations('BrowsePage');
 
   return (
-      <div className="mt-2 flex w-full flex-row gap-2 pt-2 sm:mt-0">
-        <div className="relative w-full text-secondary">
-          <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
-          <Input
-              className="border-secondary-dim pl-9 focus-visible:ring-0 focus-visible:outline-hidden"
-              type="text"
-              placeholder={t("sidebar.search_filters")}
-              value={filter || ''}
-              onChange={(e) => setFilter(e.target.value)}
-          />
-        </div>
-        {active &&
-            <Button size="icon" className="border-secondary-alt text-primary" variant="outline" onClick={onReset}>
-                <div className="px-4">
-                    <FilterXIcon className="h-4 w-4"/>
-                </div>
-            </Button>
-        }
+    <div className="mt-2 flex w-full flex-row gap-2 pt-2 sm:mt-0">
+      <div className="relative w-full text-secondary">
+        <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
+        <Input
+          className="border-secondary-dim pl-9 focus-visible:ring-0 focus-visible:outline-hidden"
+          type="text"
+          placeholder={t('sidebar.search_filters')}
+          value={filter || ''}
+          onChange={(e) => setFilter(e.target.value)}
+        />
       </div>
-  )
+      {active &&
+        <Button size="icon" className="border-secondary-alt text-primary" variant="outline" onClick={onReset}>
+          <div className="px-4">
+            <FilterXIcon className="h-4 w-4"/>
+          </div>
+        </Button>
+      }
+    </div>
+  );
 }
 
 function Category({name, icon: Icon, checked, onChange}: {
@@ -56,14 +56,14 @@ function Category({name, icon: Icon, checked, onChange}: {
   onChange: (checked: boolean) => Promise<void>;
 }) {
   return (
-      <div className="flex flex-row items-center gap-x-2">
-        <Checkbox className="border-neutral-600"
-                  checked={checked}
-                  onCheckedChange={(e) => onChange(e == true)}/>
-        <Icon className="h-4 w-4"/>
-        <span className="text-sm text-primary">{name}</span>
-      </div>
-  )
+    <div className="flex flex-row items-center gap-x-2">
+      <Checkbox className="border-neutral-600"
+                checked={checked}
+                onCheckedChange={(e) => onChange(e == true)}/>
+      <Icon className="h-4 w-4"/>
+      <span className="text-sm text-primary">{name}</span>
+    </div>
+  );
 }
 
 function SearchCategories({categories, setCategories, filter}: {
@@ -83,7 +83,7 @@ function SearchCategories({categories, setCategories, filter}: {
   ];
 
   const displayed = available
-      .filter(v => !filter || v.name.toLowerCase().includes(filter.trim().toLowerCase()));
+    .filter(v => !filter || v.name.toLowerCase().includes(filter.trim().toLowerCase()));
 
   async function setCategory(id: string, checked: boolean) {
     if (checked) {
@@ -94,25 +94,25 @@ function SearchCategories({categories, setCategories, filter}: {
   }
 
   return displayed.length === 0 ? null : (
-      <div className="my-2 px-2">
-        <Accordion type="single" defaultValue={"categories"} collapsible className="w-full">
-          <AccordionItem value="categories">
-            <AccordionTrigger>
-              {u('sidebar.categories')}
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="flex flex-col gap-y-3.5 pb-2">
-                {...displayed
-                    .map((type) => (
-                        <Category key={type.id} icon={type.icon} name={type.name}
-                                  checked={categories?.includes(type.id) || false}
-                                  onChange={(v) => setCategory(type.id, v)}/>
-                    ))}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
+    <div className="my-2 px-2">
+      <Accordion type="single" defaultValue={'categories'} collapsible className="w-full">
+        <AccordionItem value="categories">
+          <AccordionTrigger>
+            {u('sidebar.categories')}
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className="flex flex-col gap-y-3.5 pb-2">
+              {...displayed
+                .map((type) => (
+                  <Category key={type.id} icon={type.icon} name={type.name}
+                            checked={categories?.includes(type.id) || false}
+                            onChange={(v) => setCategory(type.id, v)}/>
+                ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   );
 }
 
@@ -131,10 +131,10 @@ export default function BrowseFilterPanel() {
   }, [categories]);
 
   return (
-      <>
-        <FilterSearch filter={filter} setFilter={setFilter} active={active} onReset={handleReset}/>
+    <>
+      <FilterSearch filter={filter} setFilter={setFilter} active={active} onReset={handleReset}/>
 
-        <SearchCategories categories={categories} setCategories={setCategories} filter={filter}/>
-      </>
+      <SearchCategories categories={categories} setCategories={setCategories} filter={filter}/>
+    </>
   );
 }

@@ -1,13 +1,13 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import {assertUserIsAdmin} from "@/lib/admin";
-import adminApi from "@/lib/service/api/adminApi";
-import Asset from "@/components/docs/shared/asset/Asset";
-import {PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon} from "lucide-react";
-import {ReactNode} from "react";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import {RevalidateCacheModal} from "@/components/dashboard/admin/modal/RevalidateCacheModal";
-import {handleRevalidateCacheTag} from "@/lib/forms/actions";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import {setContextLocale} from '@/lib/locales/routing';
+import {assertUserIsAdmin} from '@/lib/admin';
+import adminApi from '@/lib/service/api/adminApi';
+import Asset from '@/components/docs/shared/asset/Asset';
+import {PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon} from 'lucide-react';
+import {ReactNode} from 'react';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import {RevalidateCacheModal} from '@/components/dashboard/admin/modal/RevalidateCacheModal';
+import {handleRevalidateCacheTag} from '@/lib/forms/actions';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,16 +23,16 @@ function AdminHeader() {
       flex w-full flex-row justify-between rounded-sm border border-secondary-dim bg-primary-alt px-4 py-2.5 shadow-sm
     `}>
       <span className="flex flex-row items-center gap-2 text-base">
-        <WrenchIcon className="size-4.5" />
+        <WrenchIcon className="size-4.5"/>
         System configuration
       </span>
 
       <span className="flex flex-row items-center gap-2 text-base">
-        <img src="https://sinytra.org/logo.png" className="size-5" alt="Sinytra" />
+        <img src="https://sinytra.org/logo.png" className="size-5" alt="Sinytra"/>
         Sinytra
       </span>
     </div>
-  )
+  );
 }
 
 function DataWidget({title, value, icon}: { title: string; value: any; icon: ReactNode; }) {
@@ -53,7 +53,7 @@ function DataWidget({title, value, icon}: { title: string; value: any; icon: Rea
         </span>
       </div>
     </div>
-  )
+  );
 }
 
 export default async function AdminPanelHome(props: Props) {
@@ -64,14 +64,14 @@ export default async function AdminPanelHome(props: Props) {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <AdminHeader />
+      <AdminHeader/>
 
       <div className="flex flex-row flex-wrap gap-4">
         <DataWidget
           title="System version"
           value={systemInfo.version}
           icon={
-            <TagIcon width={18} height={18} />
+            <TagIcon width={18} height={18}/>
           }
         />
 
@@ -79,7 +79,7 @@ export default async function AdminPanelHome(props: Props) {
           title="Game version"
           value={systemInfo.latest_data?.game_version || '_'}
           icon={
-            <Asset location="minecraft:grass_block" width={20} height={20} ctx={null} />
+            <Asset location="minecraft:grass_block" width={20} height={20} ctx={null}/>
           }
         />
 
@@ -87,7 +87,7 @@ export default async function AdminPanelHome(props: Props) {
           title="Loader version"
           value={systemInfo.latest_data?.loader_version || '-'}
           icon={
-            <img src="/blog-assets/neo_logo.png" width={20} height={20} alt="Loader" />
+            <img src="/blog-assets/neo_logo.png" width={20} height={20} alt="Loader"/>
           }
         />
 
@@ -95,7 +95,7 @@ export default async function AdminPanelHome(props: Props) {
           title="Total projects"
           value={systemInfo.stats.projects}
           icon={
-            <PencilRulerIcon width={18} height={18} />
+            <PencilRulerIcon width={18} height={18}/>
           }
         />
 
@@ -103,12 +103,12 @@ export default async function AdminPanelHome(props: Props) {
           title="Total users"
           value={systemInfo.stats.users}
           icon={
-            <UsersIcon width={18} height={18} />
+            <UsersIcon width={18} height={18}/>
           }
         />
       </div>
 
-      <hr />
+      <hr/>
 
       <div className="space-y-2">
         <p>Utilities</p>
@@ -117,10 +117,10 @@ export default async function AdminPanelHome(props: Props) {
           <ClientLocaleProvider
             keys={['RevalidateCacheModal', 'FormActions']}
           >
-            <RevalidateCacheModal formAction={handleRevalidateCacheTag} />
+            <RevalidateCacheModal formAction={handleRevalidateCacheTag}/>
           </ClientLocaleProvider>
         </div>
       </div>
     </div>
-  )
+  );
 }

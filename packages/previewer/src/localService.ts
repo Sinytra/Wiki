@@ -123,27 +123,6 @@ async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promis
 async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContext): Promise<ContentItemResponse | undefined | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
-    const platformProject = await platforms.getPlatformProject(src);
-
-    const project: ProjectData = {
-      id: src.id,
-      name: platformProject.name,
-      platforms: src.platforms,
-      is_community: src.is_community,
-      local: true,
-      type: platformProject.type,
-      created_at: '',
-      versions: [],
-      locales: [],
-      source_repo: null,
-      info: {
-        pageCount: 0,
-        contentCount: 0,
-        licenses: {
-          project: null
-        }
-      },
-    };
     const file = await localDocs.readDocsFile(src, path, ctx.locale || undefined, optional);
     if (file) {
       return {content: file.content, edit_url: null, properties: {}};
@@ -153,11 +132,11 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
   return undefined;
 }
 
-async function searchProjects(query: string, page: number, types: string | null, sort: string | null): Promise<BrowseResponse | null> {
+async function searchProjects(_query: string, _page: number, _types: string | null, _sort: string | null): Promise<BrowseResponse | null> {
   return null;
 }
 
-async function getProjectRecipe(recipe: string, ctx: ProjectContext): Promise<ResolvedGameRecipe | null> {
+async function getProjectRecipe(_recipe: string, _ctx: ProjectContext): Promise<ResolvedGameRecipe | null> {
   return null;
 }
 
@@ -200,15 +179,15 @@ async function getProjectContentPage(id: string, ctx: ProjectContext): Promise<C
   return null;
 }
 
-async function getContentRecipeUsage(id: string, ctx: ProjectContext): Promise<ResolvedItem[] | null> {
+async function getContentRecipeUsage(_id: string, _ctx: ProjectContext): Promise<ResolvedItem[] | null> {
   return null;
 }
 
-async function getContentRecipeObtaining(id: string, ctx: ProjectContext): Promise<ResolvedGameRecipe[] | null> {
+async function getContentRecipeObtaining(_id: string, _ctx: ProjectContext): Promise<ResolvedGameRecipe[] | null> {
   return null;
 }
 
-async function getRecipeType(type: string, ctx: ProjectContext): Promise<RecipeTypeResponse | null> {
+async function getRecipeType(_type: string, _ctx: ProjectContext): Promise<RecipeTypeResponse | null> {
   return null;
 }
 

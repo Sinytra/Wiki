@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@repo/ui/components/form";
-import {z} from "zod";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {Button} from "@repo/ui/components/button";
-import {useTranslations} from "next-intl";
-import {projectUpdateSchema} from "@/lib/forms/schemas";
-import * as React from "react";
-import {useRouter} from "@/lib/locales/routing";
-import {DevProjectData} from "@sinytra/wiki-api-types";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
-import {FormActionResult, useFormHandlingAction} from "@/lib/forms/forms";
-import {toast} from "sonner";
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@repo/ui/components/form';
+import {z} from 'zod';
+import {useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {Button} from '@repo/ui/components/button';
+import {useTranslations} from 'next-intl';
+import {projectUpdateSchema} from '@/lib/forms/schemas';
+import * as React from 'react';
+import {useRouter} from '@/lib/locales/routing';
+import {DevProjectData} from '@sinytra/wiki-api-types';
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@repo/ui/components/select';
+import {FormActionResult, useFormHandlingAction} from '@/lib/forms/forms';
+import {toast} from 'sonner';
 
 interface Props {
   project: DevProjectData;
@@ -59,7 +59,7 @@ function ProjectSettingsFormBody({form}: { form: any }) {
         )}
       />
     </div>
-  )
+  );
 }
 
 export default function DevProjectGeneralSettings({project, formAction}: Props) {
@@ -70,7 +70,6 @@ export default function DevProjectGeneralSettings({project, formAction}: Props) 
     },
   });
 
-  const t = useTranslations('FormActions');
   const u = useTranslations('DevProjectSettingsPage');
   const router = useRouter();
 
@@ -92,9 +91,9 @@ export default function DevProjectGeneralSettings({project, formAction}: Props) 
 
         {form.formState.errors.root?.custom?.message &&
           <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-              <p className="text-sm text-destructive">
-                {form.formState.errors.root.custom.message}
-              </p>
+            <p className="text-sm text-destructive">
+              {form.formState.errors.root.custom.message}
+            </p>
           </div>
         }
       </form>

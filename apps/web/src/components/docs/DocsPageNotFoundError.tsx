@@ -1,10 +1,10 @@
-import {useTranslations} from "next-intl";
-import {FileQuestionIcon, HouseIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import {NavLink} from "@/components/navigation/link/NavLink";
+import {useTranslations} from 'next-intl';
+import {FileQuestionIcon, HouseIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import {NavLink} from '@/components/navigation/link/NavLink';
 
-import {ProjectData} from "@sinytra/wiki-api-types";
+import {ProjectData} from '@sinytra/wiki-api-types';
 
 export default function DocsPageNotFoundError({project}: { project?: ProjectData }) {
   const t = useTranslations('DocsPageNotFoundError');
@@ -27,10 +27,10 @@ export default function DocsPageNotFoundError({project}: { project?: ProjectData
       <div className="mt-4 inline-flex gap-4">
         {project?.source_repo &&
           <Button variant="secondary" asChild>
-              <NavLink href={project.source_repo} target="_blank">
-                  <GitHubIcon className="mr-2 h-4 w-4"/>
-                {t('submit')}
-              </NavLink>
+            <NavLink href={project.source_repo} target="_blank">
+              <GitHubIcon className="mr-2 h-4 w-4"/>
+              {t('submit')}
+            </NavLink>
           </Button>
         }
         <Button asChild>
@@ -41,5 +41,5 @@ export default function DocsPageNotFoundError({project}: { project?: ProjectData
         </Button>
       </div>
     </div>
-  )
+  );
 }

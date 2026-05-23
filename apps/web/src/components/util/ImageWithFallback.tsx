@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import {ComponentProps, HTMLAttributes, ReactNode, useState} from "react";
-import {BoxIcon} from "lucide-react";
-import {cn} from "@repo/ui/lib/utils";
-import Image from "next/image";
+import {ComponentProps, HTMLAttributes, ReactNode, useState} from 'react';
+import {BoxIcon} from 'lucide-react';
+import {cn} from '@repo/ui/lib/utils';
+import Image from 'next/image';
 
 type Props = Omit<ComponentProps<typeof Image>, 'src' | 'alt'> & {
   wrapper?: HTMLAttributes<HTMLDivElement>,
@@ -32,8 +32,8 @@ export default function ImageWithFallback(
 
   return (
     <span className="shrink-0 overflow-hidden" title={title}
-         style={fixedSize ? {width: `${width}px`, height: `${height}px`} : undefined}
-         {...wrapper}>
+          style={fixedSize ? {width: `${width}px`, height: `${height}px`} : undefined}
+          {...wrapper}>
       {src && !error &&
         <Image src={src} alt={alt || ''} width={width} height={height} className={className} unoptimized
                onError={() => setError(true)}

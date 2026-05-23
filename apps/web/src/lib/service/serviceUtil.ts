@@ -1,6 +1,6 @@
-import authSession from "@/lib/authSession";
-import {ApiCallResult} from "@repo/shared/commonNetwork";
-import {notFound, redirect} from "next/navigation";
+import authSession from '@/lib/authSession';
+import {ApiCallResult} from '@repo/shared/commonNetwork';
+import {notFound, redirect} from 'next/navigation';
 
 export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T {
   // Success
@@ -10,7 +10,7 @@ export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T
 
   // Failed to execute
   if (result.type == 'failed') {
-    throw new Error("Failed to execute API call: " + result.message);
+    throw new Error('Failed to execute API call: ' + result.message);
   }
 
   if (result.status === 401) {
@@ -35,7 +35,7 @@ export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T
 
   // Redirected
   if (result.type == 'redirect') {
-    throw new Error("Unexpected redirect from API call to URL: " + result.url);
+    throw new Error('Unexpected redirect from API call to URL: ' + result.url);
   }
 
   // Backend returned JSON

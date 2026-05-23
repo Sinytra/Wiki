@@ -1,6 +1,6 @@
-import {Button} from "@repo/ui/components/button";
-import {cn} from "@repo/ui/lib/utils";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {Button} from '@repo/ui/components/button';
+import {cn} from '@repo/ui/lib/utils';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
 
 export default function LinkTextButton({href, target, className, children}: {
   href: string,
@@ -17,5 +17,5 @@ export default function LinkTextButton({href, target, className, children}: {
         </LocaleNavLink>
       </Button>
     </div>
-  )
+  );
 }

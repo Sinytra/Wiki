@@ -1,11 +1,11 @@
-import {ProjectData} from "@sinytra/wiki-api-types";
+import {ProjectData} from '@sinytra/wiki-api-types';
 
 interface Props {
   project?: ProjectData;
   children?: any;
 }
 
-export default function MetaDocsTitle({ children }: Props) {
+export default function MetaDocsTitle({children}: Props) {
   return (
     <div className="not-prose pt-2">
       <div className="flex flex-row flex-wrap justify-between gap-2 md:flex-nowrap md:items-end">
@@ -15,5 +15,5 @@ export default function MetaDocsTitle({ children }: Props) {
       </div>
       <hr className="mt-2 mb-6 border-neutral-600"/>
     </div>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-import RotatingItemDisplaySlot from "@/components/docs/shared/game/RotatingItemDisplaySlot";
-import {getResolvedItemLink} from "@/lib/project/game/content";
-import {cn} from "@repo/ui/lib/utils";
-import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import resourceLocation from "@repo/shared/resourceLocation";
+import RotatingItemDisplaySlot from '@/components/docs/shared/game/RotatingItemDisplaySlot';
+import {getResolvedItemLink} from '@/lib/project/game/content';
+import {cn} from '@repo/ui/lib/utils';
+import {DisplayItem, ProjectContext} from '@repo/shared/types/service';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import resourceLocation from '@repo/shared/resourceLocation';
 
 export default function RecipeIngredientDisplay({tag, count, item, ctx}: {
   tag: string | null;
@@ -32,5 +32,5 @@ export default function RecipeIngredientDisplay({tag, count, item, ctx}: {
         </span>
       </ContentDiv>
     </div>
-  )
+  );
 }

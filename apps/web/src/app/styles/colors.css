@@ -29,15 +29,15 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  */
 
 :root {
-  --vp-c-blue-1: #1662c5;
-  --vp-c-blue-2: #2275da;
-  --vp-c-blue-3: #5c9de4;
-  --vp-c-blue-soft: rgba(52, 130, 219, 0.14);
+    --vp-c-blue-1: #1662c5;
+    --vp-c-blue-2: #2275da;
+    --vp-c-blue-3: #5c9de4;
+    --vp-c-blue-soft: rgba(52, 130, 219, 0.14);
 
-  --vp-c-brand-1: var(--vp-c-blue-3) !important;
-  --vp-c-brand-2: var(--vp-c-blue-2) !important;
-  --vp-c-brand-3: var(--vp-c-blue-1) !important;
-  --vp-c-brand-soft: var(--vp-c-blue-soft) !important;
+    --vp-c-brand-1: var(--vp-c-blue-3) !important;
+    --vp-c-brand-2: var(--vp-c-blue-2) !important;
+    --vp-c-brand-3: var(--vp-c-blue-1) !important;
+    --vp-c-brand-soft: var(--vp-c-blue-soft) !important;
 }
 
 /**
@@ -45,16 +45,16 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-white: #ffffff;
-  --vp-c-black: #000000;
+    --vp-c-white: #ffffff;
+    --vp-c-black: #000000;
 
-  --vp-c-neutral: var(--vp-c-black);
-  --vp-c-neutral-inverse: var(--vp-c-white);
+    --vp-c-neutral: var(--vp-c-black);
+    --vp-c-neutral-inverse: var(--vp-c-white);
 }
 
 [data-theme="dark"] {
-  --vp-c-neutral: var(--vp-c-white);
-  --vp-c-neutral-inverse: var(--vp-c-black);
+    --vp-c-neutral: var(--vp-c-white);
+    --vp-c-neutral-inverse: var(--vp-c-black);
 }
 
 /**
@@ -86,35 +86,35 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 [data-theme="dark"] {
-  --vp-c-gray-1: #515c67;
-  --vp-c-gray-2: #414853;
-  --vp-c-gray-3: #32363f;
-  --vp-c-gray-soft: rgba(101, 117, 133, 0.16);
+    --vp-c-gray-1: #515c67;
+    --vp-c-gray-2: #414853;
+    --vp-c-gray-3: #32363f;
+    --vp-c-gray-soft: rgba(101, 117, 133, 0.16);
 
-  --vp-c-indigo-1: #a8b1ff;
-  --vp-c-indigo-2: #5c73e7;
-  --vp-c-indigo-3: #3e63dd;
-  --vp-c-indigo-soft: rgba(100, 108, 255, 0.16);
+    --vp-c-indigo-1: #a8b1ff;
+    --vp-c-indigo-2: #5c73e7;
+    --vp-c-indigo-3: #3e63dd;
+    --vp-c-indigo-soft: rgba(100, 108, 255, 0.16);
 
-  --vp-c-purple-1: #c8abfa;
-  --vp-c-purple-2: #a879e6;
-  --vp-c-purple-3: #8e5cd9;
-  --vp-c-purple-soft: rgba(159, 122, 234, 0.16);
+    --vp-c-purple-1: #c8abfa;
+    --vp-c-purple-2: #a879e6;
+    --vp-c-purple-3: #8e5cd9;
+    --vp-c-purple-soft: rgba(159, 122, 234, 0.16);
 
-  --vp-c-green-1: #3dd68c;
-  --vp-c-green-2: #30a46c;
-  --vp-c-green-3: #298459;
-  --vp-c-green-soft: rgba(16, 185, 129, 0.16);
+    --vp-c-green-1: #3dd68c;
+    --vp-c-green-2: #30a46c;
+    --vp-c-green-3: #298459;
+    --vp-c-green-soft: rgba(16, 185, 129, 0.16);
 
-  --vp-c-yellow-1: #f9b44e;
-  --vp-c-yellow-2: #efa63e;
-  --vp-c-yellow-3: #a46a0a;
-  --vp-c-yellow-soft: rgba(234, 179, 8, 0.16);
+    --vp-c-yellow-1: #f9b44e;
+    --vp-c-yellow-2: #efa63e;
+    --vp-c-yellow-3: #a46a0a;
+    --vp-c-yellow-soft: rgba(234, 179, 8, 0.16);
 
-  --vp-c-red-1: #f66f81;
-  --vp-c-red-2: #f14158;
-  --vp-c-red-3: #b62a3c;
-  --vp-c-red-soft: rgba(244, 63, 94, 0.16);
+    --vp-c-red-1: #f66f81;
+    --vp-c-red-2: #f14158;
+    --vp-c-red-3: #b62a3c;
+    --vp-c-red-soft: rgba(244, 63, 94, 0.16);
 }
 
 /**
@@ -133,17 +133,17 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-bg: #ffffff;
-  --vp-c-bg-alt: #f6f6f7;
-  --vp-c-bg-elv: #ffffff;
-  --vp-c-bg-soft: #f6f6f7;
+    --vp-c-bg: #ffffff;
+    --vp-c-bg-alt: #f6f6f7;
+    --vp-c-bg-elv: #ffffff;
+    --vp-c-bg-soft: #f6f6f7;
 }
 
 [data-theme="dark"] {
-  --vp-c-bg: #1b1b1f;
-  --vp-c-bg-alt: #161618;
-  --vp-c-bg-elv: #25262c;
-  --vp-c-bg-soft: #202127;
+    --vp-c-bg: #1b1b1f;
+    --vp-c-bg-alt: #161618;
+    --vp-c-bg-elv: #25262c;
+    --vp-c-bg-soft: #202127;
 }
 
 /**
@@ -160,15 +160,15 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-border: #c2c2c4;
-  --vp-c-divider: #e2e2e3;
-  --vp-c-gutter: #e2e2e3;
+    --vp-c-border: #c2c2c4;
+    --vp-c-divider: #e2e2e3;
+    --vp-c-gutter: #e2e2e3;
 }
 
 [data-theme="dark"] {
-  --vp-c-border: #3c3f44;
-  --vp-c-divider: #2e2e32;
-  --vp-c-gutter: #000000;
+    --vp-c-border: #3c3f44;
+    --vp-c-divider: #2e2e32;
+    --vp-c-gutter: #000000;
 }
 
 /**
@@ -182,15 +182,15 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-text-1: rgba(60, 60, 67);
-  --vp-c-text-2: rgba(60, 60, 67, 0.78);
-  --vp-c-text-3: rgba(60, 60, 67, 0.56);
+    --vp-c-text-1: rgba(60, 60, 67);
+    --vp-c-text-2: rgba(60, 60, 67, 0.78);
+    --vp-c-text-3: rgba(60, 60, 67, 0.56);
 }
 
 [data-theme="dark"] {
-  --vp-c-text-1: rgba(255, 255, 245, 0.86);
-  --vp-c-text-2: rgba(235, 235, 245, 0.6);
-  --vp-c-text-3: rgba(235, 235, 245, 0.38);
+    --vp-c-text-1: rgba(255, 255, 245, 0.86);
+    --vp-c-text-2: rgba(235, 235, 245, 0.6);
+    --vp-c-text-3: rgba(235, 235, 245, 0.38);
 }
 
 /**
@@ -215,50 +215,50 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-default-1: var(--vp-c-gray-1);
-  --vp-c-default-2: var(--vp-c-gray-2);
-  --vp-c-default-3: var(--vp-c-gray-3);
-  --vp-c-default-soft: var(--vp-c-gray-soft);
+    --vp-c-default-1: var(--vp-c-gray-1);
+    --vp-c-default-2: var(--vp-c-gray-2);
+    --vp-c-default-3: var(--vp-c-gray-3);
+    --vp-c-default-soft: var(--vp-c-gray-soft);
 
-  --vp-c-brand-1: var(--vp-c-indigo-1);
-  --vp-c-brand-2: var(--vp-c-indigo-2);
-  --vp-c-brand-3: var(--vp-c-indigo-3);
-  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+    --vp-c-brand-1: var(--vp-c-indigo-1);
+    --vp-c-brand-2: var(--vp-c-indigo-2);
+    --vp-c-brand-3: var(--vp-c-indigo-3);
+    --vp-c-brand-soft: var(--vp-c-indigo-soft);
 
-  --vp-c-tip-1: var(--vp-c-brand-1);
-  --vp-c-tip-2: var(--vp-c-brand-2);
-  --vp-c-tip-3: var(--vp-c-brand-3);
-  --vp-c-tip-soft: var(--vp-c-brand-soft);
+    --vp-c-tip-1: var(--vp-c-brand-1);
+    --vp-c-tip-2: var(--vp-c-brand-2);
+    --vp-c-tip-3: var(--vp-c-brand-3);
+    --vp-c-tip-soft: var(--vp-c-brand-soft);
 
-  --vp-c-note-1: var(--vp-c-brand-1);
-  --vp-c-note-2: var(--vp-c-brand-2);
-  --vp-c-note-3: var(--vp-c-brand-3);
-  --vp-c-note-soft: var(--vp-c-brand-soft);
+    --vp-c-note-1: var(--vp-c-brand-1);
+    --vp-c-note-2: var(--vp-c-brand-2);
+    --vp-c-note-3: var(--vp-c-brand-3);
+    --vp-c-note-soft: var(--vp-c-brand-soft);
 
-  --vp-c-success-1: var(--vp-c-green-1);
-  --vp-c-success-2: var(--vp-c-green-2);
-  --vp-c-success-3: var(--vp-c-green-3);
-  --vp-c-success-soft: var(--vp-c-green-soft);
+    --vp-c-success-1: var(--vp-c-green-1);
+    --vp-c-success-2: var(--vp-c-green-2);
+    --vp-c-success-3: var(--vp-c-green-3);
+    --vp-c-success-soft: var(--vp-c-green-soft);
 
-  --vp-c-important-1: var(--vp-c-purple-1);
-  --vp-c-important-2: var(--vp-c-purple-2);
-  --vp-c-important-3: var(--vp-c-purple-3);
-  --vp-c-important-soft: var(--vp-c-purple-soft);
+    --vp-c-important-1: var(--vp-c-purple-1);
+    --vp-c-important-2: var(--vp-c-purple-2);
+    --vp-c-important-3: var(--vp-c-purple-3);
+    --vp-c-important-soft: var(--vp-c-purple-soft);
 
-  --vp-c-warning-1: var(--vp-c-yellow-1);
-  --vp-c-warning-2: var(--vp-c-yellow-2);
-  --vp-c-warning-3: var(--vp-c-yellow-3);
-  --vp-c-warning-soft: var(--vp-c-yellow-soft);
+    --vp-c-warning-1: var(--vp-c-yellow-1);
+    --vp-c-warning-2: var(--vp-c-yellow-2);
+    --vp-c-warning-3: var(--vp-c-yellow-3);
+    --vp-c-warning-soft: var(--vp-c-yellow-soft);
 
-  --vp-c-danger-1: var(--vp-c-red-1);
-  --vp-c-danger-2: var(--vp-c-red-2);
-  --vp-c-danger-3: var(--vp-c-red-3);
-  --vp-c-danger-soft: var(--vp-c-red-soft);
+    --vp-c-danger-1: var(--vp-c-red-1);
+    --vp-c-danger-2: var(--vp-c-red-2);
+    --vp-c-danger-3: var(--vp-c-red-3);
+    --vp-c-danger-soft: var(--vp-c-red-soft);
 
-  --vp-c-caution-1: var(--vp-c-red-1);
-  --vp-c-caution-2: var(--vp-c-red-2);
-  --vp-c-caution-3: var(--vp-c-red-3);
-  --vp-c-caution-soft: var(--vp-c-red-soft);
+    --vp-c-caution-1: var(--vp-c-red-1);
+    --vp-c-caution-2: var(--vp-c-red-2);
+    --vp-c-caution-3: var(--vp-c-red-3);
+    --vp-c-caution-soft: var(--vp-c-red-soft);
 }
 
 /**
@@ -266,22 +266,22 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-font-family-base: 'Inter', ui-sans-serif, system-ui, sans-serif,
+    --vp-font-family-base: 'Inter', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --vp-font-family-mono: ui-monospace, 'Menlo', 'Monaco', 'Consolas',
+    --vp-font-family-mono: ui-monospace, 'Menlo', 'Monaco', 'Consolas',
     'Liberation Mono', 'Courier New', monospace;
-  font-optical-sizing: auto;
+    font-optical-sizing: auto;
 }
 
 :root:where(:lang(zh_cn)) {
-  --vp-font-family-base: 'Punctuation SC', 'Inter', ui-sans-serif, system-ui,
+    --vp-font-family-base: 'Punctuation SC', 'Inter', ui-sans-serif, system-ui,
     'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans SC', 'Heiti SC',
     'Microsoft YaHei', 'DengXian', sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 :root:where(:lang(zh_tw)) {
-  --vp-font-family-base: 'Punctuation SC', 'Inter', ui-sans-serif, system-ui,
+    --vp-font-family-base: 'Punctuation SC', 'Inter', ui-sans-serif, system-ui,
     'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans SC', 'Heiti SC',
     'Microsoft YaHei', 'DengXian', sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -292,11 +292,11 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
-  --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
-  --vp-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12), 0 3px 9px rgba(0, 0, 0, 0.12);
-  --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
+    --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
+    --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+    --vp-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12), 0 3px 9px rgba(0, 0, 0, 0.12);
+    --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
 }
 
 /**
@@ -304,18 +304,18 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-z-index-footer: 10;
-  --vp-z-index-local-nav: 20;
-  --vp-z-index-nav: 30;
-  --vp-z-index-layout-top: 40;
-  --vp-z-index-backdrop: 50;
-  --vp-z-index-sidebar: 60;
+    --vp-z-index-footer: 10;
+    --vp-z-index-local-nav: 20;
+    --vp-z-index-nav: 30;
+    --vp-z-index-layout-top: 40;
+    --vp-z-index-backdrop: 50;
+    --vp-z-index-sidebar: 60;
 }
 
 @media (min-width: 960px) {
-  :root {
-    --vp-z-index-sidebar: 25;
-  }
+    :root {
+        --vp-z-index-sidebar: 25;
+    }
 }
 
 /**
@@ -323,7 +323,7 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-layout-max-width: 1440px;
+    --vp-layout-max-width: 1440px;
 }
 
 /**
@@ -331,7 +331,7 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-header-anchor-symbol: '#';
+    --vp-header-anchor-symbol: '#';
 }
 
 /**
@@ -339,48 +339,48 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-code-line-height: 1.7;
-  --vp-code-font-size: 0.875em;
-  --vp-code-color: var(--vp-c-brand-1);
-  --vp-code-link-color: var(--vp-c-brand-1);
-  --vp-code-link-hover-color: var(--vp-c-brand-2);
-  --vp-code-bg: var(--vp-c-default-soft);
+    --vp-code-line-height: 1.7;
+    --vp-code-font-size: 0.875em;
+    --vp-code-color: var(--vp-c-brand-1);
+    --vp-code-link-color: var(--vp-c-brand-1);
+    --vp-code-link-hover-color: var(--vp-c-brand-2);
+    --vp-code-bg: var(--vp-c-default-soft);
 
-  --vp-code-block-color: var(--vp-c-text-2);
-  --vp-code-block-bg: var(--vp-c-bg-alt);
-  --vp-code-block-divider-color: var(--vp-c-gutter);
+    --vp-code-block-color: var(--vp-c-text-2);
+    --vp-code-block-bg: var(--vp-c-bg-alt);
+    --vp-code-block-divider-color: var(--vp-c-gutter);
 
-  --vp-code-lang-color: var(--vp-c-text-3);
+    --vp-code-lang-color: var(--vp-c-text-3);
 
-  --vp-code-line-highlight-color: var(--vp-c-default-soft);
-  --vp-code-line-number-color: var(--vp-c-text-3);
+    --vp-code-line-highlight-color: var(--vp-c-default-soft);
+    --vp-code-line-number-color: var(--vp-c-text-3);
 
-  --vp-code-line-diff-add-color: var(--vp-c-success-soft);
-  --vp-code-line-diff-add-symbol-color: var(--vp-c-success-1);
+    --vp-code-line-diff-add-color: var(--vp-c-success-soft);
+    --vp-code-line-diff-add-symbol-color: var(--vp-c-success-1);
 
-  --vp-code-line-diff-remove-color: var(--vp-c-danger-soft);
-  --vp-code-line-diff-remove-symbol-color: var(--vp-c-danger-1);
+    --vp-code-line-diff-remove-color: var(--vp-c-danger-soft);
+    --vp-code-line-diff-remove-symbol-color: var(--vp-c-danger-1);
 
-  --vp-code-line-warning-color: var(--vp-c-warning-soft);
-  --vp-code-line-error-color: var(--vp-c-danger-soft);
+    --vp-code-line-warning-color: var(--vp-c-warning-soft);
+    --vp-code-line-error-color: var(--vp-c-danger-soft);
 
-  --vp-code-copy-code-border-color: var(--vp-c-divider);
-  --vp-code-copy-code-bg: var(--vp-c-bg-soft);
-  --vp-code-copy-code-hover-border-color: var(--vp-c-divider);
-  --vp-code-copy-code-hover-bg: var(--vp-c-bg);
-  --vp-code-copy-code-active-text: var(--vp-c-text-2);
-  --vp-code-copy-copied-text-content: 'Copied';
+    --vp-code-copy-code-border-color: var(--vp-c-divider);
+    --vp-code-copy-code-bg: var(--vp-c-bg-soft);
+    --vp-code-copy-code-hover-border-color: var(--vp-c-divider);
+    --vp-code-copy-code-hover-bg: var(--vp-c-bg);
+    --vp-code-copy-code-active-text: var(--vp-c-text-2);
+    --vp-code-copy-copied-text-content: 'Copied';
 
-  --vp-code-tab-divider: var(--vp-code-block-divider-color);
-  --vp-code-tab-text-color: var(--vp-c-text-2);
-  --vp-code-tab-bg: var(--vp-code-block-bg);
-  --vp-code-tab-hover-text-color: var(--vp-c-text-1);
-  --vp-code-tab-active-text-color: var(--vp-c-text-1);
-  --vp-code-tab-active-bar-color: var(--vp-c-brand-1);
+    --vp-code-tab-divider: var(--vp-code-block-divider-color);
+    --vp-code-tab-text-color: var(--vp-c-text-2);
+    --vp-code-tab-bg: var(--vp-code-block-bg);
+    --vp-code-tab-hover-text-color: var(--vp-c-text-1);
+    --vp-code-tab-active-text-color: var(--vp-c-text-1);
+    --vp-code-tab-active-bar-color: var(--vp-c-brand-1);
 }
 
 [data-theme="dark"] {
-  --vp-code-block-bg: var(--vp-c-bg-alt);
+    --vp-code-block-bg: var(--vp-c-bg-alt);
 }
 
 /**
@@ -388,12 +388,12 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-nav-height: 48px;
-  --vp-sub-nav-height: 40px;
+    --vp-nav-height: 48px;
+    --vp-sub-nav-height: 40px;
 }
 
 @media screen and (min-width: 768px) {
-  :root {
-    --vp-sub-nav-height: 36px;
-  }
+    :root {
+        --vp-sub-nav-height: 36px;
+    }
 }

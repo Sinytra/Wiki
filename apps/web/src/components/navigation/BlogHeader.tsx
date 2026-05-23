@@ -1,5 +1,5 @@
-import {Badge} from "@repo/ui/components/badge";
-import {NavLink} from "@/components/navigation/link/NavLink";
+import {Badge} from '@repo/ui/components/badge';
+import {NavLink} from '@/components/navigation/link/NavLink';
 
 export default function BlogHeader({hideSubtext}: { hideSubtext: boolean }) {
   return (
@@ -28,5 +28,5 @@ export default function BlogHeader({hideSubtext}: { hideSubtext: boolean }) {
         fontSize: '1.5rem'
       }}>The Wiki for all of Modded Minecraft. Presented by Sinytra.</span>}
     </div>
-  )
+  );
 }

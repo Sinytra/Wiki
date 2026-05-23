@@ -1,13 +1,13 @@
-import Header from "@/components/navigation/header";
-import Footer from "@/components/navigation/Footer";
-import {ReactNode} from "react";
-import {setContextLocale} from "@/lib/locales/routing";
-import locales from "@repo/shared/locales";
-import {NextIntlClientProvider} from "next-intl";
-import {Toaster} from "@repo/ui/components/sonner";
-import CookieConsentContextProvider from "@/components/cookies/CookieConsentContextProvider";
-import {getMessages} from "next-intl/server";
-import {pick} from "lodash";
+import Header from '@/components/navigation/header';
+import Footer from '@/components/navigation/Footer';
+import {ReactNode} from 'react';
+import {setContextLocale} from '@/lib/locales/routing';
+import locales from '@repo/shared/locales';
+import {NextIntlClientProvider} from 'next-intl';
+import {Toaster} from '@repo/ui/components/sonner';
+import CookieConsentContextProvider from '@/components/cookies/CookieConsentContextProvider';
+import {getMessages} from 'next-intl/server';
+import {pick} from 'lodash';
 
 export async function generateStaticParams() {
   return locales.getLanguagePaths().map(locale => ({locale}));
@@ -44,5 +44,5 @@ export default async function LocaleLayout(props: { params: Params; children: Re
         }}/>
       </CookieConsentContextProvider>
     </NextIntlClientProvider>
-  )
+  );
 }

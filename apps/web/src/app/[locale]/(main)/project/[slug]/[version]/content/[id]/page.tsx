@@ -1,23 +1,23 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import service from "@/lib/service";
-import DocsPageNotFoundError from "@/components/docs/DocsPageNotFoundError";
-import {notFound} from "next/navigation";
-import DocsEntryPage from "@/components/docs/body/DocsEntryPage";
-import {getTranslations} from "next-intl/server";
-import DocsContentTOCSidebar from "@/components/docs/side/content/DocsContentTOCSidebar";
-import DocsContentMetaSidebar from "@/components/docs/side/content/DocsContentMetaSidebar";
-import {Metadata, ResolvingMetadata} from "next";
-import platforms from "@repo/shared/platforms";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {ProjectContentContext, RenderedDocsPage} from "@repo/shared/types/service";
-import DocsContentMetaSidebarBody from "@/components/docs/side/content/DocsContentMetaSidebarBody";
-import DocsSimpleHeader from "@/components/docs/layout/DocsSimpleHeader";
-import TogglableContent from "@/components/docs/content/TogglableContent";
-import ContentChangelog from "@/components/docs/content/ContentChangelog";
-import ContentListFooter from "@/components/docs/ContentListFooter";
-import markdown from "@repo/markdown";
-import DocsContentPageToolsFooter from "@/components/docs/layout/DocsContentPageToolsFooter";
-import issuesApi from "@repo/shared/api/issuesApi";
+import {setContextLocale} from '@/lib/locales/routing';
+import service from '@/lib/service';
+import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
+import {notFound} from 'next/navigation';
+import DocsEntryPage from '@/components/docs/body/DocsEntryPage';
+import {getTranslations} from 'next-intl/server';
+import DocsContentTOCSidebar from '@/components/docs/side/content/DocsContentTOCSidebar';
+import DocsContentMetaSidebar from '@/components/docs/side/content/DocsContentMetaSidebar';
+import {Metadata, ResolvingMetadata} from 'next';
+import platforms from '@repo/shared/platforms';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import {ProjectContentContext, RenderedDocsPage} from '@repo/shared/types/service';
+import DocsContentMetaSidebarBody from '@/components/docs/side/content/DocsContentMetaSidebarBody';
+import DocsSimpleHeader from '@/components/docs/layout/DocsSimpleHeader';
+import TogglableContent from '@/components/docs/content/TogglableContent';
+import ContentChangelog from '@/components/docs/content/ContentChangelog';
+import ContentListFooter from '@/components/docs/ContentListFooter';
+import markdown from '@repo/markdown';
+import DocsContentPageToolsFooter from '@/components/docs/layout/DocsContentPageToolsFooter';
+import issuesApi from '@repo/shared/api/issuesApi';
 
 interface Props {
   params: Promise<{
@@ -59,7 +59,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
       // @ts-expect-error optional
       docs_icon: iconUrl ? iconUrl.src : undefined
     }
-  }
+  };
 }
 
 export default async function ContentEntryPage(props: Props) {
@@ -129,7 +129,7 @@ export default async function ContentEntryPage(props: Props) {
 
           {page.content.metadata.history &&
             <TogglableContent title={u('toggle')} className="mb-6">
-                <ContentChangelog changelog={page.content.metadata.history}/>
+              <ContentChangelog changelog={page.content.metadata.history}/>
             </TogglableContent>
           }
 
@@ -144,5 +144,5 @@ export default async function ContentEntryPage(props: Props) {
         <DocsContentMetaSidebar id={id} project={project} title={t('title')} ctx={ctx} page={page}/>
       </div>
     </>
-  )
+  );
 }

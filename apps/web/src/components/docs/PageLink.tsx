@@ -1,8 +1,8 @@
-import {cn} from "@repo/ui/lib/utils";
-import {ComponentPropsWithoutRef} from "react";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {LocaleLink} from "@/lib/locales/routing";
+import {cn} from '@repo/ui/lib/utils';
+import {ComponentPropsWithoutRef} from 'react';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {LocaleLink} from '@/lib/locales/routing';
 
 type LinkProps = ComponentPropsWithoutRef<typeof LocaleLink> & { local?: boolean };
 
@@ -18,5 +18,5 @@ export default function PageLink({href, target, local, className, children}: Lin
     `)}>
       {children}
     </Element>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import {ComponentPropsWithoutRef} from "react";
-import {ProjectContext} from "@repo/shared/types/service";
-import Asset from "@/components/docs/shared/asset/Asset";
+import {ComponentPropsWithoutRef} from 'react';
+import {ProjectContext} from '@repo/shared/types/service';
+import Asset from '@/components/docs/shared/asset/Asset';
 
 type ImgProps = ComponentPropsWithoutRef<'img'> & { ctx: ProjectContext };
 
@@ -13,8 +13,8 @@ function BoundExtendedImg(props: ImgProps) {
     const location = props.src.substring(1);
     delete props.src;
     return (
-      <Asset {...props} ctx={props.ctx} location={location} />
-    )
+      <Asset {...props} ctx={props.ctx} location={location}/>
+    );
   }
 
   return <img {...props}/>;

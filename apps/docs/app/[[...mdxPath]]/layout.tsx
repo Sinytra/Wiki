@@ -3,11 +3,13 @@ import {Head} from 'nextra/components';
 import {getPageMap} from 'nextra/page-map';
 import LastUpdated from '@/components/LastUpdated';
 import LocaleSwitch from '@/components/LocaleSwitch';
-import {defaultLocale, locales} from '@/lang';
+import {defaultLocale, Locale, locales} from '@/lang';
 import {Inter} from 'next/font/google';
 import '../styles/globals.css';
 import Image from 'next/image';
 import {Metadata} from 'next';
+import {PageMapItem} from 'nextra';
+import React, {ReactNode} from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
 
 const footer = <Footer>{new Date().getFullYear()} © Sinytra.</Footer>;
 
-function transformPageMap(item: any) {
+function transformPageMap(item: PageMapItem) {
   if ('route' in item && item.route.startsWith(`/${defaultLocale}`)) {
     item.route = item.route == `/${defaultLocale}` ? '/' : item.route.substring(3);
   }
@@ -37,9 +39,12 @@ function transformPageMap(item: any) {
   }
 }
 
-export default async function RootLayout({params, children}: { params: any, children: any }) {
+export default async function RootLayout({params, children}: {
+  params: Promise<{ mdxPath?: string[] }>,
+  children?: ReactNode
+}) {
   const {mdxPath} = await params;
-  const lang = mdxPath?.length > 0 && locales.includes(mdxPath[0]) ? mdxPath[0] : defaultLocale;
+  const lang = mdxPath?.[0] && locales.includes(mdxPath[0] as Locale) ? mdxPath[0] : defaultLocale;
 
   const navbar = (
     <Navbar
@@ -77,7 +82,7 @@ export default async function RootLayout({params, children}: { params: any, chil
       navbar={navbar}
       pageMap={pageMap}
       docsRepositoryBase="https://github.com/Sinytra/Wiki/tree/master/apps/docs"
-      feedback={{ labels: 'documentation' }}
+      feedback={{labels: 'documentation'}}
       footer={footer}
       lastUpdated={(<LastUpdated locale={lang}/>)}
     >

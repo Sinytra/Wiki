@@ -1,7 +1,7 @@
-import DocsGuideFileTreeSidebar from "@/components/docs/side/guide/DocsGuideFileTreeSidebar";
-import {FileTree} from "@repo/shared/types/service";
-import {ProjectData} from "@sinytra/wiki-api-types";
-import DocsResponsiveHeader from "@/components/docs/layout/DocsResponsiveHeader";
+import DocsGuideFileTreeSidebar from '@/components/docs/side/guide/DocsGuideFileTreeSidebar';
+import {FileTree} from '@repo/shared/types/service';
+import {ProjectData} from '@sinytra/wiki-api-types';
+import DocsResponsiveHeader from '@/components/docs/layout/DocsResponsiveHeader';
 
 interface Props {
   title: string;
@@ -16,7 +16,16 @@ interface Props {
   footer: any;
 }
 
-export default function DocsInnerLayoutClient({title, project, version, rightSidebar, footer, tree, showRightSidebar, children}: Props) {
+export default function DocsInnerLayoutClient({
+                                                title,
+                                                project,
+                                                version,
+                                                rightSidebar,
+                                                footer,
+                                                tree,
+                                                showRightSidebar,
+                                                children
+                                              }: Props) {
   return <>
     <DocsResponsiveHeader showRightSidebar={showRightSidebar}>
       {title}
@@ -40,5 +49,5 @@ export default function DocsInnerLayoutClient({title, project, version, rightSid
 
     {/* Footer */}
     {footer}
-  </>
+  </>;
 }

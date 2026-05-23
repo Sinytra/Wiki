@@ -5,25 +5,25 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from "@repo/ui/components/breadcrumb";
-import {SidebarTrigger} from "@repo/ui/components/sidebar";
-import {setContextLocale} from "@/lib/locales/routing";
-import {format} from "date-fns";
-import {Button} from "@repo/ui/components/button";
-import {deleteUserAccount, linkModrinthAccount, unlinkModrinthAccount} from "@/lib/forms/actions";
-import {ExternalLinkIcon} from "lucide-react";
-import UnlinkMRAccountForm from "@/components/dashboard/dev/settings/UnlinkMRAccountForm";
-import LinkMRAccountForm from "@/components/dashboard/dev/settings/LinkMRAccountForm";
-import {cn} from "@repo/ui/lib/utils";
-import DeleteAccountForm from "@/components/dashboard/dev/settings/DeleteAccountForm";
-import {useTranslations} from "next-intl";
-import {getTranslations} from "next-intl/server";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import authApi from "@/lib/service/api/authApi";
-import {UserProfile} from "@sinytra/wiki-api-types";
-import AdminBadge from "@repo/ui/components/badge/AdminBadge";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+} from '@repo/ui/components/breadcrumb';
+import {SidebarTrigger} from '@repo/ui/components/sidebar';
+import {setContextLocale} from '@/lib/locales/routing';
+import {format} from 'date-fns';
+import {Button} from '@repo/ui/components/button';
+import {deleteUserAccount, linkModrinthAccount, unlinkModrinthAccount} from '@/lib/forms/actions';
+import {ExternalLinkIcon} from 'lucide-react';
+import UnlinkMRAccountForm from '@/components/dashboard/dev/settings/UnlinkMRAccountForm';
+import LinkMRAccountForm from '@/components/dashboard/dev/settings/LinkMRAccountForm';
+import {cn} from '@repo/ui/lib/utils';
+import DeleteAccountForm from '@/components/dashboard/dev/settings/DeleteAccountForm';
+import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import authApi from '@/lib/service/api/authApi';
+import {UserProfile} from '@sinytra/wiki-api-types';
+import AdminBadge from '@repo/ui/components/badge/AdminBadge';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
 
 export const dynamic = 'force-dynamic';
 
@@ -43,7 +43,7 @@ function UserProfileInfo({user}: { user: UserProfile }) {
             {user.name}
           </span>
           {user.role === 'admin' &&
-            <AdminBadge />
+            <AdminBadge/>
           }
         </div>
         <div className="mb-auto text-sm text-secondary">
@@ -55,7 +55,7 @@ function UserProfileInfo({user}: { user: UserProfile }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function UserSettingsCategory({title, className, children}: { title: string; className?: string; children?: any }) {
@@ -68,7 +68,7 @@ function UserSettingsCategory({title, className, children}: { title: string; cla
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 function UserSettingsRow({title, desc, children}: { title: string; desc: string; children?: any }) {
@@ -84,7 +84,7 @@ function UserSettingsRow({title, desc, children}: { title: string; desc: string;
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 function UserSettings({user}: { user: UserProfile }) {
@@ -158,5 +158,5 @@ export default async function DevSettingsPage(props: { params: Promise<{ locale:
         <UserSettings user={profile}/>
       </div>
     </div>
-  )
+  );
 }

@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import {projectUpdateSourceSchema, projectRegisterSchema, updateGameDataSchema} from "@/lib/forms/schemas";
-import projectApiClient from "@/lib/service/api/projectApiClient";
-import adminApiClient from "@/lib/service/api/adminApiClient";
-import forms, {asFormResponse, FormActionResult} from "@/lib/forms/forms";
-import {ProjectCreatedResponse} from "@sinytra/wiki-api-types";
+import {projectUpdateSourceSchema, projectRegisterSchema, updateGameDataSchema} from '@/lib/forms/schemas';
+import projectApiClient from '@/lib/service/api/projectApiClient';
+import adminApiClient from '@/lib/service/api/adminApiClient';
+import forms, {asFormResponse, FormActionResult} from '@/lib/forms/forms';
+import {ProjectCreatedResponse} from '@sinytra/wiki-api-types';
 
 async function handleRegisterProjectFormClient(rawData: any): Promise<FormActionResult<ProjectCreatedResponse>> {
   const data = await forms.validateProjectFormData(rawData, projectRegisterSchema);
@@ -50,4 +50,4 @@ export default {
   handleRegisterProjectFormClient,
   handleEditProjectFormClient,
   handleUpdateGameDataFormClient
-}
+};

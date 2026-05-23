@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import React, {createContext, useEffect, useState} from "react";
+import React, {createContext, useEffect, useState} from 'react';
 
-import "vanilla-cookieconsent/dist/cookieconsent.css";
-import * as CookieConsent from "vanilla-cookieconsent";
-import cookies from "@/lib/cookies";
-import {useTranslations} from "next-intl";
+import 'vanilla-cookieconsent/dist/cookieconsent.css';
+import * as CookieConsent from 'vanilla-cookieconsent';
+import cookies from '@/lib/cookies';
+import {useTranslations} from 'next-intl';
 
 export interface CookieConsentData {
   enableCookieManagement: boolean;
@@ -112,7 +112,7 @@ export default function CookieConsentContextProvider({children}: { children?: Re
   }, []);
 
   return (
-    <CookieConsentContext.Provider value={{ enableCookieManagement, hasConsentToEmbeddedVideos: embeddedConsent }}>
+    <CookieConsentContext.Provider value={{enableCookieManagement, hasConsentToEmbeddedVideos: embeddedConsent}}>
       {children}
     </CookieConsentContext.Provider>
   );

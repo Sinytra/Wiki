@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import {AssetLocation} from "@repo/shared/assets";
-import {ImgHTMLAttributes, useEffect, useRef, useState} from "react";
-import resourceLocation from "@repo/shared/resourceLocation";
-import {cn} from "@repo/ui/lib/utils";
+import {AssetLocation} from '@repo/shared/assets';
+import {ImgHTMLAttributes, useEffect, useRef, useState} from 'react';
+import resourceLocation from '@repo/shared/resourceLocation';
+import {cn} from '@repo/ui/lib/utils';
 
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & { asset: AssetLocation; noTitle?: boolean };
 
@@ -41,5 +41,5 @@ export default function ItemAssetDisplay({asset, width, height, alt, title, noTi
            loading="eager"
       />
     </div>
-  )
+  );
 }

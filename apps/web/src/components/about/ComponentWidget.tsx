@@ -13,13 +13,13 @@ export default function ComponentWidget({name, desc, href, icon: Icon}: {
         <div className="flex flex-row items-center gap-2">
           <Icon className="size-4.5"/>
           <span className="align-middle text-lg font-normal text-primary">
-          {name}
-        </span>
+            {name}
+          </span>
         </div>
         <span className="align-middle text-sm font-normal text-secondary">
           {desc}
         </span>
       </div>
     </a>
-  )
+  );
 }

@@ -1,16 +1,16 @@
-import {notFound} from "next/navigation";
-import Asset from "@/components/docs/shared/asset/Asset";
-import PageLink from "@/components/docs/PageLink";
-import service from "@/lib/service";
-import {setContextLocale} from "@/lib/locales/routing";
-import platforms from "@repo/shared/platforms";
-import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
-import {ContentFileTree, ProjectContext} from "@repo/shared/types/service";
-import {ContentFileTreeEntry} from "@sinytra/wiki-api-types";
-import {useTranslations} from "next-intl";
-import {ProjectRouteParams} from "@repo/shared/types/routes";
-import {getContentLink} from "@/lib/project/game/content";
-import {Fragment} from "react";
+import {notFound} from 'next/navigation';
+import Asset from '@/components/docs/shared/asset/Asset';
+import PageLink from '@/components/docs/PageLink';
+import service from '@/lib/service';
+import {setContextLocale} from '@/lib/locales/routing';
+import platforms from '@repo/shared/platforms';
+import DocsSubpageTitle from '@/components/docs/layout/DocsSubpageTitle';
+import {ContentFileTree, ProjectContext} from '@repo/shared/types/service';
+import {ContentFileTreeEntry} from '@sinytra/wiki-api-types';
+import {useTranslations} from 'next-intl';
+import {ProjectRouteParams} from '@repo/shared/types/routes';
+import {getContentLink} from '@/lib/project/game/content';
+import {Fragment} from 'react';
 
 interface Props {
   params: Promise<ProjectRouteParams>;
@@ -29,12 +29,13 @@ function ContentEntryLink({entry, ctx}: { entry: ContentFileTreeEntry; ctx: Proj
         {entry.name}
       </PageLink>
     </div>
-  )
+  );
 }
 
 function ContentEntryList({entries, ctx}: { entries: ContentFileTree; ctx: ProjectContext; }) {
   return (
-    <div className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
+    <div
+      className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
         <div key={c.path} className="flex flex-row flex-wrap items-center gap-1">
           {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
@@ -42,7 +43,7 @@ function ContentEntryList({entries, ctx}: { entries: ContentFileTree; ctx: Proje
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function ContentSubcategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: ProjectContext; }) {
@@ -57,7 +58,7 @@ function ContentSubcategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: Pr
       </div>
       <ContentEntryList entries={entry.children} ctx={ctx}/>
     </div>
-  )
+  );
 }
 
 function ContentCategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: ProjectContext; }) {
@@ -85,7 +86,7 @@ function ContentCategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: Proje
             {...entry.children.filter(c => c.type === 'dir').map(c => (
               <Fragment key={c.path}>
                 <ContentSubcategory entry={c} ctx={ctx}/>
-                <hr className="my-1.5 border-tertiary last:hidden" />
+                <hr className="my-1.5 border-tertiary last:hidden"/>
               </Fragment>
             ))}
             {children.length > 0 &&
@@ -97,7 +98,7 @@ function ContentCategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: Proje
         }
       </div>
     </div>
-  )
+  );
 }
 
 export default async function ProjectContentPage(props: Props) {
@@ -133,5 +134,5 @@ export default async function ProjectContentPage(props: Props) {
         }
       </div>
     </div>
-  )
+  );
 }

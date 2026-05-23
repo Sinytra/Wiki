@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import {ReactNode, useState} from "react";
-import {cn} from "@repo/ui/lib/utils";
-import {ChevronsDownIcon} from "lucide-react";
-import {useTranslations} from "next-intl";
+import {ReactNode, useState} from 'react';
+import {cn} from '@repo/ui/lib/utils';
+import {ChevronsDownIcon} from 'lucide-react';
+import {useTranslations} from 'next-intl';
 
 type Column<Key extends string = string> = {
   key: Key;
@@ -13,7 +13,7 @@ type Column<Key extends string = string> = {
 type Data = {
   className?: any;
   data: ReactNode;
-}
+};
 
 type ResponsiveTableProps<Keys extends string> = {
   columns: readonly Column<Keys>[];
@@ -69,13 +69,13 @@ export default function ResponsiveTable<Keys extends string>({
         <td colSpan={columns.length} className="no-table-bs group cursor-pointer bg-table-soft!"
             onClick={() => setExpanded(!expanded)} data-open={expanded}>
           <div className="my-0.5 flex w-full flex-row items-center justify-end gap-4 text-secondary">
-            <span className="text-sm">
-              {t('expand')}
-            </span>
+              <span className="text-sm">
+                {t('expand')}
+              </span>
 
             <span>
-              <ChevronsDownIcon className="size-4 group-data-[open=true]:rotate-180"/>
-            </span>
+                <ChevronsDownIcon className="size-4 group-data-[open=true]:rotate-180"/>
+              </span>
           </div>
         </td>
       </tr>

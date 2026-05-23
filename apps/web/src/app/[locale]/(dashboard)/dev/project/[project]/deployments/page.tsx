@@ -1,16 +1,16 @@
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import {setContextLocale} from "@/lib/locales/routing";
-import {getTranslations} from "next-intl/server";
-import {parseAsInteger} from "nuqs/server";
-import * as React from "react";
-import DevProjectDeploymentsTable from "@/components/dashboard/dev/table/DevProjectDeploymentsTable";
-import DeployProjectModal from "@/components/dashboard/dev/modal/DeployProjectModal";
-import {handleDeployProject} from "@/lib/forms/actions";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
-import DeployProjectContextProvider from "@/components/dashboard/dev/modal/DeployProjectContextProvider";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import {setContextLocale} from '@/lib/locales/routing';
+import {getTranslations} from 'next-intl/server';
+import {parseAsInteger} from 'nuqs/server';
+import * as React from 'react';
+import DevProjectDeploymentsTable from '@/components/dashboard/dev/table/DevProjectDeploymentsTable';
+import DeployProjectModal from '@/components/dashboard/dev/modal/DeployProjectModal';
+import {handleDeployProject} from '@/lib/forms/actions';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import LiveProjectDeployConnection from '@/components/dashboard/dev/project/LiveProjectDeployConnection';
+import DeployProjectContextProvider from '@/components/dashboard/dev/modal/DeployProjectContextProvider';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
 
 type Properties = {
   params: Promise<{
@@ -20,7 +20,7 @@ type Properties = {
   searchParams: Promise<{
     page?: string | string[];
   }>
-}
+};
 
 export default async function DevProjectDeploymentsPage(props: Properties) {
   const searchParams = await props.searchParams;
@@ -55,5 +55,5 @@ export default async function DevProjectDeploymentsPage(props: Properties) {
         </div>
       </DeployProjectContextProvider>
     </div>
-  )
+  );
 }

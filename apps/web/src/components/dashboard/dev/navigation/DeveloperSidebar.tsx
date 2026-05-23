@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 import {BookOpen, PencilRulerIcon, Settings2, UserIcon, WrenchIcon} from 'lucide-react';
 
-import {DevSidebarMainNav} from "@/components/dashboard/dev/navigation/DevSidebarMainNav";
-import {DevSidebarUser} from "@/components/dashboard/dev/navigation/DevSidebarUser";
-import {DevSidebarContextSwitcher} from "@/components/dashboard/dev/navigation/DevSidebarContextSwitcher";
+import {DevSidebarMainNav} from '@/components/dashboard/dev/navigation/DevSidebarMainNav';
+import {DevSidebarUser} from '@/components/dashboard/dev/navigation/DevSidebarUser';
+import {DevSidebarContextSwitcher} from '@/components/dashboard/dev/navigation/DevSidebarContextSwitcher';
 import {
   Sidebar,
   SidebarContent,
@@ -14,12 +14,12 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu
-} from "@repo/ui/components/sidebar";
-import {useTranslations} from "next-intl";
-import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
-import {UserProfile} from "@sinytra/wiki-api-types";
-import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
-import {WIKI_DOCS_URL} from "@repo/shared/constants";
+} from '@repo/ui/components/sidebar';
+import {useTranslations} from 'next-intl';
+import DevSidebarMenuItem from '@/components/dashboard/dev/navigation/DevSidebarMenuItem';
+import {UserProfile} from '@sinytra/wiki-api-types';
+import usePreventBuggyScrollLock from '@repo/shared/client/usePreventBuggyScrollLock';
+import {WIKI_DOCS_URL} from '@repo/shared/constants';
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
@@ -49,7 +49,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
         },
         {
           title: t('nav.settings'),
-          url: "/dev/settings",
+          url: '/dev/settings',
           icon: Settings2
         }
       ]
@@ -68,7 +68,8 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
             {t('groups.projects')}
           </SidebarGroupLabel>
           <SidebarMenu>
-            <DevSidebarMenuItem url="/dev" matcher={/^\/dev(\/project\/.*)?$/} icon={PencilRulerIcon} title={t('nav.projects')} />
+            <DevSidebarMenuItem url="/dev" matcher={/^\/dev(\/project\/.*)?$/} icon={PencilRulerIcon}
+                                title={t('nav.projects')}/>
           </SidebarMenu>
         </SidebarGroup>
 
@@ -76,14 +77,14 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
 
         {profile.role === 'admin' &&
           <div className="mt-auto px-2">
-              <SidebarGroup className="rounded-sm border border-destructive-secondary">
-                  <SidebarGroupLabel>
-                    {t('groups.admin')}
-                  </SidebarGroupLabel>
-                  <SidebarMenu>
-                      <DevSidebarMenuItem url="/admin" matcher={/^\/admin?$/} icon={WrenchIcon} title={t('nav.admin')} />
-                  </SidebarMenu>
-              </SidebarGroup>
+            <SidebarGroup className="rounded-sm border border-destructive-secondary">
+              <SidebarGroupLabel>
+                {t('groups.admin')}
+              </SidebarGroupLabel>
+              <SidebarMenu>
+                <DevSidebarMenuItem url="/admin" matcher={/^\/admin?$/} icon={WrenchIcon} title={t('nav.admin')}/>
+              </SidebarMenu>
+            </SidebarGroup>
           </div>
         }
       </SidebarContent>
@@ -91,5 +92,5 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
         <DevSidebarUser profile={profile} logoutAction={logoutAction}/>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

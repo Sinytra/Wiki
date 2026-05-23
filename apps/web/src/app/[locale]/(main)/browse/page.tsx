@@ -1,14 +1,14 @@
-import BrowseProjectList from "@/components/navigation/browse/BrowseProjectList";
-import {Suspense, use} from "react";
-import ProjectSearch from "@/components/navigation/browse/BrowseSearch";
-import LoadingContent from "@/components/util/LoadingContent";
-import {setContextLocale} from "@/lib/locales/routing";
-import {useTranslations} from "next-intl";
-import BrowseFilterPanel from "@/components/navigation/browse/BrowseFilterPanel";
-import BrowseSortDropdown from "@/components/navigation/browse/BrowseSortDropdown";
-import {parseAsInteger, parseAsString} from "nuqs/server";
-import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import BrowseProjectList from '@/components/navigation/browse/BrowseProjectList';
+import {Suspense, use} from 'react';
+import ProjectSearch from '@/components/navigation/browse/BrowseSearch';
+import LoadingContent from '@/components/util/LoadingContent';
+import {setContextLocale} from '@/lib/locales/routing';
+import {useTranslations} from 'next-intl';
+import BrowseFilterPanel from '@/components/navigation/browse/BrowseFilterPanel';
+import BrowseSortDropdown from '@/components/navigation/browse/BrowseSortDropdown';
+import {parseAsInteger, parseAsString} from 'nuqs/server';
+import CollapsibleDocsTreeBase from '@/components/docs/CollapsibleDocsTreeBase';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 
 type Properties = {
   params: Promise<{ locale: string }>;
@@ -18,7 +18,7 @@ type Properties = {
     types?: string | string[];
     sort?: string | string[];
   }>
-}
+};
 
 export default function BrowsePage(props: Properties) {
   const searchParams = use(props.searchParams);
@@ -69,5 +69,5 @@ export default function BrowsePage(props: Properties) {
         </ClientLocaleProvider>
       </div>
     </div>
-  )
+  );
 }

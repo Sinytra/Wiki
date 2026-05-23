@@ -1,9 +1,9 @@
-import {ProjectContext, ResolvedItemProperties} from "@repo/shared/types/service";
-import Asset from "@/components/docs/shared/asset/Asset";
-import {useTranslations} from "next-intl";
-import {getContentLink, getVanillaWikiLink} from "@/lib/project/game/content";
-import PageLink from "@/components/docs/PageLink";
-import {NavLink} from "@/components/navigation/link/NavLink";
+import {ProjectContext, ResolvedItemProperties} from '@repo/shared/types/service';
+import Asset from '@/components/docs/shared/asset/Asset';
+import {useTranslations} from 'next-intl';
+import {getContentLink, getVanillaWikiLink} from '@/lib/project/game/content';
+import PageLink from '@/components/docs/PageLink';
+import {NavLink} from '@/components/navigation/link/NavLink';
 
 interface Props {
   ctx: ProjectContext;
@@ -70,42 +70,42 @@ function RenderedProperty({name, type, value, ctx}: {
       <NavLink href={link}>
         <Asset location={value} ctx={ctx}/>
       </NavLink>
-    )
+    );
   }
 
   if (type === 'damage' && Number.isInteger(value) && value >= 0) {
     const visual = Array(Math.floor(value / 2)).fill(0).map((_, i) => (
-      <Asset key={i} ctx={ctx} location="icon/heart" alt={"\u2764\uFE0F"}
-             wrapper={{className: "inline-block"}} width={9} height={9}/>
+      <Asset key={i} ctx={ctx} location="icon/heart" alt={'\u2764\uFE0F'}
+             wrapper={{className: 'inline-block'}} width={9} height={9}/>
     ));
     if (value % 2 == 1) {
       visual.push((
-        <Asset key="half" ctx={ctx} location="icon/half_heart" alt={"\u{1F494}"}
-               wrapper={{className: "inline-block"}} width={9} height={9}/>));
+        <Asset key="half" ctx={ctx} location="icon/half_heart" alt={'\u{1F494}'}
+               wrapper={{className: 'inline-block'}} width={9} height={9}/>));
     }
     return visual.length < 1 ? value : (
       <span>
         {value} (<span>{visual}</span>)
       </span>
-    )
+    );
   }
 
   if (type === 'hunger' && Number.isInteger(value) && value >= 0) {
     const visual = Array(Math.floor(value / 2)).fill(0).map((_, i) => (
-      <Asset key={i} ctx={ctx} location="icon/hunger" alt={"\u{1F357}"} wrapper={{className: "inline-block"}}
+      <Asset key={i} ctx={ctx} location="icon/hunger" alt={'\u{1F357}'} wrapper={{className: 'inline-block'}}
              width={9} height={9}/>
     ));
     if (value % 2 == 1) {
       visual.push((
-        <Asset alt={"\u{1F356}"} key="half" ctx={ctx} location="icon/half_hunger"
-               wrapper={{className: "inline-block"}} width={9} height={9}/>
+        <Asset alt={'\u{1F356}'} key="half" ctx={ctx} location="icon/half_hunger"
+               wrapper={{className: 'inline-block'}} width={9} height={9}/>
       ));
     }
     return visual.length < 1 ? value : (
       <span className="whitespace-nowrap">
         {value} (<span className="whitespace-nowrap">{visual}</span>)
       </span>
-    )
+    );
   }
 
   if (type === 'i18n_literal') {
@@ -157,7 +157,7 @@ export default function ContentProperties({properties, ctx}: Props) {
                     {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}
                   </Wrapper>
                 </td>
-                <td className={`table-padding-sm border-r-0 border-b-0 border-l-0 text-sm`}>
+                <td className={'table-padding-sm border-r-0 border-b-0 border-l-0 text-sm'}>
                   <RenderedProperty
                     name={key}
                     value={value}
@@ -166,10 +166,10 @@ export default function ContentProperties({properties, ctx}: Props) {
                   />
                 </td>
               </tr>
-            )
+            );
           })}
         </tbody>
       </table>
     </div>
-  )
+  );
 }

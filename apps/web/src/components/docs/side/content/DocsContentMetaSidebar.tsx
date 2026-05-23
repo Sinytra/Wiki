@@ -1,12 +1,12 @@
-import {cn} from "@repo/ui/lib/utils";
+import {cn} from '@repo/ui/lib/utils';
 import DocsContentMetaSidebarBody, {
   Props as BodyProps
-} from "@/components/docs/side/content/DocsContentMetaSidebarBody";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import env from "@repo/shared/env";
-import ReportPageButton from "@/components/docs/layout/ReportPageButton";
-import EditPageButton from "@/components/docs/layout/EditPageButton";
-import {RenderedDocsPage} from "@repo/shared/types/service";
+} from '@/components/docs/side/content/DocsContentMetaSidebarBody';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import env from '@repo/shared/env';
+import ReportPageButton from '@/components/docs/layout/ReportPageButton';
+import EditPageButton from '@/components/docs/layout/EditPageButton';
+import {RenderedDocsPage} from '@repo/shared/types/service';
 
 type Props = Omit<BodyProps, 'metadata' | 'properties'> & { id: string; page: RenderedDocsPage };
 
@@ -39,5 +39,5 @@ export default function DocsContentMetaSidebar(props: Props) {
         </div>
       </ClientLocaleProvider>
     </aside>
-  )
+  );
 }

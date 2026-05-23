@@ -3,8 +3,8 @@ import {
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbSeparator
-} from "@repo/ui/components/breadcrumb";
-import {SidebarTrigger} from "@repo/ui/components/sidebar";
+} from '@repo/ui/components/breadcrumb';
+import {SidebarTrigger} from '@repo/ui/components/sidebar';
 
 export default function DevBreadcrumb({home, children}: { home: any; children?: any }) {
   return (
@@ -18,5 +18,5 @@ export default function DevBreadcrumb({home, children}: { home: any; children?: 
         {children}
       </BreadcrumbList>
     </Breadcrumb>
-  )
+  );
 }

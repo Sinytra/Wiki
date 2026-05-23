@@ -1,13 +1,13 @@
-import UsageContentList from "@/components/docs/shared/game/UsageContentList";
-import PageLink from "@/components/docs/PageLink";
-import {getContentLink} from "@/lib/project/game/content";
-import service from "@/lib/service";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {getTranslations} from "next-intl/server";
-import ItemAsset from "@/components/docs/shared/asset/ItemAsset";
-import {ProjectContext} from "@repo/shared/types/service";
-import env from "@repo/shared/env";
-import InteractiveComponentPlaceholder from "@/components/docs/InteractiveComponentPlaceholder";
+import UsageContentList from '@/components/docs/shared/game/UsageContentList';
+import PageLink from '@/components/docs/PageLink';
+import {getContentLink} from '@/lib/project/game/content';
+import service from '@/lib/service';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import {getTranslations} from 'next-intl/server';
+import ItemAsset from '@/components/docs/shared/asset/ItemAsset';
+import {ProjectContext} from '@repo/shared/types/service';
+import env from '@repo/shared/env';
+import InteractiveComponentPlaceholder from '@/components/docs/InteractiveComponentPlaceholder';
 
 interface Props {
   id: string;
@@ -22,7 +22,7 @@ export default async function RecipeUsage({id, ctx}: Props) {
   const t = await getTranslations('RecipeUsage');
 
   if (env.isPreview()) {
-    return <InteractiveComponentPlaceholder />;
+    return <InteractiveComponentPlaceholder/>;
   }
 
   const usage = await service.getContentRecipeUsage(id, ctx);
@@ -32,9 +32,9 @@ export default async function RecipeUsage({id, ctx}: Props) {
 
   const sorted = usage.sort((a, b) => a.name && b.name ? a.name.localeCompare(b.name) : 0);
   const rendered = sorted.map(item => {
-    const Wrapper = ({children}: {children: any}) => item.has_page
+    const Wrapper = ({children}: { children: any }) => item.has_page
       ? <PageLink href={getContentLink(ctx, item.id)}>{children}</PageLink>
-      : <div>{children}</div>
+      : <div>{children}</div>;
 
     return (
       <li key={item.id} className="first:mt-0">
@@ -60,5 +60,5 @@ export default async function RecipeUsage({id, ctx}: Props) {
         </ClientLocaleProvider>
       </div>
     </div>
-  )
+  );
 }

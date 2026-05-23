@@ -1,5 +1,5 @@
-import {serviceProviderFactory as remoteServiceProviderFactory} from "@/lib/service/remoteService";
-import {AssetLocation} from "@repo/shared/assets";
+import {serviceProviderFactory as remoteServiceProviderFactory} from '@/lib/service/remoteService';
+import {AssetLocation} from '@repo/shared/assets';
 import {
   ContentFileTree,
   ProjectContentContext,
@@ -7,27 +7,27 @@ import {
   RenderedDocsPage,
   ServiceProvider,
   ServiceProviderFactory
-} from "@repo/shared/types/service";
-import markdown, {ComponentPatcher} from "@repo/markdown";
-import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
-import {localServiceProviderFactory} from "@repo/previewer";
-import builtinAssets from "@/lib/project/builtin/builtinAssets";
-import PrefabUsage from "@/components/docs/shared/prefab/PrefabUsage";
-import CraftingRecipe from "@/components/docs/shared/CraftingRecipe";
-import ContentLink from "@/components/docs/shared/ContentLink";
-import ProjectRecipe from "@/components/docs/shared/game/ProjectRecipe";
-import PrefabObtaining from "@/components/docs/shared/prefab/PrefabObtaining";
-import ModAsset from "@/components/docs/shared/asset/ModAsset";
-import Callout from "@/components/docs/shared/Callout";
-import LinkAwareHeading from "@/components/docs/LinkAwareHeading";
-import {BindableAsset} from "@/components/docs/shared/asset/Asset";
-import {BindableRecipeUsage} from "@/components/docs/shared/game/RecipeUsage";
-import CodeHikeCode from "@repo/ui/blocks/markdown/CodeHikeCode";
-import CodeTabs from "@repo/ui/blocks/markdown/CodeTabs";
-import DocsLink from "@/components/docs/shared/DocsLink";
-import ExtendedLink from "@/components/docs/shared/ExtendedLink";
-import ExtendedImg from "@/components/docs/shared/ExtendedImg";
-import VideoEmbed from "@/components/docs/shared/VideoEmbed";
+} from '@repo/shared/types/service';
+import markdown, {ComponentPatcher} from '@repo/markdown';
+import resourceLocation, {DEFAULT_NAMESPACE} from '@repo/shared/resourceLocation';
+import {localServiceProviderFactory} from '@repo/previewer';
+import builtinAssets from '@/lib/project/builtin/builtinAssets';
+import PrefabUsage from '@/components/docs/shared/prefab/PrefabUsage';
+import CraftingRecipe from '@/components/docs/shared/CraftingRecipe';
+import ContentLink from '@/components/docs/shared/ContentLink';
+import ProjectRecipe from '@/components/docs/shared/game/ProjectRecipe';
+import PrefabObtaining from '@/components/docs/shared/prefab/PrefabObtaining';
+import ModAsset from '@/components/docs/shared/asset/ModAsset';
+import Callout from '@/components/docs/shared/Callout';
+import LinkAwareHeading from '@/components/docs/LinkAwareHeading';
+import {BindableAsset} from '@/components/docs/shared/asset/Asset';
+import {BindableRecipeUsage} from '@/components/docs/shared/game/RecipeUsage';
+import CodeHikeCode from '@repo/ui/blocks/markdown/CodeHikeCode';
+import CodeTabs from '@repo/ui/blocks/markdown/CodeTabs';
+import DocsLink from '@/components/docs/shared/DocsLink';
+import ExtendedLink from '@/components/docs/shared/ExtendedLink';
+import ExtendedImg from '@/components/docs/shared/ExtendedImg';
+import VideoEmbed from '@/components/docs/shared/VideoEmbed';
 import {
   BrowseResponse,
   ContentItemNameResponse,
@@ -36,7 +36,7 @@ import {
   RecipeTypeResponse,
   ResolvedGameRecipe, ResolvedItem,
   TreeResponse
-} from "@sinytra/wiki-api-types";
+} from '@sinytra/wiki-api-types';
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -135,7 +135,7 @@ async function renderMarkdown(raw: ContentItemResponse | null, ctx: ProjectConte
       a: ExtendedLink.bind(null, ctx),
       img: ExtendedImg.bind(null, ctx),
       Callout, CodeHikeCode, CodeTabs, VideoEmbed
-    }
+    };
 
     const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);
     return {
@@ -167,4 +167,4 @@ export default {
   getContentRecipeObtaining,
   getRecipeType,
   getContentItemName
-}
+};

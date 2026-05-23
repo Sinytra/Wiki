@@ -1,6 +1,6 @@
-import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
-import service from "@/lib/service";
-import {ProjectContext} from "@repo/shared/types/service";
+import ResolvedProjectRecipe from '@/components/docs/shared/game/ResolvedProjectRecipe';
+import service from '@/lib/service';
+import {ProjectContext} from '@repo/shared/types/service';
 
 interface Props {
   id: string;
@@ -18,6 +18,6 @@ async function BoundProjectRecipe({id, ctx}: Props) {
   }
 
   return (
-    <ResolvedProjectRecipe recipe={recipe} ctx={ctx} />
-  )
+    <ResolvedProjectRecipe recipe={recipe} ctx={ctx}/>
+  );
 }

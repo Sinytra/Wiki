@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import {ReactNode} from "react";
-import DocsSubNavBar from "@/components/docs/layout/DocsSubNavBar";
-import {PlatformProject} from "@repo/shared/platforms";
-import {ProjectData} from "@sinytra/wiki-api-types";
+import {ReactNode} from 'react';
+import DocsSubNavBar from '@/components/docs/layout/DocsSubNavBar';
+import {PlatformProject} from '@repo/shared/platforms';
+import {ProjectData} from '@sinytra/wiki-api-types';
 
 interface DocsLayoutClientProps {
   locale: string;
@@ -17,7 +17,7 @@ export default function DocsLayoutClient({project, platformProject, locale, vers
   return (
     <div className="flex flex-col gap-3">
       <div className="h-subnav">
-        <DocsSubNavBar project={project} platformProject={platformProject} locale={locale} version={version} />
+        <DocsSubNavBar project={project} platformProject={platformProject} locale={locale} version={version}/>
       </div>
 
       <div className="flex flex-1 flex-col items-center bg-primary text-primary">

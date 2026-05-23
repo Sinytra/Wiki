@@ -1,6 +1,6 @@
-import * as React from "react";
-import {cn} from "@repo/ui/lib/utils";
-import {useTranslations} from "next-intl";
+import * as React from 'react';
+import {cn} from '@repo/ui/lib/utils';
+import {useTranslations} from 'next-intl';
 
 export default function IconModalSection({name, tKey, icon: Icon, className, values}: {
   name: Parameters<typeof useTranslations>[0];
@@ -22,5 +22,5 @@ export default function IconModalSection({name, tKey, icon: Icon, className, val
         {t.rich(tKey, subs)}
       </span>
     </p>
-  )
+  );
 }

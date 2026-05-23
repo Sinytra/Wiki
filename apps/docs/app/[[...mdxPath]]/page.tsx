@@ -16,7 +16,7 @@ export async function generateStaticParams() {
   return params
     .map(p => {
       if (p.lang != defaultLocale && Array.isArray(p.mdxPath)) {
-        p.mdxPath.unshift(p.lang as any);
+        p.mdxPath.unshift(p.lang as never);
       }
       return p;
     });

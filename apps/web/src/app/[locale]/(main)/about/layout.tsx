@@ -1,7 +1,7 @@
-import {ReactNode, use} from "react";
-import MetaDocsNavigation from "@/components/about/MetaDocsNavigation";
-import {setContextLocale} from "@/lib/locales/routing";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import {ReactNode, use} from 'react';
+import MetaDocsNavigation from '@/components/about/MetaDocsNavigation';
+import {setContextLocale} from '@/lib/locales/routing';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 
 export const dynamic = 'force-static';
 
@@ -26,5 +26,5 @@ export default function AboutLayout(props: { params: Params; children: ReactNode
         {children}
       </div>
     </div>
-  )
+  );
 }

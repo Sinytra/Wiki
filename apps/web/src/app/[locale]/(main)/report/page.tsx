@@ -1,16 +1,16 @@
-import ProjectReportForm from "@/components/docs/form/ProjectReportForm";
-import * as React from "react";
-import {setContextLocale} from "@/lib/locales/routing";
-import {useTranslations} from "next-intl";
-import {handleReportProjectForm} from "@/lib/forms/actions";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import LinkTextButton from "@/components/navigation/link/LinkTextButton";
-import {notFound} from "next/navigation";
-import locales from "@repo/shared/locales";
-import {use} from "react";
-import commonNetwork from "@repo/shared/commonNetwork";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {ReportType} from "@sinytra/wiki-api-types";
+import ProjectReportForm from '@/components/docs/form/ProjectReportForm';
+import * as React from 'react';
+import {setContextLocale} from '@/lib/locales/routing';
+import {useTranslations} from 'next-intl';
+import {handleReportProjectForm} from '@/lib/forms/actions';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import LinkTextButton from '@/components/navigation/link/LinkTextButton';
+import {notFound} from 'next/navigation';
+import locales from '@repo/shared/locales';
+import {use} from 'react';
+import commonNetwork from '@repo/shared/commonNetwork';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {ReportType} from '@sinytra/wiki-api-types';
 
 type Params = Promise<{ locale: string }>;
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -67,11 +67,12 @@ export default function ReportPage(props: { params: Params; searchParams: Search
             {t.rich('contact', {b: (chunks: any) => <span className="font-medium">{chunks}</span>})}
             &nbsp;{t('confidential')}
             &nbsp;{t.rich('privacy', {
-            link: (chunks: any) => (<LocaleNavLink className="font-medium underline" href="/about/privacy">{chunks}</LocaleNavLink>)
+            link: (chunks: any) => (
+              <LocaleNavLink className="font-medium underline" href="/about/privacy">{chunks}</LocaleNavLink>)
           })}
           </span>
         </div>
       </div>
     </div>
-  )
+  );
 }

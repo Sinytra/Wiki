@@ -19,7 +19,7 @@ function readLocalImage(file: any): string | null {
   try {
     const bitmap = fs.readFileSync(file);
     return 'data:image/png;base64,' + Buffer.from(bitmap).toString('base64');
-  } catch (e) {
+  } catch {
     return null;
   }
 }

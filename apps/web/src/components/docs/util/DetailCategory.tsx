@@ -1,4 +1,4 @@
-import {cn} from "@repo/ui/lib/utils";
+import {cn} from '@repo/ui/lib/utils';
 
 export default function DetailCategory({icon: Icon, className, innerClass, children}: {
   icon: any;
@@ -7,7 +7,7 @@ export default function DetailCategory({icon: Icon, className, innerClass, child
   children?: any
 }) {
   return (
-    <div className={cn("flex items-center space-x-2 text-secondary", className)}>
+    <div className={cn('flex items-center space-x-2 text-secondary', className)}>
       <Icon className="h-4 w-4"/>
       <div className={innerClass}>
         {children}

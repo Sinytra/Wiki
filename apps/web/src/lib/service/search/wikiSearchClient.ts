@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
-import {getProcessURL} from "@/lib/utils";
+import {WikiSearchResult, WikiSearchResults} from '@/lib/service/search';
+import {getProcessURL} from '@/lib/utils';
 
 async function searchWiki(query: string): Promise<WikiSearchResults> {
   if (!process.env.NEXT_PUBLIC_SEARCH_ENDPOINT || !process.env.NEXT_PUBLIC_SEARCH_INDEX || !process.env.NEXT_PUBLIC_SEARCH_API_KEY) {
@@ -13,17 +13,17 @@ async function searchWiki(query: string): Promise<WikiSearchResults> {
       query: {
         multi_match: {
           query,
-          type: "bool_prefix",
+          type: 'bool_prefix',
           fields: [
-            "docs_source_mod_only^2",
-            "all_docs_content^1",
-            "all_docs_content._2gram^1",
-            "all_docs_content._3gram^1"
+            'docs_source_mod_only^2',
+            'all_docs_content^1',
+            'all_docs_content._2gram^1',
+            'all_docs_content._3gram^1'
           ]
         }
       },
       stored_fields: [],
-      fields: ["docs_title", "docs_icon", "docs_source_mod", "docs_source_desc", "docs_source_icon", "url_path"],
+      fields: ['docs_title', 'docs_icon', 'docs_source_mod', 'docs_source_desc', 'docs_source_icon', 'url_path'],
       size: 8,
       _source: false
     };
@@ -62,7 +62,7 @@ async function searchWiki(query: string): Promise<WikiSearchResults> {
         return {
           total: body.hits.total.value || 0,
           hits: mappedHits
-        }
+        };
       }
     } else {
       throw new Error(results.status.toString());
@@ -76,4 +76,4 @@ async function searchWiki(query: string): Promise<WikiSearchResults> {
 
 export default {
   searchWiki
-}
+};

@@ -1,7 +1,7 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import platforms from "@repo/shared/platforms";
-import {getTranslations} from "next-intl/server";
-import {useTranslations} from "next-intl";
+import {setContextLocale} from '@/lib/locales/routing';
+import platforms from '@repo/shared/platforms';
+import {getTranslations} from 'next-intl/server';
+import {useTranslations} from 'next-intl';
 import {
   AlertCircleIcon,
   CheckIcon,
@@ -14,28 +14,28 @@ import {
   LoaderCircleIcon,
   LockIcon,
   XIcon
-} from "lucide-react";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {Button} from "@repo/ui/components/button";
-import {format} from "date-fns";
-import {ProjectHostingPlatforms, ProjectTypeIcons} from "@/lib/project/projectTypes";
-import GetStartedContextProvider from "@/components/dashboard/dev/get-started/GetStartedContextProvider";
-import {cn} from "@repo/ui/lib/utils";
-import * as React from "react";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import DevProjectSectionTitle from "@/components/dashboard/dev/project/DevProjectSectionTitle";
-import ProjectGitRevision from "@/components/dashboard/dev/project/ProjectGitRevision";
-import {ProjectPlatform} from "@repo/shared/types/platform";
-import {DevProjectData} from "@sinytra/wiki-api-types";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectStatus} from "@sinytra/wiki-api-types";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import navigation from "@/lib/navigation";
-import DataField from "@/components/util/DataField";
-import NewProjectBanner from "@/components/dashboard/dev/banner/NewProjectBanner";
+} from 'lucide-react';
+import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import {Button} from '@repo/ui/components/button';
+import {format} from 'date-fns';
+import {ProjectHostingPlatforms, ProjectTypeIcons} from '@/lib/project/projectTypes';
+import GetStartedContextProvider from '@/components/dashboard/dev/get-started/GetStartedContextProvider';
+import {cn} from '@repo/ui/lib/utils';
+import * as React from 'react';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import DevProjectSectionTitle from '@/components/dashboard/dev/project/DevProjectSectionTitle';
+import ProjectGitRevision from '@/components/dashboard/dev/project/ProjectGitRevision';
+import {ProjectPlatform} from '@repo/shared/types/platform';
+import {DevProjectData} from '@sinytra/wiki-api-types';
+import {handleApiCall} from '@/lib/service/serviceUtil';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import {ProjectStatus} from '@sinytra/wiki-api-types';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import LiveProjectDeployConnection from '@/components/dashboard/dev/project/LiveProjectDeployConnection';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import navigation from '@/lib/navigation';
+import DataField from '@/components/util/DataField';
+import NewProjectBanner from '@/components/dashboard/dev/banner/NewProjectBanner';
 
 export const dynamic = 'force-dynamic';
 
@@ -58,7 +58,7 @@ async function ProjectPlatforms({project}: { project: DevProjectData }) {
         {...entries}
       </div>
     </div>
-  )
+  );
 }
 
 function ProjectInfo({project}: { project: DevProjectData }) {
@@ -92,7 +92,7 @@ function ProjectInfo({project}: { project: DevProjectData }) {
                    value={project.is_public ? 'Public' : 'Private'}/>
       </div>
     </div>
-  )
+  );
 }
 
 async function ProfileProject({project}: { project: DevProjectData }) {
@@ -145,7 +145,7 @@ async function ProfileProject({project}: { project: DevProjectData }) {
         <ProjectPlatforms project={project}/>
       </div>
     </div>
-  )
+  );
 }
 
 export default async function DevProjectDataPage(props: { params: Promise<{ locale: string; project: string }> }) {
@@ -161,5 +161,5 @@ export default async function DevProjectDataPage(props: { params: Promise<{ loca
 
       <ProfileProject project={project}/>
     </GetStartedContextProvider>
-  )
+  );
 }

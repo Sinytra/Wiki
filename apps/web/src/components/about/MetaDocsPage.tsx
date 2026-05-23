@@ -1,4 +1,4 @@
-import {notFound} from "next/navigation";
+import {notFound} from 'next/navigation';
 
 export default async function MetaDocsPage({name, locale}: { name: string; locale: string }) {
   try {

@@ -1,11 +1,11 @@
-import PageLink from "@/components/docs/PageLink";
-import {getDocsLink} from "@/lib/project/game/content";
-import {ComponentPropsWithoutRef} from "react";
-import {FileTree, ProjectContext} from "@repo/shared/types/service";
-import {FileTreeEntry} from "@sinytra/wiki-api-types";
-import service from "@/lib/service";
-import {getTranslations} from "next-intl/server";
-import {LocaleLink} from "@/lib/locales/routing";
+import PageLink from '@/components/docs/PageLink';
+import {getDocsLink} from '@/lib/project/game/content';
+import {ComponentPropsWithoutRef} from 'react';
+import {FileTree, ProjectContext} from '@repo/shared/types/service';
+import {FileTreeEntry} from '@sinytra/wiki-api-types';
+import service from '@/lib/service';
+import {getTranslations} from 'next-intl/server';
+import {LocaleLink} from '@/lib/locales/routing';
 
 type LinkProps = Omit<ComponentPropsWithoutRef<typeof LocaleLink>, 'href'> & { path: string; ctx: ProjectContext };
 
@@ -59,5 +59,5 @@ async function BoundDocsLink(props: LinkProps) {
     <PageLink {...props} href={link}>
       {body || props.id}
     </PageLink>
-  )
+  );
 }

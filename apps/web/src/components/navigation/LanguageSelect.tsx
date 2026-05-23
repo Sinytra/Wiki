@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import styles from "@/components/navigation/header/style.module.css";
-import {Check, ChevronDown, Globe, LanguagesIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {usePathname} from "@/lib/locales/routing";
+import styles from '@/components/navigation/header/style.module.css';
+import {Check, ChevronDown, Globe, LanguagesIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import {usePathname} from '@/lib/locales/routing';
 import {useRouter} from '@bprogress/next';
-import * as React from "react";
-import {useState} from "react";
-import {cn} from "@repo/ui/lib/utils";
-import {Popover, PopoverContent, PopoverTrigger} from "@repo/ui/components/popover";
-import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@repo/ui/components/command";
-import {useTranslations} from "next-intl";
-import {DEFAULT_LOCALE} from "@repo/shared/constants";
-import CountryFlag from "@repo/ui/util/CountryFlag";
-import {default as available, Language} from "@repo/shared/locales";
+import * as React from 'react';
+import {useState} from 'react';
+import {cn} from '@repo/ui/lib/utils';
+import {Popover, PopoverContent, PopoverTrigger} from '@repo/ui/components/popover';
+import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from '@repo/ui/components/command';
+import {useTranslations} from 'next-intl';
+import {DEFAULT_LOCALE} from '@repo/shared/constants';
+import CountryFlag from '@repo/ui/util/CountryFlag';
+import {default as available, Language} from '@repo/shared/locales';
 
 export default function LanguageSelect({locale, locales, mobile, minimal}: {
   locale: string;
@@ -77,25 +77,25 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
               <Button variant="outline" role="combobox" aria-expanded={open} className={`
                 justify-between border-none bg-transparent px-2 py-1
               `}>
-                  <LanguagesIcon className="h-5 w-5"/>
-                  {mobile &&
-                    <div className="mr-2 ml-3 inline-flex gap-2">
-                      <CountryFlag className="rounded-xs!" flag={selectedLang.icon}/>
-                      {selectedLang.name}
-                    </div>
-                  }
-                  <ChevronDown
-                    data-state={open ? 'open' : 'closed'}
-                    className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 data-[state=open]:rotate-180"
-                    aria-hidden="true"
-                  />
+                <LanguagesIcon className="h-5 w-5"/>
+                {mobile &&
+                  <div className="mr-2 ml-3 inline-flex gap-2">
+                    <CountryFlag className="rounded-xs!" flag={selectedLang.icon}/>
+                    {selectedLang.name}
+                  </div>
+                }
+                <ChevronDown
+                  data-state={open ? 'open' : 'closed'}
+                  className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 data-[state=open]:rotate-180"
+                  aria-hidden="true"
+                />
               </Button>
             }
           </PopoverTrigger>
           <PopoverContent align={mobile ? 'start' : 'end'}
                           onOpenAutoFocus={(e) => e.preventDefault()}
                           className={cn('pointer-events-auto! p-0', !mobile && 'w-48 sm:w-48',
-                                        minimal && 'w-[var(--radix-popover-trigger-width)]')}>
+                            minimal && 'w-[var(--radix-popover-trigger-width)]')}>
             <Command value={value} defaultValue={value}>
               <CommandInput placeholder={t('placeholder')}/>
               <CommandList
@@ -117,17 +117,17 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
                         value={actualId}
                         className={cn(`
                           inline-flex w-full items-center justify-start gap-3 hover:bg-secondary hover:text-primary-alt
-                        `, value == actualId && `pointer-events-none`)}
+                        `, value == actualId && 'pointer-events-none')}
                         onSelect={(currentValue) => {
-                          setValue(currentValue === value ? "" : currentValue);
+                          setValue(currentValue === value ? '' : currentValue);
                           setOpen(false);
                           changeLocale(currentValue);
                         }}
                       >
                         <CountryFlag flag={icon}/> {name}
-                        <Check className={cn("ml-auto h-4 w-4", value === actualId ? "opacity-100" : "opacity-0")}/>
+                        <Check className={cn('ml-auto h-4 w-4', value === actualId ? 'opacity-100' : 'opacity-0')}/>
                       </CommandItem>
-                    )
+                    );
                   })}
                 </CommandGroup>
               </CommandList>
@@ -136,5 +136,5 @@ export default function LanguageSelect({locale, locales, mobile, minimal}: {
         </Popover>
       </div>
     </div>
-  )
+  );
 }

@@ -1,10 +1,10 @@
-import * as React from "react";
-import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import {useTranslations} from "next-intl";
-import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
-import {DevProjectVersions} from "@repo/shared/types/service";
-import {ProjectVersionData} from "@sinytra/wiki-api-types";
+import * as React from 'react';
+import {ordinalColumn, TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import {useTranslations} from 'next-intl';
+import DevProjectTableEmptyState from '@/components/dashboard/dev/table/DevProjectTableEmptyState';
+import {DevProjectVersions} from '@repo/shared/types/service';
+import {ProjectVersionData} from '@sinytra/wiki-api-types';
 
 function EmptyPlaceholder() {
   const t = useTranslations('DevProjectVersionsTable.empty');
@@ -15,7 +15,7 @@ function EmptyPlaceholder() {
         {t('title')}
       </p>
     </DevProjectTableEmptyState>
-  )
+  );
 }
 
 export default function DevProjectVersionsTable({data, page}: {
@@ -44,5 +44,5 @@ export default function DevProjectVersionsTable({data, page}: {
 
   return (
     <DataTable columns={columns} data={data} page={page} emptyState={<EmptyPlaceholder/>}/>
-  )
+  );
 }

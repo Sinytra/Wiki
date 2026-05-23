@@ -1,5 +1,5 @@
-import {Changelog, FullChangelogEntry} from "@repo/shared/types/metadata";
-import {useTranslations} from "next-intl";
+import {Changelog, FullChangelogEntry} from '@repo/shared/types/metadata';
+import {useTranslations} from 'next-intl';
 
 interface ChangelogProps {
   changelog: Changelog;
@@ -36,6 +36,6 @@ export default function DocsChangelogPage({changelog}: ChangelogProps) {
         </div>
       ))}
     </div>
-  )
+  );
 }
 

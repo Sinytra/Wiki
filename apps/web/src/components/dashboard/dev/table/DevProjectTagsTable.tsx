@@ -1,10 +1,10 @@
-import * as React from "react";
-import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import {useTranslations} from "next-intl";
-import {ProjectVersions} from "@repo/shared/types/service";
-import {FullTagData, PaginatedData} from "@sinytra/wiki-api-types";
-import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
+import * as React from 'react';
+import {ordinalColumn, TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import {useTranslations} from 'next-intl';
+import {ProjectVersions} from '@repo/shared/types/service';
+import {FullTagData, PaginatedData} from '@sinytra/wiki-api-types';
+import DevProjectTableEmptyState from '@/components/dashboard/dev/table/DevProjectTableEmptyState';
 
 function EmptyPlaceholder() {
   const t = useTranslations('DevProjectTagsTable.empty');
@@ -15,7 +15,7 @@ function EmptyPlaceholder() {
         {t('title')}
       </p>
     </DevProjectTableEmptyState>
-  )
+  );
 }
 
 export default function DevProjectTagsTable({data, versions, page}: {
@@ -47,5 +47,5 @@ export default function DevProjectTagsTable({data, versions, page}: {
     <DataTable columns={columns} data={data} versions={versions} page={page}
                linker={r => `tags/${encodeURIComponent(r.id)}`} emptyState={<EmptyPlaceholder/>}
     />
-  )
+  );
 }

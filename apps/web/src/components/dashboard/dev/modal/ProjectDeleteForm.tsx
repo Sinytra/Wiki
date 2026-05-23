@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import {Button} from "@repo/ui/components/button";
-import {TrashIcon} from "lucide-react";
-import * as React from "react";
-import {useTranslations} from "next-intl";
-import GenericDeleteModal from "@/components/modal/GenericDeleteModal";
-import {FormActionResult} from "@/lib/forms/forms";
+import {Button} from '@repo/ui/components/button';
+import {TrashIcon} from 'lucide-react';
+import * as React from 'react';
+import {useTranslations} from 'next-intl';
+import GenericDeleteModal from '@/components/modal/GenericDeleteModal';
+import {FormActionResult} from '@/lib/forms/forms';
 
 interface Properties {
   formAction: () => Promise<FormActionResult>;
@@ -29,5 +29,5 @@ export default function ProjectDeleteForm({formAction, redirectTo}: Properties) 
       formAction={formAction}
       redirectTo={redirectTo}
     />
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import {ReactNode} from "react";
-import {setContextLocale} from "@/lib/locales/routing";
-import Header from "@/components/navigation/header";
-import Footer from "@/components/navigation/Footer";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import {ReactNode} from 'react';
+import {setContextLocale} from '@/lib/locales/routing';
+import Header from '@/components/navigation/header';
+import Footer from '@/components/navigation/Footer';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 
 export const dynamic = 'force-static';
 
@@ -29,5 +29,5 @@ export default function BlogLayout({children}: Readonly<{ children: ReactNode }>
         <Footer/>
       </ClientLocaleProvider>
     </>
-  )
+  );
 }

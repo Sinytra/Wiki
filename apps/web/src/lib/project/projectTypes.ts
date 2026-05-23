@@ -32,12 +32,12 @@ import {
   UnplugIcon,
   WandIcon,
   ZapIcon
-} from "lucide-react";
-import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
-import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
-import {ElementType} from "react";
-import {ProjectPlatform} from "@repo/shared/types/platform";
-import {ProjectType} from "@sinytra/wiki-api-types";
+} from 'lucide-react';
+import CurseForgeIcon from '@repo/ui/icons/CurseForgeIcon';
+import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
+import {ElementType} from 'react';
+import {ProjectPlatform} from '@repo/shared/types/platform';
+import {ProjectType} from '@sinytra/wiki-api-types';
 
 export const ProjectHostingPlatforms: { [key in ProjectPlatform]: { name: string; icon: ElementType } } = {
   curseforge: {name: 'CurseForge', icon: CurseForgeIcon},
@@ -52,7 +52,7 @@ export const ProjectCategories: { [key: string]: any } = {
   economy: DollarSignIcon,
   equipment: SwordsIcon,
   food: CarrotIcon,
-  "game-mechanics": SlidersVerticalIcon,
+  'game-mechanics': SlidersVerticalIcon,
   library: BookIcon,
   magic: WandIcon,
   management: ServerIcon,
@@ -85,7 +85,7 @@ export const ProjectCategories: { [key: string]: any } = {
   redstone: CircuitBoardIcon,
   'utility-qol': BriefcaseIcon,
   'mc-creator': BiohazardIcon,
-}
+};
 
 export const ProjectTypeIcons: { [key in ProjectType]: any } = {
   mod: BoxIcon,
@@ -94,4 +94,4 @@ export const ProjectTypeIcons: { [key in ProjectType]: any } = {
   datapack: BracesIcon,
   shader: SwatchBookIcon,
   plugin: UnplugIcon
-}
+};

@@ -1,14 +1,14 @@
-import * as React from "react";
-import {useTranslations} from "next-intl";
-import {DeploymentStatus} from "@sinytra/wiki-api-types";
-import LoadingIndicator from "@repo/ui/components/indicator/LoadingIndicator";
+import * as React from 'react';
+import {useTranslations} from 'next-intl';
+import {DeploymentStatus} from '@sinytra/wiki-api-types';
+import LoadingIndicator from '@repo/ui/components/indicator/LoadingIndicator';
 
 function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
   return (
     <>
       {status == 'created' &&
         <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-blue-400"/>
+          <div className="size-2.5 rounded-full bg-blue-400"/>
         </div>
       }
       {status == 'loading' &&
@@ -16,16 +16,16 @@ function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
       }
       {status == 'success' &&
         <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-green-400"/>
+          <div className="size-2.5 rounded-full bg-green-400"/>
         </div>
       }
       {status == 'error' &&
         <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-destructive"/>
+          <div className="size-2.5 rounded-full bg-destructive"/>
         </div>
       }
     </>
-  )
+  );
 }
 
 export default function DeploymentStatusInfo({status}: { status: DeploymentStatus }) {
@@ -38,5 +38,5 @@ export default function DeploymentStatusInfo({status}: { status: DeploymentStatu
         {t(status)}
       </span>
     </div>
-  )
+  );
 }

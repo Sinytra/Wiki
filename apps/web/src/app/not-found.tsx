@@ -1,6 +1,6 @@
-import {Button} from "@repo/ui/components/button";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {HouseIcon, TelescopeIcon} from "lucide-react";
+import {Button} from '@repo/ui/components/button';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import {HouseIcon, TelescopeIcon} from 'lucide-react';
 
 export default function NotFound() {
   return (
@@ -15,10 +15,10 @@ export default function NotFound() {
 
       <Button asChild className="mt-4">
         <NavLink href="/">
-          <HouseIcon className="mr-2 h-4 w-4" />
+          <HouseIcon className="mr-2 h-4 w-4"/>
           Return Home
         </NavLink>
       </Button>
     </div>
-  )
+  );
 }

@@ -1,10 +1,10 @@
-import {DEFAULT_DOCS_VERSION} from "@repo/shared/constants";
-import {SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
-import {Tag} from "lucide-react";
-import DocsVersionSelectWrapper from "@/components/docs/versions/DocsVersionSelectWrapper";
-import {useTranslations} from "next-intl";
+import {DEFAULT_DOCS_VERSION} from '@repo/shared/constants';
+import {SelectContent, SelectItem, SelectTrigger, SelectValue} from '@repo/ui/components/select';
+import {Tag} from 'lucide-react';
+import DocsVersionSelectWrapper from '@/components/docs/versions/DocsVersionSelectWrapper';
+import {useTranslations} from 'next-intl';
 
-import {ProjectVersions} from "@repo/shared/types/service";
+import {ProjectVersions} from '@repo/shared/types/service';
 
 export default function DocsVersionSelector({version, versions}: { version: string; versions: ProjectVersions }) {
   const t = useTranslations('DocsVersionSelector');
@@ -30,5 +30,5 @@ export default function DocsVersionSelector({version, versions}: { version: stri
         ))}
       </SelectContent>
     </DocsVersionSelectWrapper>
-  )
+  );
 }

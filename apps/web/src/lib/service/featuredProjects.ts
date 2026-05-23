@@ -1,8 +1,8 @@
-import platforms, {IdentifiableProject, PlatformProject} from "@repo/shared/platforms";
-import {ProjectPlatform} from "@repo/shared/types/platform";
-import projectApi from "@/lib/service/api/projectApi";
-import posthog from "@/lib/service/external/posthog";
-import {ProjectType} from "@sinytra/wiki-api-types";
+import platforms, {IdentifiableProject, PlatformProject} from '@repo/shared/platforms';
+import {ProjectPlatform} from '@repo/shared/types/platform';
+import projectApi from '@/lib/service/api/projectApi';
+import posthog from '@/lib/service/external/posthog';
+import {ProjectType} from '@sinytra/wiki-api-types';
 
 export interface FeaturedProject {
   id: string;
@@ -37,12 +37,18 @@ async function getFeaturedProjects(): Promise<FeaturedProject[]> {
   }
 }
 
-async function resolveProject<T extends TypedIdProject>(project: T): Promise<{project: T, resolved: PlatformProject}> {
+async function resolveProject<T extends TypedIdProject>(project: T): Promise<{
+  project: T,
+  resolved: PlatformProject
+}> {
   const resolved = await platforms.getPlatformProject(project);
-  return {project, resolved}
+  return {project, resolved};
 }
 
-async function constructFeaturedProject<T extends TypedIdProject>({project, resolved}: {project: T, resolved: PlatformProject}): Promise<FeaturedProject> {
+async function constructFeaturedProject<T extends TypedIdProject>({project, resolved}: {
+  project: T,
+  resolved: PlatformProject
+}): Promise<FeaturedProject> {
   const links = await getProjectLinks(project, resolved.source_url);
 
   return {
@@ -55,7 +61,7 @@ async function constructFeaturedProject<T extends TypedIdProject>({project, reso
   };
 }
 
-async function getProjectLinks<T extends TypedIdProject>(project: T, sourceUrl?: string): Promise<FeaturedProject["links"]> {
+async function getProjectLinks<T extends TypedIdProject>(project: T, sourceUrl?: string): Promise<FeaturedProject['links']> {
   const entries: any = {};
   for (const [key, value] of Object.entries(project.platforms)) {
     entries[key] = platforms.getProjectURL(key as ProjectPlatform, value, project.type);
@@ -68,4 +74,4 @@ async function getProjectLinks<T extends TypedIdProject>(project: T, sourceUrl?:
 
 export default {
   getFeaturedProjects
-}
+};

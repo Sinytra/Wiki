@@ -1,8 +1,8 @@
-import * as React from "react";
-import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
-import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import {PaginatedData, ReportInfo} from "@sinytra/wiki-api-types";
-import {useTranslations} from "next-intl";
+import * as React from 'react';
+import {TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import DataTable from '@repo/ui/blocks/data-table/DataTable';
+import {PaginatedData, ReportInfo} from '@sinytra/wiki-api-types';
+import {useTranslations} from 'next-intl';
 
 export default function AdminReportsTable({data, page}: {
   data: PaginatedData<ReportInfo>;
@@ -59,5 +59,5 @@ export default function AdminReportsTable({data, page}: {
   return (
     <DataTable columns={columns} data={data} page={page}
                linker={r => `reports/${encodeURIComponent(r.id)}`}/>
-  )
+  );
 }

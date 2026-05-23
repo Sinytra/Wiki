@@ -5,18 +5,18 @@ import {
   AccessKeyInfo,
   PaginatedData,
   SystemInfoResponse, DataMigration
-} from "@sinytra/wiki-api-types";
-import network from "@repo/shared/network";
+} from '@sinytra/wiki-api-types';
+import network from '@repo/shared/network';
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
-import {z} from "zod";
-import {createAccessKeySchema} from "@/lib/forms/schemas";
+import {z} from 'zod';
+import {createAccessKeySchema} from '@/lib/forms/schemas';
 
 async function getSystemInfo(parameters: ApiRouteParameters): Promise<ApiCallResult<SystemInfoResponse>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest('system/info', { parameters }));
+  return network.resolveApiCall(() => network.sendSimpleRequest('system/info', {parameters}));
 }
 
 async function getDataImports(parameters: ApiRouteParameters): Promise<ApiCallResult<PaginatedData<DataImportInfo>>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest('system/imports', { parameters }));
+  return network.resolveApiCall(() => network.sendSimpleRequest('system/imports', {parameters}));
 }
 
 async function getDataMigrations(): Promise<ApiCallResult<DataMigration[]>> {
@@ -24,15 +24,15 @@ async function getDataMigrations(): Promise<ApiCallResult<DataMigration[]>> {
 }
 
 async function runDataMigration(id: string): Promise<ApiCallResult> {
-  return network.resolveApiCall(() => network.sendSimpleRequest(`system/migrate/${id}`, { method: 'POST' }));
+  return network.resolveApiCall(() => network.sendSimpleRequest(`system/migrate/${id}`, {method: 'POST'}));
 }
 
 async function getAccessKeys(parameters: ApiRouteParameters): Promise<ApiCallResult<PaginatedData<AccessKeyInfo>>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest('system/keys', { parameters }));
+  return network.resolveApiCall(() => network.sendSimpleRequest('system/keys', {parameters}));
 }
 
 async function createAccessKey(body: z.infer<typeof createAccessKeySchema>): Promise<ApiCallResult<CreateAccessKeyResponse>> {
-  return network.resolveApiCall(() => network.sendDataRequest('system/keys', { body }));
+  return network.resolveApiCall(() => network.sendDataRequest('system/keys', {body}));
 }
 
 async function deleteAccessKey(id: number): Promise<ApiCallResult> {
@@ -40,7 +40,7 @@ async function deleteAccessKey(id: number): Promise<ApiCallResult> {
 }
 
 async function getAllProjects(parameters: ApiRouteParameters): Promise<ApiCallResult<PaginatedData<AdminProjectInfo>>> {
-  return network.resolveApiCall(() => network.sendSimpleRequest('system/projects', { parameters }));
+  return network.resolveApiCall(() => network.sendSimpleRequest('system/projects', {parameters}));
 }
 
 export default {
@@ -52,4 +52,4 @@ export default {
   createAccessKey,
   deleteAccessKey,
   getAllProjects
-}
+};

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import {Children, cloneElement, createContext, isValidElement, ReactNode, useState} from "react";
+import {Children, cloneElement, createContext, isValidElement, ReactNode, useState} from 'react';
 
 export interface HoverContextData {
   hover: boolean;
@@ -29,5 +29,5 @@ export default function HoverContextProvider({children}: { children: ReactNode }
         {enhanceChildren}
       </>
     </HoverContext.Provider>
-  )
+  );
 }

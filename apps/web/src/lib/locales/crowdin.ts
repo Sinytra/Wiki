@@ -1,5 +1,5 @@
-import locales from "@repo/shared/locales";
-import {time} from "@repo/shared/constants";
+import locales from '@repo/shared/locales';
+import {time} from '@repo/shared/constants';
 
 interface CrowdinResponse<T> {
   data: T
@@ -43,4 +43,4 @@ async function getCrowdinTranslationStatus(lang: string): Promise<number> {
 
 export default {
   getCrowdinTranslationStatus
-}
+};

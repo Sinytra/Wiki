@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import {XIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {FormActionResult, useFormHandlingAction} from "@/lib/forms/forms";
-import {useForm} from "react-hook-form";
-import {emptySchema} from "@/lib/forms/schemas";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useRouter} from "@/lib/locales/routing";
-import {z} from "zod";
-import {Form} from "@repo/ui/components/form";
+import {XIcon} from 'lucide-react';
+import {Button} from '@repo/ui/components/button';
+import {FormActionResult, useFormHandlingAction} from '@/lib/forms/forms';
+import {useForm} from 'react-hook-form';
+import {emptySchema} from '@/lib/forms/schemas';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {useRouter} from '@/lib/locales/routing';
+import {z} from 'zod';
+import {Form} from '@repo/ui/components/form';
 
 interface Props {
   formAction: () => Promise<FormActionResult>;
@@ -31,5 +31,5 @@ export default function DismissBannerButton({formAction}: Props) {
         </Button>
       </form>
     </Form>
-  )
+  );
 }
