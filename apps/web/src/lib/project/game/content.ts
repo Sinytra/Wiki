@@ -1,7 +1,8 @@
 import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
 
-import {ProjectContext, ResolvedItem} from "@repo/shared/types/service";
+import {ProjectContext} from "@repo/shared/types/service";
 import {ProjectRouteParams} from "@repo/shared/types/routes";
+import {ResolvedItem} from "@sinytra/wiki-api-types";
 
 function encodeID(id: string) {
   return id.includes('/') ? encodeURIComponent(id) : id;

@@ -14,7 +14,7 @@ import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import ModVersionRange from "@/components/docs/ModVersionRange";
 import {getTranslations} from "next-intl/server";
 import {resolveSoft, trimText} from "@/lib/utils";
-import {BaseProject} from "@repo/shared/types/service";
+import {BrowseProject as BrowseProjectData} from "@sinytra/wiki-api-types";
 import navigation from "@/lib/navigation";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 
@@ -75,7 +75,7 @@ async function ProjectGameVersions({project}: { project: Promise<PlatformProject
     : <ModVersionRange versions={projectContent.game_versions}/>;
 }
 
-async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<PlatformProject> }) {
+async function ProjectMetaInfo({base, project}: { base: BrowseProjectData, project: Promise<PlatformProject> }) {
   const promise = resolveSoft(project);
   const u = await getTranslations('ProjectTypes');
   const TypeIcon = ProjectTypeIcons[base.type];
@@ -129,7 +129,7 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
   )
 }
 
-export default function BrowseProject({project}: { project: BaseProject }) {
+export default function BrowseProject({project}: { project: BrowseProjectData }) {
   const platformProject = platforms.getPlatformProject(project);
 
   return (

@@ -1,15 +1,15 @@
 import * as React from "react";
-import {DataImport, DataImports} from "@repo/shared/types/api/admin";
+import {DataImportInfo, PaginatedData} from "@sinytra/wiki-api-types";
 import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import UpdateGameDataModal from "@/components/dashboard/admin/modal/UpdateGameDataModal";
 
 export default function AdminDataImportsTable({data, page}: {
-  data: DataImports;
+  data: PaginatedData<DataImportInfo>;
   page: number;
 }) {
-  const columns: TableColumn<DataImport>[] = [
+  const columns: TableColumn<DataImportInfo>[] = [
     {
       id: 'id',
       header: 'ID',

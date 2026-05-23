@@ -1,7 +1,7 @@
 import platforms, {PlatformProject, PlatformProjectAuthor} from "@repo/shared/platforms";
 import {getTranslations} from "next-intl/server";
-import {ProjectLicense, ProjectWithInfo} from "@repo/shared/types/service";
 import spdxLicenseList from "spdx-license-list";
+import {ProjectData, ProjectLicense} from "@sinytra/wiki-api-types";
 
 const ARRNoLicense: string = 'LicenseRef-All-Rights-Reserved';
 
@@ -31,7 +31,7 @@ function resolveLicense(license: ProjectLicense | undefined, fallbackName: strin
     return null;
   }
 
-  if ('id' in license) {
+  if (license.id) {
     const spdxLicense = spdxLicenseList[license.id];
     // Backend should ensure this doesn't happen
     if (!spdxLicense) {
@@ -42,14 +42,14 @@ function resolveLicense(license: ProjectLicense | undefined, fallbackName: strin
     return { name: spdxLicense.name, url: actualUrl };
   }
 
-  if ('name' in license) {
+  if (license.name) {
     return { name: license.name, url: license.url || null };
   }
 
   return null;
 }
 
-function getProjectLicenseInfo(project: ProjectWithInfo, platformProject: PlatformProject, t: (s: string) => string): ResolvedLicenses {
+function getProjectLicenseInfo(project: ProjectData, platformProject: PlatformProject, t: (s: string) => string): ResolvedLicenses {
   const customLicenseName = t('license.custom');
 
   // Use user-defined license
@@ -93,7 +93,7 @@ function getProjectLicenseInfo(project: ProjectWithInfo, platformProject: Platfo
   return { project: null };
 }
 
-async function getPlatformProjectInformation(project: ProjectWithInfo, platformProject: PlatformProject): Promise<ProjectDisplayInformation> {
+async function getPlatformProjectInformation(project: ProjectData, platformProject: PlatformProject): Promise<ProjectDisplayInformation> {
   const authors = await platforms.getProjectAuthors(platformProject);
   const t = await getTranslations('DocsProjectInfo');
 

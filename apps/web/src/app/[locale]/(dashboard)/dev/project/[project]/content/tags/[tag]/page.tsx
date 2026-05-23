@@ -65,7 +65,7 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
       </DevBreadcrumb>
 
       <DevProjectItemsTable data={content}
-                            versions={project.versions || []}
+                            versions={[] /* TODO: re-add project.versions when DevProjectData exposes it */}
                             ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
                             page={page}
                             emptyState={<EmptyItemTableTagState />}

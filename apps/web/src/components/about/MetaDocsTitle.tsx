@@ -1,7 +1,7 @@
-import {Project} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 
 interface Props {
-  project?: Project;
+  project?: ProjectData;
   children?: any;
 }
 

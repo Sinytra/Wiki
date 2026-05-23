@@ -1,7 +1,12 @@
 import {MarkdownError} from '@repo/markdown';
-import {Project} from '@repo/shared/types/service';
 import network from '@repo/shared/network';
-import {ProjectError, ProjectIssue, ProjectIssueLevel, ProjectIssueType} from '@repo/shared/types/api/project';
+import {
+  ProjectError,
+  ProjectData,
+  ProjectIssueInfo,
+  ProjectIssueLevel,
+  ProjectIssueType
+} from '@sinytra/wiki-api-types';
 import {ProjectPlatform} from '@repo/shared/types/platform';
 import platforms from '@repo/shared/platforms';
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
@@ -14,13 +19,13 @@ interface AddProjectIssueRequest {
   details: string;
 }
 
-async function reportPageRenderFailure(project: Project, path: string, error: any, version: string | null, locale: string | null) {
+async function reportPageRenderFailure(project: ProjectData, path: string, error: any, version: string | null, locale: string | null) {
   if (project.local) return;
 
   const details = error instanceof MarkdownError ? error.details : error.toString();
 
   await addProjectIssue(project.id, {
-    level: ProjectIssueLevel.ERROR,
+    level: 'error',
     type: 'page',
     subject: 'page_render',
     path,
@@ -28,13 +33,13 @@ async function reportPageRenderFailure(project: Project, path: string, error: an
   }, {version, locale});
 }
 
-async function reportMissingPlatformProject(project: Project, platform: ProjectPlatform) {
+async function reportMissingPlatformProject(project: ProjectData, platform: ProjectPlatform) {
   if (project.local) return;
 
   const projectLink = platforms.getProjectURL(platform, project.platforms[platform]!, project.type);
 
   await addProjectIssue(project.id, {
-    level: ProjectIssueLevel.ERROR,
+    level: 'error',
     type: 'meta',
     subject: 'missing_platform_project',
     details: `${platform}: ${project.platforms[platform]} (${projectLink})`
@@ -45,7 +50,7 @@ async function addProjectIssue(id: string, body: AddProjectIssueRequest, paramet
   return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${id}/issues`, {parameters, body}));
 }
 
-async function getProjectIssues(projectId: string): Promise<ApiCallResult<ProjectIssue[]>> {
+async function getProjectIssues(projectId: string): Promise<ApiCallResult<ProjectIssueInfo[]>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/issues`));
 }
 

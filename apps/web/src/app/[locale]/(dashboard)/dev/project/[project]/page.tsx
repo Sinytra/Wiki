@@ -26,10 +26,10 @@ import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPa
 import DevProjectSectionTitle from "@/components/dashboard/dev/project/DevProjectSectionTitle";
 import ProjectGitRevision from "@/components/dashboard/dev/project/ProjectGitRevision";
 import {ProjectPlatform} from "@repo/shared/types/platform";
-import {DevProject, Project, ProjectFlag} from "@repo/shared/types/service";
+import {DevProjectData} from "@sinytra/wiki-api-types";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectStatus} from "@repo/shared/types/api/project";
+import {ProjectStatus} from "@sinytra/wiki-api-types";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
@@ -39,7 +39,7 @@ import NewProjectBanner from "@/components/dashboard/dev/banner/NewProjectBanner
 
 export const dynamic = 'force-dynamic';
 
-async function ProjectPlatforms({project}: { project: Project }) {
+async function ProjectPlatforms({project}: { project: DevProjectData }) {
   const t = await getTranslations('DevProjectPage.platforms');
 
   const entries = await Promise.all(Object.keys(project.platforms).map(async platform => {
@@ -61,20 +61,20 @@ async function ProjectPlatforms({project}: { project: Project }) {
   )
 }
 
-function ProjectInfo({project}: { project: Project }) {
+function ProjectInfo({project}: { project: DevProjectData }) {
   const t = useTranslations('DevProjectPage.information');
   const u = useTranslations('ProjectStatus');
   const v = useTranslations('ProjectTypes');
   const TypeIcon = ProjectTypeIcons[project.type];
 
-  const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectStatus.HEALTHY]: {text: 'text-[var(--vp-c-success-2)]', icon: CheckIcon},
-    [ProjectStatus.AT_RISK]: {text: 'text-[var(--vp-c-danger-1)]', icon: AlertCircleIcon},
-    [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
-    [ProjectStatus.ERROR]: {text: 'text-destructive', icon: XIcon},
-    [ProjectStatus.UNKNOWN]: {text: 'text-secondary', icon: HelpCircleIcon}
+  const statuses: { [key in ProjectStatus | 'unknown']: { text: string; icon: any, iconClass?: string; } } = {
+    healthy: {text: 'text-[var(--vp-c-success-2)]', icon: CheckIcon},
+    at_risk: {text: 'text-[var(--vp-c-danger-1)]', icon: AlertCircleIcon},
+    loading: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
+    error: {text: 'text-destructive', icon: XIcon},
+    unknown: {text: 'text-secondary', icon: HelpCircleIcon}
   };
-  const status = project.status || ProjectStatus.UNKNOWN;
+  const status = project.status || 'unknown';
   const StatusIcon = statuses[status].icon;
 
   return (
@@ -95,7 +95,7 @@ function ProjectInfo({project}: { project: Project }) {
   )
 }
 
-async function ProfileProject({project}: { project: DevProject }) {
+async function ProfileProject({project}: { project: DevProjectData }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectPage');
   const u = await getTranslations('DevProjectPage.overview');
@@ -104,7 +104,7 @@ async function ProfileProject({project}: { project: DevProject }) {
     <div className="flex flex-col justify-between gap-3 py-1">
       <DevProjectPageTitle title={u('title')} desc={u('desc')}/>
 
-      {project.flags.includes(ProjectFlag.UNPUBLISHED) && <NewProjectBanner projectId={project.id}/>}
+      {project.flags.includes('unpublished') && <NewProjectBanner projectId={project.id}/>}
 
       <div
         className="flex w-full flex-row gap-4 rounded-md border border-tertiary bg-primary-alt p-4">
@@ -123,7 +123,7 @@ async function ProfileProject({project}: { project: DevProject }) {
 
       <div>
         <ProjectGitRevision
-          loading={project.status === ProjectStatus.LOADING}
+          loading={project.status === 'loading'}
           revision={project.revision}
           current
         />
@@ -148,7 +148,7 @@ async function ProfileProject({project}: { project: DevProject }) {
   )
 }
 
-export default async function DevProjectPage(props: { params: Promise<{ locale: string; project: string }> }) {
+export default async function DevProjectDataPage(props: { params: Promise<{ locale: string; project: string }> }) {
   const params = await props.params;
   setContextLocale(params.locale);
   const project = handleApiCall(await devProjectApi.getProject(params.project));

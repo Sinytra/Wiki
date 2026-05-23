@@ -12,12 +12,13 @@ import {useDebouncedCallback} from "use-debounce";
 import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import {useRouter as useProgressRouter} from "@bprogress/next";
-import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
+import {ProjectVersions} from "@repo/shared/types/service";
 import useMassRef from "@repo/shared/client/useMassRef";
 import ToggleChevron from "@repo/ui/util/ToggleChevron";
 import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
 import {TableRowData} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DevDocsVersionSelect from "@repo/ui/blocks/data-table/DataTableVersionSelect";
+import {PaginatedData} from "@sinytra/wiki-api-types";
 
 interface Properties<T> {
   cols: React.JSX.Element[];

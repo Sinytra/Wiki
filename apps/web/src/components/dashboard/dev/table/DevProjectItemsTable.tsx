@@ -14,8 +14,8 @@ import service from "@/lib/service";
 import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
-import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
-import {ProjectContentPage} from "@repo/shared/types/api/devProject";
+import {ProjectContext, ProjectVersions} from "@repo/shared/types/service";
+import {ItemContentPage, PaginatedData} from "@sinytra/wiki-api-types";
 import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
 import {ReactNode, Suspense} from "react";
 
@@ -44,7 +44,7 @@ async function ItemIcon({icon, ctx}: { icon: string; ctx: ProjectContext; }) {
 }
 
 export default function DevProjectItemsTable({data, ctx, versions, page, emptyState}: {
-  data: PaginatedData<ProjectContentPage>;
+  data: PaginatedData<ItemContentPage>;
   ctx: ProjectContext;
   versions: ProjectVersions;
   page: number;
@@ -52,7 +52,7 @@ export default function DevProjectItemsTable({data, ctx, versions, page, emptySt
 }) {
   const t = useTranslations('DevProjectItemsTable');
 
-  const columns: TableColumn<ProjectContentPage>[] = [
+  const columns: TableColumn<ItemContentPage>[] = [
     ordinalColumn,
     {
       id: 'icon',

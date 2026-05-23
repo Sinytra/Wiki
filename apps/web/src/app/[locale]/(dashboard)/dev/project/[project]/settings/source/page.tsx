@@ -7,7 +7,6 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import LiveProjectDeployConnection from "@/components/dashboard/dev/project/LiveProjectDeployConnection";
-import {ProjectStatus} from "@repo/shared/types/api/project";
 import FormWrapper from "@/components/modal/FormWrapper";
 import {DevProjectRouteParams} from "@repo/shared/types/routes";
 

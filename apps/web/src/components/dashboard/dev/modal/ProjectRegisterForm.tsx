@@ -40,6 +40,7 @@ import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
 import envPublic from "@repo/shared/envPublic";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {useFormHandlingAction} from "@/lib/forms/forms";
+import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
 
 export interface ProjectRegisterFormProps {
   translations?: Parameters<typeof useTranslations>[0];
@@ -216,7 +217,8 @@ export default function ProjectRegisterForm(
 
               {form.formState.errors.root?.custom?.message && envPublic.getDocsUrl() &&
                 <div className={`
-                  flex w-full flex-col items-center justify-between gap-2 rounded-sm border border-info p-3 sm:flex-row
+                  flex w-full flex-col items-center justify-between gap-2 rounded-sm border border-info bg-primary-dim
+                  p-3 sm:flex-row
                 `}>
                     <p className="flex flex-row items-start text-primary">
                         <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
@@ -224,7 +226,8 @@ export default function ProjectRegisterForm(
                           {u.rich('get_help', {
                             link: (chunks) =>
                               <LocaleNavLink className={`underline underline-offset-4 hover:text-primary/80`}
-                                    href={`${envPublic.getDocsUrl()}/${TROUBLESHOOTING_DOCS_URL}`} target="_blank">
+                                             href={`${envPublic.getDocsUrl()}/${TROUBLESHOOTING_DOCS_URL}`}
+                                             target="_blank">
                                 {chunks}
                               </LocaleNavLink>
                           })}
@@ -234,9 +237,9 @@ export default function ProjectRegisterForm(
               }
 
               {canVerifyModrinth &&
-                <div className="flex flex-col gap-1 rounded-sm border border-info p-3">
+                <div className="flex flex-col gap-1 rounded-sm border border-brand-modrinth/70 bg-primary-dim p-3">
                     <p className="flex flex-row items-start text-primary">
-                        <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
+                        <ModrinthIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0 text-brand-modrinth"/>
                         <span className="text-sm text-primary">
                             {t.rich('connect_modrinth.desc', {
                               b: (chunks: any) => <span className="font-medium">{chunks}</span>
@@ -245,7 +248,7 @@ export default function ProjectRegisterForm(
                     </p>
                     <div className="ml-auto">
                         <LocaleNavLink href="/dev/settings" target="_blank">
-                            <Button variant="outline" type="button" size="sm">
+                            <Button type="button" size="sm">
                               {t('connect_modrinth.settings')}
                                 <ExternalLinkIcon className="ml-2 h-4 w-4"/>
                             </Button>

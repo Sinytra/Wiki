@@ -29,7 +29,7 @@ import {cn} from "@repo/ui/lib/utils";
 import {PlusIcon} from "lucide-react";
 import {Button} from "@repo/ui/components/button";
 import SaveAccessKeyModal from "@/components/dashboard/admin/modal/SaveAccessKeyModal";
-import {AccessKeyCreationResult} from "@/lib/service/api/adminApi";
+import {CreateAccessKeyResponse} from "@sinytra/wiki-api-types";
 import {useRouter} from "@/lib/locales/routing";
 import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
 
@@ -40,7 +40,7 @@ export interface CreateAccessKeyModalProps {
 export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalProps) {
   const [open, setOpen] = useState(false);
   const [resultOpen, setResultOpen] = useState(false);
-  const [result, setResult] = useState<AccessKeyCreationResult | null>(null);
+  const [result, setResult] = useState<CreateAccessKeyResponse | null>(null);
 
   const t = useTranslations('CreateAccessKeyModal');
   const u = useTranslations('FormActions');

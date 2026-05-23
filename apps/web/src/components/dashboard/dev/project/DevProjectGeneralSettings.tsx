@@ -9,13 +9,13 @@ import {useTranslations} from "next-intl";
 import {projectUpdateSchema} from "@/lib/forms/schemas";
 import * as React from "react";
 import {useRouter} from "@/lib/locales/routing";
-import {DevProject, ProjectVisibility} from "@repo/shared/types/service";
+import {DevProjectData} from "@sinytra/wiki-api-types";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
 import {FormActionResult, useFormHandlingAction} from "@/lib/forms/forms";
 import {toast} from "sonner";
 
 interface Props {
-  project: DevProject;
+  project: DevProjectData;
   formAction: (data: any) => Promise<FormActionResult>;
 }
 
@@ -47,7 +47,7 @@ function ProjectSettingsFormBody({form}: { form: any }) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {...[ProjectVisibility.PUBLIC, ProjectVisibility.UNLISTED, ProjectVisibility.PRIVATE].map(v => (
+                    {...(['public', 'unlisted', 'private'] as const).map(v => (
                       <SelectItem key={v} value={v}>{u(v)}</SelectItem>
                     ))}
                   </SelectContent>
@@ -66,7 +66,7 @@ export default function DevProjectGeneralSettings({project, formAction}: Props) 
   const form = useForm<z.infer<typeof projectUpdateSchema>>({
     resolver: zodResolver(projectUpdateSchema),
     defaultValues: {
-      visibility: project.visibility == ProjectVisibility.UNKNOWN ? undefined : project.visibility
+      visibility: project.visibility
     },
   });
 

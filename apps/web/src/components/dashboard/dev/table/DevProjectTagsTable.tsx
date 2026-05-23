@@ -2,8 +2,8 @@ import * as React from "react";
 import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
-import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
-import {ProjectContentTag} from "@repo/shared/types/api/devProject";
+import {ProjectVersions} from "@repo/shared/types/service";
+import {FullTagData, PaginatedData} from "@sinytra/wiki-api-types";
 import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
 
 function EmptyPlaceholder() {
@@ -19,13 +19,13 @@ function EmptyPlaceholder() {
 }
 
 export default function DevProjectTagsTable({data, versions, page}: {
-  data: PaginatedData<ProjectContentTag>;
+  data: PaginatedData<FullTagData>;
   versions: ProjectVersions;
   page: number;
 }) {
   const t = useTranslations('DevProjectTagsTable');
 
-  const columns: TableColumn<ProjectContentTag>[] = [
+  const columns: TableColumn<FullTagData>[] = [
     ordinalColumn,
     {
       id: 'id',

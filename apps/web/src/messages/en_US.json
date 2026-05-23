@@ -134,7 +134,8 @@
         "resourcepack": "Resource pack",
         "datapack": "Data pack",
         "shader": "Shader",
-        "plugin": "Plugin"
+        "plugin": "Plugin",
+        "unknown": "Unknown"
     },
     "LoadingContent": {
         "message": "Loading..."
@@ -914,6 +915,10 @@
         "no_page_title": "Page is missing title",
         "missing_required_attribute": "Page is missing a required metadata attribute",
         "invalid_frontmatter": "Invalid page frontmatter",
+        "no_platforms": "Missing project platforms",
+        "illegal_id": "Invalid project ID",
+        "illegal_mod_id": "Invalid project mod ID",
+        "not_owner": "Failed to verify project ownership",
         "unknown": "Unknown error"
     },
     "AdminReports": {

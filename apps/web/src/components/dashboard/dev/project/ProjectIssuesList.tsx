@@ -2,9 +2,9 @@ import ProjectIssueWidget from "@/components/dashboard/dev/project/ProjectIssueW
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import * as React from "react";
 
-import {ProjectIssue} from "@repo/shared/types/api/project";
+import {ProjectIssueInfo} from "@sinytra/wiki-api-types";
 
-export default function ProjectIssuesList({issues}: { issues: ProjectIssue[] }) {
+export default function ProjectIssuesList({issues}: { issues: ProjectIssueInfo[] }) {
   return (
     <ClientLocaleProvider keys={['ProjectIssueType', 'ProjectError', 'ProjectIssueWidget']}>
       {issues.map(i => (

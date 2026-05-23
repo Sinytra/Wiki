@@ -42,7 +42,7 @@ export default async function DevProjectContentRecipesPage(props: Properties) {
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
       <DevProjectRecipesTable data={content}
-                              versions={project.versions || []}
+                              versions={[] /* TODO: re-add project.versions when DevProjectData exposes it */}
                               ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
                               page={page}
       />

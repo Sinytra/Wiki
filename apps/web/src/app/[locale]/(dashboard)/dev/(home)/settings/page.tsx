@@ -21,7 +21,7 @@ import {getTranslations} from "next-intl/server";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import authApi from "@/lib/service/api/authApi";
-import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
+import {UserProfile} from "@sinytra/wiki-api-types";
 import AdminBadge from "@repo/ui/components/badge/AdminBadge";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 
@@ -34,7 +34,7 @@ function UserProfileInfo({user}: { user: UserProfile }) {
   return (
     <div className="flex w-full flex-row gap-4 rounded-sm border border-tertiary bg-primary-alt p-4">
       <div>
-        <img src={user.avatar_url} width={84} height={84} className="rounded-sm" alt="avatar"/>
+        <img src={user.avatar_url ?? undefined} width={84} height={84} className="rounded-sm" alt="avatar"/>
       </div>
 
       <div className="flex w-full flex-col">
@@ -42,7 +42,7 @@ function UserProfileInfo({user}: { user: UserProfile }) {
           <span className="text-lg leading-5 text-primary-alt">
             {user.name}
           </span>
-          {user.role === UserRole.ADMIN &&
+          {user.role === 'admin' &&
             <AdminBadge />
           }
         </div>

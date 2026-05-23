@@ -36,7 +36,7 @@ export default async function DevProjectContentTagsPage(props: Properties) {
     <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <DevProjectTagsTable data={content} versions={project.versions || []} page={page}/>
+      <DevProjectTagsTable data={content} versions={[] /* TODO: re-add project.versions when DevProjectData exposes it */} page={page}/>
     </div>
   )
 }

@@ -21,7 +21,7 @@ import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@repo/ui/compone
 import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
 import {useProgress} from "@bprogress/next";
 
-import {UserProfile} from "@repo/shared/types/api/auth";
+import {UserProfile} from "@sinytra/wiki-api-types";
 
 function LogoutModal({open}: { open: boolean; }) {
   const t = useTranslations('DevSidebarUser.logout');
@@ -74,7 +74,7 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
               <SidebarMenuButton size="lg"
                                  className="data-[state=open]:bg-secondary data-[state=open]:text-primary-alt">
                 <Avatar className="h-8 w-8 rounded-sm">
-                  <AvatarImage src={profile.avatar_url} alt={profile.username}/>
+                  <AvatarImage src={profile.avatar_url ?? undefined} alt={profile.username}/>
                   <AvatarFallback className="rounded-sm">
                     {t('unknown_avatar')}
                   </AvatarFallback>
@@ -96,7 +96,7 @@ export function DevSidebarUser({profile, logoutAction}: { profile: UserProfile; 
               <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar className="h-8 w-8 rounded-sm">
-                    <AvatarImage src={profile.avatar_url} alt={profile.username}/>
+                    <AvatarImage src={profile.avatar_url ?? undefined} alt={profile.username}/>
                     <AvatarFallback className="rounded-sm">
                       {t('unknown_avatar')}
                     </AvatarFallback>

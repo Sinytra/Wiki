@@ -2,13 +2,14 @@ import {AssetLocation} from "@repo/shared/assets";
 import service from "@/lib/service";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import ContentProperties from "@/components/docs/side/content/ContentProperties";
-import {ItemProperties, Project, ProjectContext} from "@repo/shared/types/service";
+import {ItemProperties, ProjectContext, ResolvedItemProperties} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 import {DocsEntryMetadata} from "@repo/shared/types/metadata";
 import ProjectLink from "@/components/navigation/paths/ProjectLink";
 
 export interface Props {
   title: string;
-  project: Project;
+  project: ProjectData;
   metadata: DocsEntryMetadata;
   ctx: ProjectContext;
   properties?: ItemProperties | null;
@@ -18,7 +19,7 @@ export default async function DocsContentMetaSidebarBody({project, metadata, ctx
   const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null
     : await service.getAsset((metadata.icon || metadata.id)!, ctx);
 
-  const providedProps = {
+  const providedProps: ResolvedItemProperties = {
     id: metadata.id,
     type: metadata.type,
     ...metadata.custom,

@@ -24,12 +24,12 @@ import {Textarea} from "@repo/ui/components/textarea";
 import {flushSync} from "react-dom";
 import {useTranslations} from "next-intl";
 import {projectReportSchema} from "@/lib/forms/schemas";
-import {ProjectReportType} from "@repo/shared/types/api/moderation";
 import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
+import {ReportType} from "@sinytra/wiki-api-types";
 
 interface Properties {
   projectId: string;
-  type: ProjectReportType;
+  type: ReportType;
   path: string | null;
   locale: string | null;
   version: string | null;

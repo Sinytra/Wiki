@@ -1,18 +1,10 @@
 import {serviceProviderFactory as remoteServiceProviderFactory} from "@/lib/service/remoteService";
 import {AssetLocation} from "@repo/shared/assets";
 import {
-  ContentItemName,
-  ContentRecipeUsage,
-  DocumentationPage,
-  LayoutTree,
+  ContentFileTree,
   ProjectContentContext,
-  ProjectContentTree,
   ProjectContext,
-  ProjectSearchResults,
-  ProjectWithInfo,
   RenderedDocsPage,
-  ResolvedGameRecipe,
-  ResolvedGameRecipeType,
   ServiceProvider,
   ServiceProviderFactory
 } from "@repo/shared/types/service";
@@ -36,6 +28,15 @@ import DocsLink from "@/components/docs/shared/DocsLink";
 import ExtendedLink from "@/components/docs/shared/ExtendedLink";
 import ExtendedImg from "@/components/docs/shared/ExtendedImg";
 import VideoEmbed from "@/components/docs/shared/VideoEmbed";
+import {
+  BrowseResponse,
+  ContentItemNameResponse,
+  ContentItemResponse,
+  ProjectData,
+  RecipeTypeResponse,
+  ResolvedGameRecipe, ResolvedItem,
+  TreeResponse
+} from "@sinytra/wiki-api-types";
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -63,9 +64,9 @@ async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
   return null;
 }
 
-const getProject: (ctx: ProjectContext) => Promise<ProjectWithInfo | null> =
+const getProject: (ctx: ProjectContext) => Promise<ProjectData | null> =
   createProxy<'getProject'>((p, ctx) => p.getProject(ctx));
-const getBackendLayout: (ctx: ProjectContext) => Promise<LayoutTree | null> =
+const getBackendLayout: (ctx: ProjectContext) => Promise<TreeResponse | null> =
   createProxy<'getBackendLayout'>((p, ctx) => p.getBackendLayout(ctx));
 
 async function getAsset(location: string, ctx: ProjectContext | null): Promise<AssetLocation | null> {
@@ -84,7 +85,7 @@ async function getAsset(location: string, ctx: ProjectContext | null): Promise<A
   return proxyServiceCall<'getAsset'>(p => p.getAsset(resource, ctx));
 }
 
-const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<DocumentationPage | null | undefined> =
+const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ContentItemResponse | null | undefined> =
   createProxy<'getDocsPage'>((p, path, optional, ctx) => p.getDocsPage(path, optional || false, ctx));
 
 async function renderDocsPage(path: string[], optional: boolean, ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
@@ -92,22 +93,22 @@ async function renderDocsPage(path: string[], optional: boolean, ctx: ProjectCon
   return renderMarkdown(raw, ctx, patcher);
 }
 
-const searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null> = createProxy<'searchProjects'>(
+const searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<BrowseResponse | null> = createProxy<'searchProjects'>(
   (p, query, page, types, sort) => p.searchProjects(query, page, types, sort)
 );
-const getProjectContents: (ctx: ProjectContext) => Promise<ProjectContentTree | null> =
+const getProjectContents: (ctx: ProjectContext) => Promise<ContentFileTree | null> =
   createProxy<'getProjectContents'>((p, ctx) => p.getProjectContents(ctx));
-const getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<DocumentationPage | null> =
+const getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<ContentItemResponse | null> =
   createProxy<'getProjectContentPage'>((p, id, ctx) => p.getProjectContentPage(id, ctx));
 const getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null> =
   createProxy<'getContentRecipeObtaining'>((p, id, ctx) => p.getContentRecipeObtaining(id, ctx));
-const getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ContentRecipeUsage[] | null> =
+const getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ResolvedItem[] | null> =
   createProxy<'getContentRecipeUsage'>((p, id, ctx) => p.getContentRecipeUsage(id, ctx));
 const getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe | null> =
   createProxy<'getProjectRecipe'>((p, recipe, ctx) => p.getProjectRecipe(recipe, ctx));
-const getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGameRecipeType | null> =
+const getRecipeType: (type: string, ctx: ProjectContext) => Promise<RecipeTypeResponse | null> =
   createProxy<'getRecipeType'>((p, type, ctx) => p.getRecipeType(type, ctx));
-const getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentItemName | null> =
+const getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentItemNameResponse | null> =
   createProxy<'getContentItemName'>((p, id, ctx) => p.getContentItemName(id, ctx));
 
 async function renderProjectContentPage(id: string, ctx: ProjectContext | ProjectContentContext): Promise<RenderedDocsPage | null> {
@@ -120,7 +121,7 @@ async function renderProjectContentPage(id: string, ctx: ProjectContext | Projec
   return renderMarkdown(raw, ctx, patcher);
 }
 
-async function renderMarkdown(raw: DocumentationPage | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
+async function renderMarkdown(raw: ContentItemResponse | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
   if (raw) {
     const components = {
       Asset: BindableAsset.bind(null, ctx),

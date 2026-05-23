@@ -4,9 +4,9 @@ import {Button} from "@repo/ui/components/button";
 import GitHubIcon from "@repo/ui/icons/GitHubIcon";
 import {NavLink} from "@/components/navigation/link/NavLink";
 
-import {Project} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 
-export default function DocsPageNotFoundError({project}: { project?: Project }) {
+export default function DocsPageNotFoundError({project}: { project?: ProjectData }) {
   const t = useTranslations('DocsPageNotFoundError');
 
   return (

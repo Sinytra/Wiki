@@ -1,6 +1,7 @@
 import normalizeUrl from "normalize-url";
 import {assetBasePath, AssetLocation, itemAssetExtension} from "@repo/shared/assets";
-import resourceLocation, {ResourceLocation} from "@repo/shared/resourceLocation";
+import resourceLocation from "@repo/shared/resourceLocation";
+import {ResourceLocation} from "@sinytra/wiki-api-types";
 
 async function resolveAsset(source: string, id: ResourceLocation): Promise<AssetLocation | null> {
   const url = new URL(source);

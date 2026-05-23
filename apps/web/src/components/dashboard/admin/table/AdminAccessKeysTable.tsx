@@ -1,5 +1,5 @@
 import * as React from "react";
-import {AccessKey, AccessKeys} from "@repo/shared/types/api/admin";
+import {AccessKeyInfo, PaginatedData} from "@sinytra/wiki-api-types";
 import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {cn} from "@repo/ui/lib/utils";
@@ -9,10 +9,10 @@ import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import DeleteAccessKeyModal from "@/components/dashboard/admin/modal/DeleteAccessKeyModal";
 
 export default function AdminAccessKeysTable({data, page}: {
-  data: AccessKeys;
+  data: PaginatedData<AccessKeyInfo>;
   page: number;
 }) {
-  const columns: TableColumn<AccessKey>[] = [
+  const columns: TableColumn<AccessKeyInfo>[] = [
     {
       id: 'id',
       header: 'ID',

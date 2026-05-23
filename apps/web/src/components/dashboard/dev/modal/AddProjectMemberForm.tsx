@@ -8,7 +8,6 @@ import {useTranslations} from "next-intl";
 import {PlusIcon} from "lucide-react";
 import {Button} from "@repo/ui/components/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@repo/ui/components/select";
-import {ProjectMemberRole} from "@repo/shared/types/api/devProject";
 import GenericFormModal from "@/components/modal/GenericFormModal";
 import {FormActionResult} from "@/lib/forms/forms";
 
@@ -68,8 +67,8 @@ export default function AddProjectMemberForm({formAction}: Props) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value={ProjectMemberRole.OWNER}>{u(ProjectMemberRole.OWNER)}</SelectItem>
-                    <SelectItem value={ProjectMemberRole.MEMBER}>{u(ProjectMemberRole.MEMBER)}</SelectItem>
+                    <SelectItem value="owner">{u('owner')}</SelectItem>
+                    <SelectItem value="member">{u('member')}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormDescription>

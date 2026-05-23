@@ -3,7 +3,7 @@ import {Edit} from "lucide-react";
 import * as React from "react";
 import {NavLink} from "@/components/navigation/link/NavLink";
 
-export default function EditPageButton({editUrl}: { editUrl?: string }) {
+export default function EditPageButton({editUrl}: { editUrl?: string | null }) {
   const t = useTranslations('PageEditControls');
 
   return editUrl && (

@@ -1,16 +1,12 @@
 import network from "@repo/shared/network";
 import {ApiCallResult} from '@repo/shared/commonNetwork';
-import {Project} from "@repo/shared/types/service";
-
-export interface ProjectResponse {
-  project: Project;
-}
+import {ProjectSummary} from "@sinytra/wiki-api-types";
 
 async function getAllProjectIDs(): Promise<ApiCallResult<string[]>> {
   return network.resolveApiCall(() => network.sendSimpleRequest('projects', {userAuth: false}));
 }
 
-async function getProjectsByID(ids: string[]): Promise<ApiCallResult<Project[]>> {
+async function getProjectsByID(ids: string[]): Promise<ApiCallResult<ProjectSummary[]>> {
   const body = {ids};
   return network.resolveApiCall(() => network.sendDataRequest('projects/bulk', {cache: true, userAuth: false, body}));
 }

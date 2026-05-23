@@ -19,6 +19,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@sinytra/wiki-api-types": "^0.1.1",
     "eslint": "^9.31.0"
   }
 }

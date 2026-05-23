@@ -44,7 +44,7 @@ const nextConfig: NextConfig = {
       }
     ];
   },
-  transpilePackages: ['@repo/ui'],
+  transpilePackages: ['@repo/ui', '@sinytra/wiki-api-types'],
   experimental: {
     optimizePackageImports: ['shiki']
   },

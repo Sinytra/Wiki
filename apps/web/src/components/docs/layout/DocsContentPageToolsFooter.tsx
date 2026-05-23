@@ -6,7 +6,7 @@ import env from "@repo/shared/env";
 interface Props {
   project: string;
   id: string;
-  editUrl?: string;
+  editUrl?: string | null;
   local?: boolean;
 }
 

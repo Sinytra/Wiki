@@ -1,4 +1,4 @@
-import {ItemProperties, ProjectContext} from "@repo/shared/types/service";
+import {ProjectContext, ResolvedItemProperties} from "@repo/shared/types/service";
 import Asset from "@/components/docs/shared/asset/Asset";
 import {useTranslations} from "next-intl";
 import {getContentLink, getVanillaWikiLink} from "@/lib/project/game/content";
@@ -7,7 +7,7 @@ import {NavLink} from "@/components/navigation/link/NavLink";
 
 interface Props {
   ctx: ProjectContext;
-  properties: ItemProperties;
+  properties: ResolvedItemProperties;
 }
 
 type PropertyType =

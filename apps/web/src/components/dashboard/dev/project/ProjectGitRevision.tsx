@@ -3,11 +3,9 @@ import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import {GitCommitHorizontalIcon} from "lucide-react";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
+import {GitRevision} from "@sinytra/wiki-api-types";
 
-
-import {ProjectRevision} from "@repo/shared/types/api/project";
-
-function LinkWithFallback({className, href, children}: { className?: string, href?: string; children?: any }) {
+function LinkWithFallback({className, href, children}: { className?: string, href: string | null; children?: any }) {
   return (
     href ?
       <a href={href} target="_blank" className={cn(className, 'hover:underline hover:underline-offset-4')} rel="noreferrer">
@@ -21,7 +19,7 @@ function LinkWithFallback({className, href, children}: { className?: string, hre
 }
 
 export default function ProjectGitRevision({revision, loading, current}: {
-  revision: ProjectRevision | null;
+  revision: GitRevision | null;
   loading: boolean;
   current?: boolean;
 }) {

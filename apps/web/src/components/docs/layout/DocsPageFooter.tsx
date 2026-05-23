@@ -7,7 +7,7 @@ import EditPageButton from "@/components/docs/layout/EditPageButton";
 interface FooterProps {
   slug: string;
   path?: string[];
-  editUrl?: string;
+  editUrl?: string | null;
   local?: boolean;
   preview: boolean;
 }

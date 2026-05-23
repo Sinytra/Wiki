@@ -8,10 +8,10 @@ import EntryDetails from "@/components/docs/util/EntryDetails";
 import MetadataRowKey from "@/components/docs/util/MetadataRowKey";
 import MetadataGrid from "@/components/docs/util/MetadataGrid";
 import {getTranslations} from "next-intl/server";
-import {Project} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 
 interface ContentRightSidebarProps {
-  project: Project;
+  project: ProjectData;
   metadata: DocsEntryMetadata;
   version: string;
 }

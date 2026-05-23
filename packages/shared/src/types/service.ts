@@ -1,190 +1,42 @@
 import {DocumentationMarkdown} from '@repo/markdown';
 import {AssetLocation} from '@repo/shared/assets';
-import {ProjectPlatforms} from './platform';
-import {ResourceLocation} from '../resourceLocation';
-import {ProjectIssueStats, ProjectRevision, ProjectStatus} from './api/project';
-import {ProjectMemberRole} from './api/devProject';
+import {
+  BrowseResponse, ContentFileTreeEntry, ContentItemNameResponse,
+  ContentItemResponse,
+  FileTreeEntry, FullRecipeData, FullTagData, ItemContentPage, JsonValue, PaginatedData,
+  ProjectData,
+  ProjectType, ProjectVersionData, RecipeTypeResponse, ResolvedGameRecipe, ResolvedItem,
+  ResourceLocation,
+  TreeResponse
+} from '@sinytra/wiki-api-types';
+import {JSX} from 'react';
 
-export interface FileTreeEntry {
-  name: string;
-  path: string;
-  icon?: string;
-  type: 'dir' | 'file';
-  children: FileTree;
-}
+export type ProjectContentPages = PaginatedData<ItemContentPage>;
+
+export type ProjectContentTags = PaginatedData<FullTagData>;
+
+export type ProjectContentRecipes = PaginatedData<FullRecipeData>;
+
+export type DevProjectVersions = PaginatedData<ProjectVersionData>;
 
 export type FileTree = FileTreeEntry[];
 
-export enum ProjectType {
-  MOD = 'mod',
-  MODPACK = 'modpack',
-  RESOURCEPACK = 'resourcepack',
-  DATAPACK = 'datapack',
-  SHADER = 'shader',
-  PLUGIN = 'plugin'
-}
+export type ContentFileTree = ContentFileTreeEntry[];
 
-export const AVAILABLE_PROJECT_TYPES: string[] = [
-  ProjectType.MOD, ProjectType.MODPACK, ProjectType.RESOURCEPACK, ProjectType.DATAPACK,
-  ProjectType.SHADER, ProjectType.PLUGIN
+export type ItemProperties = { [key in string]: JsonValue };
+
+export type ResolvedItemProperties = { [key in string]?: JsonValue | JSX.Element };
+
+export const AVAILABLE_PROJECT_TYPES: ProjectType[] = [
+  'mod', 'modpack', 'datapack', 'resourcepack', 'plugin', 'shader'
 ];
-
-export interface PaginatedData<T> {
-  data: T[];
-  total: number;
-  pages: number;
-  size: number;
-}
-
-export interface BaseProject {
-  id: string;
-  name: string;
-  source_repo?: string;
-  platforms: ProjectPlatforms;
-  is_community: boolean;
-  type: ProjectType;
-}
 
 export type ProjectVersions = string[];
 
-export enum ProjectVisibility {
-  PUBLIC = 'public',
-  PRIVATE = 'private',
-  UNLISTED = 'unlisted',
-  UNKNOWN = 'unknown'
-}
-
-export interface Project extends BaseProject {
-  versions?: ProjectVersions;
-  locales?: string[];
-  local?: boolean;
-  // Dev
-  status?: ProjectStatus;
-  has_active_deployment?: boolean;
-  access_level: ProjectMemberRole;
-  visibility: ProjectVisibility;
-  is_public: boolean;
-  created_at: string;
-}
-
-export enum ProjectFlag {
-  UNPUBLISHED = 'unpublished',
-  UNKNOWN = 'unknown'
-}
-
-export interface DevProject extends Project {
-  source_repo: string;
-  source_branch: string;
-  source_path: string;
-  revision: ProjectRevision;
-  issue_stats?: ProjectIssueStats;
-  has_failing_deployment: boolean;
-  flags: ProjectFlag[];
-}
-
-export type ProjectLicense = ({ id: string } | { name: string }) & { url?: string | null };
-
-export interface ProjectLicenses {
-  project: ProjectLicense
-}
-
-export interface ProjectInfo {
-  website?: string;
-  pageCount: number;
-  contentCount: number;
-  licenses?: ProjectLicenses
-}
-
-export interface ProjectWithInfo extends Project {
-  info: ProjectInfo;
-}
-
-export interface LayoutTree {
-  tree: FileTree;
-}
-
-export type ItemProperties = Record<string, any>;
-
-export interface DocumentationPage {
-  content: string;
-  edit_url?: string;
-  properties?: ItemProperties | null;
-}
-
 export interface RenderedDocsPage {
   content: DocumentationMarkdown;
-  edit_url?: string;
-  properties?: ItemProperties | null;
-}
-
-export type ProjectSearchResults = PaginatedData<BaseProject>;
-
-export interface ContentRecipeUsage {
-  id: string;
-  name?: string;
-  project: string;
-  has_page: boolean;
-}
-
-export type ProjectContentTree = ProjectContentEntry[];
-
-export interface ProjectContentEntry extends FileTreeEntry {
-  id?: string;
-  children: ProjectContentTree;
-}
-
-export interface Slot {
-  x: number;
-  y: number;
-}
-
-export type SlotMap = Record<string, Slot>;
-
-export interface GameRecipeType {
-  id: string;
-  localizedName: string | null;
-  background: string;
-  inputSlots: SlotMap;
-  outputSlots: SlotMap;
-}
-
-export interface ResolvedItem {
-  id: string;
-  name: string | null;
-  project: string;
-  has_page: boolean;
-}
-
-export interface ResolvedSlot {
-  input: boolean;
-  slot: string;
-  count: number;
-  items: ResolvedItem[];
-  tag: string | null;
-}
-
-export interface RecipeIngredientSummary {
-  count: number;
-  item: ResolvedItem;
-  tag: string | null;
-}
-
-export interface RecipeSummary {
-  inputs: RecipeIngredientSummary[];
-  outputs: RecipeIngredientSummary[];
-}
-
-export interface ResolvedGameRecipeType {
-  type: GameRecipeType;
-  workbenches: ResolvedItem[];
-}
-
-export interface ResolvedGameRecipe {
-  id: string;
-  type: string;
-  inputs: ResolvedSlot[];
-  outputs: ResolvedSlot[];
-  summary: RecipeSummary;
+  edit_url: string | null;
+  properties: { [key in string]: JsonValue };
 }
 
 export interface DisplayItem extends ResolvedItem {
@@ -201,26 +53,20 @@ export interface ProjectContentContext extends ProjectContext {
   contentId: string;
 }
 
-export interface ContentItemName {
-  source: string;
-  id: string;
-  name: string;
-}
-
 export interface ServiceProvider {
-  getProject: (ctx: ProjectContext) => Promise<ProjectWithInfo | null>;
-  getBackendLayout: (ctx: ProjectContext) => Promise<LayoutTree | null>;
+  getProject: (ctx: ProjectContext) => Promise<ProjectData | null>;
+  getBackendLayout: (ctx: ProjectContext) => Promise<TreeResponse | null>;
   getAsset: (location: ResourceLocation, ctx: ProjectContext) => Promise<AssetLocation | null>;
-  getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<DocumentationPage | undefined | null>;
-  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<ProjectSearchResults | null>;
+  getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ContentItemResponse | undefined | null>;
+  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<BrowseResponse | null>;
 
-  getProjectContents: (ctx: ProjectContext) => Promise<ProjectContentTree | null>;
-  getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<DocumentationPage | null>;
+  getProjectContents: (ctx: ProjectContext) => Promise<ContentFileTree | null>;
+  getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<ContentItemResponse | null>;
   getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe | null>;
-  getRecipeType: (type: string, ctx: ProjectContext) => Promise<ResolvedGameRecipeType | null>;
+  getRecipeType: (type: string, ctx: ProjectContext) => Promise<RecipeTypeResponse | null>;
   getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null>
-  getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ContentRecipeUsage[] | null>;
-  getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentItemName | null>;
+  getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ResolvedItem[] | null>;
+  getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentItemNameResponse | null>;
 }
 
 export interface ServiceProviderFactory {

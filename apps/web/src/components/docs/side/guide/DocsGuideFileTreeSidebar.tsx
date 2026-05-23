@@ -4,7 +4,8 @@ import DocsFileTreeFolder from "@/components/docs/layout/DocsFileTreeFolder";
 import {cn} from "@repo/ui/lib/utils";
 import {useTranslations} from "next-intl";
 import ScrollableDocsSidebarBase from "@/components/docs/side/ScrollableDocsSidebarBase";
-import {FileTree, FileTreeEntry} from "@repo/shared/types/service";
+import {FileTree} from "@repo/shared/types/service";
+import {FileTreeEntry} from "@sinytra/wiki-api-types";
 import {NO_FOLDER_ICON} from "@repo/shared/constants";
 import * as React from "react";
 

@@ -4,12 +4,13 @@ import DocsMarkdownContent from "@/components/docs/body/DocsMarkdownContent";
 import issuesApi from "@repo/shared/api/issuesApi";
 import markdown, {DocsEntryMetadata} from "@repo/markdown";
 import {RenderedMarkdownContent} from "@/components/docs/body/MarkdownContent";
-import {Project, ProjectContext} from "@repo/shared/types/service";
+import {ProjectContext} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 import {PlatformProject} from "@repo/shared/platforms";
 import {ReactNode} from "react";
 
 interface Props {
-  project: Project;
+  project: ProjectData;
   platformProject: PlatformProject;
   ctx: ProjectContext;
 
@@ -23,7 +24,7 @@ interface RenderedHomepage {
   metadata: DocsEntryMetadata;
 }
 
-export async function renderHomepage(project: Project, platformProject: PlatformProject, ctx: ProjectContext): Promise<RenderedHomepage | null | undefined> {
+export async function renderHomepage(project: ProjectData, platformProject: PlatformProject, ctx: ProjectContext): Promise<RenderedHomepage | null | undefined> {
   try {
     const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx);
     if (result) {

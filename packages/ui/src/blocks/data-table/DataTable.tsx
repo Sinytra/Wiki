@@ -6,7 +6,8 @@ import {useTranslations} from "next-intl";
 import {TableColumn, TableRowLinker} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTableClient from "@repo/ui/blocks/data-table/DataTableClient";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {PaginatedData, ProjectVersions} from "@repo/shared/types/service";
+import {ProjectVersions} from "@repo/shared/types/service";
+import {PaginatedData} from "@sinytra/wiki-api-types";
 
 interface Properties<T> {
   expandRows?: (row: T) => ReactNode | null;

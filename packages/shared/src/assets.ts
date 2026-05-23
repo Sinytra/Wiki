@@ -1,4 +1,4 @@
-import {ResourceLocation} from '@repo/shared/resourceLocation';
+import {ResourceLocation} from '@sinytra/wiki-api-types';
 
 export interface AssetLocation {
   id: string;

@@ -18,10 +18,10 @@ import {
 import {useTranslations} from "next-intl";
 import {useRouter} from "@/lib/locales/routing";
 import FormDeleteButton from "@repo/ui/components/forms/FormDeleteButton";
-import {AccessKey} from "@repo/shared/types/api/admin";
+import {AccessKeyInfo} from "@sinytra/wiki-api-types";
 
 interface Properties {
-  accessKey: AccessKey;
+  accessKey: AccessKeyInfo;
   action: () => Promise<any>;
 }
 

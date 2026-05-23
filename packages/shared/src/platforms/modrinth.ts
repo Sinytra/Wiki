@@ -1,8 +1,9 @@
 import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from './universal';
 import env from '@repo/shared/env';
-import {AVAILABLE_PROJECT_TYPES, ProjectType} from '@repo/shared/types/service';
+import {AVAILABLE_PROJECT_TYPES} from '@repo/shared/types/service';
 import {ProjectNotFoundError} from './exception';
 import {time} from '@repo/shared/constants';
+import {ProjectType} from '@sinytra/wiki-api-types';
 
 // TODO
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (env.isPreview() ? '/local' : '');
@@ -53,9 +54,10 @@ interface ModrinthOrganization {
 
 async function getProject(slug: string): Promise<PlatformProject> {
   const mrProject = await getModrinthProject(slug);
-  const type = mrProject.project_types.length < 1 || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0]!)
-      ? ProjectType.MOD
-      : mrProject.project_types[0] as ProjectType;
+  const type = mrProject.project_types.length < 1
+  || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0] as ProjectType)
+    ? 'mod'
+    : mrProject.project_types[0] as ProjectType;
 
   return {
     slug: mrProject.slug,

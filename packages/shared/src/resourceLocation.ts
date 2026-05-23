@@ -1,9 +1,6 @@
-export const DEFAULT_NAMESPACE = 'minecraft';
+import {ResourceLocation} from '@sinytra/wiki-api-types';
 
-export interface ResourceLocation {
-  namespace: string;
-  path: string;
-}
+export const DEFAULT_NAMESPACE = 'minecraft';
 
 function toString(location: ResourceLocation): string {
   return `${location.namespace}:${location.path}`;

@@ -9,7 +9,7 @@ import {handleDeleteDeploymentForm} from "@/lib/forms/actions";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import DeploymentStatusInfo from "@/components/dashboard/dev/project/DeploymentStatusInfo";
 import DeployProjectModalOpenButton from "@/components/dashboard/dev/modal/DeployProjectModalOpenButton";
-import {DeploymentStatus, DevProjectDeployments, PartialDevProjectDeployment} from "@repo/shared/types/api/deployment";
+import {DeploymentInfo, PaginatedData} from "@sinytra/wiki-api-types";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import DataTablePagination from "@repo/ui/blocks/data-table/DataTablePagination";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
@@ -42,7 +42,7 @@ function EmptyDeploymentsState() {
   )
 }
 
-function DeploymentEntry({deployment}: { deployment: PartialDevProjectDeployment }) {
+function DeploymentEntry({deployment}: { deployment: DeploymentInfo }) {
   return (
     <div className={`
       flex w-full flex-1 flex-col gap-3 rounded-sm bg-primary-dim p-4 hover:bg-primary sm:flex-row sm:items-center
@@ -106,7 +106,7 @@ function DeploymentEntry({deployment}: { deployment: PartialDevProjectDeployment
             <FormWrapper keys={['DeleteDeploymentModal']}>
               <DeleteDeploymentModal
                 formAction={handleDeleteDeploymentForm.bind(null, deployment.project_id, deployment.id)}
-                loading={deployment.status == DeploymentStatus.LOADING}
+                loading={deployment.status == 'loading'}
               />
             </FormWrapper>
           </>}
@@ -125,7 +125,7 @@ function DeploymentEntry({deployment}: { deployment: PartialDevProjectDeployment
   )
 }
 
-export default function DevProjectDeploymentsTable({data}: { data: DevProjectDeployments; page: number; }) {
+export default function DevProjectDeploymentsTable({data}: { data: PaginatedData<DeploymentInfo>; page: number; }) {
   return (
     <div>
       {data.data.length > 0 ?

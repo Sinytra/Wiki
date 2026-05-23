@@ -301,11 +301,7 @@ export default async function ProjectHomepage(props: PageProps) {
       </Section>
 
       <Section title={t('links.title')} icon={LinkIcon} className="flex flex-row flex-wrap gap-2">
-        {project.info.website &&
-          <ExternalLink text={t('links.website')} icon={GlobeIcon}
-                        href={project.info.website}
-                        className="border-primary from-primary to-neutral-800"/>
-        }
+        {/* TODO: re-add project.info.website link when ProjectInfo exposes it again */}
         {project.platforms.curseforge &&
           <ExternalLink text="CurseForge" icon={CurseForgeColorIcon}
                         href={platforms.getProjectURL('curseforge', project.platforms.curseforge, project.type)}

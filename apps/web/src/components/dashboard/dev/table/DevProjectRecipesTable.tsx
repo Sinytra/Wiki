@@ -3,8 +3,8 @@ import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTy
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import ResolvedProjectRecipe from "@/components/docs/shared/game/ResolvedProjectRecipe";
 import {useTranslations} from "next-intl";
-import {PaginatedData, ProjectContext, ProjectVersions} from "@repo/shared/types/service";
-import {ProjectContentRecipe} from "@repo/shared/types/api/devProject";
+import {ProjectContext, ProjectVersions} from "@repo/shared/types/service";
+import {FullRecipeData, PaginatedData} from "@sinytra/wiki-api-types";
 import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
 
 function EmptyPlaceholder() {
@@ -20,14 +20,14 @@ function EmptyPlaceholder() {
 }
 
 export default function DevProjectRecipesTable({data, ctx, versions, page}: {
-  data: PaginatedData<ProjectContentRecipe>;
+  data: PaginatedData<FullRecipeData>;
   ctx: ProjectContext;
   versions: ProjectVersions;
   page: number;
 }) {
   const t = useTranslations('DevProjectRecipesTable');
 
-  const columns: TableColumn<ProjectContentRecipe>[] = [
+  const columns: TableColumn<FullRecipeData>[] = [
     ordinalColumn,
     {
       id: 'type',
@@ -45,7 +45,7 @@ export default function DevProjectRecipesTable({data, ctx, versions, page}: {
     }
   ];
 
-  const expander = (recipe: ProjectContentRecipe) => (
+  const expander = (recipe: FullRecipeData) => (
     <div className="my-2 prose max-w-fit prose-invert">
       <ResolvedProjectRecipe recipe={recipe.data} ctx={ctx} embedded/>
     </div>

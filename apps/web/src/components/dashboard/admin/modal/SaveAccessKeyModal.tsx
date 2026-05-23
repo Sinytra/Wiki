@@ -11,7 +11,7 @@ import {
 } from "@repo/ui/components/dialog";
 import * as React from "react";
 import {useTranslations} from "next-intl";
-import {AccessKeyCreationResult} from "@/lib/service/api/adminApi";
+import {CreateAccessKeyResponse} from "@sinytra/wiki-api-types";
 import {Button} from "@repo/ui/components/button";
 import {LockIcon} from "lucide-react";
 import DataField from "@/components/util/DataField";
@@ -19,7 +19,7 @@ import DataField from "@/components/util/DataField";
 export interface CreateAccessKeyModalProps {
   open: boolean;
   setOpen: (open: boolean) => void;
-  result: AccessKeyCreationResult | null;
+  result: CreateAccessKeyResponse | null;
 }
 
 export default function SaveAccessKeyModal({result, open, setOpen}: CreateAccessKeyModalProps) {

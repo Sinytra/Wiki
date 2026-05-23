@@ -32,7 +32,7 @@ import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
 import {PlatformProject} from "@repo/shared/platforms";
 import {DevProjectSidebarContext} from "@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider";
-import {DevProject} from "@repo/shared/types/service";
+import {DevProjectData} from "@sinytra/wiki-api-types";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@repo/ui/components/collapsible";
@@ -40,11 +40,11 @@ import DevSidebarMenuSubItem from "@/components/dashboard/dev/navigation/DevSide
 
 // TODO Cleanup
 interface Props extends React.ComponentProps<typeof Sidebar> {
-  project: DevProject;
+  project: DevProjectData;
   platformProject: PlatformProject;
 }
 
-function SidebarProjectHeader({project, platformProject}: { project: DevProject; platformProject: PlatformProject }) {
+function SidebarProjectHeader({project, platformProject}: { project: DevProjectData; platformProject: PlatformProject }) {
   // TODO Localize
   return (
     <div className="space-y-3 p-1">
@@ -103,12 +103,12 @@ export default function DevProjectSidebar({project, platformProject, ...props}: 
               icon={ActivityIcon}
               title={t('nav.health')}
               extra={project.issue_stats && (
-                project.issue_stats.error > 0 ?
+                (project.issue_stats.error ?? 0) > 0 ?
                   <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-destructive">
                     <AlertCircleIcon className="size-4"/>
                   </div>
                   :
-                  project.issue_stats.warning > 0 &&
+                  (project.issue_stats.warning ?? 0) > 0 &&
                   <div className="ml-auto flex items-center gap-1 align-bottom text-sm text-warning">
                       <TriangleAlertIcon className="size-4"/>
                   </div>

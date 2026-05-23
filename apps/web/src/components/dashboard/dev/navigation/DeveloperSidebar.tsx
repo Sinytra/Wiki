@@ -17,7 +17,7 @@ import {
 } from "@repo/ui/components/sidebar";
 import {useTranslations} from "next-intl";
 import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
-import {UserProfile, UserRole} from "@repo/shared/types/api/auth";
+import {UserProfile} from "@sinytra/wiki-api-types";
 import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
 import {WIKI_DOCS_URL} from "@repo/shared/constants";
 
@@ -74,7 +74,7 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
 
         <DevSidebarMainNav groups={mainEntries}/>
 
-        {profile.role === UserRole.ADMIN &&
+        {profile.role === 'admin' &&
           <div className="mt-auto px-2">
               <SidebarGroup className="rounded-sm border border-destructive-secondary">
                   <SidebarGroupLabel>

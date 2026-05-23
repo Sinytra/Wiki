@@ -1,33 +1,27 @@
 import network from "@repo/shared/network";
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
-import {DevProject, ProjectFlag} from "@repo/shared/types/service";
 import cacheUtil from "@/lib/cacheUtil";
 import {
-  DevProjectDeployments,
-  FullDevProjectDeployment,
-  PartialDevProjectDeployment
-} from "@repo/shared/types/api/deployment";
-import {UserProfile} from "@repo/shared/types/api/auth";
+  DeploymentInfo,
+  PaginatedData, DevProjectData,
+  ProjectFlag,
+  ProjectMembersData,
+  UserProjectsResponse
+} from "@sinytra/wiki-api-types";
+import {z} from "zod";
+import {addProjectMemberSchema, projectUpdateSchema, removeProjectMemberSchema} from "@/lib/forms/schemas";
 import {
+  DevProjectVersions,
   ProjectContentPages,
   ProjectContentRecipes,
   ProjectContentTags,
-  ProjectMembersData,
-  ProjectVersions
-} from "@repo/shared/types/api/devProject";
-import {z} from "zod";
-import {addProjectMemberSchema, projectUpdateSchema, removeProjectMemberSchema} from "@/lib/forms/schemas";
+} from "@repo/shared/types/service";
 
-export interface DevProjectsOverview {
-  profile: UserProfile;
-  projects: DevProject[];
-}
-
-async function getProjects(): Promise<ApiCallResult<DevProjectsOverview>> {
+async function getProjects(): Promise<ApiCallResult<UserProjectsResponse>> {
   return network.resolveApiCall(() => network.sendSimpleRequest('dev/projects'));
 }
 
-async function getProject(id: string): Promise<ApiCallResult<DevProject>> {
+async function getProject(id: string): Promise<ApiCallResult<DevProjectData>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${id}`));
 }
 
@@ -35,11 +29,11 @@ async function updateProject(projectId: string, body: z.infer<typeof projectUpda
   return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${projectId}`, { method: 'PUT' , body}));
 }
 
-async function getProjectDeployments(projectId: string, parameters: ApiRouteParameters): Promise<ApiCallResult<DevProjectDeployments>> {
+async function getProjectDeployments(projectId: string, parameters: ApiRouteParameters): Promise<ApiCallResult<PaginatedData<DeploymentInfo>>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/deployments`, {parameters}));
 }
 
-async function getDeployment(projectId: string, deploymentId: string): Promise<ApiCallResult<FullDevProjectDeployment>> {
+async function getDeployment(projectId: string, deploymentId: string): Promise<ApiCallResult<DeploymentInfo>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/deployments/${deploymentId}`));
 }
 
@@ -47,8 +41,8 @@ async function deployProject(id: string, token: string | null = null): Promise<A
   return await network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${id}/deploy`, { method: 'POST', parameters: {token}}));
 }
 
-async function deleteDeployment(projectId: string, deploymentId: string): Promise<ApiCallResult<PartialDevProjectDeployment>> {
-  const result = await network.resolveApiCall<PartialDevProjectDeployment>(
+async function deleteDeployment(projectId: string, deploymentId: string): Promise<ApiCallResult<DeploymentInfo>> {
+  const result = await network.resolveApiCall<DeploymentInfo>(
     () => network.sendSimpleRequest(`dev/projects/${projectId}/deployments/${deploymentId}`, {method: 'DELETE'}));
   if (result.success && result.data.active) {
     cacheUtil.invalidateDocs(result.data.project_id);
@@ -72,7 +66,7 @@ async function removeProjectMember(projectId: string, body: z.infer<typeof remov
   return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${projectId}/members`, {method: 'DELETE', body}))
 }
 
-async function getProjectVersions(projectId: string, parameters: ApiRouteParameters): Promise<ApiCallResult<ProjectVersions>> {
+async function getProjectVersions(projectId: string, parameters: ApiRouteParameters): Promise<ApiCallResult<DevProjectVersions>> {
   return network.resolveApiCall(() => network.sendSimpleRequest(`dev/projects/${projectId}/versions`, {parameters}))
 }
 

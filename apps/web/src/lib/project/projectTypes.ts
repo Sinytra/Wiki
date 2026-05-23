@@ -36,8 +36,8 @@ import {
 import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
 import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
 import {ElementType} from "react";
-import {ProjectType} from "@repo/shared/types/service";
 import {ProjectPlatform} from "@repo/shared/types/platform";
+import {ProjectType} from "@sinytra/wiki-api-types";
 
 export const ProjectHostingPlatforms: { [key in ProjectPlatform]: { name: string; icon: ElementType } } = {
   curseforge: {name: 'CurseForge', icon: CurseForgeIcon},
@@ -88,10 +88,10 @@ export const ProjectCategories: { [key: string]: any } = {
 }
 
 export const ProjectTypeIcons: { [key in ProjectType]: any } = {
-  [ProjectType.MOD]: BoxIcon,
-  [ProjectType.MODPACK]: PackageOpenIcon,
-  [ProjectType.RESOURCEPACK]: PaintbrushIcon,
-  [ProjectType.DATAPACK]: BracesIcon,
-  [ProjectType.SHADER]: SwatchBookIcon,
-  [ProjectType.PLUGIN]: UnplugIcon
+  mod: BoxIcon,
+  modpack: PackageOpenIcon,
+  resourcepack: PaintbrushIcon,
+  datapack: BracesIcon,
+  shader: SwatchBookIcon,
+  plugin: UnplugIcon
 }

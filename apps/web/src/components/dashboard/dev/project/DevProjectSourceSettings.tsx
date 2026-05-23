@@ -14,16 +14,17 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "@repo/ui/components/input";
 import {Button} from "@repo/ui/components/button";
-import {ExternalLinkIcon, LightbulbIcon} from "lucide-react";
+import {ExternalLinkIcon} from "lucide-react";
 import {useTranslations} from "next-intl";
 import {projectUpdateSourceSchema} from "@/lib/forms/schemas";
 import * as React from "react";
 import {useState} from "react";
 import {toast} from "sonner";
 import {useRouter} from "@/lib/locales/routing";
-import {DevProject} from "@repo/shared/types/service";
 import clientActions from "@/lib/forms/clientActions";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
+import {DevProjectData} from "@sinytra/wiki-api-types";
 
 function ProjectSourceFormBody({form}: { form: any }) {
   return (
@@ -88,7 +89,7 @@ function ProjectSourceFormBody({form}: { form: any }) {
   )
 }
 
-export default function DevProjectSourceSettings({project}: { project: DevProject }) {
+export default function DevProjectSourceSettings({project}: { project: DevProjectData }) {
   const form = useForm<z.infer<typeof projectUpdateSourceSchema>>({
     resolver: zodResolver(projectUpdateSourceSchema),
     defaultValues: {
@@ -123,6 +124,7 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
     if (resp.success) resolver();
     else rejector();
 
+    // TODO Migrate to new form api
     if (resp.success) {
       router.refresh();
     } else if (resp.error) {
@@ -149,7 +151,7 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
           </Button>
         </div>
 
-        <div>
+        <div className="space-y-4">
           {form.formState.errors.root?.custom?.message &&
             <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
                 <p className="text-sm text-destructive">
@@ -170,14 +172,14 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
           }
 
           {canVerifyModrinth &&
-            <div className="flex flex-col gap-1 rounded-md border border-info/70 p-3">
+            <div className="flex flex-col gap-1 rounded-md border border-brand-modrinth/70 bg-primary-dim p-3">
                 <p className="flex flex-row items-start text-secondary">
-                    <LightbulbIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0"/>
+                    <ModrinthIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0 text-brand-modrinth"/>
                     <span className="text-sm text-secondary">
-                            {t.rich('connect_modrinth.desc', {
-                              b: (chunks: any) => <span className="text-primary">{chunks}</span>
-                            })}
-                        </span>
+                      {t.rich('connect_modrinth.desc', {
+                        b: (chunks: any) => <span className="text-primary">{chunks}</span>
+                      })}
+                    </span>
                 </p>
                 <div className="ml-auto">
                     <LocaleNavLink href="/dev/settings" target="_blank">

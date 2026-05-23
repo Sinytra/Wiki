@@ -7,7 +7,7 @@ import {getTranslations} from "next-intl/server";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
 import {DevProjectRouteParams} from "@repo/shared/types/routes";
-import {ProjectMember} from "@repo/shared/types/api/devProject";
+import {ProjectMember} from "@sinytra/wiki-api-types";
 import {useTranslations} from "next-intl";
 import * as React from "react";
 import {getGitHubAvatarUrl} from "@repo/shared/util";
@@ -30,8 +30,8 @@ function ProjectMemberWidget({projectId, canEdit, canLeave, member}: {
   const avatarUrl = getGitHubAvatarUrl(member.username);
   const t = useTranslations('DevProjectMembersPage');
   const u = useTranslations('ProjectMemberRole');
-  const DeleteIcon = member.isActor ? DoorOpenIcon : TrashIcon;
-  const modalLocale = member.isActor ? 'LeaveProjectModal' : 'RemoveProjectMemberModal';
+  const DeleteIcon = member.is_actor ? DoorOpenIcon : TrashIcon;
+  const modalLocale = member.is_actor ? 'LeaveProjectModal' : 'RemoveProjectMemberModal';
 
   return (
     <div className="flex w-full flex-row gap-3 rounded-md border border-tertiary bg-primary-alt p-3 sm:gap-4 sm:p-4">
@@ -44,15 +44,15 @@ function ProjectMemberWidget({projectId, canEdit, canLeave, member}: {
         </div>
 
         <div>
-          {(member.isActor || canEdit) &&
+          {(member.is_actor || canEdit) &&
             <FormWrapper keys={[modalLocale]}>
                 <GenericDeleteModal localeNamespace={modalLocale}
                                     formAction={handleRemoveProjectMember.bind(null, projectId, {username: member.username})}
-                                    redirectTo={member.isActor ? navigation.authorDashboard() : undefined}
+                                    redirectTo={member.is_actor ? navigation.authorDashboard() : undefined}
                                     trigger={
-                                      <Button variant="destructive" size="sm" disabled={member.isActor && !canLeave}>
+                                      <Button variant="destructive" size="sm" disabled={member.is_actor && !canLeave}>
                                         <DeleteIcon className="mr-2 h-4 w-4"/>
-                                        {t(member.isActor ? 'actions.leave' : 'actions.remove')}
+                                        {t(member.is_actor ? 'actions.leave' : 'actions.remove')}
                                       </Button>
                                     }/>
             </FormWrapper>

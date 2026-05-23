@@ -22,10 +22,10 @@ import {Button} from "@repo/ui/components/button";
 import {SidebarTrigger} from "@repo/ui/components/sidebar";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
-import {DevProject, ProjectVisibility} from "@repo/shared/types/service";
+import {DevProjectData, ProjectVisibility} from "@sinytra/wiki-api-types";
 import ProjectRegisterForm from "@/components/dashboard/dev/modal/ProjectRegisterForm";
 import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectStatus} from "@repo/shared/types/api/project";
+import {ProjectStatus} from "@sinytra/wiki-api-types";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 import {WIKI_DOCS_URL} from "@repo/shared/constants";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
@@ -93,26 +93,25 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
   )
 }
 
-async function DevProjectsListEntry({project}: { project: DevProject }) {
+async function DevProjectsListEntry({project}: { project: DevProjectData }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectsListPage');
   const u = await getTranslations('ProjectStatus');
   const v = await getTranslations('ProjectVisibility');
 
-  const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectStatus.HEALTHY]: {text: 'text-secondary', iconClass: 'text-secondary', icon: CircleCheckIcon},
-    [ProjectStatus.AT_RISK]: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
-    [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'text-warning animate-spin', icon: LoaderCircleIcon},
-    [ProjectStatus.ERROR]: {text: 'text-destructive', iconClass: 'text-destructive', icon: XIcon},
-    [ProjectStatus.UNKNOWN]: {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon}
+  const statuses: { [key in ProjectStatus | 'unknown']: { text: string; icon: any, iconClass?: string; } } = {
+    healthy: {text: 'text-secondary', iconClass: 'text-secondary', icon: CircleCheckIcon},
+    at_risk: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
+    loading: {text: 'text-warning', iconClass: 'text-warning animate-spin', icon: LoaderCircleIcon},
+    error: {text: 'text-destructive', iconClass: 'text-destructive', icon: XIcon},
+    unknown: {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon}
   };
-  const status = statuses[project.status || ProjectStatus.UNKNOWN];
+  const status = statuses[project.status || 'unknown'];
 
   const visibilities: { [key in ProjectVisibility]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectVisibility.PUBLIC]: { text: 'text-secondary', iconClass: 'text-secondary', icon: GlobeIcon },
-    [ProjectVisibility.UNLISTED]: { text: 'text-secondary', iconClass: 'text-secondary', icon: Link2Icon },
-    [ProjectVisibility.PRIVATE]: { text: 'text-secondary', iconClass: 'text-secondary', icon: LockIcon },
-    [ProjectVisibility.UNKNOWN]:  {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon},
+    public: { text: 'text-secondary', iconClass: 'text-secondary', icon: GlobeIcon },
+    unlisted: { text: 'text-secondary', iconClass: 'text-secondary', icon: Link2Icon },
+    private: { text: 'text-secondary', iconClass: 'text-secondary', icon: LockIcon }
   }
   const visibility = visibilities[project.visibility];
 
@@ -148,7 +147,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
             </Property>
 
             <Property textClass={status.text} iconClass={status.iconClass} icon={status.icon}>
-              {u(project.status || ProjectStatus.UNKNOWN)}
+              {u(project.status || 'unknown')}
             </Property>
           </div>
 
@@ -166,7 +165,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
   )
 }
 
-async function ProfileProjects({projects}: { projects: DevProject[] }) {
+async function ProfileProjects({projects}: { projects: DevProjectData[] }) {
   const t = await getTranslations('DevProjectsListPage');
 
   return (

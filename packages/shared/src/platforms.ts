@@ -6,14 +6,14 @@ import {
 import {modrinthModPlatform} from './platforms/modrinth';
 import {curseForgeModPlatform} from './platforms/curseforge';
 import {ProjectPlatform, ProjectPlatforms} from '@repo/shared/types/platform';
-import {Project, ProjectType} from '@repo/shared/types/service';
 import {ProjectNotFoundError} from './platforms/exception';
 import issuesApi from '@repo/shared/api/issuesApi';
+import {ProjectData, ProjectType} from '@sinytra/wiki-api-types';
 
 export * from './platforms/universal';
 export * from './platforms/exception';
 
-interface IdentifiableProject {
+export interface IdentifiableProject {
   id: string;
   platforms: ProjectPlatforms;
   name?: string;
@@ -69,7 +69,7 @@ function getProjectURL(source: ProjectPlatform, slug: string, type: ProjectType)
 }
 
 async function reportMissingProject(project: IdentifiableProject, platform: ProjectPlatform) {
-  await issuesApi.reportMissingPlatformProject(project as Project, platform);
+  await issuesApi.reportMissingPlatformProject(project as ProjectData, platform);
 }
 
 function createFallback(project: IdentifiableProject): PlatformProject {
@@ -83,7 +83,7 @@ function createFallback(project: IdentifiableProject): PlatformProject {
     game_versions: [],
     platform: project.platforms.modrinth ? 'modrinth' : 'curseforge',
     project_url: '',
-    type: ProjectType.MOD,
+    type: 'mod',
     is_placeholder: false
   };
 }

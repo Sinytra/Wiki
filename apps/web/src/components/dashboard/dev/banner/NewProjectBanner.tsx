@@ -1,7 +1,6 @@
 import {useTranslations} from "next-intl";
 import {TrafficConeIcon} from "lucide-react";
 import DismissBannerButton from "@/components/dashboard/dev/banner/DismissBannerButton";
-import {ProjectFlag} from "@repo/shared/types/service";
 import {handlePublishProject, handleRemoveProjectFlag} from "@/lib/forms/actions";
 import FormWrapper from "@/components/modal/FormWrapper";
 import PublishProjectButton from "@/components/dashboard/dev/banner/PublishProjectButton";
@@ -23,7 +22,7 @@ export default function NewProjectBanner({projectId}: Props) {
 
         <FormWrapper>
           <DismissBannerButton
-            formAction={handleRemoveProjectFlag.bind(null, projectId, ProjectFlag.UNPUBLISHED)}
+            formAction={handleRemoveProjectFlag.bind(null, projectId, 'unpublished')}
           />
         </FormWrapper>
       </div>

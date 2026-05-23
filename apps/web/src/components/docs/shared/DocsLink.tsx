@@ -1,7 +1,8 @@
 import PageLink from "@/components/docs/PageLink";
 import {getDocsLink} from "@/lib/project/game/content";
 import {ComponentPropsWithoutRef} from "react";
-import {FileTree, FileTreeEntry, ProjectContext} from "@repo/shared/types/service";
+import {FileTree, ProjectContext} from "@repo/shared/types/service";
+import {FileTreeEntry} from "@sinytra/wiki-api-types";
 import service from "@/lib/service";
 import {getTranslations} from "next-intl/server";
 import {LocaleLink} from "@/lib/locales/routing";

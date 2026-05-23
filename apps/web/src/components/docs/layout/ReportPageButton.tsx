@@ -4,11 +4,11 @@ import {Button} from "@repo/ui/components/button";
 import {FlagIcon} from "lucide-react";
 import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
-import {ProjectReportType} from "@repo/shared/types/api/moderation";
 import {serializeUrlParams} from "@repo/shared/util";
 import {NavLink} from "@/components/navigation/link/NavLink";
+import {ReportType} from "@sinytra/wiki-api-types";
 
-function createReportLink(project: string, type: ProjectReportType, path: string | null) {
+function createReportLink(project: string, type: ReportType, path: string | null) {
   const params = serializeUrlParams({ project, type, path });
   return `/report?${params}`;
 }

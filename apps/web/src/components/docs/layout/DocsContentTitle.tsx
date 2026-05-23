@@ -2,11 +2,11 @@ import {cn} from "@repo/ui/lib/utils";
 import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
 import DocsEntryTabs from "@/components/docs/tabs/DocsEntryTabs";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {Project} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 import LocalBadge from "@repo/ui/components/badge/LocalBadge";
 
 interface Props {
-  project?: Project;
+  project?: ProjectData;
   showHistory?: boolean;
   children?: any;
   titleClassName?: string;

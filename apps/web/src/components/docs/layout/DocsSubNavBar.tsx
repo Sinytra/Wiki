@@ -10,7 +10,7 @@ import DocsVersionSelector from "@/components/docs/versions/DocsVersionSelector"
 import * as React from "react";
 import LanguageSelect from "@/components/navigation/LanguageSelect";
 import SubMobileNav from "@/components/navigation/header/SubMobileNav";
-import {Project, ProjectWithInfo} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 import ImageWithFallback from "@/components/util/ImageWithFallback";
 
 function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any; path: string; disabled?: boolean }) {
@@ -35,7 +35,7 @@ function SubPage({title, icon: Icon, path, disabled}: { title: string; icon: any
 }
 
 function DocsSubNavProjectTitle({project, platformProject}: {
-  project: Project | ProjectWithInfo;
+  project: ProjectData;
   platformProject: PlatformProject;
 }) {
   return (
@@ -50,7 +50,7 @@ function DocsSubNavProjectTitle({project, platformProject}: {
 }
 
 function MobileDocsSubNavProjectTitle({project, platformProject}: {
-  project: Project | ProjectWithInfo;
+  project: ProjectData;
   platformProject: PlatformProject;
 }) {
   return (
@@ -67,7 +67,7 @@ function MobileDocsSubNavProjectTitle({project, platformProject}: {
 }
 
 function DocsSubNavBarLinks({project, locale, version}: {
-  project: ProjectWithInfo;
+  project: ProjectData;
   locale: string;
   version: string;
 }) {
@@ -103,7 +103,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
 }
 
 export default function DocsSubNavBar({project, platformProject, locale, version}: {
-  project: ProjectWithInfo;
+  project: ProjectData;
   platformProject: PlatformProject;
   locale: string;
   version: string;

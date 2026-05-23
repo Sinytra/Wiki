@@ -4,7 +4,7 @@ import moderationApi from "@/lib/service/api/moderationApi";
 import {getTranslations} from "next-intl/server";
 import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
 import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
-import {ProjectReport} from "@repo/shared/types/api/moderation";
+import {ReportInfo} from "@sinytra/wiki-api-types";
 import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
 import * as React from "react";
 import {Label} from "@repo/ui/components/label";
@@ -26,7 +26,7 @@ function ReportField({title, value}: { title: string; value: string | null }) {
   )
 }
 
-function ReportDetails({report}: { report: ProjectReport }) {
+function ReportDetails({report}: { report: ReportInfo }) {
   const t = useTranslations('ViewReportPage.details');
   const u = useTranslations('ProjectReportReason');
   const v = useTranslations('ProjectReportStatus');

@@ -1,15 +1,15 @@
 import * as React from "react";
-import {AdminProject, AdminProjects} from "@repo/shared/types/api/admin";
+import {AdminProjectInfo, PaginatedData} from "@sinytra/wiki-api-types";
 import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import navigation from "@/lib/navigation";
 
 export default function AdminProjectsTable({data, page}: {
-  data: AdminProjects;
+  data: PaginatedData<AdminProjectInfo>;
   page: number;
 }) {
-  const columns: TableColumn<AdminProject>[] = [
+  const columns: TableColumn<AdminProjectInfo>[] = [
     {
       id: 'id',
       header: 'ID',
@@ -35,7 +35,7 @@ export default function AdminProjectsTable({data, page}: {
       id: 'modid',
       header: 'Mod ID',
       cell: item => (
-        <span className="font-mono">{item.modid || '-'}</span>
+        <span className="font-mono">{item.mod_id || '-'}</span>
       )
     },
     {

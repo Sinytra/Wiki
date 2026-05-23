@@ -123,7 +123,7 @@ importers:
         version: 15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
       next-intl:
         specifier: ^4.1.0
-        version: 4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
+        version: 4.3.4(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -292,7 +292,7 @@ importers:
         version: 0.5.8(acorn@8.15.0)(contentlayer2@0.5.8(acorn@8.15.0)(esbuild@0.25.8))(esbuild@0.25.8)(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-intl:
         specifier: ^4.1.0
-        version: 4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
+        version: 4.3.4(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
       normalize-url:
         specifier: ^8.0.1
         version: 8.0.2
@@ -411,6 +411,9 @@ importers:
       '@shikijs/rehype':
         specifier: ^1.16.2
         version: 1.29.2
+      '@sinytra/wiki-api-types':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@tailwindcss/postcss':
         specifier: ^4.0.0
         version: 4.1.11
@@ -626,6 +629,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../base/typescript-config
+      '@sinytra/wiki-api-types':
+        specifier: ^0.1.1
+        version: 0.1.1
       eslint:
         specifier: ^9.31.0
         version: 9.31.0(jiti@2.5.1)
@@ -654,6 +660,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../base/typescript-config
+      '@sinytra/wiki-api-types':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@types/node':
         specifier: ^20
         version: 20.19.9
@@ -758,7 +767,7 @@ importers:
         version: 15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
       next-intl:
         specifier: ^4.1.0
-        version: 4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
+        version: 4.3.4(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3)
       nuqs:
         specifier: ^2.5.1
         version: 2.5.1(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
@@ -793,6 +802,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../base/typescript-config
+      '@sinytra/wiki-api-types':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@types/lodash':
         specifier: ^4.17.20
         version: 4.17.20
@@ -3008,6 +3020,9 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
+
+  '@sinytra/wiki-api-types@0.1.1':
+    resolution: {integrity: sha512-+1E30BL5zQGfXQ2dmXEw+tz//jktI/ckcAcxCyZt0OdimNbNt+ZDdWwqiwjwa+/o9NXdU0AIQZjNTExpOPk9Ow==, tarball: https://npm.pkg.github.com/download/@sinytra/wiki-api-types/0.1.1/5ad54135d1bdd2986e88142508a259f10f52de7d}
 
   '@south-paw/typeface-minecraft@1.0.0':
     resolution: {integrity: sha512-wt58ifXAyBZ23qcPd8qcyRCbZVCcJX3E84LLHvmHL+b91HxF7nKtBIlv47uIgHRCrm7TWVRP1Z2r3zck6w3EuQ==}
@@ -9330,6 +9345,8 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
+  '@sinytra/wiki-api-types@0.1.1': {}
+
   '@south-paw/typeface-minecraft@1.0.0': {}
 
   '@standard-schema/spec@1.0.0': {}
@@ -12542,7 +12559,7 @@ snapshots:
       - markdown-wasm
       - supports-color
 
-  next-intl@4.3.4(next@15.5.9(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3):
+  next-intl@4.3.4(next@15.5.9(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)(typescript@5.8.3):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.10
       negotiator: 1.0.0

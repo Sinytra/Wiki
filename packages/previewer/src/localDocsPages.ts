@@ -2,11 +2,12 @@ import {unstable_cache} from 'next/cache';
 import {promises as fs} from 'fs';
 import {DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME, HOMEPAGE_FILE_PATH} from '@repo/shared/constants';
 import metadata, {DocumentationFolderMetadata, ValidationError } from './localMetadata';
-import {FileTree, FileTreeEntry} from '@repo/shared/types/service';
+import {FileTree} from '@repo/shared/types/service';
 import {ProjectPlatforms} from '@repo/shared/types/platform';
 import localFiles from './localFiles';
 import env from '@repo/shared/env';
 import markdown from '@repo/markdown';
+import {FileTreeEntry} from '@sinytra/wiki-api-types';
 
 export interface LocalDocumentationSource {
   id: string;

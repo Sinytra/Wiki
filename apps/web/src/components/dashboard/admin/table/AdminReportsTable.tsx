@@ -1,17 +1,17 @@
 import * as React from "react";
 import {TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
-import {ProjectReport, ProjectReports} from "@repo/shared/types/api/moderation";
+import {PaginatedData, ReportInfo} from "@sinytra/wiki-api-types";
 import {useTranslations} from "next-intl";
 
 export default function AdminReportsTable({data, page}: {
-  data: ProjectReports;
+  data: PaginatedData<ReportInfo>;
   page: number;
 }) {
   const t = useTranslations('ProjectReportReason');
   const u = useTranslations('ProjectReportStatus');
 
-  const columns: TableColumn<ProjectReport>[] = [
+  const columns: TableColumn<ReportInfo>[] = [
     {
       id: 'id',
       header: 'ID',

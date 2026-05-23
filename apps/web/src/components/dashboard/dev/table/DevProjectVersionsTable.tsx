@@ -2,8 +2,9 @@ import * as React from "react";
 import {ordinalColumn, TableColumn} from "@repo/ui/blocks/data-table/dataTableTypes";
 import DataTable from "@repo/ui/blocks/data-table/DataTable";
 import {useTranslations} from "next-intl";
-import {ProjectVersion, ProjectVersions} from "@repo/shared/types/api/devProject";
 import DevProjectTableEmptyState from "@/components/dashboard/dev/table/DevProjectTableEmptyState";
+import {DevProjectVersions} from "@repo/shared/types/service";
+import {ProjectVersionData} from "@sinytra/wiki-api-types";
 
 function EmptyPlaceholder() {
   const t = useTranslations('DevProjectVersionsTable.empty');
@@ -18,12 +19,12 @@ function EmptyPlaceholder() {
 }
 
 export default function DevProjectVersionsTable({data, page}: {
-  data: ProjectVersions;
+  data: DevProjectVersions;
   page: number;
 }) {
   const t = useTranslations('DevProjectVersionsTable');
 
-  const columns: TableColumn<ProjectVersion>[] = [
+  const columns: TableColumn<ProjectVersionData>[] = [
     ordinalColumn,
     {
       id: 'name',

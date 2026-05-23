@@ -1,10 +1,11 @@
 import DocsGuideFileTreeSidebar from "@/components/docs/side/guide/DocsGuideFileTreeSidebar";
-import {FileTree, Project} from "@repo/shared/types/service";
+import {FileTree} from "@repo/shared/types/service";
+import {ProjectData} from "@sinytra/wiki-api-types";
 import DocsResponsiveHeader from "@/components/docs/layout/DocsResponsiveHeader";
 
 interface Props {
   title: string;
-  project: Project;
+  project: ProjectData;
   version: string;
   locale: string;
   tree: FileTree;

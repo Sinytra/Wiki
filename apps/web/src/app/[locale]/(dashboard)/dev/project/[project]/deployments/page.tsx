@@ -11,7 +11,6 @@ import LiveProjectDeployConnection from "@/components/dashboard/dev/project/Live
 import DeployProjectContextProvider from "@/components/dashboard/dev/modal/DeployProjectContextProvider";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectStatus} from "@repo/shared/types/api/project";
 
 type Properties = {
   params: Promise<{

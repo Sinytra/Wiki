@@ -11,7 +11,7 @@ import {DevProjectRouteParams} from "@repo/shared/types/routes";
 import {handleDeleteProjectForm, handleUpdateProjectSettingsForm} from "@/lib/forms/actions";
 import FormWrapper from "@/components/modal/FormWrapper";
 import DevProjectGeneralSettings from "@/components/dashboard/dev/project/DevProjectGeneralSettings";
-import {ProjectMemberRole} from "@repo/shared/types/api/devProject";
+import {ProjectMemberRole} from "@sinytra/wiki-api-types";
 
 function DangerSection({deleteFunc}: { deleteFunc: any }) {
   return (
@@ -66,7 +66,7 @@ export default async function DevProjectGeneralSettingsPage(props: { params: Pro
       </FormWrapper>
 
       <div className="flex h-full flex-col space-y-5">
-        {project.access_level == ProjectMemberRole.OWNER &&
+        {project.access_level == 'owner' &&
           <>
               <hr className="mt-auto border-secondary"/>
 

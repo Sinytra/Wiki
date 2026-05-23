@@ -1,28 +1,28 @@
 import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from './universal';
 import env from '@repo/shared/env';
-import {ProjectType} from '@repo/shared/types/service';
 import {ProjectNotFoundError} from './exception';
 import {time} from '@repo/shared/constants';
+import {ProjectType} from '@sinytra/wiki-api-types';
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
 
 const curseforgeProjectTypes: Record<number, ProjectType> = {
-  6: ProjectType.MOD,
-  12: ProjectType.RESOURCEPACK,
-  6945: ProjectType.DATAPACK,
-  6552: ProjectType.SHADER,
-  4471: ProjectType.MODPACK,
-  5: ProjectType.PLUGIN
+  6: 'mod',
+  12: 'resourcepack',
+  6945: 'datapack',
+  6552: 'shader',
+  4471: 'modpack',
+  5: 'plugin'
 };
 
 const projectTypePaths: Record<ProjectType, string> = {
-  [ProjectType.MOD]: 'mc-mods',
-  [ProjectType.RESOURCEPACK]: 'texture-packs',
-  [ProjectType.DATAPACK]: 'data-packs',
-  [ProjectType.SHADER]: 'shaders',
-  [ProjectType.MODPACK]: 'modpacks',
-  [ProjectType.PLUGIN]: 'bukkit-plugins'
+  mod: 'mc-mods',
+  resourcepack: 'texture-packs',
+  datapack: 'data-packs',
+  shader: 'shaders',
+  modpack: 'modpacks',
+  plugin: 'bukkit-plugins'
 };
 
 interface CurseForgeProject {
@@ -87,18 +87,18 @@ async function getProject(slug: string): Promise<PlatformProject> {
       source_url: '',
 
       platform: 'curseforge',
-      project_url: getProjectURL(slug, ProjectType.MOD),
+      project_url: getProjectURL(slug, 'mod'),
       extra: {
         authors: []
       },
-      type: ProjectType.MOD,
+      type: 'mod',
       is_placeholder: true
     };
   }
 
   const project = await getCurseForgeProject(slug);
   const description = await getProjectDescription(project.id);
-  const type = curseforgeProjectTypes[project.classId] || ProjectType.MOD;
+  const type = curseforgeProjectTypes[project.classId] || 'mod';
 
   return {
     slug: project.slug,

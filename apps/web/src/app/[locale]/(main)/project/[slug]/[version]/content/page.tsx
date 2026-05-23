@@ -5,7 +5,8 @@ import service from "@/lib/service";
 import {setContextLocale} from "@/lib/locales/routing";
 import platforms from "@repo/shared/platforms";
 import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
-import {ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
+import {ContentFileTree, ProjectContext} from "@repo/shared/types/service";
+import {ContentFileTreeEntry} from "@sinytra/wiki-api-types";
 import {useTranslations} from "next-intl";
 import {ProjectRouteParams} from "@repo/shared/types/routes";
 import {getContentLink} from "@/lib/project/game/content";
@@ -15,7 +16,7 @@ interface Props {
   params: Promise<ProjectRouteParams>;
 }
 
-function ContentEntryLink({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
+function ContentEntryLink({entry, ctx}: { entry: ContentFileTreeEntry; ctx: ProjectContext; }) {
   if (entry.type != 'file') {
     throw new Error('Bug? Unexpected ContentEntryLink entry type ' + entry.type);
   }
@@ -31,7 +32,7 @@ function ContentEntryLink({entry, ctx}: { entry: ProjectContentEntry; ctx: Proje
   )
 }
 
-function ContentEntryList({entries, ctx}: { entries: ProjectContentTree; ctx: ProjectContext; }) {
+function ContentEntryList({entries, ctx}: { entries: ContentFileTree; ctx: ProjectContext; }) {
   return (
     <div className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
@@ -44,7 +45,7 @@ function ContentEntryList({entries, ctx}: { entries: ProjectContentTree; ctx: Pr
   )
 }
 
-function ContentSubcategory({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
+function ContentSubcategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: ProjectContext; }) {
   if (entry.type != 'dir') {
     throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
   }
@@ -59,7 +60,7 @@ function ContentSubcategory({entry, ctx}: { entry: ProjectContentEntry; ctx: Pro
   )
 }
 
-function ContentCategory({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
+function ContentCategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: ProjectContext; }) {
   if (entry.type != 'dir') {
     throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
   }

@@ -1,11 +1,11 @@
 'use client'
 
-import {DataMigration} from "@repo/shared/types/api/admin";
 import {Button} from "@repo/ui/components/button";
 import {SettingsIcon} from "lucide-react";
 import * as React from "react";
 import {toast} from "sonner";
 import {ApiCallResult} from '@repo/shared/commonNetwork';
+import {DataMigration} from '@sinytra/wiki-api-types';
 
 export default function DataMigrationWidget({migration, action}: { migration: DataMigration, action: () => Promise<ApiCallResult> }) {
   const formAction = async () => {

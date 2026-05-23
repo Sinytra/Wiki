@@ -18,9 +18,9 @@ function SearchResult({result}: { result: WikiSearchResult }) {
   return (
     <NavLink href={result.url}
              className={`
-            z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
-            text-primary
-          `}>
+               z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
+               text-primary
+             `}>
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize/>
       </div>

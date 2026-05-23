@@ -25,8 +25,7 @@ import ProjectGitRevision from "@/components/dashboard/dev/project/ProjectGitRev
 import ProjectIssuesList from "@/components/dashboard/dev/project/ProjectIssuesList";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
-import {DeploymentStatus, FullDevProjectDeployment} from "@repo/shared/types/api/deployment";
-import {ProjectIssue} from "@repo/shared/types/api/project";
+import {DeploymentInfo as DeploymentInfoType, ProjectIssueInfo} from "@sinytra/wiki-api-types";
 import ContextDropdownMenu from "@/components/util/ContextDropdownMenu";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
 import navigation from "@/lib/navigation";
@@ -53,7 +52,7 @@ function StatusInfoColumn({name, children}: { name: string; children: any; }) {
   )
 }
 
-function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
+function DeploymentIssues({issues}: { issues: ProjectIssueInfo[] }) {
   const t = useTranslations('DeploymentIssues');
 
   return (
@@ -82,7 +81,7 @@ function DeploymentIssues({issues}: { issues: ProjectIssue[] }) {
 }
 
 // TODO Locales
-function DeploymentInfoWidget({deployment}: { deployment: FullDevProjectDeployment }) {
+function DeploymentInfoWidget({deployment}: { deployment: DeploymentInfoType }) {
   return (
     <div className={`
       grid grid-cols-2 gap-4 rounded-sm border border-tertiary bg-primary-dim p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]
@@ -116,7 +115,7 @@ function DeploymentInfoWidget({deployment}: { deployment: FullDevProjectDeployme
   )
 }
 
-function DeploymentGitCoordinates({deployment}: { deployment: FullDevProjectDeployment; }) {
+function DeploymentGitCoordinates({deployment}: { deployment: DeploymentInfoType; }) {
   const t = useTranslations('DevProjectDeploymentPage.git-config');
 
   return (
@@ -158,7 +157,7 @@ function DeploymentGitCoordinates({deployment}: { deployment: FullDevProjectDepl
   )
 }
 
-function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDeployment; redirectTo: string }) {
+function DeploymentInfo({deployment, redirectTo}: { deployment: DeploymentInfoType; redirectTo: string }) {
   const t = useTranslations('DevProjectDeploymentPage');
 
   return (
@@ -194,7 +193,7 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDe
               <FormWrapper keys={['DeleteDeploymentModal']}>
                 <DeleteDeploymentModal
                   formAction={handleDeleteDeploymentForm.bind(null, deployment.project_id, deployment.id)}
-                  loading={deployment.status == DeploymentStatus.LOADING}
+                  loading={deployment.status == 'loading'}
                   redirectTo={redirectTo}
                 />
               </FormWrapper>
@@ -219,7 +218,7 @@ function DeploymentInfo({deployment, redirectTo}: { deployment: FullDevProjectDe
 
         <ProjectGitRevision
           revision={deployment.revision}
-          loading={deployment.status === DeploymentStatus.LOADING}
+          loading={deployment.status === 'loading'}
         />
 
         <DeploymentIssues issues={deployment.issues}/>

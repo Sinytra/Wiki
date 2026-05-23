@@ -6,21 +6,11 @@ import {toast} from "sonner";
 import {Button} from "@repo/ui/components/button";
 import {DevProjectSidebarContext} from "@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider";
 import {useTranslations} from "next-intl";
-import {ProjectRevision} from "@repo/shared/types/api/project";
+import {DeploymentEvent} from "@sinytra/wiki-api-types";
 import envPublic from "@repo/shared/envPublic";
 
 interface Props {
   id: string;
-}
-
-interface DeploymentEvent {
-  type: 'created' | 'loading' | 'revision' | 'success' | 'error';
-  deployment_id: string;
-}
-
-interface RevisionDeploymentEvent extends DeploymentEvent {
-  type: 'revision';
-  revision: ProjectRevision;
 }
 
 export default function LiveProjectDeployConnection({id}: Props) {

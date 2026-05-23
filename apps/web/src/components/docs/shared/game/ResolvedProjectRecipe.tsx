@@ -4,13 +4,8 @@ import RecipeIngredientDisplay from "@/components/docs/shared/game/RecipeIngredi
 import ResponsiveTable from "@/components/util/ResponsiveTable";
 import {getTranslations} from "next-intl/server";
 import HoverContextProvider from "@/components/util/HoverContextProvider";
-import {
-  DisplayItem,
-  GameRecipeType,
-  ProjectContext,
-  ResolvedGameRecipe,
-  ResolvedItem
-} from "@repo/shared/types/service";
+import {DisplayItem, ProjectContext} from "@repo/shared/types/service";
+import {GameRecipeType, ResolvedGameRecipe, ResolvedItem} from "@sinytra/wiki-api-types";
 import builtinRecipeTypes from "@/lib/project/builtin/builtinRecipeTypes";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import env from "@repo/shared/env";

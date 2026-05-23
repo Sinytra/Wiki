@@ -1,30 +1,25 @@
 import * as React from "react";
 import {useTranslations} from "next-intl";
-import {DeploymentStatus} from "@repo/shared/types/api/deployment";
+import {DeploymentStatus} from "@sinytra/wiki-api-types";
 import LoadingIndicator from "@repo/ui/components/indicator/LoadingIndicator";
 
 function DeploymentStatusIndicator({status}: { status: DeploymentStatus }) {
   return (
     <>
-      {status == DeploymentStatus.UNKNOWN &&
-        <div className="flex w-5 justify-center">
-            <div className="size-2.5 rounded-full bg-neutral-400"/>
-        </div>
-      }
-      {status == DeploymentStatus.CREATED &&
+      {status == 'created' &&
         <div className="flex w-5 justify-center">
             <div className="size-2.5 rounded-full bg-blue-400"/>
         </div>
       }
-      {status == DeploymentStatus.LOADING &&
+      {status == 'loading' &&
         <LoadingIndicator/>
       }
-      {status == DeploymentStatus.SUCCESS &&
+      {status == 'success' &&
         <div className="flex w-5 justify-center">
             <div className="size-2.5 rounded-full bg-green-400"/>
         </div>
       }
-      {status == DeploymentStatus.ERROR &&
+      {status == 'error' &&
         <div className="flex w-5 justify-center">
             <div className="size-2.5 rounded-full bg-destructive"/>
         </div>

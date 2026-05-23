@@ -9,7 +9,9 @@ import {cn} from "@repo/ui/lib/utils";
 import ProjectIssuesList from "@/components/dashboard/dev/project/ProjectIssuesList";
 import {handleApiCall} from "@/lib/service/serviceUtil";
 import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectIssue, ProjectIssueStats} from "@repo/shared/types/api/project";
+import {ProjectIssueInfo, ProjectIssueLevel} from "@sinytra/wiki-api-types";
+
+type ProjectIssueStats = { [key in ProjectIssueLevel]?: number };
 import issuesApi from "@repo/shared/api/issuesApi";
 
 function ProjectIssuesStatWidget({className, count, title, icon: Icon}: {
@@ -58,7 +60,7 @@ function ProjectIssuesHealthWidget({stats}: { stats: ProjectIssueStats }) {
       text: 'No issues found'
     }
   };
-  const style = styles[stats.error > 0 ? 'error' : stats.warning > 0 ? 'warning' : 'normal'];
+  const style = styles[(stats.error ?? 0) > 0 ? 'error' : (stats.warning ?? 0) > 0 ? 'warning' : 'normal'];
   const Icon = style.icon;
 
   return (
@@ -96,7 +98,7 @@ function ProjectIssuesSummary({stats}: { stats: ProjectIssueStats }) {
   )
 }
 
-function ProjectIssuesSection({issues}: { issues: ProjectIssue[] }) {
+function ProjectIssuesSection({issues}: { issues: ProjectIssueInfo[] }) {
   const t = useTranslations('DevProjectHealthPage.errors');
 
   return (

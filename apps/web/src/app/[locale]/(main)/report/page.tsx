@@ -5,12 +5,12 @@ import {useTranslations} from "next-intl";
 import {handleReportProjectForm} from "@/lib/forms/actions";
 import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
 import LinkTextButton from "@/components/navigation/link/LinkTextButton";
-import {ProjectReportType} from "@repo/shared/types/api/moderation";
 import {notFound} from "next/navigation";
 import locales from "@repo/shared/locales";
 import {use} from "react";
 import commonNetwork from "@repo/shared/commonNetwork";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
+import {ReportType} from "@sinytra/wiki-api-types";
 
 type Params = Promise<{ locale: string }>;
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -21,7 +21,7 @@ export default function ReportPage(props: { params: Params; searchParams: Search
   setContextLocale(params.locale);
 
   const project = searchParams.project as string;
-  const type = searchParams.type as ProjectReportType;
+  const type = searchParams.type as ReportType;
   const path = searchParams.path as string | null;
   const locale = searchParams.locale as string || null;
   const version = searchParams.version as string || null;

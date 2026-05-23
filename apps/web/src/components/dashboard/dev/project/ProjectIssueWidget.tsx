@@ -6,30 +6,25 @@ import {cn} from "@repo/ui/lib/utils";
 import * as React from "react";
 import {useState} from "react";
 import LocalDateTime from "@repo/ui/util/LocalDateTime";
-import {ProjectIssue, ProjectIssueLevel} from "@repo/shared/types/api/project";
+import {ProjectIssueInfo, ProjectIssueLevel} from "@sinytra/wiki-api-types";
 
-export default function ProjectIssueWidget({issue}: { issue: ProjectIssue }) {
+export default function ProjectIssueWidget({issue}: { issue: ProjectIssueInfo }) {
   const t = useTranslations('ProjectIssueType');
   const u = useTranslations('ProjectError');
   const v = useTranslations('ProjectIssueWidget');
-  const Icon = issue.level == ProjectIssueLevel.WARNING ? TriangleAlertIcon : CircleAlertIcon;
+  const Icon = issue.level == 'warning' ? TriangleAlertIcon : CircleAlertIcon;
   const [expanded, setExpanded] = useState(false);
 
   const issueLevels: { [key in ProjectIssueLevel]: { bg: string; bg_hover: string; fg: string; } } = {
-    [ProjectIssueLevel.ERROR]: {
+    error: {
       bg: 'bg-destructive-soft/50 border-destructive',
       bg_hover: 'hover:bg-destructive-soft/70',
       fg: 'text-destructive'
     },
-    [ProjectIssueLevel.WARNING]: {
+    warning: {
       bg: 'bg-warning-soft/50 border-warning-soft',
       bg_hover: 'hover:bg-warning-soft/70',
       fg: 'text-warning-soft'
-    },
-    [ProjectIssueLevel.UNKNOWN]: {
-      bg: '',
-      bg_hover: '',
-      fg: 'text-secondary'
     }
   };
   const activeLevel = issueLevels[issue.level];

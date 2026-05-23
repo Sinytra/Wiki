@@ -1,7 +1,8 @@
 import ExpandableCategory from "@/components/docs/util/ExpandableCategory";
 import Asset from "@/components/docs/shared/asset/Asset";
 import PageLink from "@/components/docs/PageLink";
-import {Project, ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
+import {ContentFileTree, ProjectContext} from "@repo/shared/types/service";
+import {ContentFileTreeEntry, ProjectData} from "@sinytra/wiki-api-types";
 import {useTranslations} from "next-intl";
 import {cn} from "@repo/ui/lib/utils";
 import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
@@ -9,20 +10,20 @@ import {getContentLink} from "@/lib/project/game/content";
 
 interface Props {
   currentId: string;
-  project: Project;
+  project: ProjectData;
   ctx: ProjectContext;
-  contents: ProjectContentTree;
+  contents: ContentFileTree;
 }
 
-// TODO Cleanup: navigation.ts links + reusable component for ProjectContentEntry
+// TODO Cleanup: navigation.ts links + reusable component for ContentFileTreeEntry
 function Category({currentId, content, ctx}: {
   currentId: string;
-  content: ProjectContentEntry;
+  content: ContentFileTreeEntry;
   ctx: ProjectContext;
 }) {
   const t = useTranslations('ContentCategory');
 
-  let subCategories: ProjectContentTree;
+  let subCategories: ContentFileTree;
   if (content.children.some(c => c.type === 'dir')) {
     subCategories = content.children.filter(c => c.type === 'dir');
     const other = content.children.filter(c => c.type == 'file');
