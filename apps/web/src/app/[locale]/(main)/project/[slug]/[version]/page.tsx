@@ -289,11 +289,11 @@ export default async function ProjectHomepage(props: PageProps) {
 
       <Section title={t('navigation.title')} icon={MapIcon} className="flex flex-row flex-wrap gap-4">
         <SubpageLink title={t('navigation.docs.title')} icon={BookMarkedIcon}
-                     desc={t('navigation.docs.desc', {pages: project.info.pageCount})}
+                     desc={t('navigation.docs.desc', {pages: project.info.page_count})}
                      href="docs"/>
-        {project.info.contentCount > 0 &&
+        {project.info.content_count > 0 &&
           <SubpageLink title={t('navigation.content.title')} icon={BoxIcon}
-                       desc={t('navigation.content.desc', {items: project.info.contentCount})}
+                       desc={t('navigation.content.desc', {items: project.info.content_count})}
                        href="content"/>
         }
         {/*<SubpageLink title="Developer information" icon={HammerIcon} desc="Maven and in-game IDs" href="../devs"/>*/}
@@ -308,7 +308,9 @@ export default async function ProjectHomepage(props: PageProps) {
         {project.platforms.modrinth &&
           <ExternalLink text="Modrinth" icon={ModrinthIcon}
                         href={platforms.getProjectURL('modrinth', project.platforms.modrinth, project.type)}
-                        className={'border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth'}
+                        className={`
+                          border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth
+                        `}
           />
         }
         {platformProject.discord_url &&

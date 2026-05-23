@@ -39,7 +39,6 @@ export default function LiveProjectDeployConnection({id}: Props) {
     sse.addEventListener('deployment', (event: MessageEvent) => {
       try {
         const parsed = JSON.parse(event.data) as DeploymentEvent;
-        console.log('received', parsed.type);
 
         if (parsed.type == 'created') {
           setConnected(true);

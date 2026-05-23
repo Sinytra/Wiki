@@ -1,23 +1,13 @@
 import {MarkdownError} from '@repo/markdown';
 import network from '@repo/shared/network';
 import {
-  ProjectError,
   ProjectData,
   ProjectIssueInfo,
-  ProjectIssueLevel,
-  ProjectIssueType
+  AddIssueRequestBody
 } from '@sinytra/wiki-api-types';
 import {ProjectPlatform} from '@repo/shared/types/platform';
 import platforms from '@repo/shared/platforms';
 import {ApiCallResult, ApiRouteParameters} from '@repo/shared/commonNetwork';
-
-interface AddProjectIssueRequest {
-  level: ProjectIssueLevel;
-  type: ProjectIssueType;
-  subject: ProjectError;
-  path?: string;
-  details: string;
-}
 
 async function reportPageRenderFailure(project: ProjectData, path: string, error: any, version: string | null, locale: string | null) {
   if (project.local) return;
@@ -42,11 +32,12 @@ async function reportMissingPlatformProject(project: ProjectData, platform: Proj
     level: 'error',
     type: 'meta',
     subject: 'missing_platform_project',
-    details: `${platform}: ${project.platforms[platform]} (${projectLink})`
+    details: `${platform}: ${project.platforms[platform]} (${projectLink})`,
+    path: null
   });
 }
 
-async function addProjectIssue(id: string, body: AddProjectIssueRequest, parameters?: ApiRouteParameters): Promise<ApiCallResult> {
+async function addProjectIssue(id: string, body: AddIssueRequestBody, parameters?: ApiRouteParameters): Promise<ApiCallResult> {
   return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${id}/issues`, {parameters, body}));
 }
 

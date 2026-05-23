@@ -95,8 +95,8 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectDa
     source_repo: null,
     created_at: '',
     info: {
-      pageCount: filePages.length,
-      contentCount: fileContentPages.length,
+      page_count: filePages.length,
+      content_count: fileContentPages.length,
       licenses: {
         project: null
       }

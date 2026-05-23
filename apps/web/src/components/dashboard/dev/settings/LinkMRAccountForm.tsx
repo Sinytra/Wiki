@@ -13,9 +13,9 @@ function SubmitButton() {
   return (
     <Button data-pending={pending ? 'true' : 'false'} variant="secondary" size="sm"
             className={`
-        border border-brand-modrinth/70 bg-primary font-semibold text-brand-modrinth hover:text-brand-modrinth/90
-        data-[pending=true]:text-brand-modrinth/90
-      `}>
+              border border-brand-modrinth/70 bg-primary font-semibold text-brand-modrinth hover:text-brand-modrinth/90
+              data-[pending=true]:text-brand-modrinth/90
+            `}>
       {pending
         ?
         <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin"/>

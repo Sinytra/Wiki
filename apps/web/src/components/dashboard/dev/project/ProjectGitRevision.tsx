@@ -41,8 +41,8 @@ export default function ProjectGitRevision({revision, loading, current}: {
               <LinkWithFallback href={revision.url} className="shrink-0 font-mono text-secondary">
                 {revision.hash}
               </LinkWithFallback>
-              <span className="text-secondary" title={revision.authorEmail}>
-                {revision.authorName}
+              <span className="text-secondary" title={revision.author_email}>
+                {revision.author_name}
               </span>
               <LinkWithFallback href={revision.url}>
                 {revision.message}

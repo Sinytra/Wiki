@@ -74,7 +74,7 @@ export default async function DevProjectMembersPage(props: Properties) {
       <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
 
       <div className="flex flex-col gap-4">
-        {data.canEdit &&
+        {data.can_edit &&
           <div className="flex flex-row items-center justify-end">
             <FormWrapper keys={['AddProjectMemberForm', 'ProjectMemberRole']}>
               <AddProjectMemberForm formAction={handleAddProjectMember.bind(null, params.project)}/>
@@ -84,8 +84,8 @@ export default async function DevProjectMembersPage(props: Properties) {
 
         <div className="flex flex-col gap-2">
           {data.members.map(member => (
-            <ProjectMemberWidget key={member.username} projectId={params.project} canEdit={data.canEdit}
-                                 canLeave={data.canLeave} member={member}/>
+            <ProjectMemberWidget key={member.username} projectId={params.project} canEdit={data.can_edit}
+                                 canLeave={data.can_leave} member={member}/>
           ))}
         </div>
       </div>

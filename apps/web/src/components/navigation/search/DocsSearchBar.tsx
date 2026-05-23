@@ -17,9 +17,9 @@ function SearchResult({result}: { result: WikiSearchResult }) {
   return (
     <NavLink href={result.url}
              className={`
-        z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary first:rounded-t-sm
-        last:rounded-b-sm hover:bg-tertiary
-      `}>
+               z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary first:rounded-t-sm
+               last:rounded-b-sm hover:bg-tertiary
+             `}>
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize/>
       </div>
@@ -199,10 +199,10 @@ export default function DocsSearchBar() {
         <SearchIcon className="inset absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 text-neutral-500"/>
         <input type="text" value={searchQuery} ref={inputRef}
                className={`
-            w-full cursor-pointer rounded-sm border border-secondary bg-primary-alt px-8 py-[0.2rem] text-center text-sm
-            text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:border-secondary-alt focus:shadow-md
-            focus:outline-none
-          `}
+                 w-full cursor-pointer rounded-sm border border-secondary bg-primary-alt px-8 py-[0.2rem] text-center
+                 text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:border-secondary-alt
+                 focus:shadow-md focus:outline-none
+               `}
                onChange={(e) => handleSearch(e.target.value)}
                placeholder={t('placeholder')}
                onFocus={onFocus}
@@ -213,9 +213,9 @@ export default function DocsSearchBar() {
       {focused && searchQuery && (loading || (!loading && results)) &&
         <div onMouseDown={e => e.preventDefault()}
              className={`
-            absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border border-secondary
-            bg-primary-alt shadow-lg
-          `}>
+               absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border border-secondary
+               bg-primary-alt shadow-lg
+             `}>
           {loading && <LoadingSearchState/>}
 
           {!loading && results && results.hits.map(r => <SearchResult key={r.url} result={r}/>)}

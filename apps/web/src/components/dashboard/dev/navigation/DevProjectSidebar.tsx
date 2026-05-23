@@ -52,7 +52,9 @@ function SidebarProjectHeader({project, platformProject}: {
   return (
     <div className="space-y-3 p-1">
       <LocaleNavLink href="/dev"
-                     className={'flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline'}>
+                     className={`
+                       flex flex-row items-center gap-2 pb-1 text-sm text-secondary underline-offset-4 hover:underline
+                     `}>
         <ArrowLeftIcon className="size-4"/>
         <span>Back</span>
       </LocaleNavLink>

@@ -32,9 +32,9 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
            className={cn(
              className,
              `
-          fixed z-30 h-[88vh] w-full overflow-hidden border-tertiary bg-primary transition-all duration-300 ease-in-out
-          sm:h-[calc(100vh_-_9.5rem)] lg:top-[6rem]! lg:transition-none
-        `,
+               fixed z-30 h-[88vh] w-full overflow-hidden border-tertiary bg-primary transition-all duration-300
+               ease-in-out sm:h-[calc(100vh_-_9.5rem)] lg:top-[6rem]! lg:transition-none
+             `,
              solid ? 'lg:static' : 'lg:sticky',
              type == 'left' && `
                border-r data-[open=false]:-translate-x-full data-[open=false]:border-0 lg:border-r-0
@@ -48,8 +48,9 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
     >
       <ContentDiv ref={ref}
                   className={cn(`
-          scrollbar-thumb-secondary scrollbar-track-secondary/20 scrollbar-thin h-full space-y-2 overflow-y-auto p-4
-        `, innerClassName)}>
+                    scrollbar-thumb-secondary scrollbar-track-secondary/20 scrollbar-thin h-full space-y-2
+                    overflow-y-auto p-4
+                  `, innerClassName)}>
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-sm font-semibold text-secondary">
             {title}

@@ -38,7 +38,7 @@ async function RecipeBody({recipe, type, ctx}: {
   }
 
   const slot = (key: string, input: boolean) => {
-    const slots = input ? type.inputSlots : type.outputSlots;
+    const slots = input ? type.input_slots : type.output_slots;
     const result = slots[key];
     if (!result) {
       console.error(`Missing recipe slot for recipe "${recipe.id}", key "${key}", input: ${input}`);
@@ -112,7 +112,7 @@ export default async function ResolvedProjectRecipe({recipe, embedded, ctx}: Pro
 
   const inputCounts = recipe.summary.inputs;
   const outputCounts = recipe.summary.outputs;
-  const localizedName = recipeType.type.localizedName || await builtinRecipeTypes.getRecipeTypeName(recipeType.type.id);
+  const localizedName = recipeType.type.localized_name || await builtinRecipeTypes.getRecipeTypeName(recipeType.type.id);
 
   return (
     <div className="space-y-2! [&>table]:mt-0">

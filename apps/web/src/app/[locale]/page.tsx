@@ -49,8 +49,8 @@ function FeaturedProjectsContent({projects}: { projects: FeaturedProject[] }) {
   return projects.map((project, index) => (
     <div key={index}
          className={`
-        flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit
-      `}
+           flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit
+         `}
          style={style}
     >
       <div className="mb-4 flex items-center">
@@ -137,9 +137,9 @@ function HomePageContent({projects}: { projects: FeaturedProject[] }) {
         <div className="mt-8 text-center md:hidden">
           <LocaleNavLink href="/browse"
                          className={`
-              mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast to-blue-500
-              px-12 py-2 text-white
-            `}>
+                           mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast
+                           to-blue-500 px-12 py-2 text-white
+                         `}>
             {t('browse')}
           </LocaleNavLink>
         </div>

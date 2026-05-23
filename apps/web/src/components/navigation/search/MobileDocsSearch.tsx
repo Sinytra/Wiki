@@ -18,9 +18,9 @@ function SearchResult({result}: { result: WikiSearchResult }) {
   return (
     <NavLink href={result.url}
              className={`
-        z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
-        text-primary
-      `}>
+               z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5
+               text-primary
+             `}>
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize/>
       </div>
@@ -127,9 +127,10 @@ function SearchScreen({isOpen, setOpen}: {
             </button>
             <input type="text" value={searchQuery} onChange={(e) => handleSearch(e.target.value)}
                    className={`
-                w-full cursor-pointer rounded-xs border border-neutral-700 bg-primary-alt p-2 px-8 text-center text-sm
-                text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1 focus:outline-secondary
-              `}
+                     w-full cursor-pointer rounded-xs border border-neutral-700 bg-primary-alt p-2 px-8 text-center
+                     text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1
+                     focus:outline-secondary
+                   `}
                    placeholder={t('placeholder')} autoFocus
             />
           </div>

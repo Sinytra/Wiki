@@ -62,9 +62,9 @@ export default function DocsFileTreeFolder({name, path, icon, level, children}: 
     <div className={cn('accordion flex flex-col', isOpen && 'open')}>
       <button onClick={toggleOpen} data-state={isOpen ? 'open' : 'closed'}
               className={`
-          flex items-center rounded-md px-3 py-2 text-sm text-secondary hover:bg-secondary hover:text-primary-alt
-          [&[data-state=open]>svg:last-child]:rotate-180
-        `}
+                flex items-center rounded-md px-3 py-2 text-sm text-secondary hover:bg-secondary hover:text-primary-alt
+                [&[data-state=open]>svg:last-child]:rotate-180
+              `}
       >
         {icon}
         {name}

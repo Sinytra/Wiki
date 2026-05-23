@@ -38,9 +38,7 @@ async function BoundCraftingRecipe({ctx, slots, result, count}: Props) {
               <ItemAssetDisplay asset={resultAsset}/>
             </div>
             {count && count > 1 &&
-              <span className={`
-                      sharpRendering absolute right-0 bottom-0 z-10 text-left text-base leading-1 text-white
-                    `} style={{fontFamily: 'Minecraft, sans-serif', textShadow: '2px 2px 0 #3F3F3F'}}>
+              <span className={'sharpRendering absolute right-0 bottom-0 z-10 text-left text-base leading-1 text-white'} style={{fontFamily: 'Minecraft, sans-serif', textShadow: '2px 2px 0 #3F3F3F'}}>
                       {count}
                     </span>
             }

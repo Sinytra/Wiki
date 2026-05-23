@@ -79,7 +79,7 @@ function DocsSubNavBarLinks({project, locale, version}: {
     <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-2">
       <SubPage title="Home" icon={HomeIcon} path=""/>
       <SubPage title="Documentation" icon={BookMarkedIcon} path="docs"/>
-      {project.info.contentCount > 0 &&
+      {project.info.content_count > 0 &&
         <SubPage title="Content" icon={BoxIcon} path="content"/>
       }
       {/*<SubPage title="Recipes" icon={AnvilIcon} path="recipes" disabled/>*/}
