@@ -1,14 +1,14 @@
 import {cn} from '@repo/ui/lib/utils';
-import DocsContentMetaSidebarBody, {
+import ContentInfobox, {
   Props as BodyProps
-} from '@/components/docs/side/content/DocsContentMetaSidebarBody';
+} from './ContentInfobox';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import env from '@repo/shared/env';
 import ReportPageButton from '@/components/docs/layout/ReportPageButton';
 import EditPageButton from '@/components/docs/layout/EditPageButton';
 import {RenderedDocsPage} from '@repo/shared/types/service';
 
-type Props = Omit<BodyProps, 'metadata' | 'properties'> & { id: string; page: RenderedDocsPage };
+type Props = Omit<BodyProps, 'metadata' | 'properties'> & { title: string; id: string; page: RenderedDocsPage };
 
 export default function DocsContentMetaSidebar(props: Props) {
   return (
@@ -25,8 +25,12 @@ export default function DocsContentMetaSidebar(props: Props) {
         </h3>
       </div>
 
-      <DocsContentMetaSidebarBody metadata={props.page.content.metadata}
-                                  properties={props.page.properties} {...props}/>
+      {props.page.frontmatter.infobox != null &&
+        <ContentInfobox project={props.project} ctx={props.ctx}
+                        metadata={props.page.frontmatter.infobox} frontmatter={props.page.frontmatter}
+                        properties={props.page.properties}
+        />
+      }
 
       <ClientLocaleProvider keys={['PageEditControls']}>
         <div className="mt-auto space-y-4 pb-7">

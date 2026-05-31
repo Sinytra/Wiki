@@ -2,11 +2,9 @@
 
 import {useState, useEffect, useRef} from 'react';
 import DocsSidebarBase from '@/components/docs/side/DocsSidebarBase';
-import {FileHeading} from '@repo/shared/types/metadata';
 import {cn} from '@repo/ui/lib/utils';
-
-;
 import {useTranslations} from 'next-intl';
+import {FileHeading} from '@repo/markdown';
 
 interface ContentRightSidebarProps {
   headings: FileHeading[];

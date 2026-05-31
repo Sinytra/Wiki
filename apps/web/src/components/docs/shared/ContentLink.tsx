@@ -1,5 +1,4 @@
 import PageLink from '@/components/docs/PageLink';
-import service from '@/lib/service';
 import {getContentLink} from '@/lib/project/game/content';
 import {ComponentPropsWithoutRef} from 'react';
 import {ProjectContext} from '@repo/shared/types/service';
@@ -19,11 +18,8 @@ async function BoundContentLink(props: LinkProps) {
     version: ctx.version || DEFAULT_DOCS_VERSION,
     locale: ctx.locale || DEFAULT_LOCALE
   }, props.id);
-  const body = props.children ?? (await service.getContentItemName(props.id, props.ctx))?.name;
 
   return (
-    <PageLink {...props} href={link}>
-      {body || props.id}
-    </PageLink>
+    <PageLink {...props} href={link} />
   );
 }

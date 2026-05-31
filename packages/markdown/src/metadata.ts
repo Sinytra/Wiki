@@ -1,4 +1,4 @@
-export type GameContentType = 'block' | 'item' | 'other';
+import {ChangelogEntry, GameContentType, Infobox} from '@sinytra/wiki-api-types';
 
 export interface FileHeading {
   depth: number;
@@ -7,26 +7,17 @@ export interface FileHeading {
   top?: boolean;
 }
 
-type ShortChangelogEntry = {[key: string]: string};
-
-export type FullChangelogEntry = {
-  version: string;
-  date?: string;
-  changes: string[];
-};
-
-export type Changelog = (ShortChangelogEntry | FullChangelogEntry)[];
-
-// Frontmatter
-export interface DocsEntryMetadata {
+export interface RawFrontmatter {
+  id?: string | string[];
   title?: string;
-  id?: string;
-  type?: GameContentType;
-  custom?: Record<string, string>;
   icon?: string;
-  hide_icon?: boolean;
-  hide_meta?: boolean;
-  history?: Changelog;
+  infobox?: Infobox;
+  type?: GameContentType | null;
+  custom?: { [key in string]: string } | null;
+  history?: Array<ChangelogEntry> | null;
+}
 
-  _headings?: FileHeading[];
+export interface DocsEntryMetadata extends RawFrontmatter {
+  headings?: FileHeading[];
+  links?: string[];
 }

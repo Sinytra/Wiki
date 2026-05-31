@@ -1,7 +1,8 @@
-import {DocsEntryMetadata} from './metadata';
+import {DocsEntryMetadata, RawFrontmatter} from './metadata';
 
 declare module 'vfile' {
   interface DataMap {
-    matter: DocsEntryMetadata;
+    matter: RawFrontmatter;
+    metadata: DocsEntryMetadata;
   }
 }

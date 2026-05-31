@@ -6,7 +6,7 @@ import {ContentFileTreeEntry, ProjectData} from '@sinytra/wiki-api-types';
 import {useTranslations} from 'next-intl';
 import {cn} from '@repo/ui/lib/utils';
 import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
-import {getContentLink} from '@/lib/project/game/content';
+import {getInternalWikiLink} from '@/lib/project/game/content';
 
 interface Props {
   currentId: string;
@@ -34,7 +34,9 @@ function Category({currentId, content, ctx}: {
     subCategories = [{name: t('all'), children: content.children, type: 'dir', path: ''}];
   }
 
-  const active = subCategories.flatMap(c => c.children).some(c => c.id === currentId);
+  const active = subCategories
+    .flatMap(c => c.children)
+    .some(c => c.ref === currentId);
 
   return (
     <ExpandableCategory name={content.name} defaultOpen={active} className="gap-1.5">
@@ -49,12 +51,12 @@ function Category({currentId, content, ctx}: {
             {...i.children.map((c, i) => (
               <div key={c.path} className="flex flex-row items-center gap-1 text-sm">
                 {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
-                <PageLink href={getContentLink(ctx, c.id!)}
+                <PageLink href={getInternalWikiLink(c.ref!, ctx)}
                           className={cn(
                             'flex flex-row items-center gap-1 rounded-sm !text-sm',
-                            c.id === currentId && 'font-semibold bg-primary'
+                            c.ref === currentId && 'font-semibold bg-primary'
                           )}>
-                  <Asset location={c.icon || c.id!} ctx={ctx}/>
+                  <Asset location={c.icon || ''} ctx={ctx}/>
                   {c.name}
                 </PageLink>
               </div>

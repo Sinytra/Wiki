@@ -1,63 +1,20 @@
 import PageLink from '@/components/docs/PageLink';
-import {getDocsLink} from '@/lib/project/game/content';
 import {ComponentPropsWithoutRef} from 'react';
-import {FileTree, ProjectContext} from '@repo/shared/types/service';
-import {FileTreeEntry} from '@sinytra/wiki-api-types';
-import service from '@/lib/service';
-import {getTranslations} from 'next-intl/server';
+import {ProjectContext} from '@repo/shared/types/service';
 import {LocaleLink} from '@/lib/locales/routing';
+import {getDocsLink} from '@/lib/project/game/content';
 
 type LinkProps = Omit<ComponentPropsWithoutRef<typeof LocaleLink>, 'href'> & { path: string; ctx: ProjectContext };
 
-function findNestedPath(path: string[], fullPath: string, idx: number, tree: FileTree): FileTreeEntry | null {
-  if (idx >= path.length) {
-    return null;
-  }
-
-  for (const entry of tree) {
-    if (entry.path === fullPath) {
-      return entry;
-    }
-
-    if (entry.type === 'dir' && entry.path == path[idx]!) {
-      return findNestedPath(path, fullPath, idx + 1, entry.children);
-    }
-  }
-
-  return null;
-}
-
-async function getDocsPage(path: string[], fullPath: string, ctx: ProjectContext): Promise<FileTreeEntry | null> {
-  const contents = await service.getBackendLayout(ctx);
-  if (!contents) {
-    return null;
-  }
-  return findNestedPath(path, fullPath, 0, contents.tree) || null; // TODO Add API Route
-}
-
-export default async function DocsLink(ctx: ProjectContext, props: Omit<LinkProps, 'ctx'>) {
+export default function DocsLink(ctx: ProjectContext, props: Omit<LinkProps, 'ctx'>) {
   return BoundDocsLink({...props, ctx});
 }
 
-async function BoundDocsLink(props: LinkProps) {
-  const {path, ctx, children} = props;
-  const t = await getTranslations('DocsLink');
+function BoundDocsLink(props: LinkProps) {
+  const {path, ctx} = props;
 
-  const page = await getDocsPage(path.split('/'), path, ctx);
-  if (!page) {
-    return (
-      <span className="text-destructive">
-        {children ?? t('not_found')}
-      </span>
-    );
-  }
-
-  const link = getDocsLink(page.path, ctx);
-  const body = children ?? page.name;
-
+  const link = getDocsLink(path, ctx);
   return (
-    <PageLink {...props} href={link}>
-      {body || props.id}
-    </PageLink>
+    <PageLink {...props} href={link} />
   );
 }

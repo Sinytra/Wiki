@@ -6,14 +6,12 @@ import {notFound} from 'next/navigation';
 import platforms from '@repo/shared/platforms';
 import DocsInnerLayoutClient from '@/components/docs/layout/DocsInnerLayoutClient';
 import DocsPageFooter from '@/components/docs/layout/DocsPageFooter';
-import DocsGuideContentRightSidebar from '@/components/docs/side/guide/DocsGuideContentRightSidebar';
 import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
 import DocsGuideNonContentRightSidebar from '@/components/docs/side/guide/DocsGuideNonContentRightSidebar';
 import {constructPagePath} from '@/lib/service/serviceUtil';
 import env from '@repo/shared/env';
 import {RenderedDocsPage} from '@repo/shared/types/service';
 import issuesApi from '@repo/shared/api/issuesApi';
-import markdown from '@repo/markdown';
 
 export async function generateMetadata(
   props: {
@@ -33,14 +31,13 @@ export async function generateMetadata(
   if (!page) {
     return {title: (await parent).title?.absolute};
   }
+  const {frontmatter} = page;
 
   const platformProject = await platforms.getPlatformProject(project);
-  const result = await markdown.readProcessedFrontmatter(page.content) || {};
-  const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
-    : await service.getAsset((result.icon || result.id)!, ctx);
+  const iconUrl = frontmatter.icon ? await service.getAsset(frontmatter.icon, ctx) : null;
 
   return {
-    title: result.title ? `${result.title} - ${platformProject.name}` : `${platformProject.name} - ${(await parent).title?.absolute}`,
+    title: frontmatter.title ? `${frontmatter.title} - ${platformProject.name}` : `${platformProject.name} - ${(await parent).title?.absolute}`,
     openGraph: {
       images: [`/api/og?slug=${slug}&locale=${locale}&path=${path.join('/')}&version=${version}`]
     },
@@ -86,23 +83,17 @@ export default async function ProjectDocsPage(props: {
     return notFound();
   }
 
-  const isContentPage = (page.content.metadata.id !== undefined || page.content.metadata.icon !== undefined)
-    && page.content.metadata.hide_meta === undefined;
-  const headings = page.content.metadata._headings || [];
+  const headings = page.content.metadata.headings || [];
   const isPreview = env.isPreview();
 
   return (
-    <DocsInnerLayoutClient title={page.content.metadata.title || project.name}
+    <DocsInnerLayoutClient title={page.frontmatter.title || project.name}
                            project={project}
                            tree={projectData.tree}
                            version={version} locale={locale}
-                           showRightSidebar={isContentPage || headings.length > 0}
+                           showRightSidebar={headings.length > 0}
                            rightSidebar={
-                             isContentPage
-                               ? <DocsGuideContentRightSidebar project={project}
-                                                               metadata={page.content.metadata}
-                                                               version={version}/>
-                               : <DocsGuideNonContentRightSidebar headings={headings}/>
+                               <DocsGuideNonContentRightSidebar headings={headings}/>
                            }
                            footer={
                              <DocsPageFooter editUrl={page.edit_url}
@@ -112,7 +103,7 @@ export default async function ProjectDocsPage(props: {
                              />
                            }
     >
-      <DocsEntryPage page={page} project={project} showHistory={page.content.metadata.history !== undefined}/>
+      <DocsEntryPage page={page} project={project} showHistory={page.frontmatter.history !== undefined}/>
     </DocsInnerLayoutClient>
   );
 }

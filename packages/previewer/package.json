@@ -14,12 +14,14 @@
     "@repo/shared": "workspace:*",
     "directory-tree": "^3.5.2",
     "json-schema-library": "^10.1.2",
-    "next": "^15.5.9"
+    "next": "^15.5.9",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@sinytra/wiki-api-types": "^0.1.6",
-    "eslint": "^9.31.0"
+    "@sinytra/wiki-api-types": "^0.1.18",
+    "eslint": "^9.31.0",
+    "@types/lodash": "^4.17.9"
   }
 }

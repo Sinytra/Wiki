@@ -13,7 +13,7 @@ export default async function DocsEntryPage({project, page, showHistory}: {
   return (
     <div className="flex min-h-[90vh] flex-col pb-20">
       <DocsContentTitle className="hidden sm:block" project={project} showHistory={showHistory}>
-        {page.content.metadata.title || project.name}
+        {page.frontmatter.title || project.name}
       </DocsContentTitle>
 
       <TabSwitchedDocsContent
@@ -23,7 +23,7 @@ export default async function DocsEntryPage({project, page, showHistory}: {
           </DocsMarkdownContent>
         }
         history={
-          page.content.metadata.history ? <DocsChangelogPage changelog={page.content.metadata.history}/> : null
+          page.frontmatter.history ? <DocsChangelogPage changelog={page.frontmatter.history}/> : null
         }
       />
     </div>

@@ -20,7 +20,7 @@ export default function LiveProjectDeployConnection({id}: Props) {
   const t = useTranslations('LiveProjectDeployConnection');
 
   useEffect(() => {
-    const endpointUrl = envPublic.getBackendEndpointUrl() + '/api/v1/dev/deployments/events';
+    const endpointUrl = envPublic.getBackendEndpointUrl() + '/api/v1/dev/deployments/events?global=true';
     const sse = new EventSource(endpointUrl, {withCredentials: true});
 
     let resolver: any = null;

@@ -36,7 +36,7 @@ export default async function ProjectDocsHomepage(props: PageProps) {
   const platformProject = await platforms.getPlatformProject(project);
 
   const content = await renderHomepage(project, platformProject, ctx);
-  const headings = content?.metadata._headings || [];
+  const headings = content?.metadata.headings || [];
   const isPreview = env.isPreview();
 
   return (

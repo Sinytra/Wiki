@@ -15,7 +15,6 @@ Reference only:
 
 - [Game Content](#game-content)
 - [Recipes](#recipes)
-- [Navigation](#navigation)
 
 ## Builtin
 
@@ -175,47 +174,3 @@ this item. This is similar to pressing `U` on your keyboard when using in-game r
 
 - `id`*
   - ID of the item to show the usage of
-
-## Navigation
-
-<Callout type="important">
-    While these components are documented here for the sake of completeness, it is recommened to use the shorthand
-    [link format](../folder_structure/pages#extensions) for linking to other pages.
-</Callout>
-
-Navigation utility components to make navigating across pages easier, even for referencing vanilla items.
-
-### `DocsLink`
-
-Allows linking to documentation pages within the same project.
-
-The Docs Link takes a single attribute named `path`, which specified the path to the page to link, relative to the
-project root.
-
-You can omit the body to show the page title instead.
-
-```mdx
-<DocsLink path="getting_started/first_steps"/>
-```
-
-### `ContentLink`
-
-This component allows you to reference any in-game object via its ID, including vanilla items, and creates a link that
-leads to its page, if it exists.
-
-The Content Link component takes a single attribute named `id`, which specifies the in-game item to navigate to.
-This can be an item from the current project or vanilla.
-
-Project content pages are matched based on the `id` frontmatter [attribute](../folder_structure/pages/content_pages#metadata).
-Additionally, non-vanilla items can omit the link text to display the item's page title instead.
-
-```mdx
-{/* Links to https://minecraft.wiki/w/redstone */}
-<ContentLink id="redstone">Redstone</ContentLink>
-
-{/* Shows "Electric Furnace", links to content page from the same project */}
-<ContentLink id="examplemod:electric_furnace" />
-
-{/* Same as above - with custom display text */}
-Click <ContentLink id="examplemod:electric_furnace">here</ContentLink> to learn more.
-```

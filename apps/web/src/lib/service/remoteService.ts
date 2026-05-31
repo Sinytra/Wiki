@@ -12,9 +12,7 @@ import network from '@repo/shared/network';
 import commonNetwork, {ApiRouteParameters, RequestOptions} from '@repo/shared/commonNetwork';
 import {
   BrowseResponse,
-  ContentItemNameResponse,
-  ContentItemResponse,
-  ProjectData,
+  ProjectData, ProjectPage,
   RecipeTypeResponse,
   ResolvedGameRecipe,
   ResolvedItem,
@@ -61,7 +59,7 @@ async function getDocsPage(path: string[], optional: boolean, {
   id,
   version,
   locale
-}: ProjectContext): Promise<ContentItemResponse | null> {
+}: ProjectContext): Promise<ProjectPage | null> {
   return await resolveNullableApiCall(() =>
     sendApiRequest(id, `docs/${id}/page/${constructPagePath(path)}`, {
       version,
@@ -84,13 +82,13 @@ async function getProjectContents({id, version, locale}: ProjectContext): Promis
   return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}`, {version, locale}, {cache: false}));
 }
 
-async function getProjectContentPage(id: string, {
+async function getProjectContentPage(ref: string, {
   id: project,
   version,
   locale
-}: ProjectContext): Promise<ContentItemResponse | null> {
+}: ProjectContext): Promise<ProjectPage | null> {
   return resolveNullableApiCall(() =>
-    sendApiRequest(project, `content/${project}/${id}`, {version, locale}, {cache: false}));
+    sendApiRequest(project, `content/${project}/page/${ref}`, {version, locale}, {cache: false}));
 }
 
 async function getProjectRecipe(recipe: string, {
@@ -101,38 +99,28 @@ async function getProjectRecipe(recipe: string, {
   return resolveNullableApiCall(() => sendApiRequest(id, `content/${id}/recipe/${recipe}`, {version, locale}));
 }
 
-async function getContentRecipeObtaining(id: string, {
+async function getContentRecipeObtaining(ref: string, {
   id: project,
   version,
   locale
 }: ProjectContext): Promise<ResolvedGameRecipe[] | null> {
   return resolveNullableApiCall(() =>
-    sendApiRequest(project, `content/${project}/${id}/recipe`, {version, locale}, {cache: false}));
+    sendApiRequest(project, `content/${project}/page/${ref}/recipes`, {version, locale}, {cache: false}));
 }
 
-async function getContentRecipeUsage(id: string, {
+async function getContentRecipeUsage(ref: string, {
   id: project,
   version,
   locale
 }: ProjectContext): Promise<ResolvedItem[] | null> {
   return resolveNullableApiCall(() =>
-    sendApiRequest(id, `content/${project}/${id}/usage`, {version, locale}, {cache: false}));
+    sendApiRequest(project, `content/${project}/page/${ref}/usage`, {version, locale}, {cache: false}));
 }
 
 async function getRecipeType(type: string, {id, version, locale}: ProjectContext): Promise<RecipeTypeResponse | null> {
   const actualProjectId = resourceLocation.parse(type)?.namespace == DEFAULT_NAMESPACE ? DEFAULT_NAMESPACE : id;
   return resolveNullableApiCall(() =>
     sendApiRequest(actualProjectId, `content/${actualProjectId}/recipe-type/${type}`, {version, locale}));
-}
-
-async function getContentItemName(id: string, {
-  id: project,
-  version,
-  locale
-}: ProjectContext): Promise<ContentItemNameResponse | null> {
-  const actualProjectId = resourceLocation.parse(id)?.namespace == DEFAULT_NAMESPACE ? DEFAULT_NAMESPACE : id;
-  return resolveNullableApiCall(() =>
-    sendApiRequest(actualProjectId, `content/${project}/${actualProjectId}/name`, {version, locale}));
 }
 
 const serviceProvider: ServiceProvider = {
@@ -146,8 +134,7 @@ const serviceProvider: ServiceProvider = {
   getProjectContentPage,
   getContentRecipeUsage,
   getContentRecipeObtaining,
-  getRecipeType,
-  getContentItemName
+  getRecipeType
 };
 
 export const serviceProviderFactory: ServiceProviderFactory = {

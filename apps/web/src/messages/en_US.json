@@ -887,6 +887,7 @@
     "git_clone": "Error cloning repository",
     "git_info": "Error getting commit information",
     "ingestor": "Error importing content",
+    "version_setup": "Error setting up version",
     "internal": "Internal server error",
     "page": "Invalid page",
     "unknown": "Unknown error"
@@ -982,7 +983,7 @@
       "nutrition": "Restores"
     }
   },
-  "DocsLink": {
+  "ExtendedLink": {
     "not_found": "(Not found)"
   },
   "AdminAccessKeys": {

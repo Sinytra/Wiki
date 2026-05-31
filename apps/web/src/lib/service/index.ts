@@ -14,7 +14,6 @@ import {localServiceProviderFactory} from '@repo/previewer';
 import builtinAssets from '@/lib/project/builtin/builtinAssets';
 import PrefabUsage from '@/components/docs/shared/prefab/PrefabUsage';
 import CraftingRecipe from '@/components/docs/shared/CraftingRecipe';
-import ContentLink from '@/components/docs/shared/ContentLink';
 import ProjectRecipe from '@/components/docs/shared/game/ProjectRecipe';
 import PrefabObtaining from '@/components/docs/shared/prefab/PrefabObtaining';
 import ModAsset from '@/components/docs/shared/asset/ModAsset';
@@ -25,18 +24,17 @@ import {BindableRecipeUsage} from '@/components/docs/shared/game/RecipeUsage';
 import CodeHikeCode from '@repo/ui/blocks/markdown/CodeHikeCode';
 import CodeTabs from '@repo/ui/blocks/markdown/CodeTabs';
 import DocsLink from '@/components/docs/shared/DocsLink';
-import ExtendedLink from '@/components/docs/shared/ExtendedLink';
 import ExtendedImg from '@/components/docs/shared/ExtendedImg';
 import VideoEmbed from '@/components/docs/shared/VideoEmbed';
 import {
   BrowseResponse,
-  ContentItemNameResponse,
-  ContentItemResponse,
-  ProjectData,
+  ProjectData, ProjectPage,
   RecipeTypeResponse,
   ResolvedGameRecipe, ResolvedItem,
   TreeResponse
 } from '@sinytra/wiki-api-types';
+import ExtendedLink from '@/components/docs/shared/ExtendedLink';
+import ContentLink from '@/components/docs/shared/ContentLink';
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -85,7 +83,7 @@ async function getAsset(location: string, ctx: ProjectContext | null): Promise<A
   return proxyServiceCall<'getAsset'>(p => p.getAsset(resource, ctx));
 }
 
-const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ContentItemResponse | null | undefined> =
+const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ProjectPage | null | undefined> =
   createProxy<'getDocsPage'>((p, path, optional, ctx) => p.getDocsPage(path, optional || false, ctx));
 
 async function renderDocsPage(path: string[], optional: boolean, ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
@@ -98,7 +96,7 @@ const searchProjects: (query: string, page: number, types: string | null, sort: 
 );
 const getProjectContents: (ctx: ProjectContext) => Promise<ContentFileTree | null> =
   createProxy<'getProjectContents'>((p, ctx) => p.getProjectContents(ctx));
-const getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<ContentItemResponse | null> =
+const getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<ProjectPage | null> =
   createProxy<'getProjectContentPage'>((p, id, ctx) => p.getProjectContentPage(id, ctx));
 const getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null> =
   createProxy<'getContentRecipeObtaining'>((p, id, ctx) => p.getContentRecipeObtaining(id, ctx));
@@ -108,40 +106,41 @@ const getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<Resolve
   createProxy<'getProjectRecipe'>((p, recipe, ctx) => p.getProjectRecipe(recipe, ctx));
 const getRecipeType: (type: string, ctx: ProjectContext) => Promise<RecipeTypeResponse | null> =
   createProxy<'getRecipeType'>((p, type, ctx) => p.getRecipeType(type, ctx));
-const getContentItemName: (id: string, ctx: ProjectContext) => Promise<ContentItemNameResponse | null> =
-  createProxy<'getContentItemName'>((p, id, ctx) => p.getContentItemName(id, ctx));
 
 async function renderProjectContentPage(id: string, ctx: ProjectContext | ProjectContentContext): Promise<RenderedDocsPage | null> {
-  const raw = await getProjectContentPage(id, ctx);
+  const page = await getProjectContentPage(id, ctx);
   const patcher: ComponentPatcher = (c) => ({
     PrefabUsage: PrefabUsage.bind(null, ctx),
     PrefabObtaining: PrefabObtaining.bind(null, ctx),
     ...c
   });
-  return renderMarkdown(raw, ctx, patcher);
+  return renderMarkdown(page, ctx, patcher);
 }
 
-async function renderMarkdown(raw: ContentItemResponse | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
-  if (raw) {
+async function renderMarkdown(page: ProjectPage | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
+  if (page) {
     const components = {
       Asset: BindableAsset.bind(null, ctx),
-      ContentLink: ContentLink.bind(null, ctx),
       CraftingRecipe: CraftingRecipe.bind(null, ctx),
-      DocsLink: DocsLink.bind(null, ctx),
       ModAsset: ModAsset.bind(null, ctx),
       ProjectRecipe: ProjectRecipe.bind(null, ctx),
       RecipeUsage: BindableRecipeUsage.bind(null, ctx),
       h2: LinkAwareHeading,
-      a: ExtendedLink.bind(null, ctx),
+      a: ExtendedLink.bind(null, ctx, page.links),
       img: ExtendedImg.bind(null, ctx),
-      Callout, CodeHikeCode, CodeTabs, VideoEmbed
+      Callout, CodeHikeCode, CodeTabs, VideoEmbed,
+      // Deprecated TODO Remove
+      ContentLink: ContentLink.bind(null, ctx),
+      DocsLink: DocsLink.bind(null, ctx),
     };
 
-    const content = await markdown.renderDocumentationMarkdown(raw.content, components, patcher);
+    const content = await markdown.renderDocumentationMarkdown(page.content, components, patcher);
     return {
+      frontmatter: page.frontmatter,
       content,
-      edit_url: raw.edit_url,
-      properties: raw.properties
+      edit_url: page.edit_url,
+      properties: page.properties,
+      links: page.links,
     };
   }
   return null;
@@ -166,5 +165,4 @@ export default {
   getProjectContentPage,
   getContentRecipeObtaining,
   getRecipeType,
-  getContentItemName
 };

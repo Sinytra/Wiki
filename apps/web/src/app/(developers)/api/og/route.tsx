@@ -6,7 +6,6 @@ import {getProcessURL} from '@/lib/utils';
 import {AssetLocation} from '@repo/shared/assets';
 import service from '@/lib/service';
 import {DEFAULT_DOCS_VERSION, DEFAULT_LOCALE} from '@repo/shared/constants';
-import markdown from '@repo/markdown';
 
 export const runtime = 'nodejs';
 
@@ -281,14 +280,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({'error': 'Page not found'}, {status: 400});
   }
 
-  const metadata = await markdown.readProcessedFrontmatter(page.content) || {};
-
-  const iconUrl: AssetLocation | null = metadata.hide_icon === true || !metadata.icon && !metadata.id ? null
-    : await service.getAsset((metadata.icon || metadata.id)!, ctx);
+  const {frontmatter} = page;
+  const iconUrl = frontmatter.icon ? await service.getAsset(frontmatter.icon, ctx) : null;
 
   return docsEntryPageResponse({
     ...coords,
     path: pathVal || undefined,
     id: idVal || undefined
-  }, project.name, metadata.title || 'Document', iconUrl, fonts);
+  }, project.name, frontmatter.title || 'Document', iconUrl, fonts);
 }

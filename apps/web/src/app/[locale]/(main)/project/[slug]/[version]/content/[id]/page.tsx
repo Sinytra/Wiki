@@ -1,7 +1,7 @@
 import {setContextLocale} from '@/lib/locales/routing';
 import service from '@/lib/service';
 import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
-import {notFound} from 'next/navigation';
+import {notFound, redirect} from 'next/navigation';
 import DocsEntryPage from '@/components/docs/body/DocsEntryPage';
 import {getTranslations} from 'next-intl/server';
 import DocsContentTOCSidebar from '@/components/docs/side/content/DocsContentTOCSidebar';
@@ -10,14 +10,15 @@ import {Metadata, ResolvingMetadata} from 'next';
 import platforms from '@repo/shared/platforms';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import {ProjectContentContext, RenderedDocsPage} from '@repo/shared/types/service';
-import DocsContentMetaSidebarBody from '@/components/docs/side/content/DocsContentMetaSidebarBody';
+import ContentInfobox from '@/components/docs/side/content/ContentInfobox';
 import DocsSimpleHeader from '@/components/docs/layout/DocsSimpleHeader';
 import TogglableContent from '@/components/docs/content/TogglableContent';
 import ContentChangelog from '@/components/docs/content/ContentChangelog';
 import ContentListFooter from '@/components/docs/ContentListFooter';
-import markdown from '@repo/markdown';
 import DocsContentPageToolsFooter from '@/components/docs/layout/DocsContentPageToolsFooter';
 import issuesApi from '@repo/shared/api/issuesApi';
+import resourceLocation from '@repo/shared/resourceLocation';
+import {getContentLink} from '@/lib/project/game/content';
 
 interface Props {
   params: Promise<{
@@ -42,14 +43,13 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   if (!page) {
     return {title: (await parent).title?.absolute};
   }
+  const {frontmatter} = page;
 
   const platformProject = await platforms.getPlatformProject(project);
-  const result = await markdown.readProcessedFrontmatter(page.content) || {};
-  const iconUrl = result.hide_icon === true || !result.icon && !result.id ? null
-    : await service.getAsset((result.icon || result.id)!, ctx);
+  const iconUrl = frontmatter.icon ? await service.getAsset(frontmatter.icon, ctx) : null;
 
   return {
-    title: result.title ? `${result.title} - ${platformProject.name}` : `${platformProject.name} - ${(await parent).title?.absolute}`,
+    title: frontmatter.title ? `${frontmatter.title} - ${platformProject.name}` : `${platformProject.name} - ${(await parent).title?.absolute}`,
     openGraph: {
       images: [`/api/og?slug=${slug}&locale=${locale}&id=${id}`]
     },
@@ -66,6 +66,15 @@ export default async function ContentEntryPage(props: Props) {
   const params = await props.params;
   setContextLocale(params.locale);
   const id = decodeURIComponent(params.id);
+
+  // Backwards compat
+  if (id.includes(':')) {
+    const normalId = resourceLocation.parse(id)?.path;
+    if (normalId) {
+      return redirect(getContentLink(params, normalId));
+    }
+  }
+
   const ctx = {
     id: params.slug,
     version: params.version,
@@ -101,12 +110,12 @@ export default async function ContentEntryPage(props: Props) {
   const u = await getTranslations('ContentChangelog');
 
   const contents = await service.getProjectContents(ctx);
-  const headings = page.content.metadata._headings || [];
+  const headings = page.content.metadata.headings || [];
 
   return (
     <>
       <DocsSimpleHeader>
-        {page.content.metadata.title || project.name}
+        {page.frontmatter.title || project.name}
       </DocsSimpleHeader>
 
       <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-between gap-4">
@@ -119,17 +128,19 @@ export default async function ContentEntryPage(props: Props) {
         `}
         >
           <div className="mb-6 sm:hidden">
-            <DocsContentMetaSidebarBody title={t('title')} project={project}
-                                        metadata={page.content.metadata} ctx={ctx}
-                                        properties={page.properties}
-            />
+            {page.frontmatter.infobox != null &&
+              <ContentInfobox project={project} ctx={ctx}
+                              metadata={page.frontmatter.infobox} frontmatter={page.frontmatter}
+                              properties={page.properties}
+              />
+            }
           </div>
 
           <DocsEntryPage page={page} project={project}/>
 
-          {page.content.metadata.history &&
+          {page.frontmatter.history &&
             <TogglableContent title={u('toggle')} className="mb-6">
-              <ContentChangelog changelog={page.content.metadata.history}/>
+              <ContentChangelog changelog={page.frontmatter.history}/>
             </TogglableContent>
           }
 

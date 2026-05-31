@@ -1,6 +1,6 @@
-import {FileHeading} from '@repo/shared/types/metadata';
 import DocsGuideNonContentRightSidebarClient from '@/components/docs/side/guide/DocsGuideNonContentRightSidebarClient';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import {FileHeading} from '@repo/markdown';
 
 interface ContentRightSidebarProps {
   headings: FileHeading[];

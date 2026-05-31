@@ -3,69 +3,29 @@
 import platforms from '@repo/shared/platforms';
 import localDocs, {LocalDocumentationSource} from './localDocsPages';
 import {
-  ContentFileTree,
-  ItemProperties,
   ProjectContext,
   ServiceProvider,
   ServiceProviderFactory
 } from '@repo/shared/types/service';
 import {AssetLocation} from '@repo/shared/assets';
 import localAssets from './localAssets';
-import markdown from '@repo/markdown';
-import localFiles from './localFiles';
 import {
   BrowseResponse,
-  ContentFileTreeEntry, ContentItemNameResponse, ContentItemResponse,
   FileTreeEntry,
-  ProjectData, RecipeTypeResponse, ResolvedGameRecipe, ResolvedItem,
+  ProjectData,
+  ProjectPage,
+  RecipeTypeResponse,
+  ResolvedGameRecipe,
+  ResolvedItem,
   ResourceLocation,
   TreeResponse
 } from '@sinytra/wiki-api-types';
+import localContent from './localContent';
+import {pick} from 'lodash';
+import markdown from '@repo/markdown';
 
 function findDocsFiles(entry: FileTreeEntry): FileTreeEntry[] {
   return entry.type === 'file' ? [entry] : entry.children.flatMap(findDocsFiles);
-}
-
-async function getLocalSourceContentTree(src: LocalDocumentationSource, locale?: string | null): Promise<ContentFileTree | null> {
-  const modifiedSrc = {...src, path: src.path + '/.content'};
-  const tree = await localDocs.readDocsTree(modifiedSrc, locale || undefined);
-  const processEntry: (e: FileTreeEntry) => Promise<ContentFileTreeEntry | null> = async (entry) => {
-    if (entry.type === 'dir') {
-      const children = await Promise.all(entry.children.map(c => processEntry(c)));
-      return {...entry, children: children.filter(c => c != null)};
-    } else {
-      const file = await localDocs.readDocsFile(src, ['.content', entry.path], locale || undefined, true);
-      if (file) {
-        const frontmatter = markdown.readFrontmatter(file.content);
-        if (frontmatter.id) {
-          return {
-            id: frontmatter.id,
-            icon: frontmatter.icon,
-            name: entry.name,
-            path: entry.path,
-            type: entry.type,
-            children: []
-          };
-        }
-      }
-    }
-    return null;
-  };
-  const results = await Promise.all(tree.map(e => processEntry(e)));
-  return results.filter(c => c != null);
-}
-
-async function getLocalItemProperties(src: LocalDocumentationSource, id: string): Promise<ItemProperties | null> {
-  try {
-    const props = await localFiles.readFileContents(src, '.data/properties.json');
-    const parsed = JSON.parse(props.content);
-    return parsed[id] ?? null;
-  } catch (e: any) {
-    if (e.code != 'ENOENT') {
-      console.error('Error reading item properties file', e);
-    }
-  }
-  return null;
 }
 
 async function getProject(ctx: ProjectContext): Promise<ProjectData | null> {
@@ -82,7 +42,7 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectDa
   const docsPages = await localDocs.readDocsTree(src, undefined);
   const filePages = docsPages.flatMap(findDocsFiles);
 
-  const contentPages = await getLocalSourceContentTree(src, null) || [];
+  const contentPages = await localContent.getLocalSourceContentTree(src, null) || [];
   const fileContentPages = contentPages.flatMap(findDocsFiles);
 
   return {
@@ -120,12 +80,29 @@ async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promis
   return src ? localAssets.resolveAsset(src.path, location) : null;
 }
 
-async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContext): Promise<ContentItemResponse | undefined | null> {
+async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContext): Promise<ProjectPage | undefined | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
     const file = await localDocs.readDocsFile(src, path, ctx.locale || undefined, optional);
     if (file) {
-      return {content: file.content, edit_url: null, properties: {}};
+      const frontmatter = await markdown.readProcessedFrontmatter(file.content);
+      const links = await localContent.resolveContentLinks(frontmatter.links ?? [], ctx);
+
+      return {
+        frontmatter: {
+          id: frontmatter.id ? (Array.isArray(frontmatter.id) ? frontmatter.id : [frontmatter.id]) : [],
+          title: frontmatter.title ?? null,
+          type: frontmatter.type,
+          icon: frontmatter.icon,
+          infobox: frontmatter.infobox,
+          history: frontmatter.history,
+          custom: frontmatter.custom
+        },
+        content: file.content,
+        edit_url: null,
+        properties: {},
+        links
+      };
     }
     return null;
   }
@@ -140,38 +117,24 @@ async function getProjectRecipe(_recipe: string, _ctx: ProjectContext): Promise<
   return null;
 }
 
-async function getProjectContents(ctx: ProjectContext): Promise<ContentFileTree | null> {
-  const src = await localDocs.getProjectSource(ctx.id);
-  if (src) {
-    return getLocalSourceContentTree(src, ctx.locale);
-  }
-  return null;
-}
-
-async function getProjectContentPage(id: string, ctx: ProjectContext): Promise<ContentItemResponse | null> {
-  const tree = await getProjectContents(ctx);
-  const findRecursive: (e: ContentFileTreeEntry) => string | null = (e) => {
-    if (e.type === 'dir') {
-      for (const child of e.children) {
-        const res = findRecursive(child);
-        if (res) {
-          return res;
-        }
-      }
-      return null;
-    } else {
-      return e.id == id ? e.path : null;
-    }
-  };
+async function getProjectContentPage(ref: string, ctx: ProjectContext): Promise<ProjectPage | null> {
+  const tree = await localContent.getProjectContents(ctx);
   if (tree) {
-    for (const e of tree) {
-      const path = findRecursive(e);
-      if (path) {
-        const page = await getDocsPage(['.content', path], false, ctx);
+    for (const child of tree) {
+      const entry = localContent.findTreeEntry(e => e.ref != null && e.ref == ref, child);
+      if (entry) {
+        const page = await getDocsPage(['.content', entry.path], false, ctx);
         if (page) {
           const src = await localDocs.getProjectSource(ctx.id);
-          const properties = await getLocalItemProperties(src!, id);
-          return {...page, properties: properties || {}};
+          const properties = await localContent.getLocalItemProperties(src!);
+          const filteredProps = pick(properties, page.frontmatter.id);
+
+          page.frontmatter.infobox = await localContent.constructInfobox(page.frontmatter, ctx);
+
+          return {
+            ...page,
+            properties: filteredProps,
+          };
         }
       }
     }
@@ -191,24 +154,6 @@ async function getRecipeType(_type: string, _ctx: ProjectContext): Promise<Recip
   return null;
 }
 
-function flattenChildren(entries: ContentFileTreeEntry[]): ContentFileTreeEntry[] {
-  return [...entries, ...entries.flatMap(e => flattenChildren(e.children || []))];
-}
-
-async function getContentItemName(id: string, ctx: ProjectContext): Promise<ContentItemNameResponse | null> {
-  const contents = await getProjectContents(ctx);
-  if (!contents) {
-    return null;
-  }
-  const flat = flattenChildren(contents);
-  for (const entry of flat) {
-    if (entry.id === id) {
-      return {source: id, id, name: entry.name};
-    }
-  }
-  return null;
-}
-
 const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
@@ -216,12 +161,11 @@ const serviceProvider: ServiceProvider = {
   getProject,
   searchProjects,
   getProjectRecipe,
-  getProjectContents,
+  getProjectContents: localContent.getProjectContents,
   getProjectContentPage,
   getContentRecipeUsage,
   getContentRecipeObtaining,
   getRecipeType,
-  getContentItemName
 };
 
 export const serviceProviderFactory: ServiceProviderFactory = {

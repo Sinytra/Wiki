@@ -36,7 +36,9 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
     "@types/react": "19.1.8",
-    "eslint": "^9.31.0"
+    "eslint": "^9.31.0",
+    "@sinytra/wiki-api-types": "^0.1.18"
   }
 }

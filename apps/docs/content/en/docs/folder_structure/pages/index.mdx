@@ -104,9 +104,6 @@ a page or in-game content. It's located at the very beginning of each file in YA
 Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
 Usually, this includes an icon of the block/item along with its name, id, source project and other handy information.
 
-If your page is not related to a specific object, you can hide all metadata and ignore their values
-(except for `title`) by setting `hide_meta: true`.
-
 ```markdown
 ---
 title: Hello World
@@ -121,8 +118,6 @@ Here's an overview of supported attributes:
 If a `h1` heading is available, it will be used instead.
   - Type: `string`
   - Example: `Fancy Block`
-- `hide_meta` - Hides sidebar meta information. As a results, all other attributes will be ignored.
-  - Type: `boolean`
 - `id` - In-game resource location ID of the content shown. If a matching asset with the same location is found in the
 documentation root's asset folder, it will be used as the `icon`.
   - Type: Resource Location
@@ -131,8 +126,6 @@ documentation root's asset folder, it will be used as the `icon`.
 128x128 pixels.
   - Type: Resource Location
   - Example: `examplemod:fancy_generator`
-- `hide_icon` - Hides the icon, showing a generic placeholder instead.
-  - Type: `boolean`
 - `type` - Can be `block`, `item` or `other`
   - Type: `string`
 - `custom` - A map of custom attributes you wish to display in the sidebar.

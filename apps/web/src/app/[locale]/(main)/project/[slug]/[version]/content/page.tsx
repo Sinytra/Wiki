@@ -9,7 +9,7 @@ import {ContentFileTree, ProjectContext} from '@repo/shared/types/service';
 import {ContentFileTreeEntry} from '@sinytra/wiki-api-types';
 import {useTranslations} from 'next-intl';
 import {ProjectRouteParams} from '@repo/shared/types/routes';
-import {getContentLink} from '@/lib/project/game/content';
+import {getInternalWikiLink} from '@/lib/project/game/content';
 import {Fragment} from 'react';
 
 interface Props {
@@ -23,9 +23,9 @@ function ContentEntryLink({entry, ctx}: { entry: ContentFileTreeEntry; ctx: Proj
 
   return (
     <div>
-      <PageLink href={getContentLink(ctx, entry.id!)}
+      <PageLink href={getInternalWikiLink(entry.ref!, ctx)}
                 className="flex flex-row items-center gap-1 !text-sm">
-        <Asset location={entry.icon || entry.id!} ctx={ctx}/>
+        <Asset location={entry.icon || ''} ctx={ctx}/>
         {entry.name}
       </PageLink>
     </div>
@@ -37,7 +37,7 @@ function ContentEntryList({entries, ctx}: { entries: ContentFileTree; ctx: Proje
     <div
       className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
       {...entries.filter(c => c.type === 'file').map((c, i) =>
-        <div key={c.path} className="flex flex-row flex-wrap items-center gap-1">
+        <div key={c.ref} className="flex flex-row flex-wrap items-center gap-1">
           {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
           <ContentEntryLink entry={c} ctx={ctx}/>
         </div>
@@ -101,7 +101,7 @@ function ContentCategory({entry, ctx}: { entry: ContentFileTreeEntry; ctx: Proje
   );
 }
 
-export default async function ProjectContentPage(props: Props) {
+export default async function ProjectPage(props: Props) {
   const {slug, version, locale} = await props.params;
   const ctx = {id: slug, version, locale};
   setContextLocale(locale);

@@ -7,7 +7,11 @@ import rehypeRaw from 'rehype-raw';
 import {markdownRehypeSchema} from './contentFilter';
 import {ReactElement} from 'react';
 import remarkGfm from 'remark-gfm';
-import {rehypeMarkdownHeadings, rehypeSafeMarkdownAttributes} from './plugins';
+import {
+  rehypeCollectLinks,
+  rehypeMarkdownHeadings,
+  rehypeSafeMarkdownAttributes,
+} from './plugins';
 import {recmaCodeHike, remarkCodeHike} from 'codehike/mdx';
 import {VFile} from 'vfile';
 import {matter} from 'vfile-matter';
@@ -94,7 +98,7 @@ async function renderDocumentationMarkdown(
       recmaPlugins: [[recmaCodeHike, chConfig]]
     });
 
-    const frontmatter = compiledMdx.data.matter ?? {};
+    const metadata = compiledMdx.data.metadata ?? {};
 
     const {default: MDXContent} = await run(compiledMdx, {
       ...runtime,
@@ -103,7 +107,7 @@ async function renderDocumentationMarkdown(
 
     return {
       content: MDXContent({components}),
-      metadata: frontmatter
+      metadata
     };
   } catch (error: any) {
     throw new MarkdownError('MDX compilation failed', formatMarkdownError(error));
@@ -148,9 +152,17 @@ async function readProcessedFrontmatter(source: string) {
       .use(remarkRehype, {allowDangerousHtml: true})
       .use(() => (_, file) => matter(file, {strip: true}))
       .use(rehypeMarkdownHeadings)
+      .use(rehypeCollectLinks)
       .use(rehypeStringify)
       .process(source);
-    return file.data.matter ?? {};
+
+    const frontmatter = file.data.matter ?? {};
+    const metadata = file.data.metadata ?? {};
+
+    return {
+      ...frontmatter,
+      ...metadata
+    };
   } catch (e) {
     console.error('Error reading processed frontmatter', e);
     return {};

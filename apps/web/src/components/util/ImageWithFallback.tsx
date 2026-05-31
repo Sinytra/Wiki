@@ -31,9 +31,9 @@ export default function ImageWithFallback(
   const [error, setError] = useState(false);
 
   return (
-    <span className="shrink-0 overflow-hidden" title={title}
+    <span title={title}
           style={fixedSize ? {width: `${width}px`, height: `${height}px`} : undefined}
-          {...wrapper}>
+          {...wrapper} className={cn('shrink-0 overflow-hidden', wrapper?.className)}>
       {src && !error &&
         <Image src={src} alt={alt || ''} width={width} height={height} className={className} unoptimized
                onError={() => setError(true)}

@@ -1,13 +1,16 @@
-import {ProjectContext, ResolvedItemProperties} from '@repo/shared/types/service';
+import {ItemProperties, ProjectContext} from '@repo/shared/types/service';
 import Asset from '@/components/docs/shared/asset/Asset';
 import {useTranslations} from 'next-intl';
 import {getContentLink, getVanillaWikiLink} from '@/lib/project/game/content';
 import PageLink from '@/components/docs/PageLink';
 import {NavLink} from '@/components/navigation/link/NavLink';
+import {ResolvedItemProperties, ResolvedItemProperty, resolveItemProperties} from '@/lib/project/game/properties';
+import {cn} from '@repo/ui/lib/utils';
 
 interface Props {
   ctx: ProjectContext;
-  properties: ResolvedItemProperties;
+  properties: ItemProperties;
+  providedProps: ResolvedItemProperties;
 }
 
 type PropertyType =
@@ -47,6 +50,22 @@ const SUPPORTED_PROPERTIES: { [key: string]: ItemProperty | PropertyType } = {
   /// Food
   nutrition: {type: 'hunger', link: getVanillaWikiLink('Food')}
 };
+
+function RenderedValue({value}: { value: string | string[] }) {
+  if (!Array.isArray(value)) {
+    return value;
+  }
+
+  return (
+    <ul className="list-none">
+      {value.map(v => (
+        <li key={v}>
+          {v}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function RenderedProperty({name, type, value, ctx}: {
   name: string;
@@ -116,8 +135,8 @@ function RenderedProperty({name, type, value, ctx}: {
 
   if (type === 'code_literal') {
     return (
-      <span className="font-mono text-xsm break-all">
-        {value}
+      <span className="font-mono text-xs break-all">
+        <RenderedValue value={value}/>
       </span>
     );
   }
@@ -131,18 +150,49 @@ function RenderedProperty({name, type, value, ctx}: {
   return value;
 }
 
-export default function ContentProperties({properties, ctx}: Props) {
+function RenderedResolvedProperty({name, type, property, ctx}: {
+  name: string;
+  type: PropertyType;
+  property: ResolvedItemProperty;
+  ctx: ProjectContext;
+}) {
+  if (property.type === 'single') {
+    return <RenderedProperty name={name} type={type} value={property.value} ctx={ctx}/>;
+  }
+
+  return (
+    <ul className="m-0 flex list-none flex-col gap-1 p-0">
+      {property.value.map((group, i) => (
+        <li key={i} className="flex items-center gap-2">
+          <span
+            className={cn('flex max-w-[75%] flex-wrap items-center gap-0.5', group.items.length === 1 && 'min-w-fit')}>
+            {group.items.map(item => (
+              <Asset key={item} location={item} ctx={ctx} width={16} height={16}/>
+            ))}
+          </span>
+          <span>
+            <RenderedProperty name={name} type={type} value={group.value} ctx={ctx}/>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function ContentProperties({properties, providedProps, ctx}: Props) {
   const t = useTranslations('ContentProperties');
   const order = Object.keys(SUPPORTED_PROPERTIES);
+
+  const resolvedProps = {...resolveItemProperties(properties), ...providedProps};
 
   return (
     <div className="w-full">
       <table className="mb-0! table w-full table-fixed">
         <tbody>
-        {Object.entries(properties)
-          .filter(([_, value]) => value != null)
-          .sort(([a, _], [b, __]) => order.indexOf(a) - order.indexOf(b))
-          .map(([key, value]) => {
+        {Object.entries(resolvedProps)
+          .filter(([_, prop]) => prop.type === 'group' || prop.value != null)
+          .sort(([a], [b]) => order.indexOf(a) - order.indexOf(b))
+          .map(([key, prop]) => {
             const type = SUPPORTED_PROPERTIES[key] || 'literal';
             const propType = typeof type === 'string' ? type : type.type;
             const link = typeof type === 'string' ? null : type.link;
@@ -151,18 +201,18 @@ export default function ContentProperties({properties, ctx}: Props) {
 
             return (
               <tr key={key}>
-                <td className="border-r-0 border-b-0 border-l-0 text-sm font-medium break-all">
+                <td className="table-padding-sm-y border-r-0 border-b-0 border-l-0 text-sm font-medium break-all">
                   <Wrapper>
                     {/*@ts-expect-error has message*/}
                     {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}
                   </Wrapper>
                 </td>
                 <td className={'table-padding-sm border-r-0 border-b-0 border-l-0 text-sm'}>
-                  <RenderedProperty
+                  <RenderedResolvedProperty
                     name={key}
-                    value={value}
-                    ctx={ctx}
                     type={propType}
+                    property={prop}
+                    ctx={ctx}
                   />
                 </td>
               </tr>
