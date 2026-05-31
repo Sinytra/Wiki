@@ -8,7 +8,11 @@ import ReportPageButton from '@/components/docs/layout/ReportPageButton';
 import EditPageButton from '@/components/docs/layout/EditPageButton';
 import {RenderedDocsPage} from '@repo/shared/types/service';
 
-type Props = Omit<BodyProps, 'metadata' | 'properties'> & { title: string; id: string; page: RenderedDocsPage };
+type Props = Omit<BodyProps, 'frontmatter' | 'metadata' | 'properties'> & {
+  title: string;
+  id: string;
+  page: RenderedDocsPage
+};
 
 export default function DocsContentMetaSidebar(props: Props) {
   return (

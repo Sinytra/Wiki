@@ -12,7 +12,7 @@ import {
   HelpCircleIcon,
   InfoIcon,
   LoaderCircleIcon,
-  LockIcon,
+  LockIcon, MoonIcon,
   XIcon
 } from 'lucide-react';
 import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
@@ -72,6 +72,7 @@ function ProjectInfo({project}: { project: DevProjectData }) {
     at_risk: {text: 'text-[var(--vp-c-danger-1)]', icon: AlertCircleIcon},
     loading: {text: 'text-warning', iconClass: 'animate-spin', icon: LoaderCircleIcon},
     error: {text: 'text-destructive', icon: XIcon},
+    inactive: {text: 'text-secondary', icon: MoonIcon},
     unknown: {text: 'text-secondary', icon: HelpCircleIcon}
   };
   const status = project.status || 'unknown';

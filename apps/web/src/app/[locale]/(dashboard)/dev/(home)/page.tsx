@@ -13,7 +13,7 @@ import {
   CircleCheckIcon,
   GlobeIcon,
   HelpCircleIcon, Link2Icon,
-  LoaderCircleIcon, LockIcon,
+  LoaderCircleIcon, LockIcon, MoonIcon,
   SettingsIcon,
   XIcon
 } from 'lucide-react';
@@ -100,6 +100,7 @@ async function DevProjectsListEntry({project}: { project: DevProjectData }) {
   const v = await getTranslations('ProjectVisibility');
 
   const statuses: { [key in ProjectStatus | 'unknown']: { text: string; icon: any, iconClass?: string; } } = {
+    inactive: {text: 'text-secondary', iconClass: 'text-secondary', icon: MoonIcon},
     healthy: {text: 'text-secondary', iconClass: 'text-secondary', icon: CircleCheckIcon},
     at_risk: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
     loading: {text: 'text-warning', iconClass: 'text-warning animate-spin', icon: LoaderCircleIcon},

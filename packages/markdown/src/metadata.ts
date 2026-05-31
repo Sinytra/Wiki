@@ -7,11 +7,15 @@ export interface FileHeading {
   top?: boolean;
 }
 
+export interface RawInfobox extends Infobox {
+  display?: Array<string> | null;
+}
+
 export interface RawFrontmatter {
   id?: string | string[];
   title?: string;
   icon?: string;
-  infobox?: Infobox;
+  infobox?: RawInfobox;
   type?: GameContentType | null;
   custom?: { [key in string]: string } | null;
   history?: Array<ChangelogEntry> | null;

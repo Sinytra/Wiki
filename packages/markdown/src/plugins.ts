@@ -18,7 +18,7 @@ export function rehypeCollectLinks(): (tree: Root, file: VFile) => undefined {
     visit(tree, 'element', (node) => {
       if (node.tagName === 'a' && node.properties?.href != null) {
         const href = String(node.properties.href);
-        if (href.startsWith('@') || href.startsWith('$')) {
+        if (href.startsWith('@') || href.startsWith('$') || href.startsWith('+')) {
           links.push(href);
         }
       }

@@ -1,7 +1,7 @@
 import {ComponentPropsWithoutRef} from 'react';
-import {ProjectContext} from '@repo/shared/types/service';
+import {PageLinks, ProjectContext} from '@repo/shared/types/service';
 import PageLink from '@/components/docs/PageLink';
-import {PageLinks, resolveLink, TargetLink} from '@/lib/project/game/content';
+import {resolveLink, TargetLink} from '@/lib/project/game/content';
 import {useTranslations} from 'next-intl';
 
 type LinkProps = ComponentPropsWithoutRef<typeof PageLink> & { ctx: ProjectContext, links: PageLinks };
@@ -17,7 +17,7 @@ function BoundExtendedLink({ctx, links, ...props}: LinkProps) {
   if (props.href && typeof props.href === 'string') {
     resolved = resolveLink(ctx, links, props.href as string);
 
-    if (!resolved && (props.href.startsWith('@') || props.href.startsWith('$'))) {
+    if (!resolved && (props.href.startsWith('@') || props.href.startsWith('$') || props.href.startsWith('+'))) {
       return (
         <span className="text-destructive">
         {props.children ?? t('not_found')}

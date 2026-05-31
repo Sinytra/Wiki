@@ -179,6 +179,24 @@ async function resolveContentLink(id: string, tree: ContentFileTree): Promise<Re
   return null;
 }
 
+async function resolveRefContentLink(ref: string, tree: ContentFileTree): Promise<ResolvedLink | null> {
+  for (const child of tree) {
+    const entry = findTreeEntry(
+      e => e.ref != null && e.ref === ref,
+      child as ExtendedContentFileTreeEntry
+    );
+    if (entry && entry.ref) {
+      return {
+        type: 'content',
+        ref: entry.ref,
+        title: entry.name
+      };
+    }
+  }
+
+  return null;
+}
+
 async function resolveContentLinks(links: string[], ctx: ProjectContext): Promise<PageLinks> {
   const resolved: PageLinks = {};
 
@@ -210,6 +228,12 @@ async function resolveContentLinks(links: string[], ctx: ProjectContext): Promis
       }
 
       const link = await resolveContentLink(id, contentTree);
+      if (link) {
+        resolved[href] = link;
+      }
+    } else if (href.startsWith('+') && contentTree != null) {
+      const ref = href.substring(1);
+      const link = await resolveRefContentLink(ref, contentTree);
       if (link) {
         resolved[href] = link;
       }

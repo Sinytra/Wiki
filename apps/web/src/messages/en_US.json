@@ -486,7 +486,8 @@
     "loading": "Initializing",
     "healthy": "Loaded",
     "at_risk": "Requires attention",
-    "error": "Errored"
+    "error": "Errored",
+    "inactive": "Inactive"
   },
   "ProjectVisibility": {
     "public": "Public",

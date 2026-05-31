@@ -87,6 +87,10 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
     if (file) {
       const frontmatter = await markdown.readProcessedFrontmatter(file.content);
       const links = await localContent.resolveContentLinks(frontmatter.links ?? [], ctx);
+      const infobox = frontmatter.infobox;
+      if (infobox?.display && !infobox?.tabs) {
+        infobox.tabs = [ { name: '', display: infobox.display} ];
+      }
 
       return {
         frontmatter: {
@@ -94,7 +98,7 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
           title: frontmatter.title ?? null,
           type: frontmatter.type,
           icon: frontmatter.icon,
-          infobox: frontmatter.infobox,
+          infobox,
           history: frontmatter.history,
           custom: frontmatter.custom
         },
