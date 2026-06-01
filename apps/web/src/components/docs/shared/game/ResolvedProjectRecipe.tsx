@@ -27,6 +27,10 @@ async function createDisplayItems(items: ResolvedItem[]): Promise<DisplayItem[]>
   return Promise.all(items.map(createDisplayItem));
 }
 
+function keySlot(recipeId: string, slot: string, index: number, input: boolean): string {
+  return `${recipeId}-${slot}-${index}-${input ? 'in' : 'out'}`;
+}
+
 async function RecipeBody({recipe, type, ctx}: {
   recipe: ResolvedGameRecipe,
   type: GameRecipeType,
@@ -57,7 +61,8 @@ async function RecipeBody({recipe, type, ctx}: {
 
           const display = await createDisplayItems(input.items);
           return (
-            <RotatingItemDisplaySlot src={display} key={i} className="absolute flex shrink-0" ctx={ctx}
+            <RotatingItemDisplaySlot src={display} key={keySlot(recipe.id, input.slot, i, true)}
+                                     className="absolute flex shrink-0" ctx={ctx}
                                      style={{left: `${s.x}px`, top: `${s.y}px`}} tag={input.tag}/>
           );
         })}
@@ -68,7 +73,8 @@ async function RecipeBody({recipe, type, ctx}: {
 
           const display = await createDisplayItems(output.items);
           return (
-            <RotatingItemDisplaySlot src={display} key={i} className="absolute flex shrink-0" count={output.count}
+            <RotatingItemDisplaySlot src={display} key={keySlot(recipe.id, output.slot, i, false)}
+                                     className="absolute flex shrink-0" count={output.count}
                                      ctx={ctx} style={{left: `${s.x}px`, top: `${s.y}px`}} tag={output.tag}/>
           );
         })}

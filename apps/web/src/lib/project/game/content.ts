@@ -30,8 +30,7 @@ export function resolveLink(ctx: ProjectContext, links: PageLinks, url: string):
 }
 
 export function getResolvedItemLink(params: ProjectRouteParams | ProjectContext, item: ResolvedItem): string | null {
-  const slug = 'slug' in params ? params.slug : params.id;
-  return getExternalWikiLink(item.id) ?? (item.has_page ? `/${params.locale}/project/${slug}/${params.version}/content/${encodeID(item.id)}` : null);
+  return getExternalWikiLink(item.id) ?? (item.page_ref != null ? getInternalWikiLink(item.page_ref, params) : null);
 }
 
 export function getContentLink(params: ProjectRouteParams | ProjectContext, id: string): string {
@@ -39,9 +38,9 @@ export function getContentLink(params: ProjectRouteParams | ProjectContext, id: 
   return getExternalWikiLink(id) ?? `/${params.locale}/project/${slug}/${params.version}/content/${encodeID(id)}`;
 }
 
-export function getInternalWikiLink(id: string, params: ProjectRouteParams | ProjectContext): string {
+export function getInternalWikiLink(ref: string, params: ProjectRouteParams | ProjectContext): string {
   const slug = 'slug' in params ? params.slug : params.id;
-  return `/${params.locale}/project/${slug}/${params.version}/content/${encodeID(id)}`;
+  return `/${params.locale}/project/${slug}/${params.version}/content/${ref}`;
 }
 
 export function getExternalWikiLink(id: string): string | null {

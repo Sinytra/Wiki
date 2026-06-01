@@ -5,7 +5,7 @@ import {
   ProjectContext,
 } from '@repo/shared/types/service';
 import {
-  ContentFileTreeEntry, ContentItemNameResponse,
+  ContentFileTreeEntry,
   FileTreeEntry,
   Frontmatter,
   Infobox,
@@ -20,6 +20,12 @@ import {DEFAULT_LOCALE} from '@repo/shared/constants';
 
 interface ExtendedContentFileTreeEntry extends ContentFileTreeEntry {
   id?: string[];
+}
+
+interface ContentItemNameResponse {
+  source: string;
+  id: string;
+  name: string;
 }
 
 async function getProjectContents(ctx: ProjectContext): Promise<ContentFileTree | null> {
@@ -280,7 +286,6 @@ async function getContentItemName(id: string, ctx: ProjectContext): Promise<Cont
           source: ctx.id,
           id,
           name: locales[candidate],
-          path: null
         };
       }
     }

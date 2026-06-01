@@ -20,7 +20,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@sinytra/wiki-api-types": "^0.1.19",
+    "@sinytra/wiki-api-types": "^0.1.20",
     "eslint": "^9.31.0",
     "@types/lodash": "^4.17.9"
   }

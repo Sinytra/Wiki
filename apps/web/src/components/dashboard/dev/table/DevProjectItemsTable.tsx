@@ -108,6 +108,7 @@ export default function DevProjectItemsTable({data, ctx, versions, page, emptySt
               {t('actions.title')}
             </DropdownMenuLabel>
             <DropdownMenuItem>
+              {/* FIXME cannot use ID here anymore */}
               <a href={getInternalWikiLink(item.id, ctx)} target="_blank"
                  className="flex w-full flex-row justify-between" rel="noreferrer">
                 {t('actions.view')}

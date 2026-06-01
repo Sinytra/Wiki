@@ -32,7 +32,7 @@ export default async function RecipeUsage({id, ctx}: Props) {
 
   const sorted = usage.sort((a, b) => a.name && b.name ? a.name.localeCompare(b.name) : 0);
   const rendered = sorted.map(item => {
-    const Wrapper = ({children}: { children: any }) => item.has_page
+    const Wrapper = ({children}: { children: any }) => item.page_ref != null
       ? <PageLink href={getContentLink(ctx, item.id)}>{children}</PageLink>
       : <div>{children}</div>;
 

@@ -412,8 +412,8 @@ importers:
         specifier: ^1.16.2
         version: 1.29.2
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.19
-        version: 0.1.19
+        specifier: ^0.1.20
+        version: 0.1.20
       '@tailwindcss/postcss':
         specifier: ^4.0.0
         version: 4.1.11
@@ -596,8 +596,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.19
-        version: 0.1.19
+        specifier: ^0.1.20
+        version: 0.1.20
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -639,8 +639,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.19
-        version: 0.1.19
+        specifier: ^0.1.20
+        version: 0.1.20
       '@types/lodash':
         specifier: ^4.17.9
         version: 4.17.20
@@ -673,8 +673,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.19
-        version: 0.1.19
+        specifier: ^0.1.20
+        version: 0.1.20
       '@types/node':
         specifier: ^20
         version: 20.19.9
@@ -818,8 +818,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.19
-        version: 0.1.19
+        specifier: ^0.1.20
+        version: 0.1.20
       '@types/lodash':
         specifier: ^4.17.20
         version: 4.17.20
@@ -3477,8 +3477,8 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@sinytra/wiki-api-types@0.1.19':
-    resolution: {integrity: sha512-xjUjRaD7sNG8q5OkcsyufBvMmdvPa2BvF+KAmu/yRARoCcSJNgo2u3ZRtkLHOjvyithOorCpuqJBHt43WxyMeA==, tarball: https://npm.pkg.github.com/download/@sinytra/wiki-api-types/0.1.19/7646c0faca36e97b11339644123b1fcf6e876a70}
+  '@sinytra/wiki-api-types@0.1.20':
+    resolution: {integrity: sha512-WEUgmQPh001scQg5kF4pQ0Nv3uY3t19mQeElenbUgUe12F3K4B8Qr+zHEvHT4AasxNQq9eUy4oxNDU6xfrw6AQ==, tarball: https://npm.pkg.github.com/download/@sinytra/wiki-api-types/0.1.20/bf8baa35b30e1718e68702c8ee8ebb9650057c50}
 
   '@south-paw/typeface-minecraft@1.0.0':
     resolution: {integrity: sha512-wt58ifXAyBZ23qcPd8qcyRCbZVCcJX3E84LLHvmHL+b91HxF7nKtBIlv47uIgHRCrm7TWVRP1Z2r3zck6w3EuQ==}
@@ -10373,7 +10373,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@sinytra/wiki-api-types@0.1.19': {}
+  '@sinytra/wiki-api-types@0.1.20': {}
 
   '@south-paw/typeface-minecraft@1.0.0': {}
 
