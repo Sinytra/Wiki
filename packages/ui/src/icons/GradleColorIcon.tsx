@@ -1,15 +1,32 @@
-export default function GradleColorIcon({ width, height, className }: { width: any, height: any, className?: string }) {
+export default function GradleColorIcon({ width, height, className }: { width: any; height: any; className?: string }) {
   return (
-    <svg role="img" viewBox="0 0 102.886261 75.052299" xmlns="http://www.w3.org/2000/svg" width={width} height={height}
-         className={className}><title>Gradle</title>
+    <svg
+      role="img"
+      viewBox="0 0 102.886261 75.052299"
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      className={className}
+    >
+      <title>Gradle</title>
       <g>
-
-        <linearGradient id="ICON_00000039097421981941910130000010551188654853981872_" gradientUnits="userSpaceOnUse"
-                        x1="4.687476" y1="-3.59852" x2="85.628487" y2="74.707207">
-          <stop offset="0" style={{stopColor: '#209BC4'}}/>
-          <stop offset="1" style={{stopColor: '#4DC9C0'}}/>
+        <linearGradient
+          id="ICON_00000039097421981941910130000010551188654853981872_"
+          gradientUnits="userSpaceOnUse"
+          x1="4.687476"
+          y1="-3.59852"
+          x2="85.628487"
+          y2="74.707207"
+        >
+          <stop offset="0" style={{ stopColor: '#209BC4' }} />
+          <stop offset="1" style={{ stopColor: '#4DC9C0' }} />
         </linearGradient>
-        <path id="ICON" style={{fill: 'url(#ICON_00000039097421981941910130000010551188654853981872_)'}} d="M97.292282,4.745458
+        <path
+          id="ICON"
+          style={{
+            fill: 'url(#ICON_00000039097421981941910130000010551188654853981872_)'
+          }}
+          d="M97.292282,4.745458
       			c-2.991821-2.970447-7.029068-4.671062-11.259834-4.743075c-4.230927-0.072013-8.324509,1.490208-11.417221,4.357094
       			c-0.154907,0.146343-0.278343,0.322443-0.362671,0.517595c-0.084328,0.195153-0.127907,0.405299-0.127907,0.617665
       			c0,0.21235,0.043579,0.422496,0.127907,0.617649c0.084328,0.195152,0.207764,0.371252,0.362671,0.517596l1.966934,1.998047
@@ -42,8 +59,9 @@ export default function GradleColorIcon({ width, height, className }: { width: a
       			c0.260445-0.4639,0.636375-0.853909,1.09182-1.132744c0.455452-0.278837,0.975189-0.437223,1.509827-0.460089
       			c0.534485-0.023029,1.066139,0.09046,1.543961,0.329203c0.477982,0.238909,0.886375,0.595282,1.186256,1.03516
       			c0.299873,0.440039,0.481125,0.948837,0.526855,1.478014c0.045563,0.529343-0.046059,1.061337-0.266243,1.545448
-      			c-0.220192,0.484112-0.561653,0.904106-0.991753,1.220222V34.114494z"/>
+      			c-0.220192,0.484112-0.561653,0.904106-0.991753,1.220222V34.114494z"
+        />
       </g>
     </svg>
-  )
+  );
 }

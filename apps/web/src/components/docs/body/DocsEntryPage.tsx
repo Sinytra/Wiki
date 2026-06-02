@@ -2,13 +2,17 @@ import DocsMarkdownContent from '@/components/docs/body/DocsMarkdownContent';
 import TabSwitchedDocsContent from '@/components/docs/tabs/TabSwitchedDocsContent';
 import DocsChangelogPage from '@/components/docs/body/DocsChangelogPage';
 import DocsContentTitle from '@/components/docs/layout/DocsContentTitle';
-import {RenderedDocsPage} from '@repo/shared/types/service';
-import {ProjectData} from '@sinytra/wiki-api-types';
+import { RenderedDocsPage } from '@repo/shared/types/service';
+import { ProjectData } from '@sinytra/wiki-api-types';
 
-export default async function DocsEntryPage({project, page, showHistory}: {
+export default async function DocsEntryPage({
+  project,
+  page,
+  showHistory
+}: {
   project: ProjectData;
   page: RenderedDocsPage;
-  showHistory?: boolean
+  showHistory?: boolean;
 }) {
   return (
     <div className="flex min-h-[90vh] flex-col pb-20">
@@ -17,14 +21,8 @@ export default async function DocsEntryPage({project, page, showHistory}: {
       </DocsContentTitle>
 
       <TabSwitchedDocsContent
-        main={
-          <DocsMarkdownContent>
-            {page.content.content}
-          </DocsMarkdownContent>
-        }
-        history={
-          page.frontmatter.history ? <DocsChangelogPage changelog={page.frontmatter.history}/> : null
-        }
+        main={<DocsMarkdownContent>{page.content.content}</DocsMarkdownContent>}
+        history={page.frontmatter.history ? <DocsChangelogPage changelog={page.frontmatter.history} /> : null}
       />
     </div>
   );

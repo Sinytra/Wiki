@@ -1,7 +1,7 @@
 'use client';
 
-import {createContext, useState} from 'react';
-import {DropdownMenu, DropdownMenuContent} from '@repo/ui/components/dropdown-menu';
+import { createContext, useState } from 'react';
+import { DropdownMenu, DropdownMenuContent } from '@repo/ui/components/dropdown-menu';
 
 export interface DropdownMenuContextState {
   setModalOpen: (open: boolean) => void;
@@ -9,7 +9,7 @@ export interface DropdownMenuContextState {
 
 export const DropdownMenuContext = createContext<DropdownMenuContextState | null>(null);
 
-export default function ContextDropdownMenu({children, content}: { children: any; content: any }) {
+export default function ContextDropdownMenu({ children, content }: { children: any; content: any }) {
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -27,14 +27,14 @@ export default function ContextDropdownMenu({children, content}: { children: any
   }
 
   return (
-    <DropdownMenuContext.Provider value={{setModalOpen: handleModalStateChange}}>
+    <DropdownMenuContext.Provider value={{ setModalOpen: handleModalStateChange }}>
       <DropdownMenu open={open} onOpenChange={handleOnOpen}>
         {children}
 
         <DropdownMenuContent
           align="end"
           hidden={modalOpen}
-          onCloseAutoFocus={event => {
+          onCloseAutoFocus={(event) => {
             event.preventDefault();
             document.body.style.pointerEvents = '';
           }}

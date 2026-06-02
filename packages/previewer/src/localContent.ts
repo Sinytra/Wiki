@@ -1,22 +1,17 @@
-import {
-  ContentFileTree, FileTree,
-  ItemProperties,
-  PageLinks,
-  ProjectContext,
-} from '@repo/shared/types/service';
+import { ContentFileTree, FileTree, ItemProperties, PageLinks, ProjectContext } from '@repo/shared/types/service';
 import {
   ContentFileTreeEntry,
   FileTreeEntry,
   Frontmatter,
   Infobox,
   InfoboxTab,
-  ResolvedLink,
+  ResolvedLink
 } from '@sinytra/wiki-api-types';
-import localDocs, {LocalDocumentationSource} from './localDocsPages';
-import markdown, {RawFrontmatter} from '@repo/markdown';
+import localDocs, { LocalDocumentationSource } from './localDocsPages';
+import markdown, { RawFrontmatter } from '@repo/markdown';
 import localFiles from './localFiles';
-import resourceLocation, {DEFAULT_NAMESPACE} from '@repo/shared/resourceLocation';
-import {DEFAULT_LOCALE} from '@repo/shared/constants';
+import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
+import { DEFAULT_LOCALE } from '@repo/shared/constants';
 
 interface ExtendedContentFileTreeEntry extends ContentFileTreeEntry {
   id?: string[];
@@ -36,19 +31,27 @@ async function getProjectContents(ctx: ProjectContext): Promise<ContentFileTree 
   return null;
 }
 
-async function getLocalSourceContentTree(src: LocalDocumentationSource, locale?: string | null): Promise<ContentFileTree | null> {
-  const modifiedSrc = {...src, path: src.path + '/.content'};
+async function getLocalSourceContentTree(
+  src: LocalDocumentationSource,
+  locale?: string | null
+): Promise<ContentFileTree | null> {
+  const modifiedSrc = { ...src, path: src.path + '/.content' };
   const tree = await localDocs.readDocsTree(modifiedSrc, locale || undefined);
-  const results = await Promise.all(tree.map(e => processEntry(src, e, locale || null, {existing: []})));
-  return results.filter(c => c != null);
+  const results = await Promise.all(tree.map((e) => processEntry(src, e, locale || null, { existing: [] })));
+  return results.filter((c) => c != null);
 }
 
-async function processEntry(src: LocalDocumentationSource, entry: FileTreeEntry, locale: string | null, ctx: {
-  existing: string[]
-}): Promise<ExtendedContentFileTreeEntry | null> {
+async function processEntry(
+  src: LocalDocumentationSource,
+  entry: FileTreeEntry,
+  locale: string | null,
+  ctx: {
+    existing: string[];
+  }
+): Promise<ExtendedContentFileTreeEntry | null> {
   if (entry.type === 'dir') {
-    const children = await Promise.all(entry.children.map(c => processEntry(src, c, locale, ctx)));
-    return {...entry, children: children.filter(c => c != null)};
+    const children = await Promise.all(entry.children.map((c) => processEntry(src, c, locale, ctx)));
+    return { ...entry, children: children.filter((c) => c != null) };
   } else {
     const file = await localDocs.readDocsFile(src, ['.content', entry.path], locale || undefined, true);
     if (file) {
@@ -113,20 +116,17 @@ function getPageRef(user_ref: string | null, ids: string[], path: string, existi
 async function constructDefaultTabs(frontmatter: Frontmatter, ctx: ProjectContext): Promise<InfoboxTab[]> {
   const idToName: { [key: string]: string } = {};
 
-  const items = await Promise.all(frontmatter.id.map(id => getContentItemName(id, ctx)));
-  items
-    .filter(i => i != null)
-    .forEach(i => idToName[i.id] = i.name);
+  const items = await Promise.all(frontmatter.id.map((id) => getContentItemName(id, ctx)));
+  items.filter((i) => i != null).forEach((i) => (idToName[i.id] = i.name));
 
-  const tabs: InfoboxTab[] = frontmatter.id
-    .map(id => {
-      const name = idToName[id];
+  const tabs: InfoboxTab[] = frontmatter.id.map((id) => {
+    const name = idToName[id];
 
-      return {
-        name: name ?? id,
-        display: [id]
-      };
-    });
+    return {
+      name: name ?? id,
+      display: [id]
+    };
+  });
 
   if (tabs?.[0] && tabs.length === 1 && frontmatter.icon) {
     tabs[0].display = [frontmatter.icon];
@@ -136,7 +136,7 @@ async function constructDefaultTabs(frontmatter: Frontmatter, ctx: ProjectContex
 }
 
 async function constructInfobox(frontmatter: Frontmatter, ctx: ProjectContext): Promise<Infobox> {
-  const tabs = frontmatter.infobox?.tabs ?? await constructDefaultTabs(frontmatter, ctx);
+  const tabs = frontmatter.infobox?.tabs ?? (await constructDefaultTabs(frontmatter, ctx));
 
   return {
     title: frontmatter.infobox?.title ?? frontmatter.title ?? null,
@@ -145,9 +145,7 @@ async function constructInfobox(frontmatter: Frontmatter, ctx: ProjectContext): 
   };
 }
 
-function findTreeEntry<T extends { type: string; children: T[] }>(
-  pred: (e: T) => boolean, e: T
-): T | null {
+function findTreeEntry<T extends { type: string; children: T[] }>(pred: (e: T) => boolean, e: T): T | null {
   if (e.type === 'dir') {
     for (const child of e.children) {
       const res = findTreeEntry(pred, child);
@@ -163,7 +161,7 @@ function findTreeEntry<T extends { type: string; children: T[] }>(
 
 async function resolveDocsLink(path: string, tree: FileTree): Promise<ResolvedLink | null> {
   for (const child of tree) {
-    const entry = findTreeEntry(e => e.path == path, child);
+    const entry = findTreeEntry((e) => e.path == path, child);
     if (entry) {
       return {
         type: 'docs',
@@ -178,10 +176,7 @@ async function resolveDocsLink(path: string, tree: FileTree): Promise<ResolvedLi
 
 async function resolveContentLink(id: string, tree: ContentFileTree): Promise<ResolvedLink | null> {
   for (const child of tree) {
-    const entry = findTreeEntry(
-      e => e.id != null && e.id.includes(id),
-      child as ExtendedContentFileTreeEntry
-    );
+    const entry = findTreeEntry((e) => e.id != null && e.id.includes(id), child as ExtendedContentFileTreeEntry);
     if (entry && entry.ref) {
       return {
         type: 'content',
@@ -196,10 +191,7 @@ async function resolveContentLink(id: string, tree: ContentFileTree): Promise<Re
 
 async function resolveRefContentLink(ref: string, tree: ContentFileTree): Promise<ResolvedLink | null> {
   for (const child of tree) {
-    const entry = findTreeEntry(
-      e => e.ref != null && e.ref === ref,
-      child as ExtendedContentFileTreeEntry
-    );
+    const entry = findTreeEntry((e) => e.ref != null && e.ref === ref, child as ExtendedContentFileTreeEntry);
     if (entry && entry.ref) {
       return {
         type: 'content',
@@ -259,7 +251,9 @@ async function resolveContentLinks(links: string[], ctx: ProjectContext): Promis
 }
 
 async function getLocalization(
-  src: LocalDocumentationSource, namespace: string, locale?: string | null
+  src: LocalDocumentationSource,
+  namespace: string,
+  locale?: string | null
 ): Promise<{ [key: string]: string } | null> {
   const langName = locale == null || locale == DEFAULT_LOCALE ? 'en_us' : `${locale}_${locale}`;
 
@@ -285,16 +279,13 @@ async function getContentItemName(id: string, ctx: ProjectContext): Promise<Cont
 
   const locales = await getLocalization(src, location.namespace, ctx.locale);
   if (locales) {
-    const candidates = [
-      `item.${location.namespace}.${location.path}`,
-      `block.${location.namespace}.${location.path}`
-    ];
+    const candidates = [`item.${location.namespace}.${location.path}`, `block.${location.namespace}.${location.path}`];
     for (const candidate of candidates) {
       if (locales[candidate]) {
         return {
           source: ctx.id,
           id,
-          name: locales[candidate],
+          name: locales[candidate]
         };
       }
     }
@@ -307,14 +298,14 @@ async function getContentItemName(id: string, ctx: ProjectContext): Promise<Cont
   const flat = flattenChildren(contents);
   for (const entry of flat) {
     if (entry.ref === id) {
-      return {source: id, id, name: entry.name};
+      return { source: id, id, name: entry.name };
     }
   }
   return null;
 }
 
 function flattenChildren(entries: ContentFileTreeEntry[]): ContentFileTreeEntry[] {
-  return [...entries, ...entries.flatMap(e => flattenChildren(e.children || []))];
+  return [...entries, ...entries.flatMap((e) => flattenChildren(e.children || []))];
 }
 
 export default {

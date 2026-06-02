@@ -1,5 +1,5 @@
 export default {
-  'overview': '',
-  'common': 'Common',
-  'interactive': 'Interactive'
+  overview: '',
+  common: 'Common',
+  interactive: 'Interactive'
 };

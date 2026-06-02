@@ -1,12 +1,12 @@
-import {setContextLocale} from '@/lib/locales/routing';
-import {parseAsInteger, parseAsString} from 'nuqs/server';
-import {DEFAULT_DOCS_VERSION} from '@repo/shared/constants';
-import {getTranslations} from 'next-intl/server';
+import { setContextLocale } from '@/lib/locales/routing';
+import { parseAsInteger, parseAsString } from 'nuqs/server';
+import { DEFAULT_DOCS_VERSION } from '@repo/shared/constants';
+import { getTranslations } from 'next-intl/server';
 import DevProjectItemsTable from '@/components/dashboard/dev/table/DevProjectItemsTable';
 import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
 import * as React from 'react';
 import devProjectApi from '@/lib/service/api/devProjectApi';
-import {handleApiCall} from '@/lib/service/serviceUtil';
+import { handleApiCall } from '@/lib/service/serviceUtil';
 
 type Properties = {
   params: Promise<{
@@ -17,7 +17,7 @@ type Properties = {
     query?: string | string[];
     page?: string | string[];
     version?: string;
-  }>
+  }>;
 };
 
 export default async function DevProjectContentItemsPage(props: Properties) {
@@ -32,20 +32,27 @@ export default async function DevProjectContentItemsPage(props: Properties) {
   const version = parseAsString.parseServerSide(searchParams.version);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = handleApiCall(await devProjectApi.getProjectContentPages(params.project, {
-    query,
-    page: page.toString(),
-    version
-  }));
+  const content = handleApiCall(
+    await devProjectApi.getProjectContentPages(params.project, {
+      query,
+      page: page.toString(),
+      version
+    })
+  );
 
   return (
     <div className="space-y-3 pt-1">
-      <DevProjectPageTitle title={t('title')} desc={t('desc')}/>
+      <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      <DevProjectItemsTable data={content}
-                            versions={project.version_names || []}
-                            ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
-                            page={page}
+      <DevProjectItemsTable
+        data={content}
+        versions={project.version_names || []}
+        ctx={{
+          locale: params.locale,
+          id: params.project,
+          version: DEFAULT_DOCS_VERSION
+        }}
+        page={page}
       />
     </div>
   );

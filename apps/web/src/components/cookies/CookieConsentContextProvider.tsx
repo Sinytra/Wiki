@@ -1,11 +1,11 @@
 'use client';
 
-import React, {createContext, useEffect, useState} from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 import 'vanilla-cookieconsent/dist/cookieconsent.css';
 import * as CookieConsent from 'vanilla-cookieconsent';
 import cookies from '@/lib/cookies';
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 export interface CookieConsentData {
   enableCookieManagement: boolean;
@@ -17,7 +17,7 @@ export const CookieConsentContext = createContext<CookieConsentData | null>(null
 export const CATEGORY_EXPERIENCE = 'experience';
 export const EMBED_SERVICE_COOKIES = 'yt_embeds';
 
-export default function CookieConsentContextProvider({children}: { children?: React.ReactNode }) {
+export default function CookieConsentContextProvider({ children }: { children?: React.ReactNode }) {
   const [enableCookieManagement, setEnableCookieManagement] = useState<boolean>(true);
   const [embeddedConsent, setEmbeddedConsent] = useState(false);
   const t = useTranslations('CookieConsent');
@@ -112,7 +112,12 @@ export default function CookieConsentContextProvider({children}: { children?: Re
   }, []);
 
   return (
-    <CookieConsentContext.Provider value={{enableCookieManagement, hasConsentToEmbeddedVideos: embeddedConsent}}>
+    <CookieConsentContext.Provider
+      value={{
+        enableCookieManagement,
+        hasConsentToEmbeddedVideos: embeddedConsent
+      }}
+    >
       {children}
     </CookieConsentContext.Provider>
   );

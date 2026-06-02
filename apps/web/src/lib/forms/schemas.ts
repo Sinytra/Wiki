@@ -1,8 +1,8 @@
-import {z} from 'zod';
+import { z } from 'zod';
 
 const requiredString = z.string().nonempty();
 const allowedProtocols = process.env.NODE_ENV === 'development' ? /https|file/ : /https/;
-const zodRepoUrl = z.url({protocol: allowedProtocols}).nonempty();
+const zodRepoUrl = z.url({ protocol: allowedProtocols }).nonempty();
 
 export const emptySchema = z.object({});
 

@@ -1,6 +1,6 @@
 import authSession from '@/lib/authSession';
-import {ApiCallResult} from '@repo/shared/commonNetwork';
-import {notFound, redirect} from 'next/navigation';
+import { ApiCallResult } from '@repo/shared/commonNetwork';
+import { notFound, redirect } from 'next/navigation';
 
 export function handleApiCall<T>(result: ApiCallResult<T>, returnTo?: string): T {
   // Success

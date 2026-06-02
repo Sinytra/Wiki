@@ -1,4 +1,4 @@
-import {ResourceLocation} from '@sinytra/wiki-api-types';
+import { ResourceLocation } from '@sinytra/wiki-api-types';
 
 export interface AssetLocation {
   id: string;
@@ -6,7 +6,7 @@ export interface AssetLocation {
 }
 
 export interface AssetProvider {
-  resolveAsset: (source: string, id: ResourceLocation) => Promise<AssetLocation | null>
+  resolveAsset: (source: string, id: ResourceLocation) => Promise<AssetLocation | null>;
 }
 
 export const assetBasePath: string = '.assets';

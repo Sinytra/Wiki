@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {ordinalColumn, TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import { ordinalColumn, TableColumn } from '@repo/ui/blocks/data-table/dataTableTypes';
 import DataTable from '@repo/ui/blocks/data-table/DataTable';
-import {useTranslations} from 'next-intl';
-import {ProjectVersions} from '@repo/shared/types/service';
-import {FullTagData, PaginatedData} from '@sinytra/wiki-api-types';
+import { useTranslations } from 'next-intl';
+import { ProjectVersions } from '@repo/shared/types/service';
+import { FullTagData, PaginatedData } from '@sinytra/wiki-api-types';
 import DevProjectTableEmptyState from '@/components/dashboard/dev/table/DevProjectTableEmptyState';
 
 function EmptyPlaceholder() {
@@ -11,14 +11,16 @@ function EmptyPlaceholder() {
 
   return (
     <DevProjectTableEmptyState>
-      <p className="text-base">
-        {t('title')}
-      </p>
+      <p className="text-base">{t('title')}</p>
     </DevProjectTableEmptyState>
   );
 }
 
-export default function DevProjectTagsTable({data, versions, page}: {
+export default function DevProjectTagsTable({
+  data,
+  versions,
+  page
+}: {
   data: PaginatedData<FullTagData>;
   versions: ProjectVersions;
   page: number;
@@ -30,22 +32,23 @@ export default function DevProjectTagsTable({data, versions, page}: {
     {
       id: 'id',
       header: t('id'),
-      cell: item => (
-        <div className="py-1 font-mono text-xs sm:text-sm">{item.id}</div>
-      )
+      cell: (item) => <div className="py-1 font-mono text-xs sm:text-sm">{item.id}</div>
     },
     {
       id: 'items',
       header: t('items'),
-      cell: item => (
-        <div className="text-xs sm:text-sm">{item.items.length}</div>
-      )
+      cell: (item) => <div className="text-xs sm:text-sm">{item.items.length}</div>
     }
   ];
 
   return (
-    <DataTable columns={columns} data={data} versions={versions} page={page}
-               linker={r => `tags/${encodeURIComponent(r.id)}`} emptyState={<EmptyPlaceholder/>}
+    <DataTable
+      columns={columns}
+      data={data}
+      versions={versions}
+      page={page}
+      linker={(r) => `tags/${encodeURIComponent(r.id)}`}
+      emptyState={<EmptyPlaceholder />}
     />
   );
 }

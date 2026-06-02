@@ -1,9 +1,9 @@
 'use client';
 
-import {useQueryState} from 'nuqs';
-import {HistoryIcon, HomeIcon} from 'lucide-react';
-import {Button} from '@repo/ui/components/button';
-import {useTranslations} from 'next-intl';
+import { useQueryState } from 'nuqs';
+import { HistoryIcon, HomeIcon } from 'lucide-react';
+import { Button } from '@repo/ui/components/button';
+import { useTranslations } from 'next-intl';
 
 export default function DocsEntryTabs() {
   const [tab, setTab] = useQueryState('tab');
@@ -16,17 +16,21 @@ export default function DocsEntryTabs() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      {tab === 'history'
-        ?
+      {tab === 'history' ? (
         <Button title={t('home')} variant="ghost" size="icon" className="size-8" onClick={() => switchTab('home')}>
-          <HomeIcon className="size-4"/>
+          <HomeIcon className="size-4" />
         </Button>
-        :
-        <Button title={t('history')} variant="ghost" size="icon" className="size-8"
-                onClick={() => switchTab('history')}>
-          <HistoryIcon className="size-4"/>
+      ) : (
+        <Button
+          title={t('history')}
+          variant="ghost"
+          size="icon"
+          className="size-8"
+          onClick={() => switchTab('history')}
+        >
+          <HistoryIcon className="size-4" />
         </Button>
-      }
+      )}
     </div>
   );
 }

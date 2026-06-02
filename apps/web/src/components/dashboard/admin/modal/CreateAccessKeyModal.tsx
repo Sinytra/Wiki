@@ -1,7 +1,7 @@
 'use client';
 
-import {zodResolver} from '@hookform/resolvers/zod';
-import {useForm} from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
@@ -9,7 +9,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@repo/ui/components/form';
 import {
   Dialog,
@@ -21,23 +21,23 @@ import {
   DialogTrigger
 } from '@repo/ui/components/dialog';
 import * as React from 'react';
-import {useEffect, useState} from 'react';
-import {createAccessKeySchema} from '@/lib/forms/schemas';
-import {Input} from '@repo/ui/components/input';
-import {useTranslations} from 'next-intl';
-import {cn} from '@repo/ui/lib/utils';
-import {PlusIcon} from 'lucide-react';
-import {Button} from '@repo/ui/components/button';
+import { useEffect, useState } from 'react';
+import { createAccessKeySchema } from '@/lib/forms/schemas';
+import { Input } from '@repo/ui/components/input';
+import { useTranslations } from 'next-intl';
+import { cn } from '@repo/ui/lib/utils';
+import { PlusIcon } from 'lucide-react';
+import { Button } from '@repo/ui/components/button';
 import SaveAccessKeyModal from '@/components/dashboard/admin/modal/SaveAccessKeyModal';
-import {CreateAccessKeyResponse} from '@sinytra/wiki-api-types';
-import {useRouter} from '@/lib/locales/routing';
+import { CreateAccessKeyResponse } from '@sinytra/wiki-api-types';
+import { useRouter } from '@/lib/locales/routing';
 import FormSubmitButton from '@repo/ui/components/forms/FormSubmitButton';
 
 export interface CreateAccessKeyModalProps {
-  formAction: (data: any) => Promise<any>
+  formAction: (data: any) => Promise<any>;
 }
 
-export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalProps) {
+export default function CreateAccessKeyModal({ formAction }: CreateAccessKeyModalProps) {
   const [open, setOpen] = useState(false);
   const [resultOpen, setResultOpen] = useState(false);
   const [result, setResult] = useState<CreateAccessKeyResponse | null>(null);
@@ -50,7 +50,7 @@ export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalP
     resolver: zodResolver(createAccessKeySchema)
   });
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await formAction(data) as any;
+    const resp = (await formAction(data)) as any;
     if (resp.success) {
       router.refresh();
       setResult(resp.data);
@@ -59,7 +59,7 @@ export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalP
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-expect-error message
-        form.setError(key, {message: u(`errors.${resp.errors[key][0]}`)});
+        form.setError(key, { message: u(`errors.${resp.errors[key][0]}`) });
       }
     }
     return resp;
@@ -73,23 +73,19 @@ export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalP
 
   return (
     <div>
-      <SaveAccessKeyModal open={resultOpen} setOpen={setResultOpen} result={result}/>
+      <SaveAccessKeyModal open={resultOpen} setOpen={setResultOpen} result={result} />
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button size="sm">
-            <PlusIcon className="mr-2 h-4 w-4"/>
+            <PlusIcon className="mr-2 h-4 w-4" />
             {t('button')}
           </Button>
         </DialogTrigger>
         <DialogContent className="outline-hidden!">
           <DialogHeader>
-            <DialogTitle>
-              {t('title')}
-            </DialogTitle>
-            <DialogDescription>
-              {t('desc')}
-            </DialogDescription>
+            <DialogTitle>{t('title')}</DialogTitle>
+            <DialogDescription>{t('desc')}</DialogDescription>
           </DialogHeader>
 
           <Form {...form}>
@@ -98,18 +94,14 @@ export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalP
                 <FormField
                   control={form.control}
                   name="name"
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem>
-                      <FormLabel>
-                        {t('name.title')}
-                      </FormLabel>
+                      <FormLabel>{t('name.title')}</FormLabel>
                       <FormControl>
                         <Input placeholder={t('name.placeholder')} {...field} />
                       </FormControl>
-                      <FormDescription>
-                        {t('name.desc')}
-                      </FormDescription>
-                      <FormMessage/>
+                      <FormDescription>{t('name.desc')}</FormDescription>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -117,34 +109,26 @@ export default function CreateAccessKeyModal({formAction}: CreateAccessKeyModalP
                 <FormField
                   control={form.control}
                   name="days_valid"
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem>
-                      <FormLabel>
-                        {t('days_valid.title')}
-                      </FormLabel>
+                      <FormLabel>{t('days_valid.title')}</FormLabel>
                       <FormControl>
                         <Input placeholder="90" {...field} />
                       </FormControl>
-                      <FormDescription>
-                        {t('days_valid.desc')}
-                      </FormDescription>
-                      <FormMessage/>
+                      <FormDescription>{t('days_valid.desc')}</FormDescription>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                {form.formState.errors.root?.custom?.message &&
+                {form.formState.errors.root?.custom?.message && (
                   <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                    <p className="text-sm text-destructive">
-                      {form.formState.errors.root.custom.message}
-                    </p>
+                    <p className="text-sm text-destructive">{form.formState.errors.root.custom.message}</p>
                   </div>
-                }
+                )}
 
                 <DialogFooter className="flex w-full flex-row">
-                  <FormSubmitButton>
-                    {t('submit')}
-                  </FormSubmitButton>
+                  <FormSubmitButton>{t('submit')}</FormSubmitButton>
                 </DialogFooter>
               </form>
             </div>

@@ -1,5 +1,5 @@
-import {serviceProviderFactory as remoteServiceProviderFactory} from '@/lib/service/remoteService';
-import {AssetLocation} from '@repo/shared/assets';
+import { serviceProviderFactory as remoteServiceProviderFactory } from '@/lib/service/remoteService';
+import { AssetLocation } from '@repo/shared/assets';
 import {
   ContentFileTree,
   ProjectContentContext,
@@ -8,9 +8,9 @@ import {
   ServiceProvider,
   ServiceProviderFactory
 } from '@repo/shared/types/service';
-import markdown, {ComponentPatcher} from '@repo/markdown';
-import resourceLocation, {DEFAULT_NAMESPACE} from '@repo/shared/resourceLocation';
-import {localServiceProviderFactory} from '@repo/previewer';
+import markdown, { ComponentPatcher } from '@repo/markdown';
+import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
+import { localServiceProviderFactory } from '@repo/previewer';
 import builtinAssets from '@/lib/project/builtin/builtinAssets';
 import PrefabUsage from '@/components/docs/shared/prefab/PrefabUsage';
 import CraftingRecipe from '@/components/docs/shared/CraftingRecipe';
@@ -19,8 +19,8 @@ import PrefabObtaining from '@/components/docs/shared/prefab/PrefabObtaining';
 import ModAsset from '@/components/docs/shared/asset/ModAsset';
 import Callout from '@/components/docs/shared/Callout';
 import LinkAwareHeading from '@/components/docs/LinkAwareHeading';
-import {BindableAsset} from '@/components/docs/shared/asset/Asset';
-import {BindableRecipeUsage} from '@/components/docs/shared/game/RecipeUsage';
+import { BindableAsset } from '@/components/docs/shared/asset/Asset';
+import { BindableRecipeUsage } from '@/components/docs/shared/game/RecipeUsage';
 import CodeHikeCode from '@repo/ui/blocks/markdown/CodeHikeCode';
 import CodeTabs from '@repo/ui/blocks/markdown/CodeTabs';
 import DocsLink from '@/components/docs/shared/DocsLink';
@@ -37,9 +37,11 @@ import {
 } from '@sinytra/wiki-api-types';
 import ExtendedLink from '@/components/docs/shared/ExtendedLink';
 import ContentLink from '@/components/docs/shared/ContentLink';
-import {BindableAudio} from '@/components/docs/shared/asset/Audio';
+import { BindableAudio } from '@/components/docs/shared/asset/Audio';
 
-type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
+type AsyncMethodKey<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never;
+}[keyof T];
 
 const installedProviders: ServiceProviderFactory[] = [localServiceProviderFactory, remoteServiceProviderFactory];
 
@@ -52,9 +54,7 @@ function createProxy<T extends AsyncMethodKey<ServiceProvider>>(
 async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
   callback: (p: ServiceProvider) => ReturnType<ServiceProvider[T]>
 ): Promise<Awaited<ReturnType<ServiceProvider[T]>> | null> {
-  const providers: ServiceProvider[] = installedProviders
-    .filter(f => f.isAvailable())
-    .map(f => f.create());
+  const providers: ServiceProvider[] = installedProviders.filter((f) => f.isAvailable()).map((f) => f.create());
   for (const provider of providers) {
     const promise = callback(provider) as ReturnType<ServiceProvider[T]>;
     const result = await promise;
@@ -65,10 +65,12 @@ async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
   return null;
 }
 
-const getProject: (ctx: ProjectContext) => Promise<ProjectData | null> =
-  createProxy<'getProject'>((p, ctx) => p.getProject(ctx));
-const getBackendLayout: (ctx: ProjectContext) => Promise<TreeResponse | null> =
-  createProxy<'getBackendLayout'>((p, ctx) => p.getBackendLayout(ctx));
+const getProject: (ctx: ProjectContext) => Promise<ProjectData | null> = createProxy<'getProject'>((p, ctx) =>
+  p.getProject(ctx)
+);
+const getBackendLayout: (ctx: ProjectContext) => Promise<TreeResponse | null> = createProxy<'getBackendLayout'>(
+  (p, ctx) => p.getBackendLayout(ctx)
+);
 
 async function getAsset(location: string, ctx: ProjectContext | null): Promise<AssetLocation | null> {
   const resource = resourceLocation.parse(location);
@@ -83,22 +85,33 @@ async function getAsset(location: string, ctx: ProjectContext | null): Promise<A
     return builtinAssets.getAssetResource(compatibleResource);
   }
 
-  return proxyServiceCall<'getAsset'>(p => p.getAsset(resource, ctx));
+  return proxyServiceCall<'getAsset'>((p) => p.getAsset(resource, ctx));
 }
 
 const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ProjectPage | null | undefined> =
   createProxy<'getDocsPage'>((p, path, optional, ctx) => p.getDocsPage(path, optional || false, ctx));
 
-async function renderDocsPage(path: string[], optional: boolean, ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
-  const raw = await getDocsPage(path, optional, ctx) || null;
+async function renderDocsPage(
+  path: string[],
+  optional: boolean,
+  ctx: ProjectContext,
+  patcher?: ComponentPatcher
+): Promise<RenderedDocsPage | null> {
+  const raw = (await getDocsPage(path, optional, ctx)) || null;
   return renderMarkdown(raw, ctx, patcher);
 }
 
-const searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<BrowseResponse | null> = createProxy<'searchProjects'>(
-  (p, query, page, types, sort) => p.searchProjects(query, page, types, sort)
+const searchProjects: (
+  query: string,
+  page: number,
+  types: string | null,
+  sort: string | null
+) => Promise<BrowseResponse | null> = createProxy<'searchProjects'>((p, query, page, types, sort) =>
+  p.searchProjects(query, page, types, sort)
 );
-const getProjectContents: (ctx: ProjectContext) => Promise<ContentFileTree | null> =
-  createProxy<'getProjectContents'>((p, ctx) => p.getProjectContents(ctx));
+const getProjectContents: (ctx: ProjectContext) => Promise<ContentFileTree | null> = createProxy<'getProjectContents'>(
+  (p, ctx) => p.getProjectContents(ctx)
+);
 const getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<ProjectPage | null> =
   createProxy<'getProjectContentPage'>((p, id, ctx) => p.getProjectContentPage(id, ctx));
 const getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null> =
@@ -110,7 +123,10 @@ const getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<Resolve
 const getRecipeType: (type: string, ctx: ProjectContext) => Promise<RecipeTypeResponse | null> =
   createProxy<'getRecipeType'>((p, type, ctx) => p.getRecipeType(type, ctx));
 
-async function renderProjectContentPage(id: string, ctx: ProjectContext | ProjectContentContext): Promise<RenderedDocsPage | null> {
+async function renderProjectContentPage(
+  id: string,
+  ctx: ProjectContext | ProjectContentContext
+): Promise<RenderedDocsPage | null> {
   const page = await getProjectContentPage(id, ctx);
   const patcher: ComponentPatcher = (c) => ({
     PrefabUsage: PrefabUsage.bind(null, ctx),
@@ -120,7 +136,11 @@ async function renderProjectContentPage(id: string, ctx: ProjectContext | Projec
   return renderMarkdown(page, ctx, patcher);
 }
 
-async function renderMarkdown(page: ProjectPage | null, ctx: ProjectContext | ProjectContentContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
+async function renderMarkdown(
+  page: ProjectPage | null,
+  ctx: ProjectContext | ProjectContentContext,
+  patcher?: ComponentPatcher
+): Promise<RenderedDocsPage | null> {
   if (page) {
     const components = {
       Asset: BindableAsset.bind(null, ctx),
@@ -132,10 +152,13 @@ async function renderMarkdown(page: ProjectPage | null, ctx: ProjectContext | Pr
       h2: LinkAwareHeading,
       a: ExtendedLink.bind(null, ctx, page.links),
       img: ExtendedImg.bind(null, ctx),
-      Callout, CodeHikeCode, CodeTabs, VideoEmbed,
+      Callout,
+      CodeHikeCode,
+      CodeTabs,
+      VideoEmbed,
       // Deprecated TODO Remove
       ContentLink: ContentLink.bind(null, ctx),
-      DocsLink: DocsLink.bind(null, ctx),
+      DocsLink: DocsLink.bind(null, ctx)
     };
 
     const content = await markdown.renderDocumentationMarkdown(page.content, components, patcher);
@@ -144,7 +167,7 @@ async function renderMarkdown(page: ProjectPage | null, ctx: ProjectContext | Pr
       content,
       edit_url: page.edit_url,
       properties: page.properties,
-      links: page.links,
+      links: page.links
     };
   }
   return null;
@@ -152,7 +175,12 @@ async function renderMarkdown(page: ProjectPage | null, ctx: ProjectContext | Pr
 
 function prefixItemPath(location: string) {
   const parsed = resourceLocation.parse(location);
-  return !parsed ? location : resourceLocation.toString({namespace: parsed.namespace, path: 'item/' + parsed.path});
+  return !parsed
+    ? location
+    : resourceLocation.toString({
+        namespace: parsed.namespace,
+        path: 'item/' + parsed.path
+      });
 }
 
 export default {
@@ -168,5 +196,5 @@ export default {
   getContentRecipeUsage,
   getProjectContentPage,
   getContentRecipeObtaining,
-  getRecipeType,
+  getRecipeType
 };

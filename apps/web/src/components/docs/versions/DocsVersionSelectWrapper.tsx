@@ -1,13 +1,17 @@
 'use client';
 
-import {useRouter} from '@bprogress/next';
-import {Select} from '@repo/ui/components/select';
-import {usePathname} from 'next/navigation';
+import { useRouter } from '@bprogress/next';
+import { Select } from '@repo/ui/components/select';
+import { usePathname } from 'next/navigation';
 
-export default function DocsVersionSelectWrapper({value, defaultValue, children}: {
+export default function DocsVersionSelectWrapper({
+  value,
+  defaultValue,
+  children
+}: {
   value?: string;
   defaultValue?: string;
-  children?: any
+  children?: any;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -15,7 +19,7 @@ export default function DocsVersionSelectWrapper({value, defaultValue, children}
   const changeVersion = (id: any) => {
     const parts = pathname.split('/');
     parts[4] = id;
-    router.replace('/' + parts.filter(s => s.length > 0).join('/'));
+    router.replace('/' + parts.filter((s) => s.length > 0).join('/'));
   };
 
   return (

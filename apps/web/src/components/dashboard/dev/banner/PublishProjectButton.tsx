@@ -1,14 +1,14 @@
 'use client';
 
-import {FormActionResult, useFormHandlingAction} from '@/lib/forms/forms';
-import {useRouter} from '@/lib/locales/routing';
-import {useForm} from 'react-hook-form';
-import {emptySchema} from '@/lib/forms/schemas';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {Form} from '@repo/ui/components/form';
-import {Button} from '@repo/ui/components/button';
-import {z} from 'zod';
-import {toast} from 'sonner';
+import { FormActionResult, useFormHandlingAction } from '@/lib/forms/forms';
+import { useRouter } from '@/lib/locales/routing';
+import { useForm } from 'react-hook-form';
+import { emptySchema } from '@/lib/forms/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form } from '@repo/ui/components/form';
+import { Button } from '@repo/ui/components/button';
+import { z } from 'zod';
+import { toast } from 'sonner';
 
 interface Props {
   formAction: () => Promise<FormActionResult>;
@@ -16,7 +16,7 @@ interface Props {
   children: any;
 }
 
-export default function PublishProjectButton({formAction, successMsg, children}: Props) {
+export default function PublishProjectButton({ formAction, successMsg, children }: Props) {
   const router = useRouter();
   const form = useForm<z.infer<typeof emptySchema>>({
     resolver: zodResolver(emptySchema)

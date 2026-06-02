@@ -1,11 +1,15 @@
 'use client';
 
-import {WikiSearchResult, WikiSearchResults} from '@/lib/service/search';
-import {getProcessURL} from '@/lib/utils';
+import { WikiSearchResult, WikiSearchResults } from '@/lib/service/search';
+import { getProcessURL } from '@/lib/utils';
 
 async function searchWiki(query: string): Promise<WikiSearchResults> {
-  if (!process.env.NEXT_PUBLIC_SEARCH_ENDPOINT || !process.env.NEXT_PUBLIC_SEARCH_INDEX || !process.env.NEXT_PUBLIC_SEARCH_API_KEY) {
-    return {total: 0, hits: []};
+  if (
+    !process.env.NEXT_PUBLIC_SEARCH_ENDPOINT ||
+    !process.env.NEXT_PUBLIC_SEARCH_INDEX ||
+    !process.env.NEXT_PUBLIC_SEARCH_API_KEY
+  ) {
+    return { total: 0, hits: [] };
   }
 
   try {
@@ -28,22 +32,25 @@ async function searchWiki(query: string): Promise<WikiSearchResults> {
       _source: false
     };
 
-    const results = await fetch(`${process.env.NEXT_PUBLIC_SEARCH_ENDPOINT}/${process.env.NEXT_PUBLIC_SEARCH_INDEX}/_search?pretty`, {
-      method: 'POST',
-      headers: {
-        Authorization: `ApiKey ${process.env.NEXT_PUBLIC_SEARCH_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload),
-      cache: 'no-store'
-    });
+    const results = await fetch(
+      `${process.env.NEXT_PUBLIC_SEARCH_ENDPOINT}/${process.env.NEXT_PUBLIC_SEARCH_INDEX}/_search?pretty`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `ApiKey ${process.env.NEXT_PUBLIC_SEARCH_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+        cache: 'no-store'
+      }
+    );
 
     if (results.ok) {
       const body = await results.json();
       if (body?.hits?.hits) {
         const hits = body.hits.hits as any[];
 
-        const mappedHits = hits.map(hit => {
+        const mappedHits = hits.map((hit) => {
           const url_path: string = hit.fields.url_path[0];
           const path = url_path.split('/').slice(5).join(' > ');
           const url = getProcessURL() + url_path;
@@ -71,7 +78,7 @@ async function searchWiki(query: string): Promise<WikiSearchResults> {
     console.error('Error running search', e);
   }
 
-  return {total: 0, hits: []};
+  return { total: 0, hits: [] };
 }
 
 export default {

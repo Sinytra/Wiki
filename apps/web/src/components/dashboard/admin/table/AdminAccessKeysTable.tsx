@@ -1,66 +1,53 @@
 import * as React from 'react';
-import {AccessKeyInfo, PaginatedData} from '@sinytra/wiki-api-types';
-import {TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import { AccessKeyInfo, PaginatedData } from '@sinytra/wiki-api-types';
+import { TableColumn } from '@repo/ui/blocks/data-table/dataTableTypes';
 import DataTable from '@repo/ui/blocks/data-table/DataTable';
-import {cn} from '@repo/ui/lib/utils';
+import { cn } from '@repo/ui/lib/utils';
 import CreateAccessKeyModal from '@/components/dashboard/admin/modal/CreateAccessKeyModal';
-import {handleCreateAccessKeyForm, handleDeleteAccessKeyForm} from '@/lib/forms/actions';
+import { handleCreateAccessKeyForm, handleDeleteAccessKeyForm } from '@/lib/forms/actions';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import DeleteAccessKeyModal from '@/components/dashboard/admin/modal/DeleteAccessKeyModal';
 
-export default function AdminAccessKeysTable({data, page}: {
-  data: PaginatedData<AccessKeyInfo>;
-  page: number;
-}) {
+export default function AdminAccessKeysTable({ data, page }: { data: PaginatedData<AccessKeyInfo>; page: number }) {
   const columns: TableColumn<AccessKeyInfo>[] = [
     {
       id: 'id',
       header: 'ID',
-      cell: item => (
-        <span>{item.id}</span>
-      )
+      cell: (item) => <span>{item.id}</span>
     },
     {
       id: 'name',
       header: 'Name',
-      cell: item => (
-        <span>{item.name}</span>
-      )
+      cell: (item) => <span>{item.name}</span>
     },
     {
       id: 'user_id',
       header: 'User',
-      cell: item => (
-        <span>{item.user_id}</span>
-      )
+      cell: (item) => <span>{item.user_id}</span>
     },
     {
       id: 'expires_at',
       header: 'Expires at',
-      cell: item => (
-        <span>{item.expires_at || '-'}</span>
-      )
+      cell: (item) => <span>{item.expires_at || '-'}</span>
     },
     {
       id: 'expired',
       header: 'Expired',
-      cell: item => (
+      cell: (item) => (
         <span className={cn(item.expired ? 'text-destructive' : 'text-success')}>{item.expired ? 'Yes' : 'No'}</span>
       )
     },
     {
       id: 'created_at',
       header: 'Created at',
-      cell: item => (
-        <span>{item.created_at}</span>
-      )
+      cell: (item) => <span>{item.created_at}</span>
     },
     {
       id: 'delete',
       header: '',
-      cell: item => (
+      cell: (item) => (
         <ClientLocaleProvider keys={['DeleteAccessKeyModal']}>
-          <DeleteAccessKeyModal accessKey={item} action={handleDeleteAccessKeyForm.bind(null, item.id)}/>
+          <DeleteAccessKeyModal accessKey={item} action={handleDeleteAccessKeyForm.bind(null, item.id)} />
         </ClientLocaleProvider>
       ),
       className: 'w-14'
@@ -69,13 +56,16 @@ export default function AdminAccessKeysTable({data, page}: {
 
   return (
     <div>
-      <DataTable columns={columns} data={data} page={page} creator={
-        <ClientLocaleProvider
-          keys={['CreateAccessKeyModal', 'FormActions', 'SaveAccessKeyModal', 'CopyButton']}
-        >
-          <CreateAccessKeyModal formAction={handleCreateAccessKeyForm}/>
-        </ClientLocaleProvider>
-      }/>
+      <DataTable
+        columns={columns}
+        data={data}
+        page={page}
+        creator={
+          <ClientLocaleProvider keys={['CreateAccessKeyModal', 'FormActions', 'SaveAccessKeyModal', 'CopyButton']}>
+            <CreateAccessKeyModal formAction={handleCreateAccessKeyForm} />
+          </ClientLocaleProvider>
+        }
+      />
     </div>
   );
 }

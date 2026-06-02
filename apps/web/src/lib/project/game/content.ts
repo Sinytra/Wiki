@@ -1,8 +1,8 @@
-import resourceLocation, {DEFAULT_NAMESPACE} from '@repo/shared/resourceLocation';
+import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
 
-import {PageLinks, ProjectContext} from '@repo/shared/types/service';
-import {ProjectRouteParams} from '@repo/shared/types/routes';
-import {ResolvedItem} from '@sinytra/wiki-api-types';
+import { PageLinks, ProjectContext } from '@repo/shared/types/service';
+import { ProjectRouteParams } from '@repo/shared/types/routes';
+import { ResolvedItem } from '@sinytra/wiki-api-types';
 
 export type TargetLink = {
   title?: string | null;
@@ -23,7 +23,10 @@ export function resolveLink(ctx: ProjectContext, links: PageLinks, url: string):
       return { title: resolved.title, url: getDocsLink(resolved.ref, ctx) };
     }
     if (resolved.type == 'content') {
-      return { title: resolved.title, url: getInternalWikiLink(resolved.ref, ctx) };
+      return {
+        title: resolved.title,
+        url: getInternalWikiLink(resolved.ref, ctx)
+      };
     }
   }
   return null;
@@ -46,7 +49,9 @@ export function getInternalWikiLink(ref: string, params: ProjectRouteParams | Pr
 
 export function getExternalWikiLink(id: string): string | null {
   const loc = resourceLocation.parse(id);
-  return loc?.namespace === DEFAULT_NAMESPACE && id.startsWith(DEFAULT_NAMESPACE + ':') ? `https://minecraft.wiki/w/${loc.path}` : null;
+  return loc?.namespace === DEFAULT_NAMESPACE && id.startsWith(DEFAULT_NAMESPACE + ':')
+    ? `https://minecraft.wiki/w/${loc.path}`
+    : null;
 }
 
 export function getVanillaWikiLink(page: string): string {

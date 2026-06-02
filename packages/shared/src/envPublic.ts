@@ -1,4 +1,4 @@
-import {assertEnvVar} from './util';
+import { assertEnvVar } from './util';
 
 function getBackendEndpointUrl(): string {
   const value = process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL;

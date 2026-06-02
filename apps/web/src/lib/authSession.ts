@@ -1,6 +1,6 @@
-import {NextRequest} from 'next/server';
-import {cookies} from 'next/headers';
-import {redirect} from 'next/navigation';
+import { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import envPublic from '@repo/shared/envPublic';
 
 export const SESSION_KEY = 'sessionid';
@@ -16,7 +16,7 @@ function isAuthenticated(cookies: NextRequest['cookies']) {
 async function getSession(): Promise<Session | null> {
   const store = await cookies();
   const result = store.get(SESSION_KEY);
-  return result ? {token: result.value} : null;
+  return result ? { token: result.value } : null;
 }
 
 function login() {

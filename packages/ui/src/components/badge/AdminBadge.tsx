@@ -1,5 +1,5 @@
-import {Badge} from "@repo/ui/components/badge";
-import {useTranslations} from "next-intl";
+import { Badge } from '@repo/ui/components/badge';
+import { useTranslations } from 'next-intl';
 
 export default function AdminBadge() {
   const t = useTranslations('Badges');

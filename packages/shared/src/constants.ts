@@ -27,5 +27,10 @@ const TWO_WEEKS = 2 * ONE_WEEK;
 const ONE_YEAR = 365 * ONE_DAY;
 
 export const time = {
-  ONE_DAY, ONE_WEEK, TWO_WEEKS, ONE_MINUTE, ONE_MONTH, ONE_YEAR
+  ONE_DAY,
+  ONE_WEEK,
+  TWO_WEEKS,
+  ONE_MINUTE,
+  ONE_MONTH,
+  ONE_YEAR
 };

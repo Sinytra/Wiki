@@ -22,18 +22,21 @@
  * SOFTWARE.
  */
 
-import {cn} from '@repo/ui/lib/utils';
+import { cn } from '@repo/ui/lib/utils';
 import styles from './style.module.css';
 
 // Source: https://github.com/vuejs/vitepress/blob/2e54970f7195c67b63908964575f589ce24b6d29/src/client/theme-default/components/VPNavBarHamburger.vue
-export default function MobileNavHamburger({active, setOpen}: { active: boolean; setOpen: (open: boolean) => void }) {
+export default function MobileNavHamburger({ active, setOpen }: { active: boolean; setOpen: (open: boolean) => void }) {
   return (
-    <button type="button" className={cn(styles.MobileNavHamburger, active && styles.active)}
-            onClick={() => setOpen(!active)}>
+    <button
+      type="button"
+      className={cn(styles.MobileNavHamburger, active && styles.active)}
+      onClick={() => setOpen(!active)}
+    >
       <span className={styles.container}>
-        <span className={styles.top}/>
-        <span className={styles.middle}/>
-        <span className={styles.bottom}/>
+        <span className={styles.top} />
+        <span className={styles.middle} />
+        <span className={styles.bottom} />
       </span>
     </button>
   );

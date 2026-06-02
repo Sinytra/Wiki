@@ -1,8 +1,8 @@
-import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from './universal';
+import { PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider } from './universal';
 import env from '@repo/shared/env';
-import {ProjectNotFoundError} from './exception';
-import {time} from '@repo/shared/constants';
-import {ProjectType} from '@sinytra/wiki-api-types';
+import { ProjectNotFoundError } from './exception';
+import { time } from '@repo/shared/constants';
+import { ProjectType } from '@sinytra/wiki-api-types';
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
@@ -39,7 +39,7 @@ interface CurseForgeProject {
   links: {
     websiteUrl: string;
     sourceUrl: string;
-  }
+  };
   classId: number;
 }
 
@@ -65,7 +65,7 @@ interface PaginatedResults<T> {
     pageSize: number;
     resultCount: number;
     totalCount: number;
-  }
+  };
 }
 
 function shouldUsePlaceholder(): boolean {
@@ -106,15 +106,15 @@ async function getProject(slug: string): Promise<PlatformProject> {
     summary: project.summary,
     description,
     icon_url: project.logo.url,
-    categories: project.categories.map(c => c.slug),
-    game_versions: project.latestFilesIndexes.map(i => i.gameVersion).reverse(),
+    categories: project.categories.map((c) => c.slug),
+    game_versions: project.latestFilesIndexes.map((i) => i.gameVersion).reverse(),
     license: undefined, // CF does not provide this information
     source_url: project.links.sourceUrl,
 
     platform: 'curseforge',
     project_url: getProjectURL(project.slug, type),
     extra: {
-      authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies PlatformProjectAuthor))
+      authors: project.authors.map((a) => ({ name: a.name, url: a.url }) satisfies PlatformProjectAuthor)
     },
     type
   };
@@ -132,14 +132,18 @@ function getProjectURL(slug: string, type: ProjectType): string {
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
   if (isNumeric(slug)) {
     try {
-      const results = await fetchCurseForgeApiInternal(`/mods/${slug}`) as { data: CurseForgeProject };
+      const results = (await fetchCurseForgeApiInternal(`/mods/${slug}`)) as {
+        data: CurseForgeProject;
+      };
       return results.data;
     } catch (error) {
       console.error('Error fetching project by ID', slug, error);
     }
   }
 
-  const results = await fetchCurseForgeApiInternal(`/mods/search?gameId=${minecraftGameId}&slug=${slug}`) as PaginatedResults<CurseForgeProject>;
+  const results = (await fetchCurseForgeApiInternal(
+    `/mods/search?gameId=${minecraftGameId}&slug=${slug}`
+  )) as PaginatedResults<CurseForgeProject>;
   if (results.pagination.resultCount === 1 && results.data.length === 1) {
     return results.data[0]!;
   }
@@ -152,7 +156,7 @@ async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
 }
 
 async function getProjectDescription(id: number): Promise<string> {
-  const result = await fetchCurseForgeApiInternal(`/mods/${id}/description`) as any;
+  const result = (await fetchCurseForgeApiInternal(`/mods/${id}/description`)) as any;
   return result.data;
 }
 

@@ -1,14 +1,13 @@
-
 // Try to provide the same features as MR
 // https://support.modrinth.com/en/articles/8801962-advanced-markdown-formatting
 
 // https://github.com/leizongmin/js-xss/blob/master/dist/xss.js#L12
-import {Schema} from 'hast-util-sanitize';
-import {defaultSchema} from 'rehype-sanitize';
+import { Schema } from 'hast-util-sanitize';
+import { defaultSchema } from 'rehype-sanitize';
 
 export const markdownRehypeSchema: Schema = {
   ...defaultSchema,
-  clobber: ['ariaDescribedBy', 'ariaLabelledBy', /*'id', */'name'],
+  clobber: ['ariaDescribedBy', 'ariaLabelledBy', /*'id', */ 'name'],
   attributes: {
     '*': ['id', 'className', 'style'],
     a: ['data*', 'ariaLabel', 'ariaDescribedBy', 'target', 'href', 'title'],
@@ -17,16 +16,7 @@ export const markdownRehypeSchema: Schema = {
     area: ['shape', 'coords', 'href', 'alt'],
     article: [],
     aside: [],
-    audio: [
-      'autoplay',
-      'controls',
-      'controlslist',
-      'crossorigin',
-      'loop',
-      'muted',
-      'preload',
-      'src',
-    ],
+    audio: ['autoplay', 'controls', 'controlslist', 'crossorigin', 'loop', 'muted', 'preload', 'src'],
     b: [],
     bdi: ['dir'],
     bdo: ['dir'],
@@ -99,8 +89,8 @@ export const markdownRehypeSchema: Schema = {
       'preload',
       'src',
       'height',
-      'width',
-    ],
+      'width'
+    ]
   },
   tagNames: [
     'a',

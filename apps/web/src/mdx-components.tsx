@@ -1,8 +1,8 @@
-import type {MDXComponents} from 'mdx/types';
+import type { MDXComponents } from 'mdx/types';
 import Callout from '@/components/docs/shared/Callout';
 import ModAsset from '@/components/docs/shared/asset/ModAsset';
-import {DE, FR, TW} from 'country-flag-icons/react/3x2';
-import {BindableAsset} from '@/components/docs/shared/asset/Asset';
+import { DE, FR, TW } from 'country-flag-icons/react/3x2';
+import { BindableAsset } from '@/components/docs/shared/asset/Asset';
 import MetaDocsTitle from '@/components/about/MetaDocsTitle';
 import ComponentWidget from '@/components/about/ComponentWidget';
 import CountryFlag from '@repo/ui/util/CountryFlag';
@@ -22,9 +22,7 @@ import {
 // Used in meta-docs only
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    h1: ({children}) => (
-      <MetaDocsTitle>{children}</MetaDocsTitle>
-    ),
+    h1: ({ children }) => <MetaDocsTitle>{children}</MetaDocsTitle>,
     CodeHikeCode,
     Callout,
     CodeTabs,
@@ -33,9 +31,27 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CraftingRecipe: CraftingRecipe.bind(null, null),
     ComponentWidget,
     ...components,
-    SquirrelIcon, BoxIcon, BracesIcon, PackageOpenIcon, PaintbrushIcon, UnplugIcon, SwatchBookIcon,
-    FlagDE: () => (<div className="inline-block"><CountryFlag flag={DE}/></div>),
-    FlagFR: () => (<div className="inline-block"><CountryFlag flag={FR}/></div>),
-    FlagTW: () => (<div className="inline-block"><CountryFlag flag={TW}/></div>)
+    SquirrelIcon,
+    BoxIcon,
+    BracesIcon,
+    PackageOpenIcon,
+    PaintbrushIcon,
+    UnplugIcon,
+    SwatchBookIcon,
+    FlagDE: () => (
+      <div className="inline-block">
+        <CountryFlag flag={DE} />
+      </div>
+    ),
+    FlagFR: () => (
+      <div className="inline-block">
+        <CountryFlag flag={FR} />
+      </div>
+    ),
+    FlagTW: () => (
+      <div className="inline-block">
+        <CountryFlag flag={TW} />
+      </div>
+    )
   };
 }

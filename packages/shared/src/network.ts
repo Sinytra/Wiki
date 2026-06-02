@@ -1,6 +1,6 @@
 import env from '@repo/shared/env';
-import {cookies} from 'next/headers';
-import commonNetwork, {ApiCallResult, RequestOptions} from '@repo/shared/commonNetwork';
+import { cookies } from 'next/headers';
+import commonNetwork, { ApiCallResult, RequestOptions } from '@repo/shared/commonNetwork';
 
 async function resolveApiCall<T = never>(callback: () => Promise<Response>): Promise<ApiCallResult<T>> {
   return commonNetwork.resolveApiCall(callback);
@@ -27,7 +27,7 @@ async function sendSimpleRequest(path: string, options?: RequestOptions) {
     headers.cookie = (await cookies()).toString();
   }
 
-  return commonNetwork.sendSimpleRequest(path, {...options, headers});
+  return commonNetwork.sendSimpleRequest(path, { ...options, headers });
 }
 
 export default {

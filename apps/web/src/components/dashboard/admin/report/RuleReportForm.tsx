@@ -1,16 +1,16 @@
 'use client';
 
-import {Button} from '@repo/ui/components/button';
+import { Button } from '@repo/ui/components/button';
 import * as React from 'react';
-import {useRef} from 'react';
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {z} from 'zod';
-import {ruleProjectReportSchema} from '@/lib/forms/schemas';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {toast} from 'sonner';
-import {useTranslations} from 'next-intl';
+import { useRef } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { ruleProjectReportSchema } from '@/lib/forms/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 import usePageDataReloadTransition from '@repo/shared/client/usePageDataReloadTransition';
-import {useRouter} from '@/lib/locales/routing';
+import { useRouter } from '@/lib/locales/routing';
 
 interface Params {
   disabled: boolean;
@@ -20,7 +20,7 @@ interface Params {
 
 type Schema = z.infer<typeof ruleProjectReportSchema>;
 
-export default function RuleReportForm({disabled, children, formAction}: Params) {
+export default function RuleReportForm({ disabled, children, formAction }: Params) {
   const t = useTranslations('ViewReportPage');
   const router = useRouter();
   const reload = usePageDataReloadTransition();
@@ -53,7 +53,7 @@ export default function RuleReportForm({disabled, children, formAction}: Params)
     <form inert={disabled} ref={formRef} className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
       {children}
 
-      {!disabled &&
+      {!disabled && (
         <div className="flex flex-row items-center justify-end gap-4">
           <Button variant="secondary" type="button" onClick={submitForm.bind(null, 'dismiss')}>
             {t('actions.dismiss')}
@@ -63,7 +63,7 @@ export default function RuleReportForm({disabled, children, formAction}: Params)
             {t('actions.accept')}
           </Button>
         </div>
-      }
+      )}
     </form>
   );
 }

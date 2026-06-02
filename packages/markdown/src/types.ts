@@ -1,4 +1,4 @@
-import {DocsEntryMetadata, RawFrontmatter} from './metadata';
+import { DocsEntryMetadata, RawFrontmatter } from './metadata';
 
 declare module 'vfile' {
   interface DataMap {

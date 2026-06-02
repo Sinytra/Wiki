@@ -1,7 +1,7 @@
-import {Pre, RawCode, highlight} from "codehike/code"
-import {cn} from "@repo/ui/lib/utils";
-import {CopyButton} from "@repo/ui/components/button/CopyButton";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
+import { Pre, RawCode, highlight } from 'codehike/code';
+import { cn } from '@repo/ui/lib/utils';
+import { CopyButton } from '@repo/ui/components/button/CopyButton';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 
 function getFileName(meta: string): string | null {
   if (meta.length > 0) {
@@ -11,7 +11,7 @@ function getFileName(meta: string): string | null {
   return null;
 }
 
-export default async function CodeHikeCode({codeblock}: { codeblock: RawCode }) {
+export default async function CodeHikeCode({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, 'github-dark');
   const fileName = getFileName(highlighted.meta);
 
@@ -19,15 +19,15 @@ export default async function CodeHikeCode({codeblock}: { codeblock: RawCode }) 
     <div className="group relative rounded-sm">
       <div className={cn('absolute', fileName == null ? 'top-1.5 right-1.5 p-1.5' : 'top-8 right-1 p-1')}>
         <ClientLocaleProvider keys={['CopyButton']}>
-          <CopyButton text={highlighted.code}/>
+          <CopyButton text={highlighted.code} />
         </ClientLocaleProvider>
       </div>
-      {fileName &&
-        <div className="rounded-sm rounded-b-none bg-code-alt px-2.5 py-1.5 font-mono text-sm text-secondary-alt">
+      {fileName && (
+        <div className="bg-code-alt text-secondary-alt rounded-sm rounded-b-none px-2.5 py-1.5 font-mono text-sm">
           {fileName}
         </div>
-      }
-      <Pre className={cn('m-0! rounded-sm', fileName !== null && 'rounded-t-none')} code={highlighted}/>
+      )}
+      <Pre className={cn('m-0! rounded-sm', fileName !== null && 'rounded-t-none')} code={highlighted} />
     </div>
-  )
+  );
 }

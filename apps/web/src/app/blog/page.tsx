@@ -1,20 +1,26 @@
 import BlogHeader from '@/components/navigation/BlogHeader';
-import {cn} from '@repo/ui/lib/utils';
-import {Badge} from '@repo/ui/components/badge';
-import {useTranslations} from 'next-intl';
-import {setContextLocale} from '@/lib/locales/routing';
-import {allBlogs} from '@/.contentlayer/generated';
-import {compareDesc, formatDistanceStrict} from 'date-fns';
-import {NavLink} from '@/components/navigation/link/NavLink';
+import { cn } from '@repo/ui/lib/utils';
+import { Badge } from '@repo/ui/components/badge';
+import { useTranslations } from 'next-intl';
+import { setContextLocale } from '@/lib/locales/routing';
+import { allBlogs } from '@/.contentlayer/generated';
+import { compareDesc, formatDistanceStrict } from 'date-fns';
+import { NavLink } from '@/components/navigation/link/NavLink';
 
 export const dynamic = 'force-static';
 
-function BlogPost({id, name, desc, date, latest}: {
-  id: string,
-  name: string,
-  desc: string,
-  date: string,
-  latest?: boolean
+function BlogPost({
+  id,
+  name,
+  desc,
+  date,
+  latest
+}: {
+  id: string;
+  name: string;
+  desc: string;
+  date: string;
+  latest?: boolean;
 }) {
   const t = useTranslations('Badges');
 
@@ -26,14 +32,14 @@ function BlogPost({id, name, desc, date, latest}: {
             {name}
           </NavLink>
 
-          {latest &&
+          {latest && (
             <Badge variant="secondary" className="border-[var(--vp-c-brand-1)]">
               {t('latest')}
             </Badge>
-          }
+          )}
         </div>
 
-        <span className="text-secondary">{formatDistanceStrict(date, new Date(), {addSuffix: true})}</span>
+        <span className="text-secondary">{formatDistanceStrict(date, new Date(), { addSuffix: true })}</span>
       </div>
 
       <span className="font-normal text-secondary">{desc}</span>
@@ -48,16 +54,20 @@ export default async function Blog() {
 
   return (
     <div className="flex flex-col">
-      <BlogHeader hideSubtext={false}/>
+      <BlogHeader hideSubtext={false} />
 
-      <span className="mb-4 border-b border-tertiary pb-1 text-xl">
-        Recent posts
-      </span>
+      <span className="mb-4 border-b border-tertiary pb-1 text-xl">Recent posts</span>
 
       <div className="flex flex-col gap-6">
         {...blogPosts.map((post, index) => (
-          <BlogPost key={post._id} id={post._id} name={post.title} desc={post.excerpt} date={post.date}
-                    latest={index === 0}/>
+          <BlogPost
+            key={post._id}
+            id={post._id}
+            name={post.title}
+            desc={post.excerpt}
+            date={post.date}
+            latest={index === 0}
+          />
         ))}
       </div>
     </div>

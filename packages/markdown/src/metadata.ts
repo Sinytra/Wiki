@@ -1,4 +1,4 @@
-import {ChangelogEntry, GameContentType, Infobox} from '@sinytra/wiki-api-types';
+import { ChangelogEntry, GameContentType, Infobox } from '@sinytra/wiki-api-types';
 
 export interface FileHeading {
   depth: number;

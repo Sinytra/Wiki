@@ -1,14 +1,10 @@
-import {
-  PlatformProject,
-  PlatformProjectAuthor,
-  ProjectPlatformProvider
-} from './platforms/universal';
-import {modrinthModPlatform} from './platforms/modrinth';
-import {curseForgeModPlatform} from './platforms/curseforge';
-import {ProjectPlatform, ProjectPlatforms} from '@repo/shared/types/platform';
-import {ProjectNotFoundError} from './platforms/exception';
+import { PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider } from './platforms/universal';
+import { modrinthModPlatform } from './platforms/modrinth';
+import { curseForgeModPlatform } from './platforms/curseforge';
+import { ProjectPlatform, ProjectPlatforms } from '@repo/shared/types/platform';
+import { ProjectNotFoundError } from './platforms/exception';
 import issuesApi from '@repo/shared/api/issuesApi';
-import {ProjectData, ProjectType} from '@sinytra/wiki-api-types';
+import { ProjectData, ProjectType } from '@sinytra/wiki-api-types';
 
 export * from './platforms/universal';
 export * from './platforms/exception';

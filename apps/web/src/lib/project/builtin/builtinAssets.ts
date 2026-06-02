@@ -1,13 +1,14 @@
 import normalizeUrl from 'normalize-url';
-import {assetBasePath, AssetLocation, itemAssetExtension} from '@repo/shared/assets';
+import { assetBasePath, AssetLocation, itemAssetExtension } from '@repo/shared/assets';
 import resourceLocation from '@repo/shared/resourceLocation';
-import {ResourceLocation} from '@sinytra/wiki-api-types';
+import { ResourceLocation } from '@sinytra/wiki-api-types';
 
 async function resolveAsset(source: string, id: ResourceLocation): Promise<AssetLocation | null> {
   const url = new URL(source);
-  url.pathname += '/' + assetBasePath + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
+  url.pathname +=
+    '/' + assetBasePath + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
   const src = normalizeUrl(url.toString());
-  return src === null ? null : {id: resourceLocation.toString(id), src};
+  return src === null ? null : { id: resourceLocation.toString(id), src };
 }
 
 async function getAssetResource(location: ResourceLocation): Promise<AssetLocation | null> {

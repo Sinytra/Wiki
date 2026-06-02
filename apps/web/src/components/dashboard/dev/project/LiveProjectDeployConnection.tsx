@@ -1,27 +1,27 @@
 'use client';
 
-import {startTransition, useContext, useEffect, useRef} from 'react';
-import {LocaleLink, useRouter} from '@/lib/locales/routing';
-import {toast} from 'sonner';
-import {Button} from '@repo/ui/components/button';
-import {DevProjectSidebarContext} from '@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider';
-import {useTranslations} from 'next-intl';
-import {DeploymentEvent} from '@sinytra/wiki-api-types';
+import { startTransition, useContext, useEffect, useRef } from 'react';
+import { LocaleLink, useRouter } from '@/lib/locales/routing';
+import { toast } from 'sonner';
+import { Button } from '@repo/ui/components/button';
+import { DevProjectSidebarContext } from '@/components/dashboard/dev/navigation/DevProjectSidebarContextProvider';
+import { useTranslations } from 'next-intl';
+import { DeploymentEvent } from '@sinytra/wiki-api-types';
 import envPublic from '@repo/shared/envPublic';
 
 interface Props {
   id: string;
 }
 
-export default function LiveProjectDeployConnection({id}: Props) {
+export default function LiveProjectDeployConnection({ id }: Props) {
   const initialized = useRef(false);
   const router = useRouter();
-  const {setConnected} = useContext(DevProjectSidebarContext)!;
+  const { setConnected } = useContext(DevProjectSidebarContext)!;
   const t = useTranslations('LiveProjectDeployConnection');
 
   useEffect(() => {
     const endpointUrl = envPublic.getBackendEndpointUrl() + '/api/v1/dev/deployments/events?global=true';
-    const sse = new EventSource(endpointUrl, {withCredentials: true});
+    const sse = new EventSource(endpointUrl, { withCredentials: true });
 
     let resolver: any = null;
     let rejector: any = null;

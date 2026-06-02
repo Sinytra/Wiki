@@ -1,15 +1,20 @@
 import RotatingItemDisplaySlot from '@/components/docs/shared/game/RotatingItemDisplaySlot';
-import {getResolvedItemLink} from '@/lib/project/game/content';
-import {cn} from '@repo/ui/lib/utils';
-import {DisplayItem, ProjectContext} from '@repo/shared/types/service';
-import {NavLink} from '@/components/navigation/link/NavLink';
+import { getResolvedItemLink } from '@/lib/project/game/content';
+import { cn } from '@repo/ui/lib/utils';
+import { DisplayItem, ProjectContext } from '@repo/shared/types/service';
+import { NavLink } from '@/components/navigation/link/NavLink';
 import resourceLocation from '@repo/shared/resourceLocation';
 
-export default function RecipeIngredientDisplay({tag, count, item, ctx}: {
+export default function RecipeIngredientDisplay({
+  tag,
+  count,
+  item,
+  ctx
+}: {
   tag: string | null;
   count: number;
   item: DisplayItem;
-  ctx: ProjectContext
+  ctx: ProjectContext;
 }) {
   const href = getResolvedItemLink(ctx, item);
   const ContentDiv: any = href != null ? NavLink : 'div';
@@ -19,16 +24,14 @@ export default function RecipeIngredientDisplay({tag, count, item, ctx}: {
       <span>{count}x</span>
       <ContentDiv href={href} className="inline-flex items-center">
         <div className="mx-1">
-          <RotatingItemDisplaySlot noTooltip noLink src={[item]} tag={tag}/>
+          <RotatingItemDisplaySlot noTooltip noLink src={[item]} tag={tag} />
         </div>
         <span className={cn('font-medium text-ellipsis text-primary-alt', href && 'underline')}>
-          {item.name
-            || (
-              <span className="block max-w-[8rem] overflow-hidden text-ellipsis">
-                {resourceLocation.extractPath(item.id)}
-              </span>
-            )
-          }
+          {item.name || (
+            <span className="block max-w-[8rem] overflow-hidden text-ellipsis">
+              {resourceLocation.extractPath(item.id)}
+            </span>
+          )}
         </span>
       </ContentDiv>
     </div>

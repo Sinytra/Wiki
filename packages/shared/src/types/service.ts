@@ -1,12 +1,25 @@
-import {DocumentationMarkdown} from '@repo/markdown';
-import {AssetLocation} from '@repo/shared/assets';
+import { DocumentationMarkdown } from '@repo/markdown';
+import { AssetLocation } from '@repo/shared/assets';
 import {
-  BrowseResponse, ContentFileTreeEntry,
-  FileTreeEntry, FullRecipeData, FullTagData, ItemContentPage, JsonValue, PaginatedData,
+  BrowseResponse,
+  ContentFileTreeEntry,
+  FileTreeEntry,
+  FullRecipeData,
+  FullTagData,
+  ItemContentPage,
+  JsonValue,
+  PaginatedData,
   ProjectData,
-  ProjectType, ProjectVersionData, RecipeTypeResponse, ResolvedGameRecipe, ResolvedItem,
+  ProjectType,
+  ProjectVersionData,
+  RecipeTypeResponse,
+  ResolvedGameRecipe,
+  ResolvedItem,
   ResourceLocation,
-  TreeResponse, Frontmatter, ProjectPage, ResolvedLink
+  TreeResponse,
+  Frontmatter,
+  ProjectPage,
+  ResolvedLink
 } from '@sinytra/wiki-api-types';
 
 export type ProjectContentPages = PaginatedData<ItemContentPage>;
@@ -21,12 +34,17 @@ export type FileTree = FileTreeEntry[];
 
 export type ContentFileTree = ContentFileTreeEntry[];
 
-export type ItemProperties =  { [key in string]: { [key in string]: JsonValue } };
+export type ItemProperties = { [key in string]: { [key in string]: JsonValue } };
 
 export type PageLinks = { [key in string]: ResolvedLink };
 
 export const AVAILABLE_PROJECT_TYPES: ProjectType[] = [
-  'mod', 'modpack', 'datapack', 'resourcepack', 'plugin', 'shader'
+  'mod',
+  'modpack',
+  'datapack',
+  'resourcepack',
+  'plugin',
+  'shader'
 ];
 
 export type ProjectVersions = string[];
@@ -58,17 +76,22 @@ export interface ServiceProvider {
   getBackendLayout: (ctx: ProjectContext) => Promise<TreeResponse | null>;
   getAsset: (location: ResourceLocation, ctx: ProjectContext) => Promise<AssetLocation | null>;
   getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ProjectPage | undefined | null>;
-  searchProjects: (query: string, page: number, types: string | null, sort: string | null) => Promise<BrowseResponse | null>;
+  searchProjects: (
+    query: string,
+    page: number,
+    types: string | null,
+    sort: string | null
+  ) => Promise<BrowseResponse | null>;
 
   getProjectContents: (ctx: ProjectContext) => Promise<ContentFileTree | null>;
   getProjectContentPage: (id: string, ctx: ProjectContext) => Promise<ProjectPage | null>;
   getProjectRecipe: (recipe: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe | null>;
   getRecipeType: (type: string, ctx: ProjectContext) => Promise<RecipeTypeResponse | null>;
-  getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null>
+  getContentRecipeObtaining: (id: string, ctx: ProjectContext) => Promise<ResolvedGameRecipe[] | null>;
   getContentRecipeUsage: (id: string, ctx: ProjectContext) => Promise<ResolvedItem[] | null>;
 }
 
 export interface ServiceProviderFactory {
   isAvailable: () => boolean;
-  create: () => ServiceProvider
+  create: () => ServiceProvider;
 }

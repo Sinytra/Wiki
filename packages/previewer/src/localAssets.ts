@@ -1,7 +1,7 @@
 import fs from 'fs';
-import assets, {AssetLocation, AssetProvider} from '@repo/shared/assets';
+import assets, { AssetLocation, AssetProvider } from '@repo/shared/assets';
 import resourceLocation from '@repo/shared/resourceLocation';
-import {ResourceLocation} from '@sinytra/wiki-api-types';
+import { ResourceLocation } from '@sinytra/wiki-api-types';
 
 async function resolveAsset(source: string, id: ResourceLocation): Promise<AssetLocation | null> {
   const path = source + '/' + assets.getAssetResourcePath(id);
@@ -9,7 +9,14 @@ async function resolveAsset(source: string, id: ResourceLocation): Promise<Asset
 
   // Legacy asset path
   if (!src) {
-    src = readLocalImage(source + '/' + assets.getAssetResourcePath({ namespace: 'item', path: `${id.namespace}/${id.path}` }));
+    src = readLocalImage(
+      source +
+        '/' +
+        assets.getAssetResourcePath({
+          namespace: 'item',
+          path: `${id.namespace}/${id.path}`
+        })
+    );
   }
 
   return src === null ? null : { id: resourceLocation.toString(id), src };

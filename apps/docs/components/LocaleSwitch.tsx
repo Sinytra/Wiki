@@ -20,35 +20,38 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-*/
+ */
 'use client';
 
 import cn from 'clsx';
-import {addBasePath} from 'next/dist/client/add-base-path';
-import {Select} from 'nextra/components';
-import {GlobeIcon} from 'nextra/icons';
-import {usePathname} from 'next/navigation';
-import {languages} from '@/lang';
-import {time} from '@repo/shared/constants';
+import { addBasePath } from 'next/dist/client/add-base-path';
+import { Select } from 'nextra/components';
+import { GlobeIcon } from 'nextra/icons';
+import { usePathname } from 'next/navigation';
+import { languages } from '@/lang';
+import { time } from '@repo/shared/constants';
 
 interface LocaleSwitchProps {
-  locale: string
-  defaultLocale: string
-  locales: string[]
-  lite?: boolean
-  className?: string
+  locale: string;
+  defaultLocale: string;
+  locales: string[];
+  lite?: boolean;
+  className?: string;
 }
 
-export default function LocaleSwitch({locale, locales, defaultLocale, lite, className}: LocaleSwitchProps) {
+export default function LocaleSwitch({ locale, locales, defaultLocale, lite, className }: LocaleSwitchProps) {
   const i18n = languages;
   const pathname = usePathname();
 
   return (
     <Select
       title="Change language"
-      className={cn('x:flex x:items-center x:gap-2',
-        'focus:ring-0 focus:ring-offset-0 focus-visible:outline-none!', className)}
-      onChange={lang => {
+      className={cn(
+        'x:flex x:items-center x:gap-2',
+        'focus:ring-0 focus:ring-offset-0 focus-visible:outline-none!',
+        className
+      )}
+      onChange={(lang) => {
         const date = new Date(Date.now() + time.ONE_YEAR * 1000);
         document.cookie = `NEXT_LOCALE=${lang}; expires=${date.toUTCString()}; path=/`;
 
@@ -69,11 +72,11 @@ export default function LocaleSwitch({locale, locales, defaultLocale, lite, clas
       value={locale}
       selectedOption={
         <>
-          <GlobeIcon height="12"/>
-          {!lite && i18n.find(l => locale === l.locale)?.name}
+          <GlobeIcon height="12" />
+          {!lite && i18n.find((l) => locale === l.locale)?.name}
         </>
       }
-      options={i18n.map(l => ({
+      options={i18n.map((l) => ({
         id: l.locale,
         name: l.name
       }))}

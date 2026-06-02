@@ -1,9 +1,9 @@
-import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from './universal';
+import { PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider } from './universal';
 import env from '@repo/shared/env';
-import {AVAILABLE_PROJECT_TYPES} from '@repo/shared/types/service';
-import {ProjectNotFoundError} from './exception';
-import {time} from '@repo/shared/constants';
-import {ProjectType} from '@sinytra/wiki-api-types';
+import { AVAILABLE_PROJECT_TYPES } from '@repo/shared/types/service';
+import { ProjectNotFoundError } from './exception';
+import { time } from '@repo/shared/constants';
+import { ProjectType } from '@sinytra/wiki-api-types';
 
 // TODO
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (env.isPreview() ? '/local' : '');
@@ -54,10 +54,10 @@ interface ModrinthOrganization {
 
 async function getProject(slug: string): Promise<PlatformProject> {
   const mrProject = await getModrinthProject(slug);
-  const type = mrProject.project_types.length < 1
-  || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0] as ProjectType)
-    ? 'mod'
-    : mrProject.project_types[0] as ProjectType;
+  const type =
+    mrProject.project_types.length < 1 || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0] as ProjectType)
+      ? 'mod'
+      : (mrProject.project_types[0] as ProjectType);
 
   return {
     slug: mrProject.slug,
@@ -86,11 +86,11 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
 
   if (project.organization) {
     const org = await getProjectOrganization(project.slug);
-    return [{name: org.name, url: getOrganizationURL(org)}];
+    return [{ name: org.name, url: getOrganizationURL(org) }];
   }
 
   const members = await getProjectMembers(project.slug);
-  return members.map(member => ({
+  return members.map((member) => ({
     name: member.user.username,
     url: getUserURL(member.user)
   }));

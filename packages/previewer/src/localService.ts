@@ -1,13 +1,9 @@
 // noinspection JSUnusedLocalSymbols
 
 import platforms from '@repo/shared/platforms';
-import localDocs, {LocalDocumentationSource} from './localDocsPages';
-import {
-  ProjectContext,
-  ServiceProvider,
-  ServiceProviderFactory
-} from '@repo/shared/types/service';
-import {AssetLocation} from '@repo/shared/assets';
+import localDocs, { LocalDocumentationSource } from './localDocsPages';
+import { ProjectContext, ServiceProvider, ServiceProviderFactory } from '@repo/shared/types/service';
+import { AssetLocation } from '@repo/shared/assets';
 import localAssets from './localAssets';
 import {
   BrowseResponse,
@@ -21,7 +17,7 @@ import {
   TreeResponse
 } from '@sinytra/wiki-api-types';
 import localContent from './localContent';
-import {pick} from 'lodash';
+import { pick } from 'lodash';
 import markdown from '@repo/markdown';
 
 function findDocsFiles(entry: FileTreeEntry): FileTreeEntry[] {
@@ -42,7 +38,7 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectDa
   const docsPages = await localDocs.readDocsTree(src, undefined);
   const filePages = docsPages.flatMap(findDocsFiles);
 
-  const contentPages = await localContent.getLocalSourceContentTree(src, null) || [];
+  const contentPages = (await localContent.getLocalSourceContentTree(src, null)) || [];
   const fileContentPages = contentPages.flatMap(findDocsFiles);
 
   return {
@@ -70,7 +66,7 @@ async function getBackendLayout(ctx: ProjectContext): Promise<TreeResponse | nul
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
     const tree = await localDocs.readDocsTree(src, ctx.locale || undefined);
-    return {tree};
+    return { tree };
   }
   return null;
 }
@@ -80,7 +76,11 @@ async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promis
   return src ? localAssets.resolveAsset(src.path, location) : null;
 }
 
-async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContext): Promise<ProjectPage | undefined | null> {
+async function getDocsPage(
+  path: string[],
+  optional: boolean,
+  ctx: ProjectContext
+): Promise<ProjectPage | undefined | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
     const file = await localDocs.readDocsFile(src, path, ctx.locale || undefined, optional);
@@ -89,7 +89,7 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
       const links = await localContent.resolveContentLinks(frontmatter.links ?? [], ctx);
       const infobox = frontmatter.infobox;
       if (infobox?.display && !infobox?.tabs) {
-        infobox.tabs = [ { name: '', display: infobox.display} ];
+        infobox.tabs = [{ name: '', display: infobox.display }];
       }
 
       return {
@@ -113,7 +113,12 @@ async function getDocsPage(path: string[], optional: boolean, ctx: ProjectContex
   return undefined;
 }
 
-async function searchProjects(_query: string, _page: number, _types: string | null, _sort: string | null): Promise<BrowseResponse | null> {
+async function searchProjects(
+  _query: string,
+  _page: number,
+  _types: string | null,
+  _sort: string | null
+): Promise<BrowseResponse | null> {
   return null;
 }
 
@@ -125,7 +130,7 @@ async function getProjectContentPage(ref: string, ctx: ProjectContext): Promise<
   const tree = await localContent.getProjectContents(ctx);
   if (tree) {
     for (const child of tree) {
-      const entry = localContent.findTreeEntry(e => e.ref != null && e.ref == ref, child);
+      const entry = localContent.findTreeEntry((e) => e.ref != null && e.ref == ref, child);
       if (entry) {
         const page = await getDocsPage(['.content', entry.path], false, ctx);
         if (page) {
@@ -137,7 +142,7 @@ async function getProjectContentPage(ref: string, ctx: ProjectContext): Promise<
 
           return {
             ...page,
-            properties: filteredProps,
+            properties: filteredProps
           };
         }
       }
@@ -169,7 +174,7 @@ const serviceProvider: ServiceProvider = {
   getProjectContentPage,
   getContentRecipeUsage,
   getContentRecipeObtaining,
-  getRecipeType,
+  getRecipeType
 };
 
 export const serviceProviderFactory: ServiceProviderFactory = {

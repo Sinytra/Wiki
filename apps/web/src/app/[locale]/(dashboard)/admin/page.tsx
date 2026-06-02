@@ -1,56 +1,54 @@
-import {setContextLocale} from '@/lib/locales/routing';
-import {assertUserIsAdmin} from '@/lib/admin';
+import { setContextLocale } from '@/lib/locales/routing';
+import { assertUserIsAdmin } from '@/lib/admin';
 import adminApi from '@/lib/service/api/adminApi';
 import Asset from '@/components/docs/shared/asset/Asset';
-import {PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon} from 'lucide-react';
-import {ReactNode} from 'react';
-import {handleApiCall} from '@/lib/service/serviceUtil';
-import {RevalidateCacheModal} from '@/components/dashboard/admin/modal/RevalidateCacheModal';
-import {handleRevalidateCacheTag} from '@/lib/forms/actions';
+import { PencilRulerIcon, TagIcon, UsersIcon, WrenchIcon } from 'lucide-react';
+import { ReactNode } from 'react';
+import { handleApiCall } from '@/lib/service/serviceUtil';
+import { RevalidateCacheModal } from '@/components/dashboard/admin/modal/RevalidateCacheModal';
+import { handleRevalidateCacheTag } from '@/lib/forms/actions';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import { cn } from '@repo/ui/lib/utils';
 
 export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{
     locale: string;
-  }>
+  }>;
 }
 
 function AdminHeader() {
   return (
-    <div className={`
-      flex w-full flex-row justify-between rounded-sm border border-secondary-dim bg-primary-alt px-4 py-2.5 shadow-sm
-    `}>
+    <div
+      className={cn(
+        'flex w-full flex-row justify-between rounded-sm border border-secondary-dim bg-primary-alt',
+        'px-4 py-2.5 shadow-sm'
+      )}
+    >
       <span className="flex flex-row items-center gap-2 text-base">
-        <WrenchIcon className="size-4.5"/>
+        <WrenchIcon className="size-4.5" />
         System configuration
       </span>
 
       <span className="flex flex-row items-center gap-2 text-base">
-        <img src="https://sinytra.org/logo.png" className="size-5" alt="Sinytra"/>
+        <img src="https://sinytra.org/logo.png" className="size-5" alt="Sinytra" />
         Sinytra
       </span>
     </div>
   );
 }
 
-function DataWidget({title, value, icon}: { title: string; value: any; icon: ReactNode; }) {
+function DataWidget({ title, value, icon }: { title: string; value: any; icon: ReactNode }) {
   return (
     <div className="flex flex-row rounded-sm border border-secondary-dim bg-accent [&>div]:py-1">
       <div className="flex flex-row items-center gap-2 rounded-sm border-r border-secondary-dim bg-primary pr-2 pl-2">
-        <div className="text-primary">
-          {icon}
-        </div>
+        <div className="text-primary">{icon}</div>
 
-        <span className="text-sm font-medium">
-          {title}
-        </span>
+        <span className="text-sm font-medium">{title}</span>
       </div>
       <div className="min-w-10 rounded-sm px-2 text-center">
-        <span className="font-mono text-sm">
-          {value}
-        </span>
+        <span className="font-mono text-sm">{value}</span>
       </div>
     </div>
   );
@@ -64,60 +62,40 @@ export default async function AdminPanelHome(props: Props) {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <AdminHeader/>
+      <AdminHeader />
 
       <div className="flex flex-row flex-wrap gap-4">
-        <DataWidget
-          title="System version"
-          value={systemInfo.version}
-          icon={
-            <TagIcon width={18} height={18}/>
-          }
-        />
+        <DataWidget title="System version" value={systemInfo.version} icon={<TagIcon width={18} height={18} />} />
 
         <DataWidget
           title="Game version"
           value={systemInfo.latest_data?.game_version || '_'}
-          icon={
-            <Asset location="minecraft:grass_block" width={20} height={20} ctx={null}/>
-          }
+          icon={<Asset location="minecraft:grass_block" width={20} height={20} ctx={null} />}
         />
 
         <DataWidget
           title="Loader version"
           value={systemInfo.latest_data?.loader_version || '-'}
-          icon={
-            <img src="/blog-assets/neo_logo.png" width={20} height={20} alt="Loader"/>
-          }
+          icon={<img src="/blog-assets/neo_logo.png" width={20} height={20} alt="Loader" />}
         />
 
         <DataWidget
           title="Total projects"
           value={systemInfo.stats.projects}
-          icon={
-            <PencilRulerIcon width={18} height={18}/>
-          }
+          icon={<PencilRulerIcon width={18} height={18} />}
         />
 
-        <DataWidget
-          title="Total users"
-          value={systemInfo.stats.users}
-          icon={
-            <UsersIcon width={18} height={18}/>
-          }
-        />
+        <DataWidget title="Total users" value={systemInfo.stats.users} icon={<UsersIcon width={18} height={18} />} />
       </div>
 
-      <hr/>
+      <hr />
 
       <div className="space-y-2">
         <p>Utilities</p>
 
         <div>
-          <ClientLocaleProvider
-            keys={['RevalidateCacheModal', 'FormActions']}
-          >
-            <RevalidateCacheModal formAction={handleRevalidateCacheTag}/>
+          <ClientLocaleProvider keys={['RevalidateCacheModal', 'FormActions']}>
+            <RevalidateCacheModal formAction={handleRevalidateCacheTag} />
           </ClientLocaleProvider>
         </div>
       </div>

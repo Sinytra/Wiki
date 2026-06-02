@@ -7,11 +7,14 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
-    "preview": "turbo run preview --filter=web"
+    "preview": "turbo run preview --filter=web",
+    "format": "prettier --write \"**/*.{ts,tsx}\""
   },
   "devDependencies": {
     "turbo": "^2.9.16",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0"
   },
   "packageManager": "pnpm@10.19.0",
   "engines": {

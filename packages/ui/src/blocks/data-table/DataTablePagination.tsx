@@ -1,35 +1,35 @@
-'use client'
+'use client';
 
-import ReactPaginate from "react-paginate";
-import {Button} from "@repo/ui/components/button";
-import {ChevronLeft, ChevronRight} from "lucide-react";
-import * as React from "react";
-import {useEffect} from "react";
-import {useTranslations} from "next-intl";
-import {useQueryState} from "nuqs";
-import {parseAsInteger} from "nuqs/server";
-import usePageDataReloadTransition from "@repo/shared/client/usePageDataReloadTransition";
+import ReactPaginate from 'react-paginate';
+import { Button } from '@repo/ui/components/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import * as React from 'react';
+import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import { useQueryState } from 'nuqs';
+import { parseAsInteger } from 'nuqs/server';
+import usePageDataReloadTransition from '@repo/shared/client/usePageDataReloadTransition';
 
 interface Properties {
   pages: number;
   pageRangeDisplayed?: number;
 }
 
-export default function DataTablePagination({pages, pageRangeDisplayed}: Properties) {
+export default function DataTablePagination({ pages, pageRangeDisplayed }: Properties) {
   const t = useTranslations('DataTable');
-  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions({shallow: false}));
+  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions({ shallow: false }));
   const transition = usePageDataReloadTransition(true);
 
   const handlePageClick = async (event: any) => {
     if (event.selected + 1 != page) {
       transition(() => {
-        setPage(event.selected + 1)
+        setPage(event.selected + 1);
       });
     }
   };
 
   useEffect(() => {
-    window.scrollTo({top: 0});
+    window.scrollTo({ top: 0 });
   }, [page]);
 
   return (
@@ -39,14 +39,14 @@ export default function DataTablePagination({pages, pageRangeDisplayed}: Propert
         breakLabel="..."
         previousLabel={
           <Button variant="ghost" size="sm">
-            <ChevronLeft className="mr-1 h-4 w-4"/>
+            <ChevronLeft className="mr-1 h-4 w-4" />
             <span>{t('previous')}</span>
           </Button>
         }
         nextLabel={
           <Button variant="ghost" size="sm">
             <span>{t('next')}</span>
-            <ChevronRight className="ml-1 h-4 w-4"/>
+            <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
         }
         pageLinkClassName="flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium
@@ -60,5 +60,5 @@ export default function DataTablePagination({pages, pageRangeDisplayed}: Propert
         renderOnZeroPageCount={null}
       />
     </div>
-  )
+  );
 }

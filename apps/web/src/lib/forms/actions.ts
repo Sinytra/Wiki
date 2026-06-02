@@ -11,16 +11,16 @@ import {
 } from '@/lib/forms/schemas';
 import cacheUtil from '@/lib/cacheUtil';
 import authSession from '@/lib/authSession';
-import {revalidateTag} from 'next/cache';
-import {redirect} from 'next/navigation';
+import { revalidateTag } from 'next/cache';
+import { redirect } from 'next/navigation';
 import authApi from '@/lib/service/api/authApi';
 import devProjectApi from '@/lib/service/api/devProjectApi';
 import projectApi from '@/lib/service/api/projectApi';
 import moderationApi from '@/lib/service/api/moderationApi';
 import adminApi from '@/lib/service/api/adminApi';
-import {CreateAccessKeyResponse} from '@sinytra/wiki-api-types';
-import forms, {asFormResponse, FormActionResult} from '@/lib/forms/forms';
-import {ProjectFlag} from '@sinytra/wiki-api-types';
+import { CreateAccessKeyResponse } from '@sinytra/wiki-api-types';
+import forms, { asFormResponse, FormActionResult } from '@/lib/forms/forms';
+import { ProjectFlag } from '@sinytra/wiki-api-types';
 import browseApi from '@/lib/service/api/browseApi';
 
 export async function handleDeleteProjectForm(id: string): Promise<FormActionResult> {
@@ -30,7 +30,7 @@ export async function handleDeleteProjectForm(id: string): Promise<FormActionRes
   }
   browseApi.invalidateBrowseSearch();
   cacheUtil.invalidateDocs(id);
-  return {success: true, data: null};
+  return { success: true, data: null };
 }
 
 export async function handleUpdateProjectSettingsForm(id: string, rawData: any): Promise<FormActionResult> {
@@ -41,7 +41,9 @@ export async function handleUpdateProjectSettingsForm(id: string, rawData: any):
 
 export async function handlePublishProject(id: string): Promise<FormActionResult> {
   await devProjectApi.removeProjectFlag(id, 'unpublished');
-  const response = await devProjectApi.updateProject(id, {visibility: 'public'});
+  const response = await devProjectApi.updateProject(id, {
+    visibility: 'public'
+  });
 
   browseApi.invalidateBrowseSearch();
 
@@ -80,7 +82,7 @@ export async function handleRuleProjectReport(id: string, rawData: any): Promise
   if (!response.success) {
     return asFormResponse(response);
   }
-  return forms.handleDataForm(ruleProjectReportSchema, rawData, data => moderationApi.ruleProjectReport(id, data));
+  return forms.handleDataForm(ruleProjectReportSchema, rawData, (data) => moderationApi.ruleProjectReport(id, data));
 }
 
 export async function handleAddProjectMember(id: string, rawData: any): Promise<FormActionResult> {
@@ -88,7 +90,9 @@ export async function handleAddProjectMember(id: string, rawData: any): Promise<
 }
 
 export async function handleRemoveProjectMember(id: string, rawData: any): Promise<FormActionResult> {
-  return forms.handleDataForm(removeProjectMemberSchema, rawData, (data) => devProjectApi.removeProjectMember(id, data));
+  return forms.handleDataForm(removeProjectMemberSchema, rawData, (data) =>
+    devProjectApi.removeProjectMember(id, data)
+  );
 }
 
 export async function linkModrinthAccount(): Promise<FormActionResult> {
@@ -96,7 +100,7 @@ export async function linkModrinthAccount(): Promise<FormActionResult> {
   if (result.type == 'redirect') {
     return redirect(result.url);
   } else {
-    return {success: false};
+    return { success: false };
   }
 }
 
@@ -123,9 +127,9 @@ export async function handleRevalidateCacheTag(rawData: any): Promise<FormAction
   if (!validatedFields.success) {
     return {
       success: false,
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: validatedFields.error.flatten().fieldErrors
     };
   }
   revalidateTag(validatedFields.data.tag);
-  return {success: true, data: null};
+  return { success: true, data: null };
 }

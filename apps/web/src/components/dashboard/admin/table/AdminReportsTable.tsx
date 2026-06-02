@@ -1,13 +1,10 @@
 import * as React from 'react';
-import {TableColumn} from '@repo/ui/blocks/data-table/dataTableTypes';
+import { TableColumn } from '@repo/ui/blocks/data-table/dataTableTypes';
 import DataTable from '@repo/ui/blocks/data-table/DataTable';
-import {PaginatedData, ReportInfo} from '@sinytra/wiki-api-types';
-import {useTranslations} from 'next-intl';
+import { PaginatedData, ReportInfo } from '@sinytra/wiki-api-types';
+import { useTranslations } from 'next-intl';
 
-export default function AdminReportsTable({data, page}: {
-  data: PaginatedData<ReportInfo>;
-  page: number;
-}) {
+export default function AdminReportsTable({ data, page }: { data: PaginatedData<ReportInfo>; page: number }) {
   const t = useTranslations('ProjectReportReason');
   const u = useTranslations('ProjectReportStatus');
 
@@ -15,49 +12,34 @@ export default function AdminReportsTable({data, page}: {
     {
       id: 'id',
       header: 'ID',
-      cell: report => (
-        <span>{report.id.substring(0, 10)}</span>
-      )
+      cell: (report) => <span>{report.id.substring(0, 10)}</span>
     },
     {
       id: 'project_id',
       header: 'Project',
-      cell: report => (
-        <span>{report.project_id}</span>
-      )
+      cell: (report) => <span>{report.project_id}</span>
     },
     {
       id: 'reason',
       header: 'Reason',
-      cell: report => (
-        <span>{t(report.reason)}</span>
-      )
+      cell: (report) => <span>{t(report.reason)}</span>
     },
     {
       id: 'submitter_id',
       header: 'Submitter',
-      cell: report => (
-        <span>{report.submitter_id}</span>
-      )
+      cell: (report) => <span>{report.submitter_id}</span>
     },
     {
       id: 'status',
       header: 'Status',
-      cell: report => (
-        <span>{u(report.status)}</span>
-      )
+      cell: (report) => <span>{u(report.status)}</span>
     },
     {
       id: 'created_at',
       header: 'Created at',
-      cell: report => (
-        <span>{report.created_at}</span>
-      )
-    },
+      cell: (report) => <span>{report.created_at}</span>
+    }
   ];
 
-  return (
-    <DataTable columns={columns} data={data} page={page}
-               linker={r => `reports/${encodeURIComponent(r.id)}`}/>
-  );
+  return <DataTable columns={columns} data={data} page={page} linker={(r) => `reports/${encodeURIComponent(r.id)}`} />;
 }

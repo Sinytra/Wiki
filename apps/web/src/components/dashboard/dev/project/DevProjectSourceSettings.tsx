@@ -9,41 +9,37 @@ import {
   FormLabel,
   FormMessage
 } from '@repo/ui/components/form';
-import {z} from 'zod';
-import {useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {Input} from '@repo/ui/components/input';
-import {Button} from '@repo/ui/components/button';
-import {ExternalLinkIcon} from 'lucide-react';
-import {useTranslations} from 'next-intl';
-import {projectUpdateSourceSchema} from '@/lib/forms/schemas';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Input } from '@repo/ui/components/input';
+import { Button } from '@repo/ui/components/button';
+import { ExternalLinkIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { projectUpdateSourceSchema } from '@/lib/forms/schemas';
 import * as React from 'react';
-import {useState} from 'react';
-import {toast} from 'sonner';
-import {useRouter} from '@/lib/locales/routing';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import { useRouter } from '@/lib/locales/routing';
 import clientActions from '@/lib/forms/clientActions';
-import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
+import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
 import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
-import {DevProjectData} from '@sinytra/wiki-api-types';
+import { DevProjectData } from '@sinytra/wiki-api-types';
 
-function ProjectSourceFormBody({form}: { form: any }) {
+function ProjectSourceFormBody({ form }: { form: any }) {
   return (
     <div className="space-y-8">
       <FormField
         control={form.control}
         name="repo"
-        render={({field}) => (
+        render={({ field }) => (
           <FormItem>
-            <FormLabel>
-              Repository URL
-            </FormLabel>
+            <FormLabel>Repository URL</FormLabel>
             <FormControl>
               <Input placeholder="https://github.com/ExampleUser/ExampleMod" {...field} />
             </FormControl>
-            <FormDescription>
-              This is the address you use to clone your repository.
-            </FormDescription>
-            <FormMessage/>
+            <FormDescription>This is the address you use to clone your repository.</FormDescription>
+            <FormMessage />
           </FormItem>
         )}
       />
@@ -51,18 +47,16 @@ function ProjectSourceFormBody({form}: { form: any }) {
       <FormField
         control={form.control}
         name="branch"
-        render={({field}) => (
+        render={({ field }) => (
           <FormItem>
-            <FormLabel>
-              Branch
-            </FormLabel>
+            <FormLabel>Branch</FormLabel>
             <FormControl>
               <Input placeholder="main" {...field} />
             </FormControl>
             <FormDescription>
               Primary branch name. You can specify additional branches to include in your metadata file.
             </FormDescription>
-            <FormMessage/>
+            <FormMessage />
           </FormItem>
         )}
       />
@@ -70,18 +64,14 @@ function ProjectSourceFormBody({form}: { form: any }) {
       <FormField
         control={form.control}
         name="path"
-        render={({field}) => (
+        render={({ field }) => (
           <FormItem>
-            <FormLabel>
-              Path to documentation root
-            </FormLabel>
+            <FormLabel>Path to documentation root</FormLabel>
             <FormControl>
               <Input placeholder="/docs" {...field} />
             </FormControl>
-            <FormDescription>
-              Path to the folder containing the metadata file.
-            </FormDescription>
-            <FormMessage/>
+            <FormDescription>Path to the folder containing the metadata file.</FormDescription>
+            <FormMessage />
           </FormItem>
         )}
       />
@@ -89,7 +79,7 @@ function ProjectSourceFormBody({form}: { form: any }) {
   );
 }
 
-export default function DevProjectSourceSettings({project}: { project: DevProjectData }) {
+export default function DevProjectSourceSettings({ project }: { project: DevProjectData }) {
   const form = useForm<z.infer<typeof projectUpdateSourceSchema>>({
     resolver: zodResolver(projectUpdateSourceSchema),
     defaultValues: {
@@ -98,7 +88,7 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
       branch: project.source_branch,
       path: project.source_path,
       is_community: false
-    },
+    }
   });
 
   const t = useTranslations('ProjectRegisterForm');
@@ -118,9 +108,9 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
       loading: 'Updating project...',
       description: t('submission.note'),
       success: 'Project updated successfully',
-      error: 'Error updating project',
+      error: 'Error updating project'
     });
-    const resp = await clientActions.handleEditProjectFormClient(data) as any;
+    const resp = (await clientActions.handleEditProjectFormClient(data)) as any;
     if (resp.success) resolver();
     else rejector();
 
@@ -129,12 +119,15 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
       router.refresh();
     } else if (resp.error) {
       // @ts-expect-error expected
-      form.setError('root.custom', {message: u(`errors.${resp.error}`), details: resp.details});
+      form.setError('root.custom', {
+        message: u(`errors.${resp.error}`),
+        details: resp.details
+      });
       setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-expect-error expected
-        form.setError(key, {message: u(`errors.${resp.errors[key][0]}`)});
+        form.setError(key, { message: u(`errors.${resp.errors[key][0]}`) });
       }
     }
     return resp;
@@ -143,38 +136,32 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
   return (
     <Form {...form}>
       <form action={action} className="mt-4 flex h-full flex-col space-y-5">
-        <ProjectSourceFormBody form={form}/>
+        <ProjectSourceFormBody form={form} />
 
         <div className="ml-auto w-fit">
-          <Button type="submit">
-            {v('save')}
-          </Button>
+          <Button type="submit">{v('save')}</Button>
         </div>
 
         <div className="space-y-4">
-          {form.formState.errors.root?.custom?.message &&
+          {form.formState.errors.root?.custom?.message && (
             <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-              <p className="text-sm text-destructive">
-                {form.formState.errors.root.custom.message}
-              </p>
+              <p className="text-sm text-destructive">{form.formState.errors.root.custom.message}</p>
             </div>
-          }
+          )}
 
           {/*@ts-expect-error expected*/}
-          {form.formState.errors.root?.custom?.details &&
+          {form.formState.errors.root?.custom?.details && (
             <details className="slim-scrollbar max-h-20 w-fit overflow-y-auto text-sm text-destructive">
-              <summary className="mb-2">
-                {t('errors.details')}
-              </summary>
+              <summary className="mb-2">{t('errors.details')}</summary>
               {/*@ts-expect-error expected*/}
               <code className="text-xs">{form.formState.errors.root.custom.details}</code>
             </details>
-          }
+          )}
 
-          {canVerifyModrinth &&
+          {canVerifyModrinth && (
             <div className="flex flex-col gap-1 rounded-md border border-brand-modrinth/70 bg-primary-dim p-3">
               <p className="flex flex-row items-start text-secondary">
-                <ModrinthIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0 text-brand-modrinth"/>
+                <ModrinthIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0 text-brand-modrinth" />
                 <span className="text-sm text-secondary">
                   {t.rich('connect_modrinth.desc', {
                     b: (chunks: any) => <span className="text-primary">{chunks}</span>
@@ -185,12 +172,12 @@ export default function DevProjectSourceSettings({project}: { project: DevProjec
                 <LocaleNavLink href="/dev/settings" target="_blank">
                   <Button type="button" size="sm">
                     {t('connect_modrinth.settings')}
-                    <ExternalLinkIcon className="ml-2 h-4 w-4"/>
+                    <ExternalLinkIcon className="ml-2 h-4 w-4" />
                   </Button>
                 </LocaleNavLink>
               </div>
             </div>
-          }
+          )}
         </div>
       </form>
     </Form>

@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import { useRef } from 'react';
 
 export interface MassRef<T> {
   get: (i: number) => T | null;

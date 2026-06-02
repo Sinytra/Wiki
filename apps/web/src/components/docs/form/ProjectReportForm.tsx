@@ -1,9 +1,9 @@
 'use client';
 
-import {zodResolver} from '@hookform/resolvers/zod';
-import {useForm} from 'react-hook-form';
-import {z} from 'zod';
-import {Button} from '@repo/ui/components/button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@repo/ui/components/button';
 import {
   Form,
   FormControl,
@@ -11,21 +11,21 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@repo/ui/components/form';
-import {DialogFooter} from '@repo/ui/components/dialog';
+import { DialogFooter } from '@repo/ui/components/dialog';
 import * as React from 'react';
-import {toast} from 'sonner';
-import {Input} from '@repo/ui/components/input';
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@repo/ui/components/select';
-import {CompassIcon} from 'lucide-react';
-import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
-import {Textarea} from '@repo/ui/components/textarea';
-import {flushSync} from 'react-dom';
-import {useTranslations} from 'next-intl';
-import {projectReportSchema} from '@/lib/forms/schemas';
+import { toast } from 'sonner';
+import { Input } from '@repo/ui/components/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/ui/components/select';
+import { CompassIcon } from 'lucide-react';
+import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
+import { Textarea } from '@repo/ui/components/textarea';
+import { flushSync } from 'react-dom';
+import { useTranslations } from 'next-intl';
+import { projectReportSchema } from '@/lib/forms/schemas';
 import FormSubmitButton from '@repo/ui/components/forms/FormSubmitButton';
-import {ReportType} from '@sinytra/wiki-api-types';
+import { ReportType } from '@sinytra/wiki-api-types';
 
 interface Properties {
   projectId: string;
@@ -36,7 +36,7 @@ interface Properties {
   formAction: (data: any) => Promise<any>;
 }
 
-export default function ProjectReportForm({projectId, type, version, locale, path, formAction}: Properties) {
+export default function ProjectReportForm({ projectId, type, version, locale, path, formAction }: Properties) {
   const t = useTranslations('Report.form');
   const u = useTranslations('ProjectReportReason');
   const form = useForm<z.infer<typeof projectReportSchema>>({
@@ -56,11 +56,11 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
       toast.success(t('success'));
       flushSync(() => form.reset());
     } else if (resp.error) {
-      form.setError('root.custom', {message: resp.error});
+      form.setError('root.custom', { message: resp.error });
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-expect-error keys
-        form.setError(key, {message: resp.errors[key][0]});
+        form.setError(key, { message: resp.errors[key][0] });
       }
     }
     return resp;
@@ -70,34 +70,26 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
     <Form {...form}>
       <form tabIndex={0} action={action} className="space-y-6 focus:outline-hidden">
         <FormItem>
-          <FormLabel>
-            {t('id.title')}
-          </FormLabel>
+          <FormLabel>{t('id.title')}</FormLabel>
           <FormControl>
-            <Input placeholder="examplemod" value={projectId} disabled/>
+            <Input placeholder="examplemod" value={projectId} disabled />
           </FormControl>
-          <FormDescription>
-            {t('id.desc')}
-          </FormDescription>
-          <FormMessage/>
+          <FormDescription>{t('id.desc')}</FormDescription>
+          <FormMessage />
         </FormItem>
 
         <div className="flex w-full flex-row flex-wrap items-center gap-2 sm:flex-nowrap [&>div]:w-full">
           <FormField
             control={form.control}
             name="locale"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  {t('locale.title')}
-                </FormLabel>
+                <FormLabel>{t('locale.title')}</FormLabel>
                 <FormControl>
-                  <Input {...field} disabled placeholder={t('locale.placeholder')}/>
+                  <Input {...field} disabled placeholder={t('locale.placeholder')} />
                 </FormControl>
-                <FormDescription>
-                  {t('locale.desc')}
-                </FormDescription>
-                <FormMessage/>
+                <FormDescription>{t('locale.desc')}</FormDescription>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -105,18 +97,14 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
           <FormField
             control={form.control}
             name="version"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  {t('version.title')}
-                </FormLabel>
+                <FormLabel>{t('version.title')}</FormLabel>
                 <FormControl>
-                  <Input {...field} disabled placeholder={t('version.placeholder')}/>
+                  <Input {...field} disabled placeholder={t('version.placeholder')} />
                 </FormControl>
-                <FormDescription>
-                  {t('version.desc')}
-                </FormDescription>
-                <FormMessage/>
+                <FormDescription>{t('version.desc')}</FormDescription>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -125,18 +113,14 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
         <FormField
           control={form.control}
           name="path"
-          render={({field}) => (
+          render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                {t('path.title')}
-              </FormLabel>
+              <FormLabel>{t('path.title')}</FormLabel>
               <FormControl>
-                <Input {...field} disabled/>
+                <Input {...field} disabled />
               </FormControl>
-              <FormDescription>
-                {t('path.desc')}
-              </FormDescription>
-              <FormMessage/>
+              <FormDescription>{t('path.desc')}</FormDescription>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -144,15 +128,13 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
         <FormField
           control={form.control}
           name="reason"
-          render={({field}) => (
+          render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                {t('reason.title')}
-              </FormLabel>
+              <FormLabel>{t('reason.title')}</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value ?? ''}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder={t('reason.placeholder')}/>
+                    <SelectValue placeholder={t('reason.placeholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -163,24 +145,20 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
                   <SelectItem value="dislike">{t('reason.dislike')}</SelectItem>
                 </SelectContent>
               </Select>
-              <FormDescription>
-                {t('reason.desc')}
-              </FormDescription>
-              <FormMessage/>
+              <FormDescription>{t('reason.desc')}</FormDescription>
+              <FormMessage />
             </FormItem>
           )}
         />
 
-        {reason !== 'dislike' &&
+        {reason !== 'dislike' && (
           <FormField
             control={form.control}
             name="body"
             disabled={!reason}
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  {t('details.title')}
-                </FormLabel>
+                <FormLabel>{t('details.title')}</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder={t('details.placeholder')}
@@ -189,41 +167,35 @@ export default function ProjectReportForm({projectId, type, version, locale, pat
                     value={field.value ?? ''}
                   />
                 </FormControl>
-                <FormDescription>
-                  {t('details.desc')}
-                </FormDescription>
-                <FormMessage/>
+                <FormDescription>{t('details.desc')}</FormDescription>
+                <FormMessage />
               </FormItem>
             )}
           />
-        }
+        )}
 
-        {form.formState.errors.root?.custom?.message &&
+        {form.formState.errors.root?.custom?.message && (
           <p className="text-sm text-destructive">{form.formState.errors.root.custom.message}</p>
-        }
+        )}
 
-        {reason === 'dislike'
-          ?
+        {reason === 'dislike' ? (
           <div className="flex flex-col text-sm">
             {t('dislike.title')}
             &nbsp;{t('dislike.desc')}
-            <p className="my-1"/>
+            <p className="my-1" />
             {t('dislike.suggestion')}
-
             <Button asChild className="mt-4 ml-auto">
               <LocaleNavLink href="/browse">
-                <CompassIcon className="mr-2 h-4 w-4"/>
+                <CompassIcon className="mr-2 h-4 w-4" />
                 {t('dislike.explore')}
               </LocaleNavLink>
             </Button>
           </div>
-          :
+        ) : (
           <DialogFooter>
-            <FormSubmitButton>
-              {t('submit')}
-            </FormSubmitButton>
+            <FormSubmitButton>{t('submit')}</FormSubmitButton>
           </DialogFooter>
-        }
+        )}
       </form>
     </Form>
   );

@@ -2,34 +2,40 @@
 
 import {
   BoxIcon,
-  BracesIcon, FilterXIcon,
+  BracesIcon,
+  FilterXIcon,
   PackageOpenIcon,
   PaintbrushIcon,
   SearchIcon,
   SwatchBookIcon,
   UnplugIcon
 } from 'lucide-react';
-import {Input} from '@repo/ui/components/input';
-import {Checkbox} from '@repo/ui/components/checkbox';
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@repo/ui/components/accordion';
-import {parseAsArrayOf, useQueryState} from 'nuqs';
-import {parseAsString} from 'nuqs/server';
-import {useTranslations} from 'next-intl';
-import {useEffect, useState} from 'react';
-import {Button} from '@repo/ui/components/button';
+import { Input } from '@repo/ui/components/input';
+import { Checkbox } from '@repo/ui/components/checkbox';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@repo/ui/components/accordion';
+import { parseAsArrayOf, useQueryState } from 'nuqs';
+import { parseAsString } from 'nuqs/server';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { Button } from '@repo/ui/components/button';
 
-function FilterSearch({filter, setFilter, active, onReset}: {
+function FilterSearch({
+  filter,
+  setFilter,
+  active,
+  onReset
+}: {
   filter: string | null;
   setFilter: (val: string) => void;
   active: boolean;
-  onReset: () => void
+  onReset: () => void;
 }) {
   const t = useTranslations('BrowsePage');
 
   return (
     <div className="mt-2 flex w-full flex-row gap-2 pt-2 sm:mt-0">
       <div className="relative w-full text-secondary">
-        <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"/>
+        <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
         <Input
           className="border-secondary-dim pl-9 focus-visible:ring-0 focus-visible:outline-hidden"
           type="text"
@@ -38,18 +44,23 @@ function FilterSearch({filter, setFilter, active, onReset}: {
           onChange={(e) => setFilter(e.target.value)}
         />
       </div>
-      {active &&
+      {active && (
         <Button size="icon" className="border-secondary-alt text-primary" variant="outline" onClick={onReset}>
           <div className="px-4">
-            <FilterXIcon className="h-4 w-4"/>
+            <FilterXIcon className="h-4 w-4" />
           </div>
         </Button>
-      }
+      )}
     </div>
   );
 }
 
-function Category({name, icon: Icon, checked, onChange}: {
+function Category({
+  name,
+  icon: Icon,
+  checked,
+  onChange
+}: {
   name: string;
   icon: any;
   checked: boolean;
@@ -57,16 +68,18 @@ function Category({name, icon: Icon, checked, onChange}: {
 }) {
   return (
     <div className="flex flex-row items-center gap-x-2">
-      <Checkbox className="border-neutral-600"
-                checked={checked}
-                onCheckedChange={(e) => onChange(e == true)}/>
-      <Icon className="h-4 w-4"/>
+      <Checkbox className="border-neutral-600" checked={checked} onCheckedChange={(e) => onChange(e == true)} />
+      <Icon className="h-4 w-4" />
       <span className="text-sm text-primary">{name}</span>
     </div>
   );
 }
 
-function SearchCategories({categories, setCategories, filter}: {
+function SearchCategories({
+  categories,
+  setCategories,
+  filter
+}: {
   categories: string[] | null;
   setCategories: (val: string[]) => Promise<unknown>;
   filter: string | null;
@@ -74,22 +87,21 @@ function SearchCategories({categories, setCategories, filter}: {
   const t = useTranslations('SearchProjectTypes');
   const u = useTranslations('BrowsePage');
   const available = [
-    {id: 'mod', icon: BoxIcon, name: t('mod')},
-    {id: 'modpack', icon: PackageOpenIcon, name: t('modpack')},
-    {id: 'resourcepack', icon: PaintbrushIcon, name: t('resourcepack')},
-    {id: 'datapack', icon: BracesIcon, name: t('datapack')},
-    {id: 'shader', icon: SwatchBookIcon, name: t('shader')},
-    {id: 'plugin', icon: UnplugIcon, name: t('plugin')},
+    { id: 'mod', icon: BoxIcon, name: t('mod') },
+    { id: 'modpack', icon: PackageOpenIcon, name: t('modpack') },
+    { id: 'resourcepack', icon: PaintbrushIcon, name: t('resourcepack') },
+    { id: 'datapack', icon: BracesIcon, name: t('datapack') },
+    { id: 'shader', icon: SwatchBookIcon, name: t('shader') },
+    { id: 'plugin', icon: UnplugIcon, name: t('plugin') }
   ];
 
-  const displayed = available
-    .filter(v => !filter || v.name.toLowerCase().includes(filter.trim().toLowerCase()));
+  const displayed = available.filter((v) => !filter || v.name.toLowerCase().includes(filter.trim().toLowerCase()));
 
   async function setCategory(id: string, checked: boolean) {
     if (checked) {
       await setCategories([...(categories || []), id]);
     } else {
-      await setCategories((categories || []).filter(v => v !== id));
+      await setCategories((categories || []).filter((v) => v !== id));
     }
   }
 
@@ -97,17 +109,18 @@ function SearchCategories({categories, setCategories, filter}: {
     <div className="my-2 px-2">
       <Accordion type="single" defaultValue={'categories'} collapsible className="w-full">
         <AccordionItem value="categories">
-          <AccordionTrigger>
-            {u('sidebar.categories')}
-          </AccordionTrigger>
+          <AccordionTrigger>{u('sidebar.categories')}</AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-y-3.5 pb-2">
-              {...displayed
-                .map((type) => (
-                  <Category key={type.id} icon={type.icon} name={type.name}
-                            checked={categories?.includes(type.id) || false}
-                            onChange={(v) => setCategory(type.id, v)}/>
-                ))}
+              {...displayed.map((type) => (
+                <Category
+                  key={type.id}
+                  icon={type.icon}
+                  name={type.name}
+                  checked={categories?.includes(type.id) || false}
+                  onChange={(v) => setCategory(type.id, v)}
+                />
+              ))}
             </div>
           </AccordionContent>
         </AccordionItem>
@@ -117,7 +130,10 @@ function SearchCategories({categories, setCategories, filter}: {
 }
 
 export default function BrowseFilterPanel() {
-  const [categories, setCategories] = useQueryState('types', parseAsArrayOf(parseAsString, ',').withOptions({shallow: false}));
+  const [categories, setCategories] = useQueryState(
+    'types',
+    parseAsArrayOf(parseAsString, ',').withOptions({ shallow: false })
+  );
 
   const [filter, setFilter] = useState<string | null>(null);
   const [active, setActive] = useState<boolean>(false);
@@ -132,9 +148,9 @@ export default function BrowseFilterPanel() {
 
   return (
     <>
-      <FilterSearch filter={filter} setFilter={setFilter} active={active} onReset={handleReset}/>
+      <FilterSearch filter={filter} setFilter={setFilter} active={active} onReset={handleReset} />
 
-      <SearchCategories categories={categories} setCategories={setCategories} filter={filter}/>
+      <SearchCategories categories={categories} setCategories={setCategories} filter={filter} />
     </>
   );
 }

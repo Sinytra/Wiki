@@ -1,6 +1,6 @@
 export default {
-  'gradle': '',
-  'preview': '',
-  'exports': '',
+  gradle: '',
+  preview: '',
+  exports: '',
   'third-party': ''
 };

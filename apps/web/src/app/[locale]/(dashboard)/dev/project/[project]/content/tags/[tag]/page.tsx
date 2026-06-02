@@ -1,14 +1,14 @@
-import {setContextLocale} from '@/lib/locales/routing';
-import {parseAsInteger, parseAsString} from 'nuqs/server';
-import {DEFAULT_DOCS_VERSION} from '@repo/shared/constants';
-import {getTranslations} from 'next-intl/server';
+import { setContextLocale } from '@/lib/locales/routing';
+import { parseAsInteger, parseAsString } from 'nuqs/server';
+import { DEFAULT_DOCS_VERSION } from '@repo/shared/constants';
+import { getTranslations } from 'next-intl/server';
 import DevProjectItemsTable from '@/components/dashboard/dev/table/DevProjectItemsTable';
-import {BreadcrumbLink, BreadcrumbPage} from '@repo/ui/components/breadcrumb';
+import { BreadcrumbLink, BreadcrumbPage } from '@repo/ui/components/breadcrumb';
 import DevBreadcrumb from '@/components/dashboard/dev/navigation/DevBreadcrumb';
-import {handleApiCall} from '@/lib/service/serviceUtil';
+import { handleApiCall } from '@/lib/service/serviceUtil';
 import devProjectApi from '@/lib/service/api/devProjectApi';
-import {LocaleNavLink} from '@/components/navigation/link/LocaleNavLink';
-import {useTranslations} from 'next-intl';
+import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
+import { useTranslations } from 'next-intl';
 import DevProjectTableEmptyState from '@/components/dashboard/dev/table/DevProjectTableEmptyState';
 import * as React from 'react';
 
@@ -22,7 +22,7 @@ type Properties = {
     query?: string | string[];
     page?: string | string[];
     version?: string;
-  }>
+  }>;
 };
 
 function EmptyItemTableTagState() {
@@ -48,31 +48,36 @@ export default async function DevProjectContentTagItemsPage(props: Properties) {
   const version = parseAsString.parseServerSide(searchParams.version);
   const page = parseAsInteger.withDefault(1).parseServerSide(searchParams.page);
 
-  const content = handleApiCall(await devProjectApi.getProjectContentTagItems(params.project, tag, {
-    query,
-    page: page.toString(),
-    version
-  }));
+  const content = handleApiCall(
+    await devProjectApi.getProjectContentTagItems(params.project, tag, {
+      query,
+      page: page.toString(),
+      version
+    })
+  );
 
   return (
     <div>
-      <DevBreadcrumb home={
-        <BreadcrumbLink asChild>
-          <LocaleNavLink href={`/dev/project/${params.project}/content/tags`}>
-            {t('title')}
-          </LocaleNavLink>
-        </BreadcrumbLink>
-      }>
-        <BreadcrumbPage className="font-mono text-xsm text-primary">
-          {tag}
-        </BreadcrumbPage>
+      <DevBreadcrumb
+        home={
+          <BreadcrumbLink asChild>
+            <LocaleNavLink href={`/dev/project/${params.project}/content/tags`}>{t('title')}</LocaleNavLink>
+          </BreadcrumbLink>
+        }
+      >
+        <BreadcrumbPage className="font-mono text-xsm text-primary">{tag}</BreadcrumbPage>
       </DevBreadcrumb>
 
-      <DevProjectItemsTable data={content}
-                            versions={project.version_names || []}
-                            ctx={{locale: params.locale, id: params.project, version: DEFAULT_DOCS_VERSION}}
-                            page={page}
-                            emptyState={<EmptyItemTableTagState/>}
+      <DevProjectItemsTable
+        data={content}
+        versions={project.version_names || []}
+        ctx={{
+          locale: params.locale,
+          id: params.project,
+          version: DEFAULT_DOCS_VERSION
+        }}
+        page={page}
+        emptyState={<EmptyItemTableTagState />}
       />
     </div>
   );

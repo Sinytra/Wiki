@@ -1,11 +1,11 @@
-import {ItemProperties, ProjectContext} from '@repo/shared/types/service';
+import { ItemProperties, ProjectContext } from '@repo/shared/types/service';
 import Asset from '@/components/docs/shared/asset/Asset';
-import {useTranslations} from 'next-intl';
-import {getContentLink, getVanillaWikiLink} from '@/lib/project/game/content';
+import { useTranslations } from 'next-intl';
+import { getContentLink, getVanillaWikiLink } from '@/lib/project/game/content';
 import PageLink from '@/components/docs/PageLink';
-import {NavLink} from '@/components/navigation/link/NavLink';
-import {ResolvedItemProperties, ResolvedItemProperty, resolveItemProperties} from '@/lib/project/game/properties';
-import {cn} from '@repo/ui/lib/utils';
+import { NavLink } from '@/components/navigation/link/NavLink';
+import { ResolvedItemProperties, ResolvedItemProperty, resolveItemProperties } from '@/lib/project/game/properties';
+import { cn } from '@repo/ui/lib/utils';
 
 interface Props {
   ctx: ProjectContext;
@@ -14,7 +14,7 @@ interface Props {
 }
 
 type PropertyType =
-  'literal'
+  | 'literal'
   | 'code_literal'
   | 'i18n_literal'
   | 'weighted_flag'
@@ -35,48 +35,72 @@ const SUPPORTED_PROPERTIES: { [key: string]: ItemProperty | PropertyType } = {
   // Blocks
   stack_size: 'weighted_flag',
   required_tool: 'item',
-  blast_resistance: {type: 'literal', link: getVanillaWikiLink('Explosion#Blast_resistance')},
-  hardness: {type: 'literal', link: getVanillaWikiLink('Breaking#Blocks_by_hardness')},
-  flammable: {type: 'bool', link: getVanillaWikiLink('Fire#Flammable_blocks')},
+  blast_resistance: {
+    type: 'literal',
+    link: getVanillaWikiLink('Explosion#Blast_resistance')
+  },
+  hardness: {
+    type: 'literal',
+    link: getVanillaWikiLink('Breaking#Blocks_by_hardness')
+  },
+  flammable: {
+    type: 'bool',
+    link: getVanillaWikiLink('Fire#Flammable_blocks')
+  },
   // Items
   /// Generic
-  rarity: {type: 'i18n_literal', link: getVanillaWikiLink('Rarity')},
+  rarity: { type: 'i18n_literal', link: getVanillaWikiLink('Rarity') },
   /// Tools
-  durability: {type: 'literal', link: getVanillaWikiLink('Durability')},
-  mining_speed: {type: 'literal', link: getVanillaWikiLink('Breaking#Mining_efficiency')},
-  attack_damage: {type: 'damage', link: getVanillaWikiLink('Damage#Dealing_damage')},
-  attack_speed: {type: 'literal', link: getVanillaWikiLink('Melee_attack#Attack_cooldown')},
-  enchantability: {type: 'literal', link: getVanillaWikiLink('Enchanting_mechanics#Enchantability')},
+  durability: { type: 'literal', link: getVanillaWikiLink('Durability') },
+  mining_speed: {
+    type: 'literal',
+    link: getVanillaWikiLink('Breaking#Mining_efficiency')
+  },
+  attack_damage: {
+    type: 'damage',
+    link: getVanillaWikiLink('Damage#Dealing_damage')
+  },
+  attack_speed: {
+    type: 'literal',
+    link: getVanillaWikiLink('Melee_attack#Attack_cooldown')
+  },
+  enchantability: {
+    type: 'literal',
+    link: getVanillaWikiLink('Enchanting_mechanics#Enchantability')
+  },
   /// Food
-  nutrition: {type: 'hunger', link: getVanillaWikiLink('Food')}
+  nutrition: { type: 'hunger', link: getVanillaWikiLink('Food') }
 };
 
-function RenderedValue({value}: { value: string | string[] }) {
+function RenderedValue({ value }: { value: string | string[] }) {
   if (!Array.isArray(value)) {
     return value;
   }
 
   return (
     <ul className="list-none">
-      {value.map(v => (
-        <li key={v}>
-          {v}
-        </li>
+      {value.map((v) => (
+        <li key={v}>{v}</li>
       ))}
     </ul>
   );
 }
 
-function RenderedProperty({name, type, value, ctx}: {
+function RenderedProperty({
+  name,
+  type,
+  value,
+  ctx
+}: {
   name: string;
   type: PropertyType;
   value: any;
-  ctx: ProjectContext
+  ctx: ProjectContext;
 }) {
   const t = useTranslations('ContentProperties');
 
   if (type === 'weighted_flag' && !Number.isNaN(value)) {
-    return value > 0 ? t('weighted_flag.true', {count: value}) : t('weighted_flag.false');
+    return value > 0 ? t('weighted_flag.true', { count: value }) : t('weighted_flag.false');
   }
 
   if (type === 'bool') {
@@ -87,22 +111,41 @@ function RenderedProperty({name, type, value, ctx}: {
     const link = getContentLink(ctx, value);
     return (
       <NavLink href={link}>
-        <Asset location={value} ctx={ctx}/>
+        <Asset location={value} ctx={ctx} />
       </NavLink>
     );
   }
 
   if (type === 'damage' && Number.isInteger(value) && value >= 0) {
-    const visual = Array(Math.floor(value / 2)).fill(0).map((_, i) => (
-      <Asset key={i} ctx={ctx} location="icon/heart" alt={'\u2764\uFE0F'}
-             wrapper={{className: 'inline-block'}} width={9} height={9}/>
-    ));
+    const visual = Array(Math.floor(value / 2))
+      .fill(0)
+      .map((_, i) => (
+        <Asset
+          key={i}
+          ctx={ctx}
+          location="icon/heart"
+          alt={'\u2764\uFE0F'}
+          wrapper={{ className: 'inline-block' }}
+          width={9}
+          height={9}
+        />
+      ));
     if (value % 2 == 1) {
-      visual.push((
-        <Asset key="half" ctx={ctx} location="icon/half_heart" alt={'\u{1F494}'}
-               wrapper={{className: 'inline-block'}} width={9} height={9}/>));
+      visual.push(
+        <Asset
+          key="half"
+          ctx={ctx}
+          location="icon/half_heart"
+          alt={'\u{1F494}'}
+          wrapper={{ className: 'inline-block' }}
+          width={9}
+          height={9}
+        />
+      );
     }
-    return visual.length < 1 ? value : (
+    return visual.length < 1 ? (
+      value
+    ) : (
       <span>
         {value} (<span>{visual}</span>)
       </span>
@@ -110,17 +153,35 @@ function RenderedProperty({name, type, value, ctx}: {
   }
 
   if (type === 'hunger' && Number.isInteger(value) && value >= 0) {
-    const visual = Array(Math.floor(value / 2)).fill(0).map((_, i) => (
-      <Asset key={i} ctx={ctx} location="icon/hunger" alt={'\u{1F357}'} wrapper={{className: 'inline-block'}}
-             width={9} height={9}/>
-    ));
-    if (value % 2 == 1) {
-      visual.push((
-        <Asset alt={'\u{1F356}'} key="half" ctx={ctx} location="icon/half_hunger"
-               wrapper={{className: 'inline-block'}} width={9} height={9}/>
+    const visual = Array(Math.floor(value / 2))
+      .fill(0)
+      .map((_, i) => (
+        <Asset
+          key={i}
+          ctx={ctx}
+          location="icon/hunger"
+          alt={'\u{1F357}'}
+          wrapper={{ className: 'inline-block' }}
+          width={9}
+          height={9}
+        />
       ));
+    if (value % 2 == 1) {
+      visual.push(
+        <Asset
+          alt={'\u{1F356}'}
+          key="half"
+          ctx={ctx}
+          location="icon/half_hunger"
+          wrapper={{ className: 'inline-block' }}
+          width={9}
+          height={9}
+        />
+      );
     }
-    return visual.length < 1 ? value : (
+    return visual.length < 1 ? (
+      value
+    ) : (
       <span className="whitespace-nowrap">
         {value} (<span className="whitespace-nowrap">{visual}</span>)
       </span>
@@ -136,7 +197,7 @@ function RenderedProperty({name, type, value, ctx}: {
   if (type === 'code_literal') {
     return (
       <span className="font-mono text-xs break-all">
-        <RenderedValue value={value}/>
+        <RenderedValue value={value} />
       </span>
     );
   }
@@ -150,14 +211,19 @@ function RenderedProperty({name, type, value, ctx}: {
   return value;
 }
 
-function RenderedResolvedProperty({name, type, property, ctx}: {
+function RenderedResolvedProperty({
+  name,
+  type,
+  property,
+  ctx
+}: {
   name: string;
   type: PropertyType;
   property: ResolvedItemProperty;
   ctx: ProjectContext;
 }) {
   if (property.type === 'single') {
-    return <RenderedProperty name={name} type={type} value={property.value} ctx={ctx}/>;
+    return <RenderedProperty name={name} type={type} value={property.value} ctx={ctx} />;
   }
 
   return (
@@ -165,13 +231,14 @@ function RenderedResolvedProperty({name, type, property, ctx}: {
       {property.value.map((group, i) => (
         <li key={i} className="flex items-center gap-2">
           <span
-            className={cn('flex max-w-[75%] flex-wrap items-center gap-0.5', group.items.length === 1 && 'min-w-fit')}>
-            {group.items.map(item => (
-              <Asset key={item} location={item} ctx={ctx} width={16} height={16}/>
+            className={cn('flex max-w-[75%] flex-wrap items-center gap-0.5', group.items.length === 1 && 'min-w-fit')}
+          >
+            {group.items.map((item) => (
+              <Asset key={item} location={item} ctx={ctx} width={16} height={16} />
             ))}
           </span>
           <span>
-            <RenderedProperty name={name} type={type} value={group.value} ctx={ctx}/>
+            <RenderedProperty name={name} type={type} value={group.value} ctx={ctx} />
           </span>
         </li>
       ))}
@@ -179,45 +246,43 @@ function RenderedResolvedProperty({name, type, property, ctx}: {
   );
 }
 
-export default function ContentProperties({properties, providedProps, ctx}: Props) {
+export default function ContentProperties({ properties, providedProps, ctx }: Props) {
   const t = useTranslations('ContentProperties');
   const order = Object.keys(SUPPORTED_PROPERTIES);
 
-  const resolvedProps = {...resolveItemProperties(properties), ...providedProps};
+  const resolvedProps = {
+    ...resolveItemProperties(properties),
+    ...providedProps
+  };
 
   return (
     <div className="w-full">
       <table className="mb-0! table w-full table-fixed">
         <tbody>
-        {Object.entries(resolvedProps)
-          .filter(([_, prop]) => prop.type === 'group' || prop.value != null)
-          .sort(([a], [b]) => order.indexOf(a) - order.indexOf(b))
-          .map(([key, prop]) => {
-            const type = SUPPORTED_PROPERTIES[key] || 'literal';
-            const propType = typeof type === 'string' ? type : type.type;
-            const link = typeof type === 'string' ? null : type.link;
-            const Wrapper = ({children}: { children: any }) => link ?
-              <PageLink href={link}>{children}</PageLink> : children;
+          {Object.entries(resolvedProps)
+            .filter(([_, prop]) => prop.type === 'group' || prop.value != null)
+            .sort(([a], [b]) => order.indexOf(a) - order.indexOf(b))
+            .map(([key, prop]) => {
+              const type = SUPPORTED_PROPERTIES[key] || 'literal';
+              const propType = typeof type === 'string' ? type : type.type;
+              const link = typeof type === 'string' ? null : type.link;
+              const Wrapper = ({ children }: { children: any }) =>
+                link ? <PageLink href={link}>{children}</PageLink> : children;
 
-            return (
-              <tr key={key}>
-                <td className="table-padding-sm-y border-r-0 border-b-0 border-l-0 text-sm font-medium break-all">
-                  <Wrapper>
-                    {/*@ts-expect-error has message*/}
-                    {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}
-                  </Wrapper>
-                </td>
-                <td className={'table-padding-sm border-r-0 border-b-0 border-l-0 text-sm'}>
-                  <RenderedResolvedProperty
-                    name={key}
-                    type={propType}
-                    property={prop}
-                    ctx={ctx}
-                  />
-                </td>
-              </tr>
-            );
-          })}
+              return (
+                <tr key={key}>
+                  <td className="table-padding-sm-y border-r-0 border-b-0 border-l-0 text-sm font-medium break-all">
+                    <Wrapper>
+                      {/*@ts-expect-error has message*/}
+                      {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}
+                    </Wrapper>
+                  </td>
+                  <td className={'table-padding-sm border-r-0 border-b-0 border-l-0 text-sm'}>
+                    <RenderedResolvedProperty name={key} type={propType} property={prop} ctx={ctx} />
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>

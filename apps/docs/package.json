@@ -28,7 +28,6 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@stylistic/eslint-plugin": "^5.2.2",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/react": "^19.1.8",
     "eslint": "^9.31.0",

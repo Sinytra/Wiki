@@ -1,10 +1,10 @@
-import {ChangelogEntry} from '@sinytra/wiki-api-types';
+import { ChangelogEntry } from '@sinytra/wiki-api-types';
 
 interface ChangelogProps {
   changelog: ChangelogEntry[];
 }
 
-export default function ContentChangelog({changelog}: ChangelogProps) {
+export default function ContentChangelog({ changelog }: ChangelogProps) {
   return (
     <div className="space-y-2">
       {changelog.map((entry, index) => (
@@ -14,16 +14,14 @@ export default function ContentChangelog({changelog}: ChangelogProps) {
             {entry.date && <span className="text-sm font-medium text-secondary">{entry.date}</span>}
           </h3>
           <ul className="mt-2 list-inside list-disc">
-            {entry.changes
-              .map((change, changeIndex) => (
-                <li key={changeIndex} className="text-secondary">
-                  {change}
-                </li>
-              ))}
+            {entry.changes.map((change, changeIndex) => (
+              <li key={changeIndex} className="text-secondary">
+                {change}
+              </li>
+            ))}
           </ul>
         </div>
       ))}
     </div>
   );
 }
-

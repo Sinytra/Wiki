@@ -15,7 +15,10 @@ export function assertEnvVar(key: string, value: string | undefined): string {
 
 export type ParameterProcessor = (key: string, value: string) => string | undefined | null;
 
-export function serializeUrlParams(parameters?: Record<string, string | undefined | null>, processor?: ParameterProcessor) {
+export function serializeUrlParams(
+  parameters?: Record<string, string | undefined | null>,
+  processor?: ParameterProcessor
+) {
   const searchParams = new URLSearchParams();
   if (parameters) {
     for (const key in parameters) {

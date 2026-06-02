@@ -1,11 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import {BookOpen, PencilRulerIcon, Settings2, UserIcon, WrenchIcon} from 'lucide-react';
+import { BookOpen, PencilRulerIcon, Settings2, UserIcon, WrenchIcon } from 'lucide-react';
 
-import {DevSidebarMainNav} from '@/components/dashboard/dev/navigation/DevSidebarMainNav';
-import {DevSidebarUser} from '@/components/dashboard/dev/navigation/DevSidebarUser';
-import {DevSidebarContextSwitcher} from '@/components/dashboard/dev/navigation/DevSidebarContextSwitcher';
+import { DevSidebarMainNav } from '@/components/dashboard/dev/navigation/DevSidebarMainNav';
+import { DevSidebarUser } from '@/components/dashboard/dev/navigation/DevSidebarUser';
+import { DevSidebarContextSwitcher } from '@/components/dashboard/dev/navigation/DevSidebarContextSwitcher';
 import {
   Sidebar,
   SidebarContent,
@@ -15,18 +15,18 @@ import {
   SidebarHeader,
   SidebarMenu
 } from '@repo/ui/components/sidebar';
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 import DevSidebarMenuItem from '@/components/dashboard/dev/navigation/DevSidebarMenuItem';
-import {UserProfile} from '@sinytra/wiki-api-types';
+import { UserProfile } from '@sinytra/wiki-api-types';
 import usePreventBuggyScrollLock from '@repo/shared/client/usePreventBuggyScrollLock';
-import {WIKI_DOCS_URL} from '@repo/shared/constants';
+import { WIKI_DOCS_URL } from '@repo/shared/constants';
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
   profile: UserProfile;
   logoutAction: () => Promise<void>;
 }
 
-export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
+export function DeveloperSidebar({ profile, logoutAction, ...props }: Props) {
   usePreventBuggyScrollLock();
   const t = useTranslations('DeveloperSidebar');
 
@@ -57,39 +57,43 @@ export function DeveloperSidebar({profile, logoutAction, ...props}: Props) {
   ];
 
   return (
-    <Sidebar variant="floating" className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
-             collapsible="offcanvas" {...props}>
+    <Sidebar
+      variant="floating"
+      className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
+      collapsible="offcanvas"
+      {...props}
+    >
       <SidebarHeader>
-        <DevSidebarContextSwitcher teams={teams}/>
+        <DevSidebarContextSwitcher teams={teams} />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-          <SidebarGroupLabel>
-            {t('groups.projects')}
-          </SidebarGroupLabel>
+          <SidebarGroupLabel>{t('groups.projects')}</SidebarGroupLabel>
           <SidebarMenu>
-            <DevSidebarMenuItem url="/dev" matcher={/^\/dev(\/project\/.*)?$/} icon={PencilRulerIcon}
-                                title={t('nav.projects')}/>
+            <DevSidebarMenuItem
+              url="/dev"
+              matcher={/^\/dev(\/project\/.*)?$/}
+              icon={PencilRulerIcon}
+              title={t('nav.projects')}
+            />
           </SidebarMenu>
         </SidebarGroup>
 
-        <DevSidebarMainNav groups={mainEntries}/>
+        <DevSidebarMainNav groups={mainEntries} />
 
-        {profile.role === 'admin' &&
+        {profile.role === 'admin' && (
           <div className="mt-auto px-2">
             <SidebarGroup className="rounded-sm border border-destructive-secondary">
-              <SidebarGroupLabel>
-                {t('groups.admin')}
-              </SidebarGroupLabel>
+              <SidebarGroupLabel>{t('groups.admin')}</SidebarGroupLabel>
               <SidebarMenu>
-                <DevSidebarMenuItem url="/admin" matcher={/^\/admin?$/} icon={WrenchIcon} title={t('nav.admin')}/>
+                <DevSidebarMenuItem url="/admin" matcher={/^\/admin?$/} icon={WrenchIcon} title={t('nav.admin')} />
               </SidebarMenu>
             </SidebarGroup>
           </div>
-        }
+        )}
       </SidebarContent>
       <SidebarFooter>
-        <DevSidebarUser profile={profile} logoutAction={logoutAction}/>
+        <DevSidebarUser profile={profile} logoutAction={logoutAction} />
       </SidebarFooter>
     </Sidebar>
   );

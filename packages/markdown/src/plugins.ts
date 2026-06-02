@@ -1,12 +1,12 @@
 import GithubSlugger from 'github-slugger';
-import {visit} from 'unist-util-visit';
-import {headingRank} from 'hast-util-heading-rank';
-import {toString} from 'mdast-util-to-string';
-import {DocsEntryMetadata, FileHeading} from './metadata';
-import {Root} from 'hast';
-import type {VFile} from 'vfile';
-import {visit as visitEsTree} from 'estree-util-visit';
-import type {MdxJsxAttribute, MdxJsxExpressionAttribute} from 'mdast-util-mdx-jsx';
+import { visit } from 'unist-util-visit';
+import { headingRank } from 'hast-util-heading-rank';
+import { toString } from 'mdast-util-to-string';
+import { DocsEntryMetadata, FileHeading } from './metadata';
+import { Root } from 'hast';
+import type { VFile } from 'vfile';
+import { visit as visitEsTree } from 'estree-util-visit';
+import type { MdxJsxAttribute, MdxJsxExpressionAttribute } from 'mdast-util-mdx-jsx';
 
 export function rehypeCollectLinks(): (tree: Root, file: VFile) => undefined {
   return (tree, file) => {
@@ -64,7 +64,7 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
         const heading: FileHeading = {
           depth,
           id,
-          value: toString(node, {includeImageAlt: false}),
+          value: toString(node, { includeImageAlt: false })
         };
 
         headingList.push(heading);
@@ -79,8 +79,11 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
 const allowedNodeTypes = [
   'Program',
   'ExpressionStatement',
-  'ObjectExpression', 'ArrayExpression',
-  'Property', 'Literal', 'Identifier'
+  'ObjectExpression',
+  'ArrayExpression',
+  'Property',
+  'Literal',
+  'Identifier'
 ];
 
 function isAttributeAllowed(attr: MdxJsxAttribute | MdxJsxExpressionAttribute): boolean {
@@ -112,7 +115,7 @@ export function rehypeSafeMarkdownAttributes(): (tree: Root, file: VFile) => und
     visit(tree, ['mdxJsxFlowElement', 'mdxJsxTextElement'], (node, index, parent) => {
       let disallow = false;
       if (node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') {
-        if (node.attributes.some(a => !isAttributeAllowed(a))) {
+        if (node.attributes.some((a) => !isAttributeAllowed(a))) {
           disallow = true;
         }
       } else {

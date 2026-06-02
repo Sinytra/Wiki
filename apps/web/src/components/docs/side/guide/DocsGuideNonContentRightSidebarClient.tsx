@@ -1,16 +1,16 @@
 'use client';
 
-import {useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import DocsSidebarBase from '@/components/docs/side/DocsSidebarBase';
-import {cn} from '@repo/ui/lib/utils';
-import {useTranslations} from 'next-intl';
-import {FileHeading} from '@repo/markdown';
+import { cn } from '@repo/ui/lib/utils';
+import { useTranslations } from 'next-intl';
+import { FileHeading } from '@repo/markdown';
 
 interface ContentRightSidebarProps {
   headings: FileHeading[];
 }
 
-export default function DocsGuideNonContentRightSidebarClient({headings}: ContentRightSidebarProps) {
+export default function DocsGuideNonContentRightSidebarClient({ headings }: ContentRightSidebarProps) {
   const t = useTranslations('DocsNonContentRightSidebar');
 
   const [activeId, setActiveId] = useState<string>('');
@@ -20,8 +20,8 @@ export default function DocsGuideNonContentRightSidebarClient({headings}: Conten
 
   useEffect(() => {
     const handleScroll = () => {
-      const headingElements = headings.map(heading => document.getElementById(heading.id)).filter(Boolean);
-      const activeHeading = headingElements.find(el => {
+      const headingElements = headings.map((heading) => document.getElementById(heading.id)).filter(Boolean);
+      const activeHeading = headingElements.find((el) => {
         if (el) {
           const rect = el.getBoundingClientRect();
           return rect.top >= 0 && rect.top <= window.innerHeight / 2;
@@ -40,7 +40,7 @@ export default function DocsGuideNonContentRightSidebarClient({headings}: Conten
   useEffect(() => {
     const checkOverflow = () => {
       if (listRef.current) {
-        const {scrollTop, scrollHeight, clientHeight} = listRef.current;
+        const { scrollTop, scrollHeight, clientHeight } = listRef.current;
         setShowTopGradient(scrollTop > 0);
         setShowBottomGradient(scrollTop + clientHeight < scrollHeight);
       }
@@ -65,27 +65,22 @@ export default function DocsGuideNonContentRightSidebarClient({headings}: Conten
     <DocsSidebarBase
       type="right"
       title={t('title')}
-      className={cn(
-        'right-0 shrink-0',
-        'w-[96vw] sm:w-64'
-      )}
+      className={cn('right-0 shrink-0', 'w-[96vw] sm:w-64')}
       tagName="nav"
     >
       <div className="relative">
         {showTopGradient && (
-          <div className={`
-            from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent
-          `}/>
+          <div
+            className={`from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent`}
+          />
         )}
         <div
           ref={listRef}
-          className={`
-            scrollbar-thin max-h-[80vh] overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-track-transparent
-          `}
+          className={`scrollbar-thin max-h-[80vh] overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-track-transparent`}
         >
           <ul className="space-y-1 text-sm">
             {headings.map((heading, index) => (
-              <li key={heading.id} style={{paddingLeft: `${(heading.depth - 1) * 0.75}rem`}}>
+              <li key={heading.id} style={{ paddingLeft: `${(heading.depth - 1) * 0.75}rem` }}>
                 <a
                   href={`#${heading.id}`}
                   className={cn(
@@ -107,9 +102,9 @@ export default function DocsGuideNonContentRightSidebarClient({headings}: Conten
           </ul>
         </div>
         {showBottomGradient && (
-          <div className={`
-            from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent
-          `}/>
+          <div
+            className={`from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent`}
+          />
         )}
       </div>
     </DocsSidebarBase>

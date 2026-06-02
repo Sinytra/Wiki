@@ -20,17 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-*/
+ */
 import cn from 'clsx';
 import type { FC, HTMLAttributes } from 'react';
 import { ArrowRightIcon, LinkIcon } from 'nextra/icons';
 
-export const Summary: FC<HTMLAttributes<HTMLElement>> = ({
-                                                           children,
-                                                           className,
-                                                           id,
-                                                           ...props
-                                                         }) => {
+export const Summary: FC<HTMLAttributes<HTMLElement>> = ({ children, className, id, ...props }) => {
   return (
     <summary
       className={cn(
