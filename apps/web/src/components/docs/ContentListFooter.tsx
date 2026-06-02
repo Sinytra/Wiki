@@ -47,13 +47,12 @@ function Category({currentId, content, ctx}: {
           <div className="self-center text-right text-sm font-medium sm:w-[1%] sm:min-w-24">
             {i.name}
           </div>
-          <div className="columns-[10em] flex-row flex-wrap gap-2 space-y-2 sm:flex sm:space-y-0">
-            {...i.children.map((c, i) => (
-              <div key={c.path} className="flex flex-row items-center gap-1 text-sm">
-                {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
+          <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(10em,1fr))] gap-2">
+            {...i.children.map(c => (
+              <div key={c.path} className="flex w-full flex-row items-center gap-1 text-sm">
                 <PageLink href={getInternalWikiLink(c.ref!, ctx)}
                           className={cn(
-                            'flex flex-row items-center gap-1 rounded-sm !text-sm',
+                            'flex w-full flex-row items-center gap-1 rounded-sm !text-sm',
                             c.ref === currentId && 'font-semibold bg-primary'
                           )}>
                   <Asset location={c.icon || ''} ctx={ctx}/>

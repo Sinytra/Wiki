@@ -35,10 +35,9 @@ function ContentEntryLink({entry, ctx}: { entry: ContentFileTreeEntry; ctx: Proj
 function ContentEntryList({entries, ctx}: { entries: ContentFileTree; ctx: ProjectContext; }) {
   return (
     <div
-      className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
-      {...entries.filter(c => c.type === 'file').map((c, i) =>
-        <div key={c.ref} className="flex flex-row flex-wrap items-center gap-1">
-          {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
+      className="grid w-full grid-cols-[repeat(auto-fill,minmax(10em,1fr))] gap-2">
+      {...entries.filter(c => c.type === 'file').map(c =>
+        <div key={c.ref} className="flex flex-row flex-wrap items-center">
           <ContentEntryLink entry={c} ctx={ctx}/>
         </div>
       )}
