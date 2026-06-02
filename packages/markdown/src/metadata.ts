@@ -15,6 +15,7 @@ export interface RawFrontmatter {
   id?: string | string[];
   title?: string;
   icon?: string;
+  ref?: string | null;
   infobox?: RawInfobox;
   type?: GameContentType | null;
   custom?: { [key in string]: string } | null;

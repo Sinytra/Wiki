@@ -55,7 +55,7 @@ async function processEntry(src: LocalDocumentationSource, entry: FileTreeEntry,
       const frontmatter = markdown.readFrontmatter(file.content) as RawFrontmatter;
       if (frontmatter.id) {
         const ids = Array.isArray(frontmatter.id) ? frontmatter.id : [frontmatter.id];
-        const ref = getPageRef(ids, entry.path, ctx.existing);
+        const ref = getPageRef(frontmatter.ref ?? null, ids, entry.path, ctx.existing);
         if (ref == null) return null;
 
         ctx.existing.push(ref);
@@ -87,7 +87,11 @@ async function getLocalItemProperties(src: LocalDocumentationSource): Promise<It
   return {};
 }
 
-function getPageRef(ids: string[], path: string, existing: string[]): string | null {
+function getPageRef(user_ref: string | null, ids: string[], path: string, existing: string[]): string | null {
+  if (user_ref != null && !existing.includes(user_ref)) {
+    return user_ref;
+  }
+
   if (ids?.[0] && ids.length === 1) {
     const resLocPath = resourceLocation.parse(ids[0]);
     if (resLocPath == null) return null;
@@ -96,6 +100,11 @@ function getPageRef(ids: string[], path: string, existing: string[]): string | n
     if (!existing.includes(primaryRef)) {
       return primaryRef;
     }
+  }
+
+  const file_name = path.split('/').pop();
+  if (file_name != null && !existing.includes(file_name)) {
+    return file_name;
   }
 
   return path.replaceAll('/', '_');
