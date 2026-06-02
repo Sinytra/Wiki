@@ -1,6 +1,6 @@
-import {ReactNode, use} from "react";
-import {setContextLocale} from "@/lib/locales/routing";
-import LocalWatcher from "./LocalWatcher";
+import {ReactNode, use} from 'react';
+import {setContextLocale} from '@/lib/locales/routing';
+import LocalWatcher from './LocalWatcher';
 
 type Params = Promise<{ locale: string }>;
 

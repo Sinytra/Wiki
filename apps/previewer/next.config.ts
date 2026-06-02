@@ -51,9 +51,7 @@ const chConfig: CodeHikeConfig = {
 
 const withMDX = createMDX({
   options: {
-    // @ts-expect-error package names
     remarkPlugins: [['remark-gfm'], ['remark-codehike', chConfig]],
-    // @ts-expect-error package names
     rehypePlugins: [['rehype-slug']],
     // @ts-expect-error package names
     recmaPlugins: [['recma-codehike', chConfig]]

@@ -3,6 +3,7 @@ set -euo pipefail
 
 BUILD="build/previewer"
 OUTPUT="build/output"
+ROOT_PATH=$(realpath .)
 SRC_PATH=$(realpath apps/previewer)
 APP_PATH=$(realpath apps/web)
 
@@ -52,6 +53,17 @@ VERSION=$(git describe --tags --long --match "v[0-9]*.[0-9]*" | sed -E 's/^v?([0
 echo "Detected version: $VERSION"
 npm pkg set version="$VERSION"
 npm pkg set scripts.build="next build"
+
+cat <<EOF > pnpm-workspace.yaml
+packages:
+  - "$ROOT_PATH/packages/*"
+  - "$ROOT_PATH/packages/base/*"
+
+onlyBuiltDependencies:
+  - contentlayer2
+EOF
+
+cp "$ROOT_PATH/.npmrc" .npmrc
 
 # Install
 pnpm install --no-frozen-lockfile

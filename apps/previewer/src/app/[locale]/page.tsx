@@ -1,11 +1,11 @@
-import {Button} from "@repo/ui/components/button";
-import {FolderOpenIcon, PackageIcon} from "lucide-react";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {getTranslations} from "next-intl/server";
-import {setContextLocale} from "@/lib/locales/routing";
-import previewer from "@repo/previewer";
-import navigation from "@/lib/navigation";
-import {ReactNode} from "react";
+import {Button} from '@repo/ui/components/button';
+import {FolderOpenIcon, PackageIcon} from 'lucide-react';
+import {NavLink} from '@/components/navigation/link/NavLink';
+import {getTranslations} from 'next-intl/server';
+import {setContextLocale} from '@/lib/locales/routing';
+import previewer from '@repo/previewer';
+import navigation from '@/lib/navigation';
+import {ReactNode} from 'react';
 
 export const dynamic = 'force-dynamic';
 
