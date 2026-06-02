@@ -1,7 +1,7 @@
 import {setContextLocale} from '@/lib/locales/routing';
 import service from '@/lib/service';
 import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
-import {notFound, redirect} from 'next/navigation';
+import {notFound} from 'next/navigation';
 import DocsEntryPage from '@/components/docs/body/DocsEntryPage';
 import {getTranslations} from 'next-intl/server';
 import DocsContentTOCSidebar from '@/components/docs/side/content/DocsContentTOCSidebar';
@@ -17,8 +17,6 @@ import ContentChangelog from '@/components/docs/content/ContentChangelog';
 import ContentListFooter from '@/components/docs/ContentListFooter';
 import DocsContentPageToolsFooter from '@/components/docs/layout/DocsContentPageToolsFooter';
 import issuesApi from '@repo/shared/api/issuesApi';
-import resourceLocation from '@repo/shared/resourceLocation';
-import {getContentLink} from '@/lib/project/game/content';
 
 interface Props {
   params: Promise<{
@@ -65,21 +63,13 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 export default async function ContentEntryPage(props: Props) {
   const params = await props.params;
   setContextLocale(params.locale);
-  const id = decodeURIComponent(params.id);
-
-  // Backwards compat
-  if (id.includes(':')) {
-    const normalId = resourceLocation.parse(id)?.path;
-    if (normalId) {
-      return redirect(getContentLink(params, normalId));
-    }
-  }
+  const ref = decodeURIComponent(params.id);
 
   const ctx = {
     id: params.slug,
     version: params.version,
     locale: params.locale,
-    contentId: id
+    contentId: ref
   } satisfies ProjectContentContext;
 
   const project = await service.getProject(ctx);
@@ -89,7 +79,7 @@ export default async function ContentEntryPage(props: Props) {
 
   let page: RenderedDocsPage | null;
   try {
-    page = await service.renderProjectContentPage(id, ctx);
+    page = await service.renderProjectContentPage(ref, ctx);
   } catch (e) {
     console.error('FATAL error rendering content page', e);
 
@@ -145,14 +135,14 @@ export default async function ContentEntryPage(props: Props) {
           }
 
           {contents &&
-            <ContentListFooter currentId={id} project={project} contents={contents} ctx={ctx}/>
+            <ContentListFooter currentId={ref} project={project} contents={contents} ctx={ctx}/>
           }
 
-          <DocsContentPageToolsFooter project={project.id} local={project.local} id={id}
+          <DocsContentPageToolsFooter project={project.id} local={project.local} id={ref}
                                       editUrl={page.edit_url}/>
         </main>
 
-        <DocsContentMetaSidebar id={id} project={project} title={t('title')} ctx={ctx} page={page}/>
+        <DocsContentMetaSidebar id={ref} project={project} title={t('title')} ctx={ctx} page={page}/>
       </div>
     </>
   );

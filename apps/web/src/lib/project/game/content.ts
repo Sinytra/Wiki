@@ -33,6 +33,7 @@ export function getResolvedItemLink(params: ProjectRouteParams | ProjectContext,
   return getExternalWikiLink(item.id) ?? (item.page_ref != null ? getInternalWikiLink(item.page_ref, params) : null);
 }
 
+// TODO Phase out
 export function getContentLink(params: ProjectRouteParams | ProjectContext, id: string): string {
   const slug = 'slug' in params ? params.slug : params.id;
   return getExternalWikiLink(id) ?? `/${params.locale}/project/${slug}/${params.version}/content/${encodeID(id)}`;

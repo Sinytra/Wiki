@@ -1,6 +1,6 @@
 import UsageContentList from '@/components/docs/shared/game/UsageContentList';
 import PageLink from '@/components/docs/PageLink';
-import {getContentLink} from '@/lib/project/game/content';
+import {getResolvedItemLink} from '@/lib/project/game/content';
 import service from '@/lib/service';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import {getTranslations} from 'next-intl/server';
@@ -33,7 +33,7 @@ export default async function RecipeUsage({id, ctx}: Props) {
   const sorted = usage.sort((a, b) => a.name && b.name ? a.name.localeCompare(b.name) : 0);
   const rendered = sorted.map(item => {
     const Wrapper = ({children}: { children: any }) => item.page_ref != null
-      ? <PageLink href={getContentLink(ctx, item.id)}>{children}</PageLink>
+      ? <PageLink href={getResolvedItemLink(ctx, item)!}>{children}</PageLink>
       : <div>{children}</div>;
 
     return (

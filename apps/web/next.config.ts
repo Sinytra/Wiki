@@ -53,18 +53,16 @@ const nextConfig: NextConfig = {
 
 const chConfig: CodeHikeConfig = {
   components: {code: 'CodeHikeCode'},
-}
+};
 
 const withMDX = createMDX({
   options: {
-    // @ts-expect-error package names
     remarkPlugins: [['remark-gfm'], ['remark-codehike', chConfig]],
-    // @ts-expect-error package names
     rehypePlugins: [['rehype-slug']],
     // @ts-expect-error package names
     recmaPlugins: [['recma-codehike', chConfig]]
   }
-})
+});
 
 export default withSentryConfig(withContentlayer(withNextIntl(withMDX(nextConfig))), {
   silent: !process.env.CI,
