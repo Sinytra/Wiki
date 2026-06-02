@@ -28,13 +28,16 @@ import ExtendedImg from '@/components/docs/shared/ExtendedImg';
 import VideoEmbed from '@/components/docs/shared/VideoEmbed';
 import {
   BrowseResponse,
-  ProjectData, ProjectPage,
+  ProjectData,
+  ProjectPage,
   RecipeTypeResponse,
-  ResolvedGameRecipe, ResolvedItem,
+  ResolvedGameRecipe,
+  ResolvedItem,
   TreeResponse
 } from '@sinytra/wiki-api-types';
 import ExtendedLink from '@/components/docs/shared/ExtendedLink';
 import ContentLink from '@/components/docs/shared/ContentLink';
+import {BindableAudio} from '@/components/docs/shared/asset/Audio';
 
 type AsyncMethodKey<T> = { [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never; }[keyof T];
 
@@ -121,6 +124,7 @@ async function renderMarkdown(page: ProjectPage | null, ctx: ProjectContext | Pr
   if (page) {
     const components = {
       Asset: BindableAsset.bind(null, ctx),
+      audio: BindableAudio.bind(null, ctx),
       CraftingRecipe: CraftingRecipe.bind(null, ctx),
       ModAsset: ModAsset.bind(null, ctx),
       ProjectRecipe: ProjectRecipe.bind(null, ctx),

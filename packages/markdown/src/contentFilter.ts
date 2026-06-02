@@ -20,6 +20,7 @@ export const markdownRehypeSchema: Schema = {
     audio: [
       'autoplay',
       'controls',
+      'controlslist',
       'crossorigin',
       'loop',
       'muted',

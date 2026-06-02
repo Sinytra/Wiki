@@ -90,7 +90,7 @@ function isAttributeAllowed(attr: MdxJsxAttribute | MdxJsxExpressionAttribute): 
 
   if (typeof attr.value === 'object') {
     if (!attr.value?.data?.estree) {
-      return false;
+      return attr.value == null;
     }
 
     let disallow = false;

@@ -6,6 +6,7 @@ import {SquirrelIcon} from 'lucide-react';
 Available components:
 
 - [Video embeds](#video-embeds)
+- [Audio](#audio)
 - [Code blocks](#code-blocks)
 - [Callouts](#callout)
 - [Code Tabs](#codetabs)
@@ -27,8 +28,19 @@ For example, the ID for `https://www.youtube.com/watch?v=Y_WnAEKoeA4` would be `
 
 You can then directly pass this ID to the component as shown below.
 
-```mdx
+```md
 <VideoEmbed id="Y_WnAEKoeA4"/>
+```
+
+### Audio
+
+Identical to the `audio` html tag, but the `src` is specified as an asset resource location including the file
+extension.
+
+Example:
+```md
+<!-- Plays <root>/.assets/examplemod/sounds/ambient.ogg -->
+<Audio controls src="examplemod:sounds/ambient.ogg"/>
 ```
 
 ### Code blocks
