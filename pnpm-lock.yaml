@@ -412,8 +412,8 @@ importers:
         specifier: ^1.16.2
         version: 1.29.2
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.21
-        version: 0.1.21
+        specifier: ^0.1.22
+        version: 0.1.22
       '@tailwindcss/postcss':
         specifier: ^4.0.0
         version: 4.1.11
@@ -876,8 +876,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.21
-        version: 0.1.21
+        specifier: ^0.1.22
+        version: 0.1.22
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -919,8 +919,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.21
-        version: 0.1.21
+        specifier: ^0.1.22
+        version: 0.1.22
       '@types/lodash':
         specifier: ^4.17.9
         version: 4.17.20
@@ -953,8 +953,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.21
-        version: 0.1.21
+        specifier: ^0.1.22
+        version: 0.1.22
       '@types/node':
         specifier: ^20
         version: 20.19.9
@@ -1098,8 +1098,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.21
-        version: 0.1.21
+        specifier: ^0.1.22
+        version: 0.1.22
       '@types/lodash':
         specifier: ^4.17.20
         version: 4.17.20
@@ -3759,6 +3759,9 @@ packages:
 
   '@sinytra/wiki-api-types@0.1.21':
     resolution: {integrity: sha512-Wi5FgZADVcUDnz6IgZ9kTwLknI+YA7Twu4u6TyfYnIBhTLfzpczQURj39I3yphvdQnFg5ibaHEWyoyVhiSRxyQ==, tarball: https://npm.pkg.github.com/download/@sinytra/wiki-api-types/0.1.21/6ac96394064b650ba8d7e305935fc09f7ede69ba}
+
+  '@sinytra/wiki-api-types@0.1.22':
+    resolution: {integrity: sha512-Gv/a6zsqXgDVkdGH5ZwsuFimz0WjcP8zwd3ubTwf5RM9AnHbKITfPCZoQwFIOPP5RRnexfafqs1QHBj3X2hL1Q==}
 
   '@south-paw/typeface-minecraft@1.0.0':
     resolution: {integrity: sha512-wt58ifXAyBZ23qcPd8qcyRCbZVCcJX3E84LLHvmHL+b91HxF7nKtBIlv47uIgHRCrm7TWVRP1Z2r3zck6w3EuQ==}
@@ -10654,6 +10657,8 @@ snapshots:
   '@shikijs/vscode-textmate@10.0.2': {}
 
   '@sinytra/wiki-api-types@0.1.21': {}
+
+  '@sinytra/wiki-api-types@0.1.22': {}
 
   '@south-paw/typeface-minecraft@1.0.0': {}
 
