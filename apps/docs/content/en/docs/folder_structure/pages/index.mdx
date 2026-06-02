@@ -63,8 +63,8 @@ For example:
 
 #### Content page links
 
-To link to [Content pages](pages/content_pages), use the ID metadata attribute of the page you want to link to,
-prefixed with `@`.
+To link to an item's [content page](pages/content_pages), use the ID of the item you want to link, prefixed with `@`.
+The wiki will automatically find the most fitting content page that includes this item and substitute the link url.
 
 For example:
 ```md
@@ -73,6 +73,18 @@ For example:
 
 <!-- Uses custom link text -->
 Click [here](@examplemod:electric_furnace) to learn more.
+```
+
+You can also link to content pages directly using the page's reference prefixed with a `+`.
+This is a unique identifier that appears in the URL when you browse the page. The wiki creates it for you by default,
+but you can specify a custom one using the `ref` frontmatter attribute.
+
+```md
+<!-- Uses page title as link text -->
+[](+pickaxes)
+
+<!-- Uses custom link text -->
+Click [here](+colored_cables) to learn more.
 ```
 
 #### Documentation page links
@@ -98,71 +110,36 @@ your documentation that isn't available on the wiki, please open an issue on our
 
 ## Metadata
 
-Markdown page metadata, also known as simply **Frontmatter** is used by the wiki to provide additional information about
-a page or in-game content. It's located at the very beginning of each file in YAML format.
+Markdown page metadata, also known as simply **Frontmatter**, are used by the wiki to provide additional information
+about a page or in-game content. It's located at the very beginning of each file in **YAML format**.
 
-Information obtained from frontmatter is then displayed in the right sidebar of each page under "Information".
-Usually, this includes an icon of the block/item along with its name, id, source project and other handy information.
+Below is an example of available frontmatter attributes for all pages types.
 
 ```markdown
 ---
-title: Hello World
+# History of changes to the page's content or documented item
+# (Optional)
+history:
+  # Detailed entry with multiple changes and date
+  - version: 1.2b
+    date: 15.08.2025
+    changes:
+      - Bugfixes
+      - Add more data generation
+  # Simple entry with version number and single change
+  - 1.1: Fix custom ingredient implementation
+  - 1.0: Added
 ---
 
-Content comes here
+# Hello World
+
+Documentation content comes here
 ```
 
-Here's an overview of supported attributes:
+Each page type comes with its own set of available frontmatter attributes, which are further explained on their
+respective pages.
 
-- `title` - Display name of the page, shown in the content heading and the browser tab title.<br/>
-If a `h1` heading is available, it will be used instead.
-  - Type: `string`
-  - Example: `Fancy Block`
-- `id` - In-game resource location ID of the content shown. If a matching asset with the same location is found in the
-documentation root's asset folder, it will be used as the `icon`.
-  - Type: Resource Location
-  - Example: `examplemod:generator`
-- `icon` - Resource location of an asset that will be shown as the documented item's icon. Its size should be at least
-128x128 pixels.
-  - Type: Resource Location
-  - Example: `examplemod:fancy_generator`
-- `type` - Can be `block`, `item` or `other`
-  - Type: `string`
-- `custom` - A map of custom attributes you wish to display in the sidebar.
-  - Type: `string` -> `string` map
-  - Example:
-  ```yaml
-  custom:
-    Category: Machines
-  ```
-- `history`
-  - Shows a changelog of changes regarding the page's content / item
-  - Read [below](#changelog) for an explanation
-
-<details>
-    <summary>Show complete metadata example</summary>
-
-    ```markdown
-    ---
-    title: Generator
-    id: examplemod:generator
-    icon: examplemod:fancy_generator
-    type: block
-    custom:
-      Subcategory: Machines
-    history:
-      - version: 1.2b
-        date: 15.08.2025
-        changes:
-          - Bugfixes
-          - Add more data generation
-      - 1.1: Fix custom ingredient implementation
-      - 1.0: Added
-    ---
-
-    Content comes here
-    ```
-</details>
+For details on the `history` attribute, read [below](#changelog).
 
 ## Custom components
 

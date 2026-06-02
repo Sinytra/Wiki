@@ -8,9 +8,10 @@ import InlineGameItem from '@/components/InlineGameItem';
 Content pages follow a traditional wiki [layout](https://minecraft.wiki/w/Furnace), and are intended to describe
 **in-game content**, such as *items, block, entities and others*.
 
-<p className="mt-5 space-x-2">
+<p className="mt-5 w-full flex justify-evenly gap-2">
     <InlineGameItem id="grass_block" size={32} />
     <InlineGameItem id="furnace" size={32} />
+    <InlineGameItem id="diamond_pickaxe" size={32} />
     <InlineGameItem id="iron_ingot" size={32} />
     <InlineGameItem id="experience_bottle" size={32} />
     <InlineGameItem id="piglin_head" size={32} />
@@ -109,16 +110,101 @@ It also shows how in-game data files are referenced by content pages and by exte
     Make sure to always specify the `id` attribute for content pages!
 </Callout>
 
-Content pages **must** always specify the object's in-game `id` in frontmatter attributes.
-This is crucial to interact with game data files in the project.
+Content pages **must** always specify the `id` frontmatter attribute, which is used to link the page to in-game content.
+This is crucial for interacting with game data files in the project.
 
-By default, this ID doubles as the location of the page icon, which is sourced from [assets](../assets).
+By default, for single-item pages, the ID doubles as the location of the page icon,
+which is sourced from [assets](../assets).
 
 ```mdx
 ---
-id: examplemod:electric_furnace
+# Specify one or multiple IDs of items documented on this page
+# (Required)
+id: examplemod:generator
+# For multi-item pages, you can specify a list of IDs:
+id:
+  - examplemod:red_cable
+  - examplemod:blue_cable
 ---
 ```
+
+### Extended metadata
+
+There's several optional attributes you can specify to fully customize your page.
+However, in most cases, the wiki will fill in the best defaults available.
+
+<details>
+  <summary>View extended metdata example</summary>
+
+  ```mdx
+  ---
+  # ============ Everything below is optional! ============
+  # Specify optional properties only where necessary,
+  # let the wiki pick default values for you.
+  # =======================================================
+
+  # Specify a custom ref used to navigate to this page.
+  # Must be unique for all content pages. The Wiki will assign one by default.
+  # (Optional)
+  ref: colored_cables
+
+  # An asset resource location that will be displayed as the page's icon in the
+  # project content index.
+  # Single-item pages: will also be used in the infobox body as the preview image
+  # (Optional)
+  icon: examplemod:yellow_cable
+
+  # Type of the documented item(s). Will be displayed under properties.
+  # Currently, this is purely cosmetical.
+  # Can be 'block', 'item' or 'other'.
+  # (Optional)
+  type: block
+
+  # Additional properties to display.
+  # Map of string -> string
+  # (Optional)
+  custom:
+    Subcategory: Wiring
+
+  # Configure the infobox element shown in the page's right panel
+  # (Optional)
+  infobox:
+    # Title to show on top of infobox (default: page title)
+    # (Optional)
+    title: Cables
+
+    # Single tab body (specify either this OR 'tabs', never both)
+    # (Optional)
+    display:
+      - examplemod:yellow_cable
+
+    # Infobox tabs (item variants)
+    # (Optional)
+    tabs:
+        # Tab (item variant) name
+      - name: Yellow
+        # Asset locations to show in large (single item or list)
+        display: examplemod:yellow_cable
+        # --- OR ---
+        display:
+          - examplemod:yellow_cable
+          - examplemod:yellow_cable_cut
+
+      - name: Orange
+        display: examplemod:orange_cable
+
+    # Inventory slots to show (single item or list of asset locations)
+    # (Optional)
+    inventory:
+      - examplemod:yellow_cable
+      - examplemod:orange_cable
+
+  # Changelog. See parent page for details
+  # (Optional)
+  history: ...
+  ---
+  ```
+</details>
 
 ### Sideabar
 

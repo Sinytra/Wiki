@@ -12,6 +12,7 @@ import {constructPagePath} from '@/lib/service/serviceUtil';
 import env from '@repo/shared/env';
 import {RenderedDocsPage} from '@repo/shared/types/service';
 import issuesApi from '@repo/shared/api/issuesApi';
+import DocsGuideContentRightSidebar from '@/components/docs/side/guide/DocsGuideContentRightSidebar';
 
 export async function generateMetadata(
   props: {
@@ -85,6 +86,7 @@ export default async function ProjectDocsPage(props: {
 
   const headings = page.content.metadata.headings || [];
   const isPreview = env.isPreview();
+  const showContentSidebar = page.frontmatter.icon != null;
 
   return (
     <DocsInnerLayoutClient title={page.frontmatter.title || project.name}
@@ -93,7 +95,9 @@ export default async function ProjectDocsPage(props: {
                            version={version} locale={locale}
                            showRightSidebar={headings.length > 0}
                            rightSidebar={
-                               <DocsGuideNonContentRightSidebar headings={headings}/>
+                             showContentSidebar
+                               ? <DocsGuideContentRightSidebar ctx={ctx} frontmatter={page.frontmatter}/>
+                               : <DocsGuideNonContentRightSidebar headings={headings}/>
                            }
                            footer={
                              <DocsPageFooter editUrl={page.edit_url}

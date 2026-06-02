@@ -34,11 +34,34 @@ The Markdown [format](../pages#format) is shared across all types of pages.
 
 Here's a basic list of things to keep in mind when writing documentation pages:
 
-- Specify [frontmatter](../pages#metadata) properties as desired
+- [x] Specify [frontmatter](#metadata) properties as desired
 
-- Create a [folder metadata](../folder_meta) file to specify sidebar page/folder names
+<p/>
 
-- Check out available [components](../../components/overview) to include
+- [x] Create a [folder metadata](../folder_meta) file to specify sidebar page/folder names
+
+<p/>
+
+- [x] Check out available [components](../../components/overview) to include
+
+## Metadata
+
+Documentation pages don't have any required frontmatter attributes, but you may specify a few optional ones.
+
+Example usage with explanations can be found below.
+
+```mdx
+---
+# Resource location of an asset that will be shown as the documented item's icon
+# It should be at least 128x128 px in size
+# (Optional)
+icon: examplemod:fancy_generator
+
+# Changelog. See parent page for details
+# (Optional)
+history: ...
+---
+```
 
 ## Example
 

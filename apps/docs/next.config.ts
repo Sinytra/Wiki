@@ -3,12 +3,7 @@ import {locales, defaultLocale} from '@/lang';
 
 const withNextra = nextra({
   defaultShowCopyCode: true,
-  unstable_shouldAddLocaleToLinks: true,
-  mdxOptions: {
-    rehypePrettyCodeOptions: {
-      theme: 'github-dark'
-    }
-  }
+  unstable_shouldAddLocaleToLinks: true
 });
 
 const nextConfig = withNextra({

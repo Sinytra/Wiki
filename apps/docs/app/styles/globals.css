@@ -37,7 +37,7 @@
     }
 
     .wiki-subtitle {
-        @apply text-lg mb-2 text-neutral-400! md:text-2xl text-center;
+        @apply text-lg mb-2 md:text-2xl text-center;
     }
 
     .nextra-breadcrumb {
