@@ -7,30 +7,37 @@ import { FileTextIcon, LoaderCircleIcon, SearchIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@repo/ui/lib/utils';
 import { useTranslations } from 'next-intl';
-import { WikiSearchResult, WikiSearchResults } from '@/lib/service/search';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import wikiSearchClient from '@/lib/service/search/wikiSearchClient';
+import { WikiSearchResult, WikiSearchResults } from '@/lib/service/search';
 
-function SearchResult({ result }: { result: WikiSearchResult }) {
-  const icon = !result.path ? result.mod_icon : result.icon;
+function SearchResultWidget({ result }: { result: WikiSearchResult }) {
+  const t = useTranslations('ProjectTypes');
 
   return (
     <NavLink
-      href={result.url}
+      href={result.href}
       className={`z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary first:rounded-t-sm last:rounded-b-sm hover:bg-tertiary`}
     >
       <div className="shrink-0 rounded-xs p-1">
-        <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize />
+        <ImageWithFallback
+          src={result.icon_asset?.src}
+          width={48}
+          height={48}
+          alt={result.project_id}
+          fbIcon={FileTextIcon}
+          fixedSize
+        />
       </div>
       <div
         className={`flex w-full flex-col justify-between overflow-hidden py-0.5 text-ellipsis [&_span]:overflow-hidden [&_span]:text-ellipsis`}
       >
-        <span>{result.title || result.mod}</span>
-        {!result.path && result.mod_desc ? (
-          <span className="text-secondary">{result.mod_desc}</span>
+        <span>{result.title}</span>
+        {result.entry_type == 'project' ? (
+          <span className="text-secondary">{t(result.project_type)}</span>
         ) : (
           <div className="flex flex-row gap-2">
-            <span className="text-secondary">{result.mod}</span>
+            <span className="text-secondary">{result.project_name}</span>
           </div>
         )}
       </div>
@@ -80,7 +87,7 @@ function SearchOverlayFooter({ visible, total }: { visible: number; total: numbe
   );
 }
 
-export default function DocsSearchBar() {
+export default function DocsSearchBar({ locale }: { locale: string }) {
   const t = useTranslations('DocsSearchBar');
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<WikiSearchResults | null>(null);
@@ -95,7 +102,7 @@ export default function DocsSearchBar() {
       }
     }, 500);
 
-    const res = await wikiSearchClient.searchWiki(query);
+    const res = await wikiSearchClient.searchWiki(query, locale);
     setResults(res);
 
     pending = false;
@@ -199,7 +206,7 @@ export default function DocsSearchBar() {
         >
           {loading && <LoadingSearchState />}
 
-          {!loading && results && results.hits.map((r) => <SearchResult key={r.url} result={r} />)}
+          {!loading && results && results.hits.map((r) => <SearchResultWidget key={r.id} result={r} />)}
 
           {!loading && results && results.hits.length === 0 && <NoSearchResults />}
 

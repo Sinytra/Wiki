@@ -9,9 +9,8 @@ import {
   ServiceProviderFactory
 } from '@repo/shared/types/service';
 import markdown, { ComponentPatcher } from '@repo/markdown';
-import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
+import resourceLocation from '@repo/shared/resourceLocation';
 import { localServiceProviderFactory } from '@repo/previewer';
-import builtinAssets from '@/lib/project/builtin/builtinAssets';
 import PrefabUsage from '@/components/docs/shared/prefab/PrefabUsage';
 import CraftingRecipe from '@/components/docs/shared/CraftingRecipe';
 import ProjectRecipe from '@/components/docs/shared/game/ProjectRecipe';
@@ -38,6 +37,7 @@ import {
 import ExtendedLink from '@/components/docs/shared/ExtendedLink';
 import ContentLink from '@/components/docs/shared/ContentLink';
 import { BindableAudio } from '@/components/docs/shared/asset/Audio';
+import commonService from '@/lib/service/commonService';
 
 type AsyncMethodKey<T> = {
   [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never;
@@ -77,12 +77,13 @@ async function getAsset(location: string, ctx: ProjectContext | null): Promise<A
   if (!resource) return null;
 
   // For builtin assets
-  if (!ctx || resource.namespace === DEFAULT_NAMESPACE) {
-    const compatibleLocation = location.includes('/') ? location : prefixItemPath(location);
-    const compatibleResource = resourceLocation.parse(compatibleLocation);
-    if (!compatibleResource) return null;
+  const builtin = commonService.getBuiltinAsset(location, resource, ctx);
+  if (builtin != null) {
+    return builtin;
+  }
 
-    return builtinAssets.getAssetResource(compatibleResource);
+  if (ctx == null) {
+    return null;
   }
 
   return proxyServiceCall<'getAsset'>((p) => p.getAsset(resource, ctx));
@@ -171,16 +172,6 @@ async function renderMarkdown(
     };
   }
   return null;
-}
-
-function prefixItemPath(location: string) {
-  const parsed = resourceLocation.parse(location);
-  return !parsed
-    ? location
-    : resourceLocation.toString({
-        namespace: parsed.namespace,
-        path: 'item/' + parsed.path
-      });
 }
 
 export default {

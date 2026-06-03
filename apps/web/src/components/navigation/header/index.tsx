@@ -68,8 +68,8 @@ export default function Header({ locale, minimal, unfix }: { locale: string; min
         </div>
 
         {!minimal && !preview && (
-          <ClientLocaleProvider keys={['DocsSearchBar']}>
-            <DocsSearchBar />
+          <ClientLocaleProvider keys={['DocsSearchBar', 'ProjectTypes']}>
+            <DocsSearchBar locale={locale} />
           </ClientLocaleProvider>
         )}
 
@@ -95,8 +95,8 @@ export default function Header({ locale, minimal, unfix }: { locale: string; min
 
         <div className="flex flex-row items-center gap-2">
           {!minimal && !preview && (
-            <ClientLocaleProvider keys={['DocsSearchBar']}>
-              <MobileDocsSearch />
+            <ClientLocaleProvider keys={['DocsSearchBar', 'ProjectTypes']}>
+              <MobileDocsSearch locale={locale} />
             </ClientLocaleProvider>
           )}
 

@@ -2,8 +2,9 @@ import normalizeUrl from 'normalize-url';
 import { assetBasePath, AssetLocation, itemAssetExtension } from '@repo/shared/assets';
 import resourceLocation from '@repo/shared/resourceLocation';
 import { ResourceLocation } from '@sinytra/wiki-api-types';
+import envPublic from '@repo/shared/envPublic';
 
-async function resolveAsset(source: string, id: ResourceLocation): Promise<AssetLocation | null> {
+function resolveAsset(source: string, id: ResourceLocation): AssetLocation | null {
   const url = new URL(source);
   url.pathname +=
     '/' + assetBasePath + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
@@ -11,8 +12,8 @@ async function resolveAsset(source: string, id: ResourceLocation): Promise<Asset
   return src === null ? null : { id: resourceLocation.toString(id), src };
 }
 
-async function getAssetResource(location: ResourceLocation): Promise<AssetLocation | null> {
-  const source = process.env.BUILTIN_ASSET_SOURCES;
+function getAssetResource(location: ResourceLocation): AssetLocation | null {
+  const source = envPublic.getBuiltinAssetSource();
   if (!source) return null;
 
   return resolveAsset(source, location);

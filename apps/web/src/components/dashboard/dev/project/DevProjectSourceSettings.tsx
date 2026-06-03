@@ -118,9 +118,10 @@ export default function DevProjectSourceSettings({ project }: { project: DevProj
     if (resp.success) {
       router.refresh();
     } else if (resp.error) {
-      // @ts-expect-error expected
       form.setError('root.custom', {
+        // @ts-expect-error expected
         message: u(`errors.${resp.error}`),
+        // @ts-expect-error expected
         details: resp.details
       });
       setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');

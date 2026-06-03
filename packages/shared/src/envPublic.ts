@@ -9,9 +9,14 @@ function getDocsUrl(): string | null {
   return process.env.NEXT_PUBLIC_DOCS_URL ?? null;
 }
 
+function getBuiltinAssetSource(): string | null {
+  return process.env.NEXT_PUBLIC_BUILTIN_ASSET_SOURCES ?? null;
+}
+
 const envPublic = {
   getBackendEndpointUrl,
-  getDocsUrl
+  getDocsUrl,
+  getBuiltinAssetSource
 };
 
 export default envPublic;

@@ -47,6 +47,10 @@ export function getInternalWikiLink(ref: string, params: ProjectRouteParams | Pr
   return `/${params.locale}/project/${slug}/${params.version}/content/${ref}`;
 }
 
+export function getWikiProjectLink(locale: string, projectId: string): string {
+  return `/${locale}/project/${projectId}/latest`;
+}
+
 export function getExternalWikiLink(id: string): string | null {
   const loc = resourceLocation.parse(id);
   return loc?.namespace === DEFAULT_NAMESPACE && id.startsWith(DEFAULT_NAMESPACE + ':')

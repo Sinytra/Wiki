@@ -80,9 +80,10 @@ export function useFormHandlingAction<T = never>(
     } else {
       onError?.(result);
       if ('error' in result) {
-        // @ts-expect-error details
         form.setError('root.custom', {
+          // @ts-expect-error details
           message: t(`errors.${result.error}`),
+          // @ts-expect-error details
           details: result.data?.details
         });
       }

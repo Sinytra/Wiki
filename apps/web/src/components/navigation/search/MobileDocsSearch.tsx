@@ -12,26 +12,36 @@ import { usePathname } from 'next/navigation';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import wikiSearchClient from '@/lib/service/search/wikiSearchClient';
 
-function SearchResult({ result }: { result: WikiSearchResult }) {
-  const icon = !result.path ? result.mod_icon : result.icon;
+// TODO Deduplicate with DocsSearchBar
+function SearchResultWidget({ result }: { result: WikiSearchResult }) {
+  const t = useTranslations('ProjectTypes');
 
   return (
     <NavLink
-      href={result.url}
+      href={result.href}
       className={`z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5 text-primary`}
     >
       <div className="shrink-0 rounded-xs p-1">
-        <ImageWithFallback src={icon} width={48} height={48} alt={result.mod} fbIcon={FileTextIcon} fixedSize />
+        <ImageWithFallback
+          src={result.icon_asset?.src}
+          width={48}
+          height={48}
+          alt={result.project_id}
+          fbIcon={FileTextIcon}
+          fixedSize
+        />
       </div>
       <div
         className={`flex w-full flex-col justify-between overflow-hidden py-0.5 text-ellipsis [&_span]:overflow-hidden [&_span]:text-ellipsis`}
       >
-        <span>{result.title || result.mod}</span>
-        {!result.path && result.mod_desc ? (
-          <span className="text-secondary">{result.mod_desc}</span>
+        <span>{result.title}</span>
+        {result.entry_type == 'project' ? (
+          <span className="text-secondary">
+            <span className="text-secondary">{t(result.project_type)}</span>
+          </span>
         ) : (
           <div className="flex flex-col gap-1">
-            <span className="text-secondary">{result.mod}</span>
+            <span className="text-secondary">{result.project_name}</span>
           </div>
         )}
       </div>
@@ -64,7 +74,15 @@ function NoSearchResults() {
   );
 }
 
-function SearchScreen({ isOpen, setOpen }: { isOpen: boolean; setOpen: (open: boolean) => void }) {
+function SearchScreen({
+  locale,
+  isOpen,
+  setOpen
+}: {
+  locale: string;
+  isOpen: boolean;
+  setOpen: (open: boolean) => void;
+}) {
   const t = useTranslations('DocsSearchBar');
 
   const nodeRef = useRef(null);
@@ -87,7 +105,7 @@ function SearchScreen({ isOpen, setOpen }: { isOpen: boolean; setOpen: (open: bo
       }
     }, 500);
 
-    const res = await wikiSearchClient.searchWiki(query);
+    const res = await wikiSearchClient.searchWiki(query, locale);
     setResults(res);
 
     pending = false;
@@ -131,7 +149,7 @@ function SearchScreen({ isOpen, setOpen }: { isOpen: boolean; setOpen: (open: bo
             results &&
             (results.hits.length > 0 ? (
               <div className="slim-scrollbar flex h-[90vh] flex-col gap-2 overflow-y-auto">
-                {...results.hits.map((r) => <SearchResult key={r.url} result={r} />)}
+                {...results.hits.map((r) => <SearchResultWidget key={r.id} result={r} />)}
               </div>
             ) : (
               <NoSearchResults />
@@ -142,7 +160,7 @@ function SearchScreen({ isOpen, setOpen }: { isOpen: boolean; setOpen: (open: bo
   );
 }
 
-export default function MobileDocsSearch() {
+export default function MobileDocsSearch({ locale }: { locale: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -163,7 +181,7 @@ export default function MobileDocsSearch() {
       <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
         <SearchIcon className="h-4 w-4 text-[var(--vp-c-text-1)]" />
       </Button>
-      <SearchScreen isOpen={isOpen} setOpen={setIsOpen} />
+      <SearchScreen isOpen={isOpen} setOpen={setIsOpen} locale={locale} />
     </div>
   );
 }

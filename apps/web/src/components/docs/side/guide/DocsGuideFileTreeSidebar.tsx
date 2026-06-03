@@ -43,8 +43,8 @@ async function DocsFileTree({
 
   return tree.map((file) => {
     if (file.type == 'dir') {
-      // @ts-expect-error icon
       const Icon =
+        // @ts-expect-error icon
         file.icon === NO_FOLDER_ICON ? null : (file.icon ? LucideReact[file.icon] : defaultIcon) || defaultIcon;
 
       return (

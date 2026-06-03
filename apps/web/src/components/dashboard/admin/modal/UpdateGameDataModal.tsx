@@ -46,9 +46,10 @@ export default function UpdateGameDataModal() {
 
       reload(() => router.refresh());
     } else if (resp.error) {
-      // @ts-expect-error details
       form.setError('root.custom', {
+        // @ts-expect-error details
         message: u(`errors.${resp.error}`),
+        // @ts-expect-error details
         details: resp.data.details
       });
     } else if (resp.errors) {

@@ -4,7 +4,7 @@ import { ContentFileTree, ProjectContext, ServiceProvider, ServiceProviderFactor
 import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
 import browseApi from '@/lib/service/api/browseApi';
 import network from '@repo/shared/network';
-import commonNetwork, { ApiRouteParameters, RequestOptions } from '@repo/shared/commonNetwork';
+import { ApiRouteParameters, RequestOptions } from '@repo/shared/commonNetwork';
 import {
   BrowseResponse,
   ProjectData,
@@ -15,6 +15,7 @@ import {
   ResourceLocation,
   TreeResponse
 } from '@sinytra/wiki-api-types';
+import commonService from '@/lib/service/commonService';
 
 async function sendApiRequest(
   project: string,
@@ -45,17 +46,7 @@ async function getBackendLayout({ id, version, locale }: ProjectContext): Promis
 }
 
 async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promise<AssetLocation | null> {
-  return getAssetURL(resourceLocation.toString(location), ctx);
-}
-
-function getAssetURL(location: string, { id, version }: ProjectContext): AssetLocation | null {
-  const url = commonNetwork.constructApiUrl(`docs/${id}/asset/${location}`, {
-    version
-  });
-  return {
-    id: location,
-    src: url
-  };
+  return commonService.getRemoteAssetURL(resourceLocation.toString(location), ctx);
 }
 
 async function getDocsPage(
