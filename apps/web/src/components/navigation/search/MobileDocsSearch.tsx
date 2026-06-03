@@ -1,9 +1,9 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { ArrowLeftIcon, FileTextIcon, LoaderCircleIcon, SearchIcon } from 'lucide-react';
+import { ArrowLeftIcon, FileTextIcon, GlobeIcon, HouseIcon, LoaderCircleIcon, SearchIcon } from 'lucide-react';
 import { Button } from '@repo/ui/components/button';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { WikiSearchResult, WikiSearchResults } from '@/lib/service/search';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 import { useDebouncedCallback } from 'use-debounce';
@@ -11,6 +11,8 @@ import { CSSTransition } from 'react-transition-group';
 import { usePathname } from 'next/navigation';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import wikiSearchClient from '@/lib/service/search/wikiSearchClient';
+import { SearchContext } from '@/components/navigation/search/SearchContext';
+import { cn } from '@repo/ui/lib/utils';
 
 // TODO Deduplicate with DocsSearchBar
 function SearchResultWidget({ result }: { result: WikiSearchResult }) {
@@ -89,6 +91,8 @@ function SearchScreen({
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<WikiSearchResults | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const { project } = useContext(SearchContext)!;
+  const [local, setLocal] = useState<boolean>(project != null);
 
   useEffect(() => {
     setSearchQuery('');
@@ -105,7 +109,7 @@ function SearchScreen({
       }
     }, 500);
 
-    const res = await wikiSearchClient.searchWiki(query, locale);
+    const res = await wikiSearchClient.searchWiki(query, locale, local && project ? project.id : null);
     setResults(res);
 
     pending = false;
@@ -123,6 +127,19 @@ function SearchScreen({
     return debouncedSearch(query);
   };
 
+  useEffect(() => {
+    setLocal(project != null);
+  }, [project]);
+
+  useEffect(() => {
+    if (searchQuery.length > 0) {
+      debouncedSearch(searchQuery);
+    }
+    debouncedSearch.flush();
+  }, [local]);
+
+  const ScopeIcon = local ? HouseIcon : GlobeIcon;
+
   return (
     <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={200} classNames="fade" unmountOnExit>
       <div
@@ -134,6 +151,21 @@ function SearchScreen({
             <button onClick={() => setOpen(false)}>
               <ArrowLeftIcon className="absolute top-1/2 left-2 h-5 w-5 -translate-y-1/2 text-secondary" />
             </button>
+
+            {project && (
+              <button
+                className={cn(
+                  'inset absolute top-1/2 right-2 -translate-y-1/2 rounded-sm',
+                  'flex flex-row items-center gap-1',
+                  'border border-secondary bg-secondary px-1.5 py-1'
+                )}
+                onClick={() => setLocal(!local)}
+              >
+                <ScopeIcon className="size-3.5 stroke-2 text-primary" />
+                <span className="text-xs">{t(`scope.${local ? 'local' : 'global'}`)}</span>
+              </button>
+            )}
+
             <input
               type="text"
               value={searchQuery}

@@ -1,15 +1,16 @@
 'use client';
 
 import { useDebouncedCallback } from 'use-debounce';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
-import { FileTextIcon, LoaderCircleIcon, SearchIcon } from 'lucide-react';
+import { FileTextIcon, GlobeIcon, HouseIcon, LoaderCircleIcon, SearchIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@repo/ui/lib/utils';
 import { useTranslations } from 'next-intl';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import wikiSearchClient from '@/lib/service/search/wikiSearchClient';
 import { WikiSearchResult, WikiSearchResults } from '@/lib/service/search';
+import { SearchContext } from '@/components/navigation/search/SearchContext';
 
 function SearchResultWidget({ result }: { result: WikiSearchResult }) {
   const t = useTranslations('ProjectTypes');
@@ -17,7 +18,10 @@ function SearchResultWidget({ result }: { result: WikiSearchResult }) {
   return (
     <NavLink
       href={result.href}
-      className={`z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary first:rounded-t-sm last:rounded-b-sm hover:bg-tertiary`}
+      className={cn(
+        'z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary',
+        'first:rounded-t-sm last:rounded-b-sm hover:bg-tertiary'
+      )}
     >
       <div className="shrink-0 rounded-xs p-1">
         <ImageWithFallback
@@ -70,11 +74,24 @@ function LoadingSearchState() {
   );
 }
 
-function SearchOverlayFooter({ visible, total }: { visible: number; total: number }) {
+function SearchOverlayFooter({
+  canChangeScope,
+  visible,
+  total
+}: {
+  canChangeScope: boolean;
+  visible: number;
+  total: number;
+}) {
   const t = useTranslations('DocsSearchBar');
 
   return (
-    <div className="flex w-full flex-row items-center justify-between rounded-b-sm bg-primary-alt p-2 text-secondary">
+    <div
+      className={cn(
+        'flex w-full flex-row items-center justify-between bg-primary-alt p-2 text-secondary',
+        visible > 0 ? 'rounded-b-sm' : 'rounded-sm'
+      )}
+    >
       <div className="text-sm font-light">
         {t.rich('results', {
           highlight: (chunks: any) => <span className="font-normal">{chunks}</span>,
@@ -82,7 +99,12 @@ function SearchOverlayFooter({ visible, total }: { visible: number; total: numbe
           total
         })}
       </div>
-      <span className="text-sm">{t.rich('close', { kbd: (chunks: any) => <kbd>{chunks}</kbd> })}</span>
+      <div className="flex flex-row items-center gap-2">
+        {canChangeScope && (
+          <span className="text-sm">{t.rich('switch', { kbd: (chunks: any) => <kbd>{chunks}</kbd> })}</span>
+        )}
+        <span className="text-sm">{t.rich('close', { kbd: (chunks: any) => <kbd>{chunks}</kbd> })}</span>
+      </div>
     </div>
   );
 }
@@ -92,6 +114,8 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<WikiSearchResults | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const { project } = useContext(SearchContext)!;
+  const [local, setLocal] = useState<boolean>(project != null);
 
   const debouncedSearch = useDebouncedCallback(async (query) => {
     let pending = true;
@@ -102,7 +126,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
       }
     }, 500);
 
-    const res = await wikiSearchClient.searchWiki(query, locale);
+    const res = await wikiSearchClient.searchWiki(query, locale, local && project ? project.id : null);
     setResults(res);
 
     pending = false;
@@ -138,10 +162,26 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
 
   // Close on ESC pressed
   const onKeyDown = (e: any) => {
+    if (project != null && e.key === 'Tab') {
+      e.preventDefault();
+      setLocal(!local);
+    }
+
     if (e.key === 'Escape') {
       e.target.blur();
     }
   };
+
+  useEffect(() => {
+    setLocal(project != null);
+  }, [project]);
+
+  useEffect(() => {
+    if (searchQuery.length > 0) {
+      debouncedSearch(searchQuery);
+    }
+    debouncedSearch.flush();
+  }, [local]);
 
   // Reset state on route change
   const inputRef = useRef<HTMLInputElement>(null);
@@ -176,6 +216,8 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
     document.querySelectorAll('html, body').forEach((e) => e.classList.remove('scrollLock'));
   }
 
+  const ScopeIcon = local ? HouseIcon : GlobeIcon;
+
   return (
     <div
       className={cn(
@@ -187,11 +229,29 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
     >
       <div className="relative w-full">
         <SearchIcon className="inset absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
+
+        {project && focused && (
+          <div
+            className={cn(
+              'inset absolute top-1/2 left-8 -translate-y-1/2 rounded-sm',
+              'flex flex-row items-center gap-1',
+              'border border-secondary bg-secondary px-1 py-[1.5px]'
+            )}
+          >
+            <ScopeIcon className="size-3.5 stroke-2 text-primary" />
+            <span className="text-xs">{t(`scope.${local ? 'local' : 'global'}`)}</span>
+          </div>
+        )}
+
         <input
           type="text"
           value={searchQuery}
           ref={inputRef}
-          className={`w-full cursor-pointer rounded-sm border border-secondary bg-primary-alt px-8 py-[0.2rem] text-center text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:border-secondary-alt focus:shadow-md focus:outline-none`}
+          className={cn(
+            'w-full cursor-pointer rounded-sm border border-secondary bg-primary-alt px-8 py-[0.2rem]',
+            'text-center text-sm text-ellipsis placeholder:text-neutral-500',
+            'focus:cursor-text focus:border-secondary-alt focus:shadow-md focus:outline-none'
+          )}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder={t('placeholder')}
           onFocus={onFocus}
@@ -199,10 +259,13 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           onKeyDown={onKeyDown}
         />
       </div>
-      {focused && searchQuery && (loading || (!loading && results)) && (
+      {focused && (
         <div
           onMouseDown={(e) => e.preventDefault()}
-          className={`absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border border-secondary bg-primary-alt shadow-lg`}
+          className={cn(
+            'absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border',
+            'border-secondary bg-primary-alt shadow-lg'
+          )}
         >
           {loading && <LoadingSearchState />}
 
@@ -210,7 +273,11 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
 
           {!loading && results && results.hits.length === 0 && <NoSearchResults />}
 
-          {!loading && results && <SearchOverlayFooter visible={results.hits.length} total={results.total} />}
+          <SearchOverlayFooter
+            canChangeScope={project != null}
+            visible={results?.hits?.length ?? 0}
+            total={results?.total ?? 0}
+          />
         </div>
       )}
     </div>

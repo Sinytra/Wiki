@@ -15,9 +15,9 @@ import { AssetLocation } from '@repo/shared/assets';
 import { ProjectContext } from '@repo/shared/types/service';
 import commonService from '@/lib/service/commonService';
 
-async function searchWiki(query: string, locale: string): Promise<WikiSearchResults> {
+async function searchWiki(query: string, locale: string, projectId: string | null): Promise<WikiSearchResults> {
   try {
-    const results = await searchWikiInternal(query, locale);
+    const results = await searchWikiInternal(query, locale, projectId);
     if (results != null) {
       return results;
     }
@@ -28,7 +28,11 @@ async function searchWiki(query: string, locale: string): Promise<WikiSearchResu
   return { total: 0, hits: [] };
 }
 
-async function searchWikiInternal(query: string, locale: string): Promise<WikiSearchResults | null> {
+async function searchWikiInternal(
+  query: string,
+  locale: string,
+  projectId: string | null
+): Promise<WikiSearchResults | null> {
   const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
   const collectionName = process.env.NEXT_PUBLIC_SEARCH_COLLECTION;
   const apiKey = process.env.NEXT_PUBLIC_SEARCH_API_KEY;
@@ -50,6 +54,7 @@ async function searchWikiInternal(query: string, locale: string): Promise<WikiSe
   const searchParameters: SearchParams<SearchResult> = {
     q: query,
     query_by: 'title,item_ids,project_id,project_name,page_ref',
+    filter_by: projectId ? `project_id:=${projectId}` : undefined,
     per_page: 8,
     page: 1
   };

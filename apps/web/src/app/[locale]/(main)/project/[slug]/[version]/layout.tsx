@@ -10,6 +10,7 @@ import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
 import platforms from '@repo/shared/platforms';
 import { Metadata, ResolvingMetadata } from 'next';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import LocalSearchSetter from '@/components/navigation/search/LocalSearchSetter';
 
 export const fetchCache = 'default-cache';
 
@@ -59,21 +60,23 @@ export default async function HomepageLayout(props: LayoutProps) {
     <ErrorBoundary fallback={<DocsPageNotFoundError project={project} />}>
       <LeftSidebarContextProvider>
         <DocsSidebarContextProvider>
-          <ClientLocaleProvider
-            keys={[
-              'DocsPageNotFoundError',
-              'ProjectTypes',
-              'ProjectCategories',
-              'PageEditControls',
-              'DocsVersionSelector',
-              'LanguageSelect',
-              'ModVersionRange'
-            ]}
-          >
-            <DocsLayoutClient project={project} locale={locale} version={version} platformProject={platformProject}>
-              {children}
-            </DocsLayoutClient>
-          </ClientLocaleProvider>
+          <LocalSearchSetter project={project}>
+            <ClientLocaleProvider
+              keys={[
+                'DocsPageNotFoundError',
+                'ProjectTypes',
+                'ProjectCategories',
+                'PageEditControls',
+                'DocsVersionSelector',
+                'LanguageSelect',
+                'ModVersionRange'
+              ]}
+            >
+              <DocsLayoutClient project={project} locale={locale} version={version} platformProject={platformProject}>
+                {children}
+              </DocsLayoutClient>
+            </ClientLocaleProvider>
+          </LocalSearchSetter>
         </DocsSidebarContextProvider>
       </LeftSidebarContextProvider>
     </ErrorBoundary>

@@ -8,6 +8,7 @@ import { Toaster } from '@repo/ui/components/sonner';
 import CookieConsentContextProvider from '@/components/cookies/CookieConsentContextProvider';
 import { getMessages } from 'next-intl/server';
 import { pick } from 'lodash';
+import SearchContextProvider from '@/components/navigation/search/SearchContext';
 
 export async function generateStaticParams() {
   return locales.getLanguagePaths().map((locale) => ({ locale }));
@@ -26,22 +27,24 @@ export default async function LocaleLayout(props: { params: Params; children: Re
   return (
     <NextIntlClientProvider locale={params.locale} messages={pick(messages, 'CookieConsent')}>
       <CookieConsentContextProvider>
-        <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
-          <Header locale={params.locale} />
+        <SearchContextProvider>
+          <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
+            <Header locale={params.locale} />
 
-          <div>{children}</div>
+            <div>{children}</div>
 
-          <Footer />
-        </div>
-        {/* TODO Font size */}
-        <Toaster
-          toastOptions={{
-            style: {
-              background: 'var(--background-color-primary-alt)',
-              fontStyle: 'var(--text-sm)'
-            }
-          }}
-        />
+            <Footer />
+          </div>
+          {/* TODO Font size */}
+          <Toaster
+            toastOptions={{
+              style: {
+                background: 'var(--background-color-primary-alt)',
+                fontStyle: 'var(--text-sm)'
+              }
+            }}
+          />
+        </SearchContextProvider>
       </CookieConsentContextProvider>
     </NextIntlClientProvider>
   );
