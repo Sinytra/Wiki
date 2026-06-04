@@ -13,10 +13,12 @@ import { NavLink } from '@/components/navigation/link/NavLink';
 import wikiSearchClient from '@/lib/service/search/wikiSearchClient';
 import { SearchContext } from '@/components/navigation/search/SearchContext';
 import { cn } from '@repo/ui/lib/utils';
+import SearchResultBadge from '@/components/navigation/search/SearchResultBadge';
 
 // TODO Deduplicate with DocsSearchBar
 function SearchResultWidget({ result }: { result: WikiSearchResult }) {
   const t = useTranslations('ProjectTypes');
+  const u = useTranslations('SearchResultType');
 
   return (
     <NavLink
@@ -46,6 +48,9 @@ function SearchResultWidget({ result }: { result: WikiSearchResult }) {
             <span className="text-secondary">{result.project_name}</span>
           </div>
         )}
+      </div>
+      <div className="mx-1">
+        <SearchResultBadge variant={result.entry_type}>{u(result.entry_type)}</SearchResultBadge>
       </div>
     </NavLink>
   );

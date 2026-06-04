@@ -1,6 +1,8 @@
 import { AssetLocation } from '@repo/shared/assets';
 import { ProjectType } from '@sinytra/wiki-api-types';
 
+export type SearchResultType = 'project' | 'documentation' | 'content';
+
 export interface BaseSearchResult {
   id: string;
   title: string;

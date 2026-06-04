@@ -462,6 +462,11 @@
       "global": "Global"
     }
   },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
+  },
   "DocsChangelogPage": {
     "title": "Changelog"
   },
