@@ -132,7 +132,7 @@ function getProjectURL(slug: string, type: ProjectType): string {
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
   if (isNumeric(slug)) {
     try {
-      const results = (await fetchCurseForgeApiInternal(`/mods/${slug}`)) as {
+      const results = (await fetchCurseForgeApiInternal(`/mods/${slug}`, slug)) as {
         data: CurseForgeProject;
       };
       return results.data;
@@ -142,7 +142,8 @@ async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
   }
 
   const results = (await fetchCurseForgeApiInternal(
-    `/mods/search?gameId=${minecraftGameId}&slug=${slug}`
+    `/mods/search?gameId=${minecraftGameId}&slug=${slug}`,
+    slug
   )) as PaginatedResults<CurseForgeProject>;
   if (results.pagination.resultCount === 1 && results.data.length === 1) {
     return results.data[0]!;
@@ -156,11 +157,11 @@ async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
 }
 
 async function getProjectDescription(id: number): Promise<string> {
-  const result = (await fetchCurseForgeApiInternal(`/mods/${id}/description`)) as any;
+  const result = (await fetchCurseForgeApiInternal(`/mods/${id}/description`, id.toString())) as any;
   return result.data;
 }
 
-async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promise<T> {
+async function fetchCurseForgeApiInternal<T>(path: string, projectSlug: string, headers?: any): Promise<T> {
   if (!process.env.CF_API_KEY) {
     throw new Error('Missing CurseForge API (CF_API_KEY)');
   }
@@ -172,7 +173,7 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
     },
     cache: 'force-cache',
     next: {
-      tags: ['curseforge'],
+      tags: [`curseforge:${projectSlug}`],
       revalidate: time.ONE_MONTH
     }
   });

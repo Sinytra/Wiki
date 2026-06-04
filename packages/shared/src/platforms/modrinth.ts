@@ -5,7 +5,6 @@ import { ProjectNotFoundError } from './exception';
 import { time } from '@repo/shared/constants';
 import { ProjectType } from '@sinytra/wiki-api-types';
 
-// TODO
 const userAgent: string = 'Sinytra/modded-wiki/1.0.0' + (env.isPreview() ? '/local' : '');
 const modrinthApiBaseUrlV3: string = 'https://api.modrinth.com/v3';
 
@@ -97,22 +96,27 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
 }
 
 async function getModrinthProject(slug: string): Promise<ModrinthProject> {
-  return fetchModrinthApiExperimental<ModrinthProject>(`/project/${slug}`);
+  return fetchModrinthApiExperimental<ModrinthProject>(`/project/${slug}`, slug);
 }
 
 async function getProjectOrganization(slug: string): Promise<ModrinthOrganization> {
-  return fetchModrinthApiExperimental(`/project/${slug}/organization`);
+  return fetchModrinthApiExperimental(`/project/${slug}/organization`, slug);
 }
 
 async function getProjectMembers(slug: string): Promise<ModrinthMember[]> {
-  return fetchModrinthApiExperimental(`/project/${slug}/members`);
+  return fetchModrinthApiExperimental(`/project/${slug}/members`, slug);
 }
 
-async function fetchModrinthApiExperimental<T>(path: string, headers?: any): Promise<T> {
-  return fetchModrinthApiInternal(modrinthApiBaseUrlV3, path, headers);
+async function fetchModrinthApiExperimental<T>(path: string, projectSlug: string, headers?: any): Promise<T> {
+  return fetchModrinthApiInternal(modrinthApiBaseUrlV3, projectSlug, path, headers);
 }
 
-async function fetchModrinthApiInternal<T>(basePath: string, path: string, headers?: any): Promise<T> {
+async function fetchModrinthApiInternal<T>(
+  basePath: string,
+  projectSlug: string,
+  path: string,
+  headers?: any
+): Promise<T> {
   const response = await fetch(basePath + path, {
     headers: {
       'User-Agent': userAgent,
@@ -120,7 +124,7 @@ async function fetchModrinthApiInternal<T>(basePath: string, path: string, heade
     },
     cache: 'force-cache',
     next: {
-      tags: ['modrinth'],
+      tags: [`modrinth:${projectSlug}`],
       revalidate: time.ONE_MONTH
     }
   });
