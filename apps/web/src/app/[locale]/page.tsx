@@ -35,6 +35,7 @@ import featuredProjects, { FeaturedProject } from '@/lib/service/featuredProject
 import { DEFAULT_LOCALE, WIKI_DOCS_URL } from '@repo/shared/constants';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 import { NavLink } from '@/components/navigation/link/NavLink';
+import navigation from '@/lib/navigation';
 
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
@@ -66,7 +67,12 @@ function FeaturedProjectsContent({ projects }: { projects: FeaturedProject[] }) 
           }
         />
         <div>
-          <h4 className="text-xl font-semibold text-primary-alt">{project.title}</h4>
+          <LocaleNavLink
+            className="text-primary-alt underline-offset-4 hover:text-primary-alt/80 hover:underline"
+            href={navigation.getProjectLink(project.id)}
+          >
+            <h4 className="text-xl font-semibold">{project.title}</h4>
+          </LocaleNavLink>
           {projectTypes(project.type)}
         </div>
       </div>
@@ -96,7 +102,7 @@ function FeaturedProjectsContent({ projects }: { projects: FeaturedProject[] }) 
           )}
         </div>
         <Button variant="link" className="text-primary hover:text-primary/80">
-          <LocaleNavLink className="flex flex-row items-center" href={`/project/${project.id}`}>
+          <LocaleNavLink className="flex flex-row items-center" href={navigation.getProjectLink(project.id)}>
             {t('popular.open')}
             <ArrowRight className="ml-2 h-4 w-4 text-contrast" />
           </LocaleNavLink>

@@ -41,7 +41,13 @@ export default function DocsContentMetaSidebar(props: Props) {
 
           <EditPageButton editUrl={props.page.edit_url} />
 
-          <ReportPageButton full project={props.project.id} path={[props.id]} preview={env.isPreview()} />
+          <ReportPageButton
+            full
+            type="content"
+            project={props.project.id}
+            path={[props.id]}
+            preview={env.isPreview()}
+          />
         </div>
       </ClientLocaleProvider>
     </aside>

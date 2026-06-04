@@ -15,19 +15,21 @@ function createReportLink(project: string, type: ReportType, path: string | null
 
 export default function ReportPageButton({
   local,
+  type,
   project,
   path,
   preview,
   full
 }: {
   local?: boolean;
+  type: ReportType;
   project: string;
   path?: string[];
   preview: boolean;
   full?: boolean;
 }) {
   const t = useTranslations('PageEditControls');
-  const reportLink = createReportLink(project, 'docs', path?.join('/') ?? null);
+  const reportLink = createReportLink(project, type, path?.join('/') ?? null);
 
   const content = (
     <Button

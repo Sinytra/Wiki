@@ -16,7 +16,7 @@ function DesktopDocsFooter({ slug, path, editUrl, local, preview }: FooterProps)
   return (
     <div className="flex w-full flex-row justify-between sm:max-w-5xl">
       <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
-        <ReportPageButton local={local} project={slug} path={path} preview={preview} />
+        <ReportPageButton type="docs" local={local} project={slug} path={path} preview={preview} />
       </div>
 
       <div className="hidden flex-row flex-nowrap items-center justify-start gap-4 sm:flex">
@@ -32,7 +32,7 @@ function MobileDocsFooter({ local, slug, path, editUrl, preview }: FooterProps) 
   return (
     <div className="flex flex-col gap-3 sm:hidden">
       <div className="flex flex-row flex-wrap justify-between gap-2">
-        <ReportPageButton local={local} project={slug} path={path} preview={preview} />
+        <ReportPageButton type="docs" local={local} project={slug} path={path} preview={preview} />
         <EditPageButton editUrl={editUrl} />
       </div>
     </div>

@@ -17,7 +17,7 @@ export default function DocsContentPageToolsFooter({ project, id, local, editUrl
     >
       <div className="flex flex-col gap-3 sm:hidden">
         <div className="flex flex-row flex-wrap justify-between gap-2">
-          <ReportPageButton local={local} project={project} path={[id]} preview={env.isPreview()} />
+          <ReportPageButton local={local} type="content" project={project} path={[id]} preview={env.isPreview()} />
           <EditPageButton editUrl={editUrl} />
         </div>
       </div>
