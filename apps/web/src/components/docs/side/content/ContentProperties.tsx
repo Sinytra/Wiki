@@ -261,7 +261,17 @@ export default function ContentProperties({ properties, providedProps, ctx }: Pr
         <tbody>
           {Object.entries(resolvedProps)
             .filter(([_, prop]) => prop.type === 'group' || prop.value != null)
-            .sort(([a], [b]) => order.indexOf(a) - order.indexOf(b))
+            .sort(([a, aProp], [b, bProp]) => {
+              const orderA = aProp.order ?? 0;
+              const orderB = bProp.order ?? 0;
+              if (orderA !== orderB) return orderA - orderB;
+
+              const primaryA = order.indexOf(a);
+              const primaryB = order.indexOf(b);
+              if (primaryA !== primaryB) return primaryA - primaryB;
+
+              return a.localeCompare(b);
+            })
             .map(([key, prop]) => {
               const type = SUPPORTED_PROPERTIES[key] || 'literal';
               const propType = typeof type === 'string' ? type : type.type;
@@ -271,7 +281,7 @@ export default function ContentProperties({ properties, providedProps, ctx }: Pr
 
               return (
                 <tr key={key}>
-                  <td className="table-padding-sm-y border-r-0 border-b-0 border-l-0 text-sm font-medium break-all">
+                  <td className="table-padding-sm-y border-r-0 border-b-0 border-l-0 text-sm font-medium break-words">
                     <Wrapper>
                       {/*@ts-expect-error has message*/}
                       {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}

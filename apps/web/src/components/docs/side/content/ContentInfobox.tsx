@@ -33,6 +33,15 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
       value: frontmatter.id[0]
     };
   }
+  if (frontmatter.custom) {
+    Object.entries(frontmatter.custom).forEach(([key, value]) => {
+      providedProps[key] = {
+        type: 'single',
+        value,
+        order: 999
+      };
+    });
+  }
 
   return (
     <div className="border border-tertiary">

@@ -7,11 +7,13 @@ export type PropertyValue = JsonValue | JSX.Element;
 export interface SingleProperty {
   type: 'single';
   value: PropertyValue;
+  order?: number;
 }
 
 export interface PropertyGroup {
   type: 'group';
   value: PropertyGroupItem[];
+  order?: number;
 }
 
 export interface PropertyGroupItem {
