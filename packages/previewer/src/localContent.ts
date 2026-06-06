@@ -12,6 +12,7 @@ import markdown, { RawFrontmatter } from '@repo/markdown';
 import localFiles from './localFiles';
 import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
 import { DEFAULT_LOCALE } from '@repo/shared/constants';
+import { ProjectFormat } from './format/projectFormat';
 
 interface ExtendedContentFileTreeEntry extends ContentFileTreeEntry {
   id?: string[];
@@ -35,8 +36,7 @@ async function getLocalSourceContentTree(
   src: LocalDocumentationSource,
   locale?: string | null
 ): Promise<ContentFileTree | null> {
-  const modifiedSrc = { ...src, path: src.path + '/.content' };
-  const tree = await localDocs.readDocsTree(modifiedSrc, locale || undefined);
+  const tree = await localDocs.readContentTree(src, locale || undefined);
   const results = await Promise.all(tree.map((e) => processEntry(src, e, locale || null, { existing: [] })));
   return results.filter((c) => c != null);
 }
@@ -53,19 +53,20 @@ async function processEntry(
     const children = await Promise.all(entry.children.map((c) => processEntry(src, c, locale, ctx)));
     return { ...entry, children: children.filter((c) => c != null) };
   } else {
-    const file = await localDocs.readDocsFile(src, ['.content', entry.path], locale || undefined, true);
+    const file = await localDocs.readDocsFile(src, 'content', [entry.path], locale || undefined, true);
     if (file) {
       const frontmatter = markdown.readFrontmatter(file.content) as RawFrontmatter;
       if (frontmatter.id) {
         const ids = Array.isArray(frontmatter.id) ? frontmatter.id : [frontmatter.id];
         const ref = getPageRef(frontmatter.ref ?? null, ids, entry.path, ctx.existing);
         if (ref == null) return null;
+        const icon = getPageIcon(src.format, frontmatter.icon ?? null, ids);
 
         ctx.existing.push(ref);
         return {
           ref,
           id: ids,
-          icon: frontmatter.icon ?? (ids.length === 1 ? ids[0] : null),
+          icon,
           name: entry.name,
           path: entry.path,
           type: entry.type,
@@ -77,9 +78,23 @@ async function processEntry(
   return null;
 }
 
+function getPageIcon(format: ProjectFormat, icon: string | null, ids: string[]): string | null {
+  if (icon) {
+    return icon;
+  }
+  if (ids?.[0]) {
+    const location = resourceLocation.parse(ids[0]);
+    if (location) {
+      return resourceLocation.toString(format.getItemAssetLocation(location));
+    }
+  }
+  return null;
+}
+
 async function getLocalItemProperties(src: LocalDocumentationSource): Promise<ItemProperties> {
   try {
-    const props = await localFiles.readFileContents(src, '.data/properties.json');
+    const propsPath = src.format.getItemPropertiesPath(src.modid ?? '');
+    const props = await localFiles.readFileContents(src, propsPath);
     const parsed = JSON.parse(props.content);
     return parsed as ItemProperties;
   } catch (e: any) {
@@ -113,7 +128,11 @@ function getPageRef(user_ref: string | null, ids: string[], path: string, existi
   return path.replaceAll('/', '_');
 }
 
-async function constructDefaultTabs(frontmatter: Frontmatter, ctx: ProjectContext): Promise<InfoboxTab[]> {
+async function constructDefaultTabs(
+  format: ProjectFormat,
+  frontmatter: Frontmatter,
+  ctx: ProjectContext
+): Promise<InfoboxTab[]> {
   const idToName: { [key: string]: string } = {};
 
   const items = await Promise.all(frontmatter.id.map((id) => getContentItemName(id, ctx)));
@@ -121,10 +140,12 @@ async function constructDefaultTabs(frontmatter: Frontmatter, ctx: ProjectContex
 
   const tabs: InfoboxTab[] = frontmatter.id.map((id) => {
     const name = idToName[id];
+    const location = resourceLocation.parse(id);
+    const displayId = location ? resourceLocation.toString(format.getItemAssetLocation(location)) : id;
 
     return {
       name: name ?? id,
-      display: [id]
+      display: [displayId]
     };
   });
 
@@ -135,13 +156,23 @@ async function constructDefaultTabs(frontmatter: Frontmatter, ctx: ProjectContex
   return tabs;
 }
 
-async function constructInfobox(frontmatter: Frontmatter, ctx: ProjectContext): Promise<Infobox> {
-  const tabs = frontmatter.infobox?.tabs ?? (await constructDefaultTabs(frontmatter, ctx));
+async function constructInfobox(
+  format: ProjectFormat,
+  frontmatter: Frontmatter,
+  ctx: ProjectContext
+): Promise<Infobox> {
+  const tabs = frontmatter.infobox?.tabs ?? (await constructDefaultTabs(format, frontmatter, ctx));
+  const inventory =
+    frontmatter.infobox?.inventory ??
+    frontmatter.id.map((id) => {
+      const location = resourceLocation.parse(id);
+      return location ? resourceLocation.toString(format.getItemAssetLocation(location)) : id;
+    });
 
   return {
     title: frontmatter.infobox?.title ?? frontmatter.title ?? null,
     tabs: tabs,
-    inventory: frontmatter.infobox?.inventory ?? frontmatter.id
+    inventory
   };
 }
 
@@ -258,7 +289,8 @@ async function getLocalization(
   const langName = locale == null || locale == DEFAULT_LOCALE ? 'en_us' : `${locale}_${locale}`;
 
   try {
-    const file = await localFiles.readFileContents(src, `.assets/${namespace}/lang/${langName}.json`);
+    const path = src.format.getLangFilePath(namespace, langName);
+    const file = await localFiles.readFileContents(src, path);
     return JSON.parse(file.content) as { [key: string]: string };
   } catch (error) {
     console.error(`Error reading locale file for language ${langName}`, error);

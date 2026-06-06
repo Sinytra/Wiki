@@ -1,6 +1,4 @@
 import service from '@/lib/service';
-import { HOMEPAGE_FILE_PATH } from '@repo/shared/constants';
-import DocsMarkdownContent from '@/components/docs/body/DocsMarkdownContent';
 import issuesApi from '@repo/shared/api/issuesApi';
 import markdown, { DocsEntryMetadata } from '@repo/markdown';
 import { RenderedMarkdownContent } from '@/components/docs/body/MarkdownContent';
@@ -8,6 +6,7 @@ import { ProjectContext } from '@repo/shared/types/service';
 import { ProjectData } from '@sinytra/wiki-api-types';
 import { PlatformProject } from '@repo/shared/platforms';
 import { ReactNode } from 'react';
+import DocsEntryPage from '@/components/docs/body/DocsEntryPage';
 
 interface Props {
   project: ProjectData;
@@ -30,15 +29,15 @@ export async function renderHomepage(
   ctx: ProjectContext
 ): Promise<RenderedHomepage | null | undefined> {
   try {
-    const result = await service.renderDocsPage([HOMEPAGE_FILE_PATH], true, ctx);
+    const result = await service.renderDocsIndexPage(ctx);
     if (result) {
-      const content = <DocsMarkdownContent>{result.content.content}</DocsMarkdownContent>;
+      const content = <DocsEntryPage project={project} page={result} isIndexPage />;
       return { content, metadata: result.content.metadata };
     }
   } catch (err) {
     console.error('Error rendering homepage!', err);
 
-    await issuesApi.reportPageRenderFailure(project, HOMEPAGE_FILE_PATH, err, ctx.version ?? null, ctx.locale ?? null);
+    await issuesApi.reportPageRenderFailure(project, '(docs index page)', err, ctx.version ?? null, ctx.locale ?? null);
   }
   // File does not exist, fallback to project desc
   if (platformProject.is_placeholder) {

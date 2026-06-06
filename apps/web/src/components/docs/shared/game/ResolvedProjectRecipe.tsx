@@ -18,7 +18,7 @@ interface Properties {
 }
 
 async function createDisplayItem(item: ResolvedItem): Promise<DisplayItem> {
-  const asset = await service.getAsset(item.id, { id: item.project });
+  const asset = await service.getItemAsset(item.id, { id: item.project });
   return asset
     ? ({ ...item, asset } satisfies DisplayItem)
     : ({

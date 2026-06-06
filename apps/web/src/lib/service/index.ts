@@ -89,8 +89,28 @@ async function getAsset(location: string, ctx: ProjectContext | null): Promise<A
   return proxyServiceCall<'getAsset'>((p) => p.getAsset(resource, ctx));
 }
 
+async function getItemAsset(location: string, ctx: ProjectContext | null): Promise<AssetLocation | null> {
+  const resource = resourceLocation.parse(location);
+  if (!resource) return null;
+
+  // For builtin assets
+  const builtin = commonService.getBuiltinAsset(location, resource, ctx);
+  if (builtin != null) {
+    return builtin;
+  }
+
+  if (ctx == null) {
+    return null;
+  }
+
+  return proxyServiceCall<'getItemAsset'>((p) => p.getItemAsset(resource, ctx));
+}
+
 const getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ProjectPage | null | undefined> =
   createProxy<'getDocsPage'>((p, path, optional, ctx) => p.getDocsPage(path, optional || false, ctx));
+
+const getDocsIndexPage: (ctx: ProjectContext) => Promise<ProjectPage | null | undefined> =
+  createProxy<'getDocsIndexPage'>((p, ctx) => p.getDocsIndexPage(ctx));
 
 async function renderDocsPage(
   path: string[],
@@ -99,6 +119,11 @@ async function renderDocsPage(
   patcher?: ComponentPatcher
 ): Promise<RenderedDocsPage | null> {
   const raw = (await getDocsPage(path, optional, ctx)) || null;
+  return renderMarkdown(raw, ctx, patcher);
+}
+
+async function renderDocsIndexPage(ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
+  const raw = (await getDocsIndexPage(ctx)) || null;
   return renderMarkdown(raw, ctx, patcher);
 }
 
@@ -147,7 +172,6 @@ async function renderMarkdown(
       Asset: BindableAsset.bind(null, ctx),
       audio: BindableAudio.bind(null, ctx),
       CraftingRecipe: CraftingRecipe.bind(null, ctx),
-      ModAsset: ModAsset.bind(null, ctx),
       ProjectRecipe: ProjectRecipe.bind(null, ctx),
       RecipeUsage: BindableRecipeUsage.bind(null, ctx),
       h2: LinkAwareHeading,
@@ -158,6 +182,7 @@ async function renderMarkdown(
       CodeTabs,
       VideoEmbed,
       // Deprecated TODO Remove
+      ModAsset: ModAsset.bind(null, ctx),
       ContentLink: ContentLink.bind(null, ctx),
       DocsLink: DocsLink.bind(null, ctx)
     };
@@ -178,8 +203,10 @@ export default {
   getProject,
   getBackendLayout,
   getAsset,
+  getItemAsset,
   getDocsPage,
   renderDocsPage,
+  renderDocsIndexPage,
   searchProjects,
   getProjectContents,
   getProjectRecipe,

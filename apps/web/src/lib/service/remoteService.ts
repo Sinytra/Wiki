@@ -49,6 +49,24 @@ async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promis
   return commonService.getRemoteAssetURL(resourceLocation.toString(location), ctx);
 }
 
+async function getItemAsset(location: ResourceLocation, ctx: ProjectContext): Promise<AssetLocation | null> {
+  return commonService.getRemoteItemAssetURL(resourceLocation.toString(location), ctx);
+}
+
+async function getDocsIndexPage({ id, version, locale }: ProjectContext): Promise<ProjectPage | null> {
+  return await resolveNullableApiCall(() =>
+    sendApiRequest(
+      id,
+      `docs/${id}/index`,
+      {
+        version,
+        locale
+      },
+      { cache: false }
+    )
+  );
+}
+
 async function getDocsPage(
   path: string[],
   optional: boolean,
@@ -134,7 +152,9 @@ async function getRecipeType(
 const serviceProvider: ServiceProvider = {
   getBackendLayout,
   getAsset,
+  getItemAsset,
   getDocsPage,
+  getDocsIndexPage,
   getProject,
   searchProjects,
   getProjectRecipe,

@@ -43,6 +43,16 @@ function getRemoteAssetURL(location: string, { id, version }: ProjectContext): A
   };
 }
 
+function getRemoteItemAssetURL(location: string, { id, version }: ProjectContext): AssetLocation | null {
+  const url = commonNetwork.constructApiUrl(`docs/${id}/asset-item/${location}`, {
+    version
+  });
+  return {
+    id: location,
+    src: url
+  };
+}
+
 function prefixItemPath(location: string) {
   const parsed = resourceLocation.parse(location);
   return !parsed
@@ -56,5 +66,6 @@ function prefixItemPath(location: string) {
 export default {
   getRemoteAsset,
   getBuiltinAsset,
-  getRemoteAssetURL
+  getRemoteAssetURL,
+  getRemoteItemAssetURL
 };

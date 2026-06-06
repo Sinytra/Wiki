@@ -6,6 +6,7 @@ import { ProjectContext } from '@repo/shared/types/service';
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   ctx: ProjectContext | null;
   location: string;
+  item?: boolean;
   wrapper?: HTMLAttributes<HTMLDivElement>;
 };
 
@@ -13,9 +14,14 @@ export async function BindableAsset(ctx: ProjectContext | null, props: Omit<Prop
   return Asset({ ...props, ctx });
 }
 
-export default async function Asset({ location, ...props }: Props) {
+export default async function Asset({ location, item, ...props }: Props) {
   const noCtx = { ...props, ctx: undefined };
   return (
-    <AssetBase display={({ asset }) => <AssetDisplay asset={asset} {...noCtx} />} location={location} {...props} />
+    <AssetBase
+      display={({ asset }) => <AssetDisplay asset={asset} {...noCtx} />}
+      location={location}
+      item={item}
+      {...props}
+    />
   );
 }

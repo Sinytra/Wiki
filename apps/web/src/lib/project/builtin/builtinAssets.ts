@@ -1,8 +1,10 @@
 import normalizeUrl from 'normalize-url';
-import { assetBasePath, AssetLocation, itemAssetExtension } from '@repo/shared/assets';
+import { AssetLocation, itemAssetExtension } from '@repo/shared/assets';
 import resourceLocation from '@repo/shared/resourceLocation';
 import { ResourceLocation } from '@sinytra/wiki-api-types';
 import envPublic from '@repo/shared/envPublic';
+
+const assetBasePath: string = '.assets';
 
 function resolveAsset(source: string, id: ResourceLocation): AssetLocation | null {
   const url = new URL(source);

@@ -75,7 +75,9 @@ export interface ServiceProvider {
   getProject: (ctx: ProjectContext) => Promise<ProjectData | null>;
   getBackendLayout: (ctx: ProjectContext) => Promise<TreeResponse | null>;
   getAsset: (location: ResourceLocation, ctx: ProjectContext) => Promise<AssetLocation | null>;
+  getItemAsset: (location: ResourceLocation, ctx: ProjectContext) => Promise<AssetLocation | null>;
   getDocsPage: (path: string[], optional: boolean, ctx: ProjectContext) => Promise<ProjectPage | undefined | null>;
+  getDocsIndexPage: (ctx: ProjectContext) => Promise<ProjectPage | undefined | null>;
   searchProjects: (
     query: string,
     page: number,

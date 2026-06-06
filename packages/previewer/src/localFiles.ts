@@ -10,8 +10,8 @@ function isFileTypeAllowed(f: DirectoryTree): boolean {
   return f.type === 'directory' || ALLOWED_FILE_TYPES.some((t) => f.name.endsWith(t));
 }
 
-async function readFileTree(source: LocalDocumentationSource): Promise<FileTree> {
-  const tree = dirTee(`${source.path}`, { attributes: ['type'] })?.children || [];
+async function readFileTree(root: string): Promise<FileTree> {
+  const tree = dirTee(root, { attributes: ['type'] })?.children || [];
   return convertDirectoryTree(tree);
 }
 

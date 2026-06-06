@@ -1,11 +1,6 @@
 import { unstable_cache } from 'next/cache';
 import { promises as fs } from 'fs';
-import {
-  DEFAULT_LOCALE,
-  DOCS_METADATA_FILE_NAME,
-  FOLDER_METADATA_FILE_NAME,
-  HOMEPAGE_FILE_PATH
-} from '@repo/shared/constants';
+import { DEFAULT_LOCALE, DOCS_METADATA_FILE_NAME, FOLDER_METADATA_FILE_NAME } from '@repo/shared/constants';
 import metadata, { DocumentationFolderMetadata, ValidationError } from './localMetadata';
 import { FileTree } from '@repo/shared/types/service';
 import { ProjectPlatforms } from '@repo/shared/types/platform';
@@ -13,12 +8,15 @@ import localFiles from './localFiles';
 import env from '@repo/shared/env';
 import markdown from '@repo/markdown';
 import { FileTreeEntry } from '@sinytra/wiki-api-types';
+import projectFormat, { ProjectFormat } from './format/projectFormat';
 
 export interface LocalDocumentationSource {
   id: string;
+  modid: string | null;
   platforms: ProjectPlatforms;
   is_community: boolean;
   path: string;
+  format: ProjectFormat;
 }
 
 export interface LocalDocumentationFile {
@@ -42,7 +40,13 @@ export async function getLocalDocumentationSources(): Promise<LocalDocumentation
   const cache = unstable_cache(async (paths: string) => computeLocalDocumentationSources(paths), [], {
     tags: ['local_sources']
   });
-  return await cache(localPaths);
+  const cached = await cache(localPaths);
+
+  // Re-add functions to format
+  return cached.map((src) => ({
+    ...src,
+    format: projectFormat.determineProjectFormat(src.format.schema, src.format.root)
+  }));
 }
 
 async function computeLocalDocumentationSources(paths: string): Promise<LocalDocumentationSource[]> {
@@ -55,9 +59,12 @@ async function computeLocalDocumentationSources(paths: string): Promise<LocalDoc
         const file = await fs.readFile(`${root}/${DOCS_METADATA_FILE_NAME}`, 'utf8');
         const data = JSON.parse(file);
         metadata.validateMetadataFile(data);
+        const format = projectFormat.determineProjectFormat(data.schema, root);
 
         return {
+          format,
           id: data.id,
+          modid: data.modid,
           platforms: {
             [data.platform as any]: data.slug, // TODO
             ...data.platforms
@@ -72,12 +79,16 @@ async function computeLocalDocumentationSources(paths: string): Promise<LocalDoc
 
 async function readDocsFile(
   source: LocalDocumentationSource,
+  type: 'docs' | 'content',
   path: string[],
   locale?: string,
   optional?: boolean
 ): Promise<LocalDocumentationFile | null> {
   try {
-    const content = await readLocalizedFile(source, `${path.join('/')}.mdx`, locale);
+    const joined = path.join('/');
+    const pagePath =
+      type === 'content' ? source.format.getContentPagePath(joined) : source.format.getDocsPagePath(joined);
+    const content = await readLocalizedFile(source, pagePath, locale);
     if (!content) {
       throw new Error(`Documentation file at ${path} not found`);
     }
@@ -101,7 +112,8 @@ async function getAvailableLocales(source: LocalDocumentationSource): Promise<st
 async function computeAvailableLocales(source: LocalDocumentationSource): Promise<string[]> {
   const localeDirRegex = /^[a-z]{2}_[a-z]{2}$/;
   try {
-    const translations = await localFiles.readShallowFileTree(source, '.translated');
+    const translationsDirName = source.format.translationsDir;
+    const translations = await localFiles.readShallowFileTree(source, translationsDirName);
     return translations
       .filter((t) => t.type === 'dir' && t.name.match(localeDirRegex))
       .map((t) => t.name.split('_')[0]!);
@@ -111,39 +123,65 @@ async function computeAvailableLocales(source: LocalDocumentationSource): Promis
 }
 
 async function readDocsTree(source: LocalDocumentationSource, locale?: string): Promise<FileTree> {
+  return readFileTree(source, 'docs', locale);
+}
+
+async function readContentTree(source: LocalDocumentationSource, locale?: string): Promise<FileTree> {
+  return readFileTree(source, 'content', locale);
+}
+
+async function readFileTree(
+  source: LocalDocumentationSource,
+  type: 'docs' | 'content',
+  locale?: string
+): Promise<FileTree> {
   const availableLocales = await getAvailableLocales(source);
   const actualLocale =
     locale === DEFAULT_LOCALE ? undefined : locale && locale in availableLocales ? locale : undefined;
 
-  return resolveDocsTree(source, actualLocale);
+  return resolveFileTree(source, type, actualLocale);
 }
 
-async function resolveDocsTree(source: LocalDocumentationSource, locale?: string): Promise<FileTree> {
-  const converted = await localFiles.readFileTree(source);
+async function resolveFileTree(
+  source: LocalDocumentationSource,
+  type: 'docs' | 'content',
+  locale?: string
+): Promise<FileTree> {
+  const root = type === 'content' ? source.format.contentDir : source.format.docsDir;
+  const converted = await localFiles.readFileTree(root);
+  const docsIndexPageFileName = `${source.format.docsIndexPageName}.mdx`;
 
-  const filtered = converted.filter(
-    (c) =>
-      (c.type === 'file' &&
-        c.name !== DOCS_METADATA_FILE_NAME &&
-        c.name !== `${HOMEPAGE_FILE_PATH}.mdx` &&
-        (c.name === FOLDER_METADATA_FILE_NAME || c.name.endsWith('.mdx'))) ||
-      (c.type === 'dir' && !c.name.startsWith('.') && !c.name.startsWith('(') && c.children && c.children.length > 0)
-  );
+  const formatFiltered = source.format.filterDocsTree(converted);
+  const filter: (e: FileTreeEntry) => boolean = (c) =>
+    c.type === 'dir' ||
+    (c.type === 'file' &&
+      !c.name.startsWith('_') &&
+      c.name !== DOCS_METADATA_FILE_NAME &&
+      c.name !== docsIndexPageFileName &&
+      (c.name === FOLDER_METADATA_FILE_NAME || c.name.endsWith('.mdx')));
 
-  return processFileTree(source, '', filtered, locale);
+  return processFileTree(source, filter, '', type, formatFiltered, locale);
 }
 
 async function processFileTree(
   source: LocalDocumentationSource,
+  filter: (e: FileTreeEntry) => boolean,
   root: string,
-  tree: FileTree,
+  type: 'docs' | 'content',
+  rawTree: FileTree,
   locale?: string
 ): Promise<FileTree> {
+  const tree = rawTree.filter(filter);
+
   const metaFile = tree.find((t) => t.type === 'file' && t.name === FOLDER_METADATA_FILE_NAME);
-  const metadata = metaFile
-    ? await parseFolderMetadataFile(source, (root.length === 0 ? '' : root + '/') + metaFile.name, locale)
-    : undefined;
+  let metadata: DocumentationFolderMetadata | undefined;
+  if (metaFile) {
+    const metaFileSlug = (root.length === 0 ? '' : root + '/') + metaFile.name;
+    const metaFilePath = source.format.getMetaFilePath(type, metaFileSlug);
+    metadata = await parseFolderMetadataFile(source, metaFilePath, locale);
+  }
   const order = Object.keys(metadata || {});
+
   return Promise.all(
     tree
       .filter((f) => f.type !== 'file' || f.name !== FOLDER_METADATA_FILE_NAME)
@@ -158,13 +196,22 @@ async function processFileTree(
       })
       .map(async (entry) => {
         const basePath = root.length === 0 ? entry.name : root + '/' + entry.name;
-        const actualPath = basePath.endsWith('.mdx') ? basePath.substring(0, basePath.length - 4) : basePath;
+        const actualPath = source.format.getDocsSlugFromPath(basePath);
+
         return {
           path: actualPath,
-          name: metadata?.[entry.name]?.name || (await getPageTitleForFolderMeta(source, actualPath, entry, locale)),
+          name:
+            metadata?.[entry.name]?.name || (await getPageTitleForFolderMeta(source, type, actualPath, entry, locale)),
           type: entry.type,
           children: entry.children
-            ? await processFileTree(source, (root.length === 0 ? '' : root + '/') + entry.name, entry.children, locale)
+            ? await processFileTree(
+                source,
+                filter,
+                (root.length === 0 ? '' : root + '/') + entry.name,
+                type,
+                entry.children,
+                locale
+              )
             : [],
           icon: metadata?.[entry.name]?.icon
         };
@@ -196,9 +243,9 @@ async function readLocalizedFile(
   if (locale && locale !== DEFAULT_LOCALE) {
     const availableLocales = await getAvailableLocales(source);
     if (availableLocales.includes(locale)) {
-      const localeFolder = `.translated/${locale}_${locale}/`;
+      const translatedPath = source.format.getLocalizedFilePath(path, `${locale}_${locale}`);
       try {
-        return await localFiles.readFileContents(source, localeFolder + path);
+        return await localFiles.readFileContents(source, translatedPath);
       } catch {
         // fallback to default locale
       }
@@ -209,12 +256,13 @@ async function readLocalizedFile(
 
 async function getPageTitleForFolderMeta(
   source: LocalDocumentationSource,
+  type: 'docs' | 'content',
   path: string,
   entry: FileTreeEntry,
   locale?: string
 ) {
   if (entry.type === 'file') {
-    const content = await readDocsFile(source, path.split('/'), locale);
+    const content = await readDocsFile(source, type, path.split('/'), locale);
     if (content) {
       const frontmatter = await markdown.readProcessedFrontmatter(content.content);
       if (frontmatter?.title) {
@@ -226,6 +274,10 @@ async function getPageTitleForFolderMeta(
 }
 
 function capitalizeDefaultEntryName(str: string) {
+  if (str.startsWith('_') || str.startsWith('.')) {
+    return str;
+  }
+
   const words = str.split('.')[0]!.replaceAll(/[_-]/g, ' ').split(' ');
   for (let i = 0; i < words.length; i++) {
     words[i] = words[i]![0]!.toUpperCase() + words[i]!.substring(1);
@@ -235,7 +287,7 @@ function capitalizeDefaultEntryName(str: string) {
 
 export default {
   getProjectSource,
-  getAvailableLocales,
   readDocsTree,
-  readDocsFile
+  readDocsFile,
+  readContentTree
 };
