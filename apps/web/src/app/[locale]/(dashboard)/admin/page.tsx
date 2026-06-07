@@ -69,7 +69,7 @@ export default async function AdminPanelHome(props: Props) {
 
         <DataWidget
           title="Game version"
-          value={systemInfo.latest_data?.game_version || '_'}
+          value={systemInfo.latest_data?.game_version || '-'}
           icon={<Asset location="minecraft:grass_block" width={20} height={20} ctx={null} />}
         />
 

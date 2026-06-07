@@ -55,11 +55,13 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
         {metadata.tabs && <InfoboxTabs tabs={metadata.tabs} ctx={ctx} />}
 
         {/* Inventory */}
-        <div className="mx-auto p-1 text-center">
-          {metadata.inventory.map((id) => (
-            <InvSlotDisplay key={id} id={id} ctx={ctx} />
-          ))}
-        </div>
+        {metadata.inventory.length > 0 && (
+          <div className="mx-auto p-1 text-center">
+            {metadata.inventory.map((id) => (
+              <InvSlotDisplay key={id} id={id} ctx={ctx} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Item Properties */}
