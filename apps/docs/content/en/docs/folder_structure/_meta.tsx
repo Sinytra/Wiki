@@ -3,7 +3,7 @@ export default {
   wiki_meta: '',
   pages: '',
   folder_meta: '',
-  homepage: '',
+  docs_index: '',
   assets: '',
   translations: '',
   game_data: ''

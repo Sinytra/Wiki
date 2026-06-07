@@ -10,6 +10,11 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
 
 export default async function ItemAsset({ location, ...props }: Props) {
   return (
-    <AssetBase display={({ asset }) => <ItemAssetDisplay asset={asset} {...props} />} location={location} {...props} />
+    <AssetBase
+      display={({ asset }) => <ItemAssetDisplay asset={asset} {...props} />}
+      location={location}
+      item
+      {...props}
+    />
   );
 }

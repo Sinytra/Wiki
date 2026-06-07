@@ -1,0 +1,29 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Documentation index
+
+The wiki provides a dedicated landing page for documentation pages displayed as "Home".
+
+By default, this shows the linked platform project's description.
+
+## Placement
+
+The index page is located under `_index.mdx` in the documentation root.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFile name="_index.mdx"/>
+          </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Usage
+
+If you'd like to provide your own contents, you can do so by creating a `_index.mdx` file in your
+documentation folder.
+
+The file's contents follow the same format as [documentation pages](pages/docs_pages), except for frontmatter
+metadata, which will be ignored.

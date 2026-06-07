@@ -156,6 +156,7 @@ async function resolveFileTree(
     c.type === 'dir' ||
     (c.type === 'file' &&
       !c.name.startsWith('_') &&
+      !c.name.startsWith('.') &&
       c.name !== DOCS_METADATA_FILE_NAME &&
       c.name !== docsIndexPageFileName &&
       (c.name === FOLDER_METADATA_FILE_NAME || c.name.endsWith('.mdx')));

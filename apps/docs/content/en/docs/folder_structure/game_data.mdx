@@ -21,13 +21,13 @@ provide names for objects that only exist on the wiki, namely custom [Recipe Typ
 
 ### Placement
 
-Language files are placed under the `.assets` folder and follow the **same structure and file naming** conventions as
+Language files are placed under the `assets` folder and follow the **same structure and file naming** conventions as
 game resource packs, meaning you can easily **copy over** your entire language directory from your mod without
 additional steps.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".assets" defaultOpen>
+        <FileTreeFolder name="assets" defaultOpen>
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="lang" defaultOpen>
                     <FileTreeFile name="en_us.json"/>
@@ -58,11 +58,11 @@ If your mod defines tags in the `c` namespace or uses tags from another mod, you
 
 ### Placement
 
-Tags are placed under the `.data` folder and follow the same structure as in-game data packs.
+Tags are placed under the `data` folder and follow the same structure as in-game data packs.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
+        <FileTreeFolder name="data" defaultOpen>
             <FileTreeFolder name="c">
                 <FileTreeFolder name="tags" defaultOpen>
                     <FileTreeFolder name="item" defaultOpen>
@@ -72,6 +72,7 @@ Tags are placed under the `.data` folder and follow the same structure as in-gam
                     </FileTreeFolder>
                 </FileTreeFolder>
             </FileTreeFolder>
+
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="tags" defaultOpen>
                     <FileTreeFile name="generator_fuels.json"/>
@@ -106,11 +107,11 @@ Custom recipe types must be defined separately and are further explained below.
 
 ### Placement
 
-Recipes are placed under the `.data` folder and follow the same structure as in-game data packs.
+Recipes are placed under the `data` folder and follow the same structure as in-game data packs.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
+        <FileTreeFolder name="data" defaultOpen>
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="recipe" defaultOpen>
                     <FileTreeFile name="generator.json"/>
@@ -155,7 +156,7 @@ Custom recipe types are placed under `recipe_type` in a namespaced data director
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
+        <FileTreeFolder name="data" defaultOpen>
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="recipe_type" defaultOpen>
                     <FileTreeFile name="grinding.json"/>
@@ -273,12 +274,14 @@ These will be displayed along with each recipe.
 
 ### Placement
 
-Workbenches are defined in a `workbenches.json` file inside the `.data` directory in your project.
+Workbenches are defined in a `workbenches.json` file inside the `data/<modid>` directory in your project.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
-            <FileTreeFile name="workbenches.json"/>
+        <FileTreeFolder name="data" defaultOpen>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFile name="workbenches.json"/>
+            </FileTreeFolder>
         </FileTreeFolder>
     </FileTreeFolder>
 </FileTree>
@@ -312,15 +315,19 @@ item stack size, hardness and explosion resistance.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
-            <FileTreeFile name="properties.json"/>
+        <FileTreeFolder name="data" defaultOpen>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFolder name="properties" defaultOpen>
+                    <FileTreeFile name="item.json"/>
+                </FileTreeFolder>
+            </FileTreeFolder>
         </FileTreeFolder>
     </FileTreeFolder>
 </FileTree>
 
 ### Format
 
-The file consists of a json object where each key represents an item/block ID and the value contains property
+The file consists of a JSON object where each key represents an item/block ID and the value contains property
 key-value pairs.
 
 We currently support the following properties:

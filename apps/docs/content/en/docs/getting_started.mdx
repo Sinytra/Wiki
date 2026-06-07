@@ -10,7 +10,7 @@ Create the directory where your documentation will be located and learn about th
     ### Create the documentation root directory
 
     Start by creating a new directory inside your project. This can be located at any path of your choice.
-    For example, you can use `docs/(your modid here)` or simply `docs`, both are equally valid.
+    We recommend using `wiki` or `docs`.
 
     <Callout>
         We also support scenarios where multiple projects have their documentation hosted in a single repository, as long
@@ -24,12 +24,14 @@ Create the directory where your documentation will be located and learn about th
     which is used to provide basic information about the project.
 
     Inside, define the following properties:
-    - `id`*
-      - Should be a unique string used to identify your project across the wiki.
-      - We recommend using your mod id, or if not available, your CurseForge/Modrinth project slug.
-    - `platforms`*
-      - Map of slugs of your project's distribution platforms.
-      - Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
+    - `schema` <span className="text-rose-400!">*</span>
+      - Always `"1"`
+    - `id` <span className="text-rose-400!">*</span>
+      - Should be a unique string used to identify your project across the wiki
+      - We recommend using your mod id, or if not available, your CurseForge/Modrinth project slug
+    - `platforms` <span className="text-rose-400!">*</span>
+      - Map of slugs of your project's distribution platforms
+      - Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well
     - `modid` (optional)
       - In-game mod id, used to identify mod content data
       - Multiple wiki projects may share the same value
@@ -48,6 +50,7 @@ Create the directory where your documentation will be located and learn about th
 
     ```json filename="sinytra-wiki.json"
     {
+        "schema": "1",
         "id": "examplemod",
         "modid": "examplemod",
         "platforms": {

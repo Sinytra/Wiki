@@ -25,14 +25,14 @@ On the Wiki website, these are located under the project's "Content" tab.
 
 ## Placement
 
-Content pages are all placed inside the `.content` folder within the project.
+Content pages are all placed inside the content folder within the project.
 
 They must be further nested at least by a single level to "shallow" cateogories, and can be further nested by another
 level to create "deep" categories.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".content" defaultOpen>
+        <FileTreeFolder name="content" defaultOpen>
             <FileTreeFolder name="tools" defaultOpen comment="Shallow category">
                 <FileTreeFile name="_meta.json"/>
 
@@ -60,6 +60,66 @@ level to create "deep" categories.
         </FileTreeFolder>
     </FileTreeFolder>
 </FileTree>
+
+## Example
+
+Below you can find a content page example from [Modular Force Field Systems](https://modrinth.com/mod/mffs)
+describing the Force Field Projector machine.
+
+It demonstrates the efficient use of content links, recipe obtaining/usage and changelogs in the page body.
+
+```mdx
+---
+id: mffs:projector
+type: block
+history:
+  - 1.1: Reduced energy usage by 5%
+  - 1.0: Added
+---
+
+# Force Field Projector
+
+The Force Field Projector is a fundamental part of the MFFS family of machines.
+It uses []($fortron) energy to project force fields of various shapes and sizes
+into the world.
+
+{/* Shows recipes for this block */}
+<PrefabObtaining />
+
+## Operation
+
+To make a force field, give the Force Field Projector a supply of []($fortron)
+by linking it to a nearby [](@mffs:fortron_capacitor).
+
+Decide which force field shape to create by crafting one of the projector mode
+items.
+Right-click the Projector and place the projector mode item into the central (red)
+slot surrounded by outwardly facing arrows.
+
+Craft a number of [Scale Modules](@mffs:scale_module) and place them into the
+left-hand slot matrix of the Force Field Projector's GUI.
+Each [](@mffs:scale_module) used in the Projector's matrix slots will increase
+the force field radius by one block.
+
+To be able to walk through a force field, a [](@mffs:biometric_identifier)
+is required.
+
+## Upgradability
+
+A Force Field Projector may be augmented with various modules.
+
+These general modules have the following effects:
+
+- [](@mffs:scale_module): Adjusts the shape of a projected force field
+- [](@mffs:speed_module): Allows the Projector to generate a force field
+  more quickly
+- [](@mffs:capacity_module): Increases the amount of Fortron the Projector
+  is able to store
+
+{/* Shows usage of this block in recipes */}
+<PrefabUsage />
+```
+
 
 ## Authoring
 
@@ -152,7 +212,7 @@ However, in most cases, the wiki will fill in the best defaults available.
   # project content index.
   # Single-item pages: will also be used in the infobox body as the preview image
   # (Optional)
-  icon: examplemod:yellow_cable
+  icon: examplemod:item/yellow_cable
 
   # Type of the documented item(s). Will be displayed under properties.
   # Currently, this is purely cosmetical.
@@ -176,7 +236,7 @@ However, in most cases, the wiki will fill in the best defaults available.
     # Single tab body (specify either this OR 'tabs', never both)
     # (Optional)
     display:
-      - examplemod:yellow_cable
+      - examplemod:item/yellow_cable
 
     # Infobox tabs (item variants)
     # (Optional)
@@ -184,11 +244,11 @@ However, in most cases, the wiki will fill in the best defaults available.
         # Tab (item variant) name
       - name: Yellow
         # Asset locations to show in large (single item or list)
-        display: examplemod:yellow_cable
+        display: examplemod:item/yellow_cable
         # --- OR ---
         display:
-          - examplemod:yellow_cable
-          - examplemod:yellow_cable_cut
+          - examplemod:item/yellow_cable
+          - examplemod:item/yellow_cable_cut
 
       - name: Orange
         display: examplemod:orange_cable
@@ -196,8 +256,8 @@ However, in most cases, the wiki will fill in the best defaults available.
     # Inventory slots to show (single item or list of asset locations)
     # (Optional)
     inventory:
-      - examplemod:yellow_cable
-      - examplemod:orange_cable
+      - examplemod:item/yellow_cable
+      - examplemod:item/orange_cable
 
   # Changelog. See parent page for details
   # (Optional)
@@ -212,6 +272,8 @@ Content pages contain a sidebar that displays various properties and stats about
 from the [Item Properties](../game_data) file. Additional properties can be specified in the frontmatter - see
 `custom` attribute under [Extended metadata](#extended-metadata).
 
+To customize the displayed item assets and inventory slots, see the `infobox` attribute.
+
 ## Interaction
 
 Content pages allow you to make excellent use of dynamic [components](../../components/interactive) provided by the
@@ -219,62 +281,3 @@ Wiki, which use project game files behind the scenes to display information.
 
 Read the [Game Data](../game_data) page to learn more about how you can easily include game data files in your Wiki
 project.
-
-## Example
-
-### Describing an in-game object
-
-Below you can find a real-life content page example from [Modular Force Field Systems](https://modrinth.com/mod/mffs)
-describing the Force Field Projector machine.
-
-It demonstrates the clever inclusion of content links, recipe obtaining/usage and changelogs in the page body.
-
-```mdx
----
-id: mffs:projector
-type: block
-history:
-  - 1.1: Improved performance
-  - 1.0: Added
----
-
-# Force Field Projector
-
-The Force Field Projector is a fundamental part of the MFFS family of machines.
-It uses []($fortron) energy to project force fields of various shapes and sizes
-into the world.
-
-<PrefabObtaining />
-
-## Operation
-
-To make a force field, give the Force Field Projector a supply of []($fortron)
-by linking it to a nearby [](@mffs:fortron_capacitor).
-
-Decide which force field shape to create by crafting one of the projector mode
-items.
-Right-click the Projector and place the projector mode item into the central (red)
-slot surrounded by outwardly facing arrows.
-
-Craft a number of [Scale Modules](@mffs:scale_module) and place them into the
-left-hand slot matrix of the Force Field Projector's GUI.
-Each [](@mffs:scale_module) used in the Projector's matrix slots will increase
-the force field radius by one block.
-
-To be able to walk through a force field, a [](@mffs:biometric_identifier)
-is required.
-
-## Upgradability
-
-A Force Field Projector may be augmented with various modules.
-
-These general modules have the following effects:
-
-- [](@mffs:scale_module): Adjusts the shape of a projected force field
-- [](@mffs:speed_module): Allows the Projector to generate a force field
-  more quickly
-- [](@mffs:capacity_module): Increases the amount of Fortron the Projector
-  is able to store
-
-<PrefabUsage />
-```
