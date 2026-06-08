@@ -20,10 +20,10 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-*/
+ */
 'use client';
 
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 
 interface Props {
   date?: Date;
@@ -31,12 +31,12 @@ interface Props {
   locale?: string;
 }
 
-export default function LastUpdated({date, children = 'Last updated on', locale}: Props) {
+export default function LastUpdated({ date, children = 'Last updated on', locale }: Props) {
   if (!date) {
     return null;
   }
   return (
-    <div className="text-sm text-neutral-400! font-medium">
+    <div className="text-sm font-medium text-neutral-400!">
       {children}{' '}
       <time
         dateTime={date.toISOString()}

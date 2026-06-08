@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import {zodResolver} from "@hookform/resolvers/zod"
-import {useForm} from "react-hook-form"
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
@@ -9,8 +9,8 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "@repo/ui/components/form";
+  FormMessage
+} from '@repo/ui/components/form';
 import {
   Dialog,
   DialogContent,
@@ -19,24 +19,24 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@repo/ui/components/dialog";
-import * as React from "react";
-import {useEffect, useState} from "react";
-import {revalidateCacheSchema} from "@/lib/forms/schemas";
-import {Input} from "@repo/ui/components/input";
-import {useTranslations} from "next-intl";
-import {cn} from "@repo/ui/lib/utils";
-import {RefreshCcwIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {useRouter} from "@/lib/locales/routing";
-import {toast} from "sonner";
-import FormSubmitButton from "@repo/ui/components/forms/FormSubmitButton";
+} from '@repo/ui/components/dialog';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { revalidateCacheSchema } from '@/lib/forms/schemas';
+import { Input } from '@repo/ui/components/input';
+import { useTranslations } from 'next-intl';
+import { cn } from '@repo/ui/lib/utils';
+import { RefreshCcwIcon } from 'lucide-react';
+import { Button } from '@repo/ui/components/button';
+import { useRouter } from '@/lib/locales/routing';
+import { toast } from 'sonner';
+import FormSubmitButton from '@repo/ui/components/forms/FormSubmitButton';
 
 export interface RevalidateCacheModalProps {
-  formAction: (data: any) => Promise<any>
+  formAction: (data: any) => Promise<any>;
 }
 
-export function RevalidateCacheModal({formAction}: RevalidateCacheModalProps) {
+export function RevalidateCacheModal({ formAction }: RevalidateCacheModalProps) {
   const [open, setOpen] = useState(false);
 
   const t = useTranslations('RevalidateCacheModal');
@@ -47,7 +47,7 @@ export function RevalidateCacheModal({formAction}: RevalidateCacheModalProps) {
     resolver: zodResolver(revalidateCacheSchema)
   });
   const action: () => void = form.handleSubmit(async (data) => {
-    const resp = await formAction(data) as any;
+    const resp = (await formAction(data)) as any;
     if (resp.success) {
       router.refresh();
       setOpen(false);
@@ -56,7 +56,7 @@ export function RevalidateCacheModal({formAction}: RevalidateCacheModalProps) {
     } else if (resp.errors) {
       for (const key in resp.errors) {
         // @ts-expect-error message
-        form.setError(key, {message: u(`errors.${resp.errors[key][0]}`)});
+        form.setError(key, { message: u(`errors.${resp.errors[key][0]}`) });
       }
     }
     return resp;
@@ -73,55 +73,42 @@ export function RevalidateCacheModal({formAction}: RevalidateCacheModalProps) {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button size="sm">
-            <RefreshCcwIcon className="mr-2 h-4 w-4"/>
+            <RefreshCcwIcon className="mr-2 h-4 w-4" />
             {t('button')}
           </Button>
         </DialogTrigger>
         <DialogContent className="outline-hidden!">
           <DialogHeader>
-            <DialogTitle>
-              {t('title')}
-            </DialogTitle>
-            <DialogDescription>
-              {t('desc')}
-            </DialogDescription>
+            <DialogTitle>{t('title')}</DialogTitle>
+            <DialogDescription>{t('desc')}</DialogDescription>
           </DialogHeader>
 
           <Form {...form}>
             <div className="relative focus:outline-hidden" tabIndex={0}>
               <form action={action} className={cn('space-y-6 focus:outline-hidden')}>
-
                 <FormField
                   control={form.control}
                   name="tag"
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem>
-                      <FormLabel>
-                        {t('tag.title')}
-                      </FormLabel>
+                      <FormLabel>{t('tag.title')}</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormDescription>
-                        {t('tag.desc')}
-                      </FormDescription>
-                      <FormMessage/>
+                      <FormDescription>{t('tag.desc')}</FormDescription>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                {form.formState.errors.root?.custom?.message &&
+                {form.formState.errors.root?.custom?.message && (
                   <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
-                      <p className="text-sm text-destructive">
-                        {form.formState.errors.root.custom.message}
-                      </p>
+                    <p className="text-sm text-destructive">{form.formState.errors.root.custom.message}</p>
                   </div>
-                }
+                )}
 
                 <DialogFooter className="flex w-full flex-row">
-                  <FormSubmitButton>
-                    {t('submit')}
-                  </FormSubmitButton>
+                  <FormSubmitButton>{t('submit')}</FormSubmitButton>
                 </DialogFooter>
               </form>
             </div>
@@ -129,5 +116,5 @@ export function RevalidateCacheModal({formAction}: RevalidateCacheModalProps) {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

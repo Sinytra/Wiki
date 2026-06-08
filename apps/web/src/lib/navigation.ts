@@ -8,11 +8,11 @@ function getDevProjectLink(id: string): string {
 }
 
 function authorDashboard(): string {
-  return `/dev`;
+  return '/dev';
 }
 
 export default {
   getProjectLink,
   getDevProjectLink,
   authorDashboard
-}
+};

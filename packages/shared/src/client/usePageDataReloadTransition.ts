@@ -1,9 +1,9 @@
-import {TransitionFunction, useEffect, useTransition} from 'react';
-import {useProgress} from '@bprogress/next';
+import { TransitionFunction, useEffect, useTransition } from 'react';
+import { useProgress } from '@bprogress/next';
 
 export default function usePageDataReloadTransition(delay?: boolean) {
   const [loading, startTransition] = useTransition();
-  const {start, stop} = useProgress();
+  const { start, stop } = useProgress();
 
   useEffect(() => {
     if (!loading) {

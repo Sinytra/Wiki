@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import {createContext, useEffect, useState} from 'react';
-import {usePathname} from "@/lib/locales/routing";
+import { createContext, useEffect, useState } from 'react';
+import { usePathname } from '@/lib/locales/routing';
 
 export type DocsSidebarType = 'left' | 'right' | 'none';
 
@@ -12,7 +12,7 @@ export interface DocsSidebarContext {
 
 export const DocsSidebarContext = createContext<DocsSidebarContext | null>(null);
 
-export default function DocsSidebarContextProvider({children}: { children: any }) {
+export default function DocsSidebarContextProvider({ children }: { children: any }) {
   const pathname = usePathname();
   const [open, setOpen] = useState<DocsSidebarType>('none');
 
@@ -28,9 +28,5 @@ export default function DocsSidebarContextProvider({children}: { children: any }
     setOpen('none');
   }, [pathname]);
 
-  return (
-    <DocsSidebarContext.Provider value={{open, setOpen}}>
-      {children}
-    </DocsSidebarContext.Provider>
-  )
+  return <DocsSidebarContext.Provider value={{ open, setOpen }}>{children}</DocsSidebarContext.Provider>;
 }

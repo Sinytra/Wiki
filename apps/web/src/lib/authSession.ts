@@ -1,7 +1,7 @@
-import {NextRequest} from "next/server";
-import {cookies} from 'next/headers';
-import {redirect} from "next/navigation";
-import envPublic from "@repo/shared/envPublic";
+import { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import envPublic from '@repo/shared/envPublic';
 
 export const SESSION_KEY = 'sessionid';
 
@@ -41,4 +41,4 @@ export default {
   login,
   logout,
   refresh
-}
+};

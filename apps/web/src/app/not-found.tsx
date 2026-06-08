@@ -1,15 +1,13 @@
-import {Button} from "@repo/ui/components/button";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {HouseIcon, TelescopeIcon} from "lucide-react";
+import { Button } from '@repo/ui/components/button';
+import { NavLink } from '@/components/navigation/link/NavLink';
+import { HouseIcon, TelescopeIcon } from 'lucide-react';
 
 export default function NotFound() {
   return (
     <div className="m-auto flex flex-col items-center justify-center gap-4 p-4">
-      <TelescopeIcon className="size-32 rounded-xs opacity-100"/>
+      <TelescopeIcon className="size-32 rounded-xs opacity-100" />
 
-      <h1 className="my-2 text-5xl text-primary">
-        404 Not Found
-      </h1>
+      <h1 className="my-2 text-5xl text-primary">404 Not Found</h1>
 
       <p className="text-secondary">Whoops! Could not find the requested resource.</p>
 
@@ -20,5 +18,5 @@ export default function NotFound() {
         </NavLink>
       </Button>
     </div>
-  )
+  );
 }

@@ -20,29 +20,29 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-*/
+ */
 'use client';
 
 import cn from 'clsx';
-import {useState} from 'react';
-import type {FC, ReactNode} from 'react';
-import {FolderIcon, FolderOpenIcon} from 'nextra/icons';
-import {Button} from 'nextra/components';
-import type {FileProps} from '@/components/FileTreeFile';
+import { useState } from 'react';
+import type { FC, ReactNode } from 'react';
+import { FolderIcon, FolderOpenIcon } from 'nextra/icons';
+import { Button } from 'nextra/components';
+import type { FileProps } from '@/components/FileTreeFile';
 
 type FolderProps = FileProps & {
-  open?: boolean
+  open?: boolean;
   /** @default false */
-  defaultOpen?: boolean
-  comment?: string
-  children: ReactNode
+  defaultOpen?: boolean;
+  comment?: string;
+  children: ReactNode;
 };
 
-export const FileTreeFolder: FC<FolderProps> = ({name, open, children, defaultOpen = false, comment, active}) => {
+export const FileTreeFolder: FC<FolderProps> = ({ name, open, children, defaultOpen = false, comment, active }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   const toggle = () => {
-    setIsOpen(v => !v);
+    setIsOpen((v) => !v);
   };
 
   const isFolderOpen = open === undefined ? isOpen : open;
@@ -54,7 +54,7 @@ export const FileTreeFolder: FC<FolderProps> = ({name, open, children, defaultOp
       <Button
         onClick={toggle}
         disabled={open}
-        className={({hover}) =>
+        className={({ hover }) =>
           cn(
             'x:flex x:items-center x:gap-1 x:break-all',
             'x:text-start group', // override browser default
@@ -64,17 +64,15 @@ export const FileTreeFolder: FC<FolderProps> = ({name, open, children, defaultOp
         }
       >
         {/* Text can shrink icon */}
-        <ComponentToUse height="14" className="x:shrink-0"/>
+        <ComponentToUse height="14" className="x:shrink-0" />
         {name}
-        {comment &&
+        {comment && (
           <span className="ml-1 text-neutral-500!">
             {'//'} {comment}
-        </span>
-        }
+          </span>
+        )}
       </Button>
-      {isFolderOpen && (
-        <ul className="x:flex x:flex-col x:gap-2 x:ps-4">{children}</ul>
-      )}
+      {isFolderOpen && <ul className="x:flex x:flex-col x:gap-2 x:ps-4">{children}</ul>}
     </li>
   );
 };

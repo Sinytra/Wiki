@@ -1,26 +1,22 @@
-import { use } from "react";
-import {Button} from "@repo/ui/components/button";
-import {ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon} from "lucide-react";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import {useTranslations} from "next-intl";
-import {setContextLocale} from "@/lib/locales/routing";
+import { use } from 'react';
+import { Button } from '@repo/ui/components/button';
+import { ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon } from 'lucide-react';
+import { NavLink } from '@/components/navigation/link/NavLink';
+import { useTranslations } from 'next-intl';
+import { setContextLocale } from '@/lib/locales/routing';
 
-export default function AuthFailure(props: { params: Promise<{ locale: string }>}) {
+export default function AuthFailure(props: { params: Promise<{ locale: string }> }) {
   const params = use(props.params);
   setContextLocale(params.locale);
   const t = useTranslations('AuthFailure');
 
   return (
     <div className="page-wrapper-ext my-auto flex flex-col items-center justify-center gap-4 p-4">
-      <ServerCrashIcon className="h-32 w-32 sm:h-48 sm:w-48" strokeWidth={1.5}/>
+      <ServerCrashIcon className="h-32 w-32 sm:h-48 sm:w-48" strokeWidth={1.5} />
 
-      <h1 className="my-2 text-3xl text-primary sm:text-5xl">
-        {t('title')}
-      </h1>
+      <h1 className="my-2 text-3xl text-primary sm:text-5xl">{t('title')}</h1>
 
-      <p className="w-3/4 text-center text-secondary sm:w-full">
-        {t('desc')}
-      </p>
+      <p className="w-3/4 text-center text-secondary sm:w-full">{t('desc')}</p>
 
       <div className="mt-4 inline-flex flex-wrap justify-center gap-4">
         <Button variant="secondary" asChild>
@@ -43,5 +39,5 @@ export default function AuthFailure(props: { params: Promise<{ locale: string }>
         </Button>
       </div>
     </div>
-  )
+  );
 }

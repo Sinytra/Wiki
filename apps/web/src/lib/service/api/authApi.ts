@@ -1,6 +1,6 @@
-import network from "@repo/shared/network";
-import {ApiCallResult} from '@repo/shared/commonNetwork';
-import {UserProfile} from "@repo/shared/types/api/auth";
+import network from '@repo/shared/network';
+import { ApiCallResult } from '@repo/shared/commonNetwork';
+import { UserProfile } from '@sinytra/wiki-api-types';
 
 async function getUserProfile(): Promise<ApiCallResult<UserProfile>> {
   return network.resolveApiCall<UserProfile>(() => network.sendSimpleRequest('auth/user'));
@@ -23,4 +23,4 @@ export default {
   deleteUserAcount,
   linkModrinthAcount,
   unlinkModrinthAcount
-}
+};

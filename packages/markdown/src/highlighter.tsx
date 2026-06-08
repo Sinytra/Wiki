@@ -10,14 +10,16 @@ function highlightParts(text: string) {
 
     if (url) {
       parts.push(
-        <span key={index} style={{color: '#A5D6FF'}}>
+        <span key={index} style={{ color: '#A5D6FF' }}>
           {url}
         </span>
       );
     } else {
       parts.push(
-        <span key={index} style={{color: '#A5D6FF'}}>
-          {quote}{content}{quote}
+        <span key={index} style={{ color: '#A5D6FF' }}>
+          {quote}
+          {content}
+          {quote}
         </span>
       );
     }
@@ -44,8 +46,7 @@ function highlightLine(line: string) {
   const level = line.charAt(1);
   if (level === 'C') {
     return colorLine(line, 'text-neutral-200 bg-red-400');
-  }
-  else if (level === 'E') {
+  } else if (level === 'E') {
     return colorLine(line, 'text-red-400');
   } else if (level === 'I') {
     return colorLine(line, 'text-[#7EE787]');
@@ -54,11 +55,7 @@ function highlightLine(line: string) {
   } else if (level === 'D') {
     return colorLine(line, '');
   } else if (level === 'T') {
-    return (
-      <span className="opacity-60">
-        {line}
-      </span>
-    );
+    return <span className="opacity-60">{line}</span>;
   }
   return <span>{line}</span>;
 }

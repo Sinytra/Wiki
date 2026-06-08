@@ -19,14 +19,24 @@ documentation.
 ## Placement
 
 Folder metadata is stored in a file called `_meta.json` and can be placed **inside any folder** within the
-documentation directory, **including the root** directory itself (e.g. at the same level as `sinytra-wiki.json`).
+documentation and content directories alongside `.mdx` files.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name="...arbitrarily_nested_path" defaultOpen>
+          <FileTreeFolder name="content">
+            <FileTreeFolder name="...arbitrarily_nested_path" defaultOpen>
+              <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
             <FileTreeFile name="_meta.json"/>
         </FileTreeFolder>
-        <FileTreeFile name="_meta.json"/>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFolder name="...arbitrarily_nested_path" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
     </FileTreeFolder>
 </FileTree>
 
@@ -45,20 +55,22 @@ You can leave the value of **page names** empty to use the page title as the dis
 
 For example:
 
-```json filename="_meta.json"
+```json5 filename="_meta.json"
 {
     "blocks": "Blocks",
     "items": "Custom folder name",
 
+    // Use page title
     "introduction.mdx": "",
+    // Override page title
     "getting_started.mdx": "Custom page name"
 }
 ```
 
 ## Icons
 
-You can add icons for each metadata entry to display in the navigation sidebar by converting the meta value to an object
-and supplying the icon's name as shown below.
+For **documentation pages**, you can add icons for each metadata entry to display in the navigation sidebar by
+converting the meta value to an object and supplying the icon's name as shown below.
 
 The supplied icon name should be a [Lucide icon](https://lucide.dev/icons/) component name (without the `Icon` suffix).
 

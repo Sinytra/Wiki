@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import {HelpCircleIcon, HomeIcon, LockKeyholeIcon, PencilRulerIcon, ScrollTextIcon, ShieldIcon} from "lucide-react";
-import SidebarNavLink from "@/components/navigation/link/SidebarNavLink";
-import CollapsibleDocsTreeBase from "@/components/docs/CollapsibleDocsTreeBase";
-import * as React from "react";
-import {useTranslations} from "next-intl";
-import {WIKI_DOCS_URL} from "@repo/shared/constants";
+import { HelpCircleIcon, HomeIcon, LockKeyholeIcon, PencilRulerIcon, ScrollTextIcon, ShieldIcon } from 'lucide-react';
+import SidebarNavLink from '@/components/navigation/link/SidebarNavLink';
+import CollapsibleDocsTreeBase from '@/components/docs/CollapsibleDocsTreeBase';
+import * as React from 'react';
+import { useTranslations } from 'next-intl';
+import { WIKI_DOCS_URL } from '@repo/shared/constants';
 
 export default function MetaDocsNavigation() {
   const t = useTranslations('MetaDocsNavigation');
@@ -17,7 +17,7 @@ export default function MetaDocsNavigation() {
           {t('about')}
         </SidebarNavLink>
 
-        <hr/>
+        <hr />
 
         <SidebarNavLink href={WIKI_DOCS_URL} icon={PencilRulerIcon}>
           {t('devs')}
@@ -27,7 +27,7 @@ export default function MetaDocsNavigation() {
         {/*  {t('components')}*/}
         {/*</SidebarNavLink>*/}
 
-        <hr/>
+        <hr />
 
         <SidebarNavLink href="/about/help" icon={HelpCircleIcon}>
           {t('help')}
@@ -43,5 +43,5 @@ export default function MetaDocsNavigation() {
         </SidebarNavLink>
       </div>
     </CollapsibleDocsTreeBase>
-  )
+  );
 }

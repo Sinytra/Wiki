@@ -1,18 +1,18 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import * as React from "react";
-import {getTranslations} from "next-intl/server";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import adminApi from "@/lib/service/api/adminApi";
-import {handleDataMigration} from "@/lib/forms/adminForms";
-import DataMigrationWidget from "@/components/dashboard/admin/migrations/DataMigrationWidget";
+import { setContextLocale } from '@/lib/locales/routing';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
+import { handleApiCall } from '@/lib/service/serviceUtil';
+import adminApi from '@/lib/service/api/adminApi';
+import { handleDataMigration } from '@/lib/forms/adminForms';
+import DataMigrationWidget from '@/components/dashboard/admin/migrations/DataMigrationWidget';
 
 type Properties = {
   params: Promise<{
     locale: string;
     project: string;
-  }>
-}
+  }>;
+};
 
 export default async function AdminMigrationsPage(props: Properties) {
   const params = await props.params;
@@ -25,15 +25,14 @@ export default async function AdminMigrationsPage(props: Properties) {
     <div className="space-y-3 pt-1">
       <DevProjectPageTitle title={t('title')} desc={t('desc')} />
 
-      {...migrations.map(migration => (
-        <DataMigrationWidget key={migration.id} migration={migration}
-                             action={handleDataMigration.bind(null, migration.id)} />
+      {...migrations.map((migration) => (
+        <DataMigrationWidget
+          key={migration.id}
+          migration={migration}
+          action={handleDataMigration.bind(null, migration.id)}
+        />
       ))}
-      {migrations.length < 1 &&
-        <p className="text-secondary">
-          {t('empty')}
-        </p>
-      }
+      {migrations.length < 1 && <p className="text-secondary">{t('empty')}</p>}
     </div>
-  )
+  );
 }

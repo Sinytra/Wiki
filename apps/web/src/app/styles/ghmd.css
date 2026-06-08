@@ -97,6 +97,10 @@ td:not(:where([class~='no-table-bs'], [class~='no-table-bs'] *)) {
     padding: 6px 0 !important;
 }
 
+.table-padding-sm-y {
+    padding: 0 6px !important;
+}
+
 th {
     padding: 6px 13px !important;
 }

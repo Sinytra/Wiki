@@ -1,5 +1,5 @@
 import posthog from 'posthog-js';
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
@@ -14,9 +14,7 @@ if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
-  integrations: [
-    Sentry.replayIntegration(),
-  ],
+  integrations: [Sentry.replayIntegration()],
 
   tracesSampleRate: 0.1,
   replaysSessionSampleRate: 0.1,

@@ -1,14 +1,26 @@
 import fs from 'fs';
-import assets, {AssetLocation, AssetProvider} from '@repo/shared/assets';
-import resourceLocation, {ResourceLocation} from '@repo/shared/resourceLocation';
+import { AssetLocation, itemAssetExtension } from '@repo/shared/assets';
+import resourceLocation from '@repo/shared/resourceLocation';
+import { ResourceLocation } from '@sinytra/wiki-api-types';
+import { LocalDocumentationSource } from './localDocsPages';
 
-async function resolveAsset(source: string, id: ResourceLocation): Promise<AssetLocation | null> {
-  const path = source + '/' + assets.getAssetResourcePath(id);
+function getAssetResourcePath(assetsRoot: string, id: ResourceLocation): string {
+  return assetsRoot + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
+}
+
+async function resolveAsset(source: LocalDocumentationSource, id: ResourceLocation): Promise<AssetLocation | null> {
+  const assetsRoot = source.format.assetsDir;
+  const path = getAssetResourcePath(assetsRoot, id);
   let src = readLocalImage(path);
 
   // Legacy asset path
   if (!src) {
-    src = readLocalImage(source + '/' + assets.getAssetResourcePath({ namespace: 'item', path: `${id.namespace}/${id.path}` }));
+    src = readLocalImage(
+      getAssetResourcePath(assetsRoot, {
+        namespace: 'item',
+        path: `${id.namespace}/${id.path}`
+      })
+    );
   }
 
   return src === null ? null : { id: resourceLocation.toString(id), src };
@@ -18,13 +30,11 @@ function readLocalImage(file: any): string | null {
   try {
     const bitmap = fs.readFileSync(file);
     return 'data:image/png;base64,' + Buffer.from(bitmap).toString('base64');
-  } catch (e) {
+  } catch {
     return null;
   }
 }
 
-const localAssets: AssetProvider = {
+export default {
   resolveAsset
 };
-
-export default localAssets;

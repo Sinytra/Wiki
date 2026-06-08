@@ -18,14 +18,16 @@ These can be used as part of crafting recipes, sidebar information or custom com
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".assets" defaultOpen>
+        <FileTreeFolder name="assets" defaultOpen>
             <FileTreeFolder name="<namespace>" defaultOpen>
                 <FileTreeFolder name="gui" defaultOpen>
                     <FileTreeFile name="electric_furnace.png"/>
                     <FileTreeFile name="progress.gif"/>
                 </FileTreeFolder>
 
-                <FileTreeFile name="example_item.png" comment="Referenced via <namespace>:example_item"/>
+                <FileTreeFolder name="item" defaultOpen>
+                    <FileTreeFile name="example_item.png" comment="Referenced via <namespace>:item/example_item"/>
+                </FileTreeFolder>
             </FileTreeFolder>
         </FileTreeFolder>
     </FileTreeFolder>
@@ -36,7 +38,7 @@ These can be used as part of crafting recipes, sidebar information or custom com
 Assets are identified using [resource locations](https://minecraft.wiki/w/Resource_location) using the same syntax as
 in the game itself. It's recommened to match asset names with the in-game IDs of the objects they belong to.
 
-Rendered project assets including **both items and blocks** should be placed under `.assets/(modid)` inside the
+Rendered project assets including **both items and blocks** should be placed under `assets/(modid)` inside the
 documentation directory, where `modid` is the namespace of each texture you wish to provide.
 
 By default, resource locations point to `.png` files. A custom file extension can be appended to the resource location
@@ -46,15 +48,19 @@ The name of the file is up to your choice.
 
 ### Examples
 
-- `examplemod:generator` - Displays `<root>/.assets/examplemod/generator.png`
+- `examplemod:overview` - Displays `<root>/assets/examplemod/overview.png`
 
 <p/>
 
-- `examplemod:gui/grinding.gif` - Displays `<root>/.assets/examplemod/gui/grinding.gif`
+- `examplemod:item/generator` - Displays `<root>/assets/examplemod/item/generator.png`
 
 <p/>
 
-- `minecraft:crafting_table`, `crafting_table` - Displays a 3D render of the Crafting table
+- `examplemod:gui/grinding.gif` - Displays `<root>/assets/examplemod/gui/grinding.gif`
+
+<p/>
+
+- `minecraft:crafting_table` or `crafting_table` - Displays a 3D render of the Crafting table
 
 ## Usage
 
@@ -70,3 +76,38 @@ The most common use cases include:
   as the asset location
 
 - Showing items in [recipes](game_data#recipes)
+
+- Playing [audio](../components/common#audio) files
+
+## Note on item assets
+
+<Callout type="important">
+  TL;DR Include inventory renders of your items under `assets/(modid)/item`
+</Callout>
+
+The wiki uses a fixed asset location for displaying inventory renders of items in certain places, e.g. mapping item IDs
+to assets.
+Typical usage includes content page icons, default infobox layouts, recipes and recipe usage prefab components.
+
+In the case of content pages and the infobox, default locations can be overriden in the page's frontmatter.
+However, for built-in components, the wiki must be able to find a suitable item asset to display
+**knowing only its ID**.
+
+The wiki will look for these assets under `<modid>:item/<item_id>`, which maps to `<root>/assets/<modid>/item/<item_id>`
+in your project.
+
+For example, to display `examplemod:generator`, the image will be placed under
+`<root>/assets/examplemod/item/generator.png`.
+
+## Allowed file types
+
+For security reasons, only certain file types can be included in wiki projects (regardless of the location).
+
+Currently, the following formats are supported:
+
+- MDX documents: `.mdx`
+- JSON data: `.json`
+- Images: `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`
+- Audio: `.ogg`, `.mp3`, `.wav`
+
+If you want to include a file that is not included here, feel free to reach out to us.

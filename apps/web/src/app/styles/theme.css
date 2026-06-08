@@ -4,7 +4,9 @@
     --background-color-primary-dim: #18181A;
     --background-color-primary-hover: #19191C;
     --background-color-primary-dark: #131314;
-    --background-color-secondary: #27272AFF; /*accent*/ /*sidebar-accent*/ /*input*/
+    --background-color-secondary: #27272AFF; /*accent*/
+    /*sidebar-accent*/
+    /*input*/
     --background-color-tertiary: var(--color-neutral-800);
     --background-color-inverse: #FAFAFAFF;
     --background-color-inverse-secondary: #EBEBF599;

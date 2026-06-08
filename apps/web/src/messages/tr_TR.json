@@ -1,983 +1,983 @@
 {
-    "Badges": {
-        "local": "Yerel",
-        "latest": "En son",
-        "admin": "Admin"
-    },
-    "NavigationHeader": {
-        "title": "Modded Minecraft Wiki",
-        "title_short": "Viki",
-        "badge": {
-            "preview": "ÖNİZLEME MODU",
-            "beta": "Beta"
-        },
-        "link": {
-            "home": "Ana Sayfa",
-            "browse": "Göz at",
-            "about": "Hakkında"
-        }
-    },
-    "NavigationFooter": {
-        "title": "Modlu Minecraft Viki",
-        "links": {
-            "navigation": {
-                "title": "Gezin",
-                "home": "Ana sayfa",
-                "browse": "Göz at",
-                "dev": "Geliştiriciler"
-            },
-            "links": {
-                "title": "Bağlantılar"
-            },
-            "resources": {
-                "title": "Kaynaklar",
-                "blog": "Blog",
-                "status": "Durum",
-                "translate": "Çevirmemize yardım edin"
-            },
-            "about": {
-                "title": "Hakkında",
-                "tos": "Kullanım Şartları",
-                "privacy": "Gizlilik Politikası",
-                "contact": "İletişim"
-            }
-        }
-    },
-    "HomePage": {
-        "title": "<highlight>Modlu Minecraft Viki</highlight>'ye hoş geldiniz",
-        "subtitle": "Minecraft ile ilgili projeleri keşfetmek, oluşturmak ve bunlara katkıda bulunmak için başvurulacak kaynağınız.",
-        "popular": {
-            "title": "Popüler Vikiler",
-            "open": "Biraz daha oku",
-            "disclaimer": "Bu projeler, görüntüleme istatistikleri aracılığıyla popülerliklerine göre vurgulanmaktadır ve Modlu Minecraft Viki tarafından resmi olarak onaylanmamaktadır."
-        },
-        "community": {
-            "title": "Topluluğumuza Katılın",
-            "users": {
-                "title": "Kullanıcılar",
-                "subtitle": "Öne çıkan projelerimizi keşfedin ve şu avantajlardan yararlanın:",
-                "docs": "Yüksek kaliteli, güncel ve versiyonları belirlenmiş belgelere erişin",
-                "contribute": "Programlama bilgisi olmadan projelere katkıda bulunun",
-                "ui": "Tüm projelerde tutarlı, kullanıcı dostu bir arayüzün keyfini çıkarın",
-                "localization": "Çoklu dil desteğinden yararlanın"
-            },
-            "authors": {
-                "title": "Yazarlar",
-                "subtitle": "Proje Kontrol Paneline erişin ve şu avantajlardan yararlanın:",
-                "vcs": "Belgeleriniz için sürüm oluşturma desteği",
-                "components": "Built-in components for recipes, assets, etc.",
-                "gradle": "Sorunsuz iş akışı için Gradle entegrasyonu",
-                "management": "Gelişmiş proje yönetimi araçları",
-                "interaction": "Kullanıcı tabanınızla doğrudan etkileşim",
-                "dashboard": "Kontrol Panelini Aç",
-                "guide": "Daha Fazla Oku"
-            }
-        },
-        "browse": "Projelere Göz Atın",
-        "highlights": {
-            "localization": {
-                "title": "Diller",
-                "desc": "Dokümanlarınızı farklı dillere çevirin"
-            },
-            "accessibility": {
-                "title": "Erişilebilir",
-                "desc": "Rahat ve duyarlı kullanıcı arayüzü"
-            },
-            "open": {
-                "title": "Açık",
-                "desc": "Kullanıcılarınızın herhangi bir programlama bilgisi gerektirmeden katkıda bulunmasına izin verin"
-            },
-            "free": {
-                "title": "Ücretsiz",
-                "desc": "Web sitemizde doküman barındırmak tamamen ücretsizdir!"
-            }
-        },
-        "about": {
-            "title": "Hakkımızda",
-            "maintainers": "Viki, Minecraft modlama topluluğu için yüksek kaliteli, ücretsiz ve açık kaynak dosyalı yazılım sunmaya odaklanmış, tutkulu geliştiricilerden oluşan özel bir ekip olan <b>Sinytra</b> tarafından oluşturulmuş ve bakımı yapılmıştır.",
-            "mission": "Amacımız, modlu Minecraft'ın sonsuz olanaklarını oluşturmak, belgelemek ve keşfetmek için gerekli araçları ve kaynakları sağlayarak mod geliştiricilerini ve oyuncuları aynı şekilde güçlendirmektir."
-        },
-        "blog": {
-            "title": "Blog Yazıları",
-            "open": "Daha Fazla Oku"
-        }
-    },
-    "BrowsePage": {
-        "sidebar": {
-            "title": "Projelere göz atın",
-            "search_filters": "Arama filtreleri...",
-            "categories": "Kategoriler"
-        },
-        "sorting": "Sırala",
-        "sort": {
-            "relevance": "Alaka düzeyi",
-            "creation_date": "Oluşturulma tarihi",
-            "popularity": "Popülerlik",
-            "az": "A'dan Z'ye",
-            "za": "Z'den A'ya"
-        },
-        "search": "Proje ara...",
-        "clear_filter": "Filtreleri temizle",
-        "no_results": "Sonuç bulunamadı!"
-    },
-    "SearchProjectTypes": {
-        "mod": "Modlar",
-        "modpack": "Mod paketleri",
-        "resourcepack": "Kaynak paketleri",
-        "datapack": "Veri paketleri",
-        "shader": "Shaderlar",
-        "plugin": "Eklentiler"
-    },
-    "ProjectTypes": {
-        "mod": "Mod",
-        "modpack": "Mod paketi",
-        "resourcepack": "Kaynak paketi",
-        "datapack": "Veri paketi",
-        "shader": "Shader",
-        "plugin": "Eklenti"
-    },
-    "LoadingContent": {
-        "message": "Yükleniyor..."
-    },
-    "MetaDocsNavigation": {
-        "title": "Gezin",
-        "about": "Hakkında",
-        "devs": "Author guide",
-        "components": "Components",
-        "help": "Yardım alın",
-        "tos": "Kullanım Koşulları",
-        "privacy": "Gizlilik Politikası",
-        "security": "Güvenlik Uyarısı"
-    },
-    "Login": {
-        "title": "Giriş gerekli",
-        "desc": "Erişmeye çalıştığınız sayfa oturum açmanızı gerektirmektedir.",
-        "prompt": "Devam etmek için lütfen GitHub hesabınızı kullanın.",
-        "button": "GitHub'la oturum açın"
-    },
-    "Preview": {
-        "title": "Önizleme modu etkin",
-        "desc": "Önizleme modu, minimal düzeyde bir kullanıcı arayüzü sağlar ve belgelerinizi yayınlanmadan önce yerel olarak hazırlamaya odaklanmanıza olanak tanır.",
-        "roots": "Mevcut yerel dokümantasyon kökleri",
-        "open": "Açık"
-    },
-    "DocsProjectInfo": {
-        "title": "Proje bilgileri",
-        "type": "Tür",
-        "author": "Yazar",
-        "tags": "Etiketler",
-        "latest": {
-            "title": "En son sürüm",
-            "unknown": "Yok"
-        },
-        "license": {
-            "title": "Lisans",
-            "custom": "Özel",
-            "unknown": "Bilinmiyor",
-            "arr": "Her hakkı saklıdır"
-        }
-    },
-    "ProjectCategories": {
-        "adventure": "Macera",
-        "cursed": "Lanetli",
-        "decoration": "Dekorasyon",
-        "economy": "Ekonomi",
-        "equipment": "Ekipman",
-        "food": "Yemek",
-        "game-mechanics": "Oyun Mekaniği",
-        "library": "Kütüphane",
-        "magic": "Büyü",
-        "management": "Yönetim",
-        "minigame": "Mini Oyun",
-        "mobs": "Canlılar",
-        "optimization": "Optimizasyon",
-        "social": "Sosyal",
-        "storage": "Depolama",
-        "technology": "Teknoloji",
-        "transportation": "Taşıma",
-        "utility": "İşlevsellik",
-        "worldgen": "Dünya Şekli",
-        "server-utility": "Sunucu İşlevselliği",
-        "armor-weapons-tools": "Zırh, Aletler ve Silahlar",
-        "library-api": "API ve Kütüphane",
-        "adventure-rpg": "Macera ve RPG",
-        "world-gen": "Dünya Şekli",
-        "cosmetic": "Kozmetik",
-        "mc-food": "Yemek",
-        "performance": "Performans",
-        "map-information": "Harita ve Bilgi",
-        "bug-fixes": "Hata Düzeltmeleri",
-        "mc-addons": "Eklentiler",
-        "education": "Eğitim",
-        "mc-miscellaneous": "Çeşitli",
-        "redstone": "Kızıltaş",
-        "utility-qol": "İşlevsellik ve Yaşam Kalitesi",
-        "mc-creator": "MCreator"
-    },
-    "PageEditControls": {
-        "edit_gh": "Bu sayfayı düzenle",
-        "report": "Bu sayfayı bildir",
-        "report_button": "Bu sayfayı bildir",
-        "last_updated": "Son güncelleme: <date></date>"
-    },
-    "Report": {
-        "title": "Bir dokümantasyon sayfasını bildir",
-        "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-        "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
-        "confidential": "Gizliliğiniz bizim için önemlidir ve bu bilgiler her zaman gizli tutulacaktır.",
-        "privacy": "Daha fazla bilgi için lütfen <link>Gizlilik Politikamıza</link> bakın.",
-        "form": {
-            "id": {
-                "title": "Proje Kimliği",
-                "desc": "Proje kimliğini bildir."
-            },
-            "path": {
-                "title": "Sayfa yolu",
-                "desc": "Bildirilen dokümantasyon sayfası yolu."
-            },
-            "locale": {
-                "title": "Locale",
-                "desc": "Applied if the content lies within a localized subpath.",
-                "placeholder": "Yok"
-            },
-            "version": {
-                "title": "Version",
-                "desc": "Applied if the content lies within a named version.",
-                "placeholder": "Yok"
-            },
-            "reason": {
-                "title": "Sebep*",
-                "placeholder": "Select a reason for reporting this content",
-                "desc": "Reason for reporting this content.",
-                "dislike": "Sadece bundan hoşlanmadım"
-            },
-            "details": {
-                "title": "Detaylar*",
-                "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
-                "desc": "Sorunla ilgili ek ayrıntılar."
-            },
-            "dislike": {
-                "title": "We understand that you may not like this content, and that's totally okay!",
-                "desc": "Ancak ne yazık ki bu, bir projeyi bildirmek için geçerli bir neden değildir.",
-                "suggestion": "Would you like to look for something else to explore instead?",
-                "explore": "Projeleri keşfedin"
-            },
-            "success": "Rapor başarıyla gönderildi"
-        }
-    },
-    "ProjectReportReason": {
-        "spam": "Spam",
-        "copyright": "Telif Hakkı İhlali",
-        "content_rules": "İçerik Kurallarını İhlal Ediyor",
-        "tos": "Kullanım Şartlarını İhlal Ediyor",
-        "unknown": "Bilinmiyor"
-    },
-    "ProjectReportStatus": {
-        "new": "New",
-        "dismissed": "Dismissed",
-        "accepted": "Accepted",
-        "unknown": "Bilinmiyor"
-    },
-    "ProjectReportType": {
-        "project": "Proje",
-        "docs": "Docs page",
-        "content": "Content page",
-        "unknown": "Bilinmiyor"
-    },
-    "ViewReportPage": {
-        "reports": "Reports",
-        "title": "Report details",
-        "desc": "Viewing report details for {id}",
-        "details": {
-            "reporter": "Reported by",
-            "project_id": "Proje Kimliği",
-            "path": "Yol",
-            "body": "Body",
-            "reason": "Sebep",
-            "created_at": "Oluşturulma tarihi",
-            "status": "Durum",
-            "type": "Tür",
-            "locale": "Locale",
-            "version": "Version"
-        },
-        "actions": {
-            "dismiss": "Dismiss",
-            "accept": "Accept"
-        },
-        "toast": {
-            "accept": "Report accepted",
-            "dismiss": "Report dismissed"
-        }
-    },
-    "SubmitButton": {
-        "title": "Gönder"
-    },
-    "Callout": {
-        "default": "Dikkat et!",
-        "info": "Info",
-        "warning": "Warning",
-        "danger": "Danger"
-    },
-    "ProjectRegisterForm": {
-        "button": "New Project",
-        "title": "Projeyi kaydet",
-        "desc": "Viki'ye yeni bir proje kaydedin.",
-        "repo": {
-            "title": "Depo bağlantısı",
-            "desc": "Bu, deponuzu klonlamak için kullandığınız adrestir.",
-            "placeholder": "https://github.com/ÖrnekKullanıcı/ÖrnekMod"
-        },
-        "branch": {
-            "title": "Dal",
-            "desc": "Birincil dal referans. Metadata dosyanıza eklenecek ek dallar belirtebilirsiniz."
-        },
-        "path": {
-            "title": "Belge köküne giden yol",
-            "desc": "Metadata dosyasını içeren klasörün yolu."
-        },
-        "admin": "Viki yönetici ayarları",
-        "is_community": {
-            "title": "Topluluk tarafından sürdürülen proje"
-        },
-        "errors": {
-            "details": "Detayları göster"
-        },
-        "connect_modrinth": {
-            "desc": "Platform projesi sahipliğini istediğiniz zaman kolayca doğrulamak için Ayarlar'da <b>Modrinth hesabınızı</b> bağlayın.",
-            "settings": "Ayarları Aç"
-        },
-        "submit": "Gönder",
-        "success": {
-            "title": "Proje başarıyla kaydedildi",
-            "desc": "Artık projenin dokümanlar sayfasına gidebilirsiniz"
-        },
-        "submitting": "Gönderiliyor...",
-        "verify_modrinth": "Modrinth'i kullanarak doğrulama"
-    },
-    "ProjectSettingsForm": {
-        "title": "Projeyi düzenle",
-        "desc": "Mevcut bir projenin ayarlarını düzenleyin.",
-        "button": "Ayarlar",
-        "success": {
-            "title": "Proje başarıyla güncellendi",
-            "desc": "Artık projenin dokümanlar sayfasına gidebilirsiniz"
-        }
-    },
-    "ProjectDeleteForm": {
-        "trigger": "Delete project",
-        "title": "Emin misiniz?",
-        "desc": "Bu eylem geri alınamaz. Bu, projenizi kalıcı olarak silecek ve ilgili tüm verileri sunucularımızdan kaldıracaktır.",
-        "cancel": "Vazgeç",
-        "submit": "Sil",
-        "success": "Proje başarıyla silindi"
-    },
-    "FormActions": {
-        "errors": {
-            "unauthorized": "Kullanıcı kimlik doğrulama hatası",
-            "internal": "Dahili sunucu hatası. Lütfen daha sonra tekrar deneyin.",
-            "unknown": "Bilinmeyen bir hata oluştu. Lütfen daha sonra yeniden deneyin.",
-            "no_platforms": "Metadata'da tanımlanmış platform projesi yok.",
-            "no_project": "Platform projesi bulunamadı. Lütfen metadata \"bilgi\" alanının doğru olduğundan emin olun.",
-            "unsupported_type": "Desteklenmeyen proje türü",
-            "ownership": "Proje sahipliği doğrulanamadı",
-            "cf_unavailable": "CurseForge projelerinin kaydedilmesi aktif değil",
-            "requires_auth": "Depo bağlantısı oturum açma kimlik bilgileri gerektiriyor ancak hiçbiri sağlanmadı",
-            "no_repository": "Depo bulunamadı",
-            "no_branch": "Geçersiz dal belirtildi",
-            "no_path": "Belirtilen yolda metadata dosyası bulunamadı",
-            "invalid_meta": "Metadata dosyası geçersiz",
-            "unsupported": "Henüz bitirilemedi",
-            "exists": "Proje zaten var.",
-            "not_found": "Proje mevcut değil",
-            "illegal_id": "Illegal project ID",
-            "not_owner": "User is not authorized to register this project"
-        }
-    },
-    "CommunityBadge": {
-        "title": "Topluluk",
-        "desc": "Topluluk tarafından tutulan resmi olmayan belgeler"
-    },
-    "DocsPageNotFoundError": {
-        "title": "Bu sayfayı kaybettik",
-        "desc": "İstenilen dokümantasyon sayfası şu anda mevcut değil.",
-        "suggestion": "Lütfen daha sonra tekrar deneyin veya bu sorunu proje yazarına bildirin.",
-        "submit": "Sorun bildir",
-        "return": "Ana Sayfaya Dön"
-    },
-    "GetStartedButton": {
-        "title": "Create your first project"
-    },
-    "ProjectHomepage": {
-        "overview": {
-            "intro": "<project></project> is a {type} created by <authors></authors>.",
-            "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
-            "tags": "Tagged:"
-        },
-        "description": {
-            "title": "Description"
-        },
-        "navigation": {
-            "title": "Gezin",
-            "docs": {
-                "title": "Browse documentation",
-                "desc": "{pages} pages available."
-            },
-            "content": {
-                "title": "Browse content",
-                "desc": "{items} in-game items."
-            }
-        },
-        "links": {
-            "title": "Bağlantılar",
-            "website": "Website",
-            "source_code": "Source code"
-        },
-        "license": {
-            "title": "Lisanslar",
-            "project": "Project License",
-            "arr": "Her hakkı saklıdır",
-            "unknown": "Bilinmiyor",
-            "wiki": "Wiki License",
-            "default": "Wiki content <link>partially made available</link> under the <license></license> license."
-        }
-    },
-    "ProjectDocsHomepage": {
-        "title": "Ana Sayfa"
-    },
-    "DocsHomepagePlaceholder": {
-        "title": "Ana sayfa yer tutucusu",
-        "subtitle": "API kısıtlamaları nedeniyle yerel ortamlardaki CurseForge projeleri için proje metadata'ları mevcut değildir.",
-        "replace": "Merak etme! Bu yer tutucuyu, canlıvwiki web sitesinde dağıtıldığında projenin gerçek açıklamasıyla değiştireceğiz."
-    },
-    "DocsSearchBar": {
-        "placeholder": "Viki içeriği ara...",
-        "no_results": "Sonuç bulunamadı!",
-        "loading": "Mükemmel sonuçlar bulunuyor...",
-        "results": "<highlight>{count}</highlight> <highlight>{total}</highlight> sonuçları gösteriliyor",
-        "close": "Kapatmak için <kbd>ESC'ye<kbd> bas"
-    },
-    "DocsChangelogPage": {
-        "title": "Değişiklikler"
-    },
-    "DocsLeftSidebar": {
-        "title": "Dökümantasyon",
-        "homepage": "Ana Sayfa"
-    },
-    "DocsContentRightSidebar": {
-        "title": "Girdi Bilgisi"
-    },
-    "DocsNonContentRightSidebar": {
-        "title": "Bu sayfada"
-    },
-    "DocsVersionSelector": {
-        "placeholder": "Sürümü seçin",
-        "latest": "En son"
-    },
-    "ModVersionRange": {
-        "desc": "+{count} daha"
-    },
-    "LanguageSelect": {
-        "placeholder": "Dillerde Ara...",
-        "no_results": "Dil bulunamadı."
-    },
-    "ProjectStatus": {
-        "unknown": "Bilinmiyor",
-        "loading": "Kullanıma hazırlanıyor",
-        "healthy": "Yüklendi",
-        "at_risk": "Requires attention",
-        "error": "Hatalı"
-    },
-    "DevProjectsListPage": {
-        "project": {
-            "manage": "Yönet"
-        },
-        "empty": {
-            "primary": "Looks like you haven't created any projects yet",
-            "secondary": "<guide>Yazar kılavuzumuzu</guide> okuyarak başlayın."
-        }
-    },
-    "DevProjectPage": {
-        "breadcrumbs": {
-            "home": "Ana Sayfa"
-        },
-        "toolbar": {
-            "view": "Görüntüle",
-            "deployments": "Deployments"
-        },
-        "overview": {
-            "title": "Project overview",
-            "desc": "Project information summary"
-        },
-        "source": {
-            "title": "Proje Kaynağı",
-            "repo": "Depo",
-            "branch": "Dal",
-            "path": "Yol",
-            "public": "Herkese Açık"
-        },
-        "platforms": {
-            "title": "Platformlar",
-            "desc": "Project hosting platforms",
-            "headers": {
-                "platform": "Platform",
-                "slug": "Kimlik",
-                "link": "Bağlantı"
-            },
-            "open": "Açık"
-        },
-        "information": {
-            "title": "Bilgi",
-            "desc": "Resolved information",
-            "type": "Tür",
-            "status": "Durum",
-            "created_at": "Oluşturulma tarihi"
-        },
-        "revision": {
-            "title": "Current git revision",
-            "reloading": "Reloading project, please stand by...",
-            "not_found": "No revision found. Try reloading the project."
-        }
-    },
-    "DevProjectSettingsPage": {
-        "title": "Project settings",
-        "desc": "Configure project properties"
-    },
-    "DevProjectVersionsPage": {
-        "title": "Project versions",
-        "desc": "Browse project content versions"
-    },
-    "DevProjectHealthPage": {
-        "title": "Project health",
-        "desc": "Monitor project status and issues",
-        "errors": {
-            "title": "Project issue report",
-            "desc": "Ongoing warnings & errors",
-            "empty": "No issues found"
-        }
-    },
-    "DevProjectMembersPage": {
-        "title": "Project members",
-        "desc": "Manage project members & permissions",
-        "roles": {
-            "owner": "Owner"
-        },
-        "actions": {
-            "manage": "Yönet"
-        }
-    },
-    "DevProjectContentItemsPage": {
-        "title": "Project items",
-        "desc": "Browse project items"
-    },
-    "DevProjectContentRecipesPage": {
-        "title": "Project recipes",
-        "desc": "Browse project crafting recipes"
-    },
-    "DevProjectContentTagsPage": {
-        "title": "Project tags",
-        "desc": "Browse project tags"
-    },
-    "DevProjectLogs": {
-        "title": "Deployment log",
-        "show": "Göster",
-        "unloaded": "Yüklenemedi",
-        "waiting": "Sunucu bekleniyor...",
-        "loading": "Yükleniyor...",
-        "error": "Günlükler yüklenirken hata oluştu",
-        "toast": {
-            "success": "Proje kurulumu tamamlandı",
-            "error": "Proje kurulumu sırasında hata oluştu"
-        }
-    },
-    "DeveloperSidebar": {
-        "teams": {
-            "personal": "Kişisel"
-        },
-        "groups": {
-            "projects": "Projeler",
-            "platform": "Platform",
-            "admin": "Administration"
-        },
-        "nav": {
-            "projects": "Projeler",
-            "documentation": "Dökümantasyon",
-            "settings": "Ayarlar",
-            "admin": "System settings"
-        }
-    },
-    "DevSidebarContextSwitcher": {
-        "title": "Ekipler"
-    },
-    "DevSidebarUser": {
-        "logout": {
-            "button": "Çıkış yap",
-            "title": "Çıkış",
-            "desc": "Çıkış yapılıyor..."
-        },
-        "unknown_avatar": "Yok"
-    },
-    "UserSettings": {
-        "breadcrumbs": {
-            "home": "Ana Sayfa",
-            "settings": "Ayarlar"
-        },
-        "profile": {
-            "bio": "Modlu Minecraft Viki oluşturucu",
-            "join_date": "{date}'de katıldı",
-            "admin": "Admin"
-        },
-        "connections": {
-            "title": "Bağlantılar",
-            "modrinth": {
-                "title": "Modrinth hesabı",
-                "desc": "Proje sahipliğini doğrulamak için kullanılır",
-                "connect": "Bağla",
-                "view": "Görüntüle",
-                "disconnect": "Bağlantıyı kes"
-            }
-        },
-        "account": {
-            "title": "Hesabım",
-            "delete": {
-                "title": "Hesabı sil",
-                "desc": "Tüm hesap verilerini sonsuza kadar sil",
-                "button": "Hesabı sil"
-            },
-            "delete_modal": {
-                "title": "Hesabı sil",
-                "desc": "Bu hesabı silmek istediğinizden emin misiniz? Bu, geri alınamayacak yıkıcı bir eylemdir.",
-                "cancel": "Vazgeç",
-                "button": "Kalıcı olarak sil"
-            }
-        },
-        "toast": {
-            "unlink": {
-                "success": "Hesabın bağlantısı başarıyla kaldırıldı",
-                "error": "Hesabın bağlantısı kaldırılırken hata oluştu"
-            }
-        }
-    },
-    "AuthFailure": {
-        "title": "Kimlik denetimi başarısız",
-        "desc": "Oturum açmaya çalışırken beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
-        "status": "Durumu kontrol et",
-        "return": "Ana sayfaya geri dön",
-        "report": "Hata Bildir"
-    },
-    "BuiltinRecipeTypes": {
-        "blasting": "Blasting",
-        "campfire_cooking": "Campfire cooking",
-        "crafting_shaped": "Shaped Crafting",
-        "crafting_shapeless": "Shapeless Crafting",
-        "smelting": "Smelting",
-        "smithing_transform": "Smithing",
-        "smoking": "Smoking",
-        "stonecutting": "Stonecutting"
-    },
-    "DocsEntryTabs": {
-        "history": "Show history",
-        "home": "Show content"
-    },
-    "DevProjectSidebar": {
-        "groups": {
-            "project": "Proje",
-            "content": "Content"
-        },
-        "nav": {
-            "home": "Overview",
-            "settings": "Ayarlar",
-            "members": "Members",
-            "deployments": "Deployments",
-            "health": "Health",
-            "versions": "Versions",
-            "content": "Items",
-            "tags": "Etiketler",
-            "recipes": "Recipes"
-        }
-    },
-    "PrefabObtaining": {
-        "recipe": "Recipe"
-    },
-    "PrefabUsage": {
-        "usage": "Usage"
-    },
-    "AdminSidebar": {
-        "groups": {
-            "home": "Ana Sayfa",
-            "data": "Data",
-            "system": "System",
-            "moderation": "Moderation"
-        },
-        "nav": {
-            "home": "Overview",
-            "data_imports": "Data Imports",
-            "access_keys": "Access Keys",
-            "migrations": "Migrations",
-            "users": "Kullanıcılar",
-            "projects": "Projeler",
-            "config": "Configuration",
-            "reports": "Reports",
-            "audit_log": "Audit Log",
-            "return": "Return"
-        }
-    },
-    "AdminDataImports": {
-        "title": "System data imports",
-        "desc": "Imported game data"
-    },
-    "AdminMigrations": {
-        "title": "Data migrations",
-        "desc": "Available data migrations"
-    },
-    "EmptyDataTable": {
-        "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
-    },
-    "DataTable": {
-        "no_results": "No results.",
-        "filter": "Filter rows...",
-        "previous": "Previous",
-        "next": "Next"
-    },
-    "DevProjectVersionsTable": {
-        "name": "Name",
-        "branch": "Dal",
-        "empty": {
-            "title": "No additional versions were found in your project.",
-            "desc": "Read the <link>author guide</link> to learn more about project versioning."
-        }
-    },
-    "DevProjectItemsTable": {
-        "icon": "Icon",
-        "id": "Identifier",
-        "name": "Name",
-        "path": "Page path (internal)",
-        "actions": {
-            "open": "Open menu",
-            "title": "Actions",
-            "view": "Görüntüle"
-        },
-        "empty": {
-            "title": "No items were found in your project.",
-            "desc": "Project items are automatically detected from content pages and included game files."
-        }
-    },
-    "DevProjectTagsTable": {
-        "id": "Identifier",
-        "items": "Item count",
-        "empty": {
-            "title": "No tags were found in your project."
-        }
-    },
-    "DevProjectRecipesTable": {
-        "type": "Tür",
-        "id": "Identifier",
-        "empty": {
-            "title": "No recipes were found in your project."
-        }
-    },
-    "ResolvedProjectRecipe": {
-        "type": "Recipe Type",
-        "input": "Ingredients",
-        "output": "Outputs",
-        "preview": "Recipe preview",
-        "workbenches": "You can craft this recipe using:"
-    },
-    "DevProjectDeploymentsPage": {
-        "title": "Project deployments",
-        "desc": "Manage deployed project versions"
-    },
-    "DevProjectDeploymentsTable": {
-        "id": "ID",
-        "commit": "Commit",
-        "created_at": "Deploy time",
-        "user_id": "Deployed by",
-        "status": "Durum"
-    },
-    "DeploymentStatus": {
-        "unknown": "Yok",
-        "created": "Queued",
-        "loading": "Loading",
-        "success": "Success",
-        "error": "Failed"
-    },
-    "DeleteDeploymentModal": {
-        "trigger": "Sil",
-        "title": "Emin misiniz?",
-        "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
-        "cancel": "Vazgeç",
-        "submit": "Sil",
-        "success": "Deployment deleted successfully"
-    },
-    "DeployProjectModal": {
-        "button": "Deploy",
-        "title": "New deployment",
-        "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
-        "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
-        "tertiary": "Size kolaylık sağlamak için, bunun yerine <link>Gradle eklentimizi</link> kullanarak dokümanları yayınladıktan sonra otomatik olarak yeniden doğrulamanızı öneririz.",
-        "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Vazgeç",
-        "submit": "Deploy"
-    },
-    "LiveProjectDeployConnection": {
-        "loading": "Deploying project...",
-        "success": "Project deploy successful",
-        "error": "Project deploy failed",
-        "view": "Görüntüle"
-    },
-    "DevProjectDeploymentPage": {
-        "deployments": "Deployments",
-        "title": "Deployment Details",
-        "git-config": {
-            "title": "Source coordinates"
-        }
-    },
-    "ProjectGitRevision": {
-        "title": "Git revision",
-        "title_current": "Current Git revision",
-        "loading": "Deploying project, please stand by...",
-        "not_found": "Project has no active deployment"
-    },
-    "ProjectIssueWidget": {
-        "file": "File: <file></file>",
-        "date": "Created at: <date></date>",
-        "version": "Version: <version></version>"
-    },
-    "ProjectIssueLevel": {
-        "warning": "Warning",
-        "error": "Error",
-        "unknown": "Bilinmiyor"
-    },
-    "ProjectIssueType": {
-        "meta": "Invalid project metadata",
-        "file": "Invalid file",
-        "git_clone": "Error cloning repository",
-        "git_info": "Error getting commit information",
-        "ingestor": "Error importing content",
-        "internal": "Internal server error",
-        "page_render": "Invalid page",
-        "unknown": "Unknown error"
-    },
-    "DeploymentIssues": {
-        "title": "Deployment issues",
-        "empty": "No issues found.",
-        "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
-    },
-    "ProjectError": {
-        "requires_auth": "Depo bağlantısı oturum açma kimlik bilgileri gerektiriyor ancak hiçbiri sağlanmadı",
-        "no_repository": "Depo bulunamadı",
-        "repo_too_large": "Repository exceeds allowed file size",
-        "no_branch": "Geçersiz dal belirtildi",
-        "no_path": "Belirtilen yolda metadata dosyası bulunamadı",
-        "invalid_meta": "Metadata dosyası geçersiz",
-        "invalid_page": "Failed to render page contents",
-        "duplicate_page": "Duplicate page",
-        "unknown_recipe_type": "Unknown recipe type",
-        "invalid_ingredient": "Invalid ingredient",
-        "invalid_file": "Failed to parse file",
-        "invalid_format": "Invalid file format",
-        "invalid_resloc": "Invalid Resource Location",
-        "invalid_version_branch": "Version branch does not exist",
-        "missing_platform_project": "Missing platform project",
-        "no_page_title": "Page is missing title",
-        "missing_required_attribute": "Page is missing a required metadata attribute",
-        "unknown": "Unknown error"
-    },
-    "AdminReports": {
-        "title": "Project Reports",
-        "desc": "Manage project reports"
-    },
-    "ResponsiveTable": {
-        "expand": "Expand"
-    },
-    "UsageContentList": {
-        "more": "Show more ..."
-    },
-    "RecipeUsage": {
-        "description": "Can be used to create the following items:",
-        "empty": "Has no known usages in crafting."
-    },
-    "ContentCategory": {
-        "all": "All",
-        "other": "Other"
-    },
-    "ContentChangelog": {
-        "toggle": "Show changelog"
-    },
-    "ContentProperties": {
-        "bool": {
-            "true": "Yes",
-            "false": "No"
-        },
-        "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
-        },
-        "properties": {
-            "id": "ID",
-            "source_mod": "Source mod",
-            "type": "Tür",
-            "stack_size": "Stack size",
-            "required_tool": "Tool",
-            "blast_resistance": "Blast resistance",
-            "hardness": "Hardness",
-            "flammable": "Flammable"
-        }
-    },
-    "DocsLink": {
-        "not_found": "(Not found)"
-    },
-    "AdminAccessKeys": {
-        "title": "System access keys",
-        "desc": "Provides auth for when non-interactive access is needed, such as CI"
-    },
-    "CreateAccessKeyModal": {
-        "title": "Create access key",
-        "desc": "New system access key",
-        "button": "Create",
-        "name": {
-            "title": "Name",
-            "desc": "Give your key a name",
-            "placeholder": "Deploy staging"
-        },
-        "days_valid": {
-            "title": "Days of validity",
-            "desc": "Number of days the key is valid for. Use 0 for no expiration."
-        },
-        "submit": "Gönder",
-        "submitting": "Gönderiliyor..."
-    },
-    "SaveAccessKeyModal": {
-        "title": "Access Key",
-        "desc": "Save your generated access key",
-        "key": "Access Key",
-        "note": "Keep the key value safe. You won't be able to access it again.",
-        "valid": "The key is valid until {expiry}.",
-        "close": "Done"
-    },
-    "DeleteAccessKeyModal": {
-        "title": "Delete Access Key",
-        "desc": "Invalidate and delete access key",
-        "body": "This will forever delete the access key <name></name>.",
-        "cancel": "Vazgeç",
-        "submit": "Sil",
-        "success": "Access Key deleted successfully"
-    },
-    "CopyButton": {
-        "copied": "Copied to clipboard"
-    },
-    "InteractiveComponentPlaceholder": {
-        "title": "Content unavailable in preview mode",
-        "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
-    },
-    "RevalidateCacheModal": {
-        "title": "Revalidate cache tag",
-        "desc": "Manually revalidate a cache tag. Used for diagnostic purposes.",
-        "button": "Revalidate cache tag",
-        "tag": {
-            "title": "Cache Tag",
-            "desc": "The cache tag to revalidate"
-        },
-        "success": "Cache tag invalidated successfully"
+  "Badges": {
+    "local": "Yerel",
+    "latest": "En son",
+    "admin": "Admin"
+  },
+  "NavigationHeader": {
+    "title": "Modded Minecraft Wiki",
+    "title_short": "Viki",
+    "badge": {
+      "preview": "ÖNİZLEME MODU",
+      "beta": "Beta"
+    },
+    "link": {
+      "home": "Ana Sayfa",
+      "browse": "Göz at",
+      "about": "Hakkında"
     }
+  },
+  "NavigationFooter": {
+    "title": "Modlu Minecraft Viki",
+    "links": {
+      "navigation": {
+        "title": "Gezin",
+        "home": "Ana sayfa",
+        "browse": "Göz at",
+        "dev": "Geliştiriciler"
+      },
+      "links": {
+        "title": "Bağlantılar"
+      },
+      "resources": {
+        "title": "Kaynaklar",
+        "blog": "Blog",
+        "status": "Durum",
+        "translate": "Çevirmemize yardım edin"
+      },
+      "about": {
+        "title": "Hakkında",
+        "tos": "Kullanım Şartları",
+        "privacy": "Gizlilik Politikası",
+        "contact": "İletişim"
+      }
+    }
+  },
+  "HomePage": {
+    "title": "<highlight>Modlu Minecraft Viki</highlight>'ye hoş geldiniz",
+    "subtitle": "Minecraft ile ilgili projeleri keşfetmek, oluşturmak ve bunlara katkıda bulunmak için başvurulacak kaynağınız.",
+    "popular": {
+      "title": "Popüler Vikiler",
+      "open": "Biraz daha oku",
+      "disclaimer": "Bu projeler, görüntüleme istatistikleri aracılığıyla popülerliklerine göre vurgulanmaktadır ve Modlu Minecraft Viki tarafından resmi olarak onaylanmamaktadır."
+    },
+    "community": {
+      "title": "Topluluğumuza Katılın",
+      "users": {
+        "title": "Kullanıcılar",
+        "subtitle": "Öne çıkan projelerimizi keşfedin ve şu avantajlardan yararlanın:",
+        "docs": "Yüksek kaliteli, güncel ve versiyonları belirlenmiş belgelere erişin",
+        "contribute": "Programlama bilgisi olmadan projelere katkıda bulunun",
+        "ui": "Tüm projelerde tutarlı, kullanıcı dostu bir arayüzün keyfini çıkarın",
+        "localization": "Çoklu dil desteğinden yararlanın"
+      },
+      "authors": {
+        "title": "Yazarlar",
+        "subtitle": "Proje Kontrol Paneline erişin ve şu avantajlardan yararlanın:",
+        "vcs": "Belgeleriniz için sürüm oluşturma desteği",
+        "components": "Built-in components for recipes, assets, etc.",
+        "gradle": "Sorunsuz iş akışı için Gradle entegrasyonu",
+        "management": "Gelişmiş proje yönetimi araçları",
+        "interaction": "Kullanıcı tabanınızla doğrudan etkileşim",
+        "dashboard": "Kontrol Panelini Aç",
+        "guide": "Daha Fazla Oku"
+      }
+    },
+    "browse": "Projelere Göz Atın",
+    "highlights": {
+      "localization": {
+        "title": "Diller",
+        "desc": "Dokümanlarınızı farklı dillere çevirin"
+      },
+      "accessibility": {
+        "title": "Erişilebilir",
+        "desc": "Rahat ve duyarlı kullanıcı arayüzü"
+      },
+      "open": {
+        "title": "Açık",
+        "desc": "Kullanıcılarınızın herhangi bir programlama bilgisi gerektirmeden katkıda bulunmasına izin verin"
+      },
+      "free": {
+        "title": "Ücretsiz",
+        "desc": "Web sitemizde doküman barındırmak tamamen ücretsizdir!"
+      }
+    },
+    "about": {
+      "title": "Hakkımızda",
+      "maintainers": "Viki, Minecraft modlama topluluğu için yüksek kaliteli, ücretsiz ve açık kaynak dosyalı yazılım sunmaya odaklanmış, tutkulu geliştiricilerden oluşan özel bir ekip olan <b>Sinytra</b> tarafından oluşturulmuş ve bakımı yapılmıştır.",
+      "mission": "Amacımız, modlu Minecraft'ın sonsuz olanaklarını oluşturmak, belgelemek ve keşfetmek için gerekli araçları ve kaynakları sağlayarak mod geliştiricilerini ve oyuncuları aynı şekilde güçlendirmektir."
+    },
+    "blog": {
+      "title": "Blog Yazıları",
+      "open": "Daha Fazla Oku"
+    }
+  },
+  "BrowsePage": {
+    "sidebar": {
+      "title": "Projelere göz atın",
+      "search_filters": "Arama filtreleri...",
+      "categories": "Kategoriler"
+    },
+    "sorting": "Sırala",
+    "sort": {
+      "relevance": "Alaka düzeyi",
+      "creation_date": "Oluşturulma tarihi",
+      "popularity": "Popülerlik",
+      "az": "A'dan Z'ye",
+      "za": "Z'den A'ya"
+    },
+    "search": "Proje ara...",
+    "clear_filter": "Filtreleri temizle",
+    "no_results": "Sonuç bulunamadı!"
+  },
+  "SearchProjectTypes": {
+    "mod": "Modlar",
+    "modpack": "Mod paketleri",
+    "resourcepack": "Kaynak paketleri",
+    "datapack": "Veri paketleri",
+    "shader": "Shaderlar",
+    "plugin": "Eklentiler"
+  },
+  "ProjectTypes": {
+    "mod": "Mod",
+    "modpack": "Mod paketi",
+    "resourcepack": "Kaynak paketi",
+    "datapack": "Veri paketi",
+    "shader": "Shader",
+    "plugin": "Eklenti"
+  },
+  "LoadingContent": {
+    "message": "Yükleniyor..."
+  },
+  "MetaDocsNavigation": {
+    "title": "Gezin",
+    "about": "Hakkında",
+    "devs": "Author guide",
+    "components": "Components",
+    "help": "Yardım alın",
+    "tos": "Kullanım Koşulları",
+    "privacy": "Gizlilik Politikası",
+    "security": "Güvenlik Uyarısı"
+  },
+  "Login": {
+    "title": "Giriş gerekli",
+    "desc": "Erişmeye çalıştığınız sayfa oturum açmanızı gerektirmektedir.",
+    "prompt": "Devam etmek için lütfen GitHub hesabınızı kullanın.",
+    "button": "GitHub'la oturum açın"
+  },
+  "Preview": {
+    "title": "Önizleme modu etkin",
+    "desc": "Önizleme modu, minimal düzeyde bir kullanıcı arayüzü sağlar ve belgelerinizi yayınlanmadan önce yerel olarak hazırlamaya odaklanmanıza olanak tanır.",
+    "roots": "Mevcut yerel dokümantasyon kökleri",
+    "open": "Açık"
+  },
+  "DocsProjectInfo": {
+    "title": "Proje bilgileri",
+    "type": "Tür",
+    "author": "Yazar",
+    "tags": "Etiketler",
+    "latest": {
+      "title": "En son sürüm",
+      "unknown": "Yok"
+    },
+    "license": {
+      "title": "Lisans",
+      "custom": "Özel",
+      "unknown": "Bilinmiyor",
+      "arr": "Her hakkı saklıdır"
+    }
+  },
+  "ProjectCategories": {
+    "adventure": "Macera",
+    "cursed": "Lanetli",
+    "decoration": "Dekorasyon",
+    "economy": "Ekonomi",
+    "equipment": "Ekipman",
+    "food": "Yemek",
+    "game-mechanics": "Oyun Mekaniği",
+    "library": "Kütüphane",
+    "magic": "Büyü",
+    "management": "Yönetim",
+    "minigame": "Mini Oyun",
+    "mobs": "Canlılar",
+    "optimization": "Optimizasyon",
+    "social": "Sosyal",
+    "storage": "Depolama",
+    "technology": "Teknoloji",
+    "transportation": "Taşıma",
+    "utility": "İşlevsellik",
+    "worldgen": "Dünya Şekli",
+    "server-utility": "Sunucu İşlevselliği",
+    "armor-weapons-tools": "Zırh, Aletler ve Silahlar",
+    "library-api": "API ve Kütüphane",
+    "adventure-rpg": "Macera ve RPG",
+    "world-gen": "Dünya Şekli",
+    "cosmetic": "Kozmetik",
+    "mc-food": "Yemek",
+    "performance": "Performans",
+    "map-information": "Harita ve Bilgi",
+    "bug-fixes": "Hata Düzeltmeleri",
+    "mc-addons": "Eklentiler",
+    "education": "Eğitim",
+    "mc-miscellaneous": "Çeşitli",
+    "redstone": "Kızıltaş",
+    "utility-qol": "İşlevsellik ve Yaşam Kalitesi",
+    "mc-creator": "MCreator"
+  },
+  "PageEditControls": {
+    "edit_gh": "Bu sayfayı düzenle",
+    "report": "Bu sayfayı bildir",
+    "report_button": "Bu sayfayı bildir",
+    "last_updated": "Son güncelleme: <date></date>"
+  },
+  "Report": {
+    "title": "Bir dokümantasyon sayfasını bildir",
+    "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
+    "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+    "confidential": "Gizliliğiniz bizim için önemlidir ve bu bilgiler her zaman gizli tutulacaktır.",
+    "privacy": "Daha fazla bilgi için lütfen <link>Gizlilik Politikamıza</link> bakın.",
+    "form": {
+      "id": {
+        "title": "Proje Kimliği",
+        "desc": "Proje kimliğini bildir."
+      },
+      "path": {
+        "title": "Sayfa yolu",
+        "desc": "Bildirilen dokümantasyon sayfası yolu."
+      },
+      "locale": {
+        "title": "Locale",
+        "desc": "Applied if the content lies within a localized subpath.",
+        "placeholder": "Yok"
+      },
+      "version": {
+        "title": "Version",
+        "desc": "Applied if the content lies within a named version.",
+        "placeholder": "Yok"
+      },
+      "reason": {
+        "title": "Sebep*",
+        "placeholder": "Select a reason for reporting this content",
+        "desc": "Reason for reporting this content.",
+        "dislike": "Sadece bundan hoşlanmadım"
+      },
+      "details": {
+        "title": "Detaylar*",
+        "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+        "desc": "Sorunla ilgili ek ayrıntılar."
+      },
+      "dislike": {
+        "title": "We understand that you may not like this content, and that's totally okay!",
+        "desc": "Ancak ne yazık ki bu, bir projeyi bildirmek için geçerli bir neden değildir.",
+        "suggestion": "Would you like to look for something else to explore instead?",
+        "explore": "Projeleri keşfedin"
+      },
+      "success": "Rapor başarıyla gönderildi"
+    }
+  },
+  "ProjectReportReason": {
+    "spam": "Spam",
+    "copyright": "Telif Hakkı İhlali",
+    "content_rules": "İçerik Kurallarını İhlal Ediyor",
+    "tos": "Kullanım Şartlarını İhlal Ediyor",
+    "unknown": "Bilinmiyor"
+  },
+  "ProjectReportStatus": {
+    "new": "New",
+    "dismissed": "Dismissed",
+    "accepted": "Accepted",
+    "unknown": "Bilinmiyor"
+  },
+  "ProjectReportType": {
+    "project": "Proje",
+    "docs": "Docs page",
+    "content": "Content page",
+    "unknown": "Bilinmiyor"
+  },
+  "ViewReportPage": {
+    "reports": "Reports",
+    "title": "Report details",
+    "desc": "Viewing report details for {id}",
+    "details": {
+      "reporter": "Reported by",
+      "project_id": "Proje Kimliği",
+      "path": "Yol",
+      "body": "Body",
+      "reason": "Sebep",
+      "created_at": "Oluşturulma tarihi",
+      "status": "Durum",
+      "type": "Tür",
+      "locale": "Locale",
+      "version": "Version"
+    },
+    "actions": {
+      "dismiss": "Dismiss",
+      "accept": "Accept"
+    },
+    "toast": {
+      "accept": "Report accepted",
+      "dismiss": "Report dismissed"
+    }
+  },
+  "SubmitButton": {
+    "title": "Gönder"
+  },
+  "Callout": {
+    "default": "Dikkat et!",
+    "info": "Info",
+    "warning": "Warning",
+    "danger": "Danger"
+  },
+  "ProjectRegisterForm": {
+    "button": "New Project",
+    "title": "Projeyi kaydet",
+    "desc": "Viki'ye yeni bir proje kaydedin.",
+    "repo": {
+      "title": "Depo bağlantısı",
+      "desc": "Bu, deponuzu klonlamak için kullandığınız adrestir.",
+      "placeholder": "https://github.com/ÖrnekKullanıcı/ÖrnekMod"
+    },
+    "branch": {
+      "title": "Dal",
+      "desc": "Birincil dal referans. Metadata dosyanıza eklenecek ek dallar belirtebilirsiniz."
+    },
+    "path": {
+      "title": "Belge köküne giden yol",
+      "desc": "Metadata dosyasını içeren klasörün yolu."
+    },
+    "admin": "Viki yönetici ayarları",
+    "is_community": {
+      "title": "Topluluk tarafından sürdürülen proje"
+    },
+    "errors": {
+      "details": "Detayları göster"
+    },
+    "connect_modrinth": {
+      "desc": "Platform projesi sahipliğini istediğiniz zaman kolayca doğrulamak için Ayarlar'da <b>Modrinth hesabınızı</b> bağlayın.",
+      "settings": "Ayarları Aç"
+    },
+    "submit": "Gönder",
+    "success": {
+      "title": "Proje başarıyla kaydedildi",
+      "desc": "Artık projenin dokümanlar sayfasına gidebilirsiniz"
+    },
+    "submitting": "Gönderiliyor...",
+    "verify_modrinth": "Modrinth'i kullanarak doğrulama"
+  },
+  "ProjectSettingsForm": {
+    "title": "Projeyi düzenle",
+    "desc": "Mevcut bir projenin ayarlarını düzenleyin.",
+    "button": "Ayarlar",
+    "success": {
+      "title": "Proje başarıyla güncellendi",
+      "desc": "Artık projenin dokümanlar sayfasına gidebilirsiniz"
+    }
+  },
+  "ProjectDeleteForm": {
+    "trigger": "Delete project",
+    "title": "Emin misiniz?",
+    "desc": "Bu eylem geri alınamaz. Bu, projenizi kalıcı olarak silecek ve ilgili tüm verileri sunucularımızdan kaldıracaktır.",
+    "cancel": "Vazgeç",
+    "submit": "Sil",
+    "success": "Proje başarıyla silindi"
+  },
+  "FormActions": {
+    "errors": {
+      "unauthorized": "Kullanıcı kimlik doğrulama hatası",
+      "internal": "Dahili sunucu hatası. Lütfen daha sonra tekrar deneyin.",
+      "unknown": "Bilinmeyen bir hata oluştu. Lütfen daha sonra yeniden deneyin.",
+      "no_platforms": "Metadata'da tanımlanmış platform projesi yok.",
+      "no_project": "Platform projesi bulunamadı. Lütfen metadata \"bilgi\" alanının doğru olduğundan emin olun.",
+      "unsupported_type": "Desteklenmeyen proje türü",
+      "ownership": "Proje sahipliği doğrulanamadı",
+      "cf_unavailable": "CurseForge projelerinin kaydedilmesi aktif değil",
+      "requires_auth": "Depo bağlantısı oturum açma kimlik bilgileri gerektiriyor ancak hiçbiri sağlanmadı",
+      "no_repository": "Depo bulunamadı",
+      "no_branch": "Geçersiz dal belirtildi",
+      "no_path": "Belirtilen yolda metadata dosyası bulunamadı",
+      "invalid_meta": "Metadata dosyası geçersiz",
+      "unsupported": "Henüz bitirilemedi",
+      "exists": "Proje zaten var.",
+      "not_found": "Proje mevcut değil",
+      "illegal_id": "Illegal project ID",
+      "not_owner": "User is not authorized to register this project"
+    }
+  },
+  "CommunityBadge": {
+    "title": "Topluluk",
+    "desc": "Topluluk tarafından tutulan resmi olmayan belgeler"
+  },
+  "DocsPageNotFoundError": {
+    "title": "Bu sayfayı kaybettik",
+    "desc": "İstenilen dokümantasyon sayfası şu anda mevcut değil.",
+    "suggestion": "Lütfen daha sonra tekrar deneyin veya bu sorunu proje yazarına bildirin.",
+    "submit": "Sorun bildir",
+    "return": "Ana Sayfaya Dön"
+  },
+  "GetStartedButton": {
+    "title": "Create your first project"
+  },
+  "ProjectHomepage": {
+    "overview": {
+      "intro": "<project></project> is a {type} created by <authors></authors>.",
+      "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
+      "tags": "Tagged:"
+    },
+    "description": {
+      "title": "Description"
+    },
+    "navigation": {
+      "title": "Gezin",
+      "docs": {
+        "title": "Browse documentation",
+        "desc": "{pages} pages available."
+      },
+      "content": {
+        "title": "Browse content",
+        "desc": "{items} in-game items."
+      }
+    },
+    "links": {
+      "title": "Bağlantılar",
+      "website": "Website",
+      "source_code": "Source code"
+    },
+    "license": {
+      "title": "Lisanslar",
+      "project": "Project License",
+      "arr": "Her hakkı saklıdır",
+      "unknown": "Bilinmiyor",
+      "wiki": "Wiki License",
+      "default": "Wiki content <link>partially made available</link> under the <license></license> license."
+    }
+  },
+  "ProjectDocsHomepage": {
+    "title": "Ana Sayfa"
+  },
+  "DocsHomepagePlaceholder": {
+    "title": "Ana sayfa yer tutucusu",
+    "subtitle": "API kısıtlamaları nedeniyle yerel ortamlardaki CurseForge projeleri için proje metadata'ları mevcut değildir.",
+    "replace": "Merak etme! Bu yer tutucuyu, canlıvwiki web sitesinde dağıtıldığında projenin gerçek açıklamasıyla değiştireceğiz."
+  },
+  "DocsSearchBar": {
+    "placeholder": "Viki içeriği ara...",
+    "no_results": "Sonuç bulunamadı!",
+    "loading": "Mükemmel sonuçlar bulunuyor...",
+    "results": "<highlight>{count}</highlight> <highlight>{total}</highlight> sonuçları gösteriliyor",
+    "close": "Kapatmak için <kbd>ESC'ye<kbd> bas"
+  },
+  "DocsChangelogPage": {
+    "title": "Değişiklikler"
+  },
+  "DocsLeftSidebar": {
+    "title": "Dökümantasyon",
+    "homepage": "Ana Sayfa"
+  },
+  "DocsContentRightSidebar": {
+    "title": "Girdi Bilgisi"
+  },
+  "DocsNonContentRightSidebar": {
+    "title": "Bu sayfada"
+  },
+  "DocsVersionSelector": {
+    "placeholder": "Sürümü seçin",
+    "latest": "En son"
+  },
+  "ModVersionRange": {
+    "desc": "+{count} daha"
+  },
+  "LanguageSelect": {
+    "placeholder": "Dillerde Ara...",
+    "no_results": "Dil bulunamadı."
+  },
+  "ProjectStatus": {
+    "unknown": "Bilinmiyor",
+    "loading": "Kullanıma hazırlanıyor",
+    "healthy": "Yüklendi",
+    "at_risk": "Requires attention",
+    "error": "Hatalı"
+  },
+  "DevProjectsListPage": {
+    "project": {
+      "manage": "Yönet"
+    },
+    "empty": {
+      "primary": "Looks like you haven't created any projects yet",
+      "secondary": "<guide>Yazar kılavuzumuzu</guide> okuyarak başlayın."
+    }
+  },
+  "DevProjectPage": {
+    "breadcrumbs": {
+      "home": "Ana Sayfa"
+    },
+    "toolbar": {
+      "view": "Görüntüle",
+      "deployments": "Deployments"
+    },
+    "overview": {
+      "title": "Project overview",
+      "desc": "Project information summary"
+    },
+    "source": {
+      "title": "Proje Kaynağı",
+      "repo": "Depo",
+      "branch": "Dal",
+      "path": "Yol",
+      "public": "Herkese Açık"
+    },
+    "platforms": {
+      "title": "Platformlar",
+      "desc": "Project hosting platforms",
+      "headers": {
+        "platform": "Platform",
+        "slug": "Kimlik",
+        "link": "Bağlantı"
+      },
+      "open": "Açık"
+    },
+    "information": {
+      "title": "Bilgi",
+      "desc": "Resolved information",
+      "type": "Tür",
+      "status": "Durum",
+      "created_at": "Oluşturulma tarihi"
+    },
+    "revision": {
+      "title": "Current git revision",
+      "reloading": "Reloading project, please stand by...",
+      "not_found": "No revision found. Try reloading the project."
+    }
+  },
+  "DevProjectSettingsPage": {
+    "title": "Project settings",
+    "desc": "Configure project properties"
+  },
+  "DevProjectVersionsPage": {
+    "title": "Project versions",
+    "desc": "Browse project content versions"
+  },
+  "DevProjectHealthPage": {
+    "title": "Project health",
+    "desc": "Monitor project status and issues",
+    "errors": {
+      "title": "Project issue report",
+      "desc": "Ongoing warnings & errors",
+      "empty": "No issues found"
+    }
+  },
+  "DevProjectMembersPage": {
+    "title": "Project members",
+    "desc": "Manage project members & permissions",
+    "roles": {
+      "owner": "Owner"
+    },
+    "actions": {
+      "manage": "Yönet"
+    }
+  },
+  "DevProjectContentItemsPage": {
+    "title": "Project items",
+    "desc": "Browse project items"
+  },
+  "DevProjectContentRecipesPage": {
+    "title": "Project recipes",
+    "desc": "Browse project crafting recipes"
+  },
+  "DevProjectContentTagsPage": {
+    "title": "Project tags",
+    "desc": "Browse project tags"
+  },
+  "DevProjectLogs": {
+    "title": "Deployment log",
+    "show": "Göster",
+    "unloaded": "Yüklenemedi",
+    "waiting": "Sunucu bekleniyor...",
+    "loading": "Yükleniyor...",
+    "error": "Günlükler yüklenirken hata oluştu",
+    "toast": {
+      "success": "Proje kurulumu tamamlandı",
+      "error": "Proje kurulumu sırasında hata oluştu"
+    }
+  },
+  "DeveloperSidebar": {
+    "teams": {
+      "personal": "Kişisel"
+    },
+    "groups": {
+      "projects": "Projeler",
+      "platform": "Platform",
+      "admin": "Administration"
+    },
+    "nav": {
+      "projects": "Projeler",
+      "documentation": "Dökümantasyon",
+      "settings": "Ayarlar",
+      "admin": "System settings"
+    }
+  },
+  "DevSidebarContextSwitcher": {
+    "title": "Ekipler"
+  },
+  "DevSidebarUser": {
+    "logout": {
+      "button": "Çıkış yap",
+      "title": "Çıkış",
+      "desc": "Çıkış yapılıyor..."
+    },
+    "unknown_avatar": "Yok"
+  },
+  "UserSettings": {
+    "breadcrumbs": {
+      "home": "Ana Sayfa",
+      "settings": "Ayarlar"
+    },
+    "profile": {
+      "bio": "Modlu Minecraft Viki oluşturucu",
+      "join_date": "{date}'de katıldı",
+      "admin": "Admin"
+    },
+    "connections": {
+      "title": "Bağlantılar",
+      "modrinth": {
+        "title": "Modrinth hesabı",
+        "desc": "Proje sahipliğini doğrulamak için kullanılır",
+        "connect": "Bağla",
+        "view": "Görüntüle",
+        "disconnect": "Bağlantıyı kes"
+      }
+    },
+    "account": {
+      "title": "Hesabım",
+      "delete": {
+        "title": "Hesabı sil",
+        "desc": "Tüm hesap verilerini sonsuza kadar sil",
+        "button": "Hesabı sil"
+      },
+      "delete_modal": {
+        "title": "Hesabı sil",
+        "desc": "Bu hesabı silmek istediğinizden emin misiniz? Bu, geri alınamayacak yıkıcı bir eylemdir.",
+        "cancel": "Vazgeç",
+        "button": "Kalıcı olarak sil"
+      }
+    },
+    "toast": {
+      "unlink": {
+        "success": "Hesabın bağlantısı başarıyla kaldırıldı",
+        "error": "Hesabın bağlantısı kaldırılırken hata oluştu"
+      }
+    }
+  },
+  "AuthFailure": {
+    "title": "Kimlik denetimi başarısız",
+    "desc": "Oturum açmaya çalışırken beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+    "status": "Durumu kontrol et",
+    "return": "Ana sayfaya geri dön",
+    "report": "Hata Bildir"
+  },
+  "BuiltinRecipeTypes": {
+    "blasting": "Blasting",
+    "campfire_cooking": "Campfire cooking",
+    "crafting_shaped": "Shaped Crafting",
+    "crafting_shapeless": "Shapeless Crafting",
+    "smelting": "Smelting",
+    "smithing_transform": "Smithing",
+    "smoking": "Smoking",
+    "stonecutting": "Stonecutting"
+  },
+  "DocsEntryTabs": {
+    "history": "Show history",
+    "home": "Show content"
+  },
+  "DevProjectSidebar": {
+    "groups": {
+      "project": "Proje",
+      "content": "Content"
+    },
+    "nav": {
+      "home": "Overview",
+      "settings": "Ayarlar",
+      "members": "Members",
+      "deployments": "Deployments",
+      "health": "Health",
+      "versions": "Versions",
+      "content": "Items",
+      "tags": "Etiketler",
+      "recipes": "Recipes"
+    }
+  },
+  "PrefabObtaining": {
+    "recipe": "Recipe"
+  },
+  "PrefabUsage": {
+    "usage": "Usage"
+  },
+  "AdminSidebar": {
+    "groups": {
+      "home": "Ana Sayfa",
+      "data": "Data",
+      "system": "System",
+      "moderation": "Moderation"
+    },
+    "nav": {
+      "home": "Overview",
+      "data_imports": "Data Imports",
+      "access_keys": "Access Keys",
+      "migrations": "Migrations",
+      "users": "Kullanıcılar",
+      "projects": "Projeler",
+      "config": "Configuration",
+      "reports": "Reports",
+      "audit_log": "Audit Log",
+      "return": "Return"
+    }
+  },
+  "AdminDataImports": {
+    "title": "System data imports",
+    "desc": "Imported game data"
+  },
+  "AdminMigrations": {
+    "title": "Data migrations",
+    "desc": "Available data migrations"
+  },
+  "EmptyDataTable": {
+    "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
+  },
+  "DataTable": {
+    "no_results": "No results.",
+    "filter": "Filter rows...",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "DevProjectVersionsTable": {
+    "name": "Name",
+    "branch": "Dal",
+    "empty": {
+      "title": "No additional versions were found in your project.",
+      "desc": "Read the <link>author guide</link> to learn more about project versioning."
+    }
+  },
+  "DevProjectItemsTable": {
+    "icon": "Icon",
+    "id": "Identifier",
+    "name": "Name",
+    "path": "Page path (internal)",
+    "actions": {
+      "open": "Open menu",
+      "title": "Actions",
+      "view": "Görüntüle"
+    },
+    "empty": {
+      "title": "No items were found in your project.",
+      "desc": "Project items are automatically detected from content pages and included game files."
+    }
+  },
+  "DevProjectTagsTable": {
+    "id": "Identifier",
+    "items": "Item count",
+    "empty": {
+      "title": "No tags were found in your project."
+    }
+  },
+  "DevProjectRecipesTable": {
+    "type": "Tür",
+    "id": "Identifier",
+    "empty": {
+      "title": "No recipes were found in your project."
+    }
+  },
+  "ResolvedProjectRecipe": {
+    "type": "Recipe Type",
+    "input": "Ingredients",
+    "output": "Outputs",
+    "preview": "Recipe preview",
+    "workbenches": "You can craft this recipe using:"
+  },
+  "DevProjectDeploymentsPage": {
+    "title": "Project deployments",
+    "desc": "Manage deployed project versions"
+  },
+  "DevProjectDeploymentsTable": {
+    "id": "ID",
+    "commit": "Commit",
+    "created_at": "Deploy time",
+    "user_id": "Deployed by",
+    "status": "Durum"
+  },
+  "DeploymentStatus": {
+    "unknown": "Yok",
+    "created": "Queued",
+    "loading": "Loading",
+    "success": "Success",
+    "error": "Failed"
+  },
+  "DeleteDeploymentModal": {
+    "trigger": "Sil",
+    "title": "Emin misiniz?",
+    "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
+    "cancel": "Vazgeç",
+    "submit": "Sil",
+    "success": "Deployment deleted successfully"
+  },
+  "DeployProjectModal": {
+    "button": "Deploy",
+    "title": "New deployment",
+    "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
+    "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
+    "tertiary": "Size kolaylık sağlamak için, bunun yerine <link>Gradle eklentimizi</link> kullanarak dokümanları yayınladıktan sonra otomatik olarak yeniden doğrulamanızı öneririz.",
+    "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+    "cancel": "Vazgeç",
+    "submit": "Deploy"
+  },
+  "LiveProjectDeployConnection": {
+    "loading": "Deploying project...",
+    "success": "Project deploy successful",
+    "error": "Project deploy failed",
+    "view": "Görüntüle"
+  },
+  "DevProjectDeploymentPage": {
+    "deployments": "Deployments",
+    "title": "Deployment Details",
+    "git-config": {
+      "title": "Source coordinates"
+    }
+  },
+  "ProjectGitRevision": {
+    "title": "Git revision",
+    "title_current": "Current Git revision",
+    "loading": "Deploying project, please stand by...",
+    "not_found": "Project has no active deployment"
+  },
+  "ProjectIssueWidget": {
+    "file": "File: <file></file>",
+    "date": "Created at: <date></date>",
+    "version": "Version: <version></version>"
+  },
+  "ProjectIssueLevel": {
+    "warning": "Warning",
+    "error": "Error",
+    "unknown": "Bilinmiyor"
+  },
+  "ProjectIssueType": {
+    "meta": "Invalid project metadata",
+    "file": "Invalid file",
+    "git_clone": "Error cloning repository",
+    "git_info": "Error getting commit information",
+    "ingestor": "Error importing content",
+    "internal": "Internal server error",
+    "page_render": "Invalid page",
+    "unknown": "Unknown error"
+  },
+  "DeploymentIssues": {
+    "title": "Deployment issues",
+    "empty": "No issues found.",
+    "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
+  },
+  "ProjectError": {
+    "requires_auth": "Depo bağlantısı oturum açma kimlik bilgileri gerektiriyor ancak hiçbiri sağlanmadı",
+    "no_repository": "Depo bulunamadı",
+    "repo_too_large": "Repository exceeds allowed file size",
+    "no_branch": "Geçersiz dal belirtildi",
+    "no_path": "Belirtilen yolda metadata dosyası bulunamadı",
+    "invalid_meta": "Metadata dosyası geçersiz",
+    "invalid_page": "Failed to render page contents",
+    "duplicate_page": "Duplicate page",
+    "unknown_recipe_type": "Unknown recipe type",
+    "invalid_ingredient": "Invalid ingredient",
+    "invalid_file": "Failed to parse file",
+    "invalid_format": "Invalid file format",
+    "invalid_resloc": "Invalid Resource Location",
+    "invalid_version_branch": "Version branch does not exist",
+    "missing_platform_project": "Missing platform project",
+    "no_page_title": "Page is missing title",
+    "missing_required_attribute": "Page is missing a required metadata attribute",
+    "unknown": "Unknown error"
+  },
+  "AdminReports": {
+    "title": "Project Reports",
+    "desc": "Manage project reports"
+  },
+  "ResponsiveTable": {
+    "expand": "Expand"
+  },
+  "UsageContentList": {
+    "more": "Show more ..."
+  },
+  "RecipeUsage": {
+    "description": "Can be used to create the following items:",
+    "empty": "Has no known usages in crafting."
+  },
+  "ContentCategory": {
+    "all": "All",
+    "other": "Other"
+  },
+  "ContentChangelog": {
+    "toggle": "Show changelog"
+  },
+  "ContentProperties": {
+    "bool": {
+      "true": "Yes",
+      "false": "No"
+    },
+    "type": {
+      "block": "Block",
+      "item": "Item",
+      "other": "Other"
+    },
+    "properties": {
+      "id": "ID",
+      "source_mod": "Source mod",
+      "type": "Tür",
+      "stack_size": "Stack size",
+      "required_tool": "Tool",
+      "blast_resistance": "Blast resistance",
+      "hardness": "Hardness",
+      "flammable": "Flammable"
+    }
+  },
+  "DocsLink": {
+    "not_found": "(Not found)"
+  },
+  "AdminAccessKeys": {
+    "title": "System access keys",
+    "desc": "Provides auth for when non-interactive access is needed, such as CI"
+  },
+  "CreateAccessKeyModal": {
+    "title": "Create access key",
+    "desc": "New system access key",
+    "button": "Create",
+    "name": {
+      "title": "Name",
+      "desc": "Give your key a name",
+      "placeholder": "Deploy staging"
+    },
+    "days_valid": {
+      "title": "Days of validity",
+      "desc": "Number of days the key is valid for. Use 0 for no expiration."
+    },
+    "submit": "Gönder",
+    "submitting": "Gönderiliyor..."
+  },
+  "SaveAccessKeyModal": {
+    "title": "Access Key",
+    "desc": "Save your generated access key",
+    "key": "Access Key",
+    "note": "Keep the key value safe. You won't be able to access it again.",
+    "valid": "The key is valid until {expiry}.",
+    "close": "Done"
+  },
+  "DeleteAccessKeyModal": {
+    "title": "Delete Access Key",
+    "desc": "Invalidate and delete access key",
+    "body": "This will forever delete the access key <name></name>.",
+    "cancel": "Vazgeç",
+    "submit": "Sil",
+    "success": "Access Key deleted successfully"
+  },
+  "CopyButton": {
+    "copied": "Copied to clipboard"
+  },
+  "InteractiveComponentPlaceholder": {
+    "title": "Content unavailable in preview mode",
+    "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
+  },
+  "RevalidateCacheModal": {
+    "title": "Revalidate cache tag",
+    "desc": "Manually revalidate a cache tag. Used for diagnostic purposes.",
+    "button": "Revalidate cache tag",
+    "tag": {
+      "title": "Cache Tag",
+      "desc": "The cache tag to revalidate"
+    },
+    "success": "Cache tag invalidated successfully"
+  }
 }

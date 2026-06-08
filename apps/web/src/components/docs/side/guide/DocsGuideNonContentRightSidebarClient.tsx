@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import DocsSidebarBase from "@/components/docs/side/DocsSidebarBase";
-import { FileHeading } from "@repo/shared/types/metadata";
-import {cn} from "@repo/ui/lib/utils";;
-import {useTranslations} from "next-intl";
+import DocsSidebarBase from '@/components/docs/side/DocsSidebarBase';
+import { cn } from '@repo/ui/lib/utils';
+import { useTranslations } from 'next-intl';
+import { FileHeading } from '@repo/markdown';
 
 interface ContentRightSidebarProps {
   headings: FileHeading[];
@@ -20,8 +20,8 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
 
   useEffect(() => {
     const handleScroll = () => {
-      const headingElements = headings.map(heading => document.getElementById(heading.id)).filter(Boolean);
-      const activeHeading = headingElements.find(el => {
+      const headingElements = headings.map((heading) => document.getElementById(heading.id)).filter(Boolean);
+      const activeHeading = headingElements.find((el) => {
         if (el) {
           const rect = el.getBoundingClientRect();
           return rect.top >= 0 && rect.top <= window.innerHeight / 2;
@@ -44,7 +44,7 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
         setShowTopGradient(scrollTop > 0);
         setShowBottomGradient(scrollTop + clientHeight < scrollHeight);
       }
-    }
+    };
 
     const listElement = listRef.current;
     if (listElement) {
@@ -58,30 +58,25 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
         listElement.removeEventListener('scroll', checkOverflow);
       }
       window.removeEventListener('resize', checkOverflow);
-    }
+    };
   }, [headings]);
 
   return (
     <DocsSidebarBase
       type="right"
       title={t('title')}
-      className={cn(
-        'right-0 shrink-0',
-        'w-[96vw] sm:w-64'
-      )}
+      className={cn('right-0 shrink-0', 'w-[96vw] sm:w-64')}
       tagName="nav"
     >
       <div className="relative">
         {showTopGradient && (
-          <div className={`
-            from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent
-          `} />
+          <div
+            className={`from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent`}
+          />
         )}
         <div
           ref={listRef}
-          className={`
-            scrollbar-thin max-h-[80vh] overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-track-transparent
-          `}
+          className={`scrollbar-thin max-h-[80vh] overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-track-transparent`}
         >
           <ul className="space-y-1 text-sm">
             {headings.map((heading, index) => (
@@ -89,15 +84,15 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
                 <a
                   href={`#${heading.id}`}
                   className={cn(
-                    "block py-1 text-secondary transition-colors hover:text-primary",
-                    activeId === heading.id && "text-primary",
+                    'block py-1 text-secondary transition-colors hover:text-primary',
+                    activeId === heading.id && 'text-primary',
                     index === 0 ? 'pt-0!' : ''
                   )}
                   onClick={(e) => {
-                    e.preventDefault()
+                    e.preventDefault();
                     document.getElementById(heading.id)?.scrollIntoView({
                       behavior: 'smooth'
-                    })
+                    });
                   }}
                 >
                   {heading.value}
@@ -107,9 +102,9 @@ export default function DocsGuideNonContentRightSidebarClient({ headings }: Cont
           </ul>
         </div>
         {showBottomGradient && (
-          <div className={`
-            from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent
-          `} />
+          <div
+            className={`from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent`}
+          />
         )}
       </div>
     </DocsSidebarBase>

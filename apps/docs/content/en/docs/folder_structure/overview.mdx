@@ -6,12 +6,6 @@ import InlineGameItem from '@/components/InlineGameItem';
 
 # Folder Structure Overview
 
-<Callout type="info">
-    Some parts of the folder structure may appear inconsistent as we introduce new features while the Wiki is still in
-    active development.
-    Once the Wiki is stable, we plan to introduce a revised format (without breaking existing projects).
-</Callout>
-
 Wiki projects follow a folder structure similar to the one you would find in the game's own
 [Resource Packs](https://minecraft.wiki/w/Resource_pack) or [Data Packs](https://minecraft.wiki/w/Data_pack).
 
@@ -71,11 +65,11 @@ Check the [Pages](pages) page for complete details.
 
 See each page below for detailed explanations of available features:
 
-- [Homepage](homepage) (`_homepage.mdx`) - Define a custom landing page for your documentation pages
-- [Assets](assets) (`.assets`) - Add images and other assets to your wiki
-- [Content Pages](pages) (`.content`) - Document in-game content
-- [Game Data](game_data) (`.data`) - Seamlessly import in-game recipes, tags and other game content
-- [Translations](translations) (`.translated`) - Go international with translated wiki pages
+- [Homepage](homepage) - Define a custom landing page for your documentation pages
+- [Assets](assets) - Add images and other assets to your wiki
+- [Content Pages](pages) - Document in-game content
+- [Game Data](game_data) - Seamlessly import in-game recipes, tags and other game content
+- [Translations](translations) - Go international with translated wiki pages
 
 ## Complete example
 
@@ -86,77 +80,87 @@ Below is a complete example of the Wiki folder structure using all supported fea
 </Callout>
 
 <FileTree>
-    <FileTreeFolder name=".assets">
-        <FileTree.Folder name="examplemod" defaultOpen>
-            <FileTree.Folder name="lang">
-                <FileTreeFile name="en_us.json"/>
-            </FileTree.Folder>
+    <FileTreeFolder name="assets">
+        <FileTreeFolder name="examplemod" defaultOpen>
+            <FileTreeFolder name="item" defaultOpen>
+                <FileTreeFile name="generator.png"/>
+            </FileTreeFolder>
 
-            <FileTreeFile name="generator.png"/>
-        </FileTree.Folder>
+            <FileTreeFolder name="lang" defaultOpen>
+                <FileTreeFile name="en_us.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFolder name="sounds" defaultOpen>
+                <FileTreeFile name="ambient.ogg"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
     </FileTreeFolder>
 
-    <FileTree.Folder name=".content">
-        <FileTree.Folder name="machines" defaultOpen>
-            <FileTree.Folder name="advanced">
+    <FileTreeFolder name="content">
+        <FileTreeFolder name="machines" defaultOpen>
+            <FileTreeFolder name="advanced">
                 <FileTreeFile name="_meta.json"/>
                 <FileTreeFile name="blast_furnace.mdx"/>
                 <FileTreeFile name="grinder.mdx"/>
-            </FileTree.Folder>
-            <FileTree.Folder name="basic" defaultOpen>
+            </FileTreeFolder>
+            <FileTreeFolder name="basic" defaultOpen>
                 <FileTreeFile name="_meta.json"/>
                 <FileTreeFile name="electric_furnace.mdx"/>
                 <FileTreeFile name="generator.mdx"/>
-            </FileTree.Folder>
+            </FileTreeFolder>
             <FileTreeFile name="_meta.json"/>
-        </FileTree.Folder>
+        </FileTreeFolder>
         <FileTreeFile name="_meta.json"/>
-    </FileTree.Folder>
+    </FileTreeFolder>
 
-    <FileTree.Folder name=".data">
-        <FileTree.Folder name="c">
-            <FileTree.Folder name="tags" defaultOpen>
-                <FileTree.Folder name="item" defaultOpen>
-                    <FileTree.Folder name="ingots" defaultOpen>
+    <FileTreeFolder name="data">
+        <FileTreeFolder name="c">
+            <FileTreeFolder name="tags" defaultOpen>
+                <FileTreeFolder name="item" defaultOpen>
+                    <FileTreeFolder name="ingots" defaultOpen>
                         <FileTreeFile name="steel.json"/>
-                    </FileTree.Folder>
-                </FileTree.Folder>
-            </FileTree.Folder>
-        </FileTree.Folder>
+                    </FileTreeFolder>
+                </FileTreeFolder>
+            </FileTreeFolder>
+        </FileTreeFolder>
 
-        <FileTree.Folder name="examplemod" defaultOpen>
-            <FileTree.Folder name="recipe" defaultOpen>
+        <FileTreeFolder name="examplemod" defaultOpen>
+            <FileTreeFolder name="recipe" defaultOpen>
                 <FileTreeFile name="generator.json"/>
-            </FileTree.Folder>
+            </FileTreeFolder>
 
-            <FileTree.Folder name="recipe_type" defaultOpen>
+            <FileTreeFolder name="recipe_type" defaultOpen>
                 <FileTreeFile name="grinding.json"/>
-            </FileTree.Folder>
+            </FileTreeFolder>
 
-            <FileTreeFile name="properties.json"/>
+            <FileTreeFolder name="properties" defaultOpen>
+                <FileTreeFile name="item.json"/>
+            </FileTreeFolder>
+
             <FileTreeFile name="workbenches.json"/>
-        </FileTree.Folder>
-    </FileTree.Folder>
+        </FileTreeFolder>
+    </FileTreeFolder>
 
-    <FileTree.Folder name=".translated">
-        <FileTree.Folder name="de_de" defaultOpen>
-            <FileTree.Folder name="blocks" defaultOpen>
+    <FileTreeFolder name="translated">
+        <FileTreeFolder name="de_de" defaultOpen>
+            <FileTreeFolder name="docs" defaultOpen>
                 <FileTreeFile name="_meta.json"/>
-                <FileTreeFile name="generator.mdx"/>
-            </FileTree.Folder>
+                <FileTreeFile name="introduction.mdx"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+
+    <FileTreeFolder name="docs">
+        <FileTreeFolder name="getting_started">
             <FileTreeFile name="_meta.json"/>
-            <FileTreeFile name="introduction.mdx"/>
-        </FileTree.Folder>
-    </FileTree.Folder>
+            <FileTreeFile name="gathering_materials.mdx"/>
+            <FileTreeFile name="survival_guide.mdx"/>
+        </FileTreeFolder>
 
-    <FileTree.Folder name="getting_started">
         <FileTreeFile name="_meta.json"/>
-        <FileTreeFile name="gathering_materials.mdx"/>
-        <FileTreeFile name="survival_guide.mdx"/>
-    </FileTree.Folder>
+        <FileTreeFile name="_index.mdx"/>
+        <FileTreeFile name="introduction.mdx"/>
+    </FileTreeFolder>
 
-    <FileTreeFile name="_meta.json"/>
-    <FileTreeFile name="_homepage.mdx"/>
-    <FileTreeFile name="introduction.mdx"/>
     <FileTreeFile name="sinytra-wiki.json"/>
 </FileTree>

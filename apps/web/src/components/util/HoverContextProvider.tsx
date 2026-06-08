@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import {Children, cloneElement, createContext, isValidElement, ReactNode, useState} from "react";
+import { Children, cloneElement, createContext, isValidElement, ReactNode, useState } from 'react';
 
 export interface HoverContextData {
   hover: boolean;
@@ -9,7 +9,7 @@ export interface HoverContextData {
 
 export const HoverContext = createContext<HoverContextData | null>(null);
 
-export default function HoverContextProvider({children}: { children: ReactNode }) {
+export default function HoverContextProvider({ children }: { children: ReactNode }) {
   const [hover, setHover] = useState(false);
 
   const enhanceChildren = Children.map(children, (child) => {
@@ -24,10 +24,8 @@ export default function HoverContextProvider({children}: { children: ReactNode }
   });
 
   return (
-    <HoverContext.Provider value={{hover, setHover}}>
-      <>
-        {enhanceChildren}
-      </>
+    <HoverContext.Provider value={{ hover, setHover }}>
+      <>{enhanceChildren}</>
     </HoverContext.Provider>
-  )
+  );
 }

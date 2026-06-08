@@ -8,13 +8,21 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/.contentlayer/*": ["./.contentlayer/*"],
-      "@/public/*": ["./public/*"],
+      "@/*": [
+        "./src/*"
+      ],
+      "@/.contentlayer/*": [
+        "./.contentlayer/*"
+      ],
+      "@/public/*": [
+        "./public/*"
+      ],
       "contentlayer/generated": [
         "./.contentlayer/generated"
       ],
-      "@repo/ui/*": ["../../packages/ui/src/*"]
+      "@repo/ui/*": [
+        "../../packages/ui/src/*"
+      ]
     },
     "module": "ESNext",
     "moduleResolution": "bundler"

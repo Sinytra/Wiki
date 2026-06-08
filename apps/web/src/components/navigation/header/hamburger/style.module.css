@@ -36,13 +36,38 @@
     width: 32px;
 }
 
-.MobileNavHamburger:hover .top    { top: 0; left: 0; transform: translateX(4px); }
-.MobileNavHamburger:hover .middle { top: 6px; left: 0; transform: translateX(0); }
-.MobileNavHamburger:hover .bottom { top: 12px; left: 0; transform: translateX(8px); }
+.MobileNavHamburger:hover .top {
+    top: 0;
+    left: 0;
+    transform: translateX(4px);
+}
 
-.MobileNavHamburger.active .top    { top: 6px; transform: translateX(0) rotate(225deg); }
-.MobileNavHamburger.active .middle { top: 6px; transform: translateX(16px); }
-.MobileNavHamburger.active .bottom { top: 6px; transform: translateX(0) rotate(135deg); }
+.MobileNavHamburger:hover .middle {
+    top: 6px;
+    left: 0;
+    transform: translateX(0);
+}
+
+.MobileNavHamburger:hover .bottom {
+    top: 12px;
+    left: 0;
+    transform: translateX(8px);
+}
+
+.MobileNavHamburger.active .top {
+    top: 6px;
+    transform: translateX(0) rotate(225deg);
+}
+
+.MobileNavHamburger.active .middle {
+    top: 6px;
+    transform: translateX(16px);
+}
+
+.MobileNavHamburger.active .bottom {
+    top: 6px;
+    transform: translateX(0) rotate(135deg);
+}
 
 .MobileNavHamburger.active:hover .top,
 .MobileNavHamburger.active:hover .middle,
@@ -61,8 +86,23 @@
     transition: top .25s, background-color .5s, transform .25s;
 }
 
-.top    { top: 0; left: 0; transform: translateX(0); }
-.middle { top: 6px; left: 0; transform: translateX(8px); }
-.bottom { top: 12px; left: 0; transform: translateX(4px); }
+.top {
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+}
 
-.active {}
+.middle {
+    top: 6px;
+    left: 0;
+    transform: translateX(8px);
+}
+
+.bottom {
+    top: 12px;
+    left: 0;
+    transform: translateX(4px);
+}
+
+.active {
+}

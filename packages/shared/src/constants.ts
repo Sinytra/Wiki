@@ -2,8 +2,6 @@ export const DOCS_METADATA_FILE_NAME = 'sinytra-wiki.json';
 
 export const FOLDER_METADATA_FILE_NAME = '_meta.json';
 
-export const HOMEPAGE_FILE_PATH = '_homepage';
-
 export const DEFAULT_DOCS_VERSION = 'latest';
 export const LEGACY_DEFAULT_DOCS_VERSION = 'docs';
 
@@ -27,5 +25,10 @@ const TWO_WEEKS = 2 * ONE_WEEK;
 const ONE_YEAR = 365 * ONE_DAY;
 
 export const time = {
-  ONE_DAY, ONE_WEEK, TWO_WEEKS, ONE_MINUTE, ONE_MONTH, ONE_YEAR
+  ONE_DAY,
+  ONE_WEEK,
+  TWO_WEEKS,
+  ONE_MINUTE,
+  ONE_MONTH,
+  ONE_YEAR
 };

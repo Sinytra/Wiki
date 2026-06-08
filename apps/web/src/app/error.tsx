@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import {Button} from "@repo/ui/components/button";
-import {ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon} from "lucide-react";
-import {useEffect} from "react";
-import {NavLink} from "@/components/navigation/link/NavLink";
-  
-export default function Error({error}: { error: Error & { digest?: string }}) {
+import { Button } from '@repo/ui/components/button';
+import { ActivityIcon, BugIcon, HouseIcon, ServerCrashIcon } from 'lucide-react';
+import { useEffect } from 'react';
+import { NavLink } from '@/components/navigation/link/NavLink';
+
+export default function Error({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
     console.error('Got error', error);
     console.error('Error digest', error.digest);
@@ -13,11 +13,9 @@ export default function Error({error}: { error: Error & { digest?: string }}) {
 
   return (
     <div className="m-auto flex flex-col items-center justify-center gap-4 p-4">
-      <ServerCrashIcon className="h-32 w-32 sm:h-48 sm:w-48" strokeWidth={1.5}/>
+      <ServerCrashIcon className="h-32 w-32 sm:h-48 sm:w-48" strokeWidth={1.5} />
 
-      <h1 className="my-2 text-3xl text-primary sm:text-5xl">
-        Something went wrong
-      </h1>
+      <h1 className="my-2 text-3xl text-primary sm:text-5xl">Something went wrong</h1>
 
       <p className="w-3/4 text-center text-secondary sm:w-full">
         An error occured while loading the page. Please try again later.
@@ -44,5 +42,5 @@ export default function Error({error}: { error: Error & { digest?: string }}) {
         </Button>
       </div>
     </div>
-  )
+  );
 }

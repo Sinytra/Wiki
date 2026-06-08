@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 import {
@@ -15,27 +15,25 @@ import {
   UsersIcon
 } from 'lucide-react';
 
-import {DevSidebarMainNav} from "@/components/dashboard/dev/navigation/DevSidebarMainNav";
-import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu} from "@repo/ui/components/sidebar";
-import {useTranslations} from "next-intl";
-import DevSidebarMenuItem from "@/components/dashboard/dev/navigation/DevSidebarMenuItem";
-import usePreventBuggyScrollLock from "@repo/shared/client/usePreventBuggyScrollLock";
+import { DevSidebarMainNav } from '@/components/dashboard/dev/navigation/DevSidebarMainNav';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu } from '@repo/ui/components/sidebar';
+import { useTranslations } from 'next-intl';
+import DevSidebarMenuItem from '@/components/dashboard/dev/navigation/DevSidebarMenuItem';
+import usePreventBuggyScrollLock from '@repo/shared/client/usePreventBuggyScrollLock';
 
-type Props = React.ComponentProps<typeof Sidebar>
+type Props = React.ComponentProps<typeof Sidebar>;
 
 function AdminSidebarHeader() {
   return (
-    <div className={`
-      flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive-secondary py-3
-    `}>
+    <div
+      className={`flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive-secondary py-3`}
+    >
       <div>
         <ServerCogIcon width={32} height={32} />
       </div>
-      <span className="text-lg">
-        Administrator area
-      </span>
+      <span className="text-lg">Administrator area</span>
     </div>
-  )
+  );
 }
 
 export function AdminSidebar(props: Props) {
@@ -78,7 +76,7 @@ export function AdminSidebar(props: Props) {
           title: t('nav.access_keys'),
           url: '/admin/access_keys',
           icon: KeyRoundIcon
-        },
+        }
       ]
     },
     {
@@ -118,19 +116,23 @@ export function AdminSidebar(props: Props) {
   ];
 
   return (
-    <Sidebar variant="floating" className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
-             collapsible="offcanvas" {...props}>
+    <Sidebar
+      variant="floating"
+      className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
+      collapsible="offcanvas"
+      {...props}
+    >
       <SidebarHeader>
         <AdminSidebarHeader />
       </SidebarHeader>
       <SidebarContent>
-        <DevSidebarMainNav groups={mainEntries}/>
+        <DevSidebarMainNav groups={mainEntries} />
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          <DevSidebarMenuItem url="/dev" icon={Undo2Icon} title={t('nav.return')}/>
+          <DevSidebarMenuItem url="/dev" icon={Undo2Icon} title={t('nav.return')} />
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

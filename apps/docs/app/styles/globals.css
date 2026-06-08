@@ -15,6 +15,8 @@
 
     --text-3xl: 28px;
     --text-4xl: 32px;
+
+    --text-color-code: #5c9de4;
 }
 
 @layer theme {
@@ -37,7 +39,7 @@
     }
 
     .wiki-subtitle {
-        @apply text-lg mb-2 text-neutral-400! md:text-2xl text-center;
+        @apply text-lg mb-2 md:text-2xl text-center;
     }
 
     .nextra-breadcrumb {

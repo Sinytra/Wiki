@@ -1,21 +1,18 @@
-'use client'
+'use client';
 
-import {TvMinimalPlayIcon} from "lucide-react";
-import {Button} from "@repo/ui/components/button";
-import {cn} from "@repo/ui/lib/utils";
-import {ReactNode, useContext} from "react";
+import { TvMinimalPlayIcon } from 'lucide-react';
+import { Button } from '@repo/ui/components/button';
+import { cn } from '@repo/ui/lib/utils';
+import { ReactNode, useContext } from 'react';
 import {
   CATEGORY_EXPERIENCE,
   CookieConsentContext,
   EMBED_SERVICE_COOKIES
-} from "@/components/cookies/CookieConsentContextProvider";
-import * as CookieConsent from "vanilla-cookieconsent";
-import {useTranslations} from "next-intl";
+} from '@/components/cookies/CookieConsentContextProvider';
+import * as CookieConsent from 'vanilla-cookieconsent';
+import { useTranslations } from 'next-intl';
 
-export default function VideoEmbedPlaceholder({id, children}: {
-  id: string;
-  children: ReactNode
-}) {
+export default function VideoEmbedPlaceholder({ id, children }: { id: string; children: ReactNode }) {
   const t = useTranslations('VideoEmbedPlaceholder');
   const context = useContext(CookieConsentContext);
   if (!context || !context.enableCookieManagement || context?.hasConsentToEmbeddedVideos) {
@@ -30,11 +27,11 @@ export default function VideoEmbedPlaceholder({id, children}: {
   const thumbnailSrc = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
   return (
-    <div className={cn(`video-embed relative flex rounded-sm border border-tertiary bg-primary-alt text-center`)}>
-      <img src={thumbnailSrc} alt="thumbnail" width={560}/>
+    <div className={cn('video-embed relative flex rounded-sm border border-tertiary bg-primary-alt text-center')}>
+      <img src={thumbnailSrc} alt="thumbnail" width={560} />
 
-      <div className={`absolute-center flex h-full w-full flex-col items-center justify-center gap-5 bg-primary/80`}>
-        <TvMinimalPlayIcon className="size-12 text-secondary-alt" strokeWidth={1.5}/>
+      <div className={'absolute-center flex h-full w-full flex-col items-center justify-center gap-5 bg-primary/80'}>
+        <TvMinimalPlayIcon className="size-12 text-secondary-alt" strokeWidth={1.5} />
         <div className="text-xl">
           <div className="flex flex-col gap-1">
             <span>{t('title')}</span>
@@ -42,14 +39,10 @@ export default function VideoEmbedPlaceholder({id, children}: {
           </div>
         </div>
         <div className="mt-2 flex flex-row flex-wrap justify-center gap-3">
-          <Button onClick={() => acceptService()}>
-            {t('accept')}
-          </Button>
+          <Button onClick={() => acceptService()}>{t('accept')}</Button>
           {videoId && (
             <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noreferrer">
-              <Button variant="outline">
-                {t('watch')}
-              </Button>
+              <Button variant="outline">{t('watch')}</Button>
             </a>
           )}
         </div>

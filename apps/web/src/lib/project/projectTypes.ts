@@ -32,16 +32,18 @@ import {
   UnplugIcon,
   WandIcon,
   ZapIcon
-} from "lucide-react";
-import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
-import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
-import {ElementType} from "react";
-import {ProjectType} from "@repo/shared/types/service";
-import {ProjectPlatform} from "@repo/shared/types/platform";
+} from 'lucide-react';
+import CurseForgeIcon from '@repo/ui/icons/CurseForgeIcon';
+import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
+import { ElementType } from 'react';
+import { ProjectPlatform } from '@repo/shared/types/platform';
+import { ProjectType } from '@sinytra/wiki-api-types';
 
-export const ProjectHostingPlatforms: { [key in ProjectPlatform]: { name: string; icon: ElementType } } = {
-  curseforge: {name: 'CurseForge', icon: CurseForgeIcon},
-  modrinth: {name: 'Modrinth', icon: ModrinthIcon}
+export const ProjectHostingPlatforms: {
+  [key in ProjectPlatform]: { name: string; icon: ElementType };
+} = {
+  curseforge: { name: 'CurseForge', icon: CurseForgeIcon },
+  modrinth: { name: 'Modrinth', icon: ModrinthIcon }
 };
 
 export const ProjectCategories: { [key: string]: any } = {
@@ -52,7 +54,7 @@ export const ProjectCategories: { [key: string]: any } = {
   economy: DollarSignIcon,
   equipment: SwordsIcon,
   food: CarrotIcon,
-  "game-mechanics": SlidersVerticalIcon,
+  'game-mechanics': SlidersVerticalIcon,
   library: BookIcon,
   magic: WandIcon,
   management: ServerIcon,
@@ -84,14 +86,14 @@ export const ProjectCategories: { [key: string]: any } = {
   'mc-miscellaneous': FileQuestionIcon,
   redstone: CircuitBoardIcon,
   'utility-qol': BriefcaseIcon,
-  'mc-creator': BiohazardIcon,
-}
+  'mc-creator': BiohazardIcon
+};
 
 export const ProjectTypeIcons: { [key in ProjectType]: any } = {
-  [ProjectType.MOD]: BoxIcon,
-  [ProjectType.MODPACK]: PackageOpenIcon,
-  [ProjectType.RESOURCEPACK]: PaintbrushIcon,
-  [ProjectType.DATAPACK]: BracesIcon,
-  [ProjectType.SHADER]: SwatchBookIcon,
-  [ProjectType.PLUGIN]: UnplugIcon
-}
+  mod: BoxIcon,
+  modpack: PackageOpenIcon,
+  resourcepack: PaintbrushIcon,
+  datapack: BracesIcon,
+  shader: SwatchBookIcon,
+  plugin: UnplugIcon
+};

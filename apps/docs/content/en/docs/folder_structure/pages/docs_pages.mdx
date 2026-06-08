@@ -17,39 +17,28 @@ Folders created in the file tree will also show up as folders in the wiki docume
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name="...arbitrarily_nested_path" defaultOpen>
-            <FileTreeFile name="arbitrary_name.mdx"/>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFolder name="...arbitrarily_nested_path" defaultOpen>
+                <FileTreeFile name="arbitrary_name.mdx"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="example_block.mdx"/>
         </FileTreeFolder>
-        <FileTreeFile name="example_block.mdx"/>
     </FileTreeFolder>
 </FileTree>
 
-## Authoring
-
-Documentation pages can make use of available frontmatter properties and all non-interactive components.
-
-The Markdown [format](../pages#format) is shared across all types of pages.
-
-### Checklist
-
-Here's a basic list of things to keep in mind when writing documentation pages:
-
-- Specify [frontmatter](../pages#metadata) properties as desired
-
-- Create a [folder metadata](../folder_meta) file to specify sidebar page/folder names
-
-- Check out available [components](../../components/overview) to include
-
 ## Example
 
-Following is an example of a simple documentation page. Notice how an import is not required for wiki components.
+Following is an example of a simple documentation page. Notice how an import is not required to use wiki components.
 
 ```mdx
 # Introduction
 
 Introduction to Example Mod.
 
-<Callout variant="info">This is a sample info callout</Callout>
+<Callout variant="info">
+  This is a sample info callout
+</Callout>
 
 -- Your text comes here --
 
@@ -63,6 +52,45 @@ Integer a velit quis est auctor finibus. Vivamus libero lorem, vehicula eu
 est ut, pellentesque dignissim enim. Integer iaculis turpis id neque eleifend
 malesuada. Curabitur convallis ultrices orci. Phasellus imperdiet pulvinar
 lacus, id luctus
+```
+
+## Authoring
+
+Documentation pages can make use of available frontmatter properties and all non-interactive components.
+
+The Markdown [format](../pages#format) is shared across all types of pages.
+
+### Checklist
+
+Here's a basic list of things to keep in mind when writing documentation pages:
+
+- [x] Specify [frontmatter](#metadata) properties as desired
+
+<p/>
+
+- [x] Create a [folder metadata](../folder_meta) file to specify sidebar page/folder names
+
+<p/>
+
+- [x] Check out available [components](../../components/overview) to include
+
+## Metadata
+
+Documentation pages don't have any required frontmatter attributes, but you may specify a few optional ones.
+
+Example usage with explanations can be found below.
+
+```mdx
+---
+# Resource location of an asset that will be shown as the documented item's icon
+# It should be at least 128x128 px in size
+# (Optional)
+icon: examplemod:item/fancy_generator
+
+# Changelog. See parent page for details
+# (Optional)
+history: ...
+---
 ```
 
 ## Next steps

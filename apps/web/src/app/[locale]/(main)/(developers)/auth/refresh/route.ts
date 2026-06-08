@@ -1,6 +1,6 @@
-import {NextRequest, NextResponse} from "next/server";
-import {SESSION_KEY} from "@/lib/authSession";
-import {cookies} from "next/headers";
+import { NextRequest, NextResponse } from 'next/server';
+import { SESSION_KEY } from '@/lib/authSession';
+import { cookies } from 'next/headers';
 
 export async function GET(request: NextRequest) {
   const response = NextResponse.redirect(new URL('/auth/login', request.nextUrl));

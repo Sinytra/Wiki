@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 export default function usePreventBuggyScrollLock() {
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function usePreventBuggyScrollLock() {
         }
       });
     });
-    observer.observe(el, {attributes: true});
+    observer.observe(el, { attributes: true });
     return () => observer.disconnect();
   }, []);
 }

@@ -1,50 +1,51 @@
-import {notFound} from "next/navigation";
-import Asset from "@/components/docs/shared/asset/Asset";
-import PageLink from "@/components/docs/PageLink";
-import service from "@/lib/service";
-import {setContextLocale} from "@/lib/locales/routing";
-import platforms from "@repo/shared/platforms";
-import DocsSubpageTitle from "@/components/docs/layout/DocsSubpageTitle";
-import {ProjectContentEntry, ProjectContentTree, ProjectContext} from "@repo/shared/types/service";
-import {useTranslations} from "next-intl";
-import {ProjectRouteParams} from "@repo/shared/types/routes";
-import {getContentLink} from "@/lib/project/game/content";
-import {Fragment} from "react";
+import { notFound } from 'next/navigation';
+import Asset from '@/components/docs/shared/asset/Asset';
+import PageLink from '@/components/docs/PageLink';
+import service from '@/lib/service';
+import { setContextLocale } from '@/lib/locales/routing';
+import platforms from '@repo/shared/platforms';
+import DocsSubpageTitle from '@/components/docs/layout/DocsSubpageTitle';
+import { ContentFileTree, ProjectContext } from '@repo/shared/types/service';
+import { ContentFileTreeEntry } from '@sinytra/wiki-api-types';
+import { useTranslations } from 'next-intl';
+import { ProjectRouteParams } from '@repo/shared/types/routes';
+import { getInternalWikiLink } from '@/lib/project/game/content';
+import { Fragment } from 'react';
 
 interface Props {
   params: Promise<ProjectRouteParams>;
 }
 
-function ContentEntryLink({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
+function ContentEntryLink({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: ProjectContext }) {
   if (entry.type != 'file') {
     throw new Error('Bug? Unexpected ContentEntryLink entry type ' + entry.type);
   }
 
   return (
     <div>
-      <PageLink href={getContentLink(ctx, entry.id!)}
-                className="flex flex-row items-center gap-1 !text-sm">
-        <Asset location={entry.icon || entry.id!} ctx={ctx}/>
+      <PageLink href={getInternalWikiLink(entry.ref!, ctx)} className="flex flex-row items-center gap-1 !text-sm">
+        <Asset location={entry.icon || ''} ctx={ctx} />
         {entry.name}
       </PageLink>
     </div>
-  )
+  );
 }
 
-function ContentEntryList({entries, ctx}: { entries: ProjectContentTree; ctx: ProjectContext; }) {
+function ContentEntryList({ entries, ctx }: { entries: ContentFileTree; ctx: ProjectContext }) {
   return (
-    <div className="w-full columns-[10em] flex-row flex-wrap items-center gap-1 space-y-2 sm:flex sm:w-fit sm:space-y-0">
-      {...entries.filter(c => c.type === 'file').map((c, i) =>
-        <div key={c.path} className="flex flex-row flex-wrap items-center gap-1">
-          {i > 0 && <span className="hidden text-secondary sm:block">&bull;</span>}
-          <ContentEntryLink entry={c} ctx={ctx}/>
-        </div>
-      )}
+    <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(10em,1fr))] gap-2">
+      {...entries
+        .filter((c) => c.type === 'file')
+        .map((c) => (
+          <div key={c.ref} className="flex flex-row flex-wrap items-center">
+            <ContentEntryLink entry={c} ctx={ctx} />
+          </div>
+        ))}
     </div>
-  )
+  );
 }
 
-function ContentSubcategory({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
+function ContentSubcategory({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: ProjectContext }) {
   if (entry.type != 'dir') {
     throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
   }
@@ -54,19 +55,19 @@ function ContentSubcategory({entry, ctx}: { entry: ProjectContentEntry; ctx: Pro
       <div className="shrink-0 text-end sm:w-24">
         <span className="text-sm font-medium">{entry.name}</span>
       </div>
-      <ContentEntryList entries={entry.children} ctx={ctx}/>
+      <ContentEntryList entries={entry.children} ctx={ctx} />
     </div>
-  )
+  );
 }
 
-function ContentCategory({entry, ctx}: { entry: ProjectContentEntry; ctx: ProjectContext; }) {
+function ContentCategory({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: ProjectContext }) {
   if (entry.type != 'dir') {
     throw new Error('Bug? Unexpected ContentCategory entry type ' + entry.type);
   }
 
   const t = useTranslations('ContentCategory');
-  const enableCategories = entry.children.some(c => c.type === 'dir');
-  const children = entry.children.filter(c => c.type == 'file');
+  const enableCategories = entry.children.some((c) => c.type === 'dir');
+  const children = entry.children.filter((c) => c.type == 'file');
 
   if (!enableCategories && children.length === 0) {
     return null;
@@ -75,33 +76,32 @@ function ContentCategory({entry, ctx}: { entry: ProjectContentEntry; ctx: Projec
   return (
     <div className="bg-primary-alt/50">
       <div className="flex flex-col gap-2 rounded-sm border border-secondary-dim px-3 py-2">
-        <span className="border-b border-tertiary pb-1 text-lg font-medium">
-          {entry.name}
-        </span>
-        {enableCategories
-          ?
+        <span className="border-b border-tertiary pb-1 text-lg font-medium">{entry.name}</span>
+        {enableCategories ? (
           <div className="flex flex-col gap-1">
-            {...entry.children.filter(c => c.type === 'dir').map(c => (
-              <Fragment key={c.path}>
-                <ContentSubcategory entry={c} ctx={ctx}/>
-                <hr className="my-1.5 border-tertiary last:hidden" />
-              </Fragment>
-            ))}
-            {children.length > 0 &&
-              <ContentSubcategory entry={{name: t('other'), children, type: 'dir', path: ''}} ctx={ctx}/>
-            }
+            {...entry.children
+              .filter((c) => c.type === 'dir')
+              .map((c) => (
+                <Fragment key={c.path}>
+                  <ContentSubcategory entry={c} ctx={ctx} />
+                  <hr className="my-1.5 border-tertiary last:hidden" />
+                </Fragment>
+              ))}
+            {children.length > 0 && (
+              <ContentSubcategory entry={{ name: t('other'), children, type: 'dir', path: '' }} ctx={ctx} />
+            )}
           </div>
-          :
-          <ContentSubcategory entry={{name: t('all'), children, type: 'dir', path: ''}} ctx={ctx}/>
-        }
+        ) : (
+          <ContentSubcategory entry={{ name: t('all'), children, type: 'dir', path: '' }} ctx={ctx} />
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default async function ProjectContentPage(props: Props) {
-  const {slug, version, locale} = await props.params;
-  const ctx = {id: slug, version, locale};
+export default async function ProjectPage(props: Props) {
+  const { slug, version, locale } = await props.params;
+  const ctx = { id: slug, version, locale };
   setContextLocale(locale);
 
   const project = await service.getProject(ctx);
@@ -127,10 +127,8 @@ export default async function ProjectContentPage(props: Props) {
       />
 
       <div className="flex flex-col gap-4">
-        {...contents.map(e =>
-          (<ContentCategory key={e.path} ctx={ctx} entry={e}/>))
-        }
+        {...contents.map((e) => <ContentCategory key={e.path} ctx={ctx} entry={e} />)}
       </div>
     </div>
-  )
+  );
 }

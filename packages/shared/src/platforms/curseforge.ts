@@ -1,28 +1,28 @@
-import {PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider} from './universal';
+import { PlatformProject, PlatformProjectAuthor, ProjectPlatformProvider } from './universal';
 import env from '@repo/shared/env';
-import {ProjectType} from '@repo/shared/types/service';
-import {ProjectNotFoundError} from './exception';
-import {time} from '@repo/shared/constants';
+import { ProjectNotFoundError } from './exception';
+import { time } from '@repo/shared/constants';
+import { ProjectType } from '@sinytra/wiki-api-types';
 
 const curseForgeApiBaseUrlV1: string = 'https://api.curseforge.com/v1';
 const minecraftGameId = 432;
 
 const curseforgeProjectTypes: Record<number, ProjectType> = {
-  6: ProjectType.MOD,
-  12: ProjectType.RESOURCEPACK,
-  6945: ProjectType.DATAPACK,
-  6552: ProjectType.SHADER,
-  4471: ProjectType.MODPACK,
-  5: ProjectType.PLUGIN
+  6: 'mod',
+  12: 'resourcepack',
+  6945: 'datapack',
+  6552: 'shader',
+  4471: 'modpack',
+  5: 'plugin'
 };
 
 const projectTypePaths: Record<ProjectType, string> = {
-  [ProjectType.MOD]: 'mc-mods',
-  [ProjectType.RESOURCEPACK]: 'texture-packs',
-  [ProjectType.DATAPACK]: 'data-packs',
-  [ProjectType.SHADER]: 'shaders',
-  [ProjectType.MODPACK]: 'modpacks',
-  [ProjectType.PLUGIN]: 'bukkit-plugins'
+  mod: 'mc-mods',
+  resourcepack: 'texture-packs',
+  datapack: 'data-packs',
+  shader: 'shaders',
+  modpack: 'modpacks',
+  plugin: 'bukkit-plugins'
 };
 
 interface CurseForgeProject {
@@ -39,7 +39,7 @@ interface CurseForgeProject {
   links: {
     websiteUrl: string;
     sourceUrl: string;
-  }
+  };
   classId: number;
 }
 
@@ -65,7 +65,7 @@ interface PaginatedResults<T> {
     pageSize: number;
     resultCount: number;
     totalCount: number;
-  }
+  };
 }
 
 function shouldUsePlaceholder(): boolean {
@@ -87,18 +87,18 @@ async function getProject(slug: string): Promise<PlatformProject> {
       source_url: '',
 
       platform: 'curseforge',
-      project_url: getProjectURL(slug, ProjectType.MOD),
+      project_url: getProjectURL(slug, 'mod'),
       extra: {
         authors: []
       },
-      type: ProjectType.MOD,
+      type: 'mod',
       is_placeholder: true
     };
   }
 
   const project = await getCurseForgeProject(slug);
   const description = await getProjectDescription(project.id);
-  const type = curseforgeProjectTypes[project.classId] || ProjectType.MOD;
+  const type = curseforgeProjectTypes[project.classId] || 'mod';
 
   return {
     slug: project.slug,
@@ -106,15 +106,15 @@ async function getProject(slug: string): Promise<PlatformProject> {
     summary: project.summary,
     description,
     icon_url: project.logo.url,
-    categories: project.categories.map(c => c.slug),
-    game_versions: project.latestFilesIndexes.map(i => i.gameVersion).reverse(),
+    categories: project.categories.map((c) => c.slug),
+    game_versions: project.latestFilesIndexes.map((i) => i.gameVersion).reverse(),
     license: undefined, // CF does not provide this information
     source_url: project.links.sourceUrl,
 
     platform: 'curseforge',
     project_url: getProjectURL(project.slug, type),
     extra: {
-      authors: project.authors.map(a => ({name: a.name, url: a.url} satisfies PlatformProjectAuthor))
+      authors: project.authors.map((a) => ({ name: a.name, url: a.url }) satisfies PlatformProjectAuthor)
     },
     type
   };
@@ -132,14 +132,19 @@ function getProjectURL(slug: string, type: ProjectType): string {
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
   if (isNumeric(slug)) {
     try {
-      const results = await fetchCurseForgeApiInternal(`/mods/${slug}`) as { data: CurseForgeProject };
+      const results = (await fetchCurseForgeApiInternal(`/mods/${slug}`, slug)) as {
+        data: CurseForgeProject;
+      };
       return results.data;
     } catch (error) {
       console.error('Error fetching project by ID', slug, error);
     }
   }
 
-  const results = await fetchCurseForgeApiInternal(`/mods/search?gameId=${minecraftGameId}&slug=${slug}`) as PaginatedResults<CurseForgeProject>;
+  const results = (await fetchCurseForgeApiInternal(
+    `/mods/search?gameId=${minecraftGameId}&slug=${slug}`,
+    slug
+  )) as PaginatedResults<CurseForgeProject>;
   if (results.pagination.resultCount === 1 && results.data.length === 1) {
     return results.data[0]!;
   }
@@ -152,11 +157,11 @@ async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {
 }
 
 async function getProjectDescription(id: number): Promise<string> {
-  const result = await fetchCurseForgeApiInternal(`/mods/${id}/description`) as any;
+  const result = (await fetchCurseForgeApiInternal(`/mods/${id}/description`, id.toString())) as any;
   return result.data;
 }
 
-async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promise<T> {
+async function fetchCurseForgeApiInternal<T>(path: string, projectSlug: string, headers?: any): Promise<T> {
   if (!process.env.CF_API_KEY) {
     throw new Error('Missing CurseForge API (CF_API_KEY)');
   }
@@ -168,7 +173,7 @@ async function fetchCurseForgeApiInternal<T>(path: string, headers?: any): Promi
     },
     cache: 'force-cache',
     next: {
-      tags: ['curseforge'],
+      tags: [`curseforge:${projectSlug}`],
       revalidate: time.ONE_MONTH
     }
   });

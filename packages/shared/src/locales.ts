@@ -1,6 +1,6 @@
-import {CN, CZ, DE, ES, FR, HU, IT, JP, KR, MY, PL, RU, SE, TR, TW, UA, US} from 'country-flag-icons/react/3x2';
+import { CN, CZ, DE, ES, FR, HU, IT, JP, KR, MY, PL, RU, SE, TR, TW, UA, US } from 'country-flag-icons/react/3x2';
 
-export type LanguageMap = {[key: string]: Language};
+export type LanguageMap = { [key: string]: Language };
 
 export type PathPrefixMap = Record<string, string>;
 
@@ -33,7 +33,13 @@ function getAvailableLocales(): LanguageMap {
     hu: { name: 'Magyar', file: 'hu_HU', icon: HU },
     pl: { name: 'Polski', file: 'pl_PL', icon: PL },
     ms: { name: 'Bahasa Melayu', file: 'ms_MY', icon: MY },
-    'ms-Arab': { name: 'بهاس ملايو', file: 'ms_Arab', prefix: 'ms_Ar', icon: MY, rtl: true },
+    'ms-Arab': {
+      name: 'بهاس ملايو',
+      file: 'ms_Arab',
+      prefix: 'ms_Ar',
+      icon: MY,
+      rtl: true
+    },
     tr: { name: 'Türkçe', file: 'tr_TR', icon: TR },
     sv: { name: 'Svenska', file: 'sv_SE', crowdin: 'sv-SE', icon: SE },
     uk: { name: 'Українська', file: 'uk_UA', icon: UA },
@@ -46,7 +52,7 @@ function getAvailableLocales(): LanguageMap {
 }
 
 function getLanguagePaths(): string[] {
-  return Object.entries(getAvailableLocales()).map(e => e[1].prefix || e[0]);
+  return Object.entries(getAvailableLocales()).map((e) => e[1].prefix || e[0]);
 }
 
 function getNextIntlLocales(): string[] {
@@ -54,22 +60,21 @@ function getNextIntlLocales(): string[] {
 }
 
 function getNextIntlInternal(locale: string): string {
-  return Object.entries(getAvailableLocales()).find(e => e[0] === locale || e[1].prefix === locale)?.[0] || locale;
+  return Object.entries(getAvailableLocales()).find((e) => e[0] === locale || e[1].prefix === locale)?.[0] || locale;
 }
 
 function getPathPrefixes(): PathPrefixMap {
   return Object.entries(getAvailableLocales())
-      .filter(e => e[1].prefix !== undefined)
-      .reduce((p, e) => ({...p, [e[0]]: '/' + e[1].prefix}), {});
+    .filter((e) => e[1].prefix !== undefined)
+    .reduce((p, e) => ({ ...p, [e[0]]: '/' + e[1].prefix }), {});
 }
 
 function getForUrlParam(locale: string): Language | undefined {
-  return Object.entries(getAvailableLocales())
-    .find(e => e[0] === locale || e[1].prefix === locale)?.[1];
+  return Object.entries(getAvailableLocales()).find((e) => e[0] === locale || e[1].prefix === locale)?.[1];
 }
 
 function getCrowdinLanguageId(locale: string): string | undefined {
-  const entry = Object.entries(getAvailableLocales()).find(e => e[0] === locale || e[1].prefix === locale);
+  const entry = Object.entries(getAvailableLocales()).find((e) => e[0] === locale || e[1].prefix === locale);
   return entry?.[1].crowdin || entry?.[0];
 }
 

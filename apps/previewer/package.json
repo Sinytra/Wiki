@@ -11,7 +11,7 @@
     "directory": "build/output"
   },
   "dependencies": {
-    "@next/mdx": "^15.4.1",
+    "@next/mdx": "^15.5.19",
     "@repo/markdown": "workspace:*",
     "@repo/previewer": "workspace:*",
     "@repo/shared": "workspace:*",
@@ -20,9 +20,9 @@
     "chokidar": "^5.0.0",
     "codehike": "^1.0.7",
     "concurrently": "^9.2.1",
-    "lucide-react": "^0.575.0",
+    "lucide-react": "^1.17.0",
     "next": "15.5.9",
-    "next-intl": "^4.1.0",
+    "next-intl": "^4.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "ws": "^8.18.3"

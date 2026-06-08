@@ -1,983 +1,983 @@
 {
-    "Badges": {
-        "local": "Локально",
-        "latest": "Останній",
-        "admin": "Admin"
-    },
-    "NavigationHeader": {
-        "title": "Вікі модифікованого Minecraft",
-        "title_short": "Вікі",
-        "badge": {
-            "preview": "РЕЖИМ ПОПЕРЕДНЬОГО ПЕРЕГЛЯДУ",
-            "beta": "Бета"
-        },
-        "link": {
-            "home": "Головна",
-            "browse": "Огляд",
-            "about": "Про нас"
-        }
-    },
-    "NavigationFooter": {
-        "title": "Вікі модифікованого Minecraft",
-        "links": {
-            "navigation": {
-                "title": "Навігація",
-                "home": "Головна сторінка",
-                "browse": "Огляд",
-                "dev": "Розробники"
-            },
-            "links": {
-                "title": "Посилання"
-            },
-            "resources": {
-                "title": "Ресурси",
-                "blog": "Блог",
-                "status": "Статус",
-                "translate": "Допомогти з перекладом"
-            },
-            "about": {
-                "title": "Про нас",
-                "tos": "Умови користування",
-                "privacy": "Політика конфіденційності",
-                "contact": "Зв’язатися з нами"
-            }
-        }
-    },
-    "HomePage": {
-        "title": "Ласкаво просимо на <highlight>Вікі модифікованого Minecraft</highlight>",
-        "subtitle": "Ваш основний ресурс для пошуку, створення та внесення свого внеску в проєкти, пов’язані з Minecraft.",
-        "popular": {
-            "title": "Популярні вікі",
-            "open": "Докладніше",
-            "disclaimer": "Ці проєкти відображено на основі їхньої популярності згідно зі статистикою переглядів і вони не є офіційно підтриманими вікі модифікованого Minecraft."
-        },
-        "community": {
-            "title": "Долучайтеся до нашої спільноти",
-            "users": {
-                "title": "Користувачі",
-                "subtitle": "Ознайомтеся з рекомендованими проєктами та скористайтеся такими перевагами:",
-                "docs": "Доступ до якісної, актуальної та версіонованої документації",
-                "contribute": "Можливість долучатися до проєктів без знань програмування",
-                "ui": "Послідовний і зручний інтерфейс у всіх проєктах",
-                "localization": "Підтримка кількох мов інтерфейсу"
-            },
-            "authors": {
-                "title": "Автори",
-                "subtitle": "Отримайте доступ до панелі керування проєктом і скористайтеся такими перевагами:",
-                "vcs": "Підтримка версіонування документації",
-                "components": "Built-in components for recipes, assets, etc.",
-                "gradle": "Інтеграція з Gradle для плавного робочого процесу",
-                "management": "Розширені інструменти керування проєктом",
-                "interaction": "Прямий зв’язок із вашою спільнотою",
-                "dashboard": "Панель керування",
-                "guide": "Докладніше"
-            }
-        },
-        "browse": "Переглянути проєкти",
-        "highlights": {
-            "localization": {
-                "title": "Локалізація",
-                "desc": "Перекладайте документацію мовами світу"
-            },
-            "accessibility": {
-                "title": "Доступність",
-                "desc": "Інтуїтивний та адаптивний інтерфейс користувача"
-            },
-            "open": {
-                "title": "Відкритість",
-                "desc": "Дозвольте користувачам долучатися без знань програмування"
-            },
-            "free": {
-                "title": "Безкоштовно",
-                "desc": "Хостинг документації на нашому сайті цілком безкоштовний!"
-            }
-        },
-        "about": {
-            "title": "Про нас",
-            "maintainers": "Вікі створена та підтримується командою <b>Sinytra</b> — групою відданих розробників, які зосереджені на створенні високоякісного, вільного та відкритого програмного забезпечення для спільноти розробників модифікацій для Minecraft.",
-            "mission": "Наша мета — надати розробникам і гравцям необхідні інструменти та ресурси для створення, документування та дослідження безмежних можливостей модифікованого Minecraft."
-        },
-        "blog": {
-            "title": "Дописи блогу",
-            "open": "Докладніше"
-        }
-    },
-    "BrowsePage": {
-        "sidebar": {
-            "title": "Переглянути проєкти",
-            "search_filters": "Шукати фільтри...",
-            "categories": "Категорії"
-        },
-        "sorting": "Сортувати",
-        "sort": {
-            "relevance": "За релевантністю",
-            "creation_date": "За датою створення",
-            "popularity": "За популярністю",
-            "az": "Від А до Я",
-            "za": "Від Я до А"
-        },
-        "search": "Шукати проєкти...",
-        "clear_filter": "Очистити фільтри",
-        "no_results": "За вашим запитом нічого не знайдено!"
-    },
-    "SearchProjectTypes": {
-        "mod": "Моди",
-        "modpack": "Збірки модів",
-        "resourcepack": "Пакети ресурсів",
-        "datapack": "Пакети даних",
-        "shader": "Шейдери",
-        "plugin": "Плагіни"
-    },
-    "ProjectTypes": {
-        "mod": "Мод",
-        "modpack": "Збірка модів",
-        "resourcepack": "Пакет ресурсів",
-        "datapack": "Пакет даних",
-        "shader": "Шейдер",
-        "plugin": "Плагін"
-    },
-    "LoadingContent": {
-        "message": "Завантаження..."
-    },
-    "MetaDocsNavigation": {
-        "title": "Навігація",
-        "about": "Про нас",
-        "devs": "Author guide",
-        "components": "Components",
-        "help": "Допомога",
-        "tos": "Умови використання",
-        "privacy": "Політика конфіденційності",
-        "security": "Зауваження щодо безпеки"
-    },
-    "Login": {
-        "title": "Необхідно ввійти",
-        "desc": "Сторінка, до якої ви намагаєтеся отримати доступ, вимагає від вас входу в систему.",
-        "prompt": "Будь ласка, використовуйте ваш обліковий запис GitHub, щоби продовжити.",
-        "button": "Увійти за допомогою GitHub"
-    },
-    "Preview": {
-        "title": "Режим попереднього перегляду увімкнено",
-        "desc": "Режим попереднього перегляду вмикає мінімальний інтерфейс користувача, дозволяючи зосередитись на створенні документації локально перед її публікацією.",
-        "roots": "Доступні каталоги локальної документації",
-        "open": "Відкрити"
-    },
-    "DocsProjectInfo": {
-        "title": "Інформація про проєкт",
-        "type": "Тип",
-        "author": "Автор",
-        "tags": "Теґи",
-        "latest": {
-            "title": "Остання версія",
-            "unknown": "Н/Д"
-        },
-        "license": {
-            "title": "Ліцензія",
-            "custom": "Користувацька",
-            "unknown": "Невідома",
-            "arr": "Всі права захищені"
-        }
-    },
-    "ProjectCategories": {
-        "adventure": "Пригоди",
-        "cursed": "Прокляті",
-        "decoration": "Декорації",
-        "economy": "Економіка",
-        "equipment": "Спорядження",
-        "food": "Їжа",
-        "game-mechanics": "Ігрові механіки",
-        "library": "Бібліотека",
-        "magic": "Магія",
-        "management": "Керування",
-        "minigame": "Міні-гра",
-        "mobs": "Моби",
-        "optimization": "Оптимізація",
-        "social": "Соціальні",
-        "storage": "Сховище",
-        "technology": "Технології",
-        "transportation": "Транспорт",
-        "utility": "Утиліти",
-        "worldgen": "Генерація світу",
-        "server-utility": "Серверні утиліти",
-        "armor-weapons-tools": "Обладунки, інструменти та зброя",
-        "library-api": "API та бібліотеки",
-        "adventure-rpg": "Пригоди та RPG",
-        "world-gen": "Генерація світу",
-        "cosmetic": "Косметика",
-        "mc-food": "Їжа",
-        "performance": "Продуктивність",
-        "map-information": "Мапи та інформація",
-        "bug-fixes": "Виправлення помилок",
-        "mc-addons": "Аддони",
-        "education": "Навчання",
-        "mc-miscellaneous": "Різне",
-        "redstone": "Редстоун",
-        "utility-qol": "Утиліти та покращення якості життя",
-        "mc-creator": "MCreator"
-    },
-    "PageEditControls": {
-        "edit_gh": "Редагувати цю сторінку",
-        "report": "Поскаржитися на цю сторінку",
-        "report_button": "Поскражитися на сторінку",
-        "last_updated": "Востаннє оновлено: <date></date>"
-    },
-    "Report": {
-        "title": "Поскаржитись на сторінку документації",
-        "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-        "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
-        "confidential": "Ваша конфіденційність важлива для нас, і ця інформація завжди залишатиметься конфіденційною.",
-        "privacy": "Для отримання додаткової інформації, будь ласка, ознайомтеся з нашою <link>Політикою конфіденційності</link>.",
-        "form": {
-            "id": {
-                "title": "ID проєкту",
-                "desc": "ID проєкту, про який буде повідомлено"
-            },
-            "path": {
-                "title": "Шлях до сторінки",
-                "desc": "Шлях до сторінки, про яку буде повідомлено."
-            },
-            "locale": {
-                "title": "Locale",
-                "desc": "Applied if the content lies within a localized subpath.",
-                "placeholder": "Н/Д"
-            },
-            "version": {
-                "title": "Version",
-                "desc": "Applied if the content lies within a named version.",
-                "placeholder": "Н/Д"
-            },
-            "reason": {
-                "title": "Підстава*",
-                "placeholder": "Select a reason for reporting this content",
-                "desc": "Reason for reporting this content.",
-                "dislike": "Мені це просто не подобається"
-            },
-            "details": {
-                "title": "Подробиці*",
-                "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
-                "desc": "Додаткові подробиці щодо проблеми."
-            },
-            "dislike": {
-                "title": "We understand that you may not like this content, and that's totally okay!",
-                "desc": "На жаль, це не є вагомою підставою для скарги на проєкт.",
-                "suggestion": "Would you like to look for something else to explore instead?",
-                "explore": "Огляд проєктів"
-            },
-            "success": "Скарга успішно надіслана"
-        }
-    },
-    "ProjectReportReason": {
-        "spam": "Спам",
-        "copyright": "Порушення авторських прав",
-        "content_rules": "Порушення правил щодо змісту",
-        "tos": "Порушення умов користування",
-        "unknown": "Невідома"
-    },
-    "ProjectReportStatus": {
-        "new": "New",
-        "dismissed": "Dismissed",
-        "accepted": "Accepted",
-        "unknown": "Невідома"
-    },
-    "ProjectReportType": {
-        "project": "Проєкт",
-        "docs": "Docs page",
-        "content": "Content page",
-        "unknown": "Невідома"
-    },
-    "ViewReportPage": {
-        "reports": "Reports",
-        "title": "Report details",
-        "desc": "Viewing report details for {id}",
-        "details": {
-            "reporter": "Reported by",
-            "project_id": "ID проєкту",
-            "path": "Шлях",
-            "body": "Body",
-            "reason": "Підстава",
-            "created_at": "Створено",
-            "status": "Статус",
-            "type": "Тип",
-            "locale": "Locale",
-            "version": "Version"
-        },
-        "actions": {
-            "dismiss": "Dismiss",
-            "accept": "Accept"
-        },
-        "toast": {
-            "accept": "Report accepted",
-            "dismiss": "Report dismissed"
-        }
-    },
-    "SubmitButton": {
-        "title": "Надіслати"
-    },
-    "Callout": {
-        "default": "Увага!",
-        "info": "Info",
-        "warning": "Warning",
-        "danger": "Danger"
-    },
-    "ProjectRegisterForm": {
-        "button": "New Project",
-        "title": "Зареєструвати проєкт",
-        "desc": "Зареєструвати новий проєкт у вікі.",
-        "repo": {
-            "title": "URL-адреса репозиторію",
-            "desc": "Це адреса, яку ви використовуєте для клонування вашого репозиторію.",
-            "placeholder": "https://github.com/ExampleUser/ExampleMod"
-        },
-        "branch": {
-            "title": "Гілка",
-            "desc": "Основна гілка. Ви можете вказати додаткові гілки для включення до файлу метаданих."
-        },
-        "path": {
-            "title": "Шлях до кореня документації",
-            "desc": "Шлях до теки, що містить файл метаданих."
-        },
-        "admin": "Налаштування адміністратора вікі",
-        "is_community": {
-            "title": "Проєкт, що підтримується спільнотою"
-        },
-        "errors": {
-            "details": "Показати подробиці"
-        },
-        "connect_modrinth": {
-            "desc": "Під'єднайте свій <b>обліковий запис Modrinth</b> у налаштуваннях, щоби легко перевіряти право власності на проєкт на платформі в будь-який час.",
-            "settings": "Відкрити налаштування"
-        },
-        "submit": "Надіслати",
-        "success": {
-            "title": "Проєкт успішно зареєстровано",
-            "desc": "Тепер ви можете перейти на сторінку документації проєкту"
-        },
-        "submitting": "Відправлення...",
-        "verify_modrinth": "Перевірити за допомогою Modrinth"
-    },
-    "ProjectSettingsForm": {
-        "title": "Редагувати проєкт",
-        "desc": "Редагувати налаштування існуючого проєкту.",
-        "button": "Налаштування",
-        "success": {
-            "title": "Проєкт успішно оновлено",
-            "desc": "Тепер ви можете перейти на оновлену сторінку документації проєкту"
-        }
-    },
-    "ProjectDeleteForm": {
-        "trigger": "Delete project",
-        "title": "Ви абсолютно впевнені?",
-        "desc": "Цю дію неможливо скасувати. Це призведе до остаточного видалення вашого проєкту та всіх пов’язаних даних з наших серверів.",
-        "cancel": "Скасувати",
-        "submit": "Видалити",
-        "success": "Проєкт успішно видалено"
-    },
-    "FormActions": {
-        "errors": {
-            "unauthorized": "Помилка автентифікації користувача",
-            "internal": "Внутрішня помилка сервера, будь ласка, спробуйте ще раз пізніше.",
-            "unknown": "Сталася невідома помилка, будь ласка, спробуйте ще раз пізніше.",
-            "no_platforms": "У метаданих не визначено жодних проєктів платформи.",
-            "no_project": "Проєкт платформи не знайдено. Будь ласка, переконайтеся, що поле метаданих «slug» правильне.",
-            "unsupported_type": "Непідтримуваний тип проєкту",
-            "ownership": "Не вдалося підтвердити право власності на проєкт",
-            "cf_unavailable": "Реєстрація проєктів CurseForge неактивна",
-            "requires_auth": "Для підключення до репозиторію потрібні облікові дані, але вони не були надані",
-            "no_repository": "Репозиторій не знайдено",
-            "no_branch": "Вказано недійсну гілку",
-            "no_path": "Файл метаданих не знайдено за вказаним шляхом",
-            "invalid_meta": "Файл метаданих недійсний",
-            "unsupported": "Ще не реалізовано",
-            "exists": "Проєкт вже існує.",
-            "not_found": "Проєкт не існує",
-            "illegal_id": "Illegal project ID",
-            "not_owner": "User is not authorized to register this project"
-        }
-    },
-    "CommunityBadge": {
-        "title": "Спільнота",
-        "desc": "Неофіційна документація, що підтримується спільнотою"
-    },
-    "DocsPageNotFoundError": {
-        "title": "Ми втратили цю сторінку",
-        "desc": "Запитувана сторінка документації наразі недоступна.",
-        "suggestion": "Будь ласка, спробуйте ще раз пізніше або повідомте про цю проблему автору проєкту.",
-        "submit": "Повідомити про помилку",
-        "return": "Повернутись на головну"
-    },
-    "GetStartedButton": {
-        "title": "Create your first project"
-    },
-    "ProjectHomepage": {
-        "overview": {
-            "intro": "<project></project> is a {type} created by <authors></authors>.",
-            "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
-            "tags": "Tagged:"
-        },
-        "description": {
-            "title": "Description"
-        },
-        "navigation": {
-            "title": "Навігація",
-            "docs": {
-                "title": "Browse documentation",
-                "desc": "{pages} pages available."
-            },
-            "content": {
-                "title": "Browse content",
-                "desc": "{items} in-game items."
-            }
-        },
-        "links": {
-            "title": "Посилання",
-            "website": "Website",
-            "source_code": "Source code"
-        },
-        "license": {
-            "title": "Ліцензії",
-            "project": "Project License",
-            "arr": "Всі права захищені",
-            "unknown": "Невідома",
-            "wiki": "Wiki License",
-            "default": "Wiki content <link>partially made available</link> under the <license></license> license."
-        }
-    },
-    "ProjectDocsHomepage": {
-        "title": "Головна"
-    },
-    "DocsHomepagePlaceholder": {
-        "title": "Заповнювач головної сторінки",
-        "subtitle": "Через обмеження API метадані проєктів CurseForge недоступні в локальних середовищах.",
-        "replace": "Не хвилюйтеся! Ми замінимо цей заповнювач на реальний опис проєкту після публікації на сайті вікі."
-    },
-    "DocsSearchBar": {
-        "placeholder": "Шукати вміст вікі...",
-        "no_results": "Результатів не знайдено!",
-        "loading": "Шукаємо найкращі результати...",
-        "results": "Відображено <highlight>{count}</highlight> з <highlight>{total}</highlight> результатів",
-        "close": "<kbd>ESC</kbd>, щоби закрити"
-    },
-    "DocsChangelogPage": {
-        "title": "Журнал змін"
-    },
-    "DocsLeftSidebar": {
-        "title": "Документація",
-        "homepage": "Головна"
-    },
-    "DocsContentRightSidebar": {
-        "title": "Інформація про запис"
-    },
-    "DocsNonContentRightSidebar": {
-        "title": "На цій сторінці"
-    },
-    "DocsVersionSelector": {
-        "placeholder": "Обрати версію",
-        "latest": "Остання"
-    },
-    "ModVersionRange": {
-        "desc": "+ще {count}"
-    },
-    "LanguageSelect": {
-        "placeholder": "Шукати мови...",
-        "no_results": "Не знайдено жодної мови."
-    },
-    "ProjectStatus": {
-        "unknown": "Невідомо",
-        "loading": "Ініціалізація",
-        "healthy": "Завантажено",
-        "at_risk": "Requires attention",
-        "error": "Помилка"
-    },
-    "DevProjectsListPage": {
-        "project": {
-            "manage": "Керувати"
-        },
-        "empty": {
-            "primary": "Looks like you haven't created any projects yet",
-            "secondary": "Почніть із читання нашого <guide>посібника для авторів</guide>."
-        }
-    },
-    "DevProjectPage": {
-        "breadcrumbs": {
-            "home": "Головна"
-        },
-        "toolbar": {
-            "view": "Переглянути",
-            "deployments": "Deployments"
-        },
-        "overview": {
-            "title": "Project overview",
-            "desc": "Project information summary"
-        },
-        "source": {
-            "title": "Джерело проєкту",
-            "repo": "Репозиторій",
-            "branch": "Гілка",
-            "path": "Шлях",
-            "public": "Публічний"
-        },
-        "platforms": {
-            "title": "Платформи",
-            "desc": "Project hosting platforms",
-            "headers": {
-                "platform": "Платформа",
-                "slug": "Slug / ID",
-                "link": "Посилання"
-            },
-            "open": "Відкрити"
-        },
-        "information": {
-            "title": "Інформація",
-            "desc": "Resolved information",
-            "type": "Тип",
-            "status": "Статус",
-            "created_at": "Створено"
-        },
-        "revision": {
-            "title": "Current git revision",
-            "reloading": "Reloading project, please stand by...",
-            "not_found": "No revision found. Try reloading the project."
-        }
-    },
-    "DevProjectSettingsPage": {
-        "title": "Project settings",
-        "desc": "Configure project properties"
-    },
-    "DevProjectVersionsPage": {
-        "title": "Project versions",
-        "desc": "Browse project content versions"
-    },
-    "DevProjectHealthPage": {
-        "title": "Project health",
-        "desc": "Monitor project status and issues",
-        "errors": {
-            "title": "Project issue report",
-            "desc": "Ongoing warnings & errors",
-            "empty": "No issues found"
-        }
-    },
-    "DevProjectMembersPage": {
-        "title": "Project members",
-        "desc": "Manage project members & permissions",
-        "roles": {
-            "owner": "Owner"
-        },
-        "actions": {
-            "manage": "Керувати"
-        }
-    },
-    "DevProjectContentItemsPage": {
-        "title": "Project items",
-        "desc": "Browse project items"
-    },
-    "DevProjectContentRecipesPage": {
-        "title": "Project recipes",
-        "desc": "Browse project crafting recipes"
-    },
-    "DevProjectContentTagsPage": {
-        "title": "Project tags",
-        "desc": "Browse project tags"
-    },
-    "DevProjectLogs": {
-        "title": "Deployment log",
-        "show": "Показати",
-        "unloaded": "Не завантажено",
-        "waiting": "Очікування сервера...",
-        "loading": "Завантаження...",
-        "error": "Помилка завантаження журналів",
-        "toast": {
-            "success": "Налаштування проєкту завершено",
-            "error": "Помилка під час налаштування проєкту"
-        }
-    },
-    "DeveloperSidebar": {
-        "teams": {
-            "personal": "Особиста"
-        },
-        "groups": {
-            "projects": "Проєкти",
-            "platform": "Платформа",
-            "admin": "Administration"
-        },
-        "nav": {
-            "projects": "Проєкти",
-            "documentation": "Довідка",
-            "settings": "Налаштування",
-            "admin": "System settings"
-        }
-    },
-    "DevSidebarContextSwitcher": {
-        "title": "Команди"
-    },
-    "DevSidebarUser": {
-        "logout": {
-            "button": "Вийти",
-            "title": "Вихід",
-            "desc": "Вихід..."
-        },
-        "unknown_avatar": "Н/Д"
-    },
-    "UserSettings": {
-        "breadcrumbs": {
-            "home": "Головна",
-            "settings": "Налаштування"
-        },
-        "profile": {
-            "bio": "Творець вікі модифікованого Minecraft",
-            "join_date": "Приєднався {date}",
-            "admin": "Admin"
-        },
-        "connections": {
-            "title": "З'єднання",
-            "modrinth": {
-                "title": "Обліковий запис Modrinth",
-                "desc": "Використовується для підтвердження права власності на проєкт",
-                "connect": "Під'єднати",
-                "view": "Переглянути",
-                "disconnect": "Від'єднати"
-            }
-        },
-        "account": {
-            "title": "Обліковий запис",
-            "delete": {
-                "title": "Видалити обліковий запис",
-                "desc": "Назавжди видалити всі дані облікового запису",
-                "button": "Видалити обліковий запис"
-            },
-            "delete_modal": {
-                "title": "Видалити обліковий запис",
-                "desc": "Ви впевнені, що хочете видалити цей обліковий запис? Це незворотна дія, яку неможливо скасувати.",
-                "cancel": "Скасувати",
-                "button": "Видалити назавжди"
-            }
-        },
-        "toast": {
-            "unlink": {
-                "success": "Обліковий запис успішно від'єднано",
-                "error": "Не вдалося від'єднати обліковий запис"
-            }
-        }
-    },
-    "AuthFailure": {
-        "title": "Помилка автентифікації",
-        "desc": "Під час спроби входу сталася неочікувана помилка. Будь ласка, спробуйте ще раз пізніше.",
-        "status": "Перевірити статус",
-        "return": "Повернутись на головну",
-        "report": "Повідомити про помилку"
-    },
-    "BuiltinRecipeTypes": {
-        "blasting": "Blasting",
-        "campfire_cooking": "Campfire cooking",
-        "crafting_shaped": "Shaped Crafting",
-        "crafting_shapeless": "Shapeless Crafting",
-        "smelting": "Smelting",
-        "smithing_transform": "Smithing",
-        "smoking": "Smoking",
-        "stonecutting": "Stonecutting"
-    },
-    "DocsEntryTabs": {
-        "history": "Show history",
-        "home": "Show content"
-    },
-    "DevProjectSidebar": {
-        "groups": {
-            "project": "Проєкт",
-            "content": "Content"
-        },
-        "nav": {
-            "home": "Overview",
-            "settings": "Налаштування",
-            "members": "Members",
-            "deployments": "Deployments",
-            "health": "Health",
-            "versions": "Versions",
-            "content": "Items",
-            "tags": "Теґи",
-            "recipes": "Recipes"
-        }
-    },
-    "PrefabObtaining": {
-        "recipe": "Recipe"
-    },
-    "PrefabUsage": {
-        "usage": "Usage"
-    },
-    "AdminSidebar": {
-        "groups": {
-            "home": "Головна",
-            "data": "Data",
-            "system": "System",
-            "moderation": "Moderation"
-        },
-        "nav": {
-            "home": "Overview",
-            "data_imports": "Data Imports",
-            "access_keys": "Access Keys",
-            "migrations": "Migrations",
-            "users": "Користувачі",
-            "projects": "Проєкти",
-            "config": "Configuration",
-            "reports": "Reports",
-            "audit_log": "Audit Log",
-            "return": "Return"
-        }
-    },
-    "AdminDataImports": {
-        "title": "System data imports",
-        "desc": "Imported game data"
-    },
-    "AdminMigrations": {
-        "title": "Data migrations",
-        "desc": "Available data migrations"
-    },
-    "EmptyDataTable": {
-        "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
-    },
-    "DataTable": {
-        "no_results": "No results.",
-        "filter": "Filter rows...",
-        "previous": "Previous",
-        "next": "Next"
-    },
-    "DevProjectVersionsTable": {
-        "name": "Name",
-        "branch": "Гілка",
-        "empty": {
-            "title": "No additional versions were found in your project.",
-            "desc": "Read the <link>author guide</link> to learn more about project versioning."
-        }
-    },
-    "DevProjectItemsTable": {
-        "icon": "Icon",
-        "id": "Identifier",
-        "name": "Name",
-        "path": "Page path (internal)",
-        "actions": {
-            "open": "Open menu",
-            "title": "Actions",
-            "view": "Переглянути"
-        },
-        "empty": {
-            "title": "No items were found in your project.",
-            "desc": "Project items are automatically detected from content pages and included game files."
-        }
-    },
-    "DevProjectTagsTable": {
-        "id": "Identifier",
-        "items": "Item count",
-        "empty": {
-            "title": "No tags were found in your project."
-        }
-    },
-    "DevProjectRecipesTable": {
-        "type": "Тип",
-        "id": "Identifier",
-        "empty": {
-            "title": "No recipes were found in your project."
-        }
-    },
-    "ResolvedProjectRecipe": {
-        "type": "Recipe Type",
-        "input": "Ingredients",
-        "output": "Outputs",
-        "preview": "Recipe preview",
-        "workbenches": "You can craft this recipe using:"
-    },
-    "DevProjectDeploymentsPage": {
-        "title": "Project deployments",
-        "desc": "Manage deployed project versions"
-    },
-    "DevProjectDeploymentsTable": {
-        "id": "ID",
-        "commit": "Commit",
-        "created_at": "Deploy time",
-        "user_id": "Deployed by",
-        "status": "Статус"
-    },
-    "DeploymentStatus": {
-        "unknown": "Н/Д",
-        "created": "Queued",
-        "loading": "Loading",
-        "success": "Success",
-        "error": "Failed"
-    },
-    "DeleteDeploymentModal": {
-        "trigger": "Видалити",
-        "title": "Ви абсолютно впевнені?",
-        "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
-        "cancel": "Скасувати",
-        "submit": "Видалити",
-        "success": "Deployment deleted successfully"
-    },
-    "DeployProjectModal": {
-        "button": "Deploy",
-        "title": "New deployment",
-        "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
-        "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
-        "tertiary": "Для вашої зручності ми рекомендуємо автоматично перевіряти документацію після публікації, використовуючи наш <link>Gradle плагін</link> замість цього.",
-        "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
-        "cancel": "Скасувати",
-        "submit": "Deploy"
-    },
-    "LiveProjectDeployConnection": {
-        "loading": "Deploying project...",
-        "success": "Project deploy successful",
-        "error": "Project deploy failed",
-        "view": "Переглянути"
-    },
-    "DevProjectDeploymentPage": {
-        "deployments": "Deployments",
-        "title": "Deployment Details",
-        "git-config": {
-            "title": "Source coordinates"
-        }
-    },
-    "ProjectGitRevision": {
-        "title": "Git revision",
-        "title_current": "Current Git revision",
-        "loading": "Deploying project, please stand by...",
-        "not_found": "Project has no active deployment"
-    },
-    "ProjectIssueWidget": {
-        "file": "File: <file></file>",
-        "date": "Created at: <date></date>",
-        "version": "Version: <version></version>"
-    },
-    "ProjectIssueLevel": {
-        "warning": "Warning",
-        "error": "Error",
-        "unknown": "Невідома"
-    },
-    "ProjectIssueType": {
-        "meta": "Invalid project metadata",
-        "file": "Invalid file",
-        "git_clone": "Error cloning repository",
-        "git_info": "Error getting commit information",
-        "ingestor": "Error importing content",
-        "internal": "Internal server error",
-        "page_render": "Invalid page",
-        "unknown": "Unknown error"
-    },
-    "DeploymentIssues": {
-        "title": "Deployment issues",
-        "empty": "No issues found.",
-        "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
-    },
-    "ProjectError": {
-        "requires_auth": "Для підключення до репозиторію потрібні облікові дані, але вони не були надані",
-        "no_repository": "Репозиторій не знайдено",
-        "repo_too_large": "Repository exceeds allowed file size",
-        "no_branch": "Вказано недійсну гілку",
-        "no_path": "Файл метаданих не знайдено за вказаним шляхом",
-        "invalid_meta": "Файл метаданих недійсний",
-        "invalid_page": "Failed to render page contents",
-        "duplicate_page": "Duplicate page",
-        "unknown_recipe_type": "Unknown recipe type",
-        "invalid_ingredient": "Invalid ingredient",
-        "invalid_file": "Failed to parse file",
-        "invalid_format": "Invalid file format",
-        "invalid_resloc": "Invalid Resource Location",
-        "invalid_version_branch": "Version branch does not exist",
-        "missing_platform_project": "Missing platform project",
-        "no_page_title": "Page is missing title",
-        "missing_required_attribute": "Page is missing a required metadata attribute",
-        "unknown": "Unknown error"
-    },
-    "AdminReports": {
-        "title": "Project Reports",
-        "desc": "Manage project reports"
-    },
-    "ResponsiveTable": {
-        "expand": "Expand"
-    },
-    "UsageContentList": {
-        "more": "Show more ..."
-    },
-    "RecipeUsage": {
-        "description": "Can be used to create the following items:",
-        "empty": "Has no known usages in crafting."
-    },
-    "ContentCategory": {
-        "all": "All",
-        "other": "Other"
-    },
-    "ContentChangelog": {
-        "toggle": "Show changelog"
-    },
-    "ContentProperties": {
-        "bool": {
-            "true": "Yes",
-            "false": "No"
-        },
-        "type": {
-            "block": "Block",
-            "item": "Item",
-            "other": "Other"
-        },
-        "properties": {
-            "id": "ID",
-            "source_mod": "Source mod",
-            "type": "Тип",
-            "stack_size": "Stack size",
-            "required_tool": "Tool",
-            "blast_resistance": "Blast resistance",
-            "hardness": "Hardness",
-            "flammable": "Flammable"
-        }
-    },
-    "DocsLink": {
-        "not_found": "(Not found)"
-    },
-    "AdminAccessKeys": {
-        "title": "System access keys",
-        "desc": "Provides auth for when non-interactive access is needed, such as CI"
-    },
-    "CreateAccessKeyModal": {
-        "title": "Create access key",
-        "desc": "New system access key",
-        "button": "Create",
-        "name": {
-            "title": "Name",
-            "desc": "Give your key a name",
-            "placeholder": "Deploy staging"
-        },
-        "days_valid": {
-            "title": "Days of validity",
-            "desc": "Number of days the key is valid for. Use 0 for no expiration."
-        },
-        "submit": "Надіслати",
-        "submitting": "Відправлення..."
-    },
-    "SaveAccessKeyModal": {
-        "title": "Access Key",
-        "desc": "Save your generated access key",
-        "key": "Access Key",
-        "note": "Keep the key value safe. You won't be able to access it again.",
-        "valid": "The key is valid until {expiry}.",
-        "close": "Done"
-    },
-    "DeleteAccessKeyModal": {
-        "title": "Delete Access Key",
-        "desc": "Invalidate and delete access key",
-        "body": "This will forever delete the access key <name></name>.",
-        "cancel": "Скасувати",
-        "submit": "Видалити",
-        "success": "Access Key deleted successfully"
-    },
-    "CopyButton": {
-        "copied": "Copied to clipboard"
-    },
-    "InteractiveComponentPlaceholder": {
-        "title": "Content unavailable in preview mode",
-        "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
-    },
-    "RevalidateCacheModal": {
-        "title": "Revalidate cache tag",
-        "desc": "Manually revalidate a cache tag. Used for diagnostic purposes.",
-        "button": "Revalidate cache tag",
-        "tag": {
-            "title": "Cache Tag",
-            "desc": "The cache tag to revalidate"
-        },
-        "success": "Cache tag invalidated successfully"
+  "Badges": {
+    "local": "Локально",
+    "latest": "Останній",
+    "admin": "Admin"
+  },
+  "NavigationHeader": {
+    "title": "Вікі модифікованого Minecraft",
+    "title_short": "Вікі",
+    "badge": {
+      "preview": "РЕЖИМ ПОПЕРЕДНЬОГО ПЕРЕГЛЯДУ",
+      "beta": "Бета"
+    },
+    "link": {
+      "home": "Головна",
+      "browse": "Огляд",
+      "about": "Про нас"
     }
+  },
+  "NavigationFooter": {
+    "title": "Вікі модифікованого Minecraft",
+    "links": {
+      "navigation": {
+        "title": "Навігація",
+        "home": "Головна сторінка",
+        "browse": "Огляд",
+        "dev": "Розробники"
+      },
+      "links": {
+        "title": "Посилання"
+      },
+      "resources": {
+        "title": "Ресурси",
+        "blog": "Блог",
+        "status": "Статус",
+        "translate": "Допомогти з перекладом"
+      },
+      "about": {
+        "title": "Про нас",
+        "tos": "Умови користування",
+        "privacy": "Політика конфіденційності",
+        "contact": "Зв’язатися з нами"
+      }
+    }
+  },
+  "HomePage": {
+    "title": "Ласкаво просимо на <highlight>Вікі модифікованого Minecraft</highlight>",
+    "subtitle": "Ваш основний ресурс для пошуку, створення та внесення свого внеску в проєкти, пов’язані з Minecraft.",
+    "popular": {
+      "title": "Популярні вікі",
+      "open": "Докладніше",
+      "disclaimer": "Ці проєкти відображено на основі їхньої популярності згідно зі статистикою переглядів і вони не є офіційно підтриманими вікі модифікованого Minecraft."
+    },
+    "community": {
+      "title": "Долучайтеся до нашої спільноти",
+      "users": {
+        "title": "Користувачі",
+        "subtitle": "Ознайомтеся з рекомендованими проєктами та скористайтеся такими перевагами:",
+        "docs": "Доступ до якісної, актуальної та версіонованої документації",
+        "contribute": "Можливість долучатися до проєктів без знань програмування",
+        "ui": "Послідовний і зручний інтерфейс у всіх проєктах",
+        "localization": "Підтримка кількох мов інтерфейсу"
+      },
+      "authors": {
+        "title": "Автори",
+        "subtitle": "Отримайте доступ до панелі керування проєктом і скористайтеся такими перевагами:",
+        "vcs": "Підтримка версіонування документації",
+        "components": "Built-in components for recipes, assets, etc.",
+        "gradle": "Інтеграція з Gradle для плавного робочого процесу",
+        "management": "Розширені інструменти керування проєктом",
+        "interaction": "Прямий зв’язок із вашою спільнотою",
+        "dashboard": "Панель керування",
+        "guide": "Докладніше"
+      }
+    },
+    "browse": "Переглянути проєкти",
+    "highlights": {
+      "localization": {
+        "title": "Локалізація",
+        "desc": "Перекладайте документацію мовами світу"
+      },
+      "accessibility": {
+        "title": "Доступність",
+        "desc": "Інтуїтивний та адаптивний інтерфейс користувача"
+      },
+      "open": {
+        "title": "Відкритість",
+        "desc": "Дозвольте користувачам долучатися без знань програмування"
+      },
+      "free": {
+        "title": "Безкоштовно",
+        "desc": "Хостинг документації на нашому сайті цілком безкоштовний!"
+      }
+    },
+    "about": {
+      "title": "Про нас",
+      "maintainers": "Вікі створена та підтримується командою <b>Sinytra</b> — групою відданих розробників, які зосереджені на створенні високоякісного, вільного та відкритого програмного забезпечення для спільноти розробників модифікацій для Minecraft.",
+      "mission": "Наша мета — надати розробникам і гравцям необхідні інструменти та ресурси для створення, документування та дослідження безмежних можливостей модифікованого Minecraft."
+    },
+    "blog": {
+      "title": "Дописи блогу",
+      "open": "Докладніше"
+    }
+  },
+  "BrowsePage": {
+    "sidebar": {
+      "title": "Переглянути проєкти",
+      "search_filters": "Шукати фільтри...",
+      "categories": "Категорії"
+    },
+    "sorting": "Сортувати",
+    "sort": {
+      "relevance": "За релевантністю",
+      "creation_date": "За датою створення",
+      "popularity": "За популярністю",
+      "az": "Від А до Я",
+      "za": "Від Я до А"
+    },
+    "search": "Шукати проєкти...",
+    "clear_filter": "Очистити фільтри",
+    "no_results": "За вашим запитом нічого не знайдено!"
+  },
+  "SearchProjectTypes": {
+    "mod": "Моди",
+    "modpack": "Збірки модів",
+    "resourcepack": "Пакети ресурсів",
+    "datapack": "Пакети даних",
+    "shader": "Шейдери",
+    "plugin": "Плагіни"
+  },
+  "ProjectTypes": {
+    "mod": "Мод",
+    "modpack": "Збірка модів",
+    "resourcepack": "Пакет ресурсів",
+    "datapack": "Пакет даних",
+    "shader": "Шейдер",
+    "plugin": "Плагін"
+  },
+  "LoadingContent": {
+    "message": "Завантаження..."
+  },
+  "MetaDocsNavigation": {
+    "title": "Навігація",
+    "about": "Про нас",
+    "devs": "Author guide",
+    "components": "Components",
+    "help": "Допомога",
+    "tos": "Умови використання",
+    "privacy": "Політика конфіденційності",
+    "security": "Зауваження щодо безпеки"
+  },
+  "Login": {
+    "title": "Необхідно ввійти",
+    "desc": "Сторінка, до якої ви намагаєтеся отримати доступ, вимагає від вас входу в систему.",
+    "prompt": "Будь ласка, використовуйте ваш обліковий запис GitHub, щоби продовжити.",
+    "button": "Увійти за допомогою GitHub"
+  },
+  "Preview": {
+    "title": "Режим попереднього перегляду увімкнено",
+    "desc": "Режим попереднього перегляду вмикає мінімальний інтерфейс користувача, дозволяючи зосередитись на створенні документації локально перед її публікацією.",
+    "roots": "Доступні каталоги локальної документації",
+    "open": "Відкрити"
+  },
+  "DocsProjectInfo": {
+    "title": "Інформація про проєкт",
+    "type": "Тип",
+    "author": "Автор",
+    "tags": "Теґи",
+    "latest": {
+      "title": "Остання версія",
+      "unknown": "Н/Д"
+    },
+    "license": {
+      "title": "Ліцензія",
+      "custom": "Користувацька",
+      "unknown": "Невідома",
+      "arr": "Всі права захищені"
+    }
+  },
+  "ProjectCategories": {
+    "adventure": "Пригоди",
+    "cursed": "Прокляті",
+    "decoration": "Декорації",
+    "economy": "Економіка",
+    "equipment": "Спорядження",
+    "food": "Їжа",
+    "game-mechanics": "Ігрові механіки",
+    "library": "Бібліотека",
+    "magic": "Магія",
+    "management": "Керування",
+    "minigame": "Міні-гра",
+    "mobs": "Моби",
+    "optimization": "Оптимізація",
+    "social": "Соціальні",
+    "storage": "Сховище",
+    "technology": "Технології",
+    "transportation": "Транспорт",
+    "utility": "Утиліти",
+    "worldgen": "Генерація світу",
+    "server-utility": "Серверні утиліти",
+    "armor-weapons-tools": "Обладунки, інструменти та зброя",
+    "library-api": "API та бібліотеки",
+    "adventure-rpg": "Пригоди та RPG",
+    "world-gen": "Генерація світу",
+    "cosmetic": "Косметика",
+    "mc-food": "Їжа",
+    "performance": "Продуктивність",
+    "map-information": "Мапи та інформація",
+    "bug-fixes": "Виправлення помилок",
+    "mc-addons": "Аддони",
+    "education": "Навчання",
+    "mc-miscellaneous": "Різне",
+    "redstone": "Редстоун",
+    "utility-qol": "Утиліти та покращення якості життя",
+    "mc-creator": "MCreator"
+  },
+  "PageEditControls": {
+    "edit_gh": "Редагувати цю сторінку",
+    "report": "Поскаржитися на цю сторінку",
+    "report_button": "Поскражитися на сторінку",
+    "last_updated": "Востаннє оновлено: <date></date>"
+  },
+  "Report": {
+    "title": "Поскаржитись на сторінку документації",
+    "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
+    "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+    "confidential": "Ваша конфіденційність важлива для нас, і ця інформація завжди залишатиметься конфіденційною.",
+    "privacy": "Для отримання додаткової інформації, будь ласка, ознайомтеся з нашою <link>Політикою конфіденційності</link>.",
+    "form": {
+      "id": {
+        "title": "ID проєкту",
+        "desc": "ID проєкту, про який буде повідомлено"
+      },
+      "path": {
+        "title": "Шлях до сторінки",
+        "desc": "Шлях до сторінки, про яку буде повідомлено."
+      },
+      "locale": {
+        "title": "Locale",
+        "desc": "Applied if the content lies within a localized subpath.",
+        "placeholder": "Н/Д"
+      },
+      "version": {
+        "title": "Version",
+        "desc": "Applied if the content lies within a named version.",
+        "placeholder": "Н/Д"
+      },
+      "reason": {
+        "title": "Підстава*",
+        "placeholder": "Select a reason for reporting this content",
+        "desc": "Reason for reporting this content.",
+        "dislike": "Мені це просто не подобається"
+      },
+      "details": {
+        "title": "Подробиці*",
+        "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+        "desc": "Додаткові подробиці щодо проблеми."
+      },
+      "dislike": {
+        "title": "We understand that you may not like this content, and that's totally okay!",
+        "desc": "На жаль, це не є вагомою підставою для скарги на проєкт.",
+        "suggestion": "Would you like to look for something else to explore instead?",
+        "explore": "Огляд проєктів"
+      },
+      "success": "Скарга успішно надіслана"
+    }
+  },
+  "ProjectReportReason": {
+    "spam": "Спам",
+    "copyright": "Порушення авторських прав",
+    "content_rules": "Порушення правил щодо змісту",
+    "tos": "Порушення умов користування",
+    "unknown": "Невідома"
+  },
+  "ProjectReportStatus": {
+    "new": "New",
+    "dismissed": "Dismissed",
+    "accepted": "Accepted",
+    "unknown": "Невідома"
+  },
+  "ProjectReportType": {
+    "project": "Проєкт",
+    "docs": "Docs page",
+    "content": "Content page",
+    "unknown": "Невідома"
+  },
+  "ViewReportPage": {
+    "reports": "Reports",
+    "title": "Report details",
+    "desc": "Viewing report details for {id}",
+    "details": {
+      "reporter": "Reported by",
+      "project_id": "ID проєкту",
+      "path": "Шлях",
+      "body": "Body",
+      "reason": "Підстава",
+      "created_at": "Створено",
+      "status": "Статус",
+      "type": "Тип",
+      "locale": "Locale",
+      "version": "Version"
+    },
+    "actions": {
+      "dismiss": "Dismiss",
+      "accept": "Accept"
+    },
+    "toast": {
+      "accept": "Report accepted",
+      "dismiss": "Report dismissed"
+    }
+  },
+  "SubmitButton": {
+    "title": "Надіслати"
+  },
+  "Callout": {
+    "default": "Увага!",
+    "info": "Info",
+    "warning": "Warning",
+    "danger": "Danger"
+  },
+  "ProjectRegisterForm": {
+    "button": "New Project",
+    "title": "Зареєструвати проєкт",
+    "desc": "Зареєструвати новий проєкт у вікі.",
+    "repo": {
+      "title": "URL-адреса репозиторію",
+      "desc": "Це адреса, яку ви використовуєте для клонування вашого репозиторію.",
+      "placeholder": "https://github.com/ExampleUser/ExampleMod"
+    },
+    "branch": {
+      "title": "Гілка",
+      "desc": "Основна гілка. Ви можете вказати додаткові гілки для включення до файлу метаданих."
+    },
+    "path": {
+      "title": "Шлях до кореня документації",
+      "desc": "Шлях до теки, що містить файл метаданих."
+    },
+    "admin": "Налаштування адміністратора вікі",
+    "is_community": {
+      "title": "Проєкт, що підтримується спільнотою"
+    },
+    "errors": {
+      "details": "Показати подробиці"
+    },
+    "connect_modrinth": {
+      "desc": "Під'єднайте свій <b>обліковий запис Modrinth</b> у налаштуваннях, щоби легко перевіряти право власності на проєкт на платформі в будь-який час.",
+      "settings": "Відкрити налаштування"
+    },
+    "submit": "Надіслати",
+    "success": {
+      "title": "Проєкт успішно зареєстровано",
+      "desc": "Тепер ви можете перейти на сторінку документації проєкту"
+    },
+    "submitting": "Відправлення...",
+    "verify_modrinth": "Перевірити за допомогою Modrinth"
+  },
+  "ProjectSettingsForm": {
+    "title": "Редагувати проєкт",
+    "desc": "Редагувати налаштування існуючого проєкту.",
+    "button": "Налаштування",
+    "success": {
+      "title": "Проєкт успішно оновлено",
+      "desc": "Тепер ви можете перейти на оновлену сторінку документації проєкту"
+    }
+  },
+  "ProjectDeleteForm": {
+    "trigger": "Delete project",
+    "title": "Ви абсолютно впевнені?",
+    "desc": "Цю дію неможливо скасувати. Це призведе до остаточного видалення вашого проєкту та всіх пов’язаних даних з наших серверів.",
+    "cancel": "Скасувати",
+    "submit": "Видалити",
+    "success": "Проєкт успішно видалено"
+  },
+  "FormActions": {
+    "errors": {
+      "unauthorized": "Помилка автентифікації користувача",
+      "internal": "Внутрішня помилка сервера, будь ласка, спробуйте ще раз пізніше.",
+      "unknown": "Сталася невідома помилка, будь ласка, спробуйте ще раз пізніше.",
+      "no_platforms": "У метаданих не визначено жодних проєктів платформи.",
+      "no_project": "Проєкт платформи не знайдено. Будь ласка, переконайтеся, що поле метаданих «slug» правильне.",
+      "unsupported_type": "Непідтримуваний тип проєкту",
+      "ownership": "Не вдалося підтвердити право власності на проєкт",
+      "cf_unavailable": "Реєстрація проєктів CurseForge неактивна",
+      "requires_auth": "Для підключення до репозиторію потрібні облікові дані, але вони не були надані",
+      "no_repository": "Репозиторій не знайдено",
+      "no_branch": "Вказано недійсну гілку",
+      "no_path": "Файл метаданих не знайдено за вказаним шляхом",
+      "invalid_meta": "Файл метаданих недійсний",
+      "unsupported": "Ще не реалізовано",
+      "exists": "Проєкт вже існує.",
+      "not_found": "Проєкт не існує",
+      "illegal_id": "Illegal project ID",
+      "not_owner": "User is not authorized to register this project"
+    }
+  },
+  "CommunityBadge": {
+    "title": "Спільнота",
+    "desc": "Неофіційна документація, що підтримується спільнотою"
+  },
+  "DocsPageNotFoundError": {
+    "title": "Ми втратили цю сторінку",
+    "desc": "Запитувана сторінка документації наразі недоступна.",
+    "suggestion": "Будь ласка, спробуйте ще раз пізніше або повідомте про цю проблему автору проєкту.",
+    "submit": "Повідомити про помилку",
+    "return": "Повернутись на головну"
+  },
+  "GetStartedButton": {
+    "title": "Create your first project"
+  },
+  "ProjectHomepage": {
+    "overview": {
+      "intro": "<project></project> is a {type} created by <authors></authors>.",
+      "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
+      "tags": "Tagged:"
+    },
+    "description": {
+      "title": "Description"
+    },
+    "navigation": {
+      "title": "Навігація",
+      "docs": {
+        "title": "Browse documentation",
+        "desc": "{pages} pages available."
+      },
+      "content": {
+        "title": "Browse content",
+        "desc": "{items} in-game items."
+      }
+    },
+    "links": {
+      "title": "Посилання",
+      "website": "Website",
+      "source_code": "Source code"
+    },
+    "license": {
+      "title": "Ліцензії",
+      "project": "Project License",
+      "arr": "Всі права захищені",
+      "unknown": "Невідома",
+      "wiki": "Wiki License",
+      "default": "Wiki content <link>partially made available</link> under the <license></license> license."
+    }
+  },
+  "ProjectDocsHomepage": {
+    "title": "Головна"
+  },
+  "DocsHomepagePlaceholder": {
+    "title": "Заповнювач головної сторінки",
+    "subtitle": "Через обмеження API метадані проєктів CurseForge недоступні в локальних середовищах.",
+    "replace": "Не хвилюйтеся! Ми замінимо цей заповнювач на реальний опис проєкту після публікації на сайті вікі."
+  },
+  "DocsSearchBar": {
+    "placeholder": "Шукати вміст вікі...",
+    "no_results": "Результатів не знайдено!",
+    "loading": "Шукаємо найкращі результати...",
+    "results": "Відображено <highlight>{count}</highlight> з <highlight>{total}</highlight> результатів",
+    "close": "<kbd>ESC</kbd>, щоби закрити"
+  },
+  "DocsChangelogPage": {
+    "title": "Журнал змін"
+  },
+  "DocsLeftSidebar": {
+    "title": "Документація",
+    "homepage": "Головна"
+  },
+  "DocsContentRightSidebar": {
+    "title": "Інформація про запис"
+  },
+  "DocsNonContentRightSidebar": {
+    "title": "На цій сторінці"
+  },
+  "DocsVersionSelector": {
+    "placeholder": "Обрати версію",
+    "latest": "Остання"
+  },
+  "ModVersionRange": {
+    "desc": "+ще {count}"
+  },
+  "LanguageSelect": {
+    "placeholder": "Шукати мови...",
+    "no_results": "Не знайдено жодної мови."
+  },
+  "ProjectStatus": {
+    "unknown": "Невідомо",
+    "loading": "Ініціалізація",
+    "healthy": "Завантажено",
+    "at_risk": "Requires attention",
+    "error": "Помилка"
+  },
+  "DevProjectsListPage": {
+    "project": {
+      "manage": "Керувати"
+    },
+    "empty": {
+      "primary": "Looks like you haven't created any projects yet",
+      "secondary": "Почніть із читання нашого <guide>посібника для авторів</guide>."
+    }
+  },
+  "DevProjectPage": {
+    "breadcrumbs": {
+      "home": "Головна"
+    },
+    "toolbar": {
+      "view": "Переглянути",
+      "deployments": "Deployments"
+    },
+    "overview": {
+      "title": "Project overview",
+      "desc": "Project information summary"
+    },
+    "source": {
+      "title": "Джерело проєкту",
+      "repo": "Репозиторій",
+      "branch": "Гілка",
+      "path": "Шлях",
+      "public": "Публічний"
+    },
+    "platforms": {
+      "title": "Платформи",
+      "desc": "Project hosting platforms",
+      "headers": {
+        "platform": "Платформа",
+        "slug": "Slug / ID",
+        "link": "Посилання"
+      },
+      "open": "Відкрити"
+    },
+    "information": {
+      "title": "Інформація",
+      "desc": "Resolved information",
+      "type": "Тип",
+      "status": "Статус",
+      "created_at": "Створено"
+    },
+    "revision": {
+      "title": "Current git revision",
+      "reloading": "Reloading project, please stand by...",
+      "not_found": "No revision found. Try reloading the project."
+    }
+  },
+  "DevProjectSettingsPage": {
+    "title": "Project settings",
+    "desc": "Configure project properties"
+  },
+  "DevProjectVersionsPage": {
+    "title": "Project versions",
+    "desc": "Browse project content versions"
+  },
+  "DevProjectHealthPage": {
+    "title": "Project health",
+    "desc": "Monitor project status and issues",
+    "errors": {
+      "title": "Project issue report",
+      "desc": "Ongoing warnings & errors",
+      "empty": "No issues found"
+    }
+  },
+  "DevProjectMembersPage": {
+    "title": "Project members",
+    "desc": "Manage project members & permissions",
+    "roles": {
+      "owner": "Owner"
+    },
+    "actions": {
+      "manage": "Керувати"
+    }
+  },
+  "DevProjectContentItemsPage": {
+    "title": "Project items",
+    "desc": "Browse project items"
+  },
+  "DevProjectContentRecipesPage": {
+    "title": "Project recipes",
+    "desc": "Browse project crafting recipes"
+  },
+  "DevProjectContentTagsPage": {
+    "title": "Project tags",
+    "desc": "Browse project tags"
+  },
+  "DevProjectLogs": {
+    "title": "Deployment log",
+    "show": "Показати",
+    "unloaded": "Не завантажено",
+    "waiting": "Очікування сервера...",
+    "loading": "Завантаження...",
+    "error": "Помилка завантаження журналів",
+    "toast": {
+      "success": "Налаштування проєкту завершено",
+      "error": "Помилка під час налаштування проєкту"
+    }
+  },
+  "DeveloperSidebar": {
+    "teams": {
+      "personal": "Особиста"
+    },
+    "groups": {
+      "projects": "Проєкти",
+      "platform": "Платформа",
+      "admin": "Administration"
+    },
+    "nav": {
+      "projects": "Проєкти",
+      "documentation": "Довідка",
+      "settings": "Налаштування",
+      "admin": "System settings"
+    }
+  },
+  "DevSidebarContextSwitcher": {
+    "title": "Команди"
+  },
+  "DevSidebarUser": {
+    "logout": {
+      "button": "Вийти",
+      "title": "Вихід",
+      "desc": "Вихід..."
+    },
+    "unknown_avatar": "Н/Д"
+  },
+  "UserSettings": {
+    "breadcrumbs": {
+      "home": "Головна",
+      "settings": "Налаштування"
+    },
+    "profile": {
+      "bio": "Творець вікі модифікованого Minecraft",
+      "join_date": "Приєднався {date}",
+      "admin": "Admin"
+    },
+    "connections": {
+      "title": "З'єднання",
+      "modrinth": {
+        "title": "Обліковий запис Modrinth",
+        "desc": "Використовується для підтвердження права власності на проєкт",
+        "connect": "Під'єднати",
+        "view": "Переглянути",
+        "disconnect": "Від'єднати"
+      }
+    },
+    "account": {
+      "title": "Обліковий запис",
+      "delete": {
+        "title": "Видалити обліковий запис",
+        "desc": "Назавжди видалити всі дані облікового запису",
+        "button": "Видалити обліковий запис"
+      },
+      "delete_modal": {
+        "title": "Видалити обліковий запис",
+        "desc": "Ви впевнені, що хочете видалити цей обліковий запис? Це незворотна дія, яку неможливо скасувати.",
+        "cancel": "Скасувати",
+        "button": "Видалити назавжди"
+      }
+    },
+    "toast": {
+      "unlink": {
+        "success": "Обліковий запис успішно від'єднано",
+        "error": "Не вдалося від'єднати обліковий запис"
+      }
+    }
+  },
+  "AuthFailure": {
+    "title": "Помилка автентифікації",
+    "desc": "Під час спроби входу сталася неочікувана помилка. Будь ласка, спробуйте ще раз пізніше.",
+    "status": "Перевірити статус",
+    "return": "Повернутись на головну",
+    "report": "Повідомити про помилку"
+  },
+  "BuiltinRecipeTypes": {
+    "blasting": "Blasting",
+    "campfire_cooking": "Campfire cooking",
+    "crafting_shaped": "Shaped Crafting",
+    "crafting_shapeless": "Shapeless Crafting",
+    "smelting": "Smelting",
+    "smithing_transform": "Smithing",
+    "smoking": "Smoking",
+    "stonecutting": "Stonecutting"
+  },
+  "DocsEntryTabs": {
+    "history": "Show history",
+    "home": "Show content"
+  },
+  "DevProjectSidebar": {
+    "groups": {
+      "project": "Проєкт",
+      "content": "Content"
+    },
+    "nav": {
+      "home": "Overview",
+      "settings": "Налаштування",
+      "members": "Members",
+      "deployments": "Deployments",
+      "health": "Health",
+      "versions": "Versions",
+      "content": "Items",
+      "tags": "Теґи",
+      "recipes": "Recipes"
+    }
+  },
+  "PrefabObtaining": {
+    "recipe": "Recipe"
+  },
+  "PrefabUsage": {
+    "usage": "Usage"
+  },
+  "AdminSidebar": {
+    "groups": {
+      "home": "Головна",
+      "data": "Data",
+      "system": "System",
+      "moderation": "Moderation"
+    },
+    "nav": {
+      "home": "Overview",
+      "data_imports": "Data Imports",
+      "access_keys": "Access Keys",
+      "migrations": "Migrations",
+      "users": "Користувачі",
+      "projects": "Проєкти",
+      "config": "Configuration",
+      "reports": "Reports",
+      "audit_log": "Audit Log",
+      "return": "Return"
+    }
+  },
+  "AdminDataImports": {
+    "title": "System data imports",
+    "desc": "Imported game data"
+  },
+  "AdminMigrations": {
+    "title": "Data migrations",
+    "desc": "Available data migrations"
+  },
+  "EmptyDataTable": {
+    "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
+  },
+  "DataTable": {
+    "no_results": "No results.",
+    "filter": "Filter rows...",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "DevProjectVersionsTable": {
+    "name": "Name",
+    "branch": "Гілка",
+    "empty": {
+      "title": "No additional versions were found in your project.",
+      "desc": "Read the <link>author guide</link> to learn more about project versioning."
+    }
+  },
+  "DevProjectItemsTable": {
+    "icon": "Icon",
+    "id": "Identifier",
+    "name": "Name",
+    "path": "Page path (internal)",
+    "actions": {
+      "open": "Open menu",
+      "title": "Actions",
+      "view": "Переглянути"
+    },
+    "empty": {
+      "title": "No items were found in your project.",
+      "desc": "Project items are automatically detected from content pages and included game files."
+    }
+  },
+  "DevProjectTagsTable": {
+    "id": "Identifier",
+    "items": "Item count",
+    "empty": {
+      "title": "No tags were found in your project."
+    }
+  },
+  "DevProjectRecipesTable": {
+    "type": "Тип",
+    "id": "Identifier",
+    "empty": {
+      "title": "No recipes were found in your project."
+    }
+  },
+  "ResolvedProjectRecipe": {
+    "type": "Recipe Type",
+    "input": "Ingredients",
+    "output": "Outputs",
+    "preview": "Recipe preview",
+    "workbenches": "You can craft this recipe using:"
+  },
+  "DevProjectDeploymentsPage": {
+    "title": "Project deployments",
+    "desc": "Manage deployed project versions"
+  },
+  "DevProjectDeploymentsTable": {
+    "id": "ID",
+    "commit": "Commit",
+    "created_at": "Deploy time",
+    "user_id": "Deployed by",
+    "status": "Статус"
+  },
+  "DeploymentStatus": {
+    "unknown": "Н/Д",
+    "created": "Queued",
+    "loading": "Loading",
+    "success": "Success",
+    "error": "Failed"
+  },
+  "DeleteDeploymentModal": {
+    "trigger": "Видалити",
+    "title": "Ви абсолютно впевнені?",
+    "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
+    "cancel": "Скасувати",
+    "submit": "Видалити",
+    "success": "Deployment deleted successfully"
+  },
+  "DeployProjectModal": {
+    "button": "Deploy",
+    "title": "New deployment",
+    "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
+    "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
+    "tertiary": "Для вашої зручності ми рекомендуємо автоматично перевіряти документацію після публікації, використовуючи наш <link>Gradle плагін</link> замість цього.",
+    "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
+    "cancel": "Скасувати",
+    "submit": "Deploy"
+  },
+  "LiveProjectDeployConnection": {
+    "loading": "Deploying project...",
+    "success": "Project deploy successful",
+    "error": "Project deploy failed",
+    "view": "Переглянути"
+  },
+  "DevProjectDeploymentPage": {
+    "deployments": "Deployments",
+    "title": "Deployment Details",
+    "git-config": {
+      "title": "Source coordinates"
+    }
+  },
+  "ProjectGitRevision": {
+    "title": "Git revision",
+    "title_current": "Current Git revision",
+    "loading": "Deploying project, please stand by...",
+    "not_found": "Project has no active deployment"
+  },
+  "ProjectIssueWidget": {
+    "file": "File: <file></file>",
+    "date": "Created at: <date></date>",
+    "version": "Version: <version></version>"
+  },
+  "ProjectIssueLevel": {
+    "warning": "Warning",
+    "error": "Error",
+    "unknown": "Невідома"
+  },
+  "ProjectIssueType": {
+    "meta": "Invalid project metadata",
+    "file": "Invalid file",
+    "git_clone": "Error cloning repository",
+    "git_info": "Error getting commit information",
+    "ingestor": "Error importing content",
+    "internal": "Internal server error",
+    "page_render": "Invalid page",
+    "unknown": "Unknown error"
+  },
+  "DeploymentIssues": {
+    "title": "Deployment issues",
+    "empty": "No issues found.",
+    "issues_found": "Found {count, plural, =1 {1 issue that needs} other {# issues that need}} attention."
+  },
+  "ProjectError": {
+    "requires_auth": "Для підключення до репозиторію потрібні облікові дані, але вони не були надані",
+    "no_repository": "Репозиторій не знайдено",
+    "repo_too_large": "Repository exceeds allowed file size",
+    "no_branch": "Вказано недійсну гілку",
+    "no_path": "Файл метаданих не знайдено за вказаним шляхом",
+    "invalid_meta": "Файл метаданих недійсний",
+    "invalid_page": "Failed to render page contents",
+    "duplicate_page": "Duplicate page",
+    "unknown_recipe_type": "Unknown recipe type",
+    "invalid_ingredient": "Invalid ingredient",
+    "invalid_file": "Failed to parse file",
+    "invalid_format": "Invalid file format",
+    "invalid_resloc": "Invalid Resource Location",
+    "invalid_version_branch": "Version branch does not exist",
+    "missing_platform_project": "Missing platform project",
+    "no_page_title": "Page is missing title",
+    "missing_required_attribute": "Page is missing a required metadata attribute",
+    "unknown": "Unknown error"
+  },
+  "AdminReports": {
+    "title": "Project Reports",
+    "desc": "Manage project reports"
+  },
+  "ResponsiveTable": {
+    "expand": "Expand"
+  },
+  "UsageContentList": {
+    "more": "Show more ..."
+  },
+  "RecipeUsage": {
+    "description": "Can be used to create the following items:",
+    "empty": "Has no known usages in crafting."
+  },
+  "ContentCategory": {
+    "all": "All",
+    "other": "Other"
+  },
+  "ContentChangelog": {
+    "toggle": "Show changelog"
+  },
+  "ContentProperties": {
+    "bool": {
+      "true": "Yes",
+      "false": "No"
+    },
+    "type": {
+      "block": "Block",
+      "item": "Item",
+      "other": "Other"
+    },
+    "properties": {
+      "id": "ID",
+      "source_mod": "Source mod",
+      "type": "Тип",
+      "stack_size": "Stack size",
+      "required_tool": "Tool",
+      "blast_resistance": "Blast resistance",
+      "hardness": "Hardness",
+      "flammable": "Flammable"
+    }
+  },
+  "DocsLink": {
+    "not_found": "(Not found)"
+  },
+  "AdminAccessKeys": {
+    "title": "System access keys",
+    "desc": "Provides auth for when non-interactive access is needed, such as CI"
+  },
+  "CreateAccessKeyModal": {
+    "title": "Create access key",
+    "desc": "New system access key",
+    "button": "Create",
+    "name": {
+      "title": "Name",
+      "desc": "Give your key a name",
+      "placeholder": "Deploy staging"
+    },
+    "days_valid": {
+      "title": "Days of validity",
+      "desc": "Number of days the key is valid for. Use 0 for no expiration."
+    },
+    "submit": "Надіслати",
+    "submitting": "Відправлення..."
+  },
+  "SaveAccessKeyModal": {
+    "title": "Access Key",
+    "desc": "Save your generated access key",
+    "key": "Access Key",
+    "note": "Keep the key value safe. You won't be able to access it again.",
+    "valid": "The key is valid until {expiry}.",
+    "close": "Done"
+  },
+  "DeleteAccessKeyModal": {
+    "title": "Delete Access Key",
+    "desc": "Invalidate and delete access key",
+    "body": "This will forever delete the access key <name></name>.",
+    "cancel": "Скасувати",
+    "submit": "Видалити",
+    "success": "Access Key deleted successfully"
+  },
+  "CopyButton": {
+    "copied": "Copied to clipboard"
+  },
+  "InteractiveComponentPlaceholder": {
+    "title": "Content unavailable in preview mode",
+    "desc": "Interactive components are currently not supported in the local previewer. The actual contents will be shown here when the project is deployed onto the Wiki website."
+  },
+  "RevalidateCacheModal": {
+    "title": "Revalidate cache tag",
+    "desc": "Manually revalidate a cache tag. Used for diagnostic purposes.",
+    "button": "Revalidate cache tag",
+    "tag": {
+      "title": "Cache Tag",
+      "desc": "The cache tag to revalidate"
+    },
+    "success": "Cache tag invalidated successfully"
+  }
 }

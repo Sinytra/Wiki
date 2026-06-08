@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React, { Component, useState } from "react";
+import React, { Component, useState } from 'react';
 
 class Tooltip extends Component<any> {
   state = {
@@ -38,12 +38,12 @@ class Tooltip extends Component<any> {
   };
 
   addListener = () => {
-    document.addEventListener("mousemove", this.onMouseMove);
+    document.addEventListener('mousemove', this.onMouseMove);
     this.setState({ listenerActive: true });
   };
 
   removeListener = () => {
-    document.removeEventListener("mousemove", this.onMouseMove);
+    document.removeEventListener('mousemove', this.onMouseMove);
     this.setState({ xPosition: -100, yPosition: -100, listenerActive: false });
   };
 
@@ -52,7 +52,7 @@ class Tooltip extends Component<any> {
       <div
         className="minetip-tooltip"
         style={{
-          display: this.props.visible && this.state.mouseMoved ? "block" : "none",
+          display: this.props.visible && this.state.mouseMoved ? 'block' : 'none',
           top: this.state.yPosition + this.props.offsetY,
           left: this.state.xPosition + this.props.offsetX
         }}
@@ -72,19 +72,13 @@ interface Properties {
 export default function TooltipImg(props: Properties) {
   const [visible, setVisible] = useState(false);
 
-  return <div onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-    <Tooltip
-      visible={visible}
-      offsetX={15}
-      offsetY={-33}
-    >
-      {props.id}
-      {props.tag &&
-        <p className="m-0! mt-1! text-xs text-secondary text-shadow-none">
-            #{props.tag}
-        </p>
-      }
-    </Tooltip>
-    {props.children}
-  </div>;
+  return (
+    <div onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+      <Tooltip visible={visible} offsetX={15} offsetY={-33}>
+        {props.id}
+        {props.tag && <p className="m-0! mt-1! text-xs text-secondary text-shadow-none">#{props.tag}</p>}
+      </Tooltip>
+      {props.children}
+    </div>
+  );
 }

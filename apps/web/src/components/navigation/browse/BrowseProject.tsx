@@ -1,24 +1,24 @@
-import platforms, {PlatformProject} from "@repo/shared/platforms";
-import {Suspense, use} from "react";
-import {BoxIcon, MilestoneIcon} from "lucide-react";
-import {Skeleton} from "@repo/ui/components/skeleton";
-import ModrinthIcon from "@repo/ui/icons/ModrinthIcon";
-import CurseForgeIcon from "@repo/ui/icons/CurseForgeIcon";
-import {Button} from "@repo/ui/components/button";
-import GitHubIcon from "@repo/ui/icons/GitHubIcon";
-import LinkTextButton from "@/components/navigation/link/LinkTextButton";
-import {ErrorBoundary} from "react-error-boundary";
-import {ProjectTypeIcons} from "@/lib/project/projectTypes";
-import {NavLink} from "@/components/navigation/link/NavLink";
-import CommunityDocsBadge from "@/components/docs/CommunityDocsBadge";
-import ModVersionRange from "@/components/docs/ModVersionRange";
-import {getTranslations} from "next-intl/server";
-import {resolveSoft, trimText} from "@/lib/utils";
-import {BaseProject} from "@repo/shared/types/service";
-import navigation from "@/lib/navigation";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
+import platforms, { PlatformProject } from '@repo/shared/platforms';
+import { Suspense, use } from 'react';
+import { BoxIcon, MilestoneIcon } from 'lucide-react';
+import { Skeleton } from '@repo/ui/components/skeleton';
+import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
+import CurseForgeIcon from '@repo/ui/icons/CurseForgeIcon';
+import { Button } from '@repo/ui/components/button';
+import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import LinkTextButton from '@/components/navigation/link/LinkTextButton';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ProjectTypeIcons } from '@/lib/project/projectTypes';
+import { NavLink } from '@/components/navigation/link/NavLink';
+import CommunityDocsBadge from '@/components/docs/CommunityDocsBadge';
+import ModVersionRange from '@/components/docs/ModVersionRange';
+import { getTranslations } from 'next-intl/server';
+import { resolveSoft, trimText } from '@/lib/utils';
+import { BrowseProject as BrowseProjectData } from '@sinytra/wiki-api-types';
+import navigation from '@/lib/navigation';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
 
-function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
+function ProjectIcon({ project }: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
     <div className="shrink-0">
@@ -31,74 +31,78 @@ function ProjectIcon({project}: { project: Promise<PlatformProject> }) {
         fallback={<ProjectIconPlaceholder />}
       />
     </div>
-  )
+  );
 }
 
-function ProjectDescription({project}: { project: Promise<PlatformProject> }) {
+function ProjectDescription({ project }: { project: Promise<PlatformProject> }) {
   const projectContent = use(project);
   return (
     <span className="line-clamp-2 h-10 text-sm font-normal text-secondary sm:line-clamp-none sm:h-auto sm:min-h-5">
       {trimText(projectContent.summary, 100)}
     </span>
-  )
+  );
 }
 
 function ProjectIconPlaceholder() {
   return (
     <div className="flex h-16 w-16 shrink-0 rounded-xs border border-tertiary sm:h-20 sm:w-20">
-      <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={56} height={56}/>
+      <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={56} height={56} />
     </div>
-  )
+  );
 }
 
-async function GitHubProjectLink({url}: { url: string }) {
+async function GitHubProjectLink({ url }: { url: string }) {
   return (
     <Button variant="ghost" size="icon" className="size-8" asChild>
       <NavLink href={url} target="_blank">
-        <GitHubIcon className="size-5"/>
+        <GitHubIcon className="size-5" />
       </NavLink>
     </Button>
-  )
+  );
 }
 
-function ProjectSourceUrl({project}: { project: Promise<PlatformProject | null> }) {
+function ProjectSourceUrl({ project }: { project: Promise<PlatformProject | null> }) {
   const projectContent = use(project);
-  return projectContent && projectContent.source_url && <GitHubProjectLink url={projectContent.source_url}/>;
+  return projectContent && projectContent.source_url && <GitHubProjectLink url={projectContent.source_url} />;
 }
 
-async function ProjectGameVersions({project}: { project: Promise<PlatformProject | null> }) {
+async function ProjectGameVersions({ project }: { project: Promise<PlatformProject | null> }) {
   const projectContent = await project;
   const t = await getTranslations('DocsProjectInfo.latest');
 
-  return !projectContent || projectContent.game_versions.length === 0
-    ? <span className="text-sm">{t('unknown')}</span>
-    : <ModVersionRange versions={projectContent.game_versions}/>;
+  return !projectContent || projectContent.game_versions.length === 0 ? (
+    <span className="text-sm">{t('unknown')}</span>
+  ) : (
+    <ModVersionRange versions={projectContent.game_versions} />
+  );
 }
 
-async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Promise<PlatformProject> }) {
+async function ProjectMetaInfo({ base, project }: { base: BrowseProjectData; project: Promise<PlatformProject> }) {
   const promise = resolveSoft(project);
   const u = await getTranslations('ProjectTypes');
   const TypeIcon = ProjectTypeIcons[base.type];
 
-  const cfLink = base.platforms.curseforge ? platforms.getProjectURL('curseforge', base.platforms.curseforge, base.type) : null;
-  const mrLink = base.platforms.modrinth ? platforms.getProjectURL('modrinth', base.platforms.modrinth, base.type) : null;
+  const cfLink = base.platforms.curseforge
+    ? platforms.getProjectURL('curseforge', base.platforms.curseforge, base.type)
+    : null;
+  const mrLink = base.platforms.modrinth
+    ? platforms.getProjectURL('modrinth', base.platforms.modrinth, base.type)
+    : null;
 
   return (
-    <div className={`
-      mt-auto flex h-5.5 w-full flex-wrap items-center justify-between gap-2 text-secondary sm:h-auto sm:shrink-0
-      sm:flex-nowrap
-    `}
+    <div
+      className={`mt-auto flex h-5.5 w-full flex-wrap items-center justify-between gap-2 text-secondary sm:h-auto sm:shrink-0 sm:flex-nowrap`}
     >
       <ErrorBoundary fallback={<span></span>}>
         <div className="flex flex-row items-center gap-3">
           <div className="flex flex-row items-center gap-2 text-secondary">
-            <TypeIcon className="size-4"/>
+            <TypeIcon className="size-4" />
             <span className="text-sm">{u(base.type)}</span>
           </div>
           <div className="flex flex-row items-center gap-2 text-secondary">
             <Suspense>
-              <MilestoneIcon className="size-4"/>
-              <ProjectGameVersions project={promise}/>
+              <MilestoneIcon className="size-4" />
+              <ProjectGameVersions project={promise} />
             </Suspense>
           </div>
         </div>
@@ -106,72 +110,66 @@ async function ProjectMetaInfo({base, project}: { base: BaseProject, project: Pr
 
       <div className="hidden gap-1 sm:flex sm:shrink-0 sm:gap-2">
         <Suspense>
-          <ProjectSourceUrl project={promise}/>
+          <ProjectSourceUrl project={promise} />
         </Suspense>
-        {cfLink &&
-          <Button asChild variant="ghost" size="icon"
-                  className="size-8 hover:text-brand-curseforge">
-              <NavLink href={cfLink} target="_blank">
-                  <CurseForgeIcon className="h-5 w-5"/>
-              </NavLink>
+        {cfLink && (
+          <Button asChild variant="ghost" size="icon" className="size-8 hover:text-brand-curseforge">
+            <NavLink href={cfLink} target="_blank">
+              <CurseForgeIcon className="h-5 w-5" />
+            </NavLink>
           </Button>
-        }
-        {mrLink &&
-          <Button asChild variant="ghost" size="icon"
-                  className="size-8 hover:text-brand-modrinth">
-              <NavLink href={mrLink} target="_blank">
-                  <ModrinthIcon className="h-5 w-5"/>
-              </NavLink>
+        )}
+        {mrLink && (
+          <Button asChild variant="ghost" size="icon" className="size-8 hover:text-brand-modrinth">
+            <NavLink href={mrLink} target="_blank">
+              <ModrinthIcon className="h-5 w-5" />
+            </NavLink>
           </Button>
-        }
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default function BrowseProject({project}: { project: BaseProject }) {
+export default function BrowseProject({ project }: { project: BrowseProjectData }) {
   const platformProject = platforms.getPlatformProject(project);
 
   return (
-    <div className={`
-      flex w-full flex-row items-center gap-3 rounded-sm border border-tertiary bg-primary-dim px-3 py-2 sm:gap-4
-      sm:py-3
-    `}>
-      <Suspense fallback={
-        <div className="flex size-16 shrink-0 items-center justify-center rounded-sm bg-primary-dim sm:size-20">
-          <BoxIcon strokeWidth={1} className="size-12 text-secondary opacity-20 sm:size-16"/>
-        </div>
-      }>
-        <ProjectIcon project={platformProject}/>
+    <div
+      className={`flex w-full flex-row items-center gap-3 rounded-sm border border-tertiary bg-primary-dim px-3 py-2 sm:gap-4 sm:py-3`}
+    >
+      <Suspense
+        fallback={
+          <div className="flex size-16 shrink-0 items-center justify-center rounded-sm bg-primary-dim sm:size-20">
+            <BoxIcon strokeWidth={1} className="size-12 text-secondary opacity-20 sm:size-16" />
+          </div>
+        }
+      >
+        <ProjectIcon project={platformProject} />
       </Suspense>
 
       <div className="flex w-full flex-col gap-1">
         <div className="flex h-full w-full flex-col">
           <div className="inline-flex w-full gap-2">
-            <LinkTextButton href={navigation.getProjectLink(project.id)} className={`
-              w-fit! text-base! font-normal! text-primary sm:shrink-0 [&_]:text-lg
-            `}>
+            <LinkTextButton
+              href={navigation.getProjectLink(project.id)}
+              className={`w-fit! text-base! font-normal! text-primary sm:shrink-0 [&_]:text-lg`}
+            >
               {project.name}
             </LinkTextButton>
 
-            {project.is_community && <CommunityDocsBadge small/>}
+            {project.is_community && <CommunityDocsBadge small />}
           </div>
 
-          <ErrorBoundary fallback={
-            <span className="h-10 sm:h-5">
-              &nbsp;
-            </span>
-          }>
-            <Suspense fallback={
-              <Skeleton className="h-10 w-full sm:h-5"/>
-            }>
-              <ProjectDescription project={platformProject}/>
+          <ErrorBoundary fallback={<span className="h-10 sm:h-5">&nbsp;</span>}>
+            <Suspense fallback={<Skeleton className="h-10 w-full sm:h-5" />}>
+              <ProjectDescription project={platformProject} />
             </Suspense>
           </ErrorBoundary>
         </div>
 
-        <ProjectMetaInfo base={project} project={platformProject}/>
+        <ProjectMetaInfo base={project} project={platformProject} />
       </div>
     </div>
-  )
+  );
 }

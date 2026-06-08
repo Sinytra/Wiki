@@ -1,79 +1,144 @@
-'use client'
+'use client';
 
-import {WikiSearchResult, WikiSearchResults} from "@/lib/service/search";
-import {getProcessURL} from "@/lib/utils";
+import { SearchResult, WikiSearchResult, WikiSearchResults } from '@/lib/service/search';
+import { SearchClient as TypesenseSearchClient, DocumentSchema, SearchResponse, SearchParams } from 'typesense';
+import {
+  ObjectNotFound,
+  RequestMalformed,
+  RequestUnauthorized,
+  ServerError,
+  TypesenseError
+} from 'typesense/lib/Typesense/Errors';
+import { getDocsLink, getInternalWikiLink, getWikiProjectLink } from '@/lib/project/game/content';
+import { DEFAULT_DOCS_VERSION } from '@repo/shared/constants';
+import { AssetLocation } from '@repo/shared/assets';
+import { ProjectContext } from '@repo/shared/types/service';
+import commonService from '@/lib/service/commonService';
 
-async function searchWiki(query: string): Promise<WikiSearchResults> {
-  if (!process.env.NEXT_PUBLIC_SEARCH_ENDPOINT || !process.env.NEXT_PUBLIC_SEARCH_INDEX || !process.env.NEXT_PUBLIC_SEARCH_API_KEY) {
-    return {total: 0, hits: []};
-  }
-
+async function searchWiki(query: string, locale: string, projectId: string | null): Promise<WikiSearchResults> {
   try {
-    const payload = {
-      query: {
-        multi_match: {
-          query,
-          type: "bool_prefix",
-          fields: [
-            "docs_source_mod_only^2",
-            "all_docs_content^1",
-            "all_docs_content._2gram^1",
-            "all_docs_content._3gram^1"
-          ]
-        }
-      },
-      stored_fields: [],
-      fields: ["docs_title", "docs_icon", "docs_source_mod", "docs_source_desc", "docs_source_icon", "url_path"],
-      size: 8,
-      _source: false
-    };
-
-    const results = await fetch(`${process.env.NEXT_PUBLIC_SEARCH_ENDPOINT}/${process.env.NEXT_PUBLIC_SEARCH_INDEX}/_search?pretty`, {
-      method: 'POST',
-      headers: {
-        Authorization: `ApiKey ${process.env.NEXT_PUBLIC_SEARCH_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload),
-      cache: 'no-store'
-    });
-
-    if (results.ok) {
-      const body = await results.json();
-      if (body?.hits?.hits) {
-        const hits = body.hits.hits as any[];
-
-        const mappedHits = hits.map(hit => {
-          const url_path: string = hit.fields.url_path[0];
-          const path = url_path.split('/').slice(5).join(' > ');
-          const url = getProcessURL() + url_path;
-
-          return {
-            title: hit.fields.docs_title?.[0],
-            mod: hit.fields.docs_source_mod?.[0],
-            url,
-            mod_icon: hit.fields.docs_source_icon[0],
-            mod_desc: hit.fields.docs_source_desc ? hit.fields.docs_source_desc[0] : undefined,
-            icon: hit.fields.docs_icon ? hit.fields.docs_icon[0] : undefined,
-            path
-          };
-        }) as WikiSearchResult[];
-
-        return {
-          total: body.hits.total.value || 0,
-          hits: mappedHits
-        }
-      }
-    } else {
-      throw new Error(results.status.toString());
+    const results = await searchWikiInternal(query, locale, projectId);
+    if (results != null) {
+      return results;
     }
   } catch (e) {
     console.error('Error running search', e);
   }
 
-  return {total: 0, hits: []};
+  return { total: 0, hits: [] };
+}
+
+async function searchWikiInternal(
+  query: string,
+  locale: string,
+  projectId: string | null
+): Promise<WikiSearchResults | null> {
+  const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
+  const collectionName = process.env.NEXT_PUBLIC_SEARCH_COLLECTION;
+  const apiKey = process.env.NEXT_PUBLIC_SEARCH_API_KEY;
+
+  if (!endpoint || !collectionName || !apiKey) {
+    return { total: 0, hits: [] };
+  }
+
+  const client = new TypesenseSearchClient({
+    nodes: [{ url: endpoint }],
+    apiKey,
+    connectionTimeoutSeconds: 2,
+    timeoutSeconds: 5,
+    numRetries: 3,
+    retryIntervalSeconds: 1,
+    cacheSearchResultsForSeconds: 120
+  });
+
+  const searchParameters: SearchParams<SearchResult> = {
+    q: query,
+    query_by: 'title,item_ids,project_id,project_name,page_ref',
+    filter_by: projectId ? `project_id:=${projectId}` : undefined,
+    per_page: 8,
+    page: 1
+  };
+
+  const res = await searchInCollection<SearchResult>(client, collectionName, searchParameters);
+  if (!res) {
+    return null;
+  }
+
+  if (res.found === 0 || !res.hits?.length) {
+    return null;
+  }
+
+  const hits = res.hits.map((h) => {
+    const base = h.document;
+    const href = getResultLink(base, locale);
+    const icon = getResultIcon(base, locale);
+
+    return {
+      ...base,
+      href,
+      icon_asset: icon
+    } satisfies WikiSearchResult;
+  });
+
+  return { total: res.found, hits };
+}
+
+async function searchInCollection<T extends DocumentSchema>(
+  client: TypesenseSearchClient,
+  collectionName: string,
+  params: SearchParams<T>
+): Promise<SearchResponse<T> | null> {
+  try {
+    return await client.collections<T>(collectionName).documents().search(params, {});
+  } catch (err) {
+    if (err instanceof RequestMalformed) {
+      console.error('Bad search params:', err.httpBody);
+    } else if (err instanceof RequestUnauthorized) {
+      console.error('Auth failed — check apiKey');
+    } else if (err instanceof ObjectNotFound) {
+      console.error('Collection does not exist');
+    } else if (err instanceof ServerError) {
+      console.error('Typesense server error', err.httpStatus);
+    } else if (err instanceof TypesenseError) {
+      console.error('Typesense error', err.httpStatus, err.httpBody);
+    } else {
+      throw err;
+    }
+    return null;
+  }
+}
+
+function getResultLink(result: SearchResult, locale: string): string {
+  if (result.entry_type === 'project') {
+    return getWikiProjectLink(locale, result.project_id);
+  }
+  if (result.entry_type === 'documentation') {
+    return getDocsLink(result.page_ref, { id: result.project_id, locale, version: DEFAULT_DOCS_VERSION });
+  }
+  if (result.entry_type === 'content') {
+    return getInternalWikiLink(result.page_ref, { locale, version: DEFAULT_DOCS_VERSION, id: result.project_id });
+  }
+  console.error('Unknown search result', result);
+  return '';
+}
+
+function getResultIcon(result: SearchResult, locale: string): AssetLocation | null {
+  if (result.entry_type === 'project' && result.project_icon_url != null) {
+    return { src: result.project_icon_url, id: result.project_id };
+  }
+
+  if (result.icon == null) {
+    return null;
+  }
+
+  const ctx: ProjectContext = {
+    id: result.project_id,
+    locale,
+    version: DEFAULT_DOCS_VERSION
+  };
+  return commonService.getRemoteAsset(result.icon, ctx);
 }
 
 export default {
   searchWiki
-}
+};

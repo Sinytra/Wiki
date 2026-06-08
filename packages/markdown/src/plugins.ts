@@ -1,18 +1,40 @@
 import GithubSlugger from 'github-slugger';
-import {visit} from 'unist-util-visit';
-import {headingRank} from 'hast-util-heading-rank';
-import {toString} from 'mdast-util-to-string';
-import {FileHeading} from './metadata';
-import {Root} from 'hast';
-import type {VFile} from 'vfile';
-import {visit as visitEsTree} from 'estree-util-visit';
-import type {MdxJsxAttribute, MdxJsxExpressionAttribute} from 'mdast-util-mdx-jsx';
+import { visit } from 'unist-util-visit';
+import { headingRank } from 'hast-util-heading-rank';
+import { toString } from 'mdast-util-to-string';
+import { DocsEntryMetadata, FileHeading } from './metadata';
+import { Root } from 'hast';
+import type { VFile } from 'vfile';
+import { visit as visitEsTree } from 'estree-util-visit';
+import type { MdxJsxAttribute, MdxJsxExpressionAttribute } from 'mdast-util-mdx-jsx';
+
+export function rehypeCollectLinks(): (tree: Root, file: VFile) => undefined {
+  return (tree, file) => {
+    if (!file.data.metadata) {
+      file.data.metadata = {};
+    }
+    const links: string[] = [];
+
+    visit(tree, 'element', (node) => {
+      if (node.tagName === 'a' && node.properties?.href != null) {
+        const href = String(node.properties.href);
+        if (href.startsWith('@') || href.startsWith('$') || href.startsWith('+')) {
+          links.push(href);
+        }
+      }
+    });
+
+    file.data.metadata.links = links;
+  };
+}
 
 export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined {
   const slugs = new GithubSlugger();
 
   return (tree, file) => {
     slugs.reset();
+
+    const metadata: DocsEntryMetadata = {};
 
     const headingList: FileHeading[] = [];
     let foundTitle = false;
@@ -24,7 +46,7 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
         if (child?.type === 'text') {
           // First H1 gets used as title
           if (!foundTitle) {
-            file.data.matter!.title = child.value;
+            metadata.title = child.value;
             parent?.children.splice(index!, 1);
             foundTitle = true;
           }
@@ -42,22 +64,26 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
         const heading: FileHeading = {
           depth,
           id,
-          value: toString(node, {includeImageAlt: false}),
+          value: toString(node, { includeImageAlt: false })
         };
 
         headingList.push(heading);
       }
     });
 
-    file.data.matter = {...file.data.matter, _headings: headingList};
+    metadata.headings = headingList;
+    file.data.metadata = metadata;
   };
 }
 
 const allowedNodeTypes = [
   'Program',
   'ExpressionStatement',
-  'ObjectExpression', 'ArrayExpression',
-  'Property', 'Literal', 'Identifier'
+  'ObjectExpression',
+  'ArrayExpression',
+  'Property',
+  'Literal',
+  'Identifier'
 ];
 
 function isAttributeAllowed(attr: MdxJsxAttribute | MdxJsxExpressionAttribute): boolean {
@@ -67,7 +93,7 @@ function isAttributeAllowed(attr: MdxJsxAttribute | MdxJsxExpressionAttribute): 
 
   if (typeof attr.value === 'object') {
     if (!attr.value?.data?.estree) {
-      return false;
+      return attr.value == null;
     }
 
     let disallow = false;
@@ -89,7 +115,7 @@ export function rehypeSafeMarkdownAttributes(): (tree: Root, file: VFile) => und
     visit(tree, ['mdxJsxFlowElement', 'mdxJsxTextElement'], (node, index, parent) => {
       let disallow = false;
       if (node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') {
-        if (node.attributes.some(a => !isAttributeAllowed(a))) {
+        if (node.attributes.some((a) => !isAttributeAllowed(a))) {
           disallow = true;
         }
       } else {

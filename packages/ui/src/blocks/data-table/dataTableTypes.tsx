@@ -1,4 +1,4 @@
-import { ReactNode, type JSX } from "react";
+import { ReactNode, type JSX } from 'react';
 
 export interface TableColumn<T> {
   id: string;
@@ -17,8 +17,6 @@ export type TableRowLinker<T> = (data: T) => string;
 export const ordinalColumn: TableColumn<any> = {
   id: 'select',
   header: 'Num.',
-  cell: (_, i) => (
-    <div className="text-center">{i + 1}</div>
-  ),
+  cell: (_, i) => <div className="text-center">{i + 1}</div>,
   className: 'w-15'
-}
+};

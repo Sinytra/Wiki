@@ -1,13 +1,16 @@
-'use client'
+'use client';
 
-import {AssetLocation} from "@repo/shared/assets";
-import {ImgHTMLAttributes, useEffect, useRef, useState} from "react";
-import resourceLocation from "@repo/shared/resourceLocation";
-import {cn} from "@repo/ui/lib/utils";
+import { AssetLocation } from '@repo/shared/assets';
+import { ImgHTMLAttributes, useEffect, useRef, useState } from 'react';
+import resourceLocation from '@repo/shared/resourceLocation';
+import { cn } from '@repo/ui/lib/utils';
 
-type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & { asset: AssetLocation; noTitle?: boolean };
+type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
+  asset: AssetLocation;
+  noTitle?: boolean;
+};
 
-export default function ItemAssetDisplay({asset, width, height, alt, title, noTitle, ...props}: Props) {
+export default function ItemAssetDisplay({ asset, width, height, alt, title, noTitle, ...props }: Props) {
   const imgRef = useRef(null);
   const [src, setSrc] = useState(asset.src);
 
@@ -31,15 +34,20 @@ export default function ItemAssetDisplay({asset, width, height, alt, title, noTi
   }, [asset.src]);
 
   return (
-    <div {...props} className={cn('overflow-hidden', props.className)}
-         style={{width: `${width || 32}px`, height: `${height || 32}px`}}
+    <div
+      {...props}
+      className={cn('overflow-hidden', props.className)}
+      style={{ width: `${width || 32}px`, height: `${height || 32}px` }}
     >
-      <img ref={imgRef}
-           width={width || 32} height={height || 32}
-           src={src} alt={alt || asset.id}
-           title={noTitle ? undefined : title || resourceLocation.parse(asset.id)?.path}
-           loading="eager"
+      <img
+        ref={imgRef}
+        width={width || 32}
+        height={height || 32}
+        src={src}
+        alt={alt || asset.id}
+        title={noTitle ? undefined : title || resourceLocation.parse(asset.id)?.path}
+        loading="eager"
       />
     </div>
-  )
+  );
 }

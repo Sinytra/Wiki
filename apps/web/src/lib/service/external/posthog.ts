@@ -1,5 +1,5 @@
-import env from "@repo/shared/env";
-import {time} from "@repo/shared/constants";
+import env from '@repo/shared/env';
+import { time } from '@repo/shared/constants';
 
 async function getMostPopularProjectIDs(): Promise<string[]> {
   const endpointUrl = env.getPosthogEndpointURL();
@@ -13,16 +13,16 @@ async function getMostPopularProjectIDs(): Promise<string[]> {
   try {
     const url = `${endpointUrl}/api/projects/${projectId}/query`;
     const body = {
-      "query": {
-        "kind": "HogQLQuery",
-        "query": `select * from ${indexName}`
+      query: {
+        kind: 'HogQLQuery',
+        query: `select * from ${indexName}`
       }
     };
     const resp = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify(body),
       next: {
@@ -41,4 +41,4 @@ async function getMostPopularProjectIDs(): Promise<string[]> {
 
 export default {
   getMostPopularProjectIDs
-}
+};

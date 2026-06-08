@@ -1,13 +1,8 @@
-import {z} from "zod";
-import {ProjectVisibility} from "@repo/shared/types/service";
+import { z } from 'zod';
 
-const zodStringError = (iss: any) => iss.input === undefined ? "This field is required." : undefined;
-
-const requiredString = z.string({
-  error: zodStringError
-});
+const requiredString = z.string().nonempty();
 const allowedProtocols = process.env.NODE_ENV === 'development' ? /https|file/ : /https/;
-const zodRepoUrl = z.url({ protocol: allowedProtocols, error: zodStringError });
+const zodRepoUrl = z.url({ protocol: allowedProtocols }).nonempty();
 
 export const emptySchema = z.object({});
 
@@ -27,7 +22,7 @@ export const projectUpdateSourceSchema = z.object({
 });
 
 export const projectUpdateSchema = z.object({
-  visibility: z.enum([ProjectVisibility.PUBLIC, ProjectVisibility.PRIVATE, ProjectVisibility.UNLISTED])
+  visibility: z.enum(['public', 'private', 'unlisted'])
 });
 
 export const projectReportSchema = z.object({
@@ -43,7 +38,7 @@ export const projectReportSchema = z.object({
 
 export const ruleProjectReportSchema = z.object({
   resolution: z.enum(['accept', 'dismiss'])
-})
+});
 
 export const createAccessKeySchema = z.object({
   name: requiredString,

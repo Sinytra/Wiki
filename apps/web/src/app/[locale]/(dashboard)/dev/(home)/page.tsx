@@ -1,35 +1,38 @@
-import GetStartedButton from "@/components/dashboard/dev/get-started/GetStartedButton";
-import LinkTextButton from "@/components/navigation/link/LinkTextButton";
-import * as React from "react";
-import {Suspense} from "react";
-import {getTranslations} from "next-intl/server";
-import {Skeleton} from "@repo/ui/components/skeleton";
-import GetStartedContextProvider from "@/components/dashboard/dev/get-started/GetStartedContextProvider";
-import {trimText} from "@/lib/utils";
-import {cn} from "@repo/ui/lib/utils";
-import platforms, {PlatformProject} from "@repo/shared/platforms";
+import GetStartedButton from '@/components/dashboard/dev/get-started/GetStartedButton';
+import LinkTextButton from '@/components/navigation/link/LinkTextButton';
+import * as React from 'react';
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
+import { Skeleton } from '@repo/ui/components/skeleton';
+import GetStartedContextProvider from '@/components/dashboard/dev/get-started/GetStartedContextProvider';
+import { trimText } from '@/lib/utils';
+import { cn } from '@repo/ui/lib/utils';
+import platforms, { PlatformProject } from '@repo/shared/platforms';
 import {
   AlertCircleIcon,
   CircleCheckIcon,
   GlobeIcon,
-  HelpCircleIcon, Link2Icon,
-  LoaderCircleIcon, LockIcon,
+  HelpCircleIcon,
+  Link2Icon,
+  LoaderCircleIcon,
+  LockIcon,
+  MoonIcon,
   SettingsIcon,
   XIcon
-} from "lucide-react";
-import {setContextLocale} from "@/lib/locales/routing";
-import {Button} from "@repo/ui/components/button";
-import {SidebarTrigger} from "@repo/ui/components/sidebar";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import {DevProject, ProjectVisibility} from "@repo/shared/types/service";
-import ProjectRegisterForm from "@/components/dashboard/dev/modal/ProjectRegisterForm";
-import devProjectApi from "@/lib/service/api/devProjectApi";
-import {ProjectStatus} from "@repo/shared/types/api/project";
-import ImageWithFallback from "@/components/util/ImageWithFallback";
-import {WIKI_DOCS_URL} from "@repo/shared/constants";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {LocaleRouteParams} from "@repo/shared/types/routes";
+} from 'lucide-react';
+import { setContextLocale } from '@/lib/locales/routing';
+import { Button } from '@repo/ui/components/button';
+import { SidebarTrigger } from '@repo/ui/components/sidebar';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import { handleApiCall } from '@/lib/service/serviceUtil';
+import { DevProjectData, ProjectVisibility } from '@sinytra/wiki-api-types';
+import ProjectRegisterForm from '@/components/dashboard/dev/modal/ProjectRegisterForm';
+import devProjectApi from '@/lib/service/api/devProjectApi';
+import { ProjectStatus } from '@sinytra/wiki-api-types';
+import ImageWithFallback from '@/components/util/ImageWithFallback';
+import { WIKI_DOCS_URL } from '@repo/shared/constants';
+import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
+import { LocaleRouteParams } from '@repo/shared/types/routes';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,43 +44,46 @@ function ProjectsListHeader() {
   return (
     <div className="mb-2 flex w-full flex-col">
       <div className="flex flex-row items-center justify-end">
-        <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden"/>
+        <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden" />
 
         <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions']}>
-          <ProjectRegisterForm redirectToProject/>
+          <ProjectRegisterForm redirectToProject />
         </ClientLocaleProvider>
       </div>
 
-      <hr className="my-3 flex w-full border-neutral-600"/>
+      <hr className="my-3 flex w-full border-neutral-600" />
     </div>
-  )
+  );
 }
 
 function ProfileProjectSkeleton() {
-  return (
-    <Skeleton className="h-[118px] w-full"/>
-  )
+  return <Skeleton className="h-[118px] w-full" />;
 }
 
-function Property({icon: Icon, textClass, iconClass, children}: {
+function Property({
+  icon: Icon,
+  textClass,
+  iconClass,
+  children
+}: {
   textClass: string;
-  icon: any,
-  iconClass?: string,
-  children: any
+  icon: any;
+  iconClass?: string;
+  children: any;
 }) {
   return (
     <div className="inline-flex items-center gap-2">
-      <Icon className={cn("h-4 w-4", iconClass)}/>
+      <Icon className={cn('h-4 w-4', iconClass)} />
       <span className={cn('align-bottom text-sm', textClass)}>{children}</span>
     </div>
-  )
+  );
 }
 
-function MobileProjectHeader({id, project}: { id: string; project: PlatformProject; }) {
+function MobileProjectHeader({ id, project }: { id: string; project: PlatformProject }) {
   return (
     <div className="flex flex-row gap-4 sm:hidden">
       <div className="flex size-12 shrink-0 sm:size-24">
-        <img className="rounded-md" src={project.icon_url} alt="Project icon"/>
+        <img className="rounded-md" src={project.icon_url} alt="Project icon" />
       </div>
       <div className="flex flex-col">
         <div>
@@ -90,42 +96,94 @@ function MobileProjectHeader({id, project}: { id: string; project: PlatformProje
         </p>
       </div>
     </div>
-  )
+  );
 }
 
-async function DevProjectsListEntry({project}: { project: DevProject }) {
+async function DevProjectsListEntry({ project }: { project: DevProjectData }) {
   const platformProject = await platforms.getPlatformProject(project);
   const t = await getTranslations('DevProjectsListPage');
   const u = await getTranslations('ProjectStatus');
   const v = await getTranslations('ProjectVisibility');
 
-  const statuses: { [key in ProjectStatus]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectStatus.HEALTHY]: {text: 'text-secondary', iconClass: 'text-secondary', icon: CircleCheckIcon},
-    [ProjectStatus.AT_RISK]: {text: 'text-destructive', iconClass: 'text-destructive', icon: AlertCircleIcon},
-    [ProjectStatus.LOADING]: {text: 'text-warning', iconClass: 'text-warning animate-spin', icon: LoaderCircleIcon},
-    [ProjectStatus.ERROR]: {text: 'text-destructive', iconClass: 'text-destructive', icon: XIcon},
-    [ProjectStatus.UNKNOWN]: {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon}
+  const statuses: {
+    [key in ProjectStatus | 'unknown']: {
+      text: string;
+      icon: any;
+      iconClass?: string;
+    };
+  } = {
+    inactive: {
+      text: 'text-secondary',
+      iconClass: 'text-secondary',
+      icon: MoonIcon
+    },
+    healthy: {
+      text: 'text-secondary',
+      iconClass: 'text-secondary',
+      icon: CircleCheckIcon
+    },
+    at_risk: {
+      text: 'text-destructive',
+      iconClass: 'text-destructive',
+      icon: AlertCircleIcon
+    },
+    loading: {
+      text: 'text-warning',
+      iconClass: 'text-warning animate-spin',
+      icon: LoaderCircleIcon
+    },
+    error: {
+      text: 'text-destructive',
+      iconClass: 'text-destructive',
+      icon: XIcon
+    },
+    unknown: {
+      text: 'text-secondary',
+      iconClass: 'text-secondary',
+      icon: HelpCircleIcon
+    }
   };
-  const status = statuses[project.status || ProjectStatus.UNKNOWN];
+  const status = statuses[project.status || 'unknown'];
 
-  const visibilities: { [key in ProjectVisibility]: { text: string; icon: any, iconClass?: string; } } = {
-    [ProjectVisibility.PUBLIC]: { text: 'text-secondary', iconClass: 'text-secondary', icon: GlobeIcon },
-    [ProjectVisibility.UNLISTED]: { text: 'text-secondary', iconClass: 'text-secondary', icon: Link2Icon },
-    [ProjectVisibility.PRIVATE]: { text: 'text-secondary', iconClass: 'text-secondary', icon: LockIcon },
-    [ProjectVisibility.UNKNOWN]:  {text: 'text-secondary', iconClass: 'text-secondary', icon: HelpCircleIcon},
-  }
+  const visibilities: {
+    [key in ProjectVisibility]: { text: string; icon: any; iconClass?: string };
+  } = {
+    public: {
+      text: 'text-secondary',
+      iconClass: 'text-secondary',
+      icon: GlobeIcon
+    },
+    unlisted: {
+      text: 'text-secondary',
+      iconClass: 'text-secondary',
+      icon: Link2Icon
+    },
+    private: {
+      text: 'text-secondary',
+      iconClass: 'text-secondary',
+      icon: LockIcon
+    }
+  };
   const visibility = visibilities[project.visibility];
 
   return (
-    <div className={`
-      flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-dim p-3 sm:flex-row
-      sm:gap-4
-    `}>
-      <MobileProjectHeader id={project.id} project={platformProject}/>
+    <div
+      className={cn(
+        'flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-dim p-3',
+        'sm:flex-row sm:gap-4'
+      )}
+    >
+      <MobileProjectHeader id={project.id} project={platformProject} />
 
       <div className="my-auto hidden size-20 shrink-0 sm:flex [&>div]:m-auto">
-        <ImageWithFallback className="rounded-md" src={platformProject.icon_url} alt="Project icon"
-                           width={80} height={80} fbWidth={64} fbHeight={64}
+        <ImageWithFallback
+          className="rounded-md"
+          src={platformProject.icon_url}
+          alt="Project icon"
+          width={80}
+          height={80}
+          fbWidth={64}
+          fbHeight={64}
         />
       </div>
 
@@ -136,9 +194,7 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
               {platformProject.name}
             </LinkTextButton>
           </div>
-          <p className="text-sm font-normal text-secondary">
-            {trimText(platformProject.summary, 100)}
-          </p>
+          <p className="text-sm font-normal text-secondary">{trimText(platformProject.summary, 100)}</p>
         </div>
 
         <div className="flex w-full flex-row flex-wrap gap-3">
@@ -148,14 +204,14 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
             </Property>
 
             <Property textClass={status.text} iconClass={status.iconClass} icon={status.icon}>
-              {u(project.status || ProjectStatus.UNKNOWN)}
+              {u(project.status || 'unknown')}
             </Property>
           </div>
 
           <div className="ml-auto">
             <LocaleNavLink href={getProjectLink(project.id)}>
               <Button className="h-8 border border-neutral-700" variant="ghost" size="sm">
-                <SettingsIcon className="mr-2 h-4 w-4"/>
+                <SettingsIcon className="mr-2 h-4 w-4" />
                 {t('project.manage')}
               </Button>
             </LocaleNavLink>
@@ -163,47 +219,43 @@ async function DevProjectsListEntry({project}: { project: DevProject }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-async function ProfileProjects({projects}: { projects: DevProject[] }) {
+async function ProfileProjects({ projects }: { projects: DevProjectData[] }) {
   const t = await getTranslations('DevProjectsListPage');
 
   return (
     <>
       <div className="flex flex-col gap-3">
-        {projects.map(p => (
-          <Suspense key={p.id} fallback={<ProfileProjectSkeleton/>}>
-            <DevProjectsListEntry project={p}/>
+        {projects.map((p) => (
+          <Suspense key={p.id} fallback={<ProfileProjectSkeleton />}>
+            <DevProjectsListEntry project={p} />
           </Suspense>
         ))}
       </div>
-      {projects.length === 0 &&
+      {projects.length === 0 && (
         <div
-          className={`
-            flex w-full flex-col items-center justify-center gap-4 rounded-xs border border-tertiary px-4 py-6
-            text-center
-          `}>
-            <span className="font-medium text-primary">
-              {t('empty.primary')}
-            </span>
-            <span className="text-secondary">
-              {t.rich('empty.secondary', {
-                guide: (chunks: any) => (
-                  <LinkTextButton className="text-base! font-normal! text-primary! underline" href={WIKI_DOCS_URL}>
-                    {chunks}
-                  </LinkTextButton>
-                )
-              })}
-            </span>
+          className={`flex w-full flex-col items-center justify-center gap-4 rounded-xs border border-tertiary px-4 py-6 text-center`}
+        >
+          <span className="font-medium text-primary">{t('empty.primary')}</span>
+          <span className="text-secondary">
+            {t.rich('empty.secondary', {
+              guide: (chunks: any) => (
+                <LinkTextButton className="text-base! font-normal! text-primary! underline" href={WIKI_DOCS_URL}>
+                  {chunks}
+                </LinkTextButton>
+              )
+            })}
+          </span>
 
-            <ClientLocaleProvider keys={['GetStartedButton']}>
-                <GetStartedButton/>
-            </ClientLocaleProvider>
+          <ClientLocaleProvider keys={['GetStartedButton']}>
+            <GetStartedButton />
+          </ClientLocaleProvider>
         </div>
-      }
+      )}
     </>
-  )
+  );
 }
 
 export default async function DevPage(props: { params: Promise<LocaleRouteParams> }) {
@@ -214,14 +266,14 @@ export default async function DevPage(props: { params: Promise<LocaleRouteParams
   return (
     <GetStartedContextProvider>
       <div>
-        <ProjectsListHeader/>
+        <ProjectsListHeader />
 
         <div>
           <ClientLocaleProvider keys={['LoadingContent']}>
-            <ProfileProjects projects={projects.projects}/>
+            <ProfileProjects projects={projects.projects} />
           </ClientLocaleProvider>
         </div>
       </div>
     </GetStartedContextProvider>
-  )
+  );
 }

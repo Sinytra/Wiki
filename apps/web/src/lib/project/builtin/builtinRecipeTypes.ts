@@ -1,5 +1,5 @@
-import {getTranslations} from "next-intl/server";
-import resourceLocation, {DEFAULT_NAMESPACE} from "@repo/shared/resourceLocation";
+import { getTranslations } from 'next-intl/server';
+import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
 
 // TODO Move to backend
 async function getRecipeTypeName(id: string): Promise<string | null> {
@@ -14,4 +14,4 @@ async function getRecipeTypeName(id: string): Promise<string | null> {
 
 export default {
   getRecipeTypeName
-}
+};

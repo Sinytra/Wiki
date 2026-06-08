@@ -1,32 +1,32 @@
-import {setContextLocale} from "@/lib/locales/routing";
-import {handleApiCall} from "@/lib/service/serviceUtil";
-import moderationApi from "@/lib/service/api/moderationApi";
-import {getTranslations} from "next-intl/server";
-import {BreadcrumbLink, BreadcrumbPage} from "@repo/ui/components/breadcrumb";
-import DevBreadcrumb from "@/components/dashboard/dev/navigation/DevBreadcrumb";
-import {ProjectReport} from "@repo/shared/types/api/moderation";
-import DevProjectPageTitle from "@/components/dashboard/dev/project/DevProjectPageTitle";
-import * as React from "react";
-import {Label} from "@repo/ui/components/label";
-import {Input} from "@repo/ui/components/input";
-import {useTranslations} from "next-intl";
-import {LocaleNavLink} from "@/components/navigation/link/LocaleNavLink";
-import {Textarea} from "@repo/ui/components/textarea";
-import RuleReportForm from "@/components/dashboard/admin/report/RuleReportForm";
-import {handleRuleProjectReport} from "@/lib/forms/actions";
-import ClientLocaleProvider from "@repo/ui/util/ClientLocaleProvider";
-import navigation from "@/lib/navigation";
+import { setContextLocale } from '@/lib/locales/routing';
+import { handleApiCall } from '@/lib/service/serviceUtil';
+import moderationApi from '@/lib/service/api/moderationApi';
+import { getTranslations } from 'next-intl/server';
+import { BreadcrumbLink, BreadcrumbPage } from '@repo/ui/components/breadcrumb';
+import DevBreadcrumb from '@/components/dashboard/dev/navigation/DevBreadcrumb';
+import { ReportInfo } from '@sinytra/wiki-api-types';
+import DevProjectPageTitle from '@/components/dashboard/dev/project/DevProjectPageTitle';
+import * as React from 'react';
+import { Label } from '@repo/ui/components/label';
+import { Input } from '@repo/ui/components/input';
+import { useTranslations } from 'next-intl';
+import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
+import { Textarea } from '@repo/ui/components/textarea';
+import RuleReportForm from '@/components/dashboard/admin/report/RuleReportForm';
+import { handleRuleProjectReport } from '@/lib/forms/actions';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import navigation from '@/lib/navigation';
 
-function ReportField({title, value}: { title: string; value: string | null }) {
+function ReportField({ title, value }: { title: string; value: string | null }) {
   return (
     <div className="grid w-full max-w-sm items-center gap-3">
       <Label>{title}</Label>
-      <Input value={value || 'N/A'} disabled={!value} readOnly/>
+      <Input value={value || 'N/A'} disabled={!value} readOnly />
     </div>
-  )
+  );
 }
 
-function ReportDetails({report}: { report: ProjectReport }) {
+function ReportDetails({ report }: { report: ReportInfo }) {
   const t = useTranslations('ViewReportPage.details');
   const u = useTranslations('ProjectReportReason');
   const v = useTranslations('ProjectReportStatus');
@@ -36,11 +36,12 @@ function ReportDetails({report}: { report: ProjectReport }) {
     <ClientLocaleProvider keys={['ViewReportPage']}>
       <RuleReportForm disabled={report.status !== 'new'} formAction={handleRuleProjectReport.bind(null, report.id)}>
         <div className="flex w-full flex-row flex-wrap gap-4">
-          <LocaleNavLink href={navigation.getProjectLink(report.project_id)} className={`
-            grid w-full max-w-sm items-center gap-3
-          `}>
+          <LocaleNavLink
+            href={navigation.getProjectLink(report.project_id)}
+            className={`grid w-full max-w-sm items-center gap-3`}
+          >
             <Label>{t('project_id')}</Label>
-            <Input value={report.project_id} className="cursor-pointer" readOnly/>
+            <Input value={report.project_id} className="cursor-pointer" readOnly />
           </LocaleNavLink>
 
           <ReportField title={t('reporter')} value={report.submitter_id} />
@@ -55,14 +56,14 @@ function ReportDetails({report}: { report: ProjectReport }) {
 
         <div className="grid w-full items-center gap-3">
           <Label>{t('body')}</Label>
-          <Textarea className="min-h-48 bg-primary-dim" value={report.body} readOnly/>
+          <Textarea className="min-h-48 bg-primary-dim" value={report.body} readOnly />
         </div>
       </RuleReportForm>
     </ClientLocaleProvider>
-  )
+  );
 }
 
-export default async function ViewReportPage(props: { params: Promise<{ locale: string; report: string; }> }) {
+export default async function ViewReportPage(props: { params: Promise<{ locale: string; report: string }> }) {
   const params = await props.params;
   setContextLocale(params.locale);
 
@@ -71,23 +72,21 @@ export default async function ViewReportPage(props: { params: Promise<{ locale: 
 
   return (
     <div>
-      <DevBreadcrumb home={
-        <BreadcrumbLink asChild>
-          <LocaleNavLink href="/admin/reports">
-            {t('reports')}
-          </LocaleNavLink>
-        </BreadcrumbLink>
-      }>
-        <BreadcrumbPage className="font-mono text-xsm text-primary">
-          {params.report}
-        </BreadcrumbPage>
+      <DevBreadcrumb
+        home={
+          <BreadcrumbLink asChild>
+            <LocaleNavLink href="/admin/reports">{t('reports')}</LocaleNavLink>
+          </BreadcrumbLink>
+        }
+      >
+        <BreadcrumbPage className="font-mono text-xsm text-primary">{params.report}</BreadcrumbPage>
       </DevBreadcrumb>
 
-      <DevProjectPageTitle title={t('title')} desc={t('desc', {id: report.id})}/>
+      <DevProjectPageTitle title={t('title')} desc={t('desc', { id: report.id })} />
 
       <div className="mt-6">
-        <ReportDetails report={report}/>
+        <ReportDetails report={report} />
       </div>
     </div>
-  )
+  );
 }

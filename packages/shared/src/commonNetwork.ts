@@ -1,6 +1,6 @@
-import {serializeUrlParams} from './util';
+import { serializeUrlParams } from './util';
 import locales from '@repo/shared/locales';
-import {DEFAULT_DOCS_VERSION} from './constants';
+import { DEFAULT_DOCS_VERSION } from './constants';
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';
 type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown' | 'ownership';
@@ -61,12 +61,12 @@ export interface RequestOptions {
   cache?: boolean | NextFetchRequestConfig;
   headers?: HeadersInit;
   body?: any;
-  userAuth?: boolean
+  userAuth?: boolean;
   includeCredentials?: boolean;
 }
 
 export type ApiCallResult<T = never> =
-  ApiSuccessResponse<T>
+  | ApiSuccessResponse<T>
   | ApiRedirectResponse
   | ApiErrorResponse
   | ApiUnknownErrorResponse
@@ -101,12 +101,17 @@ async function resolveApiCall<T = never>(callback: () => Promise<Response>): Pro
 
   if (resp.ok) {
     const data = jsonBody ? await resp.json() : undefined;
-    return {type: 'success', status: resp.status, success: true, data} satisfies ApiSuccessResponse<T>;
+    return {
+      type: 'success',
+      status: resp.status,
+      success: true,
+      data
+    } satisfies ApiSuccessResponse<T>;
   }
 
   if (!jsonBody) {
     const body = await resp.text();
-    console.error('Unexpected API response', body);
+    console.error('Unexpected API response', resp.status, body);
     return {
       type: 'unknown_error',
       status: resp.status,
@@ -117,8 +122,14 @@ async function resolveApiCall<T = never>(callback: () => Promise<Response>): Pro
   }
 
   const json = await resp.json();
-  const error = json.error ?? 'unknown' as ApiError;
-  return {type: 'known_error', status: resp.status, success: false, data: json, error} satisfies ApiErrorResponse;
+  const error = json.error ?? ('unknown' as ApiError);
+  return {
+    type: 'known_error',
+    status: resp.status,
+    success: false,
+    data: json,
+    error
+  } satisfies ApiErrorResponse;
 }
 
 async function sendDataRequest(path: string, options?: RequestOptions) {
@@ -155,10 +166,12 @@ function createFetchOptions(options?: RequestOptions): RequestInit {
     headers,
     body: options?.body ? (typeof options?.body === 'string' ? options.body : JSON.stringify(options.body)) : null,
     cache: disableCache ? 'no-store' : useCache ? 'force-cache' : undefined,
-    next: useCache ? {
-      tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
-      revalidate: typeof options.cache == 'object' ? options.cache.revalidate : undefined
-    } : undefined,
+    next: useCache
+      ? {
+          tags: typeof options.cache == 'object' ? options.cache.tags : undefined,
+          revalidate: typeof options.cache == 'object' ? options.cache.revalidate : undefined
+        }
+      : undefined,
     redirect: 'manual',
     credentials: options?.includeCredentials ? 'include' : undefined
   };

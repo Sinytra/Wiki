@@ -1,6 +1,6 @@
-import MetaDocsPage from "@/components/about/MetaDocsPage";
-import {setContextLocale} from "@/lib/locales/routing";
-import {LocaleRouteParams} from "@repo/shared/types/routes";
+import MetaDocsPage from '@/components/about/MetaDocsPage';
+import { setContextLocale } from '@/lib/locales/routing';
+import { LocaleRouteParams } from '@repo/shared/types/routes';
 
 export default async function HelpPage(props: { params: Promise<LocaleRouteParams> }) {
   const params = await props.params;
