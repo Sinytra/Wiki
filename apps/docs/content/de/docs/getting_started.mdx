@@ -10,7 +10,7 @@ Erstelle das Verzeichnis für deine Dokumentation und lerne die Ordnerstruktur d
     ### Erstelle das Root-Verzeichnis für deine Dokumentation
 
     Erstelle zunächst ein neues Verzeichnis in deinem Projekt. Der Pfad ist dir überlassen.
-    Zum Beispiel kannst du `docs/(deine-mod-id)` oder einfach nur `docs` verwenden – beides ist völlig in Ordnung.
+    Wir empfehlen die Verwendung von `wiki` oder `docs`.
 
     <Callout>
         Wir unterstützen auch Szenarien, in denen die Dokumentation für mehrere Projekte in einem einzigen Repository gehostet wird, solange sie in separaten Ordnern liegen.
@@ -23,10 +23,12 @@ Erstelle das Verzeichnis für deine Dokumentation und lerne die Ordnerstruktur d
     Diese wird verwendet, um Basisinformationen über dein Projekt bereitzustellen.
 
     Definiere darin die folgenden Eigenschaften:
-    - `id`*
+    - `schema` <span className="text-rose-400!">*</span>
+      - Immer `"1"`
+    - `id` <span className="text-rose-400!">*</span>
       - Ein eindeutiger String, um dein Projekt im gesamten Wiki zu identifizieren.
       - Wir empfehlen deine Mod-ID oder, falls nicht vorhanden, den Projekt-Slug von CurseForge/Modrinth.
-    - `platforms`*
+    - `platforms` <span className="text-rose-400!">*</span>
       - Eine Liste (Map) der Slugs deiner Vertriebsplattformen.
       - Aktuell werden `modrinth` und `curseforge` unterstützt. Bei CurseForge-Projekten kann auch die eindeutige Projekt-ID verwendet werden.
     - `modid` (optional)
@@ -46,6 +48,7 @@ Erstelle das Verzeichnis für deine Dokumentation und lerne die Ordnerstruktur d
 
     ```json filename="sinytra-wiki.json"
     {
+        "schema": "1",
         "id": "examplemod",
         "modid": "examplemod",
         "platforms": {

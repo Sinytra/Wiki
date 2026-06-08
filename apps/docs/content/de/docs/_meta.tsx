@@ -3,20 +3,20 @@ export default {
         type: 'separator',
         title: 'Autorenleitfaden'
     },
-    'introduction': 'Einleitung',
-    'getting_started': 'Erste Schritte',
+    introduction: 'Einleitung',
+    getting_started: 'Erste Schritte',
     '#2': {
         type: 'separator'
     },
-    'folder_structure': 'Ordnerstruktur',
+    folder_structure: 'Ordnerstruktur',
     '#3': {
         type: 'separator'
     },
-    'tools': 'Werkzeuge & Integration',
+    tools: 'Werkzeuge & Integration',
     '#4': {
         type: 'separator'
     },
-    'portal': {
+    portal: {
         title: 'Wiki-Portal',
         theme: {
             collapsed: true

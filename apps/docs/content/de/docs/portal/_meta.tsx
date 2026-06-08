@@ -1,4 +1,4 @@
 export default {
-  'publishing': '',
-  'management': ''
+  publishing: '',
+  management: ''
 };

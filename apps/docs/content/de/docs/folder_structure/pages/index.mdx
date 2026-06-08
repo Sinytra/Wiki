@@ -52,13 +52,14 @@ Du kannst jedes [Asset](assets)-Bild mit der nativen Markdown-Syntax anzeigen, i
 
 Beispiel:
 ```md
-<!-- Wird anzeigen: <root>/.assets/examplemod/generator.png -->
+<!-- Wird anzeigen: <root>/assets/examplemod/generator.png -->
 ![](@examplemod:generator)
 ```
 
 #### Links zu Inhaltsseiten
 
-Um auf [Inhaltsseiten](pages/content_pages) zu verlinken, verwende das `id`-Attribut aus den Metadaten der Zielseite mit einem vorangestellten `@`.
+Um auf die [Inhaltsseite](pages/content_pages) eines Items zu verlinken, verwende die ID des Items, auf das du verweisen möchtest, mit einem vorangestellten `@`.
+Das Wiki findet automatisch die passendste Inhaltsseite, die dieses Item enthält, und ersetzt den Link durch die korrekte URL.
 
 Beispiel:
 ```md
@@ -68,6 +69,10 @@ Beispiel:
 <!-- Verwendet benutzerdefinierten Linktext -->
 Klicke [hier](@examplemod:electric_furnace), um mehr zu erfahren.
 ```
+
+Du kannst auch direkt auf Inhaltsseiten verlinken, indem du die Referenz (ref) der Seite mit einem vorangestellten `+` verwendest.
+Dies ist eine eindeutige Kennung, die in der URL erscheint, wenn du die Seite aufrufst. Das Wiki erstellt diese standardmäßig automatisch für dich,
+aber du kannst über das Frontmatter-Attribut `ref` auch eine benutzerdefinierte Referenz festlegen.
 
 #### Links zu Dokumentationsseiten
 
@@ -88,72 +93,34 @@ Da MDX potenziell unerwünschte Code-Injektionen auf dem Server ermöglichen kö
 
 ## Metadaten
 
-Metadaten für Markdown-Seiten, auch bekannt als **Frontmatter**, werden vom Wiki genutzt, um zusätzliche Informationen über eine Seite oder einen Spielinhalt bereitzustellen. Sie befinden sich ganz am Anfang jeder Datei im YAML-Format.
+Metadaten für Markdown-Seiten, auch bekannt als **Frontmatter**, werden vom Wiki genutzt, um zusätzliche Informationen über eine Seite oder über Spielinhalte bereitzustellen. Sie befinden sich ganz am Anfang jeder Datei im **YAML-Format**.
 
-Informationen aus dem Frontmatter werden in der rechten Sidebar jeder Seite unter „Informationen“ angezeigt. Normalerweise umfasst dies ein Icon des Blocks/Items zusammen mit Name, ID, Ursprungsprojekt und anderen praktischen Infos.
-
-Falls deine Seite nicht auf ein spezifisches Objekt bezogen ist, kannst du alle Metadaten ausblenden und deren Werte (außer `title`) ignorieren, indem du `hide_meta: true` setzt.
+Unten findest du ein Beispiel für die verfügbaren Frontmatter-Attribute aller Seitentypen.
 
 ```markdown
 ---
-title: Hallo Welt
+# Verlauf der Änderungen am Seiteninhalt oder dem dokumentierten Item (Changelog)
+# (Optional)
+history:
+  # Detaillierter Eintrag mit mehreren Änderungen und Datum
+  - version: 1.2b
+    date: 15.08.2025
+    changes:
+      - Bugfixes
+      - Mehr Datengenerierung hinzugefügt
+  # Einfacher Eintrag mit Versionsnummer und einzelner Änderung
+  - 1.1: Implementierung benutzerdefinierter Zutaten behoben
+  - 1.0: Hinzugefügt
 ---
 
-Hier kommt der Inhalt hin
+# Hallo Welt
+
+Hier kommt der Inhalt der Dokumentation hin
 ```
 
-Hier ist eine Übersicht der unterstützten Attribute:
+Jeder Seitentyp verfügt über seine eigenen verfügbaren Frontmatter-Attribute, die auf den jeweiligen Seiten näher erläutert werden.
 
-- `title` - Anzeigename der Seite, der in der Hauptüberschrift und im Browser-Tab erscheint.<br/>Falls eine `h1`-Überschrift im Text vorhanden ist, wird diese stattdessen verwendet.
-  - Typ: `string`
-  - Beispiel: `Schicker Block`
-- `hide_meta` - Blendet die Metainformationen in der Sidebar aus. Alle anderen Attribute werden dadurch ignoriert.
-  - Typ: `boolean`
-- `id` - Der In-Game Identifier des Inhalts. Wenn ein passendes Asset mit derselben ID im Asset-Ordner gefunden wird, wird dieses automatisch als `icon` verwendet.
-  - Typ: Identifier
-  - Beispiel: `examplemod:generator`
-- `icon` - Identifier eines Assets, das als Icon angezeigt werden soll. Die Größe sollte mindestens 128x128 Pixel betragen.
-  - Typ: Identifier
-  - Beispiel: `examplemod:fancy_generator`
-- `hide_icon` - Blendet das Icon aus und zeigt stattdessen einen Standard-Platzhalter.
-  - Typ: `boolean`
-- `type` - Kann `block`, `item` oder `other` sein.
-  - Typ: `string`
-- `custom` - Eine Liste von eigenen Attributen, die du in der Sidebar anzeigen möchtest.
-  - Typ: `string` -> `string` Map
-  - Beispiel:
-  ```yaml
-  custom:
-    Kategorie: Maschinen
-  ```
-- `history`
-  - Zeigt ein Changelog der Änderungen am Seiteninhalt oder dem Item an.
-  - Erklärung siehe [unten](#changelog).
-
-<details>
-    <summary>Vollständiges Metadaten-Beispiel anzeigen</summary>
-
-    ```markdown
-    ---
-    title: Generator
-    id: examplemod:generator
-    icon: examplemod:fancy_generator
-    type: block
-    custom:
-      Unterkategorie: Maschinen
-    history:
-      - version: 1.2b
-        date: 15.08.2025
-        changes:
-          - Bugfixes
-          - Mehr Datengenerierung hinzugefügt
-      - 1.1: Implementierung benutzerdefinierter Zutaten korrigiert
-      - 1.0: Hinzugefügt
-    ---
-
-    Hier kommt der Inhalt hin
-    ```
-</details>
+Einzelheiten zum Attribut `history` findest du weiter [unten](#changelog).
 
 ## Eigene Komponenten
 

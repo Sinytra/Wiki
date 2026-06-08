@@ -6,6 +6,7 @@ import {SquirrelIcon} from 'lucide-react';
 Verfügbare Komponenten:
 
 - [Video-Einbettungen](#video-einbettungen)
+- [Audio](#audio)
 - [Code-Blöcke](#code-blöcke)
 - [Hervorhebungen](#callout)
 - [Code-Tabs](#codetabs)
@@ -15,7 +16,6 @@ Nur als Referenz:
 
 - [Spielinhalte](#spielinhalte)
 - [Rezepte](#rezepte)
-- [Navigation](#navigation)
 
 ## Integriert
 
@@ -27,8 +27,19 @@ Beispiel: Die ID für `https://www.youtube.com/watch?v=Y_WnAEKoeA4` ist `Y_WnAEK
 
 Diese ID kannst du dann direkt an die Komponente übergeben, wie unten gezeigt.
 
-```mdx
+```md
 <VideoEmbed id="Y_WnAEKoeA4"/>
+```
+
+### Audio
+
+Identisch mit dem HTML-Tag `audio`, jedoch wird `src` als Speicherort einer Asset-Ressource inklusive der Dateiendung angegeben.
+
+Beispiel:
+
+```md
+<!-- Spielt <root>/assets/examplemod/sounds/ambient.ogg ab -->
+<Audio controls src="examplemod:sounds/ambient.ogg"/>
 ```
 
 ### Code-Blöcke
@@ -169,42 +180,3 @@ Zeigt eine Liste von Items an, die durch [Rezepte](../folder_structure/game_data
 
 - `id`*
   - Die ID des Items, dessen Verwendung angezeigt werden soll.
-
-## Navigation
-
-<Callout type="important">
-    Diese Komponenten werden hier der Vollständigkeit halber aufgeführt; es wird jedoch empfohlen, das Kurzformat für [Links](../folder_structure/pages#erweiterungen) zu verwenden, um auf andere Seiten zu verweisen.
-</Callout>
-
-Hilfskomponenten, um die Navigation zwischen Seiten zu erleichtern, auch für Verweise auf Vanilla-Inhalte.
-
-### `DocsLink`
-
-Ermöglicht das Verlinken auf Dokumentationsseiten innerhalb desselben Projekts.
-
-Die Komponente benötigt ein Attribut namens `path`, welches den Pfad zur Zielseite relativ zum Projekt-Root angibt.
-
-Du kannst den Textinhalt weglassen, um stattdessen den Seitentitel anzuzeigen.
-
-```mdx
-<DocsLink path="getting_started/first_steps"/>
-```
-
-### `ContentLink`
-
-Diese Komponente erlaubt es dir, jedes In-Game-Objekt über seine ID zu referenzieren (einschließlich Vanilla-Items) und erstellt einen Link zur entsprechenden Seite, sofern diese existiert.
-
-Die Komponente benötigt ein Attribut namens `id`, welches das Ziel-Item spezifiziert. Dies kann ein Item aus dem aktuellen Projekt oder aus Vanilla Minecraft sein.
-
-Projekt-Inhaltsseiten werden basierend auf dem `id`-Attribut im [Frontmatter](../folder_structure/pages/content_pages#metadaten) zugeordnet. Bei Items, die nicht aus Vanilla stammen, kann der Linktext weggelassen werden, um automatisch den Seitentitel anzuzeigen.
-
-```mdx
-{/* Verlinkt auf https://minecraft.wiki/w/redstone */}
-<ContentLink id="redstone">Redstone</ContentLink>
-
-{/* Zeigt "Electric Furnace" an, verlinkt auf die Inhaltsseite im selben Projekt */}
-<ContentLink id="examplemod:electric_furnace" />
-
-{/* Wie oben – mit benutzerdefiniertem Anzeigetext */}
-Klicke <ContentLink id="examplemod:electric_furnace">hier</ContentLink>, für mehr Infos.
-```
