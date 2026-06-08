@@ -28,6 +28,10 @@ function getCrowdinUrl(): string | null {
   return process.env.CROWDIN_URL ?? null;
 }
 
+function getSessionCookieName(): string {
+  return process.env.SESSION_COOKIE_NAME ?? '';
+}
+
 const env = {
   isPreview,
   getBackendSecretApiKey,
@@ -35,7 +39,8 @@ const env = {
   getPosthogProjectID,
   getPosthogAPIKey,
   getPosthogPopularProjectsIndexName,
-  getCrowdinUrl
+  getCrowdinUrl,
+  getSessionCookieName
 };
 
 export default env;
