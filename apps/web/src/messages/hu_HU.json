@@ -1,229 +1,230 @@
 {
   "Badges": {
-    "local": "Local",
-    "latest": "Latest",
-    "admin": "Admin"
+    "local": "Helyi",
+    "latest": "Legfrissebb",
+    "admin": "Adminisztrátor"
   },
   "NavigationHeader": {
-    "title": "Modded Minecraft Wiki",
+    "title": "Modolt Minecraft Wiki",
     "title_short": "Wiki",
     "badge": {
-      "preview": "PREVIEW MODE",
-      "beta": "Beta"
+      "preview": "ELŐNÉZET MÓD",
+      "beta": "Béta"
     },
     "link": {
-      "home": "Home",
-      "browse": "Browse",
-      "about": "About"
+      "home": "Kezdőlap",
+      "browse": "Böngészés",
+      "about": "Rólunk"
     }
   },
   "NavigationFooter": {
-    "title": "Modded Minecraft Wiki",
+    "title": "Modolt Minecraft Wiki",
     "links": {
       "navigation": {
-        "title": "Navigation",
-        "home": "Homepage",
-        "browse": "Browse",
-        "dev": "Developers"
+        "title": "Navigáció",
+        "home": "Kezdőoldal",
+        "browse": "Böngészés",
+        "dev": "Fejlesztők"
       },
       "links": {
-        "title": "Links"
+        "title": "Hivatkozások"
       },
       "resources": {
-        "title": "Resources",
+        "title": "Források",
         "blog": "Blog",
-        "status": "Status",
-        "translate": "Help us translate"
+        "status": "Státusz",
+        "translate": "Segíts a fordításban"
       },
       "about": {
-        "title": "About",
-        "tos": "Terms of Service",
-        "privacy": "Privacy Policy",
-        "contact": "Contact"
+        "title": "Névjegy",
+        "tos": "Felhasználási feltételek",
+        "privacy": "Adatvédelmi irányelvek",
+        "contact": "Kapcsolat"
       }
     }
   },
   "HomePage": {
-    "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
-    "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+    "title": "Üdvözöllek a <highlight>Modolt Minecraft Wikin</highlight>",
+    "subtitle": "A legjobb forrásod Minecraft-projektek felfedezéséhez, létrehozásához és az azokhoz való hozzájáruláshoz.",
     "popular": {
-      "title": "Popular Wikis",
-      "open": "Read more",
-      "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+      "title": "Népszerű Wikik",
+      "open": "Olvass tovább",
+      "disclaimer": "Ezek a projektek a megtekintési statisztikáik alapján ajánlottak és nem hivatalosan jóváhagyottak a Modolt Minecraft Wiki által."
     },
     "community": {
-      "title": "Join Our Community",
+      "title": "Csatlakozás a közösséghez",
       "users": {
-        "title": "Users",
-        "subtitle": "Explore our featured projects and enjoy these benefits:",
-        "docs": "Access high-quality, up-to-date and versioned documentation",
-        "contribute": "Contribute to projects without programming knowledge",
-        "ui": "Enjoy a consistent, user-friendly interface across all projects",
-        "localization": "Benefit from multi-language support"
+        "title": "Felhasználók",
+        "subtitle": "Fedezd fel a kiemelt projecteket és élvezt az alábbi előnyöket:",
+        "docs": "Férj hozzá kiváló minőségű, naprakész és verziózott dokumentációhoz",
+        "contribute": "Járulj hozzá projektekhez programozási tudás nélkül",
+        "ui": "Élvezz egy következtetes, felhasználóbarát kezelőfelületet az összes projekten kersztül",
+        "localization": "Olvass több különböző nyelven"
       },
       "authors": {
-        "title": "Authors",
-        "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-        "vcs": "Versioning support for your documentation",
-        "components": "Built-in components for recipes, assets, etc.",
-        "gradle": "Gradle integration for seamless workflow",
-        "management": "Advanced project management tools",
-        "interaction": "Direct interaction with your user base",
-        "dashboard": "Open Dashboard",
-        "guide": "Read More"
+        "title": "Szerzők",
+        "subtitle": "Férj hozzá a Projekt Vezérlőpult, és élvezd az alábbi előnyöket:",
+        "vcs": "Verziókezelési támogatás a dokumentációhoz",
+        "components": "Beépíttett elemek receptekhez, erőforrásokhoz, stb.",
+        "gradle": "Gradle integráció a zökkenőmentes munkafolyamatért",
+        "management": "Fejlett projektkezelési eszközök",
+        "interaction": "Közvetlen integráció a felhasználóbázisoddal",
+        "dashboard": "Vezérlőpult Megnyitása",
+        "guide": "Olvass tovább"
       }
     },
-    "browse": "Browse Projects",
+    "browse": "Projektek Böngészése",
     "highlights": {
       "localization": {
-        "title": "Localization",
-        "desc": "Translate your docs into world languages"
+        "title": "Lokalizáció",
+        "desc": "Fordítsd le a dokumentumaidad a világ nyelveire"
       },
       "accessibility": {
-        "title": "Accessible",
-        "desc": "Intuitive and responsive user interface"
+        "title": "Elérhető",
+        "desc": "Intuitív és gyors felhasználói felület"
       },
       "open": {
-        "title": "Open",
-        "desc": "Let your users contribute without any programming knowledge necessary"
+        "title": "Nyitott",
+        "desc": "Nyitott"
       },
       "free": {
-        "title": "Free",
-        "desc": "Hosting docs on our website is completely free of charge!"
+        "title": "Ingyenes",
+        "desc": "A dokumentumok weboldalunkon történő tárolása teljesen ingyenes!"
       }
     },
     "about": {
-      "title": "About Us",
-      "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-      "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+      "title": "Rólunk",
+      "maintainers": "Ezt a wikit a <b>Sinytra</b> építette és tartja karban, egy dedikált és szenvedélyes fejesztőcsapat, amely a Minecraft modoló közösség számára magas minőségű, Ingyenes és Nyílt Forráskódú szoftverek készítésére fókuszál.",
+      "mission": "A mi célunk hogy modolókat és játékosokat egyaránt felhatalmazzunk azzal hogy ellátjuk őket azon eszközökkel melyek szükségesek az alkotáshoz, dokumentáláshoz és a modolt Minecraft végtelen lehetőségeinek felfedezéséhez."
     },
     "blog": {
-      "title": "Blog Posts",
-      "open": "Read More"
+      "title": "Blogposztok",
+      "open": "Részletek"
     }
   },
   "BrowsePage": {
     "sidebar": {
-      "title": "Browse projects",
-      "search_filters": "Search filters...",
-      "categories": "Categories"
+      "title": "Projektek böngészése",
+      "search_filters": "Szűrök keresése...",
+      "categories": "Kategóriák"
     },
-    "sorting": "Sort by",
+    "sorting": "Rendezés",
     "sort": {
-      "relevance": "Relevance",
-      "creation_date": "Creation date",
-      "popularity": "Popularity",
+      "relevance": "Relevancia",
+      "creation_date": "Létrehozás dátuma",
+      "popularity": "Népszerűség",
       "az": "A-Z",
       "za": "Z-A"
     },
-    "search": "Search projects...",
-    "clear_filter": "Clear filters",
-    "no_results": "Search query returned no results!"
+    "search": "Projektek keresése...",
+    "clear_filter": "Szűrés törlése",
+    "no_results": "A keresés nem talált!"
   },
   "SearchProjectTypes": {
-    "mod": "Mods",
-    "modpack": "Modpacks",
-    "resourcepack": "Resource packs",
-    "datapack": "Data packs",
-    "shader": "Shaders",
-    "plugin": "Plugins"
+    "mod": "Modok",
+    "modpack": "Modpack-ek",
+    "resourcepack": "Forráscsomagok",
+    "datapack": "Adatcsomagok",
+    "shader": "Shader-ek",
+    "plugin": "Plugin-ok"
   },
   "ProjectTypes": {
     "mod": "Mod",
     "modpack": "Modpack",
-    "resourcepack": "Resource pack",
-    "datapack": "Data pack",
+    "resourcepack": "Forráscsomag",
+    "datapack": "Adatcsomag",
     "shader": "Shader",
-    "plugin": "Plugin"
+    "plugin": "Plugin",
+    "unknown": "Unknown"
   },
   "LoadingContent": {
-    "message": "Loading..."
+    "message": "Betöltés..."
   },
   "MetaDocsNavigation": {
-    "title": "Navigation",
-    "about": "About",
-    "devs": "Author guide",
-    "components": "Components",
-    "help": "Get help",
-    "tos": "Terms of Use",
-    "privacy": "Privacy Policy",
-    "security": "Security Notice"
+    "title": "Navigáció",
+    "about": "Névjegy",
+    "devs": "Szerzői útmutató",
+    "components": "Összetevők",
+    "help": "Segítség kérése",
+    "tos": "Felhasználási Feltételek",
+    "privacy": "Adatvédelmi Irányelvek",
+    "security": "Biztonsági Megjegyzés"
   },
   "Login": {
-    "title": "Login required",
-    "desc": "The page you are trying to access requires you to log in.",
-    "prompt": "Please use your GitHub account to continue.",
-    "button": "Log in with GitHub"
+    "title": "Bejelentkezés szükséges",
+    "desc": "Ennek az oldalnak az eléréséhez be kell jelentkezed.",
+    "prompt": "Kérlek hasznánd a GitHub-ot a bejelentkezéshez.",
+    "button": "Bejelentkezés GitHub-bal."
   },
   "Preview": {
-    "title": "Preview mode is enabled",
-    "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-    "roots": "Available local documentation roots",
-    "open": "Open"
+    "title": "Előnézeti mód bekapcsolva",
+    "desc": "Az előnézeti mód bekapcsol egy minimális felhasználói felületet, amivel jobban tudsz a dokumentumok írására fókuszálni a kiadás előtt.",
+    "roots": "Elérhető helyi dokumentumforrások",
+    "open": "Megnyitás"
   },
   "DocsProjectInfo": {
-    "title": "Project information",
-    "type": "Type",
-    "author": "Author",
-    "tags": "Tags",
+    "title": "Projektinformáció",
+    "type": "Típus",
+    "author": "Fejlesztő",
+    "tags": "Címkék",
     "latest": {
-      "title": "Latest version",
+      "title": "Legfrissebb verzió",
       "unknown": "N/A"
     },
     "license": {
-      "title": "License",
-      "custom": "Custom",
-      "unknown": "Unknown",
-      "arr": "All Rights Reserved"
+      "title": "Licensz",
+      "custom": "Speciális licensz",
+      "unknown": "Ismeretlen",
+      "arr": "Minden jog fenntartva"
     }
   },
   "ProjectCategories": {
-    "adventure": "Adventure",
-    "cursed": "Cursed",
-    "decoration": "Decoration",
-    "economy": "Economy",
-    "equipment": "Equipment",
-    "food": "Food",
-    "game-mechanics": "Game Mechanics",
-    "library": "Library",
-    "magic": "Magic",
-    "management": "Management",
-    "minigame": "Minigame",
-    "mobs": "Mobs",
-    "optimization": "Optimization",
-    "social": "Social",
-    "storage": "Storage",
-    "technology": "Technology",
-    "transportation": "Transporation",
-    "utility": "Utility",
-    "worldgen": "Worldgen",
-    "server-utility": "Server Utility",
-    "armor-weapons-tools": "Armor, Tools, and Weapons",
-    "library-api": "API and Library",
-    "adventure-rpg": "Adventure and RPG",
-    "world-gen": "World Gen",
-    "cosmetic": "Cosmetic",
-    "mc-food": "Food",
-    "performance": "Performance",
-    "map-information": "Map and Information",
-    "bug-fixes": "Bug Fixes",
-    "mc-addons": "Addons",
-    "education": "Education",
-    "mc-miscellaneous": "Miscellaneous",
-    "redstone": "Redstone",
-    "utility-qol": "Utility & QoL",
+    "adventure": "Felfedezés",
+    "cursed": "Átkozott",
+    "decoration": "Dekoráció",
+    "economy": "Gazdaság",
+    "equipment": "Felszerelés",
+    "food": "Étel",
+    "game-mechanics": "Játékmechanikák",
+    "library": "Könyvtár",
+    "magic": "Mágia",
+    "management": "Kezelés",
+    "minigame": "Minijáték",
+    "mobs": "Mobok",
+    "optimization": "Optimalizáció",
+    "social": "Szociális",
+    "storage": "Tárhely",
+    "technology": "Technológia",
+    "transportation": "Szállítás",
+    "utility": "Eszközök",
+    "worldgen": "Világgenerálás",
+    "server-utility": "Szerver Eszközök",
+    "armor-weapons-tools": "Páncél, Eszközök és Fegyverek",
+    "library-api": "API és Könyvtár",
+    "adventure-rpg": "Felfedezés és RPG",
+    "world-gen": "Világgenerálás",
+    "cosmetic": "Kozmetikus",
+    "mc-food": "Étel",
+    "performance": "Teljesítmény",
+    "map-information": "Térkép és Információ",
+    "bug-fixes": "Hibajavítások",
+    "mc-addons": "Bővítmények",
+    "education": "Oktatás",
+    "mc-miscellaneous": "Egyéb",
+    "redstone": "Vöröskő",
+    "utility-qol": "Eszközök és QoL",
     "mc-creator": "MCreator"
   },
   "PageEditControls": {
-    "edit_gh": "Edit this page",
-    "report": "Report this page",
-    "report_button": "Report page",
-    "last_updated": "Last updated: <date></date>"
+    "edit_gh": "Oldal szerkesztése",
+    "report": "Oldal feljelentése",
+    "report_button": "Oldal feljelentése",
+    "last_updated": "Utoljára frissítve: <date></date>"
   },
   "Report": {
-    "title": "Report a documentation page",
-    "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-    "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+    "title": "Egy dokumentáció oldal feljelentése",
+    "desc": "Jelents fel tartalmakat melyek megszegik a <tos>Szolgáltatási Feltételeink</tos>et vagy a <cr>Tartalmi Szabályaink</cr>at.",
+    "contact": "Auditálási célokból a <b>felhasználóneved</b> szerepelni fog a jelentésben.",
     "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
     "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
     "form": {
@@ -262,6 +263,7 @@
         "suggestion": "Would you like to look for something else to explore instead?",
         "explore": "Explore projects"
       },
+      "submit": "Submit",
       "success": "Report submitted successfully"
     }
   },
@@ -309,9 +311,6 @@
       "dismiss": "Report dismissed"
     }
   },
-  "SubmitButton": {
-    "title": "Submit"
-  },
   "Callout": {
     "default": "Heads up!",
     "info": "Info",
@@ -352,15 +351,10 @@
       "desc": "You can now navigate to the project's docs page"
     },
     "submitting": "Submitting...",
-    "verify_modrinth": "Verify using Modrinth"
-  },
-  "ProjectSettingsForm": {
-    "title": "Edit project",
-    "desc": "Edit an existing project's settings.",
-    "button": "Settings",
-    "success": {
-      "title": "Project updated successfully",
-      "desc": "You can now navigate to the updated project's docs page"
+    "verify_modrinth": "Verify using Modrinth",
+    "submission": {
+      "clone": "Cloning repository and verifying metadata.",
+      "note": "This may take a while for larger repositories. Please stand by."
     }
   },
   "ProjectDeleteForm": {
@@ -377,7 +371,7 @@
       "internal": "Internal Server Error, please try again later.",
       "unknown": "An unknown error has occurred, please try again later.",
       "no_platforms": "No platform projects defined in metadata.",
-      "no_project": "Platform project not found. Please make sure the metadata \"slug\" field is correct.",
+      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
       "unsupported_type": "Unsupported project type",
       "ownership": "Failed to verify project ownership",
       "cf_unavailable": "Registering CurseForge projects is not active",
@@ -390,8 +384,14 @@
       "exists": "Project already exists.",
       "not_found": "Project does not exist",
       "illegal_id": "Illegal project ID",
-      "not_owner": "User is not authorized to register this project"
-    }
+      "not_owner": "User is not authorized to register this project",
+      "repo_too_large": "Repository exceeds maximum allowed size of 500MB",
+      "insufficient_permissions": "You don't have permission to perform this action",
+      "user_not_found": "User not found",
+      "duplicate_member": "Project member already exists",
+      "single_owner": "Cannot remove the only owner"
+    },
+    "get_help": "Find out more about this error in our <link>documentation</link>."
   },
   "CommunityBadge": {
     "title": "Community",
@@ -414,7 +414,8 @@
       "tags": "Tagged:"
     },
     "description": {
-      "title": "Description"
+      "title": "Description",
+      "placeholder": "Description not available"
     },
     "navigation": {
       "title": "Navigation",
@@ -454,7 +455,17 @@
     "no_results": "No results found!",
     "loading": "Finding the perfect results...",
     "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-    "close": "<kbd>ESC</kbd> to close"
+    "close": "<kbd>ESC</kbd> to close",
+    "switch": "<kbd>Tab</kbd> to change scope",
+    "scope": {
+      "local": "Local",
+      "global": "Global"
+    }
+  },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
   },
   "DocsChangelogPage": {
     "title": "Changelog"
@@ -485,7 +496,14 @@
     "loading": "Initializing",
     "healthy": "Loaded",
     "at_risk": "Requires attention",
-    "error": "Errored"
+    "error": "Errored",
+    "inactive": "Inactive"
+  },
+  "ProjectVisibility": {
+    "public": "Public",
+    "unlisted": "Unlisted",
+    "private": "Private",
+    "unknown": "Unknown"
   },
   "DevProjectsListPage": {
     "project": {
@@ -501,7 +519,7 @@
       "home": "Home"
     },
     "toolbar": {
-      "view": "View",
+      "view": "Visit project page",
       "deployments": "Deployments"
     },
     "overview": {
@@ -540,7 +558,25 @@
   },
   "DevProjectSettingsPage": {
     "title": "Project settings",
-    "desc": "Configure project properties"
+    "desc": "Configure project properties",
+    "form": {
+      "visibility": {
+        "title": "Project Visibility",
+        "public_desc": "Public projects are visible in search.",
+        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
+        "private_desc": "Private projects are only accessible by members of the project.",
+        "placeholder": "Select visibility"
+      }
+    },
+    "toast": {
+      "success": "Project settings updated successfully"
+    },
+    "save": "Save"
+  },
+  "DevProjectSourceSettingsPage": {
+    "title": "Project settings - Source",
+    "desc": "Configure project source repository",
+    "save": "Save"
   },
   "DevProjectVersionsPage": {
     "title": "Project versions",
@@ -555,14 +591,17 @@
       "empty": "No issues found"
     }
   },
+  "ProjectMemberRole": {
+    "owner": "Owner",
+    "member": "Member",
+    "unknown": "Unknown"
+  },
   "DevProjectMembersPage": {
     "title": "Project members",
     "desc": "Manage project members & permissions",
-    "roles": {
-      "owner": "Owner"
-    },
     "actions": {
-      "manage": "Manage"
+      "remove": "Remove",
+      "leave": "Leave project"
     }
   },
   "DevProjectContentItemsPage": {
@@ -693,6 +732,11 @@
       "content": "Items",
       "tags": "Tags",
       "recipes": "Recipes"
+    },
+    "settings": {
+      "group": "Settings",
+      "general": "General",
+      "source": "Source"
     }
   },
   "PrefabObtaining": {
@@ -727,7 +771,8 @@
   },
   "AdminMigrations": {
     "title": "Data migrations",
-    "desc": "Available data migrations"
+    "desc": "Available data migrations",
+    "empty": "No migrations available."
   },
   "EmptyDataTable": {
     "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
@@ -853,8 +898,9 @@
     "git_clone": "Error cloning repository",
     "git_info": "Error getting commit information",
     "ingestor": "Error importing content",
+    "version_setup": "Error setting up version",
     "internal": "Internal server error",
-    "page_render": "Invalid page",
+    "page": "Invalid page",
     "unknown": "Unknown error"
   },
   "DeploymentIssues": {
@@ -869,7 +915,7 @@
     "no_branch": "Invalid branch specified",
     "no_path": "Metadata file not found at specified path",
     "invalid_meta": "Metadata file is invalid",
-    "invalid_page": "Failed to render page contents",
+    "page_render": "Failed to render page contents",
     "duplicate_page": "Duplicate page",
     "unknown_recipe_type": "Unknown recipe type",
     "invalid_ingredient": "Invalid ingredient",
@@ -880,6 +926,11 @@
     "missing_platform_project": "Missing platform project",
     "no_page_title": "Page is missing title",
     "missing_required_attribute": "Page is missing a required metadata attribute",
+    "invalid_frontmatter": "Invalid page frontmatter",
+    "no_platforms": "Missing project platforms",
+    "illegal_id": "Invalid project ID",
+    "illegal_mod_id": "Invalid project mod ID",
+    "not_owner": "Failed to verify project ownership",
     "unknown": "Unknown error"
   },
   "AdminReports": {
@@ -904,6 +955,17 @@
     "toggle": "Show changelog"
   },
   "ContentProperties": {
+    "weighted_flag": {
+      "true": "Yes ({count})",
+      "false": "No"
+    },
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "unknown": "Unknown"
+    },
     "bool": {
       "true": "Yes",
       "false": "No"
@@ -911,20 +973,28 @@
     "type": {
       "block": "Block",
       "item": "Item",
-      "other": "Other"
+      "other": "Other",
+      "unknown": "Other"
     },
     "properties": {
       "id": "ID",
       "source_mod": "Source mod",
       "type": "Type",
-      "stack_size": "Stack size",
+      "stack_size": "Stackable",
       "required_tool": "Tool",
       "blast_resistance": "Blast resistance",
       "hardness": "Hardness",
-      "flammable": "Flammable"
+      "flammable": "Flammable",
+      "rarity": "Rarity tier",
+      "durability": "Durability",
+      "mining_speed": "Mining efficiency",
+      "attack_damage": "Attack damage",
+      "attack_speed": "Attack speed",
+      "enchantability": "Enchantability",
+      "nutrition": "Restores"
     }
   },
-  "DocsLink": {
+  "ExtendedLink": {
     "not_found": "(Not found)"
   },
   "AdminAccessKeys": {
@@ -978,6 +1048,120 @@
       "title": "Cache Tag",
       "desc": "The cache tag to revalidate"
     },
+    "submit": "Submit",
     "success": "Cache tag invalidated successfully"
+  },
+  "CookieConsent": {
+    "popup": {
+      "title": "This website uses cookies",
+      "description": "This site uses cookies to improve your browsing experience and show embedded content.",
+      "show_preferences": "Manage Individual preferences"
+    },
+    "modal": {
+      "title": "Manage cookie preferences",
+      "save": "Accept current selection",
+      "close": "Close modal"
+    },
+    "sections": {
+      "summary": {
+        "title": "Cookie preferences",
+        "description": "Customize your privacy settings here. You can choose which types of cookies and tracking technologies you allow."
+      },
+      "necessary": {
+        "title": "Strictly Necessary cookies",
+        "description": "These cookies are essential for the proper functioning of the website and cannot be disabled."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "These cookies are used to enable certain parts of the website, such as video embeds, and may be used to track you.",
+        "services": {
+          "embeds": "Enables displaying embedded YouTube videos."
+        }
+      },
+      "more_info": {
+        "title": "More information",
+        "description": "For further information on how we use cookies on our website, please refer to our <a href=\"/about/privacy\">Privacy Policy</a>."
+      }
+    },
+    "actions": {
+      "accept_all": "Accept all",
+      "reject_all": "Reject all"
+    }
+  },
+  "VideoEmbedPlaceholder": {
+    "title": "Video embed unavailable",
+    "description": "Cookie consent is required to play embedded videos.",
+    "accept": "Allow YouTube embeds",
+    "watch": "Watch on Youtube"
+  },
+  "ManageCookiesButton": {
+    "text": "Manage cookie preferences"
+  },
+  "UpdateGameDataModal": {
+    "title": "Update game data",
+    "desc": "Fetch latest game data and run ingestion.",
+    "button": "Update",
+    "update_loader": {
+      "title": "Update loader version"
+    },
+    "success": {
+      "title": "Game data updated successfully",
+      "desc": "Updated game data to latest version"
+    },
+    "submit": "Submit",
+    "submitting": "Submitting..."
+  },
+  "DevProjectTagItemsTable": {
+    "empty": {
+      "title": "No items were found in this tag.",
+      "desc": "Project tag entries are automatically detected from included game files."
+    }
+  },
+  "AdminProjectsPage": {
+    "title": "Projects",
+    "desc": "List of all registered projects"
+  },
+  "AddProjectMemberForm": {
+    "button": "Add member",
+    "title": "Add project member",
+    "desc": "Add a new user to this project",
+    "username": {
+      "title": "Username",
+      "desc": "Wiki (GitHub) username of the user.",
+      "placeholder": "johndoe"
+    },
+    "role": {
+      "title": "User role",
+      "desc": "Determines the user's permission level",
+      "placeholder": "Select role"
+    },
+    "success": "Project member added successfully",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "RemoveProjectMemberModal": {
+    "title": "Remove project member",
+    "desc": "Are you sure you want to remove this member? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Remove",
+    "success": "Project member removed successfully"
+  },
+  "LeaveProjectModal": {
+    "title": "Leave project",
+    "desc": "Are you sure you want to leave this project? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Leave",
+    "success": "Project left successfully"
+  },
+  "GenericForm": {
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel"
+  },
+  "NewProjectBanner": {
+    "title": "Ready when you are",
+    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
+    "submit": "Publish",
+    "success": "Project visibility set to public"
   }
 }
