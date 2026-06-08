@@ -2,7 +2,7 @@
   "Badges": {
     "local": "Локальный документ",
     "latest": "Последний документ",
-    "admin": "Admin"
+    "admin": "Админ"
   },
   "NavigationHeader": {
     "title": "Вики по модификациям Minecraft",
@@ -134,7 +134,8 @@
     "resourcepack": "Набор ресурсов",
     "datapack": "Набор данных",
     "shader": "Шейдер",
-    "plugin": "Плагин"
+    "plugin": "Плагин",
+    "unknown": "Unknown"
   },
   "LoadingContent": {
     "message": "Загрузка…"
@@ -142,8 +143,8 @@
   "MetaDocsNavigation": {
     "title": "Навигация",
     "about": "О проекте",
-    "devs": "Author guide",
-    "components": "Components",
+    "devs": "Руководство для автора",
+    "components": "Компонент",
     "help": "Получить помощь",
     "tos": "Условия использования",
     "privacy": "Политика конфиденциальности",
@@ -172,7 +173,7 @@
     },
     "license": {
       "title": "Лицензия",
-      "custom": "Своя",
+      "custom": "Пользовательская лицензия",
       "unknown": "Неизвестно",
       "arr": "Все права защищены"
     }
@@ -222,8 +223,8 @@
   },
   "Report": {
     "title": "Сообщить о нарушении на странице документации",
-    "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-    "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+    "desc": "Сообщать о материале, нарушающем наши <tos> Условия предоставления услуг </tos> или <cr> Правила содержания </cr>.",
+    "contact": "В целях аудита ваше <b> имя </b> пользователя будет включено в отчете",
     "confidential": "Нам важна ваша конфиденциальность и эта информация всегда будет оставаться в секрете.",
     "privacy": "Чтобы узнать больше, обратитесь к нашей <link>политике конфиденциальности</link>.",
     "form": {
@@ -236,32 +237,33 @@
         "desc": "Путь к странице документации, содержащей нарушение."
       },
       "locale": {
-        "title": "Locale",
-        "desc": "Applied if the content lies within a localized subpath.",
+        "title": "локальный",
+        "desc": "Применяется, если содержимое находится в пределах локализованного под пути.",
         "placeholder": "Н/Д"
       },
       "version": {
-        "title": "Version",
-        "desc": "Applied if the content lies within a named version.",
+        "title": "Версия",
+        "desc": "Применяется, если содержимое находится в пределах имени версии",
         "placeholder": "Н/Д"
       },
       "reason": {
         "title": "Причина*",
-        "placeholder": "Select a reason for reporting this content",
-        "desc": "Reason for reporting this content.",
+        "placeholder": "Выберите причину для сообщения об этом материале",
+        "desc": "Причина для сообщения об этом материале.",
         "dislike": "Просто не понравилось"
       },
       "details": {
         "title": "Подробности*",
-        "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+        "placeholder": "Пожалуйста, укажите более подробную информацию о том, почему вы сообщаете об этом материале. Внимание пустые сообщения будут проигнорированы.",
         "desc": "Дополнительные сведения по проблеме."
       },
       "dislike": {
-        "title": "We understand that you may not like this content, and that's totally okay!",
+        "title": "Мы понимаем, что вам может не понравиться этот контент, и это абсолютно нормально!",
         "desc": "Однако, к сожалению, это не весомая причина для подачи жалобы на проект.",
-        "suggestion": "Would you like to look for something else to explore instead?",
+        "suggestion": "Хотели бы вы вместо этого поискать что-нибудь другое для изучения?",
         "explore": "Поискать проекты"
       },
+      "submit": "Постить",
       "success": "Жалоба успешно отправлена"
     }
   },
@@ -273,53 +275,50 @@
     "unknown": "Неизвестно"
   },
   "ProjectReportStatus": {
-    "new": "New",
-    "dismissed": "Dismissed",
-    "accepted": "Accepted",
+    "new": "Новое",
+    "dismissed": "Уволен",
+    "accepted": "Принято",
     "unknown": "Неизвестно"
   },
   "ProjectReportType": {
     "project": "Проект",
-    "docs": "Docs page",
-    "content": "Content page",
+    "docs": "Страница с документами",
+    "content": "Страница с содержанием",
     "unknown": "Неизвестно"
   },
   "ViewReportPage": {
-    "reports": "Reports",
-    "title": "Report details",
-    "desc": "Viewing report details for {id}",
+    "reports": "Жалоба",
+    "title": "Детальная жалоба",
+    "desc": "Просмотр подробных сведений об жалобе в {id}",
     "details": {
-      "reporter": "Reported by",
+      "reporter": "Жалоба об",
       "project_id": "Идентификатор проекта",
       "path": "Путь",
-      "body": "Body",
+      "body": "Тело",
       "reason": "Причина",
       "created_at": "Создано",
       "status": "Статус",
       "type": "Тип",
-      "locale": "Locale",
-      "version": "Version"
+      "locale": "Локальный",
+      "version": "Версия"
     },
     "actions": {
-      "dismiss": "Dismiss",
-      "accept": "Accept"
+      "dismiss": "Уволить",
+      "accept": "Принято"
     },
     "toast": {
-      "accept": "Report accepted",
-      "dismiss": "Report dismissed"
+      "accept": "Жалоба принята",
+      "dismiss": "Жалоба отклонена"
     }
-  },
-  "SubmitButton": {
-    "title": "Отправить"
   },
   "Callout": {
     "default": "Важно!",
-    "info": "Info",
-    "warning": "Warning",
-    "danger": "Danger"
+    "info": "Информация",
+    "warning": "Предупреждение",
+    "danger": "Опасно"
   },
   "ProjectRegisterForm": {
-    "button": "New Project",
+    "button": "Новый проект",
     "title": "Зарегистрировать проект",
     "desc": "Зарегистрируйте новый проект в вики.",
     "repo": {
@@ -352,19 +351,14 @@
       "desc": "Теперь вы можете перейти на страницу документации проекта"
     },
     "submitting": "Отправка...",
-    "verify_modrinth": "Верифицировать через Modrinth"
-  },
-  "ProjectSettingsForm": {
-    "title": "Отредактировать проект",
-    "desc": "Редактировать настройки существующего проекта.",
-    "button": "Настройки",
-    "success": {
-      "title": "Проект успешно обновлён",
-      "desc": "Теперь вы можете перейти на обновлённую страницу документации проекта"
+    "verify_modrinth": "Верифицировать через Modrinth",
+    "submission": {
+      "clone": "Клонирование репозитория и проверка метаданных.",
+      "note": "Для более крупных данных это может занять ваше время. Пожалуйста, подождите."
     }
   },
   "ProjectDeleteForm": {
-    "trigger": "Delete project",
+    "trigger": "Удалить проект",
     "title": "Вы абсолютно уверены?",
     "desc": "Это действие невозможно отменить. Оно навсегда удалит ваш проект и все связанные с ним данные с наших серверов.",
     "cancel": "Отменить",
@@ -377,7 +371,7 @@
       "internal": "Внутренняя ошибка сервера. Пожалуйста, попробуйте позже.",
       "unknown": "Произошла неизвестная ошибка, пожалуйста, повторите попытку позже.",
       "no_platforms": "В метаданных не указаны проекты платформы.",
-      "no_project": "Проект платформы не найден. Пожалуйста, убедитесь, что поле метаданных «slug» заполнено правильно.",
+      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
       "unsupported_type": "Неподдерживаемый тип проекта",
       "ownership": "Не удалось проверить права на владение проектом",
       "cf_unavailable": "Регистрация проектов CurseForge не активна",
@@ -389,9 +383,15 @@
       "unsupported": "В разработке",
       "exists": "Проект уже существует.",
       "not_found": "Проект не существует",
-      "illegal_id": "Illegal project ID",
-      "not_owner": "User is not authorized to register this project"
-    }
+      "illegal_id": "Незаконный идентификатор проекта",
+      "not_owner": "Пользователь не авторизован для регистрации данного проекта",
+      "repo_too_large": "Максимально допустимый размер репозитория больше 500 МБ",
+      "insufficient_permissions": "У вас нет разрешения на выполнение этого действия",
+      "user_not_found": "Пользователь не был найден",
+      "duplicate_member": "Участника проекта уже участвует",
+      "single_owner": "Невозможно удалить единственного владельца"
+    },
+    "get_help": "Подробнее об этой ошибке читайте в нашей документации"
   },
   "CommunityBadge": {
     "title": "Сообщество",
@@ -405,16 +405,17 @@
     "return": "Вернуться на главную"
   },
   "GetStartedButton": {
-    "title": "Create your first project"
+    "title": "Создайте первый ваш проект"
   },
   "ProjectHomepage": {
     "overview": {
-      "intro": "<project></project> is a {type} created by <authors></authors>.",
-      "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
-      "tags": "Tagged:"
+      "intro": "<project></project> Создается {type} с помощью <authors></authors>.",
+      "availability": "",
+      "tags": ":"
     },
     "description": {
-      "title": "Description"
+      "title": "Description",
+      "placeholder": "Description not available"
     },
     "navigation": {
       "title": "Навигация",
@@ -454,7 +455,17 @@
     "no_results": "Ничего не нашлось!",
     "loading": "Поиск хороших результатов…",
     "results": "Показано <highlight>{count}</highlight> результатов из <highlight>{total}</highlight>",
-    "close": "<kbd>ESC</kbd> — закрыть"
+    "close": "<kbd>ESC</kbd> — закрыть",
+    "switch": "<kbd>Tab</kbd> to change scope",
+    "scope": {
+      "local": "Local",
+      "global": "Global"
+    }
+  },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
   },
   "DocsChangelogPage": {
     "title": "Список изменений"
@@ -485,7 +496,14 @@
     "loading": "Инициализация",
     "healthy": "Загружено",
     "at_risk": "Requires attention",
-    "error": "Ошибка"
+    "error": "Ошибка",
+    "inactive": "Inactive"
+  },
+  "ProjectVisibility": {
+    "public": "Public",
+    "unlisted": "Unlisted",
+    "private": "Private",
+    "unknown": "Unknown"
   },
   "DevProjectsListPage": {
     "project": {
@@ -501,7 +519,7 @@
       "home": "Главная"
     },
     "toolbar": {
-      "view": "Смотреть",
+      "view": "Visit project page",
       "deployments": "Deployments"
     },
     "overview": {
@@ -540,7 +558,25 @@
   },
   "DevProjectSettingsPage": {
     "title": "Project settings",
-    "desc": "Configure project properties"
+    "desc": "Configure project properties",
+    "form": {
+      "visibility": {
+        "title": "Project Visibility",
+        "public_desc": "Public projects are visible in search.",
+        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
+        "private_desc": "Private projects are only accessible by members of the project.",
+        "placeholder": "Select visibility"
+      }
+    },
+    "toast": {
+      "success": "Project settings updated successfully"
+    },
+    "save": "Save"
+  },
+  "DevProjectSourceSettingsPage": {
+    "title": "Project settings - Source",
+    "desc": "Configure project source repository",
+    "save": "Save"
   },
   "DevProjectVersionsPage": {
     "title": "Project versions",
@@ -555,14 +591,17 @@
       "empty": "No issues found"
     }
   },
+  "ProjectMemberRole": {
+    "owner": "Owner",
+    "member": "Member",
+    "unknown": "Unknown"
+  },
   "DevProjectMembersPage": {
     "title": "Project members",
     "desc": "Manage project members & permissions",
-    "roles": {
-      "owner": "Владелец"
-    },
     "actions": {
-      "manage": "Управление"
+      "remove": "Remove",
+      "leave": "Leave project"
     }
   },
   "DevProjectContentItemsPage": {
@@ -693,6 +732,11 @@
       "content": "Items",
       "tags": "Теги",
       "recipes": "Recipes"
+    },
+    "settings": {
+      "group": "Settings",
+      "general": "General",
+      "source": "Source"
     }
   },
   "PrefabObtaining": {
@@ -727,7 +771,8 @@
   },
   "AdminMigrations": {
     "title": "Data migrations",
-    "desc": "Available data migrations"
+    "desc": "Available data migrations",
+    "empty": "No migrations available."
   },
   "EmptyDataTable": {
     "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
@@ -853,8 +898,9 @@
     "git_clone": "Error cloning repository",
     "git_info": "Error getting commit information",
     "ingestor": "Error importing content",
+    "version_setup": "Error setting up version",
     "internal": "Internal server error",
-    "page_render": "Invalid page",
+    "page": "Invalid page",
     "unknown": "Unknown error"
   },
   "DeploymentIssues": {
@@ -869,7 +915,7 @@
     "no_branch": "Указана недопустимая ветка",
     "no_path": "Файл метаданных не найден по указанному пути",
     "invalid_meta": "Неправильный файл метаданных",
-    "invalid_page": "Failed to render page contents",
+    "page_render": "Failed to render page contents",
     "duplicate_page": "Duplicate page",
     "unknown_recipe_type": "Unknown recipe type",
     "invalid_ingredient": "Invalid ingredient",
@@ -880,6 +926,11 @@
     "missing_platform_project": "Missing platform project",
     "no_page_title": "Page is missing title",
     "missing_required_attribute": "Page is missing a required metadata attribute",
+    "invalid_frontmatter": "Invalid page frontmatter",
+    "no_platforms": "Missing project platforms",
+    "illegal_id": "Invalid project ID",
+    "illegal_mod_id": "Invalid project mod ID",
+    "not_owner": "Failed to verify project ownership",
     "unknown": "Unknown error"
   },
   "AdminReports": {
@@ -904,6 +955,17 @@
     "toggle": "Show changelog"
   },
   "ContentProperties": {
+    "weighted_flag": {
+      "true": "Yes ({count})",
+      "false": "No"
+    },
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "unknown": "Unknown"
+    },
     "bool": {
       "true": "Yes",
       "false": "No"
@@ -911,20 +973,28 @@
     "type": {
       "block": "Блок",
       "item": "Предмет",
-      "other": "Другое"
+      "other": "Другое",
+      "unknown": "Other"
     },
     "properties": {
       "id": "Идентификатор",
       "source_mod": "Source mod",
       "type": "Тип",
-      "stack_size": "Stack size",
+      "stack_size": "Stackable",
       "required_tool": "Tool",
       "blast_resistance": "Blast resistance",
       "hardness": "Hardness",
-      "flammable": "Flammable"
+      "flammable": "Flammable",
+      "rarity": "Rarity tier",
+      "durability": "Durability",
+      "mining_speed": "Mining efficiency",
+      "attack_damage": "Attack damage",
+      "attack_speed": "Attack speed",
+      "enchantability": "Enchantability",
+      "nutrition": "Restores"
     }
   },
-  "DocsLink": {
+  "ExtendedLink": {
     "not_found": "(Not found)"
   },
   "AdminAccessKeys": {
@@ -978,6 +1048,120 @@
       "title": "Cache Tag",
       "desc": "The cache tag to revalidate"
     },
+    "submit": "Submit",
     "success": "Cache tag invalidated successfully"
+  },
+  "CookieConsent": {
+    "popup": {
+      "title": "This website uses cookies",
+      "description": "This site uses cookies to improve your browsing experience and show embedded content.",
+      "show_preferences": "Manage Individual preferences"
+    },
+    "modal": {
+      "title": "Manage cookie preferences",
+      "save": "Accept current selection",
+      "close": "Close modal"
+    },
+    "sections": {
+      "summary": {
+        "title": "Cookie preferences",
+        "description": "Customize your privacy settings here. You can choose which types of cookies and tracking technologies you allow."
+      },
+      "necessary": {
+        "title": "Strictly Necessary cookies",
+        "description": "These cookies are essential for the proper functioning of the website and cannot be disabled."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "These cookies are used to enable certain parts of the website, such as video embeds, and may be used to track you.",
+        "services": {
+          "embeds": "Enables displaying embedded YouTube videos."
+        }
+      },
+      "more_info": {
+        "title": "More information",
+        "description": "For further information on how we use cookies on our website, please refer to our <a href=\"/about/privacy\">Privacy Policy</a>."
+      }
+    },
+    "actions": {
+      "accept_all": "Accept all",
+      "reject_all": "Reject all"
+    }
+  },
+  "VideoEmbedPlaceholder": {
+    "title": "Video embed unavailable",
+    "description": "Cookie consent is required to play embedded videos.",
+    "accept": "Allow YouTube embeds",
+    "watch": "Watch on Youtube"
+  },
+  "ManageCookiesButton": {
+    "text": "Manage cookie preferences"
+  },
+  "UpdateGameDataModal": {
+    "title": "Update game data",
+    "desc": "Fetch latest game data and run ingestion.",
+    "button": "Update",
+    "update_loader": {
+      "title": "Update loader version"
+    },
+    "success": {
+      "title": "Game data updated successfully",
+      "desc": "Updated game data to latest version"
+    },
+    "submit": "Submit",
+    "submitting": "Submitting..."
+  },
+  "DevProjectTagItemsTable": {
+    "empty": {
+      "title": "No items were found in this tag.",
+      "desc": "Project tag entries are automatically detected from included game files."
+    }
+  },
+  "AdminProjectsPage": {
+    "title": "Projects",
+    "desc": "List of all registered projects"
+  },
+  "AddProjectMemberForm": {
+    "button": "Add member",
+    "title": "Add project member",
+    "desc": "Add a new user to this project",
+    "username": {
+      "title": "Username",
+      "desc": "Wiki (GitHub) username of the user.",
+      "placeholder": "johndoe"
+    },
+    "role": {
+      "title": "User role",
+      "desc": "Determines the user's permission level",
+      "placeholder": "Select role"
+    },
+    "success": "Project member added successfully",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "RemoveProjectMemberModal": {
+    "title": "Remove project member",
+    "desc": "Are you sure you want to remove this member? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Remove",
+    "success": "Project member removed successfully"
+  },
+  "LeaveProjectModal": {
+    "title": "Leave project",
+    "desc": "Are you sure you want to leave this project? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Leave",
+    "success": "Project left successfully"
+  },
+  "GenericForm": {
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel"
+  },
+  "NewProjectBanner": {
+    "title": "Ready when you are",
+    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
+    "submit": "Publish",
+    "success": "Project visibility set to public"
   }
 }

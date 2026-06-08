@@ -2,7 +2,7 @@
   "Badges": {
     "local": "本機",
     "latest": "最新",
-    "admin": "Admin"
+    "admin": "管理員"
   },
   "NavigationHeader": {
     "title": "Modded Minecraft Wiki",
@@ -65,7 +65,7 @@
         "title": "作者",
         "subtitle": "取得專案儀表板的存取權，並體驗以下優點：",
         "vcs": "您的文件版本控制支援",
-        "components": "Built-in components for recipes, assets, etc.",
+        "components": "用於合成配方、素材等的內建元件",
         "gradle": "Gradle 整合，帶來無縫的工作流程",
         "management": "進階專案管理工具",
         "interaction": "與您的使用者群直接互動",
@@ -134,7 +134,8 @@
     "resourcepack": "資源包",
     "datapack": "資料包",
     "shader": "光影包",
-    "plugin": "插件"
+    "plugin": "插件",
+    "unknown": "Unknown"
   },
   "LoadingContent": {
     "message": "載入中..."
@@ -142,8 +143,8 @@
   "MetaDocsNavigation": {
     "title": "導覽",
     "about": "關於",
-    "devs": "Author guide",
-    "components": "Components",
+    "devs": "作者指南",
+    "components": "元件",
     "help": "取得協助",
     "tos": "使用規定",
     "privacy": "隱私權政策",
@@ -172,7 +173,7 @@
     },
     "license": {
       "title": "授權條款",
-      "custom": "自訂",
+      "custom": "自訂授權",
       "unknown": "未知",
       "arr": "版權所有"
     }
@@ -217,13 +218,13 @@
   "PageEditControls": {
     "edit_gh": "編輯這個頁面",
     "report": "檢舉這個頁面",
-    "report_button": "Report page",
+    "report_button": "檢舉頁面",
     "last_updated": "上次更新時間：<date></date>"
   },
   "Report": {
     "title": "檢舉文件頁面",
-    "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-    "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+    "desc": "檢舉違反我們<tos>《服務條款》</tos>或<cr>《內容規範》</cr>的內容。",
+    "contact": "由於審核需要，您的<b>使用者名稱</b>將會包含在本檢舉內容中。",
     "confidential": "我們很重視您的隱私，這些資訊會永遠保密。",
     "privacy": "如需詳細資訊，請參閱我們的《<link>隱私權政策</link>》。",
     "form": {
@@ -236,32 +237,33 @@
         "desc": "被檢舉的文件頁面路徑。"
       },
       "locale": {
-        "title": "Locale",
-        "desc": "Applied if the content lies within a localized subpath.",
+        "title": "語系",
+        "desc": "若該頁面位於特定語言頁面中則需填入。",
         "placeholder": "N/A"
       },
       "version": {
-        "title": "Version",
-        "desc": "Applied if the content lies within a named version.",
+        "title": "版本",
+        "desc": "若該頁面位於特定版本頁面中則需填入。",
         "placeholder": "N/A"
       },
       "reason": {
         "title": "原因*",
-        "placeholder": "Select a reason for reporting this content",
-        "desc": "Reason for reporting this content.",
+        "placeholder": "選擇檢舉這個頁面的原因",
+        "desc": "檢舉該頁面的原因。",
         "dislike": "我不喜歡它"
       },
       "details": {
         "title": "詳細資訊*",
-        "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+        "placeholder": "請提供更多關於您為何檢舉這個頁面的詳細資訊。請注意，空白的檢舉將會被忽略。",
         "desc": "關於這個問題的額外詳細資訊。"
       },
       "dislike": {
-        "title": "We understand that you may not like this content, and that's totally okay!",
+        "title": "我們理解您可能不喜歡該頁面，這完全沒問題！",
         "desc": "但很遺憾的是，這不是檢舉專案的有效理由。",
-        "suggestion": "Would you like to look for something else to explore instead?",
+        "suggestion": "您想看看其他頁面嗎？",
         "explore": "瀏覽專案"
       },
+      "submit": "提交",
       "success": "檢舉提交成功"
     }
   },
@@ -273,58 +275,55 @@
     "unknown": "未知"
   },
   "ProjectReportStatus": {
-    "new": "New",
-    "dismissed": "Dismissed",
-    "accepted": "Accepted",
+    "new": "新",
+    "dismissed": "已忽略",
+    "accepted": "已受理",
     "unknown": "未知"
   },
   "ProjectReportType": {
-    "project": "Project",
-    "docs": "Docs page",
-    "content": "Content page",
+    "project": "專案",
+    "docs": "文件頁面",
+    "content": "內容頁面",
     "unknown": "未知"
   },
   "ViewReportPage": {
-    "reports": "Reports",
-    "title": "Report details",
-    "desc": "Viewing report details for {id}",
+    "reports": "檢舉",
+    "title": "詳細檢舉內容",
+    "desc": "正在檢視 {id} 的詳細檢舉內容",
     "details": {
-      "reporter": "Reported by",
+      "reporter": "檢舉者",
       "project_id": "專案 ID",
-      "path": "Path",
-      "body": "Body",
+      "path": "位置",
+      "body": "正文",
       "reason": "原因",
-      "created_at": "Created at",
+      "created_at": "建立於",
       "status": "狀態",
       "type": "類型",
-      "locale": "Locale",
-      "version": "Version"
+      "locale": "語系",
+      "version": "版本"
     },
     "actions": {
-      "dismiss": "Dismiss",
-      "accept": "Accept"
+      "dismiss": "忽略",
+      "accept": "同意"
     },
     "toast": {
-      "accept": "Report accepted",
-      "dismiss": "Report dismissed"
+      "accept": "已同意該檢舉",
+      "dismiss": "已忽略該檢舉"
     }
-  },
-  "SubmitButton": {
-    "title": "提交"
   },
   "Callout": {
     "default": "注意！",
-    "info": "Info",
-    "warning": "Warning",
-    "danger": "Danger"
+    "info": "訊息",
+    "warning": "警告",
+    "danger": "危險"
   },
   "ProjectRegisterForm": {
-    "button": "New Project",
+    "button": "新增專案",
     "title": "登錄專案",
     "desc": "向 Wiki 登錄一個新專案。",
     "repo": {
-      "title": "Repository URL",
-      "desc": "This is the address you use to clone your repository.",
+      "title": "專案連結",
+      "desc": "用於複製您儲存庫的連結。",
       "placeholder": "https://github.com/ExampleUser/ExampleMod"
     },
     "branch": {
@@ -343,8 +342,8 @@
       "details": "顯示詳細資訊"
     },
     "connect_modrinth": {
-      "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-      "settings": "Open Settings"
+      "desc": "在設定中連結您的 <b>Modrinth 帳號</b>，以便隨實驗正該平台專案的所有權。",
+      "settings": "開啟設定"
     },
     "submit": "提交",
     "success": {
@@ -352,19 +351,14 @@
       "desc": "您現在可以導覽至專案的文件頁面"
     },
     "submitting": "提交中...",
-    "verify_modrinth": "使用 Modrinth 驗證"
-  },
-  "ProjectSettingsForm": {
-    "title": "編輯專案",
-    "desc": "編輯現有專案的設定。",
-    "button": "Settings",
-    "success": {
-      "title": "專案更新成功",
-      "desc": "您現在可以導覽至已更新的專案的文件頁面"
+    "verify_modrinth": "使用 Modrinth 驗證",
+    "submission": {
+      "clone": "正在複製儲存庫並驗證後設資料。",
+      "note": "複製較大的儲存庫可能會需要較長時間，請稍後。"
     }
   },
   "ProjectDeleteForm": {
-    "trigger": "Delete project",
+    "trigger": "刪除專案",
     "title": "您確定嗎？",
     "desc": "這項操作無法復原。這會永久刪除您的專案，並從我們的伺服器中移除所有相關資料。",
     "cancel": "取消",
@@ -373,15 +367,15 @@
   },
   "FormActions": {
     "errors": {
-      "unauthorized": "User authentication error",
+      "unauthorized": "使用者驗證錯誤",
       "internal": "內部伺服器錯誤，請稍後再試。",
-      "unknown": "An unknown error has occurred, please try again later.",
+      "unknown": "發生未知錯誤，請稍後再試。",
       "no_platforms": "中繼資料中未定義任何平台專案。",
-      "no_project": "找不到平台專案。請確認中繼資料的「slug」欄位正確。",
-      "unsupported_type": "Unsupported project type",
+      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
+      "unsupported_type": "不支援的專案類型",
       "ownership": "無法驗證專案擁有權",
       "cf_unavailable": "CurseForge 專案登錄尚未啟用",
-      "requires_auth": "Repository connection requires login credentials but none were provided",
+      "requires_auth": "未提供儲存庫所需的身份驗證資訊",
       "no_repository": "Repository not found",
       "no_branch": "Invalid branch specified",
       "no_path": "Metadata file not found at specified path",
@@ -390,8 +384,14 @@
       "exists": "專案已存在。",
       "not_found": "專案不存在",
       "illegal_id": "Illegal project ID",
-      "not_owner": "User is not authorized to register this project"
-    }
+      "not_owner": "User is not authorized to register this project",
+      "repo_too_large": "Repository exceeds maximum allowed size of 500MB",
+      "insufficient_permissions": "You don't have permission to perform this action",
+      "user_not_found": "User not found",
+      "duplicate_member": "Project member already exists",
+      "single_owner": "Cannot remove the only owner"
+    },
+    "get_help": "Find out more about this error in our <link>documentation</link>."
   },
   "CommunityBadge": {
     "title": "社群",
@@ -414,7 +414,8 @@
       "tags": "Tagged:"
     },
     "description": {
-      "title": "Description"
+      "title": "Description",
+      "placeholder": "Description not available"
     },
     "navigation": {
       "title": "導覽",
@@ -454,7 +455,17 @@
     "no_results": "找不到結果！",
     "loading": "正在尋找最完美的結果...",
     "results": "顯示 <highlight>{count}</highlight> / <highlight>{total}</highlight> 個結果",
-    "close": "<kbd>ESC</kbd> 關閉"
+    "close": "<kbd>ESC</kbd> 關閉",
+    "switch": "<kbd>Tab</kbd> to change scope",
+    "scope": {
+      "local": "Local",
+      "global": "Global"
+    }
+  },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
   },
   "DocsChangelogPage": {
     "title": "變更記錄"
@@ -485,7 +496,14 @@
     "loading": "Initializing",
     "healthy": "Loaded",
     "at_risk": "Requires attention",
-    "error": "Errored"
+    "error": "Errored",
+    "inactive": "Inactive"
+  },
+  "ProjectVisibility": {
+    "public": "Public",
+    "unlisted": "Unlisted",
+    "private": "Private",
+    "unknown": "Unknown"
   },
   "DevProjectsListPage": {
     "project": {
@@ -501,7 +519,7 @@
       "home": "首頁"
     },
     "toolbar": {
-      "view": "View",
+      "view": "Visit project page",
       "deployments": "Deployments"
     },
     "overview": {
@@ -539,108 +557,129 @@
     }
   },
   "DevProjectSettingsPage": {
-    "title": "Project settings",
-    "desc": "Configure project properties"
+    "title": "專案設定",
+    "desc": "設定專案",
+    "form": {
+      "visibility": {
+        "title": "Project Visibility",
+        "public_desc": "Public projects are visible in search.",
+        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
+        "private_desc": "Private projects are only accessible by members of the project.",
+        "placeholder": "Select visibility"
+      }
+    },
+    "toast": {
+      "success": "Project settings updated successfully"
+    },
+    "save": "Save"
+  },
+  "DevProjectSourceSettingsPage": {
+    "title": "Project settings - Source",
+    "desc": "Configure project source repository",
+    "save": "Save"
   },
   "DevProjectVersionsPage": {
-    "title": "Project versions",
-    "desc": "Browse project content versions"
+    "title": "專案版本",
+    "desc": "瀏覽專案版本"
   },
   "DevProjectHealthPage": {
-    "title": "Project health",
-    "desc": "Monitor project status and issues",
+    "title": "專案健康度",
+    "desc": "監控專案狀態及問題",
     "errors": {
-      "title": "Project issue report",
-      "desc": "Ongoing warnings & errors",
-      "empty": "No issues found"
+      "title": "回報專案問題",
+      "desc": "目前所有的警告及錯誤",
+      "empty": "未發現問題"
     }
   },
+  "ProjectMemberRole": {
+    "owner": "擁有者",
+    "member": "成員",
+    "unknown": "未知"
+  },
   "DevProjectMembersPage": {
-    "title": "Project members",
-    "desc": "Manage project members & permissions",
-    "roles": {
-      "owner": "擁有者"
-    },
+    "title": "專案成員",
+    "desc": "管理專案成員及權限",
     "actions": {
-      "manage": "Manage"
+      "remove": "移除",
+      "leave": "退出專案"
     }
   },
   "DevProjectContentItemsPage": {
-    "title": "Project items",
-    "desc": "Browse project items"
+    "title": "專案項目",
+    "desc": "瀏覽專案項目"
   },
   "DevProjectContentRecipesPage": {
-    "title": "Project recipes",
-    "desc": "Browse project crafting recipes"
+    "title": "專案合成配方",
+    "desc": "瀏覽專案合成配方"
   },
   "DevProjectContentTagsPage": {
-    "title": "Project tags",
-    "desc": "Browse project tags"
+    "title": "專案標籤",
+    "desc": "瀏覽專案標籤"
   },
   "DevProjectLogs": {
-    "title": "Deployment log",
-    "show": "Show",
-    "unloaded": "Not loaded",
-    "waiting": "Waiting for server...",
+    "title": "佈署日誌",
+    "show": "顯示",
+    "unloaded": "未載入",
+    "waiting": "等待伺服器中...",
     "loading": "載入中...",
-    "error": "Error loading logs",
+    "error": "日誌載入錯誤",
     "toast": {
-      "success": "Project setup complete",
-      "error": "Error during project setup"
+      "success": "專案設定完成",
+      "error": "設定專案時發生錯誤"
     }
   },
   "DeveloperSidebar": {
     "teams": {
-      "personal": "Personal"
+      "personal": "個人"
     },
     "groups": {
       "projects": "專案",
-      "platform": "Platform",
-      "admin": "Administration"
+      "platform": "平台",
+      "admin": "管理"
     },
     "nav": {
       "projects": "專案",
       "documentation": "文件",
-      "settings": "Settings",
-      "admin": "System settings"
+      "settings": "設定",
+      "admin": "系統設定"
     }
   },
   "DevSidebarContextSwitcher": {
-    "title": "Teams"
+    "title": "團隊"
   },
   "DevSidebarUser": {
     "logout": {
-      "button": "Log out",
+      "button": "登出",
       "title": "登出",
-      "desc": "Logging out..."
+      "desc": "正在登出..."
     },
     "unknown_avatar": "N/A"
   },
   "UserSettings": {
     "breadcrumbs": {
       "home": "首頁",
-      "settings": "Settings"
+      "settings": "設定"
     },
     "profile": {
-      "bio": "Modded Minecraft Wiki creator",
-      "join_date": "Joined {date}",
-      "admin": "Admin"
+      "bio": "Modded Minecraft Wiki 建立者",
+      "join_date": "加入於 {date}",
+      "admin": "管理員"
     },
     "connections": {
-      "title": "Connections",
+      "title": "連結帳號",
       "modrinth": {
-        "title": "Modrinth account",
-        "desc": "Used to verify project ownership",
-        "connect": "Connect",
-        "view": "View",
-        "disconnect": "Disconnect"
+        "title": "Modrinth 帳號",
+        "desc": "用於驗證專案擁有權",
+        "connect": "連結",
+        "view": "檢視",
+        "disconnect": "取消連結"
       }
     },
     "account": {
-      "title": "Account",
+      "title": "帳號",
       "delete": {
-        "title": "Delete account",
-        "desc": "Forever delete all account data",
+        "title": "刪除帳號",
+        "desc": "永久刪除所有帳號資料",
         "button": "Delete account"
       },
       "delete_modal": {
@@ -693,6 +732,11 @@
       "content": "Items",
       "tags": "標籤",
       "recipes": "Recipes"
+    },
+    "settings": {
+      "group": "Settings",
+      "general": "General",
+      "source": "Source"
     }
   },
   "PrefabObtaining": {
@@ -727,91 +771,92 @@
   },
   "AdminMigrations": {
     "title": "Data migrations",
-    "desc": "Available data migrations"
+    "desc": "Available data migrations",
+    "empty": "No migrations available."
   },
   "EmptyDataTable": {
     "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
   },
   "DataTable": {
     "no_results": "No results.",
-    "filter": "Filter rows...",
-    "previous": "Previous",
-    "next": "Next"
+    "filter": "過濾列...",
+    "previous": "上一個",
+    "next": "下一個"
   },
   "DevProjectVersionsTable": {
     "name": "名稱",
     "branch": "分支",
     "empty": {
-      "title": "No additional versions were found in your project.",
-      "desc": "Read the <link>author guide</link> to learn more about project versioning."
+      "title": "在您的專案中找不到其他版本。",
+      "desc": "閱讀<link>作者指南</link>以了解專案版本及其設定。"
     }
   },
   "DevProjectItemsTable": {
-    "icon": "Icon",
-    "id": "Identifier",
+    "icon": "圖示",
+    "id": "識別碼",
     "name": "名稱",
-    "path": "Page path (internal)",
+    "path": "頁面路徑（內部）",
     "actions": {
-      "open": "Open menu",
-      "title": "Actions",
-      "view": "View"
+      "open": "開啟選單",
+      "title": "操作",
+      "view": "檢視"
     },
     "empty": {
-      "title": "No items were found in your project.",
-      "desc": "Project items are automatically detected from content pages and included game files."
+      "title": "在您的專案中找不到項目。",
+      "desc": "專案項目會在偵測到內容頁面或遊戲檔案後自動新增。"
     }
   },
   "DevProjectTagsTable": {
-    "id": "Identifier",
-    "items": "Item count",
+    "id": "識別碼",
+    "items": "項目數",
     "empty": {
-      "title": "No tags were found in your project."
+      "title": "在您的專案中找不到標籤。"
     }
   },
   "DevProjectRecipesTable": {
     "type": "類型",
-    "id": "Identifier",
+    "id": "識別碼",
     "empty": {
-      "title": "No recipes were found in your project."
+      "title": "在您的專案中找不到合成配方。"
     }
   },
   "ResolvedProjectRecipe": {
-    "type": "Recipe Type",
-    "input": "Ingredients",
-    "output": "Outputs",
-    "preview": "Recipe preview",
-    "workbenches": "You can craft this recipe using:"
+    "type": "合成配方類型",
+    "input": "材料",
+    "output": "成品",
+    "preview": "合成配方預覽",
+    "workbenches": "可使用此物品來合成："
   },
   "DevProjectDeploymentsPage": {
-    "title": "Project deployments",
-    "desc": "Manage deployed project versions"
+    "title": "專案佈署",
+    "desc": "管理已佈署的專案版本"
   },
   "DevProjectDeploymentsTable": {
     "id": "ID",
-    "commit": "Commit",
-    "created_at": "Deploy time",
-    "user_id": "Deployed by",
+    "commit": "提交",
+    "created_at": "佈署時間",
+    "user_id": "佈署者",
     "status": "狀態"
   },
   "DeploymentStatus": {
     "unknown": "N/A",
-    "created": "Queued",
-    "loading": "Loading",
-    "success": "Success",
-    "error": "Failed"
+    "created": "佇列中",
+    "loading": "載入中",
+    "success": "成功",
+    "error": "失敗"
   },
   "DeleteDeploymentModal": {
     "trigger": "刪除",
     "title": "您確定嗎？",
-    "desc": "This action cannot be undone. This deployment will be permanently deleted from our servers.",
+    "desc": "此次佈署將從我們的伺服器中永久刪除，該操作無法被復原。",
     "cancel": "取消",
     "submit": "刪除",
-    "success": "Deployment deleted successfully"
+    "success": "佈署已成功刪除"
   },
   "DeployProjectModal": {
-    "button": "Deploy",
-    "title": "New deployment",
-    "primary": "All project content will be <b>re-fetched</b> from the source. This option should be used upon updating the documentation source itself.",
+    "button": "佈署",
+    "title": "新佈署",
+    "primary": "將從來源<b>重新獲取</b>所有專案內容，此選項應在文件來源中有變動時使用。",
     "secondary": "If the new deployment fails, currently stored data <b>will not</b> be replaced. You can always <b>roll back</b> to previous deployments using the 'Redeploy' option.",
     "tertiary": "為了您的方便，我們建議您在發布後使用我們的 <link>Gradle 延伸模組</link>自動重新驗證文件",
     "note": "Project configuration remains unchanged. For updating meta information (e.g. source and platforms), please use the Settings dialog instead.",
@@ -853,8 +898,9 @@
     "git_clone": "Error cloning repository",
     "git_info": "Error getting commit information",
     "ingestor": "Error importing content",
+    "version_setup": "Error setting up version",
     "internal": "Internal server error",
-    "page_render": "Invalid page",
+    "page": "Invalid page",
     "unknown": "Unknown error"
   },
   "DeploymentIssues": {
@@ -869,7 +915,7 @@
     "no_branch": "Invalid branch specified",
     "no_path": "Metadata file not found at specified path",
     "invalid_meta": "中繼資料檔案無效",
-    "invalid_page": "Failed to render page contents",
+    "page_render": "Failed to render page contents",
     "duplicate_page": "Duplicate page",
     "unknown_recipe_type": "Unknown recipe type",
     "invalid_ingredient": "Invalid ingredient",
@@ -880,6 +926,11 @@
     "missing_platform_project": "Missing platform project",
     "no_page_title": "Page is missing title",
     "missing_required_attribute": "Page is missing a required metadata attribute",
+    "invalid_frontmatter": "Invalid page frontmatter",
+    "no_platforms": "Missing project platforms",
+    "illegal_id": "Invalid project ID",
+    "illegal_mod_id": "Invalid project mod ID",
+    "not_owner": "Failed to verify project ownership",
     "unknown": "Unknown error"
   },
   "AdminReports": {
@@ -904,6 +955,17 @@
     "toggle": "Show changelog"
   },
   "ContentProperties": {
+    "weighted_flag": {
+      "true": "Yes ({count})",
+      "false": "No"
+    },
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "unknown": "Unknown"
+    },
     "bool": {
       "true": "Yes",
       "false": "No"
@@ -911,21 +973,29 @@
     "type": {
       "block": "方塊",
       "item": "物品",
-      "other": "其他"
+      "other": "其他",
+      "unknown": "Other"
     },
     "properties": {
       "id": "ID",
       "source_mod": "Source mod",
       "type": "類型",
-      "stack_size": "Stack size",
+      "stack_size": "Stackable",
       "required_tool": "Tool",
       "blast_resistance": "Blast resistance",
       "hardness": "Hardness",
-      "flammable": "Flammable"
+      "flammable": "Flammable",
+      "rarity": "Rarity tier",
+      "durability": "Durability",
+      "mining_speed": "Mining efficiency",
+      "attack_damage": "Attack damage",
+      "attack_speed": "Attack speed",
+      "enchantability": "Enchantability",
+      "nutrition": "Restores"
     }
   },
-  "DocsLink": {
-    "not_found": "(找不到)"
+  "ExtendedLink": {
+    "not_found": "(Not found)"
   },
   "AdminAccessKeys": {
     "title": "System access keys",
@@ -978,6 +1048,120 @@
       "title": "Cache Tag",
       "desc": "The cache tag to revalidate"
     },
+    "submit": "Submit",
     "success": "Cache tag invalidated successfully"
+  },
+  "CookieConsent": {
+    "popup": {
+      "title": "此網站使用了 Cookie",
+      "description": "此網站使用了 Cookie 來增進瀏覽體驗及顯示內嵌內容。",
+      "show_preferences": "管理個別偏好設定"
+    },
+    "modal": {
+      "title": "管理 Cookie 偏好設定",
+      "save": "套用所選項目",
+      "close": "關閉"
+    },
+    "sections": {
+      "summary": {
+        "title": "Cookie 偏好設定",
+        "description": "在此自訂您的隱私設定。您可以選擇要允許哪些 Cookie 或追蹤器。"
+      },
+      "necessary": {
+        "title": "Strictly Necessary cookies",
+        "description": "These cookies are essential for the proper functioning of the website and cannot be disabled."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "These cookies are used to enable certain parts of the website, such as video embeds, and may be used to track you.",
+        "services": {
+          "embeds": "Enables displaying embedded YouTube videos."
+        }
+      },
+      "more_info": {
+        "title": "More information",
+        "description": "For further information on how we use cookies on our website, please refer to our <a href=\"/about/privacy\">Privacy Policy</a>."
+      }
+    },
+    "actions": {
+      "accept_all": "Accept all",
+      "reject_all": "Reject all"
+    }
+  },
+  "VideoEmbedPlaceholder": {
+    "title": "Video embed unavailable",
+    "description": "Cookie consent is required to play embedded videos.",
+    "accept": "Allow YouTube embeds",
+    "watch": "Watch on Youtube"
+  },
+  "ManageCookiesButton": {
+    "text": "Manage cookie preferences"
+  },
+  "UpdateGameDataModal": {
+    "title": "Update game data",
+    "desc": "Fetch latest game data and run ingestion.",
+    "button": "Update",
+    "update_loader": {
+      "title": "Update loader version"
+    },
+    "success": {
+      "title": "Game data updated successfully",
+      "desc": "Updated game data to latest version"
+    },
+    "submit": "Submit",
+    "submitting": "Submitting..."
+  },
+  "DevProjectTagItemsTable": {
+    "empty": {
+      "title": "No items were found in this tag.",
+      "desc": "Project tag entries are automatically detected from included game files."
+    }
+  },
+  "AdminProjectsPage": {
+    "title": "Projects",
+    "desc": "List of all registered projects"
+  },
+  "AddProjectMemberForm": {
+    "button": "Add member",
+    "title": "Add project member",
+    "desc": "Add a new user to this project",
+    "username": {
+      "title": "Username",
+      "desc": "Wiki (GitHub) username of the user.",
+      "placeholder": "johndoe"
+    },
+    "role": {
+      "title": "User role",
+      "desc": "Determines the user's permission level",
+      "placeholder": "Select role"
+    },
+    "success": "Project member added successfully",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "RemoveProjectMemberModal": {
+    "title": "Remove project member",
+    "desc": "Are you sure you want to remove this member? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Remove",
+    "success": "Project member removed successfully"
+  },
+  "LeaveProjectModal": {
+    "title": "Leave project",
+    "desc": "Are you sure you want to leave this project? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Leave",
+    "success": "Project left successfully"
+  },
+  "GenericForm": {
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel"
+  },
+  "NewProjectBanner": {
+    "title": "Ready when you are",
+    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
+    "submit": "Publish",
+    "success": "Project visibility set to public"
   }
 }
