@@ -134,7 +134,8 @@
     "resourcepack": "리소스 팩",
     "datapack": "데이터 팩",
     "shader": "셰이더",
-    "plugin": "플러그인"
+    "plugin": "플러그인",
+    "unknown": "Unknown"
   },
   "LoadingContent": {
     "message": "불러오는 중..."
@@ -172,7 +173,7 @@
     },
     "license": {
       "title": "라이선스",
-      "custom": "커스텀",
+      "custom": "Custom license",
       "unknown": "알 수 없음",
       "arr": "All Rights Reserved"
     }
@@ -262,6 +263,7 @@
         "suggestion": "Would you like to look for something else to explore instead?",
         "explore": "프로젝트 둘러보기"
       },
+      "submit": "Submit",
       "success": "신고가 완료되었습니다"
     }
   },
@@ -309,9 +311,6 @@
       "dismiss": "Report dismissed"
     }
   },
-  "SubmitButton": {
-    "title": "제출하기"
-  },
   "Callout": {
     "default": "유의사항!",
     "info": "Info",
@@ -352,15 +351,10 @@
       "desc": "이제 프로젝트 문서로 이동할 수 있습니다"
     },
     "submitting": "전송중...",
-    "verify_modrinth": "Modrinth를 사용하여 확인"
-  },
-  "ProjectSettingsForm": {
-    "title": "프로젝트 편집",
-    "desc": "프로젝트 설정 변경하기.",
-    "button": "설정",
-    "success": {
-      "title": "프로젝트를 업데이트했습니다",
-      "desc": "이제 프로젝트 문서로 이동할 수 있습니다"
+    "verify_modrinth": "Modrinth를 사용하여 확인",
+    "submission": {
+      "clone": "Cloning repository and verifying metadata.",
+      "note": "This may take a while for larger repositories. Please stand by."
     }
   },
   "ProjectDeleteForm": {
@@ -377,7 +371,7 @@
       "internal": "서버 오류가 발생했습니다, 나중에 다시 시도하세요.",
       "unknown": "알 수 없는 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
       "no_platforms": "메타데이터에 플랫폼 프로젝트가 없습니다.",
-      "no_project": "플랫폼 프로젝트를 찾을 수 없습니다. 메타데이터의 \"아이디\" 필드가 올바른지 확인하세요.",
+      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
       "unsupported_type": "지원하지 않는 프로젝트 타입",
       "ownership": "프로젝트 소유권 확인에 실패하였습니다",
       "cf_unavailable": "CurseForge프로젝트 등록이 아직 활성화되지 않았습니다",
@@ -390,8 +384,14 @@
       "exists": "프로젝트가 이미 존재합니다.",
       "not_found": "해당 프로젝트가 존재하지 않습니다",
       "illegal_id": "Illegal project ID",
-      "not_owner": "User is not authorized to register this project"
-    }
+      "not_owner": "User is not authorized to register this project",
+      "repo_too_large": "Repository exceeds maximum allowed size of 500MB",
+      "insufficient_permissions": "You don't have permission to perform this action",
+      "user_not_found": "User not found",
+      "duplicate_member": "Project member already exists",
+      "single_owner": "Cannot remove the only owner"
+    },
+    "get_help": "Find out more about this error in our <link>documentation</link>."
   },
   "CommunityBadge": {
     "title": "커뮤니티",
@@ -414,7 +414,8 @@
       "tags": "Tagged:"
     },
     "description": {
-      "title": "Description"
+      "title": "Description",
+      "placeholder": "Description not available"
     },
     "navigation": {
       "title": "둘러보기",
@@ -454,7 +455,17 @@
     "no_results": "검색 결과가 없습니다!",
     "loading": "완벽한 결과를 찾는중...",
     "results": "<highlight>{total}</highlight> 에서 <highlight>{count}</highlight> 결과 표시 중",
-    "close": "<kbd>ESC</kbd>를 눌러 종료하기"
+    "close": "<kbd>ESC</kbd>를 눌러 종료하기",
+    "switch": "<kbd>Tab</kbd> to change scope",
+    "scope": {
+      "local": "Local",
+      "global": "Global"
+    }
+  },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
   },
   "DocsChangelogPage": {
     "title": "변경 사항"
@@ -485,7 +496,14 @@
     "loading": "초기화 중",
     "healthy": "로딩됨",
     "at_risk": "Requires attention",
-    "error": "오류"
+    "error": "오류",
+    "inactive": "Inactive"
+  },
+  "ProjectVisibility": {
+    "public": "Public",
+    "unlisted": "Unlisted",
+    "private": "Private",
+    "unknown": "Unknown"
   },
   "DevProjectsListPage": {
     "project": {
@@ -501,7 +519,7 @@
       "home": "홈"
     },
     "toolbar": {
-      "view": "보기",
+      "view": "Visit project page",
       "deployments": "Deployments"
     },
     "overview": {
@@ -540,7 +558,25 @@
   },
   "DevProjectSettingsPage": {
     "title": "Project settings",
-    "desc": "Configure project properties"
+    "desc": "Configure project properties",
+    "form": {
+      "visibility": {
+        "title": "Project Visibility",
+        "public_desc": "Public projects are visible in search.",
+        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
+        "private_desc": "Private projects are only accessible by members of the project.",
+        "placeholder": "Select visibility"
+      }
+    },
+    "toast": {
+      "success": "Project settings updated successfully"
+    },
+    "save": "Save"
+  },
+  "DevProjectSourceSettingsPage": {
+    "title": "Project settings - Source",
+    "desc": "Configure project source repository",
+    "save": "Save"
   },
   "DevProjectVersionsPage": {
     "title": "Project versions",
@@ -555,14 +591,17 @@
       "empty": "No issues found"
     }
   },
+  "ProjectMemberRole": {
+    "owner": "Owner",
+    "member": "Member",
+    "unknown": "Unknown"
+  },
   "DevProjectMembersPage": {
     "title": "Project members",
     "desc": "Manage project members & permissions",
-    "roles": {
-      "owner": "소유자"
-    },
     "actions": {
-      "manage": "관리"
+      "remove": "Remove",
+      "leave": "Leave project"
     }
   },
   "DevProjectContentItemsPage": {
@@ -693,6 +732,11 @@
       "content": "Items",
       "tags": "태그",
       "recipes": "Recipes"
+    },
+    "settings": {
+      "group": "Settings",
+      "general": "General",
+      "source": "Source"
     }
   },
   "PrefabObtaining": {
@@ -727,7 +771,8 @@
   },
   "AdminMigrations": {
     "title": "Data migrations",
-    "desc": "Available data migrations"
+    "desc": "Available data migrations",
+    "empty": "No migrations available."
   },
   "EmptyDataTable": {
     "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
@@ -853,8 +898,9 @@
     "git_clone": "Error cloning repository",
     "git_info": "Error getting commit information",
     "ingestor": "Error importing content",
+    "version_setup": "Error setting up version",
     "internal": "Internal server error",
-    "page_render": "Invalid page",
+    "page": "Invalid page",
     "unknown": "Unknown error"
   },
   "DeploymentIssues": {
@@ -869,7 +915,7 @@
     "no_branch": "올바르지 않은 브랜치가 선택됨",
     "no_path": "해당 경로에 메타데이터 파일이 없습니다",
     "invalid_meta": "메타데이터 파일이 유효하지 않습니다",
-    "invalid_page": "Failed to render page contents",
+    "page_render": "Failed to render page contents",
     "duplicate_page": "Duplicate page",
     "unknown_recipe_type": "Unknown recipe type",
     "invalid_ingredient": "Invalid ingredient",
@@ -880,6 +926,11 @@
     "missing_platform_project": "Missing platform project",
     "no_page_title": "Page is missing title",
     "missing_required_attribute": "Page is missing a required metadata attribute",
+    "invalid_frontmatter": "Invalid page frontmatter",
+    "no_platforms": "Missing project platforms",
+    "illegal_id": "Invalid project ID",
+    "illegal_mod_id": "Invalid project mod ID",
+    "not_owner": "Failed to verify project ownership",
     "unknown": "Unknown error"
   },
   "AdminReports": {
@@ -904,6 +955,17 @@
     "toggle": "Show changelog"
   },
   "ContentProperties": {
+    "weighted_flag": {
+      "true": "Yes ({count})",
+      "false": "No"
+    },
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "unknown": "Unknown"
+    },
     "bool": {
       "true": "Yes",
       "false": "No"
@@ -911,20 +973,28 @@
     "type": {
       "block": "블록",
       "item": "아이템",
-      "other": "기타"
+      "other": "기타",
+      "unknown": "Other"
     },
     "properties": {
       "id": "ID",
       "source_mod": "Source mod",
       "type": "유형",
-      "stack_size": "Stack size",
+      "stack_size": "Stackable",
       "required_tool": "Tool",
       "blast_resistance": "Blast resistance",
       "hardness": "Hardness",
-      "flammable": "Flammable"
+      "flammable": "Flammable",
+      "rarity": "Rarity tier",
+      "durability": "Durability",
+      "mining_speed": "Mining efficiency",
+      "attack_damage": "Attack damage",
+      "attack_speed": "Attack speed",
+      "enchantability": "Enchantability",
+      "nutrition": "Restores"
     }
   },
-  "DocsLink": {
+  "ExtendedLink": {
     "not_found": "(Not found)"
   },
   "AdminAccessKeys": {
@@ -978,6 +1048,120 @@
       "title": "Cache Tag",
       "desc": "The cache tag to revalidate"
     },
+    "submit": "Submit",
     "success": "Cache tag invalidated successfully"
+  },
+  "CookieConsent": {
+    "popup": {
+      "title": "This website uses cookies",
+      "description": "This site uses cookies to improve your browsing experience and show embedded content.",
+      "show_preferences": "Manage Individual preferences"
+    },
+    "modal": {
+      "title": "Manage cookie preferences",
+      "save": "Accept current selection",
+      "close": "Close modal"
+    },
+    "sections": {
+      "summary": {
+        "title": "Cookie preferences",
+        "description": "Customize your privacy settings here. You can choose which types of cookies and tracking technologies you allow."
+      },
+      "necessary": {
+        "title": "Strictly Necessary cookies",
+        "description": "These cookies are essential for the proper functioning of the website and cannot be disabled."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "These cookies are used to enable certain parts of the website, such as video embeds, and may be used to track you.",
+        "services": {
+          "embeds": "Enables displaying embedded YouTube videos."
+        }
+      },
+      "more_info": {
+        "title": "More information",
+        "description": "For further information on how we use cookies on our website, please refer to our <a href=\"/about/privacy\">Privacy Policy</a>."
+      }
+    },
+    "actions": {
+      "accept_all": "Accept all",
+      "reject_all": "Reject all"
+    }
+  },
+  "VideoEmbedPlaceholder": {
+    "title": "Video embed unavailable",
+    "description": "Cookie consent is required to play embedded videos.",
+    "accept": "Allow YouTube embeds",
+    "watch": "Watch on Youtube"
+  },
+  "ManageCookiesButton": {
+    "text": "Manage cookie preferences"
+  },
+  "UpdateGameDataModal": {
+    "title": "Update game data",
+    "desc": "Fetch latest game data and run ingestion.",
+    "button": "Update",
+    "update_loader": {
+      "title": "Update loader version"
+    },
+    "success": {
+      "title": "Game data updated successfully",
+      "desc": "Updated game data to latest version"
+    },
+    "submit": "Submit",
+    "submitting": "Submitting..."
+  },
+  "DevProjectTagItemsTable": {
+    "empty": {
+      "title": "No items were found in this tag.",
+      "desc": "Project tag entries are automatically detected from included game files."
+    }
+  },
+  "AdminProjectsPage": {
+    "title": "Projects",
+    "desc": "List of all registered projects"
+  },
+  "AddProjectMemberForm": {
+    "button": "Add member",
+    "title": "Add project member",
+    "desc": "Add a new user to this project",
+    "username": {
+      "title": "Username",
+      "desc": "Wiki (GitHub) username of the user.",
+      "placeholder": "johndoe"
+    },
+    "role": {
+      "title": "User role",
+      "desc": "Determines the user's permission level",
+      "placeholder": "Select role"
+    },
+    "success": "Project member added successfully",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "RemoveProjectMemberModal": {
+    "title": "Remove project member",
+    "desc": "Are you sure you want to remove this member? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Remove",
+    "success": "Project member removed successfully"
+  },
+  "LeaveProjectModal": {
+    "title": "Leave project",
+    "desc": "Are you sure you want to leave this project? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Leave",
+    "success": "Project left successfully"
+  },
+  "GenericForm": {
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel"
+  },
+  "NewProjectBanner": {
+    "title": "Ready when you are",
+    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
+    "submit": "Publish",
+    "success": "Project visibility set to public"
   }
 }
