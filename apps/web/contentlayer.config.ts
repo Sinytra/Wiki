@@ -1,7 +1,11 @@
 import { defineDocumentType, makeSource } from 'contentlayer2/source-files';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
-import { remarkCodeHike } from 'codehike/mdx';
+import { type CodeHikeConfig, recmaCodeHike, remarkCodeHike } from 'codehike/mdx';
+
+const chConfig: CodeHikeConfig = {
+  components: { code: 'CodeHikeCode' }
+};
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
@@ -11,10 +15,6 @@ export const Blog = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
     excerpt: { type: 'string', required: true }
-  },
-  mdx: {
-    remarkPlugins: [remarkCodeHike, remarkGfm],
-    rehypePlugins: [rehypeSlug]
   },
   computedFields: {
     url: {
@@ -26,5 +26,13 @@ export const Blog = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: '../../blogs',
-  documentTypes: [Blog]
+  documentTypes: [Blog],
+  mdx: {
+    remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm],
+    rehypePlugins: [rehypeSlug],
+    mdxOptions: (o) => ({
+      ...o,
+      recmaPlugins: [[recmaCodeHike, chConfig]]
+    })
+  }
 });
