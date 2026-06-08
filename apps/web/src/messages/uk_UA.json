@@ -2,7 +2,7 @@
   "Badges": {
     "local": "Локально",
     "latest": "Останній",
-    "admin": "Admin"
+    "admin": "Адмін"
   },
   "NavigationHeader": {
     "title": "Вікі модифікованого Minecraft",
@@ -24,7 +24,7 @@
         "title": "Навігація",
         "home": "Головна сторінка",
         "browse": "Огляд",
-        "dev": "Розробники"
+        "dev": "Розробникам"
       },
       "links": {
         "title": "Посилання"
@@ -65,7 +65,7 @@
         "title": "Автори",
         "subtitle": "Отримайте доступ до панелі керування проєктом і скористайтеся такими перевагами:",
         "vcs": "Підтримка версіонування документації",
-        "components": "Built-in components for recipes, assets, etc.",
+        "components": "Вбудовані компоненти для рецептів, ресурсів тощо.",
         "gradle": "Інтеграція з Gradle для плавного робочого процесу",
         "management": "Розширені інструменти керування проєктом",
         "interaction": "Прямий зв’язок із вашою спільнотою",
@@ -134,7 +134,8 @@
     "resourcepack": "Пакет ресурсів",
     "datapack": "Пакет даних",
     "shader": "Шейдер",
-    "plugin": "Плагін"
+    "plugin": "Плагін",
+    "unknown": "Unknown"
   },
   "LoadingContent": {
     "message": "Завантаження..."
@@ -142,8 +143,8 @@
   "MetaDocsNavigation": {
     "title": "Навігація",
     "about": "Про нас",
-    "devs": "Author guide",
-    "components": "Components",
+    "devs": "Довідник для творців",
+    "components": "Компоненти",
     "help": "Допомога",
     "tos": "Умови використання",
     "privacy": "Політика конфіденційності",
@@ -172,7 +173,7 @@
     },
     "license": {
       "title": "Ліцензія",
-      "custom": "Користувацька",
+      "custom": "Custom license",
       "unknown": "Невідома",
       "arr": "Всі права захищені"
     }
@@ -222,8 +223,8 @@
   },
   "Report": {
     "title": "Поскаржитись на сторінку документації",
-    "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-    "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+    "desc": "Повідомити про зміст, що порушує наші <tos>умови використання</tos> та <cr>правила щодо вмісту</cr>.",
+    "contact": "Для цілей аудиту ваше <b>ім’я користувача</b> буде включено до скарги.",
     "confidential": "Ваша конфіденційність важлива для нас, і ця інформація завжди залишатиметься конфіденційною.",
     "privacy": "Для отримання додаткової інформації, будь ласка, ознайомтеся з нашою <link>Політикою конфіденційності</link>.",
     "form": {
@@ -236,39 +237,40 @@
         "desc": "Шлях до сторінки, про яку буде повідомлено."
       },
       "locale": {
-        "title": "Locale",
+        "title": "Мова",
         "desc": "Applied if the content lies within a localized subpath.",
         "placeholder": "Н/Д"
       },
       "version": {
-        "title": "Version",
+        "title": "Версія",
         "desc": "Applied if the content lies within a named version.",
         "placeholder": "Н/Д"
       },
       "reason": {
         "title": "Підстава*",
-        "placeholder": "Select a reason for reporting this content",
-        "desc": "Reason for reporting this content.",
+        "placeholder": "Обрати підставу скарги щодо цього вмісту",
+        "desc": "Підстава скарги щодо цього вмісту.",
         "dislike": "Мені це просто не подобається"
       },
       "details": {
         "title": "Подробиці*",
-        "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+        "placeholder": "Будь ласка, надайте більше подробиць про те, чому ви скаржитесь на цей вміст. Зверніть увагу, що порожні звіти будуть проігноровані.",
         "desc": "Додаткові подробиці щодо проблеми."
       },
       "dislike": {
-        "title": "We understand that you may not like this content, and that's totally okay!",
+        "title": "Ми розуміємо, що вам може не подобатися цей вміст, і це цілком нормально!",
         "desc": "На жаль, це не є вагомою підставою для скарги на проєкт.",
-        "suggestion": "Would you like to look for something else to explore instead?",
+        "suggestion": "Чи хотіли б ви замість цього пошукати щось інше для вивчення?",
         "explore": "Огляд проєктів"
       },
+      "submit": "Submit",
       "success": "Скарга успішно надіслана"
     }
   },
   "ProjectReportReason": {
     "spam": "Спам",
     "copyright": "Порушення авторських прав",
-    "content_rules": "Порушення правил щодо змісту",
+    "content_rules": "Порушення правил щодо вмісту",
     "tos": "Порушення умов користування",
     "unknown": "Невідома"
   },
@@ -308,9 +310,6 @@
       "accept": "Report accepted",
       "dismiss": "Report dismissed"
     }
-  },
-  "SubmitButton": {
-    "title": "Надіслати"
   },
   "Callout": {
     "default": "Увага!",
@@ -352,15 +351,10 @@
       "desc": "Тепер ви можете перейти на сторінку документації проєкту"
     },
     "submitting": "Відправлення...",
-    "verify_modrinth": "Перевірити за допомогою Modrinth"
-  },
-  "ProjectSettingsForm": {
-    "title": "Редагувати проєкт",
-    "desc": "Редагувати налаштування існуючого проєкту.",
-    "button": "Налаштування",
-    "success": {
-      "title": "Проєкт успішно оновлено",
-      "desc": "Тепер ви можете перейти на оновлену сторінку документації проєкту"
+    "verify_modrinth": "Перевірити за допомогою Modrinth",
+    "submission": {
+      "clone": "Cloning repository and verifying metadata.",
+      "note": "This may take a while for larger repositories. Please stand by."
     }
   },
   "ProjectDeleteForm": {
@@ -377,7 +371,7 @@
       "internal": "Внутрішня помилка сервера, будь ласка, спробуйте ще раз пізніше.",
       "unknown": "Сталася невідома помилка, будь ласка, спробуйте ще раз пізніше.",
       "no_platforms": "У метаданих не визначено жодних проєктів платформи.",
-      "no_project": "Проєкт платформи не знайдено. Будь ласка, переконайтеся, що поле метаданих «slug» правильне.",
+      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
       "unsupported_type": "Непідтримуваний тип проєкту",
       "ownership": "Не вдалося підтвердити право власності на проєкт",
       "cf_unavailable": "Реєстрація проєктів CurseForge неактивна",
@@ -390,8 +384,14 @@
       "exists": "Проєкт вже існує.",
       "not_found": "Проєкт не існує",
       "illegal_id": "Illegal project ID",
-      "not_owner": "User is not authorized to register this project"
-    }
+      "not_owner": "User is not authorized to register this project",
+      "repo_too_large": "Repository exceeds maximum allowed size of 500MB",
+      "insufficient_permissions": "You don't have permission to perform this action",
+      "user_not_found": "User not found",
+      "duplicate_member": "Project member already exists",
+      "single_owner": "Cannot remove the only owner"
+    },
+    "get_help": "Find out more about this error in our <link>documentation</link>."
   },
   "CommunityBadge": {
     "title": "Спільнота",
@@ -414,7 +414,8 @@
       "tags": "Tagged:"
     },
     "description": {
-      "title": "Description"
+      "title": "Description",
+      "placeholder": "Description not available"
     },
     "navigation": {
       "title": "Навігація",
@@ -454,7 +455,17 @@
     "no_results": "Результатів не знайдено!",
     "loading": "Шукаємо найкращі результати...",
     "results": "Відображено <highlight>{count}</highlight> з <highlight>{total}</highlight> результатів",
-    "close": "<kbd>ESC</kbd>, щоби закрити"
+    "close": "<kbd>ESC</kbd>, щоби закрити",
+    "switch": "<kbd>Tab</kbd> to change scope",
+    "scope": {
+      "local": "Local",
+      "global": "Global"
+    }
+  },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
   },
   "DocsChangelogPage": {
     "title": "Журнал змін"
@@ -485,7 +496,14 @@
     "loading": "Ініціалізація",
     "healthy": "Завантажено",
     "at_risk": "Requires attention",
-    "error": "Помилка"
+    "error": "Помилка",
+    "inactive": "Inactive"
+  },
+  "ProjectVisibility": {
+    "public": "Public",
+    "unlisted": "Unlisted",
+    "private": "Private",
+    "unknown": "Unknown"
   },
   "DevProjectsListPage": {
     "project": {
@@ -501,7 +519,7 @@
       "home": "Головна"
     },
     "toolbar": {
-      "view": "Переглянути",
+      "view": "Visit project page",
       "deployments": "Deployments"
     },
     "overview": {
@@ -540,7 +558,25 @@
   },
   "DevProjectSettingsPage": {
     "title": "Project settings",
-    "desc": "Configure project properties"
+    "desc": "Configure project properties",
+    "form": {
+      "visibility": {
+        "title": "Project Visibility",
+        "public_desc": "Public projects are visible in search.",
+        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
+        "private_desc": "Private projects are only accessible by members of the project.",
+        "placeholder": "Select visibility"
+      }
+    },
+    "toast": {
+      "success": "Project settings updated successfully"
+    },
+    "save": "Save"
+  },
+  "DevProjectSourceSettingsPage": {
+    "title": "Project settings - Source",
+    "desc": "Configure project source repository",
+    "save": "Save"
   },
   "DevProjectVersionsPage": {
     "title": "Project versions",
@@ -555,14 +591,17 @@
       "empty": "No issues found"
     }
   },
+  "ProjectMemberRole": {
+    "owner": "Owner",
+    "member": "Member",
+    "unknown": "Unknown"
+  },
   "DevProjectMembersPage": {
     "title": "Project members",
     "desc": "Manage project members & permissions",
-    "roles": {
-      "owner": "Owner"
-    },
     "actions": {
-      "manage": "Керувати"
+      "remove": "Remove",
+      "leave": "Leave project"
     }
   },
   "DevProjectContentItemsPage": {
@@ -693,6 +732,11 @@
       "content": "Items",
       "tags": "Теґи",
       "recipes": "Recipes"
+    },
+    "settings": {
+      "group": "Settings",
+      "general": "General",
+      "source": "Source"
     }
   },
   "PrefabObtaining": {
@@ -727,7 +771,8 @@
   },
   "AdminMigrations": {
     "title": "Data migrations",
-    "desc": "Available data migrations"
+    "desc": "Available data migrations",
+    "empty": "No migrations available."
   },
   "EmptyDataTable": {
     "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
@@ -853,8 +898,9 @@
     "git_clone": "Error cloning repository",
     "git_info": "Error getting commit information",
     "ingestor": "Error importing content",
+    "version_setup": "Error setting up version",
     "internal": "Internal server error",
-    "page_render": "Invalid page",
+    "page": "Invalid page",
     "unknown": "Unknown error"
   },
   "DeploymentIssues": {
@@ -869,7 +915,7 @@
     "no_branch": "Вказано недійсну гілку",
     "no_path": "Файл метаданих не знайдено за вказаним шляхом",
     "invalid_meta": "Файл метаданих недійсний",
-    "invalid_page": "Failed to render page contents",
+    "page_render": "Failed to render page contents",
     "duplicate_page": "Duplicate page",
     "unknown_recipe_type": "Unknown recipe type",
     "invalid_ingredient": "Invalid ingredient",
@@ -880,6 +926,11 @@
     "missing_platform_project": "Missing platform project",
     "no_page_title": "Page is missing title",
     "missing_required_attribute": "Page is missing a required metadata attribute",
+    "invalid_frontmatter": "Invalid page frontmatter",
+    "no_platforms": "Missing project platforms",
+    "illegal_id": "Invalid project ID",
+    "illegal_mod_id": "Invalid project mod ID",
+    "not_owner": "Failed to verify project ownership",
     "unknown": "Unknown error"
   },
   "AdminReports": {
@@ -904,6 +955,17 @@
     "toggle": "Show changelog"
   },
   "ContentProperties": {
+    "weighted_flag": {
+      "true": "Yes ({count})",
+      "false": "No"
+    },
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "unknown": "Unknown"
+    },
     "bool": {
       "true": "Yes",
       "false": "No"
@@ -911,20 +973,28 @@
     "type": {
       "block": "Block",
       "item": "Item",
-      "other": "Other"
+      "other": "Other",
+      "unknown": "Other"
     },
     "properties": {
       "id": "ID",
       "source_mod": "Source mod",
       "type": "Тип",
-      "stack_size": "Stack size",
+      "stack_size": "Stackable",
       "required_tool": "Tool",
       "blast_resistance": "Blast resistance",
       "hardness": "Hardness",
-      "flammable": "Flammable"
+      "flammable": "Flammable",
+      "rarity": "Rarity tier",
+      "durability": "Durability",
+      "mining_speed": "Mining efficiency",
+      "attack_damage": "Attack damage",
+      "attack_speed": "Attack speed",
+      "enchantability": "Enchantability",
+      "nutrition": "Restores"
     }
   },
-  "DocsLink": {
+  "ExtendedLink": {
     "not_found": "(Not found)"
   },
   "AdminAccessKeys": {
@@ -978,6 +1048,120 @@
       "title": "Cache Tag",
       "desc": "The cache tag to revalidate"
     },
+    "submit": "Submit",
     "success": "Cache tag invalidated successfully"
+  },
+  "CookieConsent": {
+    "popup": {
+      "title": "This website uses cookies",
+      "description": "This site uses cookies to improve your browsing experience and show embedded content.",
+      "show_preferences": "Manage Individual preferences"
+    },
+    "modal": {
+      "title": "Manage cookie preferences",
+      "save": "Accept current selection",
+      "close": "Close modal"
+    },
+    "sections": {
+      "summary": {
+        "title": "Cookie preferences",
+        "description": "Customize your privacy settings here. You can choose which types of cookies and tracking technologies you allow."
+      },
+      "necessary": {
+        "title": "Strictly Necessary cookies",
+        "description": "These cookies are essential for the proper functioning of the website and cannot be disabled."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "These cookies are used to enable certain parts of the website, such as video embeds, and may be used to track you.",
+        "services": {
+          "embeds": "Enables displaying embedded YouTube videos."
+        }
+      },
+      "more_info": {
+        "title": "More information",
+        "description": "For further information on how we use cookies on our website, please refer to our <a href=\"/about/privacy\">Privacy Policy</a>."
+      }
+    },
+    "actions": {
+      "accept_all": "Accept all",
+      "reject_all": "Reject all"
+    }
+  },
+  "VideoEmbedPlaceholder": {
+    "title": "Video embed unavailable",
+    "description": "Cookie consent is required to play embedded videos.",
+    "accept": "Allow YouTube embeds",
+    "watch": "Watch on Youtube"
+  },
+  "ManageCookiesButton": {
+    "text": "Manage cookie preferences"
+  },
+  "UpdateGameDataModal": {
+    "title": "Update game data",
+    "desc": "Fetch latest game data and run ingestion.",
+    "button": "Update",
+    "update_loader": {
+      "title": "Update loader version"
+    },
+    "success": {
+      "title": "Game data updated successfully",
+      "desc": "Updated game data to latest version"
+    },
+    "submit": "Submit",
+    "submitting": "Submitting..."
+  },
+  "DevProjectTagItemsTable": {
+    "empty": {
+      "title": "No items were found in this tag.",
+      "desc": "Project tag entries are automatically detected from included game files."
+    }
+  },
+  "AdminProjectsPage": {
+    "title": "Projects",
+    "desc": "List of all registered projects"
+  },
+  "AddProjectMemberForm": {
+    "button": "Add member",
+    "title": "Add project member",
+    "desc": "Add a new user to this project",
+    "username": {
+      "title": "Username",
+      "desc": "Wiki (GitHub) username of the user.",
+      "placeholder": "johndoe"
+    },
+    "role": {
+      "title": "User role",
+      "desc": "Determines the user's permission level",
+      "placeholder": "Select role"
+    },
+    "success": "Project member added successfully",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "RemoveProjectMemberModal": {
+    "title": "Remove project member",
+    "desc": "Are you sure you want to remove this member? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Remove",
+    "success": "Project member removed successfully"
+  },
+  "LeaveProjectModal": {
+    "title": "Leave project",
+    "desc": "Are you sure you want to leave this project? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Leave",
+    "success": "Project left successfully"
+  },
+  "GenericForm": {
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel"
+  },
+  "NewProjectBanner": {
+    "title": "Ready when you are",
+    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
+    "submit": "Publish",
+    "success": "Project visibility set to public"
   }
 }
