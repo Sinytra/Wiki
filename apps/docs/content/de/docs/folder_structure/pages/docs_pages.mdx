@@ -16,39 +16,28 @@ Ordner, die du im Dateibaum erstellst, erscheinen im Wiki ebenfalls als Ordner i
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
-            <FileTreeFile name="beliebiger_name.mdx"/>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+                <FileTreeFile name="beliebiger_name.mdx"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="beispiel_block.mdx"/>
         </FileTreeFolder>
-        <FileTreeFile name="beispiel_block.mdx"/>
     </FileTreeFolder>
 </FileTree>
 
-## Erstellung
-
-Dokumentationsseiten können die verfügbaren Frontmatter-Eigenschaften sowie alle nicht-interaktiven Komponenten nutzen.
-
-Das Markdown-[Format](../pages#format) ist für alle Seitentypen identisch.
-
-### Checkliste
-
-Hier ist eine grundlegende Liste von Dingen, die du beim Schreiben von Dokumentationsseiten beachten solltest:
-
-- Lege [Frontmatter](../pages#metadata)-Eigenschaften nach Bedarf fest.
-
-- Erstelle eine [Ordner-Metadaten](../folder_meta)-Datei, um die Anzeigenamen der Seiten/Ordner in der Sidebar festzulegen.
-
-- Schau dir die verfügbaren [Komponenten](../../components/overview) an, die du einbinden kannst.
-
 ## Beispiel
 
-Hier ist ein Beispiel für eine einfache Dokumentationsseite. Beachte, dass für Wiki-Komponenten kein Import erforderlich ist.
+Hier ist ein Beispiel für eine einfache Dokumentationsseite. Beachte, dass für die Nutzung von Wiki-Komponenten kein Import erforderlich ist.
 
 ```mdx
 # Einleitung
 
 Einleitung zur Beispiel-Mod.
 
-<Callout variant="info">Dies ist ein Info-Callout-Beispiel.</Callout>
+<Callout variant="info">
+  Dies ist ein Info-Callout-Beispiel.
+</Callout>
 
 -- Hier kommt dein Text hin --
 
@@ -62,6 +51,41 @@ Integer a velit quis est auctor finibus. Vivamus libero lorem, vehicula eu
 est ut, pellentesque dignissim enim. Integer iaculis turpis id neque eleifend
 malesuada. Curabitur convallis ultrices orci. Phasellus imperdiet pulvinar
 lacus, id luctus
+```
+
+## Erstellung
+
+Dokumentationsseiten können die verfügbaren Frontmatter-Eigenschaften sowie alle nicht-interaktiven Komponenten nutzen.
+
+Das Markdown-[Format](../pages#format) ist für alle Seitentypen identisch.
+
+### Checkliste
+
+Hier ist eine grundlegende Liste von Dingen, die du beim Schreiben von Dokumentationsseiten beachten solltest:
+
+- [x] Lege [Frontmatter](../pages#metadata)-Eigenschaften nach Bedarf fest.
+
+- [x] Erstelle eine [Ordner-Metadaten](../folder_meta)-Datei, um die Anzeigenamen der Seiten/Ordner in der Seitenleiste festzulegen.
+
+- [x] Schau dir die verfügbaren [Komponenten](../../components/overview) an, die du einbinden kannst.
+
+## Metadaten
+
+Dokumentationsseiten erfordern keine zwingenden Frontmatter-Attribute, aber du kannst ein paar optionale Eigenschaften angeben.
+
+Ein Anwendungsbeispiel mit Erklärungen findest du unten.
+
+```mdx
+---
+# ID einer Asset-Ressource, die als Icon des dokumentierten Items angezeigt wird.
+# Es sollte eine Mindestgröße von 128x128 Pixeln haben.
+# (Optional)
+icon: examplemod:item/fancy_generator
+
+# Changelog (Versionsverlauf). Siehe übergeordnete Seite für Details.
+# (Optional)
+history: ...
+---
 ```
 
 ## Nächste Schritte

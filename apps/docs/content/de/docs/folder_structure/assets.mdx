@@ -17,14 +17,16 @@ Diese können als Teil von Crafting-Rezepten, Sidebar-Informationen oder in eige
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".assets" defaultOpen>
+        <FileTreeFolder name="assets" defaultOpen>
             <FileTreeFolder name="<namespace>" defaultOpen>
                 <FileTreeFolder name="gui" defaultOpen>
                     <FileTreeFile name="electric_furnace.png"/>
                     <FileTreeFile name="progress.gif"/>
                 </FileTreeFolder>
 
-                <FileTreeFile name="example_item.png" comment="Referenziert über <namespace>:example_item"/>
+                <FileTreeFolder name="item" defaultOpen>
+                    <FileTreeFile name="example_item.png" comment="Referenziert über <namespace>:example_item"/>
+                </FileTreeFolder>
             </FileTreeFolder>
         </FileTreeFolder>
     </FileTreeFolder>
@@ -34,7 +36,7 @@ Diese können als Teil von Crafting-Rezepten, Sidebar-Informationen oder in eige
 
 Assets werden über [Identifier](https://minecraft.wiki/w/Identifier) identifiziert, wobei dieselbe Syntax wie im Spiel verwendet wird. Es wird empfohlen, die Namen der Assets mit den In-Game-IDs der Objekte abzugleichen, zu denen sie gehören.
 
-Gerenderte Projekt-Assets (sowohl **Items als auch Blöcke**) sollten unter `.assets/(modid)` im Dokumentationsverzeichnis abgelegt werden, wobei `modid` der Namespace der jeweiligen Textur ist.
+Gerenderte Projekt-Assets (sowohl **Items als auch Blöcke**) sollten unter `assets/(modid)` im Dokumentationsverzeichnis abgelegt werden, wobei `modid` der Namespace der jeweiligen Textur ist.
 
 Standardmäßig verweisen Identifier auf `.png`-Dateien. Falls eine Datei ein anderes Format hat, kann die entsprechende Dateiendung einfach an den Identifier angehängt werden.
 
@@ -42,15 +44,19 @@ Der Name der Datei kann frei gewählt werden.
 
 ### Beispiele
 
-- `examplemod:generator` - Zeigt `<root>/.assets/examplemod/generator.png`
+- `examplemod:overview` - Zeigt `<root>/assets/examplemod/overview.png`
 
 <p/>
 
-- `examplemod:gui/grinding.gif` - Zeigt `<root>/.assets/examplemod/gui/grinding.gif`
+- `examplemod:item/generator` - Zeigt `<root>/assets/examplemod/item/generator.png`
 
 <p/>
 
-- `minecraft:crafting_table`, `crafting_table` - Zeigt einen 3D-Render der Werkbank an.
+- `examplemod:gui/grinding.gif` - Zeigt `<root>/assets/examplemod/gui/grinding.gif`
+
+<p/>
+
+- `minecraft:crafting_table` oder `crafting_table` - Zeigt einen 3D-Render der Werkbank an.
 
 ## Verwendung
 
@@ -65,3 +71,34 @@ Die häufigsten Anwendungsfälle sind:
 - Bereitstellen von Icons für [Inhaltsseiten](pages/content_pages). Hierbei wird die `id` aus dem Frontmatter automatisch als Pfad für das Asset verwendet.
 
 - Darstellung von Items in [Rezepten](game_data#rezepte).
+
+- Abspielen von [Audio](../components/common#audio)-Dateien.
+
+## Hinweis zu Item-Assets
+
+<Callout type="important">
+    Zusammengefasst: Hinterlege die Inventar-Renderings deiner Items unter `assets/(modid)/item`
+</Callout>
+
+Das Wiki nutzt einen festen Asset-Speicherort, um an bestimmten Stellen Inventar-Renderings von Items anzuzeigen (z. B. bei der Verknüpfung von Item-IDs mit Assets).
+Dazu gehören typischerweise die Icons von Inhaltsseiten, Standard-Layouts von Infoboxen sowie Rezepte und die vorgefertigten Komponenten für die Rezeptverwendung.
+
+Bei Inhaltsseiten und der Infobox können die Standard-Speicherorte im Frontmatter der Seite überschrieben werden.
+Bei den integrierten Komponenten muss das Wiki jedoch in der Lage sein, ein passendes Item-Asset zu finden und anzuzeigen – **und das nur anhand seiner ID**.
+
+Das Wiki sucht nach diesen Assets unter `<modid>:item/<item_id>`, was in deinem Projekt dem Pfad `<root>/assets/<modid>/item/<item_id>` entspricht.
+
+Um beispielsweise `examplemod:generator` anzuzeigen, wird das Bild unter `<root>/assets/examplemod/item/generator.png` abgelegt.
+
+## Erlaubte Dateitypen
+
+Aus Sicherheitsgründen können nur bestimmte Dateitypen in Wiki-Projekten verwendet werden (unabhängig vom Speicherort).
+
+Derzeit werden die folgenden Formate unterstützt:
+
+- MDX-Dokumente: `.mdx`
+- JSON-Daten: `.json`
+- Bilder: `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`
+- Audio: `.ogg`, `.mp3`, `.wav`
+
+Wenn du eine Datei einbinden möchtest, die hier nicht aufgeführt ist, kannst du dich gerne an uns wenden.
