@@ -134,7 +134,8 @@
     "resourcepack": "Ressourcenpaket",
     "datapack": "Datenpaket",
     "shader": "Shader",
-    "plugin": "Plugin"
+    "plugin": "Plugin",
+    "unknown": "Unknown"
   },
   "LoadingContent": {
     "message": "Wird geladen..."
@@ -172,7 +173,7 @@
     },
     "license": {
       "title": "Lizenz",
-      "custom": "Benutzerdefiniert",
+      "custom": "Benutzerdefinierte Lizenz",
       "unknown": "Unbekannt",
       "arr": "Alle Rechte vorbehalten"
     }
@@ -262,6 +263,7 @@
         "suggestion": "Möchtest du stattdessen nach etwas anderem zum Entdecken suchen?",
         "explore": "Projekte entdecken"
       },
+      "submit": "Einreichen",
       "success": "Meldung erfolgreich eingereicht"
     }
   },
@@ -292,7 +294,7 @@
       "reporter": "Gemeldet von",
       "project_id": "Projekt-ID",
       "path": "Pfad",
-      "body": "Body",
+      "body": "Inhalt",
       "reason": "Grund",
       "created_at": "Erstellt am",
       "status": "Status",
@@ -308,9 +310,6 @@
       "accept": "Meldung akzeptiert",
       "dismiss": "Meldung verworfen"
     }
-  },
-  "SubmitButton": {
-    "title": "Einreichen"
   },
   "Callout": {
     "default": "Achtung!",
@@ -352,15 +351,10 @@
       "desc": "Du kannst jetzt zur Dokumentationsseite des Projekts navigieren"
     },
     "submitting": "Wird übermittelt...",
-    "verify_modrinth": "Mit Modrinth verifizieren"
-  },
-  "ProjectSettingsForm": {
-    "title": "Projekt bearbeiten",
-    "desc": "Die Einstellungen eines bestehenden Projekts bearbeiten.",
-    "button": "Einstellungen",
-    "success": {
-      "title": "Projekt erfolgreich aktualisiert",
-      "desc": "Du kannst jetzt zur aktualisierten Dokumentationsseite des Projekts navigieren"
+    "verify_modrinth": "Mit Modrinth verifizieren",
+    "submission": {
+      "clone": "Repository wird geklont und Metadaten werden überprüft.",
+      "note": "Bei größeren Repositories kann dies etwas länger dauern. Bitte warten."
     }
   },
   "ProjectDeleteForm": {
@@ -377,7 +371,7 @@
       "internal": "Interner Serverfehler, bitte versuche es später erneut.",
       "unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es später erneut.",
       "no_platforms": "Keine Plattformprojekte in den Metadaten definiert.",
-      "no_project": "Plattformprojekt nicht gefunden. Bitte überprüfe, ob das \"Slug\"-Feld in den Metadaten korrekt ist.",
+      "no_project": "Plattformprojekt nicht gefunden. Bitte stelle sicher, dass das Metadatenfeld \"platforms\" korrekt ist.",
       "unsupported_type": "Nicht unterstützter Projekttyp",
       "ownership": "Projektbesitz konnte nicht verifiziert werden",
       "cf_unavailable": "Die Registrierung von CurseForge-Projekten ist nicht aktiv",
@@ -390,8 +384,14 @@
       "exists": "Projekt existiert bereits.",
       "not_found": "Projekt existiert nicht",
       "illegal_id": "Ungültige Projekt-ID",
-      "not_owner": "Der Benutzer ist nicht berechtigt, dieses Projekt zu registrieren"
-    }
+      "not_owner": "Der Benutzer ist nicht berechtigt, dieses Projekt zu registrieren",
+      "repo_too_large": "Das Repository überschreitet die maximal zulässige Größe von 500 MB",
+      "insufficient_permissions": "Du hast keine Berechtigung, diese Aktion auszuführen",
+      "user_not_found": "Benutzer nicht gefunden",
+      "duplicate_member": "Projektmitglied existiert bereits",
+      "single_owner": "Der einzige Besitzer kann nicht entfernt werden"
+    },
+    "get_help": "Weitere Informationen zu diesem Fehler findest du in unserer <link>Dokumentation</link>."
   },
   "CommunityBadge": {
     "title": "Community",
@@ -410,11 +410,12 @@
   "ProjectHomepage": {
     "overview": {
       "intro": "<project></project> ist ein {type}, erstellt von <authors></authors>.",
-      "availability": "Verfügbar für <versions></versions>. Die neueste Version wurde für <latest></latest> erstellt. Erste Veröffentlichung für <first></first>.",
+      "availability": "Verfügbar für <versions></versions>. Die neueste Version wurde für <latest></latest> erstellt. Die erste Veröffentlichung für <first></first>.",
       "tags": "Getaggt:"
     },
     "description": {
-      "title": "Beschreibung"
+      "title": "Beschreibung",
+      "placeholder": "Beschreibung nicht verfügbar"
     },
     "navigation": {
       "title": "Navigation",
@@ -454,7 +455,17 @@
     "no_results": "Keine Ergebnisse gefunden!",
     "loading": "Die perfekten Ergebnisse werden gesucht...",
     "results": "Zeige <highlight>{count}</highlight> von <highlight>{total}</highlight> Ergebnissen",
-    "close": "<kbd>ESC</kbd> zum Schließen"
+    "close": "<kbd>ESC</kbd> zum Schließen",
+    "switch": "<kbd>Tab</kbd> to change scope",
+    "scope": {
+      "local": "Local",
+      "global": "Global"
+    }
+  },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
   },
   "DocsChangelogPage": {
     "title": "Änderungsprotokoll"
@@ -464,7 +475,7 @@
     "homepage": "Startseite"
   },
   "DocsContentRightSidebar": {
-    "title": "Eintragsinformationen"
+    "title": "Informationen"
   },
   "DocsNonContentRightSidebar": {
     "title": "Auf dieser Seite"
@@ -485,7 +496,14 @@
     "loading": "Initialisiere",
     "healthy": "Geladen",
     "at_risk": "Erfordert Aufmerksamkeit",
-    "error": "Fehlerhaft"
+    "error": "Fehlerhaft",
+    "inactive": "Inactive"
+  },
+  "ProjectVisibility": {
+    "public": "Öffentlich",
+    "unlisted": "Nicht gelistet",
+    "private": "Privat",
+    "unknown": "Unbekannt"
   },
   "DevProjectsListPage": {
     "project": {
@@ -501,7 +519,7 @@
       "home": "Startseite"
     },
     "toolbar": {
-      "view": "Ansehen",
+      "view": "Projektseite besuchen",
       "deployments": "Bereitstellungen"
     },
     "overview": {
@@ -540,29 +558,50 @@
   },
   "DevProjectSettingsPage": {
     "title": "Projekteinstellungen",
-    "desc": "Projekteigenschaften konfigurieren"
+    "desc": "Projekteigenschaften konfigurieren",
+    "form": {
+      "visibility": {
+        "title": "Projektsichtbarkeit",
+        "public_desc": "Öffentliche Projekte sind in der Suche sichtbar.",
+        "unlisted_desc": "Nicht gelistete Projekte werden veröffentlicht, sind jedoch in der Suche nicht sichtbar.",
+        "private_desc": "Private Projekte sind nur für Mitglieder des Projekts zugänglich.",
+        "placeholder": "Sichtbarkeit auswählen"
+      }
+    },
+    "toast": {
+      "success": "Projekteinstellungen erfolgreich aktualisiert"
+    },
+    "save": "Speichern"
+  },
+  "DevProjectSourceSettingsPage": {
+    "title": "Projekteinstellungen - Quelle",
+    "desc": "Projektrepository konfigurieren",
+    "save": "Speichern"
   },
   "DevProjectVersionsPage": {
     "title": "Projektversionen",
     "desc": "Projektinhaltsversionen durchsuchen"
   },
   "DevProjectHealthPage": {
-    "title": "Project health",
+    "title": "Projektzustand",
     "desc": "Projektstatus und -probleme überwachen",
     "errors": {
-      "title": "Project issue report",
+      "title": "Projektfehlerbericht",
       "desc": "Laufende Warnungen & Fehler",
       "empty": "Keine Probleme gefunden"
     }
   },
+  "ProjectMemberRole": {
+    "owner": "Besitzer",
+    "member": "Mitglied",
+    "unknown": "Unbekannt"
+  },
   "DevProjectMembersPage": {
     "title": "Projektmitglieder",
     "desc": "Projektmitglieder & Berechtigungen verwalten",
-    "roles": {
-      "owner": "Besitzer"
-    },
     "actions": {
-      "manage": "Verwalten"
+      "remove": "Entfernen",
+      "leave": "Projekt verlassen"
     }
   },
   "DevProjectContentItemsPage": {
@@ -596,7 +635,7 @@
     "groups": {
       "projects": "Projekte",
       "platform": "Plattform",
-      "admin": "Administration"
+      "admin": "Verwaltung"
     },
     "nav": {
       "projects": "Projekte",
@@ -665,14 +704,14 @@
     "report": "Fehler melden"
   },
   "BuiltinRecipeTypes": {
-    "blasting": "Schmelzen (Schmelzofen)",
-    "campfire_cooking": "Campfire cooking",
-    "crafting_shaped": "Shaped Crafting",
-    "crafting_shapeless": "Shapeless Crafting",
-    "smelting": "Schmelzen",
+    "blasting": "Erhitzen (Schmelzofen) (Schmelzofen)",
+    "campfire_cooking": "Erhitzen (Lagerfeuer)",
+    "crafting_shaped": "Handwerk (Geformt)",
+    "crafting_shapeless": "Handwerk (Formlos)",
+    "smelting": "Erhitzen (Ofen)",
     "smithing_transform": "Schmieden",
     "smoking": "Räuchern",
-    "stonecutting": "Stonecutting"
+    "stonecutting": "Schneiden"
   },
   "DocsEntryTabs": {
     "history": "Verlauf anzeigen",
@@ -693,6 +732,11 @@
       "content": "Items",
       "tags": "Tags",
       "recipes": "Rezepte"
+    },
+    "settings": {
+      "group": "Einstellungen",
+      "general": "Allgemein",
+      "source": "Quelle"
     }
   },
   "PrefabObtaining": {
@@ -704,7 +748,7 @@
   "AdminSidebar": {
     "groups": {
       "home": "Startseite",
-      "data": "Data",
+      "data": "Daten",
       "system": "System",
       "moderation": "Moderation"
     },
@@ -712,22 +756,23 @@
       "home": "Übersicht",
       "data_imports": "Datenimporte",
       "access_keys": "Zugangsschlüssel",
-      "migrations": "Migrations",
+      "migrations": "Migrationen",
       "users": "Benutzer",
       "projects": "Projekte",
       "config": "Konfiguration",
       "reports": "Meldungen",
-      "audit_log": "Audit Log",
+      "audit_log": "Prüfprotokoll",
       "return": "Zurück"
     }
   },
   "AdminDataImports": {
-    "title": "System data imports",
-    "desc": "Imported game data"
+    "title": "Systemdatenimporte",
+    "desc": "Importierte Spieldaten"
   },
   "AdminMigrations": {
-    "title": "Data migrations",
-    "desc": "Available data migrations"
+    "title": "Datenmigrationen",
+    "desc": "Verfügbare Datenmigrationen",
+    "empty": "Keine Migrationen verfügbar."
   },
   "EmptyDataTable": {
     "guide": "Lies den <link>Autorenleitfaden</link>, um mehr darüber zu erfahren, wie du Spieldaten in dein Projekt integrieren kannst."
@@ -748,11 +793,11 @@
   },
   "DevProjectItemsTable": {
     "icon": "Icon",
-    "id": "Identifier",
+    "id": "ID",
     "name": "Name",
     "path": "Seitenpfad (intern)",
     "actions": {
-      "open": "Open menu",
+      "open": "Öffnen",
       "title": "Aktionen",
       "view": "Ansehen"
     },
@@ -762,15 +807,15 @@
     }
   },
   "DevProjectTagsTable": {
-    "id": "Identifier",
-    "items": "Item count",
+    "id": "ID",
+    "items": "Gegenstandsanzahl",
     "empty": {
       "title": "In deinem Projekt wurden keine Tags gefunden."
     }
   },
   "DevProjectRecipesTable": {
     "type": "Typ",
-    "id": "Identifier",
+    "id": "ID",
     "empty": {
       "title": "In deinem Projekt wurden keine Rezepte gefunden."
     }
@@ -780,7 +825,7 @@
     "input": "Zutaten",
     "output": "Ausgaben",
     "preview": "Rezeptvorschau",
-    "workbenches": "Dieses Rezept kann mit folgenden Materialien hergestellt werden:"
+    "workbenches": "Dieses Rezept kann mit folgenden Werkbänken hergestellt werden:"
   },
   "DevProjectDeploymentsPage": {
     "title": "Projektbereitstellungen",
@@ -789,13 +834,13 @@
   "DevProjectDeploymentsTable": {
     "id": "ID",
     "commit": "Commit",
-    "created_at": "Deploy time",
+    "created_at": "Bereitstellungszeit",
     "user_id": "Bereitgestellt von",
     "status": "Status"
   },
   "DeploymentStatus": {
     "unknown": "Nicht verfügbar",
-    "created": "Queued",
+    "created": "In der Warteschlange",
     "loading": "Wird geladen",
     "success": "Erfolgreich",
     "error": "Fehlgeschlagen"
@@ -828,7 +873,7 @@
     "deployments": "Bereitstellungen",
     "title": "Bereitstellungsdetails",
     "git-config": {
-      "title": "Source coordinates"
+      "title": "Quellkoordinaten"
     }
   },
   "ProjectGitRevision": {
@@ -853,8 +898,9 @@
     "git_clone": "Fehler beim Klonen des Repositories",
     "git_info": "Fehler beim Abrufen der Commit-Informationen",
     "ingestor": "Fehler beim Importieren der Inhalte",
+    "version_setup": "Error setting up version",
     "internal": "Interner Serverfehler",
-    "page_render": "Ungültige Seite",
+    "page": "Ungültige Seite",
     "unknown": "Unbekannter Fehler"
   },
   "DeploymentIssues": {
@@ -869,22 +915,27 @@
     "no_branch": "Ungültiger Branch angegeben",
     "no_path": "Metadatendatei am angegebenen Pfad nicht gefunden",
     "invalid_meta": "Metadatendatei ist ungültig",
-    "invalid_page": "Seiteninhalt konnte nicht dargestellt werden",
+    "page_render": "Seiteninhalt konnte nicht dargestellt werden",
     "duplicate_page": "Doppelte Seite",
     "unknown_recipe_type": "Unbekannter Rezepttyp",
     "invalid_ingredient": "Ungültige Zutat",
     "invalid_file": "Datei konnte nicht geparst werden",
     "invalid_format": "Ungültiges Dateiformat",
-    "invalid_resloc": "Invalid Resource Location",
+    "invalid_resloc": "Ungültige Resource Location",
     "invalid_version_branch": "Der Versions-Branch existiert nicht",
     "missing_platform_project": "Fehlendes Plattformprojekt",
     "no_page_title": "Seite hat keinen Titel",
     "missing_required_attribute": "Seite fehlt ein erforderliches Metadatenattribut",
+    "invalid_frontmatter": "Ungültiger Frontmatter der Seite",
+    "no_platforms": "Missing project platforms",
+    "illegal_id": "Invalid project ID",
+    "illegal_mod_id": "Invalid project mod ID",
+    "not_owner": "Failed to verify project ownership",
     "unknown": "Unbekannter Fehler"
   },
   "AdminReports": {
-    "title": "Project Reports",
-    "desc": "Manage project reports"
+    "title": "Projektberichte",
+    "desc": "Projektberichte verwalten"
   },
   "ResponsiveTable": {
     "expand": "Erweitern"
@@ -893,8 +944,8 @@
     "more": "Mehr anzeigen ..."
   },
   "RecipeUsage": {
-    "description": "Kann verwendet werden, um die folgenden Items herzustellen:",
-    "empty": "Has no known usages in crafting."
+    "description": "Kann verwendet werden, um die folgenden Gegenstände herzustellen:",
+    "empty": "Hat keine bekannten Handwerk-Verwendungszwecke."
   },
   "ContentCategory": {
     "all": "Alle",
@@ -904,6 +955,17 @@
     "toggle": "Änderungsprotokoll anzeigen"
   },
   "ContentProperties": {
+    "weighted_flag": {
+      "true": "Ja ({count})",
+      "false": "Nein"
+    },
+    "rarity": {
+      "common": "Gewöhnlich",
+      "uncommon": "Ungewöhnlich",
+      "rare": "Selten",
+      "epic": "Episch",
+      "unknown": "Unbekannt"
+    },
     "bool": {
       "true": "Ja",
       "false": "Nein"
@@ -911,21 +973,29 @@
     "type": {
       "block": "Block",
       "item": "Gegenstand",
-      "other": "Andere"
+      "other": "Andere",
+      "unknown": "Andere"
     },
     "properties": {
       "id": "ID",
-      "source_mod": "Source mod",
+      "source_mod": "Quellmod",
       "type": "Typ",
-      "stack_size": "Stapelgröße",
+      "stack_size": "Stapelbar",
       "required_tool": "Werkzeug",
       "blast_resistance": "Explosionswiderstand",
       "hardness": "Härte",
-      "flammable": "Entflammbar"
+      "flammable": "Entflammbar",
+      "rarity": "Seltenheitsstufe",
+      "durability": "Haltbarkeit",
+      "mining_speed": "Abbaueffizienz",
+      "attack_damage": "Angriffsschaden",
+      "attack_speed": "Angriffsgeschwindigkeit",
+      "enchantability": "Verzauberbarkeit",
+      "nutrition": "Wiederherstellung"
     }
   },
-  "DocsLink": {
-    "not_found": "(Nicht gefunden)"
+  "ExtendedLink": {
+    "not_found": "(Not found)"
   },
   "AdminAccessKeys": {
     "title": "System-Zugangsschlüssel",
@@ -938,7 +1008,7 @@
     "name": {
       "title": "Name",
       "desc": "Gib deinem Schlüssel einen Namen",
-      "placeholder": "Deploy staging"
+      "placeholder": "Staging bereitstellen"
     },
     "days_valid": {
       "title": "Gültigkeit in Tagen",
@@ -978,6 +1048,120 @@
       "title": "Cache-Tag",
       "desc": "Der zu revalidierende Cache-Tag"
     },
+    "submit": "Einreichen",
     "success": "Cache-Tag erfolgreich ungültig gemacht"
+  },
+  "CookieConsent": {
+    "popup": {
+      "title": "Diese Website verwendet Cookies",
+      "description": "Diese Website verwendet Cookies, um dein Surferlebnis zu verbessern und eingebettete Inhalte anzuzeigen.",
+      "show_preferences": "Individuelle Einstellungen verwalten"
+    },
+    "modal": {
+      "title": "Cookie-Einstellungen verwalten",
+      "save": "Aktuelle Auswahl akzeptieren",
+      "close": "Schließen"
+    },
+    "sections": {
+      "summary": {
+        "title": "Cookie-Einstellungen",
+        "description": "Pass hier deine Datenschutzeinstellungen an. Du kannst auswählen, welche Arten von Cookies und Tracking-Technologien du zulässt."
+      },
+      "necessary": {
+        "title": "Unbedingt erforderliche Cookies",
+        "description": "Diese Cookies sind für die einwandfreie Funktion der Website unerlässlich und können nicht deaktiviert werden."
+      },
+      "experience": {
+        "title": "Erlebnis",
+        "description": "Diese Cookies werden verwendet, um bestimmte Teile der Website zu aktivieren, wie z. B. Videoeinbettungen, und können zu Tracking-Zwecken eingesetzt werden.",
+        "services": {
+          "embeds": "Ermöglicht die Anzeige eingebetteter YouTube-Videos."
+        }
+      },
+      "more_info": {
+        "title": "Weitere Informationen",
+        "description": "Weitere Informationen darüber, wie wir Cookies auf unserer Website verwenden, findest du in unserer <a href=\"/about/privacy\">Datenschutzerklärung</a>."
+      }
+    },
+    "actions": {
+      "accept_all": "Alle akzeptieren",
+      "reject_all": "Alle ablehnen"
+    }
+  },
+  "VideoEmbedPlaceholder": {
+    "title": "Videoeinbettung nicht verfügbar",
+    "description": "Für das Abspielen eingebetteter Videos ist die Zustimmung zu Cookies erforderlich.",
+    "accept": "YouTube-Einbettungen erlauben",
+    "watch": "Auf YouTube ansehen"
+  },
+  "ManageCookiesButton": {
+    "text": "Cookie-Einstellungen verwalten"
+  },
+  "UpdateGameDataModal": {
+    "title": "Spieldaten aktualisieren",
+    "desc": "Neueste Spieldaten abrufen und einlesen.",
+    "button": "Aktualisieren",
+    "update_loader": {
+      "title": "Loader-Version aktualisieren"
+    },
+    "success": {
+      "title": "Spieldaten erfolgreich aktualisiert",
+      "desc": "Spieldaten auf die neueste Version aktualisiert"
+    },
+    "submit": "Einreichen",
+    "submitting": "Wird übermittelt..."
+  },
+  "DevProjectTagItemsTable": {
+    "empty": {
+      "title": "Es wurden keine Gegenstände zu diesem Tag gefunden.",
+      "desc": "Projekt-Tags werden automatisch aus den enthaltenen Spieledateien erkannt."
+    }
+  },
+  "AdminProjectsPage": {
+    "title": "Projekte",
+    "desc": "Liste aller registrierten Projekte"
+  },
+  "AddProjectMemberForm": {
+    "button": "Mitglied hinzufügen",
+    "title": "Projektmitglied hinzufügen",
+    "desc": "Einen neuen Benutzer zu diesem Projekt hinzufügen",
+    "username": {
+      "title": "Benutzername",
+      "desc": "Wiki (GitHub) Benutzername des Benutzers.",
+      "placeholder": "johndoe"
+    },
+    "role": {
+      "title": "Benutzerrolle",
+      "desc": "Bestimmt die Berechtigungsstufe des Benutzers",
+      "placeholder": "Rolle auswählen"
+    },
+    "success": "Projektmitglied erfolgreich hinzugefügt",
+    "cancel": "Abbrechen",
+    "submit": "Einreichen"
+  },
+  "RemoveProjectMemberModal": {
+    "title": "Projektmitglied entfernen",
+    "desc": "Möchtest du dieses Mitglied wirklich entfernen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "cancel": "Abbrechen",
+    "submit": "Entfernen",
+    "success": "Projektmitglied erfolgreich entfernt"
+  },
+  "LeaveProjectModal": {
+    "title": "Projekt verlassen",
+    "desc": "Möchtest du dieses Projekt wirklich verlassen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "cancel": "Abbrechen",
+    "submit": "Verlassen",
+    "success": "Projekt erfolgreich verlassen"
+  },
+  "GenericForm": {
+    "submit": "Einreichen",
+    "submitting": "Wird übermittelt...",
+    "cancel": "Abbrechen"
+  },
+  "NewProjectBanner": {
+    "title": "Bereit, wenn du es bist",
+    "desc": "Dies ist ein neues Projekt, das noch nicht in den Suchergebnissen angezeigt wird. Probiere also ruhig alles aus und optimiere die Einstellungen, bis alles genau richtig ist. Wenn du mit dem Ergebnis zufrieden bist, klick auf den Button unten, um es zu veröffentlichen.",
+    "submit": "Veröffentlichen",
+    "success": "Projektsichtbarkeit auf öffentlich gesetzt"
   }
 }
