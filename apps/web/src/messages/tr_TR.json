@@ -134,7 +134,8 @@
     "resourcepack": "Kaynak paketi",
     "datapack": "Veri paketi",
     "shader": "Shader",
-    "plugin": "Eklenti"
+    "plugin": "Eklenti",
+    "unknown": "Unknown"
   },
   "LoadingContent": {
     "message": "Yükleniyor..."
@@ -172,7 +173,7 @@
     },
     "license": {
       "title": "Lisans",
-      "custom": "Özel",
+      "custom": "Custom license",
       "unknown": "Bilinmiyor",
       "arr": "Her hakkı saklıdır"
     }
@@ -262,6 +263,7 @@
         "suggestion": "Would you like to look for something else to explore instead?",
         "explore": "Projeleri keşfedin"
       },
+      "submit": "Submit",
       "success": "Rapor başarıyla gönderildi"
     }
   },
@@ -309,9 +311,6 @@
       "dismiss": "Report dismissed"
     }
   },
-  "SubmitButton": {
-    "title": "Gönder"
-  },
   "Callout": {
     "default": "Dikkat et!",
     "info": "Info",
@@ -352,15 +351,10 @@
       "desc": "Artık projenin dokümanlar sayfasına gidebilirsiniz"
     },
     "submitting": "Gönderiliyor...",
-    "verify_modrinth": "Modrinth'i kullanarak doğrulama"
-  },
-  "ProjectSettingsForm": {
-    "title": "Projeyi düzenle",
-    "desc": "Mevcut bir projenin ayarlarını düzenleyin.",
-    "button": "Ayarlar",
-    "success": {
-      "title": "Proje başarıyla güncellendi",
-      "desc": "Artık projenin dokümanlar sayfasına gidebilirsiniz"
+    "verify_modrinth": "Modrinth'i kullanarak doğrulama",
+    "submission": {
+      "clone": "Cloning repository and verifying metadata.",
+      "note": "This may take a while for larger repositories. Please stand by."
     }
   },
   "ProjectDeleteForm": {
@@ -377,7 +371,7 @@
       "internal": "Dahili sunucu hatası. Lütfen daha sonra tekrar deneyin.",
       "unknown": "Bilinmeyen bir hata oluştu. Lütfen daha sonra yeniden deneyin.",
       "no_platforms": "Metadata'da tanımlanmış platform projesi yok.",
-      "no_project": "Platform projesi bulunamadı. Lütfen metadata \"bilgi\" alanının doğru olduğundan emin olun.",
+      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
       "unsupported_type": "Desteklenmeyen proje türü",
       "ownership": "Proje sahipliği doğrulanamadı",
       "cf_unavailable": "CurseForge projelerinin kaydedilmesi aktif değil",
@@ -390,8 +384,14 @@
       "exists": "Proje zaten var.",
       "not_found": "Proje mevcut değil",
       "illegal_id": "Illegal project ID",
-      "not_owner": "User is not authorized to register this project"
-    }
+      "not_owner": "User is not authorized to register this project",
+      "repo_too_large": "Repository exceeds maximum allowed size of 500MB",
+      "insufficient_permissions": "You don't have permission to perform this action",
+      "user_not_found": "User not found",
+      "duplicate_member": "Project member already exists",
+      "single_owner": "Cannot remove the only owner"
+    },
+    "get_help": "Find out more about this error in our <link>documentation</link>."
   },
   "CommunityBadge": {
     "title": "Topluluk",
@@ -414,7 +414,8 @@
       "tags": "Tagged:"
     },
     "description": {
-      "title": "Description"
+      "title": "Description",
+      "placeholder": "Description not available"
     },
     "navigation": {
       "title": "Gezin",
@@ -454,7 +455,17 @@
     "no_results": "Sonuç bulunamadı!",
     "loading": "Mükemmel sonuçlar bulunuyor...",
     "results": "<highlight>{count}</highlight> <highlight>{total}</highlight> sonuçları gösteriliyor",
-    "close": "Kapatmak için <kbd>ESC'ye<kbd> bas"
+    "close": "Kapatmak için <kbd>ESC'ye<kbd> bas",
+    "switch": "<kbd>Tab</kbd> to change scope",
+    "scope": {
+      "local": "Local",
+      "global": "Global"
+    }
+  },
+  "SearchResultType": {
+    "project": "Project",
+    "documentation": "Docs",
+    "content": "Content"
   },
   "DocsChangelogPage": {
     "title": "Değişiklikler"
@@ -485,7 +496,14 @@
     "loading": "Kullanıma hazırlanıyor",
     "healthy": "Yüklendi",
     "at_risk": "Requires attention",
-    "error": "Hatalı"
+    "error": "Hatalı",
+    "inactive": "Inactive"
+  },
+  "ProjectVisibility": {
+    "public": "Public",
+    "unlisted": "Unlisted",
+    "private": "Private",
+    "unknown": "Unknown"
   },
   "DevProjectsListPage": {
     "project": {
@@ -501,7 +519,7 @@
       "home": "Ana Sayfa"
     },
     "toolbar": {
-      "view": "Görüntüle",
+      "view": "Visit project page",
       "deployments": "Deployments"
     },
     "overview": {
@@ -540,7 +558,25 @@
   },
   "DevProjectSettingsPage": {
     "title": "Project settings",
-    "desc": "Configure project properties"
+    "desc": "Configure project properties",
+    "form": {
+      "visibility": {
+        "title": "Project Visibility",
+        "public_desc": "Public projects are visible in search.",
+        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
+        "private_desc": "Private projects are only accessible by members of the project.",
+        "placeholder": "Select visibility"
+      }
+    },
+    "toast": {
+      "success": "Project settings updated successfully"
+    },
+    "save": "Save"
+  },
+  "DevProjectSourceSettingsPage": {
+    "title": "Project settings - Source",
+    "desc": "Configure project source repository",
+    "save": "Save"
   },
   "DevProjectVersionsPage": {
     "title": "Project versions",
@@ -555,14 +591,17 @@
       "empty": "No issues found"
     }
   },
+  "ProjectMemberRole": {
+    "owner": "Owner",
+    "member": "Member",
+    "unknown": "Unknown"
+  },
   "DevProjectMembersPage": {
     "title": "Project members",
     "desc": "Manage project members & permissions",
-    "roles": {
-      "owner": "Owner"
-    },
     "actions": {
-      "manage": "Yönet"
+      "remove": "Remove",
+      "leave": "Leave project"
     }
   },
   "DevProjectContentItemsPage": {
@@ -693,6 +732,11 @@
       "content": "Items",
       "tags": "Etiketler",
       "recipes": "Recipes"
+    },
+    "settings": {
+      "group": "Settings",
+      "general": "General",
+      "source": "Source"
     }
   },
   "PrefabObtaining": {
@@ -727,7 +771,8 @@
   },
   "AdminMigrations": {
     "title": "Data migrations",
-    "desc": "Available data migrations"
+    "desc": "Available data migrations",
+    "empty": "No migrations available."
   },
   "EmptyDataTable": {
     "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
@@ -853,8 +898,9 @@
     "git_clone": "Error cloning repository",
     "git_info": "Error getting commit information",
     "ingestor": "Error importing content",
+    "version_setup": "Error setting up version",
     "internal": "Internal server error",
-    "page_render": "Invalid page",
+    "page": "Invalid page",
     "unknown": "Unknown error"
   },
   "DeploymentIssues": {
@@ -869,7 +915,7 @@
     "no_branch": "Geçersiz dal belirtildi",
     "no_path": "Belirtilen yolda metadata dosyası bulunamadı",
     "invalid_meta": "Metadata dosyası geçersiz",
-    "invalid_page": "Failed to render page contents",
+    "page_render": "Failed to render page contents",
     "duplicate_page": "Duplicate page",
     "unknown_recipe_type": "Unknown recipe type",
     "invalid_ingredient": "Invalid ingredient",
@@ -880,6 +926,11 @@
     "missing_platform_project": "Missing platform project",
     "no_page_title": "Page is missing title",
     "missing_required_attribute": "Page is missing a required metadata attribute",
+    "invalid_frontmatter": "Invalid page frontmatter",
+    "no_platforms": "Missing project platforms",
+    "illegal_id": "Invalid project ID",
+    "illegal_mod_id": "Invalid project mod ID",
+    "not_owner": "Failed to verify project ownership",
     "unknown": "Unknown error"
   },
   "AdminReports": {
@@ -904,6 +955,17 @@
     "toggle": "Show changelog"
   },
   "ContentProperties": {
+    "weighted_flag": {
+      "true": "Yes ({count})",
+      "false": "No"
+    },
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "unknown": "Unknown"
+    },
     "bool": {
       "true": "Yes",
       "false": "No"
@@ -911,20 +973,28 @@
     "type": {
       "block": "Block",
       "item": "Item",
-      "other": "Other"
+      "other": "Other",
+      "unknown": "Other"
     },
     "properties": {
       "id": "ID",
       "source_mod": "Source mod",
       "type": "Tür",
-      "stack_size": "Stack size",
+      "stack_size": "Stackable",
       "required_tool": "Tool",
       "blast_resistance": "Blast resistance",
       "hardness": "Hardness",
-      "flammable": "Flammable"
+      "flammable": "Flammable",
+      "rarity": "Rarity tier",
+      "durability": "Durability",
+      "mining_speed": "Mining efficiency",
+      "attack_damage": "Attack damage",
+      "attack_speed": "Attack speed",
+      "enchantability": "Enchantability",
+      "nutrition": "Restores"
     }
   },
-  "DocsLink": {
+  "ExtendedLink": {
     "not_found": "(Not found)"
   },
   "AdminAccessKeys": {
@@ -978,6 +1048,120 @@
       "title": "Cache Tag",
       "desc": "The cache tag to revalidate"
     },
+    "submit": "Submit",
     "success": "Cache tag invalidated successfully"
+  },
+  "CookieConsent": {
+    "popup": {
+      "title": "This website uses cookies",
+      "description": "This site uses cookies to improve your browsing experience and show embedded content.",
+      "show_preferences": "Manage Individual preferences"
+    },
+    "modal": {
+      "title": "Manage cookie preferences",
+      "save": "Accept current selection",
+      "close": "Close modal"
+    },
+    "sections": {
+      "summary": {
+        "title": "Cookie preferences",
+        "description": "Customize your privacy settings here. You can choose which types of cookies and tracking technologies you allow."
+      },
+      "necessary": {
+        "title": "Strictly Necessary cookies",
+        "description": "These cookies are essential for the proper functioning of the website and cannot be disabled."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "These cookies are used to enable certain parts of the website, such as video embeds, and may be used to track you.",
+        "services": {
+          "embeds": "Enables displaying embedded YouTube videos."
+        }
+      },
+      "more_info": {
+        "title": "More information",
+        "description": "For further information on how we use cookies on our website, please refer to our <a href=\"/about/privacy\">Privacy Policy</a>."
+      }
+    },
+    "actions": {
+      "accept_all": "Accept all",
+      "reject_all": "Reject all"
+    }
+  },
+  "VideoEmbedPlaceholder": {
+    "title": "Video embed unavailable",
+    "description": "Cookie consent is required to play embedded videos.",
+    "accept": "Allow YouTube embeds",
+    "watch": "Watch on Youtube"
+  },
+  "ManageCookiesButton": {
+    "text": "Manage cookie preferences"
+  },
+  "UpdateGameDataModal": {
+    "title": "Update game data",
+    "desc": "Fetch latest game data and run ingestion.",
+    "button": "Update",
+    "update_loader": {
+      "title": "Update loader version"
+    },
+    "success": {
+      "title": "Game data updated successfully",
+      "desc": "Updated game data to latest version"
+    },
+    "submit": "Submit",
+    "submitting": "Submitting..."
+  },
+  "DevProjectTagItemsTable": {
+    "empty": {
+      "title": "No items were found in this tag.",
+      "desc": "Project tag entries are automatically detected from included game files."
+    }
+  },
+  "AdminProjectsPage": {
+    "title": "Projects",
+    "desc": "List of all registered projects"
+  },
+  "AddProjectMemberForm": {
+    "button": "Add member",
+    "title": "Add project member",
+    "desc": "Add a new user to this project",
+    "username": {
+      "title": "Username",
+      "desc": "Wiki (GitHub) username of the user.",
+      "placeholder": "johndoe"
+    },
+    "role": {
+      "title": "User role",
+      "desc": "Determines the user's permission level",
+      "placeholder": "Select role"
+    },
+    "success": "Project member added successfully",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "RemoveProjectMemberModal": {
+    "title": "Remove project member",
+    "desc": "Are you sure you want to remove this member? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Remove",
+    "success": "Project member removed successfully"
+  },
+  "LeaveProjectModal": {
+    "title": "Leave project",
+    "desc": "Are you sure you want to leave this project? This action cannot be undone.",
+    "cancel": "Cancel",
+    "submit": "Leave",
+    "success": "Project left successfully"
+  },
+  "GenericForm": {
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel"
+  },
+  "NewProjectBanner": {
+    "title": "Ready when you are",
+    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
+    "submit": "Publish",
+    "success": "Project visibility set to public"
   }
 }
