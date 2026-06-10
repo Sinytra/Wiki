@@ -18,16 +18,16 @@ Sprachdateien werden verwendet, um die Namen von Blöcken und Items in anderen K
 
 ### Platzierung
 
-Sprachdateien werden im Ordner `.assets` abgelegt und folgen **derselben Struktur und Namenskonvention** wie Resourcepacks im Spiel. Das bedeutet, du kannst einfach dein gesamtes `lang`-Verzeichnis aus deiner Mod **kopieren**, ohne zusätzliche Schritte.
+Sprachdateien werden im Ordner `assets` abgelegt und folgen denselben **Struktur- und Dateinamenskonventionen** wie Ressourcenpakete im Spiel. Dadurch kannst du dein gesamtes Sprachverzeichnis aus deiner Mod einfach **ohne zusätzliche Schritte kopieren**.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".assets" defaultOpen>
+        <FileTreeFolder name="assets" defaultOpen>
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="lang" defaultOpen>
                     <FileTreeFile name="en_us.json"/>
                     <FileTreeFile name="de_de.json"/>
-                    <FileTreeFile name="<sprach_codde>.json"/>
+                    <FileTreeFile name="<sprach_code>.json"/>
                 </FileTreeFolder>
             </FileTreeFolder>
         </FileTreeFolder>
@@ -50,11 +50,11 @@ Wenn deine Mod Tags im `c`-Namespace definiert oder Tags aus anderen Mods verwen
 
 ### Platzierung
 
-Tags werden im Ordner `.data` abgelegt und folgen derselben Struktur wie Datapacks im Spiel.
+Tags werden im Ordner `data` abgelegt und folgen derselben Struktur wie Datenpakete im Spiel.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
+        <FileTreeFolder name="data" defaultOpen>
             <FileTreeFolder name="c">
                 <FileTreeFolder name="tags" defaultOpen>
                     <FileTreeFolder name="item" defaultOpen>
@@ -64,6 +64,7 @@ Tags werden im Ordner `.data` abgelegt und folgen derselben Struktur wie Datapac
                     </FileTreeFolder>
                 </FileTreeFolder>
             </FileTreeFolder>
+
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="tags" defaultOpen>
                     <FileTreeFile name="generator_fuels.json"/>
@@ -98,11 +99,11 @@ Benutzerdefinierte Rezepttypen müssen separat definiert werden und werden weite
 
 ### Platzierung
 
-Rezepte liegen im Ordner `.data` und folgen der Struktur von Datapacks im Spiel.
+Rezepte werden im Ordner `data` abgelegt und folgen derselben Struktur wie Datenpakete im Spiel.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
+        <FileTreeFolder name="data" defaultOpen>
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="recipe" defaultOpen>
                     <FileTreeFile name="generator.json"/>
@@ -144,7 +145,7 @@ Benutzerdefinierte Rezepttypen werden unter `recipe_type` in einem Namespace-Ver
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
+        <FileTreeFolder name="data" defaultOpen>
             <FileTreeFolder name="<modid>" defaultOpen>
                 <FileTreeFolder name="recipe_type" defaultOpen>
                     <FileTreeFile name="grinding.json"/>
@@ -180,10 +181,10 @@ Um die genauen Positionen deiner Slots zu finden, empfehlen wir ein Rastergrafik
 ```json
 {
   "background": "examplemod:gui/grinding",
-  "inputSlots": {
+  "input_slots": {
     "in": {"x": 16, "y": 16}
   },
-  "outputSlots": {
+  "output_slots": {
     "out": {"x": 204, "y": 52}
   }
 }
@@ -194,10 +195,10 @@ Ein reales Beispiel für Vanilla-Schmelzrezepte und deren Hintergrund siehst du 
 ```json
 {
   "background": "minecraft:gui/recipe/smelting",
-  "inputSlots": {
+  "input_slots": {
     "1": {"x": 14, "y": 14}
   },
-  "outputSlots": {
+  "output_slots": {
     "1": {"x": 134, "y": 50}
   }
 }
@@ -256,12 +257,14 @@ Hier kannst du festlegen, welche Blöcke zur Verarbeitung bestimmter Rezepttypen
 
 ### Platzierung
 
-Werkbänke werden in einer `workbenches.json`-Datei im Verzeichnis `.data` deines Projekts definiert.
+Werkbänke werden in einer Datei namens `workbenches.json` im Verzeichnis `data/<modid>` deines Projekts definiert.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
-            <FileTreeFile name="workbenches.json"/>
+        <FileTreeFolder name="data" defaultOpen>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFile name="workbenches.json"/>
+            </FileTreeFolder>
         </FileTreeFolder>
     </FileTreeFolder>
 </FileTree>
@@ -293,8 +296,12 @@ Die Datei für Item-Eigenschaften wird verwendet, um Metadaten von Blöcken und 
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name=".data" defaultOpen>
-            <FileTreeFile name="properties.json"/>
+        <FileTreeFolder name="data" defaultOpen>
+            <FileTreeFolder name="<modid>" defaultOpen>
+                <FileTreeFolder name="properties" defaultOpen>
+                    <FileTreeFile name="item.json"/>
+                </FileTreeFolder>
+            </FileTreeFolder>
         </FileTreeFolder>
     </FileTreeFolder>
 </FileTree>
