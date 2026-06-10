@@ -15,14 +15,24 @@ Um potenzielle Anzeigefehler zu vermeiden, empfehlen wir, **immer** vollständig
 
 ## Platzierung
 
-Ordner-Metadaten werden in einer Datei namens `_meta.json` gespeichert. Diese kann **in jedem beliebigen Ordner** innerhalb des Dokumentationsverzeichnisses platziert werden, **einschließlich des Root-Verzeichnisses** selbst (z. B. auf derselben Ebene wie die `sinytra-wiki.json`).
+Ordner-Metadaten werden in einer Datei namens `_meta.json` gespeichert und können **in jedem beliebigen Ordner** innerhalb der Dokumentations- und Inhaltsverzeichnisse neben `.mdx`-Dateien platziert werden.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
-        <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+        <FileTreeFolder name="content">
+            <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
             <FileTreeFile name="_meta.json"/>
         </FileTreeFolder>
-        <FileTreeFile name="_meta.json"/>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
     </FileTreeFolder>
 </FileTree>
 
@@ -40,19 +50,21 @@ Du kannst den Wert bei **Seitennamen** leer lassen, um den Titel der Seite als A
 
 Beispiel:
 
-```json filename="_meta.json"
+```json5 filename="_meta.json"
 {
     "blocks": "Blöcke",
     "items": "Benutzerdefinierter Ordnername",
 
+    // Verwendet den Seitentitel
     "introduction.mdx": "",
+    // Überschreibt den Seitentitel
     "getting_started.mdx": "Eigener Seitenname"
 }
 ```
 
 ## Icons
 
-Du kannst Icons für jeden Metadaten-Eintrag hinzufügen, die in der Navigations-Sidebar angezeigt werden. Wandle dazu den Wert in ein Objekt um und gib den Namen des Icons wie unten gezeigt an.
+Für **Dokumentationsseiten** kannst du Icons für jeden Metadateneintrag hinzufügen, die in der Navigationsseitenleiste angezeigt werden. Wandle dafür den Metadatenwert in ein Objekt um und gib den Namen des Icons wie unten gezeigt an.
 
 Der angegebene Icon-Name sollte ein [Lucide-Icon](https://lucide.dev/icons/) Komponentenname sein (ohne das Suffix `Icon`).
 
