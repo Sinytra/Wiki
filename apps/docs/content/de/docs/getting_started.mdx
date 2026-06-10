@@ -1,0 +1,71 @@
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import { Summary } from '@/components/Summary';
+
+# Erste Schritte
+
+Erstelle das Verzeichnis für deine Dokumentation und lerne die Ordnerstruktur des Wikis kennen.
+
+<Steps>
+    ### Erstelle das Root-Verzeichnis für deine Dokumentation
+
+    Erstelle zunächst ein neues Verzeichnis in deinem Projekt. Der Pfad ist dir überlassen.
+    Wir empfehlen die Verwendung von `wiki` oder `docs`.
+
+    <Callout>
+        Wir unterstützen auch Szenarien, in denen die Dokumentation für mehrere Projekte in einem einzigen Repository gehostet wird, solange sie in separaten Ordnern liegen.
+        Das ist praktisch, wenn du die Dokumentation für mehrere deiner Projekte an einem zentralen Ort speichern möchtest.
+    </Callout>
+
+    ### Projekt-Metadaten konfigurieren
+
+    Erstelle im neu angelegten Verzeichnis eine Datei namens [`sinytra-wiki.json`](folder_structure/wiki_meta).
+    Diese wird verwendet, um Basisinformationen über dein Projekt bereitzustellen.
+
+    Definiere darin die folgenden Eigenschaften:
+    - `schema` <span className="text-rose-400!">*</span>
+      - Immer `"1"`
+    - `id` <span className="text-rose-400!">*</span>
+      - Ein eindeutiger String, um dein Projekt im gesamten Wiki zu identifizieren.
+      - Wir empfehlen deine Mod-ID oder, falls nicht vorhanden, den Projekt-Slug von CurseForge/Modrinth.
+    - `platforms` <span className="text-rose-400!">*</span>
+      - Eine Liste (Map) der Slugs deiner Vertriebsplattformen.
+      - Aktuell werden `modrinth` und `curseforge` unterstützt. Bei CurseForge-Projekten kann auch die eindeutige Projekt-ID verwendet werden.
+    - `modid` (optional)
+      - Die In-Game Mod-ID, die zur Identifizierung von Inhaltsdaten verwendet wird.
+      - Mehrere Wiki-Projekte können denselben Wert verwenden.
+      - Erforderlich, um [Spieldaten](folder_structure/game_data) zu nutzen.
+
+    <details>
+        <Summary>Wo finde ich den Projekt-Slug?</Summary>
+
+        Den Projekt-Slug kannst du ganz einfach aus der URL deiner Projektseite kopieren (siehe Beispiele unten), wobei `{slug}` der jeweilige Wert ist.
+        - Für Modrinth-Projekte: `https://modrinth.com/mod/{slug}`
+        - Für CurseForge-Projekte: `https://www.curseforge.com/minecraft/mc-mods/{slug}`
+    </details>
+
+    Ein einfaches Beispiel sieht so aus:
+
+    ```json filename="sinytra-wiki.json"
+    {
+        "schema": "1",
+        "id": "examplemod",
+        "modid": "examplemod",
+        "platforms": {
+            "curseforge": "example-mod",
+            "modrinth": "example-mod"
+        }
+    }
+    ```
+
+    Weitere Einstellungen findest du auf der Seite [Wiki-Metadaten](folder_structure/wiki_meta).
+
+    ### Alles bereit!
+
+    Sobald die Metadaten-Datei erstellt ist, kannst du mit dem Schreiben der Dokumentation für deine Mod loslegen!
+
+    Was du als Nächstes tun kannst:
+    - Mache dich mit der [Ordnerstruktur](folder_structure/overview) und den verfügbaren Features vertraut.
+    - Lerne das [Seitenformat](folder_structure/pages#format) kennen, das für die Dokumentation verwendet wird.
+    - Fang an, [Seiten](folder_structure/pages) zu schreiben!
+</Steps>

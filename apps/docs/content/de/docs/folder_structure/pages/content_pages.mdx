@@ -1,0 +1,264 @@
+import {FileTree, Callout} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+import InlineGameItem from '@/components/InlineGameItem';
+
+# Inhaltsseiten (Content Pages)
+
+Inhaltsseiten folgen einem traditionellen Wiki-[Layout](https://minecraft.wiki/w/Furnace) und sind dazu gedacht, **In-Game-Inhalte** wie *Items, Blöcke, Entities und Weiteres* zu beschreiben.
+
+<p className="mt-5 w-full flex justify-evenly gap-2">
+    <InlineGameItem id="grass_block" size={32} />
+    <InlineGameItem id="furnace" size={32} />
+    <InlineGameItem id="diamond_pickaxe" size={32} />
+    <InlineGameItem id="iron_ingot" size={32} />
+    <InlineGameItem id="experience_bottle" size={32} />
+    <InlineGameItem id="piglin_head" size={32} />
+</p>
+
+Ihr **Hauptmerkmal** ist die Fähigkeit, Spieldaten auf der Website extrem intuitiv darzustellen. Dazu gehören vor allem Item/Block-**Eigenschaften**, **Rezepte** (sowohl Vanilla als auch benutzerdefiniert), Crafting-**Verwendung** und andere Daten.
+
+Auf der Wiki-Webseite findest du diese unter dem Reiter „Inhalte“ des jeweiligen Projekts.
+
+## Platzierung
+
+Alle Inhaltsseiten werden im Ordner content innerhalb deines Projekts abgelegt.
+
+Sie müssen mindestens eine Ebene tiefer in „flachen“ Kategorien organisiert sein und können für „tiefe“ Kategorien um eine weitere Ebene verschachtelt werden.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="content" defaultOpen>
+            <FileTreeFolder name="tools" defaultOpen comment="Flache Kategorie">
+                <FileTreeFile name="_meta.json"/>
+
+                <FileTreeFile name="sword.mdx"/>
+            </FileTreeFolder>
+
+            <FileTreeFolder name="machines" defaultOpen comment="Tiefe Kategorie">
+
+                <FileTreeFolder name="basic" defaultOpen>
+                    <FileTreeFile name="_meta.json"/>
+
+                    <FileTreeFile name="electric_furnace.mdx"/>
+                </FileTreeFolder>
+
+                <FileTreeFolder name="advanced">
+                    <FileTreeFile name="_meta.json"/>
+
+                    <FileTreeFile name="grinder.mdx"/>
+                </FileTreeFolder>
+
+                <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Beispiel
+
+Unten findest du ein Beispiel einer Inhaltsseite aus [Modular Force Field Systems](https://modrinth.com/mod/mffs), die den „Force Field Projector“ beschreibt.
+
+Sie soll die effiziente Nutzung von Inhalt-Links, Rezepten (Herstellung/Verwendung) und Changelogs im Hauptteil der Seite demonstrieren.
+
+```mdx
+---
+id: mffs:projector
+type: block
+history:
+  - 1.1: Reduced energy usage by 5%
+  - 1.0: Added
+---
+
+# Force Field Projector
+
+The Force Field Projector is a fundamental part of the MFFS family of machines.
+It uses []($fortron) energy to project force fields of various shapes and sizes
+into the world.
+
+{/* Zeigt Rezepte für diesen Block an */}
+<PrefabObtaining />
+
+## Operation
+
+To make a force field, give the Force Field Projector a supply of []($fortron)
+by linking it to a nearby [](@mffs:fortron_capacitor).
+
+Decide which force field shape to create by crafting one of the projector mode
+items.
+Right-click the Projector and place the projector mode item into the central (red)
+slot surrounded by outwardly facing arrows.
+
+Craft a number of [Scale Modules](@mffs:scale_module) and place them into the
+left-hand slot matrix of the Force Field Projector's GUI.
+Each [](@mffs:scale_module) used in the Projector's matrix slots will increase
+the force field radius by one block.
+
+To be able to walk through a force field, a [](@mffs:biometric_identifier)
+is required.
+
+## Upgradability
+
+A Force Field Projector may be augmented with various modules.
+
+These general modules have the following effects:
+
+- [](@mffs:scale_module): Adjusts the shape of a projected force field
+- [](@mffs:speed_module): Allows the Projector to generate a force field
+  more quickly
+- [](@mffs:capacity_module): Increases the amount of Fortron the Projector
+  is able to store
+
+{/* Zeigt die Verwendung dieses Blocks in anderen Rezepten */}
+<PrefabUsage />
+```
+
+## Erstellung
+
+Inhaltsseiten konzentrieren sich traditionell darauf, ein spezifisches Objekt zu beschreiben, anstatt allgemeine Tutorials zu bieten. Diese Beschreibungen enthalten oft technische Informationen wie IDs, Werte und Abhängigkeiten.
+
+Hier wird das Wiki zu einer großen Hilfe: Es erspart dir die mühsame Arbeit, Referenzwerte manuell aus dem Spiel zu kopieren. Stattdessen kannst du **Übersetzungen, Rezepte, Tags** und andere Datendateien deines Projekts direkt wiederverwenden, sodass du dich auf das Schreiben der **wichtigen Dinge** konzentrieren kannst.
+
+Wir empfehlen dir, beim Schreiben von Inhaltsseiten die Hilfs-Komponenten des Wikis voll auszunutzen und das Kopieren/Generieren der Datendateien im Projekt zu [automatisieren](../../tools/gradle.mdx).
+
+### Checkliste
+
+Inhaltsseiten nutzen einen breiteren Kontext, der nicht immer sofort ersichtlich ist. Hier ist eine Liste von Dingen, die du beim Erstellen der Dokumentation beachten solltest. Sie zeigt auch, wie In-Game-Dateien von Inhaltsseiten und interaktiven Komponenten referenziert werden.
+
+**Tipps für erstklassige Inhaltsseiten:**
+
+- [x] Gib das ID-Attribut im [Frontmatter](#metadaten) an.
+
+<p/>
+
+- [x] Setze einfache [Links](../pages#extensions) zu anderen Seiten.
+
+<p/>
+
+- [x] Hinterlege den Namen deines Items in einer [Sprachdatei](../game_data), damit er in Rezepten und Tags korrekt angezeigt wird.
+
+<p/>
+
+- [x] Füge [Herstellung](../../components/interactive#prefabobtaining) und [Verwendung](../../components/interactive#prefabusage) hinzu, um zu zeigen, wie dein Item gecraftet und in anderen Rezepten genutzt wird.
+
+<p/>
+
+- [x] Definiere [Item-Eigenschaften](../game_data) für die Anzeige in der Sidebar.
+
+<p/>
+
+- [x] Füge ein [Changelog](../pages#changelog) hinzu, um Nutzer über vergangene Änderungen zu informieren.
+
+## Metadaten
+
+<Callout type="important">
+    Stelle sicher, dass du für Inhaltsseiten immer das `id`-Attribut angibst!
+</Callout>
+
+Inhaltsseiten **müssen** immer das Frontmatter-Attribut `id` angeben, welches verwendet wird, um die Seite mit Spielinhalten zu verknüpfen. Dies ist entscheidend für die Interaktion mit Spieldatendateien im Projekt.
+
+Standardmäßig dient die ID bei Seiten, die sich auf ein einzelnes Item beziehen, gleichzeitig als Pfad für das Seiten-Icon, welches aus den [Assets](../assets) geladen wird.
+
+```mdx
+---
+# Gib eine oder mehrere IDs von Items an, die auf dieser Seite dokumentiert werden
+# (Erforderlich)
+id: examplemod:generator
+# Für Seiten mit mehreren Items kannst du eine Liste von IDs angeben:
+id:
+  - examplemod:red_cable
+  - examplemod:blue_cable
+---
+```
+
+### Erweiterte Metadaten
+
+Es gibt mehrere optionale Attribute, die du angeben kannst, um deine Seite vollständig anzupassen.
+In den meisten Fällen wird das Wiki jedoch die bestmöglichen Standardwerte automatisch ausfüllen.
+
+<details>
+  <summary>Beispiel für erweiterte Metadaten anzeigen</summary>
+
+  ```mdx
+  ---
+  # ============ Alles unterhalb ist optional! ============
+  # Gib optionale Eigenschaften nur an, wenn nötig.
+  # Lass das Wiki die Standardwerte für dich wählen.
+  # =======================================================
+
+  # Gibt eine benutzerdefinierte Referenz (ref) an, um zu dieser Seite zu navigieren.
+  # Muss für alle Inhaltsseiten eindeutig sein. Das Wiki weist standardmäßig eine zu.
+  # (Optional)
+  ref: colored_cables
+
+  # Ein Speicherort für eine Asset-Ressource, die als Seiten-Icon im
+  # Projekt-Inhaltsverzeichnis angezeigt wird.
+  # Seiten mit einem einzelnen Item: Wird auch im Hauptteil der Infobox als Vorschau-Bild verwendet.
+  # (Optional)
+  icon: examplemod:item/yellow_cable
+
+  # Typ des/der dokumentierten Items. Wird unter den Eigenschaften angezeigt.
+  # Aktuell ist dies rein kosmetisch.
+  # Kann 'block', 'item' oder 'other' sein.
+  # (Optional)
+  type: block
+
+  # Zusätzliche Eigenschaften, die angezeigt werden sollen.
+  # Liste (Map) von string -> string
+  # (Optional)
+  custom:
+    Subcategory: Wiring
+
+  # Konfiguriert das Infobox-Element, das im rechten Panel der Seite angezeigt wird
+  # (Optional)
+  infobox:
+    # Titel, der oben in der Infobox angezeigt werden soll (Standard: Seitentitel)
+    # (Optional)
+    title: Cables
+
+    # Inhalt für einen einzelnen Tab (entweder das hier oder 'tabs' angeben, niemals beides)
+    # (Optional)
+    display:
+      - examplemod:item/yellow_cable
+
+    # Infobox-Tabs (Item-Varianten)
+    # (Optional)
+    tabs:
+      # Name des Tabs (der Item-Variante)
+      - name: Yellow
+        # Asset-Speicherorte, die groß angezeigt werden sollen (einzelnes Item oder Liste)
+        display: examplemod:item/yellow_cable
+        # --- ODER ---
+        display:
+          - examplemod:item/yellow_cable
+          - examplemod:item/yellow_cable_cut
+
+      - name: Orange
+        display: examplemod:orange_cable
+
+    # Inventar-Slots, die angezeigt werden sollen (einzelnes Item oder Liste von Asset-Speicherorten)
+    # (Optional)
+    inventory:
+      - examplemod:item/yellow_cable
+      - examplemod:item/orange_cable
+
+  # Changelog (Versionsverlauf). Siehe übergeordnete Seite für Details
+  # (Optional)
+  history: ...
+  ---
+  ```
+</details>
+
+### Seitenleiste
+
+Inhaltsseiten enthalten eine Seitenleiste, die verschiedene Eigenschaften und Statistiken zu Spielinhalten anzeigt. Diese Daten stammen aus der [Item-Eigenschaften](../game_data)-Datei. Zusätzliche Eigenschaften können im Frontmatter angegeben werden – siehe Attribut `custom` unter [Erweiterte Metadaten](#erweiterte-metadaten).
+
+Um die angezeigten Item-Assets und Inventar-Slots anzupassen, siehe das Attribut `infobox`.
+
+## Interaktion
+
+Inhaltsseiten erlauben es dir, die dynamischen [Komponenten](../../components/interactive) des Wikis optimal zu nutzen. Diese verwenden im Hintergrund die Spieldateien deines Projekts, um Informationen darzustellen.
+
+Lies die Seite über [Spieldaten](../game_data), um mehr darüber zu erfahren, wie du diese Dateien ganz einfach in dein Wiki-Projekt einbinden kannst.

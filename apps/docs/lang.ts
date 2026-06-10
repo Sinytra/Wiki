@@ -7,6 +7,9 @@ export interface Language {
   name: string;
 }
 
-export const languages: Language[] = [{ locale: 'en', name: 'English' }];
+export const languages: Language[] = [
+  { locale: 'en', name: 'English' },
+  { locale: 'de', name: 'Deutsch' }
+];
 
 export const locales: Locale[] = languages.map((l) => l.locale);

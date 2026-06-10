@@ -1,0 +1,159 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+import {Callout} from 'nextra/components';
+import InlineGameItem from '@/components/InlineGameItem';
+
+# Übersicht der Ordnerstruktur
+
+Wiki-Projekte folgen einer Ordnerstruktur, die der von [Resource Packs](https://minecraft.wiki/w/Resource_pack) oder [Data Packs](https://minecraft.wiki/w/Data_pack) im Spiel sehr ähnlich ist.
+
+Wir haben uns davon inspirieren lassen, um Autoren, die bereits Erfahrung mit Mods oder Modpacks haben, den Einstieg zu erleichtern – und auch, weil es so kaum Aufwand erfordert, Mod-Inhalte direkt wiederzuverwenden.
+
+Diese Seite gibt dir einen grundlegenden Überblick. Die einzelnen Funktionen werden auf ihren jeweiligen Unterseiten in dieser Kategorie genauer beschrieben.
+
+## Die Grundlagen
+
+Die wichtigsten Dateien, die du zum Schreiben der Dokumentation benötigst, sind die Wiki-Metadaten-Datei, Ordner-Metadaten und die eigentlichen Dokumentationsseiten.
+
+### `sinytra-wiki.json`
+
+Diese Datei ist das „Herz“ deines Dokumentationspakets. Sie enthält die grundlegenden Identifizierungsmerkmale des Projekts sowie zusätzliche Metadaten, die Informationen für die Nutzer bereitstellen.
+
+Details findest du auf der Seite [Wiki-Metadaten](wiki_meta).
+
+### `_meta.json`
+
+Diese Datei kann sowohl im Root-Verzeichnis als auch in jedem Unterordner liegen. Sie definiert die Anzeigenamen für Dateien und Ordner in der Sidebar-Navigation des Wikis und legt die Reihenfolge fest, in der sie erscheinen.
+
+Falls keine vorhanden ist, werden automatisch Standardnamen generiert.
+
+Details findest du auf der Seite [Ordner-Metadaten](folder_meta).
+
+## Seitendateien (`*.mdx`)
+
+Seitendateien enthalten die eigentlichen Inhalte in einem erweiterten Markdown-[Format](../tools/format).
+
+Es gibt zwei Arten von Seiten im Wiki, die beide **gleichzeitig** genutzt werden können:
+
+### <InlineGameItem id="grass_block" /> Inhaltsseiten (Content Pages)
+
+- Traditioneller [Wiki-Stil](https://minecraft.wiki/w/Furnace)
+
+- Keine feste Lesereihenfolge
+
+- Empfohlen für alle **In-Game-Inhalte** wie Blöcke, Items, Entities usw.
+
+### <InlineGameItem id="book" /> Dokumentationsseiten
+
+- Enthalten leitfadenähnliche Dokumentationen, ähnlich wie diese Seite, auf der du dich gerade befindest
+
+- Vorgegebene Lesereihenfolge
+
+- Empfohlen für **Anleitungen** (Guides) und API- / **Entwickler-Dokumentation**
+
+Vollständige Details findest du auf der Seite [Seiten](pages).
+
+## Funktionen
+
+Hier findest du detaillierte Erklärungen zu den verfügbaren Funktionen:
+
+- [Startseite](homepage) – Erstelle eine eigene Startseite für deine Dokumentation
+- [Assets](assets) – Füge Bilder und andere Medien zu deinem Wiki hinzu
+- [Inhaltsseiten](pages) – Dokumentiere In-Game-Inhalte
+- [Spieldaten](game_data) – Importiere nahtlos Rezepte, Tags und andere Spieldaten
+- [Übersetzungen](translations) – Mache dein Wiki international mit übersetzten Seiten
+
+## Komplettes Beispiel
+
+Unten siehst du ein Beispiel für eine vollständige Wiki-Ordnerstruktur, die alle unterstützten Funktionen nutzt.
+
+<Callout>
+    Die Ordnerstruktur ist interaktiv: Klicke auf die Ordner, um deren Inhalt auszuklappen.
+</Callout>
+
+<FileTree>
+    <FileTreeFolder name="assets">
+        <FileTreeFolder name="examplemod" defaultOpen>
+            <FileTreeFolder name="item" defaultOpen>
+                <FileTreeFile name="generator.png"/>
+            </FileTreeFolder>
+
+            <FileTreeFolder name="lang" defaultOpen>
+                <FileTreeFile name="en_us.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFolder name="sounds" defaultOpen>
+                <FileTreeFile name="ambient.ogg"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+
+    <FileTreeFolder name="content">
+        <FileTreeFolder name="machines" defaultOpen>
+            <FileTreeFolder name="advanced">
+                <FileTreeFile name="_meta.json"/>
+                <FileTreeFile name="blast_furnace.mdx"/>
+                <FileTreeFile name="grinder.mdx"/>
+            </FileTreeFolder>
+            <FileTreeFolder name="basic" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+                <FileTreeFile name="electric_furnace.mdx"/>
+                <FileTreeFile name="generator.mdx"/>
+            </FileTreeFolder>
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
+        <FileTreeFile name="_meta.json"/>
+    </FileTreeFolder>
+
+    <FileTreeFolder name="data">
+        <FileTreeFolder name="c">
+            <FileTreeFolder name="tags" defaultOpen>
+                <FileTreeFolder name="item" defaultOpen>
+                    <FileTreeFolder name="ingots" defaultOpen>
+                        <FileTreeFile name="steel.json"/>
+                    </FileTreeFolder>
+                </FileTreeFolder>
+            </FileTreeFolder>
+        </FileTreeFolder>
+
+        <FileTreeFolder name="examplemod" defaultOpen>
+            <FileTreeFolder name="recipe" defaultOpen>
+                <FileTreeFile name="generator.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFolder name="recipe_type" defaultOpen>
+                <FileTreeFile name="grinding.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFolder name="properties" defaultOpen>
+                <FileTreeFile name="item.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="workbenches.json"/>
+        </FileTreeFolder>
+    </FileTreeFolder>
+
+    <FileTreeFolder name="translated">
+        <FileTreeFolder name="de_de" defaultOpen>
+            <FileTreeFolder name="docs" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+                <FileTreeFile name="introduction.mdx"/>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+
+    <FileTreeFolder name="docs">
+        <FileTreeFolder name="getting_started">
+            <FileTreeFile name="_meta.json"/>
+            <FileTreeFile name="gathering_materials.mdx"/>
+            <FileTreeFile name="survival_guide.mdx"/>
+        </FileTreeFolder>
+
+        <FileTreeFile name="_meta.json"/>
+        <FileTreeFile name="_index.mdx"/>
+        <FileTreeFile name="introduction.mdx"/>
+    </FileTreeFolder>
+
+    <FileTreeFile name="sinytra-wiki.json"/>
+</FileTree>

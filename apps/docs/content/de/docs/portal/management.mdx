@@ -1,0 +1,32 @@
+import {Callout} from 'nextra/components';
+
+# Projektverwaltung
+
+Das Projekt-Dashboard ist der Ort, an dem du alle Informationen zu deinem Projekt findest. Hier kannst du Projekteinstellungen anpassen, neue Versionen veröffentlichen, registrierte Spielinhalte auflisten und vieles mehr.
+
+## Bereitstellungen (Deployments)
+
+Bereitstellungen dienen als Versionshistorie für Wiki-Projekte. Jedes Mal, wenn du Änderungen an deiner Dokumentation im Quell-Repository vornimmst, musst du ein neue Bereitstellungen erstellen, um diese auf der Website zu veröffentlichen.
+
+Der Bequemlichkeit halber empfehlen wir, die Dokumentation nach der Veröffentlichung automatisch über unser [Gradle-Plugin](../tools/gradle) aktualisieren zu lassen.
+
+## Mitglieder
+
+Unter dem Reiter „Mitglieder“ kannst du anderen Wiki-Nutzern Zugriff auf dein Projekt gewähren.
+
+Mitglieder können über ihren Wiki-Benutzernamen hinzugefügt werden, der auf der Seite [Benutzereinstellungen](https://moddedmc.wiki/dev/settings) zu finden ist. In der Regel ist dies der kleingeschriebene Benutzername des GitHub-Accounts, mit dem man sich im Wiki anmeldet.
+
+<Callout type="warning">
+    Ein Nutzer muss über ein aktives Wiki-Konto verfügen, um zu Projekten hinzugefügt werden zu können. Wenn du eine Fehlermeldung *Benutzer nicht gefunden* erhältst, während du versuchst, Teammitglieder über ihren GitHub-Namen hinzuzufügen, stelle sicher, dass sie sich zuvor mindestens einmal im Wiki eingeloggt haben!
+</Callout>
+
+### Rollen
+
+Beim Hinzufügen von Teammitgliedern kannst du zwischen zwei Rollen wählen:
+
+- **Besitzer** – hat **vollen Zugriff** auf das Projekt. Dies schließt das Löschen des Projekts oder das Entfernen anderer Besitzer ein!
+- **Mitglied** – kann Projekteinstellungen bearbeiten und neue Deployments erstellen. Mitglieder können jedoch keine anderen Mitglieder verwalten oder das Projekt löschen.
+
+### Projekte verlassen
+
+Nutzer mit der Rolle „Mitglied“ können Projekte jederzeit selbstständig über den Mitglieder-Reiter verlassen. Besitzer können ein Projekt nur verlassen, solange sie nicht der einzige Besitzer sind.
