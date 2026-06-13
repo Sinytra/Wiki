@@ -170,7 +170,7 @@ async function renderMarkdown(
   if (page) {
     const components = {
       Asset: BindableAsset.bind(null, ctx),
-      audio: BindableAudio.bind(null, ctx),
+      Audio: BindableAudio.bind(null, ctx),
       CraftingRecipe: CraftingRecipe.bind(null, ctx),
       ProjectRecipe: ProjectRecipe.bind(null, ctx),
       RecipeUsage: BindableRecipeUsage.bind(null, ctx),

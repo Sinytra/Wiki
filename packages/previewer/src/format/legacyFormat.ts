@@ -24,7 +24,9 @@ export function createLegacyProjectFormat(root: string): ProjectFormat {
     docsIndexPageName: DOCS_INDEX_PAGE,
 
     filterDocsTree(fileTree: FileTree): FileTree {
-      return fileTree.filter((c) => c.type === 'dir' && !c.name.startsWith('.') && c.children && c.children.length > 0);
+      return fileTree.filter(
+        (c) => c.type == 'file' || (c.type === 'dir' && !c.name.startsWith('.') && c.children && c.children.length > 0)
+      );
     },
     getDocsSlugFromPath(relPath: string): string {
       return relPath.endsWith('.mdx') ? relPath.substring(0, relPath.length - 4) : relPath;
