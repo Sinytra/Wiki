@@ -1,0 +1,117 @@
+import { Callout } from 'nextra/components';
+
+# Veröffentlichung
+
+Hier erfährst du, wie du deine Dokumentation auf unserer Website veröffentlichst!
+
+## Entwicklerportal
+
+Du erreichst unser [Entwicklerportal](https://moddedmc.wiki/dev), indem du auf der Startseite auf die Schaltfläche `Dashboard öffnen` klickst oder den Link `Entwickler` im Footer verwendest.
+
+### Erstanmeldung
+
+Wenn du dich zum ersten Mal anmeldest, wirst du zur Login-Seite weitergeleitet, auf der du dich mit deinem **GitHub-Konto** anmelden kannst.
+
+GitHub wird dich bitten, unsere GitHub-App für den Zugriff auf dein Konto zu autorisieren. Sie benötigt nur minimale Berechtigungen, die verwendet werden, um deine Identität und deine Zugriffsberechtigungen für Repositories zu verifizieren. Nachdem du die Anfrage bestätigt hast, wirst du automatisch zum Entwicklerportal weitergeleitet.
+
+## Projektinhaberschaft verifizieren
+
+<Callout type="important">
+    Stelle sicher, dass die URLs deiner Plattform-Projekte zum Zeitpunkt der Registrierung auf die Repository-Adresse gesetzt sind, damit die Verifizierung der Projektinhaberschaft erfolgreich ist.
+</Callout>
+
+Das Wiki verwendet einen einfachen Prozess zur Prüfung der Projektinhaberschaft, um die Projekterstellung zu autorisieren. Dieser wird in zwei Schritten durchgeführt, wenn das Projekt hinzugefügt wird oder später, wenn Projekteinstellungen aktualisiert werden:
+
+- Abgleich der Quellcode-URLs deiner Plattform-Projekte (CurseForge/Modrinth) mit der Repository-URL des Wiki-Projekts.
+
+- Abgleich des Benutzernamens des GitHub-Kontos, mit dem du dich angemeldet hast, mit dem `owners`-Array in den [Metadaten](../folder_structure/wiki_meta) des Wiki-Projekts.
+
+### Wo die Quellcode-URL festgelegt wird
+
+<details>
+    <summary>Ausklappen, um Hilfe für Modrinth-Projekte zu erhalten</summary>
+
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Reiter `Links`.
+    3. Gib die Repository-URL im Feld `Source code` ein.
+    4. Speichere die Änderungen.
+
+    ![MR Source](/mr_src_url.png)
+</details>
+<p/>
+<details>
+    <summary>Ausklappen, um Hilfe für CurseForge-Projekte zu erhalten</summary>
+
+    1. Öffne die Einstellungen deines Projekts.
+    2. Navigiere zum Reiter `Source`.
+    3. Gib die Repository-URL im Feld `Repository URL` ein.
+    4. Speichere die Änderungen.
+
+    ![CF Source](/cf_src_url.png)
+</details>
+
+## Projekte registrieren
+
+Um ein neues Projekt im Wiki zu erstellen, klicke auf die Schaltfläche `Neues Projekt`. Dadurch wird ein Dialogfenster geöffnet, in dem du gebeten wirst, die folgenden Informationen auszufüllen:
+
+- `Repository-URL`
+  - Die Webadresse, die du zum Klonen deines Repositories verwendest. Beachte, dass sie die Endung `.git` nicht enthalten darf.
+  - Beispiel: `https://github.com/exampleuser/Examplemod`
+
+- `Branch`
+  - Standard-Branch, aus dem Wiki-Projektinformationen abgerufen werden sollen. Zusätzliche Branches, die geladen werden sollen, kannst du in deiner [Wiki-Metadaten](../folder_structure/wiki_meta#versionierung)-Datei angeben.
+  - Beispiel: `master`
+
+- `Pfad zum Dokumentationsstamm`
+  - Pfad zum Stammordner der Dokumentation innerhalb des Repositories. Sollte mit einem führenden `/` beginnen.
+  - Beispiel: `/docs`
+
+Sobald du alles ausgefüllt hast, klicke auf `Einreichen`, um den Registrierungsprozess abzuschließen.
+
+## Fehlerbehebung
+
+<Callout>
+    Wenn du deinen Standard-Branch auf GitHub änderst, z. B. beim Portieren deines Projekts auf neuere Versionen, vergiss nicht, auch den Source-Branch in den Einstellungen des Wiki-Projekts zu aktualisieren, damit die Website weiterhin die neueste Dokumentationsversion anzeigen kann.
+</Callout>
+
+Unten findest du eine Liste häufiger Probleme, die bei der Registrierung deines Projekts auftreten können. Falls dein Problem nicht in der Liste erscheint, schildere uns dein Problem bitte auf [Discord](https://discord.sinytra.org).
+
+### Projektinhaberschaft konnte nicht verifiziert werden
+*(Failed to verify project ownership)*
+
+- **Mögliche Ursache:** Dein Projekt auf der Hosting-Plattform stellt keinen Source-Code-Link bereit, der auf dein Repository verweist.
+
+- **Lösung:** Setze für die Verifizierung der Projektinhaberschaft die Source-Code-URL deines Projekts vorübergehend so, dass sie mit der Repository-URL übereinstimmt. Details findest du unter [Projektinhaberschaft verifizieren](#projektinhaberschaft-verifizieren).
+
+### Benutzer ist nicht berechtigt, dieses Projekt zu registrieren
+*(User is not authorized to register this project)*
+
+- **Mögliche Ursache:** Der Benutzername des Wiki-Kontos, das versucht, dieses Projekt zu registrieren, stimmt mit keinem Benutzernamen im [`owners`-Feld](../folder_structure/wiki_meta#format) der Projektmetadaten überein.
+
+- **Lösung:** Stelle sicher, dass du mit dem richtigen Konto angemeldet bist, oder füge deinen aktuellen Benutzernamen zu `owners` hinzu.
+
+### Repository ist privat
+*(Repository is private)*
+
+- **Mögliche Ursache:** Dein Repository ist privat oder erfordert anderweitig eine Authentifizierung für den Zugriff.
+
+- **Lösung:** Füge Zugangsdaten mit ausreichenden Berechtigungen zum Klonen des Repositories in die Repository-URL ein.
+  Das Zugangsdatenformat für HTTP-URLs lautet: `https://username:password@domain.com`.
+
+### Repository überschreitet die maximal zulässige Größe
+*(Repository exceeds maximum allowed size)*
+
+- **Ursache:** Die Größe deines Repositories überschreitet das maximale Limit von 500 MB.
+
+- **Lösung:** Erwäge, deine Dokumentation in ein eigenständiges Repository zu verschieben, oder versuche, die Größe unter das Limit zu bringen.
+
+### Ungültiger Pfad angegeben
+*(Invalid path provided)*
+
+Der angegebene Pfad existiert nicht oder ist eine reguläre Datei. Bitte stelle sicher, dass der Pfad auf ein vorhandenes Verzeichnis innerhalb des Repositories verweist. Es ist nicht nötig, dem Pfad einen Branch- oder Tag-Namen voranzustellen.
+
+## Projektverwaltung
+
+Wenn die Registrierung deines Projekts erfolgreich ist, wirst du zum Projektverwaltungs-Dashboard weitergeleitet und automatisch eine neue Bereitstellung erstellt.
+
+Sieh dir die Seite [Projektverwaltung](management) an, um mehr über das Projekt-Dashboard-Panel zu erfahren.

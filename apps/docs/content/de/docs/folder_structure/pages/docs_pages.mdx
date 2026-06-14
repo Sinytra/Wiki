@@ -1,0 +1,97 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+
+# Dokumentationsseiten
+
+Dokumentationsseiten folgen einem leitfadenartigen Layout *(wie die Dokumentation, die du gerade liest)* und eignen sich am besten für Benutzerhandbücher, Tutorials und Entwicklerdokumentation für dein Projekt.
+
+Auf der Wiki-Website befinden sie sich im Reiter „Dokumentation“ des jeweiligen Projekts.
+
+## Platzierung
+
+Dokumentationsseiten können beliebig benannt und innerhalb des Projekts verschachtelt werden. Sie müssen zwingend die Dateiendung `.mdx` verwenden.
+
+Ordner, die im Dateibaum erstellt werden, erscheinen im Wiki ebenfalls als Ordner in der Dokumentations-Seitenleiste.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+                <FileTreeFile name="beliebiger_name.mdx"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="beispiel_block.mdx"/>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+## Beispiel
+
+Im Folgenden findest du ein Beispiel für eine einfache Dokumentationsseite. Beachte, dass kein Import erforderlich ist, um Wiki-Komponenten zu verwenden.
+
+```mdx
+# Einleitung
+
+Einleitung zur Beispiel-Mod.
+
+<Callout variant="info">
+  Dies ist ein Beispiel für einen Info-Callout.
+</Callout>
+
+-- Hier kommt dein Text hin --
+
+Und hier noch etwas *Lorem Ipsum*.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna enim,
+vestibulum non justo nec, euismod venenatis mauris. Curabitur metus massa,
+aliquet non dapibus eget, porttitor eu lorem. Vestibulum et sagittis justo.
+
+Integer a velit quis est auctor finibus. Vivamus libero lorem, vehicula eu
+est ut, pellentesque dignissim enim. Integer iaculis turpis id neque eleifend
+malesuada. Curabitur convallis ultrices orci. Phasellus imperdiet pulvinar
+lacus, id luctus
+```
+
+## Erstellung
+
+Dokumentationsseiten können verfügbare Frontmatter-Eigenschaften und alle nicht interaktiven Komponenten verwenden.
+
+Das Markdown-[Format](../pages#format) wird von allen Seitentypen gemeinsam genutzt.
+
+### Checkliste
+
+Hier ist eine grundlegende Liste von Dingen, die du beim Schreiben von Dokumentationsseiten beachten solltest:
+
+- [x] Gib [Frontmatter](../pages#metadaten)-Eigenschaften nach Bedarf an.
+
+<p/>
+
+- [x] Erstelle eine [Ordner-Metadaten](../folder_meta)-Datei, um Anzeigenamen von Seiten/Ordnern in der Seitenleiste festzulegen.
+
+<p/>
+
+- [x] Sieh dir verfügbare [Komponenten](../../components/overview) an, die du einbinden kannst.
+
+## Metadaten
+
+Dokumentationsseiten haben keine erforderlichen Frontmatter-Attribute, aber du kannst einige optionale Eigenschaften angeben.
+
+Ein Anwendungsbeispiel mit Erklärungen findest du unten.
+
+```mdx
+---
+# Resource Location eines Assets, das als Icon des dokumentierten Items angezeigt wird.
+# Das Asset sollte mindestens 128x128 px groß sein.
+# (Optional)
+icon: examplemod:item/fancy_generator
+
+# Changelog. Details findest du auf der übergeordneten Seite.
+# (Optional)
+history: ...
+---
+```
+
+## Nächste Schritte
+
+Sobald du bereit bist, kannst du deine Seiten mit unserem [lokalen Vorschau-Tool](../../tools/preview) ansehen!

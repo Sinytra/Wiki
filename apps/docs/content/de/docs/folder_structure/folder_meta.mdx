@@ -1,0 +1,80 @@
+import {FileTree, Callout} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+import FormatHeader from '@/components/FormatHeader.tsx';
+
+# Ordner-Metadaten
+
+Ordner-Metadaten stellen zusätzliche Informationen für Seiten bereit, wie zum Beispiel:
+
+- Die **Anzeigenamen** von Ordnern und Dateien. Falls keine angegeben werden, nutzt das Wiki automatisch generierte Anzeigenamen oder Seitentitel.
+
+- Die **Sortierung** der Einträge in der Seitenleiste. Standardmäßig werden Ordner zuerst angezeigt, gefolgt von regulären Dateien, jeweils alphabetisch sortiert.
+
+Um potenziell unerwünschte Anzeigefehler zu vermeiden, empfehlen wir, **immer** vollständige Ordner-Metadaten in deiner Dokumentation bereitzustellen.
+
+## Platzierung
+
+Ordner-Metadaten werden in einer Datei namens `_meta.json` gespeichert und können **in jedem Ordner** innerhalb der Verzeichnisse für Dokumentation und Inhalte neben `.mdx`-Dateien platziert werden.
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="content">
+            <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFolder name="...beliebig_verschachtelter_pfad" defaultOpen>
+                <FileTreeFile name="_meta.json"/>
+            </FileTreeFolder>
+
+            <FileTreeFile name="_meta.json"/>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+<FormatHeader schema="_meta">Dateiformat</FormatHeader>
+
+Die Ordner-Metadatendatei besteht aus String-Schlüssel-Wert-Paaren, wobei die Schlüssel den Namen einer Datei oder eines Ordners repräsentieren und die Werte deren Anzeigenamen sind.
+
+Beim Angeben eines Dateinamens ist der vollständige Name, einschließlich Dateiendung erforderlich.
+
+Du kannst den Wert von **Seitennamen** leer lassen, um den Seitentitel als Anzeigenamen zu verwenden.
+
+<Callout type="warning">
+    Die Angabe verschachtelter Pfade wird nicht unterstützt. Erstelle stattdessen eine Ordner-Metadatendatei ím verschachtelten Pfad.
+</Callout>
+
+Beispiel:
+
+```json5 filename="_meta.json"
+{
+    "blocks": "Blöcke",
+    "items": "Benutzerdefinierter Ordnername",
+
+    // Verwendet den Seitentitel
+    "introduction.mdx": "",
+    // Überschreibt den Seitentitel
+    "getting_started.mdx": "Eigener Seitenname"
+}
+```
+
+## Icons
+
+Für **Dokumentationsseiten** kannst du Icons für jeden Metadateneintrag hinzufügen, die in der Navigations-Seitenleiste angezeigt werden, indem du den Metadatenwert in ein Objekt umwandelst und den Namen des Icons wie unten gezeigt angibst.
+
+Der angegebene Icon-Name sollte der Komponentenname eines [Lucide-Icons](https://lucide.dev/icons/) sein (ohne das Suffix `Icon`).
+
+Um das Icon für einen Ordner vollständig auszublenden, gib `null` an.
+
+```json filename="_meta.json"
+{
+    "blocks": {
+        "name": "Blöcke",
+        "icon": "Box"
+    }
+}
+```

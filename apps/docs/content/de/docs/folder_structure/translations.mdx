@@ -1,0 +1,54 @@
+import {FileTree} from 'nextra/components';
+import {FileTreeFile} from '@/components/FileTreeFile';
+import {FileTreeFolder} from '@/components/FileTreeFolder';
+import SystemLocalesTable from '@/components/SystemLocalesTable';
+
+# Übersetzungen
+
+Die Dokumentation kann in verschiedene vom Wiki unterstützte Sprachen lokalisiert werden. Dies gilt für alle Seitentypen, Ordner-Metadaten sowie einige Spieldateien (wie z. B. Sprachdateien).
+
+## Platzierung
+
+<FileTree>
+    <FileTreeFolder name="<root>" defaultOpen>
+        <FileTreeFolder name="docs" defaultOpen>
+            <FileTreeFile name="_meta.json"/>
+            <FileTreeFile name="introduction.mdx"/>
+        </FileTreeFolder>
+
+        <FileTreeFolder name="translated" defaultOpen>
+            <FileTreeFolder name="de_de" defaultOpen comment="Folgt derselben Struktur wie das Stammverzeichnis">
+                <FileTreeFolder name="docs" defaultOpen>
+                    <FileTreeFile name="_meta.json"/>
+                    <FileTreeFile name="introduction.mdx"/>
+                </FileTreeFolder>
+            </FileTreeFolder>
+        </FileTreeFolder>
+    </FileTreeFolder>
+</FileTree>
+
+Lokalisierte Dateien müssen im Dokumentationsverzeichnis unter `translated/<lang>` abgelegt werden, wobei `<lang>` der Code deiner gewünschten Sprache ist, wie er in [dieser Tabelle](#unterstützte-sprachen) erscheint.
+
+## Struktur
+
+Die lokalisierte Ordnerstruktur folgt derselben Struktur wie das Projektstammverzeichnis, mit einigen Ausnahmen bezüglich der Dateien, die darunter abgelegt werden können.
+
+Aktuell können die folgenden Inhalte übersetzt werden:
+
+- [Dokumentationsseiten](pages/docs_pages)
+- [Inhaltsseiten](pages/content_pages)
+- [Ordner-Metadaten](folder_meta)
+- [Item-Eigenschaften](game_data#item-eigenschaften)
+
+Übersetzte Inhalte haben beim Laden **Vorrang** vor der Standardsprache.
+Nicht übersetzte Dateien werden jedoch weiterhin angezeigt, auch wenn eine andere Sprache als die Standardsprache ausgewählt ist. Daher wird empfohlen, nach Möglichkeit alle Dateien zu übersetzen.
+
+## Unterstützte Sprachen
+
+Unten findest du eine Tabelle aller derzeit vom Wiki unterstützten Übersetzungszielsprachen. Der `code` entspricht dem Namen des Ordners, der beim Übersetzen der Dokumentation verwendet werden muss. Alle Codes entsprechen denen, die auch von Minecrafts eigenen Paketen verwendet werden.
+
+<SystemLocalesTable />
+
+### Deine Sprache nicht gefunden?
+
+Wenn deine gewünschte Sprache nicht in der Tabelle aufgeführt ist, melde dich auf [Discord](https://discord.sinytra.org) oder [GitHub](https://github.com/Sinytra/Wiki), und wir fügen sie gerne hinzu.
