@@ -85,6 +85,14 @@ async function getItemAsset(location: ResourceLocation, ctx: ProjectContext): Pr
   return null;
 }
 
+async function getLocalAssetFile(location: ResourceLocation, ctx: ProjectContext): Promise<string | null> {
+  const src = await localDocs.getProjectSource(ctx.id);
+  if (src) {
+    return localAssets.resolveAssetPath(src, location);
+  }
+  return null;
+}
+
 async function getDocsIndexPage(ctx: ProjectContext): Promise<ProjectPage | undefined | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
@@ -230,3 +238,5 @@ export const serviceProviderFactory: ServiceProviderFactory = {
     return serviceProvider;
   }
 };
+
+export default { getLocalAssetFile };

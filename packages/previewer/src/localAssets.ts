@@ -9,32 +9,30 @@ function getAssetResourcePath(assetsRoot: string, id: ResourceLocation): string 
 }
 
 async function resolveAsset(source: LocalDocumentationSource, id: ResourceLocation): Promise<AssetLocation | null> {
-  const assetsRoot = source.format.assetsDir;
-  const path = getAssetResourcePath(assetsRoot, id);
-  let src = readLocalImage(path);
-
-  // Legacy asset path
-  if (!src) {
-    src = readLocalImage(
-      getAssetResourcePath(assetsRoot, {
-        namespace: 'item',
-        path: `${id.namespace}/${id.path}`
-      })
-    );
-  }
-
-  return src === null ? null : { id: resourceLocation.toString(id), src };
+  const src = `/api/docs/${encodeURIComponent(source.id)}/asset/${encodeURIComponent(resourceLocation.toString(id))}`;
+  return { src, id: resourceLocation.toString(id) };
 }
 
-function readLocalImage(file: any): string | null {
-  try {
-    const bitmap = fs.readFileSync(file);
-    return 'data:image/png;base64,' + Buffer.from(bitmap).toString('base64');
-  } catch {
-    return null;
+function resolveAssetPath(source: LocalDocumentationSource, id: ResourceLocation): string | null {
+  const assetsRoot = source.format.assetsDir;
+  const path = getAssetResourcePath(assetsRoot, id);
+  if (fs.existsSync(path)) {
+    return path;
   }
+
+  // Legacy asset path
+  const legacyPath = getAssetResourcePath(assetsRoot, {
+    namespace: 'item',
+    path: `${id.namespace}/${id.path}`
+  });
+  if (fs.existsSync(legacyPath)) {
+    return legacyPath;
+  }
+
+  return null;
 }
 
 export default {
-  resolveAsset
+  resolveAsset,
+  resolveAssetPath
 };

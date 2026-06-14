@@ -32,8 +32,13 @@ function getSessionCookieName(): string {
   return process.env.SESSION_COOKIE_NAME ?? '';
 }
 
+function getLocalDocsRoots(): string | null {
+  return process.env.LOCAL_DOCS_ROOTS ?? null;
+}
+
 const env = {
   isPreview,
+  getLocalDocsRoots,
   getBackendSecretApiKey,
   getPosthogEndpointURL,
   getPosthogProjectID,
