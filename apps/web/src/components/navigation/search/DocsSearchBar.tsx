@@ -158,11 +158,11 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
     lockScroll();
   };
   const onBlur = () => {
-    // setFocused(false);
-    // setLoading(false);
-    // setSearchQuery('');
-    //
-    // unlockScroll();
+    setFocused(false);
+    setLoading(false);
+    setSearchQuery('');
+
+    unlockScroll();
   };
 
   // Close on ESC pressed
@@ -173,7 +173,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
     }
 
     if (e.key === 'Escape') {
-      // e.target.blur();
+      e.target.blur();
     }
   };
 
