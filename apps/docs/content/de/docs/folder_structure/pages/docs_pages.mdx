@@ -4,15 +4,15 @@ import {FileTreeFolder} from '@/components/FileTreeFolder';
 
 # Dokumentationsseiten
 
-Dokumentationsseiten folgen einem Leitfaden-ähnlichen Layout *(genau wie die Dokumentation, die du gerade liest)*. Sie eignen sich am besten für Benutzerhandbücher, Tutorials und Entwickler-Dokumentationen deines Projekts.
+Dokumentationsseiten folgen einem leitfadenartigen Layout *(wie die Dokumentation, die du gerade liest)* und eignen sich am besten für Benutzerhandbücher, Tutorials und Entwicklerdokumentation für dein Projekt.
 
-Auf der Wiki-Webseite findest du diese unter dem Reiter „Dokumentation“ des jeweiligen Projekts.
+Auf der Wiki-Website befinden sie sich im Reiter „Dokumentation“ des jeweiligen Projekts.
 
 ## Platzierung
 
 Dokumentationsseiten können beliebig benannt und innerhalb des Projekts verschachtelt werden. Sie müssen zwingend die Dateiendung `.mdx` verwenden.
 
-Ordner, die du im Dateibaum erstellst, erscheinen im Wiki ebenfalls als Ordner in der Sidebar der Dokumentation.
+Ordner, die im Dateibaum erstellt werden, erscheinen im Wiki ebenfalls als Ordner in der Dokumentations-Seitenleiste.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
@@ -28,7 +28,7 @@ Ordner, die du im Dateibaum erstellst, erscheinen im Wiki ebenfalls als Ordner i
 
 ## Beispiel
 
-Hier ist ein Beispiel für eine einfache Dokumentationsseite. Beachte, dass für die Nutzung von Wiki-Komponenten kein Import erforderlich ist.
+Im Folgenden findest du ein Beispiel für eine einfache Dokumentationsseite. Beachte, dass kein Import erforderlich ist, um Wiki-Komponenten zu verwenden.
 
 ```mdx
 # Einleitung
@@ -36,7 +36,7 @@ Hier ist ein Beispiel für eine einfache Dokumentationsseite. Beachte, dass für
 Einleitung zur Beispiel-Mod.
 
 <Callout variant="info">
-  Dies ist ein Info-Callout-Beispiel.
+  Dies ist ein Beispiel für einen Info-Callout.
 </Callout>
 
 -- Hier kommt dein Text hin --
@@ -55,34 +55,38 @@ lacus, id luctus
 
 ## Erstellung
 
-Dokumentationsseiten können die verfügbaren Frontmatter-Eigenschaften sowie alle nicht-interaktiven Komponenten nutzen.
+Dokumentationsseiten können verfügbare Frontmatter-Eigenschaften und alle nicht interaktiven Komponenten verwenden.
 
-Das Markdown-[Format](../pages#format) ist für alle Seitentypen identisch.
+Das Markdown-[Format](../pages#format) wird von allen Seitentypen gemeinsam genutzt.
 
 ### Checkliste
 
 Hier ist eine grundlegende Liste von Dingen, die du beim Schreiben von Dokumentationsseiten beachten solltest:
 
-- [x] Lege [Frontmatter](../pages#metadata)-Eigenschaften nach Bedarf fest.
+- [x] Gib [Frontmatter](../pages#metadaten)-Eigenschaften nach Bedarf an.
 
-- [x] Erstelle eine [Ordner-Metadaten](../folder_meta)-Datei, um die Anzeigenamen der Seiten/Ordner in der Seitenleiste festzulegen.
+<p/>
 
-- [x] Schau dir die verfügbaren [Komponenten](../../components/overview) an, die du einbinden kannst.
+- [x] Erstelle eine [Ordner-Metadaten](../folder_meta)-Datei, um Anzeigenamen von Seiten/Ordnern in der Seitenleiste festzulegen.
+
+<p/>
+
+- [x] Sieh dir verfügbare [Komponenten](../../components/overview) an, die du einbinden kannst.
 
 ## Metadaten
 
-Dokumentationsseiten erfordern keine zwingenden Frontmatter-Attribute, aber du kannst ein paar optionale Eigenschaften angeben.
+Dokumentationsseiten haben keine erforderlichen Frontmatter-Attribute, aber du kannst einige optionale Eigenschaften angeben.
 
 Ein Anwendungsbeispiel mit Erklärungen findest du unten.
 
 ```mdx
 ---
-# ID einer Asset-Ressource, die als Icon des dokumentierten Items angezeigt wird.
-# Es sollte eine Mindestgröße von 128x128 Pixeln haben.
+# Resource Location eines Assets, das als Icon des dokumentierten Items angezeigt wird.
+# Das Asset sollte mindestens 128x128 px groß sein.
 # (Optional)
 icon: examplemod:item/fancy_generator
 
-# Changelog (Versionsverlauf). Siehe übergeordnete Seite für Details.
+# Changelog. Details findest du auf der übergeordneten Seite.
 # (Optional)
 history: ...
 ---
@@ -90,4 +94,4 @@ history: ...
 
 ## Nächste Schritte
 
-Sobald du fertig bist, kannst du dir eine Vorschau deiner Seiten mit unserem [lokalen Vorschau-Tool](../../tools/preview) ansehen!
+Sobald du bereit bist, kannst du deine Seiten mit unserem [lokalen Vorschau-Tool](../../tools/preview) ansehen!

@@ -2,15 +2,15 @@ import {FileTree} from 'nextra/components';
 import {FileTreeFile} from '@/components/FileTreeFile';
 import {FileTreeFolder} from '@/components/FileTreeFolder';
 
-# Dokumentations-Startseite
+# Dokumentationsindex
 
-Das Wiki bietet eine eigene Landingpage für Dokumentationsseiten, die als „Startseite“ angezeigt wird.
+Das Wiki stellt eine eigene Landingpage für Dokumentationsseiten bereit, die als „Startseite“ angezeigt wird.
 
-Standardmäßig wird hier die Projektbeschreibung des verknüpften Plattform-Projekts angezeigt.
+Standardmäßig zeigt diese die Beschreibung des verknüpften Plattform-Projekts an.
 
 ## Platzierung
 
-Die Startseite befindet sich unter `_index.mdx` im Hauptverzeichnis (Root) der Dokumentation.
+Die Indexseite befindet sich als `_index.mdx` im Dokumentationsstammverzeichnis.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
@@ -22,6 +22,6 @@ Die Startseite befindet sich unter `_index.mdx` im Hauptverzeichnis (Root) der D
 
 ## Verwendung
 
-Wenn du eigene Inhalte bereitstellen möchtest, kannst du dies tun, indem du eine `_index.mdx`-Datei in deinem Dokumentationsordner erstellst.
+Wenn du eigene Inhalte bereitstellen möchtest, kannst du eine `_index.mdx`-Datei in deinem Dokumentationsverzeichnis erstellen.
 
-Der Inhalt der Datei folgt demselben Format wie bei [Dokumentationsseiten](pages/docs_pages), mit Ausnahme der Frontmatter-Metadaten, die hier ignoriert werden.
+Der Inhalt der Datei folgt demselben Format wie [Dokumentationsseiten](pages/docs_pages), mit Ausnahme von Frontmatter-Metadaten, die ignoriert werden.

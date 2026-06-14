@@ -4,72 +4,72 @@ import {FileTreeFolder} from '@/components/FileTreeFolder';
 import {Callout} from 'nextra/components';
 import InlineGameItem from '@/components/InlineGameItem';
 
-# Übersicht der Ordnerstruktur
+# Übersicht über die Ordnerstruktur
 
-Wiki-Projekte folgen einer Ordnerstruktur, die der von [Resource Packs](https://minecraft.wiki/w/Resource_pack) oder [Data Packs](https://minecraft.wiki/w/Data_pack) im Spiel sehr ähnlich ist.
+Wiki-Projekte folgen einer Ordnerstruktur, die der Struktur von [Ressourcenpaketen](https://minecraft.wiki/w/Resource_pack) oder [Datenpaketen](https://minecraft.wiki/w/Data_pack) im Spiel ähnelt.
 
-Wir haben uns davon inspirieren lassen, um Autoren, die bereits Erfahrung mit Mods oder Modpacks haben, den Einstieg zu erleichtern – und auch, weil es so kaum Aufwand erfordert, Mod-Inhalte direkt wiederzuverwenden.
+Wir haben uns daran orientiert, damit Autoren, die bereits Erfahrung mit Mods oder Modpacks haben, dieses Format leichter erlernen können. Außerdem sind dadurch nur wenige bis keine zusätzlichen Schritte nötig, um Mod-Inhalte wiederzuverwenden.
 
-Diese Seite gibt dir einen grundlegenden Überblick. Die einzelnen Funktionen werden auf ihren jeweiligen Unterseiten in dieser Kategorie genauer beschrieben.
+Diese Seite bietet einen grundlegenden Überblick über die Ordnerstruktur. Die einzelnen Funktionen werden jeweils auf einer eigenen Seite in dieser Kategorie ausführlicher beschrieben.
 
-## Die Grundlagen
+## Grundlagen
 
-Die wichtigsten Dateien, die du zum Schreiben der Dokumentation benötigst, sind die Wiki-Metadaten-Datei, Ordner-Metadaten und die eigentlichen Dokumentationsseiten.
+Die grundlegenden Dateien, die du zum Schreiben von Dokumentation benötigst, sind die Wiki-Metadaten-Datei, Ordner-Metadaten-Dateien und Dokumentationsseiten.
 
 ### `sinytra-wiki.json`
 
-Diese Datei ist das „Herz“ deines Dokumentationspakets. Sie enthält die grundlegenden Identifizierungsmerkmale des Projekts sowie zusätzliche Metadaten, die Informationen für die Nutzer bereitstellen.
+Diese Datei dient als „Herz“ des Dokumentationspakets. Sie enthält grundlegende Identifikationsinformationen zum Projekt sowie zusätzliche Metadaten, mit denen Informationen für Nutzer angezeigt werden können.
 
 Details findest du auf der Seite [Wiki-Metadaten](wiki_meta).
 
 ### `_meta.json`
 
-Diese Datei kann sowohl im Root-Verzeichnis als auch in jedem Unterordner liegen. Sie definiert die Anzeigenamen für Dateien und Ordner in der Sidebar-Navigation des Wikis und legt die Reihenfolge fest, in der sie erscheinen.
+Diese Datei kann im Stammordner sowie in jedem Unterordner platziert werden. Sie stellt Anzeigenamen für Dateien und Ordner bereit, die in der Dokumentations-Navigationsleiste des Wikis angezeigt werden, und legt außerdem fest, in welcher Reihenfolge sie angezeigt werden.
 
-Falls keine vorhanden ist, werden automatisch Standardnamen generiert.
+Falls keine Datei bereitgestellt wird, werden automatisch Fallback-Anzeigenamen generiert.
 
 Details findest du auf der Seite [Ordner-Metadaten](folder_meta).
 
 ## Seitendateien (`*.mdx`)
 
-Seitendateien enthalten die eigentlichen Inhalte in einem erweiterten Markdown-[Format](../tools/format).
+Seitendateien enthalten Dokumentationsinhalte in einem erweiterten Markdown-[Format](../tools/format).
 
-Es gibt zwei Arten von Seiten im Wiki, die beide **gleichzeitig** genutzt werden können:
+Im Wiki gibt es zwei Arten von Seiten, die beide **gleichzeitig** verwendet werden können:
 
-### <InlineGameItem id="grass_block" /> Inhaltsseiten (Content Pages)
+### <InlineGameItem id="grass_block" /> Inhaltsseiten
 
 - Traditioneller [Wiki-Stil](https://minecraft.wiki/w/Furnace)
 
-- Keine feste Lesereihenfolge
+- Keine Lesereihenfolge
 
-- Empfohlen für alle **In-Game-Inhalte** wie Blöcke, Items, Entities usw.
+- Empfohlen für alle **Inhalte im Spiel**, wie Blöcke, Items, Entitäten usw.
 
 ### <InlineGameItem id="book" /> Dokumentationsseiten
 
-- Enthalten leitfadenähnliche Dokumentationen, ähnlich wie diese Seite, auf der du dich gerade befindest
+- Enthalten leitfadenartige Dokumentation, ähnlich wie diese Seite, auf der du dich gerade befindest
 
 - Vorgegebene Lesereihenfolge
 
-- Empfohlen für **Anleitungen** (Guides) und API- / **Entwickler-Dokumentation**
+- Empfohlen für **Leitfäden** und API- / **Entwicklerdokumentation**
 
 Vollständige Details findest du auf der Seite [Seiten](pages).
 
 ## Funktionen
 
-Hier findest du detaillierte Erklärungen zu den verfügbaren Funktionen:
+Auf den folgenden Seiten findest du detaillierte Erklärungen zu den verfügbaren Funktionen:
 
 - [Startseite](homepage) – Erstelle eine eigene Startseite für deine Dokumentation
-- [Assets](assets) – Füge Bilder und andere Medien zu deinem Wiki hinzu
-- [Inhaltsseiten](pages) – Dokumentiere In-Game-Inhalte
-- [Spieldaten](game_data) – Importiere nahtlos Rezepte, Tags und andere Spieldaten
-- [Übersetzungen](translations) – Mache dein Wiki international mit übersetzten Seiten
+- [Assets](assets) – Füge deinem Wiki Bilder und andere Assets hinzu
+- [Inhaltsseiten](pages) – Dokumentiere Inhalte im Spiel
+- [Spieldaten](game_data) – Importiere nahtlos Rezepte, Tags und andere Inhalte aus dem Spiel
+- [Übersetzungen](translations) – Internationalisiere dein Wiki mit übersetzten Seiten
 
-## Komplettes Beispiel
+## Vollständiges Beispiel
 
-Unten siehst du ein Beispiel für eine vollständige Wiki-Ordnerstruktur, die alle unterstützten Funktionen nutzt.
+Unten findest du ein vollständiges Beispiel der Wiki-Ordnerstruktur, das alle unterstützten Funktionen verwendet.
 
 <Callout>
-    Die Ordnerstruktur ist interaktiv: Klicke auf die Ordner, um deren Inhalt auszuklappen.
+    Die Ordnerstruktur ist interaktiv. Klicke auf einzelne Ordner, um deren Inhalte auszuklappen.
 </Callout>
 
 <FileTree>

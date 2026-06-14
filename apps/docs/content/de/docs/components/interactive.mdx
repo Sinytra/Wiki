@@ -1,16 +1,17 @@
 # Interaktive Komponenten
 
-Interaktive Komponenten können auf [Inhaltsseiten](../folder_structure/pages/content_pages) verwendet werden, um dynamische Informationen basierend auf den [Spieldateien](../folder_structure/game_data) im Projekt anzuzeigen.
+Interaktive Komponenten können auf [Inhaltsseiten](../folder_structure/pages/content_pages) verwendet werden, um dynamische Informationen basierend auf [Spieldatendateien](../folder_structure/game_data) im Projekt anzuzeigen.
 
 ## Vorgefertigt
 
 Vorgefertigte Komponenten können als „Drag-and-Drop“-Bausteine beschrieben werden, die vorgefertigte Teile der Dokumentation bereitstellen.
 
-Normalerweise erfordern sie keine Angabe von Attributen, da sie diese „magisch“ aus dem Kontext auflösen können.
+Sie erfordern in der Regel keine Angabe von Attributen und können diese „magisch“ aus dem Kontext auflösen.
 
 ### `PrefabObtaining`
 
-Fügt der Seite einen Abschnitt „Herstellung“ hinzu, der Crafting-Rezepte anzeigt, mit denen das beschriebene Item erhalten werden kann. Die ID des Items wird automatisch aus der `id`-Eigenschaft im Frontmatter der Seite bezogen.
+Fügt der Seite einen Abschnitt „Herstellung“ hinzu, der Crafting-Rezepte anzeigt, mit denen das beschriebene Item erhalten werden kann.
+Die ID des Items wird aus der Frontmatter-Eigenschaft `id` der Seite entnommen.
 
 *Diese Komponente erfordert das Hinzufügen von Rezepten zu den [Spieldaten](../folder_structure/game_data) in deinem Projekt.*
 
@@ -20,7 +21,8 @@ Fügt der Seite einen Abschnitt „Herstellung“ hinzu, der Crafting-Rezepte an
 
 ### `PrefabUsage`
 
-Fügt der Seite einen Abschnitt „Verwendung“ hinzu, der eine Liste von Items enthält, für deren Herstellung dieses Item verwendet werden kann. Die ID des Items wird automatisch aus der `id`-Eigenschaft im Frontmatter der Seite bezogen.
+Fügt der Seite einen Abschnitt „Verwendung“ hinzu, der eine Liste von Items enthält, die mit diesem Item erhalten werden können.
+Die ID des Items wird aus der Frontmatter-Eigenschaft `id` der Seite entnommen.
 
 *Diese Komponente erfordert das Hinzufügen von Rezepten zu den [Spieldaten](../folder_structure/game_data) in deinem Projekt.*
 

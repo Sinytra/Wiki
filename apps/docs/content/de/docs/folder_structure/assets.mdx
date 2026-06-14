@@ -6,12 +6,12 @@ import {FileTreeFolder} from '@/components/FileTreeFolder';
 # Assets
 
 <Callout>
-    Spare dir die Zeit, deine Item-Render manuell zu exportieren! Unser zugehöriges [**Gradle-Plugin**](../tools/gradle) lässt sich in gängige Modloader-Toolchains integrieren und kann **automatisch gerenderte Assets** für dich generieren.
+    Spare dir die Zeit, Item-Renderings manuell zu exportieren, indem du unser zugehöriges [**Gradle-Plugin**](../tools/gradle) verwendest. Es lässt sich in gängige Modloader-Toolchains integrieren und kann **gerenderte Assets** automatisch für dich generieren!
 </Callout>
 
 Assets werden verwendet, um Bilder von Items, Blöcken und anderen Projektinhalten auf der gesamten Website anzuzeigen.
 
-Diese können als Teil von Crafting-Rezepten, Sidebar-Informationen oder in eigenen Komponenten genutzt werden.
+Sie können als Teil von Crafting-Rezepten, Informationen in der Seitenleiste oder benutzerdefinierten Komponenten verwendet werden.
 
 ## Platzierung
 
@@ -25,7 +25,7 @@ Diese können als Teil von Crafting-Rezepten, Sidebar-Informationen oder in eige
                 </FileTreeFolder>
 
                 <FileTreeFolder name="item" defaultOpen>
-                    <FileTreeFile name="example_item.png" comment="Referenziert über <namespace>:example_item"/>
+                    <FileTreeFile name="example_item.png" comment="Referenziert über <namespace>:item/example_item"/>
                 </FileTreeFolder>
             </FileTreeFolder>
         </FileTreeFolder>
@@ -34,11 +34,11 @@ Diese können als Teil von Crafting-Rezepten, Sidebar-Informationen oder in eige
 
 ## Format
 
-Assets werden über [Identifier](https://minecraft.wiki/w/Identifier) identifiziert, wobei dieselbe Syntax wie im Spiel verwendet wird. Es wird empfohlen, die Namen der Assets mit den In-Game-IDs der Objekte abzugleichen, zu denen sie gehören.
+Assets werden über [Identifier](https://minecraft.wiki/w/Identifier) identifiziert und verwenden dieselbe Syntax wie im Spiel selbst. Es wird empfohlen, Asset-Namen an die IDs der zugehörigen Objekte im Spiel anzugleichen.
 
-Gerenderte Projekt-Assets (sowohl **Items als auch Blöcke**) sollten unter `assets/(modid)` im Dokumentationsverzeichnis abgelegt werden, wobei `modid` der Namespace der jeweiligen Textur ist.
+Gerenderte Projekt-Assets, einschließlich **Items und Blöcke**, sollten im Dokumentationsverzeichnis unter `assets/(modid)` abgelegt werden, wobei `modid` der Namespace jeder Textur ist, die du bereitstellen möchtest.
 
-Standardmäßig verweisen Identifier auf `.png`-Dateien. Falls eine Datei ein anderes Format hat, kann die entsprechende Dateiendung einfach an den Identifier angehängt werden.
+Standardmäßig verweisen Identifier auf `.png`-Dateien. Eine benutzerdefinierte Dateiendung kann an den Identifier angehängt werden, falls die Datei ein anderes Format hat.
 
 Der Name der Datei kann frei gewählt werden.
 
@@ -56,49 +56,49 @@ Der Name der Datei kann frei gewählt werden.
 
 <p/>
 
-- `minecraft:crafting_table` oder `crafting_table` - Zeigt einen 3D-Render der Werkbank an.
+- `minecraft:crafting_table` oder `crafting_table` - Zeigt ein 3D-Rendering der Werkbank an.
 
 ## Verwendung
 
-Assets werden im Wiki je nach Feature für verschiedene Zwecke eingesetzt.
+Assets werden dir im Wiki je nach Funktion für verschiedene Zwecke begegnen.
 
 Die häufigsten Anwendungsfälle sind:
 
 - Anzeigen von Bildern an beliebigen Stellen auf [Seiten](pages#erweiterungen).
 
-- Bereitstellen von Icons für [Seiten](pages#metadaten) durch Angabe des `icon`-Attributs im Frontmatter.
+- Bereitstellen von Icons für [Seiten](pages#metadaten) durch Angabe des `icon`-Frontmatter-Attributs.
 
-- Bereitstellen von Icons für [Inhaltsseiten](pages/content_pages). Hierbei wird die `id` aus dem Frontmatter automatisch als Pfad für das Asset verwendet.
+- Bereitstellen von Icons für [Inhaltsseiten](pages/content_pages), die automatisch über das `id`-Frontmatter-Attribut der Seite als Asset-Adresse bezogen werden.
 
-- Darstellung von Items in [Rezepten](game_data#rezepte).
+- Anzeigen von Items in [Rezepten](game_data#rezepte).
 
 - Abspielen von [Audio](../components/common#audio)-Dateien.
 
 ## Hinweis zu Item-Assets
 
 <Callout type="important">
-    Zusammengefasst: Hinterlege die Inventar-Renderings deiner Items unter `assets/(modid)/item`
+    Kurzfassung: Lege Inventar-Renderings deiner Items unter `assets/(modid)/item` ab
 </Callout>
 
-Das Wiki nutzt einen festen Asset-Speicherort, um an bestimmten Stellen Inventar-Renderings von Items anzuzeigen (z. B. bei der Verknüpfung von Item-IDs mit Assets).
-Dazu gehören typischerweise die Icons von Inhaltsseiten, Standard-Layouts von Infoboxen sowie Rezepte und die vorgefertigten Komponenten für die Rezeptverwendung.
+Das Wiki verwendet eine feste Asset-Adresse, um Inventar-Renderings von Items an bestimmten Stellen anzuzeigen, z. B. beim Mapping von Item-IDs auf Assets.
+Typische Verwendungsfälle sind Icons von Inhaltsseiten, Standard-Infobox-Layouts, Rezepte und vorgefertigte Komponenten für Rezeptverwendungen.
 
-Bei Inhaltsseiten und der Infobox können die Standard-Speicherorte im Frontmatter der Seite überschrieben werden.
-Bei den integrierten Komponenten muss das Wiki jedoch in der Lage sein, ein passendes Item-Asset zu finden und anzuzeigen – **und das nur anhand seiner ID**.
+Bei Inhaltsseiten und der Infobox können Standard-Adressen im Frontmatter der Seite überschrieben werden.
+Bei integrierten Komponenten muss das Wiki jedoch ein passendes Item-Asset finden und anzeigen können, **wenn es nur dessen ID kennt**.
 
-Das Wiki sucht nach diesen Assets unter `<modid>:item/<item_id>`, was in deinem Projekt dem Pfad `<root>/assets/<modid>/item/<item_id>` entspricht.
+Das Wiki sucht nach diesen Assets unter `<modid>:item/<item_id>`, was in deinem Projekt `<root>/assets/<modid>/item/<item_id>` entspricht.
 
 Um beispielsweise `examplemod:generator` anzuzeigen, wird das Bild unter `<root>/assets/examplemod/item/generator.png` abgelegt.
 
 ## Erlaubte Dateitypen
 
-Aus Sicherheitsgründen können nur bestimmte Dateitypen in Wiki-Projekten verwendet werden (unabhängig vom Speicherort).
+Aus Sicherheitsgründen dürfen nur bestimmte Dateitypen in Wiki-Projekte eingebunden werden, unabhängig vom Speicherort.
 
 Derzeit werden die folgenden Formate unterstützt:
 
 - MDX-Dokumente: `.mdx`
 - JSON-Daten: `.json`
-- Bilder: `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`
+- Bilder: `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`, `.svg`
 - Audio: `.ogg`, `.mp3`, `.wav`
 
 Wenn du eine Datei einbinden möchtest, die hier nicht aufgeführt ist, kannst du dich gerne an uns wenden.

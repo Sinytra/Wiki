@@ -1,10 +1,10 @@
 # Lokale Vorschau
 
-Das Wiki bietet ein lokales Vorschau-Tool an. Damit kannst du eine nahezu identische Vorschau deiner Dokumentation direkt auf deinem Rechner aufrufen, bevor sie offiziell auf der Website veröffentlicht wird.
+Das Wiki bietet eine lokale Vorschau, mit der du lokal eine nahezu identische Vorschau deiner Dokumentation erhalten kannst, verglichen mit dem, was nach der Veröffentlichung auf der Website angezeigt wird.
 
 ## Voraussetzungen
 
-Um die lokale Vorschau zu nutzen, müssen folgende Bedingungen erfüllt sein:
+Um die lokale Vorschau auszuführen, musst du Folgendes tun:
 
 - [x] Installiere das [Gradle-Plugin](gradle) des Wikis in deinem Projekt.
 
@@ -14,20 +14,20 @@ Um die lokale Vorschau zu nutzen, müssen folgende Bedingungen erfüllt sein:
 
 ## Verwendung
 
-Um die lokale Vorschau zu starten, führe den Gradle-Task `previewDocs` aus. Dieser richtet die lokale Wiki-Umgebung ein und startet sie.
+Um die lokale Vorschau zu starten, führe den Gradle-Task `previewDocs` aus. Dadurch wird die lokale Wiki-Umgebung eingerichtet und gestartet.
 
-Sobald der Vorgang abgeschlossen ist, ist die Vorschau unter `http://localhost:3000` erreichbar.
+Sobald alles bereit ist, ist sie unter `http://localhost:3000` verfügbar.
 
 ## Bekannte Probleme
 
-Die Verwendung von `org.gradle.daemon=false` verhindert, dass der npm-Task beendet wird, wenn Gradle gestoppt wird, wodurch er im Hintergrund weiterläuft. Bitte überprüfe deine `gradle.properties`-Datei und stelle sicher, dass diese Eigenschaft entweder auf `true` gesetzt oder komplett entfernt ist.
+Die Verwendung von `org.gradle.daemon=false` führt dazu, dass der npm-Task beim Stoppen von Gradle nicht beendet wird und im Hintergrund weiterläuft. Bitte prüfe deine `gradle.properties`-Datei und stelle sicher, dass diese Eigenschaft entweder auf `true` gesetzt oder vollständig entfernt ist.
 
 ## Einschränkungen
 
-Aufgrund technischer Limitierungen sind bestimmte Funktionen in der lokalen Vorschau eventuell nicht verfügbar. An deren Stelle werden, wo möglich, Platzhalter angezeigt.
+Bestimmte Funktionen können in lokalen Vorschauen aufgrund technischer Einschränkungen nicht verfügbar sein. Wo zutreffend, werden an ihrer Stelle Platzhalter angezeigt.
 
-Dies betrifft unter anderem:
+Dazu gehören unter anderem:
 
 - CurseForge-Projektinformationen (aufgrund von API-Beschränkungen seitens CurseForge).
 
-- Spieldaten wie Rezepte und Tags.
+- Spielrezepte und Tags.

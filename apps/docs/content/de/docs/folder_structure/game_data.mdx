@@ -5,20 +5,20 @@ import {FileTreeFolder} from '@/components/FileTreeFolder';
 # Spieldaten
 
 <Callout type="warning">
-    Um dieses Feature nutzen zu können, musst du die Eigenschaft `modid` in deiner [Wiki-Metadaten](wiki_meta#Format)-Datei angeben.
+    Um diese Funktion nutzen zu können, musst du die Eigenschaft `modid` in deiner [Wiki-Metadaten](wiki_meta#modid)-Datei angeben.
 </Callout>
 
-Das Wiki kann bestimmte Spieldateien nutzen, um dein Projekt mit präzisen Informationen zu bereichern, die normalerweise nur im Spiel verfügbar sind. Dazu gehören Rezepte, Crafting-Verwendungen, Metadaten-Eigenschaften von Items, Tags und mehr.
+Das Wiki kann bestimmte Spieldateien umfassend nutzen, um dein Projekt mit präzisen Informationen anzureichern, die normalerweise nur im Spiel verfügbar sind. Dazu gehören zum Beispiel Rezepte, Crafting-Verwendung, Metadaten-Eigenschaften von Items, Tags und mehr.
 
 Mod-Projekten wird dringend empfohlen, Spieldatendateien in Kombination mit [Inhaltsseiten](pages/content_pages) zu verwenden, um das beste Nutzererlebnis zu bieten.
 
 ## Sprachdateien
 
-Sprachdateien werden verwendet, um die Namen von Blöcken und Items in anderen Komponenten (wie Rezepten) anzuzeigen. Sie liefern auch Namen für Objekte, die nur im Wiki existieren, wie zum Beispiel benutzerdefinierte [Rezepttypen](#benutzerdefinierte-rezepttypen).
+Sprachdateien werden verwendet, um die Namen von Blöcken und Items in anderen Komponenten, etwa Rezepten, anzuzeigen. Außerdem stellen sie Namen für Objekte bereit, die nur im Wiki existieren, insbesondere benutzerdefinierte [Rezepttypen](#benutzerdefinierte-rezepttypen).
 
 ### Platzierung
 
-Sprachdateien werden im Ordner `assets` abgelegt und folgen denselben **Struktur- und Dateinamenskonventionen** wie Ressourcenpakete im Spiel. Dadurch kannst du dein gesamtes Sprachverzeichnis aus deiner Mod einfach **ohne zusätzliche Schritte kopieren**.
+Sprachdateien werden im Ordner `assets` abgelegt und folgen denselben **Struktur- und Dateinamenskonventionen** wie Ressourcenpakete im Spiel. Dadurch kannst du dein gesamtes Sprachverzeichnis aus deiner Mod einfach **ohne zusätzliche Schritte übernehmen**.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
@@ -27,7 +27,7 @@ Sprachdateien werden im Ordner `assets` abgelegt und folgen denselben **Struktur
                 <FileTreeFolder name="lang" defaultOpen>
                     <FileTreeFile name="en_us.json"/>
                     <FileTreeFile name="de_de.json"/>
-                    <FileTreeFile name="<sprach_code>.json"/>
+                    <FileTreeFile name="<sprachcode>.json"/>
                 </FileTreeFolder>
             </FileTreeFolder>
         </FileTreeFolder>
@@ -36,17 +36,17 @@ Sprachdateien werden im Ordner `assets` abgelegt und folgen denselben **Struktur
 
 ### Verarbeitung
 
-Das Wiki löst Item-Namen über Sprach-Keys auf, die dem Format `item.<namespace>.<path>` folgen.
+Das Wiki löst Item-Namen über Sprachschlüssel auf, die dem Format `item.<namespace>.<path>` folgen.
 
-Beispiel: Der Name für `examplemod:generator` würde auf `item.examplemod.generator` in der entsprechenden Sprachdatei verweisen.
+Der Name für `examplemod:generator` würde beispielsweise auf `item.examplemod.generator` in der entsprechenden Sprachdatei verweisen.
 
-Falls einige deiner Items benutzerdefinierte Key-Pfade verwenden, passe diese bitte in den Wiki-Sprachdateien an, damit sie dieser Konvention folgen.
+Wenn einige deiner Items benutzerdefinierte Schlüsselpfade verwenden, passe sie in den Wiki-Sprachdateien entsprechend an, damit sie dieser Konvention folgen.
 
 ## Tags
 
-Tags werden vom Wiki verwendet, um Items in Rezepten aufzulösen. Wir empfehlen, alle Tags deiner Mod im Projekt einzubinden, um Probleme bei der Auflösung zu vermeiden.
+Tags werden vom Wiki verwendet, um Items in Rezepten aufzulösen. Es wird empfohlen, alle Tags deiner Mod in das Projekt einzubinden, um Probleme bei der Auflösung zu vermeiden.
 
-Wenn deine Mod Tags im `c`-Namespace definiert oder Tags aus anderen Mods verwendet, solltest du diese ebenfalls einbinden.
+Wenn deine Mod Tags im `c`-Namespace definiert oder Tags aus einer anderen Mod verwendet, solltest du diese ebenfalls einbinden.
 
 ### Platzierung
 
@@ -82,9 +82,9 @@ Tags werden im Ordner `data` abgelegt und folgen derselben Struktur wie Datenpak
     Vanilla-Rezepte können einfach ohne zusätzliche Schritte in Wiki-Projekte kopiert werden – wir kümmern uns um den Rest.
 </Callout>
 
-Du kannst deine Rezepte ins Wiki importieren und ganz einfach auf den Seiten anzeigen. Wir unterstützen sowohl Vanilla- als auch benutzerdefinierte Rezepte.
+Du kannst deine Rezepte in das Wiki importieren und einfach auf Seiten anzeigen. Wir unterstützen sowohl Vanilla- als auch benutzerdefinierte Rezepte.
 
-Folgende Vanilla-Rezepttypen werden unterstützt:
+Die folgenden Vanilla-Rezepttypen werden unterstützt:
 
 - `minecraft:blasting`
 - `minecraft:campfire_cooking`
@@ -95,7 +95,7 @@ Folgende Vanilla-Rezepttypen werden unterstützt:
 - `minecraft:smoking`
 - `minecraft:stonecutting`
 
-Benutzerdefinierte Rezepttypen müssen separat definiert werden und werden weiter unten erklärt.
+Benutzerdefinierte Rezepttypen müssen separat definiert werden und werden weiter unten genauer erklärt.
 
 ### Platzierung
 
@@ -117,7 +117,7 @@ Rezepte werden im Ordner `data` abgelegt und folgen derselben Struktur wie Daten
 
 ### Verwendung
 
-Um Rezepte (einschließlich benutzerdefinierter) auf Inhaltsseiten anzuzeigen, kannst du die Komponente [`PrefabObtaining`](/docs/components/interactive#prefabobtaining) verwenden. Diese zeigt automatisch ein zur Seiten-ID passendes Rezept an (empfohlen). Alternativ erlaubt die Komponente [`ProjectRecipe`](/docs/components/common#projectrecipe) die Anzeige eines Rezepts für eine bestimmte ID.
+Um Rezepte, einschließlich benutzerdefinierter Rezepte, auf Inhaltsseiten anzuzeigen, kannst du die Komponente [`PrefabObtaining`](/docs/components/interactive#prefabobtaining) verwenden. Sie zeigt automatisch ein Rezept an, das zur ID der Seite passt (empfohlen). Alternativ kannst du mit der Komponente [`ProjectRecipe`](/docs/components/common#projectrecipe) ein Rezept für eine angegebene ID anzeigen.
 
 Beispiel:
 
@@ -135,13 +135,13 @@ id: examplemod:steel_ingot
 
 ## Benutzerdefinierte Rezepttypen
 
-Zusätzlich zu den Vanilla-Rezepten kannst du eigene Rezepttypen definieren, die im Wiki angezeigt werden können.
+Zusätzlich zu Vanilla-Rezepten kannst du eigene Rezepttypen definieren, die im Wiki angezeigt werden können.
 
-Diese werden verwendet, um dem Wiki mitzuteilen, wie die Rezeptanzeige aufgebaut sein soll und wo sich die einzelnen Item-Slots befinden.
+Diese werden effektiv verwendet, um dem Wiki mitzuteilen, wie deine Rezeptanzeige aufgebaut sein soll und wo sich die einzelnen Item-Slots befinden.
 
 ### Platzierung
 
-Benutzerdefinierte Rezepttypen werden unter `recipe_type` in einem Namespace-Verzeichnis abgelegt, auf derselben Ebene wie `recipe`.
+Benutzerdefinierte Rezepttypen werden unter `recipe_type` in einem Datenverzeichnis mit Namespace abgelegt, auf derselben Ebene wie `recipe`.
 
 <FileTree>
     <FileTreeFolder name="<root>" defaultOpen>
@@ -158,24 +158,24 @@ Benutzerdefinierte Rezepttypen werden unter `recipe_type` in einem Namespace-Ver
 
 ### Format
 
-Rezepttypen werden über eine JSON-Datei mit 3 **Pflichteigenschaften** definiert:
+Rezepttypen werden über eine JSON-Datei mit 3 **erforderlichen** Eigenschaften definiert:
 
 - `background`
-  - Eine [Asset](assets)-ID, die auf ein Bild verweist, das als Hintergrund für die Rezeptanzeige dient.
+  - Ein [Asset](assets)-Identifier, der auf ein Asset verweist, das als Hintergrund der Rezeptanzeige verwendet wird.
 
-- `inputSlots` und `outputSlots`
-  - Ein Objekt, bei dem jeder Schlüssel den Namen eines Slots darstellt und die Werte dessen `x`- und `y`-Koordinaten angeben.
-  - Du kannst die Namen deiner Slots frei wählen. Diese werden später mit den Slot-Namen in den benutzerdefinierten [Rezeptdateien](#format-für-benutzerdefinierte-rezepte) abgeglichen.
-  - Die beiden Eigenschaften repräsentieren die Eingänge (Inputs) bzw. Ausgänge (Outputs) des Rezepts.
-  - Slot-Koordinaten beziehen sich auf das Hintergrundbild.
-  - **Jeder Slot ist 32 Pixel groß** (im Gegensatz zu 16 Pixeln im Spiel!). Die in den Slots angezeigten Items nutzen diese Größe.
+- `input_slots` und `output_slots`
+  - Ein Objekt, bei dem jeder Schlüssel den Namen eines Slots repräsentiert und die Werte dessen `x`- und `y`-Koordinaten angeben.
+  - Du kannst die Namen deiner Slots frei wählen. Sie werden später mit den Slot-Namen in benutzerdefinierten [Rezeptdateien](#format-für-benutzerdefinierte-rezepte) abgeglichen, wie weiter unten beschrieben.
+  - Die beiden Eigenschaften repräsentieren die Eingaben bzw. Ausgaben des Rezepts.
+  - Slot-Koordinaten sind relativ zum Hintergrund.
+  - **Jeder Slot ist 32 Pixel groß** (im Gegensatz zu 16 Pixeln im Spiel!). Items, die in Slots angezeigt werden, verwenden diese Größe.
 
-Um die genauen Positionen deiner Slots zu finden, empfehlen wir ein Rastergrafikprogramm wie [GIMP](https://www.gimp.org/).
+Um die exakten Positionen deiner Slots zu finden, empfehlen wir ein Rastergrafikprogramm wie [GIMP](https://www.gimp.org/).
 
 ### Beispiel
 
 <Callout>
-    Jedes unterstützte Asset kann als Hintergrund verwendet werden, auch **GIFs**. Diese können genutzt werden, um Fortschrittsanimationen wie im Spiel anzuzeigen.
+    Jedes unterstützte Asset kann als Hintergrund verwendet werden, einschließlich **GIFs**, die genutzt werden können, um Fortschrittsanimationen ähnlich wie in Rezeptanzeige-Mods im Spiel darzustellen.
 </Callout>
 
 ```json
@@ -190,7 +190,7 @@ Um die genauen Positionen deiner Slots zu finden, empfehlen wir ein Rastergrafik
 }
 ```
 
-Ein reales Beispiel für Vanilla-Schmelzrezepte und deren Hintergrund siehst du hier:
+Ein praktisches Beispiel findest du unten in der internen Rezepttyp-Datei für Vanilla-Schmelzrezepte und ihrem Hintergrund.
 
 ```json
 {
@@ -208,24 +208,25 @@ Ein reales Beispiel für Vanilla-Schmelzrezepte und deren Hintergrund siehst du 
 
 ## Format für benutzerdefinierte Rezepte
 
-Rezepte, die einen benutzerdefinierten Rezepttyp verwenden, müssen ein spezielles, minimales Format für das Wiki nutzen (anstatt des Formats für Vanilla-Rezepte).
+Rezepte, die einen benutzerdefinierten Rezepttyp verwenden, müssen ein benutzerdefiniertes, minimales Format verwenden, das speziell für das Wiki vorgesehen ist, statt des Formats, das Vanilla-Rezepte verwenden.
 
-Das JSON-Format definiert folgende **Pflichteigenschaften**:
+Das JSON-Dateiformat definiert die folgenden **erforderlichen** Eigenschaften:
 
 - `type`
-  - ID des zu verwendenden benutzerdefinierten Rezepttyps. Die IDs für Rezepttypen werden auf dieselbe Weise berechnet wie Rezept-IDs in Datapacks.
+  - ID des zu verwendenden benutzerdefinierten Rezepttyps.
+    IDs für Rezepttypen werden auf dieselbe Weise berechnet wie Rezept-IDs in Datenpaketen.
 
 - `input`
-  - Map von [Input-Slot](#format)-Namen zu Zutaten.
-  - Jede Zutat kann folgendes sein:
+  - Map von [Input-Slot](#format)-Namen zu Eingabezutaten.
+  - Jede Eingabezutat kann eine der folgenden Formen haben:
     - Eine einzelne Item- oder Tag-ID – `minecraft:iron_ingot` / `#c:ingots/iron`
-    - Ein Array von Items oder Tags: `[ "minecraft:iron_ingot", "#c:ingots/iron" ]`
-    - Ein Objekt, bei dem `id` eine der obigen Angaben ist und `count` die Menge festlegt.
+    - Ein Array einzelner Items oder Tags: `[ "minecraft:iron_ingot", "#c:ingots/iron" ]`
+    - Ein Objekt, bei dem `id` eine der obigen Angaben ist und `count` die Eingabemenge angibt.
 
 - `output`
-    - Map von [Output-Slot](#format)-Namen zu Item-Stacks.
-    - Jeder Output besteht aus einem einzelnen Item-Stack.
-    - Ein Item-Stack hat zwei Eigenschaften: `id` für die Item-ID und `count` für die Anzahl.
+  - Map von [Output-Slot](#format)-Namen zu Ausgabe-Item-Stacks.
+  - Jede Ausgabe besteht aus einem einzelnen Item-Stack.
+  - Ein Item-Stack hat zwei Eigenschaften: `id` für die Item-ID und `count`.
 
 ### Beispiel
 
@@ -253,7 +254,7 @@ Das JSON-Format definiert folgende **Pflichteigenschaften**:
 
 ## Werkbänke
 
-Hier kannst du festlegen, welche Blöcke zur Verarbeitung bestimmter Rezepttypen (Vanilla und benutzerdefiniert) verwendet werden können. Diese werden bei jedem Rezept angezeigt.
+Mit Werkbänken kannst du festlegen, welche Blöcke zur Verarbeitung bestimmter Rezepttypen verwendet werden können, sowohl Vanilla- als auch benutzerdefinierte Rezepttypen. Diese werden zusammen mit jedem Rezept angezeigt.
 
 ### Platzierung
 
@@ -269,11 +270,11 @@ Werkbänke werden in einer Datei namens `workbenches.json` im Verzeichnis `data/
     </FileTreeFolder>
 </FileTree>
 
-Das Format ist ein einfaches Objekt, bei dem die Schlüssel Rezepttyp-IDs und die Werte Item-IDs sind.
+Das Format ist ein einfaches Objekt, bei dem Schlüssel eine Rezepttyp-ID repräsentieren und Werte Item-IDs sind.
 
 ### Beispiel
 
-Ein minimales Beispiel für das Vanilla-Crafting würde so aussehen:
+Ein minimales Beispiel für Vanilla-Crafting würde so aussehen:
 
 ```json
 {
@@ -287,10 +288,10 @@ Ein minimales Beispiel für das Vanilla-Crafting würde so aussehen:
 ## Item-Eigenschaften
 
 <Callout>
-    Die Datei mit den Item-Eigenschaften kann ganz einfach über unsere Entwickler-[Integration](../tools/gradle) generiert werden.
+    Die Datei für Item-Eigenschaften kann einfach über unsere Entwickler-[Integration](../tools/gradle) generiert werden.
 </Callout>
 
-Die Datei für Item-Eigenschaften wird verwendet, um Metadaten von Blöcken und Items zu definieren, die in der Sidebar von [Inhaltsseiten](pages/content_pages) angezeigt werden. Dazu gehören normalerweise Werte wie das benötigte Werkzeug, die Stapelgröße, Härte und Explosionswiderstand.
+Die Datei für Item-Eigenschaften wird verwendet, um Metadaten-Eigenschaften von Blöcken und Items zu definieren, die in der Seitenleiste von [Inhaltsseiten](pages/content_pages) angezeigt werden. Dazu gehören üblicherweise Werte wie das erforderliche Werkzeug zum Abbauen eines Blocks, die maximale Stapelgröße, Härte und Explosionswiderstand.
 
 ### Platzierung
 
@@ -308,12 +309,12 @@ Die Datei für Item-Eigenschaften wird verwendet, um Metadaten von Blöcken und 
 
 ### Format
 
-Die Datei besteht aus einem JSON-Objekt, bei dem jeder Schlüssel eine Item/Block-ID darstellt und der Wert die Eigenschafts-Paare enthält.
+Die Datei besteht aus einem JSON-Objekt, bei dem jeder Schlüssel eine Item-/Block-ID repräsentiert und der Wert Eigenschafts-Schlüssel-Wert-Paare enthält.
 
-Wir unterstützen aktuell folgende Eigenschaften:
+Wir unterstützen aktuell die folgenden Eigenschaften:
 
 - `stack_size` (Stapelgröße) – `integer`
-- `required_tool` (Erforderliches Werkzeug) – `string` der eine Item-ID darstellt
+- `required_tool` (Erforderliches Werkzeug) – `string`, der eine Item-ID darstellt
 - `blast_resistance` (Explosionswiderstand) – `number`
 - `hardness` (Härte) – `number`
 - `flammable` (brennbar) – `boolean`
@@ -323,11 +324,11 @@ Wir unterstützen aktuell folgende Eigenschaften:
 - `attack_damage` (Angriffsschaden) – `integer`
 - `attack_speed` (Angriffsgeschwindigkeit) – `number`
 - `enchantability` (Verzauberbarkeit) – `integer`
-- `nutrition` (Sättigungswert) – `integer`
+- `nutrition` (Nährwert) – `integer`
 
 ### Beispiel
 
-Hier ist ein minimales Beispiel mit Eigenschaften für einen benutzerdefinierten Block:
+Unten findest du ein minimales Beispiel mit Eigenschaften für einen benutzerdefinierten Block.
 
 ```json
 {

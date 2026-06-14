@@ -2,31 +2,33 @@ import {Callout} from 'nextra/components';
 
 # Projektverwaltung
 
-Das Projekt-Dashboard ist der Ort, an dem du alle Informationen zu deinem Projekt findest. Hier kannst du Projekteinstellungen anpassen, neue Versionen veröffentlichen, registrierte Spielinhalte auflisten und vieles mehr.
+Im Projekt-Dashboard findest du alle Informationen zu deinem Projekt. Du kannst Projekteinstellungen anpassen, neue Versionen bereitstellen, registrierte Spielinhalte auflisten und mehr.
 
-## Bereitstellungen (Deployments)
+## Bereitstellungen
 
-Bereitstellungen dienen als Versionshistorie für Wiki-Projekte. Jedes Mal, wenn du Änderungen an deiner Dokumentation im Quell-Repository vornimmst, musst du ein neue Bereitstellungen erstellen, um diese auf der Website zu veröffentlichen.
+Bereitstellungen dienen als Versionshistorie für Wiki-Projekte. Jedes Mal, wenn du Änderungen an deiner Dokumentation im Quell-Repository vornimmst, musst du eine neue Projekteinstellung erstellen, um sie auf der Website zu veröffentlichen.
 
-Der Bequemlichkeit halber empfehlen wir, die Dokumentation nach der Veröffentlichung automatisch über unser [Gradle-Plugin](../tools/gradle) aktualisieren zu lassen.
+Der Einfachheit halber empfehlen wir stattdessen, die Dokumentation nach der Veröffentlichung automatisch mit unserem [Gradle-Plugin](../tools/gradle) zu revalidieren.
 
 ## Mitglieder
 
-Unter dem Reiter „Mitglieder“ kannst du anderen Wiki-Nutzern Zugriff auf dein Projekt gewähren.
+Unter dem Tab „Mitglieder“ kannst du anderen Wiki-Nutzern Zugriff auf dein Projekt gewähren.
 
-Mitglieder können über ihren Wiki-Benutzernamen hinzugefügt werden, der auf der Seite [Benutzereinstellungen](https://moddedmc.wiki/dev/settings) zu finden ist. In der Regel ist dies der kleingeschriebene Benutzername des GitHub-Accounts, mit dem man sich im Wiki anmeldet.
+Mitglieder können über ihren Wiki-Benutzernamen hinzugefügt werden, den du auf der Seite [Benutzereinstellungen](https://moddedmc.wiki/dev/settings) findest.
+Im Allgemeinen ist dies der kleingeschriebene Benutzername des GitHub-Kontos, mit dem man sich im Wiki anmeldet.
 
 <Callout type="warning">
-    Ein Nutzer muss über ein aktives Wiki-Konto verfügen, um zu Projekten hinzugefügt werden zu können. Wenn du eine Fehlermeldung *Benutzer nicht gefunden* erhältst, während du versuchst, Teammitglieder über ihren GitHub-Namen hinzuzufügen, stelle sicher, dass sie sich zuvor mindestens einmal im Wiki eingeloggt haben!
+    Ein Nutzer muss ein aktives Wiki-Konto haben, um zu Projekten hinzugefügt werden zu können. Wenn du beim Versuch, Teammitglieder über ihren GitHub-Benutzernamen hinzuzufügen, die Fehlermeldung *Benutzer nicht gefunden* erhältst, stelle sicher, dass sie sich zuerst im Wiki anmelden!
 </Callout>
 
 ### Rollen
 
-Beim Hinzufügen von Teammitgliedern kannst du zwischen zwei Rollen wählen:
+Beim Hinzufügen von Teammitgliedern kannst du zwischen zwei verfügbaren Rollen wählen:
 
-- **Besitzer** – hat **vollen Zugriff** auf das Projekt. Dies schließt das Löschen des Projekts oder das Entfernen anderer Besitzer ein!
-- **Mitglied** – kann Projekteinstellungen bearbeiten und neue Deployments erstellen. Mitglieder können jedoch keine anderen Mitglieder verwalten oder das Projekt löschen.
+- **Besitzer** – hat **vollen Zugriff** auf das Projekt. Dazu gehört auch, das Löschen des Projekts oder das Entfernen anderer Besitzer ein!
+- **Mitglied** – kann Projekteinstellungen bearbeiten und neue Bereitstellungen erstellen. Mitglieder können jedoch keine anderen Mitglieder verwalten oder das Projekt löschen.
 
 ### Projekte verlassen
 
-Nutzer mit der Rolle „Mitglied“ können Projekte jederzeit selbstständig über den Mitglieder-Reiter verlassen. Besitzer können ein Projekt nur verlassen, solange sie nicht der einzige Besitzer sind.
+Nutzer mit der Rolle „Mitglied“ können Projekte jederzeit selbst über den Tab „Mitglieder“ verlassen.
+Besitzer können ein Projekt jedoch nur verlassen, solange sie nicht der einzige Besitzer sind.

@@ -6,11 +6,11 @@ import InlineGameItem from '@/components/InlineGameItem';
 
 # Seiten
 
-Seitendateien werden verwendet, um die eigentlichen Dokumentationstexte für deine Projekte zu schreiben.
+Seitendateien werden verwendet, um den eigentlichen Dokumentationstext für Projekte zu schreiben.
 
 ## Seitentypen
 
-Es gibt zwei Arten von Seiten im Wiki, die beide **gleichzeitig** genutzt werden können.
+Es gibt zwei Arten von Seiten im Wiki, die beide **gleichzeitig** verwendet werden können.
 
 ### <InlineGameItem id="grass_block" /> [Inhaltsseiten](pages/content_pages)
 
@@ -18,37 +18,37 @@ Es gibt zwei Arten von Seiten im Wiki, die beide **gleichzeitig** genutzt werden
 
 - Traditioneller [Wiki-Stil](https://minecraft.wiki/w/Furnace)
 
-- Keine feste Lesereihenfolge
+- Keine Lesereihenfolge
 
-- Empfohlen für alle **In-Game-Inhalte** wie Blöcke, Items, Entities usw.
+- Empfohlen für alle **Inhalte im Spiel**, wie Blöcke, Items, Entitäten usw.
 
-Inhaltsseiten ermöglichen es dir, interaktiv auf Spielinhalte zu verweisen, und bieten eine breitere Palette an Komponenten, die du nutzen kannst.
+Inhaltsseiten ermöglichen es dir, interaktiv auf Inhalte im Spiel zu verweisen, und bieten eine größere Auswahl an Komponenten, die du verwenden kannst.
 
 ### <InlineGameItem id="book" /> [Dokumentationsseiten](pages/docs_pages)
 
 - Zu finden unter dem Reiter „Dokumentation“ im Wiki
 
-- Enthalten leitfadenähnliche Dokumentationen, ähnlich wie diese Website, auf der du dich gerade befindest
+- Enthalten leitfadenartige Dokumentation, ähnlich wie diese Seite, auf der du dich gerade befindest
 
 - Vorgegebene Lesereihenfolge
 
-- Empfohlen für **Anleitungen** (Guides) und API- / **Entwickler-Dokumentation**
+- Empfohlen für **Leitfäden** und API- / **Entwicklerdokumentation**
 
 ## Format
 
-Das Wiki verwendet [MDX](https://mdxjs.com/) als Format für die Dokumentation. Zusätzlich ist [GitHub Flavored Markdown](https://github.github.com/gfm/) (GFM) über [`remark-gfm`](https://github.com/remarkjs/remark-gfm) verfügbar.
+Das Wiki verwendet [MDX](https://mdxjs.com/)-Dateien als Dokumentationsformat. Zusätzlich ist [GitHub Flavored Markdown](https://github.github.com/gfm/) (GFM) über [`remark-gfm`](https://github.com/remarkjs/remark-gfm) verfügbar.
 
-Falls du mit MDX noch nicht vertraut bist, keine Sorge – es ist im Grunde eine Erweiterung des einfachen [Markdown](https://www.markdownguide.org/)-Formats um JSX-Funktionen. Das bedeutet, du kannst schicke eigene Komponenten in deine Dokumentation einbinden, wie zum Beispiel Crafting-Rezepte.
+Falls du mit MDX noch nicht vertraut bist, keine Sorge: Es ist eine Erweiterung des einfachen [Markdown](https://www.markdownguide.org/)-Formats mit zusätzlichen JSX-Funktionen. Das bedeutet, dass du anspruchsvolle benutzerdefinierte Komponenten in deine Dokumentation einbinden kannst, zum Beispiel Crafting-Rezepte.
 
-Diese Funktionen sind rein optional. Du kannst in deiner Dokumentation auch jederzeit bei Standard-Markdown bleiben. Die Dateiendung muss jedoch zwingend `.mdx` lauten.
+Diese Funktionen sind vollständig optional, und du kannst in deiner Dokumentation jederzeit bei Standard-Markdown bleiben. Die Dateiendung muss jedoch `.mdx` bleiben.
 
 ### Erweiterungen
 
-Wir bieten ein paar nützliche Markdown-Erweiterungen an.
+Wir stellen einige nützliche Markdown-Erweiterungen bereit.
 
 #### Asset-Bilder
 
-Du kannst jedes [Asset](assets)-Bild mit der nativen Markdown-Syntax anzeigen, indem du dem [Pfad des Assets](assets#format) ein `@` voranstellst.
+Zeige beliebige [Asset](assets)-Bilder mit nativer Markdown-Syntax an, indem du der [Asset-Adresse](assets#format) ein `@` voranstellst.
 
 Beispiel:
 ```md
@@ -58,8 +58,8 @@ Beispiel:
 
 #### Links zu Inhaltsseiten
 
-Um auf die [Inhaltsseite](pages/content_pages) eines Items zu verlinken, verwende die ID des Items, auf das du verweisen möchtest, mit einem vorangestellten `@`.
-Das Wiki findet automatisch die passendste Inhaltsseite, die dieses Item enthält, und ersetzt den Link durch die korrekte URL.
+Um auf die [Inhaltsseite](pages/content_pages) eines Items zu verlinken, verwende die ID des Items, auf das du verlinken möchtest, mit einem vorangestellten `@`.
+Das Wiki findet automatisch die passende Inhaltsseite, die dieses Item enthält, und ersetzt die Link-URL.
 
 Beispiel:
 ```md
@@ -70,13 +70,22 @@ Beispiel:
 Klicke [hier](@examplemod:electric_furnace), um mehr zu erfahren.
 ```
 
-Du kannst auch direkt auf Inhaltsseiten verlinken, indem du die Referenz (ref) der Seite mit einem vorangestellten `+` verwendest.
-Dies ist eine eindeutige Kennung, die in der URL erscheint, wenn du die Seite aufrufst. Das Wiki erstellt diese standardmäßig automatisch für dich,
-aber du kannst über das Frontmatter-Attribut `ref` auch eine benutzerdefinierte Referenz festlegen.
+Du kannst auch direkt auf Inhaltsseiten verlinken, indem du die Referenz der Seite mit einem vorangestellten `+` verwendest.
+Dies ist eine eindeutige Kennung, die in der URL erscheint, wenn du die Seite aufrufst. Das Wiki erstellt sie standardmäßig für dich,
+du kannst jedoch über das Frontmatter-Attribut `ref` eine benutzerdefinierte Referenz angeben.
+
+```md
+<!-- Verwendet Seitentitel als Linktext -->
+[](+pickaxes)
+
+<!-- Verwendet benutzerdefinierten Linktext -->
+Click [here](+colored_cables) to learn more.
+```
+
 
 #### Links zu Dokumentationsseiten
 
-Um auf [Dokumentationsseiten](pages/docs_pages) zu verlinken, verwende den Pfad der Seite (relativ zum Projekt-Root) mit einem vorangestellten `$`.
+Um auf [Dokumentationsseiten](pages/docs_pages) zu verlinken, verwende den Pfad der Seite, auf die du verlinken möchtest, relativ zum Projektstammverzeichnis und mit einem vorangestellten `$`.
 
 Beispiel:
 ```md
@@ -89,17 +98,17 @@ Klicke [hier]($tutorials/getting_started), um das erste Tutorial zu lesen.
 
 ### Einschränkungen
 
-Da MDX potenziell unerwünschte Code-Injektionen auf dem Server ermöglichen könnte, bereinigen wir alle Quellen vor dem Rendern. Dies kann dazu führen, dass bestimmte MDX-Funktionen nicht verfügbar sind. Falls es jedoch ein sicheres Feature gibt, das du gerne nutzen möchtest, eröffne bitte ein Issue in unserem [GitHub-Repository](https://github.com/Sinytra/Wiki/issues).
+Da MDX potenziell unerwünschte Code-Injektion auf dem Server ermöglichen kann, bereinigen wir alle Quellen, bevor sie gerendert werden. Dadurch können bestimmte MDX-Funktionen nicht verfügbar sein. Falls es jedoch eine sichere Funktion gibt, die du in deiner Dokumentation verwenden möchtest und die im Wiki nicht verfügbar ist, eröffne bitte ein Issue in unserem [GitHub-Repository](https://github.com/Sinytra/Wiki/issues).
 
 ## Metadaten
 
-Metadaten für Markdown-Seiten, auch bekannt als **Frontmatter**, werden vom Wiki genutzt, um zusätzliche Informationen über eine Seite oder über Spielinhalte bereitzustellen. Sie befinden sich ganz am Anfang jeder Datei im **YAML-Format**.
+Metadaten für Markdown-Seiten, auch einfach **Frontmatter** genannt, werden vom Wiki genutzt, um zusätzliche Informationen über eine Seite oder Inhalte im Spiel bereitzustellen. Sie befinden sich ganz am Anfang jeder Datei im **YAML-Format**.
 
-Unten findest du ein Beispiel für die verfügbaren Frontmatter-Attribute aller Seitentypen.
+Unten findest du ein Beispiel für verfügbare Frontmatter-Attribute für alle Seitentypen.
 
 ```markdown
 ---
-# Verlauf der Änderungen am Seiteninhalt oder dem dokumentierten Item (Changelog)
+# Verlauf der Änderungen am Seiteninhalt oder dem dokumentierten Item
 # (Optional)
 history:
   # Detaillierter Eintrag mit mehreren Änderungen und Datum
@@ -118,9 +127,9 @@ history:
 Hier kommt der Inhalt der Dokumentation hin
 ```
 
-Jeder Seitentyp verfügt über seine eigenen verfügbaren Frontmatter-Attribute, die auf den jeweiligen Seiten näher erläutert werden.
+Jeder Seitentyp hat eigene verfügbare Frontmatter-Attribute, die auf den jeweiligen Seiten genauer erklärt werden.
 
-Einzelheiten zum Attribut `history` findest du weiter [unten](#changelog).
+Details zum Attribut `history` findest du [unten](#changelog).
 
 ## Eigene Komponenten
 
@@ -128,17 +137,17 @@ Siehe die Seite [Komponenten](../components/overview).
 
 ## Changelog
 
-Ein Changelog dient als Liste von Änderungen am Thema der Seite unter dem Frontmatter-Attribut `history`.
+Ein Changelog dient als Liste von Änderungen, die an Seite vorgenommen wurden, und wird unter dem Frontmatter-Attribut `history` angegeben.
 
-Es wird am Ende der Seite als ausklappbares Element (bei Inhaltsseiten) oder als umschaltbarer Tab im Seitentitel (bei Dokumentationsseiten) angezeigt.
+Es wird am Ende der Seite als ausklappbares Element für Inhaltsseiten oder als umschaltbarer Tab im Seitentitel für Dokumentationsseiten angezeigt.
 
 ### Format
 
-Es gibt zwei Arten, Changelog-Einträge zu schreiben:
+Changelog-Einträge können auf zwei Arten geschrieben werden:
 
 **1) Vereinfacht**
 
-Ein Schlüssel-Wert-Paar, bei dem der Schlüssel die Versionsnummer und der Wert die Beschreibung der Änderungen ist.
+Ein Schlüssel-Wert-Paar, bei dem der Schlüssel die Versionsnummer und der Wert eine Beschreibung der vorgenommenen Änderungen darstellt.
 
 ```yaml
 - 5.6: Überhitzung der Leertaste behoben
@@ -146,7 +155,7 @@ Ein Schlüssel-Wert-Paar, bei dem der Schlüssel die Versionsnummer und der Wert
 
 **2) Detailliert**
 
-Die detaillierte Syntax erlaubt die Angabe eines Datums und mehrerer Änderungspunkte pro Version.
+Die detaillierte Syntax erlaubt es dir, ein Datum und mehrere Änderungen in einer einzelnen Version anzugeben.
 
 ```yaml
 - version: 1.2b

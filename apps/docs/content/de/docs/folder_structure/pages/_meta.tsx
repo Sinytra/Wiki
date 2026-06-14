@@ -1,4 +1,4 @@
 export default {
-  content_pages: 'Inhaltsseiten',
+  content_pages: '',
   docs_pages: ''
 };
