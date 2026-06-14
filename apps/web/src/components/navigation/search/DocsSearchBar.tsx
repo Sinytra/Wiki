@@ -25,7 +25,7 @@ function SearchResultWidget({ result }: { result: WikiSearchResult }) {
         'first:rounded-t-sm last:rounded-b-sm hover:bg-tertiary'
       )}
     >
-      <div className="shrink-0 rounded-xs p-1">
+      <div className="size-[48px] shrink-0 overflow-hidden rounded-xs p-1">
         <ImageWithFallback
           src={result.icon_asset?.src}
           width={48}
@@ -158,11 +158,11 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
     lockScroll();
   };
   const onBlur = () => {
-    setFocused(false);
-    setLoading(false);
-    setSearchQuery('');
-
-    unlockScroll();
+    // setFocused(false);
+    // setLoading(false);
+    // setSearchQuery('');
+    //
+    // unlockScroll();
   };
 
   // Close on ESC pressed
@@ -173,7 +173,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
     }
 
     if (e.key === 'Escape') {
-      e.target.blur();
+      // e.target.blur();
     }
   };
 

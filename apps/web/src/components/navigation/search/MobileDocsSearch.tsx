@@ -25,7 +25,7 @@ function SearchResultWidget({ result }: { result: WikiSearchResult }) {
       href={result.href}
       className={`z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5 text-primary`}
     >
-      <div className="shrink-0 rounded-xs p-1">
+      <div className="size-[48px] shrink-0 overflow-hidden rounded-xs p-1">
         <ImageWithFallback
           src={result.icon_asset?.src}
           width={48}
