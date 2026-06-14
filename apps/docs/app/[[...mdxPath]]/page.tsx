@@ -46,8 +46,9 @@ export default async function Page(props: Props) {
   const params = await props.params;
   const result = await resolvePage(params);
   const { default: MDXContent, toc, metadata } = result;
+  const isRoot = !params.mdxPath || (params.mdxPath.length === 1 && locales.includes(params.mdxPath[0] as Locale));
   return (
-    <div className={params.mdxPath ? 'doc-wrapper' : ''}>
+    <div className={isRoot ? '' : 'doc-wrapper'}>
       <Wrapper toc={toc} metadata={metadata}>
         <MDXContent {...props} params={params} />
       </Wrapper>
