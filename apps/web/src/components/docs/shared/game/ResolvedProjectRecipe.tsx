@@ -51,9 +51,12 @@ async function RecipeBody({
 
   const slot = (key: string, input: boolean) => {
     const slots = input ? type.input_slots : type.output_slots;
-    const result = slots[key];
+    const result = slots?.[key];
     if (!result) {
-      console.error(`Missing recipe slot for recipe "${recipe.id}", key "${key}", input: ${input}`);
+      console.error(
+        `Missing recipe slot for recipe "${recipe.id}", type "${JSON.stringify(type)}", key "${key}", input: ${input}, ` +
+          `slotsPresent: ${slots != null}, keys: ${slots ? Object.keys(slots).join(',') : '<undefined>'}`
+      );
     }
     return result;
   };
