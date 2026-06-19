@@ -292,8 +292,11 @@ async function getLocalization(
     const path = src.format.getLangFilePath(namespace, langName);
     const file = await localFiles.readFileContents(src, path);
     return JSON.parse(file.content) as { [key: string]: string };
-  } catch (error) {
-    console.error(`Error reading locale file for language ${langName}`, error);
+  } catch (err: unknown) {
+    const e = err as NodeJS.ErrnoException;
+    if (e.code != 'ENOENT') {
+      console.error(`Error reading locale file for language ${langName}`, err);
+    }
     return null;
   }
 }

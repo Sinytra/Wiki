@@ -21,7 +21,9 @@ rsync -avh --progress \
   --exclude='contentlayer.config.ts' \
   --exclude='src/instrumentation*.ts' \
   --exclude='src/sentry.*.config.ts' \
-  --exclude='src/app/(developers)' \
+  --exclude='src/app/(developers)/api/og' \
+  --exclude='src/app/(developers)/api/docs/\[slug\]/invalidate' \
+  --exclude='src/app/(developers)/api/docs/\[slug\]/revalidate' \
   --exclude='src/app/blog' \
   --exclude='src/app/\[locale\]/\(dashboard\)' \
   --exclude='src/app/\[locale\]/\(main\)/about' \
