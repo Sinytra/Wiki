@@ -74,6 +74,7 @@ pnpm install --no-frozen-lockfile
 cat <<EOF > .env
 NEXT_PUBLIC_DISABLE_COOKIE_CONSENT=true
 NEXT_PUBLIC_ENABLE_LOCAL_PREVIEW=true
+NEXT_PUBLIC_BUILTIN_ASSET_SOURCES=https://r2.sinytra.org/
 EOF
 pnpm run build
 
