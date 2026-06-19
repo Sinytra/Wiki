@@ -42,7 +42,7 @@ export default function LanguageSelect({
           ([key, val]) =>
             key == DEFAULT_LOCALE ||
             locales.includes(key) ||
-            locales.includes(`${key}_${key}`) ||
+            locales.includes(val.code) ||
             ((val as Language).prefix && locales.includes((val as any).prefix))
         )
         .reduce((obj: any, [key, val]) => {

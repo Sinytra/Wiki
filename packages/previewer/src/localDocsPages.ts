@@ -9,6 +9,7 @@ import env from '@repo/shared/env';
 import markdown from '@repo/markdown';
 import { FileTreeEntry } from '@sinytra/wiki-api-types';
 import projectFormat, { ProjectFormat } from './format/projectFormat';
+import locales from '@repo/shared/locales';
 
 export interface LocalDocumentationSource {
   id: string;
@@ -114,9 +115,7 @@ async function computeAvailableLocales(source: LocalDocumentationSource): Promis
   try {
     const translationsDirName = source.format.translationsDir;
     const translations = await localFiles.readShallowFileTree(source, translationsDirName);
-    return translations
-      .filter((t) => t.type === 'dir' && t.name.match(localeDirRegex))
-      .map((t) => t.name.split('_')[0]!);
+    return translations.filter((t) => t.type === 'dir' && t.name.match(localeDirRegex)).map((t) => t.name);
   } catch {
     return [];
   }
@@ -137,7 +136,11 @@ async function readFileTree(
 ): Promise<FileTree> {
   const availableLocales = await getAvailableLocales(source);
   const actualLocale =
-    locale === DEFAULT_LOCALE ? undefined : locale && locale in availableLocales ? locale : undefined;
+    locale === DEFAULT_LOCALE
+      ? undefined
+      : locale && availableLocales.includes(locale)
+        ? locales.resolveParam(locale)
+        : undefined;
 
   return resolveFileTree(source, type, actualLocale);
 }
@@ -155,7 +158,6 @@ async function resolveFileTree(
   const filter: (e: FileTreeEntry) => boolean = (c) =>
     c.type === 'dir' ||
     (c.type === 'file' &&
-      !c.name.startsWith('_') &&
       !c.name.startsWith('.') &&
       c.name !== DOCS_METADATA_FILE_NAME &&
       c.name !== docsIndexPageFileName &&
@@ -244,7 +246,7 @@ async function readLocalizedFile(
   if (locale && locale !== DEFAULT_LOCALE) {
     const availableLocales = await getAvailableLocales(source);
     if (availableLocales.includes(locale)) {
-      const translatedPath = source.format.getLocalizedFilePath(path, `${locale}_${locale}`);
+      const translatedPath = source.format.getLocalizedFilePath(path, locale);
       try {
         return await localFiles.readFileContents(source, translatedPath);
       } catch {
@@ -290,5 +292,6 @@ export default {
   getProjectSource,
   readDocsTree,
   readDocsFile,
-  readContentTree
+  readContentTree,
+  getAvailableLocales
 };

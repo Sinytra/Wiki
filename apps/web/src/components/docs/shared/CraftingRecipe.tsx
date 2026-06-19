@@ -18,9 +18,9 @@ export default async function CraftingRecipe(ctx: ProjectContext | null, props: 
 async function BoundCraftingRecipe({ ctx, slots, result, count }: Props) {
   const displaySlots = slots.slice(0, Math.min(slots.length, 9));
   const assetSlots = await Promise.all(
-    displaySlots.map(async (slot) => (slot === null ? null : service.getAsset(slot, ctx)))
+    displaySlots.map(async (slot) => (slot === null ? null : service.getItemAsset(slot, ctx)))
   );
-  const resultAsset = await service.getAsset(result, ctx);
+  const resultAsset = await service.getItemAsset(result, ctx);
 
   return (
     <div className="relative">

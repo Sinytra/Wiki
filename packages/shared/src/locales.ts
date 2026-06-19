@@ -11,6 +11,8 @@ export interface Language {
   icon: any;
   /** File name */
   file: string;
+  /** Docs localization code **/
+  code: string;
   /** Crowdin language id */
   crowdin?: string;
   /** URL path param */
@@ -24,30 +26,31 @@ const DEFAULT_LOCALE = 'en_us';
 /** @returns {LanguageMap} */
 function getAvailableLocales(): LanguageMap {
   return {
-    en: { name: 'English', file: 'en_US', icon: US },
-    de: { name: 'Deutsch', file: 'de_DE', icon: DE },
-    fr: { name: 'Français', file: 'fr_FR', icon: FR },
-    es: { name: 'Español', file: 'es_ES', crowdin: 'es-ES', icon: ES },
-    it: { name: 'Italiano', file: 'it_IT', icon: IT },
-    cs: { name: 'Čeština', file: 'cs_CZ', icon: CZ },
-    hu: { name: 'Magyar', file: 'hu_HU', icon: HU },
-    pl: { name: 'Polski', file: 'pl_PL', icon: PL },
-    ms: { name: 'Bahasa Melayu', file: 'ms_MY', icon: MY },
+    en: { name: 'English', code: 'en_us', file: 'en_US', icon: US },
+    cs: { name: 'Čeština', code: 'cs_cz', file: 'cs_CZ', icon: CZ },
+    de: { name: 'Deutsch', code: 'de_de', file: 'de_DE', icon: DE },
+    es: { name: 'Español', code: 'es_es', file: 'es_ES', crowdin: 'es-ES', icon: ES },
+    fr: { name: 'Français', code: 'fr_fr', file: 'fr_FR', icon: FR },
+    hu: { name: 'Magyar', code: 'hu_hu', file: 'hu_HU', icon: HU },
+    it: { name: 'Italiano', code: 'it_it', file: 'it_IT', icon: IT },
+    ja: { name: '日本語', code: 'ja_jp', file: 'ja_JP', icon: JP },
+    ko: { name: '한국어', code: 'ko_kr', file: 'ko_KR', icon: KR },
+    ms: { name: 'Bahasa Melayu', code: 'ms_my', file: 'ms_MY', icon: MY },
     'ms-Arab': {
       name: 'بهاس ملايو',
+      code: 'zml_arab',
       file: 'ms_Arab',
       prefix: 'ms_Ar',
       icon: MY,
       rtl: true
     },
-    tr: { name: 'Türkçe', file: 'tr_TR', icon: TR },
-    sv: { name: 'Svenska', file: 'sv_SE', crowdin: 'sv-SE', icon: SE },
-    uk: { name: 'Українська', file: 'uk_UA', icon: UA },
-    ru: { name: 'Русский', file: 'ru_RU', icon: RU },
-    ja: { name: '日本語', file: 'ja_JP', icon: JP },
-    ko: { name: '한국어', file: 'ko_KR', icon: KR },
-    'zh-CN': { name: '简体中文', file: 'zh_CN', prefix: 'zh_cn', icon: CN },
-    'zh-TW': { name: '繁體中文', file: 'zh_TW', prefix: 'zh_tw', icon: TW }
+    pl: { name: 'Polski', code: 'pl_pl', file: 'pl_PL', icon: PL },
+    ru: { name: 'Русский', code: 'ru_ru', file: 'ru_RU', icon: RU },
+    sv: { name: 'Svenska', code: 'sv_se', file: 'sv_SE', crowdin: 'sv-SE', icon: SE },
+    tr: { name: 'Türkçe', code: 'tr_tr', file: 'tr_TR', icon: TR },
+    uk: { name: 'Українська', code: 'uk_ua', file: 'uk_UA', icon: UA },
+    'zh-CN': { name: '简体中文', code: 'zh_cn', file: 'zh_CN', prefix: 'zh_cn', icon: CN },
+    'zh-TW': { name: '繁體中文', code: 'zh_tw', file: 'zh_TW', prefix: 'zh_tw', icon: TW }
   };
 }
 
@@ -90,6 +93,10 @@ function actualLocale(locale: string | null): string | null {
   return loc?.file.toLowerCase() ?? null;
 }
 
+function resolveParam(param: string) {
+  return getForUrlParam(param)!.code;
+}
+
 export default {
   getAvailableLocales,
   getLanguagePaths,
@@ -99,5 +106,6 @@ export default {
   getNextIntlInternal,
   getCrowdinLanguageId,
   isRTL,
-  actualLocale
+  actualLocale,
+  resolveParam
 };

@@ -13,6 +13,7 @@ import localFiles from './localFiles';
 import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocation';
 import { DEFAULT_LOCALE } from '@repo/shared/constants';
 import { ProjectFormat } from './format/projectFormat';
+import locales from '@repo/shared/locales';
 
 interface ExtendedContentFileTreeEntry extends ContentFileTreeEntry {
   id?: string[];
@@ -286,7 +287,7 @@ async function getLocalization(
   namespace: string,
   locale?: string | null
 ): Promise<{ [key: string]: string } | null> {
-  const langName = locale == null || locale == DEFAULT_LOCALE ? 'en_us' : `${locale}_${locale}`;
+  const langName = locales.resolveParam(locale ?? DEFAULT_LOCALE);
 
   try {
     const path = src.format.getLangFilePath(namespace, langName);

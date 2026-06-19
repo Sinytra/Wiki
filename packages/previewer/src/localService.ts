@@ -40,6 +40,7 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectDa
 
   const contentPages = (await localContent.getLocalSourceContentTree(src, null)) || [];
   const fileContentPages = contentPages.flatMap(findDocsFiles);
+  const locales = await localDocs.getAvailableLocales(src);
 
   return {
     id: src.id,
@@ -58,7 +59,7 @@ async function sourceToProject(src: LocalDocumentationSource): Promise<ProjectDa
       }
     },
     versions: [],
-    locales: []
+    locales
   };
 }
 
