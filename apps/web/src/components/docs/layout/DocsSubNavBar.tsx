@@ -103,7 +103,7 @@ function DocsSubNavBarLinks({ project, locale, version }: { project: ProjectData
       )}
 
       {showVersions && <DocsVersionSelector version={version} versions={project.versions!} />}
-      {showLocales && <LanguageSelect locale={locale} locales={project.locales!} minimal />}
+      {showLocales && <LanguageSelect locale={locale} shownLocaleCodes={project.locales!} minimal />}
     </div>
   );
 }

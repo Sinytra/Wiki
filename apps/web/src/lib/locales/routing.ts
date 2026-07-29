@@ -1,12 +1,11 @@
 import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import locales from '@repo/shared/locales';
-import { DEFAULT_LOCALE } from '@repo/shared/constants';
+import locales, { DEFAULT_LOCALE_INTERNAL } from '@repo/shared/locales';
 
 export const routing = defineRouting({
-  locales: locales.getNextIntlLocales(),
-  defaultLocale: DEFAULT_LOCALE,
+  locales: locales.getInternalCodes(),
+  defaultLocale: DEFAULT_LOCALE_INTERNAL,
   localePrefix: {
     mode: 'always',
     prefixes: locales.getPathPrefixes()
@@ -14,7 +13,7 @@ export const routing = defineRouting({
 });
 
 export function setContextLocale(locale: string) {
-  const internal = locales.getNextIntlInternal(locale);
+  const internal = locales.getForUrlParam(locale)?.internal || locale;
   setRequestLocale(internal);
 }
 

@@ -20,55 +20,36 @@ import {
 import { useTranslations } from 'next-intl';
 import { DEFAULT_LOCALE } from '@repo/shared/constants';
 import CountryFlag from '@repo/ui/util/CountryFlag';
-import { default as available, Language } from '@repo/shared/locales';
+import { default as available, DEFAULT_LOCALE_CODE, Language } from '@repo/shared/locales';
 
-export default function LanguageSelect({
-  locale,
-  locales,
-  mobile,
-  minimal
-}: {
+interface Props {
   locale: string;
-  locales?: string[];
+  shownLocaleCodes?: string[];
   mobile?: boolean;
   minimal?: boolean;
-}) {
+}
+
+export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minimal }: Props) {
   const t = useTranslations('LanguageSelect');
 
-  const allLocales = available.getAvailableLocales();
-  const availableLocales = locales
-    ? Object.entries(allLocales)
-        .filter(
-          ([key, val]) =>
-            key == DEFAULT_LOCALE ||
-            locales.includes(key) ||
-            locales.includes(val.code) ||
-            ((val as Language).prefix && locales.includes((val as any).prefix))
-        )
-        .reduce((obj: any, [key, val]) => {
-          obj[key] = val;
-          return obj;
-        }, {})
-    : allLocales;
-
-  const availableKeys = Object.keys(availableLocales);
+  const availableLocales: Language[] = available
+    .getAvailableLocales()
+    .filter(
+      (lang) => shownLocaleCodes == null || lang.code === DEFAULT_LOCALE_CODE || shownLocaleCodes.includes(lang.code)
+    );
 
   const pathname = usePathname();
   const router = useRouter();
-  const changeLocale = (id: any) => {
+  const changeLocale = (code: string) => {
     const parts = pathname.split('/');
-    parts[0] = id;
+    parts[0] = available.getUrlPrefixForCode(code)!;
     router.replace('/' + parts.join('/'));
   };
 
-  const lang = available.getNextIntlInternal(locale);
-  const exists = availableKeys.includes(lang);
+  const selectedLang = available.getForUrlParam(locale) ?? available.getForUrlParam(DEFAULT_LOCALE)!;
+  const selectOptions = [selectedLang, ...availableLocales.filter((lang) => lang.code != selectedLang.code)];
 
-  const selectedLang = available.getForUrlParam(exists ? locale : DEFAULT_LOCALE)!;
-  const selectedLocale = exists ? lang : DEFAULT_LOCALE;
-  const ordered = [selectedLocale, ...availableKeys.filter((k) => k != selectedLocale)];
-
-  const [value, setValue] = useState(selectedLocale);
+  const [value, setValue] = useState(selectedLang.code);
   const [open, setOpen] = useState(false);
 
   return (
@@ -125,17 +106,14 @@ export default function LanguageSelect({
               >
                 <CommandEmpty>{t('no_results')}</CommandEmpty>
                 <CommandGroup>
-                  {...ordered.map((id) => {
-                    const { name, icon, prefix } = availableLocales[id];
-                    const actualId = prefix || id;
-
+                  {...selectOptions.map((lang) => {
                     return (
                       <CommandItem
-                        key={id}
-                        value={actualId}
+                        key={lang.code}
+                        value={lang.code}
                         className={cn(
                           `inline-flex w-full items-center justify-start gap-3 hover:bg-secondary hover:text-primary-alt`,
-                          value == actualId && 'pointer-events-none'
+                          value == lang.code && 'pointer-events-none'
                         )}
                         onSelect={(currentValue) => {
                           setValue(currentValue === value ? '' : currentValue);
@@ -143,8 +121,8 @@ export default function LanguageSelect({
                           changeLocale(currentValue);
                         }}
                       >
-                        <CountryFlag flag={icon} /> {name}
-                        <Check className={cn('ml-auto h-4 w-4', value === actualId ? 'opacity-100' : 'opacity-0')} />
+                        <CountryFlag flag={lang.icon} /> {lang.name}
+                        <Check className={cn('ml-auto h-4 w-4', value === lang.code ? 'opacity-100' : 'opacity-0')} />
                       </CommandItem>
                     );
                   })}
