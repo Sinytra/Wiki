@@ -15,7 +15,7 @@ function resolveAsset(source: string, id: ResourceLocation): AssetLocation | nul
 }
 
 function getAssetResource(location: ResourceLocation): AssetLocation | null {
-  const source = envPublic.getBuiltinAssetSource();
+  const source = envPublic.getAssetsBaseURL() ?? envPublic.getBuiltinAssetSource();
   if (!source) return null;
 
   return resolveAsset(source, location);

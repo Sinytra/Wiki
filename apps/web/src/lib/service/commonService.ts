@@ -34,7 +34,7 @@ function getBuiltinAsset(
 }
 
 function getRemoteAssetURL(location: string, { id, version }: ProjectContext): AssetLocation | null {
-  const url = commonNetwork.constructApiUrl(`docs/${id}/asset/${location}`, {
+  const url = commonNetwork.constructAssetsUrl(`docs/${id}/asset/${location}`, {
     version
   });
   return {
@@ -44,7 +44,7 @@ function getRemoteAssetURL(location: string, { id, version }: ProjectContext): A
 }
 
 function getRemoteItemAssetURL(location: string, { id, version }: ProjectContext): AssetLocation | null {
-  const url = commonNetwork.constructApiUrl(`docs/${id}/asset-item/${location}`, {
+  const url = commonNetwork.constructAssetsUrl(`docs/${id}/asset-item/${location}`, {
     version
   });
   return {

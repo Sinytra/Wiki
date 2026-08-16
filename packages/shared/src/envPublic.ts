@@ -13,10 +13,15 @@ function getBuiltinAssetSource(): string | null {
   return process.env.NEXT_PUBLIC_BUILTIN_ASSET_SOURCES ?? null;
 }
 
+function getAssetsBaseURL(): string | null {
+  return process.env.NEXT_PUBLIC_ASSETS_BASE_URL ?? null;
+}
+
 const envPublic = {
   getBackendEndpointUrl,
   getDocsUrl,
-  getBuiltinAssetSource
+  getBuiltinAssetSource,
+  getAssetsBaseURL
 };
 
 export default envPublic;

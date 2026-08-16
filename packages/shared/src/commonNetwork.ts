@@ -1,6 +1,7 @@
 import { serializeUrlParams } from './util';
 import locales from '@repo/shared/locales';
 import { DEFAULT_DOCS_VERSION } from './constants';
+import envPublic from '@repo/shared/envPublic';
 
 type CallResultType = 'success' | 'redirect' | 'known_error' | 'unknown_error' | 'failed';
 type ApiError = 'not_found' | 'internal' | 'unauthorized' | 'forbidden' | 'unknown' | 'ownership';
@@ -188,11 +189,13 @@ function preprocessParam(key: string, value: string): string | null {
 }
 
 function constructApiUrl(path: string, parameters?: ApiRouteParameters): string {
-  const endpoint = process.env.NEXT_PUBLIC_BACKEND_SERVICE_URL;
-  if (!endpoint) {
-    throw new Error('Missing env variable NEXT_PUBLIC_BACKEND_SERVICE_URL');
-  }
+  const endpoint = envPublic.getBackendEndpointUrl();
+  const searchParams = serializeUrlParams(parameters, preprocessParam);
+  return `${endpoint}/api/v1/${path}?${searchParams}`;
+}
 
+function constructAssetsUrl(path: string, parameters?: ApiRouteParameters): string {
+  const endpoint = envPublic.getAssetsBaseURL() ?? envPublic.getBackendEndpointUrl();
   const searchParams = serializeUrlParams(parameters, preprocessParam);
   return `${endpoint}/api/v1/${path}?${searchParams}`;
 }
@@ -206,5 +209,6 @@ export default {
   sendSimpleRequest,
   sendDataRequest,
   constructApiUrl,
+  constructAssetsUrl,
   actualVersion
 };
