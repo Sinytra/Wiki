@@ -56,12 +56,12 @@ function DeploymentEntry({ deployment }: { deployment: DeploymentInfo }) {
       <DeploymentStatusInfo status={deployment.status} />
 
       <div className="flex flex-3 flex-row gap-1 overflow-hidden">
-        <GitCommitHorizontal width={20} height={20} />
+        <GitCommitHorizontal width={20} height={20} className="shrink-0" />
         <div className="flex flex-row gap-2 overflow-hidden">
           {deployment.revision ? (
             <>
               <span className="font-mono text-sm font-light">{deployment.revision.hash}</span>
-              <span className="overflow-hidden pr-2 text-sm font-normal text-ellipsis whitespace-nowrap">
+              <span className="overflow-hidden pr-4 text-sm font-normal text-ellipsis whitespace-nowrap">
                 {deployment.revision.message}
               </span>
             </>
