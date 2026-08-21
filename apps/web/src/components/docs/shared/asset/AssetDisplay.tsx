@@ -14,7 +14,9 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
 function parseNum(num: string | number | undefined) {
   if (typeof num === 'string') {
     const parsed = Number(num);
-    return Number.isNaN(parsed) ? undefined : parsed;
+    if (!Number.isNaN(parsed)) {
+      return parsed;
+    }
   }
   return num;
 }
@@ -22,8 +24,8 @@ function parseNum(num: string | number | undefined) {
 export default function AssetDisplay({ asset, width, height, alt, title, noTitle, ...props }: Props) {
   return (
     <ImageWithFallback
-      width={parseNum(width) || 32}
-      height={parseNum(height) || 32}
+      width={parseNum(width)}
+      height={parseNum(height)}
       src={asset.src}
       alt={alt || asset.id}
       title={noTitle ? undefined : title || resourceLocation.parse(asset.id)?.path}

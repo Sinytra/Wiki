@@ -7,6 +7,7 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   ctx: ProjectContext | null;
   location: string;
   item?: boolean;
+  itemSize?: boolean;
   wrapper?: HTMLAttributes<HTMLDivElement>;
 };
 
@@ -14,8 +15,13 @@ export async function BindableAsset(ctx: ProjectContext | null, props: Omit<Prop
   return Asset({ ...props, ctx });
 }
 
-export default async function Asset({ location, item, ...props }: Props) {
-  const noCtx = { ...props, ctx: undefined };
+export default async function Asset({ location, item, itemSize, width, height, ...props }: Props) {
+  const noCtx = {
+    width: itemSize ? 32 : width,
+    height: itemSize ? 32 : height,
+    ...props,
+    ctx: undefined
+  };
   return (
     <AssetBase
       display={({ asset }) => <AssetDisplay asset={asset} {...noCtx} />}

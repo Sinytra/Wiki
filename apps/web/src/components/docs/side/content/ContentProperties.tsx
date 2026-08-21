@@ -111,7 +111,7 @@ function RenderedProperty({
     const link = getContentLink(ctx, value);
     return (
       <NavLink href={link}>
-        <Asset location={value} ctx={ctx} />
+        <Asset itemSize location={value} ctx={ctx} />
       </NavLink>
     );
   }

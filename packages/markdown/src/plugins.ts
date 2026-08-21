@@ -7,6 +7,7 @@ import { Root } from 'hast';
 import type { VFile } from 'vfile';
 import { visit as visitEsTree } from 'estree-util-visit';
 import type { MdxJsxAttribute, MdxJsxExpressionAttribute } from 'mdast-util-mdx-jsx';
+import type { Node as UnistNode } from 'unist';
 
 export function rehypeCollectLinks(): (tree: Root, file: VFile) => undefined {
   return (tree, file) => {
@@ -125,6 +126,20 @@ export function rehypeSafeMarkdownAttributes(): (tree: Root, file: VFile) => und
       if (disallow) {
         parent?.children.splice(index!, 1);
       }
+    });
+  };
+}
+
+// Fixes https://github.com/mdx-js/mdx/issues/821
+// Adapted from https://github.com/iAdramelk/remark-mdx-disable-explicit-jsx
+export function remarkMdxDisableExplicitJsx(keys: string[]) {
+  const test = (node: any) => {
+    return node.name && keys.includes(node.name);
+  };
+  return (tree: UnistNode) => {
+    visit(tree, test, function (node) {
+      delete (node.data as any)._mdxExplicitJsx;
+      delete (node.data as any)._xdmExplicitJsx;
     });
   };
 }

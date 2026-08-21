@@ -161,7 +161,6 @@ async function renderProjectContentPage(
   });
   return renderMarkdown(page, ctx, patcher);
 }
-
 async function renderMarkdown(
   page: ProjectPage | null,
   ctx: ProjectContext | ProjectContentContext,

@@ -7,7 +7,12 @@ import rehypeRaw from 'rehype-raw';
 import { markdownRehypeSchema } from './contentFilter';
 import { ReactElement } from 'react';
 import remarkGfm from 'remark-gfm';
-import { rehypeCollectLinks, rehypeMarkdownHeadings, rehypeSafeMarkdownAttributes } from './plugins';
+import {
+  rehypeCollectLinks,
+  rehypeMarkdownHeadings,
+  rehypeSafeMarkdownAttributes,
+  remarkMdxDisableExplicitJsx
+} from './plugins';
 import { recmaCodeHike, remarkCodeHike } from 'codehike/mdx';
 import { VFile } from 'vfile';
 import { matter } from 'vfile-matter';
@@ -83,10 +88,11 @@ async function renderDocumentationMarkdown(
   matter(vfile, { strip: true });
 
   try {
+    const knownComponents = Object.keys(components);
     const compiledMdx = await compile(vfile, {
       outputFormat: 'function-body',
 
-      remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm],
+      remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm, [remarkMdxDisableExplicitJsx, knownComponents]],
       rehypePlugins: [
         rehypeMarkdownHeadings,
         rehypeSafeMarkdownAttributes,

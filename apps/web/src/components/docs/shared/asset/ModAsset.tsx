@@ -7,5 +7,5 @@ export default async function ModAsset(ctx: ProjectContext | null, props: any) {
 }
 
 async function BoundModAsset(props: any) {
-  return <Asset {...props} />;
+  return <Asset itemSize {...props} />;
 }

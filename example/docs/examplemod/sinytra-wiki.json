@@ -1,7 +1,8 @@
 {
-    "id": "examplemod",
-    "platforms": {
-        "modrinth": "jei",
-        "curseforge": "jei"
-    }
+  "schema": "1",
+  "id": "examplemod",
+  "platforms": {
+    "modrinth": "jei",
+    "curseforge": "jei"
+  }
 }

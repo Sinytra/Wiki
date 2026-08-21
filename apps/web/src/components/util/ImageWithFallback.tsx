@@ -1,11 +1,10 @@
 'use client';
 
-import { ComponentProps, HTMLAttributes, ReactNode, useState } from 'react';
+import { ComponentPropsWithoutRef, HTMLAttributes, ReactNode, useState } from 'react';
 import { BoxIcon } from 'lucide-react';
 import { cn } from '@repo/ui/lib/utils';
-import Image from 'next/image';
 
-type Props = Omit<ComponentProps<typeof Image>, 'src' | 'alt'> & {
+type Props = Omit<ComponentPropsWithoutRef<'img'>, 'src' | 'alt'> & {
   wrapper?: HTMLAttributes<HTMLDivElement>;
   src: string | undefined | null;
   alt?: string;
@@ -34,8 +33,8 @@ export default function ImageWithFallback({
     <FallbackIcon
       strokeWidth={strokeWidth}
       className={cn(className, 'text-secondary opacity-20')}
-      width={fbWidth || width}
-      height={fbHeight || height}
+      width={fbWidth || width || 32}
+      height={fbHeight || height || 32}
     />
   ),
   ...rest
@@ -50,13 +49,12 @@ export default function ImageWithFallback({
       className={cn('shrink-0 overflow-hidden', wrapper?.className)}
     >
       {src && !error && (
-        <Image
+        <img
           src={src}
           alt={alt || ''}
           width={width}
           height={height}
           className={className}
-          unoptimized
           onError={() => setError(true)}
           {...rest}
         />

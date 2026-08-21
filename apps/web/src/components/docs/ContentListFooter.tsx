@@ -63,7 +63,7 @@ function Category({
                     c.ref === currentId && 'bg-primary font-semibold'
                   )}
                 >
-                  <Asset location={c.icon || ''} ctx={ctx} />
+                  <Asset itemSize location={c.icon || ''} ctx={ctx} />
                   {c.name}
                 </PageLink>
               </div>
