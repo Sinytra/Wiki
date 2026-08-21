@@ -21,7 +21,7 @@ interface Properties<T> {
 }
 
 function DataTableToolbar({ creator }: Pick<Properties<unknown>, 'creator'>) {
-  return <div>{creator}</div>;
+  return creator ? <div>{creator}</div> : null;
 }
 
 export default function DataTable<T>({

@@ -30,8 +30,8 @@ function EmptyPlaceholder() {
   );
 }
 
-async function ItemIcon({ icon, ctx }: { icon: string; ctx: ProjectContext }) {
-  const iconRes = await service.getAsset(icon, ctx);
+async function ItemIcon({ id, icon, ctx }: { id: string; icon: string | null; ctx: ProjectContext }) {
+  const iconRes = icon ? await service.getAsset(icon, ctx) : await service.getItemAsset(id, ctx);
   return <ImageWithFallback src={iconRes?.src} alt="icon" className="size-7 shrink-0" width={28} height={28} />;
 }
 
@@ -56,11 +56,10 @@ export default function DevProjectItemsTable({
       id: 'icon',
       header: t('icon'),
       cell: (item) => {
-        const icon = item.icon || item.id;
         return (
           <div className="flex size-7 shrink-0 items-center justify-center">
             <Suspense>
-              <ItemIcon icon={icon} ctx={ctx} key={icon} />
+              <ItemIcon icon={item.icon} id={item.id} ctx={ctx} key={item.icon || item.id} />
             </Suspense>
           </div>
         );

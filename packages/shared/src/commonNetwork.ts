@@ -139,7 +139,6 @@ async function sendDataRequest(path: string, options?: RequestOptions) {
 
 async function sendSimpleRequest(path: string, options?: RequestOptions) {
   const url = constructApiUrl(path, options?.parameters);
-
   return fetch(url, createFetchOptions(options));
 }
 
