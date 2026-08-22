@@ -9,8 +9,10 @@ export function remarkMdxDisableExplicitJsx(keys: string[]) {
   };
   return (tree: UnistNode) => {
     visit(tree, test, function (node) {
-      delete (node.data as any)._mdxExplicitJsx;
-      delete (node.data as any)._xdmExplicitJsx;
+      if (node.data) {
+        delete (node.data as any)._mdxExplicitJsx;
+        delete (node.data as any)._xdmExplicitJsx;
+      }
     });
   };
 }
