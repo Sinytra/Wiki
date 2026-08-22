@@ -125,7 +125,7 @@ function ExternalLink({
 function AvailableVersions({ versions }: { versions: string[] }) {
   return (
     <TooltipText
-      tooltip={
+      hint={
         <ul>
           {...versions
             .reverse()

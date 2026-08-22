@@ -1,6 +1,5 @@
 import type { MDXComponents } from 'mdx/types';
 import Callout from '@/components/docs/shared/Callout';
-import ModAsset from '@/components/docs/shared/asset/ModAsset';
 import { DE, FR, TW } from 'country-flag-icons/react/3x2';
 import { BindableAsset } from '@/components/docs/shared/asset/Asset';
 import MetaDocsTitle from '@/components/about/MetaDocsTitle';
@@ -27,7 +26,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Callout,
     CodeTabs,
     Asset: BindableAsset.bind(null, null),
-    ModAsset: ModAsset.bind(null, null), // Deprecated
     CraftingRecipe: CraftingRecipe.bind(null, null),
     ComponentWidget,
     ...components,

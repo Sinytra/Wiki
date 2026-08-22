@@ -7,12 +7,6 @@ import rehypeRaw from 'rehype-raw';
 import { markdownRehypeSchema } from './contentFilter';
 import { ReactElement } from 'react';
 import remarkGfm from 'remark-gfm';
-import {
-  rehypeCollectLinks,
-  rehypeMarkdownHeadings,
-  rehypeSafeMarkdownAttributes,
-  remarkMdxDisableExplicitJsx
-} from './plugins';
 import { recmaCodeHike, remarkCodeHike } from 'codehike/mdx';
 import { VFile } from 'vfile';
 import { matter } from 'vfile-matter';
@@ -20,6 +14,12 @@ import { compile, run } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import { formatMarkdownError, MarkdownError } from './exception';
 import { DocsEntryMetadata } from './metadata';
+import { rehypeSanitizeTree, TreeSanitizerOptions } from './plugins/treeSanitizer';
+import { rehypeSafeMarkdownAttributes } from './plugins/esSanitizer';
+import { rehypeMarkdownHeadings } from './plugins/headings';
+import { remarkMdxDisableExplicitJsx } from './plugins/inlining';
+import { rehypeCollectLinks } from './plugins/collect';
+import remarkHint from './plugins/hint';
 
 export interface DocumentationMarkdown {
   content: ReactElement<any>;
@@ -89,18 +89,17 @@ async function renderDocumentationMarkdown(
 
   try {
     const knownComponents = Object.keys(components);
+    const sanitizeOptions: TreeSanitizerOptions = { components, schema: markdownRehypeSchema };
     const compiledMdx = await compile(vfile, {
       outputFormat: 'function-body',
 
-      remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm, [remarkMdxDisableExplicitJsx, knownComponents]],
-      rehypePlugins: [
-        rehypeMarkdownHeadings,
-        rehypeSafeMarkdownAttributes,
-        () => (tree: any) => {
-          const newTree = { ...tree };
-          return sanitizeHastTree(newTree, components);
-        }
+      remarkPlugins: [
+        [remarkCodeHike, chConfig],
+        remarkGfm,
+        [remarkMdxDisableExplicitJsx, knownComponents],
+        remarkHint
       ],
+      rehypePlugins: [rehypeMarkdownHeadings, rehypeSafeMarkdownAttributes, [rehypeSanitizeTree, sanitizeOptions]],
       recmaPlugins: [[recmaCodeHike, chConfig]]
     });
 
@@ -118,29 +117,6 @@ async function renderDocumentationMarkdown(
   } catch (error: any) {
     throw new MarkdownError('MDX compilation failed', formatMarkdownError(error));
   }
-}
-
-const mdxElemets = ['mdxJsxFlowElement', 'mdxJsxTextElement'];
-
-function sanitizeHastTree(tree: any, components: any) {
-  if (mdxElemets.includes(tree.type)) {
-    if (components[tree.name] !== undefined) {
-      return tree;
-    }
-    if (!tree.name || !markdownRehypeSchema.tagNames!.includes(tree.name)) {
-      return null;
-    }
-  } else {
-    if (tree.tagName && !markdownRehypeSchema.tagNames!.includes(tree.tagName)) {
-      return null;
-    }
-  }
-
-  const sanitized = tree;
-  if (tree.children) {
-    sanitized.children = tree.children.map((c: any) => sanitizeHastTree(c, components)).filter((c: any) => c != null);
-  }
-  return sanitized;
 }
 
 function readFrontmatter(source: string): any {

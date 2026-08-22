@@ -15,7 +15,6 @@ import PrefabUsage from '@/components/docs/shared/prefab/PrefabUsage';
 import CraftingRecipe from '@/components/docs/shared/CraftingRecipe';
 import ProjectRecipe from '@/components/docs/shared/game/ProjectRecipe';
 import PrefabObtaining from '@/components/docs/shared/prefab/PrefabObtaining';
-import ModAsset from '@/components/docs/shared/asset/ModAsset';
 import Callout from '@/components/docs/shared/Callout';
 import LinkAwareHeading from '@/components/docs/LinkAwareHeading';
 import { BindableAsset } from '@/components/docs/shared/asset/Asset';
@@ -38,6 +37,7 @@ import ExtendedLink from '@/components/docs/shared/ExtendedLink';
 import ContentLink from '@/components/docs/shared/ContentLink';
 import { BindableAudio } from '@/components/docs/shared/asset/Audio';
 import commonService from '@/lib/service/commonService';
+import TooltipText from '@/components/docs/shared/util/TooltipText';
 
 type AsyncMethodKey<T> = {
   [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never;
@@ -180,8 +180,9 @@ async function renderMarkdown(
       CodeHikeCode,
       CodeTabs,
       VideoEmbed,
+      hint: TooltipText,
       // Deprecated TODO Remove
-      ModAsset: ModAsset.bind(null, ctx),
+      ModAsset: BindableAsset.bind(null, ctx),
       ContentLink: ContentLink.bind(null, ctx),
       DocsLink: DocsLink.bind(null, ctx)
     };
