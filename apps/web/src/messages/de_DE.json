@@ -135,7 +135,7 @@
     "datapack": "Datenpaket",
     "shader": "Shader",
     "plugin": "Plugin",
-    "unknown": "Unknown"
+    "unknown": "Unbekannt"
   },
   "LoadingContent": {
     "message": "Wird geladen..."
@@ -397,12 +397,17 @@
     "title": "Community",
     "desc": "Inoffizielle Dokumentation, die von der Community gepflegt wird"
   },
-  "DocsPageNotFoundError": {
-    "title": "Wir haben diese Seite verloren",
-    "desc": "Die angeforderte Dokumentationsseite ist momentan nicht verfügbar.",
-    "suggestion": "Bitte versuche es später erneut oder melde dieses Problem dem Projektautor.",
-    "submit": "Problem melden",
-    "return": "Zur Startseite zurückkehren"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Erstelle dein erstes Projekt"
@@ -456,16 +461,16 @@
     "loading": "Die perfekten Ergebnisse werden gesucht...",
     "results": "Zeige <highlight>{count}</highlight> von <highlight>{total}</highlight> Ergebnissen",
     "close": "<kbd>ESC</kbd> zum Schließen",
-    "switch": "<kbd>Tab</kbd> to change scope",
+    "switch": "<kbd>Tab</kbd> zum Wechseln des Bereichs",
     "scope": {
-      "local": "Local",
+      "local": "Lokal",
       "global": "Global"
     }
   },
   "SearchResultType": {
-    "project": "Project",
-    "documentation": "Docs",
-    "content": "Content"
+    "project": "Projekt",
+    "documentation": "Dokumentation",
+    "content": "Inhalt"
   },
   "DocsChangelogPage": {
     "title": "Änderungsprotokoll"
@@ -497,7 +502,7 @@
     "healthy": "Geladen",
     "at_risk": "Erfordert Aufmerksamkeit",
     "error": "Fehlerhaft",
-    "inactive": "Inactive"
+    "inactive": "Inaktiv"
   },
   "ProjectVisibility": {
     "public": "Öffentlich",
@@ -898,7 +903,7 @@
     "git_clone": "Fehler beim Klonen des Repositories",
     "git_info": "Fehler beim Abrufen der Commit-Informationen",
     "ingestor": "Fehler beim Importieren der Inhalte",
-    "version_setup": "Error setting up version",
+    "version_setup": "Fehler beim Einrichten der Version",
     "internal": "Interner Serverfehler",
     "page": "Ungültige Seite",
     "unknown": "Unbekannter Fehler"
@@ -927,10 +932,10 @@
     "no_page_title": "Seite hat keinen Titel",
     "missing_required_attribute": "Seite fehlt ein erforderliches Metadatenattribut",
     "invalid_frontmatter": "Ungültiger Frontmatter der Seite",
-    "no_platforms": "Missing project platforms",
-    "illegal_id": "Invalid project ID",
-    "illegal_mod_id": "Invalid project mod ID",
-    "not_owner": "Failed to verify project ownership",
+    "no_platforms": "Fehlende Projektplattformen",
+    "illegal_id": "Ungültige Projekt-ID",
+    "illegal_mod_id": "Ungültige Projekt-Mod-ID",
+    "not_owner": "Projektinhaberschaft konnte nicht verifiziert werden",
     "unknown": "Unbekannter Fehler"
   },
   "AdminReports": {
@@ -995,7 +1000,7 @@
     }
   },
   "ExtendedLink": {
-    "not_found": "(Not found)"
+    "not_found": "(Nicht gefunden)"
   },
   "AdminAccessKeys": {
     "title": "System-Zugangsschlüssel",
