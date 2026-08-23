@@ -3,12 +3,10 @@ import Footer from '@/components/navigation/Footer';
 import { ReactNode } from 'react';
 import { setContextLocale } from '@/lib/locales/routing';
 import locales from '@repo/shared/locales';
-import { NextIntlClientProvider } from 'next-intl';
 import { Toaster } from '@repo/ui/components/sonner';
 import CookieConsentContextProvider from '@/components/cookies/CookieConsentContextProvider';
-import { getMessages } from 'next-intl/server';
-import { pick } from 'lodash';
 import SearchContextProvider from '@/components/navigation/search/SearchContext';
+import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 
 export async function generateStaticParams() {
   return locales.getLanguagePaths().map((locale) => ({ locale }));
@@ -22,10 +20,9 @@ export default async function LocaleLayout(props: { params: Params; children: Re
   setContextLocale(params.locale);
 
   const isRTL = locales.isRTL(params.locale);
-  const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider locale={params.locale} messages={pick(messages, 'CookieConsent')}>
+    <ClientLocaleProvider keys={['CookieConsent']}>
       <CookieConsentContextProvider>
         <SearchContextProvider>
           <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
@@ -46,6 +43,6 @@ export default async function LocaleLayout(props: { params: Params; children: Re
           />
         </SearchContextProvider>
       </CookieConsentContextProvider>
-    </NextIntlClientProvider>
+    </ClientLocaleProvider>
   );
 }

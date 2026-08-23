@@ -6,13 +6,13 @@ import { notFound } from 'next/navigation';
 import platforms from '@repo/shared/platforms';
 import DocsInnerLayoutClient from '@/components/docs/layout/DocsInnerLayoutClient';
 import DocsPageFooter from '@/components/docs/layout/DocsPageFooter';
-import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
 import DocsGuideNonContentRightSidebar from '@/components/docs/side/guide/DocsGuideNonContentRightSidebar';
 import { constructPagePath } from '@/lib/service/serviceUtil';
 import env from '@repo/shared/env';
 import { RenderedDocsPage } from '@repo/shared/types/service';
 import issuesApi from '@repo/shared/api/issuesApi';
 import DocsGuideContentRightSidebar from '@/components/docs/side/guide/DocsGuideContentRightSidebar';
+import DocsPageErrorBase from '@/components/docs/error/DocsPageErrorBase';
 
 export async function generateMetadata(
   props: {
@@ -88,7 +88,7 @@ export default async function ProjectDocsPage(props: {
 
     await issuesApi.reportPageRenderFailure(project, constructPagePath(path), e, version, locale);
 
-    return <DocsPageNotFoundError project={project} />;
+    return <DocsPageErrorBase project={project} />;
   }
   if (!page) {
     return notFound();

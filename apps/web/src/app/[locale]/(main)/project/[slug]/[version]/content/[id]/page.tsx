@@ -1,6 +1,5 @@
 import { setContextLocale } from '@/lib/locales/routing';
 import service from '@/lib/service';
-import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
 import { notFound } from 'next/navigation';
 import DocsEntryPage from '@/components/docs/body/DocsEntryPage';
 import { getTranslations } from 'next-intl/server';
@@ -17,6 +16,7 @@ import ContentChangelog from '@/components/docs/content/ContentChangelog';
 import ContentListFooter from '@/components/docs/ContentListFooter';
 import DocsContentPageToolsFooter from '@/components/docs/layout/DocsContentPageToolsFooter';
 import issuesApi from '@repo/shared/api/issuesApi';
+import DocsPageErrorBase from '@/components/docs/error/DocsPageErrorBase';
 
 interface Props {
   params: Promise<{
@@ -90,7 +90,7 @@ export default async function ContentEntryPage(props: Props) {
       await issuesApi.reportPageRenderFailure(project, ctx.contentId, e, ctx.version, ctx.locale);
     }
 
-    return <DocsPageNotFoundError />;
+    return <DocsPageErrorBase />;
   }
   if (!page) {
     return notFound();

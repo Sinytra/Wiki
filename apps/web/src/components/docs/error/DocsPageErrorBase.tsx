@@ -2,16 +2,20 @@ import { useTranslations } from 'next-intl';
 import { FileQuestionIcon, HouseIcon } from 'lucide-react';
 import { Button } from '@repo/ui/components/button';
 import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import { ProjectData } from '@sinytra/wiki-api-types';
 import { NavLink } from '@/components/navigation/link/NavLink';
 
-import { ProjectData } from '@sinytra/wiki-api-types';
+interface Props {
+  project?: ProjectData;
+  returnTo?: string;
+}
 
-export default function DocsPageNotFoundError({ project }: { project?: ProjectData }) {
-  const t = useTranslations('DocsPageNotFoundError');
+export default function DocsPageErrorBase({ project, returnTo }: Props) {
+  const t = useTranslations('DocsPageError');
 
   return (
-    <div className="m-auto flex flex-col items-center justify-center gap-4 p-4">
-      <FileQuestionIcon className="h-32 w-32 sm:h-48 sm:w-48" strokeWidth={1.5} />
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-4 p-4 pb-[min(25vh,16rem)]">
+      <FileQuestionIcon className="size-32 sm:size-44" strokeWidth={1.5} />
 
       <h1 className="my-2 text-3xl text-primary sm:text-5xl">{t('title')}</h1>
 
@@ -28,7 +32,7 @@ export default function DocsPageNotFoundError({ project }: { project?: ProjectDa
           </Button>
         )}
         <Button asChild>
-          <NavLink href="/">
+          <NavLink href={returnTo ?? '/'}>
             <HouseIcon className="mr-2 h-4 w-4" strokeWidth={2.5} />
             {t('return')}
           </NavLink>

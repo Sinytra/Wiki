@@ -4,9 +4,7 @@ import service from '@/lib/service';
 import DocsLayoutClient from '@/components/docs/layout/DocsLayoutClient';
 import { notFound } from 'next/navigation';
 import LeftSidebarContextProvider from '@/components/docs/side/LeftSidebarContext';
-import { ErrorBoundary } from 'react-error-boundary';
 import DocsSidebarContextProvider from '@/components/docs/side/DocsSidebarContext';
-import DocsPageNotFoundError from '@/components/docs/DocsPageNotFoundError';
 import platforms from '@repo/shared/platforms';
 import { Metadata, ResolvingMetadata } from 'next';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
@@ -57,28 +55,27 @@ export default async function HomepageLayout(props: LayoutProps) {
   const platformProject = await platforms.getPlatformProject(project);
 
   return (
-    <ErrorBoundary fallback={<DocsPageNotFoundError project={project} />}>
-      <LeftSidebarContextProvider>
-        <DocsSidebarContextProvider>
-          <LocalSearchSetter project={project}>
-            <ClientLocaleProvider
-              keys={[
-                'DocsPageNotFoundError',
-                'ProjectTypes',
-                'ProjectCategories',
-                'PageEditControls',
-                'DocsVersionSelector',
-                'LanguageSelect',
-                'ModVersionRange'
-              ]}
-            >
-              <DocsLayoutClient project={project} locale={locale} version={version} platformProject={platformProject}>
-                {children}
-              </DocsLayoutClient>
-            </ClientLocaleProvider>
-          </LocalSearchSetter>
-        </DocsSidebarContextProvider>
-      </LeftSidebarContextProvider>
-    </ErrorBoundary>
+    <LeftSidebarContextProvider>
+      <DocsSidebarContextProvider>
+        <LocalSearchSetter project={project}>
+          <ClientLocaleProvider
+            keys={[
+              'DocsPageError',
+              'DocsPageNotFound',
+              'ProjectTypes',
+              'ProjectCategories',
+              'PageEditControls',
+              'DocsVersionSelector',
+              'LanguageSelect',
+              'ModVersionRange'
+            ]}
+          >
+            <DocsLayoutClient project={project} locale={locale} version={version} platformProject={platformProject}>
+              {children}
+            </DocsLayoutClient>
+          </ClientLocaleProvider>
+        </LocalSearchSetter>
+      </DocsSidebarContextProvider>
+    </LeftSidebarContextProvider>
   );
 }
