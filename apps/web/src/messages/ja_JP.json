@@ -397,12 +397,17 @@
     "title": "コミュニティ",
     "desc": "コミュニティによって維持されている非公式のドキュメント"
   },
-  "DocsPageNotFoundError": {
-    "title": "このページを紛失しました",
-    "desc": "リクエストされたドキュメントページは現在ご利用いただけません。",
-    "suggestion": "後ほど再度お試しいただくか、この問題をプロジェクトの作成者に報告してください。",
-    "submit": "問題を送信する",
-    "return": "ホームに戻る"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Create your first project"
