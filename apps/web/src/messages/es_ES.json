@@ -397,12 +397,17 @@
     "title": "Comunidad",
     "desc": "Documentación no oficial mantenida por la comunidad"
   },
-  "DocsPageNotFoundError": {
-    "title": "Perdimos esta página",
-    "desc": "La página de documentación solicitada no está disponible por el momento.",
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
     "suggestion": "Please try again later or report this issue to the project author.",
-    "submit": "Enviar un problema",
-    "return": "Volver al Inicio"
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Create your first project"
