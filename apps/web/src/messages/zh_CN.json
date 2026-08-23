@@ -397,12 +397,17 @@
     "title": "社区",
     "desc": "社区维护的非官方文档"
   },
-  "DocsPageNotFoundError": {
-    "title": "我们找不到此页",
-    "desc": "请求的文档页当前不可用。",
-    "suggestion": "请稍后再试，或将此问题报告给项目作者。",
-    "submit": "提交问题",
-    "return": "返回主页"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "添加第一个项目"
