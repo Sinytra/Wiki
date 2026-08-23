@@ -23,16 +23,16 @@
   "dependencies": {
     "@bprogress/next": "^3.2.12",
     "@repo/markdown": "workspace:*",
-    "country-flag-icons": "^1.5.13",
-    "next": "^15.5.9",
+    "country-flag-icons": "^1.6.20",
+    "next": "^15.5.23",
     "react": "19.1.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@sinytra/wiki-api-types": "^0.1.22",
-    "@types/node": "^20",
+    "@types/node": "^20.19.43",
     "@types/react": "19.1.8",
-    "eslint": "^9.31.0"
+    "eslint": "^9.39.5"
   }
 }

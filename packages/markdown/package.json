@@ -10,13 +10,13 @@
     "./highlighter": "./src/highlighter.tsx"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^3.1.0",
-    "codehike": "^1.0.7",
+    "@mdx-js/mdx": "^3.1.1",
+    "codehike": "^1.1.0",
     "estree-util-visit": "^2.0.0",
     "github-slugger": "^2.0.0",
     "hast-util-heading-rank": "^3.0.0",
     "hast-util-sanitize": "^5.0.2",
-    "lucide-react": "^1.17.0",
+    "lucide-react": "^1.33.0",
     "mdast-util-mdx-jsx": "^3.2.0",
     "mdast-util-to-string": "^4.0.0",
     "micromark-factory-space": "^2.0.1",
@@ -32,21 +32,21 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "unified": "^11.0.5",
-    "unist-util-visit": "^5.0.0",
+    "unist-util-visit": "^5.1.0",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.1",
-    "vfile-message": "^4.0.2"
+    "vfile-message": "^4.0.3"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@sinytra/wiki-api-types": "^0.1.22",
-    "@types/hast": "^3.0.4",
+    "@types/hast": "^3.0.5",
     "@types/mdast": "^4.0.4",
     "@types/react": "19.1.8",
     "@types/unist": "^3.0.3",
-    "eslint": "^9.31.0",
-    "mdast-util-from-markdown": "^2.0.2",
+    "eslint": "^9.39.5",
+    "mdast-util-from-markdown": "^2.0.3",
     "mdast-util-to-markdown": "^2.1.2",
     "micromark-util-types": "^2.0.2"
   }

@@ -12,16 +12,16 @@
   "dependencies": {
     "@repo/markdown": "workspace:*",
     "@repo/shared": "workspace:*",
-    "directory-tree": "^3.5.2",
-    "json-schema-library": "^10.1.2",
-    "next": "^15.5.9",
-    "lodash": "^4.17.21"
+    "directory-tree": "^3.6.0",
+    "json-schema-library": "^10.5.4",
+    "lodash": "^4.18.1",
+    "next": "^15.5.23"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@sinytra/wiki-api-types": "^0.1.22",
-    "eslint": "^9.31.0",
-    "@types/lodash": "^4.17.9"
+    "@types/lodash": "^4.17.25",
+    "eslint": "^9.39.5"
   }
 }

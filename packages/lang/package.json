@@ -6,7 +6,7 @@
     "./*": "./src/*.ts"
   },
   "dependencies": {
-    "country-flag-icons": "^1.5.13"
+    "country-flag-icons": "^1.6.20"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*"
