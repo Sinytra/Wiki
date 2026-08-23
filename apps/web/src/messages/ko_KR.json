@@ -397,12 +397,17 @@
     "title": "커뮤니티",
     "desc": "커뮤니티에서 관리하는 비공식 문서"
   },
-  "DocsPageNotFoundError": {
-    "title": "해당 페이지를 찾지 못했습니다",
-    "desc": "지금은 요청한 문서를 불러올 수 없습니다.",
-    "suggestion": "나중에 다시 시도하거나 이 문제를 프로젝트 제작자에게 보고하세요.",
-    "submit": "문제 제출",
-    "return": "홈으로 돌아가기"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Create your first project"
