@@ -397,12 +397,17 @@
     "title": "Спільнота",
     "desc": "Неофіційна документація, що підтримується спільнотою"
   },
-  "DocsPageNotFoundError": {
-    "title": "Ми втратили цю сторінку",
-    "desc": "Запитувана сторінка документації наразі недоступна.",
-    "suggestion": "Будь ласка, спробуйте ще раз пізніше або повідомте про цю проблему автору проєкту.",
-    "submit": "Повідомити про помилку",
-    "return": "Повернутись на головну"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Create your first project"
