@@ -135,7 +135,7 @@
     "datapack": "Pek data",
     "shader": "Pembayang",
     "plugin": "Pemalam",
-    "unknown": "Unknown"
+    "unknown": "Tidak diketahui"
   },
   "LoadingContent": {
     "message": "Memuatkan..."
@@ -371,7 +371,7 @@
       "internal": "Ralat Pelayan Dalaman, sila cuba lagi kemudian.",
       "unknown": "Sebuah ralat yang tidak diketahui telah berlaku, sila cuba sebentar lagi.",
       "no_platforms": "Tiada projek platform ditakrifkan dalam metadata.",
-      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
+      "no_project": "Platform projek tidak ditemui. Sila pastikan medan \"platforms\" metadata adalah betul.",
       "unsupported_type": "Jenis projek tidak disokong",
       "ownership": "Gagal mengesahkan pemilikan projek",
       "cf_unavailable": "Pendaftaran projek CurseForge tidak aktif",
@@ -397,12 +397,17 @@
     "title": "Komuniti",
     "desc": "Dokumentasi tidak rasmi yang diselenggara oleh komuniti"
   },
-  "DocsPageNotFoundError": {
-    "title": "Kami kehilangan laman ini",
-    "desc": "Laman dokumentasi yang diminta tidak tersedia pada masa ini.",
-    "suggestion": "Sila cuba sebentar lagi atau laporkan isu ini kepada pengarang projek.",
-    "submit": "Serahkan isu",
-    "return": "Kembali ke Laman Utama"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Cipta projek pertama anda"
@@ -456,16 +461,16 @@
     "loading": "Mencari hasil yang sempurna...",
     "results": "Menunjukkan <highlight>{count}</highlight> hasil daripada <highlight>{total}</highlight>",
     "close": "<kbd>ESC</kbd> untuk tutup",
-    "switch": "<kbd>Tab</kbd> to change scope",
+    "switch": "<kbd>Tab</kbd> untuk mengubah skop",
     "scope": {
-      "local": "Local",
+      "local": "Tempatan",
       "global": "Global"
     }
   },
   "SearchResultType": {
-    "project": "Project",
-    "documentation": "Docs",
-    "content": "Content"
+    "project": "Projek",
+    "documentation": "Dokumentasi",
+    "content": "Kandungan"
   },
   "DocsChangelogPage": {
     "title": "Log Perubahan"
@@ -497,13 +502,13 @@
     "healthy": "Dimuatkan",
     "at_risk": "Memerlukan perhatian",
     "error": "Telah Ralat",
-    "inactive": "Inactive"
+    "inactive": "Tidak aktif"
   },
   "ProjectVisibility": {
-    "public": "Public",
-    "unlisted": "Unlisted",
-    "private": "Private",
-    "unknown": "Unknown"
+    "public": "Awam",
+    "unlisted": "Tidak tersenarai",
+    "private": "Peribadi",
+    "unknown": "Tidak diketahui"
   },
   "DevProjectsListPage": {
     "project": {
@@ -519,7 +524,7 @@
       "home": "Laman Utama"
     },
     "toolbar": {
-      "view": "Visit project page",
+      "view": "Lawati laman projek",
       "deployments": "Pengaturan"
     },
     "overview": {
@@ -561,22 +566,22 @@
     "desc": "Konfigurasikan sifat projek",
     "form": {
       "visibility": {
-        "title": "Project Visibility",
-        "public_desc": "Public projects are visible in search.",
-        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
-        "private_desc": "Private projects are only accessible by members of the project.",
-        "placeholder": "Select visibility"
+        "title": "Keterlihatan Projek",
+        "public_desc": "Projek awam kelihatan dalam carian.",
+        "unlisted_desc": "Projek yang tidak tersenarai adalah diterbitkan, tetapi tidak kelihatan dalam carian.",
+        "private_desc": "Projek peribadi hanya boleh diakses oleh ahli projek.",
+        "placeholder": "Pilih keterlihatan"
       }
     },
     "toast": {
-      "success": "Project settings updated successfully"
+      "success": "Tetapan projek berjaya dikemas kini"
     },
-    "save": "Save"
+    "save": "Simpan"
   },
   "DevProjectSourceSettingsPage": {
-    "title": "Project settings - Source",
-    "desc": "Configure project source repository",
-    "save": "Save"
+    "title": "Tetapan projek - Sumber",
+    "desc": "Konfigurasikan repositori sumber projek",
+    "save": "Simpan"
   },
   "DevProjectVersionsPage": {
     "title": "Versi projek",
@@ -734,9 +739,9 @@
       "recipes": "Resipi"
     },
     "settings": {
-      "group": "Settings",
-      "general": "General",
-      "source": "Source"
+      "group": "Tetapan",
+      "general": "Umum",
+      "source": "Sumber"
     }
   },
   "PrefabObtaining": {
@@ -898,7 +903,7 @@
     "git_clone": "Ralat semasa mengklon repositori",
     "git_info": "Ralat semasa mendapatkan maklumat commit",
     "ingestor": "Ralat semasa mengimport kandungan",
-    "version_setup": "Error setting up version",
+    "version_setup": "Ralat semasa menyediakan versi",
     "internal": "Ralat pelayan dalaman",
     "page": "Laman tidak sah",
     "unknown": "Ralat tidak diketahui"
@@ -927,10 +932,10 @@
     "no_page_title": "Laman tidak mempunyai tajuk",
     "missing_required_attribute": "Laman tidak mempunyai atribut metadata yang diperlukan",
     "invalid_frontmatter": "Bahagian hadapan laman tidak sah",
-    "no_platforms": "Missing project platforms",
-    "illegal_id": "Invalid project ID",
-    "illegal_mod_id": "Invalid project mod ID",
-    "not_owner": "Failed to verify project ownership",
+    "no_platforms": "Platform projek tidak ada",
+    "illegal_id": "ID projek tidak sah",
+    "illegal_mod_id": "ID mod projek tidak sah",
+    "not_owner": "Gagal mengesahkan pemilikan projek",
     "unknown": "Ralat tidak diketahui"
   },
   "AdminReports": {
@@ -995,7 +1000,7 @@
     }
   },
   "ExtendedLink": {
-    "not_found": "(Not found)"
+    "not_found": "(Tidak ditemui)"
   },
   "AdminAccessKeys": {
     "title": "Kunci akses sistem",
@@ -1159,9 +1164,9 @@
     "cancel": "Batal"
   },
   "NewProjectBanner": {
-    "title": "Ready when you are",
-    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
-    "submit": "Publish",
-    "success": "Project visibility set to public"
+    "title": "Bersedia apabila anda sudah siap",
+    "desc": "Ini merupakan projek baharu dan belum muncul dalam carian. Jadi, sila cuba dan ubah suai beberapa perkara sehingga ia cukup betul. Apabila anda berpuas hati dengan hasilnya, tekan butang di bawah untuk memaparkan projek secara awam.",
+    "submit": "Terbitkan",
+    "success": "Keterlihatan projek ditetapkan kepada awam"
   }
 }
