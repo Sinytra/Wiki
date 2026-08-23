@@ -1,4 +1,4 @@
-import { ItemProperties, ProjectContext } from '@repo/shared/types/service';
+import { ItemProperties, PageLinks, ProjectContentContext, ProjectContext } from '@repo/shared/types/service';
 import Asset from '@/components/docs/shared/asset/Asset';
 import { useTranslations } from 'next-intl';
 import { getContentLink, getVanillaWikiLink } from '@/lib/project/game/content';
@@ -6,22 +6,17 @@ import PageLink from '@/components/docs/PageLink';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import { ResolvedItemProperties, ResolvedItemProperty, resolveItemProperties } from '@/lib/project/game/properties';
 import { cn } from '@repo/ui/lib/utils';
+import MarkdownPropertyValue from '@/components/docs/side/content/MarkdownPropertyValue';
 
 interface Props {
-  ctx: ProjectContext;
+  ctx: ProjectContentContext;
+  links: PageLinks;
   properties: ItemProperties;
   providedProps: ResolvedItemProperties;
 }
 
 type PropertyType =
-  | 'literal'
-  | 'code_literal'
-  | 'i18n_literal'
-  | 'weighted_flag'
-  | 'bool'
-  | 'item'
-  | 'damage'
-  | 'hunger';
+  'literal' | 'code_literal' | 'i18n_literal' | 'weighted_flag' | 'bool' | 'item' | 'damage' | 'hunger';
 
 interface ItemProperty {
   type: PropertyType;
@@ -246,8 +241,36 @@ function RenderedResolvedProperty({
   );
 }
 
-export default function ContentProperties({ properties, providedProps, ctx }: Props) {
+function ContentPropertyKey({
+  type,
+  name,
+  ctx,
+  links
+}: {
+  type: ItemProperty | PropertyType;
+  name: string;
+  ctx: ProjectContentContext;
+  links: PageLinks;
+}) {
   const t = useTranslations('ContentProperties');
+
+  const link = typeof type === 'string' ? null : type.link;
+  const Wrapper = ({ children }: { children: any }) => (link ? <PageLink href={link}>{children}</PageLink> : children);
+
+  return (
+    <Wrapper>
+      {/*@ts-expect-error has message*/}
+      {t.has(`properties.${name}`) ? (
+        /*@ts-expect-error has message*/
+        t(`properties.${name}`)
+      ) : (
+        <MarkdownPropertyValue text={name} ctx={ctx} links={links} />
+      )}
+    </Wrapper>
+  );
+}
+
+export default function ContentProperties({ properties, providedProps, ctx, links }: Props) {
   const order = Object.keys(SUPPORTED_PROPERTIES);
 
   const resolvedProps = {
@@ -275,17 +298,11 @@ export default function ContentProperties({ properties, providedProps, ctx }: Pr
             .map(([key, prop]) => {
               const type = SUPPORTED_PROPERTIES[key] || 'literal';
               const propType = typeof type === 'string' ? type : type.type;
-              const link = typeof type === 'string' ? null : type.link;
-              const Wrapper = ({ children }: { children: any }) =>
-                link ? <PageLink href={link}>{children}</PageLink> : children;
 
               return (
                 <tr key={key}>
-                  <td className="table-padding-sm-y border-r-0 border-b-0 border-l-0 text-sm font-medium break-words">
-                    <Wrapper>
-                      {/*@ts-expect-error has message*/}
-                      {t.has(`properties.${key}`) ? t(`properties.${key}`) : key}
-                    </Wrapper>
+                  <td className="table-padding-sm-y border-r-0 border-b-0 border-l-0 text-sm font-medium wrap-break-word">
+                    <ContentPropertyKey name={key} type={type} ctx={ctx} links={links} />
                   </td>
                   <td className={'table-padding-sm border-r-0 border-b-0 border-l-0 text-sm'}>
                     <RenderedResolvedProperty name={key} type={propType} property={prop} ctx={ctx} />

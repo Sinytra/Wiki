@@ -44,7 +44,7 @@ export async function renderHomepage(
     return null;
   }
   try {
-    const htmlContent = await markdown.renderMarkdown(platformProject.description);
+    const htmlContent = await markdown.renderCommonMarkdown(platformProject.description);
     const content = <RenderedMarkdownContent htmlContent={htmlContent} />;
     return { content, metadata: {} };
   } catch (e) {

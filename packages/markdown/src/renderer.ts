@@ -1,4 +1,4 @@
-import { unified } from 'unified';
+import { Pluggable, unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
@@ -46,7 +46,7 @@ function cleanFrontmatter(input: string) {
     .join('\n');
 }
 
-async function renderMarkdown(content: string): Promise<string> {
+async function renderCommonMarkdown(content: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })
@@ -61,6 +61,7 @@ async function renderMarkdown(content: string): Promise<string> {
 async function renderDocumentationMarkdown(
   source: string,
   includeComponents: Record<string, any>,
+  inline: boolean,
   patcher?: ComponentPatcher
 ): Promise<DocumentationMarkdown> {
   const LucideReact = await import('lucide-react');
@@ -90,6 +91,11 @@ async function renderDocumentationMarkdown(
   try {
     const knownComponents = Object.keys(components);
     const sanitizeOptions: TreeSanitizerOptions = { components, schema: markdownRehypeSchema };
+    const rehypePlugins: Pluggable[] = [rehypeSafeMarkdownAttributes, [rehypeSanitizeTree, sanitizeOptions]];
+    if (!inline) {
+      rehypePlugins.unshift(rehypeMarkdownHeadings);
+    }
+
     const compiledMdx = await compile(vfile, {
       outputFormat: 'function-body',
 
@@ -99,7 +105,7 @@ async function renderDocumentationMarkdown(
         [remarkMdxDisableExplicitJsx, knownComponents],
         remarkHint
       ],
-      rehypePlugins: [rehypeMarkdownHeadings, rehypeSafeMarkdownAttributes, [rehypeSanitizeTree, sanitizeOptions]],
+      rehypePlugins,
       recmaPlugins: [[recmaCodeHike, chConfig]]
     });
 
@@ -150,7 +156,7 @@ async function readProcessedFrontmatter(source: string) {
 }
 
 export default {
-  renderMarkdown,
+  renderCommonMarkdown,
   renderDocumentationMarkdown,
   readFrontmatter,
   readProcessedFrontmatter

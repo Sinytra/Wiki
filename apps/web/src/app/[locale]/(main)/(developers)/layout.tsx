@@ -1,9 +1,14 @@
 import { ReactNode } from 'react';
 import { setContextLocale } from '@/lib/locales/routing';
+import { Metadata } from 'next';
 
 type Params = Promise<{ locale: string }>;
 
-export default async function ProjectLayout(props: { params: Params; children: ReactNode }) {
+export const metadata: Metadata = {
+  robots: { index: false, follow: true }
+};
+
+export default async function DevelopersLayout(props: { params: Params; children: ReactNode }) {
   const params = await props.params;
   const { children } = props;
   setContextLocale(params.locale);

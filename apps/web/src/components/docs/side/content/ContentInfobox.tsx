@@ -1,20 +1,22 @@
-import { ItemProperties, ProjectContext } from '@repo/shared/types/service';
+import { ItemProperties, PageLinks, ProjectContentContext } from '@repo/shared/types/service';
 import { Frontmatter, Infobox, ProjectData } from '@sinytra/wiki-api-types';
 import InfoboxTabs from './InfoboxTabs';
 import InvSlotDisplay from './InvSlotDisplay';
 import ContentProperties from '@/components/docs/side/content/ContentProperties';
 import { ResolvedItemProperties } from '@/lib/project/game/properties';
 import ProjectLink from '@/components/navigation/paths/ProjectLink';
+import MarkdownPropertyValue from './MarkdownPropertyValue';
 
 export interface Props {
   project: ProjectData;
   frontmatter: Frontmatter;
   metadata: Infobox;
-  ctx: ProjectContext;
+  ctx: ProjectContentContext;
+  links: PageLinks;
   properties?: ItemProperties | null;
 }
 
-export default async function ContentInfobox({ project, frontmatter, metadata, ctx, properties }: Props) {
+export default async function ContentInfobox({ project, frontmatter, metadata, ctx, links, properties }: Props) {
   const providedProps: ResolvedItemProperties = {
     source_mod: {
       type: 'single',
@@ -37,7 +39,7 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
     Object.entries(frontmatter.custom).forEach(([key, value]) => {
       providedProps[key] = {
         type: 'single',
-        value,
+        value: <MarkdownPropertyValue text={value} ctx={ctx} links={links} />,
         order: 999
       };
     });
@@ -65,7 +67,9 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
       </div>
 
       {/* Item Properties */}
-      {properties != null && <ContentProperties properties={properties} providedProps={providedProps} ctx={ctx} />}
+      {properties != null && (
+        <ContentProperties properties={properties} providedProps={providedProps} ctx={ctx} links={links} />
+      )}
     </div>
   );
 }

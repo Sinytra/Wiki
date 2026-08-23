@@ -2,13 +2,14 @@ import { serviceProviderFactory as remoteServiceProviderFactory } from '@/lib/se
 import { AssetLocation } from '@repo/shared/assets';
 import {
   ContentFileTree,
+  PageLinks,
   ProjectContentContext,
   ProjectContext,
   RenderedDocsPage,
   ServiceProvider,
   ServiceProviderFactory
 } from '@repo/shared/types/service';
-import markdown, { ComponentPatcher } from '@repo/markdown';
+import markdown, { ComponentPatcher, DocumentationMarkdown } from '@repo/markdown';
 import resourceLocation from '@repo/shared/resourceLocation';
 import { localServiceProviderFactory } from '@repo/previewer';
 import PrefabUsage from '@/components/docs/shared/prefab/PrefabUsage';
@@ -119,12 +120,12 @@ async function renderDocsPage(
   patcher?: ComponentPatcher
 ): Promise<RenderedDocsPage | null> {
   const raw = (await getDocsPage(path, optional, ctx)) || null;
-  return renderMarkdown(raw, ctx, patcher);
+  return renderMarkdownPage(raw, ctx, patcher);
 }
 
 async function renderDocsIndexPage(ctx: ProjectContext, patcher?: ComponentPatcher): Promise<RenderedDocsPage | null> {
   const raw = (await getDocsIndexPage(ctx)) || null;
-  return renderMarkdown(raw, ctx, patcher);
+  return renderMarkdownPage(raw, ctx, patcher);
 }
 
 const searchProjects: (
@@ -159,35 +160,15 @@ async function renderProjectContentPage(
     PrefabObtaining: PrefabObtaining.bind(null, ctx),
     ...c
   });
-  return renderMarkdown(page, ctx, patcher);
+  return renderMarkdownPage(page, ctx, patcher);
 }
-async function renderMarkdown(
+async function renderMarkdownPage(
   page: ProjectPage | null,
   ctx: ProjectContext | ProjectContentContext,
   patcher?: ComponentPatcher
 ): Promise<RenderedDocsPage | null> {
   if (page) {
-    const components = {
-      Asset: BindableAsset.bind(null, ctx),
-      Audio: BindableAudio.bind(null, ctx),
-      CraftingRecipe: CraftingRecipe.bind(null, ctx),
-      ProjectRecipe: ProjectRecipe.bind(null, ctx),
-      RecipeUsage: BindableRecipeUsage.bind(null, ctx),
-      h2: LinkAwareHeading,
-      a: ExtendedLink.bind(null, ctx, page.links),
-      img: ExtendedImg.bind(null, ctx),
-      Callout,
-      CodeHikeCode,
-      CodeTabs,
-      VideoEmbed,
-      hint: TooltipText,
-      // Deprecated TODO Remove
-      ModAsset: BindableAsset.bind(null, ctx),
-      ContentLink: ContentLink.bind(null, ctx),
-      DocsLink: DocsLink.bind(null, ctx)
-    };
-
-    const content = await markdown.renderDocumentationMarkdown(page.content, components, patcher);
+    const content = await renderMarkdownInternal(page.content, page.links, false, ctx, patcher);
     return {
       frontmatter: page.frontmatter,
       content,
@@ -197,6 +178,44 @@ async function renderMarkdown(
     };
   }
   return null;
+}
+
+async function renderInlineMarkdown(
+  text: string,
+  ctx: ProjectContext | ProjectContentContext,
+  links: PageLinks
+): Promise<DocumentationMarkdown> {
+  return await renderMarkdownInternal(text, links, true, ctx);
+}
+
+async function renderMarkdownInternal(
+  text: string,
+  links: PageLinks,
+  inline: boolean,
+  ctx: ProjectContext | ProjectContentContext,
+  patcher?: ComponentPatcher
+): Promise<DocumentationMarkdown> {
+  const components = {
+    Asset: BindableAsset.bind(null, ctx),
+    Audio: BindableAudio.bind(null, ctx),
+    CraftingRecipe: CraftingRecipe.bind(null, ctx),
+    ProjectRecipe: ProjectRecipe.bind(null, ctx),
+    RecipeUsage: BindableRecipeUsage.bind(null, ctx),
+    h2: LinkAwareHeading,
+    a: ExtendedLink.bind(null, ctx, links),
+    img: ExtendedImg.bind(null, ctx),
+    Callout,
+    CodeHikeCode,
+    CodeTabs,
+    VideoEmbed,
+    hint: TooltipText,
+    // Deprecated TODO Remove
+    ModAsset: BindableAsset.bind(null, ctx),
+    ContentLink: ContentLink.bind(null, ctx),
+    DocsLink: DocsLink.bind(null, ctx)
+  };
+
+  return await markdown.renderDocumentationMarkdown(text, components, inline, patcher);
 }
 
 export default {
@@ -214,5 +233,6 @@ export default {
   getContentRecipeUsage,
   getProjectContentPage,
   getContentRecipeObtaining,
-  getRecipeType
+  getRecipeType,
+  renderInlineMarkdown
 };

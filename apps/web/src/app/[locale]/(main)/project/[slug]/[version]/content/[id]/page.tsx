@@ -112,7 +112,7 @@ export default async function ContentEntryPage(props: Props) {
         </ClientLocaleProvider>
 
         <main
-          className={`mt-4 min-h-[86vh] flex-1 overflow-auto px-2 pb-4 sm:mt-0 sm:min-h-[auto] sm:max-w-5xl sm:pt-4 lg:px-0 lg:pt-2`}
+          className={`mt-4 min-h-[86vh] flex-1 overflow-auto px-2 pb-4 sm:mt-0 sm:min-h-auto sm:max-w-5xl sm:pt-4 lg:px-0 lg:pt-2`}
         >
           <div className="mb-6 sm:hidden">
             {page.frontmatter.infobox != null && (
@@ -122,6 +122,7 @@ export default async function ContentEntryPage(props: Props) {
                 metadata={page.frontmatter.infobox}
                 frontmatter={page.frontmatter}
                 properties={page.properties}
+                links={page.links}
               />
             )}
           </div>

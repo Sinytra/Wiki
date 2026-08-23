@@ -6,7 +6,7 @@ import ReportPageButton from '@/components/docs/layout/ReportPageButton';
 import EditPageButton from '@/components/docs/layout/EditPageButton';
 import { RenderedDocsPage } from '@repo/shared/types/service';
 
-type Props = Omit<BodyProps, 'frontmatter' | 'metadata' | 'properties'> & {
+type Props = Omit<BodyProps, 'frontmatter' | 'metadata' | 'properties' | 'links'> & {
   title: string;
   id: string;
   page: RenderedDocsPage;
@@ -32,6 +32,7 @@ export default function DocsContentMetaSidebar(props: Props) {
           metadata={props.page.frontmatter.infobox}
           frontmatter={props.page.frontmatter}
           properties={props.page.properties}
+          links={props.page.links}
         />
       )}
 
