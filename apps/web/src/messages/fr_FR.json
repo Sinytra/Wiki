@@ -2,7 +2,7 @@
   "Badges": {
     "local": "Local",
     "latest": "Plus récent",
-    "admin": "Admin"
+    "admin": "Administrateur"
   },
   "NavigationHeader": {
     "title": "Wiki Minecraft Moddé",
@@ -65,7 +65,7 @@
         "title": "Auteurs",
         "subtitle": "Accédez au tableau de bord et profitez de ces avantages :",
         "vcs": "Prise en charge du versionnage pour votre documentation",
-        "components": "Built-in components for recipes, assets, etc.",
+        "components": "Composants intégrés pour recettes, actifs, etc.",
         "gradle": "Intégration Gradle pour travailler fluidement",
         "management": "Outils avancés de gestion de projet",
         "interaction": "Interaction directe avec vos utilisateurs",
@@ -135,7 +135,7 @@
     "datapack": "Pack de données",
     "shader": "Shader",
     "plugin": "Plugin",
-    "unknown": "Unknown"
+    "unknown": "Inconnu"
   },
   "LoadingContent": {
     "message": "Chargement..."
@@ -143,8 +143,8 @@
   "MetaDocsNavigation": {
     "title": "Navigation",
     "about": "À propos",
-    "devs": "Author guide",
-    "components": "Components",
+    "devs": "Guide de l'auteur",
+    "components": "Composants",
     "help": "Obtenir de l’aide",
     "tos": "Conditions d’utilisation",
     "privacy": "Politique de confidentialité",
@@ -173,7 +173,7 @@
     },
     "license": {
       "title": "Licence",
-      "custom": "Custom license",
+      "custom": "Licence personnalisée",
       "unknown": "Inconnu",
       "arr": "Tous Droits Réservés"
     }
@@ -223,8 +223,8 @@
   },
   "Report": {
     "title": "Signaler une page de documentation",
-    "desc": "Report content that violates our <tos>Terms of Service</tos> or <cr>Content Rules</cr>.",
-    "contact": "For auditing purposes, your <b>username</b> will be included in the report.",
+    "desc": "Signaler un contenu qui viole nos <tos>conditions d'utilisation</tos> ou nos <cr>règles de contenu</cr>.",
+    "contact": "À des fins d'audit, votre <b>nom d'utilisateur</b> sera inclus dans le rapport.",
     "confidential": "Votre confidentialité est importante pour nous, et ces informations resteront toujours confidentielles.",
     "privacy": "Pour plus d'informations, veuillez consulter notre <link>Politique de Confidentialité</link>.",
     "form": {
@@ -237,33 +237,33 @@
         "desc": "Lien de la page de documentation signalé."
       },
       "locale": {
-        "title": "Locale",
-        "desc": "Applied if the content lies within a localized subpath.",
+        "title": "Langue",
+        "desc": "Appliqué si le contenu se trouve dans un sous-chemin localisé.",
         "placeholder": "N/A"
       },
       "version": {
         "title": "Version",
-        "desc": "Applied if the content lies within a named version.",
+        "desc": "Appliqué si le contenu se trouve dans une version nommée.",
         "placeholder": "N/A"
       },
       "reason": {
         "title": "Motif*",
-        "placeholder": "Select a reason for reporting this content",
-        "desc": "Reason for reporting this content.",
+        "placeholder": "Sélectionnez une raison pour signaler ce contenu",
+        "desc": "Motif du signalement de ce contenu.",
         "dislike": "Je n'aime pas"
       },
       "details": {
         "title": "Détails*",
-        "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+        "placeholder": "Veuillez fournir plus de détails sur les raisons pour lesquelles vous signalez ce contenu. Notez que les rapports vides seront ignorés.",
         "desc": "Plus de détails sur le problème."
       },
       "dislike": {
-        "title": "We understand that you may not like this content, and that's totally okay!",
+        "title": "Nous comprenons que vous n'aimez peut-être pas ce contenu, et c'est tout à fait correct!",
         "desc": "Malheureusement, ceci n'est pas une raison valable pour signaler un projet.",
-        "suggestion": "Would you like to look for something else to explore instead?",
+        "suggestion": "Vous aimeriez chercher autre chose à explorer à la place?",
         "explore": "Explorer les projets"
       },
-      "submit": "Submit",
+      "submit": "Envoyer",
       "success": "Votre signalement a bien été pris en compte"
     }
   },
@@ -275,50 +275,50 @@
     "unknown": "Inconnu"
   },
   "ProjectReportStatus": {
-    "new": "New",
-    "dismissed": "Dismissed",
-    "accepted": "Accepted",
+    "new": "Nouveau",
+    "dismissed": "Rejeté",
+    "accepted": "Accepté",
     "unknown": "Inconnu"
   },
   "ProjectReportType": {
-    "project": "Project",
-    "docs": "Docs page",
-    "content": "Content page",
+    "project": "Projet",
+    "docs": "Pages de la documentation",
+    "content": "Contenu de la page",
     "unknown": "Inconnu"
   },
   "ViewReportPage": {
-    "reports": "Reports",
-    "title": "Report details",
-    "desc": "Viewing report details for {id}",
+    "reports": "Signalements",
+    "title": "Détails du signalement",
+    "desc": "Visualisation des détails du signalement pour {id}",
     "details": {
-      "reporter": "Reported by",
+      "reporter": "Signalé par",
       "project_id": "ID du projet",
       "path": "Chemin",
-      "body": "Body",
+      "body": "Corps du texte",
       "reason": "Motif",
       "created_at": "Créé à",
       "status": "Statut",
       "type": "Type",
-      "locale": "Locale",
+      "locale": "Langue",
       "version": "Version"
     },
     "actions": {
-      "dismiss": "Dismiss",
-      "accept": "Accept"
+      "dismiss": "Ignorer",
+      "accept": "Accepter"
     },
     "toast": {
-      "accept": "Report accepted",
-      "dismiss": "Report dismissed"
+      "accept": "Signalement accepté",
+      "dismiss": "Signalement rejeté"
     }
   },
   "Callout": {
     "default": "Attention !",
     "info": "Info",
-    "warning": "Warning",
+    "warning": "Avertissement",
     "danger": "Danger"
   },
   "ProjectRegisterForm": {
-    "button": "New Project",
+    "button": "Nouveau projet",
     "title": "Enregistrer le projet",
     "desc": "Enregistrez un nouveau projet sur le wiki.",
     "repo": {
@@ -353,12 +353,12 @@
     "submitting": "Soumission du projet...",
     "verify_modrinth": "Vérification avec Modrinth",
     "submission": {
-      "clone": "Cloning repository and verifying metadata.",
-      "note": "This may take a while for larger repositories. Please stand by."
+      "clone": "Clonage du \"repository\" et vérification des métadonnées.",
+      "note": "Cela peut prendre un certain temps pour les \"repositories\" plus volumineux. Veuillez patienter."
     }
   },
   "ProjectDeleteForm": {
-    "trigger": "Delete project",
+    "trigger": "Supprimer le projet",
     "title": "Êtes-vous vraiment sûr ?",
     "desc": "Cette action ne peut pas être annulée. Cela supprimera définitivement votre projet et toutes les données associées de nos serveurs.",
     "cancel": "Annuler",
@@ -370,76 +370,81 @@
       "unauthorized": "Erreur d'authentification de l'utilisateur",
       "internal": "Erreur de serveur interne, veuillez réessayer plus tard.",
       "unknown": "Une erreur inconnue est survenue, veuillez réessayer plus tard.",
-      "no_platforms": "No platform projects defined in metadata.",
-      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
+      "no_platforms": "Aucune plateforme définie dans les métadonnées.",
+      "no_project": "Plateforme du projet introuvable. Veuillez vous assurer que le champ \"plateformes \" des métadonnées est correct.",
       "unsupported_type": "Type de projet non pris en charge",
       "ownership": "Impossible de vérifier la propriété du projet",
-      "cf_unavailable": "Registering CurseForge projects is not active",
-      "requires_auth": "Repository connection requires login credentials but none were provided",
+      "cf_unavailable": "L'enregistrement de projets CurseForge n'est pas actif",
+      "requires_auth": "La connexion au \"repository\" nécessite des identifiants de connexion, mais aucune connexion n'a été fournie",
       "no_repository": "Dépôt introuvable",
       "no_branch": "Branche spécifiée invalide",
-      "no_path": "Metadata file not found at specified path",
+      "no_path": "Le fichier de métadonnées n'a pas été trouvé à l'emplacement spécifié",
       "invalid_meta": "Fichier de métadonnées invalide",
       "unsupported": "Pas encore implémenté",
       "exists": "Le projet existe déjà.",
       "not_found": "Le projet n'existe pas",
-      "illegal_id": "Illegal project ID",
-      "not_owner": "User is not authorized to register this project",
-      "repo_too_large": "Repository exceeds maximum allowed size of 500MB",
-      "insufficient_permissions": "You don't have permission to perform this action",
-      "user_not_found": "User not found",
-      "duplicate_member": "Project member already exists",
-      "single_owner": "Cannot remove the only owner"
+      "illegal_id": "ID de projet non autorisé",
+      "not_owner": "L'utilisateur n'est pas autorisé à enregistrer ce projet",
+      "repo_too_large": "Le \"repository\" dépasse la taille maximale autorisée de 500Mo",
+      "insufficient_permissions": "Vous n'avez pas l'autorisation d'effectuer cette action",
+      "user_not_found": "Utilisateur introuvable",
+      "duplicate_member": "Un membre du projet existe déjà",
+      "single_owner": "Impossible de supprimer le seul propriétaire"
     },
-    "get_help": "Find out more about this error in our <link>documentation</link>."
+    "get_help": "En savoir plus sur cette erreur dans notre <link>documentation</link>."
   },
   "CommunityBadge": {
     "title": "Communauté",
     "desc": "Documentation non officielle maintenue par la communauté"
   },
-  "DocsPageNotFoundError": {
-    "title": "Cette page a été perdue",
-    "desc": "La page de documentation demandée n'est pas disponible pour le moment.",
-    "suggestion": "Veuillez réessayer plus tard ou signaler ce problème à l'auteur du projet.",
-    "submit": "Soumettre un problème",
-    "return": "Revenir à l'accueil"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
-    "title": "Create your first project"
+    "title": "Créez votre premier projet"
   },
   "ProjectHomepage": {
     "overview": {
-      "intro": "<project></project> is a {type} created by <authors></authors>.",
-      "availability": "Available for <versions></versions>. Latest version built for <latest></latest>. First released for <first></first>.",
-      "tags": "Tagged:"
+      "intro": "<project></project> est un {type} créé par <authors></authors>.",
+      "availability": "Disponible pour <versions></versions>. Dernière version construite pour <latest></latest>. Première version pour <first></first>.",
+      "tags": "Étiqueté :"
     },
     "description": {
       "title": "Description",
-      "placeholder": "Description not available"
+      "placeholder": "Description non disponible"
     },
     "navigation": {
       "title": "Navigation",
       "docs": {
-        "title": "Browse documentation",
-        "desc": "{pages} pages available."
+        "title": "Parcourir la documentation",
+        "desc": "Pages {pages} disponibles."
       },
       "content": {
-        "title": "Browse content",
-        "desc": "{items} in-game items."
+        "title": "Parcourir le contenu",
+        "desc": "{items} objets en jeu."
       }
     },
     "links": {
       "title": "Liens",
-      "website": "Website",
-      "source_code": "Source code"
+      "website": "Site web",
+      "source_code": "Code source"
     },
     "license": {
       "title": "Licences",
-      "project": "Project License",
+      "project": "Licence du projet",
       "arr": "Tous Droits Réservés",
       "unknown": "Inconnu",
-      "wiki": "Wiki License",
-      "default": "Wiki content <link>partially made available</link> under the <license></license> license."
+      "wiki": "Licence du Wiki",
+      "default": "Le contenu du Wiki <link>partiellement rendu disponible</link> sous la licence <license></license>."
     }
   },
   "ProjectDocsHomepage": {
@@ -463,9 +468,9 @@
     }
   },
   "SearchResultType": {
-    "project": "Project",
+    "project": "Projet",
     "documentation": "Docs",
-    "content": "Content"
+    "content": "Contenu"
   },
   "DocsChangelogPage": {
     "title": "Changelog"
@@ -495,22 +500,22 @@
     "unknown": "Inconnu",
     "loading": "Chargement",
     "healthy": "Chargé",
-    "at_risk": "Requires attention",
+    "at_risk": "Nécessite votre attention",
     "error": "Erroné",
-    "inactive": "Inactive"
+    "inactive": "Inactif"
   },
   "ProjectVisibility": {
-    "public": "Public",
-    "unlisted": "Unlisted",
-    "private": "Private",
-    "unknown": "Unknown"
+    "public": "Publique",
+    "unlisted": "Non répertorié",
+    "private": "Privé",
+    "unknown": "Inconnu"
   },
   "DevProjectsListPage": {
     "project": {
       "manage": "Gérer"
     },
     "empty": {
-      "primary": "Looks like you haven't created any projects yet",
+      "primary": "Il semble que vous n'ayez pas encore créé de projet",
       "secondary": "Commencez par lire notre <guide>guide de l'auteur</guide>."
     }
   },
@@ -519,12 +524,12 @@
       "home": "Accueil"
     },
     "toolbar": {
-      "view": "Visit project page",
-      "deployments": "Deployments"
+      "view": "Visiter la page du projet",
+      "deployments": "Déploiements"
     },
     "overview": {
-      "title": "Project overview",
-      "desc": "Project information summary"
+      "title": "Aperçu du projet",
+      "desc": "Résumé des informations du projet"
     },
     "source": {
       "title": "Source du projet",
@@ -535,7 +540,7 @@
     },
     "platforms": {
       "title": "Platformes",
-      "desc": "Project hosting platforms",
+      "desc": "Plateformes d'hébergement de projets",
       "headers": {
         "platform": "Plateforme",
         "slug": "Slug / Identifiant",
@@ -551,20 +556,20 @@
       "created_at": "Créé à"
     },
     "revision": {
-      "title": "Current git revision",
-      "reloading": "Reloading project, please stand by...",
-      "not_found": "No revision found. Try reloading the project."
+      "title": "Révision git actuelle",
+      "reloading": "Rechargement du projet, veuillez patienter...",
+      "not_found": "Aucune révision trouvée. Essayez de recharger le projet."
     }
   },
   "DevProjectSettingsPage": {
-    "title": "Project settings",
-    "desc": "Configure project properties",
+    "title": "Paramètres du projet",
+    "desc": "Configurer les propriétés du projet",
     "form": {
       "visibility": {
-        "title": "Project Visibility",
-        "public_desc": "Public projects are visible in search.",
-        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
-        "private_desc": "Private projects are only accessible by members of the project.",
+        "title": "Visibilité du projet",
+        "public_desc": "Les projets publics sont visibles dans la recherche.",
+        "unlisted_desc": "Les projets non listés sont publiés, mais ne sont pas visibles dans la recherche.",
+        "private_desc": "Les projets privés ne sont accessibles que par les membres du projet.",
         "placeholder": "Select visibility"
       }
     },
@@ -729,65 +734,65 @@
       "deployments": "Deployments",
       "health": "Health",
       "versions": "Versions",
-      "content": "Items",
+      "content": "Objets",
       "tags": "Mots-clés",
-      "recipes": "Recipes"
+      "recipes": "Recettes"
     },
     "settings": {
-      "group": "Settings",
-      "general": "General",
+      "group": "Paramètres",
+      "general": "Général",
       "source": "Source"
     }
   },
   "PrefabObtaining": {
-    "recipe": "Recipe"
+    "recipe": "Recette"
   },
   "PrefabUsage": {
-    "usage": "Usage"
+    "usage": "Utilisation"
   },
   "AdminSidebar": {
     "groups": {
       "home": "Accueil",
-      "data": "Data",
-      "system": "System",
-      "moderation": "Moderation"
+      "data": "Données",
+      "system": "Système",
+      "moderation": "Modération"
     },
     "nav": {
-      "home": "Overview",
-      "data_imports": "Data Imports",
-      "access_keys": "Access Keys",
+      "home": "Aperçu",
+      "data_imports": "Importer des données",
+      "access_keys": "Clés d'accès",
       "migrations": "Migrations",
       "users": "Utilisateurs",
       "projects": "Projets",
       "config": "Configuration",
-      "reports": "Reports",
+      "reports": "Signalements",
       "audit_log": "Audit Log",
-      "return": "Return"
+      "return": "Retour"
     }
   },
   "AdminDataImports": {
-    "title": "System data imports",
-    "desc": "Imported game data"
+    "title": "Importation des données système",
+    "desc": "Données de jeu importées"
   },
   "AdminMigrations": {
-    "title": "Data migrations",
-    "desc": "Available data migrations",
-    "empty": "No migrations available."
+    "title": "Migration des données",
+    "desc": "Migration de données disponibles",
+    "empty": "Aucune migration disponible."
   },
   "EmptyDataTable": {
-    "guide": "Read the <link>author guide</link> to find out more on how to integrate game data into your project."
+    "guide": "Lisez le <link>guide de l'auteur</link> pour savoir comment intégrer des données de jeu dans votre projet."
   },
   "DataTable": {
-    "no_results": "No results.",
+    "no_results": "Aucun résultat.",
     "filter": "Filter rows...",
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "Précédent",
+    "next": "Suivant"
   },
   "DevProjectVersionsTable": {
     "name": "Nom",
     "branch": "Branche",
     "empty": {
-      "title": "No additional versions were found in your project.",
+      "title": "Aucune version supplémentaire n'a été trouvée dans votre projet.",
       "desc": "Read the <link>author guide</link> to learn more about project versioning."
     }
   },
