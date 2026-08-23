@@ -397,12 +397,17 @@
     "title": "社群",
     "desc": "由社群維護的非官方文件"
   },
-  "DocsPageNotFoundError": {
-    "title": "我們找不到這個頁面",
-    "desc": "目前無法使用所請求的文件頁面。",
-    "suggestion": "請稍後再試，或向專案作者回報這個問題。",
-    "submit": "提交問題",
-    "return": "返回首頁"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Create your first project"

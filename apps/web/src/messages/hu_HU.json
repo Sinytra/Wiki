@@ -135,7 +135,7 @@
     "datapack": "Adatcsomag",
     "shader": "Shader",
     "plugin": "Plugin",
-    "unknown": "Unknown"
+    "unknown": "Ismeretlen"
   },
   "LoadingContent": {
     "message": "Betöltés..."
@@ -225,132 +225,132 @@
     "title": "Egy dokumentáció oldal feljelentése",
     "desc": "Jelents fel tartalmakat melyek megszegik a <tos>Szolgáltatási Feltételeink</tos>et vagy a <cr>Tartalmi Szabályaink</cr>at.",
     "contact": "Auditálási célokból a <b>felhasználóneved</b> szerepelni fog a jelentésben.",
-    "confidential": "Your privacy is important to us, and this information will always be kept confidential.",
+    "confidential": "Az ön adatainak védelme fontos számunkra, és ezeket az információkat mindig bizalmasan kezeljük.",
     "privacy": "For more information, please refer to our <link>Privacy Policy</link>.",
     "form": {
       "id": {
-        "title": "Project ID",
-        "desc": "Reported project ID."
+        "title": "Projektazonisító",
+        "desc": "Feljelentett project azonosítója."
       },
       "path": {
-        "title": "Page path",
-        "desc": "Reported documentation page path."
+        "title": "Oldal címe",
+        "desc": "Feljelentett dokumentáció oldal."
       },
       "locale": {
-        "title": "Locale",
+        "title": "Nyelv",
         "desc": "Applied if the content lies within a localized subpath.",
         "placeholder": "N/A"
       },
       "version": {
-        "title": "Version",
+        "title": "Verzió",
         "desc": "Applied if the content lies within a named version.",
         "placeholder": "N/A"
       },
       "reason": {
-        "title": "Reason*",
-        "placeholder": "Select a reason for reporting this content",
-        "desc": "Reason for reporting this content.",
-        "dislike": "I just don't like it"
+        "title": "Ok*",
+        "placeholder": "Adj meg egy okot e tartalom feljelentésére",
+        "desc": "E tartalom feljelentésére való ok.",
+        "dislike": "Egyszerűen nem tetszik"
       },
       "details": {
-        "title": "Details*",
-        "placeholder": "Please provide more details on why you're reporting this content. Note that empty reports will be ignored.",
+        "title": "Részletek*",
+        "placeholder": "Kérlek addj meg több részletet arról hogy miért jelented fel ezt a tartalmat. Fontos, hogy az üres jelentések ignorálva lesznek.",
         "desc": "Additional details about the issue."
       },
       "dislike": {
-        "title": "We understand that you may not like this content, and that's totally okay!",
-        "desc": "Unfortunately, however, it is not a valid reason to report a project.",
-        "suggestion": "Would you like to look for something else to explore instead?",
-        "explore": "Explore projects"
+        "title": "Megértjük hogy neked lehet nem tetszik ez a tartalom, és ez teljesen oké!",
+        "desc": "Azomban, ez nem egy megfelelő ok egy project feljelentésére.",
+        "suggestion": "Keresel inkább valami mást felfedezni?",
+        "explore": "Projektek felfedezése"
       },
-      "submit": "Submit",
-      "success": "Report submitted successfully"
+      "submit": "Beküldés",
+      "success": "A jelentés sikeresen elküldve"
     }
   },
   "ProjectReportReason": {
-    "spam": "Spam",
-    "copyright": "Copyright Infringement",
-    "content_rules": "Violates Content Rules",
-    "tos": "Violates Terms of Service",
-    "unknown": "Unknown"
+    "spam": "Szemét",
+    "copyright": "Szerzői jogok megsértése",
+    "content_rules": "Tartalmi szabályok megsértése",
+    "tos": "Szolgáltatási feltételek megsértése",
+    "unknown": "Ismeretlen"
   },
   "ProjectReportStatus": {
-    "new": "New",
-    "dismissed": "Dismissed",
-    "accepted": "Accepted",
-    "unknown": "Unknown"
+    "new": "Új",
+    "dismissed": "Elutasítva",
+    "accepted": "Elfigadva",
+    "unknown": "Ismeretlen"
   },
   "ProjectReportType": {
-    "project": "Project",
-    "docs": "Docs page",
-    "content": "Content page",
-    "unknown": "Unknown"
+    "project": "Projekt",
+    "docs": "Dokumentáció oldal",
+    "content": "Tartalmi oldal",
+    "unknown": "Ismeretlen"
   },
   "ViewReportPage": {
-    "reports": "Reports",
-    "title": "Report details",
-    "desc": "Viewing report details for {id}",
+    "reports": "Jelentések",
+    "title": "Jelentés részletei",
+    "desc": "Jelentés részleteinek megtekintése a következőhöz: {id}",
     "details": {
-      "reporter": "Reported by",
-      "project_id": "Project ID",
-      "path": "Path",
-      "body": "Body",
-      "reason": "Reason",
-      "created_at": "Created at",
-      "status": "Status",
-      "type": "Type",
-      "locale": "Locale",
-      "version": "Version"
+      "reporter": "Jelentette",
+      "project_id": "Projektazonosító",
+      "path": "Oldal:",
+      "body": "Szöveg",
+      "reason": "Ok",
+      "created_at": "Kelt",
+      "status": "Állapot",
+      "type": "Típus",
+      "locale": "Nyelv",
+      "version": "Verzió"
     },
     "actions": {
-      "dismiss": "Dismiss",
-      "accept": "Accept"
+      "dismiss": "Elutasít",
+      "accept": "Elfogad"
     },
     "toast": {
-      "accept": "Report accepted",
-      "dismiss": "Report dismissed"
+      "accept": "Jelentés elfogadva",
+      "dismiss": "Jelentés elutasítva"
     }
   },
   "Callout": {
-    "default": "Heads up!",
-    "info": "Info",
-    "warning": "Warning",
-    "danger": "Danger"
+    "default": "Figyelem!",
+    "info": "Infó",
+    "warning": "Figyelmeztetés",
+    "danger": "Veszély"
   },
   "ProjectRegisterForm": {
-    "button": "New Project",
-    "title": "Register project",
-    "desc": "Register a new project to the wiki.",
+    "button": "Új Projekt",
+    "title": "Projekt regisztrálása",
+    "desc": "Regisztrálj egy új projektet a wikire.",
     "repo": {
-      "title": "Repository URL",
-      "desc": "This is the address you use to clone your repository.",
-      "placeholder": "https://github.com/ExampleUser/ExampleMod"
+      "title": "Tároló URL-címe",
+      "desc": "Ez a cím amit használsz a tárolód klónolásához.",
+      "placeholder": "https://github.com/PeldaFelhasznalo/PeldaMod"
     },
     "branch": {
-      "title": "Branch",
-      "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+      "title": "Ág",
+      "desc": "Fő ág ref. A metaadat fájlodban tudsz további ágakat hozzáadni."
     },
     "path": {
-      "title": "Path to documentation root",
-      "desc": "Path to the folder containing the metadata file."
+      "title": "Elérési út a dokumentáció gyökeréhez",
+      "desc": "Elérésí út a mappához amely tartamlazza a metaadat fájlt."
     },
-    "admin": "Wiki admin settings",
+    "admin": "Wiki admin beállítások",
     "is_community": {
-      "title": "Community-maintained project"
+      "title": "Közösség által fenntartott projekt"
     },
     "errors": {
-      "details": "Show details"
+      "details": "Részletek megjelenítése"
     },
     "connect_modrinth": {
-      "desc": "Connect your <b>Modrinth account</b> in Settings to easily verify platform project ownership at any time.",
-      "settings": "Open Settings"
+      "desc": "Csatlakoztatsd a <b>Modrinth fiókodat</b> a Beállításokban hogy könnyen igazolhassuk bármikor, hogy e projekt tényleg a tiéd-e.",
+      "settings": "Beállítások megnyitása"
     },
-    "submit": "Submit",
+    "submit": "Beküldés",
     "success": {
-      "title": "Project registered successfully",
+      "title": "Projekt sikeresen regisztrálva",
       "desc": "You can now navigate to the project's docs page"
     },
-    "submitting": "Submitting...",
+    "submitting": "Beküldés folyamatban...",
     "verify_modrinth": "Verify using Modrinth",
     "submission": {
       "clone": "Cloning repository and verifying metadata.",
@@ -397,7 +397,12 @@
     "title": "Community",
     "desc": "Unofficial documentation maintained by the community"
   },
-  "DocsPageNotFoundError": {
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
     "title": "We lost this page",
     "desc": "The requested documentation page is not available at the moment.",
     "suggestion": "Please try again later or report this issue to the project author.",
@@ -455,75 +460,75 @@
     "no_results": "No results found!",
     "loading": "Finding the perfect results...",
     "results": "Showing <highlight>{count}</highlight> of <highlight>{total}</highlight> results",
-    "close": "<kbd>ESC</kbd> to close",
-    "switch": "<kbd>Tab</kbd> to change scope",
+    "close": "<kbd>ESC</kbd> a bezáráshoz",
+    "switch": "<kbd>Tab</kbd> a hatókör módosításához",
     "scope": {
-      "local": "Local",
-      "global": "Global"
+      "local": "Helyi",
+      "global": "Globális"
     }
   },
   "SearchResultType": {
-    "project": "Project",
-    "documentation": "Docs",
-    "content": "Content"
+    "project": "Projekt",
+    "documentation": "Dokumentáció",
+    "content": "Tartalom"
   },
   "DocsChangelogPage": {
-    "title": "Changelog"
+    "title": "Változásnapló"
   },
   "DocsLeftSidebar": {
-    "title": "Documentation",
-    "homepage": "Home"
+    "title": "Dokumentáció",
+    "homepage": "Kezdőlap"
   },
   "DocsContentRightSidebar": {
     "title": "Entry information"
   },
   "DocsNonContentRightSidebar": {
-    "title": "On this page"
+    "title": "Ezen az oldalon"
   },
   "DocsVersionSelector": {
-    "placeholder": "Select version",
-    "latest": "Latest"
+    "placeholder": "Verzió kiválasztása",
+    "latest": "Legfrissebb"
   },
   "ModVersionRange": {
-    "desc": "+{count} more"
+    "desc": "+{count} további"
   },
   "LanguageSelect": {
-    "placeholder": "Search languages...",
-    "no_results": "No language found."
+    "placeholder": "Nyelvek keresése...",
+    "no_results": "Nyelv nem található."
   },
   "ProjectStatus": {
-    "unknown": "Unknown",
-    "loading": "Initializing",
-    "healthy": "Loaded",
-    "at_risk": "Requires attention",
-    "error": "Errored",
-    "inactive": "Inactive"
+    "unknown": "Ismeretlen",
+    "loading": "Előkészítés",
+    "healthy": "Betöltve",
+    "at_risk": "A figyelmedet igényli",
+    "error": "Hibás",
+    "inactive": "Inaktív"
   },
   "ProjectVisibility": {
-    "public": "Public",
-    "unlisted": "Unlisted",
-    "private": "Private",
-    "unknown": "Unknown"
+    "public": "Nyilvános",
+    "unlisted": "Listázatlan",
+    "private": "Privát",
+    "unknown": "Ismeretlen"
   },
   "DevProjectsListPage": {
     "project": {
-      "manage": "Manage"
+      "manage": "Kezelés"
     },
     "empty": {
-      "primary": "Looks like you haven't created any projects yet",
-      "secondary": "Get started by reading our <guide>author guide</guide>."
+      "primary": "Úgy tűnik még nem hoztál létre egy projektet sem",
+      "secondary": "Kezdésként olvasd el a <guide>szerzői útmutatónkat</guide>."
     }
   },
   "DevProjectPage": {
     "breadcrumbs": {
-      "home": "Home"
+      "home": "Kezdőlap"
     },
     "toolbar": {
       "view": "Visit project page",
-      "deployments": "Deployments"
+      "deployments": "Telepítések"
     },
     "overview": {
-      "title": "Project overview",
+      "title": "Projekt áttekintése",
       "desc": "Project information summary"
     },
     "source": {
@@ -1046,7 +1051,7 @@
     "button": "Revalidate cache tag",
     "tag": {
       "title": "Cache Tag",
-      "desc": "The cache tag to revalidate"
+      "desc": "Az újraérvényesítendő gyorsítótár kulcsa"
     },
     "submit": "Submit",
     "success": "Cache tag invalidated successfully"
@@ -1142,26 +1147,26 @@
   "RemoveProjectMemberModal": {
     "title": "Remove project member",
     "desc": "Are you sure you want to remove this member? This action cannot be undone.",
-    "cancel": "Cancel",
-    "submit": "Remove",
-    "success": "Project member removed successfully"
+    "cancel": "Mégse",
+    "submit": "Eltávolítás",
+    "success": "Projekt tagja sikeresen eltávolítva"
   },
   "LeaveProjectModal": {
-    "title": "Leave project",
-    "desc": "Are you sure you want to leave this project? This action cannot be undone.",
-    "cancel": "Cancel",
-    "submit": "Leave",
-    "success": "Project left successfully"
+    "title": "Projekt elhagyása",
+    "desc": "Biztosan el akarod hagyni e projektet? Ezt nem lehet visszavonni.",
+    "cancel": "Mégse",
+    "submit": "Elhagyás",
+    "success": "Sikeresen elhagyta a projektet"
   },
   "GenericForm": {
-    "submit": "Submit",
-    "submitting": "Submitting...",
-    "cancel": "Cancel"
+    "submit": "Beküldés",
+    "submitting": "Beküldés folyamatban...",
+    "cancel": "Mégse"
   },
   "NewProjectBanner": {
-    "title": "Ready when you are",
-    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
-    "submit": "Publish",
-    "success": "Project visibility set to public"
+    "title": "Kész mikor te is",
+    "desc": "Ez egy új projekt és még nem látható a keresőben, szóval nyugodtan próbálgass és bütyköld amíg pont jó lesz. Mikor elégedett vagy, nyomd meg az alábbi gombot a közzétételhez.",
+    "submit": "Közzétesz",
+    "success": "A projekt mostmár nyilvános"
   }
 }

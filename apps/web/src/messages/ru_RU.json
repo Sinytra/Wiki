@@ -397,12 +397,17 @@
     "title": "Сообщество",
     "desc": "Неофициальная документация, поддерживаемая сообществом"
   },
-  "DocsPageNotFoundError": {
-    "title": "Мы потеряли эту страницу",
-    "desc": "Запрашиваемая страница документации в данный момент недоступна.",
-    "suggestion": "Попробуйте снова позже или сообщите об этой проблеме автору проекта.",
-    "submit": "Отправить сообщение о проблеме",
-    "return": "Вернуться на главную"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Создайте первый ваш проект"

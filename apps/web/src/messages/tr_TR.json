@@ -397,12 +397,17 @@
     "title": "Topluluk",
     "desc": "Topluluk tarafından tutulan resmi olmayan belgeler"
   },
-  "DocsPageNotFoundError": {
-    "title": "Bu sayfayı kaybettik",
-    "desc": "İstenilen dokümantasyon sayfası şu anda mevcut değil.",
-    "suggestion": "Lütfen daha sonra tekrar deneyin veya bu sorunu proje yazarına bildirin.",
-    "submit": "Sorun bildir",
-    "return": "Ana Sayfaya Dön"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "Create your first project"

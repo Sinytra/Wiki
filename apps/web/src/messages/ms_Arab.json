@@ -135,7 +135,7 @@
     "datapack": "ڤيک داتا",
     "shader": "ڤمبايڠ",
     "plugin": "ڤمالم",
-    "unknown": "Unknown"
+    "unknown": "تيدق دکتاهوءي"
   },
   "LoadingContent": {
     "message": "ممواتکن..."
@@ -371,7 +371,7 @@
       "internal": "رالت ڤلاين دالمن⹁ سيلا چوبا لاݢي کمودين.",
       "unknown": "سبواه رالت يڠ تيدق دکتاهوءي تله برلاکو⹁ سيلا چوبا سبنتر لاݢي.",
       "no_platforms": "تياد ڤروجيک ڤلتفوم دتعريفکن دالم ميتاداتا.",
-      "no_project": "Platform project not found. Please make sure the metadata \"platforms\" field is correct.",
+      "no_project": "ڤلتفوم ڤروجيک تيدق دتموءي. سيلا ڤستيکن ميدن \"platforms\" ميتاداتا اداله بتول.",
       "unsupported_type": "جنيس ڤروجيک تيدق دسوکوڠ",
       "ownership": "ݢاݢل مڠصحکن ڤميليقن ڤروجيک",
       "cf_unavailable": "ڤندفترن ڤروجيک CurseForge تيدق اکتيف",
@@ -397,12 +397,17 @@
     "title": "کومونيتي",
     "desc": "دوکومنتاسي تيدق راسمي يڠ دسلڠݢارا اوليه کومونيتي"
   },
-  "DocsPageNotFoundError": {
-    "title": "کامي کهيلڠن لامن اين",
-    "desc": "لامن دوکومنتاسي يڠ دمينتا تيدق ترسديا ڤد ماس اين.",
-    "suggestion": "سيلا چوبا سبنتر لاݢي اتاو لاڤورکن ايسو اين کڤد ڤڠارڠ ڤروجيک.",
-    "submit": "سرهکن ايسو",
-    "return": "کمبالي ک لامن اوتام"
+  "DocsPageNotFound": {
+    "title": "404 Not Found",
+    "desc": "Whoops! Could not find the requested resource.",
+    "return": "Return"
+  },
+  "DocsPageError": {
+    "title": "We lost this page",
+    "desc": "The requested documentation page is not available at the moment.",
+    "suggestion": "Please try again later or report this issue to the project author.",
+    "submit": "Submit issue",
+    "return": "Return Home"
   },
   "GetStartedButton": {
     "title": "چيڤتا ڤروجيک ڤرتام اندا"
@@ -456,16 +461,16 @@
     "loading": "منچاري حاصيل يڠ سمڤورنا...",
     "results": "منونجوقکن <highlight>{count}</highlight> حاصيل درڤد <highlight>{total}</highlight>",
     "close": "<kbd>ESC</kbd> اونتوق توتوڤ",
-    "switch": "<kbd>Tab</kbd> to change scope",
+    "switch": "<kbd>Tab</kbd> اونتوق مڠوبه سکوڤ",
     "scope": {
-      "local": "Local",
-      "global": "Global"
+      "local": "تمڤتن",
+      "global": "ݢلوبل"
     }
   },
   "SearchResultType": {
-    "project": "Project",
-    "documentation": "Docs",
-    "content": "Content"
+    "project": "ڤروجيک",
+    "documentation": "دوکومنتاسي",
+    "content": "کاندوڠن"
   },
   "DocsChangelogPage": {
     "title": "لوݢ ڤروبهن"
@@ -497,13 +502,13 @@
     "healthy": "دمواتکن",
     "at_risk": "ممرلوکن ڤرهاتين",
     "error": "تله رالت",
-    "inactive": "Inactive"
+    "inactive": "تيدق اکتيف"
   },
   "ProjectVisibility": {
-    "public": "Public",
-    "unlisted": "Unlisted",
-    "private": "Private",
-    "unknown": "Unknown"
+    "public": "عوام",
+    "unlisted": "تيدق ترسناراي",
+    "private": "ڤريبادي",
+    "unknown": "تيدق دکتاهوءي"
   },
   "DevProjectsListPage": {
     "project": {
@@ -519,7 +524,7 @@
       "home": "لامن اوتام"
     },
     "toolbar": {
-      "view": "Visit project page",
+      "view": "لاوتي لامن ڤروجيک",
       "deployments": "ڤڠاتورن"
     },
     "overview": {
@@ -561,22 +566,22 @@
     "desc": "کونفيݢوراسيکن صيفت ڤروجيک",
     "form": {
       "visibility": {
-        "title": "Project Visibility",
-        "public_desc": "Public projects are visible in search.",
-        "unlisted_desc": "Unlisted projects are published, but not visible in search.",
-        "private_desc": "Private projects are only accessible by members of the project.",
-        "placeholder": "Select visibility"
+        "title": "کترليهتن ڤروجيک",
+        "public_desc": "ڤروجيک عوام کليهتن دالم چارين.",
+        "unlisted_desc": "ڤروجيک يڠ تيدق ترسناراي اداله دتربيتکن⹁ تتاڤي تيدق کليهتن دالم چارين.",
+        "private_desc": "ڤروجيک ڤريبادي هاڽ بوليه دأکسيس اوليه اهلي ڤروجيک.",
+        "placeholder": "ڤيليه کترليهتن"
       }
     },
     "toast": {
-      "success": "Project settings updated successfully"
+      "success": "تتڤن ڤروجيک برجاي دکمس کيني"
     },
-    "save": "Save"
+    "save": "سيمڤن"
   },
   "DevProjectSourceSettingsPage": {
-    "title": "Project settings - Source",
-    "desc": "Configure project source repository",
-    "save": "Save"
+    "title": "تتڤن ڤروجيک - سومبر",
+    "desc": "کونفيݢوراسيکن ريڤوسيتوري سومبر ڤروجيک",
+    "save": "سيمڤن"
   },
   "DevProjectVersionsPage": {
     "title": "ۏرسي ڤروجيک",
@@ -734,9 +739,9 @@
       "recipes": "رسيڤي"
     },
     "settings": {
-      "group": "Settings",
-      "general": "General",
-      "source": "Source"
+      "group": "تتڤن",
+      "general": "عموم",
+      "source": "سومبر"
     }
   },
   "PrefabObtaining": {
@@ -898,7 +903,7 @@
     "git_clone": "رالت سماس مڠکلون ريڤوسيتوري",
     "git_info": "رالت سماس منداڤتکن معلومت کوميت (commit)",
     "ingestor": "رالت سماس مڠيمڤورت کاندوڠن",
-    "version_setup": "Error setting up version",
+    "version_setup": "رالت سماس مڽدياکن ۏرسي",
     "internal": "رالت ڤلاين دالمن",
     "page": "لامن تيدق صح",
     "unknown": "رالت تيدق دکتاهوءي"
@@ -927,10 +932,10 @@
     "no_page_title": "لامن تيدق ممڤوڽاءي تاجوق",
     "missing_required_attribute": "لامن تيدق ممڤوڽاءي اتريبوت ميتاداتا يڠ دڤرلوکن",
     "invalid_frontmatter": "بهاݢين هادڤن لامن تيدق صح",
-    "no_platforms": "Missing project platforms",
-    "illegal_id": "Invalid project ID",
-    "illegal_mod_id": "Invalid project mod ID",
-    "not_owner": "Failed to verify project ownership",
+    "no_platforms": "ڤلتفوم ڤروجيک تيدق اد",
+    "illegal_id": "ID ڤروجيک تيدق صح",
+    "illegal_mod_id": "ID مود ڤروجيک تيدق صح",
+    "not_owner": "ݢاݢل مڠصحکن ڤميليقن ڤروجيک",
     "unknown": "رالت تيدق دکتاهوءي"
   },
   "AdminReports": {
@@ -995,7 +1000,7 @@
     }
   },
   "ExtendedLink": {
-    "not_found": "(Not found)"
+    "not_found": "(تيدق دتموءي)"
   },
   "AdminAccessKeys": {
     "title": "کونچي اکسيس سيستم",
@@ -1159,9 +1164,9 @@
     "cancel": "بطل"
   },
   "NewProjectBanner": {
-    "title": "Ready when you are",
-    "desc": "This is a new project and does not yet show up in search. So feel free to play around and tweak things until they're just right. When you're satisfied with the result, hit the button below to go public.",
-    "submit": "Publish",
-    "success": "Project visibility set to public"
+    "title": "برسديا اڤابيلا اندا سوده سياڤ",
+    "desc": "اين مروڤاکن ڤروجيک بهارو دان بلوم مونچول دالم چارين. جادي⹁ سيلا چوبا دان اوبه سواي ببراڤ ڤرکارا سهيڠݢ اي چوکوڤ بتول. اڤابيلا اندا برڤواس هاتي دڠن حاصيلڽ⹁ تکن بوتڠ دباوه اونتوق مماڤرکن ڤروجيک سچارا عوام.",
+    "submit": "تربيتکن",
+    "success": "کترليهتن ڤروجيک دتتقکن کڤد عوام"
   }
 }
