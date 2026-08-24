@@ -3,7 +3,6 @@
 import styles from '@/components/navigation/header/style.module.css';
 import { Check, ChevronDown, Globe, LanguagesIcon } from 'lucide-react';
 import { Button } from '@repo/ui/components/button';
-import { usePathname } from '@/lib/locales/routing';
 import { useRouter } from '@bprogress/next';
 import * as React from 'react';
 import { useState } from 'react';
@@ -22,6 +21,8 @@ import { DEFAULT_LOCALE } from '@repo/shared/constants';
 import CountryFlag from '@repo/ui/util/CountryFlag';
 import { default as available, DEFAULT_LOCALE_CODE, Language } from '@repo/shared/locales';
 
+const LOCALE_PREFIX_PATTERN = new RegExp(`^/(?:${available.getLanguagePaths().join('|')})(?=/|$)`);
+
 interface Props {
   locale: string;
   shownLocaleCodes?: string[];
@@ -38,12 +39,11 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
       (lang) => shownLocaleCodes == null || lang.code === DEFAULT_LOCALE_CODE || shownLocaleCodes.includes(lang.code)
     );
 
-  const pathname = usePathname();
   const router = useRouter();
   const changeLocale = (code: string) => {
-    const parts = pathname.split('/');
-    parts[0] = available.getUrlPrefixForCode(code)!;
-    router.replace('/' + parts.join('/'));
+    const prefix = available.getUrlPrefixForCode(code)!;
+    const { pathname, search, hash } = window.location;
+    router.replace(`/${prefix}${pathname.replace(LOCALE_PREFIX_PATTERN, '')}${search}${hash}`);
   };
 
   const selectedLang = available.getForUrlParam(locale) ?? available.getForUrlParam(DEFAULT_LOCALE)!;
@@ -102,7 +102,7 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
             <Command value={value} defaultValue={value}>
               <CommandInput placeholder={t('placeholder')} />
               <CommandList
-                className={`overscroll-contain [scrollbar-color:var(--background-color-inverse-secondary)_var(--background-color-primary)]`}
+                className={`[scrollbar-color:var(--background-color-inverse-secondary)_var(--background-color-primary)] overscroll-contain`}
               >
                 <CommandEmpty>{t('no_results')}</CommandEmpty>
                 <CommandGroup>
