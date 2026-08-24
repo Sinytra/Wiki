@@ -7,6 +7,7 @@ import { AssetLocation } from '@repo/shared/assets';
 import localAssets from './localAssets';
 import {
   BrowseResponse,
+  ChangelogEntry,
   FileTreeEntry,
   ProjectData,
   ProjectPage,
@@ -115,6 +116,18 @@ async function getDocsPage(
   return undefined;
 }
 
+function parseHistory(entries: ChangelogEntry[] | null | undefined): Array<ChangelogEntry> | null {
+  return entries
+    ? entries.map((entry: ChangelogEntry) => {
+        if ('changes' in entry) {
+          return entry;
+        }
+        const single = Object.entries(entry)[0]!;
+        return { version: single[0], changes: [single[1]] } as ChangelogEntry;
+      })
+    : null;
+}
+
 async function getDocsPageAt(
   src: LocalDocumentationSource,
   type: 'docs' | 'content',
@@ -144,7 +157,7 @@ async function getDocsPageAt(
         type: frontmatter.type,
         icon: frontmatter.icon,
         infobox,
-        history: frontmatter.history,
+        history: parseHistory(frontmatter.history),
         custom: frontmatter.custom
       },
       content: file.content,
