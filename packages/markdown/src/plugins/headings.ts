@@ -28,7 +28,7 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
             parent?.children.splice(index!, 1);
             foundTitle = true;
           }
-          // Remaining H1 headings will be changed to a H2
+          // Remaining H1 headings will be changed to H2
           else {
             node.tagName = 'h2';
           }
