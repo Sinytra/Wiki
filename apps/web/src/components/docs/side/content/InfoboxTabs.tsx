@@ -40,12 +40,12 @@ export default function InfoboxTabs({ tabs, ctx }: Props) {
 
   return (
     <div className="flex flex-col">
-      <Tabs defaultValue={tabs[0]!.name}>
+      <Tabs defaultValue="0">
         <TabsList className="flex h-auto flex-wrap bg-transparent">
           {tabs.map((tab, i) => (
             <TabsTrigger
               key={i}
-              value={tab.name}
+              value={i.toString()}
               className={`h-fit rounded-none border-b-2 border-transparent bg-transparent text-xsm hover:text-primary data-[state=active]:border-white data-[state=active]:bg-transparent`}
             >
               {tab.name}
@@ -56,7 +56,7 @@ export default function InfoboxTabs({ tabs, ctx }: Props) {
         <hr className="my-1" />
 
         {tabs.map((tab, i) => (
-          <TabsContent key={i} value={tab.name}>
+          <TabsContent key={i} value={i.toString()}>
             <TabDisplay tab={tab} ctx={ctx} />
           </TabsContent>
         ))}
