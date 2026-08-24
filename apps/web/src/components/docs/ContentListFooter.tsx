@@ -77,31 +77,27 @@ function Category({
 
 export default function ContentListFooter({ currentId, project, ctx, contents }: Props) {
   return (
-    <div className="not-prose">
-      <hr className="mb-8" />
-
-      <div className="p-2">
-        <table
-          className={`w-full border-separate rounded-sm border border-tertiary bg-primary-dim p-2.5 [&_td]:border-none [&_tr]:bg-primary-dim`}
-        >
-          <thead className="mb-2 table w-full">
-            <tr>
-              <th colSpan={2} className="rounded-sm bg-secondary p-2">
-                <LocaleNavLink
-                  className="underline-offset-4 hover:text-primary/80! hover:underline"
-                  href={`/project/${ctx.id}/${ctx.version}`}
-                >
-                  {project.name}
-                </LocaleNavLink>
-                <span className="float-right min-w-[1em]">&nbsp;</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody className="table w-full">
-            {...contents.map((c) => <Category key={c.path} currentId={currentId} content={c} ctx={ctx} />)}
-          </tbody>
-        </table>
-      </div>
+    <div className="not-prose p-2">
+      <table
+        className={`w-full border-separate rounded-sm border border-tertiary bg-primary-dim p-2.5 [&_td]:border-none [&_tr]:bg-primary-dim`}
+      >
+        <thead className="mb-2 table w-full">
+          <tr>
+            <th colSpan={2} className="rounded-sm bg-secondary p-2">
+              <LocaleNavLink
+                className="underline-offset-4 hover:text-primary/80! hover:underline"
+                href={`/project/${ctx.id}/${ctx.version}`}
+              >
+                {project.name}
+              </LocaleNavLink>
+              <span className="float-right min-w-[1em]">&nbsp;</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody className="table w-full">
+          {...contents.map((c) => <Category key={c.path} currentId={currentId} content={c} ctx={ctx} />)}
+        </tbody>
+      </table>
     </div>
   );
 }

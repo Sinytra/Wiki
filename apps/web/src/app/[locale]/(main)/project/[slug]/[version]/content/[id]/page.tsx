@@ -9,8 +9,6 @@ import { Metadata, ResolvingMetadata } from 'next';
 import platforms from '@repo/shared/platforms';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import { ProjectContentContext, RenderedDocsPage } from '@repo/shared/types/service';
-import ContentInfobox from '@/components/docs/side/content/ContentInfobox';
-import DocsSimpleHeader from '@/components/docs/layout/DocsSimpleHeader';
 import TogglableContent from '@/components/docs/content/TogglableContent';
 import ContentChangelog from '@/components/docs/content/ContentChangelog';
 import ContentListFooter from '@/components/docs/ContentListFooter';
@@ -102,32 +100,20 @@ export default async function ContentEntryPage(props: Props) {
   const contents = await service.getProjectContents(ctx);
   const headings = page.content.metadata.headings || [];
 
+  const RightSidebar = ({ className }: { className?: string }) => (
+    <DocsContentMetaSidebar className={className} project={project} title={t('title')} ctx={ctx} page={page} />
+  );
+
   return (
     <>
-      <DocsSimpleHeader>{page.frontmatter.title || project.name}</DocsSimpleHeader>
-
-      <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-between gap-4">
+      <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-center gap-4 2xl:justify-between">
         <ClientLocaleProvider keys={['DocsNonContentRightSidebar']}>
           <DocsContentTOCSidebar headings={headings} />
         </ClientLocaleProvider>
 
-        <main
-          className={`mt-4 min-h-[86vh] flex-1 overflow-auto px-2 pb-4 sm:mt-0 sm:min-h-auto sm:max-w-5xl sm:pt-4 lg:px-0 lg:pt-2`}
-        >
-          <div className="mb-6 sm:hidden">
-            {page.frontmatter.infobox != null && (
-              <ContentInfobox
-                project={project}
-                ctx={ctx}
-                metadata={page.frontmatter.infobox}
-                frontmatter={page.frontmatter}
-                properties={page.properties}
-                links={page.links}
-              />
-            )}
-          </div>
-
-          <DocsEntryPage page={page} project={project} />
+        <main className="min-h-[86vh] flex-1 overflow-auto px-2 pt-2 pb-4 sm:min-h-auto sm:max-w-5xl 2xl:px-0">
+          {/* Inner sidebar for small reading width */}
+          <DocsEntryPage page={page} project={project} rightSidebar={<RightSidebar className="2xl:hidden" />} />
 
           {page.frontmatter.history && (
             <TogglableContent title={u('toggle')} className="mb-6">
@@ -135,12 +121,19 @@ export default async function ContentEntryPage(props: Props) {
             </TogglableContent>
           )}
 
-          {contents && <ContentListFooter currentId={ref} project={project} contents={contents} ctx={ctx} />}
+          <DocsContentPageToolsFooter
+            className="mb-5"
+            project={project.id}
+            local={project.local}
+            id={ref}
+            editUrl={page.edit_url}
+          />
 
-          <DocsContentPageToolsFooter project={project.id} local={project.local} id={ref} editUrl={page.edit_url} />
+          {contents && <ContentListFooter currentId={ref} project={project} contents={contents} ctx={ctx} />}
         </main>
 
-        <DocsContentMetaSidebar id={ref} project={project} title={t('title')} ctx={ctx} page={page} />
+        {/* Outer sidebar for large screens */}
+        <RightSidebar className="hidden 2xl:flex" />
       </div>
     </>
   );

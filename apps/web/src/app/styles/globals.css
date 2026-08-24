@@ -192,7 +192,7 @@
     }
 
     .prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-        @apply border-b border-secondary pb-2 mb-4;
+        @apply border-b border-secondary pb-2 mb-4 flow-root;
     }
 
     .prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -264,6 +264,10 @@
 
     .prose :where(.prose > ul > li > p:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
         margin-bottom: 1.25em;
+    }
+
+    .prose:not(:where([class~='not-prose'], [class~='not-prose'] *)) aside + p {
+        margin-top: 0;
     }
 }
 

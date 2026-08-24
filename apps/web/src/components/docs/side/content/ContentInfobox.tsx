@@ -49,7 +49,7 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
     <div className="border border-tertiary">
       {/* Box title */}
       <div className="space-y-1 bg-secondary py-2">
-        {metadata.title && <h1 className="text-primarys text-center text-lg font-semibold">{metadata.title}</h1>}
+        {metadata.title && <div className="text-center text-lg font-semibold text-primary">{metadata.title}</div>}
       </div>
 
       <div className="flex flex-col gap-2 p-1">

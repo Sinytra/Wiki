@@ -4,24 +4,28 @@ import DocsChangelogPage from '@/components/docs/body/DocsChangelogPage';
 import DocsContentTitle from '@/components/docs/layout/DocsContentTitle';
 import { RenderedDocsPage } from '@repo/shared/types/service';
 import { ProjectData } from '@sinytra/wiki-api-types';
+import { ReactNode } from 'react';
 
-export default async function DocsEntryPage({
-  project,
-  page,
-  showHistory,
-  isIndexPage
-}: {
+interface Props {
   project: ProjectData;
   page: RenderedDocsPage;
+  rightSidebar?: ReactNode;
   showHistory?: boolean;
   isIndexPage?: boolean;
-}) {
-  const mainContent = <DocsMarkdownContent>{page.content.content}</DocsMarkdownContent>;
+}
+
+export default async function DocsEntryPage({ project, page, showHistory, isIndexPage, rightSidebar }: Props) {
+  const mainContent = (
+    <DocsMarkdownContent>
+      {rightSidebar}
+      {page.content.content}
+    </DocsMarkdownContent>
+  );
 
   return (
     <div className="flex min-h-[90vh] flex-col pb-20">
       {(!isIndexPage || page.frontmatter.title != null) && (
-        <DocsContentTitle className="hidden sm:block" project={project} showHistory={showHistory}>
+        <DocsContentTitle className="" project={project} showHistory={showHistory}>
           {page.frontmatter.title || project.name}
         </DocsContentTitle>
       )}

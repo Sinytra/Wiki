@@ -25,7 +25,7 @@ async function TabDisplayAsset({ id, ctx }: { id: string; ctx: ProjectContext })
 
 function TabDisplay({ tab, ctx }: { tab: InfoboxTab; ctx: ProjectContext }) {
   return (
-    <div className="my-2 p-4">
+    <div className="my-2 p-4 text-center">
       {tab.display.map((id) => (
         <TabDisplayAsset key={id} id={id} ctx={ctx} />
       ))}
