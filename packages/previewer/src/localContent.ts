@@ -52,7 +52,7 @@ async function processEntry(
 ): Promise<ExtendedContentFileTreeEntry | null> {
   if (entry.type === 'dir') {
     const children = await Promise.all(entry.children.map((c) => processEntry(src, c, locale, ctx)));
-    return { ...entry, children: children.filter((c) => c != null) };
+    return { ...entry, item_ids: [], children: children.filter((c) => c != null) };
   } else {
     const file = await localDocs.readDocsFile(src, 'content', [entry.path], locale || undefined, true);
     if (file) {
@@ -71,7 +71,8 @@ async function processEntry(
           name: entry.name,
           path: entry.path,
           type: entry.type,
-          children: []
+          children: [],
+          item_ids: []
         };
       }
     }

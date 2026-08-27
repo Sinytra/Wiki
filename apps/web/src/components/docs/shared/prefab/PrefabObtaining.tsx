@@ -16,7 +16,9 @@ async function BoundPrefabObtaining({ ctx }: { ctx: ProjectContentContext }) {
 
   return (
     <div>
-      <LinkAwareHeading id="recipe">{t('recipe')}</LinkAwareHeading>
+      <LinkAwareHeading id="recipe" className="clear-right">
+        {t('recipe')}
+      </LinkAwareHeading>
 
       {env.isPreview() ? (
         <InteractiveComponentPlaceholder />

@@ -78,6 +78,10 @@ function getForInternalCode(internal: string): Language | undefined {
   return LANGUAGES.find((lang) => lang.internal === internal);
 }
 
+function getForCode(code: string): Language | undefined {
+  return LANGUAGES.find((lang) => lang.code === code);
+}
+
 function getUrlPrefixForCode(code: string): string | undefined {
   return LANGUAGES.find((lang) => lang.code === code)?.prefix;
 }
@@ -114,5 +118,6 @@ export default {
   isRTL,
   actualLocale,
   resolveParam,
-  getUrlPrefixForCode
+  getUrlPrefixForCode,
+  getForCode
 };

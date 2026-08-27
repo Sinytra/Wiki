@@ -8,20 +8,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [];
   }
 
-  const allProjects = await projectApi.getAllProjectIDs();
+  const allProjects = await projectApi.getAllProjects();
   if (!allProjects.success) {
     return [];
   }
 
-  const languageKeys = locales.getLanguagePaths().filter((l) => l !== 'en');
+  return allProjects.data.map((brief) => {
+    const { id, locales: langs } = brief;
 
-  return allProjects.data.map((id) => {
     const languages: any = {};
-    languageKeys.forEach((l) => {
-      languages[l] = `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/${l}/project/${id}`;
-    });
+    langs
+      .map((l) => locales.getForCode(l))
+      .filter((l) => l != null)
+      .forEach((l) => {
+        languages[l.internal] = `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/${l.prefix}/project/${id}`;
+      });
 
-    // TODO Update for SEO
     return {
       url: `${process.env.NEXT_PUBLIC_NEXT_APP_URL}/en/project/${id}/${DEFAULT_DOCS_VERSION}`,
       lastModified: new Date(),

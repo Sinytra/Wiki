@@ -36,11 +36,12 @@ function Category({
         name: t('other'),
         children: other,
         type: 'dir',
-        path: ''
+        path: '',
+        item_ids: []
       });
     }
   } else {
-    subCategories = [{ name: t('all'), children: content.children, type: 'dir', path: '' }];
+    subCategories = [{ name: t('all'), children: content.children, type: 'dir', path: '', item_ids: [] }];
   }
 
   const active = subCategories.flatMap((c) => c.children).some((c) => c.ref === currentId);

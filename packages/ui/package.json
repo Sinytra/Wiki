@@ -59,7 +59,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@sinytra/wiki-api-types": "^0.1.22",
+    "@sinytra/wiki-api-types": "^0.1.23",
     "@types/lodash": "^4.17.25",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",

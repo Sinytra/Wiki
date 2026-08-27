@@ -88,11 +88,14 @@ function ContentCategory({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: Pro
                 </Fragment>
               ))}
             {children.length > 0 && (
-              <ContentSubcategory entry={{ name: t('other'), children, type: 'dir', path: '' }} ctx={ctx} />
+              <ContentSubcategory
+                entry={{ name: t('other'), children, type: 'dir', path: '', item_ids: [] }}
+                ctx={ctx}
+              />
             )}
           </div>
         ) : (
-          <ContentSubcategory entry={{ name: t('all'), children, type: 'dir', path: '' }} ctx={ctx} />
+          <ContentSubcategory entry={{ name: t('all'), children, type: 'dir', path: '', item_ids: [] }} ctx={ctx} />
         )}
       </div>
     </div>

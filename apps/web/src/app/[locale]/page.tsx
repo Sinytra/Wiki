@@ -119,7 +119,7 @@ function HomePageContent({ projects }: { projects: FeaturedProject[] }) {
   return (
     <main className="container mx-auto px-4">
       <section className="mb-5 pb-4">
-        <div className="mb-2 text-center text-lg text-secondary">
+        <div className="mt-2 mb-2 text-center text-lg text-secondary md:mt-0">
           {t.rich('title', {
             highlight: (chunks: any) => (
               <div className="mb-4">
