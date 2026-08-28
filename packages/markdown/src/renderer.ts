@@ -139,7 +139,6 @@ async function readProcessedFrontmatter(source: string): Promise<DocsEntryMetada
   matter(vfile, { strip: true });
 
   const frontmatter = vfile.data.matter ?? {};
-  const content = String(vfile.value);
 
   const processor = unified()
     .use(remarkParse)
@@ -151,7 +150,7 @@ async function readProcessedFrontmatter(source: string): Promise<DocsEntryMetada
     .use(rehypeStringify);
 
   try {
-    const file = await processor.process(new VFile(content));
+    const file = await processor.process(vfile);
     const metadata = file.data.metadata ?? {};
 
     return {

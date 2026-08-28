@@ -273,6 +273,19 @@
     .prose :where([class~='float-right'], [style*='float: right']):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
         @apply mt-0 ml-4;
     }
+
+    .prose :where(figure):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        @apply bg-primary-alt border border-secondary;
+    }
+
+    .prose :where(figure img):not(:where(figcaption img, [class~='not-prose'], [class~='not-prose'] *)) {
+        margin: 3px;
+        @apply border border-secondary;
+    }
+
+    .prose :where(figure figcaption):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        @apply mt-0 px-1.5 pb-1.5;
+    }
 }
 
 @layer base {
