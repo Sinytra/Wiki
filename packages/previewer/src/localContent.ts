@@ -14,6 +14,7 @@ import resourceLocation, { DEFAULT_NAMESPACE } from '@repo/shared/resourceLocati
 import { DEFAULT_LOCALE } from '@repo/shared/constants';
 import { ProjectFormat } from './format/projectFormat';
 import locales from '@repo/shared/locales';
+import { console } from 'next/dist/compiled/@edge-runtime/primitives';
 
 interface ExtendedContentFileTreeEntry extends ContentFileTreeEntry {
   id?: string[];
@@ -23,6 +24,12 @@ interface ContentItemNameResponse {
   source: string;
   id: string;
   name: string;
+}
+
+interface LinkParts {
+  original: string;
+  href: string;
+  options: string | null;
 }
 
 async function getProjectContents(ctx: ProjectContext): Promise<ContentFileTree | null> {
@@ -192,6 +199,15 @@ function findTreeEntry<T extends { type: string; children: T[] }>(pred: (e: T) =
   }
 }
 
+function splitLink(raw: string): LinkParts {
+  const parts = raw.split('#', 2);
+  return { original: raw, href: parts[0]!, options: parts[1] ? `#${parts[1]}` : null };
+}
+
+function withOptions(link: ResolvedLink, options: string | null): ResolvedLink {
+  return { ...link, options };
+}
+
 async function resolveDocsLink(path: string, tree: FileTree): Promise<ResolvedLink | null> {
   for (const child of tree) {
     const entry = findTreeEntry((e) => e.path == path, child);
@@ -248,34 +264,37 @@ async function resolveContentLinks(links: string[], ctx: ProjectContext): Promis
   const docsTree = await localDocs.readDocsTree(src, ctx.locale ?? undefined);
   const contentTree = await getProjectContents(ctx);
 
-  for (const href of links) {
+  for (const raw of links) {
+    const { original, href, options } = splitLink(raw);
+
     if (href.startsWith('$') && docsTree != null) {
       const path = href.substring(1);
       const link = await resolveDocsLink(path, docsTree);
       if (link) {
-        resolved[href] = link;
+        resolved[original] = withOptions(link, options);
       }
     } else if (href.startsWith('@') && contentTree != null) {
       const id = href.substring(1);
       const parsed = resourceLocation.parse(id);
       if (parsed && parsed.namespace == DEFAULT_NAMESPACE) {
-        resolved[href] = {
+        resolved[original] = {
           type: 'vanilla',
           ref: parsed.path,
-          title: null
+          title: null,
+          options
         };
         continue;
       }
 
       const link = await resolveContentLink(id, contentTree);
       if (link) {
-        resolved[href] = link;
+        resolved[original] = withOptions(link, options);
       }
     } else if (href.startsWith('+') && contentTree != null) {
       const ref = href.substring(1);
       const link = await resolveRefContentLink(ref, contentTree);
       if (link) {
-        resolved[href] = link;
+        resolved[original] = withOptions(link, options);
       }
     }
   }

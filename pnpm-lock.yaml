@@ -416,8 +416,8 @@ importers:
         specifier: ^1.29.2
         version: 1.29.2
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.23
-        version: 0.1.23
+        specifier: ^0.1.24
+        version: 0.1.24
       '@tailwindcss/postcss':
         specifier: ^4.3.3
         version: 4.3.3
@@ -612,8 +612,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.23
-        version: 0.1.23
+        specifier: ^0.1.24
+        version: 0.1.24
       '@types/hast':
         specifier: ^3.0.5
         version: 3.0.5
@@ -667,8 +667,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.23
-        version: 0.1.23
+        specifier: ^0.1.24
+        version: 0.1.24
       '@types/lodash':
         specifier: ^4.17.25
         version: 4.17.25
@@ -701,8 +701,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.23
-        version: 0.1.23
+        specifier: ^0.1.24
+        version: 0.1.24
       '@types/node':
         specifier: ^20.19.43
         version: 20.19.43
@@ -846,8 +846,8 @@ importers:
         specifier: workspace:*
         version: link:../base/typescript-config
       '@sinytra/wiki-api-types':
-        specifier: ^0.1.23
-        version: 0.1.23
+        specifier: ^0.1.24
+        version: 0.1.24
       '@types/lodash':
         specifier: ^4.17.25
         version: 4.17.25
@@ -3458,8 +3458,8 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@sinytra/wiki-api-types@0.1.23':
-    resolution: {integrity: sha512-52zaF+bgKCWE8HOuIegd+zZcxywz5yZNdth6ZXkbw8Q/tag6CDwPpE8hQXw6behANpptn1Vjg8n557ciHaTIIg==}
+  '@sinytra/wiki-api-types@0.1.24':
+    resolution: {integrity: sha512-BZl6XpuYTtqEgS1oxac1mNzmCis99MRPz37MwyE+gw/pr6V5tP3idu+TmNNQprj29nweyiDgn9mc4OJFmyI2Gw==}
 
   '@south-paw/typeface-minecraft@1.0.0':
     resolution: {integrity: sha512-wt58ifXAyBZ23qcPd8qcyRCbZVCcJX3E84LLHvmHL+b91HxF7nKtBIlv47uIgHRCrm7TWVRP1Z2r3zck6w3EuQ==}
@@ -10309,7 +10309,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@sinytra/wiki-api-types@0.1.23': {}
+  '@sinytra/wiki-api-types@0.1.24': {}
 
   '@south-paw/typeface-minecraft@1.0.0': {}
 

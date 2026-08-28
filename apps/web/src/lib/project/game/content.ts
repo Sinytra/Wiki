@@ -16,16 +16,17 @@ function encodeID(id: string) {
 export function resolveLink(ctx: ProjectContext, links: PageLinks, url: string): TargetLink | null {
   const resolved = links[url];
   if (resolved) {
+    const suffix = resolved.options ?? '';
     if (resolved.type == 'vanilla') {
-      return { title: resolved.title, url: getVanillaWikiLink(resolved.ref) };
+      return { title: resolved.title, url: getVanillaWikiLink(resolved.ref) + suffix };
     }
     if (resolved.type == 'docs') {
-      return { title: resolved.title, url: getDocsLink(resolved.ref, ctx) };
+      return { title: resolved.title, url: getDocsLink(resolved.ref, ctx) + suffix };
     }
     if (resolved.type == 'content') {
       return {
         title: resolved.title,
-        url: getInternalWikiLink(resolved.ref, ctx)
+        url: getInternalWikiLink(resolved.ref, ctx) + suffix
       };
     }
   }
