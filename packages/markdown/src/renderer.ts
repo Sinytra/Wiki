@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import { markdownRehypeSchema } from './contentFilter';
 import { ReactElement } from 'react';
 import remarkGfm from 'remark-gfm';
+import remarkMdx from 'remark-mdx';
 import { recmaCodeHike, remarkCodeHike } from 'codehike/mdx';
 import { VFile } from 'vfile';
 import { matter } from 'vfile-matter';
@@ -133,19 +134,24 @@ function readFrontmatter(source: string): any {
   return vfile.data.matter ?? {};
 }
 
-async function readProcessedFrontmatter(source: string) {
-  try {
-    const file = await unified()
-      .use(remarkParse)
-      .use(remarkHeadingAttributes)
-      .use(remarkRehype, { allowDangerousHtml: true })
-      .use(() => (_, file) => matter(file, { strip: true }))
-      .use(rehypeMarkdownHeadings)
-      .use(rehypeCollectLinks)
-      .use(rehypeStringify)
-      .process(source);
+async function readProcessedFrontmatter(source: string): Promise<DocsEntryMetadata> {
+  const vfile = new VFile(cleanFrontmatter(source));
+  matter(vfile, { strip: true });
 
-    const frontmatter = file.data.matter ?? {};
+  const frontmatter = vfile.data.matter ?? {};
+  const content = String(vfile.value);
+
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkMdx)
+    .use(remarkHeadingAttributes)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeMarkdownHeadings)
+    .use(rehypeCollectLinks)
+    .use(rehypeStringify);
+
+  try {
+    const file = await processor.process(new VFile(content));
     const metadata = file.data.metadata ?? {};
 
     return {
@@ -154,8 +160,9 @@ async function readProcessedFrontmatter(source: string) {
     };
   } catch (e) {
     console.error('Error reading processed frontmatter', e);
-    return {};
   }
+
+  return frontmatter;
 }
 
 export default {
