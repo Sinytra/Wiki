@@ -51,40 +51,39 @@ export default function RotatingItemDisplaySlot({ noTooltip, noLink, src, count,
     return null;
   }
 
-  const Content = () => {
-    const link = ctx ? getResolvedItemLink(ctx, currentSrc) : getExternalWikiLink(currentSrc.id);
-    const element = (
-      <div {...props} className={cn('relative shrink-0', props.className)}>
-        <ItemAssetDisplay
-          noTitle
-          asset={currentSrc.asset}
-          alt={currentSrc.name ?? currentSrc.id}
-          className="sharpRendering"
-        />
-        {count && count > 1 && (
-          <span
-            className={`sharpRendering absolute right-0 bottom-0 z-10 text-left font-minecraft text-base leading-1 text-white`}
-            style={{ textShadow: '2px 2px 0 #3F3F3F' }}
-          >
-            {count}
-          </span>
-        )}
-      </div>
-    );
-    return link && !noLink ? (
+  const link = ctx ? getResolvedItemLink(ctx, currentSrc) : getExternalWikiLink(currentSrc.id);
+  const element = (
+    <div {...props} className={cn('relative shrink-0', props.className)}>
+      <ItemAssetDisplay
+        noTitle
+        asset={currentSrc.asset}
+        alt={currentSrc.name ?? currentSrc.id}
+        className="sharpRendering"
+      />
+      {count && count > 1 && (
+        <span
+          className={`sharpRendering absolute right-0 bottom-0 z-10 text-left font-minecraft text-base leading-1 text-white`}
+          style={{ textShadow: '2px 2px 0 #3F3F3F' }}
+        >
+          {count}
+        </span>
+      )}
+    </div>
+  );
+  const content =
+    link && !noLink ? (
       <NavLink href={link} rel="noreferrer">
         {element}
       </NavLink>
     ) : (
       element
     );
-  };
 
   return noTooltip ? (
-    <Content />
+    content
   ) : (
     <TooltipImg id={currentSrc.name || currentSrc.id} tag={tag}>
-      <Content />
+      {content}
     </TooltipImg>
   );
 }
