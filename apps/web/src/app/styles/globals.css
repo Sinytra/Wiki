@@ -269,6 +269,10 @@
     .prose:not(:where([class~='not-prose'], [class~='not-prose'] *)) aside + p {
         margin-top: 0;
     }
+
+    .prose :where([class~='float-right'], [style*='float: right']):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        @apply mt-0 ml-4;
+    }
 }
 
 @layer base {

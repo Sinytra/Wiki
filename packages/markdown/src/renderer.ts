@@ -20,6 +20,7 @@ import { rehypeMarkdownHeadings } from './plugins/headings';
 import { remarkMdxDisableExplicitJsx } from './plugins/inlining';
 import { rehypeCollectLinks } from './plugins/collect';
 import remarkHint from './plugins/hint';
+import remarkHeadingAttributes from './plugins/headingAttributes';
 
 export interface DocumentationMarkdown {
   content: ReactElement<any>;
@@ -103,7 +104,8 @@ async function renderDocumentationMarkdown(
         [remarkCodeHike, chConfig],
         remarkGfm,
         [remarkMdxDisableExplicitJsx, knownComponents],
-        remarkHint
+        remarkHint,
+        remarkHeadingAttributes
       ],
       rehypePlugins,
       recmaPlugins: [[recmaCodeHike, chConfig]]
@@ -135,6 +137,7 @@ async function readProcessedFrontmatter(source: string) {
   try {
     const file = await unified()
       .use(remarkParse)
+      .use(remarkHeadingAttributes)
       .use(remarkRehype, { allowDangerousHtml: true })
       .use(() => (_, file) => matter(file, { strip: true }))
       .use(rehypeMarkdownHeadings)

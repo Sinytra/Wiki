@@ -36,8 +36,12 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
         }
       }
 
-      if (depth && !node.properties.id) {
-        const id = slugs.slug(toString(node));
+      if (depth) {
+        const explicitId = typeof node.properties.id === 'string' ? node.properties.id : undefined;
+        if (explicitId) {
+          slugs.slug(explicitId);
+        }
+        const id = explicitId ?? slugs.slug(toString(node));
         node.properties.id = id;
         const heading: FileHeading = {
           depth,

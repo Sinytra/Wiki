@@ -30,7 +30,7 @@ export default function Callout({ variant = 'default', title, collapsible, colla
 
   return (
     <Alert
-      className="not-prose my-4 bg-primary-alt py-1"
+      className="not-prose my-4 flow-root w-auto bg-primary-alt py-1"
       variant={variant === 'danger' ? 'destructive' : variant || 'default'}
     >
       <ActiveIcon className="size-4" />

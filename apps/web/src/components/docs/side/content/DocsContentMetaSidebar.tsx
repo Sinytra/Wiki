@@ -14,7 +14,7 @@ export default function DocsContentMetaSidebar(props: Props) {
       className={cn(
         'not-prose flex shrink-0 flex-col',
         'scrollbar-thumb-secondary scrollbar-track-secondary/20 scrollbar-thin space-y-2 overflow-y-auto',
-        'float-right 2xl:float-none',
+        'float-right clear-right 2xl:float-none 2xl:clear-none',
         'pb-6 sm:mb-4 sm:ml-4 sm:w-72 sm:pb-0 2xl:m-0 2xl:w-80 2xl:p-4',
         props.className
       )}
