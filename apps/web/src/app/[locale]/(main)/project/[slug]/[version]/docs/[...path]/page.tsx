@@ -39,7 +39,11 @@ export async function generateMetadata(
   }
   const { frontmatter } = page;
 
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return { title: (await parent).title?.absolute };
+  }
+
   const iconUrl = frontmatter.icon ? await service.getAsset(frontmatter.icon, ctx) : null;
 
   return {

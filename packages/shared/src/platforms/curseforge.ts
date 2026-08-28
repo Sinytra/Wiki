@@ -30,13 +30,13 @@ interface CurseForgeProject {
   name: string;
   slug: string;
   summary: string;
-  logo: {
+  logo?: {
     url: string;
   };
-  categories: CurseForgeCategory[];
-  authors: CurseForgeAuthor[];
-  latestFilesIndexes: CurseForgeFile[];
-  links: {
+  categories?: CurseForgeCategory[];
+  authors?: CurseForgeAuthor[];
+  latestFilesIndexes?: CurseForgeFile[];
+  links?: {
     websiteUrl: string;
     sourceUrl: string;
   };
@@ -105,27 +105,27 @@ async function getProject(slug: string): Promise<PlatformProject> {
     name: project.name,
     summary: project.summary,
     description,
-    icon_url: project.logo.url,
-    categories: project.categories.map((c) => c.slug),
-    game_versions: project.latestFilesIndexes.map((i) => i.gameVersion).reverse(),
+    icon_url: project.logo?.url ?? '',
+    categories: (project.categories ?? []).map((c) => c.slug),
+    game_versions: (project.latestFilesIndexes ?? []).map((i) => i.gameVersion).reverse(),
     license: undefined, // CF does not provide this information
-    source_url: project.links.sourceUrl,
+    source_url: project.links?.sourceUrl,
 
     platform: 'curseforge',
     project_url: getProjectURL(project.slug, type),
     extra: {
-      authors: project.authors.map((a) => ({ name: a.name, url: a.url }) satisfies PlatformProjectAuthor)
+      authors: (project.authors ?? []).map((a) => ({ name: a.name, url: a.url }) satisfies PlatformProjectAuthor)
     },
     type
   };
 }
 
 async function getProjectAuthors(source: PlatformProject): Promise<PlatformProjectAuthor[]> {
-  return source.extra.authors as PlatformProjectAuthor[];
+  return (source.extra?.authors as PlatformProjectAuthor[]) ?? [];
 }
 
 function getProjectURL(slug: string, type: ProjectType): string {
-  const base = projectTypePaths[type];
+  const base = projectTypePaths[type] ?? projectTypePaths.mod;
   return `https://www.curseforge.com/minecraft/${base}/${slug}`;
 }
 

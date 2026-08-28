@@ -31,22 +31,28 @@ function getProjectSourcePlatform(id: ProjectPlatform): ProjectPlatformProvider 
   return source;
 }
 
-async function getPlatformProject(project: IdentifiableProject, fallback: boolean = true): Promise<PlatformProject> {
+async function getPlatformProjectOrNull(project: IdentifiableProject): Promise<PlatformProject | null> {
   for (const key in providers) {
     const platform = key as ProjectPlatform;
-    if (project.platforms[platform]) {
+    const slug = project.platforms[platform];
+    if (slug) {
       try {
-        return await providers[platform].getProject(project.platforms[platform]!);
+        return await providers[platform].getProject(slug);
       } catch (err) {
-        if (fallback && err instanceof ProjectNotFoundError) {
+        if (err instanceof ProjectNotFoundError) {
           await reportMissingProject(project, platform);
-          return createFallback(project);
+          return null;
         }
         throw err;
       }
     }
   }
-  throw new Error(`No provider found for project ${project.id} on platforms ${JSON.stringify(project.platforms)}`);
+  console.error(`No provider found for project ${project.id} on platforms ${JSON.stringify(project.platforms)}`);
+  return null;
+}
+
+async function getPlatformProject(project: IdentifiableProject): Promise<PlatformProject> {
+  return (await getPlatformProjectOrNull(project)) ?? createFallback(project);
 }
 
 async function getProjectAuthors(source: PlatformProject, fallback: boolean = true): Promise<PlatformProjectAuthor[]> {
@@ -79,6 +85,9 @@ function createFallback(project: IdentifiableProject): PlatformProject {
     game_versions: [],
     platform: project.platforms.modrinth ? 'modrinth' : 'curseforge',
     project_url: '',
+    extra: {
+      authors: []
+    },
     type: 'mod',
     is_placeholder: false
   };
@@ -87,5 +96,6 @@ function createFallback(project: IdentifiableProject): PlatformProject {
 export default {
   getProjectAuthors,
   getProjectURL,
-  getPlatformProject
+  getPlatformProject,
+  getPlatformProjectOrNull
 };

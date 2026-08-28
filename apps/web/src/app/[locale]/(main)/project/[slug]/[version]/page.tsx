@@ -45,7 +45,11 @@ export async function generateMetadata(
     return { title: (await parent).title?.absolute };
   }
 
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return { title: (await parent).title?.absolute };
+  }
+
   return {
     other: {
       docs_source_mod: platformProject.name,
@@ -221,7 +225,11 @@ export default async function ProjectHomepage(props: PageProps) {
     return notFound();
   }
 
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return notFound();
+  }
+
   const info = await projectInfo.getPlatformProjectInformation(project, platformProject);
 
   const descriptionPlaceholder = <div className="min-h-16 text-secondary">{t('description.placeholder')}</div>;

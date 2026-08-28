@@ -112,7 +112,10 @@ export default async function ProjectPage(props: Props) {
     return notFound();
   }
 
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return notFound();
+  }
 
   const contents = await service.getProjectContents(ctx);
   if (!contents) {

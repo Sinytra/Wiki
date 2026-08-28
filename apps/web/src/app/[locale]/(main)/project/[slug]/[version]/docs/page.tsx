@@ -33,7 +33,10 @@ export default async function ProjectDocsHomepage(props: PageProps) {
     return notFound();
   }
 
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return notFound();
+  }
 
   const content = await renderHomepage(project, platformProject, ctx);
   const headings = content?.metadata.headings || [];

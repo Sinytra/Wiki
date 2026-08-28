@@ -31,7 +31,10 @@ export async function generateMetadata(
     return { title: (await parent).title?.absolute };
   }
 
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return { title: (await parent).title?.absolute };
+  }
 
   return {
     title: `${platformProject.name} - ${(await parent).title?.absolute}`,
@@ -52,7 +55,10 @@ export default async function HomepageLayout(props: LayoutProps) {
     return notFound();
   }
 
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return notFound();
+  }
 
   return (
     <LeftSidebarContextProvider>

@@ -306,7 +306,10 @@ export async function GET(req: NextRequest) {
   if (!project) {
     return NextResponse.json({ error: 'Project not found' }, { status: 400 });
   }
-  const platformProject = await platforms.getPlatformProject(project);
+  const platformProject = await platforms.getPlatformProjectOrNull(project);
+  if (!platformProject) {
+    return NextResponse.json({ error: 'Platform project not found' }, { status: 404 });
+  }
 
   const pathVal = searchParams.get('path');
   const idVal = searchParams.get('id');

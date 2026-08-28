@@ -14,11 +14,11 @@ interface ModrinthProject {
   summary: string;
   description: string;
   icon_url: string;
-  categories: string[];
-  game_versions: string[];
-  license: ModrinthProjectLicense;
+  categories?: string[];
+  game_versions?: string[];
+  license?: ModrinthProjectLicense;
   organization?: string;
-  project_types: string[];
+  project_types?: string[];
   link_urls: Record<string, LinkUrl>;
 }
 
@@ -54,7 +54,7 @@ interface ModrinthOrganization {
 async function getProject(slug: string): Promise<PlatformProject> {
   const mrProject = await getModrinthProject(slug);
   const type =
-    mrProject.project_types.length < 1 || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0] as ProjectType)
+    !mrProject.project_types?.length || !AVAILABLE_PROJECT_TYPES.includes(mrProject.project_types[0] as ProjectType)
       ? 'mod'
       : (mrProject.project_types[0] as ProjectType);
 
@@ -64,18 +64,20 @@ async function getProject(slug: string): Promise<PlatformProject> {
     summary: mrProject.summary,
     description: mrProject.description,
     icon_url: mrProject.icon_url,
-    categories: mrProject.categories,
-    game_versions: mrProject.game_versions,
-    license: {
-      id: mrProject.license.id,
-      name: mrProject.license.name,
-      url: mrProject.license.url
-    },
+    categories: mrProject.categories ?? [],
+    game_versions: mrProject.game_versions ?? [],
+    license: mrProject.license
+      ? {
+          id: mrProject.license.id,
+          name: mrProject.license.name,
+          url: mrProject.license.url
+        }
+      : undefined,
     source_url: mrProject.link_urls?.source?.url,
     discord_url: mrProject.link_urls?.discord?.url,
 
     platform: 'modrinth',
-    project_url: await getProjectURL(mrProject.slug, type),
+    project_url: getProjectURL(mrProject.slug, type),
     type
   };
 }
