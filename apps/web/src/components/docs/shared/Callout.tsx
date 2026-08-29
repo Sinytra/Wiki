@@ -5,12 +5,12 @@ import { useTranslations } from 'next-intl';
 import ToggleChevron from '@repo/ui/util/ToggleChevron';
 import { cn } from '@repo/ui/lib/utils';
 
-// Nextra: default / info / warning / error   / important
+// Nextra:         / info / warning / error   / important
 // GitHub: tip     / note / warning / caution / important
 type NextraVariant = 'default' | 'info' | 'warning' | 'danger' | 'important';
 type Variant = NextraVariant | AlertVariant;
 
-const DEFAULT_TYPE: AlertVariant = 'tip';
+const FALLBACK_TYPE: AlertVariant = 'tip';
 
 interface Props {
   variant?: Variant;
@@ -29,7 +29,7 @@ const icons: { [key in AlertVariant]: any } = {
 };
 
 const aliases: { [key in Variant]: AlertVariant } = {
-  default: 'tip',
+  default: 'note',
   info: 'note',
   warning: 'warning',
   danger: 'caution',
@@ -39,10 +39,10 @@ const aliases: { [key in Variant]: AlertVariant } = {
   caution: 'caution'
 };
 
-export default function Callout({ variant = DEFAULT_TYPE, title, collapsible, collapsed, children }: Props) {
+export default function Callout({ variant = 'default', title, collapsible, collapsed, children }: Props) {
   const t = useTranslations('Callout');
-  const type = aliases[variant] || DEFAULT_TYPE;
-  const ActiveIcon = icons[type] || icons[DEFAULT_TYPE];
+  const type = aliases[variant] || FALLBACK_TYPE;
+  const ActiveIcon = icons[type] || icons[FALLBACK_TYPE];
 
   const Wrapper = collapsible ? 'details' : 'div';
   const Header = collapsible ? 'summary' : 'div';
