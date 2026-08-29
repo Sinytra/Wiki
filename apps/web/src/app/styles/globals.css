@@ -282,6 +282,10 @@
         @apply block;
     }
 
+    .img-item {
+        @apply size-8;
+    }
+
     .prose :where(figure):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
         @apply my-2 bg-primary-soft border border-secondary text-center table leading-0 has-[figcaption]:border-b-0;
     }

@@ -32,7 +32,8 @@ const MAX_VALUE_SIZE = 9999;
 
 const FLAG_CLASSES: Record<string, string> = {
   right: 'img-right',
-  center: 'img-center'
+  center: 'img-center',
+  item: 'img-item'
 };
 
 const KNOWN_FLAGS = Object.keys(FLAG_CLASSES);
