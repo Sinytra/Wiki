@@ -15,13 +15,15 @@ import { compile, run } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import { formatMarkdownError, MarkdownError } from './exception';
 import { DocsEntryMetadata } from './metadata';
-import { rehypeSanitizeTree, TreeSanitizerOptions } from './plugins/treeSanitizer';
-import { rehypeSafeMarkdownAttributes } from './plugins/esSanitizer';
+import { rehypeSanitizeTree, TreeSanitizerOptions } from './plugins/sanitize/treeSanitizer';
+import { rehypeSafeMarkdownAttributes } from './plugins/sanitize/esSanitizer';
+import { rehypeSanitizeStyles } from './plugins/sanitize/styleSanitizer';
 import { rehypeMarkdownHeadings } from './plugins/headings';
 import { remarkMdxDisableExplicitJsx } from './plugins/inlining';
 import { rehypeCollectLinks } from './plugins/collect';
 import remarkHint from './plugins/hint';
 import remarkHeadingAttributes from './plugins/headingAttributes';
+import remarkElementAttributes from './plugins/elementAttributes';
 import remarkAlert from './plugins/alert';
 
 export interface DocumentationMarkdown {
@@ -55,6 +57,7 @@ async function renderCommonMarkdown(content: string): Promise<string> {
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeSanitize, markdownRehypeSchema)
+    .use(rehypeSanitizeStyles)
     .use(rehypeStringify)
     .process(content);
 
@@ -94,7 +97,11 @@ async function renderDocumentationMarkdown(
   try {
     const knownComponents = Object.keys(components);
     const sanitizeOptions: TreeSanitizerOptions = { components, schema: markdownRehypeSchema };
-    const rehypePlugins: Pluggable[] = [rehypeSafeMarkdownAttributes, [rehypeSanitizeTree, sanitizeOptions]];
+    const rehypePlugins: Pluggable[] = [
+      rehypeSafeMarkdownAttributes,
+      [rehypeSanitizeTree, sanitizeOptions],
+      rehypeSanitizeStyles
+    ];
     if (!inline) {
       rehypePlugins.unshift(rehypeMarkdownHeadings);
     }
@@ -108,7 +115,8 @@ async function renderDocumentationMarkdown(
         remarkGfm,
         [remarkMdxDisableExplicitJsx, knownComponents],
         remarkHint,
-        remarkHeadingAttributes
+        remarkHeadingAttributes,
+        remarkElementAttributes
       ],
       rehypePlugins,
       recmaPlugins: [[recmaCodeHike, chConfig]]
@@ -146,6 +154,7 @@ async function readProcessedFrontmatter(source: string): Promise<DocsEntryMetada
     .use(remarkParse)
     .use(remarkMdx)
     .use(remarkHeadingAttributes)
+    .use(remarkElementAttributes)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeMarkdownHeadings)
     .use(rehypeCollectLinks)

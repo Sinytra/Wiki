@@ -275,7 +275,7 @@
     }
 
     .prose :where(figure):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-        @apply bg-primary-alt border border-secondary;
+        @apply bg-primary-soft border border-secondary;
     }
 
     .prose :where(figure img):not(:where(figcaption img, [class~='not-prose'], [class~='not-prose'] *)) {
