@@ -312,10 +312,11 @@
     }
   },
   "Callout": {
-    "default": "ڤرهاتين!",
-    "info": "معلومت",
     "warning": "امرن",
-    "danger": "بهاي"
+    "note": "Note",
+    "tip": "Tip",
+    "important": "Important",
+    "caution": "Caution"
   },
   "ProjectRegisterForm": {
     "button": "ڤروجيک بهارو",
