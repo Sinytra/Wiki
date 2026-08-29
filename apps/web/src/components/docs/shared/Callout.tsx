@@ -1,11 +1,16 @@
 import { ReactElement } from 'react';
-import { Alert, AlertDescription, AlertTitle } from '@repo/ui/components/alert';
-import { BanIcon, InfoIcon, RocketIcon, TriangleAlertIcon } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle, AlertVariant } from '@repo/ui/components/alert';
+import { InfoIcon, LightbulbIcon, MessageSquareWarningIcon, OctagonAlertIcon, TriangleAlertIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import ToggleChevron from '@repo/ui/util/ToggleChevron';
 import { cn } from '@repo/ui/lib/utils';
 
-type Variant = 'default' | 'info' | 'warning' | 'danger';
+// Nextra: default / info / warning / error   / important
+// GitHub: tip     / note / warning / caution / important
+type NextraVariant = 'default' | 'info' | 'warning' | 'danger' | 'important';
+type Variant = NextraVariant | AlertVariant;
+
+const DEFAULT_TYPE: AlertVariant = 'tip';
 
 interface Props {
   variant?: Variant;
@@ -15,24 +20,35 @@ interface Props {
   children?: ReactElement<any>;
 }
 
-export default function Callout({ variant = 'default', title, collapsible, collapsed, children }: Props) {
+const icons: { [key in AlertVariant]: any } = {
+  warning: TriangleAlertIcon,
+  note: InfoIcon,
+  tip: LightbulbIcon,
+  important: MessageSquareWarningIcon,
+  caution: OctagonAlertIcon
+};
+
+const aliases: { [key in Variant]: AlertVariant } = {
+  default: 'tip',
+  info: 'note',
+  warning: 'warning',
+  danger: 'caution',
+  note: 'note',
+  tip: 'tip',
+  important: 'important',
+  caution: 'caution'
+};
+
+export default function Callout({ variant = DEFAULT_TYPE, title, collapsible, collapsed, children }: Props) {
   const t = useTranslations('Callout');
-  const icons: { [key in Variant]: any } = {
-    default: RocketIcon,
-    info: InfoIcon,
-    warning: TriangleAlertIcon,
-    danger: BanIcon
-  };
-  const ActiveIcon = icons[variant] || icons['default'];
+  const type = aliases[variant] || DEFAULT_TYPE;
+  const ActiveIcon = icons[type] || icons[DEFAULT_TYPE];
 
   const Wrapper = collapsible ? 'details' : 'div';
   const Header = collapsible ? 'summary' : 'div';
 
   return (
-    <Alert
-      className="not-prose my-4 flow-root w-auto bg-primary-alt py-1"
-      variant={variant === 'danger' ? 'destructive' : variant || 'default'}
-    >
+    <Alert className="not-prose my-4 flow-root w-auto bg-primary-alt/80 py-1" variant={type}>
       <ActiveIcon className="size-4" />
       <Wrapper className="group w-full translate-y-0!" open={!collapsible || !collapsed}>
         <Header
@@ -41,7 +57,7 @@ export default function Callout({ variant = 'default', title, collapsible, colla
             collapsible && 'cursor-pointer list-none [&::-webkit-details-marker]:hidden'
           )}
         >
-          <AlertTitle className="mb-0">{title || t(variant)}</AlertTitle>
+          <AlertTitle className="mb-0">{title || t(type)}</AlertTitle>
 
           {collapsible && <ToggleChevron className="size-4 group-open:rotate-180" animate={false} />}
         </Header>

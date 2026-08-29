@@ -16,7 +16,7 @@ async function BoundPrefabObtaining({ ctx }: { ctx: ProjectContentContext }) {
 
   return (
     <div>
-      <LinkAwareHeading id="recipe" className="clear-right">
+      <LinkAwareHeading id="recipe" className="clear-both">
         {t('recipe')}
       </LinkAwareHeading>
 

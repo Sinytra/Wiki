@@ -22,6 +22,7 @@ import { remarkMdxDisableExplicitJsx } from './plugins/inlining';
 import { rehypeCollectLinks } from './plugins/collect';
 import remarkHint from './plugins/hint';
 import remarkHeadingAttributes from './plugins/headingAttributes';
+import remarkAlert from './plugins/alert';
 
 export interface DocumentationMarkdown {
   content: ReactElement<any>;
@@ -103,6 +104,7 @@ async function renderDocumentationMarkdown(
 
       remarkPlugins: [
         [remarkCodeHike, chConfig],
+        remarkAlert,
         remarkGfm,
         [remarkMdxDisableExplicitJsx, knownComponents],
         remarkHint,

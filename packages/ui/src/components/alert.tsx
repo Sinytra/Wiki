@@ -7,14 +7,15 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary-alt border-[var(--callout-border)] text-primary',
-        destructive: 'border-destructive text-[var(--destructive-bright)] [&>svg]:text-destructive',
+        note: 'border-blue-400/50 text-blue-300/90 [&>svg]:text-blue-300',
+        tip: 'border-green-300/50 text-green-300/85 [&>svg]:text-green-300/90',
+        important: 'border-purple-400/50 text-purple-300/90 [&>svg]:text-purple-300',
         warning: 'border-warning text-warning [&>svg]:text-warning',
-        info: 'border-blue-400/50 text-blue-300/90 [&>svg]:text-blue-300'
+        caution: 'border-red-400/50 text-red-300/90 [&>svg]:text-red-300'
       }
     },
     defaultVariants: {
-      variant: 'default'
+      variant: 'note'
     }
   }
 );
@@ -40,5 +41,7 @@ const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttrib
   )
 );
 AlertDescription.displayName = 'AlertDescription';
+
+export type AlertVariant = NonNullable<VariantProps<typeof alertVariants>['variant']>;
 
 export { Alert, AlertTitle, AlertDescription };

@@ -137,7 +137,7 @@ export default async function ResolvedProjectRecipe({ recipe, embedded, ctx }: P
     recipeType.type.localized_name || (await builtinRecipeTypes.getRecipeTypeName(recipeType.type.id));
 
   return (
-    <div className="space-y-2! [&>table]:mt-0">
+    <div className="clear-both space-y-2! [&>table]:mt-0">
       <ClientLocaleProvider keys={['ResponsiveTable']}>
         <ResponsiveTable
           embedded={embedded}

@@ -121,7 +121,7 @@ export default async function ProjectDocsPage(props: {
         <DocsPageFooter editUrl={page.edit_url} slug={slug} path={path} local={project.local} preview={isPreview} />
       }
     >
-      <DocsEntryPage page={page} project={project} showHistory={page.frontmatter.history !== undefined} />
+      <DocsEntryPage page={page} project={project} showHistory={page.frontmatter.history != null} />
     </DocsInnerLayoutClient>
   );
 }
