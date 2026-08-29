@@ -312,10 +312,11 @@
     }
   },
   "Callout": {
-    "default": "Achtung!",
-    "info": "Info",
     "warning": "Warnung",
-    "danger": "Gefahr"
+    "note": "Note",
+    "tip": "Tip",
+    "important": "Important",
+    "caution": "Caution"
   },
   "ProjectRegisterForm": {
     "button": "Neues Projekt",
@@ -398,16 +399,16 @@
     "desc": "Inoffizielle Dokumentation, die von der Community gepflegt wird"
   },
   "DocsPageNotFound": {
-    "title": "404 Not Found",
-    "desc": "Whoops! Could not find the requested resource.",
-    "return": "Return"
+    "title": "404 Nicht gefunden",
+    "desc": "Hoppla! Die angeforderte Ressource konnte nicht gefunden werden.",
+    "return": "Zurück"
   },
   "DocsPageError": {
-    "title": "We lost this page",
-    "desc": "The requested documentation page is not available at the moment.",
-    "suggestion": "Please try again later or report this issue to the project author.",
-    "submit": "Submit issue",
-    "return": "Return Home"
+    "title": "Diese Seite ist verloren gegangen",
+    "desc": "Die angeforderte Dokumentationsseite ist momentan nicht verfügbar.",
+    "suggestion": "Bitte versuche es später erneut oder melde dieses Problem dem Projektautor.",
+    "submit": "Problem melden",
+    "return": "Zur Startseite zurückkehren"
   },
   "GetStartedButton": {
     "title": "Erstelle dein erstes Projekt"
