@@ -312,10 +312,11 @@
     }
   },
   "Callout": {
-    "default": "Figyelem!",
-    "info": "Infó",
     "warning": "Figyelmeztetés",
-    "danger": "Veszély"
+    "note": "Note",
+    "tip": "Tip",
+    "important": "Important",
+    "caution": "Caution"
   },
   "ProjectRegisterForm": {
     "button": "Új Projekt",

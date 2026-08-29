@@ -312,10 +312,11 @@
     }
   },
   "Callout": {
-    "default": "警告！",
-    "info": "信息",
     "warning": "警告",
-    "danger": "危险"
+    "note": "Note",
+    "tip": "Tip",
+    "important": "Important",
+    "caution": "Caution"
   },
   "ProjectRegisterForm": {
     "button": "新项目",

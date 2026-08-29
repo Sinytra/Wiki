@@ -312,10 +312,11 @@
     }
   },
   "Callout": {
-    "default": "Perhatian!",
-    "info": "Maklumat",
     "warning": "Amaran",
-    "danger": "Bahaya"
+    "note": "Note",
+    "tip": "Tip",
+    "important": "Important",
+    "caution": "Caution"
   },
   "ProjectRegisterForm": {
     "button": "Projek Baharu",

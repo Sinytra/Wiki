@@ -312,10 +312,11 @@
     }
   },
   "Callout": {
-    "default": "Важно!",
-    "info": "Информация",
     "warning": "Предупреждение",
-    "danger": "Опасно"
+    "note": "Note",
+    "tip": "Tip",
+    "important": "Important",
+    "caution": "Caution"
   },
   "ProjectRegisterForm": {
     "button": "Новый проект",

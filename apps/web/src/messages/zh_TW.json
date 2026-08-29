@@ -312,10 +312,11 @@
     }
   },
   "Callout": {
-    "default": "注意！",
-    "info": "訊息",
     "warning": "警告",
-    "danger": "危險"
+    "note": "Note",
+    "tip": "Tip",
+    "important": "Important",
+    "caution": "Caution"
   },
   "ProjectRegisterForm": {
     "button": "新增專案",
