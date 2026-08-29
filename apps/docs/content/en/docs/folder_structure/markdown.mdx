@@ -1,0 +1,218 @@
+import {Callout} from 'nextra/components';
+
+# Markdown format
+
+Wiki pages are written in an enhanced Markdown format based on [MDX](https://mdxjs.com/) and
+[GitHub Flavored Markdown](https://github.github.com/gfm/) (GFM), with multiple custom extensions that provide
+handy shortcuts for writing documentation.
+
+If you're not familiar with MDX, don't worry - it is build on top of the common [Markdown](https://www.markdownguide.org/)
+format with added JSX capabilities, meaning you can include our custom components in your documentation,
+such as crafting recipes.
+
+These features are purely optional, and you can always stick to using standard Markdown in your documentation.
+However, the file extension must remain `.mdx`.
+
+## Extensions
+
+We provide several useful Markdown syntax extensions that make it easier and quicker to apply some of the most common
+wiki page elements.
+
+### Asset images
+
+Display any [asset](assets) image by specifying the source as an asset [location](assets#format) prefixed with `@`.
+
+For example:
+```md
+<!-- Will display: /assets/examplemod/generator.png -->
+![](@examplemod:generator)
+
+<!-- Works with plain img tags as well! -->
+<img src="@examplemod:generator" />
+```
+
+### Alerts
+
+[GitHub-style alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
+are compiled into `Callout` components, letting you write callouts using plain blockquote syntax.
+
+```md
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+```
+
+On top of GitHub's syntax, the alert type can be suffixed with `+` to make the callout collapsible, or with `-` to also
+make it collapsed by default.
+
+Any text following the alert type becomes the callout's title.
+
+```md
+> [!TIP] Pro tip
+> A callout with a custom title.
+
+> [!WARNING]+
+> A collapsible callout, expanded by default.
+
+> [!CAUTION]- At your own risk
+> A collapsible callout with a custom title, collapsed by default.
+```
+
+### Content page links
+
+To link to an item's [content page](pages/content_pages), use the ID of the item you want to link, prefixed with `@`.
+The wiki will automatically find the most fitting content page that includes this item and substitute the link url.
+
+For example:
+```md
+<!-- Uses page title as link text -->
+[](@examplemod:electric_furnace)
+
+<!-- Uses custom link text -->
+Click [here](@examplemod:electric_furnace) to learn more.
+
+<!-- Link to header -->
+[](@examplemod:electric_furnace#usage)
+```
+
+You can also link to content pages directly using the page's reference prefixed with a `+`.
+This is a unique identifier that appears in the URL when you browse the page. The wiki creates it for you by default,
+but you can specify a custom one using the `ref` frontmatter attribute.
+
+```md
+<!-- Uses page title as link text -->
+[](+pickaxes)
+
+<!-- Uses custom link text -->
+Click [here](+colored_cables) to learn more.
+
+<!-- Link to header -->
+[](+pickaxes#usage)
+```
+
+### Documentation page links
+
+To link to [Documentation pages](pages/docs_pages), use the path of the page you want to link to (relative to the project
+root), prefixed with `$`.
+
+For example:
+```md
+<!-- Uses page title as link text -->
+[]($tutorials/getting_started)
+
+<!-- Uses custom link text -->
+Click [here]($tutorials/getting_started) to read the first tutorial.
+
+<!-- Link to header -->
+[]($tutorials/getting_started#next)
+```
+
+### Hover text
+
+You can add text with a hint that appears on hover as follows:
+
+```md
+<!-- Standalone -->
+?[hover me](I will appear when hovered!)
+
+<!-- Usage in text -->
+A pickaxe is required to ?[mine](break while also dropping an item) this block.
+```
+
+### Figures
+
+Standalone images (e.g. those not inlined with text) containing a description will be displayed as figures with the
+alt text used as the caption.
+
+```md
+<!-- Standalone images will be displayed with visible alt text -->
+![Naturally spawned horse herd](horse_herd.png)
+
+Images inlined in text ![hidden caption](image.png) will NOT be affected.
+```
+
+### Image style
+
+<Callout type="warning">
+  Floating elements should always be placed **above** the relevant text.
+</Callout>
+
+Images can be followed by braced attributes separate by a space. Each attribute can be either a CSS style property
+key=value pair, or one of our custom properties:
+
+- `center`: centers the image horizontally
+
+- `right`: makes the image float on the right. Note: in this case it should be placed above the relevant text, not below!
+
+```md
+<!-- Set width to 80px and float: right -->
+![Naturally spawned horse herd](horse_herd.png){width=80 right}
+
+<!-- Set red background -->
+![Letter envelope](envelope.png){background-color=red}
+
+<!-- The "item" attribute sets the dimensions to 32x32 -->
+The ![](@minecraft:diamond){item} Diamond is the hardest mineral.
+```
+
+### Heading atrributes
+
+Headings titles can be followed by a set of attributes separated by space, wrapped in braces as follows:
+
+```md
+## Crafting Usage {#my-id clear}
+```
+
+Each valid attribute is explained in detail below.
+
+#### Identifiers
+
+Every heading will have an ID generated automatically. These can then be used as part of links to navigate to specific
+sections. You can also set a custom heading ID manually.
+
+```md
+<!-- Resulting href: #crafting-usage -->
+## Crafting Usage
+
+<!-- Resulting href: #next -->
+## Next steps {#next}
+```
+
+#### Clearing
+
+If your text contains floating elements, such as figures, you can apply the [clear](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clear)
+property on headings to move the heading below the figure rather than to its side.
+
+```md
+<!-- Figure floats on the right -->
+![Caption](image){right}
+
+Some text placed left to the figure.
+
+### Side heading
+
+Text and heading placed left to the figure.
+
+### New heading {clear}
+
+Text and heading placed below the figure.
+```
+
+## Limitations
+
+Because MDX can potentially allow unwanted code injection on the server, we sanitize all sources before they're rendered,
+which can result in certain features of MDX being unavailable.
+
+That said, if there's a safe feature you'd like to use in your documentation that isn't available on the wiki, please
+open an issue on our [GitHub repository](https://github.com/Sinytra/Wiki/issues).

@@ -222,9 +222,13 @@ However, in most cases, the wiki will fill in the best defaults available.
 
   # Additional properties to display.
   # Map of string -> string
+  # Both keys and values may contain markdown. This is useful when adding links or
+  # hint text to custom properties.
   # (Optional)
   custom:
     Subcategory: Wiring
+    '[Level](levels_page)': 'Advanced'
+    '?[Price](Price of this item in diamonds)': '10'
 
   # Configure the infobox element shown in the page's right panel
   # (Optional)

@@ -71,10 +71,14 @@ Draw the reader's attention with callouts.
 
 #### Properties
 
-- `variant`
-  - Can be either of [`default`, `info`, `warning`, `danger`] (default: `default`)
+- `type`
+  - Can be either of [`info`, `tip`, `warning`, `danger`] (default: `info`)
 - `title`
   - Custom title to display. Optional
+- `collapsible`
+  - Makes the callout collapsible. Optional
+- `collapsed`
+  - Makes a callout collapsible and collapsed by default. Optional
 
 #### Code
 
@@ -83,8 +87,12 @@ Draw the reader's attention with callouts.
     This is a sample callout
 </Callout>
 
-<Callout variant="info">
+<Callout type="info">
     This is a sample info callout
+</Callout>
+
+<Callout title="Expand me!" collapsed>
+    This callout is collapsed by default
 </Callout>
 ```
 

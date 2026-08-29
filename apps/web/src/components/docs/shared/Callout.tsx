@@ -13,7 +13,9 @@ type Variant = NextraVariant | AlertVariant;
 const FALLBACK_TYPE: AlertVariant = 'tip';
 
 interface Props {
-  variant?: Variant;
+  variant?: Variant; // Use "type" instead
+  type?: Variant;
+
   title?: string;
   collapsible?: boolean;
   collapsed?: boolean;
@@ -39,27 +41,35 @@ const aliases: { [key in Variant]: AlertVariant } = {
   caution: 'caution'
 };
 
-export default function Callout({ variant = 'default', title, collapsible, collapsed, children }: Props) {
+export default function Callout({
+  variant = 'default',
+  type = variant,
+  title,
+  collapsible,
+  collapsed,
+  children
+}: Props) {
   const t = useTranslations('Callout');
-  const type = aliases[variant] || FALLBACK_TYPE;
-  const ActiveIcon = icons[type] || icons[FALLBACK_TYPE];
+  const resolvedType = aliases[type] || FALLBACK_TYPE;
+  const ActiveIcon = icons[resolvedType] || icons[FALLBACK_TYPE];
 
-  const Wrapper = collapsible ? 'details' : 'div';
-  const Header = collapsible ? 'summary' : 'div';
+  const isCollapsible = collapsible || collapsed;
+  const Wrapper = isCollapsible ? 'details' : 'div';
+  const Header = isCollapsible ? 'summary' : 'div';
 
   return (
-    <Alert className="not-prose my-4 flow-root w-auto bg-primary-alt/80 py-1" variant={type}>
+    <Alert className="not-prose my-4 flow-root w-auto bg-primary-alt/80 py-1" variant={resolvedType}>
       <ActiveIcon className="size-4" />
-      <Wrapper className="group w-full translate-y-0!" open={!collapsible || !collapsed}>
+      <Wrapper className="group w-full translate-y-0!" open={!collapsed}>
         <Header
           className={cn(
             'flex flex-row items-center justify-between py-2',
-            collapsible && 'cursor-pointer list-none [&::-webkit-details-marker]:hidden'
+            isCollapsible && 'cursor-pointer list-none [&::-webkit-details-marker]:hidden'
           )}
         >
-          <AlertTitle className="mb-0">{title || t(type)}</AlertTitle>
+          <AlertTitle className="mb-0">{title || t(resolvedType)}</AlertTitle>
 
-          {collapsible && <ToggleChevron className="size-4 group-open:rotate-180" animate={false} />}
+          {isCollapsible && <ToggleChevron className="size-4 group-open:rotate-180" animate={false} />}
         </Header>
 
         <AlertDescription className="col-start-auto mb-2 [&_a]:underline [&_a]:underline-offset-2">
