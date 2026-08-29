@@ -24,6 +24,7 @@ import { rehypeCollectLinks } from './plugins/collect';
 import remarkHint from './plugins/hint';
 import remarkHeadingAttributes from './plugins/headingAttributes';
 import remarkElementAttributes from './plugins/elementAttributes';
+import remarkFigures from './plugins/figures';
 import remarkAlert from './plugins/alert';
 
 export interface DocumentationMarkdown {
@@ -116,7 +117,8 @@ async function renderDocumentationMarkdown(
         [remarkMdxDisableExplicitJsx, knownComponents],
         remarkHint,
         remarkHeadingAttributes,
-        remarkElementAttributes
+        remarkElementAttributes,
+        remarkFigures
       ],
       rehypePlugins,
       recmaPlugins: [[recmaCodeHike, chConfig]]

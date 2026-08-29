@@ -5,7 +5,12 @@ import { SKIP, visit } from 'unist-util-visit';
 import type { Code, Effects, Extension, State, TokenizeContext } from 'micromark-util-types';
 import type { CompileContext, Extension as FromMarkdownExtension, Token } from 'mdast-util-from-markdown';
 import type { Options as ToMarkdownExtension } from 'mdast-util-to-markdown';
-import type { MdxJsxAttribute, MdxJsxAttributeValueExpression, MdxJsxTextElement } from 'mdast-util-mdx-jsx';
+import type {
+  MdxJsxAttribute,
+  MdxJsxAttributeValueExpression,
+  MdxJsxFlowElement,
+  MdxJsxTextElement
+} from 'mdast-util-mdx-jsx';
 import type { Data, Node, Nodes, Root } from 'mdast';
 import type { ObjectExpression, Property } from 'estree';
 import type { Processor, Transformer } from 'unified';
@@ -25,12 +30,12 @@ const colon = 58;
 const MAX_NAME_SIZE = 999;
 const MAX_VALUE_SIZE = 9999;
 
-const FLAG_STYLES: Record<string, Record<string, string>> = {
-  right: { float: 'right', clear: 'right' },
-  center: { display: 'block', 'margin-left': 'auto', 'margin-right': 'auto' }
+const FLAG_CLASSES: Record<string, string> = {
+  right: 'img-right',
+  center: 'img-center'
 };
 
-const KNOWN_FLAGS = Object.keys(FLAG_STYLES);
+const KNOWN_FLAGS = Object.keys(FLAG_CLASSES);
 const TARGET_NODE_TYPES = ['image', 'imageReference', 'link', 'linkReference', 'mdxJsxTextElement'];
 
 const NON_NEGATIVE_INT = /^\d+$/;
@@ -78,36 +83,56 @@ export default function remarkElementAttributes(this: Processor): Transformer<Ro
 
       parent.children.splice(index, 1);
 
-      const styles: Record<string, string> = Object.assign(
-        {},
-        ...node.flags.map((flag) => FLAG_STYLES[flag]),
-        node.declarations
-      );
+      const classes = flagClasses(node.flags);
 
       if (previous.type === 'mdxJsxTextElement') {
-        applyJsxAttributes(previous, styles);
+        applyJsxAttributes(previous, node.declarations, classes);
       } else {
         const attributes: Record<string, string> = {};
         const declarations: Record<string, string> = {};
         const supported = HTML_ATTRIBUTES[previous.type] ?? {};
 
-        for (const [property, value] of Object.entries(styles)) {
+        for (const [property, value] of Object.entries(node.declarations)) {
           const target = supported[property]?.test(value) ? attributes : declarations;
           target[property] = value;
         }
 
-        applyHastProperties(previous, attributes, declarations);
+        applyHastProperties(previous, attributes, declarations, classes);
       }
 
       return [SKIP, index];
     });
+
+    visit(tree, ['mdxJsxFlowElement', 'mdxJsxTextElement'], (node) => {
+      const element = node as MdxJsxFlowElement | MdxJsxTextElement;
+      if (!element.name || !/^[a-z]/.test(element.name)) {
+        return;
+      }
+
+      const flags = element.attributes.filter(
+        (attribute) =>
+          attribute.type === 'mdxJsxAttribute' && attribute.value === null && FLAG_CLASSES[attribute.name] !== undefined
+      ) as MdxJsxAttribute[];
+
+      if (flags.length === 0) {
+        return;
+      }
+
+      element.attributes = element.attributes.filter((attribute) => !flags.includes(attribute as MdxJsxAttribute));
+      applyJsxAttributes(element, {}, flagClasses(flags.map((flag) => flag.name)));
+    });
   };
+}
+
+function flagClasses(flags: string[]): string[] {
+  return flags.flatMap((flag) => (FLAG_CLASSES[flag] ?? '').split(/\s+/)).filter(Boolean);
 }
 
 function applyHastProperties(
   node: Nodes,
   attributes: Record<string, string>,
-  declarations: Record<string, string>
+  declarations: Record<string, string>,
+  classes: string[]
 ): undefined {
   const properties: Record<string, unknown> = ((node.data ??= {} as Data).hProperties ??= {});
 
@@ -118,9 +143,19 @@ function applyHastProperties(
     const existing = typeof properties.style === 'string' ? properties.style.replace(/;\s*$/, '') : '';
     properties.style = [existing, style].filter(Boolean).join('; ');
   }
+
+  if (classes.length > 0) {
+    const existing = properties.className;
+    const current = Array.isArray(existing) ? existing : typeof existing === 'string' ? existing.split(/\s+/) : [];
+    properties.className = [...current.filter(Boolean), ...classes];
+  }
 }
 
-function applyJsxAttributes(element: MdxJsxTextElement, declarations: Record<string, string>): undefined {
+function applyJsxAttributes(
+  element: MdxJsxFlowElement | MdxJsxTextElement,
+  declarations: Record<string, string>,
+  classes: string[]
+): undefined {
   const style = Object.entries(declarations).reduce<Record<string, string>>((object, [property, value]) => {
     object[toStyleObjectKey(property)] = value;
     return object;
@@ -135,9 +170,21 @@ function applyJsxAttributes(element: MdxJsxTextElement, declarations: Record<str
       value: styleObjectExpression({ ...readStyleObject(existing), ...style })
     });
   }
+
+  if (classes.length > 0) {
+    const className = findJsxAttribute(element, 'className');
+    const current = typeof className?.value === 'string' ? className.value.split(/\s+/).filter(Boolean) : [];
+    const value = [...current, ...classes].join(' ');
+
+    if (className) {
+      className.value = value;
+    } else {
+      element.attributes.push({ type: 'mdxJsxAttribute', name: 'className', value });
+    }
+  }
 }
 
-function findJsxAttribute(element: MdxJsxTextElement, name: string): MdxJsxAttribute | undefined {
+function findJsxAttribute(element: MdxJsxFlowElement | MdxJsxTextElement, name: string): MdxJsxAttribute | undefined {
   return element.attributes.find(
     (attribute): attribute is MdxJsxAttribute => attribute.type === 'mdxJsxAttribute' && attribute.name === name
   );
