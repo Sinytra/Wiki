@@ -2,6 +2,8 @@ import { defineDocumentType, makeSource } from 'contentlayer2/source-files';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import { type CodeHikeConfig, recmaCodeHike, remarkCodeHike } from 'codehike/mdx';
+import remarkAlert from '@repo/markdown/remark-alert';
+import remarkHint from '@repo/markdown/remark-hint';
 
 const chConfig: CodeHikeConfig = {
   components: { code: 'CodeHikeCode' }
@@ -28,7 +30,7 @@ export default makeSource({
   contentDirPath: '../../blogs',
   documentTypes: [Blog],
   mdx: {
-    remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm],
+    remarkPlugins: [[remarkCodeHike, chConfig], remarkGfm, remarkAlert, remarkHint],
     rehypePlugins: [rehypeSlug],
     mdxOptions: (o) => ({
       ...o,

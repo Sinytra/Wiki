@@ -7,6 +7,9 @@ import { setContextLocale } from '@/lib/locales/routing';
 import BlogHeader from '@/components/navigation/BlogHeader';
 import SocialButtons from '@/components/util/SocialButtons';
 import { useMDXComponents } from '@/mdx-components';
+import Callout from '@/components/docs/shared/Callout';
+import Asset from '@/components/docs/shared/asset/Asset';
+import TooltipText from '@/components/docs/shared/util/TooltipText';
 
 export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }));
 
@@ -31,7 +34,7 @@ function Embed({
   height?: any;
 }) {
   return (
-    <figure style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <figure className="not-prose mb-3" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <img
         className="rounded-xs"
         style={{ border: '1px white solid' }}
@@ -40,7 +43,7 @@ function Embed({
         alt={alt}
         height={height}
       />
-      <figcaption>{fig}</figcaption>
+      <figcaption className="mt-1 text-secondary">{fig}</figcaption>
     </figure>
   );
 }
@@ -53,7 +56,7 @@ const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
   if (!post) notFound();
 
   const MDXContent = useMDXComponent(post.body.code);
-  const components = useMDXComponents({ Embed });
+  const components = useMDXComponents({ Embed, Callout, Asset, hint: TooltipText });
 
   return (
     <article className="mx-auto py-8">
