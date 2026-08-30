@@ -43,12 +43,8 @@ async function reportMissingPlatformProject(project: ProjectData, platform: Proj
   });
 }
 
-async function addProjectIssue(
-  id: string,
-  body: AddIssueRequestBody,
-  parameters?: ApiRouteParameters
-): Promise<ApiCallResult> {
-  return network.resolveApiCall(() => network.sendDataRequest(`dev/projects/${id}/issues`, { parameters, body }));
+async function addProjectIssue(id: string, body: AddIssueRequestBody, parameters?: ApiRouteParameters): Promise<void> {
+  await network.sendDataRequest(`dev/projects/${id}/issues`, { parameters, body });
 }
 
 async function getProjectIssues(projectId: string): Promise<ApiCallResult<ProjectIssueInfo[]>> {
