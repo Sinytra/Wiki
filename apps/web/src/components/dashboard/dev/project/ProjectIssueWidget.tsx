@@ -65,7 +65,7 @@ export default function ProjectIssueWidget({ issue }: { issue: ProjectIssueInfo 
         <div className="flex flex-col gap-2 p-2 pt-1">
           <span className={cn('text-sm', activeLevel.fg)}>{u(issue.subject)}</span>
 
-          <pre className="my-2 text-xsm text-secondary-alt">{issue.details}</pre>
+          <pre className="my-2 text-xsm text-wrap text-secondary-alt">{issue.details}</pre>
 
           <div className="space-y-1">
             {issue.file && (

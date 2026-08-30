@@ -31,8 +31,8 @@ export function createLegacyProjectFormat(root: string): ProjectFormat {
     getDocsSlugFromPath(relPath: string): string {
       return relPath.endsWith('.mdx') ? relPath.substring(0, relPath.length - 4) : relPath;
     },
-    getDocsIndexPagePath(): string {
-      return this.getDocsPagePath(DOCS_INDEX_PAGE);
+    getDocsIndexPageSlug(): string {
+      return DOCS_INDEX_PAGE;
     },
     getDocsPagePath(slug: string): string {
       return `${slug}.mdx`;

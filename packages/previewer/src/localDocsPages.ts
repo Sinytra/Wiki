@@ -81,17 +81,17 @@ async function computeLocalDocumentationSources(paths: string): Promise<LocalDoc
 async function readDocsFile(
   source: LocalDocumentationSource,
   type: 'docs' | 'content',
-  path: string[],
+  slug: string[],
   locale?: string,
   optional?: boolean
 ): Promise<LocalDocumentationFile | null> {
   try {
-    const joined = path.join('/');
+    const joined = slug.join('/');
     const pagePath =
       type === 'content' ? source.format.getContentPagePath(joined) : source.format.getDocsPagePath(joined);
     const content = await readLocalizedFile(source, pagePath, locale);
     if (!content) {
-      throw new Error(`Documentation file at ${path} not found`);
+      throw new Error(`Documentation file at ${slug} not found`);
     }
     return content;
   } catch (e) {

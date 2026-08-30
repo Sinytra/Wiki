@@ -20,7 +20,7 @@ export interface ProjectFormat {
   /** Returns relative path to content root, non-localized */
   getDocsPagePath(slug: string): string;
 
-  getDocsIndexPagePath(): string;
+  getDocsIndexPageSlug(): string;
 
   getContentPagePath(slug: string): string;
 

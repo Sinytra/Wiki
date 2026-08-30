@@ -98,7 +98,7 @@ async function getLocalAssetFile(location: ResourceLocation, ctx: ProjectContext
 async function getDocsIndexPage(ctx: ProjectContext): Promise<ProjectPage | undefined | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
-    const path = [src.format.getDocsIndexPagePath()];
+    const path = [src.format.getDocsIndexPageSlug()];
     return getDocsPageAt(src, 'docs', path, true, ctx);
   }
   return undefined;
@@ -131,11 +131,11 @@ function parseHistory(entries: ChangelogEntry[] | null | undefined): Array<Chang
 async function getDocsPageAt(
   src: LocalDocumentationSource,
   type: 'docs' | 'content',
-  path: string[],
+  slug: string[],
   optional: boolean,
   ctx: ProjectContext
 ): Promise<ProjectPage | null> {
-  const file = await localDocs.readDocsFile(src, type, path, ctx.locale || undefined, optional);
+  const file = await localDocs.readDocsFile(src, type, slug, ctx.locale || undefined, optional);
   if (file) {
     const frontmatter = await markdown.readProcessedFrontmatter(file.content);
     const links = await localContent.resolveContentLinks(frontmatter.links ?? [], ctx);
