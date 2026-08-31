@@ -82,7 +82,7 @@ The most common use cases include:
 ## Note on item assets
 
 <Callout type="important">
-  TL;DR Include inventory renders of your items under `assets/(modid)/item`
+  TL;DR Place all inventory renders of your items under `assets/(modid)/item`
 </Callout>
 
 The wiki uses a fixed asset location for displaying inventory renders of items in certain places, e.g. mapping item IDs
@@ -93,10 +93,10 @@ In the case of content pages and the infobox, default locations can be overriden
 However, for built-in components, the wiki must be able to find a suitable item asset to display
 **knowing only its ID**.
 
-The wiki will look for these assets under `<modid>:item/<item_id>`, which maps to `<root>/assets/<modid>/item/<item_id>`
-in your project.
+The wiki will look for these assets under `<modid>:item/<item_id>` asset IDs, which map to
+`<root>/assets/<modid>/item/<item_id>` in your project.
 
-For example, to display `examplemod:generator`, the image will be placed under
+For example, the asset image of the item `examplemod:generator` should be placed at
 `<root>/assets/examplemod/item/generator.png`.
 
 ## Allowed file types

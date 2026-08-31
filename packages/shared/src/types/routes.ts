@@ -7,6 +7,14 @@ export interface ProjectRouteParams extends LocaleRouteParams {
   version: string;
 }
 
+export interface ContentRouteParams extends ProjectRouteParams {
+  id: string;
+}
+
+export interface DocsRouteParams extends ProjectRouteParams {
+  path: string[];
+}
+
 export interface TableSearchParams {
   query?: string | string[];
   page?: string | string[];

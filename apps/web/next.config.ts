@@ -12,6 +12,26 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ hostname: 'media.forgecdn.net' }, { hostname: 'cdn.modrinth.com' }]
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/:locale/project/:slug/:version/docs.txt',
+          destination: '/api/raw/:locale/:slug/:version/docs'
+        },
+        {
+          source: '/:locale/project/:slug/:version/docs/:path(.*)\\.txt',
+          destination: '/api/raw/:locale/:slug/:version/docs/:path'
+        },
+        {
+          source: '/:locale/project/:slug/:version/content/:id.txt',
+          destination: '/api/raw/:locale/:slug/:version/content/:id'
+        }
+      ],
+      afterFiles: [],
+      fallback: []
+    };
+  },
   // Backwards compatibility only
   async redirects() {
     return [

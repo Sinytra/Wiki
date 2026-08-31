@@ -224,6 +224,7 @@ export default {
   getAsset,
   getItemAsset,
   getDocsPage,
+  getDocsIndexPage,
   renderDocsPage,
   renderDocsIndexPage,
   searchProjects,
