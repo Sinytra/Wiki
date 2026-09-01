@@ -2,7 +2,8 @@ import { InfoboxTab } from '@sinytra/wiki-api-types';
 import service from '@/lib/service';
 import { ProjectContext } from '@repo/shared/types/service';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
+import { TabsContent } from '@repo/ui/components/tabs';
+import InfoboxTabsSwitcher from './InfoboxTabsSwitcher';
 
 export interface Props {
   tabs: InfoboxTab[];
@@ -40,27 +41,13 @@ export default function InfoboxTabs({ tabs, ctx }: Props) {
 
   return (
     <div className="flex flex-col">
-      <Tabs defaultValue="0">
-        <TabsList className="flex h-auto flex-wrap bg-transparent">
-          {tabs.map((tab, i) => (
-            <TabsTrigger
-              key={i}
-              value={i.toString()}
-              className={`h-fit rounded-none border-b-2 border-transparent bg-transparent text-xsm hover:text-primary data-[state=active]:border-white data-[state=active]:bg-transparent`}
-            >
-              {tab.name}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-
-        <hr className="my-1" />
-
+      <InfoboxTabsSwitcher tabs={tabs} ctx={ctx}>
         {tabs.map((tab, i) => (
           <TabsContent key={i} value={i.toString()}>
             <TabDisplay tab={tab} ctx={ctx} />
           </TabsContent>
         ))}
-      </Tabs>
+      </InfoboxTabsSwitcher>
     </div>
   );
 }
