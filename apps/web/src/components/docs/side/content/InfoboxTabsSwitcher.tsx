@@ -10,6 +10,24 @@ import { ProjectContext } from '@repo/shared/types/service';
 
 const MAX_TABS_LIST_HEIGHT = 128; // h-32
 
+// language=JavaScript
+const COLLAPSE_INIT_SCRIPT = `
+(function() {
+  const script = document.currentScript;
+
+  const root = script?.parentElement;
+  const list = root?.querySelector('[data-tabs-list]');
+  if (!root || !list) {
+    return;
+  }
+
+  const collapsed = list.scrollHeight > ${MAX_TABS_LIST_HEIGHT};
+
+  root.toggleAttribute('data-collapsed', collapsed);
+  list.toggleAttribute('inert', collapsed);
+})();
+`;
+
 export interface Props {
   ctx: ProjectContext;
   tabs: InfoboxTab[];
@@ -31,17 +49,29 @@ function TabIcon({ tab, ctx }: { tab: InfoboxTab; ctx: ProjectContext }) {
 }
 
 export default function InfoboxTabsSwitcher({ tabs, ctx, children }: Props) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
-  const [collapsed, setCollapsed] = useState(false);
   const [value, setValue] = useState('0');
 
+  const selectedTab = tabs[Number(value)];
+
   useLayoutEffect(() => {
+    const root = rootRef.current;
     const list = listRef.current;
-    if (!list) {
+    if (!root || !list) {
       return;
     }
 
-    const observer = new ResizeObserver(() => setCollapsed(list.offsetHeight > MAX_TABS_LIST_HEIGHT));
+    const updateCollapsedState = () => {
+      const collapsed = list.scrollHeight > MAX_TABS_LIST_HEIGHT;
+
+      root.toggleAttribute('data-collapsed', collapsed);
+      list.toggleAttribute('inert', collapsed);
+    };
+
+    updateCollapsedState();
+
+    const observer = new ResizeObserver(() => updateCollapsedState());
     observer.observe(list);
 
     return () => observer.disconnect();
@@ -49,45 +79,56 @@ export default function InfoboxTabsSwitcher({ tabs, ctx, children }: Props) {
 
   return (
     <Tabs value={value} onValueChange={setValue}>
-      <div className={cn(collapsed && 'invisible h-0 overflow-hidden')}>
-        <TabsList
-          ref={listRef}
-          inert={collapsed}
-          aria-hidden={collapsed}
-          className="flex h-auto flex-wrap bg-transparent"
-        >
-          {tabs.map((tab, i) => (
-            <TabsTrigger
-              key={i}
-              value={i.toString()}
-              className={cn(
-                'h-fit rounded-none border-b-2 border-transparent bg-transparent text-xsm',
-                'hover:text-primary data-[state=active]:border-white data-[state=active]:bg-transparent'
-              )}
-            >
-              {tab.name}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </div>
-
-      {collapsed && (
-        <Select value={value} onValueChange={setValue}>
-          <SelectTrigger
-            centered
-            className="h-8 w-full rounded-sm border-none bg-transparent py-0 hover:bg-secondary [&>span]:text-xsm"
+      <div ref={rootRef} className="group/tabs" suppressHydrationWarning>
+        <div className="group-data-collapsed/tabs:h-0 group-data-collapsed/tabs:overflow-hidden">
+          <TabsList
+            ref={listRef}
+            data-tabs-list
+            suppressHydrationWarning
+            className="flex h-auto flex-wrap bg-transparent"
           >
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
             {tabs.map((tab, i) => (
-              <SelectItem key={i} value={i.toString()} className="py-1 [&>span]:text-xsm">
-                <TabIcon tab={tab} ctx={ctx} /> {tab.name}
-              </SelectItem>
+              <TabsTrigger
+                key={i}
+                value={i.toString()}
+                className={cn(
+                  'h-fit rounded-none border-b-2 border-transparent bg-transparent text-xsm',
+                  'hover:text-primary data-[state=active]:border-white data-[state=active]:bg-transparent'
+                )}
+              >
+                {tab.name}
+              </TabsTrigger>
             ))}
-          </SelectContent>
-        </Select>
-      )}
+          </TabsList>
+        </div>
+
+        <script>{COLLAPSE_INIT_SCRIPT}</script>
+
+        <div className="hidden group-data-collapsed/tabs:block">
+          <Select value={value} onValueChange={setValue}>
+            <SelectTrigger
+              centered
+              className="h-8 w-full rounded-sm border-none bg-transparent py-0 hover:bg-secondary [&>span]:text-xsm"
+            >
+              <SelectValue>
+                {selectedTab && (
+                  <>
+                    <TabIcon tab={selectedTab} ctx={ctx} /> {selectedTab.name}
+                  </>
+                )}
+              </SelectValue>
+            </SelectTrigger>
+
+            <SelectContent>
+              {tabs.map((tab, i) => (
+                <SelectItem key={i} value={i.toString()} className="py-1 [&>span]:text-xsm">
+                  <TabIcon tab={tab} ctx={ctx} /> {tab.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
 
       <hr className="my-1" />
 
