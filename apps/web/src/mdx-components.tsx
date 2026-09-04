@@ -8,6 +8,7 @@ import CountryFlag from '@repo/ui/util/CountryFlag';
 import CodeHikeCode from '@repo/ui/blocks/markdown/CodeHikeCode';
 import CodeTabs from '@repo/ui/blocks/markdown/CodeTabs';
 import CraftingRecipe from '@/components/docs/shared/CraftingRecipe';
+import ContactEmail from '@/components/util/ContactEmail';
 import {
   SquirrelIcon,
   BoxIcon,
@@ -28,6 +29,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Asset: BindableAsset.bind(null, null),
     CraftingRecipe: CraftingRecipe.bind(null, null),
     ComponentWidget,
+    ContactEmail,
     ...components,
     SquirrelIcon,
     BoxIcon,
