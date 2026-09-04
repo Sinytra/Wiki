@@ -22,6 +22,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { useRouter } from '@/lib/locales/routing';
 import clientActions from '@/lib/forms/clientActions';
+import { getFormErrorDetails, useFormErrorTranslator } from '@/lib/forms/forms';
 import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
 import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
 import { DevProjectData } from '@sinytra/wiki-api-types';
@@ -92,8 +93,8 @@ export default function DevProjectSourceSettings({ project }: { project: DevProj
   });
 
   const t = useTranslations('ProjectRegisterForm');
-  const u = useTranslations('FormActions');
-  const v = useTranslations('DevProjectSourceSettingsPage');
+  const u = useTranslations('DevProjectSourceSettingsPage');
+  const translateError = useFormErrorTranslator();
   const [canVerifyModrinth, setCanVerifyModrinth] = useState(false);
   const router = useRouter();
 
@@ -119,16 +120,15 @@ export default function DevProjectSourceSettings({ project }: { project: DevProj
       router.refresh();
     } else if (resp.error) {
       form.setError('root.custom', {
+        message: translateError(resp.error, resp.data),
         // @ts-expect-error expected
-        message: u(`errors.${resp.error}`),
-        // @ts-expect-error expected
-        details: resp.details
+        details: getFormErrorDetails(resp.data)
       });
       setCanVerifyModrinth(resp.can_verify_mr && resp.error === 'ownership');
     } else if (resp.errors) {
       for (const key in resp.errors) {
-        // @ts-expect-error expected
-        form.setError(key, { message: u(`errors.${resp.errors[key][0]}`) });
+        // @ts-expect-error dynamic key
+        form.setError(key, { message: translateError(resp.errors[key][0]) });
       }
     }
     return resp;
@@ -140,7 +140,7 @@ export default function DevProjectSourceSettings({ project }: { project: DevProj
         <ProjectSourceFormBody form={form} />
 
         <div className="ml-auto w-fit">
-          <Button type="submit">{v('save')}</Button>
+          <Button type="submit">{u('save')}</Button>
         </div>
 
         <div className="space-y-4">

@@ -46,7 +46,7 @@ function ProjectsListHeader() {
       <div className="flex flex-row items-center justify-end">
         <SidebarTrigger className="mr-auto -ml-1 text-primary md:hidden" />
 
-        <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions']}>
+        <ClientLocaleProvider keys={['ProjectRegisterForm', 'FormActions', 'ProjectError']}>
           <ProjectRegisterForm redirectToProject />
         </ClientLocaleProvider>
       </div>

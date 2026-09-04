@@ -5,6 +5,8 @@ import { UseFormReturn } from 'react-hook-form';
 
 export type FormActionResult<T = null> = FormResponseSuccess<T> | FormResponseError;
 
+export type FormErrorTranslator = (error: string, data?: unknown) => string;
+
 export interface FormResponse {
   success: boolean;
 }
@@ -19,6 +21,11 @@ export interface FormResponseError extends FormResponse {
   data?: unknown;
   error?: string;
   errors?: Record<string, any>;
+}
+
+interface ProjectErrorBody {
+  error: string;
+  message: string;
 }
 
 export function asFormResponse<T = null>(result: ApiCallResult<T>): FormActionResult<T> {
@@ -64,13 +71,44 @@ async function handleDataForm<SCHEMA extends ZodType, T>(
   return { success: true, data: result.data };
 }
 
+export function isProjectErrorBody(data: unknown): data is ProjectErrorBody {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    typeof (data as any).error === 'string' &&
+    typeof (data as any).message === 'string'
+  );
+}
+
+export function useFormErrorTranslator(): FormErrorTranslator {
+  const t = useTranslations('FormActions');
+  const p = useTranslations('ProjectError');
+
+  return (error, data) => {
+    const formKey = `errors.${error}`;
+    // @ts-expect-error dynamic key
+    if (t.has(formKey)) return t(formKey);
+    // @ts-expect-error dynamic key
+    if (isProjectErrorBody(data) && p.has(error)) return p(error);
+    return t('errors.unknown');
+  };
+}
+
+export function getFormErrorDetails(data: unknown): string | undefined {
+  if (isProjectErrorBody(data)) return data.message;
+  if (typeof data === 'object' && data !== null && typeof (data as any).details === 'string') {
+    return (data as any).details;
+  }
+  return undefined;
+}
+
 export function useFormHandlingAction<T = never>(
   form: UseFormReturn<any, any, any>,
   formAction: (rawData: unknown) => Promise<FormActionResult<T>>,
   onSuccess?: (data: T) => void,
   onError?: (resp: FormActionResult<T>) => void
 ): () => void {
-  const t = useTranslations('FormActions');
+  const translateError = useFormErrorTranslator();
 
   return form.handleSubmit(async (rawData: unknown) => {
     const result = await formAction(rawData);
@@ -79,18 +117,16 @@ export function useFormHandlingAction<T = never>(
       onSuccess?.((result as FormResponseSuccess<T>).data);
     } else {
       onError?.(result);
-      if ('error' in result) {
+      if ('error' in result && result.error) {
         form.setError('root.custom', {
+          message: translateError(result.error, result.data),
           // @ts-expect-error details
-          message: t(`errors.${result.error}`),
-          // @ts-expect-error details
-          details: result.data?.details
+          details: getFormErrorDetails(result.data)
         });
       }
       if ('errors' in result) {
         for (const key in result.errors) {
-          // @ts-expect-error message
-          form.setError(key, { message: t(`errors.${result.errors[key][0]}`) });
+          form.setError(key, { message: translateError(result.errors[key][0]) });
         }
       }
     }
