@@ -20,8 +20,8 @@ export default function HeaderBase({ unfix, children }: { unfix?: boolean; child
   return (
     <header
       className={cn(
-        !unfix && 'fixed left-0 w-[100vw]',
-        'z-50 border-b border-tertiary-dim bg-primary-alt',
+        !unfix && 'fixed left-0 w-screen',
+        'z-50 border-b border-tertiary bg-primary-alt',
         !unfix && scrolled && `motion-reduce:transition-none`
       )}
       ref={binding}

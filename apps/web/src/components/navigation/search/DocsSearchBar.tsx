@@ -256,7 +256,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           className={cn(
             'h-7 w-full cursor-pointer rounded-sm border border-tertiary bg-primary px-8 transition-colors',
             'text-center text-sm text-ellipsis placeholder:text-neutral-500 hover:border-secondary',
-            'focus:cursor-text focus:border-secondary-alt focus:bg-primary-dim focus:shadow-md focus:outline-none'
+            'focus:cursor-text focus:border-secondary focus:bg-primary-dim focus:shadow-md focus:outline-none'
           )}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder={t('placeholder')}

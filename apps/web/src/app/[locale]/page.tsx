@@ -46,7 +46,7 @@ function Tile({
   return (
     <section
       className={cn(
-        'flex flex-col gap-4 overflow-hidden rounded-sm border border-tertiary-dim/90 bg-primary-alt p-4',
+        'flex flex-col gap-4 overflow-hidden rounded-sm border border-tertiary/90 bg-primary-alt p-4',
         className
       )}
     >
@@ -104,7 +104,7 @@ function FeaturedProjectEntry({ project }: { project: FeaturedProject }) {
   const link = navigation.getProjectLink(project.id);
 
   return (
-    <div className="flex flex-col gap-4 rounded-sm border border-tertiary-dim bg-primary p-3">
+    <div className="flex flex-col gap-4 rounded-sm border border-tertiary bg-primary p-3">
       <div className="flex flex-row items-center gap-3">
         <ImageWithFallback
           src={project.icon}

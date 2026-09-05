@@ -42,7 +42,6 @@
     --border-color-secondary-alt: #EBEBF599;
     --border-color-secondary-dim: color-mix(in oklab, var(--border-color-secondary) 50%, transparent);
     --border-color-tertiary: #27272AFF; /*border*/
-    --border-color-tertiary-dim: #212123;
     --border-color-quaternary: #27272AFF; /*input*/
     --border-color-info: #5a96e6;
     --border-color-warning: #DA8B17B2;
