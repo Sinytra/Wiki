@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/components/navigation/header/style.module.css';
-import { Check, Globe, LanguagesIcon } from 'lucide-react';
+import { Check, LanguagesIcon } from 'lucide-react';
 import { Button } from '@repo/ui/components/button';
 import { useRouter } from '@bprogress/next';
 import * as React from 'react';
@@ -61,7 +61,7 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
               <button
                 className={`test-center flex h-8 w-full items-center justify-start rounded-sm border-none bg-transparent px-2 py-0 text-sm whitespace-nowrap ring-offset-background placeholder:text-secondary hover:bg-secondary focus:outline-hidden sm:h-7 sm:w-fit sm:max-w-32 sm:min-w-24 [&>svg:last-child]:hidden`}
               >
-                <Globe className="mr-2.5 size-3.5 shrink-0" />
+                <LanguagesIcon className="mr-2.5 size-4 shrink-0" />
                 <div className="mx-auto inline-flex gap-2 sm:hidden">
                   <CountryFlag className="rounded-xs!" flag={selectedLang.icon} />
                   <span className="line-clamp-1 text-sm text-ellipsis">{selectedLang.name}</span>
