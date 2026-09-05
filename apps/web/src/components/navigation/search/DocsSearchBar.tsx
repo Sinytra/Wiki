@@ -241,7 +241,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
             className={cn(
               'inset absolute top-1/2 left-8 -translate-y-1/2 rounded-sm',
               'flex flex-row items-center gap-1',
-              'border border-secondary bg-secondary px-1 py-[1.5px]'
+              'bg-secondary px-1.5 py-[1.5px]'
             )}
           >
             <ScopeIcon className="size-3.5 stroke-2 text-primary" />
@@ -254,7 +254,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           value={searchQuery}
           ref={inputRef}
           className={cn(
-            'h-7 w-full cursor-pointer rounded-sm border border-tertiary bg-primary px-8 transition-colors',
+            'h-7 w-full cursor-pointer rounded-sm border border-secondary/60 bg-primary px-8 transition-colors',
             'text-center text-sm text-ellipsis placeholder:text-neutral-500 hover:border-secondary',
             'focus:cursor-text focus:border-secondary focus:bg-primary-dim focus:shadow-md focus:outline-none'
           )}

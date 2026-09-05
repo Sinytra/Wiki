@@ -335,7 +335,7 @@
     }
 
     kbd {
-        @apply px-1 py-0.5 text-xs font-medium bg-neutral-600 text-neutral-100 border-neutral-500 border rounded-xs;
+        @apply px-1 py-0.5 text-xs font-medium bg-neutral-700 text-neutral-200 border-neutral-600 border rounded-xs;
     }
 
     .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
