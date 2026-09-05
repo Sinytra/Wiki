@@ -8,13 +8,12 @@
     "title": "Modded Minecraft Wiki",
     "title_short": "Wiki",
     "badge": {
-      "preview": "PREVIEW MODE",
-      "beta": "Beta"
+      "preview": "PREVIEWER"
     },
+    "appearance": "Appearance",
     "link": {
-      "home": "Home",
       "browse": "Browse",
-      "about": "About"
+      "developers": "Log in"
     }
   },
   "NavigationFooter": {
@@ -443,7 +442,8 @@
     "scope": {
       "local": "Local",
       "global": "Global"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Project",
@@ -471,6 +471,7 @@
     "desc": "+{count} more"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "Search languages...",
     "no_results": "No language found."
   },

@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/components/navigation/header/style.module.css';
-import { Check, ChevronDown, Globe, LanguagesIcon } from 'lucide-react';
+import { Check, Globe, LanguagesIcon } from 'lucide-react';
 import { Button } from '@repo/ui/components/button';
 import { useRouter } from '@bprogress/next';
 import * as React from 'react';
@@ -73,20 +73,15 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className={`justify-between border-none bg-transparent px-2 py-1`}
+                className="h-9 justify-between border-none bg-transparent px-2"
               >
-                <LanguagesIcon className="h-5 w-5" />
+                <LanguagesIcon className="size-4.5" />
                 {mobile && (
                   <div className="mr-2 ml-3 inline-flex gap-2">
                     <CountryFlag className="rounded-xs!" flag={selectedLang.icon} />
                     {selectedLang.name}
                   </div>
                 )}
-                <ChevronDown
-                  data-state={open ? 'open' : 'closed'}
-                  className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 data-[state=open]:rotate-180"
-                  aria-hidden="true"
-                />
               </Button>
             )}
           </PopoverTrigger>

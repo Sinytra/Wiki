@@ -6,31 +6,103 @@ import HeaderBase from '@/components/navigation/header/HeaderBase';
 import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
 import { cn } from '@repo/ui/lib/utils';
 import { useTranslations } from 'next-intl';
-import { BookMarkedIcon } from 'lucide-react';
+import { BookMarkedIcon, CompassIcon, SunIcon } from 'lucide-react';
 import DocsSearchBar from '@/components/navigation/search/DocsSearchBar';
 import MobileNav from '@/components/navigation/header/MobileNav';
 import SocialButtons from '@/components/util/SocialButtons';
 import MobileDocsSearch from '@/components/navigation/search/MobileDocsSearch';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import env from '@repo/shared/env';
+import { Button } from '@repo/ui/components/button';
+
+function Brand({ preview }: { preview: boolean }) {
+  const t = useTranslations('NavigationHeader');
+
+  return (
+    <div className="flex shrink-0 flex-row items-center gap-3">
+      <LocaleNavLink href="/" className="group relative flex flex-row items-center gap-0.5">
+        <span className="flex size-7 shrink-0 items-center justify-center rounded-sm">
+          <BookMarkedIcon className="size-4" />
+        </span>
+        <span className="text-base font-medium text-primary group-hover:text-primary-alt">
+          <span className="inline">{t('title')}</span>
+        </span>
+      </LocaleNavLink>
+
+      {preview && (
+        <Badge variant="secondary" className="hidden lg:inline-flex">
+          {t('badge.preview')}
+        </Badge>
+      )}
+    </div>
+  );
+}
+
+function Divider() {
+  return <span aria-hidden className="mx-1 h-5 border-l border-tertiary" />;
+}
 
 function HeaderLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <LocaleNavLink
+      className={cn(styles.menuLink, 'px-1 text-base font-medium text-primary first:pl-0 sm:px-1.5 lg:px-2.5')}
       href={href}
-      className={`${styles.menuLink} px-1 text-base font-medium text-primary first:pl-0 sm:px-1.5 lg:px-2.5`}
     >
       {children}
     </LocaleNavLink>
   );
 }
 
-function MobileHeaderLink({ href, children }: { href: string; children: ReactNode }) {
+function AppearanceButton({ mobile }: { mobile?: boolean }) {
+  const t = useTranslations('NavigationHeader');
+
+  // TODO Reading width and color theme settings
+  return mobile ? (
+    <Button variant="ghost" className="h-9 justify-start gap-3 px-2 text-primary">
+      <SunIcon className="size-4.5 text-primary" />
+      {t('appearance')}
+    </Button>
+  ) : (
+    <Button
+      variant="ghost"
+      size="icon"
+      className="size-8 text-primary"
+      title={t('appearance')}
+      aria-label={t('appearance')}
+    >
+      <SunIcon className="size-4.5" />
+    </Button>
+  );
+}
+
+function DevAreaButton({ mobile }: { mobile?: boolean }) {
+  const t = useTranslations('NavigationHeader');
+
+  return (
+    <Button asChild variant="ghost" size="sm" className={cn('gap-2 text-primary', mobile ? 'h-9 w-full' : 'h-8 px-2')}>
+      <LocaleNavLink href="/dev">{t('link.developers')}</LocaleNavLink>
+    </Button>
+  );
+}
+
+function MobileHeaderLink({
+  href,
+  icon: Icon,
+  children
+}: {
+  href: string;
+  icon: typeof CompassIcon;
+  children: ReactNode;
+}) {
   return (
     <LocaleNavLink
       href={href}
-      className={`${styles.menuLink} border-b border-[var(--vp-c-divider)] py-3 text-base font-normal text-primary`}
+      className={cn(
+        styles.menuLink,
+        'flex flex-row items-center gap-3 rounded-sm px-2 py-2 text-base text-primary hover:bg-secondary'
+      )}
     >
+      <Icon className="size-4 text-secondary" />
       {children}
     </LocaleNavLink>
   );
@@ -40,82 +112,83 @@ export default function Header({ locale, minimal, unfix }: { locale: string; min
   const preview = env.isPreview();
   const t = useTranslations('NavigationHeader');
 
+  const showLinks = !preview && !minimal;
+  const showSearch = !preview && !minimal;
+
   return (
     <HeaderBase unfix={unfix}>
-      <div
-        className={cn(
-          `pointer-events-auto! z-50 mx-auto flex h-nav max-w-[88rem] flex-row items-center justify-between gap-1 px-4 py-1 sm:h-fit sm:flex-nowrap sm:px-8 sm:whitespace-nowrap`,
-          minimal && 'my-2'
-        )}
-      >
-        <div className="mr-auto flex flex-row items-center gap-3 sm:gap-4">
-          <LocaleNavLink href="/">
-            <span className="inline-flex items-center gap-1 align-bottom text-base font-medium text-primary">
-              <BookMarkedIcon className="mr-1 h-4 w-4" />
-              {t('title')}
-            </span>
-          </LocaleNavLink>
-          {preview && (
-            <Badge className="hidden sm:block" variant="secondary">
-              {t('badge.preview')}
-            </Badge>
-          )}
-          {!preview && (
-            <Badge variant="outline" className="hidden border-neutral-600 font-normal text-secondary sm:block">
-              {t('badge.beta')}
-            </Badge>
-          )}
+      <div className="pointer-events-auto! z-50 mx-auto flex h-nav max-w-7xl flex-row items-center gap-3 px-4 sm:gap-4 sm:px-6">
+        <div className="flex min-w-fit flex-1 flex-row items-center">
+          <Brand preview={preview} />
         </div>
 
-        {!minimal && !preview && (
+        {showSearch && (
           <ClientLocaleProvider keys={['DocsSearchBar', 'ProjectTypes', 'SearchResultType']}>
             <DocsSearchBar locale={locale} />
           </ClientLocaleProvider>
         )}
 
-        <div
-          className={`ml-auto hidden flex-row flex-wrap items-center justify-end sm:flex sm:flex-nowrap sm:justify-start`}
-        >
-          <nav className="flex flex-row">
-            <HeaderLink href="/">{t('link.home')}</HeaderLink>
-            {!preview && !minimal && (
-              <>
+        {/* Desktop */}
+        <div className="hidden min-w-fit flex-1 flex-row items-center justify-end gap-0.5 sm:flex">
+          {showLinks && (
+            <>
+              <nav className="flex flex-row items-center gap-0.5">
                 <HeaderLink href="/browse">{t('link.browse')}</HeaderLink>
-                <HeaderLink href="/about">{t('link.about')}</HeaderLink>
-              </>
-            )}
-          </nav>
+              </nav>
+            </>
+          )}
 
           {!minimal && (
-            <ClientLocaleProvider keys={['LanguageSelect']}>
-              <LanguageSelect locale={locale} />
-            </ClientLocaleProvider>
+            <>
+              <Divider />
+              <ClientLocaleProvider keys={['LanguageSelect']}>
+                <LanguageSelect locale={locale} />
+              </ClientLocaleProvider>
+              <AppearanceButton />
+            </>
+          )}
+
+          {showLinks && (
+            <>
+              <DevAreaButton />
+            </>
           )}
         </div>
 
-        <div className="flex flex-row items-center gap-2">
-          {!minimal && !preview && (
+        {/* Mobile */}
+        <div className="ml-auto flex flex-row items-center gap-1 sm:hidden">
+          {showSearch && (
             <ClientLocaleProvider keys={['DocsSearchBar', 'ProjectTypes', 'SearchResultType']}>
               <MobileDocsSearch locale={locale} />
             </ClientLocaleProvider>
           )}
 
           <MobileNav>
-            <nav className="flex flex-col gap-2">
-              <MobileHeaderLink href="/">{t('link.home')}</MobileHeaderLink>
-              {!preview && !minimal && (
+            <nav className="flex flex-col gap-1">
+              {showLinks && (
                 <>
-                  <MobileHeaderLink href="/browse">{t('link.browse')}</MobileHeaderLink>
-                  <MobileHeaderLink href="/about">{t('link.about')}</MobileHeaderLink>
+                  <MobileHeaderLink href="/browse" icon={CompassIcon}>
+                    {t('link.browse')}
+                  </MobileHeaderLink>
+                  <hr className="my-2 border-tertiary" />
                 </>
               )}
+
               {!minimal && (
                 <ClientLocaleProvider keys={['LanguageSelect']}>
                   <LanguageSelect mobile locale={locale} />
                 </ClientLocaleProvider>
               )}
-              <hr />
-              <div className="mx-auto mt-2">
+              <AppearanceButton mobile />
+
+              {showLinks && (
+                <div className="mt-3">
+                  <DevAreaButton mobile />
+                </div>
+              )}
+
+              <hr className="my-4 border-tertiary" />
+              <div className="mx-auto">
                 <SocialButtons large />
               </div>
             </nav>

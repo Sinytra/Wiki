@@ -228,8 +228,9 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
       className={cn(
         'relative mx-2 hidden w-full transition-none duration-200 ease-[cubic-bezier(.27,.17,.43,.98)]',
         visible && 'md:focus-within:transition-[max-width] lg:transition-[max-width]',
-        `md:flex md:max-w-sm md:focus-within:fixed md:focus-within:left-1/2 md:focus-within:max-w-lg md:focus-within:-translate-x-1/2 md:focus-within:shadow-lg`,
-        `lg:max-w-[40rem] lg:focus-within:static lg:focus-within:flex lg:focus-within:max-w-2xl lg:focus-within:translate-x-0`
+        'sm:flex sm:max-w-sm sm:focus-within:fixed sm:focus-within:left-1/2 sm:focus-within:max-w-lg sm:focus-within:-translate-x-1/2 sm:focus-within:shadow-lg',
+        'md:max-w-md',
+        'lg:max-w-[40rem] lg:focus-within:static lg:focus-within:flex lg:focus-within:max-w-2xl lg:focus-within:translate-x-0'
       )}
     >
       <div className="relative w-full">
@@ -253,9 +254,9 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           value={searchQuery}
           ref={inputRef}
           className={cn(
-            'w-full cursor-pointer rounded-sm border border-secondary bg-primary-alt px-8 py-[0.2rem]',
-            'text-center text-sm text-ellipsis placeholder:text-neutral-500',
-            'focus:cursor-text focus:border-secondary-alt focus:shadow-md focus:outline-none'
+            'h-7 w-full cursor-pointer rounded-sm border border-tertiary bg-primary px-8 transition-colors',
+            'text-center text-sm text-ellipsis placeholder:text-neutral-500 hover:border-secondary',
+            'focus:cursor-text focus:border-secondary-alt focus:bg-primary-dim focus:shadow-md focus:outline-none'
           )}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder={t('placeholder')}
@@ -269,7 +270,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           onMouseDown={(e) => e.preventDefault()}
           className={cn(
             'absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border',
-            'border-secondary bg-primary-alt shadow-lg'
+            'border-secondary bg-primary-dim shadow-lg'
           )}
         >
           {loading && <LoadingSearchState />}

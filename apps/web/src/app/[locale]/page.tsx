@@ -318,7 +318,7 @@ function AboutTile({ className }: { className?: string }) {
         </p>
         <p>{t('about.mission')}</p>
       </div>
-      <div className="flex h-full shrink-0 flex-row items-end">
+      <div className="flex shrink-0 flex-row items-end justify-end sm:h-full">
         <SocialButtons large />
       </div>
     </Tile>
@@ -331,7 +331,7 @@ function SponsorBanner() {
   if (!partnerUrl || !bannerUrl) return null;
 
   return (
-    <section className="flex flex-col justify-center gap-2">
+    <section className="mb-3 flex flex-col justify-center gap-2">
       <a
         href={partnerUrl}
         target="_blank"
@@ -341,7 +341,7 @@ function SponsorBanner() {
         <img
           className="mx-auto"
           src={bannerUrl}
-          alt="CreeperHost - Buy a server today and it will directly support this creator"
+          alt="CreeperHost: Buy a server today and it will directly support this creator"
         />
       </a>
     </section>
@@ -352,19 +352,21 @@ function Hero() {
   const t = useTranslations('HomePage');
 
   return (
-    <section className="flex flex-col items-center gap-4 py-4 text-center sm:py-8">
+    <section className="flex flex-col items-center gap-4 py-8 text-center">
       <h1 className="flex flex-col items-center gap-3 text-lg text-secondary">
         {t.rich('title', {
           highlight: (chunks: any) => (
             <span
-              className={`animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl`}
+              className={`bg-linear-to-b from-blue-500 to-cyan-400 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl`}
             >
               {chunks}
             </span>
           )
         })}
       </h1>
+
       <p className="text-base text-secondary sm:text-lg">{t('subtitle')}</p>
+
       <div className="mt-2 flex flex-row flex-wrap justify-center gap-3">
         <Button asChild className="gap-2 border-none bg-contrast text-white hover:bg-blue-700">
           <LocaleNavLink href="/browse">
@@ -423,7 +425,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
       <div
         className={cn(
           showBanner && 'pt-0!',
-          `page-wrapper-base page-wrapper page-wrapper-ext flex min-h-screen flex-1 sm:mx-2`
+          `page-wrapper-base page-wrapper sm:page-wrapper-ext flex min-h-screen flex-1 sm:mx-2`
         )}
       >
         <HomePageContent projects={projects} />
