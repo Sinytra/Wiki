@@ -31,3 +31,8 @@ export const time = {
   ONE_MONTH,
   ONE_YEAR
 };
+
+export const ORACLE_INDEX_LINKS = {
+  modrinth: 'https://modrinth.com/mod/oracle-index',
+  curseforge: 'https://www.curseforge.com/minecraft/mc-mods/oracle-index'
+};

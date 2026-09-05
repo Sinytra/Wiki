@@ -1,38 +1,22 @@
 import { setContextLocale } from '@/lib/locales/routing';
 import { useTranslations } from 'next-intl';
-import { trimText } from '@/lib/utils';
 import { cn } from '@repo/ui/lib/utils';
 import TranslateBanner from '@/components/navigation/TranslateBanner';
 import crowdin from '@/lib/locales/crowdin';
-import {
-  ArrowRight,
-  BookIcon,
-  BoxIcon,
-  ComponentIcon,
-  FileText,
-  GitBranchIcon,
-  GitPullRequestArrowIcon,
-  Globe,
-  GlobeIcon,
-  HeartHandshakeIcon,
-  HeartIcon,
-  Layout,
-  UserPlus
-} from 'lucide-react';
+import { BookIcon, BoxIcon, ComponentIcon, GitBranchIcon, HeartIcon, PencilRulerIcon, SearchIcon } from 'lucide-react';
 import GradleIcon from '@repo/ui/icons/GradleIcon';
 import { Button } from '@repo/ui/components/button';
 import ModrinthIcon from '@repo/ui/icons/ModrinthIcon';
-import GitHubIcon from '@repo/ui/icons/GitHubIcon';
 import CurseForgeIcon from '@repo/ui/icons/CurseForgeIcon';
+import CurseForgeColorIcon from '@repo/ui/icons/CurseForgeColorIcon';
 import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
-import { CSSProperties } from 'react';
+import { ComponentType, ReactNode } from 'react';
 import { allBlogs } from '@/.contentlayer/generated';
-import { compareDesc, formatDistanceStrict } from 'date-fns';
+import { compareDesc, format } from 'date-fns';
 import SocialButtons from '@/components/util/SocialButtons';
-import LargePersonStandingIcon from '@repo/ui/icons/LargePersonStandingIcon';
 import env from '@repo/shared/env';
 import featuredProjects, { FeaturedProject } from '@/lib/service/featuredProjects';
-import { DEFAULT_LOCALE, WIKI_DOCS_URL } from '@repo/shared/constants';
+import { DEFAULT_LOCALE, ORACLE_INDEX_LINKS, WIKI_DOCS_URL } from '@repo/shared/constants';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import navigation from '@/lib/navigation';
@@ -40,290 +24,382 @@ import navigation from '@/lib/navigation';
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
 
-function FeaturedProjectsContent({ projects }: { projects: FeaturedProject[] }) {
+type IconComponent = ComponentType<{ className?: string }>;
+
+function GradleFeatureIcon({ className }: { className?: string }) {
+  return <GradleIcon width={16} height={16} className={className} />;
+}
+
+function Tile({
+  title,
+  action,
+  className,
+  bodyClassName,
+  children
+}: {
+  title?: string;
+  action?: ReactNode;
+  className?: string;
+  bodyClassName?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      className={cn(
+        'flex flex-col gap-4 overflow-hidden rounded-sm border border-tertiary-dim/90 bg-primary-alt p-4',
+        className
+      )}
+    >
+      {title && (
+        <div className="flex flex-row items-center gap-2">
+          <h2 className="text-base font-medium text-primary">{title}</h2>
+          {action && <div className="ml-auto text-sm">{action}</div>}
+        </div>
+      )}
+
+      <div className={cn('flex grow flex-col gap-4', bodyClassName)}>{children}</div>
+    </section>
+  );
+}
+
+function TileLink({ href, children, external }: { href: string; children: ReactNode; external?: boolean }) {
+  const className = 'inline-flex items-center gap-1 text-sm text-brand-primary hover:underline underline-offset-4';
+  return external ? (
+    <NavLink href={href} className={className}>
+      {children}
+    </NavLink>
+  ) : (
+    <LocaleNavLink href={href} className={className}>
+      {children}
+    </LocaleNavLink>
+  );
+}
+
+function FeatureList({ items }: { items: { icon: IconComponent; text: string }[] }) {
+  return (
+    <ul className="flex flex-col gap-2.5">
+      {items.map((item, idx) => (
+        <li key={idx} className="flex flex-row items-start gap-3 text-sm text-secondary">
+          <item.icon className="mt-0.5 size-4 shrink-0" />
+          <span>{item.text}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function PlatformLink({ href, icon: Icon, label }: { href: string; icon: IconComponent; label: string }) {
+  return (
+    <Button asChild variant="ghost" size="icon" className="size-8 text-secondary" title={label}>
+      <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+        <Icon className="size-4" />
+      </a>
+    </Button>
+  );
+}
+
+function FeaturedProjectEntry({ project }: { project: FeaturedProject }) {
   const t = useTranslations('HomePage');
   const projectTypes = useTranslations('ProjectTypes');
+  const link = navigation.getProjectLink(project.id);
 
-  const height = projects.length == 1 ? 100 : Math.floor(100 / projects.length);
-  const style = { '--default-max-h': `${height}%` } as CSSProperties;
-
-  return projects.map((project, index) => (
-    <div
-      key={index}
-      className={`flex h-full max-h-[var(--default-max-h)] flex-col rounded-md bg-primary-alt p-6 shadow-sm sm:max-h-fit`}
-      style={style}
-    >
-      <div className="mb-4 flex items-center">
+  return (
+    <div className="flex flex-col gap-4 rounded-sm border border-tertiary-dim bg-primary p-3">
+      <div className="flex flex-row items-center gap-3">
         <ImageWithFallback
           src={project.icon}
           alt={`${project.title} icon`}
-          width={48}
-          height={48}
-          className="mr-4 rounded-sm"
+          width={40}
+          height={40}
+          className="size-10 rounded-sm"
           fallback={
-            <div className="mr-4 flex size-12 shrink-0 rounded-sm border border-tertiary">
-              <BoxIcon strokeWidth={1} className="m-auto text-secondary opacity-20" width={32} height={32} />
+            <div className="flex size-10 shrink-0 rounded-sm border border-tertiary">
+              <BoxIcon strokeWidth={1} className="m-auto size-6 text-secondary opacity-20" />
             </div>
           }
         />
-        <div>
-          <LocaleNavLink
-            className="text-primary-alt underline-offset-4 hover:text-primary-alt/80 hover:underline"
-            href={navigation.getProjectLink(project.id)}
-          >
-            <h4 className="text-xl font-semibold">{project.title}</h4>
+
+        <div className="flex min-w-0 flex-col">
+          <LocaleNavLink href={link} className="truncate font-medium text-primary underline-offset-4 hover:underline">
+            {project.title}
           </LocaleNavLink>
-          {projectTypes(project.type)}
+          <span className="text-xs text-secondary">{projectTypes(project.type)}</span>
         </div>
       </div>
-      <p className="mb-4 grow text-secondary">{trimText(project.summary, 100)}</p>
-      <div className="flex items-center justify-between">
-        <div className="flex flex-wrap gap-2">
+
+      <p className="line-clamp-2 grow text-sm text-secondary">{project.summary}</p>
+
+      <div className="flex flex-row items-center justify-between gap-2">
+        <div className="flex flex-row gap-1.5">
           {project.links.curseforge && (
-            <a href={project.links.curseforge} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
-                <CurseForgeIcon className="h-4 w-4" />
-              </Button>
-            </a>
+            <PlatformLink href={project.links.curseforge} icon={CurseForgeIcon} label="CurseForge" />
           )}
           {project.links.modrinth && (
-            <a href={project.links.modrinth} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
-                <ModrinthIcon className="h-4 w-4" />
-              </Button>
-            </a>
-          )}
-          {project.links.github && (
-            <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
-                <GitHubIcon className="h-4 w-4" />
-              </Button>
-            </a>
+            <PlatformLink href={project.links.modrinth} icon={ModrinthIcon} label="Modrinth" />
           )}
         </div>
-        <Button variant="link" className="text-primary hover:text-primary/80">
-          <LocaleNavLink className="flex flex-row items-center" href={navigation.getProjectLink(project.id)}>
-            {t('popular.open')}
-            <ArrowRight className="ml-2 h-4 w-4 text-contrast" />
-          </LocaleNavLink>
-        </Button>
+
+        <TileLink href={link}>{t('popular.open')}</TileLink>
       </div>
     </div>
-  ));
+  );
 }
 
-function HomePageContent({ projects }: { projects: FeaturedProject[] }) {
+function PopularWikisTile({ projects, className }: { projects: FeaturedProject[]; className?: string }) {
+  const t = useTranslations('HomePage');
+
+  return (
+    <Tile title={t('popular.title')} className={className}>
+      {projects.length > 0 ? (
+        <div className="grid grow grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <FeaturedProjectEntry key={project.id} project={project} />
+          ))}
+        </div>
+      ) : (
+        <p className="grow text-sm text-secondary">{t('popular.empty')}</p>
+      )}
+    </Tile>
+  );
+}
+
+function AuthorsTile({ className }: { className?: string }) {
+  const t = useTranslations('HomePage');
+
+  return (
+    <Tile title={t('authors.title')} className={className}>
+      <p className="text-sm text-secondary">{t('authors.subtitle')}</p>
+      <FeatureList
+        items={[
+          { icon: GitBranchIcon, text: t('authors.vcs') },
+          { icon: ComponentIcon, text: t('authors.components') },
+          { icon: GradleFeatureIcon, text: t('authors.gradle') },
+          { icon: BookIcon, text: t('authors.management') },
+          { icon: HeartIcon, text: t('authors.interaction') }
+        ]}
+      />
+      <div className="mt-auto grid grid-cols-1 gap-2 pt-2 sm:grid-cols-2">
+        <Button asChild className="border-none bg-contrast text-white hover:bg-blue-700">
+          <NavLink href="/dev">{t('authors.dashboard')}</NavLink>
+        </Button>
+        <Button asChild variant="outline">
+          <a href={WIKI_DOCS_URL}>{t('authors.guide')}</a>
+        </Button>
+      </div>
+    </Tile>
+  );
+}
+
+function OracleDownloadLink({
+  href,
+  icon: Icon,
+  text,
+  className
+}: {
+  href: string;
+  icon: IconComponent;
+  text: string;
+  className?: string;
+}) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      <div
+        className={cn(
+          'flex cursor-pointer flex-row items-center gap-2 rounded-sm border bg-linear-to-b px-4.5 py-2.5 text-sm hover:to-60%',
+          className
+        )}
+      >
+        <Icon className="size-4 shrink-0" />
+        {text}
+      </div>
+    </a>
+  );
+}
+
+function OracleIndexTile({ className }: { className?: string }) {
+  const t = useTranslations('HomePage');
+
+  return (
+    <Tile
+      className={cn(className, 'bg-linear-to-b from-primary-alt via-primary-alt to-blue-950/15')}
+      bodyClassName="p-0"
+    >
+      <div className="grid gap-4 md:grid-cols-[3fr_2fr] md:gap-6">
+        <div className="flex flex-col gap-3">
+          <h3 className="text-xl font-semibold text-primary">
+            <img src="/static/oracle_index_logo.png" className="mr-2 inline-block h-16" alt="Oracle Index Logo" />
+            {t('oracle.title')}
+          </h3>
+          <p className="text-sm text-secondary">{t('oracle.desc')}</p>
+
+          <div className="mt-auto flex flex-row flex-wrap items-center gap-3 pt-2">
+            <OracleDownloadLink
+              href={ORACLE_INDEX_LINKS.curseforge}
+              icon={CurseForgeColorIcon}
+              text="CurseForge"
+              className="border-brand-curseforge/40 from-primary to-brand-curseforge/20"
+            />
+            <OracleDownloadLink
+              href={ORACLE_INDEX_LINKS.modrinth}
+              icon={ModrinthIcon}
+              text="Modrinth"
+              className="border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth"
+            />
+          </div>
+        </div>
+
+        <a
+          href={ORACLE_INDEX_LINKS.modrinth}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="overflow-hidden border border-tertiary"
+        >
+          <img
+            src="/static/oracle_index_preview.jpg"
+            alt="Oracle Index in-game documentation preview"
+            width={1400}
+            height={778}
+            className="h-full w-full object-cover"
+          />
+        </a>
+      </div>
+    </Tile>
+  );
+}
+
+function BlogTile({ className }: { className?: string }) {
   const t = useTranslations('HomePage');
   const blogPosts = allBlogs.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3);
 
   return (
-    <main className="container mx-auto px-4">
-      <section className="mb-5 pb-4">
-        <div className="mt-2 mb-2 text-center text-lg text-secondary md:mt-0">
-          {t.rich('title', {
-            highlight: (chunks: any) => (
-              <div className="mb-4">
-                <span
-                  className={`animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-center text-5xl font-bold text-transparent`}
-                >
-                  {chunks}
-                </span>
-              </div>
-            )
+    <Tile title={t('blog.title')} className={className}>
+      <ul className="my-auto flex flex-col divide-y divide-tertiary">
+        {blogPosts.map((post) => (
+          <li key={post._id} className="flex flex-col gap-1 py-3 first:pt-0 last:pb-0">
+            <div className="flex flex-row items-baseline justify-between gap-3">
+              <NavLink
+                href={`/blog/${post._id.replace('.mdx', '')}`}
+                className="font-medium text-primary underline-offset-4 hover:underline"
+              >
+                {post.title}
+              </NavLink>
+
+              <span className="shrink-0 text-xs text-secondary">{format(new Date(post.date), 'MMM d, yyyy')}</span>
+            </div>
+
+            <p className="line-clamp-2 text-sm text-secondary">{post.excerpt}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-auto ml-auto">
+        <TileLink href="/blog" external>
+          {t('blog.all')}
+        </TileLink>
+      </div>
+    </Tile>
+  );
+}
+
+function AboutTile({ className }: { className?: string }) {
+  const t = useTranslations('HomePage');
+
+  return (
+    <Tile
+      title={t('about.title')}
+      className={className}
+      bodyClassName="md:flex-row md:items-center md:justify-between md:gap-8"
+    >
+      <div className="flex flex-col gap-2 text-sm text-secondary md:max-w-3xl">
+        <p>
+          {t.rich('about.maintainers', {
+            b: (chunks: any) => <b className="text-primary">{chunks}</b>
           })}
-        </div>
-        <p className="mx-auto text-center text-xl text-secondary">{t('subtitle')}</p>
-        <div className="mt-8 text-center md:hidden">
-          <LocaleNavLink
-            href="/browse"
-            className={`mx-auto block w-fit animate-gradient rounded-sm bg-linear-to-r from-blue-500 via-contrast to-blue-500 px-12 py-2 text-white`}
-          >
+        </p>
+        <p>{t('about.mission')}</p>
+      </div>
+      <div className="flex h-full shrink-0 flex-row items-end">
+        <SocialButtons large />
+      </div>
+    </Tile>
+  );
+}
+
+function SponsorBanner() {
+  const partnerUrl = process.env.PARTNER_URL;
+  const bannerUrl = process.env.PARTNER_BANNER_URL;
+  if (!partnerUrl || !bannerUrl) return null;
+
+  return (
+    <section className="flex flex-col justify-center gap-2">
+      <a
+        href={partnerUrl}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        className="block w-full overflow-hidden rounded-sm border-tertiary transition-opacity hover:opacity-90"
+      >
+        <img
+          className="mx-auto"
+          src={bannerUrl}
+          alt="CreeperHost - Buy a server today and it will directly support this creator"
+        />
+      </a>
+    </section>
+  );
+}
+
+function Hero() {
+  const t = useTranslations('HomePage');
+
+  return (
+    <section className="flex flex-col items-center gap-4 py-4 text-center sm:py-8">
+      <h1 className="flex flex-col items-center gap-3 text-lg text-secondary">
+        {t.rich('title', {
+          highlight: (chunks: any) => (
+            <span
+              className={`animate-gradient bg-linear-to-r from-blue-500 via-cyan-300 to-blue-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl`}
+            >
+              {chunks}
+            </span>
+          )
+        })}
+      </h1>
+      <p className="text-base text-secondary sm:text-lg">{t('subtitle')}</p>
+      <div className="mt-2 flex flex-row flex-wrap justify-center gap-3">
+        <Button asChild className="gap-2 border-none bg-contrast text-white hover:bg-blue-700">
+          <LocaleNavLink href="/browse">
+            <SearchIcon className="size-4" />
             {t('browse')}
           </LocaleNavLink>
-        </div>
-      </section>
+        </Button>
+        <Button asChild variant="outline" className="gap-2">
+          <a href={WIKI_DOCS_URL}>
+            <PencilRulerIcon className="size-4" />
+            {t('guide')}
+          </a>
+        </Button>
+      </div>
+    </section>
+  );
+}
 
-      <section className="mb-16 overflow-x-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-2">
-            {/* Left column: Popular Wikis */}
-            <div className="flex flex-col">
-              <h3 className="mb-6 text-center text-2xl font-bold text-primary-alt">{t('popular.title')}</h3>
-              <div className="flex h-full flex-col gap-6">
-                <FeaturedProjectsContent projects={projects} />
-              </div>
-              <div className="mt-auto">
-                <p className="mt-6 text-sm text-secondary">{t('popular.disclaimer')}</p>
-              </div>
-            </div>
+function HomePageContent({ projects }: { projects: FeaturedProject[] }) {
+  return (
+    <main className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 sm:px-6">
+      <Hero />
 
-            {/* Right column: Authors (top) and Users (below) */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="mb-6 text-center text-2xl font-bold text-primary-alt">{t('community.title')}</h3>
-                <div className="rounded-lg bg-primary-alt p-6 shadow-md">
-                  <h4 className="mb-4 text-2xl font-semibold text-primary-alt">{t('community.users.title')}</h4>
-                  <p className="mb-4 text-secondary">{t('community.users.subtitle')}</p>
-                  <div className="space-y-4">
-                    {[
-                      { text: t('community.users.docs'), icon: <FileText /> },
-                      {
-                        text: t('community.users.contribute'),
-                        icon: <UserPlus />
-                      },
-                      { text: t('community.users.ui'), icon: <Layout /> },
-                      {
-                        text: t('community.users.localization'),
-                        icon: <Globe />
-                      }
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-start">
-                        <div className="mr-3 text-secondary">{item.icon}</div>
-                        <p className="text-secondary">{item.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 space-y-4">
-                    <LocaleNavLink
-                      href="/browse"
-                      className={`block w-full rounded-sm bg-contrast px-4 py-2 text-center font-bold text-white transition duration-300 hover:bg-blue-700`}
-                    >
-                      {t('browse')}
-                    </LocaleNavLink>
-                  </div>
-                </div>
-                <div className="mt-4 rounded-lg bg-primary-alt p-6 shadow-md">
-                  <h4 className="mb-4 text-2xl font-semibold text-primary-alt">{t('community.authors.title')}</h4>
-                  <p className="mb-4 text-secondary">{t('community.authors.subtitle')}</p>
-                  <div className="space-y-4">
-                    {[
-                      {
-                        text: t('community.authors.vcs'),
-                        icon: <GitBranchIcon />
-                      },
-                      {
-                        text: t('community.authors.components'),
-                        icon: <ComponentIcon />
-                      },
-                      {
-                        text: t('community.authors.gradle'),
-                        icon: <GradleIcon width={24} height={24} className="" />
-                      },
-                      {
-                        text: t('community.authors.management'),
-                        icon: <BookIcon />
-                      },
-                      {
-                        text: t('community.authors.interaction'),
-                        icon: <HeartIcon />
-                      }
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-start">
-                        <div className="mr-3 text-secondary">{item.icon}</div>
-                        <p className="text-secondary">{item.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <NavLink
-                      href="/dev"
-                      className={`rounded-sm bg-blue-600 px-4 py-2 text-center font-bold text-white transition duration-300 hover:bg-blue-700`}
-                    >
-                      {t('community.authors.dashboard')}
-                    </NavLink>
-                    <LocaleNavLink
-                      href={WIKI_DOCS_URL}
-                      className={`rounded-sm bg-neutral-600 px-4 py-2 text-center font-bold text-white transition duration-300 hover:bg-neutral-700`}
-                    >
-                      {t('community.authors.guide')}
-                    </LocaleNavLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <PopularWikisTile projects={projects} className="lg:col-span-3" />
 
-      <section className="mt-12 rounded-lg bg-secondary p-8">
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {[
-            {
-              icon: GlobeIcon,
-              title: t('highlights.localization.title'),
-              description: t('highlights.localization.desc')
-            },
-            {
-              icon: LargePersonStandingIcon,
-              title: t('highlights.accessibility.title'),
-              description: t('highlights.accessibility.desc')
-            },
-            {
-              icon: GitPullRequestArrowIcon,
-              title: t('highlights.open.title'),
-              description: t('highlights.open.desc')
-            },
-            {
-              icon: HeartHandshakeIcon,
-              title: t('highlights.free.title'),
-              description: t('highlights.free.desc')
-            }
-          ].map((feature, index) => (
-            <li key={index} className="flex items-start">
-              <span className="mr-3 pt-[3px] text-2xl">
-                <feature.icon className="h-5 w-5" />
-              </span>
-              <div>
-                <h3 className="font-semibold text-primary-alt">{feature.title}</h3>
-                <p className="text-secondary">{feature.description}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
+        <OracleIndexTile className="lg:col-span-3" />
 
-      <section className="mt-12 rounded-lg bg-primary-alt p-8">
-        <div className="flex flex-col gap-8 lg:flex-row">
-          <div className="lg:w-1/3">
-            <h2 className="mb-4 text-xl font-semibold">{t('about.title')}</h2>
-            <p className="mb-4 text-secondary">
-              {t.rich('about.maintainers', {
-                b: (chunks: any) => <b>{chunks}</b>
-              })}
-            </p>
-            <p className="mb-4 text-secondary">{t('about.mission')}</p>
-            <SocialButtons />
-          </div>
-          <div className="lg:w-2/3">
-            <h2 className="mb-4 text-xl font-semibold">{t('blog.title')}</h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {blogPosts.map((post, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col rounded-lg border bg-primary p-4 ${
-                    index === 0 ? `border-[var(--vp-c-brand-1)]` : 'border-neutral-600'
-                  }`}
-                >
-                  <h4 className="mb-2 text-lg font-semibold">{post.title}</h4>
-                  <p className="mb-2 text-sm text-secondary">
-                    {formatDistanceStrict(post.date, new Date(), {
-                      addSuffix: true
-                    })}
-                  </p>
-                  <p className="grow text-secondary">{post.excerpt}</p>
-                  <NavLink
-                    href={`/blog/${post._id.replace('.mdx', '')}`}
-                    className="mt-2 inline-flex items-center text-primary hover:text-primary/80"
-                  >
-                    {t('blog.open')}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </NavLink>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+        <BlogTile className="lg:col-span-2" />
+        <AuthorsTile />
+
+        <AboutTile className="lg:col-span-3" />
+      </div>
+
+      <SponsorBanner />
     </main>
   );
 }
@@ -339,7 +415,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
   return (
     <>
       {showBanner && env.getCrowdinUrl() && (
-        <div className="page-wrapper-base page-wrapper mx-auto mb-5 w-full max-w-5xl px-5">
+        <div className="page-wrapper-base page-wrapper mx-auto mt-5 w-full max-w-5xl px-5">
           <TranslateBanner locale={params.locale} />
         </div>
       )}
@@ -347,7 +423,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
       <div
         className={cn(
           showBanner && 'pt-0!',
-          `page-wrapper-base page-wrapper page-wrapper-ext flex min-h-[100vh] flex-1 sm:mx-2`
+          `page-wrapper-base page-wrapper page-wrapper-ext flex min-h-screen flex-1 sm:mx-2`
         )}
       >
         <HomePageContent projects={projects} />

@@ -183,7 +183,7 @@
 
     @media screen and (min-width: 768px) {
         .page-wrapper {
-            padding-top: calc(var(--vp-nav-height) + 1rem);
+            padding-top: calc(var(--vp-nav-height));
         }
 
         html {

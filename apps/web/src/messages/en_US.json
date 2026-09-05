@@ -46,51 +46,27 @@
   "HomePage": {
     "title": "Welcome to the <highlight>Modded Minecraft Wiki</highlight>",
     "subtitle": "Your go-to resource for discovering, creating, and contributing to Minecraft-related projects.",
+    "browse": "Browse Projects",
+    "guide": "Author Guide",
     "popular": {
       "title": "Popular Wikis",
       "open": "Read more",
-      "disclaimer": "These projects are highlighted based on their popularity through view statistics and are not officially endorsed by Modded Minecraft Wiki."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "Join Our Community",
-      "users": {
-        "title": "Users",
-        "subtitle": "Explore our featured projects and enjoy these benefits:",
-        "docs": "Access high-quality, up-to-date and versioned documentation",
-        "contribute": "Contribute to projects without programming knowledge",
-        "ui": "Enjoy a consistent, user-friendly interface across all projects",
-        "localization": "Benefit from multi-language support"
-      },
-      "authors": {
-        "title": "Authors",
-        "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-        "vcs": "Versioning support for your documentation",
-        "components": "Built-in components for recipes, assets, etc.",
-        "gradle": "Gradle integration for seamless workflow",
-        "management": "Advanced project management tools",
-        "interaction": "Direct interaction with your user base",
-        "dashboard": "Open Dashboard",
-        "guide": "Read More"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "Browse Projects",
-    "highlights": {
-      "localization": {
-        "title": "Localization",
-        "desc": "Translate your docs into world languages"
-      },
-      "accessibility": {
-        "title": "Accessible",
-        "desc": "Intuitive and responsive user interface"
-      },
-      "open": {
-        "title": "Open",
-        "desc": "Let your users contribute without any programming knowledge necessary"
-      },
-      "free": {
-        "title": "Free",
-        "desc": "Hosting docs on our website is completely free of charge!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "About Us",
@@ -98,8 +74,9 @@
       "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
     },
     "blog": {
-      "title": "Blog Posts",
-      "open": "Read More"
+      "title": "Latest News",
+      "open": "Read More",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
