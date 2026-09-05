@@ -47,9 +47,13 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
   };
 
   const selectedLang = available.getForUrlParam(locale) ?? available.getForUrlParam(DEFAULT_LOCALE)!;
-  const selectOptions = [selectedLang, ...availableLocales.filter((lang) => lang.code != selectedLang.code)];
+  const shownLang = availableLocales.some((l) => l.code === selectedLang.code)
+    ? selectedLang
+    : (availableLocales.find((l) => l.code === DEFAULT_LOCALE_CODE) ?? availableLocales[0] ?? selectedLang);
 
-  const [value, setValue] = useState(selectedLang.code);
+  const selectOptions = [shownLang, ...availableLocales.filter((lang) => lang.code != shownLang.code)];
+
+  const [value, setValue] = useState(shownLang.code);
   const [open, setOpen] = useState(false);
 
   return (
@@ -63,10 +67,10 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
               >
                 <LanguagesIcon className="mr-2.5 size-4 shrink-0" />
                 <div className="mx-auto inline-flex gap-2 sm:hidden">
-                  <CountryFlag className="rounded-xs!" flag={selectedLang.icon} />
-                  <span className="line-clamp-1 text-sm text-ellipsis">{selectedLang.name}</span>
+                  <CountryFlag className="rounded-xs!" flag={shownLang.icon} />
+                  <span className="line-clamp-1 text-sm text-ellipsis">{shownLang.name}</span>
                 </div>
-                <span className="line-clamp-1 hidden text-sm text-ellipsis sm:block">{selectedLang.name}</span>
+                <span className="line-clamp-1 hidden text-sm text-ellipsis sm:block">{shownLang.name}</span>
               </button>
             ) : (
               <Button
@@ -78,8 +82,8 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
                 <LanguagesIcon className="size-4.5" />
                 {mobile && (
                   <div className="mr-2 ml-3 inline-flex gap-2">
-                    <CountryFlag className="rounded-xs!" flag={selectedLang.icon} />
-                    {selectedLang.name}
+                    <CountryFlag className="rounded-xs!" flag={shownLang.icon} />
+                    {shownLang.name}
                   </div>
                 )}
               </Button>
