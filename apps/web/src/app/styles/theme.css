@@ -80,7 +80,7 @@
 
     --text-xs: calc(0.75rem * var(--font-size-modifier));
     --text-xs--line-height: calc(1 / 0.75);
-    --text-sm: calc(0.875rem * var(--font-size-modifier));
+    --text-sm: 14px;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: calc(1rem * var(--font-size-modifier));
     --text-base--line-height: calc(1.5 / 1);
