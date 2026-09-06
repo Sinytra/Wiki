@@ -16,6 +16,9 @@ export default function MetaDocsNavigation() {
         <SidebarNavLink href="/about" icon={HomeIcon}>
           {t('about')}
         </SidebarNavLink>
+        <SidebarNavLink href="/about/help" icon={HelpCircleIcon}>
+          {t('help')}
+        </SidebarNavLink>
 
         <hr />
 
@@ -29,9 +32,6 @@ export default function MetaDocsNavigation() {
 
         <hr />
 
-        <SidebarNavLink href="/about/help" icon={HelpCircleIcon}>
-          {t('help')}
-        </SidebarNavLink>
         <SidebarNavLink href="/about/tos" icon={ScrollTextIcon}>
           {t('tos')}
         </SidebarNavLink>

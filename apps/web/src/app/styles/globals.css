@@ -312,8 +312,12 @@
 
 @layer base {
     :root {
-        color-scheme: dark;
+        color-scheme: light;
         @apply scrollbar-thin;
+    }
+
+    [data-theme="dark"] {
+        color-scheme: dark;
     }
 
     .page-wrapper-ext {

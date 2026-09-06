@@ -15,7 +15,7 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@re
 import { useTranslations } from 'next-intl';
 import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
 
-interface Context {
+export interface Context {
   name: string;
   logo: React.ElementType;
   url?: string;

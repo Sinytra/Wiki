@@ -1,7 +1,7 @@
 'use client';
 
 import { Share2 } from 'lucide-react';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { cn } from '@repo/ui/lib/utils';
 import { Button } from '@repo/ui/components/button';
 import GitHubIcon from '@repo/ui/icons/GitHubIcon';
@@ -16,7 +16,10 @@ export default function SocialButtons({
   shareData?: any;
   large?: boolean;
 }) {
-  const isShareSupported = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
+  const [isShareSupported, setShareSupported] = useState(false);
+  useEffect(() => {
+    setShareSupported(typeof navigator.share === 'function');
+  }, []);
 
   const handleShare = () => {
     if (navigator.share) {

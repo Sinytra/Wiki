@@ -5,7 +5,7 @@ import { BookOpen, PencilRulerIcon, Settings2, UserIcon, WrenchIcon } from 'luci
 
 import { DevSidebarMainNav } from '@/components/dashboard/dev/navigation/DevSidebarMainNav';
 import { DevSidebarUser } from '@/components/dashboard/dev/navigation/DevSidebarUser';
-import { DevSidebarContextSwitcher } from '@/components/dashboard/dev/navigation/DevSidebarContextSwitcher';
+import { Context, DevSidebarContextSwitcher } from '@/components/dashboard/dev/navigation/DevSidebarContextSwitcher';
 import {
   Sidebar,
   SidebarContent,
@@ -30,17 +30,20 @@ export function DeveloperSidebar({ profile, logoutAction, ...props }: Props) {
   usePreventBuggyScrollLock();
   const t = useTranslations('DeveloperSidebar');
 
-  const contexts = [
+  const contexts: Context[] = [
     {
       name: t('context.personal'),
       logo: UserIcon
-    },
-    {
+    }
+  ];
+  if (profile.role === 'admin') {
+    contexts.push({
       name: t('context.admin'),
       logo: WrenchIcon,
       url: '/admin'
-    }
-  ];
+    });
+  }
+
   const mainEntries = [
     {
       id: 'platform',

@@ -3,18 +3,7 @@ import { NavLink } from '@/components/navigation/link/NavLink';
 
 export default function BlogHeader({ hideSubtext }: { hideSubtext: boolean }) {
   return (
-    <div
-      style={{
-        fontSize: 128,
-        background: '#1b1b1f',
-        color: '#fffff5db',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center'
-      }}
-    >
+    <div className="my-8 flex flex-col items-center justify-center text-center">
       <img
         style={{ marginBottom: '1.5rem' }}
         src="https://sinytra.org/logo.png"
@@ -36,12 +25,7 @@ export default function BlogHeader({ hideSubtext }: { hideSubtext: boolean }) {
       {(hideSubtext ?? false) ? (
         <></>
       ) : (
-        <span
-          style={{
-            color: '#EBEBF599',
-            fontSize: '1.5rem'
-          }}
-        >
+        <span className="text-secondary" style={{ fontSize: '1.5rem' }}>
           The Wiki for all of Modded Minecraft. Presented by Sinytra.
         </span>
       )}

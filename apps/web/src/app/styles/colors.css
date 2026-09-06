@@ -34,10 +34,16 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
     --vp-c-blue-3: #5c9de4;
     --vp-c-blue-soft: rgba(52, 130, 219, 0.14);
 
+    --vp-c-brand-1: var(--vp-c-blue-1) !important;
+    --vp-c-brand-2: var(--vp-c-blue-2) !important;
+    --vp-c-brand-3: var(--vp-c-blue-3) !important;
+    --vp-c-brand-soft: var(--vp-c-blue-soft) !important;
+}
+
+[data-theme="dark"] {
     --vp-c-brand-1: var(--vp-c-blue-3) !important;
     --vp-c-brand-2: var(--vp-c-blue-2) !important;
     --vp-c-brand-3: var(--vp-c-blue-1) !important;
-    --vp-c-brand-soft: var(--vp-c-blue-soft) !important;
 }
 
 /**
@@ -84,6 +90,38 @@ https://github.com/vuejs/vitepress/blob/3c40e9d9a8443433f49599111ee571d569de530d
  *    to create a accent, such as when having inline code block inside
  *    custom containers.
  * -------------------------------------------------------------------------- */
+
+:root {
+    --vp-c-gray-1: #dddde3;
+    --vp-c-gray-2: #e4e4e9;
+    --vp-c-gray-3: #ebebef;
+    --vp-c-gray-soft: rgba(142, 150, 170, 0.14);
+
+    --vp-c-indigo-1: #3451b2;
+    --vp-c-indigo-2: #3a5ccc;
+    --vp-c-indigo-3: #5672cd;
+    --vp-c-indigo-soft: rgba(100, 108, 255, 0.14);
+
+    --vp-c-purple-1: #6f42c1;
+    --vp-c-purple-2: #7e4cc9;
+    --vp-c-purple-3: #8e5cd9;
+    --vp-c-purple-soft: rgba(159, 122, 234, 0.14);
+
+    --vp-c-green-1: #18794e;
+    --vp-c-green-2: #299764;
+    --vp-c-green-3: #30a46c;
+    --vp-c-green-soft: rgba(16, 185, 129, 0.14);
+
+    --vp-c-yellow-1: #915930;
+    --vp-c-yellow-2: #946300;
+    --vp-c-yellow-3: #9f6a00;
+    --vp-c-yellow-soft: rgba(234, 179, 8, 0.14);
+
+    --vp-c-red-1: #b8272c;
+    --vp-c-red-2: #d5393e;
+    --vp-c-red-3: #e0575b;
+    --vp-c-red-soft: rgba(244, 63, 94, 0.14);
+}
 
 [data-theme="dark"] {
     --vp-c-gray-1: #515c67;

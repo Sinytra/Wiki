@@ -1,69 +1,158 @@
-@theme {
-    --background-color-primary: #1B1B1F; /*bg-background, figures*/
-    --background-color-primary-alt: #171719; /*bg-card, inputs*/
-    --background-color-secondary: #27272AFF; /*accent, hover, table hover*/
+:root {
+    --c-bg-primary: #1B1B1F; /*bg-background, figures*/
+    --c-bg-primary-alt: #171719; /*bg-card, inputs*/
+    --c-bg-secondary: #27272AFF; /*accent, hover, table hover*/
+    --c-bg-destructive: #E0575BFF;
+    --c-bg-success-soft: var(--color-green-900);
+    --c-bg-placeholder: var(--color-gray-600); /*avatar*/
+    --c-bg-overlay: color-mix(in oklab, var(--color-black) 80%, transparent); /*dialog*/
+    --c-bg-kbd: var(--color-neutral-700);
 
-    --background-color-destructive: #E0575BFF;
+    --c-text-primary: #FFFFF5DB; /*foreground*/
+    --c-text-secondary: #EBEBF599; /*muted-foreground, footnotes*/
+    --c-text-secondary-alt: #EBEBF5BC; /*secondary-foreground*/
+    --c-text-tertiary: var(--color-neutral-500);
+    --c-text-inverse: #1B1B1F;
+    --c-text-warning: #EFA63E;
+    --c-text-destructive: #FB6C6F;
+    --c-text-success: rgba(5, 223, 114, 0.7);
+
+    --c-text-note: color-mix(in oklab, var(--color-blue-300) 90%, transparent);
+    --c-text-note-icon: var(--color-blue-300);
+    --c-text-tip: color-mix(in oklab, var(--color-green-300) 85%, transparent);
+    --c-text-tip-icon: color-mix(in oklab, var(--color-green-300) 90%, transparent);
+    --c-text-important: color-mix(in oklab, var(--color-purple-300) 90%, transparent);
+    --c-text-important-icon: var(--color-purple-300);
+    --c-text-caution: color-mix(in oklab, var(--color-red-300) 90%, transparent);
+    --c-text-caution-icon: var(--color-red-300);
+
+    --c-border-primary: var(--color-neutral-600);
+    --c-border-secondary: var(--color-neutral-700); /*#404040 - footnotes*/
+    --c-border-secondary-alt: #EBEBF599; /*badge outlines, outline-secondary, scrollbar-secondary*/
+    --c-border-tertiary: #27272AFF; /*border, input*/
+    --c-border-note: color-mix(in oklab, var(--color-blue-400) 50%, transparent);
+    --c-border-tip: color-mix(in oklab, var(--color-green-300) 50%, transparent);
+    --c-border-important: color-mix(in oklab, var(--color-purple-400) 50%, transparent);
+    --c-border-caution: color-mix(in oklab, var(--color-red-400) 50%, transparent);
+
+    --c-scrollbar-tertiary: var(--color-gray-300);
+    --c-scrollbar-muted: var(--color-neutral-700);
+
+    --c-ring: #EBEBF560;
+    --c-inverse: #FAFAFAFF; /*bg-inverse, border-inverse, text-primary-alt*/
+    --c-brand-primary: #5C9DE4FF; /*links, info borders, status dots*/
+}
+
+[data-theme="light"] {
+    --c-bg-primary: #FFFFFF;
+    --c-bg-primary-alt: #F6F6F7;
+    --c-bg-secondary: #EBEBEF;
+    --c-bg-destructive: #D5393E;
+    --c-bg-success-soft: var(--color-green-100);
+    --c-bg-placeholder: var(--color-gray-300);
+    --c-bg-overlay: color-mix(in oklab, var(--color-black) 50%, transparent);
+    --c-bg-kbd: var(--color-neutral-200);
+
+    --c-text-primary: #222225;
+    --c-text-secondary: #38383EC7;
+    --c-text-secondary-alt: #3C3C43E6;
+    --c-text-tertiary: var(--color-neutral-400);
+    --c-text-inverse: #FAFAFAFF;
+    --c-text-warning: #946300;
+    --c-text-destructive: #D5393E;
+    --c-text-success: #18794E;
+
+    --c-text-note: var(--color-blue-700);
+    --c-text-note-icon: var(--color-blue-600);
+    --c-text-tip: var(--color-green-700);
+    --c-text-tip-icon: var(--color-green-600);
+    --c-text-important: var(--color-purple-700);
+    --c-text-important-icon: var(--color-purple-600);
+    --c-text-caution: var(--color-red-700);
+    --c-text-caution-icon: var(--color-red-600);
+
+    --c-border-primary: #C2C2C4;
+    --c-border-secondary: #D9D9DC;
+    --c-border-secondary-alt: #3C3C4366;
+    --c-border-tertiary: #E4E4E5;
+    --c-border-note: color-mix(in oklab, var(--color-blue-500) 50%, transparent);
+    --c-border-tip: color-mix(in oklab, var(--color-green-500) 50%, transparent);
+    --c-border-important: color-mix(in oklab, var(--color-purple-500) 50%, transparent);
+    --c-border-caution: color-mix(in oklab, var(--color-red-500) 50%, transparent);
+
+    --c-scrollbar-tertiary: var(--color-gray-400);
+    --c-scrollbar-muted: var(--color-neutral-300);
+
+    --c-ring: #3C3C4360;
+    --c-inverse: #1B1B1F;
+    --c-brand-primary: #1662C5;
+}
+
+@theme {
+    --background-color-primary: var(--c-bg-primary);
+    --background-color-primary-alt: var(--c-bg-primary-alt);
+    --background-color-secondary: var(--c-bg-secondary);
+    --background-color-destructive: var(--c-bg-destructive);
     --background-color-destructive-soft: var(--vp-c-caution-soft);
     --background-color-code: #21252b; /*code blocks, code tabs, soft table rows*/
     --background-color-code-alt: #2b313a; /*code tab bar*/
     --background-color-warning-soft: rgba(234, 179, 8, 0.09);
-    --background-color-success-soft: var(--color-green-900);
-    --background-color-placeholder: var(--color-gray-600); /*avatar and initial fallback*/
-    --background-color-overlay: color-mix(in oklab, var(--color-black) 80%, transparent); /*dialog & sheet backdrop*/
+    --background-color-success-soft: var(--c-bg-success-soft);
+    --background-color-placeholder: var(--c-bg-placeholder);
+    --background-color-overlay: var(--c-bg-overlay);
     --background-color-hover-soft: color-mix(in oklab, var(--color-gray-400) 10%, transparent); /*ghost hover*/
-    --background-color-kbd: var(--color-neutral-700);
+    --background-color-kbd: var(--c-bg-kbd);
 
-    --text-color-primary: #FFFFF5DB; /*foreground*/
-    --text-color-primary-alt: var(--color-inverse); /*brightened hover text*/
-    --text-color-secondary: #EBEBF599; /*muted-foreground, footnotes*/
-    --text-color-secondary-alt: #EBEBF5BC; /*secondary-foreground*/
-    --text-color-tertiary: var(--color-neutral-500); /*placeholders, dates, empty states*/
-    --text-color-inverse: #1B1B1F; /*text on inverse backgrounds*/
-    --text-color-warning: #EFA63E;
-    --text-color-destructive: #FB6C6F;
-    --text-color-success: rgba(5, 223, 114, 0.7);
+    --text-color-primary: var(--c-text-primary);
+    --text-color-primary-alt: var(--c-inverse); /*brightened hover text*/
+    --text-color-secondary: var(--c-text-secondary);
+    --text-color-secondary-alt: var(--c-text-secondary-alt);
+    --text-color-tertiary: var(--c-text-tertiary);
+    --text-color-inverse: var(--c-text-inverse);
+    --text-color-warning: var(--c-text-warning);
+    --text-color-destructive: var(--c-text-destructive);
+    --text-color-success: var(--c-text-success);
     --text-color-code: #A9B2C3;
-    --text-color-link: var(--color-brand-primary);
-    --text-color-link-hover: color-mix(in oklab, var(--color-brand-primary) 80%, transparent);
+    --text-color-link: var(--c-brand-primary);
+    --text-color-link-hover: color-mix(in oklab, var(--c-brand-primary) 80%, transparent);
 
     /* Alert and callout variants */
-    --text-color-note: color-mix(in oklab, var(--color-blue-300) 90%, transparent);
-    --text-color-note-icon: var(--color-blue-300);
-    --text-color-tip: color-mix(in oklab, var(--color-green-300) 85%, transparent);
-    --text-color-tip-icon: color-mix(in oklab, var(--color-green-300) 90%, transparent);
-    --text-color-important: color-mix(in oklab, var(--color-purple-300) 90%, transparent);
-    --text-color-important-icon: var(--color-purple-300);
-    --text-color-caution: color-mix(in oklab, var(--color-red-300) 90%, transparent);
-    --text-color-caution-icon: var(--color-red-300);
+    --text-color-note: var(--c-text-note);
+    --text-color-note-icon: var(--c-text-note-icon);
+    --text-color-tip: var(--c-text-tip);
+    --text-color-tip-icon: var(--c-text-tip-icon);
+    --text-color-important: var(--c-text-important);
+    --text-color-important-icon: var(--c-text-important-icon);
+    --text-color-caution: var(--c-text-caution);
+    --text-color-caution-icon: var(--c-text-caution-icon);
 
-    --border-color-primary: var(--color-neutral-600);
-    --border-color-secondary: var(--color-neutral-700); /*#404040, footnotes*/
-    --border-color-secondary-alt: #EBEBF599;
-    --border-color-tertiary: #27272AFF; /*border, input*/
+    --border-color-primary: var(--c-border-primary);
+    --border-color-secondary: var(--c-border-secondary);
+    --border-color-secondary-alt: var(--c-border-secondary-alt);
+    --border-color-tertiary: var(--c-border-tertiary);
     --border-color-warning: #DA8B17B2;
     --border-color-destructive: #E0575BBF;
-    --border-color-note: color-mix(in oklab, var(--color-blue-400) 50%, transparent);
-    --border-color-tip: color-mix(in oklab, var(--color-green-300) 50%, transparent);
-    --border-color-important: color-mix(in oklab, var(--color-purple-400) 50%, transparent);
-    --border-color-caution: color-mix(in oklab, var(--color-red-400) 50%, transparent);
+    --border-color-note: var(--c-border-note);
+    --border-color-tip: var(--c-border-tip);
+    --border-color-important: var(--c-border-important);
+    --border-color-caution: var(--c-border-caution);
 
-    --outline-color-primary: var(--border-color-primary);
-    --outline-color-secondary: #EBEBF599;
+    --outline-color-primary: var(--c-border-primary);
+    --outline-color-secondary: var(--c-border-secondary-alt);
 
-    --divide-color-tertiary: var(--border-color-tertiary);
+    --divide-color-tertiary: var(--c-border-tertiary);
 
-    --ring-offset-color-background: var(--background-color-primary);
+    --ring-offset-color-background: var(--c-bg-primary);
 
-    --color-scrollbar-secondary: #EBEBF599;
-    --color-scrollbar-tertiary: var(--color-gray-300);
-    --color-scrollbar-muted: var(--color-neutral-700);
+    --color-scrollbar-secondary: var(--c-border-secondary-alt);
+    --color-scrollbar-tertiary: var(--c-scrollbar-tertiary);
+    --color-scrollbar-muted: var(--c-scrollbar-muted);
 
-    --color-ring: #EBEBF560;
-    --color-inverse: #FAFAFAFF; /*bg-inverse, border-inverse, text-primary-alt*/
+    --color-ring: var(--c-ring);
+    --color-inverse: var(--c-inverse);
     --color-contrast: var(--color-blue-600);
     --color-contrast-hover: var(--color-blue-700);
-    --color-brand-primary: #5C9DE4FF; /*links, info borders, status dots*/
+    --color-brand-primary: var(--c-brand-primary);
     --color-brand-curseforge: #F16436;
     --color-brand-modrinth: #00AF5C;
     --color-brand-discord: #5865F2;
@@ -73,8 +162,8 @@
     --color-pending: var(--color-amber-500);
 
     /* Non-standard colors */
-    --background-color-accent: var(--background-color-secondary);
-    --border-color-border: var(--border-color-tertiary);
+    --background-color-accent: var(--c-bg-secondary);
+    --border-color-border: var(--c-border-tertiary);
 
     /* Font */
     --font-size-modifier: 0.98;
