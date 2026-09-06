@@ -93,7 +93,7 @@ export default function InfoboxTabsSwitcher({ tabs, ctx, children }: Props) {
                 value={i.toString()}
                 className={cn(
                   'h-fit rounded-none border-b-2 border-transparent bg-transparent text-xsm',
-                  'hover:text-primary data-[state=active]:border-white data-[state=active]:bg-transparent'
+                  'hover:text-primary data-[state=active]:border-inverse data-[state=active]:bg-transparent'
                 )}
               >
                 {tab.name}

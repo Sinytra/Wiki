@@ -3,10 +3,10 @@ import * as React from 'react';
 export default function LoadingIndicator() {
   return (
     <div className="relative">
-      <div className="absolute top-1/2 left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500" />
+      <div className="bg-pending absolute top-1/2 left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full" />
       <svg
         aria-hidden="true"
-        className="size-5 animate-spin fill-amber-500"
+        className="fill-pending size-5 animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

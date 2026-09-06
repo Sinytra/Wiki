@@ -8,13 +8,13 @@ function DeploymentStatusIndicator({ status }: { status: DeploymentStatus }) {
     <>
       {status == 'created' && (
         <div className="flex w-5 justify-center">
-          <div className="size-2.5 rounded-full bg-blue-400" />
+          <div className="size-2.5 rounded-full bg-info" />
         </div>
       )}
       {status == 'loading' && <LoadingIndicator />}
       {status == 'success' && (
         <div className="flex w-5 justify-center">
-          <div className="size-2.5 rounded-full bg-green-400" />
+          <div className="size-2.5 rounded-full bg-success" />
         </div>
       )}
       {status == 'error' && (

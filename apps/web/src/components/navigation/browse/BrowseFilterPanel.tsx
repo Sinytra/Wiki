@@ -68,7 +68,7 @@ function Category({
 }) {
   return (
     <div className="flex flex-row items-center gap-x-2">
-      <Checkbox className="border-neutral-600" checked={checked} onCheckedChange={(e) => onChange(e == true)} />
+      <Checkbox className="border-primary" checked={checked} onCheckedChange={(e) => onChange(e == true)} />
       <Icon className="h-4 w-4" />
       <span className="text-sm text-primary">{name}</span>
     </div>

@@ -330,7 +330,7 @@
     }
 
     .slim-scrollbar-muted {
-        @apply scrollbar-thin scrollbar-thumb-[#404043];
+        @apply scrollbar-thin scrollbar-thumb-scrollbar-muted;
         /*TODO*/
     }
 
@@ -343,11 +343,11 @@
     }
 
     kbd {
-        @apply px-1 py-0.5 text-xs font-medium bg-neutral-700 text-neutral-200 border-neutral-600 border rounded-xs;
+        @apply px-1 py-0.5 text-xs font-medium bg-kbd text-kbd border-primary border rounded-xs;
     }
 
     .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-        @apply scrollbar-thin scrollbar-thumb-[#404043];
+        @apply scrollbar-thin scrollbar-thumb-scrollbar-muted;
     }
 
     .no-scroll {

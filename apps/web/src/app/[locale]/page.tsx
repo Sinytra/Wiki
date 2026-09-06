@@ -179,7 +179,7 @@ function AuthorsTile({ className }: { className?: string }) {
         ]}
       />
       <div className="mt-auto grid grid-cols-1 gap-2 pt-2 sm:grid-cols-2">
-        <Button asChild className="border-none bg-contrast text-white hover:bg-blue-700">
+        <Button asChild className="border-none bg-contrast text-contrast-foreground hover:bg-contrast-hover">
           <NavLink href="/dev">{t('authors.dashboard')}</NavLink>
         </Button>
         <Button asChild variant="outline">
@@ -368,7 +368,7 @@ function Hero() {
       <p className="text-base text-secondary sm:text-lg">{t('subtitle')}</p>
 
       <div className="mt-2 flex flex-row flex-wrap justify-center gap-3">
-        <Button asChild className="gap-2 border-none bg-contrast text-white hover:bg-blue-700">
+        <Button asChild className="gap-2 border-none bg-contrast text-contrast-foreground hover:bg-contrast-hover">
           <LocaleNavLink href="/browse">
             <SearchIcon className="size-4" />
             {t('browse')}

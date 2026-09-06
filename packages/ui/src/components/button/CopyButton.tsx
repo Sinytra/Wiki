@@ -16,7 +16,7 @@ export function CopyButton({ text, showToast, className }: { text: string; showT
       variant="ghost"
       size="icon"
       className={cn(
-        `text-secondary-alt opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 hover:bg-gray-400/10 [&>svg]:animate-in [&>svg]:fade-in [&>svg]:fade-out`,
+        `text-secondary-alt hover:bg-hover-soft opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 [&>svg]:animate-in [&>svg]:fade-in [&>svg]:fade-out`,
         className
       )}
       aria-label="Copy to clipboard"

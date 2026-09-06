@@ -345,7 +345,7 @@ export default async function ProjectHomepage(props: PageProps) {
               text="GitHub"
               icon={GitHubIcon}
               href={platformProject.source_url}
-              className="border-primary from-primary to-black/20"
+              className="border-primary from-primary to-brand-github/20"
             />
           ) : (
             <ExternalLink

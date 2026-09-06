@@ -187,7 +187,7 @@ export default function DocsTOCSidebarBase({ headings, type, className, solid }:
         )}
         <div
           ref={listRef}
-          className={`scrollbar-thin max-h-[80vh] scrollbar-thumb-gray-300 scrollbar-track-transparent overflow-y-auto pr-4`}
+          className={`scrollbar-thin max-h-[80vh] scrollbar-thumb-scrollbar-tertiary scrollbar-track-transparent overflow-y-auto pr-4`}
         >
           <ul className="space-y-1 text-sm">
             {headingTree.map((node, index) => (

@@ -7,11 +7,11 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        note: 'border-blue-400/50 text-blue-300/90 [&>svg]:text-blue-300',
-        tip: 'border-green-300/50 text-green-300/85 [&>svg]:text-green-300/90',
-        important: 'border-purple-400/50 text-purple-300/90 [&>svg]:text-purple-300',
+        note: 'border-note text-note [&>svg]:text-note-icon',
+        tip: 'border-tip text-tip [&>svg]:text-tip-icon',
+        important: 'border-important text-important [&>svg]:text-important-icon',
         warning: 'border-warning text-warning [&>svg]:text-warning',
-        caution: 'border-red-400/50 text-red-300/90 [&>svg]:text-red-300'
+        caution: 'border-caution text-caution [&>svg]:text-caution-icon'
       }
     },
     defaultVariants: {

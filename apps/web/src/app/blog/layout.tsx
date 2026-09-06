@@ -19,7 +19,7 @@ export default function BlogLayout({ children }: Readonly<{ children: ReactNode 
           <div className="mx-2 mt-8 flex min-h-[100vh] flex-1 pb-24">
             <div className="flex w-full flex-col items-center gap-4">
               <div
-                className={`prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-neutral-700 prose-h2:pb-1`}
+                className={`prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-secondary prose-h2:pb-1`}
               >
                 {children}
               </div>

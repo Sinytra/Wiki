@@ -20,7 +20,7 @@ export default function AboutLayout(props: { params: Params; children: ReactNode
         </ClientLocaleProvider>
       </aside>
       <div
-        className={`prose w-full max-w-[67rem] px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-neutral-700 prose-h2:pb-1`}
+        className={`prose w-full max-w-[67rem] px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-secondary prose-h2:pb-1`}
       >
         {children}
       </div>

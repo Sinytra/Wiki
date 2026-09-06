@@ -21,6 +21,12 @@
     --background-color-table-hover: var(--vp-c-bg-elv);
     --background-color-code-tab-active: #1E2127;
     --background-color-warning-soft: rgba(234, 179, 8, 0.09);
+    --background-color-success-soft: var(--color-green-900);
+    --background-color-placeholder: var(--color-gray-600); /*avatar and initial fallback*/
+    --background-color-overlay: color-mix(in oklab, var(--color-black) 80%, transparent); /*dialog & sheet backdrop*/
+    --background-color-hover-soft: color-mix(in oklab, var(--color-gray-400) 10%, transparent); /*ghost hover*/
+    --background-color-kbd: var(--color-neutral-700);
+    --background-color-log-fatal: var(--color-red-400);
 
     --text-color-primary: #FFFFF5DB; /*foreground*/
     --text-color-primary-alt: #FAFAFAFF;
@@ -34,8 +40,26 @@
     --text-color-destructive-secondary: #dd5a5d;
     --text-color-success: rgba(5, 223, 114, 0.7);
     --text-color-code: #A9B2C3;
+    --text-color-tertiary: var(--color-neutral-500); /*placeholders, search icon*/
+    --text-color-muted: var(--color-gray-400);
+    --text-color-faint: var(--color-gray-600); /*blog post date*/
+    --text-color-dim: #3C3C43; /*empty state icon*/
+    --text-color-kbd: var(--color-neutral-200);
+    --text-color-success-alt: var(--color-green-300);
+    --text-color-contrast-foreground: var(--color-white);
+    --text-color-footnote: #8B949E;
     --text-color-link: var(--color-blue-400);
     --text-color-link-hover: color-mix(in oklab, var(--color-blue-400) 80%, transparent);
+
+    /* Alert and callout variants */
+    --text-color-note: color-mix(in oklab, var(--color-blue-300) 90%, transparent);
+    --text-color-note-icon: var(--color-blue-300);
+    --text-color-tip: color-mix(in oklab, var(--color-green-300) 85%, transparent);
+    --text-color-tip-icon: color-mix(in oklab, var(--color-green-300) 90%, transparent);
+    --text-color-important: color-mix(in oklab, var(--color-purple-300) 90%, transparent);
+    --text-color-important-icon: var(--color-purple-300);
+    --text-color-caution: color-mix(in oklab, var(--color-red-300) 90%, transparent);
+    --text-color-caution-icon: var(--color-red-300);
 
     --border-color-primary: var(--color-neutral-600);
     --border-color-secondary: #404040FF;
@@ -48,7 +72,15 @@
     --border-color-warning-soft: #DA8B1790;
     --border-color-destructive: #E0575BBF;
     --border-color-destructive-secondary: #E0575B8C;
+    --border-color-inverse: var(--color-white); /*active tab underline*/
+    --border-color-muted: var(--color-gray-600);
+    --border-color-footnote: #30363D;
+    --border-color-note: color-mix(in oklab, var(--color-blue-400) 50%, transparent);
+    --border-color-tip: color-mix(in oklab, var(--color-green-300) 50%, transparent);
+    --border-color-important: color-mix(in oklab, var(--color-purple-400) 50%, transparent);
+    --border-color-caution: color-mix(in oklab, var(--color-red-400) 50%, transparent);
 
+    --outline-color-primary: var(--color-neutral-600);
     --outline-color-secondary: #EBEBF599;
 
     --divide-color-tertiary: var(--border-color-tertiary);
@@ -58,14 +90,22 @@
     --shadow-color-secondary: #27272AFF; /*sidebar-border*/
     --color-scrollbar-primary: #161618;
     --color-scrollbar-secondary: #EBEBF599;
+    --color-scrollbar-tertiary: var(--color-gray-300);
+    --color-scrollbar-muted: #404043;
 
     --color-ring: #EBEBF560;
     --color-contrast: var(--color-blue-600);
+    --color-contrast-hover: var(--color-blue-700);
     --color-brand-curseforge: #F16436;
     --color-brand-modrinth: #00AF5C;
     --color-brand-discord: #5865F2;
+    --color-brand-github: #000000;
+    --color-brand-github-hover: var(--color-neutral-950);
     --color-lightblue-primary: var(--vp-c-brand-1);
     --color-progressbar: #1662C5;
+    --color-success: var(--color-green-500); /*status dots*/
+    --color-info: var(--color-blue-400);
+    --color-pending: var(--color-amber-500);
 
     /* Non-standard colors */
     --background-color-popover: var(--background-color-primary-alt);

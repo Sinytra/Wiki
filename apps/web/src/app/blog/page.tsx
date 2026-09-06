@@ -25,7 +25,7 @@ function BlogPost({
   const t = useTranslations('Badges');
 
   return (
-    <div className={cn('rounded-sm border px-3 py-2', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-neutral-600')}>
+    <div className={cn('rounded-sm border px-3 py-2', latest ? 'border-[var(--vp-c-brand-1)]' : 'border-primary')}>
       <div className="flex w-full flex-row items-center justify-between">
         <div className="flex w-fit flex-row items-center gap-2">
           <NavLink href={`/blog/${id.replace('.mdx', '')}`} className="text-lg no-underline! hover:underline!">
