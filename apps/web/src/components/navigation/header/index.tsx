@@ -117,17 +117,19 @@ export default function Header({ locale, minimal, unfix }: { locale: string; min
             </>
           )}
 
+          <Divider />
+
           {!minimal && (
             <>
-              <Divider />
               <ClientLocaleProvider keys={['LanguageSelect']}>
                 <LanguageSelect locale={locale} />
               </ClientLocaleProvider>
-              <ClientLocaleProvider keys={['AppearanceMenu']}>
-                <AppearanceMenu />
-              </ClientLocaleProvider>
             </>
           )}
+
+          <ClientLocaleProvider keys={['AppearanceMenu']}>
+            <AppearanceMenu />
+          </ClientLocaleProvider>
 
           {showLinks && (
             <>

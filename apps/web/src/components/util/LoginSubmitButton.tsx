@@ -4,6 +4,7 @@ import { useFormStatus } from 'react-dom';
 import { Button } from '@repo/ui/components/button';
 import { LoaderCircleIcon } from 'lucide-react';
 import GitHubIcon from '@repo/ui/icons/GitHubIcon';
+import { cn } from '@repo/ui/lib/utils';
 
 export default function LoginSubmitButton({ text }: { text: string }) {
   const { pending } = useFormStatus();
@@ -13,7 +14,10 @@ export default function LoginSubmitButton({ text }: { text: string }) {
       type="submit"
       variant="outline"
       disabled={pending}
-      className="w-full gap-2 rounded-xs bg-brand-github text-white opacity-90! transition-opacity hover:opacity-70! disabled:opacity-70!"
+      className={cn(
+        'w-full gap-2 rounded-sm bg-brand-github text-white opacity-90! transition-opacity',
+        'hover:bg-brand-github! hover:text-white! hover:opacity-70! disabled:opacity-70!'
+      )}
     >
       <div className="text-white">
         {pending ? <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin" /> : <GitHubIcon width={16} height={16} />}

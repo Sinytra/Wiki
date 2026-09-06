@@ -80,7 +80,7 @@ function NavigationColumns() {
       <LinkColumn title={t('links.links.title')}>
         <LinkEntry title="Discord" href="https://discord.sinytra.org" />
         <LinkEntry title="GitHub" href="https://github.com/Sinytra" />
-        <LinkEntry title="Donate" href="https://opencollective.com/sinytra" />
+        <LinkEntry title="Support us" href="https://www.patreon.com/cw/Su5eD" />
       </LinkColumn>
 
       <LinkColumn title={t('links.resources.title')}>
@@ -90,9 +90,9 @@ function NavigationColumns() {
       </LinkColumn>
 
       <LinkColumn title={t('links.about.title')}>
+        <LinkEntry title={t('links.about.about')} href="/about" />
         <LinkEntry title={t('links.about.tos')} href="/about/tos" />
         <LinkEntry title={t('links.about.privacy')} href="/about/privacy" />
-        <LinkEntry title={t('links.about.contact')} href="/about/help" />
       </LinkColumn>
     </div>
   );

@@ -91,7 +91,7 @@ function FeatureList({ items }: { items: { icon: IconComponent; text: string }[]
 function PlatformLink({ href, icon: Icon, label }: { href: string; icon: IconComponent; label: string }) {
   return (
     <Button asChild variant="ghost" size="icon" className="size-8 text-secondary" title={label}>
-      <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+      <a href={href} target="_blank" rel="noopener noreferrer">
         <Icon className="size-4" />
       </a>
     </Button>
@@ -179,7 +179,7 @@ function AuthorsTile({ className }: { className?: string }) {
         ]}
       />
       <div className="mt-auto grid grid-cols-1 gap-2 pt-2 sm:grid-cols-2">
-        <Button asChild className="border-none bg-contrast text-primary-alt hover:bg-contrast-hover">
+        <Button asChild className="border-none bg-contrast text-white hover:bg-contrast-hover">
           <NavLink href="/dev">{t('authors.dashboard')}</NavLink>
         </Button>
         <Button asChild variant="outline">
@@ -237,13 +237,13 @@ function OracleIndexTile({ className }: { className?: string }) {
               href={ORACLE_INDEX_LINKS.curseforge}
               icon={CurseForgeColorIcon}
               text="CurseForge"
-              className="border-brand-curseforge/40 from-primary to-brand-curseforge/20"
+              className="border-brand-curseforge/40 from-primary to-brand-curseforge/30 dark:to-brand-curseforge/20"
             />
             <OracleDownloadLink
               href={ORACLE_INDEX_LINKS.modrinth}
               icon={ModrinthIcon}
               text="Modrinth"
-              className="border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth"
+              className="border-brand-modrinth/40 from-primary to-brand-modrinth/30 dark:to-brand-modrinth/20 [&>svg]:text-brand-modrinth"
             />
           </div>
         </div>
@@ -357,7 +357,11 @@ function Hero() {
         {t.rich('title', {
           highlight: (chunks: any) => (
             <span
-              className={`bg-linear-to-b from-blue-500 to-cyan-400 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl`}
+              className={cn(
+                'bg-clip-text text-4xl font-bold text-transparent sm:text-5xl',
+                'bg-linear-to-b from-blue-600 to-cyan-500',
+                'dark:from-blue-500 dark:to-cyan-400'
+              )}
             >
               {chunks}
             </span>
@@ -368,7 +372,7 @@ function Hero() {
       <p className="text-base text-secondary sm:text-lg">{t('subtitle')}</p>
 
       <div className="mt-2 flex flex-row flex-wrap justify-center gap-3">
-        <Button asChild className="gap-2 border-none bg-contrast text-primary-alt hover:bg-contrast-hover">
+        <Button asChild className="gap-2 border-none bg-contrast text-white hover:bg-contrast-hover">
           <LocaleNavLink href="/browse">
             <SearchIcon className="size-4" />
             {t('browse')}
@@ -425,7 +429,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
       <div
         className={cn(
           showBanner && 'pt-0!',
-          `page-wrapper-base page-wrapper sm:page-wrapper-ext flex min-h-screen flex-1 sm:mx-2`
+          'page-wrapper-base page-wrapper sm:page-wrapper-ext flex min-h-screen flex-1 sm:mx-2'
         )}
       >
         <HomePageContent projects={projects} />

@@ -49,9 +49,9 @@
       },
       "about": {
         "title": "About",
+        "about": "About us",
         "tos": "Terms of Service",
-        "privacy": "Privacy Policy",
-        "contact": "Contact"
+        "privacy": "Privacy Policy"
       }
     }
   },

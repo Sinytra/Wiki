@@ -6,6 +6,7 @@ import { getProcessURL } from '@/lib/utils';
 import { cn } from '@repo/ui/lib/utils';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import NavProgressBar from '@repo/ui/navigation/NavProgressBar';
+import AppearanceSync from '@/components/navigation/appearance/AppearanceSync';
 import AppearanceScript from '@/components/navigation/appearance/AppearanceScript';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <AppearanceScript />
       </head>
       <body className={cn(inter.className, 'flex min-h-screen flex-col bg-primary text-primary')}>
+        <AppearanceSync />
         <NavProgressBar>
           <NuqsAdapter>{children}</NuqsAdapter>
         </NavProgressBar>

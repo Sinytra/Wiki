@@ -101,7 +101,7 @@ export default function LanguageSelect({ locale, shownLocaleCodes, mobile, minim
             <Command value={value} defaultValue={value}>
               <CommandInput placeholder={t('placeholder')} />
               <CommandList
-                className={`[scrollbar-color:var(--background-color-inverse-secondary)_var(--background-color-primary)] overscroll-contain`}
+                className={`[scrollbar-color:var(--color-scrollbar-secondary)_var(--background-color-primary)] overscroll-contain`}
               >
                 <CommandEmpty>{t('no_results')}</CommandEmpty>
                 <CommandGroup>

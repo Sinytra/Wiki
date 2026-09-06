@@ -427,12 +427,13 @@ const SidebarMenuItem = React.forwardRef<HTMLLIElement, React.ComponentProps<'li
 SidebarMenuItem.displayName = 'SidebarMenuItem';
 
 const sidebarMenuButtonVariants = cva(
-  `peer/menu-button hover:text-primary-alt active:text-primary-alt data-[active=true]:text-primary-alt data-[state=open]:hover:text-primary-alt flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-secondary focus-visible:ring-2 active:bg-secondary disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-secondary data-[active=true]:font-medium data-[state=open]:hover:bg-secondary [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
+  'peer/menu-button hover:text-primary-alt active:text-primary-alt data-[active=true]:text-primary-alt data-[state=open]:hover:text-primary-alt flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-secondary focus-visible:ring-2 active:bg-secondary disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-secondary data-[active=true]:font-medium data-[state=open]:hover:bg-secondary [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
   {
     variants: {
       variant: {
         default: 'hover:text-primary-alt hover:bg-secondary',
-        outline: `hover:text-primary-alt bg-primary shadow-[0_0_0_1px_var(--shadow-color-secondary)] hover:bg-secondary hover:shadow-[0_0_0_1px_var(--shadow-color-secondary)]`
+        outline:
+          'hover:text-primary-alt bg-primary shadow-[0_0_0_1px_var(--border-color-tertiary)] hover:bg-secondary hover:shadow-[0_0_0_1px_var(--border-color-tertiary)]'
       },
       size: {
         default: 'h-8 text-sm',
