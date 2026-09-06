@@ -284,7 +284,7 @@ function BlogTile({ className }: { className?: string }) {
                 {post.title}
               </NavLink>
 
-              <span className="shrink-0 text-xs text-secondary">{format(new Date(post.date), 'MMM d, yyyy')}</span>
+              <span className="shrink-0 text-sm text-secondary">{format(new Date(post.date), 'MMM d, yyyy')}</span>
             </div>
 
             <p className="line-clamp-2 text-sm text-secondary">{post.excerpt}</p>
