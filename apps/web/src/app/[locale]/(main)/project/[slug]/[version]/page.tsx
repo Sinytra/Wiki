@@ -87,9 +87,7 @@ function Section({
 function SubpageLink({ title, icon: Icon, desc, href }: { title: string; icon: any; desc: string; href: string }) {
   return (
     <a href={`latest/${href}`}>
-      <div
-        className={`flex w-fit min-w-[17rem] flex-col gap-2 rounded-sm border border-secondary-dim bg-primary-alt/50 p-3 hover:bg-secondary/20`}
-      >
+      <div className="flex w-fit min-w-[17rem] flex-col gap-2 rounded-sm border border-tertiary bg-primary-alt/50 p-3 hover:bg-secondary/20">
         <div className="flex flex-row items-center gap-3 text-lg">
           <Icon className="h-5 w-5" />
           {title}
@@ -161,7 +159,7 @@ function ProjectTags({ project }: { project: PlatformProject }) {
 
 function LicenseBadge({ name, icon: Icon, children }: { name: string; icon: any; children?: any }) {
   return (
-    <div className="flex max-w-84 min-w-72 flex-col gap-2 rounded-sm border border-secondary/50 bg-primary-dim p-4">
+    <div className="flex max-w-84 min-w-72 flex-col gap-2 rounded-sm border border-secondary/50 bg-primary-alt p-4">
       <div className="flex flex-row items-center gap-3 text-base font-medium">
         <Icon className="size-5 shrink-0" />
         <span>{name}</span>

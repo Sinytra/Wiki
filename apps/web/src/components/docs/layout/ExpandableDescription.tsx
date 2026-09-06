@@ -10,7 +10,7 @@ export default function ExpandableDescription({ children }: { children?: any }) 
     <div
       onClick={() => setExpanded(true)}
       className={cn(
-        `group relative rounded-sm border border-secondary-dim bg-primary-alt/50 p-4 pb-0`,
+        'group relative rounded-sm border border-tertiary bg-primary-alt/50 p-4 pb-0',
         !expanded && 'cursor-pointer hover:bg-secondary/20'
       )}
     >

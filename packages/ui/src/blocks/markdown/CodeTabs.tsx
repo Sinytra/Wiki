@@ -19,11 +19,7 @@ async function CodeTabsVerified(props: { tabs: RawCode[] }) {
     <Tabs defaultValue={tabs[0]?.meta}>
       <TabsList className="bg-code-alt w-full justify-start rounded-b-none">
         {tabs.map((tab) => (
-          <TabsTrigger
-            key={tab.meta}
-            value={tab.meta}
-            className={`data-[state=active]:bg-code-tab-active px-2 py-1.5 text-sm`}
-          >
+          <TabsTrigger key={tab.meta} value={tab.meta} className={`data-[state=active]:bg-code px-2 py-1.5 text-sm`}>
             {tab.meta}
           </TabsTrigger>
         ))}

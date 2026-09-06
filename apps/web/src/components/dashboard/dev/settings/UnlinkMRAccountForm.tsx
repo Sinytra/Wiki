@@ -16,7 +16,7 @@ function SubmitButton() {
       data-pending={pending ? 'true' : 'false'}
       variant="destructive"
       size="sm"
-      className={`border border-destructive-secondary bg-primary font-semibold hover:bg-secondary/80 data-[pending=true]:text-destructive/90`}
+      className={`border border-destructive/70 bg-primary font-semibold hover:bg-secondary/80 data-[pending=true]:text-destructive/90`}
     >
       {pending ? <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin" /> : <Link2Icon className="mr-2 h-4 w-4" />}
       {t('disconnect')}

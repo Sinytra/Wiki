@@ -59,7 +59,7 @@ export default function DataTableClient<T>({ cols, rows, data, versions, expanda
       return (
         <TableRow
           {...props}
-          className={cn(props.className, 'hover:bg-table-hover hover:cursor-pointer')}
+          className={cn(props.className, 'hover:cursor-pointer hover:bg-secondary')}
           onClick={() => router.push(links[i]!)}
         />
       );
@@ -96,7 +96,7 @@ export default function DataTableClient<T>({ cols, rows, data, versions, expanda
                   i={i}
                   className={cn(
                     `last:border-b-0 last:[&_td]:border-b-0 last:[&_td:first-child]:rounded-bl-sm last:[&_td:last-child]:rounded-br-sm`,
-                    expandable && (i % 2 != 0 ? 'bg-table-soft hover:bg-table-hover' : 'hover:bg-table-hover'),
+                    expandable && (i % 2 != 0 ? 'bg-code hover:bg-secondary' : 'hover:bg-secondary'),
                     expandable && 'cursor-pointer'
                   )}
                   onClick={() => expandable && toggleRow(i)}
@@ -111,7 +111,7 @@ export default function DataTableClient<T>({ cols, rows, data, versions, expanda
                   )}
                 </LinkableTableRow>
                 {row.extendedRow && (
-                  <TableRow className={cn('bg-table-hard border-b')}>
+                  <TableRow className={cn('border-b bg-primary')}>
                     <td className="no-table-bs overflow-hidden border-0" colSpan={cols.length}>
                       <div
                         ref={contentRefs.set(i)}

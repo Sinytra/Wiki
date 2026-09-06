@@ -17,7 +17,7 @@ export default function BrowseSortDropdown() {
       <span className="text-sm text-primary">{t('sorting')}</span>
 
       <Select value={(sort as string) || undefined} defaultValue="relevance" onValueChange={setSort}>
-        <SelectTrigger className="w-[180px] border-secondary-dim">
+        <SelectTrigger className="w-[180px] border-tertiary">
           <SelectValue placeholder="Choose one" />
         </SelectTrigger>
         <SelectContent>

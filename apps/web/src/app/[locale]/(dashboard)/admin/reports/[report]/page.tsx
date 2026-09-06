@@ -56,7 +56,7 @@ function ReportDetails({ report }: { report: ReportInfo }) {
 
         <div className="grid w-full items-center gap-3">
           <Label>{t('body')}</Label>
-          <Textarea className="min-h-48 bg-primary-dim" value={report.body} readOnly />
+          <Textarea className="min-h-48 bg-primary-alt" value={report.body} readOnly />
         </div>
       </RuleReportForm>
     </ClientLocaleProvider>

@@ -8,7 +8,7 @@ function DeploymentStatusIndicator({ status }: { status: DeploymentStatus }) {
     <>
       {status == 'created' && (
         <div className="flex w-5 justify-center">
-          <div className="size-2.5 rounded-full bg-info" />
+          <div className="size-2.5 rounded-full bg-brand-primary" />
         </div>
       )}
       {status == 'loading' && <LoadingIndicator />}

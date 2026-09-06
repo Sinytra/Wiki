@@ -22,7 +22,7 @@ function SearchResultWidget({ result }: { result: WikiSearchResult }) {
       href={result.href}
       className={cn(
         'z-50 flex cursor-pointer flex-row gap-2 bg-primary-alt px-1 py-1.5 text-primary',
-        'first:rounded-t-sm last:rounded-b-sm hover:bg-tertiary'
+        'first:rounded-t-sm last:rounded-b-sm hover:bg-secondary'
       )}
     >
       <div className="size-[48px] shrink-0 overflow-hidden rounded-xs p-1">
@@ -256,7 +256,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           className={cn(
             'h-7 w-full cursor-pointer rounded-sm border border-secondary/60 bg-primary px-8 transition-colors',
             'text-center text-sm text-ellipsis placeholder:text-tertiary hover:border-secondary',
-            'focus:cursor-text focus:border-secondary focus:bg-primary-dim focus:shadow-md focus:outline-none'
+            'focus:cursor-text focus:border-secondary focus:bg-primary-alt focus:shadow-md focus:outline-none'
           )}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder={t('placeholder')}
@@ -270,7 +270,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           onMouseDown={(e) => e.preventDefault()}
           className={cn(
             'absolute top-8 flex w-full flex-col divide-y divide-tertiary rounded-sm border',
-            'border-secondary bg-primary-dim shadow-lg'
+            'border-secondary bg-primary-alt shadow-lg'
           )}
         >
           {loading && <LoadingSearchState />}

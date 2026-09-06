@@ -22,7 +22,7 @@ export default function ProjectSearch({ placeholder }: { placeholder: string }) 
     <div className="relative w-full text-secondary sm:w-fit">
       <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
       <Input
-        className="border-secondary-dim pl-9 sm:w-96"
+        className="border-tertiary pl-9 sm:w-96"
         type="text"
         placeholder={placeholder}
         onChange={(e) => handleSearch(e.target.value)}

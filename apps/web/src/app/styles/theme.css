@@ -1,55 +1,31 @@
 @theme {
-    --background-color-primary: #1B1B1F; /*bg-background*/
-    --background-color-primary-alt: #161618; /*bg-card*/
-    --background-color-primary-dim: #18181A;
-    --background-color-primary-hover: #19191C;
-    --background-color-primary-dark: #131314;
-    --background-color-primary-soft: #1a1b20; /*figure background*/
-    --background-color-secondary: #27272AFF; /*accent*/
-    /*sidebar-accent*/
-    /*input*/
-    --background-color-tertiary: var(--color-neutral-800);
-    --background-color-inverse: #FAFAFAFF;
-    --background-color-inverse-secondary: #EBEBF599;
+    --background-color-primary: #1B1B1F; /*bg-background, figures*/
+    --background-color-primary-alt: #171719; /*bg-card, inputs*/
+    --background-color-secondary: #27272AFF; /*accent, hover, table hover*/
+
     --background-color-destructive: #E0575BFF;
     --background-color-destructive-soft: var(--vp-c-caution-soft);
-    --background-color-code: #21252b;
-    --background-color-code-alt: #2b313a;
-    --background-color-code-dim: #0D1117;
-    --background-color-table-soft: var(--vp-c-bg-soft);
-    --background-color-table-hard: var(--background);
-    --background-color-table-hover: var(--vp-c-bg-elv);
-    --background-color-code-tab-active: #1E2127;
+    --background-color-code: #21252b; /*code blocks, code tabs, soft table rows*/
+    --background-color-code-alt: #2b313a; /*code tab bar*/
     --background-color-warning-soft: rgba(234, 179, 8, 0.09);
     --background-color-success-soft: var(--color-green-900);
     --background-color-placeholder: var(--color-gray-600); /*avatar and initial fallback*/
     --background-color-overlay: color-mix(in oklab, var(--color-black) 80%, transparent); /*dialog & sheet backdrop*/
     --background-color-hover-soft: color-mix(in oklab, var(--color-gray-400) 10%, transparent); /*ghost hover*/
     --background-color-kbd: var(--color-neutral-700);
-    --background-color-log-fatal: var(--color-red-400);
 
     --text-color-primary: #FFFFF5DB; /*foreground*/
-    --text-color-primary-alt: #FAFAFAFF;
-    --text-color-secondary: #EBEBF599; /*muted-foreground*/
+    --text-color-primary-alt: var(--color-inverse); /*brightened hover text*/
+    --text-color-secondary: #EBEBF599; /*muted-foreground, footnotes*/
     --text-color-secondary-alt: #EBEBF5BC; /*secondary-foreground*/
-    --text-color-inverse: #1B1B1F;
-    --text-color-brand-primary: #5C9DE4FF;
+    --text-color-tertiary: var(--color-neutral-500); /*placeholders, dates, empty states*/
+    --text-color-inverse: #1B1B1F; /*text on inverse backgrounds*/
     --text-color-warning: #EFA63E;
-    --text-color-warning-soft: #EFA63EED;
     --text-color-destructive: #FB6C6F;
-    --text-color-destructive-secondary: #dd5a5d;
     --text-color-success: rgba(5, 223, 114, 0.7);
     --text-color-code: #A9B2C3;
-    --text-color-tertiary: var(--color-neutral-500); /*placeholders, search icon*/
-    --text-color-muted: var(--color-gray-400);
-    --text-color-faint: var(--color-gray-600); /*blog post date*/
-    --text-color-dim: #3C3C43; /*empty state icon*/
-    --text-color-kbd: var(--color-neutral-200);
-    --text-color-success-alt: var(--color-green-300);
-    --text-color-contrast-foreground: var(--color-white);
-    --text-color-footnote: #8B949E;
-    --text-color-link: var(--color-blue-400);
-    --text-color-link-hover: color-mix(in oklab, var(--color-blue-400) 80%, transparent);
+    --text-color-link: var(--color-brand-primary);
+    --text-color-link-hover: color-mix(in oklab, var(--color-brand-primary) 80%, transparent);
 
     /* Alert and callout variants */
     --text-color-note: color-mix(in oklab, var(--color-blue-300) 90%, transparent);
@@ -62,55 +38,42 @@
     --text-color-caution-icon: var(--color-red-300);
 
     --border-color-primary: var(--color-neutral-600);
-    --border-color-secondary: #404040FF;
+    --border-color-secondary: var(--color-neutral-700); /*#404040, footnotes*/
     --border-color-secondary-alt: #EBEBF599;
-    --border-color-secondary-dim: color-mix(in oklab, var(--border-color-secondary) 50%, transparent);
-    --border-color-tertiary: #27272AFF; /*border*/
-    --border-color-quaternary: #27272AFF; /*input*/
-    --border-color-info: #5a96e6;
+    --border-color-tertiary: #27272AFF; /*border, input*/
     --border-color-warning: #DA8B17B2;
-    --border-color-warning-soft: #DA8B1790;
     --border-color-destructive: #E0575BBF;
-    --border-color-destructive-secondary: #E0575B8C;
-    --border-color-inverse: var(--color-white); /*active tab underline*/
-    --border-color-muted: var(--color-gray-600);
-    --border-color-footnote: #30363D;
     --border-color-note: color-mix(in oklab, var(--color-blue-400) 50%, transparent);
     --border-color-tip: color-mix(in oklab, var(--color-green-300) 50%, transparent);
     --border-color-important: color-mix(in oklab, var(--color-purple-400) 50%, transparent);
     --border-color-caution: color-mix(in oklab, var(--color-red-400) 50%, transparent);
 
-    --outline-color-primary: var(--color-neutral-600);
+    --outline-color-primary: var(--border-color-primary);
     --outline-color-secondary: #EBEBF599;
 
     --divide-color-tertiary: var(--border-color-tertiary);
 
     --ring-offset-color-background: var(--background-color-primary);
 
-    --shadow-color-secondary: #27272AFF; /*sidebar-border*/
-    --color-scrollbar-primary: #161618;
     --color-scrollbar-secondary: #EBEBF599;
     --color-scrollbar-tertiary: var(--color-gray-300);
-    --color-scrollbar-muted: #404043;
+    --color-scrollbar-muted: var(--color-neutral-700);
 
     --color-ring: #EBEBF560;
+    --color-inverse: #FAFAFAFF; /*bg-inverse, border-inverse, text-primary-alt*/
     --color-contrast: var(--color-blue-600);
     --color-contrast-hover: var(--color-blue-700);
+    --color-brand-primary: #5C9DE4FF; /*links, info borders, status dots*/
     --color-brand-curseforge: #F16436;
     --color-brand-modrinth: #00AF5C;
     --color-brand-discord: #5865F2;
     --color-brand-github: #000000;
-    --color-brand-github-hover: var(--color-neutral-950);
-    --color-lightblue-primary: var(--vp-c-brand-1);
-    --color-progressbar: #1662C5;
+    --color-progressbar: #1662C5; /*NavProgressBar*/
     --color-success: var(--color-green-500); /*status dots*/
-    --color-info: var(--color-blue-400);
     --color-pending: var(--color-amber-500);
 
     /* Non-standard colors */
-    --background-color-popover: var(--background-color-primary-alt);
     --background-color-accent: var(--background-color-secondary);
-    --text-color-popover-foreground: var(--text-color-primary);
     --border-color-border: var(--border-color-tertiary);
 
     /* Font */

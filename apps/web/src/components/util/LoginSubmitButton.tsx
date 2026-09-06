@@ -13,7 +13,7 @@ export default function LoginSubmitButton({ text }: { text: string }) {
       type="submit"
       variant="outline"
       disabled={pending}
-      className={`w-full gap-2 rounded-xs bg-brand-github text-white opacity-90! transition-opacity hover:bg-brand-github-hover hover:opacity-70! disabled:bg-brand-github-hover disabled:opacity-70!`}
+      className="w-full gap-2 rounded-xs bg-brand-github text-white opacity-90! transition-opacity hover:opacity-70! disabled:opacity-70!"
     >
       <div className="text-white">
         {pending ? <LoaderCircleIcon className="mr-2 h-4 w-4 animate-spin" /> : <GitHubIcon width={16} height={16} />}

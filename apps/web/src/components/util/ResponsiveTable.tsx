@@ -60,7 +60,7 @@ export default function ResponsiveTable<Keys extends string>({
         <tr>
           <td
             colSpan={columns.length}
-            className="no-table-bs group cursor-pointer bg-table-soft!"
+            className="no-table-bs group cursor-pointer bg-code!"
             onClick={() => setExpanded(!expanded)}
             data-open={expanded}
           >

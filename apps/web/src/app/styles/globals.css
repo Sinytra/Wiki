@@ -295,7 +295,7 @@
     }
 
     .prose :where(figure):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-        @apply my-2 bg-primary-soft border border-secondary text-center table leading-0 has-[figcaption]:border-b-0;
+        @apply my-2 bg-primary border border-secondary text-center table leading-0 has-[figcaption]:border-b-0;
     }
 
     .prose :where(figure img):not(:where(figcaption img, [class~='not-prose'], [class~='not-prose'] *)) {
@@ -304,7 +304,7 @@
     }
 
     .prose :where(figure figcaption):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-        @apply table-caption caption-bottom bg-primary-soft border border-t-0 border-secondary
+        @apply table-caption caption-bottom bg-primary border border-t-0 border-secondary
                text-left mt-0 px-1.5 pb-1.5;
         word-break: break-word;
     }
@@ -343,7 +343,7 @@
     }
 
     kbd {
-        @apply px-1 py-0.5 text-xs font-medium bg-kbd text-kbd border-primary border rounded-xs;
+        @apply px-1 py-0.5 text-xs font-medium bg-kbd text-primary border-primary border rounded-xs;
     }
 
     .prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {

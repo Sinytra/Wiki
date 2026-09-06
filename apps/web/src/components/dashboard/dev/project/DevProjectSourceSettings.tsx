@@ -160,7 +160,7 @@ export default function DevProjectSourceSettings({ project }: { project: DevProj
           )}
 
           {canVerifyModrinth && (
-            <div className="flex flex-col gap-1 rounded-md border border-brand-modrinth/70 bg-primary-dim p-3">
+            <div className="flex flex-col gap-1 rounded-md border border-brand-modrinth/70 bg-primary-alt p-3">
               <p className="flex flex-row items-start text-secondary">
                 <ModrinthIcon className="mt-0.5 mr-2 inline-block h-4 w-4 shrink-0 text-brand-modrinth" />
                 <span className="text-sm text-secondary">

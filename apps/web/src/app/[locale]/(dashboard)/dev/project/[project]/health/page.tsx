@@ -29,7 +29,7 @@ function ProjectIssuesStatWidget({
     <div
       className={cn(
         'flex w-36 flex-row items-center justify-between gap-2 rounded-sm border px-2.5 py-1.5',
-        count > 0 ? className : 'border-secondary-dim bg-primary-dim text-secondary'
+        count > 0 ? className : 'border-tertiary bg-primary-alt text-secondary'
       )}
     >
       <div className="flex flex-row items-center gap-2">
@@ -51,13 +51,13 @@ function ProjectIssuesHealthWidget({ stats }: { stats: ProjectIssueStats }) {
       text: 'Project has errors'
     },
     warning: {
-      class: 'text-warning-soft bg-warning-soft/50 border-warning-soft',
+      class: 'text-warning bg-warning-soft/50 border-warning/80',
       iconClass: '',
       icon: TriangleAlertIcon,
       text: 'Project has warnings'
     },
     normal: {
-      class: 'text-secondary bg-primary-dim border-secondary',
+      class: 'text-secondary bg-primary-alt border-secondary',
       iconClass: 'text-success',
       icon: ShieldCheckIcon,
       text: 'No issues found'
@@ -85,7 +85,7 @@ function ProjectIssuesSummary({ stats }: { stats: ProjectIssueStats }) {
 
       <ProjectIssuesStatWidget
         title="Warnings"
-        className="border-warning-soft bg-[var(--vp-c-warning-soft)]/50 text-warning-soft"
+        className="border-warning/80 bg-[var(--vp-c-warning-soft)]/50 text-warning"
         count={stats.warning || 0}
         icon={TriangleAlertIcon}
       />
@@ -108,7 +108,7 @@ function ProjectIssuesSection({ issues }: { issues: ProjectIssueInfo[] }) {
         <ProjectIssuesList issues={issues} />
       ) : (
         <div
-          className={`flex w-full flex-col items-center gap-3 rounded-sm border border-secondary-dim bg-primary-dim py-8 text-secondary`}
+          className={`flex w-full flex-col items-center gap-3 rounded-sm border border-tertiary bg-primary-alt py-8 text-secondary`}
         >
           <ShieldCheckIcon className="size-8" />
           <span>{t('empty')}</span>

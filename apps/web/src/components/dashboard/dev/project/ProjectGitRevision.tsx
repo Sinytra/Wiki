@@ -32,7 +32,7 @@ export default function ProjectGitRevision({
   const t = useTranslations('ProjectGitRevision');
 
   return (
-    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-dim p-3">
+    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-alt p-3">
       <div className="flex flex-row items-center gap-2">
         <span>{t(current ? 'title_current' : 'title')}</span>
       </div>

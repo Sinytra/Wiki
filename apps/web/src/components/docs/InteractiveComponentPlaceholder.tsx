@@ -5,9 +5,7 @@ export default function InteractiveComponentPlaceholder() {
   const t = useTranslations('InteractiveComponentPlaceholder');
 
   return (
-    <div
-      className={`flex h-64 flex-col items-center justify-center gap-3 rounded-sm border border-tertiary bg-primary-dim`}
-    >
+    <div className="flex h-64 flex-col items-center justify-center gap-3 rounded-sm border border-tertiary bg-primary-alt">
       <span className="flex flex-row items-center gap-2 text-xl opacity-70">
         <ServerOffIcon className="size-6" />
         {t('title')}

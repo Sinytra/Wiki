@@ -31,7 +31,7 @@ export default function DataField({
         {Icon && <Icon className={cn('absolute inset-0 top-1/2 left-3 size-4 -translate-y-1/2', iconClass)} />}
         <div
           className={cn(
-            `h-10 w-full overflow-hidden rounded-md border border-quaternary bg-primary-dim px-3 py-2 pl-9 align-bottom text-sm leading-5.5 text-ellipsis whitespace-nowrap`,
+            'h-10 w-full overflow-hidden rounded-md border border-tertiary bg-primary-alt px-3 py-2 pl-9 align-bottom text-sm leading-5.5 text-ellipsis whitespace-nowrap',
             Icon && 'pl-9',
             href && 'underline-offset-4 hover:underline',
             copiable && 'rounded-r-none'
@@ -44,7 +44,7 @@ export default function DataField({
           <CopyButton
             text={value}
             showToast
-            className={`h-10 w-11 rounded-md rounded-l-none border border-l-0 border-quaternary bg-primary-dim opacity-100`}
+            className="h-10 w-11 rounded-md rounded-l-none border border-l-0 border-tertiary bg-primary-alt opacity-100"
           />
         )}
       </Element>

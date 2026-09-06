@@ -24,9 +24,9 @@ export default function ProjectIssueWidget({ issue }: { issue: ProjectIssueInfo 
       fg: 'text-destructive'
     },
     warning: {
-      bg: 'bg-warning-soft/50 border-warning-soft',
+      bg: 'bg-warning-soft/50 border-warning/80',
       bg_hover: 'hover:bg-warning-soft/70',
-      fg: 'text-warning-soft'
+      fg: 'text-warning'
     }
   };
   const activeLevel = issueLevels[issue.level];
@@ -35,7 +35,7 @@ export default function ProjectIssueWidget({ issue }: { issue: ProjectIssueInfo 
     <div
       onClick={() => !expanded && setExpanded(true)}
       className={cn(
-        'group flex w-full flex-col rounded-sm border border-secondary-dim bg-primary-dim',
+        'group flex w-full flex-col rounded-sm border border-tertiary bg-primary-alt',
         activeLevel.bg,
         !expanded && 'cursor-pointer',
         !expanded && activeLevel.bg_hover
