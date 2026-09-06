@@ -13,17 +13,28 @@ import {
 } from '@repo/ui/components/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@repo/ui/components/sidebar';
 import { useTranslations } from 'next-intl';
+import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
 
-interface Props {
-  teams: {
-    name: string;
-    logo: React.ElementType;
-  }[];
+interface Context {
+  name: string;
+  logo: React.ElementType;
+  url?: string;
 }
 
-export function DevSidebarContextSwitcher({ teams }: Props) {
+interface Props {
+  contexts: Context[];
+}
+
+function WrapContext({ ctx, children }: { ctx: Context; children: React.ReactNode }) {
+  if (ctx.url) {
+    return <LocaleNavLink href={ctx.url}>{children}</LocaleNavLink>;
+  }
+  return children;
+}
+
+export function DevSidebarContextSwitcher({ contexts }: Props) {
   const { isMobile } = useSidebar();
-  const [activeTeam, setactiveTeam] = useState(teams[0]);
+  const [activeCtx, setActiveCtx] = useState(contexts[0]);
   const t = useTranslations('DevSidebarContextSwitcher');
 
   return (
@@ -36,12 +47,12 @@ export function DevSidebarContextSwitcher({ teams }: Props) {
                 className={`flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600 text-primary-alt`}
               >
                 {/*@ts-expect-error min-size*/}
-                <activeTeam.logo className="size-4" />
+                <activeCtx.logo className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
                   {/*@ts-expect-error min-size*/}
-                  {activeTeam.name}
+                  {activeCtx.name}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto" />
@@ -54,13 +65,15 @@ export function DevSidebarContextSwitcher({ teams }: Props) {
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-secondary">{t('title')}</DropdownMenuLabel>
-            {teams.map((team) => (
-              <DropdownMenuItem key={team.name} onClick={() => setactiveTeam(team)} className="gap-2 p-2">
-                <div className="flex size-6 items-center justify-center rounded-sm border border-tertiary">
-                  <team.logo className="size-4 shrink-0" />
-                </div>
-                {team.name}
-              </DropdownMenuItem>
+            {contexts.map((ctx) => (
+              <WrapContext key={ctx.name} ctx={ctx}>
+                <DropdownMenuItem onClick={() => setActiveCtx(ctx)} className="gap-2 p-2">
+                  <div className="flex size-6 items-center justify-center rounded-sm border border-tertiary">
+                    <ctx.logo className="size-4 shrink-0" />
+                  </div>
+                  {ctx.name}
+                </DropdownMenuItem>
+              </WrapContext>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>

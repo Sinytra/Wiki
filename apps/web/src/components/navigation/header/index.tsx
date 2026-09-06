@@ -6,7 +6,7 @@ import HeaderBase from '@/components/navigation/header/HeaderBase';
 import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
 import { cn } from '@repo/ui/lib/utils';
 import { useTranslations } from 'next-intl';
-import { BookMarkedIcon, CompassIcon, SunIcon } from 'lucide-react';
+import { BookMarkedIcon, CompassIcon } from 'lucide-react';
 import DocsSearchBar from '@/components/navigation/search/DocsSearchBar';
 import MobileNav from '@/components/navigation/header/MobileNav';
 import SocialButtons from '@/components/util/SocialButtons';
@@ -14,6 +14,7 @@ import MobileDocsSearch from '@/components/navigation/search/MobileDocsSearch';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import env from '@repo/shared/env';
 import { Button } from '@repo/ui/components/button';
+import AppearanceMenu from '@/components/navigation/appearance/AppearanceMenu';
 
 function Brand({ preview }: { preview: boolean }) {
   const t = useTranslations('NavigationHeader');
@@ -50,28 +51,6 @@ function HeaderLink({ href, children }: { href: string; children: ReactNode }) {
     >
       {children}
     </LocaleNavLink>
-  );
-}
-
-function AppearanceButton({ mobile }: { mobile?: boolean }) {
-  const t = useTranslations('NavigationHeader');
-
-  // TODO Reading width and color theme settings
-  return mobile ? (
-    <Button variant="ghost" className="h-9 justify-start gap-3 px-2 text-primary">
-      <SunIcon className="size-4.5 text-primary" />
-      {t('appearance')}
-    </Button>
-  ) : (
-    <Button
-      variant="ghost"
-      size="icon"
-      className="size-8 text-primary"
-      title={t('appearance')}
-      aria-label={t('appearance')}
-    >
-      <SunIcon className="size-4.5" />
-    </Button>
   );
 }
 
@@ -144,7 +123,9 @@ export default function Header({ locale, minimal, unfix }: { locale: string; min
               <ClientLocaleProvider keys={['LanguageSelect']}>
                 <LanguageSelect locale={locale} />
               </ClientLocaleProvider>
-              <AppearanceButton />
+              <ClientLocaleProvider keys={['AppearanceMenu']}>
+                <AppearanceMenu />
+              </ClientLocaleProvider>
             </>
           )}
 
@@ -179,7 +160,9 @@ export default function Header({ locale, minimal, unfix }: { locale: string; min
                   <LanguageSelect mobile locale={locale} />
                 </ClientLocaleProvider>
               )}
-              <AppearanceButton mobile />
+              <ClientLocaleProvider keys={['AppearanceMenu']}>
+                <AppearanceMenu mobile />
+              </ClientLocaleProvider>
 
               {showLinks && (
                 <div className="mt-3">

@@ -110,14 +110,14 @@ export default async function ContentEntryPage(props: Props) {
 
   return (
     <>
-      <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-center gap-4 2xl:justify-between">
+      <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-center gap-4 wide-layout:justify-between">
         <ClientLocaleProvider keys={['DocsNonContentRightSidebar']}>
           <DocsContentTOCSidebar headings={headings} />
         </ClientLocaleProvider>
 
-        <main className="min-h-[86vh] flex-1 overflow-auto px-2 pt-2 pb-4 sm:min-h-auto sm:max-w-5xl 2xl:px-0">
+        <main className="min-h-[86vh] flex-1 overflow-auto px-2 pt-2 pb-4 sm:min-h-auto sm:max-w-5xl xl:px-0">
           {/* Inner sidebar for small reading width */}
-          <DocsEntryPage page={page} project={project} rightSidebar={<RightSidebar className="2xl:hidden" />} />
+          <DocsEntryPage page={page} project={project} rightSidebar={<RightSidebar className="wide-layout:hidden" />} />
 
           {page.frontmatter.history && (
             <TogglableContent title={u('toggle')} className="mb-6">
@@ -137,7 +137,7 @@ export default async function ContentEntryPage(props: Props) {
         </main>
 
         {/* Outer sidebar for large screens */}
-        <RightSidebar className="hidden 2xl:flex" />
+        <RightSidebar className="hidden wide-layout:flex" />
       </div>
     </>
   );

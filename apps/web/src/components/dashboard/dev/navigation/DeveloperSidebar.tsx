@@ -30,10 +30,15 @@ export function DeveloperSidebar({ profile, logoutAction, ...props }: Props) {
   usePreventBuggyScrollLock();
   const t = useTranslations('DeveloperSidebar');
 
-  const teams = [
+  const contexts = [
     {
-      name: t('teams.personal'),
+      name: t('context.personal'),
       logo: UserIcon
+    },
+    {
+      name: t('context.admin'),
+      logo: WrenchIcon,
+      url: '/admin'
     }
   ];
   const mainEntries = [
@@ -64,7 +69,7 @@ export function DeveloperSidebar({ profile, logoutAction, ...props }: Props) {
       {...props}
     >
       <SidebarHeader>
-        <DevSidebarContextSwitcher teams={teams} />
+        <DevSidebarContextSwitcher contexts={contexts} />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -80,17 +85,6 @@ export function DeveloperSidebar({ profile, logoutAction, ...props }: Props) {
         </SidebarGroup>
 
         <DevSidebarMainNav groups={mainEntries} />
-
-        {profile.role === 'admin' && (
-          <div className="mt-auto px-2">
-            <SidebarGroup className="rounded-sm border border-destructive-secondary">
-              <SidebarGroupLabel>{t('groups.admin')}</SidebarGroupLabel>
-              <SidebarMenu>
-                <DevSidebarMenuItem url="/admin" matcher={/^\/admin?$/} icon={WrenchIcon} title={t('nav.admin')} />
-              </SidebarMenu>
-            </SidebarGroup>
-          </div>
-        )}
       </SidebarContent>
       <SidebarFooter>
         <DevSidebarUser profile={profile} logoutAction={logoutAction} />

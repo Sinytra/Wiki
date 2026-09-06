@@ -6,6 +6,7 @@ import { getProcessURL } from '@/lib/utils';
 import { cn } from '@repo/ui/lib/utils';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import NavProgressBar from '@repo/ui/navigation/NavProgressBar';
+import AppearanceScript from '@/components/navigation/appearance/AppearanceScript';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,9 +34,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   };
 
   return (
-    <html lang="en" data-theme="dark" className="cc--darkmode">
+    <html lang="en" data-theme="dark" className="cc--darkmode" suppressHydrationWarning>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <AppearanceScript />
       </head>
       <body className={cn(inter.className, 'flex min-h-screen flex-col bg-primary text-primary')}>
         <NavProgressBar>

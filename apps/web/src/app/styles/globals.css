@@ -10,6 +10,14 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+@custom-variant wide-layout {
+    @media (width >= 96rem) {
+        &:where(:not(.reading-width-standard, .reading-width-standard *)) {
+            @slot;
+        }
+    }
+}
+
 @plugin 'tailwind-scrollbar';
 @plugin '@tailwindcss/typography';
 

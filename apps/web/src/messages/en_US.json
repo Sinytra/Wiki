@@ -10,10 +10,23 @@
     "badge": {
       "preview": "PREVIEWER"
     },
-    "appearance": "Appearance",
     "link": {
       "browse": "Browse",
       "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "standard": "Standard",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -613,19 +626,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "Personal"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "Projects",
-      "platform": "Platform",
-      "admin": "Administration"
+      "platform": "Platform"
     },
     "nav": {
       "projects": "Projects",
       "documentation": "Documentation",
-      "settings": "Settings",
-      "admin": "System settings"
+      "settings": "Settings"
     }
   },
   "DevSidebarContextSwitcher": {

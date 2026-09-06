@@ -14,12 +14,12 @@ export default function DocsContentMetaSidebar(props: Props) {
       className={cn(
         'not-prose flex shrink-0 flex-col',
         'scrollbar-thumb-secondary scrollbar-track-secondary/20 scrollbar-thin space-y-2 overflow-y-auto',
-        'float-right clear-right 2xl:float-none 2xl:clear-none',
-        'pb-6 sm:mb-4 sm:ml-4 sm:w-72 sm:pb-0 2xl:m-0 2xl:w-80 2xl:p-4',
+        'float-right clear-right wide-layout:float-none wide-layout:clear-none',
+        'pb-6 sm:mb-4 sm:ml-4 sm:w-72 sm:pb-0 wide-layout:m-0 wide-layout:w-80 wide-layout:p-4',
         props.className
       )}
     >
-      <div className="mb-4 hidden items-center justify-between 2xl:flex">
+      <div className="mb-4 hidden items-center justify-between wide-layout:flex">
         <h3 className="text-sm font-semibold text-secondary">{props.title}</h3>
       </div>
 
