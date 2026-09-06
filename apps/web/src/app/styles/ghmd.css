@@ -29,8 +29,8 @@
 /* Style the footnotes section. */
 .footnotes {
     font-size: smaller;
-    color: var(--text-color-footnote);
-    border-top: 1px solid var(--border-color-footnote);
+    color: var(--text-color-secondary);
+    border-top: 1px solid var(--border-color-secondary);
 }
 
 /* Hide the section label for visual users. */

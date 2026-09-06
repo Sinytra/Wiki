@@ -26,7 +26,7 @@ type Props = React.ComponentProps<typeof Sidebar>;
 function AdminSidebarHeader() {
   return (
     <div
-      className={`flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive-secondary py-3`}
+      className={`flex w-full flex-col items-center justify-center gap-4 rounded-sm border border-destructive/70 py-3`}
     >
       <div>
         <ServerCogIcon width={32} height={32} />

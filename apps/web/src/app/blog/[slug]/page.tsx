@@ -63,7 +63,7 @@ const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
       <BlogHeader hideSubtext={true} />
 
       <div className="mb-8 text-center">
-        <time dateTime={post.date} className="mb-1 text-xs text-faint">
+        <time dateTime={post.date} className="mb-1 text-xs text-tertiary">
           {format(parseISO(post.date), 'LLLL d, yyyy')}
         </time>
         <h1 className="text-3xl font-bold">{post.title}</h1>

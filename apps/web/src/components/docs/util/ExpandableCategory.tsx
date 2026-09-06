@@ -23,7 +23,7 @@ export default function ExpandableCategory({
       <td>
         <div className="mb-0! w-full border-separate [&_td]:border-none">
           <div
-            className={`flex w-full cursor-pointer flex-row items-center rounded-sm border-none bg-primary-dim p-1.5 px-2 select-none hover:bg-secondary/50`}
+            className="flex w-full cursor-pointer flex-row items-center rounded-sm border-none bg-primary-alt p-1.5 px-2 select-none hover:bg-secondary/50"
             onClick={() => setOpen(!open)}
             data-state={open ? 'open' : 'closed'}
           >

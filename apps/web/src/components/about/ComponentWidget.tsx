@@ -12,7 +12,7 @@ export default function ComponentWidget({
   return (
     <a href={`components/${href}`}>
       <div
-        className={`flex h-full min-w-72 flex-col gap-2 rounded-md border border-secondary bg-primary-dim px-4 py-2.5 hover:bg-secondary`}
+        className={`flex h-full min-w-72 flex-col gap-2 rounded-md border border-secondary bg-primary-alt px-4 py-2.5 hover:bg-secondary`}
       >
         <div className="flex flex-row items-center gap-2">
           <Icon className="size-4.5" />

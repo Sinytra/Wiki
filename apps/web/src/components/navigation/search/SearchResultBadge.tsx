@@ -7,7 +7,7 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        project: 'border-info bg-secondary text-secondary-alt hover:bg-secondary/80',
+        project: 'border-brand-primary bg-secondary text-secondary-alt hover:bg-secondary/80',
         documentation: 'border-secondary-alt bg-secondary text-secondary-alt hover:bg-secondary/80',
         content: 'border-warning bg-secondary text-secondary-alt hover:bg-secondary/80'
       }

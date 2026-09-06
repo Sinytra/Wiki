@@ -16,7 +16,7 @@ export default function TogglableContent({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className={cn(className, 'w-full rounded-sm border border-secondary-dim')}>
+    <div className={cn(className, 'w-full rounded-sm border border-tertiary')}>
       <button
         className="inline-flex w-full items-center justify-between bg-secondary p-2"
         onClick={() => setOpen(!open)}
@@ -26,7 +26,7 @@ export default function TogglableContent({
         <ToggleChevron active={open} />
       </button>
 
-      {open && <div className="rounded-sm bg-primary-dim p-4">{children}</div>}
+      {open && <div className="rounded-sm bg-primary-alt p-4">{children}</div>}
     </div>
   );
 }

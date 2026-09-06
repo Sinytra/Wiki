@@ -22,7 +22,7 @@ function AdminHeader() {
   return (
     <div
       className={cn(
-        'flex w-full flex-row justify-between rounded-sm border border-secondary-dim bg-primary-alt',
+        'flex w-full flex-row justify-between rounded-sm border border-tertiary bg-primary-alt',
         'px-4 py-2.5 shadow-sm'
       )}
     >
@@ -41,8 +41,8 @@ function AdminHeader() {
 
 function DataWidget({ title, value, icon }: { title: string; value: any; icon: ReactNode }) {
   return (
-    <div className="flex flex-row rounded-sm border border-secondary-dim bg-accent [&>div]:py-1">
-      <div className="flex flex-row items-center gap-2 rounded-sm border-r border-secondary-dim bg-primary pr-2 pl-2">
+    <div className="flex flex-row rounded-sm border border-tertiary bg-accent [&>div]:py-1">
+      <div className="flex flex-row items-center gap-2 rounded-sm border-r border-tertiary bg-primary pr-2 pl-2">
         <div className="text-primary">{icon}</div>
 
         <span className="text-sm font-medium">{title}</span>

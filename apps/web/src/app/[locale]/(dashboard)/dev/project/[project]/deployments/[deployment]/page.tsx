@@ -52,7 +52,7 @@ function DeploymentIssues({ issues }: { issues: ProjectIssueInfo[] }) {
   const t = useTranslations('DeploymentIssues');
 
   return (
-    <div className="flex flex-col gap-1 rounded-sm border border-tertiary bg-primary-dim p-3">
+    <div className="flex flex-col gap-1 rounded-sm border border-tertiary bg-primary-alt p-3">
       <div className="flex flex-row items-center gap-2">
         <span className="text-base">{t('title')}</span>
       </div>
@@ -73,17 +73,15 @@ function DeploymentIssues({ issues }: { issues: ProjectIssueInfo[] }) {
 // TODO Locales
 function DeploymentInfoWidget({ deployment }: { deployment: DeploymentInfoType }) {
   return (
-    <div
-      className={`grid grid-cols-2 gap-4 rounded-sm border border-tertiary bg-primary-dim p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]`}
-    >
+    <div className="grid grid-cols-2 gap-4 rounded-sm border border-tertiary bg-primary-alt p-3 xl:grid-cols-4 [&>div]:flex-[0_1_auto]">
       <StatusInfoColumn name="Activation">
         {deployment.active ? (
-          <Badge variant="secondary" className="border-lightblue-primary px-2 text-lightblue-primary">
+          <Badge variant="secondary" className="border-brand-primary px-2 text-brand-primary">
             <GlobeIcon className="mr-2 size-3" />
             Current
           </Badge>
         ) : (
-          <Badge variant="secondary" className="border-muted px-2 text-muted">
+          <Badge variant="secondary" className="border-primary px-2 text-secondary">
             <ClockFadingIcon className="mr-2 size-3" />
             Inactive
           </Badge>
@@ -107,7 +105,7 @@ function DeploymentGitCoordinates({ deployment }: { deployment: DeploymentInfoTy
   const t = useTranslations('DevProjectDeploymentPage.git-config');
 
   return (
-    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-dim p-3">
+    <div className="flex flex-col gap-2 rounded-sm border border-tertiary bg-primary-alt p-3">
       <div className="flex flex-row items-center gap-2">
         <span className="text-base">{t('title')}</span>
       </div>

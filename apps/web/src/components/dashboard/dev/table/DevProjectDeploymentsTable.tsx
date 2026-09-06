@@ -17,9 +17,7 @@ import FormWrapper from '@/components/modal/FormWrapper';
 
 function EmptyDeploymentsState() {
   return (
-    <div
-      className={`flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-sm border border-tertiary bg-primary-dim py-8`}
-    >
+    <div className="flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-sm border border-tertiary bg-primary-alt py-8">
       <div className="opacity-60">
         <ServerOffIcon className="size-12" />
       </div>
@@ -39,9 +37,7 @@ function EmptyDeploymentsState() {
 
 function DeploymentEntry({ deployment }: { deployment: DeploymentInfo }) {
   return (
-    <div
-      className={`flex w-full flex-1 flex-col gap-3 rounded-sm bg-primary-dim p-4 hover:bg-primary sm:flex-row sm:items-center sm:gap-0 sm:rounded-none sm:p-3 sm:first:rounded-t-sm sm:last:rounded-b-sm`}
-    >
+    <div className="flex w-full flex-1 flex-col gap-3 rounded-sm bg-primary-alt p-4 hover:bg-primary sm:flex-row sm:items-center sm:gap-0 sm:rounded-none sm:p-3 sm:first:rounded-t-sm sm:last:rounded-b-sm">
       <div className="flex flex-2 flex-row items-center gap-2">
         <span className="font-mono text-sm">{deployment.id.substring(0, 9)}</span>
 
@@ -121,12 +117,12 @@ export default function DevProjectDeploymentsTable({ data }: { data: PaginatedDa
   return (
     <div>
       {data.data.length > 0 ? (
-        <div className="flex border-collapse flex-col gap-2 rounded-sm border-secondary-dim sm:gap-0 sm:border">
+        <div className="flex border-collapse flex-col gap-2 rounded-sm border-tertiary sm:gap-0 sm:border">
           {...data.data.map((d) => (
             <LocaleNavLink
               key={d.id}
               href={`deployments/${d.id}`}
-              className={`rounded-sm border border-secondary-dim sm:rounded-none sm:border-0 sm:[&:not(:first-of-type)]:border-t`}
+              className={`rounded-sm border border-tertiary sm:rounded-none sm:border-0 sm:[&:not(:first-of-type)]:border-t`}
             >
               <DeploymentEntry deployment={d} />
             </LocaleNavLink>

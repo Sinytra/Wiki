@@ -26,7 +26,7 @@ export default function DataMigrationWidget({
   return (
     <form
       action={formAction}
-      className="flex flex-row items-center justify-between rounded-sm border border-tertiary bg-primary-dim p-3"
+      className="flex flex-row items-center justify-between rounded-sm border border-tertiary bg-primary-alt p-3"
     >
       <div className="flex flex-col gap-1">
         <span className="text-base font-medium">{migration.title}</span>

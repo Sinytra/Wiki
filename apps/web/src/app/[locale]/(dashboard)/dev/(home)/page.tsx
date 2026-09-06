@@ -169,7 +169,7 @@ async function DevProjectsListEntry({ project }: { project: DevProjectData }) {
   return (
     <div
       className={cn(
-        'flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-dim p-3',
+        'flex w-full flex-col justify-between gap-2 rounded-md border border-tertiary bg-primary-alt p-3',
         'sm:flex-row sm:gap-4'
       )}
     >

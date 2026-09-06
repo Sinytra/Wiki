@@ -135,12 +135,10 @@ export default function BrowseProject({ project }: { project: BrowseProjectData 
   const platformProject = platforms.getPlatformProject(project);
 
   return (
-    <div
-      className={`flex w-full flex-row items-center gap-3 rounded-sm border border-tertiary bg-primary-dim px-3 py-2 sm:gap-4 sm:py-3`}
-    >
+    <div className="flex w-full flex-row items-center gap-3 rounded-sm border border-tertiary bg-primary-alt px-3 py-2 sm:gap-4 sm:py-3">
       <Suspense
         fallback={
-          <div className="flex size-16 shrink-0 items-center justify-center rounded-sm bg-primary-dim sm:size-20">
+          <div className="flex size-16 shrink-0 items-center justify-center rounded-sm bg-primary-alt sm:size-20">
             <BoxIcon strokeWidth={1} className="size-12 text-secondary opacity-20 sm:size-16" />
           </div>
         }

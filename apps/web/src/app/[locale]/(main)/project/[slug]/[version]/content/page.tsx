@@ -75,7 +75,7 @@ function ContentCategory({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: Pro
 
   return (
     <div className="bg-primary-alt/50">
-      <div className="flex flex-col gap-2 rounded-sm border border-secondary-dim px-3 py-2">
+      <div className="flex flex-col gap-2 rounded-sm border border-tertiary px-3 py-2">
         <span className="border-b border-tertiary pb-1 text-lg font-medium">{entry.name}</span>
         {enableCategories ? (
           <div className="flex flex-col gap-1">

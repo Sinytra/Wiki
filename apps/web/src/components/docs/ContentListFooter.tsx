@@ -51,7 +51,7 @@ function Category({
       {subCategories.map((i) => (
         <div
           key={i.path}
-          className={`flex flex-col gap-2 bg-primary-dark! p-2 first:rounded-t-sm last:rounded-b-sm sm:flex-row sm:items-center`}
+          className="flex flex-col gap-2 bg-primary-alt! p-2 first:rounded-t-sm last:rounded-b-sm sm:flex-row sm:items-center"
         >
           <div className="self-center text-right text-sm font-medium sm:w-[1%] sm:min-w-24">{i.name}</div>
           <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(10em,1fr))] gap-2">
@@ -80,7 +80,7 @@ export default function ContentListFooter({ currentId, project, ctx, contents }:
   return (
     <div className="not-prose p-2">
       <table
-        className={`w-full border-separate rounded-sm border border-tertiary bg-primary-dim p-2.5 [&_td]:border-none [&_tr]:bg-primary-dim`}
+        className={`w-full border-separate rounded-sm border border-tertiary bg-primary-alt p-2.5 [&_td]:border-none [&_tr]:bg-primary-alt`}
       >
         <thead className="mb-2 table w-full">
           <tr>
