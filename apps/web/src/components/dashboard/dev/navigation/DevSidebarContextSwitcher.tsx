@@ -44,7 +44,7 @@ export function DevSidebarContextSwitcher({ contexts }: Props) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton size="lg" className="data-[state=open]:bg-secondary data-[state=open]:text-primary-alt">
               <div
-                className={`flex aspect-square size-8 items-center justify-center rounded-sm bg-gray-600 text-primary-alt`}
+                className={`flex aspect-square size-8 items-center justify-center rounded-sm bg-placeholder text-primary-alt`}
               >
                 {/*@ts-expect-error min-size*/}
                 <activeCtx.logo className="size-4" />

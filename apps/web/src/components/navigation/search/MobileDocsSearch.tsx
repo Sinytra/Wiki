@@ -23,7 +23,7 @@ function SearchResultWidget({ result }: { result: WikiSearchResult }) {
   return (
     <NavLink
       href={result.href}
-      className={`z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5 text-primary`}
+      className={`z-50 flex cursor-pointer flex-row gap-2 rounded-xs border border-secondary bg-primary-alt px-1 py-1.5 text-primary`}
     >
       <div className="size-[48px] shrink-0 overflow-hidden rounded-xs p-1">
         <ImageWithFallback
@@ -61,7 +61,7 @@ function LoadingSearchState() {
 
   return (
     <div
-      className={`z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5 text-secondary`}
+      className={`z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-secondary bg-primary-alt px-1 py-1.5 text-secondary`}
     >
       <LoaderCircleIcon className="mr-2 h-5 w-5 animate-spin" />
       {t('loading')}
@@ -74,7 +74,7 @@ function NoSearchResults() {
 
   return (
     <div
-      className={`z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-neutral-700 bg-primary-alt px-1 py-1.5 text-secondary`}
+      className={`z-50 flex h-16 flex-row items-center justify-center gap-2 rounded-xs border border-secondary bg-primary-alt px-1 py-1.5 text-secondary`}
     >
       {t('no_results')}
     </div>
@@ -175,7 +175,7 @@ function SearchScreen({
               type="text"
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
-              className={`w-full cursor-pointer rounded-xs border border-neutral-700 bg-primary-alt p-2 px-8 text-center text-sm text-ellipsis placeholder:text-neutral-500 focus:cursor-text focus:outline-1 focus:outline-secondary`}
+              className={`w-full cursor-pointer rounded-xs border border-secondary bg-primary-alt p-2 px-8 text-center text-sm text-ellipsis placeholder:text-tertiary focus:cursor-text focus:outline-1 focus:outline-secondary`}
               placeholder={t('placeholder')}
               autoFocus
             />

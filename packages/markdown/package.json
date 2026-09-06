@@ -7,7 +7,6 @@
   },
   "exports": {
     ".": "./src/index.ts",
-    "./highlighter": "./src/highlighter.tsx",
     "./remark-alert": "./src/plugins/alert.ts",
     "./remark-hint": "./src/plugins/hint/index.ts"
   },

@@ -37,7 +37,7 @@ export default async function Preview(props: { params: Promise<{ locale: string 
 
         <span className="my-2 font-medium">{t('roots')}</span>
 
-        <hr className="my-2 border-neutral-600" />
+        <hr className="border-primary my-2" />
 
         <div className="my-3 flex flex-col">
           {localSources.map((s, index) => (

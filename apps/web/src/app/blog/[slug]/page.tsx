@@ -63,7 +63,7 @@ const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
       <BlogHeader hideSubtext={true} />
 
       <div className="mb-8 text-center">
-        <time dateTime={post.date} className="mb-1 text-xs text-gray-600">
+        <time dateTime={post.date} className="mb-1 text-xs text-faint">
           {format(parseISO(post.date), 'LLLL d, yyyy')}
         </time>
         <h1 className="text-3xl font-bold">{post.title}</h1>
@@ -81,7 +81,7 @@ const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
       <div className="mx-2 mt-8 flex min-h-[100vh] flex-1 pb-24">
         <div className="flex w-full flex-col items-center gap-4">
           <div
-            className={`prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-neutral-700 prose-h2:pb-1 prose-a:text-link prose-a:decoration-1 prose-a:underline-offset-4 prose-a:hover:text-link-hover prose-a:hover:underline`}
+            className={`prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-secondary prose-h2:pb-1 prose-a:text-link prose-a:decoration-1 prose-a:underline-offset-4 prose-a:hover:text-link-hover prose-a:hover:underline`}
           >
             <MDXContent components={components} />
           </div>

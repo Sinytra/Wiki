@@ -83,7 +83,7 @@ function DeploymentInfoWidget({ deployment }: { deployment: DeploymentInfoType }
             Current
           </Badge>
         ) : (
-          <Badge variant="secondary" className="border-gray-600 px-2 text-gray-400">
+          <Badge variant="secondary" className="border-muted px-2 text-muted">
             <ClockFadingIcon className="mr-2 size-3" />
             Inactive
           </Badge>

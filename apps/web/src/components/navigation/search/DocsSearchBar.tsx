@@ -234,7 +234,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
       )}
     >
       <div className="relative w-full">
-        <SearchIcon className="inset absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
+        <SearchIcon className="inset absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 text-tertiary" />
 
         {project && focused && (
           <div
@@ -255,7 +255,7 @@ export default function DocsSearchBar({ locale }: { locale: string }) {
           ref={inputRef}
           className={cn(
             'h-7 w-full cursor-pointer rounded-sm border border-secondary/60 bg-primary px-8 transition-colors',
-            'text-center text-sm text-ellipsis placeholder:text-neutral-500 hover:border-secondary',
+            'text-center text-sm text-ellipsis placeholder:text-tertiary hover:border-secondary',
             'focus:cursor-text focus:border-secondary focus:bg-primary-dim focus:shadow-md focus:outline-none'
           )}
           onChange={(e) => handleSearch(e.target.value)}

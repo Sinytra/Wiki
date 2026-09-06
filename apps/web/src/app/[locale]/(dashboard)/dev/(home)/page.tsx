@@ -51,7 +51,7 @@ function ProjectsListHeader() {
         </ClientLocaleProvider>
       </div>
 
-      <hr className="my-3 flex w-full border-neutral-600" />
+      <hr className="my-3 flex w-full border-primary" />
     </div>
   );
 }
@@ -210,7 +210,7 @@ async function DevProjectsListEntry({ project }: { project: DevProjectData }) {
 
           <div className="ml-auto">
             <LocaleNavLink href={getProjectLink(project.id)}>
-              <Button className="h-8 border border-neutral-700" variant="ghost" size="sm">
+              <Button className="h-8 border border-secondary" variant="ghost" size="sm">
                 <SettingsIcon className="mr-2 h-4 w-4" />
                 {t('project.manage')}
               </Button>
