@@ -15,6 +15,8 @@ import ContentListFooter from '@/components/docs/ContentListFooter';
 import DocsContentPageToolsFooter from '@/components/docs/layout/DocsContentPageToolsFooter';
 import issuesApi from '@repo/shared/api/issuesApi';
 import DocsPageErrorBase from '@/components/docs/error/DocsPageErrorBase';
+import { markdownAlternate } from '@/lib/discovery/rawPage';
+import { contentPagePath } from '@/lib/discovery/navigation';
 
 interface Props {
   params: Promise<{
@@ -26,7 +28,8 @@ interface Props {
 }
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const { id: encodedId, slug, version, locale } = await props.params;
+  const params = await props.params;
+  const { id: encodedId, slug, version, locale } = params;
   const id = decodeURIComponent(encodedId);
   const ctx = { id: slug, version, locale };
 
@@ -55,6 +58,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     openGraph: {
       images: [`/api/og?slug=${slug}&locale=${locale}&id=${id}`]
     },
+    alternates: markdownAlternate(contentPagePath(params, id)),
     other: {
       docs_source_mod: platformProject.name,
       docs_source_icon: platformProject.icon_url,

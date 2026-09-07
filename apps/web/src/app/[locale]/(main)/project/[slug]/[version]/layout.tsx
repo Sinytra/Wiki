@@ -9,6 +9,7 @@ import platforms from '@repo/shared/platforms';
 import { Metadata, ResolvingMetadata } from 'next';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import LocalSearchSetter from '@/components/navigation/search/LocalSearchSetter';
+import { projectLlmsTxtPath } from '@/lib/discovery/navigation';
 
 export const fetchCache = 'default-cache';
 
@@ -45,7 +46,8 @@ export async function generateMetadata(
 }
 
 export default async function HomepageLayout(props: LayoutProps) {
-  const { slug, version, locale } = await props.params;
+  const params = await props.params;
+  const { slug, version, locale } = params;
   const ctx = { id: slug, version, locale };
   const { children } = props;
   setContextLocale(locale);
@@ -62,6 +64,8 @@ export default async function HomepageLayout(props: LayoutProps) {
 
   return (
     <LeftSidebarContextProvider>
+      <link rel="describedby" href={projectLlmsTxtPath(params)} />
+
       <DocsSidebarContextProvider>
         <LocalSearchSetter project={project}>
           <ClientLocaleProvider

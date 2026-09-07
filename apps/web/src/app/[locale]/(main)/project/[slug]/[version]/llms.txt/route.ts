@@ -2,11 +2,18 @@ import service from '@/lib/service';
 import platforms, { PlatformProject } from '@repo/shared/platforms';
 import locales, { Language } from '@repo/shared/locales';
 import { absoluteUrl, ModelLink, renderLanguageModelsTxt } from '@/lib/discovery/langMods';
-import { plainTextError, plainTextNotFound, plainTextResponse, RAW_PAGE_SUFFIX } from '@/lib/discovery/rawPage';
+import {
+  plainTextError,
+  plainTextNotFound,
+  projectLlmsTxtResponse,
+  RAW_PAGE_SUFFIX,
+  rawPagePath
+} from '@/lib/discovery/rawPage';
 import { DEFAULT_DOCS_VERSION, DEFAULT_WIKI_LICENSE } from '@repo/shared/constants';
 import { FileTree } from '@repo/shared/types/service';
 import { ProjectRouteParams } from '@repo/shared/types/routes';
 import { ProjectData } from '@sinytra/wiki-api-types';
+import { docsHomepagePath, docsPagePath } from '@/lib/discovery/navigation';
 
 interface Props {
   params: Promise<ProjectRouteParams>;
@@ -49,7 +56,8 @@ on the page itself.
 }
 
 export async function GET(_request: Request, props: Props) {
-  const { slug, version, locale } = await props.params;
+  const params = await props.params;
+  const { slug, version, locale } = params;
   const ctx = { id: slug, version, locale };
 
   let project, projectData, indexPage;
@@ -92,12 +100,12 @@ export async function GET(_request: Request, props: Props) {
             ? [
                 {
                   title: 'Documentation homepage',
-                  url: `${baseUrl}/docs${RAW_PAGE_SUFFIX}`,
+                  url: absoluteUrl(rawPagePath(docsHomepagePath(params))),
                   desc: `Introduction to ${project.name}`
                 }
               ]
             : []),
-          ...collectDocsLinks(projectData.tree, baseUrl)
+          ...collectDocsLinks(projectData.tree, params)
         ]
       },
       ...(project.info.content_count > 0
@@ -133,18 +141,18 @@ export async function GET(_request: Request, props: Props) {
     ]
   });
 
-  return plainTextResponse(body);
+  return projectLlmsTxtResponse(body);
 }
 
-function collectDocsLinks(tree: FileTree, baseUrl: string, breadcrumb: string[] = []): ModelLink[] {
+function collectDocsLinks(tree: FileTree, params: ProjectRouteParams, breadcrumb: string[] = []): ModelLink[] {
   return tree.flatMap((entry) => {
     if (entry.type === 'dir') {
-      return collectDocsLinks(entry.children, baseUrl, [...breadcrumb, entry.name]);
+      return collectDocsLinks(entry.children, params, [...breadcrumb, entry.name]);
     }
     return [
       {
         title: entry.name,
-        url: `${baseUrl}/docs/${entry.path}${RAW_PAGE_SUFFIX}`,
+        url: absoluteUrl(rawPagePath(docsPagePath(params, [entry.path]))),
         desc: breadcrumb.length > 0 ? breadcrumb.join(' / ') : null
       }
     ];

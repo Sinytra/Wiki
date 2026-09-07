@@ -1,13 +1,15 @@
 import service from '@/lib/service';
 import { plainTextError, plainTextNotFound, rawPageResponse } from '@/lib/discovery/rawPage';
 import { ContentRouteParams } from '@repo/shared/types/routes';
+import { contentPagePath } from '@/lib/discovery/navigation';
 
 interface Props {
   params: Promise<ContentRouteParams>;
 }
 
 export async function GET(request: Request, props: Props) {
-  const { slug, version, locale, id: encodedId } = await props.params;
+  const params = await props.params;
+  const { slug, version, locale, id: encodedId } = params;
   const ctx = { id: slug, version, locale };
   const ref = decodeURIComponent(encodedId);
 
@@ -24,5 +26,5 @@ export async function GET(request: Request, props: Props) {
     );
   }
 
-  return rawPageResponse(page);
+  return rawPageResponse(page, contentPagePath(params, ref), params);
 }

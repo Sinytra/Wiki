@@ -13,6 +13,8 @@ import { RenderedDocsPage } from '@repo/shared/types/service';
 import issuesApi from '@repo/shared/api/issuesApi';
 import DocsGuideContentRightSidebar from '@/components/docs/side/guide/DocsGuideContentRightSidebar';
 import DocsPageErrorBase from '@/components/docs/error/DocsPageErrorBase';
+import { markdownAlternate } from '@/lib/discovery/rawPage';
+import { docsPagePath } from '@/lib/discovery/navigation';
 
 export async function generateMetadata(
   props: {
@@ -25,7 +27,8 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug, version, locale, path } = await props.params;
+  const params = await props.params;
+  const { slug, version, locale, path } = params;
   const ctx = { id: slug, version, locale };
 
   const project = await service.getProject(ctx);
@@ -53,6 +56,7 @@ export async function generateMetadata(
     openGraph: {
       images: [`/api/og?slug=${slug}&locale=${locale}&path=${path.join('/')}&version=${version}`]
     },
+    alternates: markdownAlternate(docsPagePath(params, path)),
     other: {
       docs_source_mod: platformProject.name,
       docs_source_icon: platformProject.icon_url,

@@ -34,7 +34,7 @@ import { ProjectStatus } from '@sinytra/wiki-api-types';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 import LiveProjectDeployConnection from '@/components/dashboard/dev/project/LiveProjectDeployConnection';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
-import navigation from '@/lib/navigation';
+import navigation from '@/lib/discovery/navigation';
 import DataField from '@/components/util/DataField';
 import NewProjectBanner from '@/components/dashboard/dev/banner/NewProjectBanner';
 

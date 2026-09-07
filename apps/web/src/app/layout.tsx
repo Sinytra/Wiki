@@ -38,6 +38,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en" data-theme="dark" className="cc--darkmode" suppressHydrationWarning>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <link rel="describedby" href="/llms.txt" />
         <AppearanceScript />
       </head>
       <body className={cn(inter.className, 'flex min-h-screen flex-col bg-primary text-primary')}>

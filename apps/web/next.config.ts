@@ -16,15 +16,15 @@ const nextConfig: NextConfig = {
     return {
       beforeFiles: [
         {
-          source: '/:locale/project/:slug/:version/docs.txt',
+          source: '/:locale/project/:slug/:version/docs.md',
           destination: '/api/raw/:locale/:slug/:version/docs'
         },
         {
-          source: '/:locale/project/:slug/:version/docs/:path(.*)\\.txt',
+          source: '/:locale/project/:slug/:version/docs/:path(.*)\\.md',
           destination: '/api/raw/:locale/:slug/:version/docs/:path'
         },
         {
-          source: '/:locale/project/:slug/:version/content/:id.txt',
+          source: '/:locale/project/:slug/:version/content/:id.md',
           destination: '/api/raw/:locale/:slug/:version/content/:id'
         }
       ],
