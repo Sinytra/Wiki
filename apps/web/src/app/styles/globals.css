@@ -1,5 +1,4 @@
 @import './ghmd.css' layer(base);
-@import './colors.css';
 @import './fonts.css';
 @import "./theme.css" layer(theme);
 
@@ -78,39 +77,6 @@
 }
 
 @layer base {
-    :root {
-        --background: var(--vp-c-bg);
-        --foreground: var(--vp-c-text-1);
-        --card: var(--vp-c-bg-alt);
-        --card-foreground: 0 0% 98%;
-        --popover: var(--vp-c-bg-alt);
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 240 5.9% 10%;
-        --secondary: 240 3.7% 15.9%;
-        --secondary-foreground: rgba(235, 235, 245, 0.74);
-        --muted: var(--vp-c-bg-alt);
-        --muted-foreground: var(--vp-c-text-2);
-        --accent: 240 3.7% 15.9%;
-        --accent-foreground: 0 0% 98%;
-        --warning: rgb(239, 166, 62);
-        --warning-border: rgba(218, 139, 23, 70%);
-        --destructive: var(--vp-c-danger-3);
-        --destructive-bright: rgb(251, 108, 111);
-        --destructive-border: rgba(224, 87, 91, 75%);
-        --destructive-border-dim: rgba(224, 87, 91, 55%);
-        --destructive-foreground: 0 0% 98%;
-        --callout-border: rgba(235, 235, 245, 40%);
-        --border: 240 3.7% 15.9%;
-        --input: 240 3.7% 15.9%;
-        --ring: var(--vp-c-text-3);
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
-    }
-
     hr {
         @apply border-tertiary;
     }
@@ -144,19 +110,19 @@
 }
 
 @utility top-nav-height {
-    top: calc(var(--vp-nav-height));
+    top: calc(var(--nav-height));
 }
 
 @utility top-nav-height-ext {
-    top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height));
+    top: calc(var(--nav-height) + var(--sub-nav-height));
 }
 
 @utility h-nav {
-    height: var(--vp-nav-height);
+    height: var(--nav-height);
 }
 
 @utility h-subnav {
-    height: var(--vp-sub-nav-height);
+    height: var(--sub-nav-height);
 }
 
 @layer utilities {
@@ -177,7 +143,7 @@
     html {
         overflow: auto;
         scrollbar-gutter: stable;
-        scroll-padding-top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height) + 6px);
+        scroll-padding-top: calc(var(--nav-height) + var(--sub-nav-height) + 6px);
     }
 
     /*Prevent added margin when opening select*/
@@ -186,16 +152,16 @@
     }
 
     .page-wrapper-base {
-        padding-top: calc(var(--vp-nav-height));
+        padding-top: calc(var(--nav-height));
     }
 
     @media screen and (min-width: 768px) {
         .page-wrapper {
-            padding-top: calc(var(--vp-nav-height));
+            padding-top: calc(var(--nav-height));
         }
 
         html {
-            scroll-padding-top: calc(var(--vp-nav-height) + var(--vp-sub-nav-height) + 12px);
+            scroll-padding-top: calc(var(--nav-height) + var(--sub-nav-height) + 12px);
         }
     }
 
@@ -223,17 +189,17 @@
     ) {
         border-radius: 4px;
         padding: 3px 6px;
-        background-color: var(--vp-code-bg);
-        font-size: var(--vp-code-font-size);
-        color: var(--vp-code-color);
-        font-family: var(--vp-font-family-mono), ui-monospace;
+        background-color: var(--c-bg-code-inline);
+        font-size: 0.875em;
+        color: var(--c-brand-primary);
+        @apply font-mono;
     }
 
     .prose
     :where(a:has(code)):not(
       :where([class~='not-prose'], [class~='not-prose'] *)
     ) {
-        text-decoration-color: var(--vp-code-color) !important;
+        text-decoration-color: var(--c-brand-primary) !important;
     }
 
     .prose
@@ -447,6 +413,6 @@
 .verticalSeparator::before {
     width: 1px;
     height: 24px;
-    background-color: var(--vp-c-divider);
+    background-color: var(--c-border-tertiary);
     content: "";
 }

@@ -67,7 +67,7 @@ export function DeveloperSidebar({ profile, logoutAction, ...props }: Props) {
   return (
     <Sidebar
       variant="floating"
-      className="sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]"
+      className="sticky top-[calc(var(--nav-height))] -ml-[0.7rem] h-[94vh]"
       collapsible="offcanvas"
       {...props}
     >

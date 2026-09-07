@@ -85,7 +85,7 @@ function ProjectIssuesSummary({ stats }: { stats: ProjectIssueStats }) {
 
       <ProjectIssuesStatWidget
         title="Warnings"
-        className="border-warning/80 bg-[var(--vp-c-warning-soft)]/50 text-warning"
+        className="border-warning/80 bg-warning-soft/50 text-warning"
         count={stats.warning || 0}
         icon={TriangleAlertIcon}
       />

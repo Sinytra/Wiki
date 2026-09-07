@@ -3,9 +3,9 @@
 }
 
 .menuLink.active {
-    color: var(--vp-c-brand-1);
+    color: var(--c-brand-primary);
 }
 
 .menuLink:hover {
-    color: var(--vp-c-brand-1);
+    color: var(--c-brand-primary);
 }
