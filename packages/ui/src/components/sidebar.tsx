@@ -215,7 +215,7 @@ const Sidebar = React.forwardRef<
             ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'
             : `border-tertiary group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l`,
           className,
-          'sticky top-[calc(var(--vp-nav-height))] -ml-[0.7rem] h-[94vh]' // Custom
+          'sticky top-[calc(var(--nav-height))] -ml-[0.7rem] h-[94vh]' // Custom
         )}
         {...props}
       >

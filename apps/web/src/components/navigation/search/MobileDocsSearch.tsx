@@ -216,7 +216,7 @@ export default function MobileDocsSearch({ locale }: { locale: string }) {
   return (
     <div className="sm:hidden">
       <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
-        <SearchIcon className="h-4 w-4 text-[var(--vp-c-text-1)]" />
+        <SearchIcon className="h-4 w-4 text-primary" />
       </Button>
       <SearchScreen isOpen={isOpen} setOpen={setIsOpen} locale={locale} />
     </div>

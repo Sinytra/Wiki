@@ -69,16 +69,16 @@ table {
 }
 
 tr {
-    background-color: var(--background);
-    border-top: 1px solid var(--vp-c-divider);
+    background-color: var(--c-bg-primary);
+    border-top: 1px solid var(--c-border-tertiary);
 }
 
 th {
-    background-color: var(--vp-c-bg-soft);
+    background-color: var(--c-bg-secondary);
 }
 
 tr:nth-child(2n) {
-    background-color: var(--vp-c-bg-soft);
+    background-color: var(--c-bg-secondary);
 }
 
 td {
@@ -106,7 +106,7 @@ th {
 }
 
 td, th {
-    border: 1px solid var(--vp-c-divider);
+    border: 1px solid var(--c-border-tertiary);
 }
 
 th {

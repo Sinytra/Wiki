@@ -28,7 +28,7 @@ function BlogPost({
     <div
       className={cn(
         'rounded-sm border bg-primary-alt px-3 py-2',
-        latest ? 'border-(--vp-c-brand-1)/80' : 'border-tertiary'
+        latest ? 'border-brand-primary/80' : 'border-tertiary'
       )}
     >
       <div className="flex w-full flex-row items-center justify-between">
@@ -41,7 +41,7 @@ function BlogPost({
           </NavLink>
 
           {latest && (
-            <Badge variant="secondary" className="border-(--vp-c-brand-1)">
+            <Badge variant="secondary" className="border-brand-primary">
               {t('latest')}
             </Badge>
           )}

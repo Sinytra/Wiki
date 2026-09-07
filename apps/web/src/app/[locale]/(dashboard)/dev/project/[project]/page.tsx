@@ -75,8 +75,8 @@ function ProjectInfo({ project }: { project: DevProjectData }) {
       iconClass?: string;
     };
   } = {
-    healthy: { text: 'text-[var(--vp-c-success-2)]', icon: CheckIcon },
-    at_risk: { text: 'text-[var(--vp-c-danger-1)]', icon: AlertCircleIcon },
+    healthy: { text: 'text-success', icon: CheckIcon },
+    at_risk: { text: 'text-destructive', icon: AlertCircleIcon },
     loading: {
       text: 'text-warning',
       iconClass: 'animate-spin',

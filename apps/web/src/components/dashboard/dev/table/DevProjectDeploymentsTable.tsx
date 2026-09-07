@@ -42,7 +42,7 @@ function DeploymentEntry({ deployment }: { deployment: DeploymentInfo }) {
         <span className="font-mono text-sm">{deployment.id.substring(0, 9)}</span>
 
         {deployment.active && (
-          <Badge variant="secondary" className={'border-[var(--vp-c-brand-1)] px-2 text-[var(--vp-c-brand-1)]'}>
+          <Badge variant="secondary" className={'border-brand-primary px-2 text-brand-primary'}>
             <GlobeIcon className="mr-2 size-3" />
             Current
           </Badge>

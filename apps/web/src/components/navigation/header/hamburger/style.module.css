@@ -72,7 +72,7 @@
 .MobileNavHamburger.active:hover .top,
 .MobileNavHamburger.active:hover .middle,
 .MobileNavHamburger.active:hover .bottom {
-    background-color: var(--vp-c-text-2);
+    background-color: var(--c-text-secondary);
     transition: top .25s, background-color .25s, transform .25s;
 }
 
@@ -82,7 +82,7 @@
     position: absolute;
     width: 16px;
     height: 2px;
-    background-color: var(--vp-c-text-1);
+    background-color: var(--c-text-primary);
     transition: top .25s, background-color .5s, transform .25s;
 }
 
