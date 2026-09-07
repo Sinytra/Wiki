@@ -5,6 +5,7 @@ import {
   Frontmatter,
   Infobox,
   InfoboxTab,
+  InvItem,
   ResolvedLink
 } from '@sinytra/wiki-api-types';
 import localDocs, { LocalDocumentationSource } from './localDocsPages';
@@ -165,18 +166,33 @@ async function constructDefaultTabs(
   return tabs;
 }
 
+async function createDefaultInfoboxInventory(
+  format: ProjectFormat,
+  frontmatter: Frontmatter,
+  ctx: ProjectContext
+): Promise<InvItem[]> {
+  return Promise.all(
+    frontmatter.id.map(async (id) => {
+      const location = resourceLocation.parse(id);
+      const name = await getContentItemName(id, ctx);
+      const assetId = location ? resourceLocation.toString(format.getItemAssetLocation(location)) : id;
+
+      return {
+        id,
+        name: name?.name,
+        asset_id: assetId
+      };
+    })
+  );
+}
+
 async function constructInfobox(
   format: ProjectFormat,
   frontmatter: Frontmatter,
   ctx: ProjectContext
 ): Promise<Infobox> {
   const tabs = frontmatter.infobox?.tabs ?? (await constructDefaultTabs(format, frontmatter, ctx));
-  const inventory =
-    frontmatter.infobox?.inventory ??
-    frontmatter.id.map((id) => {
-      const location = resourceLocation.parse(id);
-      return location ? resourceLocation.toString(format.getItemAssetLocation(location)) : id;
-    });
+  const inventory = frontmatter.infobox?.inventory ?? (await createDefaultInfoboxInventory(format, frontmatter, ctx));
 
   return {
     title: frontmatter.infobox?.title ?? frontmatter.title ?? null,

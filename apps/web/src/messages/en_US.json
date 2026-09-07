@@ -473,6 +473,11 @@
   "DocsContentRightSidebar": {
     "title": "Entry information"
   },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
+  },
   "DocsNonContentRightSidebar": {
     "title": "On this page"
   },

@@ -16,6 +16,7 @@
     font-size: 16px;
     word-spacing: 4px;
     white-space: nowrap;
+    text-align: left;
     line-height: 1.25em;
     margin: 0.125em 0.25em;
     pointer-events: none;

@@ -1,4 +1,4 @@
-import { ChangelogEntry, GameContentType, Infobox } from '@sinytra/wiki-api-types';
+import { ChangelogEntry, GameContentType, InfoboxTab, InvItem } from '@sinytra/wiki-api-types';
 
 export interface FileHeading {
   depth: number;
@@ -7,7 +7,10 @@ export interface FileHeading {
   top?: boolean;
 }
 
-export interface RawInfobox extends Infobox {
+export interface RawInfobox {
+  title: string | null;
+  tabs?: Array<InfoboxTab> | null;
+  inventory?: Array<string | InvItem> | null;
   display?: Array<string> | null;
 }
 

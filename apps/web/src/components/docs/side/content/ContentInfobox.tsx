@@ -1,7 +1,7 @@
 import { ItemProperties, PageLinks, ProjectContentContext } from '@repo/shared/types/service';
 import { Frontmatter, Infobox, ProjectData } from '@sinytra/wiki-api-types';
 import InfoboxTabs from './InfoboxTabs';
-import InvSlotDisplay from './InvSlotDisplay';
+import InfoboxInvSlot from './InfoboxInvSlot';
 import ContentProperties from '@/components/docs/side/content/ContentProperties';
 import { ResolvedItemProperties } from '@/lib/project/game/properties';
 import ProjectLink from '@/components/navigation/paths/ProjectLink';
@@ -59,8 +59,8 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
         {/* Inventory */}
         {metadata.inventory && metadata.inventory.length > 0 && (
           <div className="mx-auto p-1 text-center">
-            {metadata.inventory.map((id) => (
-              <InvSlotDisplay key={id} id={id} ctx={ctx} />
+            {metadata.inventory.map((item, i) => (
+              <InfoboxInvSlot key={i} item={item} properties={properties} ctx={ctx} />
             ))}
           </div>
         )}
