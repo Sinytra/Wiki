@@ -3,7 +3,7 @@ import { AdminProjectInfo, PaginatedData } from '@sinytra/wiki-api-types';
 import { TableColumn } from '@repo/ui/blocks/data-table/dataTableTypes';
 import DataTable from '@repo/ui/blocks/data-table/DataTable';
 import LocalDateTime from '@repo/ui/util/LocalDateTime';
-import navigation from '@/lib/navigation';
+import navigation from '@/lib/discovery/navigation';
 
 export default function AdminProjectsTable({ data, page }: { data: PaginatedData<AdminProjectInfo>; page: number }) {
   const columns: TableColumn<AdminProjectInfo>[] = [

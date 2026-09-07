@@ -15,7 +15,7 @@ import ModVersionRange from '@/components/docs/ModVersionRange';
 import { getTranslations } from 'next-intl/server';
 import { resolveSoft, trimText } from '@/lib/utils';
 import { BrowseProject as BrowseProjectData } from '@sinytra/wiki-api-types';
-import navigation from '@/lib/navigation';
+import navigation from '@/lib/discovery/navigation';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 
 function ProjectIcon({ project }: { project: Promise<PlatformProject> }) {

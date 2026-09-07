@@ -28,7 +28,7 @@ import devProjectApi from '@/lib/service/api/devProjectApi';
 import { DeploymentInfo as DeploymentInfoType, ProjectIssueInfo } from '@sinytra/wiki-api-types';
 import ContextDropdownMenu from '@/components/util/ContextDropdownMenu';
 import LocalDateTime from '@repo/ui/util/LocalDateTime';
-import navigation from '@/lib/navigation';
+import navigation from '@/lib/discovery/navigation';
 import FormWrapper from '@/components/modal/FormWrapper';
 
 type Properties = {

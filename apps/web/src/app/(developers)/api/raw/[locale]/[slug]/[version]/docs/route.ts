@@ -1,9 +1,11 @@
 import service from '@/lib/service';
 import { plainTextError, plainTextNotFound, rawPageResponse } from '@/lib/discovery/rawPage';
 import { ProjectRouteParams } from '@repo/shared/types/routes';
+import { docsHomepagePath } from '@/lib/discovery/navigation';
 
 export async function GET(request: Request, props: { params: Promise<ProjectRouteParams> }) {
-  const { slug, version, locale } = await props.params;
+  const params = await props.params;
+  const { slug, version, locale } = params;
   const ctx = { id: slug, version, locale };
 
   let page;
@@ -19,5 +21,5 @@ export async function GET(request: Request, props: { params: Promise<ProjectRout
     );
   }
 
-  return rawPageResponse(page);
+  return rawPageResponse(page, docsHomepagePath(params), params);
 }

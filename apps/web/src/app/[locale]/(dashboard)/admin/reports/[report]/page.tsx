@@ -15,7 +15,7 @@ import { Textarea } from '@repo/ui/components/textarea';
 import RuleReportForm from '@/components/dashboard/admin/report/RuleReportForm';
 import { handleRuleProjectReport } from '@/lib/forms/actions';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
-import navigation from '@/lib/navigation';
+import navigation from '@/lib/discovery/navigation';
 
 function ReportField({ title, value }: { title: string; value: string | null }) {
   return (

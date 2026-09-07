@@ -14,7 +14,7 @@ import { getGitHubAvatarUrl } from '@repo/shared/util';
 import AddProjectMemberForm from '@/components/dashboard/dev/modal/AddProjectMemberForm';
 import { handleAddProjectMember, handleRemoveProjectMember } from '@/lib/forms/actions';
 import GenericDeleteModal from '@/components/modal/GenericDeleteModal';
-import navigation from '@/lib/navigation';
+import navigation from '@/lib/discovery/navigation';
 import FormWrapper from '@/components/modal/FormWrapper';
 
 type Properties = {

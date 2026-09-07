@@ -8,6 +8,9 @@ import DocsGuideNonContentRightSidebar from '@/components/docs/side/guide/DocsGu
 import { getTranslations } from 'next-intl/server';
 import env from '@repo/shared/env';
 import { RenderedDocsHomepage, renderHomepage } from '@/components/docs/DocsHomepage';
+import { Metadata } from 'next';
+import { markdownAlternate } from '@/lib/discovery/rawPage';
+import { docsHomepagePath } from '@/lib/discovery/navigation';
 
 interface PageProps {
   params: Promise<{
@@ -15,6 +18,14 @@ interface PageProps {
     version: string;
     locale: string;
   }>;
+}
+
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = await props.params;
+
+  return {
+    alternates: markdownAlternate(docsHomepagePath(params))
+  };
 }
 
 export default async function ProjectDocsHomepage(props: PageProps) {

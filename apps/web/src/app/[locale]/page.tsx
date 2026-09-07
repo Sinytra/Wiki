@@ -19,7 +19,7 @@ import featuredProjects, { FeaturedProject } from '@/lib/service/featuredProject
 import { DEFAULT_LOCALE, ORACLE_INDEX_LINKS, WIKI_DOCS_URL } from '@repo/shared/constants';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 import { NavLink } from '@/components/navigation/link/NavLink';
-import navigation from '@/lib/navigation';
+import navigation from '@/lib/discovery/navigation';
 
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
