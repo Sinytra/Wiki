@@ -122,6 +122,8 @@
     --text-color-code: #A9B2C3;
     --text-color-link: var(--c-brand-primary);
     --text-color-link-hover: color-mix(in oklab, var(--c-brand-primary) 80%, transparent);
+    --text-color-mc-gray: #AAAAAA;
+    --text-color-mc-dark-green: #00AA00;
 
     /* Alert and callout variants */
     --text-color-note: var(--c-text-note);

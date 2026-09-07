@@ -8,6 +8,7 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   location: string;
   item?: boolean;
   itemSize?: boolean;
+  noTitle?: boolean;
   wrapper?: HTMLAttributes<HTMLDivElement>;
 };
 

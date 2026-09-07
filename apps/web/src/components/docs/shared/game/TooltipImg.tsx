@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const OFFSET_X = 15;
 const OFFSET_Y = -33;
+const TOLERANCE = 20;
 
 interface CursorPosition {
   x: number;
@@ -11,15 +12,28 @@ interface CursorPosition {
 }
 
 interface Properties {
-  id: string;
+  name: string;
+  body?: ReactNode;
   tag?: string | null;
   children?: any;
 }
 
 export default function TooltipImg(props: Properties) {
   const anchor = useRef<HTMLDivElement>(null);
+  const tooltip = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState<CursorPosition | null>(null);
   const visible = cursor !== null;
+
+  useLayoutEffect(() => {
+    const el = tooltip.current;
+    if (!el || !cursor) return;
+
+    const width = el.offsetWidth;
+    const fitsRight = cursor.x + OFFSET_X + width + TOLERANCE <= window.innerWidth;
+    const offset = fitsRight ? cursor.x + OFFSET_X : cursor.x - OFFSET_X - width;
+
+    el.style.left = `${offset}px`;
+  }, [cursor]);
 
   useEffect(() => {
     if (!visible) return;
@@ -53,9 +67,10 @@ export default function TooltipImg(props: Properties) {
       onMouseLeave={() => setCursor(null)}
     >
       {cursor && (
-        <div className="minetip-tooltip" style={{ top: cursor.y + OFFSET_Y, left: cursor.x + OFFSET_X }}>
+        <div ref={tooltip} className="minetip-tooltip" style={{ top: cursor.y + OFFSET_Y, left: cursor.x + OFFSET_X }}>
           <span className="font-minecraft">
-            {props.id}
+            {props.name}
+            {props.body}
             {props.tag && <p className="m-0! mt-1! text-xs text-secondary text-shadow-none">#{props.tag}</p>}
           </span>
         </div>

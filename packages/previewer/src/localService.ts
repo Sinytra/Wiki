@@ -9,6 +9,7 @@ import {
   BrowseResponse,
   ChangelogEntry,
   FileTreeEntry,
+  InvItem,
   ProjectData,
   ProjectPage,
   RecipeTypeResponse,
@@ -156,7 +157,13 @@ async function getDocsPageAt(
         title: frontmatter.title ?? null,
         type: frontmatter.type,
         icon: frontmatter.icon,
-        infobox,
+        infobox: {
+          ...infobox,
+          title: infobox?.title ?? null,
+          inventory: infobox?.inventory?.map((it) =>
+            typeof it === 'string' ? ({ asset_id: it } satisfies InvItem) : it
+          )
+        },
         history: parseHistory(frontmatter.history),
         custom: frontmatter.custom
       },
