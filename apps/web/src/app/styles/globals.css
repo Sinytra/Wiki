@@ -11,7 +11,7 @@
 
 @custom-variant wide-layout {
     @media (width >= 96rem) {
-        &:where(:not(.reading-width-standard, .reading-width-standard *)) {
+        &:where(:not(.reading-width-narrow, .reading-width-narrow *)) {
             @slot;
         }
     }

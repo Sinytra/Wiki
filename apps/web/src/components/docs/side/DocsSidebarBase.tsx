@@ -27,21 +27,17 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
       data-open={open == type}
       className={cn(
         className,
-        `fixed z-30 h-[88vh] w-full overflow-hidden border-tertiary bg-primary transition-all duration-300 ease-in-out sm:h-[calc(100vh_-_9.5rem)] lg:top-[6rem]! lg:transition-none`,
-        solid ? 'lg:static' : 'lg:sticky',
+        'fixed z-30 h-[88vh] w-full overflow-hidden border-tertiary bg-primary sm:h-[calc(100vh-9.5rem)]',
+        'transition-all duration-300 ease-in-out sm:transition-none',
+        type == 'left' ? 'lg:top-25! lg:transition-none' : 'wide-layout:top-25! wide-layout:transition-none',
+        type == 'left' ? (solid ? 'lg:static' : 'lg:sticky') : solid ? 'wide-layout:static' : 'wide-layout:sticky',
         type == 'left' &&
-          `border-r data-[open=false]:-translate-x-full data-[open=false]:border-0 lg:border-r-0 lg:data-[open=false]:-translate-x-0`,
+          `border-r data-[open=false]:-translate-x-full data-[open=false]:border-0 lg:border-r-0 lg:data-[open=false]:translate-x-0`,
         type == 'right' &&
-          `border-l data-[open=false]:translate-x-full data-[open=false]:border-0 lg:border-l-0 lg:data-[open=false]:translate-x-0`
+          `border-l data-[open=false]:translate-x-full data-[open=false]:border-0 wide-layout:border-l-0 wide-layout:data-[open=false]:translate-x-0`
       )}
     >
-      <ContentDiv
-        ref={ref}
-        className={cn(
-          `scrollbar-thumb-secondary scrollbar-track-secondary/20 scrollbar-thin h-full space-y-2 overflow-y-auto p-4`,
-          innerClassName
-        )}
-      >
+      <ContentDiv ref={ref} className={cn('scrollbar-none h-full space-y-2 overflow-y-auto p-4', innerClassName)}>
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-sm font-semibold text-secondary">{title}</h3>
         </div>

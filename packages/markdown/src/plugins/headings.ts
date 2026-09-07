@@ -6,7 +6,11 @@ import { DocsEntryMetadata, FileHeading } from '../metadata';
 import { Root } from 'hast';
 import type { VFile } from 'vfile';
 
-export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined {
+interface Options {
+  stripTitle?: boolean;
+}
+
+export function rehypeMarkdownHeadings(options?: Options): (tree: Root, file: VFile) => undefined {
   const slugs = new GithubSlugger();
 
   return (tree, file) => {
@@ -25,7 +29,9 @@ export function rehypeMarkdownHeadings(): (tree: Root, file: VFile) => undefined
           // First H1 gets used as title
           if (!foundTitle) {
             metadata.title = child.value;
-            parent?.children.splice(index!, 1);
+            if (options?.stripTitle) {
+              parent?.children.splice(index!, 1);
+            }
             foundTitle = true;
           }
           // Remaining H1 headings will be changed to H2

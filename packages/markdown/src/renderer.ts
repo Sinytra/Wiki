@@ -32,6 +32,11 @@ export interface DocumentationMarkdown {
   metadata: DocsEntryMetadata;
 }
 
+export interface StringDocumentationMarkdown {
+  content: string;
+  metadata: DocsEntryMetadata;
+}
+
 export type ComponentPatcher = (components: Record<string, any>) => Record<string, any>;
 
 function cleanFrontmatter(input: string) {
@@ -52,17 +57,21 @@ function cleanFrontmatter(input: string) {
     .join('\n');
 }
 
-async function renderCommonMarkdown(content: string): Promise<string> {
+async function renderCommonMarkdown(content: string): Promise<StringDocumentationMarkdown> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeSanitize, markdownRehypeSchema)
     .use(rehypeSanitizeStyles)
+    .use(rehypeMarkdownHeadings)
     .use(rehypeStringify)
     .process(content);
 
-  return String(file);
+  return {
+    content: String(file),
+    metadata: file.data.metadata ?? {}
+  };
 }
 
 async function renderDocumentationMarkdown(
@@ -104,7 +113,7 @@ async function renderDocumentationMarkdown(
       rehypeSanitizeStyles
     ];
     if (!inline) {
-      rehypePlugins.unshift(rehypeMarkdownHeadings);
+      rehypePlugins.unshift([rehypeMarkdownHeadings, { stripTitle: true }]);
     }
 
     const compiledMdx = await compile(vfile, {
@@ -158,7 +167,7 @@ async function readProcessedFrontmatter(source: string): Promise<DocsEntryMetada
     .use(remarkHeadingAttributes)
     .use(remarkElementAttributes)
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeMarkdownHeadings)
+    .use(rehypeMarkdownHeadings, { stripTitle: true })
     .use(rehypeCollectLinks)
     .use(rehypeStringify);
 

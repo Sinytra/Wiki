@@ -181,14 +181,9 @@ export default function DocsTOCSidebarBase({ headings, type, className, solid }:
     <DocsSidebarBase type={type} title={t('title')} className={cn('shrink-0', className)} tagName="nav" solid={solid}>
       <div className="relative">
         {showTopGradient && (
-          <div
-            className={`from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent`}
-          />
+          <div className="from-background pointer-events-none absolute top-0 right-0 left-0 h-12 bg-linear-to-b to-transparent" />
         )}
-        <div
-          ref={listRef}
-          className={`scrollbar-thin max-h-[80vh] scrollbar-thumb-scrollbar-tertiary scrollbar-track-transparent overflow-y-auto pr-4`}
-        >
+        <div ref={listRef} className="scrollbar-none max-h-[80vh] overflow-y-auto pr-4">
           <ul className="space-y-1 text-sm">
             {headingTree.map((node, index) => (
               <HeadingItem
@@ -203,9 +198,7 @@ export default function DocsTOCSidebarBase({ headings, type, className, solid }:
           </ul>
         </div>
         {showBottomGradient && (
-          <div
-            className={`from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent`}
-          />
+          <div className="from-background pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t to-transparent" />
         )}
       </div>
     </DocsSidebarBase>

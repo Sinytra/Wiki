@@ -64,7 +64,7 @@ export default function DocsFileTreeFolder({ name, path, icon, level, children }
         onClick={toggleOpen}
         data-state={isOpen ? 'open' : 'closed'}
         className={cn(
-          'flex items-center rounded-md px-3 py-2 text-sm text-secondary hover:bg-secondary',
+          'flex items-center rounded-sm bg-primary px-3 py-2 text-sm font-medium text-secondary hover:bg-secondary',
           'hover:text-primary-alt [&[data-state=open]>svg:last-child]:rotate-180'
         )}
       >
@@ -72,9 +72,9 @@ export default function DocsFileTreeFolder({ name, path, icon, level, children }
         {name}
         <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200" />
       </button>
-      <div className="accordion-body" style={{ paddingLeft: `${level}rem` }}>
+      <div className="accordion-body">
         <div>
-          <div className="mt-2 flex flex-col gap-2">{children}</div>
+          <div className="mt-2 ml-2 flex flex-col gap-2 border-l border-tertiary pl-2">{children}</div>
         </div>
       </div>
     </div>
