@@ -26,7 +26,7 @@ const THEME_ICONS: Record<Theme, IconComponent> = {
 };
 
 const WIDTH_ICONS: Record<ReadingWidth, IconComponent> = {
-  standard: ChevronsRightLeftIcon,
+  narrow: ChevronsRightLeftIcon,
   wide: ChevronsLeftRightIcon
 };
 
@@ -49,7 +49,7 @@ function SegmentedControl<T extends string>({
     <div className="flex flex-col gap-2">
       <span className="text-sm font-medium text-secondary">{label}</span>
       <div className="flex flex-row divide-x divide-tertiary overflow-hidden rounded-sm border border-tertiary">
-        {options.map((option) => {
+        {options.map((option, i) => {
           const Icon: IconComponent | undefined = icons[option];
           const selected = option === value;
 
@@ -61,7 +61,8 @@ function SegmentedControl<T extends string>({
               variant="outline"
               size="sm"
               className={cn(
-                'w-full gap-1.5 rounded-none px-2 text-sm transition-colors',
+                'w-full gap-1.5 border-0 px-2 text-sm transition-colors',
+                i == 0 ? 'rounded-r-none' : i == options.length - 1 ? 'rounded-l-none' : 'rounded-none',
                 selected ? 'bg-secondary font-medium text-primary-alt' : 'text-secondary hover:bg-secondary/40'
               )}
             >
@@ -128,28 +129,30 @@ export default function AppearanceMenu({ mobile }: { mobile?: boolean }) {
       <PopoverContent
         align={mobile ? 'start' : 'end'}
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className={cn(
-          'pointer-events-auto! flex flex-col gap-4 p-3',
-          mobile ? 'w-(--radix-popover-trigger-width)' : 'w-72'
-        )}
+        className={cn('pointer-events-auto! p-3', mobile ? 'w-(--radix-popover-trigger-width)' : 'w-72')}
       >
-        <SegmentedControl
-          label={t('theme.label')}
-          options={THEMES}
-          icons={THEME_ICONS}
-          value={settings.theme}
-          onChange={(theme) => handleUpdate({ theme })}
-          labelFor={(theme) => t(`theme.${theme}`)}
-        />
+        <span className="text-sm font-medium text-secondary-alt">Appearance settings</span>
+        <hr className="my-2" />
 
-        <SegmentedControl
-          label={t('width.label')}
-          options={READING_WIDTHS}
-          icons={WIDTH_ICONS}
-          value={settings.width}
-          onChange={(width) => handleUpdate({ width })}
-          labelFor={(width) => t(`width.${width}`)}
-        />
+        <div className="flex flex-col gap-4">
+          <SegmentedControl
+            label={t('theme.label')}
+            options={THEMES}
+            icons={THEME_ICONS}
+            value={settings.theme}
+            onChange={(theme) => handleUpdate({ theme })}
+            labelFor={(theme) => t(`theme.${theme}`)}
+          />
+
+          <SegmentedControl
+            label={t('width.label')}
+            options={READING_WIDTHS}
+            icons={WIDTH_ICONS}
+            value={settings.width}
+            onChange={(width) => handleUpdate({ width })}
+            labelFor={(width) => t(`width.${width}`)}
+          />
+        </div>
       </PopoverContent>
     </Popover>
   );

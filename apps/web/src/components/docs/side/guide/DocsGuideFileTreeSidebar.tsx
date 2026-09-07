@@ -1,7 +1,6 @@
-import { FolderIcon, HomeIcon } from 'lucide-react';
+import { HomeIcon } from 'lucide-react';
 import DocsFileLink from '@/components/docs/util/DocsFileLink';
 import DocsFileTreeFolder from '@/components/docs/layout/DocsFileTreeFolder';
-import { cn } from '@repo/ui/lib/utils';
 import { useTranslations } from 'next-intl';
 import ScrollableDocsSidebarBase from '@/components/docs/side/ScrollableDocsSidebarBase';
 import { FileTree } from '@repo/shared/types/service';
@@ -38,14 +37,13 @@ async function DocsFileTree({
   tree: FileTree;
   level: number;
 }) {
-  const defaultIcon = FolderIcon;
   const LucideReact = await import('lucide-react');
 
   return tree.map((file) => {
     if (file.type == 'dir') {
-      const Icon =
-        // @ts-expect-error icon
-        file.icon === NO_FOLDER_ICON ? null : (file.icon ? LucideReact[file.icon] : defaultIcon) || defaultIcon;
+      // Categories have no icon by default; authors may still opt into one
+      // @ts-expect-error icon
+      const Icon = file.icon && file.icon !== NO_FOLDER_ICON ? LucideReact[file.icon] : null;
 
       return (
         <DocsFileTreeFolder
@@ -70,8 +68,8 @@ export default function DocsGuideFileTreeSidebar({ slug, version, tree }: LeftSi
     <ScrollableDocsSidebarBase
       type="left"
       title={t('title')}
-      className={cn('left-0 shrink-0', 'w-[96vw] sm:w-64')}
-      innerClassName="overscroll-contain"
+      className="left-0 mb-3 w-[96vw] shrink-0 border-tertiary sm:w-64 lg:rounded-sm"
+      innerClassName="overscroll-contain bg-primary-alt"
       tagName="nav"
     >
       <DocsFileLink href={`/project/${slug}/${version}/docs`}>

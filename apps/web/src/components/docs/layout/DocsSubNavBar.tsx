@@ -122,7 +122,7 @@ export default function DocsSubNavBar({
   return (
     <div className="border-t-tertiary-dim fixed left-0 z-40 w-full border-y border-tertiary bg-primary-alt">
       <div className="mx-auto flex justify-center">
-        <div className="mx-4 flex w-full max-w-5xl flex-row items-center justify-between py-2 sm:py-1.5 wide-layout:max-w-[120rem]">
+        <div className="mx-4 flex w-full max-w-5xl flex-row items-center justify-between py-2 sm:py-1.5">
           <DocsSubNavProjectTitle project={project} platformProject={platformProject} />
 
           <div className="hidden sm:block">

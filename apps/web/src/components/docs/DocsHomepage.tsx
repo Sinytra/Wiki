@@ -44,9 +44,9 @@ export async function renderHomepage(
     return null;
   }
   try {
-    const htmlContent = await markdown.renderCommonMarkdown(platformProject.description);
-    const content = <RenderedMarkdownContent htmlContent={htmlContent} />;
-    return { content, metadata: {} };
+    const rendered = await markdown.renderCommonMarkdown(platformProject.description);
+    const content = <RenderedMarkdownContent htmlContent={rendered.content} />;
+    return { content, metadata: rendered.metadata };
   } catch (e) {
     console.error('Error rendering homepage', e);
     return undefined;

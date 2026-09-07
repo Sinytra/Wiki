@@ -1,8 +1,8 @@
 export type Theme = 'auto' | 'light' | 'dark';
-export type ReadingWidth = 'standard' | 'wide';
+export type ReadingWidth = 'narrow' | 'wide';
 
 export const THEMES: Theme[] = ['auto', 'light', 'dark'];
-export const READING_WIDTHS: ReadingWidth[] = ['standard', 'wide'];
+export const READING_WIDTHS: ReadingWidth[] = ['narrow', 'wide'];
 
 export interface AppearanceSettings {
   theme: Theme;
@@ -16,7 +16,7 @@ export const APPEARANCE_STORAGE_KEYS = {
 
 export const DEFAULT_APPEARANCE: AppearanceSettings = {
   theme: 'dark',
-  width: 'standard'
+  width: 'narrow'
 };
 
 export const THEME_CLASS_PREFIX = 'theme-';
