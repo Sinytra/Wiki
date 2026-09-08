@@ -8,7 +8,7 @@ interface ContentRightSidebarProps {
 
 export default async function DocsGuideNonContentRightSidebar({ headings }: ContentRightSidebarProps) {
   return (
-    <ClientLocaleProvider keys={['DocsNonContentRightSidebar']}>
+    <ClientLocaleProvider keys={['DocsNonContentRightSidebar', 'DocsFloatingNav']}>
       <DocsGuideNonContentRightSidebarClient headings={headings} />
     </ClientLocaleProvider>
   );

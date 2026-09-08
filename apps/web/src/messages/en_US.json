@@ -470,6 +470,11 @@
     "title": "Documentation",
     "homepage": "Home"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "Entry information"
   },

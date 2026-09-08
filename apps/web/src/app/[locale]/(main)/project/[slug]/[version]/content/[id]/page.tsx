@@ -17,6 +17,7 @@ import issuesApi from '@repo/shared/api/issuesApi';
 import DocsPageErrorBase from '@/components/docs/error/DocsPageErrorBase';
 import { markdownAlternate } from '@/lib/discovery/rawPage';
 import { contentPagePath } from '@/lib/discovery/navigation';
+import DocsFloatingNav from '@/components/docs/layout/DocsFloatingNav';
 
 interface Props {
   params: Promise<{
@@ -115,7 +116,7 @@ export default async function ContentEntryPage(props: Props) {
   return (
     <>
       <div className="flex w-full max-w-[1700px] flex-1 flex-row justify-center gap-4 wide-layout:justify-between">
-        <ClientLocaleProvider keys={['DocsNonContentRightSidebar']}>
+        <ClientLocaleProvider keys={['DocsNonContentRightSidebar', 'DocsFloatingNav']}>
           <DocsContentTOCSidebar headings={headings} />
         </ClientLocaleProvider>
 
@@ -142,6 +143,8 @@ export default async function ContentEntryPage(props: Props) {
 
         {/* Outer sidebar for large screens */}
         <RightSidebar className="hidden wide-layout:flex" />
+
+        <DocsFloatingNav className="sm:hidden" />
       </div>
     </>
   );

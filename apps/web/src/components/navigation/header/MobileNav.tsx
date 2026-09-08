@@ -2,21 +2,19 @@
 
 import MobileNavHamburger from '@/components/navigation/header/hamburger/MobileNavHamburger';
 import MobileNavScreen from '@/components/navigation/header/MobileNavScreen';
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useContext } from 'react';
+import { MobileNavContext } from '@/components/docs/side/MobileNavContext';
 
 export default function MobileNav({ children }: { children: any }) {
-  const [subScreenOpen, setSubScreenOpen] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setSubScreenOpen(false);
-  }, [pathname]);
+  const { open, setOpen } = useContext(MobileNavContext)!;
 
   return (
     <div className="sm:hidden">
-      <MobileNavHamburger active={subScreenOpen} setOpen={setSubScreenOpen} />
-      <MobileNavScreen className="top-nav-height bg-primary" isVisible={subScreenOpen}>
+      <MobileNavHamburger
+        active={open === 'site-nav'}
+        setOpen={() => setOpen(open !== 'site-nav' ? 'site-nav' : 'none')}
+      />
+      <MobileNavScreen className="top-nav-height bg-primary" isVisible={open === 'site-nav'}>
         {children}
       </MobileNavScreen>
     </div>

@@ -8,12 +8,12 @@ import { WikiSearchResult, WikiSearchResults } from '@/lib/service/search';
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 import { useDebouncedCallback } from 'use-debounce';
 import { CSSTransition } from 'react-transition-group';
-import { usePathname } from 'next/navigation';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import wikiSearchClient from '@/lib/service/search/wikiSearchClient';
 import { SearchContext } from '@/components/navigation/search/SearchContext';
 import { cn } from '@repo/ui/lib/utils';
 import SearchResultBadge from '@/components/navigation/search/SearchResultBadge';
+import { MobileNavContext } from '@/components/docs/side/MobileNavContext';
 
 // TODO Deduplicate with DocsSearchBar
 function SearchResultWidget({ result }: { result: WikiSearchResult }) {
@@ -81,15 +81,7 @@ function NoSearchResults() {
   );
 }
 
-function SearchScreen({
-  locale,
-  isOpen,
-  setOpen
-}: {
-  locale: string;
-  isOpen: boolean;
-  setOpen: (open: boolean) => void;
-}) {
+function SearchScreen({ locale }: { locale: string }) {
   const t = useTranslations('DocsSearchBar');
 
   const nodeRef = useRef(null);
@@ -97,13 +89,14 @@ function SearchScreen({
   const [results, setResults] = useState<WikiSearchResults | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { project } = useContext(SearchContext)!;
+  const { open, setOpen } = useContext(MobileNavContext)!;
   const [local, setLocal] = useState<boolean>(project != null);
 
   useEffect(() => {
     setSearchQuery('');
     setResults(null);
     setLoading(false);
-  }, [isOpen]);
+  }, [open]);
 
   const debouncedSearch = useDebouncedCallback(async (query) => {
     let pending = true;
@@ -146,14 +139,14 @@ function SearchScreen({
   const ScopeIcon = local ? HouseIcon : GlobeIcon;
 
   return (
-    <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={200} classNames="fade" unmountOnExit>
+    <CSSTransition nodeRef={nodeRef} in={open === 'search'} timeout={200} classNames="fade" unmountOnExit>
       <div
         ref={nodeRef}
         className="fixed top-0 right-0 bottom-0 left-0 z-50 h-[100vh] w-full overflow-hidden bg-primary"
       >
         <div className="innerFadeContainer flex flex-col gap-4 p-4">
           <div className="relative">
-            <button onClick={() => setOpen(false)}>
+            <button onClick={() => setOpen('none')}>
               <ArrowLeftIcon className="absolute top-1/2 left-2 h-5 w-5 -translate-y-1/2 text-secondary" />
             </button>
 
@@ -198,27 +191,22 @@ function SearchScreen({
 }
 
 export default function MobileDocsSearch({ locale }: { locale: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const { open, setOpen } = useContext(MobileNavContext)!;
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (isOpen) {
+    if (open === 'search') {
       document.querySelectorAll('html, body').forEach((e) => e.classList.add('navScrollLock'));
     } else {
       document.querySelectorAll('html, body').forEach((e) => e.classList.remove('navScrollLock'));
     }
-  }, [isOpen]);
+  }, [open]);
 
   return (
     <div className="sm:hidden">
-      <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+      <Button variant="ghost" size="icon" onClick={() => setOpen(open !== 'search' ? 'search' : 'none')}>
         <SearchIcon className="h-4 w-4 text-primary" />
       </Button>
-      <SearchScreen isOpen={isOpen} setOpen={setIsOpen} locale={locale} />
+      <SearchScreen locale={locale} />
     </div>
   );
 }

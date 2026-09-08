@@ -17,6 +17,12 @@
     }
 }
 
+@custom-variant mobile {
+    @media (width > 32rem) {
+        @slot;
+    }
+}
+
 @plugin 'tailwind-scrollbar';
 @plugin '@tailwindcss/typography';
 
@@ -321,7 +327,7 @@
     }
 
     .no-scroll {
-        @apply fixed md:static max-w-screen;
+        @apply fixed w-full overflow-hidden;
     }
 
     .video-embed {

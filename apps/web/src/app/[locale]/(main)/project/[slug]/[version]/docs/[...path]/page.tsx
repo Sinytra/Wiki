@@ -113,7 +113,6 @@ export default async function ProjectDocsPage(props: {
       tree={projectData.tree}
       version={version}
       locale={locale}
-      showRightSidebar={headings.length > 0}
       rightSidebar={
         showContentSidebar ? (
           <DocsGuideContentRightSidebar ctx={ctx} frontmatter={page.frontmatter} />

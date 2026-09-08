@@ -60,7 +60,6 @@ export default async function ProjectDocsHomepage(props: PageProps) {
       tree={projectData.tree}
       version={version}
       locale={locale}
-      showRightSidebar={headings.length > 0}
       rightSidebar={<DocsGuideNonContentRightSidebar headings={headings} />}
       footer={<DocsPageFooter slug={slug} preview={isPreview} />}
     >

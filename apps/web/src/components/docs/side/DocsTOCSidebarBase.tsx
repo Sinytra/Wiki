@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import DocsSidebarBase from '@/components/docs/side/DocsSidebarBase';
-import { DocsSidebarType } from '@/components/docs/side/DocsSidebarContext';
+import { MobileNavContext } from '@/components/docs/side/MobileNavContext';
 import { cn } from '@repo/ui/lib/utils';
 import { useTranslations } from 'next-intl';
 import { FileHeading } from '@repo/markdown';
@@ -10,7 +10,7 @@ import ToggleChevron from '@repo/ui/util/ToggleChevron';
 
 export interface DocsTOCSidebarBaseProps {
   headings: FileHeading[];
-  type: DocsSidebarType;
+  type: 'left' | 'right';
   className?: string;
   solid?: boolean;
 }
@@ -53,6 +53,7 @@ function containsHeading(node: HeadingNode, id: string): boolean {
 
 function HeadingItem({ node, activeId, collapsed, setCollapsed, first }: HeadingItemProps) {
   const { heading, children } = node;
+  const { setOpen } = useContext(MobileNavContext)!;
   const isOpen = !collapsed[heading.id];
   const isActive = activeId === heading.id || (!isOpen && containsHeading(node, activeId));
 
@@ -66,9 +67,12 @@ function HeadingItem({ node, activeId, collapsed, setCollapsed, first }: Heading
       )}
       onClick={(e) => {
         e.preventDefault();
-        document.getElementById(heading.id)?.scrollIntoView({
-          behavior: 'smooth'
-        });
+        setOpen('none');
+        setTimeout(() => {
+          document.getElementById(heading.id)?.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }, 0);
       }}
     >
       {heading.value}
