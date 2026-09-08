@@ -9,8 +9,8 @@ import { getTranslations } from 'next-intl/server';
 import env from '@repo/shared/env';
 import { RenderedDocsHomepage, renderHomepage } from '@/components/docs/DocsHomepage';
 import { Metadata } from 'next';
-import { markdownAlternate } from '@/lib/discovery/rawPage';
 import { docsHomepagePath } from '@/lib/discovery/navigation';
+import { projectPageMetadata } from '@/lib/seo';
 
 interface PageProps {
   params: Promise<{
@@ -22,9 +22,22 @@ interface PageProps {
 
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const params = await props.params;
+  const { slug, version, locale } = params;
+  setContextLocale(locale);
+
+  const project = await service.getProject({ id: slug, version, locale });
+  if (!project) {
+    return {};
+  }
+
+  const t = await getTranslations('ProjectDocsHomepage');
 
   return {
-    alternates: markdownAlternate(docsHomepagePath(params))
+    title: t('title'),
+    ...projectPageMetadata(project, params, {
+      path: (prefix) => docsHomepagePath({ ...params, locale: prefix }),
+      markdown: true
+    })
   };
 }
 

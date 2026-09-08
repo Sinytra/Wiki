@@ -9,6 +9,9 @@ import BrowseSortDropdown from '@/components/navigation/browse/BrowseSortDropdow
 import { parseAsInteger, parseAsString } from 'nuqs/server';
 import CollapsibleDocsTreeBase from '@/components/docs/CollapsibleDocsTreeBase';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
+import { getTranslations } from 'next-intl/server';
 
 type Properties = {
   params: Promise<{ locale: string }>;
@@ -19,6 +22,22 @@ type Properties = {
     sort?: string | string[];
   }>;
 };
+
+export async function generateMetadata(props: Properties): Promise<Metadata> {
+  const { locale } = await props.params;
+  setContextLocale(locale);
+
+  const t = await getTranslations('BrowsePage');
+
+  return {
+    title: t('title'),
+    ...pageMetadata({
+      locale,
+      path: (prefix) => `/${prefix}/browse`,
+      description: t('description')
+    })
+  };
+}
 
 export default function BrowsePage(props: Properties) {
   const searchParams = use(props.searchParams);

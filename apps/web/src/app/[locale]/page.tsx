@@ -20,9 +20,17 @@ import { DEFAULT_LOCALE, ORACLE_INDEX_LINKS, WIKI_DOCS_URL } from '@repo/shared/
 import ImageWithFallback from '@/components/util/ImageWithFallback';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import navigation from '@/lib/discovery/navigation';
+import { Metadata } from 'next';
+import { LocaleRouteParams } from '@repo/shared/types/routes';
+import { pageMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 export const revalidate = 1209600; // 60 * 60 * 24 * 14
+
+export async function generateMetadata(props: { params: Promise<LocaleRouteParams> }): Promise<Metadata> {
+  const { locale } = await props.params;
+  return pageMetadata({ locale, path: (prefix) => `/${prefix}` });
+}
 
 type IconComponent = ComponentType<{ className?: string }>;
 

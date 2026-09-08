@@ -30,24 +30,22 @@ import { DEFAULT_WIKI_LICENSE } from '@repo/shared/constants';
 import TooltipText from '@/components/docs/shared/util/TooltipText';
 import DocsSubpageTitle from '@/components/docs/layout/DocsSubpageTitle';
 import { getTranslations } from 'next-intl/server';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import { ProjectRouteParams } from '@repo/shared/types/routes';
 import DocsHomepage from '@/components/docs/DocsHomepage';
 
-export async function generateMetadata(
-  props: { params: Promise<ProjectRouteParams> },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<ProjectRouteParams> }): Promise<Metadata> {
   const { slug, version, locale } = await props.params;
   const ctx = { id: slug, version, locale };
+
   const project = await service.getProject(ctx);
   if (!project) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   const platformProject = await platforms.getPlatformProjectOrNull(project);
   if (!platformProject) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   return {

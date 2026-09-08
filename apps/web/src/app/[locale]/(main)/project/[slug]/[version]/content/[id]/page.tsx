@@ -5,7 +5,9 @@ import DocsEntryPage from '@/components/docs/body/DocsEntryPage';
 import { getTranslations } from 'next-intl/server';
 import DocsContentTOCSidebar from '@/components/docs/side/content/DocsContentTOCSidebar';
 import DocsContentMetaSidebar from '@/components/docs/side/content/DocsContentMetaSidebar';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
+import { projectPageMetadata } from '@/lib/seo';
+import markdown from '@repo/markdown';
 import platforms from '@repo/shared/platforms';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import { ProjectContentContext, RenderedDocsPage } from '@repo/shared/types/service';
@@ -15,7 +17,6 @@ import ContentListFooter from '@/components/docs/ContentListFooter';
 import DocsContentPageToolsFooter from '@/components/docs/layout/DocsContentPageToolsFooter';
 import issuesApi from '@repo/shared/api/issuesApi';
 import DocsPageErrorBase from '@/components/docs/error/DocsPageErrorBase';
-import { markdownAlternate } from '@/lib/discovery/rawPage';
 import { contentPagePath } from '@/lib/discovery/navigation';
 import DocsFloatingNav from '@/components/docs/layout/DocsFloatingNav';
 
@@ -28,7 +29,7 @@ interface Props {
   }>;
 }
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const { id: encodedId, slug, version, locale } = params;
   const id = decodeURIComponent(encodedId);
@@ -36,30 +37,30 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 
   const project = await service.getProject(ctx);
   if (!project) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   const page = await service.getProjectContentPage(id, ctx);
   if (!page) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
   const { frontmatter } = page;
 
   const platformProject = await platforms.getPlatformProjectOrNull(project);
   if (!platformProject) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   const iconUrl = frontmatter.icon ? await service.getAsset(frontmatter.icon, ctx) : null;
 
   return {
-    title: frontmatter.title
-      ? `${frontmatter.title} - ${platformProject.name}`
-      : `${platformProject.name} - ${(await parent).title?.absolute}`,
-    openGraph: {
-      images: [`/api/og?slug=${slug}&locale=${locale}&id=${id}`]
-    },
-    alternates: markdownAlternate(contentPagePath(params, id)),
+    ...(frontmatter.title ? { title: frontmatter.title } : {}),
+    ...projectPageMetadata(project, params, {
+      path: (prefix) => contentPagePath({ ...params, locale: prefix }, id),
+      description: await markdown.describeMarkdown(page.content),
+      image: { id },
+      markdown: true
+    }),
     other: {
       docs_source_mod: platformProject.name,
       docs_source_icon: platformProject.icon_url,
