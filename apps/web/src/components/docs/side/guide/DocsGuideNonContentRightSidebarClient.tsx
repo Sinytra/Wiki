@@ -8,5 +8,5 @@ interface ContentRightSidebarProps {
 }
 
 export default function DocsGuideNonContentRightSidebarClient({ headings }: ContentRightSidebarProps) {
-  return <DocsTOCSidebarBase headings={headings} type="right" className="right-0 w-[96vw] sm:w-64" />;
+  return <DocsTOCSidebarBase type="right" headings={headings} />;
 }

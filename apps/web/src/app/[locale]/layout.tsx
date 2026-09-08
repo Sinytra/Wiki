@@ -7,6 +7,7 @@ import { Toaster } from '@repo/ui/components/sonner';
 import CookieConsentContextProvider from '@/components/cookies/CookieConsentContextProvider';
 import SearchContextProvider from '@/components/navigation/search/SearchContext';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
+import MobileNavContextProvider from '@/components/docs/side/MobileNavContext';
 
 export async function generateStaticParams() {
   return locales.getLanguagePaths().map((locale) => ({ locale }));
@@ -25,22 +26,24 @@ export default async function LocaleLayout(props: { params: Params; children: Re
     <ClientLocaleProvider keys={['CookieConsent']}>
       <CookieConsentContextProvider>
         <SearchContextProvider>
-          <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
-            <Header locale={params.locale} />
+          <MobileNavContextProvider>
+            <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
+              <Header locale={params.locale} />
 
-            <div>{children}</div>
+              <div>{children}</div>
 
-            <Footer />
-          </div>
-          {/* TODO Font size */}
-          <Toaster
-            toastOptions={{
-              style: {
-                background: 'var(--background-color-primary-alt)',
-                fontStyle: 'var(--text-sm)'
-              }
-            }}
-          />
+              <Footer />
+            </div>
+            {/* TODO Font size */}
+            <Toaster
+              toastOptions={{
+                style: {
+                  background: 'var(--background-color-primary-alt)',
+                  fontStyle: 'var(--text-sm)'
+                }
+              }}
+            />
+          </MobileNavContextProvider>
         </SearchContextProvider>
       </CookieConsentContextProvider>
     </ClientLocaleProvider>

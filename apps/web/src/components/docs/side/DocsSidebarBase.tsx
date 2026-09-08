@@ -2,7 +2,9 @@
 
 import { cn } from '@repo/ui/lib/utils';
 import { forwardRef, useContext } from 'react';
-import { DocsSidebarContext, DocsSidebarType } from '@/components/docs/side/DocsSidebarContext';
+import { MobileNavContext, NavMenuType } from '@/components/docs/side/MobileNavContext';
+import { XIcon } from 'lucide-react';
+import { Button } from '@repo/ui/components/button';
 
 export interface DocsSidebarBaseProps {
   title: string;
@@ -11,8 +13,32 @@ export interface DocsSidebarBaseProps {
   tagName?: string;
   children?: any;
   solid?: boolean;
-  type: DocsSidebarType;
+  type: 'left' | 'right';
 }
+
+const variants = {
+  left: {
+    aside: cn(
+      'fixed bottom-0 h-[628px]',
+      'lg:inset-auto lg:top-25! lg:z-30 lg:h-[calc(100vh-9.5rem)] lg:transition-none',
+      'lg:data-[open=false]:visible lg:data-[open=false]:translate-y-0 lg:data-[open=false]:opacity-100'
+    ),
+    position: { solid: 'lg:static', sticky: 'lg:sticky' },
+    inner: 'lg:max-w-none lg:pt-4 lg:pb-4',
+    close: 'lg:hidden'
+  },
+  right: {
+    aside: cn(
+      'md:inset-auto md:right-4 md:bottom-20 md:h-auto md:w-80 md:rounded-md md:border md:shadow-xl',
+      'wide-layout:top-25! wide-layout:right-auto! wide-layout:bottom-auto! wide-layout:z-30 wide-layout:transition-none',
+      'wide-layout:h-[calc(100vh-9.5rem)]! wide-layout:w-64! wide-layout:rounded-none! wide-layout:border-0! wide-layout:shadow-none!',
+      'wide-layout:data-[open=false]:visible wide-layout:data-[open=false]:translate-y-0 wide-layout:data-[open=false]:opacity-100'
+    ),
+    position: { solid: 'wide-layout:static', sticky: 'wide-layout:sticky' },
+    inner: 'md:h-auto md:max-h-[70vh] md:max-w-none md:pt-4 md:pb-4 wide-layout:h-full! wide-layout:max-h-none!',
+    close: 'wide-layout:hidden'
+  }
+};
 
 const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function DocsSidebarBase(
   { title, className, innerClassName, tagName, children, type, solid }: DocsSidebarBaseProps,
@@ -20,31 +46,53 @@ const DocsSidebarBase = forwardRef<HTMLElement, DocsSidebarBaseProps>(function D
 ) {
   const ContentDiv = tagName || ('div' as any);
 
-  const { open } = useContext(DocsSidebarContext)!;
+  const { open, setOpen } = useContext(MobileNavContext)!;
+  const isMenu = type === 'left';
+  const menuType: NavMenuType = type === 'left' ? 'file-tree' : 'none';
+  const styles = variants[type];
 
   return (
-    <aside
-      data-open={open == type}
-      className={cn(
-        className,
-        'fixed z-30 h-[88vh] w-full overflow-hidden border-tertiary bg-primary sm:h-[calc(100vh-9.5rem)]',
-        'transition-all duration-300 ease-in-out sm:transition-none',
-        type == 'left' ? 'lg:top-25! lg:transition-none' : 'wide-layout:top-25! wide-layout:transition-none',
-        type == 'left' ? (solid ? 'lg:static' : 'lg:sticky') : solid ? 'wide-layout:static' : 'wide-layout:sticky',
-        type == 'left' &&
-          `border-r data-[open=false]:-translate-x-full data-[open=false]:border-0 lg:border-r-0 lg:data-[open=false]:translate-x-0`,
-        type == 'right' &&
-          `border-l data-[open=false]:translate-x-full data-[open=false]:border-0 wide-layout:border-l-0 wide-layout:data-[open=false]:translate-x-0`
-      )}
-    >
-      <ContentDiv ref={ref} className={cn('scrollbar-none h-full space-y-2 overflow-y-auto p-4', innerClassName)}>
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-secondary">{title}</h3>
-        </div>
+    <>
+      <div
+        data-open={isMenu && open == menuType}
+        className="fixed inset-0 z-50 hidden bg-black opacity-60 data-[open=true]:block"
+      />
+      <aside
+        data-open={isMenu && open == menuType}
+        className={cn(
+          className,
+          'pointer-events-auto fixed z-[60] h-dvh w-full overflow-hidden border-tertiary',
+          'data-[open=false]:invisible data-[open=false]:translate-y-3 data-[open=false]:opacity-0',
+          styles.aside,
+          solid ? styles.position.solid : styles.position.sticky
+        )}
+      >
+        <ContentDiv
+          ref={ref}
+          className={cn(
+            'mx-auto scrollbar-none h-full w-full max-w-lg space-y-2 overflow-y-auto overscroll-contain p-4',
+            'border-tertiary lg:border-0! mobile:rounded-t-sm mobile:border mobile:border-b-0',
+            'pt-4 pb-24',
+            styles.inner,
+            innerClassName
+          )}
+        >
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-secondary">{title}</h3>
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => setOpen('none')}
+              className={cn('-m-1 size-8 cursor-pointer p-1 text-secondary hover:text-primary', styles.close)}
+            >
+              <XIcon className="size-5" />
+            </Button>
+          </div>
 
-        {children}
-      </ContentDiv>
-    </aside>
+          {children}
+        </ContentDiv>
+      </aside>
+    </>
   );
 });
 

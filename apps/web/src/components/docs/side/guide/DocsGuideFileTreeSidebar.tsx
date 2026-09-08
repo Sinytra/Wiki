@@ -68,7 +68,7 @@ export default function DocsGuideFileTreeSidebar({ slug, version, tree }: LeftSi
     <ScrollableDocsSidebarBase
       type="left"
       title={t('title')}
-      className="left-0 mb-3 w-[96vw] shrink-0 border-tertiary sm:w-64 lg:rounded-sm"
+      className="shrink-0 lg:mb-3 lg:w-64 lg:rounded-sm"
       innerClassName="overscroll-contain bg-primary-alt"
       tagName="nav"
     >

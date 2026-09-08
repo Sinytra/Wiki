@@ -1,8 +1,8 @@
 import DocsGuideFileTreeSidebar from '@/components/docs/side/guide/DocsGuideFileTreeSidebar';
 import { FileTree } from '@repo/shared/types/service';
 import { ProjectData } from '@sinytra/wiki-api-types';
-import DocsResponsiveHeader from '@/components/docs/layout/DocsResponsiveHeader';
 import { cn } from '@repo/ui/lib/utils';
+import DocsGuideFloatingNav from '@/components/docs/layout/DocsGuideFloatingNav';
 
 interface Props {
   title: string;
@@ -10,27 +10,15 @@ interface Props {
   version: string;
   locale: string;
   tree: FileTree;
-  showRightSidebar?: boolean;
   children: any;
 
   rightSidebar?: any;
   footer: any;
 }
 
-export default function DocsInnerLayoutClient({
-  title,
-  project,
-  version,
-  rightSidebar,
-  footer,
-  tree,
-  showRightSidebar,
-  children
-}: Props) {
+export default function DocsInnerLayoutClient({ project, version, rightSidebar, footer, tree, children }: Props) {
   return (
     <>
-      <DocsResponsiveHeader showRightSidebar={showRightSidebar}>{title}</DocsResponsiveHeader>
-
       {/* Main Content Area */}
       <div className="flex w-full max-w-[1632px] flex-1 flex-row justify-center wide-layout:justify-between">
         {/* Left Sidebar */}
@@ -39,7 +27,7 @@ export default function DocsInnerLayoutClient({
         {/* Main Content */}
         <main
           className={cn(
-            'mx-8 mt-4 min-h-[86vh] flex-1 overflow-auto pb-6',
+            'mx-4 mt-4 min-h-[86vh] flex-1 overflow-auto pb-6 lg:mx-6',
             'sm:mt-0 sm:min-h-auto sm:max-w-5xl sm:pt-4'
           )}
         >
@@ -52,6 +40,8 @@ export default function DocsInnerLayoutClient({
 
       {/* Footer */}
       {footer}
+
+      <DocsGuideFloatingNav />
     </>
   );
 }

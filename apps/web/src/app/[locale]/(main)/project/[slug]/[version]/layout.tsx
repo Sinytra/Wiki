@@ -4,7 +4,6 @@ import service from '@/lib/service';
 import DocsLayoutClient from '@/components/docs/layout/DocsLayoutClient';
 import { notFound } from 'next/navigation';
 import LeftSidebarContextProvider from '@/components/docs/side/LeftSidebarContext';
-import DocsSidebarContextProvider from '@/components/docs/side/DocsSidebarContext';
 import platforms from '@repo/shared/platforms';
 import { Metadata, ResolvingMetadata } from 'next';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
@@ -66,26 +65,25 @@ export default async function HomepageLayout(props: LayoutProps) {
     <LeftSidebarContextProvider>
       <link rel="describedby" href={projectLlmsTxtPath(params)} />
 
-      <DocsSidebarContextProvider>
-        <LocalSearchSetter project={project}>
-          <ClientLocaleProvider
-            keys={[
-              'DocsPageError',
-              'DocsPageNotFound',
-              'ProjectTypes',
-              'ProjectCategories',
-              'PageEditControls',
-              'DocsVersionSelector',
-              'LanguageSelect',
-              'ModVersionRange'
-            ]}
-          >
-            <DocsLayoutClient project={project} locale={locale} version={version} platformProject={platformProject}>
-              {children}
-            </DocsLayoutClient>
-          </ClientLocaleProvider>
-        </LocalSearchSetter>
-      </DocsSidebarContextProvider>
+      <LocalSearchSetter project={project}>
+        <ClientLocaleProvider
+          keys={[
+            'DocsPageError',
+            'DocsPageNotFound',
+            'ProjectTypes',
+            'ProjectCategories',
+            'PageEditControls',
+            'DocsVersionSelector',
+            'LanguageSelect',
+            'ModVersionRange',
+            'DocsFloatingNav'
+          ]}
+        >
+          <DocsLayoutClient project={project} locale={locale} version={version} platformProject={platformProject}>
+            {children}
+          </DocsLayoutClient>
+        </ClientLocaleProvider>
+      </LocalSearchSetter>
     </LeftSidebarContextProvider>
   );
 }

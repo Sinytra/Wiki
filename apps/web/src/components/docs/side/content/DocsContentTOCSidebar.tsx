@@ -9,6 +9,6 @@ interface ContentRightSidebarProps {
 
 export default function DocsContentTOCSidebar({ headings }: ContentRightSidebarProps) {
   return (
-    <DocsTOCSidebarBase headings={headings} type="left" className="left-0 hidden w-[96vw] sm:w-80 wide-layout:block" solid />
+    <DocsTOCSidebarBase headings={headings} type="left" className="hidden wide-layout:block wide-layout:w-80" solid />
   );
 }
