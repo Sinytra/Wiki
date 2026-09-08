@@ -92,6 +92,8 @@
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "Browse projects",
       "search_filters": "Search filters...",
@@ -439,6 +441,9 @@
   },
   "ProjectDocsHomepage": {
     "title": "Home"
+  },
+  "ProjectContentPage": {
+    "title": "Content"
   },
   "DocsHomepagePlaceholder": {
     "title": "Homepage placeholder",

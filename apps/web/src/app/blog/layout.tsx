@@ -5,8 +5,23 @@ import Footer from '@/components/navigation/Footer';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import SearchContextProvider from '@/components/navigation/search/SearchContext';
 import MobileNavContextProvider from '@/components/docs/side/MobileNavContext';
+import { Metadata } from 'next';
+import { SITE_NAME } from '@/lib/seo';
 
 export const dynamic = 'force-static';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: `News about the ${SITE_NAME}.`,
+  alternates: {
+    canonical: '/blog'
+  },
+  openGraph: {
+    siteName: SITE_NAME,
+    type: 'website',
+    url: '/blog'
+  }
+};
 
 export default function BlogLayout({ children }: Readonly<{ children: ReactNode }>) {
   setContextLocale('en');

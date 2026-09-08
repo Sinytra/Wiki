@@ -12,7 +12,7 @@ function authorDashboard(): string {
   return '/dev';
 }
 
-function projectBasePath({ locale, slug, version }: ProjectRouteParams): string {
+export function projectBasePath({ locale, slug, version }: ProjectRouteParams): string {
   return `/${locale}/project/${slug}/${version}`;
 }
 

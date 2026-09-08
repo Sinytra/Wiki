@@ -5,10 +5,12 @@ import DocsLayoutClient from '@/components/docs/layout/DocsLayoutClient';
 import { notFound } from 'next/navigation';
 import LeftSidebarContextProvider from '@/components/docs/side/LeftSidebarContext';
 import platforms from '@repo/shared/platforms';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import LocalSearchSetter from '@/components/navigation/search/LocalSearchSetter';
-import { projectLlmsTxtPath } from '@/lib/discovery/navigation';
+import { projectBasePath, projectLlmsTxtPath } from '@/lib/discovery/navigation';
+import { ProjectRouteParams } from '@repo/shared/types/routes';
+import { projectPageMetadata } from '@/lib/seo';
 
 export const fetchCache = 'default-cache';
 
@@ -21,26 +23,29 @@ interface LayoutProps {
   }>;
 }
 
-export async function generateMetadata(
-  props: { params: Promise<{ slug: string; locale: string; version: string }> },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const { slug, version, locale } = await props.params;
+export async function generateMetadata(props: { params: Promise<ProjectRouteParams> }): Promise<Metadata> {
+  const params = await props.params;
+  const { slug, version, locale } = params;
+
   const project = await service.getProject({ id: slug, version, locale });
   if (!project) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   const platformProject = await platforms.getPlatformProjectOrNull(project);
   if (!platformProject) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   return {
-    title: `${platformProject.name} - ${(await parent).title?.absolute}`,
-    openGraph: {
-      images: [`/api/og?slug=${slug}&locale=${locale}`]
-    }
+    title: {
+      default: platformProject.name,
+      template: `%s - ${platformProject.name}`
+    },
+    ...projectPageMetadata(project, params, {
+      path: (prefix) => projectBasePath({ ...params, locale: prefix }),
+      description: platformProject.summary
+    })
   };
 }
 

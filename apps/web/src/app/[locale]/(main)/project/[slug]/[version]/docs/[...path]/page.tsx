@@ -1,5 +1,8 @@
 import DocsEntryPage from '@/components/docs/body/DocsEntryPage';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
+import { DocsRouteParams } from '@repo/shared/types/routes';
+import { projectPageMetadata } from '@/lib/seo';
+import markdown from '@repo/markdown';
 import { setContextLocale } from '@/lib/locales/routing';
 import service from '@/lib/service';
 import { notFound } from 'next/navigation';
@@ -13,50 +16,39 @@ import { RenderedDocsPage } from '@repo/shared/types/service';
 import issuesApi from '@repo/shared/api/issuesApi';
 import DocsGuideContentRightSidebar from '@/components/docs/side/guide/DocsGuideContentRightSidebar';
 import DocsPageErrorBase from '@/components/docs/error/DocsPageErrorBase';
-import { markdownAlternate } from '@/lib/discovery/rawPage';
 import { docsPagePath } from '@/lib/discovery/navigation';
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{
-      slug: string;
-      path: string[];
-      locale: string;
-      version: string;
-    }>;
-  },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<DocsRouteParams> }): Promise<Metadata> {
   const params = await props.params;
   const { slug, version, locale, path } = params;
   const ctx = { id: slug, version, locale };
 
   const project = await service.getProject(ctx);
   if (!project) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   const page = await service.getDocsPage(path, false, ctx);
   if (!page) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
   const { frontmatter } = page;
 
   const platformProject = await platforms.getPlatformProjectOrNull(project);
   if (!platformProject) {
-    return { title: (await parent).title?.absolute };
+    return {};
   }
 
   const iconUrl = frontmatter.icon ? await service.getAsset(frontmatter.icon, ctx) : null;
 
   return {
-    title: frontmatter.title
-      ? `${frontmatter.title} - ${platformProject.name}`
-      : `${platformProject.name} - ${(await parent).title?.absolute}`,
-    openGraph: {
-      images: [`/api/og?slug=${slug}&locale=${locale}&path=${path.join('/')}&version=${version}`]
-    },
-    alternates: markdownAlternate(docsPagePath(params, path)),
+    ...(frontmatter.title ? { title: frontmatter.title } : {}),
+    ...projectPageMetadata(project, params, {
+      path: (prefix) => docsPagePath({ ...params, locale: prefix }, path),
+      description: await markdown.describeMarkdown(page.content),
+      image: { path: path.join('/') },
+      markdown: true
+    }),
     other: {
       docs_source_mod: platformProject.name,
       docs_source_icon: platformProject.icon_url,

@@ -10,14 +10,31 @@ import { useMDXComponents } from '@/mdx-components';
 import Callout from '@/components/docs/shared/Callout';
 import Asset from '@/components/docs/shared/asset/Asset';
 import TooltipText from '@/components/docs/shared/util/TooltipText';
+import { Metadata } from 'next';
+import { SITE_NAME } from '@/lib/seo';
 
 export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }));
 
-export const generateMetadata = async (props: { params: Promise<{ slug: string }> }) => {
+export const generateMetadata = async (props: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
   const params = await props.params;
+
   const post = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug);
-  if (!post) return { notFound: true };
-  return { title: post.title };
+  if (!post) return {};
+
+  const url = `/blog/${post._raw.flattenedPath}`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical: url
+    },
+    openGraph: {
+      siteName: SITE_NAME,
+      type: 'article',
+      url,
+      publishedTime: post.date
+    }
+  };
 };
 
 function Embed({

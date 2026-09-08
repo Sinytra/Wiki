@@ -8,17 +8,21 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import NavProgressBar from '@repo/ui/navigation/NavProgressBar';
 import AppearanceSync from '@/components/navigation/appearance/AppearanceSync';
 import AppearanceScript from '@/components/navigation/appearance/AppearanceScript';
+import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Modded Minecraft Wiki',
-  description: 'The Wiki for all of Modded Minecraft. Presented by Sinytra.',
+  title: SITE_NAME,
+  applicationName: SITE_NAME,
+  description: SITE_DESCRIPTION,
   metadataBase: new URL(getProcessURL()),
   openGraph: {
-    siteName: 'Modded Minecraft Wiki',
-    type: 'website',
-    url: process.env.NEXT_PUBLIC_NEXT_APP_URL
+    siteName: SITE_NAME,
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image'
   },
   other: {
     'darkreader-lock': 'true'
@@ -29,7 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Modded Minecraft Wiki',
+    name: SITE_NAME,
     alternateName: ['Sinytra Wiki', 'MMW'],
     url: process.env.NEXT_PUBLIC_NEXT_APP_URL
   };

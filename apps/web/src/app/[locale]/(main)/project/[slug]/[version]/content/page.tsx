@@ -11,9 +11,33 @@ import { useTranslations } from 'next-intl';
 import { ProjectRouteParams } from '@repo/shared/types/routes';
 import { getInternalWikiLink } from '@/lib/project/game/content';
 import { Fragment } from 'react';
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { projectBasePath } from '@/lib/discovery/navigation';
+import { projectPageMetadata } from '@/lib/seo';
 
 interface Props {
   params: Promise<ProjectRouteParams>;
+}
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
+  const { slug, version, locale } = params;
+  setContextLocale(locale);
+
+  const project = await service.getProject({ id: slug, version, locale });
+  if (!project) {
+    return {};
+  }
+
+  const t = await getTranslations('ProjectContentPage');
+
+  return {
+    title: t('title'),
+    ...projectPageMetadata(project, params, {
+      path: (prefix) => `${projectBasePath({ ...params, locale: prefix })}/content`
+    })
+  };
 }
 
 function ContentEntryLink({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: ProjectContext }) {
@@ -23,7 +47,7 @@ function ContentEntryLink({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: Pr
 
   return (
     <div>
-      <PageLink href={getInternalWikiLink(entry.ref!, ctx)} className="flex flex-row items-center gap-1 !text-sm">
+      <PageLink href={getInternalWikiLink(entry.ref!, ctx)} className="flex flex-row items-center gap-1 text-sm!">
         <Asset itemSize location={entry.icon || ''} ctx={ctx} />
         {entry.name}
       </PageLink>
@@ -122,6 +146,8 @@ export default async function ProjectPage(props: Props) {
     notFound();
   }
 
+  const t = await getTranslations('ProjectContentPage');
+
   return (
     <div className="mx-auto mt-1 mb-5 flex w-full max-w-5xl flex-col gap-6">
       <DocsSubpageTitle
@@ -129,7 +155,7 @@ export default async function ProjectPage(props: Props) {
         description={platformProject.summary}
         icon_url={platformProject.icon_url}
         local={project.local}
-        subcategory="Content" // TODO Locale
+        subcategory={t('title')}
       />
 
       <div className="flex flex-col gap-4">

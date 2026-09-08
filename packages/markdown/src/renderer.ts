@@ -26,6 +26,8 @@ import remarkHeadingAttributes from './plugins/headingAttributes';
 import remarkElementAttributes from './plugins/elementAttributes';
 import remarkFigures from './plugins/figures';
 import remarkAlert from './plugins/alert';
+import { cleanFrontmatter } from './util';
+import { describeMarkdown } from './describe';
 
 export interface DocumentationMarkdown {
   content: ReactElement<any>;
@@ -38,24 +40,6 @@ export interface StringDocumentationMarkdown {
 }
 
 export type ComponentPatcher = (components: Record<string, any>) => Record<string, any>;
-
-function cleanFrontmatter(input: string) {
-  const lines = input.split('\n');
-  if (lines.length < 1 || !lines[0]!.startsWith('---')) {
-    return input;
-  }
-
-  let count = 0;
-  return lines
-    .map((line) => {
-      if (count < 2 && line.startsWith('---')) {
-        count++;
-        return line.trimEnd();
-      }
-      return line;
-    })
-    .join('\n');
-}
 
 async function renderCommonMarkdown(content: string): Promise<StringDocumentationMarkdown> {
   const file = await unified()
@@ -190,5 +174,6 @@ export default {
   renderCommonMarkdown,
   renderDocumentationMarkdown,
   readFrontmatter,
-  readProcessedFrontmatter
+  readProcessedFrontmatter,
+  describeMarkdown
 };
