@@ -33,7 +33,7 @@ export default function BlogLayout({ children }: Readonly<{ children: ReactNode 
           <MobileNavContextProvider>
             <Header locale="en" minimal />
 
-            <div className="mx-2 flex min-h-screen flex-1 pb-24">
+            <div className="page-wrapper-base mx-2 flex min-h-screen flex-1 pb-24">
               <div className="flex w-full flex-col items-center gap-4">
                 <div className="prose w-full max-w-4xl px-2 md:px-0 dark:prose-invert prose-h2:border-b prose-h2:border-b-secondary prose-h2:pb-1">
                   {children}
