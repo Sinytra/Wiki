@@ -7,6 +7,8 @@ import rehypeRaw from 'rehype-raw';
 import { markdownRehypeSchema } from './contentFilter';
 import { ReactElement } from 'react';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import remarkMdx from 'remark-mdx';
 import { recmaCodeHike, remarkCodeHike } from 'codehike/mdx';
 import { VFile } from 'vfile';
@@ -27,6 +29,7 @@ import remarkElementAttributes from './plugins/elementAttributes';
 import remarkFigures from './plugins/figures';
 import remarkAlert from './plugins/alert';
 import { cleanFrontmatter } from './util';
+import { katexOptions } from './plugins/math';
 import { describeMarkdown } from './describe';
 
 export interface DocumentationMarkdown {
@@ -44,11 +47,13 @@ export type ComponentPatcher = (components: Record<string, any>) => Record<strin
 async function renderCommonMarkdown(content: string): Promise<StringDocumentationMarkdown> {
   const file = await unified()
     .use(remarkParse)
+    .use(remarkMath)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeSanitize, markdownRehypeSchema)
     .use(rehypeSanitizeStyles)
     .use(rehypeMarkdownHeadings)
+    .use(rehypeKatex, katexOptions)
     .use(rehypeStringify)
     .process(content);
 
@@ -94,7 +99,8 @@ async function renderDocumentationMarkdown(
     const rehypePlugins: Pluggable[] = [
       rehypeSafeMarkdownAttributes,
       [rehypeSanitizeTree, sanitizeOptions],
-      rehypeSanitizeStyles
+      rehypeSanitizeStyles,
+      [rehypeKatex, katexOptions]
     ];
     if (!inline) {
       rehypePlugins.unshift([rehypeMarkdownHeadings, { stripTitle: true }]);
@@ -107,6 +113,7 @@ async function renderDocumentationMarkdown(
         [remarkCodeHike, chConfig],
         remarkAlert,
         remarkGfm,
+        remarkMath,
         [remarkMdxDisableExplicitJsx, knownComponents],
         remarkHint,
         remarkHeadingAttributes,
@@ -148,6 +155,7 @@ async function readProcessedFrontmatter(source: string): Promise<DocsEntryMetada
   const processor = unified()
     .use(remarkParse)
     .use(remarkMdx)
+    .use(remarkMath)
     .use(remarkHeadingAttributes)
     .use(remarkElementAttributes)
     .use(remarkRehype, { allowDangerousHtml: true })

@@ -2,6 +2,7 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkMdx from 'remark-mdx';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import { VFile } from 'vfile';
 import { matter } from 'vfile-matter';
 import { EXIT, SKIP, visit } from 'unist-util-visit';
@@ -13,6 +14,7 @@ import { cleanFrontmatter } from './util';
 const TEXT_NODES = [
   'heading',
   'code',
+  'math',
   'html',
   'yaml',
   'mdxjsEsm',
@@ -36,6 +38,7 @@ export async function describeMarkdown(source: string, maxLength = 160): Promise
       .use(remarkParse)
       .use(remarkMdx)
       .use(remarkGfm)
+      .use(remarkMath)
       .use(remarkHint)
       .use(remarkAlert, { componentName: 'Callout' });
 
@@ -89,6 +92,8 @@ function nodeToText(node: Nodes): string {
   switch (node.type) {
     case 'text':
     case 'inlineCode':
+      return node.value;
+    case 'inlineMath':
       return node.value;
     case 'break':
       return ' ';

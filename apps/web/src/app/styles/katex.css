@@ -1,0 +1,10 @@
+.katex-display {
+    padding: 0.25rem 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.katex-error {
+    white-space: pre-wrap;
+    word-break: break-word;
+}

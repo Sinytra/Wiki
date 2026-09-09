@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './styles/globals.css';
+import 'katex/dist/katex.min.css';
+import './styles/katex.css';
 import { ReactNode } from 'react';
 import { getProcessURL } from '@/lib/utils';
 import { cn } from '@repo/ui/lib/utils';
