@@ -168,6 +168,35 @@ key=value pair, or one of our custom properties:
 The ![](@minecraft:diamond){item} Diamond is the hardest mineral.
 ```
 
+### Code blocks
+
+The Wiki uses [CodeHike](https://codehike.org) to enhance code blocks with support for syntax highlighting,
+file names and code tabs.
+
+#### Syntax highlighting
+
+Include a language name after the code block to enable syntax highlighting.
+
+````
+```java
+public static final String EXAMPLE = "Hello World";
+```
+````
+
+#### File names
+
+Use the `title` attribute to display a file name above the code block.
+
+````
+```java title="Example.java"
+public static final String EXAMPLE = "Hello World";
+```
+````
+
+#### Tabs
+
+See [Common components](../components/common#codetabs) for usage.
+
 ### Heading atrributes
 
 Headings titles can be followed by a set of attributes separated by space, wrapped in braces as follows:
@@ -210,6 +239,27 @@ Text and heading placed left to the figure.
 
 Text and heading placed below the figure.
 ```
+
+### Math
+
+<Callout type="info">
+  A dollar sign that isn't meant to open a formula should be escaped as `\$`, otherwise text like
+  `$5 and $10` is read as math.
+</Callout>
+
+LaTeX math is rendered with [KaTeX](https://katex.org/). Wrap an expression in single dollar signs to place it
+inline with the surrounding text, or in double dollar signs to display it on its own centered line.
+
+```md
+The drop chance is $p = \frac{n}{N}$ per block broken.
+
+$$
+E = \sum_{i=1}^{n} m_i c^2
+$$
+```
+
+Refer to the [supported functions](https://katex.org/docs/supported) list for known commands.
+Commands that reach outside the formula, such as `\href` and `\includegraphics`, are disabled.
 
 ## Limitations
 
