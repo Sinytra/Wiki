@@ -6,6 +6,7 @@ import { rawPagePath } from '@/lib/discovery/rawPage';
 
 export const SITE_NAME = 'Modded Minecraft Wiki';
 export const SITE_DESCRIPTION = 'The Wiki for all of Modded Minecraft. Presented by Sinytra.';
+export const OG_IMAGE_SIZE = { width: 1200, height: 630 };
 
 export type LocalizedPath = (prefix: string) => string;
 
@@ -42,7 +43,7 @@ export function pageMetadata({ locale, path, languages, markdown, image, descrip
       siteName: SITE_NAME,
       type: 'website',
       url: canonical,
-      ...(image ? { images: [image] } : {})
+      ...(image ? { images: [{ url: image, ...OG_IMAGE_SIZE }] } : {})
     }
   };
 }

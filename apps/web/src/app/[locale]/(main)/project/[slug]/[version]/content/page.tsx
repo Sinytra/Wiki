@@ -47,7 +47,7 @@ function ContentEntryLink({ entry, ctx }: { entry: ContentFileTreeEntry; ctx: Pr
 
   return (
     <div>
-      <PageLink href={getInternalWikiLink(entry.ref!, ctx)} className="flex flex-row items-center gap-1 text-sm!">
+      <PageLink href={getInternalWikiLink(entry.ref!, ctx)} className="flex flex-row items-center gap-1 text-sm">
         <Asset itemSize location={entry.icon || ''} ctx={ctx} />
         {entry.name}
       </PageLink>

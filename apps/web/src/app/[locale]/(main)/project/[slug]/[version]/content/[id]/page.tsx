@@ -51,7 +51,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {};
   }
 
-  const iconUrl = frontmatter.icon ? await service.getAsset(frontmatter.icon, ctx) : null;
+  const iconUrl = frontmatter.icon
+    ? await service.getAsset(frontmatter.icon, ctx)
+    : frontmatter.id?.[0]
+      ? await service.getItemAsset(frontmatter.id[0], ctx)
+      : null;
 
   return {
     ...(frontmatter.title ? { title: frontmatter.title } : {}),
