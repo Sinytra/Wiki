@@ -44,7 +44,7 @@ export default function DocsFloatingNav({ className, children }: Props) {
     <div
       className={cn(
         'fixed bottom-4 left-1/2 z-60 -translate-x-1/2 lg:hidden',
-        'flex flex-row gap-1.5 rounded-lg border border-tertiary bg-primary-alt p-1 shadow-lg wide-layout:hidden',
+        'flex flex-row gap-1.5 rounded-md border border-tertiary bg-primary-alt p-1 shadow-lg wide-layout:hidden',
         className
       )}
     >

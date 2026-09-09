@@ -18,7 +18,7 @@ export default function PageLink({ href, target, local, className, children }: L
     <Element
       href={href}
       target={target}
-      className={cn(className, `text-link decoration-1 underline-offset-4 hover:text-link-hover hover:underline`)}
+      className={cn(className, 'text-link decoration-1 underline-offset-4 hover:text-link-hover hover:underline')}
     >
       {children}
     </Element>

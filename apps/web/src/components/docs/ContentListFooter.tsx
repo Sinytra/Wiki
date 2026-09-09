@@ -60,7 +60,7 @@ function Category({
                 <PageLink
                   href={getInternalWikiLink(c.ref!, ctx)}
                   className={cn(
-                    'flex w-full flex-row items-center gap-1 rounded-sm !text-sm',
+                    'flex w-full flex-row items-center gap-1 rounded-sm text-sm!',
                     c.ref === currentId && 'bg-primary font-semibold'
                   )}
                 >
