@@ -14,6 +14,9 @@ only available in-game, such as showing recipes, crafting usage, item metadata p
 Mod projects are encouraged to leverage game data files in combination with [content pages](pages/content_pages) for the
 best experience.
 
+The Wiki provides vanilla and mod loader game content by default, and therefore you don't need to include them
+yourself.
+
 ## Language files
 
 Language files are used to display the names of blocks and items in other components, such as recipes. They also
@@ -50,6 +53,11 @@ If some of your items are using custom key paths, please adjust them accordingly
 language files.
 
 ## Tags
+
+<Callout type="important">
+  Make sure to include all tags provided your mod, including those under the `c` namespace. This is important for
+  displaying ingredients in recipes.
+</Callout>
 
 Tags are used by the Wiki to resolve items in recipes. It is recommended you include all of your mod's tags in the
 project to avoid issues in resolution.
