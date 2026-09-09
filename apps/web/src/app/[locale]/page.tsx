@@ -263,7 +263,7 @@ function OracleIndexTile({ className }: { className?: string }) {
           className="overflow-hidden border border-tertiary"
         >
           <img
-            src="/static/oracle_index_preview.jpg"
+            src="/static/oracle_index_preview.png"
             alt="Oracle Index in-game documentation preview"
             width={1400}
             height={778}
