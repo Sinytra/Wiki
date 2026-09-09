@@ -87,7 +87,7 @@ function MobileHeaderLink({
   );
 }
 
-export default function Header({ locale, minimal, unfix }: { locale: string; minimal?: boolean; unfix?: boolean }) {
+export default function Header({ locale, minimal }: { locale: string; minimal?: boolean }) {
   const preview = env.isPreview();
   const t = useTranslations('NavigationHeader');
 
@@ -95,7 +95,7 @@ export default function Header({ locale, minimal, unfix }: { locale: string; min
   const showSearch = !preview && !minimal;
 
   return (
-    <HeaderBase unfix={unfix}>
+    <HeaderBase>
       <div className="pointer-events-auto! z-50 mx-auto flex h-nav max-w-7xl flex-row items-center gap-3 px-4 sm:gap-4 sm:px-6">
         <div className="flex min-w-fit flex-1 flex-row items-center">
           <Brand preview={preview} />

@@ -171,6 +171,10 @@
         }
     }
 
+    .prose {
+        line-height: 1.6;
+    }
+
     .prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
         @apply border-b border-secondary pb-2 mb-4 flow-root;
     }

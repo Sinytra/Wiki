@@ -31,7 +31,7 @@ export default function BlogLayout({ children }: Readonly<{ children: ReactNode 
       <SearchContextProvider>
         <ClientLocaleProvider keys={[]}>
           <MobileNavContextProvider>
-            <Header locale="en" minimal unfix />
+            <Header locale="en" minimal />
 
             <div className="mx-2 flex min-h-screen flex-1 pb-24">
               <div className="flex w-full flex-col items-center gap-4">
