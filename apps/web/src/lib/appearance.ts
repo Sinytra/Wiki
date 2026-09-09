@@ -52,8 +52,8 @@ export function applyStoredAppearance(options: ApplyAppearanceOptions) {
   const theme = read(options.keys.theme, options.themes, options.defaults.theme);
   const width = read(options.keys.width, options.widths, options.defaults.width);
 
-  const resolvedTheme =
-    theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme;
+  // Dark is the default while light mode is experimental
+  const resolvedTheme = theme === 'auto' ? 'dark' : theme;
 
   root.setAttribute('data-theme', resolvedTheme);
   root.classList.toggle('cc--darkmode', resolvedTheme === 'dark'); // For cookie banner
