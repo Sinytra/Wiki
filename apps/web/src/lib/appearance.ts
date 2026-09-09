@@ -16,7 +16,7 @@ export const APPEARANCE_STORAGE_KEYS = {
 
 export const DEFAULT_APPEARANCE: AppearanceSettings = {
   theme: 'dark',
-  width: 'narrow'
+  width: 'wide'
 };
 
 export const THEME_CLASS_PREFIX = 'theme-';
