@@ -337,20 +337,17 @@ function SponsorBanner() {
   const partnerUrl = process.env.PARTNER_URL;
   const bannerUrl = process.env.PARTNER_BANNER_URL;
   if (!partnerUrl || !bannerUrl) return null;
+  const partnerDesc = process.env.PARTNER_DESC;
 
   return (
-    <section className="mb-3 flex flex-col justify-center gap-2">
+    <section className="flex flex-col justify-center gap-2">
       <a
         href={partnerUrl}
         target="_blank"
         rel="noopener noreferrer sponsored"
         className="block w-full overflow-hidden rounded-sm border-tertiary transition-opacity hover:opacity-90"
       >
-        <img
-          className="mx-auto"
-          src={bannerUrl}
-          alt="CreeperHost: Buy a server today and it will directly support this creator"
-        />
+        <img className="mx-auto" src={bannerUrl} alt={partnerDesc} />
       </a>
     </section>
   );
@@ -399,7 +396,7 @@ function Hero() {
 
 function HomePageContent({ projects }: { projects: FeaturedProject[] }) {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 sm:px-6">
+    <main className="mx-auto mb-4 flex w-full max-w-6xl flex-col gap-3 px-4 sm:px-6">
       <Hero />
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
