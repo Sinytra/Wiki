@@ -87,7 +87,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
       source_url: '',
 
       platform: 'curseforge',
-      project_url: getProjectURL(slug, 'mod'),
+      project_url: createProjectURL(slug, 'mod'),
       extra: {
         authors: []
       },
@@ -112,7 +112,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
     source_url: project.links?.sourceUrl,
 
     platform: 'curseforge',
-    project_url: getProjectURL(project.slug, type),
+    project_url: createProjectURL(project.slug, type),
     extra: {
       authors: (project.authors ?? []).map((a) => ({ name: a.name, url: a.url }) satisfies PlatformProjectAuthor)
     },
@@ -124,9 +124,27 @@ async function getProjectAuthors(source: PlatformProject): Promise<PlatformProje
   return (source.extra?.authors as PlatformProjectAuthor[]) ?? [];
 }
 
-function getProjectURL(slug: string, type: ProjectType): string {
+async function getProjectURL(slugOrId: string, type: ProjectType): Promise<string> {
+  const slug = await getProjectSlug(slugOrId);
+  return createProjectURL(slug, type);
+}
+
+function createProjectURL(slug: string, type: ProjectType): string {
   const base = projectTypePaths[type] ?? projectTypePaths.mod;
   return `https://www.curseforge.com/minecraft/${base}/${slug}`;
+}
+
+async function getProjectSlug(slugOrId: string): Promise<string> {
+  if (slugOrId.match(/^\d+$/) && !shouldUsePlaceholder()) {
+    try {
+      const project = await getCurseForgeProject(slugOrId);
+      return project.slug;
+    } catch (e) {
+      console.error('Error looking up project to resolve slug', e);
+      return slugOrId;
+    }
+  }
+  return slugOrId;
 }
 
 async function getCurseForgeProject(slug: string): Promise<CurseForgeProject> {

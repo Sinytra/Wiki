@@ -83,10 +83,10 @@ async function ProjectMetaInfo({ base, project }: { base: BrowseProjectData; pro
   const TypeIcon = ProjectTypeIcons[base.type];
 
   const cfLink = base.platforms.curseforge
-    ? platforms.getProjectURL('curseforge', base.platforms.curseforge, base.type)
+    ? await platforms.getResolvedProjectURL('curseforge', base.platforms.curseforge, base.type)
     : null;
   const mrLink = base.platforms.modrinth
-    ? platforms.getProjectURL('modrinth', base.platforms.modrinth, base.type)
+    ? await platforms.getResolvedProjectURL('modrinth', base.platforms.modrinth, base.type)
     : null;
 
   return (

@@ -4,7 +4,7 @@ import { ProjectType } from '@sinytra/wiki-api-types';
 export interface ProjectPlatformProvider {
   getProject: (slug: string) => Promise<PlatformProject>;
   getProjectAuthors: (mod: PlatformProject) => Promise<PlatformProjectAuthor[]>;
-  getProjectURL: (slug: string, type: ProjectType) => string;
+  getProjectURL: (slug: string, type: ProjectType) => Promise<string>;
 }
 
 export interface PlatformProject {

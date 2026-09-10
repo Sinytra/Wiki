@@ -77,7 +77,7 @@ async function getProject(slug: string): Promise<PlatformProject> {
     discord_url: mrProject.link_urls?.discord?.url,
 
     platform: 'modrinth',
-    project_url: getProjectURL(mrProject.slug, type),
+    project_url: await getProjectURL(mrProject.slug, type),
     type
   };
 }
@@ -149,8 +149,8 @@ function getUserURL(user: ModrinthUser) {
   return `https://modrinth.com/user/${user.username}`;
 }
 
-function getProjectURL(slug: string, _type: ProjectType): string {
-  return `https://modrinth.com/mod/${slug}`;
+async function getProjectURL(slugOrId: string, _type: ProjectType): Promise<string> {
+  return `https://modrinth.com/mod/${slugOrId}`;
 }
 
 export const modrinthModPlatform: ProjectPlatformProvider = {
