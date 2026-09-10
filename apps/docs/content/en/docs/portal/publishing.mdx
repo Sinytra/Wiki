@@ -6,8 +6,7 @@ Learn how to publish your documentation on our website!
 
 ## Developer portal
 
-You can access our [developer portal](https://moddedmc.wiki/dev) by clicking the `Open Dashboard` button on the home
-page or the `Developers` link in the footer.
+You can access our [developer portal](https://moddedmc.wiki/dev) by clicking `Log in` on the Wiki's top navigation bar.
 
 ### First login
 
@@ -94,6 +93,16 @@ in the list, please tell us about your problem on [Discord](https://discord.siny
 
 - **Fix:** For the purposes of verifying project ownership, please momentarily set the Source Code url of your project
 to match the repository url. See [Ownership verification](#ownership-verification) for details.
+
+### Platform project not found
+
+- **Possible causes:**
+  - The specified platform project slug is incorrect
+  - If your project is hosted on CurseForge and only contains alpha files, it will not be indexed by their API
+
+- **Fixes:**
+  - Make sure the specified slugs / IDs are correct
+  - In the latter case, you must use the CurseForge project's ID in the `platforms` metadata field instead of the slug
 
 ### User is not authorized to register this project
 

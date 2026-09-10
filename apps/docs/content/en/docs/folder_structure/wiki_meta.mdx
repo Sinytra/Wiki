@@ -53,8 +53,10 @@ Wiki metadata must be placed in a file called `sinytra-wiki.json` inside the doc
 
 ### `platforms` <span className="text-rose-400!">*</span>
   - Type:  `map<string, string>`
-  - Map of [slugs](#slug) of your project's distribution platforms.
-  - Currently supported platforms are `modrinth` and `curseforge`. CurseForge projects may use their unique project ID as well.
+  - Map of your project's distribution platforms to project [slugs](#slug) or IDs
+  - Currently supported platforms are `modrinth` and `curseforge`
+  - ⚠️ If your CurseForge project only has alpha files, you MUST use the project ID instead of its slug, otherwise we
+    can't find it!
   - At least one platform is required
 
 ## Metadata
