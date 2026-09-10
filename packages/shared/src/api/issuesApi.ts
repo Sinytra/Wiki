@@ -32,7 +32,7 @@ async function reportPageRenderFailure(
 async function reportMissingPlatformProject(project: ProjectData, platform: ProjectPlatform) {
   if (project.local) return;
 
-  const projectLink = platforms.getProjectURL(platform, project.platforms[platform]!, project.type);
+  const projectLink = await platforms.getProjectURL(platform, project.platforms[platform]!, project.type);
 
   await addProjectIssue(project.id, {
     level: 'error',

@@ -47,9 +47,14 @@ async function ProjectPlatforms({ project }: { project: DevProjectData }) {
     Object.keys(project.platforms).map(async (platform) => {
       const p = ProjectHostingPlatforms[platform as ProjectPlatform]!;
       const value = project.platforms[platform as ProjectPlatform] as any;
-      const url = platforms.getProjectURL(platform as ProjectPlatform, value, project.type);
 
-      return <DataField className="font-mono" key={platform} title={p.name} icon={p.icon} value={value} href={url} />;
+      const platformProject = await platforms.getPlatformProjectOrNull(project);
+      const slug = platformProject?.slug ?? value;
+      const url =
+        platformProject?.project_url ??
+        (await platforms.getProjectURL(platform as ProjectPlatform, value, project.type));
+
+      return <DataField className="font-mono" key={platform} title={p.name} icon={p.icon} value={slug} href={url} />;
     })
   );
 

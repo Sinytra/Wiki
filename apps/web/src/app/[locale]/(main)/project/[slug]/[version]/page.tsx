@@ -319,7 +319,7 @@ export default async function ProjectHomepage(props: PageProps) {
           <ExternalLink
             text="CurseForge"
             icon={CurseForgeColorIcon}
-            href={platforms.getProjectURL('curseforge', project.platforms.curseforge, project.type)}
+            href={await platforms.getResolvedProjectURL('curseforge', project.platforms.curseforge, project.type)}
             className="border-brand-curseforge/40 from-primary to-brand-curseforge/20"
           />
         )}
@@ -327,8 +327,8 @@ export default async function ProjectHomepage(props: PageProps) {
           <ExternalLink
             text="Modrinth"
             icon={ModrinthIcon}
-            href={platforms.getProjectURL('modrinth', project.platforms.modrinth, project.type)}
-            className={`border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth`}
+            href={await platforms.getResolvedProjectURL('modrinth', project.platforms.modrinth, project.type)}
+            className="border-brand-modrinth/40 from-primary to-brand-modrinth/20 [&>svg]:text-brand-modrinth"
           />
         )}
         {platformProject.discord_url && (

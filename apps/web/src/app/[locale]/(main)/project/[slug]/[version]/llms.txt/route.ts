@@ -127,7 +127,7 @@ export async function GET(_request: Request, props: Props) {
             url: baseUrl,
             desc: 'Rendered HTML page with the project description, supported game versions, links and licensing'
           },
-          ...(platformProject ? collectProjectLinks(project, platformProject) : [])
+          ...(platformProject ? await collectProjectLinks(project, platformProject) : [])
         ]
       }
     ]
@@ -159,13 +159,13 @@ function plural(count: number, singular: string, plural: string): string {
   return `${count} ${count === 1 ? singular : plural}`;
 }
 
-function collectProjectLinks(project: ProjectData, platformProject: PlatformProject): ModelLink[] {
+async function collectProjectLinks(project: ProjectData, platformProject: PlatformProject): Promise<ModelLink[]> {
   const links: ModelLink[] = [];
 
   for (const [platform, slug] of Object.entries(project.platforms)) {
     links.push({
       title: platform === 'curseforge' ? 'CurseForge' : platform === 'modrinth' ? 'Modrinth' : platform,
-      url: platforms.getProjectURL(platform as any, slug, project.type),
+      url: await platforms.getResolvedProjectURL(platform as any, slug, project.type),
       desc: `The ${project.name} ${project.type} on ${platform}`
     });
   }
