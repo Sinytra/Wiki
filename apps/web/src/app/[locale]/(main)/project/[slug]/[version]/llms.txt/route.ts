@@ -173,7 +173,7 @@ async function collectProjectLinks(project: ProjectData, platformProject: Platfo
   for (const [platform, slug] of Object.entries(project.platforms)) {
     links.push({
       title: platform === 'curseforge' ? 'CurseForge' : platform === 'modrinth' ? 'Modrinth' : platform,
-      url: await platforms.getResolvedProjectURL(platform as any, slug, project.type),
+      url: platforms.getProjectURL(platform as any, slug, project.type),
       desc: `The ${project.name} ${project.type} on ${platform}`
     });
   }

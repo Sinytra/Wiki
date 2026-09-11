@@ -66,19 +66,8 @@ async function getProjectAuthors(source: PlatformProject, fallback: boolean = tr
   }
 }
 
-async function getProjectURL(source: ProjectPlatform, slug: string, type: ProjectType): Promise<string> {
-  return await getProjectSourcePlatform(source).getProjectURL(slug, type);
-}
-
-async function getResolvedProjectURL(source: ProjectPlatform, slug: string, type: ProjectType): Promise<string> {
-  const platform = getProjectSourcePlatform(source);
-  try {
-    const project = await platform.getProject(slug);
-    return project.project_url;
-  } catch {
-    // Ignored
-  }
-  return await getProjectURL(source, slug, type);
+function getProjectURL(source: ProjectPlatform, slug: string, type: ProjectType): string {
+  return getProjectSourcePlatform(source).getProjectURL(slug, type);
 }
 
 async function reportMissingProject(project: IdentifiableProject, platform: ProjectPlatform) {
@@ -107,7 +96,6 @@ function createFallback(project: IdentifiableProject): PlatformProject {
 export default {
   getProjectAuthors,
   getProjectURL,
-  getResolvedProjectURL,
   getPlatformProject,
   getPlatformProjectOrNull
 };
