@@ -72,11 +72,7 @@ async function getProjectLinks<T extends TypedIdProject>(
 ): Promise<FeaturedProject['links']> {
   const entries: FeaturedProject['links'] = {};
   for (const [key, value] of Object.entries(project.platforms)) {
-    entries[key as ProjectPlatform] = await platforms.getResolvedProjectURL(
-      key as ProjectPlatform,
-      value,
-      project.type
-    );
+    entries[key as ProjectPlatform] = platforms.getProjectURL(key as ProjectPlatform, value, project.type);
   }
   return {
     ...entries,

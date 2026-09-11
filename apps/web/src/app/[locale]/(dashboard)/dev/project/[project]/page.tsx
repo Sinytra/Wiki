@@ -51,8 +51,7 @@ async function ProjectPlatforms({ project }: { project: DevProjectData }) {
       const platformProject = await platforms.getPlatformProjectOrNull(project);
       const slug = platformProject?.slug ?? value;
       const url =
-        platformProject?.project_url ??
-        (await platforms.getProjectURL(platform as ProjectPlatform, value, project.type));
+        platformProject?.project_url ?? platforms.getProjectURL(platform as ProjectPlatform, value, project.type);
 
       return <DataField className="font-mono" key={platform} title={p.name} icon={p.icon} value={slug} href={url} />;
     })
