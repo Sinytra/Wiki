@@ -2,7 +2,6 @@ import { Block, CodeBlock, parseProps } from 'codehike/blocks';
 import { highlight, Pre, RawCode } from 'codehike/code';
 import { z } from 'zod';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
-import Plastic from '@shikijs/themes/plastic';
 
 const Schema = Block.extend({ tabs: z.array(CodeBlock) });
 export default async function CodeTabs(props: unknown) {
@@ -13,7 +12,7 @@ export default async function CodeTabs(props: unknown) {
 
 async function CodeTabsVerified(props: { tabs: RawCode[] }) {
   const { tabs } = props;
-  const highlighted = await Promise.all(tabs.map((tab) => highlight(tab, Plastic)));
+  const highlighted = await Promise.all(tabs.map((tab) => highlight(tab, 'github-from-css')));
 
   return (
     <Tabs defaultValue={tabs[0]?.meta}>
