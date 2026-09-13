@@ -36,11 +36,11 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
     };
   }
   if (frontmatter.custom) {
-    Object.entries(frontmatter.custom).forEach(([key, value], index) => {
+    Object.entries(frontmatter.custom).forEach(([key, value]) => {
       providedProps[key] = {
         type: 'single',
         value: <MarkdownPropertyValue text={value} ctx={ctx} links={links} />,
-        order: 999 + index
+        order: 999
       };
     });
   }
