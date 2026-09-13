@@ -12,7 +12,7 @@ function getFileName(meta: string): string | null {
 }
 
 export default async function CodeHikeCode({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, 'github-dark');
+  const highlighted = await highlight(codeblock, 'github-from-css');
   const fileName = getFileName(highlighted.meta);
 
   return (
