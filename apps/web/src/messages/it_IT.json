@@ -1,20 +1,32 @@
 {
   "Badges": {
-    "local": "Local",
-    "latest": "Latest",
-    "admin": "Admin"
+    "local": "Locale",
+    "latest": "Più recente",
+    "admin": "Amministratore"
   },
   "NavigationHeader": {
     "title": "Modded Minecraft Wiki",
     "title_short": "Wiki",
     "badge": {
-      "preview": "MODALITA' ANTEPRIMA",
-      "beta": "Beta"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "Home",
       "browse": "Esplora",
-      "about": "Info"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,134 +49,113 @@
       },
       "about": {
         "title": "Info",
+        "about": "About us",
         "tos": "Termini di Servizio",
-        "privacy": "Informativa sulla Privacy",
-        "contact": "Contatti"
+        "privacy": "Informativa sulla Privacy"
       }
     }
   },
   "HomePage": {
     "title": "Benvenuto nella <highlight>Modded Minecraft Wiki</highlight>",
     "subtitle": "La tua miglior risorsa per scoprire, creare, e contribuire a progetti relativi a Minecraft.",
+    "browse": "Scopri progetti",
+    "guide": "Author Guide",
     "popular": {
       "title": "Wiki Popolari",
       "open": "Leggi di più",
-      "disclaimer": "Questi progetti sono evidenziati basandosi sulla loro popolarità attraverso statistiche di visualizzazioni e non sono ufficialmente supportate da Moded Minecraft Wiki."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "Entra nella nostra Community",
-      "users": {
-        "title": "Utenti",
-        "subtitle": "Esploare i progetti in evidenza e goditi quesiti vantaggi:",
-        "docs": "Access high-quality, up-to-date and versioned documentation",
-        "contribute": "Contribute to projects without programming knowledge",
-        "ui": "Enjoy a consistent, user-friendly interface across all projects",
-        "localization": "Benefit from multi-language support"
-      },
-      "authors": {
-        "title": "Autori",
-        "subtitle": "Get access to the Project Dashboard and enjoy these benefits:",
-        "vcs": "Versioning support for your documentation",
-        "components": "Built-in components for recipes, assets, etc.",
-        "gradle": "Gradle integration for seamless workflow",
-        "management": "Advanced project management tools",
-        "interaction": "Direct interaction with your user base",
-        "dashboard": "Open Dashboard",
-        "guide": "Leggi di più"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "Scopri progetti",
-    "highlights": {
-      "localization": {
-        "title": "Localizzazione",
-        "desc": "Translate your docs into world languages"
-      },
-      "accessibility": {
-        "title": "Accessible",
-        "desc": "Un interfaccia utente intuitiva e responsiva"
-      },
-      "open": {
-        "title": "Aperto",
-        "desc": "Let your users contribute without any programming knowledge necessary"
-      },
-      "free": {
-        "title": "Gratis",
-        "desc": "Hosting docs on our website is completely free of charge!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
-      "title": "About Us",
-      "maintainers": "The Wiki is built and maintained by <b>Sinytra</b>, a dedicated team of passionate developers focused on delivering high-quality, Free and Open Source software for the Minecraft modding community.",
-      "mission": "Our goal is to empower modders and players alike by providing the tools and resources necessary to create, document, and explore the endless possibilities of modded Minecraft."
+      "title": "Chi Siamo",
+      "maintainers": "La Wiki è sviluppata e mantenuta da <b>Sinytra</b>, un team di sviluppatori appassionati focalizzato a fornire software liberi, open source e di alta qualità per la comunità di modding di Minecraft.",
+      "mission": "Il nostro obiettivo è quello di potenziare sia i modder che i giocatori fornendo gli strumenti e le risorse necessarie per creare, documentare ed esplorare le infinite possibilità delle mod di Minecraft."
     },
     "blog": {
-      "title": "Blog Posts",
-      "open": "Leggi di più"
+      "title": "Latest News",
+      "open": "Leggi di più",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
-      "title": "Browse projects",
-      "search_filters": "Search filters...",
-      "categories": "Categories"
+      "title": "Esplora progetti",
+      "search_filters": "Filtri di ricerca...",
+      "categories": "Categorie"
     },
-    "sorting": "Sort by",
+    "sorting": "Ordina per",
     "sort": {
-      "relevance": "Relevance",
-      "creation_date": "Creation date",
-      "popularity": "Popularity",
+      "relevance": "Rilevanza",
+      "creation_date": "Data di creazione",
+      "popularity": "Popolarità",
       "az": "A-Z",
       "za": "Z-A"
     },
-    "search": "Search projects...",
-    "clear_filter": "Clear filters",
-    "no_results": "Search query returned no results!"
+    "search": "Cerca progetti...",
+    "clear_filter": "Pulisci filtri",
+    "no_results": "La query di ricerca non ha restituito alcun risultato!"
   },
   "SearchProjectTypes": {
-    "mod": "Mods",
-    "modpack": "Modpacks",
-    "resourcepack": "Resource packs",
-    "datapack": "Data packs",
-    "shader": "Shaders",
-    "plugin": "Plugins"
+    "mod": "Mod",
+    "modpack": "Modpack",
+    "resourcepack": "Pacchetti di risorse",
+    "datapack": "Datapack",
+    "shader": "Shader",
+    "plugin": "Plugin"
   },
   "ProjectTypes": {
     "mod": "Mod",
     "modpack": "Modpack",
-    "resourcepack": "Resource pack",
-    "datapack": "Data pack",
+    "resourcepack": "Pacchetto di risorse",
+    "datapack": "Datapack",
     "shader": "Shader",
     "plugin": "Plugin",
-    "unknown": "Unknown"
+    "unknown": "Sconosciuto"
   },
   "LoadingContent": {
-    "message": "Loading..."
+    "message": "Caricamento..."
   },
   "MetaDocsNavigation": {
     "title": "Esplora",
     "about": "Info",
-    "devs": "Author guide",
-    "components": "Components",
-    "help": "Get help",
-    "tos": "Terms of Use",
+    "devs": "Guida all'autore",
+    "components": "Componenti",
+    "help": "Supporto",
+    "tos": "Termini d’Uso",
     "privacy": "Informativa sulla Privacy",
-    "security": "Security Notice"
+    "security": "Avviso di Sicurezza"
   },
   "Login": {
-    "title": "Login required",
-    "desc": "The page you are trying to access requires you to log in.",
-    "prompt": "Please use your GitHub account to continue.",
-    "button": "Log in with GitHub"
+    "title": "Accesso richiesto",
+    "desc": "La pagina alla quale stai tentando di accedere richiede di effettuare il login.",
+    "prompt": "Usa il tuo account GitHub per continuare.",
+    "button": "Accedi tramite GitHub"
   },
   "Preview": {
-    "title": "Preview mode is enabled",
-    "desc": "Preview mode enables a minimal user interface, allowing you to focus on drafting your docs locally before they are published.",
-    "roots": "Available local documentation roots",
+    "title": "Modalità anteprima abilitata",
+    "desc": "La modalità anteprima riduce l'interfaccia utente al minimo, consentendo di concentrarsi sulla redazione dei documenti in locale prima della loro pubblicazione.",
+    "roots": "Base di documentazione locale disponibile",
     "open": "Aperto"
   },
   "DocsProjectInfo": {
-    "title": "Project information",
-    "type": "Type",
+    "title": "Informazioni di progetto",
+    "type": "Tipo",
     "author": "Autore",
     "tags": "Tags",
     "latest": {
@@ -173,33 +164,33 @@
     },
     "license": {
       "title": "Licenza",
-      "custom": "Custom license",
+      "custom": "Licenza personalizzata",
       "unknown": "Sconosciuta",
       "arr": "Tutti i diritti riservati"
     }
   },
   "ProjectCategories": {
-    "adventure": "Adventure",
-    "cursed": "Cursed",
-    "decoration": "Decoration",
-    "economy": "Economy",
-    "equipment": "Equipment",
-    "food": "Food",
-    "game-mechanics": "Game Mechanics",
-    "library": "Library",
-    "magic": "Magic",
-    "management": "Management",
-    "minigame": "Minigame",
-    "mobs": "Mobs",
-    "optimization": "Optimization",
+    "adventure": "Avventura",
+    "cursed": "Maledetto",
+    "decoration": "Decorazione",
+    "economy": "Economia",
+    "equipment": "Attrezzatura",
+    "food": "Cibo",
+    "game-mechanics": "Meccaniche Di Gioco",
+    "library": "Libreria",
+    "magic": "Magia",
+    "management": "Gestione",
+    "minigame": "Minigioco",
+    "mobs": "Mob",
+    "optimization": "Ottimizzazione",
     "social": "Social",
-    "storage": "Storage",
-    "technology": "Technology",
-    "transportation": "Transporation",
-    "utility": "Utility",
-    "worldgen": "Worldgen",
-    "server-utility": "Server Utility",
-    "armor-weapons-tools": "Armor, Tools, and Weapons",
+    "storage": "Archiviazione",
+    "technology": "Tecnologia",
+    "transportation": "Trasporti",
+    "utility": "Utilità",
+    "worldgen": "Generazione del Mondo",
+    "server-utility": "Utilità Server",
+    "armor-weapons-tools": "Armatura, Strumenti e Armi",
     "library-api": "API and Library",
     "adventure-rpg": "Adventure and RPG",
     "world-gen": "World Gen",
@@ -271,65 +262,65 @@
     "spam": "Spam",
     "copyright": "Copyright Infringement",
     "content_rules": "Violates Content Rules",
-    "tos": "Violates Terms of Service",
-    "unknown": "Unknown"
+    "tos": "Viola i Termini di Servizio",
+    "unknown": "Sconosciuto"
   },
   "ProjectReportStatus": {
-    "new": "New",
-    "dismissed": "Dismissed",
-    "accepted": "Accepted",
-    "unknown": "Unknown"
+    "new": "Nuovo",
+    "dismissed": "Ignorato",
+    "accepted": "Approvato",
+    "unknown": "Sconosciuto"
   },
   "ProjectReportType": {
-    "project": "Project",
-    "docs": "Docs page",
-    "content": "Content page",
-    "unknown": "Unknown"
+    "project": "Progetto",
+    "docs": "Pagina dei documenti",
+    "content": "Pagina dei contenuti",
+    "unknown": "Sconosciuto"
   },
   "ViewReportPage": {
-    "reports": "Reports",
-    "title": "Report details",
-    "desc": "Viewing report details for {id}",
+    "reports": "Segnalazioni",
+    "title": "Dettagli della segnalazione",
+    "desc": "Revisionando il report per {id}",
     "details": {
-      "reporter": "Reported by",
-      "project_id": "Project ID",
-      "path": "Path",
-      "body": "Body",
-      "reason": "Reason",
-      "created_at": "Created at",
+      "reporter": "Segnalato da",
+      "project_id": "ID Progetto",
+      "path": "Percorso",
+      "body": "Corpo",
+      "reason": "Motivazione",
+      "created_at": "Creato il",
       "status": "Stato",
-      "type": "Type",
-      "locale": "Locale",
+      "type": "Tipo",
+      "locale": "Lingua",
       "version": "Versione"
     },
     "actions": {
-      "dismiss": "Dismiss",
-      "accept": "Accept"
+      "dismiss": "Ignora",
+      "accept": "Accetta"
     },
     "toast": {
-      "accept": "Report accepted",
-      "dismiss": "Report dismissed"
+      "accept": "Segnalazione accettata",
+      "dismiss": "Segnalazione archiviata"
     }
   },
   "Callout": {
-    "warning": "Warning",
-    "note": "Note",
-    "tip": "Tip",
-    "important": "Important",
-    "caution": "Caution"
+    "warning": "Attenzione",
+    "note": "Nota",
+    "tip": "Consiglio",
+    "important": "Importante",
+    "caution": "Attenzione"
   },
   "ProjectRegisterForm": {
-    "button": "New Project",
-    "title": "Register project",
-    "desc": "Register a new project to the wiki.",
+    "button": "Nuovo progetto",
+    "title": "Registra progetto",
+    "desc": "Registra un nuovo progetto alla wiki.",
     "repo": {
-      "title": "Repository URL",
-      "desc": "This is the address you use to clone your repository.",
+      "title": "URL della repository",
+      "desc": "Questo è l'indirizzo usato per clonare la tua repository.",
       "placeholder": "https://github.com/ExampleUser/ExampleMod"
     },
     "branch": {
-      "title": "Branch",
-      "desc": "Primary branch ref. You can specify additional branches to include in your metadata file."
+      "title": "Ramo",
+      "desc": "Riferimento al ramo primario. È possibile specificare altri rami da includere nel file di metadati."
     },
     "path": {
       "title": "Path to documentation root",
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "Home"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "Homepage placeholder",
     "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "Local",
       "global": "Global"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Project",
@@ -480,8 +475,18 @@
     "title": "Documentation",
     "homepage": "Home"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "Entry information"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "On this page"
@@ -494,6 +499,7 @@
     "desc": "+{count} more"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "Search languages...",
     "no_results": "No language found."
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "Personal"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "Projects",
-      "platform": "Platform",
-      "admin": "Administration"
+      "platform": "Platform"
     },
     "nav": {
       "projects": "Projects",
       "documentation": "Documentation",
-      "settings": "Impostazioni",
-      "admin": "System settings"
+      "settings": "Impostazioni"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "Update game data",
     "desc": "Fetch latest game data and run ingestion.",
     "button": "Update",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Update loader version"
     },

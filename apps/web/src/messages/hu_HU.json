@@ -8,13 +8,25 @@
     "title": "Modolt Minecraft Wiki",
     "title_short": "Wiki",
     "badge": {
-      "preview": "ELŐNÉZET MÓD",
-      "beta": "Béta"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "Kezdőlap",
       "browse": "Böngészés",
-      "about": "Rólunk"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,60 +49,36 @@
       },
       "about": {
         "title": "Névjegy",
+        "about": "About us",
         "tos": "Felhasználási feltételek",
-        "privacy": "Adatvédelmi irányelvek",
-        "contact": "Kapcsolat"
+        "privacy": "Adatvédelmi irányelvek"
       }
     }
   },
   "HomePage": {
     "title": "Üdvözöllek a <highlight>Modolt Minecraft Wikin</highlight>",
     "subtitle": "A legjobb forrásod Minecraft-projektek felfedezéséhez, létrehozásához és az azokhoz való hozzájáruláshoz.",
+    "browse": "Projektek Böngészése",
+    "guide": "Author Guide",
     "popular": {
       "title": "Népszerű Wikik",
       "open": "Olvass tovább",
-      "disclaimer": "Ezek a projektek a megtekintési statisztikáik alapján ajánlottak és nem hivatalosan jóváhagyottak a Modolt Minecraft Wiki által."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "Csatlakozás a közösséghez",
-      "users": {
-        "title": "Felhasználók",
-        "subtitle": "Fedezd fel a kiemelt projecteket és élvezt az alábbi előnyöket:",
-        "docs": "Férj hozzá kiváló minőségű, naprakész és verziózott dokumentációhoz",
-        "contribute": "Járulj hozzá projektekhez programozási tudás nélkül",
-        "ui": "Élvezz egy következtetes, felhasználóbarát kezelőfelületet az összes projekten kersztül",
-        "localization": "Olvass több különböző nyelven"
-      },
-      "authors": {
-        "title": "Szerzők",
-        "subtitle": "Férj hozzá a Projekt Vezérlőpult, és élvezd az alábbi előnyöket:",
-        "vcs": "Verziókezelési támogatás a dokumentációhoz",
-        "components": "Beépíttett elemek receptekhez, erőforrásokhoz, stb.",
-        "gradle": "Gradle integráció a zökkenőmentes munkafolyamatért",
-        "management": "Fejlett projektkezelési eszközök",
-        "interaction": "Közvetlen integráció a felhasználóbázisoddal",
-        "dashboard": "Vezérlőpult Megnyitása",
-        "guide": "Olvass tovább"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "Projektek Böngészése",
-    "highlights": {
-      "localization": {
-        "title": "Lokalizáció",
-        "desc": "Fordítsd le a dokumentumaidad a világ nyelveire"
-      },
-      "accessibility": {
-        "title": "Elérhető",
-        "desc": "Intuitív és gyors felhasználói felület"
-      },
-      "open": {
-        "title": "Nyitott",
-        "desc": "Nyitott"
-      },
-      "free": {
-        "title": "Ingyenes",
-        "desc": "A dokumentumok weboldalunkon történő tárolása teljesen ingyenes!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "Rólunk",
@@ -98,11 +86,14 @@
       "mission": "A mi célunk hogy modolókat és játékosokat egyaránt felhatalmazzunk azzal hogy ellátjuk őket azon eszközökkel melyek szükségesek az alkotáshoz, dokumentáláshoz és a modolt Minecraft végtelen lehetőségeinek felfedezéséhez."
     },
     "blog": {
-      "title": "Blogposztok",
-      "open": "Részletek"
+      "title": "Latest News",
+      "open": "Részletek",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "Projektek böngészése",
       "search_filters": "Szűrök keresése...",
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "Home"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "Homepage placeholder",
     "subtitle": "Due to API restrictions, project metadata is not available for CurseForge projects in local environments.",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "Helyi",
       "global": "Globális"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Projekt",
@@ -480,8 +475,18 @@
     "title": "Dokumentáció",
     "homepage": "Kezdőlap"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "Entry information"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "Ezen az oldalon"
@@ -494,6 +499,7 @@
     "desc": "+{count} további"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "Nyelvek keresése...",
     "no_results": "Nyelv nem található."
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "Personal"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "Projects",
-      "platform": "Platform",
-      "admin": "Administration"
+      "platform": "Platform"
     },
     "nav": {
       "projects": "Projects",
       "documentation": "Documentation",
-      "settings": "Settings",
-      "admin": "System settings"
+      "settings": "Settings"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "Update game data",
     "desc": "Fetch latest game data and run ingestion.",
     "button": "Update",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Update loader version"
     },

@@ -8,13 +8,25 @@
     "title": "마인크래프트 모드 위키",
     "title_short": "위키",
     "badge": {
-      "preview": "미리보기 모드",
-      "beta": "베타"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "홈",
       "browse": "찾아보기",
-      "about": "소개"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,60 +49,36 @@
       },
       "about": {
         "title": "소개",
+        "about": "About us",
         "tos": "이용약관",
-        "privacy": "개인정보 처리방침",
-        "contact": "문의하기"
+        "privacy": "개인정보 처리방침"
       }
     }
   },
   "HomePage": {
     "title": "<highlight>마인크래프트 모딩 위키</highlight>",
     "subtitle": "마인크래프트 모딩에 대한 많은 정보를 찾을 수 있는 공간입니다.",
+    "browse": "프로젝트 찾기",
+    "guide": "Author Guide",
     "popular": {
       "title": "위키 목록",
       "open": "더 알아보기",
-      "disclaimer": "위의 위키들은 조회수를 기반으로 나열되는 비공식 프로젝트들임."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "커뮤니티에 가입하기",
-      "users": {
-        "title": "유저들을 위한 것",
-        "subtitle": "여러 추천 프로젝트를 살펴보고 혜택도 누려보세요:",
-        "docs": "여기에는 최신 내용이 반영된 상세한 문서를 찾을 수 있어요.",
-        "contribute": "프로그래밍 지식 없이도 프로젝트에 기여할 수 있어요.",
-        "ui": "사용자 친화적인 인터페이스를 누릴 수 있어요.",
-        "localization": "여러분이 원하는 언어로 볼 수 있어요."
-      },
-      "authors": {
-        "title": "개발자들을 위한 것",
-        "subtitle": "프로젝트 Dashboard로 디음과 같은 혜택을 누릴 수 있어요:",
-        "vcs": "Versioning 가능한 문서 작성하기",
-        "components": "Built-in components for recipes, assets, etc.",
-        "gradle": "Workflow와 Gradle간의 완전한 통합",
-        "management": "고급 프로젝트 관리 도구 사용 가능",
-        "interaction": "사용자와 직접 소통하기",
-        "dashboard": "Dashboard 열기",
-        "guide": "더 알아보기"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "프로젝트 찾기",
-    "highlights": {
-      "localization": {
-        "title": "현지화",
-        "desc": "여러분의 문서를 다양한 언어로 변역 가능"
-      },
-      "accessibility": {
-        "title": "접근성",
-        "desc": "직관적이고 빠른 인터페이스"
-      },
-      "open": {
-        "title": "누구나 가능",
-        "desc": "사용자들이 프로그래밍 지식 없이도 기여하도록 만듭니다"
-      },
-      "free": {
-        "title": "무료",
-        "desc": "이 웹사이트에서 무료로 호스팅이 가능합니다!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "우리에 대하여",
@@ -98,11 +86,14 @@
       "mission": "우리의 목표는 모든 모더와 플레이어에게 마인크래프트 모딩의 무한한 가능성을 탐색하고, 만들고, 기록할 수 있는 도구를 제공하여 더 멋진 일을 해낼 수 있도록 만드는 것입니다."
     },
     "blog": {
-      "title": "블로그 게시물",
-      "open": "더 알아보기"
+      "title": "Latest News",
+      "open": "더 알아보기",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "프로젝트 찾아보기",
       "search_filters": "필터 검색...",
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "홈"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "홈페이지 힌트",
     "subtitle": "API제한에 의해, 프로젝트 메타데이터는 로컬 CurseForge프로젝트에서 사용할 수 없습니다.",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "Local",
       "global": "Global"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Project",
@@ -480,8 +475,18 @@
     "title": "문서",
     "homepage": "홈"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "정보"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "이 페이지에서..."
@@ -494,6 +499,7 @@
     "desc": "+ {count}개 더 보기"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "언어 검색",
     "no_results": "언어를 찾을 수 없습니다."
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "개인"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "프로젝트",
-      "platform": "플랫폼",
-      "admin": "Administration"
+      "platform": "플랫폼"
     },
     "nav": {
       "projects": "프로젝트",
       "documentation": "문서",
-      "settings": "설정",
-      "admin": "System settings"
+      "settings": "설정"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "Update game data",
     "desc": "Fetch latest game data and run ingestion.",
     "button": "Update",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Update loader version"
     },

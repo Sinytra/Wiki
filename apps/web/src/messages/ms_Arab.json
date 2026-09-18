@@ -8,13 +8,25 @@
     "title": "ويکي ماءينکرف‌ت موديد",
     "title_short": "ويکي",
     "badge": {
-      "preview": "مود ڤراليهت",
-      "beta": "بيتا"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "لامن اوتام",
       "browse": "لايري",
-      "about": "تنتڠ"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,72 +49,51 @@
       },
       "about": {
         "title": "تنتڠ",
+        "about": "About us",
         "tos": "شرط ڤرخدمتن",
-        "privacy": "داسر ڤريۏاسي",
-        "contact": "هوبوڠي"
+        "privacy": "داسر ڤريۏاسي"
       }
     }
   },
   "HomePage": {
     "title": "سلامت داتڠ ک<highlight>ويکي ماءينکرف‌ت موديد</highlight>",
     "subtitle": "سومبر اوتام اندا اونتوق منموءي⹁ منچيڤتا دان مڽومبڠ کڤد ڤروجيک برکاءيتن ماءينکرف‌ت.",
+    "browse": "لايري ڤروجيک",
+    "guide": "Author Guide",
     "popular": {
       "title": "ويکي ڤوڤولر",
       "open": "باچ لبيه لنجوت",
-      "disclaimer": "ڤروجيک٢ اين دسرلهکن برداسرکن ڤوڤولاريتيڽ ملالوءي ستاتيستيک ڤاڤرن دان تيدق دصحکن سچارا راسمي اوليه ويکي ماءينکرف‌ت موديد."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "سرتاي کومونيتي کامي",
-      "users": {
-        "title": "ڤڠݢونا",
-        "subtitle": "تروکي ڤروجيک يڠ دتمڤيلکن اوليه کامي دان نعمتي فاءيده اين:",
-        "docs": "اکسيس دوکومنتاسي يڠ ترکيني⹁ برکواليتي تيڠݢي دان برۏرسي",
-        "contribute": "بر سومبڠ کڤد ڤروجيک تنڤا ڤڠتاهوان ڤڠاتورچاراءن",
-        "ui": "نعمتي انتارا موک يڠ کونسيستن دان مسرا ڤڠݢونا مرنتسي سموا ڤروجيک",
-        "localization": "منفعت درڤد سوکوڠن مولتيبهاس"
-      },
-      "authors": {
-        "title": "ڤڠارڠ",
-        "subtitle": "داڤتکن اکسيس کڤد ڤاڤن ڤموک ڤروجيک دان نعمتي فاءيده اين:",
-        "vcs": "سوکوڠن ڤمۏرسين اونتوق دوکومنتاسي اندا",
-        "components": "کومڤونن تربينا اونتوق رسيڤي⹁ اسيت⹁ دان سباݢايڽ",
-        "gradle": "ڤڽڤادوان Gradle اونتوق اليرن کرجا يڠ لنچر",
-        "management": "الت ڤڠوروسن ڤروجيک لنجوتن",
-        "interaction": "اينترکسي لڠسوڠ دڠن ڤڠکلن ڤڠݢونا اندا",
-        "dashboard": "بوک ڤاڤن ڤموک",
-        "guide": "باچ لبيه لنجوت"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "لايري ڤروجيک",
-    "highlights": {
-      "localization": {
-        "title": "ڤڽتمڤتن",
-        "desc": "ترجمهکن دوکومنتاسي اندا کدالم بهاس٢ دنيا"
-      },
-      "accessibility": {
-        "title": "موده داکسيس",
-        "desc": "انتارا موک ڤڠݢونا يڠ اينتويتيف دان ريسڤونسيف"
-      },
-      "open": {
-        "title": "تربوک",
-        "desc": "بيارکن ڤڠݢونا اندا مڽومبڠ تنڤا ڤڠتاهوان ڤڠاتورچاراءن يڠ دڤرلوکن"
-      },
-      "free": {
-        "title": "ڤرچوما",
-        "desc": "ڤڠهوسن دوکومنتاسي ڤد لامن سساوڠ کامي اداله ڤرچوما سڤنوهڽ!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "تنتڠ کامي",
-      "maintainers": "ويکي اين دبينا دان دسلڠݢارا اوليه <b>Sinytra</b>⹁ سبواه ڤاسوقن ڤمباڠون يڠ برديديکاسي يڠ برسماڠت يڠ منومڤوکن ڤد ڤڽمڤاين ڤرايسين سومبر تربوک دان ڤرچوما يڠ برکواليتي تيڠݢي اونتوق کومونيتي ڤڠوبهسواين ماءينکرف‌ت.",
+      "maintainers": "ويکي اين دبينا دان دسلڠݢارا اوليه <b>Sinytra</b>⹁ سبواه ڤاسوقن ڤمباڠون برديديکاسي يڠ برسماڠت دالم ممفوکوسکن کڤد ڤڽمڤاين ڤرايسين سومبر تربوک دان ڤرچوما يڠ برکواليتي تيڠݢي اونتوق کومونيتي ڤڠوبهسواين ماءينکرف‌ت.",
       "mission": "متلامت کامي اداله اونتوق ممڤرکاساکن ڤڠوبهسواي دان ڤماءين دڠن مڽدياکن التن دان سومبر يڠ دڤرلوکن اونتوق منچيڤتا⹁ مندوکومنکن دان منروک کموڠکينن يڠ تيدق برکسودهن ماءينکرف‌ت يڠ دأوبه سواي."
     },
     "blog": {
-      "title": "سيارن بلوݢ",
-      "open": "باچ لبيه لنجوت"
+      "title": "Latest News",
+      "open": "باچ لبيه لنجوت",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "لايري ڤروجيک",
       "search_filters": "ڤناڤيس چارين...",
@@ -313,10 +304,10 @@
   },
   "Callout": {
     "warning": "امرن",
-    "note": "Note",
-    "tip": "Tip",
-    "important": "Important",
-    "caution": "Caution"
+    "note": "چاتتن",
+    "tip": "ڤتوا",
+    "important": "ڤنتيڠ",
+    "caution": "امرن"
   },
   "ProjectRegisterForm": {
     "button": "ڤروجيک بهارو",
@@ -399,16 +390,16 @@
     "desc": "دوکومنتاسي تيدق راسمي يڠ دسلڠݢارا اوليه کومونيتي"
   },
   "DocsPageNotFound": {
-    "title": "404 Not Found",
-    "desc": "Whoops! Could not find the requested resource.",
-    "return": "Return"
+    "title": "404 تيدق دتموءي",
+    "desc": "الامق! تيدق داڤت منموءي سومبر يڠ دمينتا.",
+    "return": "کمبالي"
   },
   "DocsPageError": {
-    "title": "We lost this page",
-    "desc": "The requested documentation page is not available at the moment.",
-    "suggestion": "Please try again later or report this issue to the project author.",
-    "submit": "Submit issue",
-    "return": "Return Home"
+    "title": "کامي کهيلڠن لامن اين",
+    "desc": "لامن دوکومنتاسي يڠ دمينتا تيدق ترسديا ڤد ماس اين.",
+    "suggestion": "سيلا چوبا سبنتر لاݢي اتاو لاڤورکن ايسو اين کڤد ڤڠارڠ ڤروجيک.",
+    "submit": "سرهکن ايسو",
+    "return": "کمبالي کلامن اوتام"
   },
   "GetStartedButton": {
     "title": "چيڤتا ڤروجيک ڤرتام اندا"
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "لامن اوتام"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "ڤمݢڠ تمڤت لامن اوتام",
     "subtitle": "دسببکن اوليه سکتن API⹁ ميتاداتا ڤروجيک تيدق ترسديا اونتوق ڤروجيک کرس‌فورج دالم ڤرسکيترن تمڤتن.",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "تمڤتن",
       "global": "ݢلوبل"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "ڤروجيک",
@@ -480,8 +475,18 @@
     "title": "دوکومنتاسي",
     "homepage": "لامن اوتام"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "معلومت اينتري"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "ڤد لامن اين"
@@ -494,6 +499,7 @@
     "desc": "+{count} لاݢي"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "چاري بهاس...",
     "no_results": "تياد بهاس دتموءي."
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "ڤريبادي"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "ڤروجيک",
-      "platform": "ڤلتفوم",
-      "admin": "ڤنتدبيرن"
+      "platform": "ڤلتفوم"
     },
     "nav": {
       "projects": "ڤروجيک",
       "documentation": "دوکومنتاسي",
-      "settings": "تتڤن",
-      "admin": "تتڤن سيستم"
+      "settings": "تتڤن"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "کمس کيني داتا ڤرماءينن",
     "desc": "امبيل داتا ڤرماءينن ترکيني دان جالنکن ڤڠأيݢسن.",
     "button": "کمس کيني",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "کمس کيني ۏرسي ڤموات"
     },

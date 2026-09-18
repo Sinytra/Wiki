@@ -8,13 +8,25 @@
     "title": "Wiki Minecraft Modded",
     "title_short": "Wiki",
     "badge": {
-      "preview": "MOD PRALIHAT",
-      "beta": "Beta"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "Laman Utama",
       "browse": "Layari",
-      "about": "Tentang"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,72 +49,51 @@
       },
       "about": {
         "title": "Tentang",
+        "about": "About us",
         "tos": "Syarat Perkhidmatan",
-        "privacy": "Dasar Privasi",
-        "contact": "Hubungi"
+        "privacy": "Dasar Privasi"
       }
     }
   },
   "HomePage": {
     "title": "Selamat datang ke <highlight>Wiki Minecraft Modded</highlight>",
     "subtitle": "Sumber utama anda untuk menemui, mencipta dan menyumbang kepada projek berkaitan Minecraft.",
+    "browse": "Layari Projek",
+    "guide": "Author Guide",
     "popular": {
       "title": "Wiki Popular",
       "open": "Baca lebih lanjut",
-      "disclaimer": "Projek-projek ini diserlahkan berdasarkan popularitinya melalui statistik paparan dan tidak disahkan secara rasmi oleh Wiki Minecraft Modded."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "Sertai Komuniti Kami",
-      "users": {
-        "title": "Pengguna",
-        "subtitle": "Terokai projek yang ditampilkan oleh kami dan nikmati faedah ini:",
-        "docs": "Akses dokumentasi yang terkini, berkualiti tinggi dan berversi",
-        "contribute": "Bersumbang kepada projek tanpa pengetahuan pengaturcaraan",
-        "ui": "Nikmati antara muka yang konsisten dan mesra pengguna merentasi semua projek",
-        "localization": "Manfaat daripada sokongan multibahasa"
-      },
-      "authors": {
-        "title": "Pengarang",
-        "subtitle": "Dapatkan akses kepada Papan Pemuka Projek dan nikmati faedah ini:",
-        "vcs": "Sokongan pemversian untuk dokumentasi anda",
-        "components": "Komponen terbina untuk resipi, aset, dsb.",
-        "gradle": "Penyepaduan Gradle untuk aliran kerja yang lancar",
-        "management": "Alat pengurusan projek lanjutan",
-        "interaction": "Interaksi langsung dengan pangkalan pengguna anda",
-        "dashboard": "Buka Papan Pemuka",
-        "guide": "Baca Lebih Lanjut"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "Layari Projek",
-    "highlights": {
-      "localization": {
-        "title": "Penyetempatan",
-        "desc": "Terjemahkan dokumentasi anda ke dalam bahasa-bahasa dunia"
-      },
-      "accessibility": {
-        "title": "Mudah Diakses",
-        "desc": "Antara muka pengguna yang intuitif dan responsif"
-      },
-      "open": {
-        "title": "Terbuka",
-        "desc": "Biarkan pengguna anda menyumbang tanpa pengetahuan pengaturcaraan yang diperlukan"
-      },
-      "free": {
-        "title": "Percuma",
-        "desc": "Pengehosan dokumentasi pada laman sesawang kami adalah percuma sepenuhnya!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "Tentang Kami",
-      "maintainers": "Wiki ini dibina dan diselenggara oleh <b>Sinytra</b>, sebuah pasukan pembangun yang berdedikasi yang bersemangat yang menumpukan pada penyampaian perisian Sumber Terbuka dan Percuma yang berkualiti tinggi untuk komuniti pengubahsuaian Minecraft.",
+      "maintainers": "Wiki ini dibina dan diselenggara oleh <b>Sinytra</b>, sebuah pasukan pembangun berdedikasi yang bersemangat dalam memfokuskan kepada penyampaian perisian Sumber Terbuka dan Percuma yang berkualiti tinggi untuk komuniti pengubahsuaian Minecraft.",
       "mission": "Matlamat kami adalah untuk memperkasakan pengubahsuai dan pemain dengan menyediakan alatan dan sumber yang diperlukan untuk mencipta, mendokumenkan dan meneroka kemungkinan yang tidak berkesudahan Minecraft yang diubah suai."
     },
     "blog": {
-      "title": "Siaran Blog",
-      "open": "Baca Lebih Lanjut"
+      "title": "Latest News",
+      "open": "Baca Lebih Lanjut",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "Layari projek",
       "search_filters": "Penapis carian...",
@@ -313,10 +304,10 @@
   },
   "Callout": {
     "warning": "Amaran",
-    "note": "Note",
-    "tip": "Tip",
-    "important": "Important",
-    "caution": "Caution"
+    "note": "Catatan",
+    "tip": "Petua",
+    "important": "Penting",
+    "caution": "Amaran"
   },
   "ProjectRegisterForm": {
     "button": "Projek Baharu",
@@ -399,16 +390,16 @@
     "desc": "Dokumentasi tidak rasmi yang diselenggara oleh komuniti"
   },
   "DocsPageNotFound": {
-    "title": "404 Not Found",
-    "desc": "Whoops! Could not find the requested resource.",
-    "return": "Return"
+    "title": "404 Tidak Ditemui",
+    "desc": "Alamak! Tidak dapat menemui sumber yang diminta.",
+    "return": "Kembali"
   },
   "DocsPageError": {
-    "title": "We lost this page",
-    "desc": "The requested documentation page is not available at the moment.",
-    "suggestion": "Please try again later or report this issue to the project author.",
-    "submit": "Submit issue",
-    "return": "Return Home"
+    "title": "Kami kehilangan laman ini",
+    "desc": "Laman dokumentasi yang diminta tidak tersedia pada masa ini.",
+    "suggestion": "Sila cuba sebentar lagi atau laporkan isu ini kepada pengarang projek.",
+    "submit": "Serahkan isu",
+    "return": "Kembali ke Laman Utama"
   },
   "GetStartedButton": {
     "title": "Cipta projek pertama anda"
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "Laman Utama"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "Pemegang tempat laman utama",
     "subtitle": "Disebabkan oleh sekatan API, metadata projek tidak tersedia untuk projek CurseForge dalam persekitaran tempatan.",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "Tempatan",
       "global": "Global"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Projek",
@@ -480,8 +475,18 @@
     "title": "Dokumentasi",
     "homepage": "Laman Utama"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "Maklumat entri"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "Pada laman ini"
@@ -494,6 +499,7 @@
     "desc": "+{count} lagi"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "Cari bahasa...",
     "no_results": "Tiada bahasa ditemui."
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "Peribadi"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "Projek",
-      "platform": "Platform",
-      "admin": "Pentadbiran"
+      "platform": "Platform"
     },
     "nav": {
       "projects": "Projek",
       "documentation": "Dokumentasi",
-      "settings": "Tetapan",
-      "admin": "Tetapan sistem"
+      "settings": "Tetapan"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "Kemas kini data permainan",
     "desc": "Ambil data permainan terkini dan jalankan pengingesan.",
     "button": "Kemas kini",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Kemas kini versi pemuat"
     },
