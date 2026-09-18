@@ -1112,6 +1112,9 @@
     "title": "Update game data",
     "desc": "Fetch latest game data and run ingestion.",
     "button": "Update",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Update loader version"
     },
