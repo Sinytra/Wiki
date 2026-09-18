@@ -8,13 +8,25 @@
     "title": "Modded Minecraft Wiki",
     "title_short": "Viki",
     "badge": {
-      "preview": "ÖNİZLEME MODU",
-      "beta": "Beta"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "Ana Sayfa",
       "browse": "Göz at",
-      "about": "Hakkında"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,60 +49,36 @@
       },
       "about": {
         "title": "Hakkında",
+        "about": "About us",
         "tos": "Kullanım Şartları",
-        "privacy": "Gizlilik Politikası",
-        "contact": "İletişim"
+        "privacy": "Gizlilik Politikası"
       }
     }
   },
   "HomePage": {
     "title": "<highlight>Modlu Minecraft Viki</highlight>'ye hoş geldiniz",
     "subtitle": "Minecraft ile ilgili projeleri keşfetmek, oluşturmak ve bunlara katkıda bulunmak için başvurulacak kaynağınız.",
+    "browse": "Projelere Göz Atın",
+    "guide": "Author Guide",
     "popular": {
       "title": "Popüler Vikiler",
       "open": "Biraz daha oku",
-      "disclaimer": "Bu projeler, görüntüleme istatistikleri aracılığıyla popülerliklerine göre vurgulanmaktadır ve Modlu Minecraft Viki tarafından resmi olarak onaylanmamaktadır."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "Topluluğumuza Katılın",
-      "users": {
-        "title": "Kullanıcılar",
-        "subtitle": "Öne çıkan projelerimizi keşfedin ve şu avantajlardan yararlanın:",
-        "docs": "Yüksek kaliteli, güncel ve versiyonları belirlenmiş belgelere erişin",
-        "contribute": "Programlama bilgisi olmadan projelere katkıda bulunun",
-        "ui": "Tüm projelerde tutarlı, kullanıcı dostu bir arayüzün keyfini çıkarın",
-        "localization": "Çoklu dil desteğinden yararlanın"
-      },
-      "authors": {
-        "title": "Yazarlar",
-        "subtitle": "Proje Kontrol Paneline erişin ve şu avantajlardan yararlanın:",
-        "vcs": "Belgeleriniz için sürüm oluşturma desteği",
-        "components": "Built-in components for recipes, assets, etc.",
-        "gradle": "Sorunsuz iş akışı için Gradle entegrasyonu",
-        "management": "Gelişmiş proje yönetimi araçları",
-        "interaction": "Kullanıcı tabanınızla doğrudan etkileşim",
-        "dashboard": "Kontrol Panelini Aç",
-        "guide": "Daha Fazla Oku"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "Projelere Göz Atın",
-    "highlights": {
-      "localization": {
-        "title": "Diller",
-        "desc": "Dokümanlarınızı farklı dillere çevirin"
-      },
-      "accessibility": {
-        "title": "Erişilebilir",
-        "desc": "Rahat ve duyarlı kullanıcı arayüzü"
-      },
-      "open": {
-        "title": "Açık",
-        "desc": "Kullanıcılarınızın herhangi bir programlama bilgisi gerektirmeden katkıda bulunmasına izin verin"
-      },
-      "free": {
-        "title": "Ücretsiz",
-        "desc": "Web sitemizde doküman barındırmak tamamen ücretsizdir!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "Hakkımızda",
@@ -98,11 +86,14 @@
       "mission": "Amacımız, modlu Minecraft'ın sonsuz olanaklarını oluşturmak, belgelemek ve keşfetmek için gerekli araçları ve kaynakları sağlayarak mod geliştiricilerini ve oyuncuları aynı şekilde güçlendirmektir."
     },
     "blog": {
-      "title": "Blog Yazıları",
-      "open": "Daha Fazla Oku"
+      "title": "Latest News",
+      "open": "Daha Fazla Oku",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "Projelere göz atın",
       "search_filters": "Arama filtreleri...",
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "Ana Sayfa"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "Ana sayfa yer tutucusu",
     "subtitle": "API kısıtlamaları nedeniyle yerel ortamlardaki CurseForge projeleri için proje metadata'ları mevcut değildir.",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "Local",
       "global": "Global"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Project",
@@ -480,8 +475,18 @@
     "title": "Dökümantasyon",
     "homepage": "Ana Sayfa"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "Girdi Bilgisi"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "Bu sayfada"
@@ -494,6 +499,7 @@
     "desc": "+{count} daha"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "Dillerde Ara...",
     "no_results": "Dil bulunamadı."
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "Kişisel"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "Projeler",
-      "platform": "Platform",
-      "admin": "Administration"
+      "platform": "Platform"
     },
     "nav": {
       "projects": "Projeler",
       "documentation": "Dökümantasyon",
-      "settings": "Ayarlar",
-      "admin": "System settings"
+      "settings": "Ayarlar"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "Update game data",
     "desc": "Fetch latest game data and run ingestion.",
     "button": "Update",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Update loader version"
     },
