@@ -8,13 +8,25 @@
     "title": "Modded Minecraft Wiki",
     "title_short": "Wiki",
     "badge": {
-      "preview": "預覽模式",
-      "beta": "Beta 版"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "首頁",
       "browse": "瀏覽",
-      "about": "關於"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,60 +49,36 @@
       },
       "about": {
         "title": "關於",
+        "about": "About us",
         "tos": "服務條款",
-        "privacy": "隱私權政策",
-        "contact": "聯絡我們"
+        "privacy": "隱私權政策"
       }
     }
   },
   "HomePage": {
     "title": "歡迎使用 <highlight>Modded Minecraft Wiki</highlight>",
     "subtitle": "您探索、建立和貢獻 Minecraft 相關專案的首選資源。",
+    "browse": "瀏覽專案",
+    "guide": "Author Guide",
     "popular": {
       "title": "熱門 Wiki",
       "open": "閱讀更多",
-      "disclaimer": "這些專案是根據其透過瀏覽次數統計所顯示的受歡迎程度來突顯的，且並未獲得 Modded Minecraft Wiki 的官方認可。"
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "加入我們的社群",
-      "users": {
-        "title": "使用者",
-        "subtitle": "探索我們的精選專案，並體驗以下優點：",
-        "docs": "取得高品質、即時更新且區分版本的文件",
-        "contribute": "即使不懂程式設計，也能參與專案貢獻",
-        "ui": "在所有專案中，都能享有一致且使用者友善的介面。",
-        "localization": "受益於多語言支援"
-      },
-      "authors": {
-        "title": "作者",
-        "subtitle": "取得專案儀表板的存取權，並體驗以下優點：",
-        "vcs": "您的文件版本控制支援",
-        "components": "用於合成配方、素材等的內建元件",
-        "gradle": "Gradle 整合，帶來無縫的工作流程",
-        "management": "進階專案管理工具",
-        "interaction": "與您的使用者群直接互動",
-        "dashboard": "開啟儀表板",
-        "guide": "閱讀更多"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "瀏覽專案",
-    "highlights": {
-      "localization": {
-        "title": "在地化",
-        "desc": "讓文件走向世界"
-      },
-      "accessibility": {
-        "title": "無障礙",
-        "desc": "直覺且反應靈敏的使用者介面"
-      },
-      "open": {
-        "title": "開放",
-        "desc": "讓使用者共同參與，無需任何程式設計知識"
-      },
-      "free": {
-        "title": "免費",
-        "desc": "在我們的網站上託管文件完全免費！"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "關於我們",
@@ -98,11 +86,14 @@
       "mission": "我們的目標是協助模組製作者和玩家，提供他們所需的工具與資源，以便創造、記錄並探索經由模組改造的 Minecraft 所帶來的無限可能。"
     },
     "blog": {
-      "title": "部落格文章",
-      "open": "閱讀更多"
+      "title": "Latest News",
+      "open": "閱讀更多",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "瀏覽專案",
       "search_filters": "搜尋篩選...",
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "首頁"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "首頁預留位置",
     "subtitle": "由於 API 限制，在本機環境中無法取得 CurseForge 專案的中繼資料。",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "Local",
       "global": "Global"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Project",
@@ -480,8 +475,18 @@
     "title": "文件",
     "homepage": "首頁"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "條目資訊"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "本頁內容"
@@ -494,6 +499,7 @@
     "desc": "以及其他 {count} 個"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "搜尋語言...",
     "no_results": "找不到語言。"
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "個人"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "專案",
-      "platform": "平台",
-      "admin": "管理"
+      "platform": "平台"
     },
     "nav": {
       "projects": "專案",
       "documentation": "文件",
-      "settings": "設定",
-      "admin": "系統設定"
+      "settings": "設定"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "Update game data",
     "desc": "Fetch latest game data and run ingestion.",
     "button": "Update",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Update loader version"
     },
