@@ -50,7 +50,8 @@ export const revalidateCacheSchema = z.object({
 });
 
 export const updateGameDataSchema = z.object({
-  update_loader: z.boolean().default(false)
+  update_loader: z.boolean().default(false),
+  game_version: z.string().optional()
 });
 
 export const addProjectMemberSchema = z.object({

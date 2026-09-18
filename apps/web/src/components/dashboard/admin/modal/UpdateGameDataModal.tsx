@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@repo/ui/components/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/ui/components/form';
 import {
   Dialog,
   DialogContent,
@@ -25,6 +25,7 @@ import { Switch } from '@repo/ui/components/switch';
 import clientActions from '@/lib/forms/clientActions';
 import { toast } from 'sonner';
 import usePageDataReloadTransition from '@repo/shared/client/usePageDataReloadTransition';
+import { Input } from '@repo/ui/components/input';
 
 export default function UpdateGameDataModal() {
   const [open, setOpen] = useState(false);
@@ -85,6 +86,20 @@ export default function UpdateGameDataModal() {
           <Form {...form}>
             <div className="relative focus:outline-hidden" tabIndex={0}>
               <form action={action} className={cn('space-y-6 focus:outline-hidden')}>
+                <FormField
+                  control={form.control}
+                  name="game_version"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('game_version.title')}</FormLabel>
+                      <FormControl>
+                        <Input placeholder="1.21.1" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
                 <FormField
                   control={form.control}
                   name="update_loader"
