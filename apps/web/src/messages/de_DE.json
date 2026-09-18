@@ -8,13 +8,25 @@
     "title": "Modded Minecraft Wiki",
     "title_short": "Wiki",
     "badge": {
-      "preview": "VORSCHAUMODUS",
-      "beta": "Beta"
+      "preview": "PREVIEWER"
     },
     "link": {
-      "home": "Startseite",
       "browse": "Durchsuchen",
-      "about": "Über uns"
+      "developers": "Log in"
+    }
+  },
+  "AppearanceMenu": {
+    "title": "Appearance",
+    "theme": {
+      "label": "Color",
+      "auto": "Auto",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "width": {
+      "label": "Width",
+      "narrow": "Narrow",
+      "wide": "Wide"
     }
   },
   "NavigationFooter": {
@@ -37,60 +49,36 @@
       },
       "about": {
         "title": "Über uns",
+        "about": "About us",
         "tos": "Nutzungsbedingungen",
-        "privacy": "Datenschutzerklärung",
-        "contact": "Kontakt"
+        "privacy": "Datenschutzerklärung"
       }
     }
   },
   "HomePage": {
     "title": "Willkommen im <highlight>Modded Minecraft Wiki</highlight>",
     "subtitle": "Deine Anlaufstelle, um Minecraft-bezogene Projekte zu entdecken, zu erstellen und an ihnen mitzuwirken.",
+    "browse": "Projekte durchsuchen",
+    "guide": "Author Guide",
     "popular": {
       "title": "Beliebte Wikis",
       "open": "Mehr erfahren",
-      "disclaimer": "Diese Projekte werden anhand ihrer Beliebtheit über die Aufrufstatistiken hervorgehoben und werden nicht offiziell vom Modded Minecraft Wiki unterstützt."
+      "empty": "No featured projects available right now. Browse all projects to find what you are looking for."
     },
-    "community": {
-      "title": "Werde Teil unserer Community",
-      "users": {
-        "title": "Benutzer",
-        "subtitle": "Entdecke unsere vorgestellten Projekte und genieße diese Vorteile:",
-        "docs": "Greife auf hochwertige, aktuelle und versionierte Dokumentationen zu",
-        "contribute": "Trage zu Projekten bei, auch ohne Programmierkenntnisse",
-        "ui": "Profitiere von einer einheitlichen, benutzerfreundlichen Oberfläche bei allen Projekten",
-        "localization": "Profitiere von mehrsprachiger Unterstützung"
-      },
-      "authors": {
-        "title": "Autoren",
-        "subtitle": "Erhalte Zugriff auf das Projekt-Dashboard und genieße diese Vorteile:",
-        "vcs": "Versionierung für deine Dokumentation",
-        "components": "Integrierte Bausteine für Rezepte, Assets usw.",
-        "gradle": "Gradle-Integration für einen nahtlosen Arbeitsablauf",
-        "management": "Fortgeschrittene Projektmanagement-Tools",
-        "interaction": "Direkte Interaktion mit deiner Nutzerbasis",
-        "dashboard": "Dashboard öffnen",
-        "guide": "Mehr erfahren"
-      }
+    "authors": {
+      "title": "For Authors",
+      "subtitle": "Host your project's documentation on the Wiki and enjoy these benefits:",
+      "vcs": "Versioning support for your documentation",
+      "components": "Built-in components for recipes, assets, etc.",
+      "gradle": "Gradle integration for seamless workflow",
+      "management": "Advanced project management tools",
+      "interaction": "Direct interaction with your user base",
+      "dashboard": "Open Dashboard",
+      "guide": "Read More"
     },
-    "browse": "Projekte durchsuchen",
-    "highlights": {
-      "localization": {
-        "title": "Lokalisierung",
-        "desc": "Übersetze deine Dokumentation in weltweite Sprachen"
-      },
-      "accessibility": {
-        "title": "Zugänglich",
-        "desc": "Intuitive und reaktionsschnelle Benutzeroberfläche"
-      },
-      "open": {
-        "title": "Offen",
-        "desc": "Ermögliche es deinen Nutzern, beizutragen, ohne dass Programmierkenntnisse erforderlich sind"
-      },
-      "free": {
-        "title": "Kostenlos",
-        "desc": "Das Hosten von Dokumentationen auf unserer Website ist völlig kostenlos!"
-      }
+    "oracle": {
+      "title": "Read documentation in-game with Oracle Index",
+      "desc": "Oracle Index is a client-side mod for Fabric and NeoForge that lets you browse Modded Minecraft Wiki documentation without ever leaving your game."
     },
     "about": {
       "title": "Über uns",
@@ -98,11 +86,14 @@
       "mission": "Unser Ziel ist es, sowohl Modder als auch Spieler zu befähigen, indem wir die Werkzeuge und Ressourcen bereitstellen, die notwendig sind, um die unendlichen Möglichkeiten von modifiziertem Minecraft zu erstellen, zu dokumentieren und zu entdecken."
     },
     "blog": {
-      "title": "Blog-Beiträge",
-      "open": "Mehr erfahren"
+      "title": "Latest News",
+      "open": "Mehr erfahren",
+      "all": "View all posts"
     }
   },
   "BrowsePage": {
+    "title": "Browse Projects",
+    "description": "Browse documentation for Minecraft mods, modpacks, data packs, resource packs, shaders and plugins.",
     "sidebar": {
       "title": "Projekte durchsuchen",
       "search_filters": "Suchfilter...",
@@ -313,10 +304,10 @@
   },
   "Callout": {
     "warning": "Warnung",
-    "note": "Note",
-    "tip": "Tip",
-    "important": "Important",
-    "caution": "Caution"
+    "note": "Hinweis",
+    "tip": "Tipp",
+    "important": "Wichtig",
+    "caution": "Achtung"
   },
   "ProjectRegisterForm": {
     "button": "Neues Projekt",
@@ -451,6 +442,9 @@
   "ProjectDocsHomepage": {
     "title": "Startseite"
   },
+  "ProjectContentPage": {
+    "title": "Content"
+  },
   "DocsHomepagePlaceholder": {
     "title": "Platzhalter für Homepage",
     "subtitle": "Aufgrund von API-Beschränkungen sind Projektmetadaten für CurseForge-Projekte in lokalen Umgebungen nicht verfügbar.",
@@ -466,7 +460,8 @@
     "scope": {
       "local": "Lokal",
       "global": "Global"
-    }
+    },
+    "short": "Search"
   },
   "SearchResultType": {
     "project": "Projekt",
@@ -480,8 +475,18 @@
     "title": "Dokumentation",
     "homepage": "Startseite"
   },
+  "DocsFloatingNav": {
+    "menu": "Open documentation menu",
+    "info": "Open page information",
+    "close": "Close"
+  },
   "DocsContentRightSidebar": {
     "title": "Informationen"
+  },
+  "InvTooltip": {
+    "main_hand": "When in Main Hand",
+    "attack_dmg": "{value} Attack Damage",
+    "attack_speed": "{value} Attack Speed"
   },
   "DocsNonContentRightSidebar": {
     "title": "Auf dieser Seite"
@@ -494,6 +499,7 @@
     "desc": "+{count} weitere"
   },
   "LanguageSelect": {
+    "label": "Language",
     "placeholder": "Sprachen durchsuchen...",
     "no_results": "Keine Sprache gefunden."
   },
@@ -635,19 +641,18 @@
     }
   },
   "DeveloperSidebar": {
-    "teams": {
-      "personal": "Persönlich"
+    "context": {
+      "personal": "Personal",
+      "admin": "Administration"
     },
     "groups": {
       "projects": "Projekte",
-      "platform": "Plattform",
-      "admin": "Verwaltung"
+      "platform": "Plattform"
     },
     "nav": {
       "projects": "Projekte",
       "documentation": "Dokumentation",
-      "settings": "Einstellungen",
-      "admin": "Systemeinstellungen"
+      "settings": "Einstellungen"
     }
   },
   "DevSidebarContextSwitcher": {
@@ -1107,6 +1112,9 @@
     "title": "Spieldaten aktualisieren",
     "desc": "Neueste Spieldaten abrufen und einlesen.",
     "button": "Aktualisieren",
+    "game_version": {
+      "title": "Game version"
+    },
     "update_loader": {
       "title": "Loader-Version aktualisieren"
     },
