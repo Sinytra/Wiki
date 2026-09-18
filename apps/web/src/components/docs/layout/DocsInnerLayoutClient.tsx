@@ -20,14 +20,14 @@ export default function DocsInnerLayoutClient({ project, version, rightSidebar, 
   return (
     <>
       {/* Main Content Area */}
-      <div className="flex w-full max-w-[1632px] flex-1 flex-row justify-center wide-layout:justify-between">
+      <div className="flex w-full max-w-[1632px] flex-1 flex-row justify-between">
         {/* Left Sidebar */}
         <DocsGuideFileTreeSidebar slug={project.id} version={version} tree={tree} />
 
         {/* Main Content */}
         <main
           className={cn(
-            'mx-4 mt-4 min-h-[86vh] flex-1 overflow-auto pb-6 lg:mx-6',
+            'mx-4 mt-4 min-h-[86vh] flex-1 grow-9999 overflow-auto pb-6 lg:mx-6',
             'sm:mt-0 sm:min-h-auto sm:max-w-5xl sm:pt-4'
           )}
         >
@@ -36,6 +36,8 @@ export default function DocsInnerLayoutClient({ project, version, rightSidebar, 
 
         {/* Right Sidebar */}
         {rightSidebar}
+
+        <div aria-hidden className="max-w-64 flex-1 wide-layout:hidden" />
       </div>
 
       {/* Footer */}
