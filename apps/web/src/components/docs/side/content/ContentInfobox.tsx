@@ -58,7 +58,7 @@ export default async function ContentInfobox({ project, frontmatter, metadata, c
 
         {/* Inventory */}
         {metadata.inventory && metadata.inventory.length > 0 && (
-          <div className="mx-auto p-1 text-center">
+          <div className="mx-auto flex flex-row flex-wrap justify-center p-1 text-center">
             {metadata.inventory.map((item, i) => (
               <InfoboxInvSlot key={i} item={item} properties={properties} ctx={ctx} />
             ))}
