@@ -5,8 +5,7 @@ import { Tabs, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/ui/components/select';
 import { cn } from '@repo/ui/lib/utils';
 import { InfoboxTab } from '@sinytra/wiki-api-types';
-import commonService from '@/lib/service/commonService';
-import { ProjectContext } from '@repo/shared/types/service';
+import { AssetLocation } from '@repo/shared/assets';
 
 const MAX_TABS_LIST_HEIGHT = 128; // h-32
 
@@ -29,18 +28,12 @@ const COLLAPSE_INIT_SCRIPT = `
 `;
 
 export interface Props {
-  ctx: ProjectContext;
   tabs: InfoboxTab[];
+  icons: (AssetLocation | null)[];
   children: ReactNode;
 }
 
-function TabIcon({ tab, ctx }: { tab: InfoboxTab; ctx: ProjectContext }) {
-  if (!tab.display[0]) {
-    return null;
-  }
-
-  const location = tab.display[0];
-  const asset = commonService.getRemoteAsset(location, ctx);
+function TabIcon({ asset }: { asset: AssetLocation | null | undefined }) {
   if (!asset) {
     return null;
   }
@@ -48,7 +41,7 @@ function TabIcon({ tab, ctx }: { tab: InfoboxTab; ctx: ProjectContext }) {
   return <img className="mr-1 inline-block" src={asset.src} alt={asset.id} width={24} height={24} />;
 }
 
-export default function InfoboxTabsSwitcher({ tabs, ctx, children }: Props) {
+export default function InfoboxTabsSwitcher({ tabs, icons, children }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState('0');
@@ -113,7 +106,7 @@ export default function InfoboxTabsSwitcher({ tabs, ctx, children }: Props) {
               <SelectValue>
                 {selectedTab && (
                   <>
-                    <TabIcon tab={selectedTab} ctx={ctx} /> {selectedTab.name}
+                    <TabIcon asset={icons[Number(value)]} /> {selectedTab.name}
                   </>
                 )}
               </SelectValue>
@@ -122,7 +115,7 @@ export default function InfoboxTabsSwitcher({ tabs, ctx, children }: Props) {
             <SelectContent>
               {tabs.map((tab, i) => (
                 <SelectItem key={i} value={i.toString()} className="py-1 [&>span]:text-xsm">
-                  <TabIcon tab={tab} ctx={ctx} /> {tab.name}
+                  <TabIcon asset={icons[i]} /> {tab.name}
                 </SelectItem>
               ))}
             </SelectContent>

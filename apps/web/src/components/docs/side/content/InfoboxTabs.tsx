@@ -34,14 +34,16 @@ function TabDisplay({ tab, ctx }: { tab: InfoboxTab; ctx: ProjectContext }) {
   );
 }
 
-export default function InfoboxTabs({ tabs, ctx }: Props) {
+export default async function InfoboxTabs({ tabs, ctx }: Props) {
   if (tabs?.[0] && tabs.length === 1) {
     return <TabDisplay tab={tabs[0]} ctx={ctx} />;
   }
 
+  const icons = await Promise.all(tabs.map((tab) => (tab.display[0] ? service.getAsset(tab.display[0], ctx) : null)));
+
   return (
     <div className="flex flex-col">
-      <InfoboxTabsSwitcher tabs={tabs} ctx={ctx}>
+      <InfoboxTabsSwitcher tabs={tabs} icons={icons}>
         {tabs.map((tab, i) => (
           <TabsContent key={i} value={i.toString()}>
             <TabDisplay tab={tab} ctx={ctx} />

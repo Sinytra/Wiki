@@ -136,7 +136,12 @@ function getResultIcon(result: SearchResult, locale: string): AssetLocation | nu
     locale,
     version: DEFAULT_DOCS_VERSION
   };
-  return commonService.getRemoteAsset(result.icon, ctx);
+  try {
+    return commonService.getRemoteAsset(result.icon, ctx);
+  } catch (e) {
+    console.error('Error resolving search result icon', e);
+    return null;
+  }
 }
 
 export default {
