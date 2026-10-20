@@ -7,6 +7,7 @@ import SearchContextProvider from '@/components/navigation/search/SearchContext'
 import MobileNavContextProvider from '@/components/docs/side/MobileNavContext';
 import { Metadata } from 'next';
 import { SITE_NAME } from '@/lib/seo';
+import RootDocument from '@/components/util/RootDocument';
 
 export const dynamic = 'force-static';
 
@@ -27,7 +28,7 @@ export default function BlogLayout({ children }: Readonly<{ children: ReactNode 
   setContextLocale('en');
 
   return (
-    <>
+    <RootDocument>
       <SearchContextProvider>
         <ClientLocaleProvider keys={[]}>
           <MobileNavContextProvider>
@@ -45,6 +46,6 @@ export default function BlogLayout({ children }: Readonly<{ children: ReactNode 
           </MobileNavContextProvider>
         </ClientLocaleProvider>
       </SearchContextProvider>
-    </>
+    </RootDocument>
   );
 }

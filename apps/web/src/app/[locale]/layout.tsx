@@ -8,6 +8,7 @@ import CookieConsentContextProvider from '@/components/cookies/CookieConsentCont
 import SearchContextProvider from '@/components/navigation/search/SearchContext';
 import ClientLocaleProvider from '@repo/ui/util/ClientLocaleProvider';
 import MobileNavContextProvider from '@/components/docs/side/MobileNavContext';
+import RootDocument from '@/components/util/RootDocument';
 
 export async function generateStaticParams() {
   return locales.getLanguagePaths().map((locale) => ({ locale }));
@@ -21,31 +22,34 @@ export default async function LocaleLayout(props: { params: Params; children: Re
   setContextLocale(params.locale);
 
   const isRTL = locales.isRTL(params.locale);
+  const lang = locales.getForUrlParam(params.locale)?.internal;
 
   return (
-    <ClientLocaleProvider keys={['CookieConsent']}>
-      <CookieConsentContextProvider>
-        <SearchContextProvider>
-          <MobileNavContextProvider>
-            <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
-              <Header locale={params.locale} />
+    <RootDocument lang={lang}>
+      <ClientLocaleProvider keys={['CookieConsent']}>
+        <CookieConsentContextProvider>
+          <SearchContextProvider>
+            <MobileNavContextProvider>
+              <div className={isRTL ? 'rtl' : ''} dir={isRTL ? 'rtl' : ''}>
+                <Header locale={params.locale} />
 
-              <div>{children}</div>
+                <div>{children}</div>
 
-              <Footer />
-            </div>
-            {/* TODO Font size */}
-            <Toaster
-              toastOptions={{
-                style: {
-                  background: 'var(--background-color-primary-alt)',
-                  fontStyle: 'var(--text-sm)'
-                }
-              }}
-            />
-          </MobileNavContextProvider>
-        </SearchContextProvider>
-      </CookieConsentContextProvider>
-    </ClientLocaleProvider>
+                <Footer />
+              </div>
+              {/* TODO Font size */}
+              <Toaster
+                toastOptions={{
+                  style: {
+                    background: 'var(--background-color-primary-alt)',
+                    fontStyle: 'var(--text-sm)'
+                  }
+                }}
+              />
+            </MobileNavContextProvider>
+          </SearchContextProvider>
+        </CookieConsentContextProvider>
+      </ClientLocaleProvider>
+    </RootDocument>
   );
 }
