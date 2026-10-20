@@ -86,5 +86,8 @@ export default withSentryConfig(withContentlayer(withNextIntl(withMDX(nextConfig
   silent: !process.env.CI,
   widenClientFileUpload: true,
   disableLogger: true,
-  telemetry: false
+  telemetry: false,
+  unstable_sentryWebpackPluginOptions: {
+    applicationKey: 'moddedwiki'
+  }
 });

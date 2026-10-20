@@ -14,7 +14,15 @@ if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
-  integrations: [Sentry.replayIntegration()],
+  integrations: [
+    Sentry.replayIntegration(),
+    Sentry.thirdPartyErrorFilterIntegration({
+      filterKeys: ['moddedwiki'],
+      behaviour: 'drop-error-if-exclusively-contains-third-party-frames'
+    })
+  ],
+
+  denyUrls: [/^chrome-extension:\/\//i, /^moz-extension:\/\//i, /^safari-(web-)?extension:\/\//i],
 
   tracesSampleRate: 0.1,
   replaysSessionSampleRate: 0.1,
