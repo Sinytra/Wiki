@@ -20,17 +20,18 @@ export interface PageMetadataOptions {
 }
 
 export function pageMetadata({ locale, path, languages, markdown, image, description }: PageMetadataOptions): Metadata {
-  const canonical = path(locale);
-
   const langs = languages === undefined ? locales.getAvailableLocales() : resolveLanguages(languages);
   const hreflang: Record<string, string> = {};
   for (const lang of langs) {
     hreflang[lang.internal] = path(lang.prefix);
   }
-  const defaultLang = locales.getForCode(DEFAULT_LOCALE_CODE);
-  if (Object.keys(hreflang).length > 0 && defaultLang) {
+  const defaultLang = locales.getForCode(DEFAULT_LOCALE_CODE)!;
+  if (Object.keys(hreflang).length > 0) {
     hreflang['x-default'] = path(defaultLang.prefix);
   }
+
+  const isTranslated = langs.some((lang) => lang.prefix === locale);
+  const canonical = isTranslated ? path(locale) : path(defaultLang.prefix);
 
   return {
     ...(description ? { description } : {}),
