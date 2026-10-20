@@ -656,7 +656,7 @@
     }
   },
   "DevSidebarContextSwitcher": {
-    "title": "Teams"
+    "title": "Context"
   },
   "DevSidebarUser": {
     "logout": {
