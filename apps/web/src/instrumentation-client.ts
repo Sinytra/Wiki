@@ -23,6 +23,7 @@ Sentry.init({
   ],
 
   denyUrls: [/^chrome-extension:\/\//i, /^moz-extension:\/\//i, /^safari-(web-)?extension:\/\//i],
+  ignoreErrors: [/\bGM[._]\w+/],
 
   tracesSampleRate: 0.1,
   replaysSessionSampleRate: 0.1,

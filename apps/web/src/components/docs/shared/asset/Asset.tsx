@@ -13,7 +13,7 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
 };
 
 export async function BindableAsset(ctx: ProjectContext | null, props: Omit<Props, 'ctx'>) {
-  return Asset({ ...props, ctx });
+  return Asset({ width: 32, height: 32, ...props, ctx });
 }
 
 export default async function Asset({ location, item, itemSize, width, height, ...props }: Props) {
