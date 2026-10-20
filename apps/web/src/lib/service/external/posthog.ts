@@ -15,7 +15,7 @@ async function getMostPopularProjectIDs(): Promise<string[]> {
     const body = {
       query: {
         kind: 'HogQLQuery',
-        query: `select * from ${indexName}`
+        query: `select * from ${indexName} limit 3`
       }
     };
     const resp = await fetch(url, {
