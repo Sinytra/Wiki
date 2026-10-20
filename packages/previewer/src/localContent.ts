@@ -16,6 +16,7 @@ import { DEFAULT_LOCALE } from '@repo/shared/constants';
 import { ProjectFormat } from './format/projectFormat';
 import locales from '@repo/shared/locales';
 import { console } from 'next/dist/compiled/@edge-runtime/primitives';
+import tabNames from './tabNames';
 
 interface ExtendedContentFileTreeEntry extends ContentFileTreeEntry {
   id?: string[];
@@ -148,13 +149,14 @@ async function constructDefaultTabs(
   const items = await Promise.all(frontmatter.id.map((id) => getContentItemName(id, ctx)));
   items.filter((i) => i != null).forEach((i) => (idToName[i.id] = i.name));
 
-  const tabs: InfoboxTab[] = frontmatter.id.map((id) => {
-    const name = idToName[id];
+  const names = tabNames.inferTabNames(frontmatter.id.map((id) => idToName[id] ?? id));
+
+  const tabs: InfoboxTab[] = frontmatter.id.map((id, idx) => {
     const location = resourceLocation.parse(id);
     const displayId = location ? resourceLocation.toString(format.getItemAssetLocation(location)) : id;
 
     return {
-      name: name ?? id,
+      name: names[idx]!,
       display: [displayId]
     };
   });
