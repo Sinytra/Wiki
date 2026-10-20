@@ -19,7 +19,7 @@ export interface DocsSidebarBaseProps {
 const variants = {
   left: {
     aside: cn(
-      'fixed bottom-0 h-[628px]',
+      'fixed bottom-0 left-0 h-[628px]',
       'lg:inset-auto lg:top-25! lg:z-30 lg:h-[calc(100vh-9.5rem)] lg:transition-none',
       'lg:data-[open=false]:visible lg:data-[open=false]:translate-y-0 lg:data-[open=false]:opacity-100'
     ),
