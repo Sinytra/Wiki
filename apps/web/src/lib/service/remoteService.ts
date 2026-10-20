@@ -96,7 +96,7 @@ async function searchProjects(
     query,
     page: page.toString(),
     types,
-    sort
+    sort: sort ?? 'relevance'
   });
   return results.success ? results.data : null;
 }

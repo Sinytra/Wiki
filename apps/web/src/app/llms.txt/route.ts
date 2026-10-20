@@ -59,7 +59,7 @@ export async function GET() {
             desc:
               'Searchable index of every project hosted on the wiki. Accepts the query parameters `query` (free text), ' +
               `\`types\` (comma-separated, one of ${AVAILABLE_PROJECT_TYPES.join(', ')}), ` +
-              '`sort` (relevance, creation_date, popularity, az, za) and `page`'
+              '`sort` (relevance, creation_date, az, za) and `page`'
           },
           {
             title: 'Sitemap',

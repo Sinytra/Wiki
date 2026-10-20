@@ -4,13 +4,13 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { useQueryState } from 'nuqs';
 import { useTranslations } from 'next-intl';
 
-type SortType = 'relevance' | 'creation_date' | 'popularity' | 'az' | 'za';
+type SortType = 'relevance' | 'creation_date' | 'az' | 'za';
 
 export default function BrowseSortDropdown() {
   const [sort, setSort] = useQueryState('sort', { shallow: false });
 
   const t = useTranslations('BrowsePage');
-  const sortTypes: SortType[] = ['relevance', 'creation_date', 'popularity', 'az', 'za'];
+  const sortTypes: SortType[] = ['relevance', 'creation_date', 'az', 'za'];
 
   return (
     <div className="flex flex-row items-center gap-x-4">
