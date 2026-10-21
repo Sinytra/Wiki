@@ -59,7 +59,8 @@ const nextConfig: NextConfig = {
         source: '/:lang/project/:project/docs/:path*',
         destination: '/:lang/project/:project/latest/docs/:path*',
         permanent: true
-      }
+      },
+      ...JSON.parse(process.env.REDIRECTS || '[]')
     ];
   },
   transpilePackages: ['@repo/ui', '@sinytra/wiki-api-types'],

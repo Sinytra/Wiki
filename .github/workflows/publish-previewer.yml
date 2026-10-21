@@ -36,8 +36,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Generate Version and Build
-        run: ./build-previewer.sh
+        run: pnpm --filter previewer build
 
       - name: Publish to npm
-        working-directory: build/output
+        working-directory: apps/previewer/dist
         run: pnpm publish --access public --provenance --no-git-checks

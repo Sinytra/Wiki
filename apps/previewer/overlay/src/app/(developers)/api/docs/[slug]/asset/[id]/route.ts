@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { localService } from '@repo/previewer';
+import { localService } from '@/lib/previewer';
 import { ProjectContext } from '@repo/shared/types/service';
 import resourceLocation from '@repo/shared/resourceLocation';
 import fs from 'fs';

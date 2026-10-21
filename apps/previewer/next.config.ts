@@ -35,7 +35,13 @@ const nextConfig: NextConfig = {
       }
     ];
   },
+  env: {
+    NEXT_PUBLIC_DISABLE_COOKIE_CONSENT: 'true',
+    NEXT_PUBLIC_ENABLE_LOCAL_PREVIEW: 'true',
+    NEXT_PUBLIC_BUILTIN_ASSET_SOURCES: 'https://r2.sinytra.org/'
+  },
   transpilePackages: ['@repo/ui'],
+  serverExternalPackages: ['@sinytra/wiki-wasm'],
   experimental: {
     optimizePackageImports: ['shiki']
   },

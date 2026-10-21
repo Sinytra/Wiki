@@ -10,14 +10,6 @@
       "outputs": [
         ".contentlayer/**"
       ]
-    },
-    "preview": {
-      "dependsOn": [
-        "blog"
-      ],
-      "with": [
-        "dev"
-      ]
     }
   }
 }

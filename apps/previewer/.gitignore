@@ -1,0 +1,6 @@
+/src
+/public
+/postcss.config.mjs
+/eslint.config.mjs
+
+/dist

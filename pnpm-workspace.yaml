@@ -2,7 +2,6 @@ packages:
   - apps/*
   - packages/*
   - packages/base/*
-  - build/previewer
 
 onlyBuiltDependencies:
   - contentlayer2

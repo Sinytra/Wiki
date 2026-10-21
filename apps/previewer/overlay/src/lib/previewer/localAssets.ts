@@ -1,12 +1,9 @@
 import fs from 'fs';
-import { AssetLocation, itemAssetExtension } from '@repo/shared/assets';
+import { AssetLocation } from '@repo/shared/assets';
 import resourceLocation from '@repo/shared/resourceLocation';
 import { ResourceLocation } from '@sinytra/wiki-api-types';
+import { assetPaths } from '@sinytra/wiki-wasm';
 import { LocalDocumentationSource } from './localDocsPages';
-
-function getAssetResourcePath(assetsRoot: string, id: ResourceLocation): string {
-  return assetsRoot + '/' + id.namespace + '/' + id.path + (id.path.includes('.') ? '' : itemAssetExtension);
-}
 
 async function resolveAsset(source: LocalDocumentationSource, id: ResourceLocation): Promise<AssetLocation | null> {
   const src = `/api/docs/${encodeURIComponent(source.id)}/asset/${encodeURIComponent(resourceLocation.toString(id))}`;
@@ -14,22 +11,11 @@ async function resolveAsset(source: LocalDocumentationSource, id: ResourceLocati
 }
 
 function resolveAssetPath(source: LocalDocumentationSource, id: ResourceLocation): string | null {
-  const assetsRoot = source.format.assetsDir;
-  const path = getAssetResourcePath(assetsRoot, id);
-  if (fs.existsSync(path)) {
-    return path;
-  }
-
-  // Legacy asset path
-  const legacyPath = getAssetResourcePath(assetsRoot, {
-    namespace: 'item',
-    path: `${id.namespace}/${id.path}`
-  });
-  if (fs.existsSync(legacyPath)) {
-    return legacyPath;
-  }
-
-  return null;
+  return (
+    assetPaths(source.schema, id)
+      .map((rel) => `${source.path}/${rel}`)
+      .find((path) => fs.existsSync(path)) ?? null
+  );
 }
 
 export default {

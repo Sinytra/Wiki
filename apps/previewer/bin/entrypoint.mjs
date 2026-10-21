@@ -20,7 +20,7 @@ const { result, commands } = concurrently(
   ],
   {
     prefix: 'name',
-    killOthersOn: ['failure', 'success'],
+    killOthersOn: ['failure'],
     restartTries: 3,
     handleInput: true
   }

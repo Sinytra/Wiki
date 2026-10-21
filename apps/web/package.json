@@ -19,7 +19,6 @@
     "@next/mdx": "^15.5.23",
     "@radix-ui/react-visually-hidden": "^1.2.11",
     "@repo/markdown": "workspace:*",
-    "@repo/previewer": "workspace:*",
     "@repo/shared": "workspace:*",
     "@repo/ui": "workspace:*",
     "@sentry/nextjs": "^9.47.1",

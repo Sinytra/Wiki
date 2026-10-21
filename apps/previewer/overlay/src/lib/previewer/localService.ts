@@ -7,9 +7,7 @@ import { AssetLocation } from '@repo/shared/assets';
 import localAssets from './localAssets';
 import {
   BrowseResponse,
-  ChangelogEntry,
   FileTreeEntry,
-  InvItem,
   ProjectData,
   ProjectPage,
   RecipeTypeResponse,
@@ -20,7 +18,7 @@ import {
 } from '@sinytra/wiki-api-types';
 import localContent from './localContent';
 import { pick } from 'lodash';
-import markdown from '@repo/markdown';
+import { docsIndexSlug, itemAssetLocation, parsePage } from '@sinytra/wiki-wasm';
 
 function findDocsFiles(entry: FileTreeEntry): FileTreeEntry[] {
   return entry.type === 'file' ? [entry] : entry.children.flatMap(findDocsFiles);
@@ -82,7 +80,7 @@ async function getAsset(location: ResourceLocation, ctx: ProjectContext): Promis
 async function getItemAsset(location: ResourceLocation, ctx: ProjectContext): Promise<AssetLocation | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
-    const actualLocation = src.format.getItemAssetLocation(location);
+    const actualLocation = itemAssetLocation(src.schema, location);
     return localAssets.resolveAsset(src, actualLocation);
   }
   return null;
@@ -99,7 +97,7 @@ async function getLocalAssetFile(location: ResourceLocation, ctx: ProjectContext
 async function getDocsIndexPage(ctx: ProjectContext): Promise<ProjectPage | undefined | null> {
   const src = await localDocs.getProjectSource(ctx.id);
   if (src) {
-    const path = [src.format.getDocsIndexPageSlug()];
+    const path = [docsIndexSlug(src.schema)];
     return getDocsPageAt(src, 'docs', path, true, ctx);
   }
   return undefined;
@@ -117,18 +115,6 @@ async function getDocsPage(
   return undefined;
 }
 
-function parseHistory(entries: ChangelogEntry[] | null | undefined): Array<ChangelogEntry> | null {
-  return entries
-    ? entries.map((entry: ChangelogEntry) => {
-        if ('changes' in entry) {
-          return entry;
-        }
-        const single = Object.entries(entry)[0]!;
-        return { version: single[0], changes: [single[1]] } as ChangelogEntry;
-      })
-    : null;
-}
-
 async function getDocsPageAt(
   src: LocalDocumentationSource,
   type: 'docs' | 'content',
@@ -138,35 +124,11 @@ async function getDocsPageAt(
 ): Promise<ProjectPage | null> {
   const file = await localDocs.readDocsFile(src, type, slug, ctx.locale || undefined, optional);
   if (file) {
-    const frontmatter = await markdown.readProcessedFrontmatter(file.content);
-    const links = await localContent.resolveContentLinks(frontmatter.links ?? [], ctx);
-    const infobox = frontmatter.infobox;
-    if (infobox?.display && !infobox?.tabs) {
-      infobox.tabs = [{ name: '', display: infobox.display }];
-    }
-
-    infobox?.tabs?.forEach((tab) => {
-      if (!Array.isArray(tab.display)) {
-        tab.display = [tab.display];
-      }
-    });
+    const { frontmatter, links: rawLinks } = parsePage(file.content);
+    const links = await localContent.resolveContentLinks(rawLinks, ctx);
 
     return {
-      frontmatter: {
-        id: frontmatter.id ? (Array.isArray(frontmatter.id) ? frontmatter.id : [frontmatter.id]) : [],
-        title: frontmatter.title ?? null,
-        type: frontmatter.type,
-        icon: frontmatter.icon,
-        infobox: {
-          ...infobox,
-          title: infobox?.title ?? null,
-          inventory: infobox?.inventory?.map((it) =>
-            typeof it === 'string' ? ({ asset_id: it } satisfies InvItem) : it
-          )
-        },
-        history: parseHistory(frontmatter.history),
-        custom: frontmatter.custom
-      },
+      frontmatter,
       content: file.content,
       edit_url: null,
       properties: {},
@@ -210,7 +172,7 @@ async function getProjectContentPage(ref: string, ctx: ProjectContext): Promise<
         const filteredProps = pick(properties, page.frontmatter.id);
 
         if (src) {
-          page.frontmatter.infobox = await localContent.constructInfobox(src.format, page.frontmatter, ctx);
+          page.frontmatter.infobox = await localContent.constructInfobox(src, page.frontmatter, ctx);
         }
 
         return {

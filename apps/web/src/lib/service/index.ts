@@ -1,4 +1,3 @@
-import { serviceProviderFactory as remoteServiceProviderFactory } from '@/lib/service/remoteService';
 import { AssetLocation } from '@repo/shared/assets';
 import {
   ContentFileTree,
@@ -6,12 +5,11 @@ import {
   ProjectContentContext,
   ProjectContext,
   RenderedDocsPage,
-  ServiceProvider,
-  ServiceProviderFactory
+  ServiceProvider
 } from '@repo/shared/types/service';
 import markdown, { ComponentPatcher, DocumentationMarkdown } from '@repo/markdown';
 import resourceLocation from '@repo/shared/resourceLocation';
-import { localServiceProviderFactory } from '@repo/previewer';
+import { serviceProviders } from '@/lib/service/providers';
 import PrefabUsage from '@/components/docs/shared/prefab/PrefabUsage';
 import CraftingRecipe from '@/components/docs/shared/CraftingRecipe';
 import ProjectRecipe from '@/components/docs/shared/game/ProjectRecipe';
@@ -44,8 +42,6 @@ type AsyncMethodKey<T> = {
   [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never;
 }[keyof T];
 
-const installedProviders: ServiceProviderFactory[] = [localServiceProviderFactory, remoteServiceProviderFactory];
-
 function createProxy<T extends AsyncMethodKey<ServiceProvider>>(
   callback: (p: ServiceProvider, ...args: Parameters<ServiceProvider[T]>) => ReturnType<ServiceProvider[T]>
 ): (...args: Parameters<ServiceProvider[T]>) => Promise<Awaited<ReturnType<ServiceProvider[T]>> | null> {
@@ -55,7 +51,7 @@ function createProxy<T extends AsyncMethodKey<ServiceProvider>>(
 async function proxyServiceCall<T extends AsyncMethodKey<ServiceProvider>>(
   callback: (p: ServiceProvider) => ReturnType<ServiceProvider[T]>
 ): Promise<Awaited<ReturnType<ServiceProvider[T]>> | null> {
-  const providers: ServiceProvider[] = installedProviders.filter((f) => f.isAvailable()).map((f) => f.create());
+  const providers: ServiceProvider[] = serviceProviders.filter((f) => f.isAvailable()).map((f) => f.create());
   for (const provider of providers) {
     const promise = callback(provider) as ReturnType<ServiceProvider[T]>;
     const result = await promise;

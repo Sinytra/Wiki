@@ -3,7 +3,7 @@ import { FolderOpenIcon, PackageIcon } from 'lucide-react';
 import { NavLink } from '@/components/navigation/link/NavLink';
 import { getTranslations } from 'next-intl/server';
 import { setContextLocale } from '@/lib/locales/routing';
-import previewer from '@repo/previewer';
+import previewer from '@/lib/previewer';
 import navigation from '@/lib/discovery/navigation';
 import { ReactNode } from 'react';
 

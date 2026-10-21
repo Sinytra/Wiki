@@ -9,20 +9,12 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@repo/ui/*": ["../../packages/ui/src/*"],
-      "@/components/*": ["../web/src/components/*"],
-      "@/lib/*": ["../web/src/lib/*"]
+      "@/public/*": ["./public/*"],
+      "@repo/ui/*": ["../../packages/ui/src/*"]
     },
     "module": "ESNext",
     "moduleResolution": "bundler"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "next.config.ts", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "overlay", "dist"]
 }
