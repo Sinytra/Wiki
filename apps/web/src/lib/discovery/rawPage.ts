@@ -54,9 +54,15 @@ export function projectLlmsTxtResponse(body: string): Response {
   return plainTextResponse(body, 200, [{ href: ROOT_LLMS_TXT_PATH, rel: 'describedby' }]);
 }
 
-export function rawPageResponse(page: ProjectPage, pagePath: string, params: ProjectRouteParams): Response {
+export function rawPageResponse(
+  page: ProjectPage,
+  pagePath: (locale: string) => string,
+  params: ProjectRouteParams,
+  canonicalLocale: string
+): Response {
   return plainTextResponse(page.content, 200, [
-    { href: pagePath, rel: 'alternate', type: 'text/html' },
+    { href: pagePath(canonicalLocale), rel: 'canonical' },
+    { href: pagePath(params.locale), rel: 'alternate', type: 'text/html' },
     { href: projectLlmsTxtPath(params), rel: 'describedby' }
   ]);
 }

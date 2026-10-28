@@ -20,18 +20,16 @@ export interface PageMetadataOptions {
 }
 
 export function pageMetadata({ locale, path, languages, markdown, image, description }: PageMetadataOptions): Metadata {
-  const langs = languages === undefined ? locales.getAvailableLocales() : resolveLanguages(languages);
+  const langs = resolveAvailableLanguages(languages);
   const hreflang: Record<string, string> = {};
   for (const lang of langs) {
     hreflang[lang.internal] = path(lang.prefix);
   }
-  const defaultLang = locales.getForCode(DEFAULT_LOCALE_CODE)!;
   if (Object.keys(hreflang).length > 0) {
-    hreflang['x-default'] = path(defaultLang.prefix);
+    hreflang['x-default'] = path(locales.getForCode(DEFAULT_LOCALE_CODE)!.prefix);
   }
 
-  const isTranslated = langs.some((lang) => lang.prefix === locale);
-  const canonical = isTranslated ? path(locale) : path(defaultLang.prefix);
+  const canonical = path(getCanonicalLocalePrefix(locale, languages));
 
   return {
     ...(description ? { description } : {}),
@@ -70,6 +68,15 @@ export function projectPageMetadata(
 function projectOgImage(params: ProjectRouteParams, extra: Record<string, string> = {}): string {
   const query = new URLSearchParams({ slug: params.slug, locale: params.locale, version: params.version, ...extra });
   return `/api/og?${query}`;
+}
+
+export function getCanonicalLocalePrefix(locale: string, languages?: string[]): string {
+  const isTranslated = resolveAvailableLanguages(languages).some((lang) => lang.prefix === locale);
+  return isTranslated ? locale : locales.getForCode(DEFAULT_LOCALE_CODE)!.prefix;
+}
+
+function resolveAvailableLanguages(languages?: string[]) {
+  return languages === undefined ? locales.getAvailableLocales() : resolveLanguages(languages);
 }
 
 function resolveLanguages(codes: string[]) {

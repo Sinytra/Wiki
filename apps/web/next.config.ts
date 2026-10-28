@@ -89,7 +89,7 @@ export default withSentryConfig(withContentlayer(withNextIntl(withMDX(nextConfig
   telemetry: false,
   webpack: {
     treeshake: {
-      removeDebugLogging: true
+      removeDebugLogging: process.env.NODE_ENV === 'production'
     },
     unstable_sentryWebpackPluginOptions: {
       applicationKey: 'moddedwiki'
