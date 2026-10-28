@@ -86,9 +86,13 @@ const withMDX = createMDX({
 export default withSentryConfig(withContentlayer(withNextIntl(withMDX(nextConfig))), {
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  disableLogger: true,
   telemetry: false,
-  unstable_sentryWebpackPluginOptions: {
-    applicationKey: 'moddedwiki'
+  webpack: {
+    treeshake: {
+      removeDebugLogging: true
+    },
+    unstable_sentryWebpackPluginOptions: {
+      applicationKey: 'moddedwiki'
+    }
   }
 });
