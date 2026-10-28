@@ -1,4 +1,4 @@
-import { withSentryConfig } from '@sentry/nextjs';
+import { withSentryConfig } from '@sentry/nextjs/config';
 import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
 import { withContentlayer } from 'next-contentlayer2';
