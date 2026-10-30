@@ -1,27 +1,25 @@
-import { use } from 'react';
-import { allBlogs } from '@/.contentlayer/generated';
 import { notFound } from 'next/navigation';
 import { format, parseISO } from 'date-fns';
-import { useMDXComponent } from 'next-contentlayer2/hooks';
+import blog from '@/lib/blog';
 import { setContextLocale } from '@/lib/locales/routing';
 import BlogHeader from '@/components/navigation/BlogHeader';
 import SocialButtons from '@/components/util/SocialButtons';
-import { useMDXComponents } from '@/mdx-components';
+import { useMDXComponents as getMDXComponents } from '@/mdx-components';
 import Callout from '@/components/docs/shared/Callout';
 import Asset from '@/components/docs/shared/asset/Asset';
 import TooltipText from '@/components/docs/shared/util/TooltipText';
 import { Metadata } from 'next';
 import { SITE_NAME } from '@/lib/seo';
 
-export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }));
+export const generateStaticParams = async () => (await blog.getAllPosts()).map((post) => ({ slug: post.slug }));
 
 export const generateMetadata = async (props: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
   const params = await props.params;
 
-  const post = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug);
+  const post = (await blog.getAllPosts()).find((post) => post.slug === params.slug);
   if (!post) return {};
 
-  const url = `/blog/${post._raw.flattenedPath}`;
+  const url = `/blog/${post.slug}`;
   return {
     title: post.title,
     description: post.excerpt,
@@ -65,15 +63,15 @@ function Embed({
   );
 }
 
-const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
-  const params = use(props.params);
+const BlogLayout = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   setContextLocale('en');
 
-  const post = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug);
-  if (!post) notFound();
+  const result = await blog.getPost(params.slug);
+  if (!result) notFound();
 
-  const MDXContent = useMDXComponent(post.body.code);
-  const components = useMDXComponents({ Embed, Callout, Asset, hint: TooltipText });
+  const { post, Content: MDXContent } = result;
+  const components = getMDXComponents({ Embed, Callout, Asset, hint: TooltipText });
 
   return (
     <article className="mx-auto py-8">
@@ -88,7 +86,7 @@ const BlogLayout = (props: { params: Promise<{ slug: string }> }) => {
           <SocialButtons
             enableSharing={true}
             shareData={{
-              url: `https://moddedmc.wiki/blog/${post._raw.flattenedPath}`,
+              url: `https://moddedmc.wiki/blog/${post.slug}`,
               title: post.title,
               text: `moddedmc.wiki Blog - ${post.title} - ${post.excerpt}`
             }}

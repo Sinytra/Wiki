@@ -1,7 +1,6 @@
 import { withSentryConfig } from '@sentry/nextjs/config';
 import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
-import { withContentlayer } from 'next-contentlayer2';
 import { type CodeHikeConfig } from 'codehike/mdx';
 import type { NextConfig } from 'next';
 
@@ -64,6 +63,11 @@ const nextConfig: NextConfig = {
     ];
   },
   transpilePackages: ['@repo/ui', '@sinytra/wiki-api-types'],
+  outputFileTracingIncludes: {
+    '/\\[locale\\]': ['../../blogs/*.mdx'],
+    '/blog': ['../../blogs/*.mdx'],
+    '/blog/\\[slug\\]': ['../../blogs/*.mdx']
+  },
   experimental: {
     optimizePackageImports: ['shiki']
   },
@@ -83,16 +87,12 @@ const withMDX = createMDX({
   }
 });
 
-export default withSentryConfig(withContentlayer(withNextIntl(withMDX(nextConfig))), {
+export default withSentryConfig(withNextIntl(withMDX(nextConfig)), {
   silent: !process.env.CI,
   widenClientFileUpload: true,
   telemetry: false,
-  webpack: {
-    treeshake: {
-      removeDebugLogging: process.env.NODE_ENV === 'production'
-    },
-    unstable_sentryWebpackPluginOptions: {
-      applicationKey: 'moddedwiki'
-    }
+  applicationKey: 'moddedwiki',
+  bundleSizeOptimizations: {
+    excludeDebugStatements: process.env.NODE_ENV === 'production'
   }
 });

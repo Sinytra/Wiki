@@ -6,9 +6,6 @@ node_modules
 .pnp.js
 .yarn/install-state.gz
 
-# contentlayer
-.contentlayer
-
 # testing
 /coverage
 

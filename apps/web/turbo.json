@@ -3,12 +3,11 @@
     "//"
   ],
   "tasks": {
-    "blog": {
+    "build": {
       "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*",
         "../../blogs/**"
-      ],
-      "outputs": [
-        ".contentlayer/**"
       ]
     }
   }

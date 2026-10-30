@@ -16,7 +16,7 @@ import { config as baseConfig } from "./base.js"
 export const nextJsConfig = [
   ...baseConfig,
   {
-    ignores: [".next/**", ".contentlayer/**", "out/**", "build/**", "next-env.d.ts"],
+    ignores: [".next/**", "out/**", "build/**", "next-env.d.ts"],
   },
   js.configs.recommended,
   eslintConfigPrettier,

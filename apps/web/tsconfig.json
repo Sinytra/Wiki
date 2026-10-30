@@ -11,14 +11,8 @@
       "@/*": [
         "./src/*"
       ],
-      "@/.contentlayer/*": [
-        "./.contentlayer/*"
-      ],
       "@/public/*": [
         "./public/*"
-      ],
-      "contentlayer/generated": [
-        "./.contentlayer/generated"
       ],
       "@repo/ui/*": [
         "../../packages/ui/src/*"
@@ -31,8 +25,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".contentlayer/generated"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

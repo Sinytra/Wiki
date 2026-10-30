@@ -11,8 +11,8 @@ import CurseForgeIcon from '@repo/ui/icons/CurseForgeIcon';
 import CurseForgeColorIcon from '@repo/ui/icons/CurseForgeColorIcon';
 import { LocaleNavLink } from '@/components/navigation/link/LocaleNavLink';
 import { ComponentType, ReactNode } from 'react';
-import { allBlogs } from '@/.contentlayer/generated';
-import { compareDesc, format } from 'date-fns';
+import blog, { BlogPost } from '@/lib/blog';
+import { format } from 'date-fns';
 import SocialButtons from '@/components/util/SocialButtons';
 import env from '@repo/shared/env';
 import featuredProjects, { FeaturedProject } from '@/lib/service/featuredProjects';
@@ -275,18 +275,17 @@ function OracleIndexTile({ className }: { className?: string }) {
   );
 }
 
-function BlogTile({ className }: { className?: string }) {
+function BlogTile({ blogPosts, className }: { blogPosts: BlogPost[]; className?: string }) {
   const t = useTranslations('HomePage');
-  const blogPosts = allBlogs.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3);
 
   return (
     <Tile title={t('blog.title')} className={className}>
       <ul className="my-auto flex flex-col divide-y divide-tertiary">
         {blogPosts.map((post) => (
-          <li key={post._id} className="flex flex-col gap-1 py-3 first:pt-0 last:pb-0">
+          <li key={post.slug} className="flex flex-col gap-1 py-3 first:pt-0 last:pb-0">
             <div className="flex flex-row items-baseline justify-between gap-3">
               <NavLink
-                href={`/blog/${post._id.replace('.mdx', '')}`}
+                href={`/blog/${post.slug}`}
                 className="font-medium text-primary underline-offset-4 hover:underline"
               >
                 {post.title}
@@ -394,7 +393,7 @@ function Hero() {
   );
 }
 
-function HomePageContent({ projects }: { projects: FeaturedProject[] }) {
+function HomePageContent({ projects, blogPosts }: { projects: FeaturedProject[]; blogPosts: BlogPost[] }) {
   return (
     <main className="mx-auto mb-4 flex w-full max-w-6xl flex-col gap-3 px-4 sm:px-6">
       <Hero />
@@ -404,7 +403,7 @@ function HomePageContent({ projects }: { projects: FeaturedProject[] }) {
 
         <OracleIndexTile className="lg:col-span-3" />
 
-        <BlogTile className="lg:col-span-2" />
+        <BlogTile blogPosts={blogPosts} className="lg:col-span-2" />
         <AuthorsTile />
 
         <AboutTile className="lg:col-span-3" />
@@ -420,6 +419,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
   setContextLocale(params.locale);
 
   const projects = await featuredProjects.getFeaturedProjects();
+  const blogPosts = (await blog.getAllPosts()).slice(0, 3);
   const showBanner =
     params.locale !== DEFAULT_LOCALE && (await crowdin.getCrowdinTranslationStatus(params.locale)) < 50;
 
@@ -437,7 +437,7 @@ export default async function Home(props: { params: Promise<{ locale: string }> 
           'page-wrapper-base page-wrapper sm:page-wrapper-ext flex min-h-screen flex-1 sm:mx-2'
         )}
       >
-        <HomePageContent projects={projects} />
+        <HomePageContent projects={projects} blogPosts={blogPosts} />
       </div>
     </>
   );
