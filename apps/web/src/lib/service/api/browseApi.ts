@@ -27,7 +27,7 @@ async function searchProjects(parameters: SearchProjectsParameters): Promise<Api
 }
 
 function invalidateBrowseSearch() {
-  revalidateTag(SEARCH_PROJECTS_TAG);
+  revalidateTag(SEARCH_PROJECTS_TAG, { expire: 0 });
 }
 
 export default {

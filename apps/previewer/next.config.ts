@@ -57,7 +57,6 @@ const withMDX = createMDX({
   options: {
     remarkPlugins: [['remark-gfm'], ['remark-codehike', chConfig]],
     rehypePlugins: [['rehype-slug']],
-    // @ts-expect-error package names
     recmaPlugins: [['recma-codehike', chConfig]]
   }
 });

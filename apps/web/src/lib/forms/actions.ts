@@ -130,6 +130,6 @@ export async function handleRevalidateCacheTag(rawData: any): Promise<FormAction
       errors: validatedFields.error.flatten().fieldErrors
     };
   }
-  revalidateTag(validatedFields.data.tag);
+  revalidateTag(validatedFields.data.tag, { expire: 0 });
   return { success: true, data: null };
 }

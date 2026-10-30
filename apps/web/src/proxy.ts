@@ -12,7 +12,7 @@ export const config = {
   ]
 };
 
-export async function middleware(request: NextRequest, _response: NextResponse) {
+export async function proxy(request: NextRequest, _response: NextResponse) {
   // Legacy content page names
   const contentMatch = request.nextUrl.pathname.match(/^\/([^/]+)\/project\/([^/]+)\/([^/]+)\/content\/([^/]*:[^/]*)$/);
   if (contentMatch) {

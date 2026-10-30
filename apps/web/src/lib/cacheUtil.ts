@@ -1,7 +1,7 @@
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 function invalidateDocs(id: string) {
-  revalidateTag('backend:' + id);
+  revalidateTag('backend:' + id, { expire: 0 });
 
   revalidatePath(`/[locale]/(main)/project/${id}/[version]`, 'layout');
 }

@@ -67,7 +67,8 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['shiki']
   },
-  assetPrefix: process.env.STATIC_ASSETS_URL
+  assetPrefix: process.env.STATIC_ASSETS_URL,
+  agentRules: false
 };
 
 const chConfig: CodeHikeConfig = {
@@ -78,7 +79,6 @@ const withMDX = createMDX({
   options: {
     remarkPlugins: [['remark-gfm'], ['remark-codehike', chConfig]],
     rehypePlugins: [['rehype-slug']],
-    // @ts-expect-error package names
     recmaPlugins: [['recma-codehike', chConfig]]
   }
 });
